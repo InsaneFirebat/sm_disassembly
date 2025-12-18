@@ -400,83 +400,26 @@ Instruction_CommonAA_DisableOffScreenProcessing:
 
 ;;; $8187: Common enemy speeds - linearly increasing ;;;
 CommonAAEnemySpeeds_LinearlyIncreasing:
-;        _____________________ Speed
-;       |      _______________ Subspeed
-;       |     |      _________ Negated speed
-;       |     |     |      ___ Negated subspeed
-;       |     |     |     |
-  .speed:
-    dw $0000                                                             ;AA8187;
-  .subspeed:
-    dw       $0000                                                       ;AA8189;
-  .negatedSpeed:
-    dw             $0000                                                 ;AA818B;
-  .negatedSubspeed:
-    dw                   $0000                                           ;AA818D;
-    dw $0000,$1000,$FFFF,$F000
-    dw $0000,$2000,$FFFF,$E000
-    dw $0000,$3000,$FFFF,$D000
-    dw $0000,$4000,$FFFF,$C000
-    dw $0000,$5000,$FFFF,$B000
-    dw $0000,$6000,$FFFF,$A000
-    dw $0000,$7000,$FFFF,$9000
-    dw $0000,$8000,$FFFF,$8000
-    dw $0000,$9000,$FFFF,$7000
-    dw $0000,$A000,$FFFF,$6000
-    dw $0000,$B000,$FFFF,$5000
-    dw $0000,$C000,$FFFF,$4000
-    dw $0000,$D000,$FFFF,$3000
-    dw $0000,$E000,$FFFF,$2000
-    dw $0000,$F000,$FFFF,$1000
-    dw $0001,$0000,$FFFF,$0000
-    dw $0001,$1000,$FFFE,$F000
-    dw $0001,$2000,$FFFE,$E000
-    dw $0001,$3000,$FFFE,$D000
-    dw $0001,$4000,$FFFE,$C000
-    dw $0001,$5000,$FFFE,$B000
-    dw $0001,$6000,$FFFE,$A000
-    dw $0001,$7000,$FFFE,$9000
-    dw $0001,$8000,$FFFE,$8000
-    dw $0001,$9000,$FFFE,$7000
-    dw $0001,$A000,$FFFE,$6000
-    dw $0001,$B000,$FFFE,$5000
-    dw $0001,$C000,$FFFE,$4000
-    dw $0001,$D000,$FFFE,$3000
-    dw $0001,$E000,$FFFE,$2000
-    dw $0001,$F000,$FFFE,$1000
-    dw $0002,$0000,$FFFE,$0000
-    dw $0002,$1000,$FFFD,$F000
-    dw $0002,$2000,$FFFD,$E000
-    dw $0002,$3000,$FFFD,$D000
-    dw $0002,$4000,$FFFD,$C000
-    dw $0002,$5000,$FFFD,$B000
-    dw $0002,$6000,$FFFD,$A000
-    dw $0002,$7000,$FFFD,$9000
-    dw $0002,$8000,$FFFD,$8000
-    dw $0002,$9000,$FFFD,$7000
-    dw $0002,$A000,$FFFD,$6000
-    dw $0002,$B000,$FFFD,$5000
-    dw $0002,$C000,$FFFD,$4000
-    dw $0002,$D000,$FFFD,$3000
-    dw $0002,$E000,$FFFD,$2000
-    dw $0002,$F000,$FFFD,$1000
-    dw $0003,$0000,$FFFD,$0000
-    dw $0003,$1000,$FFFC,$F000
-    dw $0003,$2000,$FFFC,$E000
-    dw $0003,$3000,$FFFC,$D000
-    dw $0003,$4000,$FFFC,$C000
-    dw $0003,$5000,$FFFC,$B000
-    dw $0003,$6000,$FFFC,$A000
-    dw $0003,$7000,$FFFC,$9000
-    dw $0003,$8000,$FFFC,$8000
-    dw $0003,$9000,$FFFC,$7000
-    dw $0003,$A000,$FFFC,$6000
-    dw $0003,$B000,$FFFC,$5000
-    dw $0003,$C000,$FFFC,$4000
-    dw $0003,$D000,$FFFC,$3000
-    dw $0003,$E000,$FFFC,$2000
-    dw $0003,$F000,$FFFC,$1000
-    dw $0004,$0000,$FFFC,$0000
+  .speed                                                                 ;A08187;
+skip 2
+  .subspeed                                                              ;A08189;
+skip 2
+  .negatedSpeed                                                          ;A0818B;
+skip 2
+  .negatedSubspeed                                                       ;A0818D;
+skip -6
+
+!i = 0
+if !PAL == 0
+    !n = $41
+else
+    !n = $43
+endif
+while !i < !n
+    !v #= $1000*!SPF*!i ; !i must be last in product to reproduce PAL rounding errors
+    dw !v>>$10, !v, -!v>>$10, -!v
+    !i #= !i+1
+endif
 
 
 ;;; $838F: Common enemy speeds - quadratically increasing ;;;
@@ -498,6 +441,7 @@ CommonAAEnemySpeeds_QuadraticallyIncreasing:
     dw                   $0000                                           ;AA8395;
     dw $0109,$0000,$FEF7,$FFFF
     dw $031B,$0000,$FCE5,$FFFF
+if !PAL == 0
     dw $0636,$0000,$F9CA,$FFFF
     dw $0A5A,$0000,$F5A6,$FFFF
     dw $0F87,$0000,$F079,$FFFF
@@ -590,6 +534,100 @@ CommonAAEnemySpeeds_QuadraticallyIncreasing:
     dw $BC66,$0010,$439A,$FFEF
     dw $13AB,$0011,$EC55,$FFEE
     dw $74F9,$0011,$8B07,$FFEE
+else
+    dw $073F,$0000,$F8C1,$FFFF
+    dw $0B63,$0000,$F49D,$FFFF
+    dw $1199,$0000,$EE67,$FFFF
+    dw $19E1,$0000,$E61F,$FFFF
+    dw $2229,$0000,$DDD7,$FFFF
+    dw $2C83,$0000,$D37D,$FFFF
+    dw $36DD,$0000,$C923,$FFFF
+    dw $4349,$0000,$BCB7,$FFFF
+    dw $51C7,$0000,$AE39,$FFFF
+    dw $6045,$0000,$9FBB,$FFFF
+    dw $70D5,$0000,$8F2B,$FFFF
+    dw $8165,$0000,$7E9B,$FFFF
+    dw $9407,$0000,$6BF9,$FFFF
+    dw $A8BB,$0000,$5745,$FFFF
+    dw $BD6F,$0000,$4291,$FFFF
+    dw $D435,$0000,$2BCB,$FFFF
+    dw $EAFB,$0000,$1505,$FFFF
+    dw $03D3,$0001,$FC2D,$FFFE
+    dw $15BD,$0001,$EA43,$FFFE
+    dw $30A7,$0001,$CF59,$FFFE
+    dw $4DA3,$0001,$B25D,$FFFE
+    dw $6A9F,$0001,$9561,$FFFE
+    dw $89AD,$0001,$7653,$FFFE
+    dw $AACD,$0001,$5533,$FFFE
+    dw $CBED,$0001,$3413,$FFFE
+    dw $EF1F,$0001,$10E1,$FFFE
+    dw $0951,$0002,$F6AF,$FFFD
+    dw $2E95,$0002,$D16B,$FFFD
+    dw $55EB,$0002,$AA15,$FFFD
+    dw $7D41,$0002,$82BF,$FFFD
+    dw $A6A9,$0002,$5957,$FFFD
+    dw $D011,$0002,$2FEF,$FFFD
+    dw $FB8B,$0002,$0475,$FFFD
+    dw $2017,$0003,$DFE9,$FFFC
+    dw $4DA3,$0003,$B25D,$FFFC
+    dw $7D41,$0003,$82BF,$FFFC
+    dw $ACDF,$0003,$5321,$FFFC
+    dw $DE8F,$0003,$2171,$FFFC
+    dw $0951,$0004,$F6AF,$FFFB
+    dw $3D13,$0004,$C2ED,$FFFB
+    dw $72E7,$0004,$8D19,$FFFB
+    dw $A8BB,$0004,$5745,$FFFB
+    dw $E0A1,$0004,$1F5F,$FFFB
+    dw $1199,$0005,$EE67,$FFFA
+    dw $4B91,$0005,$B46F,$FFFA
+    dw $879B,$0005,$7865,$FFFA
+    dw $C3A5,$0005,$3C5B,$FFFA
+    dw $01C1,$0005,$FE3F,$FFFA
+    dw $38EF,$0006,$C711,$FFF9
+    dw $791D,$0006,$86E3,$FFF9
+    dw $BB5D,$0006,$44A3,$FFF9
+    dw $FD9D,$0006,$0263,$FFF9
+    dw $38EF,$0007,$C711,$FFF8
+    dw $7F53,$0007,$80AD,$FFF8
+    dw $C5B7,$0007,$3A49,$FFF8
+    dw $052D,$0008,$FAD3,$FFF7
+    dw $4DA3,$0008,$B25D,$FFF7
+    dw $982B,$0008,$67D5,$FFF7
+    dw $E4C5,$0008,$1B3B,$FFF7
+    dw $285F,$0009,$D7A1,$FFF6
+    dw $770B,$0009,$88F5,$FFF6
+    dw $C5B7,$0009,$3A49,$FFF6
+    dw $0D75,$000A,$F28B,$FFF5
+    dw $6045,$000A,$9FBB,$FFF5
+    dw $B315,$000A,$4CEB,$FFF5
+    dw $07F7,$000B,$F809,$FFF5
+    dw $53D9,$000B,$AC27,$FFF4
+    dw $AACD,$000B,$5533,$FFF4
+    dw $03D3,$000C,$FC2D,$FFF3
+    dw $53D9,$000C,$AC27,$FFF3
+    dw $AEF1,$000C,$510F,$FFF3
+    dw $0109,$000D,$FEF7,$FFF2
+    dw $5E33,$000D,$A1CD,$FFF2
+    dw $BD6F,$000D,$4291,$FFF2
+    dw $13AB,$000E,$EC55,$FFF1
+    dw $74F9,$000E,$8B07,$FFF1
+    dw $D647,$000E,$29B9,$FFF1
+    dw $30A7,$000F,$CF59,$FFF0
+    dw $9619,$000F,$69E7,$FFF0
+    dw $FB8B,$000F,$0475,$FFF0
+    dw $5A0F,$0010,$A5F1,$FFEF
+    dw $C193,$0010,$3E6D,$FFEF
+    dw $2229,$0011,$DDD7,$FFEE
+    dw $8DD1,$0011,$722F,$FFEE
+    dw $F979,$0011,$0687,$FFEE
+    dw $5E33,$0012,$A1CD,$FFED
+    dw $CBED,$0012,$3413,$FFED
+    dw $32B9,$0013,$CD47,$FFEC
+    dw $A497,$0013,$5B69,$FFEC
+    dw $0D75,$0014,$F28B,$FFEB
+    dw $8165,$0014,$7E9B,$FFEB
+    dw $F555,$0014,$0AAB,$FFEB
+endif
 
 
 ;;; $8687: Torizo palettes ;;;
@@ -4317,19 +4355,19 @@ InstList_Torizo_BombTorizo_Initial_0:
     dw Instruction_Common_Sleep                                          ;AAB885;
     dw Instruction_Torizo_FunctionInY                                    ;AAB887;
     dw Function_Torizo_SimpleMovement                                    ;AAB889;
-    dw $0030,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AAB88B;
+    dw regional($0030, $0050),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0 ;AAB88B;
     dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAB88F;
     dw $0040 : dl Tiles_Torizo : dw $7D80                                ;AAB891;
-    dw $0020,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AAB896;
+    dw regional($0020, $0019),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0 ;AAB896;
     dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAB89C;
     dw $0040 : dl Tiles_Torizo+$40 : dw $7D80                            ;AAB89E;
-    dw $0010,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AAB8A3;
+    dw regional($0010, $000A),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0 ;AAB8A3;
     dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAB8A9;
     dw $0040 : dl Tiles_Torizo+$80 : dw $7D80                            ;AAB8AB;
-    dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AAB8B0;
+    dw regional($0008, $0005),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0 ;AAB8B0;
     dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAB8B6;
     dw $0040 : dl Tiles_Torizo+$C0 : dw $7D80                            ;AAB8B8;
-    dw $0020,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AAB8BD;
+    dw regional($0020, $0019),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0 ;AAB8BD;
     dw Instruction_Common_TimerInY,$0002                                 ;AAB8C3;
 
 InstList_Torizo_BombTorizo_Initial_1:
@@ -4347,17 +4385,17 @@ InstList_Torizo_BombTorizo_Initial_1:
     dw $0040 : dl Tiles_Torizo+$C0 : dw $7D80                            ;AAB8F4;
     dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AAB8FB;
     dw InstList_Torizo_BombTorizo_Initial_1                              ;AAB8FD;
-    dw $0030,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AAB8FF;
+    dw regional($0030, $0028),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0 ;AAB8FF;
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$0000              ;AAB903;
-    dw $0010,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_1      ;AAB905;
+    dw regional($0010, $000A),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_1 ;AAB905;
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$0002              ;AAB90B;
-    dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_2      ;AAB90D;
+    dw regional($0008, $0005),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_2 ;AAB90D;
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$0004              ;AAB913;
-    dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_3      ;AAB915;
+    dw regional($0008, $0005),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_3 ;AAB915;
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$0006              ;AAB91B;
-    dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_4      ;AAB91D;
+    dw regional($0008, $0005),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_4 ;AAB91D;
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$0008              ;AAB923;
-    dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_5      ;AAB925;
+    dw regional($0008, $0005),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_5 ;AAB925;
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$000A              ;AAB92B;
     dw Instruction_Torizo_SetupPaletteTransitionToNormalTorizo           ;AAB92F;
     dw Instruction_Common_TimerInY,$0010                                 ;AAB931;
@@ -4370,7 +4408,7 @@ InstList_Torizo_BombTorizo_Initial_2:
     dw RTL_AAC2C8                                                        ;AAB93F;
     dw Instruction_Torizo_ClearAnimationLock                             ;AAB941;
     dw Instruction_Torizo_StartFightMusic_BombTorizoBellyPaletteFX       ;AAB943;
-    dw $0010,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_6      ;AAB945;
+    dw regional($0010, $000A),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_6 ;AAB945;
     dw Instruction_Common_GotoY                                          ;AAB949;
     dw InstList_Torizo_FacingLeft_Walking_LeftLegMoving                  ;AAB94B;
 
@@ -4397,7 +4435,7 @@ InstList_Torizo_FacingLeft_TurningLeft:
     dw Instruction_Torizo_FunctionInY                                    ;AAB962;
     dw Function_Torizo_SimpleMovement                                    ;AAB964;
     dw Instruction_Torizo_SetTorizoTurningAroundFlag                     ;AAB966;
-    dw $0018,ExtendedSpritemaps_Torizo_FacingScreen_Turning_Dodging      ;AAB968;
+    dw $0018*!FPS,ExtendedSpritemaps_Torizo_FacingScreen_Turning_Dodging ;AAB968;
 
 
 ;;; $B96C: Instruction list - walking left - right leg moving ;;;
@@ -4409,25 +4447,25 @@ InstList_Torizo_FacingLeft_Walking_RightLegMoving:
     dw Function_Torizo_Movement_Walking                                  ;AAB974;
     dw Instruction_Torizo_SpawnLowHealthInitialDroolIfHealthIsLow        ;AAB976;
     dw Instruction_Torizo_PlayTorizoFootstepsSFX                         ;AAB978;
-    dw $000A,ExtendedSpritemaps_Torizo_WalkingLeft_RightLegMoving_0      ;AAB97A;
+    dw regional($000A, $0005),ExtendedSpritemaps_Torizo_WalkingLeft_RightLegMoving_0 ;AAB97A;
     dw Instruction_Torizo_CallYIfSamusIsLessThan38PixelsInFront          ;AAB97E;
     dw InstList_Torizo_FacingLeft_ExplosiveSwipe_LeftFootForward         ;AAB980;
     dw Instruction_Torizo_GotoYAndJumpBackwardsIfLessThan20Pixels        ;AAB982;
     dw InstList_Torizo_FacingLeft_JumpingBackward_LandLeftFootFwd_0      ;AAB984;
     dw Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY,$0002 ;AAB986;
-    dw $0006,ExtendedSpritemaps_Torizo_WalkingLeft_RightLegMoving_1      ;AAB988;
+    dw $0006*!FPS,ExtendedSpritemaps_Torizo_WalkingLeft_RightLegMoving_1 ;AAB988;
     dw Instruction_Torizo_GotoYAndJumpBackwardsIfLessThan20Pixels        ;AAB98E;
     dw InstList_Torizo_FacingLeft_JumpingBackward_LandLeftFootFwd_0      ;AAB990;
     dw Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY,$0004 ;AAB992;
-    dw $0006,ExtendedSpritemaps_Torizo_WalkingLeft_RightLegMoving_2      ;AAB994;
+    dw $0006*!FPS,ExtendedSpritemaps_Torizo_WalkingLeft_RightLegMoving_2 ;AAB994;
     dw Instruction_Torizo_GotoYAndJumpBackwardsIfLessThan20Pixels        ;AAB99A;
     dw InstList_Torizo_FacingLeft_JumpingBackward_LandLeftFootFwd_0      ;AAB99C;
     dw Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY,$0006 ;AAB99E;
-    dw $0006,ExtendedSpritemaps_Torizo_WalkingLeft_RightLegMoving_3      ;AAB9A0;
+    dw $0006*!FPS,ExtendedSpritemaps_Torizo_WalkingLeft_RightLegMoving_3 ;AAB9A0;
     dw Instruction_Torizo_GotoYAndJumpBackwardsIfLessThan20Pixels        ;AAB9A6;
     dw InstList_Torizo_FacingLeft_JumpingBackward_LandLeftFootFwd_0      ;AAB9A8;
     dw Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY,$0008 ;AAB9AA;
-    dw $0006,ExtendedSpritemaps_Torizo_WalkingLeft_RightLegMoving_4      ;AAB9AC;
+    dw $0006*!FPS,ExtendedSpritemaps_Torizo_WalkingLeft_RightLegMoving_4 ;AAB9AC;
     dw Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY,$000A ;AAB9B2;
 
 
@@ -4440,25 +4478,25 @@ InstList_Torizo_FacingLeft_Walking_LeftLegMoving:
     dw Function_Torizo_Movement_Walking                                  ;AAB9BE;
     dw Instruction_Torizo_SpawnLowHealthInitialDroolIfHealthIsLow        ;AAB9C0;
     dw Instruction_Torizo_PlayTorizoFootstepsSFX                         ;AAB9C2;
-    dw $000A,ExtendedSpritemaps_Torizo_WalkingLeft_LeftLegMoving_0       ;AAB9C4;
+    dw regional($000A, $0005),ExtendedSpritemaps_Torizo_WalkingLeft_LeftLegMoving_0 ;AAB9C4;
     dw Instruction_Torizo_CallYIfSamusIsLessThan38PixelsInFront          ;AAB9C8;
     dw InstList_Torizo_FacingLeft_ExplosiveSwipe_RightFootForward        ;AAB9CA;
     dw Instruction_Torizo_GotoYAndJumpBackwardsIfLessThan20Pixels        ;AAB9CC;
     dw InstList_Torizo_FacingLeft_JumpingBackward_RightFootFwd_0         ;AAB9CE;
     dw Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY,$000C ;AAB9D0;
-    dw $0006,ExtendedSpritemaps_Torizo_WalkingLeft_LeftLegMoving_1       ;AAB9D2;
+    dw $0006*!FPS,ExtendedSpritemaps_Torizo_WalkingLeft_LeftLegMoving_1  ;AAB9D2;
     dw Instruction_Torizo_GotoYAndJumpBackwardsIfLessThan20Pixels        ;AAB9D8;
     dw InstList_Torizo_FacingLeft_JumpingBackward_RightFootFwd_0         ;AAB9DA;
     dw Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY,$000E ;AAB9DC;
-    dw $0006,ExtendedSpritemaps_Torizo_WalkingLeft_LeftLegMoving_2       ;AAB9DE;
+    dw $0006*!FPS,ExtendedSpritemaps_Torizo_WalkingLeft_LeftLegMoving_2  ;AAB9DE;
     dw Instruction_Torizo_GotoYAndJumpBackwardsIfLessThan20Pixels        ;AAB9E4;
     dw InstList_Torizo_FacingLeft_JumpingBackward_RightFootFwd_0         ;AAB9E6;
     dw Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY,$0010 ;AAB9E8;
-    dw $0006,ExtendedSpritemaps_Torizo_WalkingLeft_LeftLegMoving_3       ;AAB9EA;
+    dw $0006*!FPS,ExtendedSpritemaps_Torizo_WalkingLeft_LeftLegMoving_3  ;AAB9EA;
     dw Instruction_Torizo_GotoYAndJumpBackwardsIfLessThan20Pixels        ;AAB9F0;
     dw InstList_Torizo_FacingLeft_JumpingBackward_RightFootFwd_0         ;AAB9F2;
     dw Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY,$0012 ;AAB9F4;
-    dw $0006,ExtendedSpritemaps_Torizo_WalkingLeft_LeftLegMoving_4       ;AAB9F6;
+    dw $0006*!FPS,ExtendedSpritemaps_Torizo_WalkingLeft_LeftLegMoving_4  ;AAB9F6;
     dw Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY,$0000 ;AAB9FC;
     dw Instruction_Common_GotoY                                          ;AABA00;
     dw InstList_Torizo_FacingLeft_Walking_RightLegMoving                 ;AABA02;
@@ -4468,24 +4506,24 @@ InstList_Torizo_FacingLeft_Walking_LeftLegMoving:
 InstList_Torizo_FacingLeft_SpewingChozoOrbs_RightFootFwd_0:
     dw Instruction_Common_Enemy0FB2_InY                                  ;AABA04;
     dw Function_Torizo_Movement_Attacking                                ;AABA06;
-    dw $0010,ExtendedSpritemaps_Torizo_Attacks_FaceLeft_RightFootForward ;AABA08;
-    dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_0  ;AABA0C;
-    dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_1  ;AABA10;
-    dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_2  ;AABA14;
-    dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_3  ;AABA18;
-    dw $0010,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_4  ;AABA1C;
+    dw regional($0010, $000A),ExtendedSpritemaps_Torizo_Attacks_FaceLeft_RightFootForward ;AABA08;
+    dw regional($0008, $0005),ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_0 ;AABA0C;
+    dw regional($0008, $0005),ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_1 ;AABA10;
+    dw regional($0008, $0005),ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_2 ;AABA14;
+    dw regional($0008, $0005),ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_3 ;AABA18;
+    dw regional($0010, $000A),ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_4 ;AABA1C;
     dw Instruction_Torizo_PlayShotTorizoSFX                              ;AABA20;
     dw Instruction_Common_TimerInY,$0003                                 ;AABA22;
 
 InstList_Torizo_FacingLeft_SpewingChozoOrbs_RightFootFwd_1:
     dw Instruction_Torizo_SpawnBombTorizosChozoOrbs                      ;AABA26;
-    dw Instruction_Common_WaitYFrames,$0010                              ;AABA28;
+    dw Instruction_Common_WaitYFrames,regional($0010, $000A)             ;AABA28;
     dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AABA2C;
     dw InstList_Torizo_FacingLeft_SpewingChozoOrbs_RightFootFwd_1        ;AABA2E;
-    dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_3  ;AABA30;
-    dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_2  ;AABA34;
-    dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_1  ;AABA38;
-    dw $0048,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_0  ;AABA3C;
+    dw regional($0008, $0005),ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_3 ;AABA30;
+    dw regional($0008, $0005),ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_2 ;AABA34;
+    dw regional($0008, $0005),ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_1 ;AABA38;
+    dw regional($0048, $003C),ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_0 ;AABA3C;
     dw Instruction_Common_Enemy0FB2_InY                                  ;AABA40;
     dw Function_Torizo_Movement_Walking                                  ;AABA42;
     dw Instruction_Torizo_Return                                         ;AABA44;
@@ -4495,24 +4533,24 @@ InstList_Torizo_FacingLeft_SpewingChozoOrbs_RightFootFwd_1:
 InstList_Torizo_FacingLeft_SpewingChozoOrbs_LeftFootFwd_0:
     dw Instruction_Common_Enemy0FB2_InY                                  ;AABA46;
     dw Function_Torizo_Movement_Attacking                                ;AABA48;
-    dw $0010,ExtendedSpritemaps_Torizo_Attacks_FaceLeft_LeftFootForward  ;AABA4A;
-    dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_0   ;AABA4E;
-    dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_1   ;AABA52;
-    dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_2   ;AABA56;
-    dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_3   ;AABA5A;
-    dw $0010,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_4   ;AABA5E;
+    dw regional($0010, $000A),ExtendedSpritemaps_Torizo_Attacks_FaceLeft_LeftFootForward ;AABA4A;
+    dw regional($0008, $0005),ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_0 ;AABA4E;
+    dw regional($0008, $0005),ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_1 ;AABA52;
+    dw regional($0008, $0005),ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_2 ;AABA56;
+    dw regional($0008, $0005),ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_3 ;AABA5A;
+    dw regional($0010, $000A),ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_4 ;AABA5E;
     dw Instruction_Torizo_PlayShotTorizoSFX                              ;AABA62;
     dw Instruction_Common_TimerInY,$0003                                 ;AABA64;
 
 InstList_Torizo_FacingLeft_SpewingChozoOrbs_LeftFootFwd_1:
     dw Instruction_Torizo_SpawnBombTorizosChozoOrbs                      ;AABA68;
-    dw Instruction_Common_WaitYFrames,$0010                              ;AABA6A;
+    dw Instruction_Common_WaitYFrames,regional($0010, $000A)             ;AABA6A;
     dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AABA6E;
     dw InstList_Torizo_FacingLeft_SpewingChozoOrbs_LeftFootFwd_1         ;AABA70;
-    dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_3   ;AABA72;
-    dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_2   ;AABA76;
-    dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_1   ;AABA7A;
-    dw $0048,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_0   ;AABA7E;
+    dw regional($0008, $0005),ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_3 ;AABA72;
+    dw regional($0008, $0005),ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_2 ;AABA76;
+    dw regional($0008, $0005),ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_1 ;AABA7A;
+    dw regional($0048, $003C),ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_0 ;AABA7E;
     dw Instruction_Common_Enemy0FB2_InY                                  ;AABA82;
     dw Function_Torizo_Movement_Walking                                  ;AABA84;
     dw Instruction_Torizo_Return                                         ;AABA86;
@@ -4525,28 +4563,28 @@ InstList_Torizo_FacingLeft_SonicBooms_RightFootForward_0:
     dw Instruction_Common_TimerInY,$0004                                 ;AABA8C;
 
 InstList_Torizo_FacingLeft_SonicBooms_RightFootForward_1:
-    dw $0006,ExtendedSpritemaps_Torizo_Attacks_FaceLeft_RightFootForward ;AABA90;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_0 ;AABA94;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_1 ;AABA98;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_2 ;AABA9C;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_3 ;AABAA0;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_4 ;AABAA4;
+    dw $0006*!FPS,ExtendedSpritemaps_Torizo_Attacks_FaceLeft_RightFootForward ;AABA90;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_0 ;AABA94;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_1 ;AABA98;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_2 ;AABA9C;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_3 ;AABAA0;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_4 ;AABAA4;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_3 ;AABAA8;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_2 ;AABAAC;
     dw Instruction_Torizo_SpawnBombTorizoSonicBoomWithParameterY,$0000   ;AABAB0;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_1 ;AABAB2;
-    dw $0018,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_0 ;AABAB8;
-    dw $0006,ExtendedSpritemaps_Torizo_Attacks_FaceLeft_RightFootForward ;AABABC;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_5 ;AABAC0;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_RightFootForward_0 ;AABAC4;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_RightFootForward_1 ;AABAC8;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_RightFootForward_2 ;AABACC;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_RightFootForward_3 ;AABAD0;
+    dw $0018*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_0 ;AABAB8;
+    dw $0006*!FPS,ExtendedSpritemaps_Torizo_Attacks_FaceLeft_RightFootForward ;AABABC;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_5 ;AABAC0;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_RightFootForward_0 ;AABAC4;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_RightFootForward_1 ;AABAC8;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_RightFootForward_2 ;AABACC;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_RightFootForward_3 ;AABAD0;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_RightFootForward_2 ;AABAD4;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_RightFootForward_1 ;AABAD8;
     dw Instruction_Torizo_SpawnBombTorizoSonicBoomWithParameterY,$0001   ;AABADC;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_RightFootForward_0 ;AABADE;
-    dw $0038,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_5 ;AABAE4;
+    dw regional($0038, $002D),ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_5 ;AABAE4;
     dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AABAE8;
     dw InstList_Torizo_FacingLeft_SonicBooms_RightFootForward_1          ;AABAEA;
     dw Instruction_Common_Enemy0FB2_InY                                  ;AABAEC;
@@ -4561,28 +4599,28 @@ InstList_Torizo_FacingLeft_SonicBooms_LeftFootForward_0:
     dw Instruction_Common_TimerInY,$0004                                 ;AABAF6;
 
 InstList_Torizo_FacingLeft_SonicBooms_LeftFootForward_1:
-    dw $0006,ExtendedSpritemaps_Torizo_Attacks_FaceLeft_LeftFootForward  ;AABAFA;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_0 ;AABAFE;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_1 ;AABB02;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_2 ;AABB06;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_3 ;AABB0A;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_4 ;AABB0E;
+    dw $0006*!FPS,ExtendedSpritemaps_Torizo_Attacks_FaceLeft_LeftFootForward ;AABAFA;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_0 ;AABAFE;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_1 ;AABB02;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_2 ;AABB06;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_3 ;AABB0A;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_4 ;AABB0E;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_3 ;AABB12;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_2 ;AABB16;
     dw Instruction_Torizo_SpawnBombTorizoSonicBoomWithParameterY,$0000   ;AABB1A;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_1 ;AABB1C;
-    dw $0018,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_0 ;AABB22;
-    dw $0006,ExtendedSpritemaps_Torizo_Attacks_FaceLeft_LeftFootForward  ;AABB26;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_5 ;AABB2A;
-    dw $0006,ExtSpritemap_Torizo_SonicBoom_Swipe_FaceLeft_LeftFootFwd_0  ;AABB2E;
-    dw $0006,ExtSpritemap_Torizo_SonicBoom_Swipe_FaceLeft_LeftFootFwd_1  ;AABB32;
-    dw $0006,ExtSpritemap_Torizo_SonicBoom_Swipe_FaceLeft_LeftFootFwd_2  ;AABB36;
-    dw $0006,ExtSpritemap_Torizo_SonicBoom_Swipe_FaceLeft_LeftFootFwd_3  ;AABB3A;
+    dw $0018*!FPS,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_0 ;AABB22;
+    dw $0006*!FPS,ExtendedSpritemaps_Torizo_Attacks_FaceLeft_LeftFootForward ;AABB26;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_5 ;AABB2A;
+    dw $0006*!FPS,ExtSpritemap_Torizo_SonicBoom_Swipe_FaceLeft_LeftFootFwd_0 ;AABB2E;
+    dw $0006*!FPS,ExtSpritemap_Torizo_SonicBoom_Swipe_FaceLeft_LeftFootFwd_1 ;AABB32;
+    dw $0006*!FPS,ExtSpritemap_Torizo_SonicBoom_Swipe_FaceLeft_LeftFootFwd_2 ;AABB36;
+    dw $0006*!FPS,ExtSpritemap_Torizo_SonicBoom_Swipe_FaceLeft_LeftFootFwd_3 ;AABB3A;
     dw $0002,ExtSpritemap_Torizo_SonicBoom_Swipe_FaceLeft_LeftFootFwd_2  ;AABB3E;
     dw $0002,ExtSpritemap_Torizo_SonicBoom_Swipe_FaceLeft_LeftFootFwd_1  ;AABB42;
     dw Instruction_Torizo_SpawnBombTorizoSonicBoomWithParameterY,$0001   ;AABB46;
     dw $0002,ExtSpritemap_Torizo_SonicBoom_Swipe_FaceLeft_LeftFootFwd_0  ;AABB4A;
-    dw $0038,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_5 ;AABB4E;
+    dw regional($0038, $002D),ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_5 ;AABB4E;
     dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AABB52;
     dw InstList_Torizo_FacingLeft_SonicBooms_LeftFootForward_1           ;AABB54;
     dw Instruction_Common_Enemy0FB2_InY                                  ;AABB56;
@@ -4623,7 +4661,7 @@ InstList_Torizo_FacingLeft_ExplosiveSwipe_RightFootForward:
     dw $0001,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_RightFootForward_1 ;AABBC6;
     dw Instruction_Torizo_SpawnBombTorizoExplosiveSwipeWithParamY,$0012  ;AABBCC;
     dw $0001,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_RightFootForward_0 ;AABBCE;
-    dw $0010,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_5 ;AABBD4;
+    dw regional($0010, $000A),ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_5 ;AABBD4;
     dw Instruction_Common_Enemy0FB2_InY                                  ;AABBD8;
     dw Function_Torizo_Movement_Walking                                  ;AABBDA;
     dw Instruction_Torizo_Return                                         ;AABBDC;
@@ -4662,7 +4700,7 @@ InstList_Torizo_FacingLeft_ExplosiveSwipe_LeftFootForward:
     dw $0001,ExtSpritemap_Torizo_SonicBoom_Swipe_FaceLeft_LeftFootFwd_1  ;AABC48;
     dw Instruction_Torizo_SpawnBombTorizoExplosiveSwipeWithParamY,$0012  ;AABC4E;
     dw $0001,ExtSpritemap_Torizo_SonicBoom_Swipe_FaceLeft_LeftFootFwd_0  ;AABC50;
-    dw $0010,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_5 ;AABC56;
+    dw regional($0010, $000A),ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_5 ;AABC56;
     dw Instruction_Common_Enemy0FB2_InY                                  ;AABC5A;
     dw Function_Torizo_Movement_Walking                                  ;AABC5C;
     dw Instruction_Torizo_Return                                         ;AABC5E;
@@ -4786,7 +4824,7 @@ InstList_Torizo_FacingLeft_Faceless_TurningLeft:
     dw Instruction_Torizo_FunctionInY                                    ;AABD0E;
     dw Function_Torizo_SimpleMovement                                    ;AABD10;
     dw Instruction_Torizo_SetTorizoTurningAroundFlag                     ;AABD12;
-    dw $0008,ExtendedSpritemaps_Torizo_FacingScreen_Turning_Dodging      ;AABD14;
+    dw regional($0008, $0005),ExtendedSpritemaps_Torizo_FacingScreen_Turning_Dodging ;AABD14;
 
 
 ;;; $BD18: Instruction list - faceless - walking left - right leg moving ;;;
@@ -4871,7 +4909,7 @@ InstList_Torizo_FacingRight_TurningRight:
     dw Instruction_Torizo_FunctionInY                                    ;AABDD8;
     dw Function_Torizo_SimpleMovement                                    ;AABDDA;
     dw Instruction_Torizo_SetTorizoTurningAroundFlag                     ;AABDDC;
-    dw $0018,ExtendedSpritemaps_Torizo_FacingScreen_Turning_Dodging      ;AABDDE;
+    dw $0018*!FPS,ExtendedSpritemaps_Torizo_FacingScreen_Turning_Dodging ;AABDDE;
 
 
 ;;; $BDE2: Instruction list - walking right - left leg moving ;;;
@@ -4883,25 +4921,25 @@ InstList_Torizo_FacingRight_Walking_LeftLegMoving:
     dw Function_Torizo_Movement_Walking                                  ;AABDEA;
     dw Instruction_Torizo_SpawnLowHealthInitialDroolIfHealthIsLow        ;AABDEC;
     dw Instruction_Torizo_PlayTorizoFootstepsSFX                         ;AABDEE;
-    dw $000A,ExtendedSpritemaps_Torizo_WalkingRight_LeftLegMoving_0      ;AABDF0;
+    dw regional($000A, $0005),ExtendedSpritemaps_Torizo_WalkingRight_LeftLegMoving_0 ;AABDF0;
     dw Instruction_Torizo_CallYIfSamusIsLessThan38PixelsInFront          ;AABDF4;
     dw InstList_Torizo_FacingRight_ExplosiveSwipe_RightFootForward       ;AABDF6;
     dw Instruction_Torizo_GotoYAndJumpBackwardsIfLessThan20Pixels        ;AABDF8;
     dw InstList_Torizo_FacingRight_JumpBackward_LandRightFootFwd_0       ;AABDFA;
     dw Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY,$0016;AABDFC;
-    dw $0006,ExtendedSpritemaps_Torizo_WalkingRight_LeftLegMoving_1      ;AABDFE;
+    dw $0006*!FPS,ExtendedSpritemaps_Torizo_WalkingRight_LeftLegMoving_1 ;AABDFE;
     dw Instruction_Torizo_GotoYAndJumpBackwardsIfLessThan20Pixels        ;AABE04;
     dw InstList_Torizo_FacingRight_JumpBackward_LandRightFootFwd_0       ;AABE06;
     dw Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY,$0018;AABE08;
-    dw $0006,ExtendedSpritemaps_Torizo_WalkingRight_LeftLegMoving_2      ;AABE0A;
+    dw $0006*!FPS,ExtendedSpritemaps_Torizo_WalkingRight_LeftLegMoving_2 ;AABE0A;
     dw Instruction_Torizo_GotoYAndJumpBackwardsIfLessThan20Pixels        ;AABE10;
     dw InstList_Torizo_FacingRight_JumpBackward_LandRightFootFwd_0       ;AABE12;
     dw Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY,$001A;AABE14;
-    dw $0006,ExtendedSpritemaps_Torizo_WalkingRight_LeftLegMoving_3      ;AABE16;
+    dw $0006*!FPS,ExtendedSpritemaps_Torizo_WalkingRight_LeftLegMoving_3 ;AABE16;
     dw Instruction_Torizo_GotoYAndJumpBackwardsIfLessThan20Pixels        ;AABE1C;
     dw InstList_Torizo_FacingRight_JumpBackward_LandRightFootFwd_0       ;AABE1E;
     dw Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY,$001C;AABE20;
-    dw $0006,ExtendedSpritemaps_Torizo_WalkingRight_LeftLegMoving_4      ;AABE22;
+    dw $0006*!FPS,ExtendedSpritemaps_Torizo_WalkingRight_LeftLegMoving_4 ;AABE22;
     dw Instruction_Torizo_GotoYAndJumpBackwardsIfLessThan20Pixels        ;AABE28;
     dw InstList_Torizo_FacingRight_JumpBackward_LandRightFootFwd_0       ;AABE2A;
     dw Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY,$001E;AABE2C;
@@ -4916,25 +4954,25 @@ InstList_Torizo_FacingRight_Walking_RightLegMoving:
     dw Function_Torizo_Movement_Walking                                  ;AABE38;
     dw Instruction_Torizo_SpawnLowHealthInitialDroolIfHealthIsLow        ;AABE3A;
     dw Instruction_Torizo_PlayTorizoFootstepsSFX                         ;AABE3C;
-    dw $000A,ExtendedSpritemaps_Torizo_WalkingRight_RightLegMoving_0     ;AABE3E;
+    dw regional($000A, $0005),ExtendedSpritemaps_Torizo_WalkingRight_RightLegMoving_0 ;AABE3E;
     dw Instruction_Torizo_CallYIfSamusIsLessThan38PixelsInFront          ;AABE42;
     dw InstList_Torizo_FacingRight_ExplosiveSwipe_LeftFootForward        ;AABE44;
     dw Instruction_Torizo_GotoYAndJumpBackwardsIfLessThan20Pixels        ;AABE46;
     dw InstList_Torizo_FacingRight_JumpBackwards_LandLeftFootFwd_0       ;AABE48;
     dw Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY,$0020;AABE4A;
-    dw $0006,ExtendedSpritemaps_Torizo_WalkingRight_RightLegMoving_1     ;AABE4C;
+    dw $0006*!FPS,ExtendedSpritemaps_Torizo_WalkingRight_RightLegMoving_1;AABE4C;
     dw Instruction_Torizo_GotoYAndJumpBackwardsIfLessThan20Pixels        ;AABE52;
     dw InstList_Torizo_FacingRight_JumpBackwards_LandLeftFootFwd_0       ;AABE54;
     dw Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY,$0022;AABE56;
-    dw $0006,ExtendedSpritemaps_Torizo_WalkingRight_RightLegMoving_2     ;AABE58;
+    dw $0006*!FPS,ExtendedSpritemaps_Torizo_WalkingRight_RightLegMoving_2;AABE58;
     dw Instruction_Torizo_GotoYAndJumpBackwardsIfLessThan20Pixels        ;AABE5E;
     dw InstList_Torizo_FacingRight_JumpBackwards_LandLeftFootFwd_0       ;AABE60;
     dw Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY,$0024;AABE62;
-    dw $0006,ExtendedSpritemaps_Torizo_WalkingRight_RightLegMoving_3     ;AABE64;
+    dw $0006*!FPS,ExtendedSpritemaps_Torizo_WalkingRight_RightLegMoving_3;AABE64;
     dw Instruction_Torizo_GotoYAndJumpBackwardsIfLessThan20Pixels        ;AABE6A;
     dw InstList_Torizo_FacingRight_JumpBackwards_LandLeftFootFwd_0       ;AABE6C;
     dw Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY,$0026;AABE6E;
-    dw $0006,ExtendedSpritemaps_Torizo_WalkingRight_RightLegMoving_4     ;AABE70;
+    dw $0006*!FPS,ExtendedSpritemaps_Torizo_WalkingRight_RightLegMoving_4;AABE70;
     dw Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY,$0014;AABE76;
     dw Instruction_Common_GotoY                                          ;AABE7A;
     dw InstList_Torizo_FacingRight_Walking_LeftLegMoving                 ;AABE7C;
@@ -4944,24 +4982,24 @@ InstList_Torizo_FacingRight_Walking_RightLegMoving:
 InstList_Torizo_FacingRight_SpewingChozoOrbs_LeftFootFwd_0:
     dw Instruction_Common_Enemy0FB2_InY                                  ;AABE7E;
     dw Function_Torizo_Movement_Attacking                                ;AABE80;
-    dw $0010,ExtendedSpritemaps_Torizo_Attacks_FaceRight_LeftFootForward ;AABE82;
-    dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_0  ;AABE86;
-    dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_1  ;AABE8A;
-    dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_2  ;AABE8E;
-    dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_3  ;AABE92;
-    dw $0010,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_4  ;AABE96;
+    dw regional($0010, $000A),ExtendedSpritemaps_Torizo_Attacks_FaceRight_LeftFootForward ;AABE82;
+    dw regional($0008, $0005),ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_0 ;AABE86;
+    dw regional($0008, $0005),ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_1 ;AABE8A;
+    dw regional($0008, $0005),ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_2 ;AABE8E;
+    dw regional($0008, $0005),ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_3 ;AABE92;
+    dw regional($0010, $000A),ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_4 ;AABE96;
     dw Instruction_Torizo_PlayShotTorizoSFX                              ;AABE9A;
     dw Instruction_Common_TimerInY,$0003                                 ;AABE9C;
 
 InstList_Torizo_FacingRight_SpewingChozoOrbs_LeftFootFwd_1:
     dw Instruction_Torizo_SpawnBombTorizosChozoOrbs                      ;AABEA0;
-    dw Instruction_Common_WaitYFrames,$0010                              ;AABEA2;
+    dw Instruction_Common_WaitYFrames,regional($0010, $000A)             ;AABEA2;
     dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AABEA6;
     dw InstList_Torizo_FacingRight_SpewingChozoOrbs_LeftFootFwd_1        ;AABEA8;
-    dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_3  ;AABEAA;
-    dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_2  ;AABEAE;
-    dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_1  ;AABEB2;
-    dw $0048,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_0  ;AABEB6;
+    dw regional($0008, $0005),ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_3 ;AABEAA;
+    dw regional($0008, $0005),ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_2 ;AABEAE;
+    dw regional($0008, $0005),ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_1 ;AABEB2;
+    dw regional($0048, $003C),ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_0 ;AABEB6;
     dw Instruction_Common_Enemy0FB2_InY                                  ;AABEBA;
     dw Function_Torizo_Movement_Walking                                  ;AABEBC;
     dw Instruction_Torizo_Return                                         ;AABEBE;
@@ -4971,24 +5009,24 @@ InstList_Torizo_FacingRight_SpewingChozoOrbs_LeftFootFwd_1:
 InstList_Torizo_FacingRight_SpewingChozoOrbs_RightFootFwd_0:
     dw Instruction_Common_Enemy0FB2_InY                                  ;AABEC0;
     dw Function_Torizo_Movement_Attacking                                ;AABEC2;
-    dw $0010,ExtendedSpritemaps_Torizo_Attacks_FaceRight_RightFootForward ;AABEC4;
-    dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_0 ;AABEC8;
-    dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_1 ;AABECC;
-    dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_2 ;AABED0;
-    dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_3 ;AABED4;
-    dw $0010,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_4 ;AABED8;
+    dw regional($0010, $000A),ExtendedSpritemaps_Torizo_Attacks_FaceRight_RightFootForward ;AABEC4;
+    dw regional($0008, $0005),ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_0 ;AABEC8;
+    dw regional($0008, $0005),ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_1 ;AABECC;
+    dw regional($0008, $0005),ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_2 ;AABED0;
+    dw regional($0008, $0005),ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_3 ;AABED4;
+    dw regional($0010, $000A),ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_4 ;AABED8;
     dw Instruction_Torizo_PlayShotTorizoSFX                              ;AABEDC;
     dw Instruction_Common_TimerInY,$0003                                 ;AABEDE;
 
 InstList_Torizo_FacingRight_SpewingChozoOrbs_RightFootFwd_1:
     dw Instruction_Torizo_SpawnBombTorizosChozoOrbs                      ;AABEE2;
-    dw Instruction_Common_WaitYFrames,$0010                              ;AABEE4;
+    dw Instruction_Common_WaitYFrames,regional($0010, $000A)             ;AABEE4;
     dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AABEE8;
     dw InstList_Torizo_FacingRight_SpewingChozoOrbs_RightFootFwd_1       ;AABEEA;
-    dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_3 ;AABEEC;
-    dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_2 ;AABEF0;
-    dw $0008,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_1 ;AABEF4;
-    dw $0048,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_0 ;AABEF8;
+    dw regional($0008, $0005),ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_3 ;AABEEC;
+    dw regional($0008, $0005),ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_2 ;AABEF0;
+    dw regional($0008, $0005),ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_1 ;AABEF4;
+    dw regional($0048, $003C),ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_0 ;AABEF8;
     dw Instruction_Common_Enemy0FB2_InY                                  ;AABEFC;
     dw Function_Torizo_Movement_Walking                                  ;AABEFE;
     dw Instruction_Torizo_Return                                         ;AABF00;
@@ -5001,28 +5039,28 @@ InstList_Torizo_FacingRight_SonicBooms_LeftFootForward_0:
     dw Instruction_Common_TimerInY,$0004                                 ;AABF06;
 
 InstList_Torizo_FacingRight_SonicBooms_LeftFootForward_1:
-    dw $0006,ExtendedSpritemaps_Torizo_Attacks_FaceRight_LeftFootForward ;AABF0A;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_0   ;AABF0E;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_1   ;AABF12;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_2   ;AABF16;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_3   ;AABF1A;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_4   ;AABF1E;
+    dw $0006*!FPS,ExtendedSpritemaps_Torizo_Attacks_FaceRight_LeftFootForward ;AABF0A;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_0 ;AABF0E;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_1 ;AABF12;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_2 ;AABF16;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_3 ;AABF1A;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_4 ;AABF1E;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_3   ;AABF22;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_2   ;AABF26;
     dw Instruction_Torizo_SpawnBombTorizoSonicBoomWithParameterY,$0000   ;AABF2A;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_1   ;AABF2C;
-    dw $0018,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_0   ;AABF32;
-    dw $0006,ExtendedSpritemaps_Torizo_Attacks_FaceRight_LeftFootForward ;AABF36;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_5   ;AABF3A;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_6   ;AABF3E;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_7   ;AABF42;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_8   ;AABF46;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_9   ;AABF4A;
+    dw $0018*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_0 ;AABF32;
+    dw $0006*!FPS,ExtendedSpritemaps_Torizo_Attacks_FaceRight_LeftFootForward ;AABF36;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_5 ;AABF3A;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_6 ;AABF3E;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_7 ;AABF42;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_8 ;AABF46;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_9 ;AABF4A;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_8   ;AABF4E;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_7   ;AABF52;
     dw Instruction_Torizo_SpawnBombTorizoSonicBoomWithParameterY,$0001   ;AABF56;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_6   ;AABF58;
-    dw $0038,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_5   ;AABF5E;
+    dw regional($0038, $002D),ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_5 ;AABF5E;
     dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AABF62;
     dw InstList_Torizo_FacingRight_SonicBooms_LeftFootForward_1          ;AABF64;
     dw Instruction_Common_Enemy0FB2_InY                                  ;AABF66;
@@ -5037,28 +5075,28 @@ InstList_Torizo_FacingRight_SonicBooms_RightFootForward_0:
     dw Instruction_Common_TimerInY,$0004                                 ;AABF70;
 
 InstList_Torizo_FacingRight_SonicBooms_RightFootForward_1:
-    dw $0006,ExtendedSpritemaps_Torizo_Attacks_FaceRight_RightFootForward ;AABF74;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_0  ;AABF78;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_1  ;AABF7C;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_2  ;AABF80;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_3  ;AABF84;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_4  ;AABF88;
+    dw $0006*!FPS,ExtendedSpritemaps_Torizo_Attacks_FaceRight_RightFootForward ;AABF74;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_0 ;AABF78;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_1 ;AABF7C;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_2 ;AABF80;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_3 ;AABF84;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_4 ;AABF88;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_3  ;AABF8C;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_2  ;AABF90;
     dw Instruction_Torizo_SpawnBombTorizoSonicBoomWithParameterY,$0000   ;AABF94;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_1  ;AABF96;
-    dw $0018,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_0  ;AABF9C;
-    dw $0006,ExtendedSpritemaps_Torizo_Attacks_FaceRight_RightFootForward ;AABFA0;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_5  ;AABFA4;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_6  ;AABFA8;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_7  ;AABFAC;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_8  ;AABFB0;
-    dw $0006,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_9  ;AABFB4;
+    dw $0018*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_0 ;AABF9C;
+    dw $0006*!FPS,ExtendedSpritemaps_Torizo_Attacks_FaceRight_RightFootForward ;AABFA0;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_5 ;AABFA4;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_6 ;AABFA8;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_7 ;AABFAC;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_8 ;AABFB0;
+    dw $0006*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_9 ;AABFB4;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_8  ;AABFB8;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_7  ;AABFBC;
     dw Instruction_Torizo_SpawnBombTorizoSonicBoomWithParameterY,$0001   ;AABFC0;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_6  ;AABFC2;
-    dw $0038,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_5  ;AABFC8;
+    dw regional($0038, $002D),ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_5 ;AABFC8;
     dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AABFCC;
     dw InstList_Torizo_FacingRight_SonicBooms_RightFootForward_1         ;AABFCE;
     dw Instruction_Common_Enemy0FB2_InY                                  ;AABFD0;
@@ -5099,7 +5137,7 @@ InstList_Torizo_FacingRight_ExplosiveSwipe_LeftFootForward:
     dw $0001,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_7   ;AAC040;
     dw Instruction_Torizo_SpawnBombTorizoExplosiveSwipeWithParamY,$0012  ;AAC046;
     dw $0001,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_6   ;AAC048;
-    dw $0010,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_5   ;AAC04E;
+    dw regional($0010, $000A),ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_5 ;AAC04E;
     dw Instruction_Common_Enemy0FB2_InY                                  ;AAC052;
     dw Function_Torizo_Movement_Walking                                  ;AAC054;
     dw Instruction_Torizo_Return                                         ;AAC056;
@@ -5138,7 +5176,7 @@ InstList_Torizo_FacingRight_ExplosiveSwipe_RightFootForward:
     dw $0001,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_7  ;AAC0C2;
     dw Instruction_Torizo_SpawnBombTorizoExplosiveSwipeWithParamY,$0012  ;AAC0C8;
     dw $0001,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_6  ;AAC0CA;
-    dw $0010,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_5  ;AAC0D0;
+    dw regional($0010, $000A),ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_5 ;AAC0D0;
     dw Instruction_Common_Enemy0FB2_InY                                  ;AAC0D4;
     dw Function_Torizo_Movement_Walking                                  ;AAC0D6;
     dw Instruction_Torizo_Return                                         ;AAC0D8;
@@ -5262,7 +5300,7 @@ InstList_Torizo_FacingRight_Faceless_TurningRight:
     dw Instruction_Torizo_FunctionInY                                    ;AAC188;
     dw Function_Torizo_SimpleMovement                                    ;AAC18A;
     dw Instruction_Torizo_SetTorizoTurningAroundFlag                     ;AAC18C;
-    dw $0008,ExtendedSpritemaps_Torizo_FacingScreen_Turning_Dodging      ;AAC18E;
+    dw regional($0008, $0005),ExtendedSpritemaps_Torizo_FacingScreen_Turning_Dodging ;AAC18E;
 
 
 ;;; $C192: Instruction list - faceless - walking right - left leg moving ;;;
@@ -5317,16 +5355,16 @@ InstList_Torizo_FacingRight_Faceless_Walking_RightLegMoving:
 MakeTorizoJumpForwards:
     LDA.W Torizo.graphicalProperties,X                                   ;AAC20A;
     BMI .facingRight                                                     ;AAC20D;
-    LDA.W #$FE00                                                         ;AAC20F;
+    LDA.W #regional($FE00, $FD9C)                                        ;AAC20F;
     BRA +                                                                ;AAC212;
 
   .facingRight:
-    LDA.W #$0200                                                         ;AAC214;
+    LDA.W #regional($0200, $0264)                                        ;AAC214;
 
 +   STA.W Torizo.XVelocity,X                                             ;AAC217;
-    LDA.W #$FA40                                                         ;AAC21A;
+    LDA.W #regional($FA40, $F969)                                        ;AAC21A;
     STA.W Torizo.YVelocity,X                                             ;AAC21D;
-    LDA.W #$0028                                                         ;AAC220;
+    LDA.W #$0028*!SPF                                                    ;AAC220;
     STA.W Torizo.YAcceleration,X                                         ;AAC223;
     LDA.W #$0001                                                         ;AAC226;
     STA.W Enemy.instTimer,X                                              ;AAC229;
@@ -5337,16 +5375,16 @@ MakeTorizoJumpForwards:
 MakeTorizoJumpBackwards:
     LDA.W Torizo.graphicalProperties,X                                   ;AAC22D;
     BMI .facingRight                                                     ;AAC230;
-    LDA.W #$0300                                                         ;AAC232;
+    LDA.W #regional($0300, $0396)                                        ;AAC232;
     BRA +                                                                ;AAC235;
 
   .facingRight:
-    LDA.W #$FD00                                                         ;AAC237;
+    LDA.W #regional($FD00, $FC6A)                                        ;AAC237;
 
 +   STA.W Torizo.XVelocity,X                                             ;AAC23A;
-    LDA.W #$FB80                                                         ;AAC23D;
+    LDA.W #regional($FB80, $FB37)                                        ;AAC23D;
     STA.W Torizo.YVelocity,X                                             ;AAC240;
-    LDA.W #$0028                                                         ;AAC243;
+    LDA.W #$0028*!SPF                                                    ;AAC243;
     STA.W Torizo.YAcceleration,X                                         ;AAC246;
     LDA.W #$0001                                                         ;AAC249;
     STA.W Enemy.instTimer,X                                              ;AAC24C;
@@ -5519,7 +5557,7 @@ Instruction_Torizo_Spawn5LowHealthExplosion_SleepFor28Frames:
     INY                                                                  ;AAC31C;
     TYA                                                                  ;AAC31D;
     STA.W Enemy.instList,X                                               ;AAC31E;
-    LDA.W #$0028                                                         ;AAC321;
+    LDA.W #regional($0028, $0001E)                                       ;AAC321;
     STA.W Enemy.flashTimer,X                                             ;AAC324;
     STA.W Enemy.instTimer,X                                              ;AAC327;
     PLA                                                                  ;AAC32A;
@@ -5718,7 +5756,7 @@ Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY:
   .facingAway:
     LDA.L Torizo.turnAroundTimer,X                                       ;AAC4AD;
     BNE .return                                                          ;AAC4B1;
-    LDA.W #$0048                                                         ;AAC4B3;
+    LDA.W #$0048*!FPS                                                    ;AAC4B3;
     STA.L Torizo.turnAroundTimer,X                                       ;AAC4B6;
 
   .return:
@@ -5768,7 +5806,7 @@ Instruction_Torizo_BTWalkingMovement_Faceless_IndexInY:
   .facingAway:
     LDA.L Torizo.turnAroundTimer,X                                       ;AAC522;
     BNE .return                                                          ;AAC526;
-    LDA.W #$0048                                                         ;AAC528;
+    LDA.W #$0048*!FPS                                                    ;AAC528;
     STA.L Torizo.turnAroundTimer,X                                       ;AAC52B;
 
   .return:
@@ -6490,16 +6528,16 @@ InstList_GoldenTorizo_Initial_1:
     dw $0030,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AACA0C;
     dw Instruction_Common_TransferYBytesInYToVRAM                        ;AACA10;
     dw $0040 : dl Tiles_Torizo : dw $7D80                                ;AACA12;
-    dw $0020,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AACA17;
+    dw regional($0020, $0019),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0 ;AACA17;
     dw Instruction_Common_TransferYBytesInYToVRAM                        ;AACA1D;
     dw $0040 : dl Tiles_Torizo+$40 : dw $7D80                            ;AACA1F;
-    dw $0010,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AACA24;
+    dw regional($0010, $000A),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0 ;AACA24;
     dw Instruction_Common_TransferYBytesInYToVRAM                        ;AACA2A;
     dw $0040 : dl Tiles_Torizo+$80 : dw $7D80                            ;AACA2C;
-    dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AACA31;
+    dw regional($0008, $0005),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0 ;AACA31;
     dw Instruction_Common_TransferYBytesInYToVRAM                        ;AACA37;
     dw $0040 : dl Tiles_Torizo+$C0 : dw $7D80                            ;AACA39;
-    dw $0020,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AACA3E;
+    dw regional($0020, $0019),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0 ;AACA3E;
     dw Instruction_Common_TimerInY,$0002                                 ;AACA44;
 
 InstList_GoldenTorizo_Initial_2:
@@ -6517,17 +6555,17 @@ InstList_GoldenTorizo_Initial_2:
     dw $0040 : dl Tiles_Torizo+$C0 : dw $7D80                            ;AACA75;
     dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AACA7C;
     dw InstList_GoldenTorizo_Initial_2                                   ;AACA7E;
-    dw $0020,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AACA80;
+    dw regional($0020, $0019),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0 ;AACA80;
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$0000              ;AACA84;
-    dw $000C,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_1      ;AACA86;
+    dw regional($000C, $000A),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_1 ;AACA86;
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$0002              ;AACA8C;
-    dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_2      ;AACA8E;
+    dw regional($0008, $0005),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_2 ;AACA8E;
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$0004              ;AACA94;
-    dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_3      ;AACA96;
+    dw regional($0008, $0005),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_3 ;AACA96;
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$0006              ;AACA9C;
-    dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_4      ;AACA9E;
+    dw regional($0008, $0005),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_4 ;AACA9E;
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$0008              ;AACAA4;
-    dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_5      ;AACAA6;
+    dw regional($0008, $0005),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_5 ;AACAA6;
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$000A              ;AACAAC;
     dw Instruction_Torizo_LoadGoldenTorizoPalettes                       ;AACAB0;
     dw Instruction_Common_TimerInY,$0010                                 ;AACAB2;
@@ -6540,7 +6578,7 @@ InstList_GoldenTorizo_Initial_3:
     dw RTL_AAC2C8                                                        ;AACAC0;
     dw Instruction_Torizo_ClearAnimationLock                             ;AACAC2;
     dw Inst_Torizo_StartFightMusic_GoldenTorizoBellyPaletteFX            ;AACAC4;
-    dw $0010,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_6      ;AACAC6;
+    dw regional($0010, $000A),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_6 ;AACAC6;
     dw Instruction_Common_GotoY                                          ;AACACA;
     dw InstList_GoldenTorizo_WalkingLeft_LeftLegMoving                   ;AACACC;
 
@@ -6585,18 +6623,18 @@ Inst_Torizo_StartFightMusic_GoldenTorizoBellyPaletteFX:
 InstList_GoldenTorizo_SpewChozoOrbs_FaceLeft_RightFootFwd_0:
     dw Instruction_Common_Enemy0FB2_InY                                  ;AACAFF;
     dw Function_GoldenTorizo_Movement_Attacking                          ;AACB01;
-    dw $0006,ExtendedSpritemaps_Torizo_Attacks_FaceLeft_RightFootForward ;AACB03;
+    dw $0006*!FPS,ExtendedSpritemaps_Torizo_Attacks_FaceLeft_RightFootForward ;AACB03;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_0  ;AACB07;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_1  ;AACB0B;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_2  ;AACB0F;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_3  ;AACB13;
-    dw $0006,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_4  ;AACB17;
+    dw $0006*!FPS,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_4 ;AACB17;
     dw Instruction_Common_TimerInY,$0006                                 ;AACB1B;
 
 InstList_GoldenTorizo_SpewChozoOrbs_FaceLeft_RightFootFwd_1:
     dw Instruction_Torizo_PlayShotTorizoSFX                              ;AACB1F;
     dw Instruction_GoldenTorizo_SpawnChozoOrbs                           ;AACB21;
-    dw Instruction_Common_WaitYFrames,$0006                              ;AACB23;
+    dw Instruction_Common_WaitYFrames,$0006*!FPS                         ;AACB23;
     dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AACB27;
     dw InstList_GoldenTorizo_SpewChozoOrbs_FaceLeft_RightFootFwd_1       ;AACB29;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_3  ;AACB2B;
@@ -6612,18 +6650,18 @@ InstList_GoldenTorizo_SpewChozoOrbs_FaceLeft_RightFootFwd_1:
 InstList_GoldenTorizo_SpewChozoOrbs_FacingLeft_LeftFootFwd_0:
     dw Instruction_Common_Enemy0FB2_InY                                  ;AACB41;
     dw Function_GoldenTorizo_Movement_Attacking                          ;AACB43;
-    dw $0006,ExtendedSpritemaps_Torizo_Attacks_FaceLeft_LeftFootForward  ;AACB45;
+    dw $0006*!FPS,ExtendedSpritemaps_Torizo_Attacks_FaceLeft_LeftFootForward ;AACB45;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_0   ;AACB49;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_1   ;AACB4D;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_2   ;AACB51;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_3   ;AACB55;
-    dw $0006,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_4   ;AACB59;
+    dw $0006*!FPS,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_4 ;AACB59;
     dw Instruction_Common_TimerInY,$0006                                 ;AACB5D;
 
 InstList_GoldenTorizo_SpewChozoOrbs_FacingLeft_LeftFootFwd_1:
     dw Instruction_Torizo_PlayShotTorizoSFX                              ;AACB61;
     dw Instruction_GoldenTorizo_SpawnChozoOrbs                           ;AACB63;
-    dw Instruction_Common_WaitYFrames,$0006                              ;AACB65;
+    dw Instruction_Common_WaitYFrames,$0006*!FPS                         ;AACB65;
     dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AACB69;
     dw InstList_GoldenTorizo_SpewChozoOrbs_FacingLeft_LeftFootFwd_1      ;AACB6B;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_3   ;AACB6D;
@@ -6711,18 +6749,18 @@ InstList_GoldenTorizo_SonicBooms_FacingLeft_LeftFootFwd_1:
 InstList_GoldenTorizo_SpewChozoOrb_FacingLeft_LeftFootFwd_0:
     dw Instruction_Common_Enemy0FB2_InY                                  ;AACC57;
     dw Function_GoldenTorizo_Movement_Attacking                          ;AACC59;
-    dw $0006,ExtendedSpritemaps_Torizo_Attacks_FaceRight_LeftFootForward ;AACC5B;
+    dw $0006*!FPS,ExtendedSpritemaps_Torizo_Attacks_FaceRight_LeftFootForward ;AACC5B;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_0  ;AACC5F;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_1  ;AACC63;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_2  ;AACC67;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_3  ;AACC6B;
-    dw $0006,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_4  ;AACC6F;
+    dw $0006*!FPS,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_4 ;AACC6F;
     dw Instruction_Common_TimerInY,$0006                                 ;AACC73;
 
 InstList_GoldenTorizo_SpewChozoOrb_FacingLeft_LeftFootFwd_1:
     dw Instruction_Torizo_PlayShotTorizoSFX                              ;AACC77;
     dw Instruction_GoldenTorizo_SpawnChozoOrbs                           ;AACC79;
-    dw Instruction_Common_WaitYFrames,$0006                              ;AACC7B;
+    dw Instruction_Common_WaitYFrames,$0006*!FPS                         ;AACC7B;
     dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AACC7F;
     dw InstList_GoldenTorizo_SpewChozoOrb_FacingLeft_LeftFootFwd_1       ;AACC81;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_3  ;AACC83;
@@ -6738,18 +6776,18 @@ InstList_GoldenTorizo_SpewChozoOrb_FacingLeft_LeftFootFwd_1:
 InstList_GoldenTorizo_SpewChozoOrb_FacingLeft_RightFootFwd_0:
     dw Instruction_Common_Enemy0FB2_InY                                  ;AACC99;
     dw Function_GoldenTorizo_Movement_Attacking                          ;AACC9B;
-    dw $0006,ExtendedSpritemaps_Torizo_Attacks_FaceRight_RightFootForward ;AACC9D;
+    dw $0006*!FPS,ExtendedSpritemaps_Torizo_Attacks_FaceRight_RightFootForward ;AACC9D;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_0 ;AACCA1;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_1 ;AACCA5;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_2 ;AACCA9;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_3 ;AACCAD;
-    dw $0006,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_4 ;AACCB1;
+    dw $0006*!FPS,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_4 ;AACCB1;
     dw Instruction_Common_TimerInY,$0006                                 ;AACCB5;
 
 InstList_GoldenTorizo_SpewChozoOrb_FacingLeft_RightFootFwd_1:
     dw Instruction_Torizo_PlayShotTorizoSFX                              ;AACCB9;
     dw Instruction_GoldenTorizo_SpawnChozoOrbs                           ;AACCBB;
-    dw Instruction_Common_WaitYFrames,$0006                              ;AACCBD;
+    dw Instruction_Common_WaitYFrames,$0006*!FPS                         ;AACCBD;
     dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AACCC1;
     dw InstList_GoldenTorizo_SpewChozoOrb_FacingLeft_RightFootFwd_1      ;AACCC3;
     dw $0003,ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_3 ;AACCC5;
@@ -6897,13 +6935,13 @@ InstList_GoldenTorizo_CaughtSuper_FacingLeft_LeftLegFwd:
     dw $0002,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_2 ;AACE17;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_3 ;AACE1B;
     dw Instruction_GoldenTorizo_SpawnSuperMissile                        ;AACE1F;
-    dw $0030,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_4 ;AACE21;
+    dw $0030*!FPS,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_4 ;AACE21;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_3 ;AACE25;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_2 ;AACE29;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_1 ;AACE2D;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_0 ;AACE31;
     dw $0002,ExtendedSpritemaps_Torizo_Attacks_FaceLeft_LeftFootForward  ;AACE35;
-    dw $0010,ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_5 ;AACE39;
+    dw regional($0010, $000A),ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_5 ;AACE39;
     dw Instruction_GoldenTorizo_ClearCaughtSuperMissileFlag              ;AACE3D;
     dw Instruction_Common_GotoY                                          ;AACE3F;
     dw InstList_GoldenTorizo_WalkingLeft_RightLegMoving                  ;AACE41;
@@ -6929,13 +6967,13 @@ InstList_GoldenTorizo_CaughtSuper_FacingLeft_RightLegFwd:
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_2 ;AACE79;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_3 ;AACE7D;
     dw Instruction_GoldenTorizo_SpawnSuperMissile                        ;AACE81;
-    dw $0030,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_4 ;AACE83;
+    dw $0030*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_4 ;AACE83;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_3 ;AACE87;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_2 ;AACE8B;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_1 ;AACE8F;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_0 ;AACE93;
     dw $0002,ExtendedSpritemaps_Torizo_Attacks_FaceLeft_RightFootForward ;AACE97;
-    dw $0010,ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_5 ;AACE9B;
+    dw regional($0010, $000A),ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_5 ;AACE9B;
     dw Instruction_GoldenTorizo_ClearCaughtSuperMissileFlag              ;AACE9F;
     dw Instruction_Common_GotoY                                          ;AACEA1;
     dw InstList_GoldenTorizo_WalkingLeft_LeftLegMoving                   ;AACEA3;
@@ -6959,13 +6997,13 @@ InstList_GoldenTorizo_CaughtSuper_FacingRight_RightLegFwd:
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_2  ;AACED3;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_3  ;AACED7;
     dw Instruction_GoldenTorizo_SpawnSuperMissile                        ;AACEDB;
-    dw $0030,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_4  ;AACEDD;
+    dw $0030*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_4 ;AACEDD;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_3  ;AACEE1;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_2  ;AACEE5;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_1  ;AACEE9;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_0  ;AACEED;
     dw $0002,ExtendedSpritemaps_Torizo_Attacks_FaceRight_RightFootForward ;AACEF1;
-    dw $0010,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_5  ;AACEF5;
+    dw regional($0010, $000A),ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_5 ;AACEF5;
     dw Instruction_GoldenTorizo_ClearCaughtSuperMissileFlag              ;AACEF9;
     dw Instruction_Common_GotoY                                          ;AACEFB;
     dw InstList_GoldenTorizo_WalkingRight_LeftLegMoving                  ;AACEFD;
@@ -6989,13 +7027,13 @@ InstList_GoldenTorizo_CaughtSuper_FacingRight_LeftLegFwd:
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_2   ;AACF2D;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_3   ;AACF31;
     dw Instruction_GoldenTorizo_SpawnSuperMissile                        ;AACF35;
-    dw $0030,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_4   ;AACF37;
+    dw $0030*!FPS,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_4 ;AACF37;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_3   ;AACF3B;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_2   ;AACF3F;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_1   ;AACF43;
     dw $0002,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_0   ;AACF47;
     dw $0002,ExtendedSpritemaps_Torizo_Attacks_FaceRight_LeftFootForward ;AACF4B;
-    dw $0010,ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_5   ;AACF4F;
+    dw regional($0010, $000A),ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_5 ;AACF4F;
     dw Instruction_GoldenTorizo_ClearCaughtSuperMissileFlag              ;AACF53;
     dw Instruction_Common_GotoY                                          ;AACF55;
     dw InstList_GoldenTorizo_WalkingRight_RightLegMoving                 ;AACF57;
@@ -7005,29 +7043,29 @@ InstList_GoldenTorizo_CaughtSuper_FacingRight_LeftLegFwd:
 InstList_GoldenTorizo_SitDownAttack_FacingLeft:
     dw Instruction_Common_Enemy0FB2_InY                                  ;AACF59;
     dw Function_GoldenTorizo_Movement_Attacking                          ;AACF5B;
-    dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_6      ;AACF5D;
+    dw regional($0008, $0005),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_6 ;AACF5D;
     dw Instruction_Torizo_SittingDownMovement_IndexInY,$000A             ;AACF61;
-    dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_5      ;AACF63;
+    dw regional($0008, $0005),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_5 ;AACF63;
     dw Instruction_Torizo_SittingDownMovement_IndexInY,$0008             ;AACF69;
-    dw $0006,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_4      ;AACF6B;
+    dw regional($0006, $0005),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_4 ;AACF6B;
     dw Instruction_Torizo_SittingDownMovement_IndexInY,$0006             ;AACF71;
-    dw $0006,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_3      ;AACF73;
+    dw regional($0006, $0005),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_3 ;AACF73;
     dw Instruction_Torizo_SittingDownMovement_IndexInY,$0004             ;AACF79;
     dw $0004,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_2      ;AACF7B;
     dw Instruction_Torizo_SittingDownMovement_IndexInY,$0002             ;AACF81;
     dw $0004,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_1      ;AACF83;
     dw Instruction_Torizo_SittingDownMovement_IndexInY,$0000             ;AACF89;
-    dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0      ;AACF8B;
+    dw regional($0008, $0005),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0 ;AACF8B;
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$0000              ;AACF91;
-    dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_1      ;AACF93;
+    dw regional($0008, $0005),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_1 ;AACF93;
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$0002              ;AACF99;
-    dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_2      ;AACF9B;
+    dw regional($0008, $0005),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_2 ;AACF9B;
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$0004              ;AACFA1;
-    dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_3      ;AACFA3;
+    dw regional($0008, $0005),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_3 ;AACFA3;
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$0006              ;AACFA9;
-    dw $000A,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_4      ;AACFAB;
+    dw regional($000A, $0005),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_4 ;AACFAB;
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$0008              ;AACFB1;
-    dw $000A,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_5      ;AACFB3;
+    dw regional($000A, $0005),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_5 ;AACFB3;
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$000A              ;AACFB9;
     dw Instruction_Common_Enemy0FB2_InY                                  ;AACFBD;
     dw Function_GoldenTorizo_Movement_Walking                            ;AACFBF;
@@ -7039,29 +7077,29 @@ InstList_GoldenTorizo_SitDownAttack_FacingLeft:
 InstList_GoldenTorizo_SitDownAttack_FacingRight:
     dw Instruction_Common_Enemy0FB2_InY                                  ;AACFC5;
     dw Function_GoldenTorizo_Movement_Attacking                          ;AACFC7;
-    dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_6     ;AACFC9;
+    dw regional($0008, $0005),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_6     ;AACFC9;
     dw Instruction_Torizo_SittingDownMovement_IndexInY,$001A             ;AACFCD;
-    dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_5     ;AACFCF;
+    dw regional($0008, $0005),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_5     ;AACFCF;
     dw Instruction_Torizo_SittingDownMovement_IndexInY,$0018             ;AACFD5;
-    dw $0006,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_4     ;AACFD7;
+    dw regional($0006, $0005),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_4     ;AACFD7;
     dw Instruction_Torizo_SittingDownMovement_IndexInY,$0016             ;AACFDD;
-    dw $0006,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_3     ;AACFDF;
+    dw regional($0006, $0005),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_3     ;AACFDF;
     dw Instruction_Torizo_SittingDownMovement_IndexInY,$0014             ;AACFE5;
     dw $0004,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_2     ;AACFE7;
     dw Instruction_Torizo_SittingDownMovement_IndexInY,$0012             ;AACFED;
     dw $0004,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_1     ;AACFEF;
     dw Instruction_Torizo_SittingDownMovement_IndexInY,$0010             ;AACFF5;
-    dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_0     ;AACFF7;
+    dw regional($0008, $0005),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_0     ;AACFF7;
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$0010              ;AACFFD;
-    dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_1     ;AACFFF;
+    dw regional($0008, $0005),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_1     ;AACFFF;
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$0012              ;AAD005;
-    dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_2     ;AAD007;
+    dw regional($0008, $0005),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_2     ;AAD007;
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$0014              ;AAD00D;
-    dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_3     ;AAD00F;
+    dw regional($0008, $0005),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_3     ;AAD00F;
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$0016              ;AAD015;
-    dw $000A,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_4     ;AAD017;
+    dw regional($000A, $0005),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_4     ;AAD017;
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$0018              ;AAD01D;
-    dw $000A,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_5     ;AAD01F;
+    dw regional($000A, $0005),ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_5     ;AAD01F;
     dw Instruction_Torizo_StandingUpMovement_IndexInY,$001A              ;AAD025;
     dw Instruction_Common_Enemy0FB2_InY                                  ;AAD029;
     dw Function_GoldenTorizo_Movement_Walking                            ;AAD02B;
@@ -7077,23 +7115,23 @@ InstList_GoldenTorizo_ReleaseGoldenTorizoEggs_0:
     dw $0040 : dl Tiles_Torizo+$280 : dw $7300                           ;AAD037;
     dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD03E;
     dw $0040 : dl Tiles_Torizo+$480 : dw $7400                           ;AAD040;
-    dw Instruction_Common_WaitYFrames,$0008                              ;AAD047;
+    dw Instruction_Common_WaitYFrames,regional($0008, $0005)             ;AAD047;
     dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD04B;
     dw $0040 : dl Tiles_Torizo+$2C0 : dw $7300                           ;AAD04D;
     dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD054;
     dw $0040 : dl Tiles_Torizo+$4C0 : dw $7400                           ;AAD056;
-    dw Instruction_Common_WaitYFrames,$0008                              ;AAD05D;
+    dw Instruction_Common_WaitYFrames,regional($0008, $0005)             ;AAD05D;
     dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD061;
     dw $0040 : dl Tiles_Torizo+$300 : dw $7300                           ;AAD063;
     dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD06A;
     dw $0040 : dl Tiles_Torizo+$500 : dw $7400                           ;AAD06C;
-    dw Instruction_Common_WaitYFrames,$0010                              ;AAD073;
+    dw Instruction_Common_WaitYFrames,regional($0010, $000A)             ;AAD073;
     dw Instruction_Common_TimerInY,$0006                                 ;AAD077;
 
 InstList_GoldenTorizo_ReleaseGoldenTorizoEggs_1:
     dw Instruction_GoldenTorizo_QueueEggReleasedSFX                      ;AAD07B;
     dw Instruction_GoldenTorizo_SpawnGoldenTorizoEgg                     ;AAD07D;
-    dw Instruction_Common_WaitYFrames,$0008                              ;AAD07F;
+    dw Instruction_Common_WaitYFrames,regional($0008, $0005)             ;AAD07F;
     dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AAD083;
     dw InstList_GoldenTorizo_ReleaseGoldenTorizoEggs_1                   ;AAD085;
 
@@ -7105,17 +7143,17 @@ InstList_GoldenTorizo_ReleaseGoldenTorizoEggs_2:
     dw $0040 : dl Tiles_Torizo+$300 : dw $7300                           ;AAD091;
     dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD098;
     dw $0040 : dl Tiles_Torizo+$500 : dw $7400                           ;AAD09A;
-    dw Instruction_Common_WaitYFrames,$0008                              ;AAD0A1;
+    dw Instruction_Common_WaitYFrames,regional($0008, $0005)             ;AAD0A1;
     dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD0A5;
     dw $0040 : dl Tiles_Torizo+$2C0 : dw $7300                           ;AAD0A7;
     dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD0AE;
     dw $0040 : dl Tiles_Torizo+$4C0 : dw $7400                           ;AAD0B0;
-    dw Instruction_Common_WaitYFrames,$0008                              ;AAD0B7;
+    dw Instruction_Common_WaitYFrames,regional($0008, $0005)             ;AAD0B7;
     dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD0BB;
     dw $0040 : dl Tiles_Torizo+$280 : dw $7300                           ;AAD0BD;
     dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD0C4;
     dw $0040 : dl Tiles_Torizo+$480 : dw $7400                           ;AAD0C6;
-    dw Instruction_Common_WaitYFrames,$0008                              ;AAD0CD;
+    dw Instruction_Common_WaitYFrames,regional($0008, $0005)             ;AAD0CD;
     dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD0D1;
     dw $0040 : dl Tiles_BombTorizo_GoldenTorizo+$600 : dw $7300          ;AAD0D3;
     dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD0DA;
@@ -7164,7 +7202,7 @@ InstList_GoldenTorizo_EyeBeamAttack_0:
     dw Function_GoldenTorizo_SimpleMovement                              ;AAD10F;
     dw Instruction_GoldenTorizo_DisableEyeBeamExplosions                 ;AAD111;
     dw Instruction_Torizo_SetAnimationLock                               ;AAD113;
-    dw Instruction_Common_WaitYFrames,$0008                              ;AAD115;
+    dw Instruction_Common_WaitYFrames,regional($0008, $0005)             ;AAD115;
     dw Instruction_Common_TimerInY,$0004                                 ;AAD119;
     dw Instruction_GoldenTorizo_QueueLaserSFX                            ;AAD11D;
 
@@ -7173,7 +7211,7 @@ InstList_GoldenTorizo_EyeBeamAttack_1:
     dw Instruction_Common_WaitYFrames,$0004                              ;AAD123;
     dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AAD127;
     dw InstList_GoldenTorizo_EyeBeamAttack_1                             ;AAD129;
-    dw Instruction_Common_WaitYFrames,$0008                              ;AAD12B;
+    dw Instruction_Common_WaitYFrames,regional($0008, $0005)             ;AAD12B;
     dw Instruction_Common_TimerInY,$0002                                 ;AAD12F;
 
 InstList_GoldenTorizo_EyeBeamAttack_2:
@@ -7192,7 +7230,7 @@ InstList_GoldenTorizo_EyeBeamAttack_2:
     dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AAD167;
     dw InstList_GoldenTorizo_EyeBeamAttack_2                             ;AAD169;
     dw Instruction_GoldenTorizo_EnableEyeBeamExplosions                  ;AAD16B;
-    dw Instruction_Common_WaitYFrames,$0008                              ;AAD16D;
+    dw Instruction_Common_WaitYFrames,regional($0008, $0005)             ;AAD16D;
     dw Instruction_GoldenTorizo_DisableEyeBeamExplosions                 ;AAD171;
     dw Instruction_Torizo_ClearAnimationLock                             ;AAD173;
     dw Instruction_Torizo_FunctionInY                                    ;AAD175;
@@ -7221,17 +7259,17 @@ InstList_Torizo_Stunned_0:
     dw Instruction_Common_Enemy0FB2_InY                                  ;AAD193;
     dw Function_GoldenTorizo_Movement_Attacking                          ;AAD195;
     dw Instruction_Torizo_SetAnimationLock                               ;AAD197;
-    dw Instruction_Common_WaitYFrames,$0018                              ;AAD199;
+    dw Instruction_Common_WaitYFrames,$0018*!FPS                         ;AAD199;
     dw Instruction_Common_TimerInY,$0002                                 ;AAD19D;
 
 InstList_Torizo_Stunned_1:
-    dw Instruction_Common_WaitYFrames,$0003                              ;AAD1A1;
+    dw Instruction_Common_WaitYFrames,$0003*!FPS                         ;AAD1A1;
     dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD1A5;
     dw $0040 : dl Tiles_Torizo : dw $7D80                                ;AAD1A7;
     dw Instruction_Common_WaitYFrames,$0003                              ;AAD1AE;
     dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD1B2;
     dw $0040 : dl Tiles_Torizo+$40 : dw $7D80                            ;AAD1B4;
-    dw Instruction_Common_WaitYFrames,$0003                              ;AAD1BB;
+    dw Instruction_Common_WaitYFrames,$0003*!FPS                         ;AAD1BB;
     dw Instruction_Common_TransferYBytesInYToVRAM                        ;AAD1BF;
     dw $0040 : dl Tiles_Torizo+$80 : dw $7D80                            ;AAD1C1;
     dw Instruction_Common_WaitYFrames,$0003                              ;AAD1C8;
@@ -7239,7 +7277,7 @@ InstList_Torizo_Stunned_1:
     dw $0040 : dl Tiles_Torizo+$C0 : dw $7D80                            ;AAD1CE;
     dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;AAD1D5;
     dw InstList_Torizo_Stunned_1                                         ;AAD1D7;
-    dw Instruction_Common_WaitYFrames,$0010                              ;AAD1D9;
+    dw Instruction_Common_WaitYFrames,regional($0010, $000A)             ;AAD1D9;
     dw Instruction_Torizo_ClearAnimationLock                             ;AAD1DD;
     dw Instruction_GoldenTorizo_UnmarkStunned                            ;AAD1DF;
     dw Instruction_Common_Enemy0FB2_InY                                  ;AAD1E1;
@@ -7261,7 +7299,7 @@ InstList_GoldenTorizo_Dodge_TurningLeft:
     dw Function_Torizo_SimpleMovement                                    ;AAD1F3;
     dw Instruction_Torizo_SetAnimationLock                               ;AAD1F5;
     dw Instruction_Torizo_SetTorizoTurningAroundFlag                     ;AAD1F7;
-    dw $0018,ExtendedSpritemaps_Torizo_FacingScreen_Turning_Dodging      ;AAD1F9;
+    dw $0018*!FPS,ExtendedSpritemaps_Torizo_FacingScreen_Turning_Dodging ;AAD1F9;
     dw Instruction_Torizo_ClearAnimationLock                             ;AAD1FD;
     dw Instruction_Common_GotoY                                          ;AAD1FF;
     dw InstList_GoldenTorizo_WalkingLeft_RightLegMoving                  ;AAD201;
@@ -7272,7 +7310,7 @@ InstList_GoldenTorizo_TurningLeft:
     dw Instruction_Torizo_FunctionInY                                    ;AAD203;
     dw Function_Torizo_SimpleMovement                                    ;AAD205;
     dw Instruction_Torizo_SetTorizoTurningAroundFlag                     ;AAD207;
-    dw $0008,ExtendedSpritemaps_Torizo_FacingScreen_Turning_Dodging      ;AAD209;
+    dw regional($0008, $0005),ExtendedSpritemaps_Torizo_FacingScreen_Turning_Dodging ;AAD209;
 
 
 ;;; $D20D: Instruction list - Golden Torizo - walking left - right leg moving ;;;
@@ -7283,7 +7321,7 @@ InstList_GoldenTorizo_WalkingLeft_RightLegMoving:
     dw Instruction_Common_Enemy0FB2_InY                                  ;AAD213;
     dw Function_GoldenTorizo_Movement_Walking                            ;AAD215;
     dw Instruction_Torizo_PlayTorizoFootstepsSFX                         ;AAD217;
-    dw $0008,ExtendedSpritemaps_Torizo_WalkingLeft_RightLegMoving_0      ;AAD219;
+    dw regional($0008, $0005),ExtendedSpritemaps_Torizo_WalkingLeft_RightLegMoving_0 ;AAD219;
     dw Instruction_GoldenTorizo_GotoY_JumpForwards_IfAtLeast70Pixel      ;AAD21D;
     dw InstList_Torizo_FacingLeft_JumpingForwards_0                      ;AAD21F;
     dw Instruction_GoldenTorizo_GotoY_JumpBack_IfLessThan20Pixels        ;AAD221;
@@ -7315,7 +7353,7 @@ InstList_GoldenTorizo_WalkingLeft_LeftLegMoving:
     dw Instruction_Common_Enemy0FB2_InY                                  ;AAD25F;
     dw Function_GoldenTorizo_Movement_Walking                            ;AAD261;
     dw Instruction_Torizo_PlayTorizoFootstepsSFX                         ;AAD263;
-    dw $0008,ExtendedSpritemaps_Torizo_WalkingLeft_LeftLegMoving_0       ;AAD265;
+    dw regional($0008, $0005),ExtendedSpritemaps_Torizo_WalkingLeft_LeftLegMoving_0 ;AAD265;
     dw Instruction_GoldenTorizo_GotoY_IfSamusIsMorphedBehindTorizo       ;AAD269;
     dw InstList_GoldenTorizo_SitDownAttack_FacingLeft                    ;AAD26B;
     dw Instruction_GoldenTorizo_GotoY_JumpForwards_IfAtLeast70Pixel      ;AAD26D;
@@ -7349,7 +7387,7 @@ InstList_GoldenTorizo_Dodge_TurningRight:
     dw Function_Torizo_SimpleMovement                                    ;AAD2AF;
     dw Instruction_Torizo_SetAnimationLock                               ;AAD2B1;
     dw Instruction_Torizo_SetTorizoTurningAroundFlag                     ;AAD2B3;
-    dw $0018,ExtendedSpritemaps_Torizo_FacingScreen_Turning_Dodging      ;AAD2B5;
+    dw $0018*!FPS,ExtendedSpritemaps_Torizo_FacingScreen_Turning_Dodging ;AAD2B5;
     dw Instruction_Torizo_ClearAnimationLock                             ;AAD2B9;
     dw Instruction_Common_GotoY                                          ;AAD2BB;
     dw InstList_GoldenTorizo_WalkingRight_LeftLegMoving                  ;AAD2BD;
@@ -7360,7 +7398,7 @@ InstList_GoldenTorizo_TurningRight:
     dw Instruction_Torizo_FunctionInY                                    ;AAD2BF;
     dw Function_Torizo_SimpleMovement                                    ;AAD2C1;
     dw Instruction_Torizo_SetTorizoTurningAroundFlag                     ;AAD2C3;
-    dw $0008,ExtendedSpritemaps_Torizo_FacingScreen_Turning_Dodging      ;AAD2C5;
+    dw regional($0008, $0005),ExtendedSpritemaps_Torizo_FacingScreen_Turning_Dodging      ;AAD2C5;
 
 
 ;;; $D2C9: Instruction list - Golden Torizo - walking right - left leg moving ;;;
@@ -7371,7 +7409,7 @@ InstList_GoldenTorizo_WalkingRight_LeftLegMoving:
     dw Instruction_Common_Enemy0FB2_InY                                  ;AAD2CF;
     dw Function_GoldenTorizo_Movement_Walking                            ;AAD2D1;
     dw Instruction_Torizo_PlayTorizoFootstepsSFX                         ;AAD2D3;
-    dw $0008,ExtendedSpritemaps_Torizo_WalkingRight_LeftLegMoving_0      ;AAD2D5;
+    dw regional($0008, $0005),ExtendedSpritemaps_Torizo_WalkingRight_LeftLegMoving_0 ;AAD2D5;
     dw Instruction_GoldenTorizo_GotoY_JumpForwards_IfAtLeast70Pixel      ;AAD2D9;
     dw InstList_Torizo_FacingRight_JumpingForwards_0                     ;AAD2DB;
     dw Instruction_GoldenTorizo_GotoY_JumpBack_IfLessThan20Pixels        ;AAD2DD;
@@ -7403,7 +7441,7 @@ InstList_GoldenTorizo_WalkingRight_RightLegMoving:
     dw Instruction_Common_Enemy0FB2_InY                                  ;AAD31B;
     dw Function_GoldenTorizo_Movement_Walking                            ;AAD31D;
     dw Instruction_Torizo_PlayTorizoFootstepsSFX                         ;AAD31F;
-    dw $0008,ExtendedSpritemaps_Torizo_WalkingRight_RightLegMoving_0     ;AAD321;
+    dw regional($0008, $0005),ExtendedSpritemaps_Torizo_WalkingRight_RightLegMoving_0 ;AAD321;
     dw Instruction_GoldenTorizo_GotoY_IfSamusIsMorphedBehindTorizo       ;AAD325;
     dw InstList_GoldenTorizo_SitDownAttack_FacingRight                   ;AAD327;
     dw Instruction_GoldenTorizo_GotoY_JumpForwards_IfAtLeast70Pixel      ;AAD329;
@@ -7665,7 +7703,7 @@ Instruction_GoldenTorizo_GotoY_JumpForwards_IfAtLeast70Pixel:
     BCC .noGo                                                            ;AAD4C1;
     JSR.W CheckIfTorizoIsFacingSamus                                     ;AAD4C3;
     BMI .noGo                                                            ;AAD4C6;
-    LDA.W #$0168                                                         ;AAD4C8;
+    LDA.W #$0168*!FPS                                                    ;AAD4C8;
     CMP.L Torizo.spaceJumpCounter,X                                      ;AAD4CB;
     BCC .jump                                                            ;AAD4CF;
     LDA.B DP_Controller1Input                                            ;AAD4D1;
@@ -9299,9 +9337,9 @@ InstList_Chozo_LowerNorfair_Activated_1:
 
 ;;; $E429: Instruction - start lowering acid ;;;
 Instruction_Chozo_StartLoweringAcid:
-    LDA.W #$0020                                                         ;AAE429;
+    LDA.W #regional($0020, $0019)                                        ;AAE429;
     STA.W FX_Timer                                                       ;AAE42C;
-    LDA.W #$0040                                                         ;AAE42F;
+    LDA.W #regional($0040, $0032)                                        ;AAE42F;
     STA.W FX_YSubVelocity                                                ;AAE432;
     RTL                                                                  ;AAE435;
 

@@ -6,6 +6,14 @@ macro anchor(desired)
     endif
 endmacro
 
+function regional(value_ntsc, value_pal) = select(!PAL, value_pal, value_ntsc)
+
+; Asar implements left shift with saturating arithmetic rather than truncation o_O
+; So the low word mask here is required
+; It also implements right shift with sign extension -_-
+; So the high word mask is *also* required, and has to be done after the shift
+function wordSwap(value) = value>>$10&$FFFF|(value&$FFFF)<<$10
+
 macro spritemapEntry(Size, XOffset, YOffset, YFlip, XFlip, Priority, Palette, Tile)
 ; Spritemap entry format is:
 ;     s000000xxxxxxxxx yyyyyyyy YXppPPPttttttttt

@@ -1206,7 +1206,7 @@ IndirectInstructionFunction_DrawTextToTilemap:
 
   .loop:
     LDA.W $0004,Y                                                        ;8B88CF;
-    STA.L CinematicBGTilemap_TopMarginInitialJapanText,X                 ;8B88D2;
+    STA.L CinematicBGTilemap,X                                           ;8B88D2;
     INY                                                                  ;8B88D6;
     INY                                                                  ;8B88D7;
     INX                                                                  ;8B88D8;
@@ -1252,7 +1252,7 @@ IndirectInstructionFunction_DrawSamusEyesToTilemap:
 
   .loops:
     LDA.W $0004,Y                                                        ;8B8915;
-    STA.L CinematicBGTilemap,X                                           ;8B8918;
+    STA.L IntroBG2Tilemap,X                                              ;8B8918;
     INY                                                                  ;8B891C;
     INY                                                                  ;8B891D;
     INX                                                                  ;8B891E;
@@ -1908,8 +1908,9 @@ PaletteCrossFading_ComposeFadingPalettes:
     RTS                                                                  ;8B8D22;
 
 
+if !PAL == 0
 ;;; $8D23: Load Japanese intro text tiles ;;;
-LoadJapanTextIntroTiles:
+LoadIntroSubtitleTiles:
 ;; Parameters:
 ;;     Y: Pointer to Japanese intro text data
 
@@ -1944,21 +1945,21 @@ LoadJapanTextIntroTiles:
     PLB                                                                  ;8B8D41;
     PLB                                                                  ;8B8D42;
     LDA.W $0000,Y                                                        ;8B8D43;
-    STA.L IntroBG3JapanTextTiles,X                                       ;8B8D46;
+    STA.L IntroBG3SubtitleTiles,X                                        ;8B8D46;
     LDA.W $0002,Y                                                        ;8B8D4A;
-    STA.L IntroBG3JapanTextTiles+2,X                                     ;8B8D4D;
+    STA.L IntroBG3SubtitleTiles+2,X                                      ;8B8D4D;
     LDA.W $0004,Y                                                        ;8B8D51;
-    STA.L IntroBG3JapanTextTiles+4,X                                     ;8B8D54;
+    STA.L IntroBG3SubtitleTiles+4,X                                      ;8B8D54;
     LDA.W $0006,Y                                                        ;8B8D58;
-    STA.L IntroBG3JapanTextTiles+6,X                                     ;8B8D5B;
+    STA.L IntroBG3SubtitleTiles+6,X                                      ;8B8D5B;
     LDA.W $0008,Y                                                        ;8B8D5F;
-    STA.L IntroBG3JapanTextTiles+8,X                                     ;8B8D62;
+    STA.L IntroBG3SubtitleTiles+8,X                                      ;8B8D62;
     LDA.W $000A,Y                                                        ;8B8D66;
-    STA.L IntroBG3JapanTextTiles+$A,X                                    ;8B8D69;
+    STA.L IntroBG3SubtitleTiles+$A,X                                     ;8B8D69;
     LDA.W $000C,Y                                                        ;8B8D6D;
-    STA.L IntroBG3JapanTextTiles+$C,X                                    ;8B8D70;
+    STA.L IntroBG3SubtitleTiles+$C,X                                     ;8B8D70;
     LDA.W $000E,Y                                                        ;8B8D74;
-    STA.L IntroBG3JapanTextTiles+$E,X                                    ;8B8D77;
+    STA.L IntroBG3SubtitleTiles+$E,X                                     ;8B8D77;
     PLB                                                                  ;8B8D7B;
     PLY                                                                  ;8B8D7C;
     LDA.W $0006,Y                                                        ;8B8D7D;
@@ -1977,21 +1978,21 @@ LoadJapanTextIntroTiles:
     PLB                                                                  ;8B8D94;
     PLB                                                                  ;8B8D95;
     LDA.W $0000,Y                                                        ;8B8D96;
-    STA.L IntroBG3JapanTextTiles,X                                       ;8B8D99;
+    STA.L IntroBG3SubtitleTiles,X                                        ;8B8D99;
     LDA.W $0002,Y                                                        ;8B8D9D;
-    STA.L IntroBG3JapanTextTiles+2,X                                     ;8B8DA0;
+    STA.L IntroBG3SubtitleTiles+2,X                                      ;8B8DA0;
     LDA.W $0004,Y                                                        ;8B8DA4;
-    STA.L IntroBG3JapanTextTiles+4,X                                     ;8B8DA7;
+    STA.L IntroBG3SubtitleTiles+4,X                                      ;8B8DA7;
     LDA.W $0006,Y                                                        ;8B8DAB;
-    STA.L IntroBG3JapanTextTiles+6,X                                     ;8B8DAE;
+    STA.L IntroBG3SubtitleTiles+6,X                                      ;8B8DAE;
     LDA.W $0008,Y                                                        ;8B8DB2;
-    STA.L IntroBG3JapanTextTiles+8,X                                     ;8B8DB5;
+    STA.L IntroBG3SubtitleTiles+8,X                                      ;8B8DB5;
     LDA.W $000A,Y                                                        ;8B8DB9;
-    STA.L IntroBG3JapanTextTiles+$A,X                                    ;8B8DBC;
+    STA.L IntroBG3SubtitleTiles+$A,X                                     ;8B8DBC;
     LDA.W $000C,Y                                                        ;8B8DC0;
-    STA.L IntroBG3JapanTextTiles+$C,X                                    ;8B8DC3;
+    STA.L IntroBG3SubtitleTiles+$C,X                                     ;8B8DC3;
     LDA.W $000E,Y                                                        ;8B8DC7;
-    STA.L IntroBG3JapanTextTiles+$E,X                                    ;8B8DCA;
+    STA.L IntroBG3SubtitleTiles+$E,X                                     ;8B8DCA;
     PLB                                                                  ;8B8DCE;
     PLY                                                                  ;8B8DCF;
     TXA                                                                  ;8B8DD0;
@@ -2013,7 +2014,7 @@ LoadJapanTextIntroTiles:
 
 
 ;;; $8DE6: Transfer Japanese text tiles to VRAM ;;;
-TransferJapanTextTilesToVRAM:
+TransferSubtitleTilesToVRAM:
 ; Queue transfer of $7E:4000..45FF to VRAM $4180..447F
     PHX                                                                  ;8B8DE6;
     LDX.W VRAMWriteStack                                                 ;8B8DE7;
@@ -2021,12 +2022,12 @@ TransferJapanTextTilesToVRAM:
     STA.B VRAMWrite.size,X                                               ;8B8DED;
     INX                                                                  ;8B8DEF;
     INX                                                                  ;8B8DF0;
-    LDA.W #IntroBG3JapanTextTiles                                        ;8B8DF1;
+    LDA.W #IntroBG3SubtitleTiles                                         ;8B8DF1;
     STA.B VRAMWrite.size,X                                               ;8B8DF4;
     INX                                                                  ;8B8DF6;
     INX                                                                  ;8B8DF7;
     SEP #$20                                                             ;8B8DF8;
-    LDA.B #IntroBG3JapanTextTiles>>16                                    ;8B8DFA;
+    LDA.B #IntroBG3SubtitleTiles>>16                                     ;8B8DFA;
     STA.B VRAMWrite.size,X                                               ;8B8DFC;
     REP #$20                                                             ;8B8DFE;
     INX                                                                  ;8B8E00;
@@ -2037,6 +2038,115 @@ TransferJapanTextTilesToVRAM:
     STX.W VRAMWriteStack                                                 ;8B8E08;
     PLX                                                                  ;8B8E0B;
     RTS                                                                  ;8B8E0C;
+else
+LoadIntroSubtitleTilemapTopRow:
+;; Parameters:
+;;     $00: Subtitle text data. Bank $7F
+;;     $12: Size (in bytes)
+    PHP
+    SEP #$30
+    LDA.B #IntroSubtitleTilemaps>>$10
+    STA.B DP_Temp00+2
+    REP #$30
+    PHX
+    PHY
+    LDY.W #$0000
+    LDX.W #$0000
+
+  .loop:
+    LDA.B [DP_Temp00],Y
+    CMP.W #$002F
+    BEQ .space
+    ORA.W #$2000
+    STA.L CinematicBGTilemap_subtitles_topRow,X
+    BRA .next
+
+  .space
+    LDA.W #$3029
+    STA.L CinematicBGTilemap_subtitles_topRow,X
+
+  .next
+    INY
+    INY
+    INX
+    INX
+    CPX.B DP_Temp12
+    BMI .loop
+    PLY
+    PLX
+    PLP
+    RTS
+
+
+LoadIntroSubtitleTilemapBottomRow:
+;; Parameters:
+;;     $00: Subtitle text data. Bank $7F
+;;     $12: Size (in bytes)
+    PHP
+    SEP #$30
+    LDA.B #IntroSubtitleTilemaps>>$10
+    STA.B DP_Temp00+2
+    REP #$30
+    PHX
+    PHY
+    LDY.W #$0000
+    LDX.W #$0000
+
+  .loop:
+    LDA.B [DP_Temp00],Y
+    CMP.W #$002F
+    BEQ +
+    ORA.W #$2000
+    STA.L CinematicBGTilemap_subtitles_bottomRow,X
+    BRA ++
+
++   LDA.W #$3029
+    STA.L CinematicBGTilemap_subtitles_bottomRow,X
+
+++  INY
+    INY
+    INX
+    INX
+    CPX.B DP_Temp12
+    BMI .loop
+    PLY
+    PLX
+    PLP
+    RTS
+
+
+TransferIntroSubtitleTilemapToVRAM:
+; Queue transfer of $7E:3600..FF to VRAM $4F00..7F
+; This function is called only to clear the subtitle tilemap,
+; other tilemap transfers are handled by the usual cinematic BG handler
+; In fact, the usual cinematic BG handler seems to be fully capable of clearing the tilemap too,
+; making this function completely redundant
+    PHP
+    REP #$30
+    PHX
+    LDX.W VRAMWriteStack
+    LDA.W #CinematicBGTilemap_subtitles_end-CinematicBGTilemap_subtitles
+    STA.B VRAMWrite.size,X
+    INX
+    INX
+    LDA.W #CinematicBGTilemap_subtitles
+    STA.B VRAMWrite.size,X ; Actually src
+    INX
+    INX
+    SEP #$20
+    LDA.B #CinematicBGTilemap_subtitles>>16
+    STA.B VRAMWrite.size,X ; Actually src+2
+    REP #$20
+    INX
+    LDA.W #$4F00
+    STA.B VRAMWrite.size,X ; Actually dest
+    INX
+    INX
+    STX.W VRAMWriteStack
+    PLX
+    PLP
+    RTS
+endif
 
 
 ;;; $8E0D: Handle Samus during intro ;;;
@@ -3300,10 +3410,10 @@ Clear_CinematicBGObjects_CinematicBGTilemap:
     PHP                                                                  ;8B95CE;
     REP #$30                                                             ;8B95CF;
     PHX                                                                  ;8B95D1;
-    LDX.W #$07FE                                                         ;8B95D2;
+    LDX.W #CinematicBGTilemap_end-CinematicBGTilemap-2                   ;8B95D2;
 
   .loopTilemap:
-    STA.L CinematicBGTilemap_TopMarginInitialJapanText,X                 ;8B95D5;
+    STA.L CinematicBGTilemap,X                                           ;8B95D5;
     DEX                                                                  ;8B95D9;
     DEX                                                                  ;8B95DA;
     BPL .loopTilemap                                                     ;8B95DB;
@@ -3389,6 +3499,36 @@ Handle_CinematicBGObjects:
   .return:
     PLP                                                                  ;8B9657;
     RTS                                                                  ;8B9658;
+
+
+if !PAL != 0
+Handle_CinematicBGObjects_NoEyes:
+; Same as Handle_CinematicBGObjects, but omits the call to CinematicBGObjects_UpdateSamusEyesTilemap
+    PHP
+    REP #$30
+    BIT.W CinematicBGObject_Enable
+    BPL .return
+    LDX.W #$0006
+
+  .loop
+    STX.W CinematicBGObject_Index
+    LDA.W CinematicBGObject_InstListPointers,X
+    BEQ .next
+    JSR.W Process_CinematicBGObject_InstList
+    LDX.W CinematicBGObject_Index
+
+  .next:
+    DEX
+    DEX
+    BPL .loop
+    BIT.W CinematicBGObject_TilemapUpdateFlag
+    BPL .return
+    JSR.W CinematicBGObjects_Update32x30CinematicBGTilemap
+
+  .return
+    PLP
+    RTS
+endif
 
 
 ;;; $9659: Process cinematic BG object instruction list ;;;
@@ -3781,10 +3921,10 @@ Process_TextGlowObject:
     STA.W DP_Temp14                                                      ;8B9893;
 
   .loop:
-    LDA.L CinematicBGTilemap_TopMarginInitialJapanText,X                 ;8B9896;
+    LDA.L CinematicBGTilemap,X                                           ;8B9896;
     AND.W #$E3FF                                                         ;8B989A;
     ORA.B DP_Temp1C                                                      ;8B989D;
-    STA.L CinematicBGTilemap_TopMarginInitialJapanText,X                 ;8B989F;
+    STA.L CinematicBGTilemap,X                                           ;8B989F;
     INY                                                                  ;8B98A3;
     INY                                                                  ;8B98A4;
     INX                                                                  ;8B98A5;
@@ -3848,7 +3988,7 @@ Clear_CreditsObject_CinematicBGTilemapInA:
     LDX.W #$07FE                                                         ;8B98FD;
 
   .loop:
-    STA.L CinematicBGTilemap_TopMarginInitialJapanText,X                 ;8B9900;
+    STA.L CinematicBGTilemap,X                                           ;8B9900;
     DEX                                                                  ;8B9904;
     DEX                                                                  ;8B9905;
     BPL .loop                                                            ;8B9906;
@@ -3920,7 +4060,7 @@ Process_CreditsObject_InstList:
     PLB                                                                  ;8B9975;
     LDA.W CinematicBG1_YSubPosition                                      ;8B9976;
     CLC                                                                  ;8B9979;
-    ADC.W #$8000                                                         ;8B997A;
+    ADC.W #regional($8000, $9800)                                        ;8B997A;
     STA.W CinematicBG1_YSubPosition                                      ;8B997D;
     LDA.W CinematicBG1_YPosition                                         ;8B9980;
     ADC.W #$0000                                                         ;8B9983;
@@ -3985,7 +4125,7 @@ Copy_CreditsRow_ToCinematicBGTilemap:
 
   .loop:
     LDA.B [DP_Temp00],Y                                                  ;8B99EC;
-    STA.L CinematicBGTilemap_TopMarginInitialJapanText,X                 ;8B99EE;
+    STA.L CinematicBGTilemap,X                                           ;8B99EE;
     INX                                                                  ;8B99F2;
     INX                                                                  ;8B99F3;
     INY                                                                  ;8B99F4;
@@ -4207,7 +4347,7 @@ SkipToTitleScreenHandler_3_FadeIn:
     JSR.W AdvanceFastScreenFadeIn                                        ;8B9B53;
     BCC .return                                                          ;8B9B56;
     STZ.W SkipToTitleScreenIndex                                         ;8B9B58;
-    LDA.W #$0384                                                         ;8B9B5B;
+    LDA.W #regional($0384, $02D0)                                        ;8B9B5B;
     STA.W DemoTimer                                                      ;8B9B5E;
     LDA.W #CinematicFunction_TitleScreen                                 ;8B9B61;
     STA.W CinematicFunction                                              ;8B9B64;
@@ -4407,7 +4547,7 @@ Instruction_TriggerTitleSequenceScene0:
     STZ.W CinematicBG1_YSubPosition                                      ;8B9D04;
     LDA.W #$FFFE                                                         ;8B9D07;
     STA.W CinematicBG1_XSpeed                                            ;8B9D0A;
-    LDA.W #$8000                                                         ;8B9D0D;
+    LDA.W #regional($8000, $4000)                                        ;8B9D0D;
     STA.W CinematicBG1_XSubSpeed                                         ;8B9D10;
     JSR.W Activate_TileSequence_BlueLight                                ;8B9D13;
     RTS                                                                  ;8B9D16;
@@ -4468,7 +4608,7 @@ Instruction_TriggerTitleSequenceScene1:
     STZ.W CinematicBG1_YSubPosition                                      ;8B9D80;
     LDA.W #$FFFE                                                         ;8B9D83;
     STA.W CinematicBG1_XSpeed                                            ;8B9D86;
-    LDA.W #$8000                                                         ;8B9D89;
+    LDA.W #regional($8000, $4000)                                        ;8B9D89;
     STA.W CinematicBG1_XSubSpeed                                         ;8B9D8C;
     RTS                                                                  ;8B9D8F;
 
@@ -4530,7 +4670,7 @@ Instruction_TriggerTitleSequenceScene2:
     STZ.W CinematicBG1_XSubSpeed                                         ;8B9DFF;
     LDA.W #$0001                                                         ;8B9E02;
     STA.W CinematicBG1_YSpeed                                            ;8B9E05;
-    LDA.W #$8000                                                         ;8B9E08;
+    LDA.W #regional($8000, $C000)                                        ;8B9E08;
     STA.W CinematicBG1_YSubSpeed                                         ;8B9E0B;
     JSR.W Activate_TileSequence_BlueLight                                ;8B9E0E;
     RTS                                                                  ;8B9E11;
@@ -4685,7 +4825,7 @@ InitFunc_CinematicSpriteObject_NintendoCopyright_FadeIn:
 ;;; $9F19: Instruction - start demo countdown ;;;
 Instruction_StartDemoCountdown:
     PHY                                                                  ;8B9F19;
-    LDA.W #$0384                                                         ;8B9F1A;
+    LDA.W #regional($0384, $02D0)                                        ;8B9F1A;
     STA.W DemoTimer                                                      ;8B9F1D;
     LDA.W #CinematicFunction_TitleScreen                                 ;8B9F20;
     STA.W CinematicFunction                                              ;8B9F23;
@@ -4880,54 +5020,54 @@ RTL_8BA03C:
 
 ;;; $A03D: Instruction list - cinematic sprite object $A0EF ('1994' scrolling text) ;;;
 InstList_CinematicSpriteObject_1994ScrollingText:
-    dw $003C,$0000                                                       ;8BA03D;
-    dw $0008,TitleSequenceSpritemaps_1                                   ;8BA041;
-    dw $0008,TitleSequenceSpritemaps_19                                  ;8BA045;
-    dw $0008,TitleSequenceSpritemaps_199                                 ;8BA049;
-    dw $002D,TitleSequenceSpritemaps_1994                                ;8BA04D;
+    dw regional($003C, $0018),$0000                                      ;8BA03D;
+    dw $0008*!FPS,TitleSequenceSpritemaps_1                              ;8BA041;
+    dw $0008*!FPS,TitleSequenceSpritemaps_19                             ;8BA045;
+    dw $0008*!FPS,TitleSequenceSpritemaps_199                            ;8BA049;
+    dw regional($002D, $0024),TitleSequenceSpritemaps_1994               ;8BA04D;
     dw Instruction_TriggerTitleSequenceScene0                            ;8BA051;
     dw CinematicSpriteObject_Instruction_Delete                          ;8BA053;
 
 
 ;;; $A055: Instruction list - cinematic sprite object $A0F5 ('NINTENDO' scrolling text) ;;;
 InstList_CinematicSpriteObject_NintendoScrollingText:
-    dw $0008,TitleSequenceSpritemaps_N                                   ;8BA055;
-    dw $0008,TitleSequenceSpritemaps_NI                                  ;8BA059;
-    dw $0008,TitleSequenceSpritemaps_NIN                                 ;8BA05D;
-    dw $0008,TitleSequenceSpritemaps_NINT                                ;8BA061;
-    dw $0008,TitleSequenceSpritemaps_NINTE                               ;8BA065;
-    dw $0008,TitleSequenceSpritemaps_NINTEN                              ;8BA069;
-    dw $0008,TitleSequenceSpritemaps_NINTEND                             ;8BA06D;
-    dw $002D,TitleSequenceSpritemaps_NINTENDO                            ;8BA071;
+    dw $0008*!FPS,TitleSequenceSpritemaps_N                              ;8BA055;
+    dw $0008*!FPS,TitleSequenceSpritemaps_NI                             ;8BA059;
+    dw $0008*!FPS,TitleSequenceSpritemaps_NIN                            ;8BA05D;
+    dw $0008*!FPS,TitleSequenceSpritemaps_NINT                           ;8BA061;
+    dw $0008*!FPS,TitleSequenceSpritemaps_NINTE                          ;8BA065;
+    dw $0008*!FPS,TitleSequenceSpritemaps_NINTEN                         ;8BA069;
+    dw $0008*!FPS,TitleSequenceSpritemaps_NINTEND                        ;8BA06D;
+    dw regional($002D, $0024),TitleSequenceSpritemaps_NINTENDO           ;8BA071;
     dw Instruction_TriggerTitleSequenceScene1                            ;8BA075;
     dw CinematicSpriteObject_Instruction_Delete                          ;8BA077;
 
 
 ;;; $A079: Instruction list - cinematic sprite object $A0FB ('PRESENTS' scrolling text) ;;;
 InstList_CinematicSpriteObject_PresentsScrollingText:
-    dw $0008,TitleSequenceSpritemaps_P                                   ;8BA079;
-    dw $0008,TitleSequenceSpritemaps_PR                                  ;8BA07D;
-    dw $0008,TitleSequenceSpritemaps_PRE                                 ;8BA081;
-    dw $0008,TitleSequenceSpritemaps_PRES                                ;8BA085;
-    dw $0008,TitleSequenceSpritemaps_PRESE                               ;8BA089;
-    dw $0008,TitleSequenceSpritemaps_PRESEN                              ;8BA08D;
-    dw $0008,TitleSequenceSpritemaps_PRESENT                             ;8BA091;
-    dw $002D,TitleSequenceSpritemaps_PRESENTS                            ;8BA095;
+    dw $0008*!FPS,TitleSequenceSpritemaps_P                              ;8BA079;
+    dw $0008*!FPS,TitleSequenceSpritemaps_PR                             ;8BA07D;
+    dw $0008*!FPS,TitleSequenceSpritemaps_PRE                            ;8BA081;
+    dw $0008*!FPS,TitleSequenceSpritemaps_PRES                           ;8BA085;
+    dw $0008*!FPS,TitleSequenceSpritemaps_PRESE                          ;8BA089;
+    dw $0008*!FPS,TitleSequenceSpritemaps_PRESEN                         ;8BA08D;
+    dw $0008*!FPS,TitleSequenceSpritemaps_PRESENT                        ;8BA091;
+    dw regional($002D, $0024),TitleSequenceSpritemaps_PRESENTS           ;8BA095;
     dw Instruction_TriggerTitleSequenceScene2                            ;8BA099;
     dw CinematicSpriteObject_Instruction_Delete                          ;8BA09B;
 
 
 ;;; $A09D: Instruction list - cinematic sprite object $A101 ('METROID 3' scrolling text) ;;;
 InstList_CinematicSpriteObject_Metroid3ScrollingText:
-    dw $0008,TitleSequenceSpritemaps_M                                   ;8BA09D;
-    dw $0008,TitleSequenceSpritemaps_ME                                  ;8BA0A1;
-    dw $0008,TitleSequenceSpritemaps_MET                                 ;8BA0A5;
-    dw $0008,TitleSequenceSpritemaps_METR                                ;8BA0A9;
-    dw $0008,TitleSequenceSpritemaps_METRO                               ;8BA0AD;
-    dw $0008,TitleSequenceSpritemaps_METROI                              ;8BA0B1;
-    dw $0008,TitleSequenceSpritemaps_METROID                             ;8BA0B5;
-    dw $0008,TitleSequenceSpritemaps_METROID_                            ;8BA0B9;
-    dw $0078,TitleSequenceSpritemaps_METROID3                            ;8BA0BD;
+    dw $0008*!FPS,TitleSequenceSpritemaps_M                              ;8BA09D;
+    dw $0008*!FPS,TitleSequenceSpritemaps_ME                             ;8BA0A1;
+    dw $0008*!FPS,TitleSequenceSpritemaps_MET                            ;8BA0A5;
+    dw $0008*!FPS,TitleSequenceSpritemaps_METR                           ;8BA0A9;
+    dw $0008*!FPS,TitleSequenceSpritemaps_METRO                          ;8BA0AD;
+    dw $0008*!FPS,TitleSequenceSpritemaps_METROI                         ;8BA0B1;
+    dw $0008*!FPS,TitleSequenceSpritemaps_METROID                        ;8BA0B5;
+    dw $0008*!FPS,TitleSequenceSpritemaps_METROID_                       ;8BA0B9;
+    dw regional($0078, $0060),TitleSequenceSpritemaps_METROID3           ;8BA0BD;
     dw Instruction_TriggerTitleSequenceScene3                            ;8BA0C1;
     dw CinematicSpriteObject_Instruction_Delete                          ;8BA0C3;
 
@@ -5410,7 +5550,7 @@ CinematicFunction_Intro_Initial:
     JSL.L SetupHDMATransfer                                              ;8BA485;
     db $01,$01,$18                                                       ;8BA489;
     dl IntroFont1Tiles                                                   ;8BA48C;
-    dw $0900                                                             ;8BA48F;
+    dw IntroFont1Tiles_end-IntroFont1Tiles                               ;8BA48F;
     LDA.B #$02                                                           ;8BA491;
     STA.W $420B                                                          ;8BA493;
     LDA.B #$00                                                           ;8BA496;
@@ -5474,12 +5614,21 @@ CinematicFunction_Intro_Initial:
     LDA.B #$02                                                           ;8BA531;
     STA.W $420B                                                          ;8BA533;
     REP #$30                                                             ;8BA536;
+if !PAL == 0
     LDA.W #Tiles_Font2_BG3>>8&$FF00                                      ;8BA538;
     STA.B DP_DecompSrc+1                                                 ;8BA53B;
     LDA.W #Tiles_Font2_BG3                                               ;8BA53D;
     STA.B DP_DecompSrc                                                   ;8BA540;
     JSL.L Decompression_HardcodedDestination                             ;8BA542;
     dl IntroFont2Tiles                                                   ;8BA546;
+else
+    LDA.W #Intro_BG3_Text_Tilemap>>8&$FF00
+    STA.B DP_DecompSrc+1
+    LDA.W #Intro_BG3_Text_Tilemap
+    STA.B DP_DecompSrc
+    JSL.L Decompression_HardcodedDestination
+    dl IntroSubtitleTilemaps
+endif
     JSL.L EnableNMI                                                      ;8BA549;
     LDA.W #$0003                                                         ;8BA54D;
     STA.W ScreenFadeDelay                                                ;8BA550;
@@ -5490,23 +5639,40 @@ CinematicFunction_Intro_Initial:
     STZ.W DoorPointer                                                    ;8BA562;
     STZ.W Layer1XPosition                                                ;8BA565;
     STZ.W Layer1YPosition                                                ;8BA568;
-    STZ.W CinematicSpriteObject_IntroJapanTextTimer                      ;8BA56B;
+    STZ.W CinematicSpriteObject_IntroSubtitleTimer                       ;8BA56B;
     LDX.W #$07FE                                                         ;8BA56E;
 
   .loopSamusHead:
     LDA.L IntroBG2SamusHeadTilemap,X                                     ;8BA571;
-    STA.L CinematicBGTilemap,X                                           ;8BA575;
+    STA.L IntroBG2Tilemap,X                                              ;8BA575;
     DEX                                                                  ;8BA579;
     DEX                                                                  ;8BA57A;
     BPL .loopSamusHead                                                   ;8BA57B;
+if !PAL != 0
+    LDA.W AltText  
+    BNE .altText
+    LDX.W #$00FE
+
+  .loopGermanText
+    LDA.L InitialIntroSubtitleTilemap_DefaultLanguage_Subpage1,X
+    STA.L CinematicBGTilemap_initialSubtitles,X
+    DEX
+    DEX
+    BPL .loopGermanText
+    BRA .textDone
+endif
+
+  .altText
     LDX.W #$00FE                                                         ;8BA57D;
 
-  .loopJapanText:
-    LDA.L InitialIntroJapanTextTilemap,X                                 ;8BA580;
-    STA.L CinematicBGTilemap_TopMarginInitialJapanText,X                 ;8BA584;
+  .loopAltText:
+    LDA.L InitialIntroSubtitleTilemap_AltLanguage,X                      ;8BA580;
+    STA.L CinematicBGTilemap_initialSubtitles,X                          ;8BA584;
     DEX                                                                  ;8BA588;
     DEX                                                                  ;8BA589;
-    BPL .loopJapanText                                                   ;8BA58A;
+    BPL .loopAltText                                                     ;8BA58A;
+
+  .textDone
     LDA.W #$FFFF                                                         ;8BA58C;
     STA.W CinematicSpriteObject_FrameCounter                             ;8BA58F;
     LDA.W #CinematicFunction_Intro_WaitForMusicQueue_FadeIn              ;8BA592;
@@ -5522,7 +5688,7 @@ CinematicFunction_Intro_Initial:
 CinematicFunction_Intro_WaitForMusicQueue_FadeIn:
     JSL.L CheckIfMusicIsQueued                                           ;8BA5A7;
     BCS .return                                                          ;8BA5AB;
-    LDA.W #CinematicFunction_Intro_HandleDrawingInitialJapanText_Wait60f ;8BA5AD;
+    LDA.W #CinematicFunction_Intro_HandleDrawingInitialSubtitle_Wait60f  ;8BA5AD;
     STA.W CinematicFunction                                              ;8BA5B0;
     LDA.W #$0002                                                         ;8BA5B3;
     STA.W ScreenFadeDelay                                                ;8BA5B6;
@@ -5533,26 +5699,28 @@ CinematicFunction_Intro_WaitForMusicQueue_FadeIn:
 
 
 ;;; $A5BD: Cinematic function - intro - handle drawing initial Japanese text and wait 60 frames ;;;
-CinematicFunction_Intro_HandleDrawingInitialJapanText_Wait60f:
+CinematicFunction_Intro_HandleDrawingInitialSubtitle_Wait60f:
     JSR.W AdvanceSlowScreenFadeIn                                        ;8BA5BD;
     BCC .return                                                          ;8BA5C0;
     LDA.W #CinematicFunction_Intro_PlayTheLastMetroidMusicFor200Frames   ;8BA5C2;
     STA.W CinematicFunction                                              ;8BA5C5;
     LDA.W #$003C                                                         ;8BA5C8;
     STA.W CinematicFunctionTimer                                         ;8BA5CB;
-    LDA.W JapanText                                                      ;8BA5CE;
+if !PAL == 0
+    LDA.W AltText                                                        ;8BA5CE;
     BEQ .return                                                          ;8BA5D1;
+endif
     LDX.W VRAMWriteStack                                                 ;8BA5D3;
     LDA.W #$0100                                                         ;8BA5D6;
     STA.B VRAMWrite.size,X                                               ;8BA5D9;
     INX                                                                  ;8BA5DB;
     INX                                                                  ;8BA5DC;
-    LDA.W #CinematicBGTilemap_TopMarginInitialJapanText                  ;8BA5DD;
+    LDA.W #CinematicBGTilemap_initialSubtitles                           ;8BA5DD;
     STA.B VRAMWrite.size,X                                               ;8BA5E0;
     INX                                                                  ;8BA5E2;
     INX                                                                  ;8BA5E3;
     SEP #$20                                                             ;8BA5E4;
-    LDA.B #CinematicBGTilemap_TopMarginInitialJapanText>>16              ;8BA5E6;
+    LDA.B #CinematicBGTilemap_initialSubtitles>>16                       ;8BA5E6;
     STA.B VRAMWrite.size,X                                               ;8BA5E8;
     REP #$20                                                             ;8BA5EA;
     INX                                                                  ;8BA5EC;
@@ -5600,6 +5768,18 @@ CinematicFunction_Intro_PlayGalaxyIsAtPeaceMusic:
     JSL.L QueueMusicDataOrTrack_YFrameDelay                              ;8BA62E;
     LDA.W #CinematicFunction_Intro_WaitForMusicQueue_WaitFor240Frames    ;8BA632;
     STA.W CinematicFunction                                              ;8BA635;
+if !PAL != 0
+    LDA.W AltText  
+    BNE .return
+    LDX.W #$00FE
+
+  .loop
+    LDA.L InitialIntroSubtitleTilemap_DefaultLanguage_Subpage2,X
+    STA.L CinematicBGTilemap_initialSubtitles,X
+    DEX
+    DEX
+    BPL .loop
+endif
 
   .return:
     RTS                                                                  ;8BA638;
@@ -5613,6 +5793,29 @@ CinematicFunction_Intro_WaitForMusicQueue_WaitFor240Frames:
     STA.W CinematicFunction                                              ;8BA642;
     LDA.W #$00F0                                                         ;8BA645;
     STA.W CinematicFunctionTimer                                         ;8BA648;
+if !PAL != 0
+    LDA.W AltText  
+    BNE .return
+    LDX.W VRAMWriteStack
+    LDA.W #$0100
+    STA.B $D0,X
+    INX
+    INX
+    LDA.W #CinematicBGTilemap_initialSubtitles
+    STA.B $D0,X
+    INX
+    INX
+    SEP #$20
+    LDA.B #CinematicBGTilemap_initialSubtitles>>$10
+    STA.B $D0,X
+    REP #$20
+    INX
+    LDA.W #$4EE0
+    STA $D0,X
+    INX
+    INX
+    STX.W VRAMWriteStack
+endif
 
   .return:
     RTS                                                                  ;8BA64B;
@@ -5649,8 +5852,9 @@ CinematicFunction_Intro_WaitForFadeOut:
 ;;; $A66F: Cinematic function - intro - set up intro text page 1 ;;;
 CinematicFunction_Intro_SetupIntroTextPage1:
     REP #$30                                                             ;8BA66F;
-    JSR.W BlankOut_JapanText_Tiles                                       ;8BA671;
+    JSR.W BlankOut_Subtitle_Tiles                                        ;8BA671;
     SEP #$30                                                             ;8BA674;
+if !PAL == 0
     LDA.B #$80                                                           ;8BA676;
     STA.W $2116                                                          ;8BA678;
     LDA.B #$41                                                           ;8BA67B;
@@ -5659,8 +5863,20 @@ CinematicFunction_Intro_SetupIntroTextPage1:
     STA.W $2115                                                          ;8BA682;
     JSL.L SetupHDMATransfer                                              ;8BA685;
     db $01,$01,$18                                                       ;8BA689;
-    dl IntroBG3JapanTextTiles                                            ;8BA68C;
+    dl IntroBG3SubtitleTiles                                             ;8BA68C;
     dw $0600                                                             ;8BA68F;
+else
+    LDA.B #$00
+    STA.W $2116
+    LDA.B #$4F
+    STA.W $2117
+    LDA.B #$80
+    STA.W $2115
+    JSL.L SetupHDMATransfer
+    db $01,$01,$18
+    dl CinematicBGTilemap_subtitles
+    dw CinematicBGTilemap_subtitles_end-CinematicBGTilemap_subtitles
+endif
     LDA.B #$02                                                           ;8BA691;
     STA.W $420B                                                          ;8BA693;
     LDA.B #$16                                                           ;8BA696;
@@ -5677,26 +5893,31 @@ CinematicFunction_Intro_SetupIntroTextPage1:
     LDA.W #$3C29                                                         ;8BA6B7;
 
   .loopTopBottomMargins:
-    STA.L CinematicBGTilemap_TopMarginInitialJapanText,X                 ;8BA6BA;
-    STA.L CinematicBGTilemap_BottomMargin,X                              ;8BA6BE;
+    STA.L CinematicBGTilemap_topMargin,X                                 ;8BA6BA;
+    STA.L CinematicBGTilemap_bottomMargin,X                              ;8BA6BE;
     DEX                                                                  ;8BA6C2;
     DEX                                                                  ;8BA6C3;
     BPL .loopTopBottomMargins                                            ;8BA6C4;
+if !PAL == 0
     LDX.W #$0600                                                         ;8BA6C6;
     LDY.W #$0000                                                         ;8BA6C9;
 
-  .loopJapanTextTilemap:
-    LDA.W .IntroJapanTextTilemap,Y                                       ;8BA6CC;
-    STA.L CinematicBGTilemap_TopMarginInitialJapanText,X                 ;8BA6CF;
+  .loopSubtitleTilemap:
+    LDA.W .introSubtitleTilemap,Y                                        ;8BA6CC;
+    STA.L CinematicBGTilemap,X                                           ;8BA6CF;
     INY                                                                  ;8BA6D3;
     INY                                                                  ;8BA6D4;
     INX                                                                  ;8BA6D5;
     INX                                                                  ;8BA6D6;
     CPX.W #$0700                                                         ;8BA6D7;
-    BMI .loopJapanTextTilemap                                            ;8BA6DA;
+    BMI .loopSubtitleTilemap                                             ;8BA6DA;
+endif
     LDA.W #$1C29                                                         ;8BA6DC;
-    STA.L CinematicBGTilemap_BottomMargin+$1E                            ;8BA6DF;
-    STA.L CinematicBGTilemap_BottomMargin+$20                            ;8BA6E3;
+    STA.L CinematicBGTilemap_bottomMargin+$1E                            ;8BA6DF;
+    STA.L CinematicBGTilemap_bottomMargin+$20                            ;8BA6E3;
+if !PAL != 0
+    JSR.W BlankOut_Subtitle_Tiles
+endif
     LDY.W #CinematicSpriteObjectDefinitions_IntroTextCaret               ;8BA6E7;
     JSR.W Spawn_CinematicSpriteObject_Y                                  ;8BA6EA;
     LDA.W #$007F                                                         ;8BA6ED;
@@ -5721,7 +5942,8 @@ CinematicFunction_Intro_SetupIntroTextPage1:
     STA.W CinematicFunction                                              ;8BA727;
     RTS                                                                  ;8BA72A;
 
-  .IntroJapanTextTilemap:
+if !PAL == 0
+  .introSubtitleTilemap:
     dw $3C29,$3C29,$3C29,$3C29,$3030,$3031,$3032,$3033                   ;8BA72B;
     dw $3034,$3035,$3036,$3037,$3038,$3039,$303A,$303B                   ;8BA73B;
     dw $303C,$303D,$303E,$303F,$3040,$3041,$3042,$3043                   ;8BA74B;
@@ -5738,6 +5960,7 @@ CinematicFunction_Intro_SetupIntroTextPage1:
     dw $307C,$307D,$307E,$307F,$3080,$3081,$3082,$3083                   ;8BA7FB;
     dw $3084,$3085,$3086,$3087,$3088,$3089,$308A,$308B                   ;8BA80B;
     dw $308C,$308D,$308E,$308F,$3C29,$3C29,$3C29,$3C29                   ;8BA81B;
+endif
 
 
 ;;; $A82B: Cinematic function - intro - wait for music queue, fade in and spawn intro text page 1 ;;;
@@ -5786,30 +6009,31 @@ Clear_EnglishText_Tilemap:
 
 
 ;;; $A86A: Blank out Japanese text tiles ;;;
-BlankOut_JapanText_Tiles:
+BlankOut_Subtitle_Tiles:
     PHP                                                                  ;8BA86A;
     REP #$30                                                             ;8BA86B;
     PHX                                                                  ;8BA86D;
+if !PAL == 0
     PHY                                                                  ;8BA86E;
     LDX.W #$0000                                                         ;8BA86F;
 
   .loop:
     LDA.L IntroFont1Tiles+$290                                           ;8BA872;
-    STA.L IntroBG3JapanTextTiles,X                                       ;8BA876;
+    STA.L IntroBG3SubtitleTiles,X                                       ;8BA876;
     LDA.L IntroFont1Tiles+$292                                           ;8BA87A;
-    STA.L IntroBG3JapanTextTiles+2,X                                     ;8BA87E;
+    STA.L IntroBG3SubtitleTiles+2,X                                     ;8BA87E;
     LDA.L IntroFont1Tiles+$294                                           ;8BA882;
-    STA.L IntroBG3JapanTextTiles+4,X                                     ;8BA886;
+    STA.L IntroBG3SubtitleTiles+4,X                                     ;8BA886;
     LDA.L IntroFont1Tiles+$296                                           ;8BA88A;
-    STA.L IntroBG3JapanTextTiles+6,X                                     ;8BA88E;
+    STA.L IntroBG3SubtitleTiles+6,X                                     ;8BA88E;
     LDA.L IntroFont1Tiles+$298                                           ;8BA892;
-    STA.L IntroBG3JapanTextTiles+8,X                                     ;8BA896;
+    STA.L IntroBG3SubtitleTiles+8,X                                     ;8BA896;
     LDA.L IntroFont1Tiles+$29A                                           ;8BA89A;
-    STA.L IntroBG3JapanTextTiles+$A,X                                    ;8BA89E;
+    STA.L IntroBG3SubtitleTiles+$A,X                                    ;8BA89E;
     LDA.L IntroFont1Tiles+$29C                                           ;8BA8A2;
-    STA.L IntroBG3JapanTextTiles+$C,X                                    ;8BA8A6;
+    STA.L IntroBG3SubtitleTiles+$C,X                                    ;8BA8A6;
     LDA.L IntroFont1Tiles+$29E                                           ;8BA8AA;
-    STA.L IntroBG3JapanTextTiles+$E,X                                    ;8BA8AE;
+    STA.L IntroBG3SubtitleTiles+$E,X                                    ;8BA8AE;
     TXA                                                                  ;8BA8B2;
     CLC                                                                  ;8BA8B3;
     ADC.W #$0010                                                         ;8BA8B4;
@@ -5817,6 +6041,15 @@ BlankOut_JapanText_Tiles:
     CPX.W #$0600                                                         ;8BA8B8;
     BMI .loop                                                            ;8BA8BB;
     PLY                                                                  ;8BA8BD;
+else
+    LDX #CinematicBGTilemap_subtitles_end-CinematicBGTilemap_subtitles-2
+    LDA #$3C29
+
+-   STA CinematicBGTilemap_subtitles,X
+    DEX
+    DEX
+    BPL -
+endif
     PLX                                                                  ;8BA8BE;
     PLP                                                                  ;8BA8BF;
     RTS                                                                  ;8BA8C0;
@@ -6232,7 +6465,7 @@ RestIntroTextCaret:
 
 
 ;;; $AE07: Initialisation function - cinematic sprite object $CE73 (intro Japanese text next-page arrow) ;;;
-InitFunc_CinematicSpriteObject_IntroJapanTextNextPageArrow:
+InitFunc_CinematicSpriteObject_IntroSubtitleNextPageArrow:
     LDA.W #$0080                                                         ;8BAE07;
     STA.W CinematicSpriteObject_XPositions,Y                             ;8BAE0A;
     LDA.W #$00D8                                                         ;8BAE0D;
@@ -6243,13 +6476,13 @@ InitFunc_CinematicSpriteObject_IntroJapanTextNextPageArrow:
 
 
 ;;; $AE1A: Pre-instruction - cinematic sprite object $CE73 (intro Japanese text next-page arrow) ;;;
-PreInst_CinematicSpriteObject_IntroJapanTextNextPageArrow:
-    LDA.W CinematicSpriteObject_IntroJapanTextTimer                      ;8BAE1A;
+PreInst_CinematicSpriteObject_IntroSubtitleNextPageArrow:
+    LDA.W CinematicSpriteObject_IntroSubtitleTimer                       ;8BAE1A;
     CMP.W #$003B                                                         ;8BAE1D;
     BNE +                                                                ;8BAE20;
     LDA.W #$0001                                                         ;8BAE22;
     STA.W CinematicSpriteObject_InstructionTimers,X                      ;8BAE25;
-    LDA.W #InstList_IntroJapanTextNextPageArrow_Blink                    ;8BAE28;
+    LDA.W #InstList_IntroSubtitleNextPageArrow_Blink                     ;8BAE28;
     STA.W CinematicSpriteObject_InstListPointers,X                       ;8BAE2B;
 
 +   LDA.W IntroCrossFadeTimer                                            ;8BAE2E;
@@ -6265,16 +6498,18 @@ PreInst_CinematicSpriteObject_IntroJapanTextNextPageArrow:
 
 
 ;;; $AE43: Instruction - handle creating Japanese text - page 1 ;;;
-Instruction_HandleCreatingJapanText_Page1:
+Instruction_HandleCreatingSubtitle_Page1:
     STZ.W CinematicSpriteObject_IntroTextClickFlag                       ;8BAE43;
-    LDA.W JapanText                                                      ;8BAE46;
+if !PAL == 0
+    LDA.W AltText                                                        ;8BAE46;
     BEQ .return                                                          ;8BAE49;
+endif
     PHB                                                                  ;8BAE4B;
-    PEA.W Mode7Objects_IntroJapanText_Page1>>8&$FF00                     ;8BAE4C;
+    PEA.W Mode7Objects_IntroSubtitle_Page1>>8&$FF00                      ;8BAE4C;
     PLB                                                                  ;8BAE4F;
     PLB                                                                  ;8BAE50;
     PHY                                                                  ;8BAE51;
-    LDY.W #Mode7Objects_IntroJapanText_Page1                             ;8BAE52;
+    LDY.W #Mode7Objects_IntroSubtitle_Page1                              ;8BAE52;
     JSR.W Spawn_Mode7Objects                                             ;8BAE55;
     PLY                                                                  ;8BAE58;
     PLB                                                                  ;8BAE59;
@@ -6286,35 +6521,57 @@ Instruction_HandleCreatingJapanText_Page1:
 ;;; $AE5B: Instruction - spawn blinking markers and wait for input - page 1 ;;;
 Instruction_SpawnBlinkingMarkers_WaitForInput_Page1:
     JSR.W Instruction_SetCaretToBlink                                    ;8BAE5B;
-    LDA.W JapanText                                                      ;8BAE5E;
-    BEQ .waitForInput                                                    ;8BAE61;
+    LDA.W AltText                                                        ;8BAE5E;
+    BEQ .defaultLanguage                                                 ;8BAE61;
     PHB                                                                  ;8BAE63;
-    PEA.W CinematicSpriteObjectDefinitions_IntroJapanTextNextPageArrow>>8&$FF00 ;8BAE64;
+    PEA.W CinematicSpriteObjectDefinitions_IntroSubtitleNextPageArrow>>8&$FF00 ;8BAE64;
     PLB                                                                  ;8BAE67;
     PLB                                                                  ;8BAE68;
     PHY                                                                  ;8BAE69;
-    LDY.W #CinematicSpriteObjectDefinitions_IntroJapanTextNextPageArrow  ;8BAE6A;
+    LDY.W #CinematicSpriteObjectDefinitions_IntroSubtitleNextPageArrow   ;8BAE6A;
     JSR.W Spawn_CinematicSpriteObject_Y                                  ;8BAE6D;
     PLY                                                                  ;8BAE70;
     PLB                                                                  ;8BAE71;
 
-  .waitForInput:
+if !PAL == 0
+  .defaultLanguage:
+endif
     LDA.W #CinematicFunction_Intro_WaitForInput_SetupMotherBrainFight    ;8BAE72;
     STA.W CinematicFunction                                              ;8BAE75;
     RTS                                                                  ;8BAE78;
 
+if !PAL != 0
+  .defaultLanguage:
+    PHB
+    PEA.W CinematicSpriteObjectDefinitions_IntroSubtitleNextPageArrow>>$10<<8
+    PLB
+    PLB
+    PHY
+    LDY.W #CinematicSpriteObjectDefinitions_IntroSubtitleNextPageArrow
+    JSR.W Spawn_CinematicSpriteObject_Y
+    PLY
+    PHY
+    LDY.W #Mode7Objects_IntroText_Page1_Subpage2
+    JSR.W Spawn_Mode7Objects
+    PLY
+    PLB
+    RTS
+endif
+
 
 ;;; $AE79: Instruction - handle creating Japanese text - page 2 ;;;
-Instruction_HandleCreatingJapanText_Page2:
+Instruction_HandleCreatingSubtitle_Page2:
     STZ.W CinematicSpriteObject_IntroTextClickFlag                       ;8BAE79;
-    LDA.W JapanText                                                      ;8BAE7C;
+if !PAL == 0
+    LDA.W AltText                                                        ;8BAE7C;
     BEQ .return                                                          ;8BAE7F;
+endif
     PHB                                                                  ;8BAE81;
-    PEA.W Mode7Objects_IntroJapanText_Page2_Subpage1>>8&$FF00            ;8BAE82;
+    PEA.W Mode7Objects_IntroSubtitle_Page2_Subpage1>>8&$FF00             ;8BAE82;
     PLB                                                                  ;8BAE85;
     PLB                                                                  ;8BAE86;
     PHY                                                                  ;8BAE87;
-    LDY.W #Mode7Objects_IntroJapanText_Page2_Subpage1                    ;8BAE88;
+    LDY.W #Mode7Objects_IntroSubtitle_Page2_Subpage1                     ;8BAE88;
     JSR.W Spawn_Mode7Objects                                             ;8BAE8B;
     PLY                                                                  ;8BAE8E;
     PLB                                                                  ;8BAE8F;
@@ -6326,35 +6583,59 @@ Instruction_HandleCreatingJapanText_Page2:
 ;;; $AE91: Instruction - spawn blinking markers and wait for input - page 2 ;;;
 Instruction_SpawnBlinkingMarkers_WaitForInput_Page2:
     JSR.W Instruction_SetCaretToBlink                                    ;8BAE91;
-    LDA.W JapanText                                                      ;8BAE94;
-    BEQ .noJapanText                                                     ;8BAE97;
+    LDA.W AltText                                                        ;8BAE94;
+    BEQ .defaultLanguage                                                 ;8BAE97;
     PHB                                                                  ;8BAE99;
-    PEA.W Mode7Objects_IntroJapanText_Page2_Subpage2>>8&$FF00            ;8BAE9A;
+    PEA.W Mode7Objects_IntroSubtitle_Page2_Subpage2>>8&$FF00             ;8BAE9A;
     PLB                                                                  ;8BAE9D;
     PLB                                                                  ;8BAE9E;
     PHY                                                                  ;8BAE9F;
-    LDY.W #CinematicSpriteObjectDefinitions_IntroJapanTextNextPageArrow  ;8BAEA0;
+    LDY.W #CinematicSpriteObjectDefinitions_IntroSubtitleNextPageArrow   ;8BAEA0;
     JSR.W Spawn_CinematicSpriteObject_Y                                  ;8BAEA3;
     PLY                                                                  ;8BAEA6;
+if !PAL == 0
     PHY                                                                  ;8BAEA7;
-    LDY.W #Mode7Objects_IntroJapanText_Page2_Subpage2                    ;8BAEA8;
+    LDY.W #Mode7Objects_IntroSubtitle_Page2_Subpage2                     ;8BAEA8;
     JSR.W Spawn_Mode7Objects                                             ;8BAEAB;
     PLY                                                                  ;8BAEAE;
     PLB                                                                  ;8BAEAF;
     RTS                                                                  ;8BAEB0;
+else
+    PLB
+endif
 
-  .noJapanText:
+if !PAL == 0
+  .defaultLanguage:
+endif
     LDA.W #CinematicFunc_Intro_WaitForInput_SetupBabyMetroidDiscovery    ;8BAEB1;
     STA.W CinematicFunction                                              ;8BAEB4;
     RTS                                                                  ;8BAEB7;
 
+if !PAL != 0
+  .defaultLanguage:
+    PHB
+    PEA.W CinematicSpriteObjectDefinitions_IntroSubtitleNextPageArrow>>$10<<8
+    PLB
+    PLB
+    PHY
+    LDY.W #CinematicSpriteObjectDefinitions_IntroSubtitleNextPageArrow
+    JSR.W Spawn_CinematicSpriteObject_Y
+    PLY
+    PHY
+    LDY.W #Mode7Objects_IntroSubtitle_Page2_Subpage2
+    JSR.W Spawn_Mode7Objects
+    PLY
+    PLB
+    RTS
+endif
+
 
 ;;; $AEB8: Cinematic function - intro - wait for input and set up old Mother Brain fight ;;;
 CinematicFunction_Intro_WaitForInput_SetupMotherBrainFight:
-    LDA.W CinematicSpriteObject_IntroJapanTextTimer                      ;8BAEB8;
+    LDA.W CinematicSpriteObject_IntroSubtitleTimer                       ;8BAEB8;
     BEQ .timerExpired                                                    ;8BAEBB;
     DEC                                                                  ;8BAEBD;
-    STA.W CinematicSpriteObject_IntroJapanTextTimer                      ;8BAEBE;
+    STA.W CinematicSpriteObject_IntroSubtitleTimer                       ;8BAEBE;
     RTS                                                                  ;8BAEC1;
 
   .timerExpired:
@@ -6430,10 +6711,10 @@ CinematicFunction_Intro_WaitForInput_SetupMotherBrainFight:
 
 ;;; $AF6C: Cinematic function - intro - wait for input and set up baby metroid discovery ;;;
 CinematicFunc_Intro_WaitForInput_SetupBabyMetroidDiscovery:
-    LDA.W CinematicSpriteObject_IntroJapanTextTimer                      ;8BAF6C;
+    LDA.W CinematicSpriteObject_IntroSubtitleTimer                       ;8BAF6C;
     BEQ .timerExpired                                                    ;8BAF6F;
     DEC                                                                  ;8BAF71;
-    STA.W CinematicSpriteObject_IntroJapanTextTimer                      ;8BAF72;
+    STA.W CinematicSpriteObject_IntroSubtitleTimer                       ;8BAF72;
     RTS                                                                  ;8BAF75;
 
   .timerExpired:
@@ -6543,16 +6824,18 @@ Setup_Intro_CrossFade_Into_SamusGameplay:
 
 
 ;;; $B074: Instruction - handle creating Japanese text - page 3 ;;;
-Instruction_HandleCreatingJapanText_Page3:
+Instruction_HandleCreatingSubtitle_Page3:
     STZ.W CinematicSpriteObject_IntroTextClickFlag                       ;8BB074;
-    LDA.W JapanText                                                      ;8BB077;
+if !PAL == 0
+    LDA.W AltText                                                        ;8BB077;
     BEQ .return                                                          ;8BB07A;
+endif
     PHB                                                                  ;8BB07C;
-    PEA.W Mode7Objects_IntroJapanText_Page3_Subpage1>>8&$FF00            ;8BB07D;
+    PEA.W Mode7Objects_IntroSubtitle_Page3_Subpage1>>8&$FF00             ;8BB07D;
     PLB                                                                  ;8BB080;
     PLB                                                                  ;8BB081;
     PHY                                                                  ;8BB082;
-    LDY.W #Mode7Objects_IntroJapanText_Page3_Subpage1                    ;8BB083;
+    LDY.W #Mode7Objects_IntroSubtitle_Page3_Subpage1                     ;8BB083;
     JSR.W Spawn_Mode7Objects                                             ;8BB086;
     PLY                                                                  ;8BB089;
     PLB                                                                  ;8BB08A;
@@ -6564,40 +6847,65 @@ Instruction_HandleCreatingJapanText_Page3:
 ;;; $B08C: Instruction - spawn blinking markers and wait for input - page 3 ;;;
 Instruction_SpawnBlinkingMarkers_WaitForInput_Page3:
     JSR.W Instruction_SetCaretToBlink                                    ;8BB08C;
-    LDA.W JapanText                                                      ;8BB08F;
-    BEQ .waitForInput                                                    ;8BB092;
+    LDA.W AltText                                                        ;8BB08F;
+    BEQ .defaultLanguage                                                 ;8BB092;
     PHB                                                                  ;8BB094;
-    PEA.W Mode7Objects_IntroJapanText_Page3_Subpage2>>8&$FF00            ;8BB095;
+    PEA.W Mode7Objects_IntroSubtitle_Page3_Subpage2>>8&$FF00             ;8BB095;
     PLB                                                                  ;8BB098;
     PLB                                                                  ;8BB099;
     PHY                                                                  ;8BB09A;
-    LDY.W #CinematicSpriteObjectDefinitions_IntroJapanTextNextPageArrow  ;8BB09B;
+    LDY.W #CinematicSpriteObjectDefinitions_IntroSubtitleNextPageArrow   ;8BB09B;
     JSR.W Spawn_CinematicSpriteObject_Y                                  ;8BB09E;
     PLY                                                                  ;8BB0A1;
+if !PAL == 0
     PHY                                                                  ;8BB0A2;
-    LDY.W #Mode7Objects_IntroJapanText_Page3_Subpage2                    ;8BB0A3;
+    LDY.W #Mode7Objects_IntroSubtitle_Page3_Subpage2                     ;8BB0A3;
     JSR.W Spawn_Mode7Objects                                             ;8BB0A6;
     PLY                                                                  ;8BB0A9;
     PLB                                                                  ;8BB0AA;
     RTS                                                                  ;8BB0AB;
+  
+  .defaultLanguage:
+else
+    PLB
+endif
 
-  .waitForInput:
     LDA.W #CinematicFunc_Intro_WaitForInput_SetupBabyMetroidDelivery     ;8BB0AC;
     STA.W CinematicFunction                                              ;8BB0AF;
     RTS                                                                  ;8BB0B2;
 
+if !PAL != 0
+  .defaultLanguage:
+    PHB
+    PEA.W CinematicSpriteObjectDefinitions_IntroSubtitleNextPageArrow>>$10<<8
+    PLB
+    PLB
+    PHY
+    LDY.W #CinematicSpriteObjectDefinitions_IntroSubtitleNextPageArrow
+    JSR.W Spawn_CinematicSpriteObject_Y
+    PLY
+    PHY
+    LDY.W #Mode7Objects_IntroSubtitle_Page3_Subpage2
+    JSR.W Spawn_Mode7Objects
+    PLY
+    PLB
+    RTS
+endif
+
 
 ;;; $B0B3: Instruction - handle creating Japanese text - page 4 ;;;
-Instruction_HandleCreatingJapanText_Page4:
+Instruction_HandleCreatingSubtitle_Page4:
     STZ.W CinematicSpriteObject_IntroTextClickFlag                       ;8BB0B3;
-    LDA.W JapanText                                                      ;8BB0B6;
+if !PAL == 0
+    LDA.W AltText                                                        ;8BB0B6;
     BEQ .return                                                          ;8BB0B9;
+endif
     PHB                                                                  ;8BB0BB;
-    PEA.W Mode7Objects_IntroJapanText_Page4_Subpage1>>8&$FF00            ;8BB0BC;
+    PEA.W Mode7Objects_IntroSubtitle_Page4_Subpage1>>8&$FF00             ;8BB0BC;
     PLB                                                                  ;8BB0BF;
     PLB                                                                  ;8BB0C0;
     PHY                                                                  ;8BB0C1;
-    LDY.W #Mode7Objects_IntroJapanText_Page4_Subpage1                    ;8BB0C2;
+    LDY.W #Mode7Objects_IntroSubtitle_Page4_Subpage1                     ;8BB0C2;
     JSR.W Spawn_Mode7Objects                                             ;8BB0C5;
     PLY                                                                  ;8BB0C8;
     PLB                                                                  ;8BB0C9;
@@ -6609,35 +6917,39 @@ Instruction_HandleCreatingJapanText_Page4:
 ;;; $B0CB: Instruction - spawn blinking markers and wait for input - page 4 ;;;
 Instruction_SpawnBlinkingMarkers_WaitForInput_Page4:
     JSR.W Instruction_SetCaretToBlink                                    ;8BB0CB;
-    LDA.W JapanText                                                      ;8BB0CE;
+if !PAL == 0
+    LDA.W AltText                                                        ;8BB0CE;
     BEQ .waitForInput                                                    ;8BB0D1;
+endif
     PHB                                                                  ;8BB0D3;
-    PEA.W Mode7Objects_IntroJapanText_Page4_Subpage2>>8&$FF00            ;8BB0D4;
+    PEA.W Mode7Objects_IntroSubtitle_Page4_Subpage2>>8&$FF00             ;8BB0D4;
     PLB                                                                  ;8BB0D7;
     PLB                                                                  ;8BB0D8;
     PHY                                                                  ;8BB0D9;
-    LDY.W #CinematicSpriteObjectDefinitions_IntroJapanTextNextPageArrow  ;8BB0DA;
+    LDY.W #CinematicSpriteObjectDefinitions_IntroSubtitleNextPageArrow   ;8BB0DA;
     JSR.W Spawn_CinematicSpriteObject_Y                                  ;8BB0DD;
     PLY                                                                  ;8BB0E0;
     PHY                                                                  ;8BB0E1;
-    LDY.W #Mode7Objects_IntroJapanText_Page4_Subpage2                    ;8BB0E2;
+    LDY.W #Mode7Objects_IntroSubtitle_Page4_Subpage2                     ;8BB0E2;
     JSR.W Spawn_Mode7Objects                                             ;8BB0E5;
     PLY                                                                  ;8BB0E8;
     PLB                                                                  ;8BB0E9;
     RTS                                                                  ;8BB0EA;
 
+if !PAL == 0
   .waitForInput:
     LDA.W #CinematicFunc_Intro_WaitForInput_SetupBabyMetroidExamined     ;8BB0EB;
     STA.W CinematicFunction                                              ;8BB0EE;
     RTS                                                                  ;8BB0F1;
+endif
 
 
 ;;; $B0F2: Cinematic function - intro - wait for input and set up baby metroid being delivered ;;;
 CinematicFunc_Intro_WaitForInput_SetupBabyMetroidDelivery:
-    LDA.W CinematicSpriteObject_IntroJapanTextTimer                      ;8BB0F2;
+    LDA.W CinematicSpriteObject_IntroSubtitleTimer                       ;8BB0F2;
     BEQ .timerExpired                                                    ;8BB0F5;
     DEC                                                                  ;8BB0F7;
-    STA.W CinematicSpriteObject_IntroJapanTextTimer                      ;8BB0F8;
+    STA.W CinematicSpriteObject_IntroSubtitleTimer                       ;8BB0F8;
     RTS                                                                  ;8BB0FB;
 
   .timerExpired:
@@ -6663,10 +6975,10 @@ CinematicFunc_Intro_WaitForInput_SetupBabyMetroidDelivery:
 
 ;;; $B123: Cinematic function - intro - wait for input and set up baby metroid being examined ;;;
 CinematicFunc_Intro_WaitForInput_SetupBabyMetroidExamined:
-    LDA.W CinematicSpriteObject_IntroJapanTextTimer                      ;8BB123;
+    LDA.W CinematicSpriteObject_IntroSubtitleTimer                       ;8BB123;
     BEQ .timerExpired                                                    ;8BB126;
     DEC                                                                  ;8BB128;
-    STA.W CinematicSpriteObject_IntroJapanTextTimer                      ;8BB129;
+    STA.W CinematicSpriteObject_IntroSubtitleTimer                       ;8BB129;
     RTS                                                                  ;8BB12C;
 
   .timerExpired:
@@ -6725,10 +7037,12 @@ SetupIntroCrossFadeIntoScientistCutscene:
 
 
 ;;; $B19B: Instruction - handle creating Japanese text - page 5 ;;;
-Instruction_HandleCreatingJapanText_Page5:
+Instruction_HandleCreatingSubtitle_Page5:
     STZ.W CinematicSpriteObject_IntroTextClickFlag                       ;8BB19B;
-    LDA.W JapanText                                                      ;8BB19E;
+if !PAL == 0
+    LDA.W AltText                                                        ;8BB19E;
     BEQ .return                                                          ;8BB1A1;
+endif
     PHB                                                                  ;8BB1A3;
     PEA.W Mode7Objects_IntroJaanText_Page5_Subpage1>>8&$FF00             ;8BB1A4;
     PLB                                                                  ;8BB1A7;
@@ -6746,36 +7060,59 @@ Instruction_HandleCreatingJapanText_Page5:
 ;;; $B1B3: Instruction - spawn blinking markers and wait for input - page 5 ;;;
 Instruction_SpawnBlinkingMarkers_WaitForInput_Page5:
     JSR.W Instruction_SetCaretToBlink                                    ;8BB1B3;
-    LDA.W JapanText                                                      ;8BB1B6;
-    BEQ .waitForInput                                                    ;8BB1B9;
+    LDA.W AltText                                                        ;8BB1B6;
+    BEQ .defaultLanguage                                                 ;8BB1B9;
     PHB                                                                  ;8BB1BB;
-    PEA.W Mode7Objects_IntroJapanText_Page5_Subpage2>>8&$FF00            ;8BB1BC;
+    PEA.W Mode7Objects_IntroSubtitle_Page5_Subpage2>>8&$FF00             ;8BB1BC;
     PLB                                                                  ;8BB1BF;
     PLB                                                                  ;8BB1C0;
     PHY                                                                  ;8BB1C1;
-    LDY.W #CinematicSpriteObjectDefinitions_IntroJapanTextNextPageArrow  ;8BB1C2;
+    LDY.W #CinematicSpriteObjectDefinitions_IntroSubtitleNextPageArrow   ;8BB1C2;
     JSR.W Spawn_CinematicSpriteObject_Y                                  ;8BB1C5;
     PLY                                                                  ;8BB1C8;
+if !PAL == 0
     PHY                                                                  ;8BB1C9;
-    LDY.W #Mode7Objects_IntroJapanText_Page5_Subpage2                    ;8BB1CA;
+    LDY.W #Mode7Objects_IntroSubtitle_Page5_Subpage2                     ;8BB1CA;
     JSR.W Spawn_Mode7Objects                                             ;8BB1CD;
     PLY                                                                  ;8BB1D0;
     PLB                                                                  ;8BB1D1;
     RTS                                                                  ;8BB1D2;
+    
+  .defaultLanguage:
+else
+    PLB
+endif
 
-  .waitForInput:
     LDA.W #CinematicFunction_Intro_WaitForInput_ClearText                ;8BB1D3;
     STA.W CinematicFunction                                              ;8BB1D6;
     RTS                                                                  ;8BB1D9;
+
+if !PAL != 0
+  .defaultLanguage:
+    PHB
+    PEA.W CinematicSpriteObjectDefinitions_IntroSubtitleNextPageArrow>>$10<<8
+    PLB
+    PLB
+    PHY
+    LDY.W #CinematicSpriteObjectDefinitions_IntroSubtitleNextPageArrow
+    JSR.W Spawn_CinematicSpriteObject_Y
+    PLY
+    PHY
+    LDY.W #Mode7Objects_IntroSubtitle_Page5_Subpage2
+    JSR.W Spawn_Mode7Objects
+    PLY
+    PLB
+    RTS
+endif
 
 
 ;;; $B1DA: Cinematic function - intro - wait for input and clear text ;;;
 CinematicFunction_Intro_WaitForInput_ClearText:
     JSR.W RTS_BackgroundFLickeringEffect                                 ;8BB1DA;
-    LDA.W CinematicSpriteObject_IntroJapanTextTimer                      ;8BB1DD;
+    LDA.W CinematicSpriteObject_IntroSubtitleTimer                       ;8BB1DD;
     BEQ .timerExpired                                                    ;8BB1E0;
     DEC                                                                  ;8BB1E2;
-    STA.W CinematicSpriteObject_IntroJapanTextTimer                      ;8BB1E3;
+    STA.W CinematicSpriteObject_IntroSubtitleTimer                       ;8BB1E3;
     RTS                                                                  ;8BB1E6;
 
   .timerExpired:
@@ -6783,13 +7120,17 @@ CinematicFunction_Intro_WaitForInput_ClearText:
     BEQ .return                                                          ;8BB1E9;
     LDA.W #$007F                                                         ;8BB1EB;
     STA.W IntroCrossFadeTimer                                            ;8BB1EE;
-    LDA.W JapanText                                                      ;8BB1F1;
+    LDA.W AltText                                                        ;8BB1F1;
     BEQ CinematicFunction_Intro_Page6                                    ;8BB1F4;
     LDA.W #CinematicFunction_Intro_Page6                                 ;8BB1F6;
     STA.W CinematicFunction                                              ;8BB1F9;
     JSL.L Disable_CinematicBGTilemap_Updates                             ;8BB1FC;
-    JSR.W BlankOut_JapanText_Tiles                                       ;8BB200;
-    JSR.W TransferJapanTextTilesToVRAM                                   ;8BB203;
+    JSR.W BlankOut_Subtitle_Tiles                                        ;8BB200;
+if !PAL == 0
+    JSR.W TransferSubtitleTilesToVRAM                                    ;8BB203;
+else
+    JSR.W TransferIntroSubtitleTilemapToVRAM
+endif
 
   .return:
     RTS                                                                  ;8BB206;
@@ -6811,16 +7152,18 @@ CinematicFunction_Intro_Page6:
 
 
 ;;; $B228: Instruction - handle creating Japanese text - page 6 ;;;
-Instruction_HandleCreatingJapanText_Page6:
+Instruction_HandleCreatingSubtitle_Page6:
     STZ.W CinematicSpriteObject_IntroTextClickFlag                       ;8BB228;
-    LDA.W JapanText                                                      ;8BB22B;
+if !PAL == 0
+    LDA.W AltText                                                        ;8BB22B;
     BEQ .return                                                          ;8BB22E;
+endif
     PHB                                                                  ;8BB230;
-    PEA.W Mode7Objects_IntroJapanText_Page6>>8&$FF00                     ;8BB231;
+    PEA.W Mode7Objects_IntroSubtitle_Page6>>8&$FF00                      ;8BB231;
     PLB                                                                  ;8BB234;
     PLB                                                                  ;8BB235;
     PHY                                                                  ;8BB236;
-    LDY.W #Mode7Objects_IntroJapanText_Page6                             ;8BB237;
+    LDY.W #Mode7Objects_IntroSubtitle_Page6                              ;8BB237;
     JSR.W Spawn_Mode7Objects                                             ;8BB23A;
     PLY                                                                  ;8BB23D;
     PLB                                                                  ;8BB23E;
@@ -6877,16 +7220,16 @@ CinematicFunction_Intro_CrossFadeToSamusGameplay:
     STZ.B DP_SubScreenLayers                                             ;8BB2A5;
     STZ.B DP_ColorMathA                                                  ;8BB2A7;
     REP #$20                                                             ;8BB2A9;
-    LDX.W #$0100                                                         ;8BB2AB;
+    LDX.W #CinematicBGTilemap_EnglishTextRegion-CinematicBGTilemap       ;8BB2AB;
     LDA.W #$002F                                                         ;8BB2AE;
 
   .loop:
-    STA.L CinematicBGTilemap_TopMarginInitialJapanText,X                 ;8BB2B1;
+    STA.L CinematicBGTilemap,X                                           ;8BB2B1;
     INX                                                                  ;8BB2B5;
     INX                                                                  ;8BB2B6;
-    CPX.W #$0600                                                         ;8BB2B7;
+    CPX.W #CinematicBGTilemap_subtitles-CinematicBGTilemap               ;8BB2B7;
     BMI .loop                                                            ;8BB2BA;
-    JSR.W BlankOut_JapanText_Tiles                                       ;8BB2BC;
+    JSR.W BlankOut_Subtitle_Tiles                                        ;8BB2BC;
     LDA.W #CinematicFunction_Nothing                                     ;8BB2BF;
     STA.W CinematicFunction                                              ;8BB2C2;
     LDA.W IntroSamusDisplayFlag                                          ;8BB2C5;
@@ -6929,16 +7272,16 @@ CinematicFunction_Intro_CrossFadeToScientistCutscene:
     STZ.B DP_SubScreenLayers                                             ;8BB315;
     STZ.B DP_ColorMathA                                                  ;8BB317;
     REP #$20                                                             ;8BB319;
-    LDX.W #$0100                                                         ;8BB31B;
+    LDX.W #CinematicBGTilemap_EnglishTextRegion-CinematicBGTilemap       ;8BB31B;
     LDA.W #$002F                                                         ;8BB31E;
 
   .loopEnglishText:
-    STA.L CinematicBGTilemap_TopMarginInitialJapanText,X                 ;8BB321;
+    STA.L CinematicBGTilemap,X                                           ;8BB321;
     INX                                                                  ;8BB325;
     INX                                                                  ;8BB326;
-    CPX.W #$0600                                                         ;8BB327;
+    CPX.W #CinematicBGTilemap_subtitles-CinematicBGTilemap               ;8BB327;
     BMI .loopEnglishText                                                 ;8BB32A;
-    JSR.W BlankOut_JapanText_Tiles                                       ;8BB32C;
+    JSR.W BlankOut_Subtitle_Tiles                                        ;8BB32C;
     LDA.W #CinematicFunction_Nothing                                     ;8BB32F;
     STA.W CinematicFunction                                              ;8BB332;
 
@@ -6950,34 +7293,38 @@ CinematicFunction_Intro_CrossFadeToScientistCutscene:
 Instruction_StartIntroPage2:
     LDA.W #CinematicFunction_Intro_Page2                                 ;8BB336;
     STA.W CinematicFunction                                              ;8BB339;
-    BRA ClearJapanTextTiles_DisableCinematicBGTilemapUpdates             ;8BB33C;
+    BRA ClearSubtitleTiles_DisableCinematicBGTilemapUpdates              ;8BB33C;
 
 
 ;;; $B33E: Instruction - start intro page 3 ;;;
 Instruction_StartIntroPage3:
     LDA.W #CinematicFunction_Intro_Page3                                 ;8BB33E;
     STA.W CinematicFunction                                              ;8BB341;
-    BRA ClearJapanTextTiles_DisableCinematicBGTilemapUpdates             ;8BB344;
+    BRA ClearSubtitleTiles_DisableCinematicBGTilemapUpdates              ;8BB344;
 
 
 ;;; $B346: Instruction - start intro page 4 ;;;
 Instruction_StartIntroPage4:
     LDA.W #CinematicFunction_Intro_Page4                                 ;8BB346;
     STA.W CinematicFunction                                              ;8BB349;
-    BRA ClearJapanTextTiles_DisableCinematicBGTilemapUpdates             ;8BB34C;
+    BRA ClearSubtitleTiles_DisableCinematicBGTilemapUpdates              ;8BB34C;
 
 
 ;;; $B34E: Instruction - start intro page 5 ;;;
 Instruction_StartIntroPage5:
     LDA.W #CinematicFunction_Intro_Page5                                 ;8BB34E;
-    STA.W CinematicFunction                                              ;8BB351; fallthrough to ClearJapanTextTiles_DisableCinematicBGTilemapUpdates
+    STA.W CinematicFunction                                              ;8BB351; fallthrough to ClearSubtitleTiles_DisableCinematicBGTilemapUpdates
 
 
 ;;; $B354: Clear Japanese text tiles and disable cinematic BG tilemap updates ;;;
-ClearJapanTextTiles_DisableCinematicBGTilemapUpdates:
+ClearSubtitleTiles_DisableCinematicBGTilemapUpdates:
     JSL.L Disable_CinematicBGTilemap_Updates                             ;8BB354;
-    JSR.W BlankOut_JapanText_Tiles                                       ;8BB358;
-    JSR.W TransferJapanTextTilesToVRAM                                   ;8BB35B;
+    JSR.W BlankOut_Subtitle_Tiles                                        ;8BB358;
+if !PAL == 0
+    JSR.W TransferSubtitleTilesToVRAM                                    ;8BB35B;
+else
+    JSR.W TransferIntroSubtitleTilemapToVRAM
+endif
     RTS                                                                  ;8BB35E;
 
 
@@ -7185,277 +7532,12 @@ UNUSED_CinematicBGObject_8BB4DC:
 
   .return:
     RTS                                                                  ;8BB4EA;
+endif
 
 
-;;; $B4EB: Unused. Instruction - load Japanese intro text - non-existent ;;;
-UNUSED_Instruction_LoadIntroJapanText_NonExistent:
-; Used by UNUSED_Mode7Objects_8BD43D
-    PHY                                                                  ;8BB4EB;
-    JSL.L Disable_CinematicBGTilemap_Updates                             ;8BB4EC;
-    LDA.L Palettes_Intro_nonExistentIntroText1                           ;8BB4F0;
-    STA.L Palettes_BG3P4HighlightedHUDItemBackgroundOutline              ;8BB4F4;
-    LDA.L Palettes_Intro_nonExistentIntroText2                           ;8BB4F8;
-    STA.L Palettes_BG3P4HighlightedHUDItemBackground                     ;8BB4FC;
-    LDA.L Palettes_Intro_nonExistentIntroText3                           ;8BB500;
-    STA.L Palettes_BG3P4HighlightedHUDItemOutline                        ;8BB504;
-    LDY.W #InstList_Mode7Object_Page1                                    ;8BB508;
-    JSR.W LoadJapanTextIntroTiles                                        ;8BB50B;
-    LDY.W #InstList_Mode7Object_Page1                                    ;8BB50E;
-    JSR.W LoadJapanTextIntroTiles                                        ;8BB511;
-    JSR.W TransferJapanTextTilesToVRAM                                   ;8BB514;
-    PLY                                                                  ;8BB517;
-    RTS                                                                  ;8BB518;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
-;;; $B519: Instruction - enable cinematic BG tilemap updates ;;;
-Instruction_EnableCinematicBGTilemapUpdates:
-    JSL.L Enable_CinematicBGTilemap_Updates                              ;8BB519;
-    RTS                                                                  ;8BB51D;
-
-
-;;; $B51E: Instruction - load Japanese intro text - page 1 ;;;
-Instruction_LoadIntroJapanTextPage1:
-    PHY                                                                  ;8BB51E;
-    JSL.L Disable_CinematicBGTilemap_Updates                             ;8BB51F;
-    LDA.L Palettes_Intro_nonExistentIntroText1                           ;8BB523;
-    STA.L Palettes_BG3P4HighlightedHUDItemBackgroundOutline              ;8BB527;
-    LDA.L Palettes_Intro_nonExistentIntroText2                           ;8BB52B;
-    STA.L Palettes_BG3P4HighlightedHUDItemBackground                     ;8BB52F;
-    LDA.L Palettes_Intro_nonExistentIntroText3                           ;8BB533;
-    STA.L Palettes_BG3P4HighlightedHUDItemOutline                        ;8BB537;
-    JSR.W BlankOut_JapanText_Tiles                                       ;8BB53B;
-    LDY.W #IntroJapanTextData_Page1_TopLine                              ;8BB53E;
-    JSR.W LoadJapanTextIntroTiles                                        ;8BB541;
-    LDY.W #IntroJapanTextData_Page1_BottomLine                           ;8BB544;
-    JSR.W LoadJapanTextIntroTiles                                        ;8BB547;
-    JSR.W TransferJapanTextTilesToVRAM                                   ;8BB54A;
-    PLY                                                                  ;8BB54D;
-    RTS                                                                  ;8BB54E;
-
-
-;;; $B54F: Instruction - enable cinematic BG tilemap updates ;;;
-Instruction_EnableCinematicBGTilemapUpdates_duplicate:
-    JSL.L Enable_CinematicBGTilemap_Updates                              ;8BB54F;
-    RTS                                                                  ;8BB553;
-
-
-;;; $B554: Instruction - load Japanese intro text - page 2 - subpage 1 ;;;
-Instruction_LoadIntroJapanTextPage2_Subpage1:
-    PHY                                                                  ;8BB554;
-    JSL.L Disable_CinematicBGTilemap_Updates                             ;8BB555;
-    LDA.L Palettes_Intro_nonExistentIntroText1                           ;8BB559;
-    STA.L Palettes_BG3P4HighlightedHUDItemBackgroundOutline              ;8BB55D;
-    LDA.L Palettes_Intro_nonExistentIntroText2                           ;8BB561;
-    STA.L Palettes_BG3P4HighlightedHUDItemBackground                     ;8BB565;
-    LDA.L Palettes_Intro_nonExistentIntroText3                           ;8BB569;
-    STA.L Palettes_BG3P4HighlightedHUDItemOutline                        ;8BB56D;
-    JSR.W BlankOut_JapanText_Tiles                                       ;8BB571;
-    LDY.W #IntroJapanTextData_Page2_Subpage1_TopLine                     ;8BB574;
-    JSR.W LoadJapanTextIntroTiles                                        ;8BB577;
-    LDY.W #IntroJapanTextData_Page2_Subpage1_BottomLine                  ;8BB57A;
-    JSR.W LoadJapanTextIntroTiles                                        ;8BB57D;
-    JSR.W TransferJapanTextTilesToVRAM                                   ;8BB580;
-    PLY                                                                  ;8BB583;
-    RTS                                                                  ;8BB584;
-
-
-;;; $B585: Pre-instruction - mode 7 object $D40D (page 2 - subpage 2) ;;;
-Instruction_LoadIntroJapanTextPage2_Subpage2:
-    LDA.B DP_Controller1New                                              ;8BB585;
-    BEQ .return                                                          ;8BB587;
-    LDA.W #InstList_EnableCinematicBGTilemapUpdates_Page2DoneInput       ;8BB589;
-    STA.W Mode7Object_InstListPointers,X                                 ;8BB58C;
-    LDA.W #$0001                                                         ;8BB58F;
-    STA.W Mode7Object_InstructionTimers,X                                ;8BB592;
-    LDA.W #RTS_8B93D9                                                    ;8BB595;
-    STA.W Mode7Object_PreInstructions,X                                  ;8BB598;
-    JSL.L Disable_CinematicBGTilemap_Updates                             ;8BB59B;
-    JSR.W BlankOut_JapanText_Tiles                                       ;8BB59F;
-    LDY.W #IntroJapanTextData_Page2_Subpage2_TopLine                     ;8BB5A2;
-    JSR.W LoadJapanTextIntroTiles                                        ;8BB5A5;
-    LDY.W #IntroJapanTextData_Page2_Subpage2_BottomLine                  ;8BB5A8;
-    JSR.W LoadJapanTextIntroTiles                                        ;8BB5AB;
-    JSR.W TransferJapanTextTilesToVRAM                                   ;8BB5AE;
-    LDA.W #$003C                                                         ;8BB5B1;
-    STA.W CinematicSpriteObject_IntroJapanTextTimer                      ;8BB5B4;
-
-  .return:
-    RTS                                                                  ;8BB5B7;
-
-
-;;; $B5B8: Instruction - enable cinematic BG tilemap updates and page 2 done input ;;;
-Instruction_EnableCinematicBGTilemapUpdates_Page2DoneInput:
-    JSL.L Enable_CinematicBGTilemap_Updates                              ;8BB5B8;
-    LDA.W #CinematicFunc_Intro_WaitForInput_SetupBabyMetroidDiscovery    ;8BB5BC;
-    STA.W CinematicFunction                                              ;8BB5BF;
-    RTS                                                                  ;8BB5C2;
-
-
-;;; $B5C3: Instruction - load Japanese intro text - page 3 - subpage 1 ;;;
-Instruction_LoadIntroJapanTextPage3_Subpage1:
-    PHY                                                                  ;8BB5C3;
-    JSL.L Disable_CinematicBGTilemap_Updates                             ;8BB5C4;
-    LDA.L Palettes_Intro_nonExistentIntroText1                           ;8BB5C8;
-    STA.L Palettes_BG3P4HighlightedHUDItemBackgroundOutline              ;8BB5CC;
-    LDA.L Palettes_Intro_nonExistentIntroText2                           ;8BB5D0;
-    STA.L Palettes_BG3P4HighlightedHUDItemBackground                     ;8BB5D4;
-    LDA.L Palettes_Intro_nonExistentIntroText3                           ;8BB5D8;
-    STA.L Palettes_BG3P4HighlightedHUDItemOutline                        ;8BB5DC;
-    JSR.W BlankOut_JapanText_Tiles                                       ;8BB5E0;
-    LDY.W #IntroJapanTextData_Page3_Subpage1                             ;8BB5E3;
-    JSR.W LoadJapanTextIntroTiles                                        ;8BB5E6;
-    JSR.W TransferJapanTextTilesToVRAM                                   ;8BB5E9;
-    PLY                                                                  ;8BB5EC;
-    RTS                                                                  ;8BB5ED;
-
-
-;;; $B5EE: Pre-instruction - mode 7 object $D419 (page 3 - subpage 2) ;;;
-PreInstruction_LoadIntroJapanTextPage3_Subpage2:
-    LDA.B DP_Controller1New                                              ;8BB5EE;
-    BEQ .return                                                          ;8BB5F0;
-    LDA.W #InstList_EnableCinematicBGTilemapUpdates_Page3DoneInput       ;8BB5F2;
-    STA.W Mode7Object_InstListPointers,X                                 ;8BB5F5;
-    LDA.W #$0001                                                         ;8BB5F8;
-    STA.W Mode7Object_InstructionTimers,X                                ;8BB5FB;
-    LDA.W #RTS_8B93D9                                                    ;8BB5FE;
-    STA.W Mode7Object_PreInstructions,X                                  ;8BB601;
-    JSL.L Disable_CinematicBGTilemap_Updates                             ;8BB604;
-    JSR.W BlankOut_JapanText_Tiles                                       ;8BB608;
-    LDY.W #IntroJapanTextData_Page3_Subpage2                             ;8BB60B;
-    JSR.W LoadJapanTextIntroTiles                                        ;8BB60E;
-    JSR.W TransferJapanTextTilesToVRAM                                   ;8BB611;
-    LDA.W #$003C                                                         ;8BB614;
-    STA.W CinematicSpriteObject_IntroJapanTextTimer                      ;8BB617;
-
-  .return:
-    RTS                                                                  ;8BB61A;
-
-
-;;; $B61B: Instruction - enable cinematic BG tilemap updates and page 3 done input ;;;
-Instruction_EnableCinematicBGTilemapUpdates_Page3DoneInput:
-    JSL.L Enable_CinematicBGTilemap_Updates                              ;8BB61B;
-    LDA.W #CinematicFunc_Intro_WaitForInput_SetupBabyMetroidDelivery     ;8BB61F;
-    STA.W CinematicFunction                                              ;8BB622;
-    RTS                                                                  ;8BB625;
-
-
-;;; $B626: Instruction - load Japanese intro text - page 4 - subpage 1 ;;;
-Instruction_LoadIntroJapanTextPage4_Subpage1:
-    PHY                                                                  ;8BB626;
-    JSL.L Disable_CinematicBGTilemap_Updates                             ;8BB627;
-    LDA.L Palettes_Intro_nonExistentIntroText1                           ;8BB62B;
-    STA.L Palettes_BG3P4HighlightedHUDItemBackgroundOutline              ;8BB62F;
-    LDA.L Palettes_Intro_nonExistentIntroText2                           ;8BB633;
-    STA.L Palettes_BG3P4HighlightedHUDItemBackground                     ;8BB637;
-    LDA.L Palettes_Intro_nonExistentIntroText3                           ;8BB63B;
-    STA.L Palettes_BG3P4HighlightedHUDItemOutline                        ;8BB63F;
-    JSR.W BlankOut_JapanText_Tiles                                       ;8BB643;
-    LDY.W #IntroJapanTextData_Page4_Subpage1_TopLine                     ;8BB646;
-    JSR.W LoadJapanTextIntroTiles                                        ;8BB649;
-    LDY.W #IntroJapanTextData_Page4_Subpage1_BottomLine                  ;8BB64C;
-    JSR.W LoadJapanTextIntroTiles                                        ;8BB64F;
-    JSR.W TransferJapanTextTilesToVRAM                                   ;8BB652;
-    PLY                                                                  ;8BB655;
-    RTS                                                                  ;8BB656;
-
-
-;;; $B657: Pre-instruction - mode 7 object $D425 (page 4 - subpage 2) ;;;
-PreInstruction_LoadIntroJapanTextPage4_Subpage2:
-    LDA.B DP_Controller1New                                              ;8BB657;
-    BEQ .return                                                          ;8BB659;
-    LDA.W #InstList_EnableCinematicBGTilemapUpdates_Page4DoneInput       ;8BB65B;
-    STA.W Mode7Object_InstListPointers,X                                 ;8BB65E;
-    LDA.W #$0001                                                         ;8BB661;
-    STA.W Mode7Object_InstructionTimers,X                                ;8BB664;
-    LDA.W #RTS_8B93D9                                                    ;8BB667;
-    STA.W Mode7Object_PreInstructions,X                                  ;8BB66A;
-    JSL.L Disable_CinematicBGTilemap_Updates                             ;8BB66D;
-    JSR.W BlankOut_JapanText_Tiles                                       ;8BB671;
-    LDY.W #IntroJapanTextData_Page4_Subpage2_TopLine                     ;8BB674;
-    JSR.W LoadJapanTextIntroTiles                                        ;8BB677;
-    LDY.W #IntroJapanTextData_Page4_Subpage2_BottomLine                  ;8BB67A;
-    JSR.W LoadJapanTextIntroTiles                                        ;8BB67D;
-    JSR.W TransferJapanTextTilesToVRAM                                   ;8BB680;
-    LDA.W #$003C                                                         ;8BB683;
-    STA.W CinematicSpriteObject_IntroJapanTextTimer                      ;8BB686;
-
-  .return:
-    RTS                                                                  ;8BB689;
-
-
-;;; $B68A: Instruction - enable cinematic BG tilemap updates and page 4 done input ;;;
-Instruction_EnableCinematicBGTilemapUpdates_Page4DoneInput:
-    JSL.L Enable_CinematicBGTilemap_Updates                              ;8BB68A;
-    LDA.W #CinematicFunc_Intro_WaitForInput_SetupBabyMetroidExamined     ;8BB68E;
-    STA.W CinematicFunction                                              ;8BB691;
-    RTS                                                                  ;8BB694;
-
-
-;;; $B695: Instruction - load Japanese intro text - page 5 - subpage 1 ;;;
-Instruction_LoadIntroJapanTextPage5_Subpage1:
-    PHY                                                                  ;8BB695;
-    JSL.L Disable_CinematicBGTilemap_Updates                             ;8BB696;
-    LDA.L Palettes_Intro_nonExistentIntroText1                           ;8BB69A;
-    STA.L Palettes_BG3P4HighlightedHUDItemBackgroundOutline              ;8BB69E;
-    LDA.L Palettes_Intro_nonExistentIntroText2                           ;8BB6A2;
-    STA.L Palettes_BG3P4HighlightedHUDItemBackground                     ;8BB6A6;
-    LDA.L Palettes_Intro_nonExistentIntroText3                           ;8BB6AA;
-    STA.L Palettes_BG3P4HighlightedHUDItemOutline                        ;8BB6AE;
-    JSR.W BlankOut_JapanText_Tiles                                       ;8BB6B2;
-    LDY.W #IntroJapanTextData_Page5_Subpage1                             ;8BB6B5;
-    JSR.W LoadJapanTextIntroTiles                                        ;8BB6B8;
-    JSR.W TransferJapanTextTilesToVRAM                                   ;8BB6BB;
-    PLY                                                                  ;8BB6BE;
-    RTS                                                                  ;8BB6BF;
-
-
-;;; $B6C0: Pre-instruction - mode 7 object $D431 (page 5 - subpage 2) ;;;
-PreInstruction_LoadIntroJapanTextPage5_Subpage2:
-    LDA.B DP_Controller1New                                              ;8BB6C0;
-    BEQ .return                                                          ;8BB6C2;
-    LDA.W #InstList_EnableCinematicBGTilemapUpdates_Page5DoneInput       ;8BB6C4;
-    STA.W Mode7Object_InstListPointers,X                                 ;8BB6C7;
-    LDA.W #$0001                                                         ;8BB6CA;
-    STA.W Mode7Object_InstructionTimers,X                                ;8BB6CD;
-    LDA.W #RTS_8B93D9                                                    ;8BB6D0;
-    STA.W Mode7Object_PreInstructions,X                                  ;8BB6D3;
-    JSL.L Disable_CinematicBGTilemap_Updates                             ;8BB6D6;
-    JSR.W BlankOut_JapanText_Tiles                                       ;8BB6DA;
-    LDY.W #IntroJapanTextData_Page5_Subpage2                             ;8BB6DD;
-    JSR.W LoadJapanTextIntroTiles                                        ;8BB6E0;
-    JSR.W TransferJapanTextTilesToVRAM                                   ;8BB6E3;
-    LDA.W #$003C                                                         ;8BB6E6;
-    STA.W CinematicSpriteObject_IntroJapanTextTimer                      ;8BB6E9;
-
-  .return:
-    RTS                                                                  ;8BB6EC;
-
-
-;;; $B6ED: Instruction - enable cinematic BG tilemap updates and page 5 done input ;;;
-Instruction_EnableCinematicBGTilemapUpdates_Page5DoneInput:
-    JSL.L Enable_CinematicBGTilemap_Updates                              ;8BB6ED;
-    LDA.W #CinematicFunction_Intro_WaitForInput_ClearText                ;8BB6F1;
-    STA.W CinematicFunction                                              ;8BB6F4;
-    RTS                                                                  ;8BB6F7;
-
-
-;;; $B6F8: Instruction - load Japanese intro text - page 6 ;;;
-Instruction_LoadIntroJapanTextPage6:
-    PHY                                                                  ;8BB6F8;
-    JSL.L Disable_CinematicBGTilemap_Updates                             ;8BB6F9;
-    JSR.W BlankOut_JapanText_Tiles                                       ;8BB6FD;
-    LDY.W #IntroJapanTextData_Page6                                      ;8BB700;
-    JSR.W LoadJapanTextIntroTiles                                        ;8BB703;
-    JSR.W TransferJapanTextTilesToVRAM                                   ;8BB706;
-    PLY                                                                  ;8BB709;
-    RTS                                                                  ;8BB70A;
-
-
-;;; $B70B: Instruction - enable cinematic BG tilemap updates ;;;
-Instruction_EnableCinematicBGTilemapUpdates_duplicate_again:
-    JSL.L Enable_CinematicBGTilemap_Updates                              ;8BB70B;
-    RTS                                                                  ;8BB70F;
+if !PAL == 0 ; moved to later
+incsrc "bank_8B_a.asm"
+endif
 
 
 ;;; $B710: RTS. Unused background flickering effect ;;;
@@ -8198,6 +8280,11 @@ Recover_Previous_Button_Assignments:
     RTS                                                                  ;8BBC9F;
 
 
+if !PAL != 0 ; moved from earlier
+incsrc "bank_8B_a.asm"
+endif
+
+
 ;;; $BCA0: Cinematic function - fly to Ceres - initial ;;;
 CinematicFunction_FlyToCeres_Initial:
     JSR.W Setup_PPU_CeresCutscene                                        ;8BBCA0;
@@ -8345,7 +8432,7 @@ CinematicFunction_FlyToCeres_FlyingIntoCamera:
     CMP.W #$0020                                                         ;8BBDFC;
     BMI .zoomLessThan20                                                  ;8BBDFF;
     SEC                                                                  ;8BBE01;
-    SBC.W #$0010                                                         ;8BBE02;
+    SBC.W #$0010*!SPF                                                    ;8BBE02;
     STA.W Mode7TransformationZoomLevel                                   ;8BBE05;
     RTS                                                                  ;8BBE08;
 
@@ -8402,7 +8489,7 @@ CinematicFunction_FlyToCeres_FlyingIntoCamera:
 InitFunction_CinematicSpriteObject_CeresStars:
     LDA.W CinematicSpriteObject_InitParam                                ;8BBE7E;
     BNE .nonZero                                                         ;8BBE81;
-    LDA.W #$FC00                                                         ;8BBE83;
+    LDA.W #regional($FC00, $FB80)                                        ;8BBE83;
     STA.W CinematicSpriteObject_Timers,Y                                 ;8BBE86;
     LDA.W #$0070                                                         ;8BBE89;
     STA.W CinematicSpriteObject_XPositions,Y                             ;8BBE8C;
@@ -8434,7 +8521,7 @@ PreInstruction_CinematicSpriteObject_CeresStars:
   .flyingIntoCamera:
     LDA.W CinematicSpriteObject_Timers,X                                 ;8BBEBE;
     CLC                                                                  ;8BBEC1;
-    ADC.W #$0080                                                         ;8BBEC2;
+    ADC.W #$0080*!SPF                                                    ;8BBEC2;
     STA.W CinematicSpriteObject_Timers,X                                 ;8BBEC5;
     XBA                                                                  ;8BBEC8;
     PHA                                                                  ;8BBEC9;
@@ -8493,7 +8580,7 @@ InitFunc_CinematicSpriteObject_CeresExplosionLargeAsteroids:
 PreInst_CinematicSpriteObject_CeresExplosionLargeAsteroids:
     LDA.W CinematicSpriteObject_XSubPosition,X                           ;8BBF35;
     CLC                                                                  ;8BBF38;
-    ADC.W #$4000                                                         ;8BBF39;
+    ADC.W #$400*!SPF*$10                                                 ;8BBF39;
     STA.W CinematicSpriteObject_XSubPosition,X                           ;8BBF3C;
     LDA.W CinematicSpriteObject_XPositions,X                             ;8BBF3F;
     ADC.W #$0000                                                         ;8BBF42;
@@ -8517,7 +8604,7 @@ InitFunction_CinematicSpriteObject_CeresUnderAttack:
 PreInstruction_CinematicSpriteObject_CeresUnderAttack:
     LDA.W CinematicSpriteObject_XSubPosition,X                           ;8BBF5F;
     CLC                                                                  ;8BBF62;
-    ADC.W #$1000                                                         ;8BBF63;
+    ADC.W #$100*!SPF*$10                                                 ;8BBF63;
     STA.W CinematicSpriteObject_XSubPosition,X                           ;8BBF66;
     LDA.W CinematicSpriteObject_XPositions,X                             ;8BBF69;
     ADC.W #$0000                                                         ;8BBF6C;
@@ -8541,7 +8628,7 @@ InitFunction_CinematicSpriteObject_CeresSmallAsteroid:
 PreInstruction_CinematicSpriteObject_CeresSmallAsteroid:
     LDA.W CinematicSpriteObject_XSubPosition,X                           ;8BBF89;
     CLC                                                                  ;8BBF8C;
-    ADC.W #$0800                                                         ;8BBF8D;
+    ADC.W #$80*!SPF*$10                                                  ;8BBF8D;
     STA.W CinematicSpriteObject_XSubPosition,X                           ;8BBF90;
     LDA.W CinematicSpriteObject_XPositions,X                             ;8BBF93;
     ADC.W #$0000                                                         ;8BBF96;
@@ -8622,7 +8709,7 @@ CinematicFunction_FlyToCeres_FlyingIntoCeres:
     REP #$20                                                             ;8BC009;
     LDA.W CinematicBG1_XSubPosition                                      ;8BC00B;
     SEC                                                                  ;8BC00E;
-    SBC.W #$2000                                                         ;8BC00F;
+    SBC.W #$200*!SPF*$10                                                 ;8BC00F;
     STA.W CinematicBG1_XSubPosition                                      ;8BC012;
     LDA.W CinematicBG1_XPosition                                         ;8BC015;
     SBC.W #$0000                                                         ;8BC018;
@@ -8631,7 +8718,7 @@ CinematicFunction_FlyToCeres_FlyingIntoCeres:
     CMP.W #$0C00                                                         ;8BC021;
     BPL .zoomLessThan2000                                                ;8BC024;
     CLC                                                                  ;8BC026;
-    ADC.W #$0010                                                         ;8BC027;
+    ADC.W #$0010*!SPF                                                    ;8BC027;
     STA.W Mode7TransformationZoomLevel                                   ;8BC02A;
     RTS                                                                  ;8BC02D;
 
@@ -8640,7 +8727,7 @@ CinematicFunction_FlyToCeres_FlyingIntoCeres:
     CMP.W #$2000                                                         ;8BC031;
     BPL +                                                                ;8BC034;
     CLC                                                                  ;8BC036;
-    ADC.W #$0020                                                         ;8BC037;
+    ADC.W #$0020*!SPF                                                    ;8BC037;
     STA.W Mode7TransformationZoomLevel                                   ;8BC03A;
     RTS                                                                  ;8BC03D;
 
@@ -8687,12 +8774,12 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $C096: Instruction - skip next instruction if English text ;;;
-Instruction_SkipNextInstructionIfEnglishText:
-    LDA.W JapanText                                                      ;8BC096;
+Instruction_SkipNextInstructionIfDefaultLanguage:
+    LDA.W AltText                                                        ;8BC096;
     BNE .return                                                          ;8BC099;
     TYA                                                                  ;8BC09B;
     CLC                                                                  ;8BC09C;
-    ADC.W #$0006                                                         ;8BC09D;
+    ADC.W #CinematicBGObjectInstLists_SpaceColony_defaultLanguage-CinematicBGObjectInstLists_SpaceColony_altLanguage ;8BC09D;
     TAY                                                                  ;8BC0A0;
 
   .return:
@@ -8711,7 +8798,7 @@ Instruction_FinishFlyToCeres:
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $C0B2: Initialisation function - cinematic sprite object $CE9D (unused. Space colony Japanese text) ;;;
-UNUSED_InitFunc_CineSpriteObject_SpaceColonyJapanText_8BC0B2:
+UNUSED_InitFunc_CineSpriteObject_SpaceColonySubtitle_8BC0B2:
     LDA.W #$007C                                                         ;8BC0B2;
     STA.W CinematicSpriteObject_XPositions,Y                             ;8BC0B5;
     LDA.W #$00CC                                                         ;8BC0B8;
@@ -8967,14 +9054,14 @@ CinematicFunction_CeresGoesBoom_WaitForMusicQueue:
 CinematicFunction_CeresGoesBoom_SmallCeresExplosion_FadingIn:
     LDA.W CinematicBG1_YSubPosition                                      ;8BC2F1;
     CLC                                                                  ;8BC2F4;
-    ADC.W #$1000                                                         ;8BC2F5;
+    ADC.W #$100*!SPF*$10                                                 ;8BC2F5;
     STA.W CinematicBG1_YSubPosition                                      ;8BC2F8;
     LDA.W CinematicBG1_YPosition                                         ;8BC2FB;
     ADC.W #$0000                                                         ;8BC2FE;
     STA.W CinematicBG1_YPosition                                         ;8BC301;
     LDA.W CinematicBG1_XSubPosition                                      ;8BC304;
     SEC                                                                  ;8BC307;
-    SBC.W #$4000                                                         ;8BC308;
+    SBC.W #$400*!SPF*$10                                                 ;8BC308;
     STA.W CinematicBG1_XSubPosition                                      ;8BC30B;
     LDA.W CinematicBG1_XPosition                                         ;8BC30E;
     SBC.W #$0000                                                         ;8BC311;
@@ -9005,20 +9092,20 @@ CinematicFunction_CeresGoesBoom_SmallCeresExplosion_FadingIn:
 CinematicFunction_CeresGoesBoom_CeresExplosions:
     LDA.W CinematicBG1_YSubPosition                                      ;8BC345;
     CLC                                                                  ;8BC348;
-    ADC.W #$1000                                                         ;8BC349;
+    ADC.W #$100*!SPF*$10                                                 ;8BC349;
     STA.W CinematicBG1_YSubPosition                                      ;8BC34C;
     LDA.W CinematicBG1_YPosition                                         ;8BC34F;
     ADC.W #$0000                                                         ;8BC352;
     STA.W CinematicBG1_YPosition                                         ;8BC355;
     LDA.W CinematicBG1_XSubPosition                                      ;8BC358;
     SEC                                                                  ;8BC35B;
-    SBC.W #$4000                                                         ;8BC35C;
+    SBC.W #$400*!SPF*$10                                                 ;8BC35C;
     STA.W CinematicBG1_XSubPosition                                      ;8BC35F;
     LDA.W CinematicBG1_XPosition                                         ;8BC362;
     SBC.W #$0000                                                         ;8BC365;
     STA.W CinematicBG1_XPosition                                         ;8BC368;
     LDA.W Mode7TransformationZoomLevel                                   ;8BC36B;
-    CMP.W #$0280                                                         ;8BC36E;
+    CMP.W #regional($0280, $0240)                                        ;8BC36E;
     BPL +                                                                ;8BC371;
     CLC                                                                  ;8BC373;
     ADC.W #$0001                                                         ;8BC374;
@@ -9287,14 +9374,14 @@ InitFunction_CinematicSpriteObject_CeresExplosion3:
 PreInstruction_CinematicSpriteObject_CeresExplosion:
     LDA.W CinematicSpriteObject_YSubPosition,X                           ;8BC582;
     SEC                                                                  ;8BC585;
-    SBC.W #$1000                                                         ;8BC586;
+    SBC.W #$100*!SPF*$10                                                 ;8BC586;
     STA.W CinematicSpriteObject_YSubPosition,X                           ;8BC589;
     LDA.W CinematicSpriteObject_YPositions,X                             ;8BC58C;
     SBC.W #$0000                                                         ;8BC58F;
     STA.W CinematicSpriteObject_YPositions,X                             ;8BC592;
     LDA.W CinematicSpriteObject_XSubPosition,X                           ;8BC595;
     CLC                                                                  ;8BC598;
-    ADC.W #$4000                                                         ;8BC599;
+    ADC.W #$400*!SPF*$10                                                 ;8BC599;
     STA.W CinematicSpriteObject_XSubPosition,X                           ;8BC59C;
     LDA.W CinematicSpriteObject_XPositions,X                             ;8BC59F;
     ADC.W #$0000                                                         ;8BC5A2;
@@ -9332,10 +9419,10 @@ CinematicFunction_CeresGoesBoom_GunshipFlyingAway:
     REP #$20                                                             ;8BC5D4;
     LDA.W CinematicBG1_XSubPosition                                      ;8BC5D6;
     CLC                                                                  ;8BC5D9;
-    ADC.W #$0000                                                         ;8BC5DA;
+    ADC.W #regional($0000, $8000)                                        ;8BC5DA;
     STA.W CinematicBG1_XSubPosition                                      ;8BC5DD;
     LDA.W CinematicBG1_XPosition                                         ;8BC5E0;
-    ADC.W #$0002                                                         ;8BC5E3;
+    ADC.W #regional($0002, $0004)                                        ;8BC5E3;
     STA.W CinematicBG1_XPosition                                         ;8BC5E6;
     LDA.W Mode7TransformationAngle                                       ;8BC5E9;
     DEC                                                                  ;8BC5EC;
@@ -9345,14 +9432,14 @@ CinematicFunction_CeresGoesBoom_GunshipFlyingAway:
     CMP.W #$0010                                                         ;8BC5F6;
     BMI .zoomLessThan10                                                  ;8BC5F9;
     SEC                                                                  ;8BC5FB;
-    SBC.W #$0010                                                         ;8BC5FC;
+    SBC.W #$0010*!SPF                                                    ;8BC5FC;
     STA.W Mode7TransformationZoomLevel                                   ;8BC5FF;
     RTS                                                                  ;8BC602;
 
   .zoomLessThan10:
     LDA.W #CinematicFunction_CeresGoesBoom_WaitC0Frames                  ;8BC603;
     STA.W CinematicFunction                                              ;8BC606;
-    LDA.W #$00C0                                                         ;8BC609;
+    LDA.W #regional($00C0, $0099)                                        ;8BC609;
     STA.W CinematicFunctionTimer                                         ;8BC60C;
     RTS                                                                  ;8BC60F;
 
@@ -9840,11 +9927,11 @@ Instruction_FadeInPlanetZebesText:
 
 
 ;;; $C9AF: Instruction - spawn planet Zebes Japanese text if enabled ;;;
-Instruction_SpawnPlanetZebesJapanTextIfNeeded:
-    LDA.W JapanText                                                      ;8BC9AF;
+Instruction_SpawnPlanetZebesSubtitleIfNeeded:
+    LDA.W AltText                                                        ;8BC9AF;
     BEQ .return                                                          ;8BC9B2;
     PHY                                                                  ;8BC9B4;
-    LDY.W #CinematicSpriteObjectDefinitions_PlanetZebesJapanText         ;8BC9B5;
+    LDY.W #CinematicSpriteObjectDefinitions_PlanetZebesSubtitle          ;8BC9B5;
     JSR.W Spawn_CinematicSpriteObject_Y                                  ;8BC9B8;
     PLY                                                                  ;8BC9BB;
 
@@ -9877,7 +9964,7 @@ Instruction_StartFlyingToZebes:
 
 
 ;;; $C9E6: Initialisation function - cinematic sprite object $CEB5 (planet Zebes Japanese text) ;;;
-InitFunction_CinematicSpriteObject_PlanetZebesJapanText:
+InitFunction_CinematicSpriteObject_PlanetZebesSubtitle:
     LDA.W #$0080                                                         ;8BC9E6;
     STA.W CinematicSpriteObject_XPositions,Y                             ;8BC9E9;
     LDA.W #$00CC                                                         ;8BC9EC;
@@ -9891,14 +9978,14 @@ InitFunction_CinematicSpriteObject_PlanetZebesJapanText:
 CinematicFunction_FlyToZebes_FlyingToZebes_DriftingRight:
     LDA.W CinematicBG1_YSubPosition                                      ;8BC9F9;
     CLC                                                                  ;8BC9FC;
-    ADC.W #$2000                                                         ;8BC9FD;
+    ADC.W #$200*!SPF*$10                                                 ;8BC9FD;
     STA.W CinematicBG1_YSubPosition                                      ;8BCA00;
     LDA.W CinematicBG1_YPosition                                         ;8BCA03;
     ADC.W #$0000                                                         ;8BCA06;
     STA.W CinematicBG1_YPosition                                         ;8BCA09;
     LDA.W CinematicBG1_XSubPosition                                      ;8BCA0C;
     SEC                                                                  ;8BCA0F;
-    SBC.W #$8000                                                         ;8BCA10;
+    SBC.W #$800*!SPF*$10                                                 ;8BCA10;
     STA.W CinematicBG1_XSubPosition                                      ;8BCA13;
     LDA.W CinematicBG1_XPosition                                         ;8BCA16;
     SBC.W #$0000                                                         ;8BCA19;
@@ -9907,7 +9994,7 @@ CinematicFunction_FlyToZebes_FlyingToZebes_DriftingRight:
     CMP.W #$0480                                                         ;8BCA22;
     BPL .zoomLessThan480                                                 ;8BCA25;
     CLC                                                                  ;8BCA27;
-    ADC.W #$0004                                                         ;8BCA28;
+    ADC.W #regional($0004, $0005)                                        ;8BCA28;
     STA.W Mode7TransformationZoomLevel                                   ;8BCA2B;
     RTS                                                                  ;8BCA2E;
 
@@ -9921,14 +10008,14 @@ CinematicFunction_FlyToZebes_FlyingToZebes_DriftingRight:
 CinematicFunction_FlyToZebes_FlyingToZebes_TurningLeft:
     LDA.W CinematicBG1_YSubPosition                                      ;8BCA36;
     CLC                                                                  ;8BCA39;
-    ADC.W #$2000                                                         ;8BCA3A;
+    ADC.W #$200*!SPF*$10                                                 ;8BCA3A;
     STA.W CinematicBG1_YSubPosition                                      ;8BCA3D;
     LDA.W CinematicBG1_YPosition                                         ;8BCA40;
     ADC.W #$0000                                                         ;8BCA43;
     STA.W CinematicBG1_YPosition                                         ;8BCA46;
     LDA.W CinematicBG1_XSubPosition                                      ;8BCA49;
     SEC                                                                  ;8BCA4C;
-    SBC.W #$8000                                                         ;8BCA4D;
+    SBC.W #$800*!SPF*$10                                                 ;8BCA4D;
     STA.W CinematicBG1_XSubPosition                                      ;8BCA50;
     LDA.W CinematicBG1_XPosition                                         ;8BCA53;
     SBC.W #$0000                                                         ;8BCA56;
@@ -9937,7 +10024,7 @@ CinematicFunction_FlyToZebes_FlyingToZebes_TurningLeft:
     BMI .finished                                                        ;8BCA5F;
     LDA.W Mode7TransformationZoomLevel                                   ;8BCA61;
     CLC                                                                  ;8BCA64;
-    ADC.W #$0010                                                         ;8BCA65;
+    ADC.W #$0010*!SPF                                                    ;8BCA65;
     STA.W Mode7TransformationZoomLevel                                   ;8BCA68;
     LDA.W Mode7TransformationAngle                                       ;8BCA6B;
     CMP.W #$00E0                                                         ;8BCA6E;
@@ -9960,14 +10047,14 @@ CinematicFunction_FlyToZebes_FlyingToZebes_TurningLeft:
 CinematicFunction_FlyToZebes_FlyingToZebes_DriftingLeft:
     LDA.W CinematicBG1_YSubPosition                                      ;8BCA85;
     CLC                                                                  ;8BCA88;
-    ADC.W #$2000                                                         ;8BCA89;
+    ADC.W #$200*!SPF*$10                                                 ;8BCA89;
     STA.W CinematicBG1_YSubPosition                                      ;8BCA8C;
     LDA.W CinematicBG1_YPosition                                         ;8BCA8F;
     ADC.W #$0000                                                         ;8BCA92;
     STA.W CinematicBG1_YPosition                                         ;8BCA95;
     LDA.W CinematicBG1_XSubPosition                                      ;8BCA98;
     CLC                                                                  ;8BCA9B;
-    ADC.W #$2000                                                         ;8BCA9C;
+    ADC.W #$200*!SPF*$10                                                 ;8BCA9C;
     STA.W CinematicBG1_XSubPosition                                      ;8BCA9F;
     LDA.W CinematicBG1_XPosition                                         ;8BCAA2;
     ADC.W #$0000                                                         ;8BCAA5;
@@ -9976,7 +10063,7 @@ CinematicFunction_FlyToZebes_FlyingToZebes_DriftingLeft:
     CMP.W #$2000                                                         ;8BCAAE;
     BPL .zoomLessThan2000                                                ;8BCAB1;
     CLC                                                                  ;8BCAB3;
-    ADC.W #$0020                                                         ;8BCAB4;
+    ADC.W #$0020*!SPF                                                    ;8BCAB4;
     STA.W Mode7TransformationZoomLevel                                   ;8BCAB7;
     RTS                                                                  ;8BCABA;
 
@@ -10112,19 +10199,19 @@ InstList_CinematicSpriteObject_BabyMetroidBeingDelivered_0:
     dw CinematicSpriteObject_Instruction_TimerInY,$000A                  ;8BCB9F;
 
 InstList_CinematicSpriteObject_BabyMetroidBeingDelivered_1:
-    dw $000A,IntroCeresExplosionSpritemaps_BabyMetroidDeliveredFrame1    ;8BCBA3;
-    dw $000A,IntroCeresExplosionSpritemaps_BabyMetroidDeliveredFrame2    ;8BCBA7;
-    dw $000A,IntroCeresExplosionSpritemaps_BabyMetroidDeliveredFrame3    ;8BCBAB;
-    dw $000A,IntroCeresExplosionSpritemaps_BabyMetroidDeliveredFrame2    ;8BCBAF;
+    dw $000A*!FPS,IntroCeresExplosionSpritemaps_BabyMetroidDeliveredFrame1 ;8BCBA3;
+    dw $000A*!FPS,IntroCeresExplosionSpritemaps_BabyMetroidDeliveredFrame2 ;8BCBA7;
+    dw $000A*!FPS,IntroCeresExplosionSpritemaps_BabyMetroidDeliveredFrame3 ;8BCBAB;
+    dw $000A*!FPS,IntroCeresExplosionSpritemaps_BabyMetroidDeliveredFrame2 ;8BCBAF;
     dw CinematicSpriteObject_Inst_DecrementTimer_GotoYIfNonZero          ;8BCBB3;
     dw InstList_CinematicSpriteObject_BabyMetroidBeingDelivered_1        ;8BCBB5;
     dw Instruction_StartIntroPage4                                       ;8BCBB7;
 
 InstList_CinematicSpriteObject_BabyMetroidBeingDelivered_2:
-    dw $000A,IntroCeresExplosionSpritemaps_BabyMetroidDeliveredFrame1    ;8BCBB9;
-    dw $000A,IntroCeresExplosionSpritemaps_BabyMetroidDeliveredFrame2    ;8BCBBD;
-    dw $000A,IntroCeresExplosionSpritemaps_BabyMetroidDeliveredFrame3    ;8BCBC1;
-    dw $000A,IntroCeresExplosionSpritemaps_BabyMetroidDeliveredFrame2    ;8BCBC5;
+    dw $000A*!FPS,IntroCeresExplosionSpritemaps_BabyMetroidDeliveredFrame1 ;8BCBB9;
+    dw $000A*!FPS,IntroCeresExplosionSpritemaps_BabyMetroidDeliveredFrame2 ;8BCBBD;
+    dw $000A*!FPS,IntroCeresExplosionSpritemaps_BabyMetroidDeliveredFrame3 ;8BCBC1;
+    dw $000A*!FPS,IntroCeresExplosionSpritemaps_BabyMetroidDeliveredFrame2 ;8BCBC5;
     dw CinematicSpriteObject_Instruction_GotoY                           ;8BCBC9;
     dw InstList_CinematicSpriteObject_BabyMetroidBeingDelivered_2        ;8BCBCB;
 
@@ -10134,19 +10221,19 @@ InstList_CinematicSpriteObject_BabyMetroidBeingExamined_0:
     dw CinematicSpriteObject_Instruction_TimerInY,$000A                  ;8BCBCD;
 
 InstList_CinematicSpriteObject_BabyMetroidBeingExamined_1:
-    dw $000A,IntroCeresExplosionSpritemaps_BabyMetroidExaminedFrame1     ;8BCBD1;
-    dw $000A,IntroCeresExplosionSpritemaps_BabyMetroidExaminedFrame2     ;8BCBD5;
-    dw $000A,IntroCeresExplosionSpritemaps_BabyMetroidExaminedFrame3     ;8BCBD9;
-    dw $000A,IntroCeresExplosionSpritemaps_BabyMetroidExaminedFrame2     ;8BCBDD;
+    dw $000A*!FPS,IntroCeresExplosionSpritemaps_BabyMetroidExaminedFrame1 ;8BCBD1;
+    dw $000A*!FPS,IntroCeresExplosionSpritemaps_BabyMetroidExaminedFrame2 ;8BCBD5;
+    dw $000A*!FPS,IntroCeresExplosionSpritemaps_BabyMetroidExaminedFrame3 ;8BCBD9;
+    dw $000A*!FPS,IntroCeresExplosionSpritemaps_BabyMetroidExaminedFrame2 ;8BCBDD;
     dw CinematicSpriteObject_Inst_DecrementTimer_GotoYIfNonZero          ;8BCBE1;
     dw InstList_CinematicSpriteObject_BabyMetroidBeingExamined_1         ;8BCBE3;
     dw Instruction_StartIntroPage5                                       ;8BCBE5;
 
 InstList_CinematicSpriteObject_BabyMetroidBeingExamined_2:
-    dw $000A,IntroCeresExplosionSpritemaps_BabyMetroidExaminedFrame1     ;8BCBE7;
-    dw $000A,IntroCeresExplosionSpritemaps_BabyMetroidExaminedFrame2     ;8BCBEB;
-    dw $000A,IntroCeresExplosionSpritemaps_BabyMetroidExaminedFrame3     ;8BCBEF;
-    dw $000A,IntroCeresExplosionSpritemaps_BabyMetroidExaminedFrame2     ;8BCBF3;
+    dw $000A*!FPS,IntroCeresExplosionSpritemaps_BabyMetroidExaminedFrame1 ;8BCBE7;
+    dw $000A*!FPS,IntroCeresExplosionSpritemaps_BabyMetroidExaminedFrame2 ;8BCBEB;
+    dw $000A*!FPS,IntroCeresExplosionSpritemaps_BabyMetroidExaminedFrame3 ;8BCBEF;
+    dw $000A*!FPS,IntroCeresExplosionSpritemaps_BabyMetroidExaminedFrame2 ;8BCBF3;
     dw CinematicSpriteObject_Instruction_GotoY                           ;8BCBF7;
     dw InstList_CinematicSpriteObject_BabyMetroidBeingExamined_2         ;8BCBF9;
 
@@ -10160,27 +10247,27 @@ InstList_CinematicSpriteObject_IntroTextCaret:
 
 ;;; $CC03: Instruction list - intro text caret - blink ;;;
 InstList_IntroTextCaret_Blink:
-    dw $0005,IntroCeresExplosionSpritemaps_BlinkingTypewriterBlock       ;8BCC03;
-    dw $0005,$0000                                                       ;8BCC07;
+    dw $0005*!FPS,IntroCeresExplosionSpritemaps_BlinkingTypewriterBlock  ;8BCC03;
+    dw $0005*!FPS,$0000                                                  ;8BCC07;
     dw CinematicSpriteObject_Instruction_GotoY                           ;8BCC0B;
     dw InstList_IntroTextCaret_Blink                                     ;8BCC0D;
 
 
 ;;; $CC0F: Instruction list - cinematic sprite object $CE73 (intro Japanese text next-page arrow) ;;;
-InstList_CinematicSpriteObject_IntroJapanTextNextPageArrow:
-    dw $000A,IntroCeresExplosionSpritemaps_JapanTextNextPageArrowFrame1  ;8BCC0F;
-    dw $000A,IntroCeresExplosionSpritemaps_JapanTextNextPageArrowFrame2  ;8BCC13;
-    dw $000A,IntroCeresExplosionSpritemaps_JapanTextNextPageArrowFrame3  ;8BCC17;
-    dw $000A,IntroCeresExplosionSpritemaps_JapanTextNextPageArrowFrame2  ;8BCC1B;
+InstList_CinematicSpriteObject_IntroSubtitleNextPageArrow:
+    dw $000A,IntroCeresExplosionSpritemaps_SubtitleNextPageArrowFrame1   ;8BCC0F;
+    dw $000A,IntroCeresExplosionSpritemaps_SubtitleNextPageArrowFrame2   ;8BCC13;
+    dw $000A,IntroCeresExplosionSpritemaps_SubtitleNextPageArrowFrame3   ;8BCC17;
+    dw $000A,IntroCeresExplosionSpritemaps_SubtitleNextPageArrowFrame2   ;8BCC1B;
     dw CinematicSpriteObject_Instruction_GotoY                           ;8BCC1F;
-    dw InstList_CinematicSpriteObject_IntroJapanTextNextPageArrow        ;8BCC21;
+    dw InstList_CinematicSpriteObject_IntroSubtitleNextPageArrow         ;8BCC21;
 
 
 ;;; $CC23: Instruction list - intro Japanese text next-page arrow - blink ;;;
-InstList_IntroJapanTextNextPageArrow_Blink:
+InstList_IntroSubtitleNextPageArrow_Blink:
     dw $003C,$0000                                                       ;8BCC23;
     dw CinematicSpriteObject_Instruction_GotoY                           ;8BCC27;
-    dw InstList_CinematicSpriteObject_IntroJapanTextNextPageArrow        ;8BCC29;
+    dw InstList_CinematicSpriteObject_IntroSubtitleNextPageArrow         ;8BCC29;
 
 
 ;;; $CC2B: Instruction list - cinematic sprite object $CE79 (confused baby metroid) ;;;
@@ -10238,7 +10325,7 @@ UNUSED_InstList_CinematicSpriteObject_SpaceColonyText_8BCC63:
     dw $000A,UNUSED_SpaceSpritemaps_SPACECOLO_9C936E                     ;8BCC87;
     dw $000A,UNUSED_SpaceSpritemaps_SPACECOLON_8C939D                    ;8BCC8B;
     dw $000A,UNUSED_SpaceSpritemaps_SPACECOLONY_8C921F                   ;8BCC8F;
-    dw Instruction_SkipNextInstructionIfEnglishText                      ;8BCC93;
+    dw Instruction_SkipNextInstructionIfDefaultLanguage                  ;8BCC93;
     dw $0080,UNUSED_SpaceSpritemaps_SPACECOLONY_8C921F                   ;8BCC95;
     dw Instruction_FinishFlyToCeres                                      ;8BCC99;
 
@@ -10249,10 +10336,10 @@ UNUSED_InstList_CinematicSpriteObject_SpaceColonyText_8BCC9B:
 
 
 ;;; $CCA3: Unused. Instruction list - cinematic sprite object $CE9D (space colony Japanese text) ;;;
-UNUSED_InstList_CineSpriteObject_SpaceColonyJapanText_8BCCA3:
-    dw $000A,UNUSED_SpaceSpritemaps_JapanText_SPACECOLONY_8C9258         ;8BCCA3;
+UNUSED_InstList_CineSpriteObject_SpaceColonySubtitle_8BCCA3:
+    dw $000A,UNUSED_SpaceSpritemaps_Subtitle_SPACECOLONY_8C9258          ;8BCCA3;
     dw CinematicSpriteObject_Instruction_GotoY                           ;8BCCA7;
-    dw UNUSED_InstList_CineSpriteObject_SpaceColonyJapanText_8BCCA3      ;8BCCA9;
+    dw UNUSED_InstList_CineSpriteObject_SpaceColonySubtitle_8BCCA3       ;8BCCA9;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
@@ -10274,11 +10361,11 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $CCBB: Instruction list - cinematic sprite object $CEAF (planet Zebes text) ;;;
 InstList_CinematicSpriteObject_PlanetZebesText:
-    dw $0040,$0000                                                       ;8BCCBB;
+    dw regional($0040, $0033),$0000                                      ;8BCCBB;
     dw Instruction_FadeInPlanetZebesText                                 ;8BCCBF;
-    dw $0020,SpaceSpritemaps_PlanetZebes                                 ;8BCCC1;
-    dw Instruction_SpawnPlanetZebesJapanTextIfNeeded                     ;8BCCC5;
-    dw $00C0,SpaceSpritemaps_PlanetZebes                                 ;8BCCC7;
+    dw regional($0020, $0019),SpaceSpritemaps_PlanetZebes                ;8BCCC1;
+    dw Instruction_SpawnPlanetZebesSubtitleIfNeeded                      ;8BCCC5;
+    dw regional($00C0, $0099),SpaceSpritemaps_PlanetZebes                ;8BCCC7;
     dw Instruction_FadeOutPlanetZebesText                                ;8BCCCB;
     dw $0060,SpaceSpritemaps_PlanetZebes                                 ;8BCCCD;
     dw Instruction_StartFlyingToZebes                                    ;8BCCD1;
@@ -10286,8 +10373,8 @@ InstList_CinematicSpriteObject_PlanetZebesText:
 
 
 ;;; $CCD5: Instruction list - cinematic sprite object $CEB5 (planet Zebes Japanese text) ;;;
-InstList_CinematicSpriteObject_PlanetZebesJapanText:
-    dw $00C0,SpaceSpritemaps_JapanText_PlanetZebes                       ;8BCCD5;
+InstList_CinematicSpriteObject_PlanetZebesSubtitle:
+    dw regional($00C0, $0099),SpaceSpritemaps_Subtitle_PlanetZebes       ;8BCCD5;
     dw CinematicSpriteObject_Instruction_Delete                          ;8BCCD9;
 
 
@@ -10539,10 +10626,10 @@ CinematicSpriteObjectDefinitions_IntroTextCaret:
     dw RTS_8BA8D4                                                        ;8BCE6F; Pre-instruction
     dw InstList_CinematicSpriteObject_IntroTextCaret                     ;8BCE71; Instruction list
 
-CinematicSpriteObjectDefinitions_IntroJapanTextNextPageArrow:
-    dw InitFunc_CinematicSpriteObject_IntroJapanTextNextPageArrow        ;8BCE73; Initialisation function
-    dw PreInst_CinematicSpriteObject_IntroJapanTextNextPageArrow         ;8BCE75; Pre-instruction
-    dw InstList_CinematicSpriteObject_IntroJapanTextNextPageArrow        ;8BCE77; Instruction list
+CinematicSpriteObjectDefinitions_IntroSubtitleNextPageArrow:
+    dw InitFunc_CinematicSpriteObject_IntroSubtitleNextPageArrow         ;8BCE73; Initialisation function
+    dw PreInst_CinematicSpriteObject_IntroSubtitleNextPageArrow          ;8BCE75; Pre-instruction
+    dw InstList_CinematicSpriteObject_IntroSubtitleNextPageArrow         ;8BCE77; Instruction list
 
 CinematicSpriteObjectDefinitions_ConfusedBabyMetroid:
     dw InitFunction_CinematicSpriteObject_ConfusedBabyMetroid            ;8BCE79; Initialisation function
@@ -10575,10 +10662,10 @@ UNUSED_CinematicSpriteObjectDefs_SpaceColonyText_8BCE97:
     dw RTS_8B93D9                                                        ;8BCE99; Pre-instruction
     dw UNUSED_InstList_CinematicSpriteObject_SpaceColonyText_8BCC63      ;8BCE9B; Instruction list
 
-UNUSED_CinematicSpriteObjectDefs_SpaceColonyJapanText_8BCE9D:
-    dw UNUSED_InitFunc_CineSpriteObject_SpaceColonyJapanText_8BC0B2      ;8BCE9D; Initialisation function
+UNUSED_CinematicSpriteObjectDefs_SpaceColonySubtitle_8BCE9D:
+    dw UNUSED_InitFunc_CineSpriteObject_SpaceColonySubtitle_8BC0B2       ;8BCE9D; Initialisation function
     dw RTS_8B93D9                                                        ;8BCE9F; Pre-instruction
-    dw UNUSED_InstList_CineSpriteObject_SpaceColonyJapanText_8BCCA3      ;8BCEA1; Instruction list
+    dw UNUSED_InstList_CineSpriteObject_SpaceColonySubtitle_8BCCA3       ;8BCEA1; Instruction list
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 CinematicSpriteObjectDefinitions_Zebes:
@@ -10598,10 +10685,10 @@ CinematicSpriteObjectDefinitions_PlanetZebesText:
     dw RTS_8B93D9                                                        ;8BCEB1; Pre-instruction
     dw InstList_CinematicSpriteObject_PlanetZebesText                    ;8BCEB3; Instruction list
 
-CinematicSpriteObjectDefinitions_PlanetZebesJapanText:
-    dw InitFunction_CinematicSpriteObject_PlanetZebesJapanText           ;8BCEB5; Initialisation function
+CinematicSpriteObjectDefinitions_PlanetZebesSubtitle:
+    dw InitFunction_CinematicSpriteObject_PlanetZebesSubtitle            ;8BCEB5; Initialisation function
     dw RTS_8B93D9                                                        ;8BCEB7; Pre-instruction
-    dw InstList_CinematicSpriteObject_PlanetZebesJapanText               ;8BCEB9; Instruction list
+    dw InstList_CinematicSpriteObject_PlanetZebesSubtitle                ;8BCEB9; Instruction list
 
 CinematicSpriteObjectDefinitions_CeresExplosion1:
     dw InitFunction_CinematicSpriteObject_CeresExplosion1                ;8BCEBB; Initialisation function
@@ -10775,7 +10862,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 ;     b: Bottom Japanese text tiles source offset ($7F:A000 + b)
 
 ;;; $CF75: Page 1 - top line ;;;
-IntroJapanTextData_Page1_TopLine:                                        ;8BCF75;
+IntroSubtitleData_Page1_TopLine:                                         ;8BCF75;
 ; 私が メトロイドの存在を知ったのは (I learnt of the metroids' existence)
     dw $0040,$0011
     dw $0A60,$0B60
@@ -10798,7 +10885,7 @@ IntroJapanTextData_Page1_TopLine:                                        ;8BCF75
 
 
 ;;; $CFBD: Page 1 - bottom line ;;;
-IntroJapanTextData_Page1_BottomLine:                                     ;8BCFBD;
+IntroSubtitleData_Page1_BottomLine:                                      ;8BCFBD;
 ; 惑星ゼーベスでの戦いの時だった (it was during the battle on planet Zebes)
     dw $01C0,$000F
     dw $0680,$0780
@@ -10819,7 +10906,7 @@ IntroJapanTextData_Page1_BottomLine:                                     ;8BCFBD
 
 
 ;;; $CFFD: Page 2 - subpage 1 - top line ;;;
-IntroJapanTextData_Page2_Subpage1_TopLine:                               ;8BCFFD;
+IntroSubtitleData_Page2_Subpage1_TopLine:                                ;8BCFFD;
 ; その後 私は惑星ＳＲ３８８へ メトロイドを (after that, I, to planet SR388, with the metroid)
     dw $0020,$0015
     dw $00E0,$01E0
@@ -10846,7 +10933,7 @@ IntroJapanTextData_Page2_Subpage1_TopLine:                               ;8BCFFD
 
 
 ;;; $D055: Page 2 - subpage 1 - bottom line ;;;
-IntroJapanTextData_Page2_Subpage1_BottomLine:                            ;8BD055;
+IntroSubtitleData_Page2_Subpage1_BottomLine:                             ;8BD055;
 ; 壊滅させるために向った (headed there to destroy it)
     dw $01A0,$000B
     dw $0A30,$0B30
@@ -10863,7 +10950,7 @@ IntroJapanTextData_Page2_Subpage1_BottomLine:                            ;8BD055
 
 
 ;;; $D085: Page 2 - subpage 2 - top line ;;;
-IntroJapanTextData_Page2_Subpage2_TopLine:                               ;8BD085;
+IntroSubtitleData_Page2_Subpage2_TopLine:                                ;8BD085;
 ; そこで 唯一の生き残りであるベビーメトロイド (there, the only baby metroid left alive)
     dw $0010,$0016
     dw $00E0,$01E0
@@ -10891,7 +10978,7 @@ IntroJapanTextData_Page2_Subpage2_TopLine:                               ;8BD085
 
 
 ;;; $D0E1: Page 2 - subpage 2 - bottom line ;;;
-IntroJapanTextData_Page2_Subpage2_BottomLine:                            ;8BD0E1;
+IntroSubtitleData_Page2_Subpage2_BottomLine:                             ;8BD0E1;
 ; を捕獲した (I captured)
     dw $0190,$0005
     dw $04C0,$05C0
@@ -10902,7 +10989,7 @@ IntroJapanTextData_Page2_Subpage2_BottomLine:                            ;8BD0E1
 
 
 ;;; $D0F9: Page 3 - subpage 1 ;;;
-IntroJapanTextData_Page3_Subpage1:                                       ;8BD0F9;
+IntroSubtitleData_Page3_Subpage1:                                        ;8BD0F9;
 ; 正確にはベビーメトロイドがついて来たと言うべきだ (rather, I should say the metroid followed me)
     dw $0000,$0018
     dw $06C0,$07C0
@@ -10932,7 +11019,7 @@ IntroJapanTextData_Page3_Subpage1:                                       ;8BD0F9
 
 
 ;;; $D15D: Page 3 - subpage 2 ;;;
-IntroJapanTextData_Page3_Subpage2:                                       ;8BD15D;
+IntroSubtitleData_Page3_Subpage2:                                        ;8BD15D;
 ; 生まれてすぐ目に入った私を母親だと思った様だ (when it was born, it seemed to think that I, whom it immediately noticed, was its mother)
     dw $0010,$0016
     dw $0A90,$0B90
@@ -10960,7 +11047,7 @@ IntroJapanTextData_Page3_Subpage2:                                       ;8BD15D
 
 
 ;;; $D1B9: Page 4 - subpage 1 - top line ;;;
-IntroJapanTextData_Page4_Subpage1_TopLine:                               ;8BD1B9;
+IntroSubtitleData_Page4_Subpage1_TopLine:                                ;8BD1B9;
 ; そのベビーメトロイドを私はスペースコロニーの (I went to a space colony with this baby metroid)
     dw $0010,$0016
     dw $00E0,$01E0
@@ -10988,7 +11075,7 @@ IntroJapanTextData_Page4_Subpage1_TopLine:                               ;8BD1B9
 
 
 ;;; $D215: Page 4 - subpage 1 - bottom line ;;;
-IntroJapanTextData_Page4_Subpage1_BottomLine:                            ;8BD215;
+IntroSubtitleData_Page4_Subpage1_BottomLine:                             ;8BD215;
 ; 宇宙科学アカデミーへと持ち込んだ (the Space Science Academy)
     dw $0190,$0010
     dw $0CE0,$0DE0
@@ -11010,7 +11097,7 @@ IntroJapanTextData_Page4_Subpage1_BottomLine:                            ;8BD215
 
 
 ;;; $D259: Page 4 - subpage 2 - top line ;;;
-IntroJapanTextData_Page4_Subpage2_TopLine:                               ;8BD259;
+IntroSubtitleData_Page4_Subpage2_TopLine:                                ;8BD259;
 ; メトロイドの優れた特性を宇宙の未来に (with the metroid's amazing special powers, for the future of space)
     dw $0030,$0012
     dw $0E00,$0F00
@@ -11034,7 +11121,7 @@ IntroJapanTextData_Page4_Subpage2_TopLine:                               ;8BD259
 
 
 ;;; $D2A5: Page 4 - subpage 2 - bottom line ;;;
-IntroJapanTextData_Page4_Subpage2_BottomLine:                            ;8BD2A5;
+IntroSubtitleData_Page4_Subpage2_BottomLine:                             ;8BD2A5;
 ; 役立たせるために・・・ (in order to harness it...)
     dw $01B0,$000B
     dw $0800,$0900
@@ -11051,7 +11138,7 @@ IntroJapanTextData_Page4_Subpage2_BottomLine:                            ;8BD2A5
 
 
 ;;; $D2D5: Page 5 - subpage 1 ;;;
-IntroJapanTextData_Page5_Subpage1:                                       ;8BD2D5;
+IntroSubtitleData_Page5_Subpage1:                                        ;8BD2D5;
 ; 研究は順調に進みつつあった (research was continuing smoothly)
     dw $0050,$000D
     dw $0860,$0960
@@ -11070,7 +11157,7 @@ IntroJapanTextData_Page5_Subpage1:                                       ;8BD2D5
 
 
 ;;; $D30D: Page 5 - subpage 2 ;;;
-IntroJapanTextData_Page5_Subpage2:                                       ;8BD30D;
+IntroSubtitleData_Page5_Subpage2:                                        ;8BD30D;
 ; そんなある日スペースコロニーから突然連絡が入った (one day I got a sudden transmission from the space colony)
     dw $0000,$0018
     dw $00E0,$01E0
@@ -11100,7 +11187,7 @@ IntroJapanTextData_Page5_Subpage2:                                       ;8BD30D
 
 
 ;;; $D371: Page 6 ;;;
-IntroJapanTextData_Page6:                                                ;8BD371;
+IntroSubtitleData_Page6:                                                 ;8BD371;
 ; 非常事態だ (it's an emergency)
     dw $0090,$0005
     dw $0AE0,$0BE0
@@ -11112,15 +11199,27 @@ IntroJapanTextData_Page6:                                                ;8BD371
 
 ;;; $D389: Instruction list - mode 7 object $D401 (page 1) ;;;
 InstList_Mode7Object_Page1:
-    dw Instruction_LoadIntroJapanTextPage1                               ;8BD389;
+    dw Instruction_LoadIntroSubtitlePage1                                ;8BD389;
     dw $0001,Mode7_Transfer_Data                                         ;8BD38B;
     dw Instruction_EnableCinematicBGTilemapUpdates_duplicate             ;8BD38F;
     dw Mode7Objects_Instruction_Delete                                   ;8BD391;
 
 
+if !PAL != 0
+InstList_Mode7Object_Page1_Subpage2:
+    dw $0001,Mode7_Transfer_Data
+    dw Mode7Objects_Instruction_GotoY
+    dw InstList_Mode7Object_Page1_Subpage2
+
+InstList_EnableCinematicBGTilemapUpdates_Page1DoneInput:
+    dw Instruction_EnableCinematicBGTilemapUpdates_Page1DoneInput
+    dw Mode7Objects_Instruction_Delete
+endif
+
+
 ;;; $D393: Instruction list - mode 7 object $D407 (page 2 - subpage 1) ;;;
 InstList_Mode7Object_Page2_Subpage1:
-    dw Instruction_LoadIntroJapanTextPage2_Subpage1                      ;8BD393;
+    dw Instruction_LoadIntroSubtitlePage2_Subpage1                       ;8BD393;
     dw $0001,Mode7_Transfer_Data                                         ;8BD395;
     dw Instruction_EnableCinematicBGTilemapUpdates_duplicate             ;8BD399;
     dw Mode7Objects_Instruction_Delete                                   ;8BD39B;
@@ -11141,7 +11240,7 @@ InstList_EnableCinematicBGTilemapUpdates_Page2DoneInput:
 
 ;;; $D3A9: Instruction list - mode 7 object $D413 (page 3 - subpage 1) ;;;
 InstList_Mode7Object_Page3_Subpage1:
-    dw Instruction_LoadIntroJapanTextPage3_Subpage1                      ;8BD3A9;
+    dw Instruction_LoadIntroSubtitlePage3_Subpage1                       ;8BD3A9;
     dw $0001,Mode7_Transfer_Data                                         ;8BD3AB;
     dw Instruction_EnableCinematicBGTilemapUpdates_duplicate             ;8BD3AF;
     dw Mode7Objects_Instruction_Delete                                   ;8BD3B1;
@@ -11162,7 +11261,7 @@ InstList_EnableCinematicBGTilemapUpdates_Page3DoneInput:
 
 ;;; $D3BF: Instruction list - mode 7 object $D41F (page 4 - subpage 1) ;;;
 InstList_Mode7Object_Page4_Subpage1:
-    dw Instruction_LoadIntroJapanTextPage4_Subpage1                      ;8BD3BF;
+    dw Instruction_LoadIntroSubtitlePage4_Subpage1                       ;8BD3BF;
     dw $0001,Mode7_Transfer_Data                                         ;8BD3C1;
     dw Instruction_EnableCinematicBGTilemapUpdates_duplicate             ;8BD3C5;
     dw Mode7Objects_Instruction_Delete                                   ;8BD3C7;
@@ -11183,7 +11282,7 @@ InstList_EnableCinematicBGTilemapUpdates_Page4DoneInput:
 
 ;;; $D3D5: Instruction list - mode 7 object $D42B (page 5 - subpage 1) ;;;
 InstList_Mode7Object_Page5_Subpage1:
-    dw Instruction_LoadIntroJapanTextPage5_Subpage1                      ;8BD3D5;
+    dw Instruction_LoadIntroSubtitlePage5_Subpage1                       ;8BD3D5;
     dw $0001,Mode7_Transfer_Data                                         ;8BD3D7;
     dw Instruction_EnableCinematicBGTilemapUpdates_duplicate             ;8BD3DB;
     dw Mode7Objects_Instruction_Delete                                   ;8BD3DD;
@@ -11204,7 +11303,7 @@ InstList_EnableCinematicBGTilemapUpdates_Page5DoneInput:
 
 ;;; $D3EB: Instruction list - mode 7 object $D437 (page 6) ;;;
 InstList_Mode7Object_Page6:
-    dw Instruction_LoadIntroJapanTextPage6                               ;8BD3EB;
+    dw Instruction_LoadIntroSubtitlePage6                                ;8BD3EB;
     dw $0001,Mode7_Transfer_Data                                         ;8BD3ED;
     dw Instruction_EnableCinematicBGTilemapUpdates_duplicate_again       ;8BD3F1;
     dw Mode7Objects_Instruction_Delete                                   ;8BD3F3;
@@ -11213,7 +11312,11 @@ InstList_Mode7Object_Page6:
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $D3F5: Instruction list - mode 7 object $D43D (unused, broken) ;;;
 UNUSED_InstList_Mode7Object_D43D_8BD3F5:
-    dw UNUSED_Instruction_LoadIntroJapanText_NonExistent                 ;8BD3F5;
+if !PAL == 0
+    dw UNUSED_Instruction_LoadIntroSubtitle_NonExistent                  ;8BD3F5;
+else
+    dw Instruction_EnableCinematicBGTilemapUpdates
+endif
     dw $0001,Mode7_Transfer_Data                                         ;8BD3F7;
     dw Instruction_EnableCinematicBGTilemapUpdates                       ;8BD3FB;
     dw Mode7Objects_Instruction_Delete                                   ;8BD3FD;
@@ -11226,39 +11329,46 @@ Mode7_Transfer_Data:
 
 
 ;;; $D401: Mode 7 objects. Japanese intro text ;;;
-Mode7Objects_IntroJapanText_Page1:
+Mode7Objects_IntroSubtitle_Page1:
     dw RTS_8B93D9                                                        ;8BD401; Initialisation function
     dw RTS_8B93D9                                                        ;8BD403; Pre-instruction
     dw InstList_Mode7Object_Page1                                        ;8BD405; Instruction list pointer
 
-Mode7Objects_IntroJapanText_Page2_Subpage1:
+if !PAL != 0
+Mode7Objects_IntroText_Page1_Subpage2:
+    dw RTS_8B93D9                                     ; Initialisation function
+    dw PreInstruction_LoadIntroSubtitlePage1_Subpage2 ; Pre-instruction
+    dw InstList_Mode7Object_Page1_Subpage2            ; Instruction list pointer
+endif
+
+Mode7Objects_IntroSubtitle_Page2_Subpage1:
     dw RTS_8B93D9                                                        ;8BD407; Initialisation function
     dw RTS_8B93D9                                                        ;8BD409; Pre-instruction
     dw InstList_Mode7Object_Page2_Subpage1                               ;8BD40B; Instruction list pointer
 
-Mode7Objects_IntroJapanText_Page2_Subpage2:
+Mode7Objects_IntroSubtitle_Page2_Subpage2:
     dw RTS_8B93D9                                                        ;8BD40D; Initialisation function
-    dw Instruction_LoadIntroJapanTextPage2_Subpage2                      ;8BD40F; Pre-instruction
+    dw Instruction_LoadIntroSubtitlePage2_Subpage2                       ;8BD40F; Pre-instruction
     dw InstList_Mode7Object_Page2_Subpage2                               ;8BD411; Instruction list pointer
 
-Mode7Objects_IntroJapanText_Page3_Subpage1:
+Mode7Objects_IntroSubtitle_Page3_Subpage1:
     dw RTS_8B93D9                                                        ;8BD413; Initialisation function
     dw RTS_8B93D9                                                        ;8BD415; Pre-instruction
     dw InstList_Mode7Object_Page3_Subpage1                               ;8BD417; Instruction list pointer
 
-Mode7Objects_IntroJapanText_Page3_Subpage2:
+Mode7Objects_IntroSubtitle_Page3_Subpage2:
     dw RTS_8B93D9                                                        ;8BD419; Initialisation function
-    dw PreInstruction_LoadIntroJapanTextPage3_Subpage2                   ;8BD41B; Pre-instruction
+    dw PreInstruction_LoadIntroSubtitlePage3_Subpage2                    ;8BD41B; Pre-instruction
     dw InstList_Mode7Object_Page3_Subpage2                               ;8BD41D; Instruction list pointer
 
-Mode7Objects_IntroJapanText_Page4_Subpage1:
+Mode7Objects_IntroSubtitle_Page4_Subpage1:
     dw RTS_8B93D9                                                        ;8BD41F; Initialisation function
     dw RTS_8B93D9                                                        ;8BD421; Pre-instruction
     dw InstList_Mode7Object_Page4_Subpage1                               ;8BD423; Instruction list pointer
 
-Mode7Objects_IntroJapanText_Page4_Subpage2:
+Mode7Objects_IntroSubtitle_Page4_Subpage2:
     dw RTS_8B93D9                                                        ;8BD425; Initialisation function
-    dw PreInstruction_LoadIntroJapanTextPage4_Subpage2                   ;8BD427; Pre-instruction
+    dw PreInstruction_LoadIntroSubtitlePage4_Subpage2                    ;8BD427; Pre-instruction
     dw InstList_Mode7Object_Page4_Subpage2                               ;8BD429; Instruction list pointer
 
 Mode7Objects_IntroJaanText_Page5_Subpage1:
@@ -11266,12 +11376,12 @@ Mode7Objects_IntroJaanText_Page5_Subpage1:
     dw RTS_8B93D9                                                        ;8BD42D; Pre-instruction
     dw InstList_Mode7Object_Page5_Subpage1                               ;8BD42F; Instruction list pointer
 
-Mode7Objects_IntroJapanText_Page5_Subpage2:
+Mode7Objects_IntroSubtitle_Page5_Subpage2:
     dw RTS_8B93D9                                                        ;8BD431; Initialisation function
-    dw PreInstruction_LoadIntroJapanTextPage5_Subpage2                   ;8BD433; Pre-instruction
+    dw PreInstruction_LoadIntroSubtitlePage5_Subpage2                    ;8BD433; Pre-instruction
     dw InstList_Mode7Object_Page5_Subpage2                               ;8BD435; Instruction list pointer
 
-Mode7Objects_IntroJapanText_Page6:
+Mode7Objects_IntroSubtitle_Page6:
     dw RTS_8B93D9                                                        ;8BD437; Initialisation function
     dw RTS_8B93D9                                                        ;8BD439; Pre-instruction
     dw InstList_Mode7Object_Page6                                        ;8BD43B; Instruction list pointer
@@ -11320,7 +11430,11 @@ HandleFinalScreen_CinematicBGObjects:
     LDA.W CinematicFunction                                              ;8BD474;
     CMP.W #CinematicFunction_PostCredits_FadeFromWhite                   ;8BD477;
     BMI .return                                                          ;8BD47A;
+if !PAL == 0
     JSR.W Handle_CinematicBGObjects                                      ;8BD47C;
+else
+    JSR.W Handle_CinematicBGObjects_NoEyes
+endif
 
   .return:
     RTS                                                                  ;8BD47F;
@@ -11601,7 +11715,7 @@ CinematicFunction_Ending_ZebesDestruction0_CloudsOnSide:
   .zoomOut:
     LDA.W Mode7TransformationZoomLevel                                   ;8BD716;
     CLC                                                                  ;8BD719;
-    ADC.W #$0002                                                         ;8BD71A;
+    ADC.W #regional($0002, $0003)                                        ;8BD71A;
     STA.W Mode7TransformationZoomLevel                                   ;8BD71D;
     CMP.W #$0180                                                         ;8BD720;
     BMI .return                                                          ;8BD723;
@@ -12073,7 +12187,7 @@ CinematicFunc_Ending_SpaceView_LoadGunshipBG:
   .return:
     RTS                                                                  ;8BDB5C;
 
-  .sourceAddresses:                                                        
+  .sourceAddresses:
     dw $0000,$0800,$1000,$1800,$2000,$2800,$3000,$3800                   ;8BDB5D; Tiles source addresses (bank $7F)
     dw $4000,$4800,$5000,$5800,$6000,$6800,$7000,$7800                   ;8BDB6D; Tilemap source addresses (bank $7F)
   .destinationAddresses:
@@ -12220,7 +12334,7 @@ FadeOut_ZebesExplosion_AfterGlow:
 
   .setTimer:
     REP #$20                                                             ;8BDC9B;
-    LDA.W #$0008                                                         ;8BDC9D;
+    LDA.W #$0008*!FPS                                                    ;8BDC9D;
     STA.W CinematicFunctionTimer                                         ;8BDCA0;
 
   .return:
@@ -12289,7 +12403,7 @@ CinematicFunc_Ending_SpaceView_GunshipEmergence_SpinningSlow:
     CMP.W #$00E0                                                         ;8BDD48;
     BEQ .notE0                                                           ;8BDD4B;
     SEC                                                                  ;8BDD4D;
-    SBC.W #$0001                                                         ;8BDD4E;
+    SBC.W #regional($0001, $0002)                                        ;8BDD4E;
     AND.W #$00FF                                                         ;8BDD51;
     STA.W Mode7TransformationAngle                                       ;8BDD54;
 
@@ -12311,7 +12425,7 @@ CinematicFunc_Ending_SpaceView_GunshipEmergence_SpinningSlow:
     STA.W EndingShipShakeIndex                                           ;8BDD77;
     LDA.W Mode7TransformationZoomLevel                                   ;8BDD7A;
     SEC                                                                  ;8BDD7D;
-    SBC.W #$0002                                                         ;8BDD7E;
+    SBC.W #regional($0002, $0003)                                        ;8BDD7E;
     STA.W Mode7TransformationZoomLevel                                   ;8BDD81;
     CMP.W #$04A0                                                         ;8BDD84;
     BPL .return                                                          ;8BDD87;
@@ -12332,8 +12446,13 @@ CinematicFunc_Ending_SpaceView_GunshipEmergence_SpinningSlow:
     RTS                                                                  ;8BDDAC;
 
   .shakingXVelocities:
+if !PAL == 0
     dw $0001,$0000,$0001,$0000,$0001,$0000,$FFFF,$0000                   ;8BDDAD;
     dw $FFFF,$0000,$0001,$0000,$0001,$0000,$FFFF,$0000                   ;8BDDBD;
+else
+    dw $0001,$4000,$0001,$4000,$0001,$4000,$FFFE,$C000
+    dw $FFFE,$C000,$0001,$4000,$0001,$4000,$FFFE,$C000
+endif
 
 
 ;;; $DDCD: Cinematic function - ending - space view - gunship emergence - fly into camera ;;;
@@ -12341,7 +12460,7 @@ CinematicFunc_Ending_SpaceView_GunshipEmergence_FlyToCamera:
     JSR.W FadeOut_ZebesExplosion_AfterGlow                               ;8BDDCD;
     LDA.W EndingShipXSubVelocity                                         ;8BDDD0;
     SEC                                                                  ;8BDDD3;
-    SBC.W #$0100                                                         ;8BDDD4;
+    SBC.W #$0100*!SPF                                                    ;8BDDD4;
     STA.W EndingShipXSubVelocity                                         ;8BDDD7;
     LDA.W EndingShipXVelocity                                            ;8BDDDA;
     SBC.W #$0000                                                         ;8BDDDD;
@@ -12354,7 +12473,7 @@ CinematicFunc_Ending_SpaceView_GunshipEmergence_FlyToCamera:
     ADC.W EndingShipXVelocity                                            ;8BDDF0;
     STA.W CinematicBG1_XPosition                                         ;8BDDF3;
     LDA.W Mode7TransformationZoomLevel                                   ;8BDDF6;
-    CMP.W #$0180                                                         ;8BDDF9;
+    CMP.W #regional($0180, $0200)                                        ;8BDDF9;
     BPL +                                                                ;8BDDFC;
     LDA.W CinematicFrameCounter                                          ;8BDDFE;
     BIT.W #$0003                                                         ;8BDE01;
@@ -12371,7 +12490,7 @@ CinematicFunc_Ending_SpaceView_GunshipEmergence_FlyToCamera:
     CMP.W #$0020                                                         ;8BDE1B;
     BMI .zoomLessThan20                                                  ;8BDE1E;
     SEC                                                                  ;8BDE20;
-    SBC.W #$0004                                                         ;8BDE21;
+    SBC.W #regional($0004, $0005)                                        ;8BDE21;
     STA.W Mode7TransformationZoomLevel                                   ;8BDE24;
     RTS                                                                  ;8BDE27;
 
@@ -12643,9 +12762,9 @@ CinematicFunction_Credits_Setup:
     STA.B DP_DecompSrc                                                   ;8BE0C5;
     JSL.L Decompression_HardcodedDestination                             ;8BE0C7;
     dl CreditsTilemap                                                    ;8BE0CB;
-    LDA.W #$007F                                                         ;8BE0CE;
+    LDA.W #regional($007F, $004F)                                        ;8BE0CE;
     JSL.L Clear_CinematicBGObjects_CinematicBGTilemap                    ;8BE0D1;
-    LDA.W #$007F                                                         ;8BE0D5;
+    LDA.W #regional($007F, $004F)                                        ;8BE0D5;
     JSR.W Clear_CreditsObject_CinematicBGTilemapInA                      ;8BE0D8;
     JSR.W Enable_CreditsObject                                           ;8BE0DB;
     LDA.W #$0003                                                         ;8BE0DE;
@@ -12735,7 +12854,7 @@ CinematicFunction_PostCredits_FadeInSamus:
     LDA.B #$02                                                           ;8BE179;
     STA.B DP_ColorMathB                                                  ;8BE17B;
     REP #$20                                                             ;8BE17D;
-    LDA.W #$00B4                                                         ;8BE17F;
+    LDA.W #regional($00B4, $0084)                                        ;8BE17F;
     STA.W CinematicFunctionTimer                                         ;8BE182;
     LDA.W #CinematicFunction_PostCredits_WavySamus                       ;8BE185;
     STA.W CinematicFunction                                              ;8BE188;
@@ -12773,7 +12892,7 @@ CinematicFunction_PostCredits_WavySamus:
     STZ.B DP_ColorMathA                                                  ;8BE1BC;
     STZ.B DP_ColorMathB                                                  ;8BE1BE;
     REP #$20                                                             ;8BE1C0;
-    LDA.W #$00B4                                                         ;8BE1C2;
+    LDA.W #regional($00B4, $0084)                                        ;8BE1C2;
     STA.W CinematicFunctionTimer                                         ;8BE1C5;
     LDA.W #CinematicFunction_PostCredits_DeerForce                       ;8BE1C8;
     STA.W CinematicFunction                                              ;8BE1CB;
@@ -12884,7 +13003,7 @@ CinematicFunction_PostCredits_IdleSamus1:
     CMP.W #$0041                                                         ;8BE29A;
     BPL .return                                                          ;8BE29D;
     LDX.W #$023E                                                         ;8BE29F;
-    LDA.W #$007F                                                         ;8BE2A2;
+    LDA.W #regional($007F, $004F)                                        ;8BE2A2;
 
   .loopTilemap9:
     STA.L CreditsTilemap_DeeRForCe,X                                     ;8BE2A5;
@@ -12895,7 +13014,7 @@ CinematicFunction_PostCredits_IdleSamus1:
 
   .loopTilemapC:
     LDA.L Tilemap_PostCredits_1994Nintendo,X                             ;8BE2B0;
-    STA.L CinematicBGTilemap_RowsCD,X                                    ;8BE2B4;
+    STA.L CinematicBGTilemap_rowsCD,X                                    ;8BE2B4;
     INX                                                                  ;8BE2B8;
     INX                                                                  ;8BE2B9;
     CPX.W #$0080                                                         ;8BE2BA;
@@ -12908,7 +13027,7 @@ CinematicFunction_PostCredits_IdleSamus1:
     STZ.B DP_ColorMathA                                                  ;8BE2CA;
     STZ.B DP_ColorMathB                                                  ;8BE2CC;
     REP #$20                                                             ;8BE2CE;
-    LDA.W #$00B4                                                         ;8BE2D0;
+    LDA.W #regional($00B4, $0084)                                        ;8BE2D0;
     STA.W IntroCrossFadeTimer                                            ;8BE2D3;
     LDA.W #CinematicFunction_PostCredits_1994Nintendo                    ;8BE2D6;
     STA.W CinematicFunction                                              ;8BE2D9;
@@ -13067,7 +13186,7 @@ CinematicFunction_PostCredits_SamusShootsScreen:
     STA.W Mode7TransformationZoomLevel                                   ;8BE3F6;
     LDA.W #CinematicFunction_PostCredits_FadeToWhite                     ;8BE3F9;
     STA.W CinematicFunction                                              ;8BE3FC;
-    LDA.W #$00B4                                                         ;8BE3FF;
+    LDA.W #regional($00B4, $0084)                                        ;8BE3FF;
     STA.W CinematicFunctionTimer                                         ;8BE402;
     STZ.W PostCreditsSMIconVRAMTransferIndex                             ;8BE405;
     RTS                                                                  ;8BE408;
@@ -13127,9 +13246,13 @@ TransferPostCreditsSuperMetroidIconToVRAM:
     RTS                                                                  ;8BE459;
 
   .size:
+if !PAL == 0
     dw $0400                                                             ;8BE45A; Item percentage Japanese text
+else
+    dw $0800
+endif
   .source:
-    dl ItemPercentageJapanText                                           ;8BE45C;
+    dl ItemPercentageSubtitle                                            ;8BE45C;
     db $00                                                               ;8BE45F;
   .destination:
     dw $4800                                                             ;8BE460;
@@ -13210,10 +13333,10 @@ CinematicFunction_PostCredits_FadeToWhite:
     LDA.W #$4C00                                                         ;8BE4EC;
     STA.W CinematicBGObject_VRAMAddr                                     ;8BE4EF;
     LDX.W #$007E                                                         ;8BE4F2;
-    LDA.W #$007F                                                         ;8BE4F5;
+    LDA.W #regional($007F, $004F)                                        ;8BE4F5;
 
   .loopTilemap:
-    STA.L CinematicBGTilemap_RowsCD,X                                    ;8BE4F8;
+    STA.L CinematicBGTilemap_rowsCD,X                                    ;8BE4F8;
     DEX                                                                  ;8BE4FC;
     DEX                                                                  ;8BE4FD;
     BPL .loopTilemap                                                     ;8BE4FE;
@@ -13576,32 +13699,53 @@ TilemapValuesForDecimalDigits:
 
 
 ;;; $E769: Instruction - draw item percentage Japanese text ;;;
-Instruction_DrawItemPercentageJapanText:
+Instruction_DrawItemPercentageSubtitle:
     PHX                                                                  ;8BE769;
-    LDA.W JapanText                                                      ;8BE76A;
-    BEQ .return                                                          ;8BE76D;
+    LDA.W AltText                                                        ;8BE76A;
+    BEQ .defaultLanguage                                                 ;8BE76D;
     LDX.W #$007E                                                         ;8BE76F;
 
   .loop:
-    LDA.L Tilemap_PostCredits_ItemPercentageJapanText,X                  ;8BE772;
-    STA.L CinematicBGTilemap_Rows17_18,X                                 ;8BE776;
+    LDA.L Tilemap_PostCredits_ItemPercentageSubtitle_AltLanguage,X       ;8BE772;
+    STA.L CinematicBGTilemap_rows17_18,X                                 ;8BE776;
     DEX                                                                  ;8BE77A;
     DEX                                                                  ;8BE77B;
     BPL .loop                                                            ;8BE77C;
 
-  .return:
+if !PAL == 0
+  .defaultLanguage:
+endif
     PLX                                                                  ;8BE77E;
     RTS                                                                  ;8BE77F;
 
+if !PAL != 0
+  .defaultLanguage:
+    LDX.W #$00FE
+
+  ..loop
+    LDA.L Tilemap_PostCredits_ItemPercentageSubtitle_DefaultLanguage,X
+    STA.L CinematicBGTilemap_rows17_18,X
+    DEX
+    DEX
+    BPL ..loop
+    PLX
+    RTS
+endif
+
 
 ;;; $E780: Instruction - clear item percentage Japanese text ;;;
-Instruction_ClearItemPercentageJapanText:
+Instruction_ClearItemPercentageSubtitle:
     PHX                                                                  ;8BE780;
+if !PAL == 0
     LDX.W #$007E                                                         ;8BE781;
     LDA.W #$007F                                                         ;8BE784;
+else
+    LDX.W #$00FE
+    LDA.W #$004F
+endif
 
   .loop:
-    STA.L CinematicBGTilemap_Rows17_18,X                                 ;8BE787;
+    STA.L CinematicBGTilemap_rows17_18,X                                 ;8BE787;
     DEX                                                                  ;8BE78B;
     DEX                                                                  ;8BE78C;
     BPL .loop                                                            ;8BE78D;
@@ -13965,27 +14109,27 @@ InstList_CinematicSpriteObjects_ExplodingZebes_Zebes_0:
     dw CinematicSpriteObject_Instruction_TimerInY,$0005                  ;8BEB0F;
 
 InstList_CinematicSpriteObjects_ExplodingZebes_Zebes_1:
-    dw $000D,EndingSequenceSpritemaps_ExplodingPlanetZebesFrame1         ;8BEB13;
-    dw $000D,EndingSequenceSpritemaps_ExplodingPlanetZebesFrame2         ;8BEB17;
-    dw $000D,EndingSequenceSpritemaps_ExplodingPlanetZebesFrame3         ;8BEB1B;
-    dw $000D,EndingSequenceSpritemaps_ExplodingPlanetZebesFrame4         ;8BEB1F;
+    dw regional($000D,$000B),EndingSequenceSpritemaps_ExplodingPlanetZebesFrame1 ;8BEB13;
+    dw regional($000D,$000B),EndingSequenceSpritemaps_ExplodingPlanetZebesFrame2 ;8BEB17;
+    dw regional($000D,$000B),EndingSequenceSpritemaps_ExplodingPlanetZebesFrame3 ;8BEB1B;
+    dw regional($000D,$000B),EndingSequenceSpritemaps_ExplodingPlanetZebesFrame4 ;8BEB1F;
     dw CinematicSpriteObject_Inst_DecrementTimer_GotoYIfNonZero          ;8BEB23;
     dw InstList_CinematicSpriteObjects_ExplodingZebes_Zebes_1            ;8BEB25;
     dw Instruction_FadeOutZoomedOutExplodingZebes                        ;8BEB27;
-    dw $0020,EndingSequenceSpritemaps_ExplodingPlanetZebesFrame5         ;8BEB29;
-    dw $0020,EndingSequenceSpritemaps_ExplodingPlanetZebesFrame6         ;8BEB2D;
-    dw $0020,EndingSequenceSpritemaps_ExplodingPlanetZebesFrame7         ;8BEB31;
-    dw $0020,EndingSequenceSpritemaps_ExplodingPlanetZebesFrame8         ;8BEB35;
+    dw regional($0020, $001D),EndingSequenceSpritemaps_ExplodingPlanetZebesFrame5 ;8BEB29;
+    dw regional($0020, $001D),EndingSequenceSpritemaps_ExplodingPlanetZebesFrame6 ;8BEB2D;
+    dw regional($0020, $001D),EndingSequenceSpritemaps_ExplodingPlanetZebesFrame7 ;8BEB31;
+    dw regional($0020, $001D),EndingSequenceSpritemaps_ExplodingPlanetZebesFrame8 ;8BEB35;
     dw Instruction_CineSpriteObjectSpawnZebesExplosionSilhouette         ;8BEB39;
     dw CinematicSpriteObject_Instruction_Delete                          ;8BEB3B;
 
 
 ;;; $EB3D: Instruction list - cinematic sprite object $EEA3 (exploding Zebes - purple glow) ;;;
 InstList_CinematicSpriteObjects_ExplodingZebes_PurpleGlow:
-    dw $0010,EndingSequenceSpritemaps_ExplodingPlanetZebesGlow           ;8BEB3D;
-    dw $0010,EndingSequenceSpritemaps_ZebesSupernovaPart1                ;8BEB41;
-    dw $0010,EndingSequenceSpritemaps_ZebesSupernovaPart2                ;8BEB45;
-    dw $0010,EndingSequenceSpritemaps_ZebesSupernovaPart1                ;8BEB49;
+    dw $0010*!FPS,EndingSequenceSpritemaps_ExplodingPlanetZebesGlow      ;8BEB3D;
+    dw $0010*!FPS,EndingSequenceSpritemaps_ZebesSupernovaPart1           ;8BEB41;
+    dw $0010*!FPS,EndingSequenceSpritemaps_ZebesSupernovaPart2           ;8BEB45;
+    dw $0010*!FPS,EndingSequenceSpritemaps_ZebesSupernovaPart1           ;8BEB49;
     dw CinematicSpriteObject_Instruction_GotoY                           ;8BEB4D;
     dw InstList_CinematicSpriteObjects_ExplodingZebes_PurpleGlow         ;8BEB4F;
 
@@ -14002,8 +14146,8 @@ InstList_CinematicSpriteObjects_ExplodingZebes_Lava_0:
     dw $009C,$0000                                                       ;8BEB59;
 
 InstList_CinematicSpriteObjects_ExplodingZebes_Lava_1:
-    dw $000A,EndingSequenceSpritemaps_ExplodingPlanetZebesCoreFrame1     ;8BEB5D;
-    dw $000A,EndingSequenceSpritemaps_ExplodingPlanetZebesCoreFrame2     ;8BEB61;
+    dw $000A*!FPS,EndingSequenceSpritemaps_ExplodingPlanetZebesCoreFrame1 ;8BEB5D;
+    dw $000A*!FPS,EndingSequenceSpritemaps_ExplodingPlanetZebesCoreFrame2 ;8BEB61;
     dw CinematicSpriteObject_Instruction_GotoY                           ;8BEB65;
     dw InstList_CinematicSpriteObjects_ExplodingZebes_Lava_1             ;8BEB67;
 
@@ -14041,21 +14185,21 @@ InstList_CinematicSpriteObjects_ExplodingZebes_AfterGlow:
 
 ;;; $EB91: Instruction list - cinematic sprite object $EEC7 ('THE OPERATION WAS') ;;;
 InstList_CinematicSpriteObjects_TheOperationWas_0:
-    dw $0008,EndingSequenceSpritemaps_T                                  ;8BEB91;
-    dw $0008,EndingSequenceSpritemaps_TH                                 ;8BEB95;
-    dw $000F,EndingSequenceSpritemaps_THE                                ;8BEB99;
-    dw $0008,EndingSequenceSpritemaps_THEO                               ;8BEB9D;
-    dw $0008,EndingSequenceSpritemaps_THEOP                              ;8BEBA1;
-    dw $0008,EndingSequenceSpritemaps_THEOPE                             ;8BEBA5;
-    dw $0008,EndingSequenceSpritemaps_THEOPER                            ;8BEBA9;
-    dw $0008,EndingSequenceSpritemaps_THEOPERA                           ;8BEBAD;
-    dw $0008,EndingSequenceSpritemaps_THEOPERAT                          ;8BEBB1;
-    dw $0008,EndingSequenceSpritemaps_THEOPERATI                         ;8BEBB5;
-    dw $0008,EndingSequenceSpritemaps_THEOPERATIO                        ;8BEBB9;
-    dw $000F,EndingSequenceSpritemaps_THEOPERATION                       ;8BEBBD;
-    dw $0008,EndingSequenceSpritemaps_THEOPERATIONW                      ;8BEBC1;
-    dw $0008,EndingSequenceSpritemaps_THEOPERATIONWA                     ;8BEBC5;
-    dw $000F,EndingSequenceSpritemaps_THEOPERATIONWAS                    ;8BEBC9;
+    dw $0008*!FPS,EndingSequenceSpritemaps_T                             ;8BEB91;
+    dw $0008*!FPS,EndingSequenceSpritemaps_TH                            ;8BEB95;
+    dw $000F*!FPS,EndingSequenceSpritemaps_THE                           ;8BEB99;
+    dw $0008*!FPS,EndingSequenceSpritemaps_THEO                          ;8BEB9D;
+    dw $0008*!FPS,EndingSequenceSpritemaps_THEOP                         ;8BEBA1;
+    dw $0008*!FPS,EndingSequenceSpritemaps_THEOPE                        ;8BEBA5;
+    dw $0008*!FPS,EndingSequenceSpritemaps_THEOPER                       ;8BEBA9;
+    dw $0008*!FPS,EndingSequenceSpritemaps_THEOPERA                      ;8BEBAD;
+    dw $0008*!FPS,EndingSequenceSpritemaps_THEOPERAT                     ;8BEBB1;
+    dw $0008*!FPS,EndingSequenceSpritemaps_THEOPERATI                    ;8BEBB5;
+    dw $0008*!FPS,EndingSequenceSpritemaps_THEOPERATIO                   ;8BEBB9;
+    dw $000F*!FPS,EndingSequenceSpritemaps_THEOPERATION                  ;8BEBBD;
+    dw $0008*!FPS,EndingSequenceSpritemaps_THEOPERATIONW                 ;8BEBC1;
+    dw $0008*!FPS,EndingSequenceSpritemaps_THEOPERATIONWA                ;8BEBC5;
+    dw $000F*!FPS,EndingSequenceSpritemaps_THEOPERATIONWAS               ;8BEBC9;
     dw Instruction_CinematicSpriteObject_SpawnCompletedSuccessfully      ;8BEBCD;
 
 InstList_CinematicSpriteObjects_TheOperationWas_1:
@@ -14066,27 +14210,27 @@ InstList_CinematicSpriteObjects_TheOperationWas_1:
 
 ;;; $EBD7: Instruction list - cinematic sprite object $EECD ('COMPLETED SUCCESSFULLY') ;;;
 InstList_CinematicSpriteObjects_CompletedSuccessfully_0:
-    dw $0008,EndingSequenceSpritemaps_C_ompleted                         ;8BEBD7;
-    dw $0008,EndingSequenceSpritemaps_CO                                 ;8BEBDB;
-    dw $0008,EndingSequenceSpritemaps_COM                                ;8BEBDF;
-    dw $0008,EndingSequenceSpritemaps_COMP                               ;8BEBE3;
-    dw $0008,EndingSequenceSpritemaps_COMPL                              ;8BEBE7;
-    dw $0008,EndingSequenceSpritemaps_COMPLE                             ;8BEBEB;
-    dw $0008,EndingSequenceSpritemaps_COMPLET                            ;8BEBEF;
-    dw $0008,EndingSequenceSpritemaps_COMPLETE                           ;8BEBF3;
-    dw $000F,EndingSequenceSpritemaps_COMPLETED                          ;8BEBF7;
-    dw $0008,EndingSequenceSpritemaps_COMPLETEDS                         ;8BEBFB;
-    dw $0008,EndingSequenceSpritemaps_COMPLETEDSU                        ;8BEBFF;
-    dw $0008,EndingSequenceSpritemaps_COMPLETEDSUC                       ;8BEC03;
-    dw $0008,EndingSequenceSpritemaps_COMPLETEDSUCC                      ;8BEC07;
-    dw $0008,EndingSequenceSpritemaps_COMPLETEDSUCCE                     ;8BEC0B;
-    dw $0008,EndingSequenceSpritemaps_COMPLETEDSUCCES                    ;8BEC0F;
-    dw $0008,EndingSequenceSpritemaps_COMPLETEDSUCCESS                   ;8BEC13;
-    dw $0008,EndingSequenceSpritemaps_COMPLETEDSUCCESSF                  ;8BEC17;
-    dw $0008,EndingSequenceSpritemaps_COMPLETEDSUCCESSFU                 ;8BEC1B;
-    dw $0008,EndingSequenceSpritemaps_COMPLETEDSUCCESSFUL                ;8BEC1F;
-    dw $0008,EndingSequenceSpritemaps_COMPLETEDSUCCESSFULL               ;8BEC23;
-    dw $000F,EndingSequenceSpritemaps_COMPLETEDSUCCESSFULLY              ;8BEC27;
+    dw $0008*!FPS,EndingSequenceSpritemaps_C_ompleted                    ;8BEBD7;
+    dw $0008*!FPS,EndingSequenceSpritemaps_CO                            ;8BEBDB;
+    dw $0008*!FPS,EndingSequenceSpritemaps_COM                           ;8BEBDF;
+    dw $0008*!FPS,EndingSequenceSpritemaps_COMP                          ;8BEBE3;
+    dw $0008*!FPS,EndingSequenceSpritemaps_COMPL                         ;8BEBE7;
+    dw $0008*!FPS,EndingSequenceSpritemaps_COMPLE                        ;8BEBEB;
+    dw $0008*!FPS,EndingSequenceSpritemaps_COMPLET                       ;8BEBEF;
+    dw $0008*!FPS,EndingSequenceSpritemaps_COMPLETE                      ;8BEBF3;
+    dw $000F*!FPS,EndingSequenceSpritemaps_COMPLETED                     ;8BEBF7;
+    dw $0008*!FPS,EndingSequenceSpritemaps_COMPLETEDS                    ;8BEBFB;
+    dw $0008*!FPS,EndingSequenceSpritemaps_COMPLETEDSU                   ;8BEBFF;
+    dw $0008*!FPS,EndingSequenceSpritemaps_COMPLETEDSUC                  ;8BEC03;
+    dw $0008*!FPS,EndingSequenceSpritemaps_COMPLETEDSUCC                 ;8BEC07;
+    dw $0008*!FPS,EndingSequenceSpritemaps_COMPLETEDSUCCE                ;8BEC0B;
+    dw $0008*!FPS,EndingSequenceSpritemaps_COMPLETEDSUCCES               ;8BEC0F;
+    dw $0008*!FPS,EndingSequenceSpritemaps_COMPLETEDSUCCESS              ;8BEC13;
+    dw $0008*!FPS,EndingSequenceSpritemaps_COMPLETEDSUCCESSF             ;8BEC17;
+    dw $0008*!FPS,EndingSequenceSpritemaps_COMPLETEDSUCCESSFU            ;8BEC1B;
+    dw $0008*!FPS,EndingSequenceSpritemaps_COMPLETEDSUCCESSFUL           ;8BEC1F;
+    dw $0008*!FPS,EndingSequenceSpritemaps_COMPLETEDSUCCESSFULL          ;8BEC23;
+    dw $000F*!FPS,EndingSequenceSpritemaps_COMPLETEDSUCCESSFULLY         ;8BEC27;
     dw Instruction_CinematicSpriteObject_SpawnClearTime                  ;8BEC2B;
 
 InstList_CinematicSpriteObjects_CompletedSuccessfully_1:
@@ -14097,23 +14241,23 @@ InstList_CinematicSpriteObjects_CompletedSuccessfully_1:
 
 ;;; $EC35: Instruction list - cinematic sprite object $EEFD (clear time) ;;;
 InstList_CinematicSpriteObjects_ClearTime_0:
-    dw $0008,EndingSequenceSpritemaps_C_lear                             ;8BEC35;
-    dw $0008,EndingSequenceSpritemaps_CL                                 ;8BEC39;
-    dw $0008,EndingSequenceSpritemaps_CLE                                ;8BEC3D;
-    dw $0008,EndingSequenceSpritemaps_CLEA                               ;8BEC41;
-    dw $000F,EndingSequenceSpritemaps_CLEAR                              ;8BEC45;
-    dw $0008,EndingSequenceSpritemaps_CLEART                             ;8BEC49;
-    dw $0008,EndingSequenceSpritemaps_CLEARTI                            ;8BEC4D;
-    dw $0008,EndingSequenceSpritemaps_CLEARTIM                           ;8BEC51;
-    dw $000F,EndingSequenceSpritemaps_CLEARTIME                          ;8BEC55;
+    dw $0008*!FPS,EndingSequenceSpritemaps_C_lear                        ;8BEC35;
+    dw $0008*!FPS,EndingSequenceSpritemaps_CL                            ;8BEC39;
+    dw $0008*!FPS,EndingSequenceSpritemaps_CLE                           ;8BEC3D;
+    dw $0008*!FPS,EndingSequenceSpritemaps_CLEA                          ;8BEC41;
+    dw $000F*!FPS,EndingSequenceSpritemaps_CLEAR                         ;8BEC45;
+    dw $0008*!FPS,EndingSequenceSpritemaps_CLEART                        ;8BEC49;
+    dw $0008*!FPS,EndingSequenceSpritemaps_CLEARTI                       ;8BEC4D;
+    dw $0008*!FPS,EndingSequenceSpritemaps_CLEARTIM                      ;8BEC51;
+    dw $000F*!FPS,EndingSequenceSpritemaps_CLEARTIME                     ;8BEC55;
     dw Instruction_CineSpriteObject_SpawnClearTime_Hours_TensDigit       ;8BEC59;
-    dw $0008,EndingSequenceSpritemaps_CLEARTIME                          ;8BEC5B;
+    dw $0008*!FPS,EndingSequenceSpritemaps_CLEARTIME                     ;8BEC5B;
     dw Instruction_CineSpriteObject_SpawnClearTime_Hours_OnesDigit       ;8BEC5F;
-    dw $0008,EndingSequenceSpritemaps_CLEARTIME                          ;8BEC61;
+    dw $0008*!FPS,EndingSequenceSpritemaps_CLEARTIME                     ;8BEC61;
     dw Instruction_CinematicSpriteObject_SpawnClearTime_Colon            ;8BEC65;
-    dw $0008,EndingSequenceSpritemaps_CLEARTIME                          ;8BEC67;
+    dw $0008*!FPS,EndingSequenceSpritemaps_CLEARTIME                     ;8BEC67;
     dw Inst_CineSpriteObject_SpawnClearTime_Minutes_TensDigit            ;8BEC6B;
-    dw $0008,EndingSequenceSpritemaps_CLEARTIME                          ;8BEC6D;
+    dw $0008*!FPS,EndingSequenceSpritemaps_CLEARTIME                     ;8BEC6D;
     dw Inst_CineSpriteObject_SpawnClearTime_Minutes_OnesDigit            ;8BEC71;
     dw $0080,EndingSequenceSpritemaps_CLEARTIME                          ;8BEC73;
     dw Instruction_CinematicSpriteObject_TransitionToCredits             ;8BEC77;
@@ -14251,38 +14395,38 @@ InstList_CinematicSpriteObject_SuitlessSamus_Idle_Legs:
 
 ;;; $ED2D: Instruction list - cinematic sprite object $EF33 (suitless Samus - letting hair down) ;;;
 InstList_CinematicSpriteObject_SuitlessSamus_LettingHairDown:
-    dw $005A,EndingSequenceSpritemaps_SuitlessSamusStandingArmsStraight  ;8BED2D;
-    dw $0008,EndingSequenceSpritemaps_SuitlessSamusOpeningHairFrame1     ;8BED31;
-    dw $000A,EndingSequenceSpritemaps_SuitlessSamusOpeningHairFrame2     ;8BED35;
-    dw $000A,EndingSequenceSpritemaps_SuitlessSamusOpeningHairFrame3     ;8BED39;
-    dw $0020,EndingSequenceSpritemaps_SuitlessSamusOpeningHairFrame4     ;8BED3D;
-    dw $000A,EndingSequenceSpritemaps_SuitlessSamusOpeningHairFrame5     ;8BED41;
-    dw $0009,EndingSequenceSpritemaps_SuitlessSamusOpeningHairFrame6     ;8BED45;
-    dw $0010,EndingSequenceSpritemaps_SuitlessSamusOpeningHairFrame7     ;8BED49;
-    dw $000A,EndingSequenceSpritemaps_SuitlessSamusOpeningHairFrame8     ;8BED4D;
-    dw $0030,EndingSequenceSpritemaps_SuitlessSamusStanding              ;8BED51;
+    dw regional($005A, $0048),EndingSequenceSpritemaps_SuitlessSamusStandingArmsStraight ;8BED2D;
+    dw $0008*!FPS,EndingSequenceSpritemaps_SuitlessSamusOpeningHairFrame1 ;8BED31;
+    dw $000A*!FPS,EndingSequenceSpritemaps_SuitlessSamusOpeningHairFrame2 ;8BED35;
+    dw $000A*!FPS,EndingSequenceSpritemaps_SuitlessSamusOpeningHairFrame3 ;8BED39;
+    dw regional($0020, $0019),EndingSequenceSpritemaps_SuitlessSamusOpeningHairFrame4 ;8BED3D;
+    dw $000A*!FPS,EndingSequenceSpritemaps_SuitlessSamusOpeningHairFrame5 ;8BED41;
+    dw $0009*!FPS,EndingSequenceSpritemaps_SuitlessSamusOpeningHairFrame6 ;8BED45;
+    dw regional($0010, $000C),EndingSequenceSpritemaps_SuitlessSamusOpeningHairFrame7 ;8BED49;
+    dw $000A*!FPS,EndingSequenceSpritemaps_SuitlessSamusOpeningHairFrame8 ;8BED4D;
+    dw regional($0030, $0026),EndingSequenceSpritemaps_SuitlessSamusStanding ;8BED51;
     dw Instruction_CinematicSpriteObject_SpawnSuitlessSamusJump          ;8BED55;
     dw CinematicSpriteObject_Instruction_Delete                          ;8BED57;
 
 
 ;;; $ED59: Instruction list - cinematic sprite object $EF39 (suitless Samus - letting hair down - legs) ;;;
 InstList_CineSpriteObject_SuitlessSamus_LettingHairDown_Legs:
-    dw $005A,EndingSequenceSpritemaps_SuitlessSamusLowerBody             ;8BED59;
-    dw $0008,EndingSequenceSpritemaps_SuitlessSamusLowerBody             ;8BED5D;
-    dw $000A,EndingSequenceSpritemaps_SuitlessSamusLowerBody             ;8BED61;
-    dw $000A,EndingSequenceSpritemaps_SuitlessSamusLowerBody             ;8BED65;
-    dw $0020,EndingSequenceSpritemaps_SuitlessSamusLowerBody             ;8BED69;
-    dw $000A,EndingSequenceSpritemaps_SuitlessSamusLowerBody             ;8BED6D;
-    dw $0009,EndingSequenceSpritemaps_SuitlessSamusLowerBody             ;8BED71;
-    dw $0010,EndingSequenceSpritemaps_SuitlessSamusLowerBody             ;8BED75;
-    dw $000A,EndingSequenceSpritemaps_SuitlessSamusLowerBody             ;8BED79;
+    dw regional($005A, $0048),EndingSequenceSpritemaps_SuitlessSamusLowerBody ;8BED59;
+    dw $0008*!FPS,EndingSequenceSpritemaps_SuitlessSamusLowerBody        ;8BED5D;
+    dw $000A*!FPS,EndingSequenceSpritemaps_SuitlessSamusLowerBody        ;8BED61;
+    dw $000A*!FPS,EndingSequenceSpritemaps_SuitlessSamusLowerBody        ;8BED65;
+    dw regional($0020, $0019),EndingSequenceSpritemaps_SuitlessSamusLowerBody ;8BED69;
+    dw $000A*!FPS,EndingSequenceSpritemaps_SuitlessSamusLowerBody        ;8BED6D;
+    dw $0009*!FPS,EndingSequenceSpritemaps_SuitlessSamusLowerBody        ;8BED71;
+    dw regional($0010, $000C),EndingSequenceSpritemaps_SuitlessSamusLowerBody ;8BED75;
+    dw $000A*!FPS,EndingSequenceSpritemaps_SuitlessSamusLowerBody        ;8BED79;
     dw CinematicSpriteObject_Instruction_Delete                          ;8BED7D;
 
 
 ;;; $ED7F: Instruction list - cinematic sprite object $EF3F (suitless Samus - jump) ;;;
 InstList_CinematicSpriteObject_SuitlessSamus_Jump_0:
-    dw $0030,EndingSequenceSpritemaps_SuitlessSamusStanding              ;8BED7F;
-    dw $000A,EndingSequenceSpritemaps_SuitlessSamusPreparingToJump       ;8BED83;
+    dw regional($0030, $0026),EndingSequenceSpritemaps_SuitlessSamusStanding ;8BED7F;
+    dw $000A*!FPS,EndingSequenceSpritemaps_SuitlessSamusPreparingToJump  ;8BED83;
     dw Instruction_CinematicSpriteObject_MakeEndingSamusJump             ;8BED87;
     dw CinematicSpriteObject_Instruction_PreInstructionY                 ;8BED89;
     dw Inst_CineSpriteObject_SpawnSuitlessSamus_LettingHairDown          ;8BED8B;
@@ -14302,11 +14446,11 @@ InstList_Samus_Jump_Falling:
 
 ;;; $ED9D: Instruction list - Samus - jump - landed ;;;
 InstList_Samus_Jump_Landed:
-    dw $000A,EndingSequenceSpritemaps_SamusLanding                       ;8BED9D;
-    dw $0010,EndingSequenceSpritemaps_SamusLanded                        ;8BEDA1;
-    dw $0030,EndingSequenceSpritemaps_SamusShooting                      ;8BEDA5;
+    dw $000A*!FPS,EndingSequenceSpritemaps_SamusLanding                  ;8BED9D;
+    dw regional($0010, $000C),EndingSequenceSpritemaps_SamusLanded       ;8BEDA1;
+    dw regional($0030, $0026),EndingSequenceSpritemaps_SamusShooting     ;8BEDA5;
     dw Instruction_CinematicSpriteObject_SamusShootsScreen               ;8BEDA9;
-    dw $0080,EndingSequenceSpritemaps_SamusShooting                      ;8BEDAB;
+    dw regional($0080, $0066),EndingSequenceSpritemaps_SamusShooting     ;8BEDAB;
     dw CinematicSpriteObject_Instruction_Delete                          ;8BEDAF;
 
 
@@ -14333,50 +14477,50 @@ InstList_CinematicSpriteObject_SuitedSamus_Head:
 
 ;;; $EDC9: Instruction list - cinematic sprite object $EF57 (suited Samus - thumbs up - body) ;;;
 InstList_CinematicSpriteObject_SuitedSamus_ThumbsUp_Body:
-    dw $0040,EndingSequenceSpritemaps_LargeSamusFromEndingStanding       ;8BEDC9;
-    dw $0108,EndingSequenceSpritemaps_HeadlessArmlessSuitedSamus         ;8BEDCD;
+    dw regional($0040, $0033),EndingSequenceSpritemaps_LargeSamusFromEndingStanding ;8BEDC9;
+    dw regional($0108, $00D0),EndingSequenceSpritemaps_HeadlessArmlessSuitedSamus ;8BEDCD;
     dw CinematicSpriteObject_Instruction_Delete                          ;8BEDD1;
 
 
 ;;; $EDD3: Instruction list - cinematic sprite object $EF5D (suited Samus - thumbs up - arm) ;;;
 InstList_CinematicSpriteObject_SuitedSamus_ThumbsUp_Arm:
-    dw $0040,$0000                                                       ;8BEDD3;
-    dw $0008,EndingSequenceSpritemaps_SamusArmFromEndingFrame1           ;8BEDD7;
-    dw $0008,EndingSequenceSpritemaps_SamusArmFromEndingFrame2           ;8BEDDB;
-    dw $0005,EndingSequenceSpritemaps_SamusArmFromEndingFrame3           ;8BEDDF;
-    dw $0004,EndingSequenceSpritemaps_SamusArmFromEndingFrame4           ;8BEDE3;
-    dw $0003,EndingSequenceSpritemaps_SamusArmFromEndingFrame5           ;8BEDE7;
-    dw $0020,EndingSequenceSpritemaps_SamusArmFromEndingFrame6           ;8BEDEB;
-    dw $0008,EndingSequenceSpritemaps_SamusArmFromEndingFrame7           ;8BEDEF;
-    dw $0040,EndingSequenceSpritemaps_SamusArmFromEndingFrame8           ;8BEDF3;
-    dw $0005,EndingSequenceSpritemaps_SamusArmFromEndingFrame6           ;8BEDF7;
-    dw $0005,EndingSequenceSpritemaps_SamusArmFromEndingFrame5           ;8BEDFB;
-    dw $0005,EndingSequenceSpritemaps_SamusArmFromEndingFrame4           ;8BEDFF;
-    dw $0005,EndingSequenceSpritemaps_SamusArmFromEndingFrame3           ;8BEE03;
-    dw $0070,EndingSequenceSpritemaps_SamusArmFromEndingFrame2           ;8BEE07;
+    dw regional($0040, $0033),$0000                                      ;8BEDD3;
+    dw $0008*!FPS,EndingSequenceSpritemaps_SamusArmFromEndingFrame1      ;8BEDD7;
+    dw $0008*!FPS,EndingSequenceSpritemaps_SamusArmFromEndingFrame2      ;8BEDDB;
+    dw $0005*!FPS,EndingSequenceSpritemaps_SamusArmFromEndingFrame3      ;8BEDDF;
+    dw $0004*!FPS,EndingSequenceSpritemaps_SamusArmFromEndingFrame4      ;8BEDE3;
+    dw $0003*!FPS,EndingSequenceSpritemaps_SamusArmFromEndingFrame5      ;8BEDE7;
+    dw regional($0020, $0019),EndingSequenceSpritemaps_SamusArmFromEndingFrame6 ;8BEDEB;
+    dw $0008*!FPS,EndingSequenceSpritemaps_SamusArmFromEndingFrame7      ;8BEDEF;
+    dw regional($0040, $0033),EndingSequenceSpritemaps_SamusArmFromEndingFrame8 ;8BEDF3;
+    dw $0005*!FPS,EndingSequenceSpritemaps_SamusArmFromEndingFrame6      ;8BEDF7;
+    dw $0005*!FPS,EndingSequenceSpritemaps_SamusArmFromEndingFrame5      ;8BEDFB;
+    dw $0005*!FPS,EndingSequenceSpritemaps_SamusArmFromEndingFrame4      ;8BEDFF;
+    dw $0005*!FPS,EndingSequenceSpritemaps_SamusArmFromEndingFrame3      ;8BEE03;
+    dw regional($0070, $0059),EndingSequenceSpritemaps_SamusArmFromEndingFrame2 ;8BEE07;
     dw Instruction_CinematicSpriteObject_SpawnSuitedSamusJump            ;8BEE0B;
     dw CinematicSpriteObject_Instruction_Delete                          ;8BEE0D;
 
 
 ;;; $EE0F: Instruction list - cinematic sprite object $EF63 (suited Samus - thumbs up - head - with helmet) ;;;
 InstList_CineSpriteObject_SuitedSamus_ThumbsUp_Head_Helmet:
-    dw $0148,EndingSequenceSpritemaps_SamusHeadWithHelmetFromEnding      ;8BEE0F;
+    dw regional($0148, $0103),EndingSequenceSpritemaps_SamusHeadWithHelmetFromEnding ;8BEE0F;
     dw CinematicSpriteObject_Instruction_Delete                          ;8BEE13;
 
 
 ;;; $EE15: Instruction list - cinematic sprite object $EF69 (suited Samus - thumbs up - head - without helmet) ;;;
 InstList_CinematicSpriteObject_SuitedSamus_ThumbsUp_Head:
-    dw $0080,EndingSequenceSpritemaps_SamusHeadFromEndingFrame1          ;8BEE15;
-    dw $0005,EndingSequenceSpritemaps_SamusHeadFromEndingFrame2          ;8BEE19;
-    dw $0005,EndingSequenceSpritemaps_SamusHeadFromEndingFrame3          ;8BEE1D;
-    dw $00BE,EndingSequenceSpritemaps_SamusHeadFromEndingFrame4          ;8BEE21;
+    dw regional($0080, $0066),EndingSequenceSpritemaps_SamusHeadFromEndingFrame1 ;8BEE15;
+    dw $0005*!FPS,EndingSequenceSpritemaps_SamusHeadFromEndingFrame2     ;8BEE19;
+    dw $0005*!FPS,EndingSequenceSpritemaps_SamusHeadFromEndingFrame3     ;8BEE1D;
+    dw regional($00BE, $0095),EndingSequenceSpritemaps_SamusHeadFromEndingFrame4 ;8BEE21;
     dw CinematicSpriteObject_Instruction_Delete                          ;8BEE25;
 
 
 ;;; $EE27: Instruction list - cinematic sprite object $EF6F (suited Samus - jump - body) ;;;
 InstList_CinematicSpriteObject_SuitedSamus_Jump_Body_0:
     dw Instruction_CineSpriteObject_PositionSuitedHeadToPrepareJump      ;8BEE27;
-    dw $000A,EndingSequenceSpritemaps_LargeSamusFromEndingPreparingToJump ;8BEE29;
+    dw $000A*!FPS,EndingSequenceSpritemaps_LargeSamusFromEndingPreparingToJump ;8BEE29;
     dw Instruction_CinematicSpriteObject_PositionSamusHeadToJump         ;8BEE2D;
     dw Instruction_CinematicSpriteObject_MakeEndingSamusJump             ;8BEE2F;
     dw CinematicSpriteObject_Instruction_PreInstructionY                 ;8BEE31;
@@ -14390,7 +14534,7 @@ InstList_CinematicSpriteObject_SuitedSamus_Jump_Body_1:
 
 ;;; $EE3D: Instruction list - cinematic sprite object $EF75 (suited Samus - jump - head - with helmet) ;;;
 InstList_CineSpriteObject_SuitedSamus_Jump_Head_Helmet_0:
-    dw $000A,EndingSequenceSpritemaps_LargeSamusHelmetFromEndingFrame1   ;8BEE3D;
+    dw $000A*!FPS,EndingSequenceSpritemaps_LargeSamusHelmetFromEndingFrame1 ;8BEE3D;
     dw CinematicSpriteObject_Instruction_PreInstructionY                 ;8BEE41;
     dw PreInst_CinematicSpriteObject_SuitedSamus_Jump_Head_Jumping       ;8BEE43;
 
@@ -14402,7 +14546,7 @@ InstList_CineSpriteObject_SuitedSamus_Jump_Head_Helmet_1:
 
 ;;; $EE4D: Instruction list - cinematic sprite object $EF7B (suited Samus - jump - head - without helmet) ;;;
 InstList_CinematicSpriteObject_SuitedSamus_Jump_Head_0:
-    dw $000A,EndingSequenceSpritemaps_JumpingSamusHeadFromEnding         ;8BEE4D;
+    dw $000A*!FPS,EndingSequenceSpritemaps_JumpingSamusHeadFromEnding         ;8BEE4D;
     dw CinematicSpriteObject_Instruction_PreInstructionY                 ;8BEE51;
     dw PreInst_CinematicSpriteObject_SuitedSamus_Jump_Head_Jumping       ;8BEE53;
 
@@ -14428,10 +14572,10 @@ InstList_CinematicSpriteObject_SuperMetroidIcon_S_BottomHalf:
 
 ;;; $EE6D: Instruction list - cinematic sprite object $EF8D (Super Metroid icon - circle - top half) ;;;
 InstList_CineSpriteObject_SuperMetroidIcon_Circle_TopHalf_0:
-    dw $0060,$0000                                                       ;8BEE6D;
-    dw $0005,EndingSequenceSpritemaps_ScrewAttackSymbolRightWrapFrame1   ;8BEE71;
-    dw $0005,EndingSequenceSpritemaps_ScrewAttackSymbolRightWrapFrame2   ;8BEE75;
-    dw $0040,EndingSequenceSpritemaps_ScrewAttackSymbolRightWrapFrame3   ;8BEE79;
+    dw regional($0060, $004C),$0000                                      ;8BEE6D;
+    dw $0005*!FPS,EndingSequenceSpritemaps_ScrewAttackSymbolRightWrapFrame1 ;8BEE71;
+    dw $0005*!FPS,EndingSequenceSpritemaps_ScrewAttackSymbolRightWrapFrame2 ;8BEE75;
+    dw regional($0040, $0033),EndingSequenceSpritemaps_ScrewAttackSymbolRightWrapFrame3 ;8BEE79;
     dw Instruction_GreyOutSuperMetroidIcon                               ;8BEE7D;
 
 InstList_CineSpriteObject_SuperMetroidIcon_Circle_TopHalf_1:
@@ -14442,12 +14586,12 @@ InstList_CineSpriteObject_SuperMetroidIcon_Circle_TopHalf_1:
 
 ;;; $EE87: Instruction list - cinematic sprite object $EF93 (Super Metroid icon - circle - bottom half) ;;;
 InstList_CineSpriteObject_SuperMetroidIcon_Circle_BotHalf_0:
-    dw $0060,$0000                                                       ;8BEE87;
-    dw $0005,EndingSequenceSpritemaps_ScrewAttackSymbolLeftWrapFrame1    ;8BEE8B;
-    dw $0005,EndingSequenceSpritemaps_ScrewAttackSymbolLeftWrapFrame2    ;8BEE8F;
+    dw regional($0060, $004C),$0000                                      ;8BEE87;
+    dw $0005*!FPS,EndingSequenceSpritemaps_ScrewAttackSymbolLeftWrapFrame1 ;8BEE8B;
+    dw $0005*!FPS,EndingSequenceSpritemaps_ScrewAttackSymbolLeftWrapFrame2 ;8BEE8F;
 
 InstList_CineSpriteObject_SuperMetroidIcon_Circle_BotHalf_1:
-    dw $0005,EndingSequenceSpritemaps_ScrewAttackSymbolLeftWrapFrame3    ;8BEE93;
+    dw $0005*!FPS,EndingSequenceSpritemaps_ScrewAttackSymbolLeftWrapFrame3    ;8BEE93;
     dw CinematicSpriteObject_Instruction_GotoY                           ;8BEE97;
     dw InstList_CineSpriteObject_SuperMetroidIcon_Circle_BotHalf_1       ;8BEE99;
 
@@ -15441,7 +15585,7 @@ PreInstruction_CineSpriteObject_YellowClouds_Bottom_Moving:
 ;;; $F49B: Pre-instruction - cinematic sprite object $EEEB (yellow clouds - right) ;;;
 PreInstruction_CinematicSpriteObject_YellowClouds_Right:
     LDA.W Mode7TransformationZoomLevel                                   ;8BF49B;
-    CMP.W #$0060                                                         ;8BF49E;
+    CMP.W #regional($0060, $0038)                                        ;8BF49E;
     BMI .return                                                          ;8BF4A1;
     LDA.W #PreInstruction_CineSpriteObject_YellowClouds_Right_Moving     ;8BF4A3;
     STA.W CinematicSpriteObject_PreInstructions,X                        ;8BF4A6;
@@ -15472,7 +15616,7 @@ PreInstruction_CineSpriteObject_YellowClouds_Right_Moving:
 ;;; $F4D1: Pre-instruction - cinematic sprite object $EEF1 (yellow clouds - left) ;;;
 PreInstruction_CinematicSpriteObject_YellowClouds_Left:
     LDA.W Mode7TransformationZoomLevel                                   ;8BF4D1;
-    CMP.W #$0060                                                         ;8BF4D4;
+    CMP.W #regional($0060, $0038)                                        ;8BF4D4;
     BMI .return                                                          ;8BF4D7;
     LDA.W #PreInstruction_CineSpriteObject_YellowClouds_Left_Moving      ;8BF4D9;
     STA.W CinematicSpriteObject_PreInstructions,X                        ;8BF4DC;
@@ -15693,7 +15837,7 @@ Instruction_CinematicSpriteObject_SamusShootsScreen:
 ;;; $F651: Instruction - make ending Samus jump ;;;
 Instruction_CinematicSpriteObject_MakeEndingSamusJump:
     STZ.W SamusYSubSpeed                                                 ;8BF651;
-    LDA.W #$FFF0                                                         ;8BF654;
+    LDA.W #-$0010*!SPF                                                   ;8BF654;
     STA.W SamusYSpeed                                                    ;8BF657;
     RTS                                                                  ;8BF65A;
 
@@ -15702,7 +15846,7 @@ Instruction_CinematicSpriteObject_MakeEndingSamusJump:
 MoveJumpingEndingSamus:
     LDA.W SamusYSubSpeed                                                 ;8BF65B;
     CLC                                                                  ;8BF65E;
-    ADC.W #$3800                                                         ;8BF65F;
+    ADC.W #$380*!SPF*$10                                                 ;8BF65F;
     STA.W SamusYSubSpeed                                                 ;8BF662;
     LDA.W SamusYSpeed                                                    ;8BF665;
     ADC.W #$0000                                                         ;8BF668;
@@ -15824,7 +15968,11 @@ CinematicBGObjectDefinitions_PostCredits_ItemPercentage:
 if !DEBUG
 ;;; $F754: Debug. Version string ;;;
 Debug_VersionString:
+if !PAL == 0
     db "02.02.21.30", $00                                                ;8BF754;
+else
+    db "03.30.10.00", $00
+endif
 endif
 
 

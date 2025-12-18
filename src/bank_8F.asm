@@ -5902,7 +5902,7 @@ RoomState_PostCrocPowerBombs:                                            ;8FAAEB
     %specialXray(0),
     %mainASM(0),
     %PLMPop(PLMPopulation_PostCrocPowerBombs),
-    %libraryBG(LibBG_Norfair_9_A_CavernStalagtites),
+    %libraryBG(LibBG_Norfair_9_A_CavernStalactites),
     %setupASM(RTS_8F91F6))
 
 RoomDoors_PostCrocPowerBombs:
@@ -5968,7 +5968,7 @@ RoomState_PostCrocMissile:                                               ;8FAB48
     %specialXray(0),
     %mainASM(0),
     %PLMPop(PLMPopulation_PostCrocMissile),
-    %libraryBG(LibBG_Norfair_9_A_CavernStalagtites),
+    %libraryBG(LibBG_Norfair_9_A_CavernStalactites),
     %setupASM(RTS_8F91F6))
 
 RoomDoors_PostCrocMissile:
@@ -6098,7 +6098,7 @@ RoomState_GrappleTutorial1:                                              ;8FAC0D
     %specialXray(0),
     %mainASM(0),
     %PLMPop(PLMPopulation_GrappleTutorial1),
-    %libraryBG(LibBG_Norfair_9_A_CavernStalagtites),
+    %libraryBG(LibBG_Norfair_9_A_CavernStalactites),
     %setupASM(RTS_8F91F6))
 
 RoomDoors_GrappleTutorial1:
@@ -6425,7 +6425,7 @@ RoomState_WaveBeam:                                                      ;8FADEB
     %specialXray(0),
     %mainASM(0),
     %PLMPop(PLMPopulation_WaveBeam),
-    %libraryBG(LibBG_Norfair_9_A_CavernStalagtites),
+    %libraryBG(LibBG_Norfair_9_A_CavernStalactites),
     %setupASM(RTS_8F91F6))
 
 RoomDoors_WaveBeam:
@@ -6455,7 +6455,7 @@ RoomState_SpikyPlatformsTunnel:                                          ;8FAE14
     %specialXray(0),
     %mainASM(0),
     %PLMPop(PLMPopulation_SpikyPlatformsTunnel),
-    %libraryBG(LibBG_Norfair_9_A_CavernStalagtites),
+    %libraryBG(LibBG_Norfair_9_A_CavernStalactites),
     %setupASM(RTS_8F91F6))
 
 RoomDoors_SpikyPlatformsTunnel:
@@ -6577,7 +6577,7 @@ RoomState_MagdolliteTunnel:                                              ;8FAEC1
     %specialXray(0),
     %mainASM(0),
     %PLMPop(PLMPopulation_MagdolliteTunnel),
-    %libraryBG(LibBG_Norfair_9_A_CavernStalagtites),
+    %libraryBG(LibBG_Norfair_9_A_CavernStalactites),
     %setupASM(RTS_8F91F6))
 
 RoomDoors_MagdolliteTunnel:
@@ -6677,7 +6677,7 @@ RoomState_LowerNorfairElev:                                              ;8FAF4C
     %specialXray(0),
     %mainASM(0),
     %PLMPop(PLMPopulation_LowerNorfairElev),
-    %libraryBG(LibBG_Norfair_9_A_CavernStalagtites),
+    %libraryBG(LibBG_Norfair_9_A_CavernStalactites),
     %setupASM(RTS_8F91F6))
 
 RoomDoors_LowerNorfairElev:
@@ -6751,7 +6751,7 @@ RoomState_RisingTide:                                                    ;8FAFB0
     %specialXray(0),
     %mainASM(0),
     %PLMPop(PLMPopulation_RisingTide),
-    %libraryBG(LibBG_Norfair_9_A_CavernStalagtites),
+    %libraryBG(LibBG_Norfair_9_A_CavernStalactites),
     %setupASM(RTS_8F91F6))
 
 RoomDoors_RisingTide:
@@ -6782,7 +6782,7 @@ RoomState_AcidSnakesTunnel:                                              ;8FAFDB
     %specialXray(0),
     %mainASM(0),
     %PLMPop(PLMPopulation_AcidSnakesTunnel),
-    %libraryBG(LibBG_Norfair_9_A_CavernStalagtites),
+    %libraryBG(LibBG_Norfair_9_A_CavernStalactites),
     %setupASM(RTS_8F91F6))
 
 RoomDoors_AcidSnakesTunnel:
@@ -6814,7 +6814,7 @@ RoomState_SpikyAcidSnakesTunnel:                                         ;8FB008
     %specialXray(0),
     %mainASM(0),
     %PLMPop(PLMPopulation_SpikyAcidSnakesTunnel),
-    %libraryBG(LibBG_Norfair_9_A_CavernStalagtites),
+    %libraryBG(LibBG_Norfair_9_A_CavernStalactites),
     %setupASM(RTS_8F91F6))
 
 RoomDoors_SpikyAcidSnakesTunnel:
@@ -6834,7 +6834,7 @@ RoomHeader_UpperNorfairRefill:                                           ;8FB026
 
 RoomState_UpperNorfairRefill:                                            ;8FB033;
     %StateHeader(\
-    %levelData(LevelData_EnergyRefeill_BothDoors),
+    %levelData(LevelData_EnergyRefill_BothDoors),
     %tileset($17),
     %music(0, 0),
     %FX(FXHeader_UpperNorfairRefill),
@@ -8847,7 +8847,7 @@ LibBG_Norfair_9_VerticalPatternBrick:                                    ;8FBEAB
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Norfair_9_A_CavernStalagtites:                                     ;8FBEC6;
+LibBG_Norfair_9_A_CavernStalactites:                                     ;8FBEC6;
 ; Room $AADE, state $AAEB: Post Crocomire power bombs room
 ; Room $AB3B, state $AB48: Post Crocomire fluctuating acid missiles cave
 ; Room $AC00, state $AC0D: Single lake grapple practice room
@@ -8858,7 +8858,7 @@ LibBG_Norfair_9_A_CavernStalagtites:                                     ;8FBEC6
 ; Room $AFA3, state $AFB0: Norfair long lavaquake hall
 ; Room $AFCE, state $AFDB: Boring near-Crocomire hall
 ; Room $AFFB, state $B008: Norfair spike floor hall
-    dw $0004 : dl Background_Norfair_9_A_CavernStalagtites : dw $4000
+    dw $0004 : dl Background_Norfair_9_A_CavernStalactites : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
@@ -15199,7 +15199,7 @@ Tileset_Table_9_HeatedNorfair:
     dl Tiles_9_A_Norfair                                                 ;8FE6F6; Tiles pointer
     dl Palettes_9_HeatedNorfair                                          ;8FE6F9; Palette pointer
 
-Tileset_Table_A_UnheatedNofair:
+Tileset_Table_A_UnheatedNorfair:
 ; Ah: Unheated Norfair
     dl TileTables_9_A_Norfair                                            ;8FE6FC; Tile table pointer
     dl Tiles_9_A_Norfair                                                 ;8FE6FF; Tiles pointer
@@ -15326,7 +15326,7 @@ Tileset_Pointers:
     dw Tileset_Table_7_RedBrinstar_Kraid                                 ;8FE7B5;
     dw Tileset_Table_8_StatuesHall                                       ;8FE7B7;
     dw Tileset_Table_9_HeatedNorfair                                     ;8FE7B9;
-    dw Tileset_Table_A_UnheatedNofair                                    ;8FE7BB;
+    dw Tileset_Table_A_UnheatedNorfair                                   ;8FE7BB;
     dw Tileset_Table_B_SandlessMaridia                                   ;8FE7BD;
     dw Tileset_Table_C_SandyMaridia                                      ;8FE7BF;
     dw Tileset_Table_D_Tourian                                           ;8FE7C1;
@@ -15356,7 +15356,7 @@ Music_Pointers:
     dl Music_UpperCrateria                                               ;8FE7ED; Ch  - Upper Crateria
     dl Music_GreenBrinstar                                               ;8FE7F0; Fh  - Green Brinstar
     dl Music_RedBrinstar                                                 ;8FE7F3; 12h - Red Brinstar
-    dl Music_UpperNofair                                                 ;8FE7F6; 15h - Upper Norfair
+    dl Music_UpperNorfair                                                ;8FE7F6; 15h - Upper Norfair
     dl Music_LowerNorfair                                                ;8FE7F9; 18h - Lower Norfair
     dl Music_Maridia                                                     ;8FE7FC; 1Bh - Maridia
     dl Music_Tourian                                                     ;8FE7FF; 1Eh - Tourian

@@ -1873,7 +1873,7 @@ LoadDebugGameOverMenuTilemap:
     LDA.W #$000F                                                         ;818E82;
 
   .loopClear:
-    STA.L CinematicBGTilemap,X                                           ;818E85;
+    STA.L DebugGameOverMenuTilemap,X                                     ;818E85;
     INX                                                                  ;818E89;
     INX                                                                  ;818E8A;
     CPX.W #$0800                                                         ;818E8B;
@@ -6272,7 +6272,7 @@ NewSaveFile:
     STZ.W IGTSeconds                                                     ;81B351;
     STZ.W IGTMinutes                                                     ;81B354;
     STZ.W IGTHours                                                       ;81B357;
-    STZ.W JapanText                                                      ;81B35A;
+    STZ.W AltText                                                        ;81B35A;
     STZ.W Moonwalk                                                       ;81B35D;
     STZ.W IconCancel                                                     ;81B360;
     LDA.W #$0001                                                         ;81B363;

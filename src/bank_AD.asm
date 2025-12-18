@@ -44,6 +44,197 @@ Tiles_SpacePirate:
 incbin "../data/Tiles_SpacePirate.bin" ; $1800 bytes
 
 
+if !PAL != 0
+TypewriterCeresEscapeSubtitleTilemapTransfer_German:
+; SOFORTIGE EVAKUIERUNG
+;    DER RAUMSTATION
+  .size:
+    dw $002A
+  .src:
+    dl TypewriterCeresEscapeGermanTextTilemap_Line0_Row0
+  .VRAM:
+    dw $5287
+
+    dw $002A
+    dl TypewriterCeresEscapeGermanTextTilemap_Line0_Row1
+    dw $52A7
+
+    dw $001E
+    dl TypewriterCeresEscapeGermanTextTilemap_Line1_Row0
+    dw $52CA
+
+    dw $001E
+    dl TypewriterCeresEscapeGermanTextTilemap_Line1_Row1
+    dw $52EA
+
+    dw $0000
+
+TypewriterCeresEscapeSubtitleTilemapTransfer_French:
+; URGENCE,AUTODESTRUCTION
+; ACTIVEE! SAUVEZ-VOUS!
+  .size:
+    dw $002E
+  .src:
+    dl TypewriterCeresEscapeFrenchTextTilemap_Line0_Row0
+  .VRAM:
+    dw $5287
+
+    dw $002E
+    dl TypewriterCeresEscapeFrenchTextTilemap_Line0_Row1
+    dw $52A7
+
+    dw $002A
+    dl TypewriterCeresEscapeFrenchTextTilemap_Line1_Row0
+    dw $52C7
+
+    dw $002A
+    dl TypewriterCeresEscapeFrenchTextTilemap_Line1_Row1
+    dw $52E7
+
+    dw $0000
+
+TypewriterZebesEscapeSubtitleTilemapTransfer_German:
+; ZEITBOMBE AKTIVIERT
+; SOFORTIGER RÜCKZUG!
+  .size:
+    dw $0026
+  .src:
+    dl TypewriterZebesEscapeGermanTextTilemap_Line0_Row0
+  .VRAM:
+    dw $4A87
+
+    dw $0026
+    dl TypewriterZebesEscapeGermanTextTilemap_Line0_Row1
+    dw $4AA7
+
+    dw $0026
+    dl TypewriterZebesEscapeGermanTextTilemap_Line1_Row0
+    dw $4AC7
+
+    dw $0026
+    dl TypewriterZebesEscapeGermanTextTilemap_Line1_Row1
+    dw $4AE7
+
+    dw $0000
+
+TypewriterZebesEscapeSubtitleTilemapTransfer_French:
+;   BOMBE REGLEE!
+; QUITTEZ LES LIEUX!
+  .size:
+    dw $001A
+  .src:
+    dl TypewriterZebesEscapeFrenchTextTilemap_Line0_Row0
+  .VRAM:
+    dw $4A8A
+
+    dw $001A
+    dl TypewriterZebesEscapeFrenchTextTilemap_Line0_Row1
+    dw $4AAA
+
+    dw $0024
+    dl TypewriterZebesEscapeFrenchTextTilemap_Line1_Row0
+    dw $4AC8
+
+    dw $0024
+    dl TypewriterZebesEscapeFrenchTextTilemap_Line1_Row1
+    dw $4AE8
+
+    dw $0000
+
+
+; Ceres Escape German text
+; uses two tile high text
+; first line
+TypewriterCeresEscapeGermanTextTilemap_Line0_Row0:
+    dw $3DAB,$3DA9,$3DC5,$3DA9,$3DA1,$3DA8,$3DAC,$3DA2
+    dw $3DA3,$3DC7,$3DA3,$3DAD,$3DA7,$3DC4,$3DA0,$3DAC
+    dw $3DA3,$3DA1,$3DA0,$3DA4,$3DA2
+
+TypewriterCeresEscapeGermanTextTilemap_Line0_Row1:
+    dw $3DBB,$3DB9,$3DD5,$3DB9,$3DB1,$3DB8,$3DBC,$3DB2
+    dw $3DB3,$3DD7,$3DB3,$3DBD,$3DB7,$3DD4,$3DB0,$3DBC
+    dw $3DB3,$3DB1,$3DB0,$3DB4,$3DB2
+
+; second line
+TypewriterCeresEscapeGermanTextTilemap_Line1_Row0:
+    dw $3DAA,$3DA3,$3DA1,$3DC7,$3DA1,$3DA7,$3DA0,$3DC1
+    dw $3DAB,$3DA8,$3DA7,$3DA8,$3DAC,$3DA9,$3DA4
+
+TypewriterCeresEscapeGermanTextTilemap_Line1_Row1:
+    dw $3DBA,$3DB3,$3DB1,$3DD7,$3DB1,$3DB7,$3DB0,$3DD1
+    dw $3DBB,$3DB8,$3DB7,$3DB8,$3DBC,$3DB9,$3DB4
+
+; Ceres Escape French text
+; uses two tile high text
+; first line
+TypewriterCeresEscapeFrenchTextTilemap_Line0_Row0:
+    dw $3DA0,$3DA1,$3DA2,$3DA3,$3DA4,$3DA5,$3DA3,$3D9F
+    dw $3DA7,$3DA0,$3DA8,$3DA9,$3DAA,$3DA3,$3DAB,$3DA8
+    dw $3DA1,$3DA0,$3DA5,$3DA8,$3DAC,$3DA9,$3DA4
+
+TypewriterCeresEscapeFrenchTextTilemap_Line0_Row1:
+    dw $3DB0,$3DB1,$3DB2,$3DB3,$3DB4,$3DB5,$3DB3,$3D9C
+    dw $3DB7,$3DB0,$3DB8,$3DB9,$3DBA,$3DB3,$3DBB,$3DB8
+    dw $3DB1,$3DB0,$3DB5,$3DB8,$3DBC,$3DB9,$3DB4
+
+; second line
+TypewriterCeresEscapeFrenchTextTilemap_Line1_Row0:
+    dw $3DA7,$3DA5,$3DA8,$3DAC,$3DAD,$3DA3,$3DA3,$3DAE
+    dw $3DC7,$3DAB,$3DA7,$3DA0,$3DAD,$3DA3,$3DA6,$3D9F
+    dw $3DAD,$3DA9,$3DA0,$3DAB,$3DAE
+
+TypewriterCeresEscapeFrenchTextTilemap_Line1_Row1:
+    dw $3DB7,$3DB5,$3DB8,$3DBC,$3DBD,$3DB3,$3DB3,$3DBE
+    dw $3DD7,$3DBB,$3DB7,$3DB0,$3DBD,$3DB3,$3DB6,$3D9D
+    dw $3DBD,$3DB9,$3DB0,$3DBB,$3DBE
+
+; Zebes Escape German text
+; uses two tile high text
+; first line
+TypewriterZebesEscapeGermanTextTilemap_Line0_Row0:
+    dw $31A6,$31A3,$31AC,$31A8,$31C0,$31A9,$31C4,$31C0
+    dw $31A3,$31C7,$31A7,$31C4,$31A8,$31AC,$31AD,$31AC
+    dw $31A3,$31A1,$31A8
+
+TypewriterZebesEscapeGermanTextTilemap_Line0_Row1:
+    dw $31B6,$31B3,$31BC,$31B8,$31D0,$31B9,$31D1,$31D0
+    dw $31B3,$31D7,$31B7,$31D4,$31B8,$31BC,$31BD,$31BC
+    dw $31B3,$31B1,$31B8
+
+; second line
+TypewriterZebesEscapeGermanTextTilemap_Line1_Row0:
+    dw $31AB,$31A9,$31C5,$31A9,$31A1,$31A8,$31AC,$31A2
+    dw $31A3,$31A1,$31C7,$31A1,$31C6,$31A5,$31C4,$31A6
+    dw $31A0,$31A2,$31AE
+
+TypewriterZebesEscapeGermanTextTilemap_Line1_Row1:
+    dw $31BB,$31B9,$31D5,$31B9,$31B1,$31B8,$31BC,$31B2
+    dw $31B3,$31B1,$31D7,$31B1,$31D6,$31B5,$31D4,$31B6
+    dw $31B0,$31B2,$31BE
+
+; Zebes Escape French text
+; uses two tile high text
+; first line
+TypewriterZebesEscapeFrenchTextTilemap_Line0_Row0:
+    dw $31C0,$31A9,$31C4,$31C0,$31A3,$31C7,$31A1,$31A3
+    dw $31A2,$31C2,$31A3,$31A3,$31AE
+
+TypewriterZebesEscapeFrenchTextTilemap_Line0_Row1:
+    dw $31D0,$31B9,$31D1,$31D0,$31B3,$31D7,$31B1,$31B3
+    dw $31B2,$31D2,$31B3,$31B3,$31BE
+
+; second line
+TypewriterZebesEscapeFrenchTextTilemap_Line1_Row0:
+    dw $31C3,$31A0,$31AC,$31A8,$31A8,$31A3,$31A6,$31C7
+    dw $31C2,$31A3,$31AB,$31C7,$31C2,$31AC,$31A3,$31A0
+    dw $31AF,$31AE
+
+TypewriterZebesEscapeFrenchTextTilemap_Line1_Row1:
+    dw $31D3,$31B0,$31BC,$31B8,$31B8,$31B3,$31B6,$31D7
+    dw $31D2,$31B3,$31BB,$31D7,$31D2,$31BC,$31B3,$31B0
+    dw $31BF,$31BE
+endif
+
 ;;; $DE00: Calculate Mother Brain rainbow beam HDMA tables ;;;
 CalculateMotherBrainRainbowBeamHDMATables:
     LDA.L MotherBrainBody.rainbowBeamAngularWidth+1                      ;ADDE00;

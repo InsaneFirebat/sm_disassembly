@@ -567,7 +567,7 @@ IGTFrames: skip 2 ; $09DA
 IGTSeconds: skip 2 ; $09DC
 IGTMinutes: skip 2 ; $09DE
 IGTHours: skip 2 ; $09E0
-JapanText: skip 2 ; $09E2
+AltText: skip 2 ; $09E2
 Moonwalk: skip 2 ; $09E4
 SamusPlacementMode: skip 2 ; $09E6
 neverRead09E8: skip 2 ; $09E8
@@ -1427,7 +1427,7 @@ CinematicSpriteObject_Timers: skip $20 ; $1B7D..9C
 CinematicSpriteObject_InitParam: skip 2 ; $1B9D
 CinematicSpriteObject_FrameCounter: skip 2 ; $1B9F
 CinematicSpriteObject_IntroTextClickFlag: skip 2 ; $1BA1
-CinematicSpriteObject_IntroJapanTextTimer: skip 2 ; $1BA3
+CinematicSpriteObject_IntroSubtitleTimer: skip 2 ; $1BA3
 
 org $1A8F
 GameOptionsMenuObject_Index: skip 2 ; $1A8F
@@ -1541,12 +1541,20 @@ PostCreditsSuitlessSamusTiles: ; $7E2000..??
 EnemyBG2Tilemap: ; $7E2000..2FFF
 
 org $7E3000
-CinematicBGTilemap_TopMarginInitialJapanText: skip $100 ; $7E3000..FF
-CinematicBGTilemap_EnglishTextRegion: skip $200 ; $7E3100..35FF
-CinematicBGTilemap_RowsCD: skip $2C0 ; $7E3300..??
-CinematicBGTilemap_Rows17_18: skip $40 ; $7E35C0..??
-CinematicBGTilemap_JapanTextRegion: skip $100 ; $7E3600..FF
-CinematicBGTilemap_BottomMargin: skip $100 ; $7E3700..FF
+CinematicBGTilemap: ; $7E3000..37FF
+  .initialSubtitles: ; $7E3000..FF
+  .topMargin: skip $100 ; $7E3000..FF
+  .EnglishTextRegion: skip $200 ; $7E3100..35FF
+  .rowsCD: skip $2C0 ; $7E3300..??
+  .rows17_18: skip $40 ; $7E35C0..??
+  .subtitles: ; $7E3600..FF
+  ..topRow: ; $7E3600..7F
+skip $80
+  ..bottomRow: ; $7E3680..FF
+skip $80
+  ..end
+  .bottomMargin: skip $100 ; $7E3700..FF
+  .end
 
 org $7E3000
 GameOptionsMenuTilemap: ; $7E3000..37FF
@@ -1572,7 +1580,7 @@ BackupOfRegularIORegistersDuringGameOverMenu: ; $7E3500
 skip $100
 MenuTilemap: ; $7E3600..3DFF
 skip $200
-CinematicBGTilemap: ; $7E3800..3FFF
+IntroBG2Tilemap: ; $7E3800..3FFF
 RoomSelectMapBG1Tilemap: ; $7E3800..3FFF
 EquipmentScreenBG1Tilemap: ; $7E3800..3FFF
 DebugGameOverMenuTilemap: ; $7E3800..3FFF
@@ -1589,7 +1597,7 @@ CrocomireMeltingBG2Tiles: ; $7E4000..4FFF
 ClearingFXTilemap: ; $7E4000..4EFF
 DecompressionBufferForKraidTopHalfBG2Tilemap: ; $7E4000..47FF
 BG2RoomSelectMapTilemap: ; $7E4000..47FF
-IntroBG3JapanTextTiles: ; $7E4000..45FF
+IntroBG3SubtitleTiles: ; $7E4000..45FF
 skip $100
 BackupOfVRAMDuringMessageBoxes: ; $7E4100..47FF
 skip $F00
@@ -2074,18 +2082,50 @@ ZebesTiles: ; $7F5000..??
 TitleSpriteTiles: skip $3000 ; $7F5000..8FFF
 ZebesBeingZoomedOutExplosionInterleavedTilesTilemap: ; $7F8000..??
 ZebesExplosionTiles: ; $7F8000..DFFF
-IntroFont1Tiles: ; $7F8000..88FF
-skip $1000
+IntroFont1Tiles: ; NTSC: $7F8000..88FF, PAL $7F8000..8CFF
+if !PAL == 0
+skip $900
+else
+skip $D00
+endif
+  .end:
+
+org $7F9000
 TitleBabyMetroidTiles: ; $7F9000..93FF
 ZebesTilemap: ; $7F9000..?
 IntroBG2SamusHeadTilemap: skip $800 ; $7F9000..??
 IntroBG1MotherBrainsRoomTilemap: skip $800 ; $7F9800..??
-IntroFont2Tiles: skip $1800 ; $7FA000..B1FF
+if !PAL == 0
+IntroFont2Tiles: ; $7FA000..B1FF
+else
+IntroSubtitleTilemaps: ; $7FA000..BFFF
+  .German_Page1_Subpage1:        skip $100 ; 7EA000..A0FF
+  .German_Page1_Subpage2:        skip $140 ; 7EA100..A1FF
+  .German_Page2_Subpage1:        skip $100 ; 7EA240..A33F
+  .German_Page2_Subpage2:        skip $140 ; 7EA340..A43F
+  .German_Page3_Subpage1:        skip $100 ; 7EA480..A57F
+  .German_Page3_Subpage2:        skip $100 ; 7EA580..A5FF
+  .German_Page4_Subpage1:        skip $100 ; 7EA680..A77F
+  .German_Page4_Subpage2:        skip $80  ; 7EA780..A7FF
+  .French_Page1:                 skip $240 ; 7EA800..A8FF
+  .French_Page2:                 skip $240 ; 7EAA40..AB3F
+  .French_Page3:                 skip $200 ; 7EAC80..AD7F
+  .French_Page4_Subpage1:        skip $100 ; 7EAE80..AF7F
+  .French_Page4_Subpage2_top:    skip $140 ; 7EAF80..AFFF
+  .German_Page5_Subpage1:        skip $100 ; 7EB0C0..B1BF
+  .German_Page5_Subpage2:        skip $140 ; 7EB1C0..B2BF
+  .German_Page6:                 skip $500 ; 7EB300..B3FF
+  .French_Page4_Subpage2_bottom: skip $C0  ; 7EB800..B87F
+  .French_Page5:                 skip $240 ; 7EB8C0..B9BF
+  .French_Page6:                 skip $100 ; 7EBB00..BBFF
+endif
+
+org $7FB800
 IntroSpriteTiles: skip $800 ; $7FB800..??
 CreditsFont3: ; $7FC000..D7FF
 GameOptionsTilemap_Options: skip $800 ; $7FC000..C7FF
 GameOptionsTilemap_EnglishControllerSettings: skip $800 ; $7FC800..CFFF
-ItemPercentageJapanText: ; $7FD000..D3FF
+ItemPercentageSubtitle: ; $7FD000..D3FF
 GameOptionsTilemap_JapanControllerSettings: skip $800 ; $7FD000..D7FF
 GameOptionsTilemap_EnglishSpecialSettings: skip $800 ; $7FD800..DFFF
 GameOptionsTilemap_JapanSpecialSettings: ; $7FE000..E7FF
@@ -2722,7 +2762,10 @@ skip 8
   .angle: skip 2 ; $7E7814
   .maxXRadius: skip 2 ; $7E7816
   .angleDelta: skip 2 ; $7E7818
-skip $7E6
+skip 2
+  .subangle: skip 2 ; $7E781C
+  .subangleDelta: skip 2 ; $7E781E
+skip $7E0
   .stalkSegment2XPosition: skip 2 ; $7E8000
   .stalkSegment1XPosition: skip 2 ; $7E8002
   .stalkSegment0XPosition: skip 2 ; $7E8004
@@ -3917,6 +3960,10 @@ skip 2
 skip $7DF04C
   .wallJumpArcRightTargetAngle: skip 2 ; $7E8000
   .wallJumpArcLeftTargetAngle: skip 2 ; $7E8002
+if !PAL != 0
+  .wallJumpArcAngleDeltaHighRes: skip 2
+  .wallJumpArcSubAngle: skip 2
+endif
   .wallJumpArcAngleDelta: skip 2 ; $7E8004
 endstruct
 

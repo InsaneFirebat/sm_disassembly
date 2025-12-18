@@ -400,83 +400,26 @@ Instruction_CommonA7_DisableOffScreenProcessing:
 
 ;;; $8187: Common enemy speeds - linearly increasing ;;;
 CommonA7EnemySpeeds_LinearlyIncreasing:
-;        _____________________ Speed
-;       |      _______________ Subspeed
-;       |     |      _________ Negated speed
-;       |     |     |      ___ Negated subspeed
-;       |     |     |     |
-  .speed:
-    dw $0000                                                             ;A78187;
-  .subspeed:
-    dw       $0000                                                       ;A78189;
-  .negatedSpeed:
-    dw             $0000                                                 ;A7818B;
-  .negatedSubspeed:
-    dw                   $0000                                           ;A7818D;
-    dw $0000,$1000,$FFFF,$F000
-    dw $0000,$2000,$FFFF,$E000
-    dw $0000,$3000,$FFFF,$D000
-    dw $0000,$4000,$FFFF,$C000
-    dw $0000,$5000,$FFFF,$B000
-    dw $0000,$6000,$FFFF,$A000
-    dw $0000,$7000,$FFFF,$9000
-    dw $0000,$8000,$FFFF,$8000
-    dw $0000,$9000,$FFFF,$7000
-    dw $0000,$A000,$FFFF,$6000
-    dw $0000,$B000,$FFFF,$5000
-    dw $0000,$C000,$FFFF,$4000
-    dw $0000,$D000,$FFFF,$3000
-    dw $0000,$E000,$FFFF,$2000
-    dw $0000,$F000,$FFFF,$1000
-    dw $0001,$0000,$FFFF,$0000
-    dw $0001,$1000,$FFFE,$F000
-    dw $0001,$2000,$FFFE,$E000
-    dw $0001,$3000,$FFFE,$D000
-    dw $0001,$4000,$FFFE,$C000
-    dw $0001,$5000,$FFFE,$B000
-    dw $0001,$6000,$FFFE,$A000
-    dw $0001,$7000,$FFFE,$9000
-    dw $0001,$8000,$FFFE,$8000
-    dw $0001,$9000,$FFFE,$7000
-    dw $0001,$A000,$FFFE,$6000
-    dw $0001,$B000,$FFFE,$5000
-    dw $0001,$C000,$FFFE,$4000
-    dw $0001,$D000,$FFFE,$3000
-    dw $0001,$E000,$FFFE,$2000
-    dw $0001,$F000,$FFFE,$1000
-    dw $0002,$0000,$FFFE,$0000
-    dw $0002,$1000,$FFFD,$F000
-    dw $0002,$2000,$FFFD,$E000
-    dw $0002,$3000,$FFFD,$D000
-    dw $0002,$4000,$FFFD,$C000
-    dw $0002,$5000,$FFFD,$B000
-    dw $0002,$6000,$FFFD,$A000
-    dw $0002,$7000,$FFFD,$9000
-    dw $0002,$8000,$FFFD,$8000
-    dw $0002,$9000,$FFFD,$7000
-    dw $0002,$A000,$FFFD,$6000
-    dw $0002,$B000,$FFFD,$5000
-    dw $0002,$C000,$FFFD,$4000
-    dw $0002,$D000,$FFFD,$3000
-    dw $0002,$E000,$FFFD,$2000
-    dw $0002,$F000,$FFFD,$1000
-    dw $0003,$0000,$FFFD,$0000
-    dw $0003,$1000,$FFFC,$F000
-    dw $0003,$2000,$FFFC,$E000
-    dw $0003,$3000,$FFFC,$D000
-    dw $0003,$4000,$FFFC,$C000
-    dw $0003,$5000,$FFFC,$B000
-    dw $0003,$6000,$FFFC,$A000
-    dw $0003,$7000,$FFFC,$9000
-    dw $0003,$8000,$FFFC,$8000
-    dw $0003,$9000,$FFFC,$7000
-    dw $0003,$A000,$FFFC,$6000
-    dw $0003,$B000,$FFFC,$5000
-    dw $0003,$C000,$FFFC,$4000
-    dw $0003,$D000,$FFFC,$3000
-    dw $0003,$E000,$FFFC,$2000
-    dw $0003,$F000,$FFFC,$1000
-    dw $0004,$0000,$FFFC,$0000
+  .speed                                                                 ;A08187;
+skip 2
+  .subspeed                                                              ;A08189;
+skip 2
+  .negatedSpeed                                                          ;A0818B;
+skip 2
+  .negatedSubspeed                                                       ;A0818D;
+skip -6
+
+!i = 0
+if !PAL == 0
+    !n = $41
+else
+    !n = $43
+endif
+while !i < !n
+    !v #= $1000*!SPF*!i ; !i must be last in product to reproduce PAL rounding errors
+    dw !v>>$10, !v, -!v>>$10, -!v
+    !i #= !i+1
+endif
 
 
 ;;; $838F: Common enemy speeds - quadratically increasing ;;;
@@ -498,6 +441,7 @@ CommonA7EnemySpeeds_QuadraticallyIncreasing:
     dw                   $0000                                           ;A78395;
     dw $0109,$0000,$FEF7,$FFFF
     dw $031B,$0000,$FCE5,$FFFF
+if !PAL == 0
     dw $0636,$0000,$F9CA,$FFFF
     dw $0A5A,$0000,$F5A6,$FFFF
     dw $0F87,$0000,$F079,$FFFF
@@ -590,6 +534,100 @@ CommonA7EnemySpeeds_QuadraticallyIncreasing:
     dw $BC66,$0010,$439A,$FFEF
     dw $13AB,$0011,$EC55,$FFEE
     dw $74F9,$0011,$8B07,$FFEE
+else
+    dw $073F,$0000,$F8C1,$FFFF
+    dw $0B63,$0000,$F49D,$FFFF
+    dw $1199,$0000,$EE67,$FFFF
+    dw $19E1,$0000,$E61F,$FFFF
+    dw $2229,$0000,$DDD7,$FFFF
+    dw $2C83,$0000,$D37D,$FFFF
+    dw $36DD,$0000,$C923,$FFFF
+    dw $4349,$0000,$BCB7,$FFFF
+    dw $51C7,$0000,$AE39,$FFFF
+    dw $6045,$0000,$9FBB,$FFFF
+    dw $70D5,$0000,$8F2B,$FFFF
+    dw $8165,$0000,$7E9B,$FFFF
+    dw $9407,$0000,$6BF9,$FFFF
+    dw $A8BB,$0000,$5745,$FFFF
+    dw $BD6F,$0000,$4291,$FFFF
+    dw $D435,$0000,$2BCB,$FFFF
+    dw $EAFB,$0000,$1505,$FFFF
+    dw $03D3,$0001,$FC2D,$FFFE
+    dw $15BD,$0001,$EA43,$FFFE
+    dw $30A7,$0001,$CF59,$FFFE
+    dw $4DA3,$0001,$B25D,$FFFE
+    dw $6A9F,$0001,$9561,$FFFE
+    dw $89AD,$0001,$7653,$FFFE
+    dw $AACD,$0001,$5533,$FFFE
+    dw $CBED,$0001,$3413,$FFFE
+    dw $EF1F,$0001,$10E1,$FFFE
+    dw $0951,$0002,$F6AF,$FFFD
+    dw $2E95,$0002,$D16B,$FFFD
+    dw $55EB,$0002,$AA15,$FFFD
+    dw $7D41,$0002,$82BF,$FFFD
+    dw $A6A9,$0002,$5957,$FFFD
+    dw $D011,$0002,$2FEF,$FFFD
+    dw $FB8B,$0002,$0475,$FFFD
+    dw $2017,$0003,$DFE9,$FFFC
+    dw $4DA3,$0003,$B25D,$FFFC
+    dw $7D41,$0003,$82BF,$FFFC
+    dw $ACDF,$0003,$5321,$FFFC
+    dw $DE8F,$0003,$2171,$FFFC
+    dw $0951,$0004,$F6AF,$FFFB
+    dw $3D13,$0004,$C2ED,$FFFB
+    dw $72E7,$0004,$8D19,$FFFB
+    dw $A8BB,$0004,$5745,$FFFB
+    dw $E0A1,$0004,$1F5F,$FFFB
+    dw $1199,$0005,$EE67,$FFFA
+    dw $4B91,$0005,$B46F,$FFFA
+    dw $879B,$0005,$7865,$FFFA
+    dw $C3A5,$0005,$3C5B,$FFFA
+    dw $01C1,$0005,$FE3F,$FFFA
+    dw $38EF,$0006,$C711,$FFF9
+    dw $791D,$0006,$86E3,$FFF9
+    dw $BB5D,$0006,$44A3,$FFF9
+    dw $FD9D,$0006,$0263,$FFF9
+    dw $38EF,$0007,$C711,$FFF8
+    dw $7F53,$0007,$80AD,$FFF8
+    dw $C5B7,$0007,$3A49,$FFF8
+    dw $052D,$0008,$FAD3,$FFF7
+    dw $4DA3,$0008,$B25D,$FFF7
+    dw $982B,$0008,$67D5,$FFF7
+    dw $E4C5,$0008,$1B3B,$FFF7
+    dw $285F,$0009,$D7A1,$FFF6
+    dw $770B,$0009,$88F5,$FFF6
+    dw $C5B7,$0009,$3A49,$FFF6
+    dw $0D75,$000A,$F28B,$FFF5
+    dw $6045,$000A,$9FBB,$FFF5
+    dw $B315,$000A,$4CEB,$FFF5
+    dw $07F7,$000B,$F809,$FFF5
+    dw $53D9,$000B,$AC27,$FFF4
+    dw $AACD,$000B,$5533,$FFF4
+    dw $03D3,$000C,$FC2D,$FFF3
+    dw $53D9,$000C,$AC27,$FFF3
+    dw $AEF1,$000C,$510F,$FFF3
+    dw $0109,$000D,$FEF7,$FFF2
+    dw $5E33,$000D,$A1CD,$FFF2
+    dw $BD6F,$000D,$4291,$FFF2
+    dw $13AB,$000E,$EC55,$FFF1
+    dw $74F9,$000E,$8B07,$FFF1
+    dw $D647,$000E,$29B9,$FFF1
+    dw $30A7,$000F,$CF59,$FFF0
+    dw $9619,$000F,$69E7,$FFF0
+    dw $FB8B,$000F,$0475,$FFF0
+    dw $5A0F,$0010,$A5F1,$FFEF
+    dw $C193,$0010,$3E6D,$FFEF
+    dw $2229,$0011,$DDD7,$FFEE
+    dw $8DD1,$0011,$722F,$FFEE
+    dw $F979,$0011,$0687,$FFEE
+    dw $5E33,$0012,$A1CD,$FFED
+    dw $CBED,$0012,$3413,$FFED
+    dw $32B9,$0013,$CD47,$FFEC
+    dw $A497,$0013,$5B69,$FFEC
+    dw $0D75,$0014,$F28B,$FFEB
+    dw $8165,$0014,$7E9B,$FFEB
+    dw $F555,$0014,$0AAB,$FFEB
+endif
 
 
 ;;; $8687: Palette - enemy $E2BF/$E2FF/$E33F/$E37F/$E3BF/$E3FF/$E43F/$E47F (Kraid) ;;;
@@ -629,24 +667,24 @@ InstList_KraidFoot_KraidIsBig_Neutral:
 ;;; $86F3: Instruction list - Kraid foot - Kraid is big - walking forwards ;;;
 InstList_KraidFoot_KraidIsBig_WalkingForward_0:
     dw Instruction_Kraid_NOP_A7B633                                      ;A786F3;
-    dw $0004,ExtendedSpritemap_KraidFoot_0                               ;A786F5;
-    dw $0004,ExtendedSpritemap_KraidFoot_1                               ;A786F9;
-    dw $0004,ExtendedSpritemap_KraidFoot_2                               ;A786FD;
+    dw $0004*!FPS,ExtendedSpritemap_KraidFoot_0                          ;A786F5;
+    dw $0004*!FPS,ExtendedSpritemap_KraidFoot_1                          ;A786F9;
+    dw $0004*!FPS,ExtendedSpritemap_KraidFoot_2                          ;A786FD;
     dw $0004,ExtendedSpritemap_KraidFoot_3                               ;A78701;
-    dw $0004,ExtendedSpritemap_KraidFoot_4                               ;A78705;
-    dw $0004,ExtendedSpritemap_KraidFoot_5                               ;A78709;
-    dw $0004,ExtendedSpritemap_KraidFoot_6                               ;A7870D;
+    dw $0004*!FPS,ExtendedSpritemap_KraidFoot_4                          ;A78705;
+    dw $0004*!FPS,ExtendedSpritemap_KraidFoot_5                          ;A78709;
+    dw $0004*!FPS,ExtendedSpritemap_KraidFoot_6                          ;A7870D;
     dw $0004,ExtendedSpritemap_KraidFoot_7                               ;A78711;
-    dw $0004,ExtendedSpritemap_KraidFoot_8                               ;A78715;
-    dw $0004,ExtendedSpritemap_KraidFoot_9                               ;A78719;
-    dw $0004,ExtendedSpritemap_KraidFoot_A                               ;A7871D;
+    dw $0004*!FPS,ExtendedSpritemap_KraidFoot_8                          ;A78715;
+    dw $0004*!FPS,ExtendedSpritemap_KraidFoot_9                          ;A78719;
+    dw $0004*!FPS,ExtendedSpritemap_KraidFoot_A                          ;A7871D;
     dw $0003,ExtendedSpritemap_KraidFoot_B                               ;A78721;
     dw $0001,ExtendedSpritemap_KraidFoot_C                               ;A78725;
     dw $0001,ExtendedSpritemap_KraidFoot_D                               ;A78729;
     dw $0001,ExtendedSpritemap_KraidFoot_E                               ;A7872D;
     dw $0001,ExtendedSpritemap_KraidFoot_F                               ;A78731;
     dw $0001,ExtendedSpritemap_KraidFoot_10                              ;A78735;
-    dw $0010,ExtendedSpritemap_KraidFoot_11                              ;A78739;
+    dw $0010*!FPS,ExtendedSpritemap_KraidFoot_11                         ;A78739;
     dw Instruction_Kraid_DecrementYPosition                              ;A7873D;
     dw Instruction_Kraid_XPositionMinus3                                 ;A7873F;
     dw $0001,ExtendedSpritemap_KraidFoot_12                              ;A78741;
@@ -654,17 +692,17 @@ InstList_KraidFoot_KraidIsBig_WalkingForward_0:
     dw Instruction_Kraid_XPositionMinus3                                 ;A78747;
     dw $0001,ExtendedSpritemap_KraidFoot_13                              ;A78749;
     dw Instruction_Kraid_NOP_A7B633                                      ;A7874D;
-    dw $0003,ExtendedSpritemap_KraidFoot_13                              ;A7874F;
+    dw $0003*!FPS,ExtendedSpritemap_KraidFoot_13                         ;A7874F;
     dw Instruction_Kraid_DecrementYPosition                              ;A78753;
     dw Instruction_Kraid_XPositionMinus3                                 ;A78755;
     dw $0001,ExtendedSpritemap_KraidFoot_13                              ;A78757;
     dw Instruction_Kraid_NOP_A7B633                                      ;A7875B;
-    dw $0003,ExtendedSpritemap_KraidFoot_13                              ;A7875D;
+    dw $0003*!FPS,ExtendedSpritemap_KraidFoot_13                         ;A7875D;
     dw Instruction_Kraid_DecrementYPosition                              ;A78761;
     dw Instruction_Kraid_XPositionMinus3                                 ;A78763;
     dw $0001,ExtendedSpritemap_KraidFoot_15                              ;A78765;
     dw Instruction_Kraid_NOP_A7B633                                      ;A78769;
-    dw $0003,ExtendedSpritemap_KraidFoot_15                              ;A7876B;
+    dw $0003*!FPS,ExtendedSpritemap_KraidFoot_15                         ;A7876B;
     dw Instruction_Kraid_IncrementYPosition_SetScreenShaking             ;A7876F;
     dw Instruction_Kraid_XPositionMinus3                                 ;A78771;
     dw $0001,ExtendedSpritemap_KraidFoot_16                              ;A78773;
@@ -773,7 +811,7 @@ InstList_KraidFoot_LungeForward_1:
 InstList_KraidFoot_KraidIsBig_WalkingBackwards_0:
     dw Instruction_Kraid_NOP_A7B633                                      ;A78887;
     dw Instruction_Kraid_XPositionPlus3                                  ;A78889;
-    dw $0004,ExtendedSpritemap_KraidFoot_22                              ;A7888B;
+    dw $0004*!FPS,ExtendedSpritemap_KraidFoot_22                         ;A7888B;
     dw Instruction_Kraid_XPositionPlus3                                  ;A7888F;
     dw $0001,ExtendedSpritemap_KraidFoot_20                              ;A78891;
     dw Instruction_Kraid_XPositionPlus3                                  ;A78895;
@@ -811,14 +849,14 @@ InstList_KraidFoot_KraidIsBig_WalkingBackwards_0:
     dw Instruction_Kraid_QueueSFX76_Lib2_Max6                            ;A788ED;
     dw $0001,ExtendedSpritemap_KraidFoot_12                              ;A788EF;
     dw Instruction_Kraid_NOP_A7B633                                      ;A788F3;
-    dw $0014,ExtendedSpritemap_KraidFoot_11                              ;A788F5;
-    dw $0004,ExtendedSpritemap_KraidFoot_10                              ;A788F9;
-    dw $0004,ExtendedSpritemap_KraidFoot_F                               ;A788FD;
-    dw $0004,ExtendedSpritemap_KraidFoot_E                               ;A78901;
+    dw regional($0014, $0011),ExtendedSpritemap_KraidFoot_11             ;A788F5;
+    dw $0004*!FPS,ExtendedSpritemap_KraidFoot_10                         ;A788F9;
+    dw $0004*!FPS,ExtendedSpritemap_KraidFoot_F                          ;A788FD;
+    dw $0004*!FPS,ExtendedSpritemap_KraidFoot_E                          ;A78901;
     dw $0004,ExtendedSpritemap_KraidFoot_D                               ;A78905;
-    dw $0004,ExtendedSpritemap_KraidFoot_C                               ;A78909;
-    dw $0004,ExtendedSpritemap_KraidFoot_B                               ;A7890D;
-    dw $0004,ExtendedSpritemap_KraidFoot_A                               ;A78911;
+    dw $0004*!FPS,ExtendedSpritemap_KraidFoot_C                          ;A78909;
+    dw $0004*!FPS,ExtendedSpritemap_KraidFoot_B                          ;A7890D;
+    dw $0004*!FPS,ExtendedSpritemap_KraidFoot_A                          ;A78911;
     dw $0004,ExtendedSpritemap_KraidFoot_9                               ;A78915;
     dw $0001,ExtendedSpritemap_KraidFoot_8                               ;A78919;
     dw $0001,ExtendedSpritemap_KraidFoot_7                               ;A7891D;
@@ -839,7 +877,7 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_KraidFoot_WalkingBackwards_Fast_A7893D:
     dw Instruction_Kraid_NOP_A7B633                                      ;A7893D;
     dw UNUSED_Instruction_Kraid_MoveRight_A7B683                         ;A7893F;
-    dw $0004,ExtendedSpritemap_KraidFoot_22                              ;A78941;
+    dw $0004*!FPS,ExtendedSpritemap_KraidFoot_22                         ;A78941;
     dw UNUSED_Instruction_Kraid_MoveRight_A7B683                         ;A78945;
     dw $0001,ExtendedSpritemap_KraidFoot_20                              ;A78947;
     dw UNUSED_Instruction_Kraid_MoveRight_A7B683                         ;A7894B;
@@ -877,15 +915,15 @@ UNUSED_InstList_KraidFoot_WalkingBackwards_Fast_A7893D:
     dw Instruction_Kraid_QueueSFX76_Lib2_Max6                            ;A789A3;
     dw $0001,ExtendedSpritemap_KraidFoot_12                              ;A789A5;
     dw Instruction_Kraid_NOP_A7B633                                      ;A789A9;
-    dw $0014,ExtendedSpritemap_KraidFoot_11                              ;A789AB;
+    dw $0014*!FPS,ExtendedSpritemap_KraidFoot_11                         ;A789AB;
     dw $0004,ExtendedSpritemap_KraidFoot_10                              ;A789AF;
-    dw $0004,ExtendedSpritemap_KraidFoot_F                               ;A789B3;
-    dw $0004,ExtendedSpritemap_KraidFoot_E                               ;A789B7;
-    dw $0004,ExtendedSpritemap_KraidFoot_D                               ;A789BB;
+    dw $0004*!FPS,ExtendedSpritemap_KraidFoot_F                          ;A789B3;
+    dw $0004*!FPS,ExtendedSpritemap_KraidFoot_E                          ;A789B7;
+    dw $0004*!FPS,ExtendedSpritemap_KraidFoot_D                          ;A789BB;
     dw $0004,ExtendedSpritemap_KraidFoot_C                               ;A789BF;
-    dw $0004,ExtendedSpritemap_KraidFoot_B                               ;A789C3;
-    dw $0004,ExtendedSpritemap_KraidFoot_A                               ;A789C7;
-    dw $0004,ExtendedSpritemap_KraidFoot_9                               ;A789CB;
+    dw $0004*!FPS,ExtendedSpritemap_KraidFoot_B                          ;A789C3;
+    dw $0004*!FPS,ExtendedSpritemap_KraidFoot_A                          ;A789C7;
+    dw $0004*!FPS,ExtendedSpritemap_KraidFoot_9                          ;A789CB;
     dw $0001,ExtendedSpritemap_KraidFoot_8                               ;A789CF;
     dw $0001,ExtendedSpritemap_KraidFoot_7                               ;A789D3;
     dw $0001,ExtendedSpritemap_KraidFoot_6                               ;A789D7;
@@ -901,26 +939,26 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $89F3: Instruction list - Kraid arm - normal ;;;
 InstList_KraidArm_Normal_0:
-    dw $0006,ExtendedSpritemap_KraidArm_General_0                        ;A789F3;
-    dw $0006,ExtendedSpritemap_KraidArm_General_1                        ;A789F7;
-    dw $0006,ExtendedSpritemap_KraidArm_General_2                        ;A789FB;
-    dw $0006,ExtendedSpritemap_KraidArm_General_3                        ;A789FF;
-    dw $0006,ExtendedSpritemap_KraidArm_General_4                        ;A78A03;
-    dw $0006,ExtendedSpritemap_KraidArm_General_5                        ;A78A07;
-    dw $0006,ExtendedSpritemap_KraidArm_General_6                        ;A78A0B;
-    dw $0006,ExtendedSpritemap_KraidArm_General_7                        ;A78A0F;
-    dw $0006,ExtendedSpritemap_KraidArm_General_8                        ;A78A13;
-    dw $0006,ExtendedSpritemap_KraidArm_General_9                        ;A78A17;
-    dw $0006,ExtendedSpritemap_KraidArm_General_7                        ;A78A1B;
-    dw $0006,ExtendedSpritemap_KraidArm_General_6                        ;A78A1F;
-    dw $0006,ExtendedSpritemap_KraidArm_General_5                        ;A78A23;
-    dw $0006,ExtendedSpritemap_KraidArm_General_4                        ;A78A27;
-    dw $0006,ExtendedSpritemap_KraidArm_General_3                        ;A78A2B;
-    dw $0006,ExtendedSpritemap_KraidArm_General_2                        ;A78A2F;
-    dw $0006,ExtendedSpritemap_KraidArm_General_1                        ;A78A33;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_General_0                   ;A789F3;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_General_1                   ;A789F7;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_General_2                   ;A789FB;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_General_3                   ;A789FF;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_General_4                   ;A78A03;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_General_5                   ;A78A07;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_General_6                   ;A78A0B;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_General_7                   ;A78A0F;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_General_8                   ;A78A13;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_General_9                   ;A78A17;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_General_7                   ;A78A1B;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_General_6                   ;A78A1F;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_General_5                   ;A78A23;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_General_4                   ;A78A27;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_General_3                   ;A78A2B;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_General_2                   ;A78A2F;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_General_1                   ;A78A33;
 
 InstList_KraidArm_Normal_1:
-    dw $0020,ExtendedSpritemap_KraidArm_General_0                        ;A78A37;
+    dw $0020*!FPS,ExtendedSpritemap_KraidArm_General_0                   ;A78A37;
     dw Instruction_KraidArm_SlowArmIfLessThanHalfHealth                  ;A78A3B;
     dw Instruction_Common_GotoY                                          ;A78A3D;
     dw InstList_KraidArm_Normal_0                                        ;A78A3F;
@@ -928,24 +966,24 @@ InstList_KraidArm_Normal_1:
 
 ;;; $8A41: Instruction list - Kraid arm - slow ;;;
 InstList_KraidArm_Slow:
-    dw $0008,ExtendedSpritemap_KraidArm_General_0                        ;A78A41;
-    dw $0008,ExtendedSpritemap_KraidArm_General_1                        ;A78A45;
-    dw $0008,ExtendedSpritemap_KraidArm_General_2                        ;A78A49;
-    dw $0008,ExtendedSpritemap_KraidArm_General_3                        ;A78A4D;
-    dw $0008,ExtendedSpritemap_KraidArm_General_4                        ;A78A51;
-    dw $0008,ExtendedSpritemap_KraidArm_General_5                        ;A78A55;
-    dw $0008,ExtendedSpritemap_KraidArm_General_6                        ;A78A59;
-    dw $0008,ExtendedSpritemap_KraidArm_General_7                        ;A78A5D;
-    dw $0008,ExtendedSpritemap_KraidArm_General_8                        ;A78A61;
-    dw $0008,ExtendedSpritemap_KraidArm_General_9                        ;A78A65;
-    dw $0008,ExtendedSpritemap_KraidArm_General_7                        ;A78A69;
-    dw $0008,ExtendedSpritemap_KraidArm_General_6                        ;A78A6D;
-    dw $0008,ExtendedSpritemap_KraidArm_General_5                        ;A78A71;
-    dw $0008,ExtendedSpritemap_KraidArm_General_4                        ;A78A75;
-    dw $0008,ExtendedSpritemap_KraidArm_General_3                        ;A78A79;
-    dw $0008,ExtendedSpritemap_KraidArm_General_2                        ;A78A7D;
-    dw $0008,ExtendedSpritemap_KraidArm_General_1                        ;A78A81;
-    dw $0030,ExtendedSpritemap_KraidArm_General_0                        ;A78A85;
+    dw regional($0008, $0006),ExtendedSpritemap_KraidArm_General_0       ;A78A41;
+    dw regional($0008, $0006),ExtendedSpritemap_KraidArm_General_1       ;A78A45;
+    dw regional($0008, $0007),ExtendedSpritemap_KraidArm_General_2       ;A78A49;
+    dw regional($0008, $0006),ExtendedSpritemap_KraidArm_General_3       ;A78A4D;
+    dw regional($0008, $0006),ExtendedSpritemap_KraidArm_General_4       ;A78A51;
+    dw regional($0008, $0007),ExtendedSpritemap_KraidArm_General_5       ;A78A55;
+    dw regional($0008, $0006),ExtendedSpritemap_KraidArm_General_6       ;A78A59;
+    dw regional($0008, $0006),ExtendedSpritemap_KraidArm_General_7       ;A78A5D;
+    dw regional($0008, $0007),ExtendedSpritemap_KraidArm_General_8       ;A78A61;
+    dw regional($0008, $0006),ExtendedSpritemap_KraidArm_General_9       ;A78A65;
+    dw regional($0008, $0006),ExtendedSpritemap_KraidArm_General_7       ;A78A69;
+    dw regional($0008, $0007),ExtendedSpritemap_KraidArm_General_6       ;A78A6D;
+    dw regional($0008, $0006),ExtendedSpritemap_KraidArm_General_5       ;A78A71;
+    dw regional($0008, $0006),ExtendedSpritemap_KraidArm_General_4       ;A78A75;
+    dw regional($0008, $0007),ExtendedSpritemap_KraidArm_General_3       ;A78A79;
+    dw regional($0008, $0006),ExtendedSpritemap_KraidArm_General_2       ;A78A7D;
+    dw regional($0008, $0007),ExtendedSpritemap_KraidArm_General_1       ;A78A81;
+    dw $0030*!FPS,ExtendedSpritemap_KraidArm_General_0                   ;A78A85;
     dw Instruction_KraidArm_SlowArmIfLessThanHalfHealth                  ;A78A89;
     dw Instruction_Common_GotoY                                          ;A78A8B;
     dw InstList_KraidArm_Slow                                            ;A78A8D;
@@ -968,32 +1006,32 @@ Instruction_KraidArm_SlowArmIfLessThanHalfHealth:
 ;;; $8AA4: Instruction list - Kraid arm - rising/sinking ;;;
 InstList_KraidArm_RisingSinking:
 ; Same as InstList_KraidArm_Normal_0, but the spritemaps all have lower priority sprites
-    dw $0006,ExtendedSpritemap_KraidArm_RisingSinking_0                  ;A78AA4;
-    dw $0006,ExtendedSpritemap_KraidArm_RisingSinking_1                  ;A78AA8;
-    dw $0006,ExtendedSpritemap_KraidArm_RisingSinking_2                  ;A78AAC;
-    dw $0006,ExtendedSpritemap_KraidArm_RisingSinking_3                  ;A78AB0;
-    dw $0006,ExtendedSpritemap_KraidArm_RisingSinking_4                  ;A78AB4;
-    dw $0006,ExtendedSpritemap_KraidArm_RisingSinking_5                  ;A78AB8;
-    dw $0006,ExtendedSpritemap_KraidArm_RisingSinking_6                  ;A78ABC;
-    dw $0006,ExtendedSpritemap_KraidArm_RisingSinking_7                  ;A78AC0;
-    dw $0006,ExtendedSpritemap_KraidArm_RisingSinking_8                  ;A78AC4;
-    dw $0006,ExtendedSpritemap_KraidArm_RisingSinking_9                  ;A78AC8;
-    dw $0006,ExtendedSpritemap_KraidArm_RisingSinking_7                  ;A78ACC;
-    dw $0006,ExtendedSpritemap_KraidArm_RisingSinking_6                  ;A78AD0;
-    dw $0006,ExtendedSpritemap_KraidArm_RisingSinking_5                  ;A78AD4;
-    dw $0006,ExtendedSpritemap_KraidArm_RisingSinking_4                  ;A78AD8;
-    dw $0006,ExtendedSpritemap_KraidArm_RisingSinking_3                  ;A78ADC;
-    dw $0006,ExtendedSpritemap_KraidArm_RisingSinking_2                  ;A78AE0;
-    dw $0006,ExtendedSpritemap_KraidArm_RisingSinking_1                  ;A78AE4;
-    dw $0020,ExtendedSpritemap_KraidArm_RisingSinking_0                  ;A78AE8;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_RisingSinking_0             ;A78AA4;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_RisingSinking_1             ;A78AA8;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_RisingSinking_2             ;A78AAC;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_RisingSinking_3             ;A78AB0;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_RisingSinking_4             ;A78AB4;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_RisingSinking_5             ;A78AB8;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_RisingSinking_6             ;A78ABC;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_RisingSinking_7             ;A78AC0;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_RisingSinking_8             ;A78AC4;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_RisingSinking_9             ;A78AC8;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_RisingSinking_7             ;A78ACC;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_RisingSinking_6             ;A78AD0;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_RisingSinking_5             ;A78AD4;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_RisingSinking_4             ;A78AD8;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_RisingSinking_3             ;A78ADC;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_RisingSinking_2             ;A78AE0;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_RisingSinking_1             ;A78AE4;
+    dw $0020*!FPS,ExtendedSpritemap_KraidArm_RisingSinking_0             ;A78AE8;
     dw Instruction_Common_GotoY                                          ;A78AEC;
     dw InstList_KraidArm_RisingSinking                                   ;A78AEE;
 
 
 ;;; $8AF0: Instruction list - Kraid arm - dying / preparing to lunge forward ;;;
 InstList_KraidArm_Dying_PreparingToLungeForward:
-    dw $0006,ExtendedSpritemap_KraidArm_General_0                        ;A78AF0;
-    dw $0006,ExtendedSpritemap_KraidArm_Dying_PreparingToLungeForward_0  ;A78AF4;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_General_0                   ;A78AF0;
+    dw $0006*!FPS,ExtendedSpritemap_KraidArm_Dying_PreparingToLungeForward_0 ;A78AF4;
     dw $7FFF,ExtendedSpritemap_KraidArm_Dying_PreparingToLungeForward_1  ;A78AF8;
     dw Instruction_Common_Sleep                                          ;A78AFC;
 
@@ -1012,13 +1050,13 @@ InstList_KraidLint_KraidIsBig:
 
 ;;; $8B0A: Instruction list - fingernail ;;;
 InstList_KraidNail:
-    dw $0003,Spritemap_KraidNail_0                                       ;A78B0A;
+    dw $0003*!FPS,Spritemap_KraidNail_0                                  ;A78B0A;
     dw $0003,Spritemap_KraidNail_1                                       ;A78B0E;
-    dw $0003,Spritemap_KraidNail_2                                       ;A78B12;
+    dw $0003*!FPS,Spritemap_KraidNail_2                                  ;A78B12;
     dw $0003,Spritemap_KraidNail_3                                       ;A78B16;
-    dw $0003,Spritemap_KraidNail_4                                       ;A78B1A;
+    dw $0003*!FPS,Spritemap_KraidNail_4                                  ;A78B1A;
     dw $0003,Spritemap_KraidNail_5                                       ;A78B1E;
-    dw $0003,Spritemap_KraidNail_6                                       ;A78B22;
+    dw $0003*!FPS,Spritemap_KraidNail_6                                  ;A78B22;
     dw $0003,Spritemap_KraidNail_7                                       ;A78B26;
     dw Instruction_Common_GotoY                                          ;A78B2A;
     dw InstList_KraidNail                                                ;A78B2C;
@@ -3110,6 +3148,7 @@ KraidLint_InitialFunctionTimers:
   .bottom:
     dw $0040                                                             ;A7A91A;
 
+if !PAL == 0
 KraidForwardsSpeed:
     dw $0003                                                             ;A7A91C;
 
@@ -3128,6 +3167,33 @@ UNUSED_KraidBackwardsFastSpeed_A7A922:
 UNUSED_KraidConstant_A7A924:
     dw $0110                                                             ;A7A924;
 endif ; !FEATURE_KEEP_UNREFERENCED
+else
+KraidForwardsSpeed:
+    dw $0003
+
+KraidForwardsSubspeed:
+    dw $0CCC
+
+KraidBackwardsSpeed:
+    dw $0005
+
+KraidBackwardsFastSpeed:
+    dw $0004
+
+KraidBackwardsFastSubspeed:
+    dw $0CCC
+
+if !FEATURE_KEEP_UNREFERENCED
+UNUSED_KraidBackwardsFastSpeed_A7A922:
+    dw $0004
+
+UNUSED_KraidBackwardsFastSubspeed:
+    dw $CCCC
+
+UNUSED_KraidConstant_A7A924:
+    dw $0110
+endif ; !FEATURE_KEEP_UNREFERENCED
+endif
 
 KraidLint:
   .XSubSpeed:
@@ -3298,7 +3364,7 @@ InitAI_Kraid:
     STA.W Enemy.properties                                               ;A7AA60;
     LDA.W #Function_Kraid_RestrictSamusXPositionToFirstScreen            ;A7AA63;
     STA.W Kraid.function                                                 ;A7AA66;
-    LDA.W #$012C                                                         ;A7AA69;
+    LDA.W #$012C*!FPS                                                    ;A7AA69;
     STA.W Kraid.functionTimer                                            ;A7AA6C;
     LDA.W #Function_Kraid_RaiseThruFloor_LoadTilemapTopHalf              ;A7AA6F;
     STA.L Kraid.nextFunction                                             ;A7AA72;
@@ -4727,8 +4793,16 @@ Instruction_Kraid_QueueSFX76_Lib2_Max6:
 ;;; $B65A: Instruction - Kraid X position -= 3 ;;;
 Instruction_Kraid_XPositionMinus3:
     PHX                                                                  ;A7B65A;
+if !PAL == 0
     LDA.W Enemy.XPosition                                                ;A7B65B;
     SEC                                                                  ;A7B65E;
+else
+    LDA.W Enemy.XSubPosition
+    SEC
+    SBC.W KraidForwardsSubspeed
+    STA.W Enemy.XSubPosition
+    LDA.W Enemy.XPosition
+endif
     SBC.W KraidForwardsSpeed                                             ;A7B65F;
     STA.W Enemy.XPosition                                                ;A7B662;
     PLX                                                                  ;A7B665;
@@ -4738,8 +4812,16 @@ Instruction_Kraid_XPositionMinus3:
 ;;; $B667: Instruction - Kraid X position -= 3 ;;;
 Instruction_Kraid_XPositionMinus3_duplicate:
     PHX                                                                  ;A7B667;
+if !PAL == 0
     LDA.W Enemy.XPosition                                                ;A7B668;
     SEC                                                                  ;A7B66B;
+else
+    LDA.W Enemy.XSubPosition
+    SEC
+    SBC.W KraidForwardsSubspeed
+    STA.W Enemy.XSubPosition
+    LDA.W Enemy.XPosition
+endif
     SBC.W KraidForwardsSpeed                                             ;A7B66C;
     STA.W Enemy.XPosition                                                ;A7B66F;
     PLX                                                                  ;A7B672;
@@ -4750,8 +4832,16 @@ Instruction_Kraid_XPositionMinus3_duplicate:
 Instruction_Kraid_XPositionPlus3:
     PHX                                                                  ;A7B674;
     PHY                                                                  ;A7B675;
+if !PAL == 0
     LDA.W KraidBackwardsSpeed                                            ;A7B676;
     CLC                                                                  ;A7B679;
+else
+    LDA.W KraidBackwardsFastSubspeed
+    CLC
+    ADC.W Enemy.XSubPosition
+    STA.W Enemy.XSubPosition
+    LDA.W KraidBackwardsFastSpeed
+endif
     ADC.W Enemy.XPosition                                                ;A7B67A;
     STA.W Enemy.XPosition                                                ;A7B67D;
     PLY                                                                  ;A7B680;
@@ -4774,8 +4864,14 @@ UNUSED_Instruction_Kraid_MoveRight_A7B683:
 
   .leftScreen:
     LDX.W #$0000                                                         ;A7B698;
+if !PAL == 0
     STZ.B DP_Temp12                                                      ;A7B69B;
     LDA.W UNUSED_KraidBackwardsFastSpeed_A7A922                          ;A7B69D;
+else
+    LDA.W UNUSED_KraidBackwardsFastSubspeed
+    STA.B DP_Temp12
+    LDA.W UNUSED_KraidBackwardsFastSpeed_A7A922
+endif
     STA.B DP_Temp14                                                      ;A7B6A0;
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A7B6A2;
     BCS .collision                                                       ;A7B6A6;
@@ -5540,7 +5636,7 @@ Function_KraidMainLoop_AttackingWithMouthOpen:
 
   .rockSpitXVelocities:
 ; Rock spit X velocities. Unit 1/100h px/frame
-    dw $FC00,$FC40,$FB40,$FB80,$FB40,$FC00,$FB80,$FC40                   ;A7BC65;
+    dw -$0400*!SPF,-$03C0*!SPF,-$04C0*!SPF,-$0480*!SPF,-$04C0*!SPF,-$0400*!SPF,-$0480*!SPF,-$03C0*!SPF ;A7BC65;
 
 
 if !FEATURE_KEEP_UNREFERENCED
@@ -7117,7 +7213,7 @@ Function_Kraid_RaiseThruFloor_LoadTilemapBottomHalf_ShakeScn:
     JSR.W RestrictSamusXPositionToFirstScreen                            ;A7C89A;
     LDA.W #Function_Kraid_RaiseThruFloor_SpawnRNGEarthquakeProjEvery10f  ;A7C89D;
     STA.W Kraid.function                                                 ;A7C8A0;
-    LDA.W #$0078                                                         ;A7C8A3;
+    LDA.W #$0078*!FPS                                                    ;A7C8A3;
     STA.W Kraid.functionTimer                                            ;A7C8A6;
     LDA.W #$01F0                                                         ;A7C8A9;
     STA.W EarthquakeTimer                                                ;A7C8AC;
@@ -7158,7 +7254,7 @@ Function_Kraid_RaiseThruFloor_SpawnRNGEarthquakeProjEvery10f:
     BNE .timerNotExpired                                                 ;A7C8EA;
     LDA.W #Function_Kraid_RaiseThruFloor_SpawnRNGEarthquakeProjEvery8f   ;A7C8EC;
     STA.W Kraid.function                                                 ;A7C8EF;
-    LDA.W #$0060                                                         ;A7C8F2;
+    LDA.W #$0060*!FPS                                                    ;A7C8F2;
     STA.W Kraid.functionTimer                                            ;A7C8F5;
     RTL                                                                  ;A7C8F8;
 
@@ -7573,11 +7669,11 @@ Phantoon_FlameRain_HidingTimers:
 
 ;;; $CD73: Figure-8 Phantoon acceleration ;;;
 Phantoon_Figure8_SubAcceleration_SlowStage:
-    dw $0600                                                             ;A7CD73;
+    dw $060*!SPF*$10                                                     ;A7CD73;
 Phantoon_Figure8_Acceleration_SlowStage:
     dw $0000                                                             ;A7CD75;
 Phantoon_Figure8_SubAcceleration_FastStages:
-    dw $1000                                                             ;A7CD77;
+    dw $100*!SPF*$10                                                     ;A7CD77;
 Phantoon_Figure8_Acceleration_FastStages:
     dw $0000                                                             ;A7CD79;
 
@@ -7586,7 +7682,7 @@ Phantoon_Figure8_Acceleration_FastStages:
 Phantoon_Figure8_SpeedCaps_Stage0Max:
     dw $0002                                                             ;A7CD7B;
 Phantoon_Figure8_SpeedCaps_Stage1Max:
-    dw $0007                                                             ;A7CD7D;
+    dw regional($0007, $0008)                                            ;A7CD7D;
 Phantoon_Figure8_SpeedCaps_Stage2Min:
     dw $0000                                                             ;A7CD7F;
 
@@ -7594,11 +7690,11 @@ Phantoon_Figure8_SpeedCaps_Stage2Min:
 ;;; $CD81: Reverse figure-8 Phantoon acceleration ;;;
 ; Clone of Phantoon_Figure8_SubAcceleration_SlowStage
 Phantoon_ReverseFigure8_SubAcceleration_SlowStage:
-    dw $0600                                                             ;A7CD81;
+    dw $060*!SPF*$10                                                     ;A7CD81;
 Phantoon_ReverseFigure8_Acceleration_SlowStage:
     dw $0000                                                             ;A7CD83;
 Phantoon_ReverseFigure8_SubAcceleration_FastStages:
-    dw $1000                                                             ;A7CD85;
+    dw $100*!SPF*$10                                                     ;A7CD85;
 Phantoon_ReverseFigure8_Acceleration_FastStages:
     dw $0000                                                             ;A7CD87;
 
@@ -7607,7 +7703,7 @@ Phantoon_ReverseFigure8_Acceleration_FastStages:
 Phantoon_ReverseFigure8_SpeedCaps_Stage0Max:
     dw $FFFE                                                             ;A7CD89;
 Phantoon_ReverseFigure8_SpeedCaps_Stage1Max:
-    dw $FFF9                                                             ;A7CD8B;
+    dw regional($FFF9, $FFF8)                                            ;A7CD8B;
 Phantoon_ReverseFigure8_SpeedCaps_Stage2Min:
     dw $0000                                                             ;A7CD8D;
 
@@ -7705,7 +7801,7 @@ InitAI_PhantoonBody:
     STA.L EnemyBG2TilemapSize                                            ;A7CE20; >.<
     JSL.L DisableMinimap_MarkBossRoomTilesExplored                       ;A7CE24;
     LDX.W EnemyIndex                                                     ;A7CE28;
-    LDA.W #$0078                                                         ;A7CE2B;
+    LDA.W #regional($0078, $0060)                                        ;A7CE2B;
     STA.W Phantoon.functionTimer,X                                       ;A7CE2E;
     STZ.W Phantoon.flameCounter,X                                        ;A7CE31;
     STZ.W Phantoon.startingFlamesActivationFlag,X                        ;A7CE34;
@@ -8418,19 +8514,19 @@ MovePhantoonInSwoopingPattern:
     CMP.W Enemy.XPosition                                                ;A7D301;
     BMI .lessThanX                                                       ;A7D304;
     LDA.W Phantoon.swoopingXVelocity                                     ;A7D306;
-    CMP.W #$0800                                                         ;A7D309;
+    CMP.W #$080*!SPF*$10                                                 ;A7D309;
     BPL +                                                                ;A7D30C;
     CLC                                                                  ;A7D30E;
-    ADC.W #$0020                                                         ;A7D30F;
+    ADC.W #$0020*!SPF                                                    ;A7D30F;
     STA.W Phantoon.swoopingXVelocity                                     ;A7D312;
     BRA +                                                                ;A7D315;
 
   .lessThanX:
     LDA.W Phantoon.swoopingXVelocity                                     ;A7D317;
-    CMP.W #$F801                                                         ;A7D31A;
+    CMP.W #regional($F801, $F671)                                        ;A7D31A;
     BMI +                                                                ;A7D31D;
     SEC                                                                  ;A7D31F;
-    SBC.W #$0020                                                         ;A7D320;
+    SBC.W #$0020*!SPF                                                    ;A7D320;
     STA.W Phantoon.swoopingXVelocity                                     ;A7D323;
 
 +   LDA.W Phantoon.swoopingXVelocity                                     ;A7D326;
@@ -8478,19 +8574,19 @@ MovePhantoonInSwoopingPattern:
 +   CMP.W Enemy.YPosition                                                ;A7D37B;
     BMI .lessThanY                                                       ;A7D37E;
     LDA.W Phantoon.swoopingYVelocity                                     ;A7D380;
-    CMP.W #$0600                                                         ;A7D383;
+    CMP.W #$060*!SPF*$10                                                 ;A7D383;
     BPL +                                                                ;A7D386;
     CLC                                                                  ;A7D388;
-    ADC.W #$0040                                                         ;A7D389;
+    ADC.W #$0040*!SPF                                                    ;A7D389;
     STA.W Phantoon.swoopingYVelocity                                     ;A7D38C;
     BRA +                                                                ;A7D38F;
 
   .lessThanY:
     LDA.W Phantoon.swoopingYVelocity                                     ;A7D391;
-    CMP.W #$FA01                                                         ;A7D394;
+    CMP.W #regional($FA01, $F8D1)                                        ;A7D394;
     BMI +                                                                ;A7D397;
     SEC                                                                  ;A7D399;
-    SBC.W #$0040                                                         ;A7D39A;
+    SBC.W #$0040*!SPF                                                    ;A7D39A;
     STA.W Phantoon.swoopingYVelocity                                     ;A7D39D;
 
 +   LDA.W Phantoon.swoopingYVelocity                                     ;A7D3A0;
@@ -10719,19 +10815,19 @@ InstList_Etecoon_Flexing_1:
 EtecoonConstants:
   .initialYVelocityOfHopsAndFailedJumps:
 ; Initial Y velocity of hops and failed jump
-    dw $FFFD,$0000                                                       ;A7E900;
+    dd wordSwap(-$000300*!SPF*$100)                                      ;A7E900;
 
   .initialYVelocityOfSuccessfulJump:
 ; Initial Y velocity of successful jump
-    dw $FFFC,$0000                                                       ;A7E904;
+    dd wordSwap(-$000400*!SPF*$100)                                      ;A7E904;
 
   .XVelocityRight:
 ; X velocity - right
-    dw $0002,$0000                                                       ;A7E908;
+    dd wordSwap($000200*!SPF*$100)                                       ;A7E908;
 
   .XVelocityLeft:
 ; X velocity - left
-    dw $FFFE,$0000                                                       ;A7E90C;
+    dd wordSwap(-$000200*!SPF*$100)                                      ;A7E90C;
 
   .SamusXProximityThresholdAtBottomOfRoom:
 ; Samus X proximity threshold at bottom of room
@@ -10814,7 +10910,7 @@ EtecoonVerticalMovement:
     LDA.W Etecoon.XSubVelocity,X                                         ;A7E988;
     STA.B DP_Temp12                                                      ;A7E98B;
     LDA.W Etecoon.XVelocity,X                                            ;A7E98D;
-    CMP.W #$0005                                                         ;A7E990;
+    CMP.W #$0005*!SPF                                                    ;A7E990;
     BPL .move                                                            ;A7E993;
     LDA.W Etecoon.XSubVelocity,X                                         ;A7E995;
     CLC                                                                  ;A7E998;
@@ -12020,11 +12116,19 @@ DachoraConstants_echoLifetime:
 
 DachoraConstants_maxXSpeed:
 ; Max X speed
+if !PAL == 0
     dw $0008,$0000                                                       ;A7F4D5;
+else
+    dw $0009,$1000
+endif
 
 DachoraConstants_XAcceleration:
 ; X acceleration
+if !PAL == 0
     dw $0000,$1000                                                       ;A7F4D9;
+else
+    dw $0000,$1400
+endif
 
 
 ;;; $F4DD: Initialisation AI - enemy $E5FF (dachora) ;;;
@@ -12377,7 +12481,7 @@ AccelerateRunningDachora:
     CMP.W #$0004                                                         ;A7F763;
     BNE .checkMaxSpeed                                                   ;A7F766;
     LDA.B DP_Temp12                                                      ;A7F768;
-    CMP.W #$0000                                                         ;A7F76A;
+    CMP.W #regional($0000, $1000)                                        ;A7F76A;
     BNE .return                                                          ;A7F76D;
 
   .maxSpeed:
@@ -12388,10 +12492,10 @@ AccelerateRunningDachora:
     RTS                                                                  ;A7F779;
 
   .checkMaxSpeed:
-    CMP.W #$0008                                                         ;A7F77A;
+    CMP.W #regional($0008, $0009)                                        ;A7F77A;
     BNE .return                                                          ;A7F77D;
     LDA.B DP_Temp12                                                      ;A7F77F;
-    CMP.W #$0000                                                         ;A7F781;
+    CMP.W #regional($0000, $1000)                                        ;A7F781;
     BEQ .maxSpeed                                                        ;A7F784;
 
   .return:

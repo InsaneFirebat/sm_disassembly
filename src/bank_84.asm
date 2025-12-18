@@ -1991,10 +1991,12 @@ UNUSED_Instruction_PLM_QueueSound_Y_Lib1_Max15_848C22:
     JSL.L QueueSound                                                     ;848C25;
     INY                                                                  ;848C29;
     RTS                                                                  ;848C2A;
+endif
 
 
+if !FEATURE_KEEP_UNREFERENCED || !PAL != 0
 ;;; $8C2B: Unused. Instruction - queue sound [[Y]], sound library 2, max queued sounds allowed = 15 ;;;
-UNUSED_Instruction_PLM_QueueSound_Y_Lib2_Max15_848C2B:
+Instruction_PLM_QueueSound_Y_Lib2_Max15:
 ;; Parameters:
 ;;     Y: Pointer to instruction arguments
 ;; Returns:
@@ -2003,8 +2005,10 @@ UNUSED_Instruction_PLM_QueueSound_Y_Lib2_Max15_848C2B:
     JSL.L QueueSound_Lib2_Max15                                          ;848C2E;
     INY                                                                  ;848C32;
     RTS                                                                  ;848C33;
+endif
 
 
+if !FEATURE_KEEP_UNREFERENCED
 ;;; $8C34: Unused. Instruction - queue sound [[Y]], sound library 3, max queued sounds allowed = 15 ;;;
 UNUSED_Instruction_PLM_QueueSound_Y_Lib3_Max15_848C34:
 ;; Parameters:
@@ -7062,7 +7066,7 @@ InstList_PLM_SaveStation_0:
     dw InstList_PLM_SaveStation_2                                        ;84AFF0;
     dw Instruction_PLM_PlaceSamusOnSaveStation                           ;84AFF2;
     dw Instruction_PLM_QueueSound_Y_Lib1_Max6 : db $2E                   ;84AFF4;
-    dw Instruction_PLM_TimerEqualsY_8Bit : db $15                        ;84AFF7;
+    dw Instruction_PLM_TimerEqualsY_8Bit : db regional($15, $10)         ;84AFF7;
 
 InstList_PLM_SaveStation_1:
     dw $0004,DrawInst_SaveStation_2                                      ;84AFFA;
@@ -7888,11 +7892,18 @@ QuicksandSurface_InsideReaction:
 ;       |      ___ With gravity suit
 ;       |     |
   .distanceInAir:
-    dw $0200,$0200 ; Distance to move Samus vertically * 100h in air
+    ; Distance to move Samus vertically * 100h in air
+    dw $0200,$0200
   .distanceOnGround:
-    dw $0120,$0100 ; Distance to move Samus vertically * 100h on ground
+    ; Distance to move Samus vertically * 100h on ground
+    dw $0120,$0100
   .maxVelocity:
-    dw $0280,$0380 ; Samus max vertical velocity * 100h
+    ; Samus max vertical velocity * 100h
+if !PAL == 0
+    dw $0280,$0380
+else
+    dw $02A0,$03A0
+endif
 
 
 ;;; $B497: Setup - PLM $B71F (inside reaction, special air, BTS Maridia 83h. Submerging quicksand) ;;;
@@ -8039,7 +8050,11 @@ QuicksandSurface_MaxSinkingSpeed:
 ;        _________ Without gravity suit
 ;       |      ___ With gravity suit
 ;       |     |
+if !PAL == 0
     dw $0030,$0030                                                       ;84B53D;
+else
+    dw $0028,$0028 ; *Decreased* in PAL(!)
+endif
 
 
 ;;; $B541: Setup - PLM $B737 (collision reaction, special, BTS Maridia 83h. Submerging quicksand) ;;;
@@ -8818,7 +8833,7 @@ PreInst_PLM_WakePLM_StartLavaquakeIfSpeedBoosterCollected:
   .collectedSpeedBooster:
     LDA.W FX_TargetYPosition                                             ;84B80A;
     BMI .deletePLM                                                       ;84B80D;
-    LDA.W #$FF80                                                         ;84B80F;
+    LDA.W #regional($FF80, $FF6A)                                        ;84B80F;
     STA.W FX_YSubVelocity                                                ;84B812;
     LDA.W #$0001                                                         ;84B815;
     STA.L PLMExtra_InstructionTimers,X                                   ;84B818;
@@ -8893,9 +8908,9 @@ PreInst_PLM_AdvanceLavaAsSamusMovesLeft_SetLavaquakeEvent:
   .maxFXYpos:
     dw       $01BF                                                       ;84B878;
   .FXYVelocity:
-    dw             $FF50                                                 ;84B87A;
-    dw $050A,$0167,$FF20
-    dw $0244,$0100,$FF20
+    dw             regional($FF50, $FF2C)                                ;84B87A;
+    dw $050A,$0167,regional($FF20, $FEF8)
+    dw $0244,$0100,regional($FF20, $FEF8)
     dw $8000
 
 
@@ -9069,9 +9084,9 @@ PreInst_PLM_RaiseAcidInEscapeRoomBeforeOldTourianEscapeShaft:
     STA.B DP_Temp14                                                      ;84B950;
     JSR.W WakePLMIfSamusIsBelowRightOfTarget                             ;84B952;
     BCS .return                                                          ;84B955;
-    LDA.W #$FF98                                                         ;84B957;
+    LDA.W #regional($FF98, $FF70)                                        ;84B957;
     STA.W FX_YSubVelocity                                                ;84B95A;
-    LDA.W #$0010                                                         ;84B95D;
+    LDA.W #regional($0010, $000A)                                        ;84B95D;
     STA.W FX_Timer                                                       ;84B960;
 
   .return:
@@ -11648,13 +11663,13 @@ if !FEATURE_KEEP_UNREFERENCED
 ;;; $C92E: Instruction list - PLM $D028 (unused. Respawning screw attack block) ;;;
 UNUSED_InstList_PLM_84C92E:
     dw Instruction_PLM_QueueSound_Y_Lib2_Max6 : db $06                   ;84C92E;
-    dw $0004,DrawInst_Respawn1x1_0                                       ;84C931;
-    dw $0004,DrawInst_Respawn1x1_1                                       ;84C935;
+    dw $0004*!FPS,DrawInst_Respawn1x1_0                                  ;84C931;
+    dw $0004*!FPS,DrawInst_Respawn1x1_1                                  ;84C935;
     dw $0004,DrawInst_Respawn1x1_2                                       ;84C939;
-    dw $0180,DrawInst_Respawn1x1_3                                       ;84C93D;
-    dw $0004,DrawInst_Respawn1x1_2                                       ;84C941;
-    dw $0004,DrawInst_Respawn1x1_1                                       ;84C945;
-    dw $0004,DrawInst_Respawn1x1_0                                       ;84C949;
+    dw $0180*!FPS,DrawInst_Respawn1x1_3                                  ;84C93D;
+    dw $0004*!FPS,DrawInst_Respawn1x1_2                                  ;84C941;
+    dw $0004*!FPS,DrawInst_Respawn1x1_1                                  ;84C945;
+    dw $0004*!FPS,DrawInst_Respawn1x1_0                                  ;84C949;
     dw Instruction_PLM_DrawPLMBlock                                      ;84C94D;
     dw Instruction_PLM_Delete                                            ;84C94F;
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -11663,13 +11678,13 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 ;;; $C951: Instruction list - PLM $D030 (collision reaction, special, BTS Brinstar 82h. Respawning speed block, slower crumble animation) ;;;
 InstList_PLM_RespawningSpeedBlock_SlowerCrumbleAnimation:
     dw Instruction_PLM_QueueSound_Y_Lib2_Max1 : db $06                   ;84C951;
-    dw $0002,DrawInst_Respawn1x1_0                                       ;84C954;
+    dw $0002*!FPS,DrawInst_Respawn1x1_0                                  ;84C954;
     dw $0002,DrawInst_Respawn1x1_1                                       ;84C958;
     dw $0002,DrawInst_Respawn1x1_2                                       ;84C95C;
-    dw $0030,DrawInst_Respawn1x1_3                                       ;84C960;
-    dw $0004,DrawInst_Respawn1x1_2                                       ;84C964;
-    dw $0004,DrawInst_Respawn1x1_1                                       ;84C968;
-    dw $0004,DrawInst_Respawn1x1_0                                       ;84C96C;
+    dw $0030*!FPS,DrawInst_Respawn1x1_3                                  ;84C960;
+    dw $0004*!FPS,DrawInst_Respawn1x1_2                                  ;84C964;
+    dw $0004*!FPS,DrawInst_Respawn1x1_1                                  ;84C968;
+    dw $0004*!FPS,DrawInst_Respawn1x1_0                                  ;84C96C;
     dw Instruction_PLM_DrawPLMBlock                                      ;84C970;
     dw Instruction_PLM_Delete                                            ;84C972;
 
@@ -11680,10 +11695,10 @@ InstList_PLM_RespawningSpeedBoostBlock:
     dw $0001,DrawInst_Respawn1x1_0                                       ;84C977;
     dw $0001,DrawInst_Respawn1x1_1                                       ;84C97B;
     dw $0001,DrawInst_Respawn1x1_2                                       ;84C97F;
-    dw $0030,DrawInst_Respawn1x1_3                                       ;84C983;
-    dw $0004,DrawInst_Respawn1x1_2                                       ;84C987;
-    dw $0004,DrawInst_Respawn1x1_1                                       ;84C98B;
-    dw $0004,DrawInst_Respawn1x1_0                                       ;84C98F;
+    dw $0030*!FPS,DrawInst_Respawn1x1_3                                  ;84C983;
+    dw $0004*!FPS,DrawInst_Respawn1x1_2                                  ;84C987;
+    dw $0004*!FPS,DrawInst_Respawn1x1_1                                  ;84C98B;
+    dw $0004*!FPS,DrawInst_Respawn1x1_0                                  ;84C98F;
     dw Instruction_PLM_DrawPLMBlock                                      ;84C993;
     dw Instruction_PLM_Delete                                            ;84C995;
 
@@ -11694,10 +11709,10 @@ InstList_PLM_RespawningSpeedBlock:
     dw $0001,DrawInst_Respawn1x1_0                                       ;84C99A;
     dw $0001,DrawInst_Respawn1x1_1                                       ;84C99E;
     dw $0001,DrawInst_Respawn1x1_2                                       ;84C9A2;
-    dw $0030,DrawInst_Respawn1x1_3                                       ;84C9A6;
-    dw $0004,DrawInst_Respawn1x1_2                                       ;84C9AA;
-    dw $0004,DrawInst_Respawn1x1_1                                       ;84C9AE;
-    dw $0004,DrawInst_Respawn1x1_0                                       ;84C9B2;
+    dw $0030*!FPS,DrawInst_Respawn1x1_3                                  ;84C9A6;
+    dw $0004*!FPS,DrawInst_Respawn1x1_2                                  ;84C9AA;
+    dw $0004*!FPS,DrawInst_Respawn1x1_1                                  ;84C9AE;
+    dw $0004*!FPS,DrawInst_Respawn1x1_0                                  ;84C9B2;
     dw Instruction_PLM_DrawPLMBlock_Clone                                ;84C9B6;
     dw Instruction_PLM_Delete                                            ;84C9B8;
 
@@ -11707,8 +11722,8 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_PLM_84C9BA:
 ; Even slower version of InstList_PLM_SpeedBlockSlowerCrumbleAnimation
     dw Instruction_PLM_QueueSound_Y_Lib2_Max6 : db $06                   ;84C9BA;
-    dw $0004,DrawInst_Respawn1x1_0                                       ;84C9BD;
-    dw $0004,DrawInst_Respawn1x1_1                                       ;84C9C1;
+    dw $0004*!FPS,DrawInst_Respawn1x1_0                                  ;84C9BD;
+    dw $0004*!FPS,DrawInst_Respawn1x1_1                                  ;84C9C1;
     dw $0004,DrawInst_Respawn1x1_2                                       ;84C9C5;
     dw $0001,DrawInst_Respawn1x1_3                                       ;84C9C9;
     dw Instruction_PLM_Delete                                            ;84C9CD;
@@ -11718,7 +11733,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 ;;; $C9CF: Instruction list - PLM $D034 (collision reaction, special, BTS Brinstar 83h. Speed block, slower crumble animation) ;;;
 InstList_PLM_SpeedBlockSlowerCrumbleAnimation:
     dw Instruction_PLM_QueueSound_Y_Lib2_Max1 : db $06                   ;84C9CF;
-    dw $0002,DrawInst_Respawn1x1_0                                       ;84C9D2;
+    dw $0002*!FPS,DrawInst_Respawn1x1_0                                  ;84C9D2;
     dw $0002,DrawInst_Respawn1x1_1                                       ;84C9D6;
     dw $0002,DrawInst_Respawn1x1_2                                       ;84C9DA;
     dw $0001,DrawInst_Respawn1x1_3                                       ;84C9DE;
@@ -11738,13 +11753,13 @@ InstList_PLM_SpeedBoostBlock:
 ;;; $C9F9: Instruction list - PLM $D044 (collision reaction, special, BTS 0. 1x1 respawning crumble block) ;;;
 InstList_PLM_1x1RespawningCrumbleBlock:
     dw Instruction_PLM_QueueSound_Y_Lib2_Max1 : db $0A                   ;84C9F9;
-    dw $0008,DrawInst_Respawn1x1_0                                       ;84C9FC;
-    dw $0006,DrawInst_Respawn1x1_1                                       ;84CA00;
-    dw $0004,DrawInst_Respawn1x1_2                                       ;84CA04;
-    dw $0010,DrawInst_Respawn1x1_3                                       ;84CA08;
-    dw $0004,DrawInst_Respawn1x1_2                                       ;84CA0C;
-    dw $0004,DrawInst_Respawn1x1_1                                       ;84CA10;
-    dw $0004,DrawInst_Respawn1x1_0                                       ;84CA14;
+    dw $0008*!FPS,DrawInst_Respawn1x1_0                                  ;84C9FC;
+    dw $0006*!FPS,DrawInst_Respawn1x1_1                                  ;84CA00;
+    dw $0004*!FPS,DrawInst_Respawn1x1_2                                  ;84CA04;
+    dw regional($0010, $000A),DrawInst_Respawn1x1_3                      ;84CA08;
+    dw $0004*!FPS,DrawInst_Respawn1x1_2                                  ;84CA0C;
+    dw $0004*!FPS,DrawInst_Respawn1x1_1                                  ;84CA10;
+    dw $0004*!FPS,DrawInst_Respawn1x1_0                                  ;84CA14;
     dw Instruction_PLM_DrawPLMBlock                                      ;84CA18;
     dw Instruction_PLM_Delete                                            ;84CA1A;
 
@@ -11752,13 +11767,13 @@ InstList_PLM_1x1RespawningCrumbleBlock:
 ;;; $CA1C: Instruction list - PLM $D048 (collision reaction, special, BTS 1. 2x1 respawning crumble block) ;;;
 InstList_PLM_2x1RespawningCrumbleBlock:
     dw Instruction_PLM_QueueSound_Y_Lib2_Max1 : db $0A                   ;84CA1C;
-    dw $0004,DrawInst_Respawn2x1_0                                       ;84CA1F;
-    dw $0004,DrawInst_Respawn2x1_1                                       ;84CA23;
+    dw $0004*!FPS,DrawInst_Respawn2x1_0                                  ;84CA1F;
+    dw $0004*!FPS,DrawInst_Respawn2x1_1                                  ;84CA23;
     dw $0004,DrawInst_Respawn2x1_2                                       ;84CA27;
-    dw $0010,DrawInst_Respawn2x1_3                                       ;84CA2B;
-    dw $0004,DrawInst_Respawn2x1_2                                       ;84CA2F;
-    dw $0004,DrawInst_Respawn2x1_1                                       ;84CA33;
-    dw $0004,DrawInst_Respawn2x1_0                                       ;84CA37;
+    dw regional($0010, $000A),DrawInst_Respawn2x1_3                      ;84CA2B;
+    dw $0004*!FPS,DrawInst_Respawn2x1_2                                  ;84CA2F;
+    dw $0004*!FPS,DrawInst_Respawn2x1_1                                  ;84CA33;
+    dw $0004*!FPS,DrawInst_Respawn2x1_0                                  ;84CA37;
     dw $0001,DrawInst_2x1RespawningCrumbleBlock                          ;84CA3B;
     dw Instruction_PLM_Delete                                            ;84CA3F;
 
@@ -11766,13 +11781,13 @@ InstList_PLM_2x1RespawningCrumbleBlock:
 ;;; $CA41: Instruction list - PLM $D04C (collision reaction, special, BTS 2. 1x2 respawning crumble block) ;;;
 InstList_PLM_1x2RespawningCrumbleBlock:
     dw Instruction_PLM_QueueSound_Y_Lib2_Max1 : db $0A                   ;84CA41;
-    dw $0004,DrawInst_Respawn1x2_0                                       ;84CA44;
-    dw $0004,DrawInst_Respawn1x2_1                                       ;84CA48;
+    dw $0004*!FPS,DrawInst_Respawn1x2_0                                  ;84CA44;
+    dw $0004*!FPS,DrawInst_Respawn1x2_1                                  ;84CA48;
     dw $0004,DrawInst_Respawn1x2_2                                       ;84CA4C;
-    dw $0020,DrawInst_Respawn1x2_3                                       ;84CA50;
-    dw $0004,DrawInst_Respawn1x2_2                                       ;84CA54;
-    dw $0004,DrawInst_Respawn1x2_1                                       ;84CA58;
-    dw $0004,DrawInst_Respawn1x2_0                                       ;84CA5C;
+    dw regional($0020, $0019),DrawInst_Respawn1x2_3                      ;84CA50;
+    dw $0004*!FPS,DrawInst_Respawn1x2_2                                  ;84CA54;
+    dw $0004*!FPS,DrawInst_Respawn1x2_1                                  ;84CA58;
+    dw $0004*!FPS,DrawInst_Respawn1x2_0                                  ;84CA5C;
     dw $0001,DrawInst_1x2RespawningCrumbleBlock                          ;84CA60;
     dw Instruction_PLM_Delete                                            ;84CA64;
 
@@ -11780,13 +11795,13 @@ InstList_PLM_1x2RespawningCrumbleBlock:
 ;;; $CA66: Instruction list - PLM $D050 (collision reaction, special, BTS 3. 2x2 respawning crumble block) ;;;
 InstList_PLM_2x2RespawningCrumbleBlock:
     dw Instruction_PLM_QueueSound_Y_Lib2_Max1 : db $0A                   ;84CA66;
-    dw $0004,DrawInst_Respawn2x2_0                                       ;84CA69;
-    dw $0004,DrawInst_Respawn2x2_1                                       ;84CA6D;
+    dw $0004*!FPS,DrawInst_Respawn2x2_0                                  ;84CA69;
+    dw $0004*!FPS,DrawInst_Respawn2x2_1                                  ;84CA6D;
     dw $0004,DrawInst_Respawn2x2_2                                       ;84CA71;
-    dw $0020,DrawInst_Respawn2x2_3                                       ;84CA75;
-    dw $0004,DrawInst_Respawn2x2_2                                       ;84CA79;
-    dw $0004,DrawInst_Respawn2x2_1                                       ;84CA7D;
-    dw $0004,DrawInst_Respawn2x2_0                                       ;84CA81;
+    dw regional($0020, $0019),DrawInst_Respawn2x2_3                      ;84CA75;
+    dw $0004*!FPS,DrawInst_Respawn2x2_2                                  ;84CA79;
+    dw $0004*!FPS,DrawInst_Respawn2x2_1                                  ;84CA7D;
+    dw $0004*!FPS,DrawInst_Respawn2x2_0                                  ;84CA81;
     dw $0001,DrawInst_2x2RespawningCrumbleBlock                          ;84CA85;
     dw Instruction_PLM_Delete                                            ;84CA89;
 
@@ -11794,8 +11809,8 @@ InstList_PLM_2x2RespawningCrumbleBlock:
 ;;; $CA8B: Instruction list - PLM $D054 (collision reaction, special, BTS 4. 1x1 crumble block) ;;;
 InstList_PLM_1x1CrumbleBlock:
     dw Instruction_PLM_QueueSound_Y_Lib2_Max1 : db $0A                   ;84CA8B;
-    dw $0004,DrawInst_Respawn1x1_0                                       ;84CA8E;
-    dw $0004,DrawInst_Respawn1x1_1                                       ;84CA92;
+    dw $0004*!FPS,DrawInst_Respawn1x1_0                                  ;84CA8E;
+    dw $0004*!FPS,DrawInst_Respawn1x1_1                                  ;84CA92;
     dw $0004,DrawInst_Respawn1x1_2                                       ;84CA96;
     dw $0001,DrawInst_Respawn1x1_3                                       ;84CA9A;
     dw Instruction_PLM_Delete                                            ;84CA9E;
@@ -11804,8 +11819,8 @@ InstList_PLM_1x1CrumbleBlock:
 ;;; $CAA0: Instruction list - PLM $D058 (collision reaction, special, BTS 5. 2x1 crumble block) ;;;
 InstList_PLM_2x1CrumbleBlock:
     dw Instruction_PLM_QueueSound_Y_Lib2_Max1 : db $0A                   ;84CAA0;
-    dw $0004,DrawInst_Respawn2x1_0                                       ;84CAA3;
-    dw $0004,DrawInst_Respawn2x1_1                                       ;84CAA7;
+    dw $0004*!FPS,DrawInst_Respawn2x1_0                                  ;84CAA3;
+    dw $0004*!FPS,DrawInst_Respawn2x1_1                                  ;84CAA7;
     dw $0004,DrawInst_Respawn2x1_2                                       ;84CAAB;
     dw $0001,DrawInst_Respawn2x1_3                                       ;84CAAF;
     dw Instruction_PLM_Delete                                            ;84CAB3;
@@ -11814,8 +11829,8 @@ InstList_PLM_2x1CrumbleBlock:
 ;;; $CAB5: Instruction list - PLM $D05C (collision reaction, special, BTS 6. 1x2 crumble block) ;;;
 InstList_PLM_1x2CrumbleBlock:
     dw Instruction_PLM_QueueSound_Y_Lib2_Max1 : db $0A                   ;84CAB5;
-    dw $0004,DrawInst_Respawn1x2_0                                       ;84CAB8;
-    dw $0004,DrawInst_Respawn1x2_1                                       ;84CABC;
+    dw $0004*!FPS,DrawInst_Respawn1x2_0                                  ;84CAB8;
+    dw $0004*!FPS,DrawInst_Respawn1x2_1                                  ;84CABC;
     dw $0004,DrawInst_Respawn1x2_2                                       ;84CAC0;
     dw $0001,DrawInst_Respawn1x2_3                                       ;84CAC4;
     dw Instruction_PLM_Delete                                            ;84CAC8;
@@ -11824,8 +11839,8 @@ InstList_PLM_1x2CrumbleBlock:
 ;;; $CACA: Instruction list - PLM $D060 (collision reaction, special, BTS 7. 2x2 crumble block) ;;;
 InstList_PLM_2x2CrumbleBlock:
     dw Instruction_PLM_QueueSound_Y_Lib2_Max1 : db $0A                   ;84CACA;
-    dw $0004,DrawInst_Respawn2x2_0                                       ;84CACD;
-    dw $0004,DrawInst_Respawn2x2_1                                       ;84CAD1;
+    dw $0004*!FPS,DrawInst_Respawn2x2_0                                  ;84CACD;
+    dw $0004*!FPS,DrawInst_Respawn2x2_1                                  ;84CAD1;
     dw $0004,DrawInst_Respawn2x2_2                                       ;84CAD5;
     dw $0001,DrawInst_Respawn2x2_3                                       ;84CAD9;
     dw Instruction_PLM_Delete                                            ;84CADD;
@@ -11834,13 +11849,13 @@ InstList_PLM_2x2CrumbleBlock:
 ;;; $CADF: Instruction list - PLM $D064 (shot/bombed/grappled reaction, shootable, BTS 0. 1x1 respawning shot block) ;;;
 InstList_PLM_1x1RespawningShotBlock:
     dw Instruction_PLM_QueueSound_Y_Lib2_Max1 : db $0A                   ;84CADF;
-    dw $0004,DrawInst_Respawn1x1_0                                       ;84CAE2;
-    dw $0004,DrawInst_Respawn1x1_1                                       ;84CAE6;
+    dw $0004*!FPS,DrawInst_Respawn1x1_0                                  ;84CAE2;
+    dw $0004*!FPS,DrawInst_Respawn1x1_1                                  ;84CAE6;
     dw $0004,DrawInst_Respawn1x1_2                                       ;84CAEA;
-    dw $0180,DrawInst_Respawn1x1_3                                       ;84CAEE;
-    dw $0004,DrawInst_Respawn1x1_2                                       ;84CAF2;
-    dw $0004,DrawInst_Respawn1x1_1                                       ;84CAF6;
-    dw $0004,DrawInst_Respawn1x1_0                                       ;84CAFA;
+    dw $0180*!FPS,DrawInst_Respawn1x1_3                                  ;84CAEE;
+    dw $0004*!FPS,DrawInst_Respawn1x1_2                                  ;84CAF2;
+    dw $0004*!FPS,DrawInst_Respawn1x1_1                                  ;84CAF6;
+    dw $0004*!FPS,DrawInst_Respawn1x1_0                                  ;84CAFA;
     dw Instruction_PLM_DrawPLMBlock                                      ;84CAFE;
     dw Instruction_PLM_Delete                                            ;84CB00;
 
@@ -11848,13 +11863,13 @@ InstList_PLM_1x1RespawningShotBlock:
 ;;; $CB02: Instruction list - PLM $D068 (shot/bombed/grappled reaction, shootable, BTS 1. 2x1 respawning shot block) ;;;
 InstList_PLM_2x1RespawningShotBlock:
     dw Instruction_PLM_QueueSound_Y_Lib2_Max1 : db $0A                   ;84CB02;
-    dw $0004,DrawInst_Respawn2x1_0                                       ;84CB05;
-    dw $0004,DrawInst_Respawn2x1_1                                       ;84CB09;
+    dw $0004*!FPS,DrawInst_Respawn2x1_0                                  ;84CB05;
+    dw $0004*!FPS,DrawInst_Respawn2x1_1                                  ;84CB09;
     dw $0004,DrawInst_Respawn2x1_2                                       ;84CB0D;
-    dw $0180,DrawInst_Respawn2x1_3                                       ;84CB11;
-    dw $0004,DrawInst_Respawn2x1_2                                       ;84CB15;
-    dw $0004,DrawInst_Respawn2x1_1                                       ;84CB19;
-    dw $0004,DrawInst_Respawn2x1_0                                       ;84CB1D;
+    dw $0180*!FPS,DrawInst_Respawn2x1_3                                  ;84CB11;
+    dw $0004*!FPS,DrawInst_Respawn2x1_2                                  ;84CB15;
+    dw $0004*!FPS,DrawInst_Respawn2x1_1                                  ;84CB19;
+    dw $0004*!FPS,DrawInst_Respawn2x1_0                                  ;84CB1D;
     dw $0001,DrawInst_2x1RespawningShotBlock                             ;84CB21;
     dw Instruction_PLM_Delete                                            ;84CB25;
 
@@ -11862,13 +11877,13 @@ InstList_PLM_2x1RespawningShotBlock:
 ;;; $CB27: Instruction list - PLM $D06C (shot/bombed/grappled reaction, shootable, BTS 2. 1x2 respawning shot block) ;;;
 InstList_PLM_1x2RespawningShotBlock:
     dw Instruction_PLM_QueueSound_Y_Lib2_Max1 : db $0A                   ;84CB27;
-    dw $0004,DrawInst_Respawn1x2_0                                       ;84CB2A;
-    dw $0004,DrawInst_Respawn1x2_1                                       ;84CB2E;
+    dw $0004*!FPS,DrawInst_Respawn1x2_0                                  ;84CB2A;
+    dw $0004*!FPS,DrawInst_Respawn1x2_1                                  ;84CB2E;
     dw $0004,DrawInst_Respawn1x2_2                                       ;84CB32;
-    dw $0180,DrawInst_Respawn1x2_3                                       ;84CB36;
-    dw $0004,DrawInst_Respawn1x2_2                                       ;84CB3A;
-    dw $0004,DrawInst_Respawn1x2_1                                       ;84CB3E;
-    dw $0004,DrawInst_Respawn1x2_0                                       ;84CB42;
+    dw $0180*!FPS,DrawInst_Respawn1x2_3                                  ;84CB36;
+    dw $0004*!FPS,DrawInst_Respawn1x2_2                                  ;84CB3A;
+    dw $0004*!FPS,DrawInst_Respawn1x2_1                                  ;84CB3E;
+    dw $0004*!FPS,DrawInst_Respawn1x2_0                                  ;84CB42;
     dw $0001,DrawInst_1x2RespawningShotBlock                             ;84CB46;
     dw Instruction_PLM_Delete                                            ;84CB4A;
 
@@ -11876,13 +11891,13 @@ InstList_PLM_1x2RespawningShotBlock:
 ;;; $CB4C: Instruction list - PLM $D070 (shot/bombed/grappled reaction, shootable, BTS 3. 2x2 respawning shot block) ;;;
 InstList_PLM_2x2RespawningShotBlock:
     dw Instruction_PLM_QueueSound_Y_Lib2_Max1 : db $0A                   ;84CB4C;
-    dw $0004,DrawInst_Respawn2x2_0                                       ;84CB4F;
-    dw $0004,DrawInst_Respawn2x2_1                                       ;84CB53;
+    dw $0004*!FPS,DrawInst_Respawn2x2_0                                  ;84CB4F;
+    dw $0004*!FPS,DrawInst_Respawn2x2_1                                  ;84CB53;
     dw $0004,DrawInst_Respawn2x2_2                                       ;84CB57;
-    dw $0180,DrawInst_Respawn2x2_3                                       ;84CB5B;
-    dw $0004,DrawInst_Respawn2x2_2                                       ;84CB5F;
-    dw $0004,DrawInst_Respawn2x2_1                                       ;84CB63;
-    dw $0004,DrawInst_Respawn2x2_0                                       ;84CB67;
+    dw $0180*!FPS,DrawInst_Respawn2x2_3                                  ;84CB5B;
+    dw $0004*!FPS,DrawInst_Respawn2x2_2                                  ;84CB5F;
+    dw $0004*!FPS,DrawInst_Respawn2x2_1                                  ;84CB63;
+    dw $0004*!FPS,DrawInst_Respawn2x2_0                                  ;84CB67;
     dw $0001,DrawInst_2x2RespawningShotBlock                             ;84CB6B;
     dw Instruction_PLM_Delete                                            ;84CB6F;
 
@@ -11890,13 +11905,13 @@ InstList_PLM_2x2RespawningShotBlock:
 ;;; $CB71: Instruction list - PLM $D08C (shot/bombed/grappled reaction, shootable, BTS Ah. Respawning super missile block) ;;;
 InstList_PLM_RespawningSuperMissileBlock:
     dw Instruction_PLM_QueueSound_Y_Lib2_Max6 : db $0A                   ;84CB71;
-    dw $0004,DrawInst_Respawn1x1_0                                       ;84CB74;
-    dw $0004,DrawInst_Respawn1x1_1                                       ;84CB78;
+    dw $0004*!FPS,DrawInst_Respawn1x1_0                                  ;84CB74;
+    dw $0004*!FPS,DrawInst_Respawn1x1_1                                  ;84CB78;
     dw $0004,DrawInst_Respawn1x1_2                                       ;84CB7C;
-    dw $0180,DrawInst_Respawn1x1_3                                       ;84CB80;
-    dw $0004,DrawInst_Respawn1x1_2                                       ;84CB84;
-    dw $0004,DrawInst_Respawn1x1_1                                       ;84CB88;
-    dw $0004,DrawInst_Respawn1x1_0                                       ;84CB8C;
+    dw $0180*!FPS,DrawInst_Respawn1x1_3                                  ;84CB80;
+    dw $0004*!FPS,DrawInst_Respawn1x1_2                                  ;84CB84;
+    dw $0004*!FPS,DrawInst_Respawn1x1_1                                  ;84CB88;
+    dw $0004*!FPS,DrawInst_Respawn1x1_0                                  ;84CB8C;
     dw Instruction_PLM_DrawPLMBlock                                      ;84CB90;
     dw Instruction_PLM_Delete                                            ;84CB92;
 
@@ -11904,13 +11919,13 @@ InstList_PLM_RespawningSuperMissileBlock:
 ;;; $CB94: Instruction list - PLM $D084 (shot/bombed/grappled reaction, shootable, BTS 8. Respawning power bomb block) ;;;
 InstList_PLM_RespawningPowerBombBlock:
     dw Instruction_PLM_QueueSound_Y_Lib2_Max1 : db $0A                   ;84CB94;
-    dw $0004,DrawInst_Respawn1x1_0                                       ;84CB97;
-    dw $0004,DrawInst_Respawn1x1_1                                       ;84CB9B;
+    dw $0004*!FPS,DrawInst_Respawn1x1_0                                  ;84CB97;
+    dw $0004*!FPS,DrawInst_Respawn1x1_1                                  ;84CB9B;
     dw $0004,DrawInst_Respawn1x1_2                                       ;84CB9F;
-    dw $0180,DrawInst_Respawn1x1_3                                       ;84CBA3;
-    dw $0004,DrawInst_Respawn1x1_2                                       ;84CBA7;
-    dw $0004,DrawInst_Respawn1x1_1                                       ;84CBAB;
-    dw $0004,DrawInst_Respawn1x1_0                                       ;84CBAF;
+    dw $0180*!FPS,DrawInst_Respawn1x1_3                                  ;84CBA3;
+    dw $0004*!FPS,DrawInst_Respawn1x1_2                                  ;84CBA7;
+    dw $0004*!FPS,DrawInst_Respawn1x1_1                                  ;84CBAB;
+    dw $0004*!FPS,DrawInst_Respawn1x1_0                                  ;84CBAF;
     dw Instruction_PLM_DrawPLMBlock                                      ;84CBB3;
     dw Instruction_PLM_Delete                                            ;84CBB5;
 
@@ -11918,8 +11933,8 @@ InstList_PLM_RespawningPowerBombBlock:
 ;;; $CBB7: Instruction list - PLM $D074 (shot/bombed/grappled reaction, shootable, BTS 4. 1x1 shot block) ;;;
 InstList_PLM_1x1ShotBlock:
     dw Instruction_PLM_QueueSound_Y_Lib2_Max1 : db $0A                   ;84CBB7;
-    dw $0004,DrawInst_Respawn1x1_0                                       ;84CBBA;
-    dw $0004,DrawInst_Respawn1x1_1                                       ;84CBBE;
+    dw $0004*!FPS,DrawInst_Respawn1x1_0                                  ;84CBBA;
+    dw $0004*!FPS,DrawInst_Respawn1x1_1                                  ;84CBBE;
     dw $0004,DrawInst_Respawn1x1_2                                       ;84CBC2;
     dw $0001,DrawInst_Respawn1x1_3                                       ;84CBC6;
     dw Instruction_PLM_Delete                                            ;84CBCA;
@@ -11928,8 +11943,8 @@ InstList_PLM_1x1ShotBlock:
 ;;; $CBCC: Instruction list - PLM $D078 (shot/bombed/grappled reaction, shootable, BTS 5. 2x1 shot block) ;;;
 InstList_PLM_2x1ShotBlock:
     dw Instruction_PLM_QueueSound_Y_Lib2_Max1 : db $0A                   ;84CBCC;
-    dw $0004,DrawInst_Respawn2x1_0                                       ;84CBCF;
-    dw $0004,DrawInst_Respawn2x1_1                                       ;84CBD3;
+    dw $0004*!FPS,DrawInst_Respawn2x1_0                                  ;84CBCF;
+    dw $0004*!FPS,DrawInst_Respawn2x1_1                                  ;84CBD3;
     dw $0004,DrawInst_Respawn2x1_2                                       ;84CBD7;
     dw $0001,DrawInst_Respawn2x1_3                                       ;84CBDB;
     dw Instruction_PLM_Delete                                            ;84CBDF;
@@ -11938,8 +11953,8 @@ InstList_PLM_2x1ShotBlock:
 ;;; $CBE1: Instruction list - PLM $D07C (shot/bombed/grappled reaction, shootable, BTS 6. 1x2 shot block) ;;;
 InstList_PLM_1x2ShotBlock:
     dw Instruction_PLM_QueueSound_Y_Lib2_Max1 : db $0A                   ;84CBE1;
-    dw $0004,DrawInst_Respawn1x2_0                                       ;84CBE4;
-    dw $0004,DrawInst_Respawn1x2_1                                       ;84CBE8;
+    dw $0004*!FPS,DrawInst_Respawn1x2_0                                  ;84CBE4;
+    dw $0004*!FPS,DrawInst_Respawn1x2_1                                  ;84CBE8;
     dw $0004,DrawInst_Respawn1x2_2                                       ;84CBEC;
     dw $0001,DrawInst_Respawn1x2_3                                       ;84CBF0;
     dw Instruction_PLM_Delete                                            ;84CBF4;
@@ -11948,8 +11963,8 @@ InstList_PLM_1x2ShotBlock:
 ;;; $CBF6: Instruction list - PLM $D080 (shot/bombed/grappled reaction, shootable, BTS 7. 2x2 shot block) ;;;
 InstList_PLM_2x2ShotBlock:
     dw Instruction_PLM_QueueSound_Y_Lib2_Max1 : db $0A                   ;84CBF6;
-    dw $0004,DrawInst_Respawn2x2_0                                       ;84CBF9;
-    dw $0004,DrawInst_Respawn2x2_1                                       ;84CBFD;
+    dw $0004*!FPS,DrawInst_Respawn2x2_0                                  ;84CBF9;
+    dw $0004*!FPS,DrawInst_Respawn2x2_1                                  ;84CBFD;
     dw $0004,DrawInst_Respawn2x2_2                                       ;84CC01;
     dw $0001,DrawInst_Respawn2x2_3                                       ;84CC05;
     dw Instruction_PLM_Delete                                            ;84CC09;
@@ -11958,8 +11973,8 @@ InstList_PLM_2x2ShotBlock:
 ;;; $CC0B: Instruction list - PLM $D090 (shot/bombed/grappled reaction, shootable, BTS Bh. Super missile block) ;;;
 InstList_PLM_SuperMissileBlock:
     dw Instruction_PLM_QueueSound_Y_Lib2_Max6 : db $0A                   ;84CC0B;
-    dw $0004,DrawInst_Respawn1x1_0                                       ;84CC0E;
-    dw $0004,DrawInst_Respawn1x1_1                                       ;84CC12;
+    dw $0004*!FPS,DrawInst_Respawn1x1_0                                  ;84CC0E;
+    dw $0004*!FPS,DrawInst_Respawn1x1_1                                  ;84CC12;
     dw $0004,DrawInst_Respawn1x1_2                                       ;84CC16;
     dw $0001,DrawInst_Respawn1x1_3                                       ;84CC1A;
     dw Instruction_PLM_Delete                                            ;84CC1E;
@@ -11989,13 +12004,13 @@ InstList_PLM_Reaction_1x1RespawningBombBlock_0:
 
 ;;; $CC3F: Instruction list - 1x1 respawning bomb block ;;;
 InstList_PLM_1x1RespawningBombBlock:
-    dw $0004,DrawInst_Respawn1x1_0                                       ;84CC3F;
-    dw $0004,DrawInst_Respawn1x1_1                                       ;84CC43;
+    dw $0004*!FPS,DrawInst_Respawn1x1_0                                  ;84CC3F;
+    dw $0004*!FPS,DrawInst_Respawn1x1_1                                  ;84CC43;
     dw $0004,DrawInst_Respawn1x1_2                                       ;84CC47;
-    dw $0180,DrawInst_Respawn1x1_3                                       ;84CC4B;
-    dw $0004,DrawInst_Respawn1x1_2                                       ;84CC4F;
-    dw $0004,DrawInst_Respawn1x1_1                                       ;84CC53;
-    dw $0004,DrawInst_Respawn1x1_0                                       ;84CC57;
+    dw $0180*!FPS,DrawInst_Respawn1x1_3                                  ;84CC4B;
+    dw $0004*!FPS,DrawInst_Respawn1x1_2                                  ;84CC4F;
+    dw $0004*!FPS,DrawInst_Respawn1x1_1                                  ;84CC53;
+    dw $0004*!FPS,DrawInst_Respawn1x1_0                                  ;84CC57;
     dw Instruction_PLM_DrawPLMBlock                                      ;84CC5B;
     dw Instruction_PLM_Delete                                            ;84CC5D;
 
@@ -12014,13 +12029,13 @@ InstList_PLM_Reaction_2x1RespawningBombBlock:
 
 ;;; $CC69: Instruction list - 2x1 respawning bomb block ;;;
 InstList_PLM_2x1RespawningBombBlock:
-    dw $0004,DrawInst_Respawn2x1_0                                       ;84CC69;
-    dw $0004,DrawInst_Respawn2x1_1                                       ;84CC6D;
+    dw $0004*!FPS,DrawInst_Respawn2x1_0                                  ;84CC69;
+    dw $0004*!FPS,DrawInst_Respawn2x1_1                                  ;84CC6D;
     dw $0004,DrawInst_Respawn2x1_2                                       ;84CC71;
-    dw $0180,DrawInst_Respawn2x1_3                                       ;84CC75;
-    dw $0004,DrawInst_Respawn2x1_2                                       ;84CC79;
-    dw $0004,DrawInst_Respawn2x1_1                                       ;84CC7D;
-    dw $0004,DrawInst_Respawn2x1_0                                       ;84CC81;
+    dw $0180*!FPS,DrawInst_Respawn2x1_3                                  ;84CC75;
+    dw $0004*!FPS,DrawInst_Respawn2x1_2                                  ;84CC79;
+    dw $0004*!FPS,DrawInst_Respawn2x1_1                                  ;84CC7D;
+    dw $0004*!FPS,DrawInst_Respawn2x1_0                                  ;84CC81;
     dw $0001,DrawInst_2x1RespawningBombBlock                             ;84CC85;
     dw Instruction_PLM_Delete                                            ;84CC89;
 
@@ -12039,13 +12054,13 @@ InstList_PLM_Reaction_1x2RespawningBombBlock:
 
 ;;; $CC95: Instruction list - 1x2 respawning bomb block ;;;
 InstList_PLM_1x2RespawningBombBlock:
-    dw $0004,DrawInst_Respawn1x2_0                                       ;84CC95;
-    dw $0004,DrawInst_Respawn1x2_1                                       ;84CC99;
+    dw $0004*!FPS,DrawInst_Respawn1x2_0                                  ;84CC95;
+    dw $0004*!FPS,DrawInst_Respawn1x2_1                                  ;84CC99;
     dw $0004,DrawInst_Respawn1x2_2                                       ;84CC9D;
-    dw $0180,DrawInst_Respawn1x2_3                                       ;84CCA1;
-    dw $0004,DrawInst_Respawn1x2_2                                       ;84CCA5;
-    dw $0004,DrawInst_Respawn1x2_1                                       ;84CCA9;
-    dw $0004,DrawInst_Respawn1x2_0                                       ;84CCAD;
+    dw $0180*!FPS,DrawInst_Respawn1x2_3                                  ;84CCA1;
+    dw $0004*!FPS,DrawInst_Respawn1x2_2                                  ;84CCA5;
+    dw $0004*!FPS,DrawInst_Respawn1x2_1                                  ;84CCA9;
+    dw $0004*!FPS,DrawInst_Respawn1x2_0                                  ;84CCAD;
     dw $0001,DrawInst_1x2RespawningBombBlock                             ;84CCB1;
     dw Instruction_PLM_Delete                                            ;84CCB5;
 
@@ -12064,13 +12079,13 @@ InstList_PLM_Reaction_2x2RespawningBombBlock:
 
 ;;; $CCC1: Instruction list - 2x2 respawning bomb block ;;;
 InstList_PLM_2x2RespawningBombBlock:
-    dw $0004,DrawInst_Respawn2x2_0                                       ;84CCC1;
-    dw $0004,DrawInst_Respawn2x2_1                                       ;84CCC5;
+    dw $0004*!FPS,DrawInst_Respawn2x2_0                                  ;84CCC1;
+    dw $0004*!FPS,DrawInst_Respawn2x2_1                                  ;84CCC5;
     dw $0004,DrawInst_Respawn2x2_2                                       ;84CCC9;
-    dw $0180,DrawInst_Respawn2x2_3                                       ;84CCCD;
-    dw $0004,DrawInst_Respawn2x2_2                                       ;84CCD1;
-    dw $0004,DrawInst_Respawn2x2_1                                       ;84CCD5;
-    dw $0004,DrawInst_Respawn2x2_0                                       ;84CCD9;
+    dw $0180*!FPS,DrawInst_Respawn2x2_3                                  ;84CCCD;
+    dw $0004*!FPS,DrawInst_Respawn2x2_2                                  ;84CCD1;
+    dw $0004*!FPS,DrawInst_Respawn2x2_1                                  ;84CCD5;
+    dw $0004*!FPS,DrawInst_Respawn2x2_0                                  ;84CCD9;
     dw $0001,DrawInst_2x2RespawningBombBlock                             ;84CCDD;
     dw Instruction_PLM_Delete                                            ;84CCE1;
 
@@ -12089,8 +12104,8 @@ InstList_PLM_Reaction_1x1RespawningBombBlock_4:
 
 ;;; $CCED: Instruction list - 1x1 bomb block ;;;
 InstList_PLM_1x1BombBlock:
-    dw $0004,DrawInst_Respawn1x1_0                                       ;84CCED;
-    dw $0004,DrawInst_Respawn1x1_1                                       ;84CCF1;
+    dw $0004*!FPS,DrawInst_Respawn1x1_0                                  ;84CCED;
+    dw $0004*!FPS,DrawInst_Respawn1x1_1                                  ;84CCF1;
     dw $0004,DrawInst_Respawn1x1_2                                       ;84CCF5;
     dw $0001,DrawInst_Respawn1x1_3                                       ;84CCF9;
     dw Instruction_PLM_Delete                                            ;84CCFD;
@@ -12110,8 +12125,8 @@ InstList_PLM_Reaction_2x1BombBlock:
 
 ;;; $CD09: Instruction list - 2x1 bomb block ;;;
 InstList_PLM_2x1BombBlock:
-    dw $0004,DrawInst_Respawn2x1_0                                       ;84CD09;
-    dw $0004,DrawInst_Respawn2x1_1                                       ;84CD0D;
+    dw $0004*!FPS,DrawInst_Respawn2x1_0                                  ;84CD09;
+    dw $0004*!FPS,DrawInst_Respawn2x1_1                                  ;84CD0D;
     dw $0004,DrawInst_Respawn2x1_2                                       ;84CD11;
     dw $0001,DrawInst_Respawn2x1_3                                       ;84CD15;
     dw Instruction_PLM_Delete                                            ;84CD19;
@@ -12131,8 +12146,8 @@ InstList_PLM_Reaction_1x2BombBlock:
 
 ;;; $CD25: Instruction list - 1x2 bomb block ;;;
 InstList_PLM_1x2BombBlock:
-    dw $0004,DrawInst_Respawn1x2_0                                       ;84CD25;
-    dw $0004,DrawInst_Respawn1x2_1                                       ;84CD29;
+    dw $0004*!FPS,DrawInst_Respawn1x2_0                                  ;84CD25;
+    dw $0004*!FPS,DrawInst_Respawn1x2_1                                  ;84CD29;
     dw $0004,DrawInst_Respawn1x2_2                                       ;84CD2D;
     dw $0001,DrawInst_Respawn1x2_3                                       ;84CD31;
     dw Instruction_PLM_Delete                                            ;84CD35;
@@ -12152,8 +12167,8 @@ InstList_PLM_Reaction_2x2BombBlock:
 
 ;;; $CD41: Instruction list - 2x2 bomb block ;;;
 InstList_PLM_2x2BombBlock:
-    dw $0004,DrawInst_Respawn2x2_0                                       ;84CD41;
-    dw $0004,DrawInst_Respawn2x2_1                                       ;84CD45;
+    dw $0004*!FPS,DrawInst_Respawn2x2_0                                  ;84CD41;
+    dw $0004*!FPS,DrawInst_Respawn2x2_1                                  ;84CD45;
     dw $0004,DrawInst_Respawn2x2_2                                       ;84CD49;
     dw $0001,DrawInst_Respawn2x2_3                                       ;84CD4D;
     dw Instruction_PLM_Delete                                            ;84CD51;
@@ -12162,8 +12177,8 @@ InstList_PLM_2x2BombBlock:
 ;;; $CD53: Instruction list - PLM $D094 (enemy collision reaction, spike block, BTS Fh. Enemy breakable block) ;;;
 InstList_PLM_EnemyBreakableBlock:
     dw Instruction_PLM_QueueSound_Y_Lib2_Max3 : db $0A                   ;84CD53;
-    dw $0004,DrawInst_Respawn1x1_0                                       ;84CD56;
-    dw $0004,DrawInst_Respawn1x1_1                                       ;84CD5A;
+    dw $0004*!FPS,DrawInst_Respawn1x1_0                                  ;84CD56;
+    dw $0004*!FPS,DrawInst_Respawn1x1_1                                  ;84CD5A;
     dw $0004,DrawInst_Respawn1x1_2                                       ;84CD5E;
     dw $0001,DrawInst_Respawn1x1_3                                       ;84CD62;
     dw Instruction_PLM_Delete                                            ;84CD66;
@@ -12178,13 +12193,13 @@ InstList_PLM_GrappleBlock:
 InstList_PLM_RespawningBreakableGrappleBlock:
     dw $00F0,DrawInst_BreakableGrappleBlock_0                            ;84CD6A;
     dw Instruction_PLM_QueueSound_Y_Lib2_Max6 : db $0A                   ;84CD6E;
-    dw $0004,DrawInst_BreakableGrappleBlock_1                            ;84CD71;
-    dw $0004,DrawInst_BreakableGrappleBlock_2                            ;84CD75;
+    dw $0004*!FPS,DrawInst_BreakableGrappleBlock_1                       ;84CD71;
+    dw $0004*!FPS,DrawInst_BreakableGrappleBlock_2                       ;84CD75;
     dw $0004,DrawInst_BreakableGrappleBlock_3                            ;84CD79;
-    dw $0006,DrawInst_BreakableGrappleBlock_4                            ;84CD7D;
-    dw $0004,DrawInst_BreakableGrappleBlock_3                            ;84CD81;
-    dw $0004,DrawInst_BreakableGrappleBlock_2                            ;84CD85;
-    dw $0004,DrawInst_BreakableGrappleBlock_1                            ;84CD89;
+    dw $0006*!FPS,DrawInst_BreakableGrappleBlock_4                       ;84CD7D;
+    dw $0004*!FPS,DrawInst_BreakableGrappleBlock_3                       ;84CD81;
+    dw $0004*!FPS,DrawInst_BreakableGrappleBlock_2                       ;84CD85;
+    dw $0004*!FPS,DrawInst_BreakableGrappleBlock_1                       ;84CD89;
     dw Instruction_SetPLMBTSTo1                                          ;84CD8D;
     dw Instruction_PLM_DrawPLMBlock                                      ;84CD8F;
     dw Instruction_PLM_Delete                                            ;84CD91;
@@ -12210,8 +12225,8 @@ Instruction_SetPLMBTSTo1:
 InstList_PLM_BreakableGrappleBlock:
     dw $0078,DrawInst_BreakableGrappleBlock_0                            ;84CDA9;
     dw Instruction_PLM_QueueSound_Y_Lib2_Max6 : db $0A                   ;84CDAD;
-    dw $0004,DrawInst_BreakableGrappleBlock_1                            ;84CDB0;
-    dw $0004,DrawInst_BreakableGrappleBlock_2                            ;84CDB4;
+    dw $0004*!FPS,DrawInst_BreakableGrappleBlock_1                       ;84CDB0;
+    dw $0004*!FPS,DrawInst_BreakableGrappleBlock_2                       ;84CDB4;
     dw $0004,DrawInst_BreakableGrappleBlock_3                            ;84CDB8;
     dw $0001,DrawInst_BreakableGrappleBlock_4                            ;84CDBC;
     dw Instruction_PLM_Delete                                            ;84CDC0;
@@ -13283,20 +13298,20 @@ InstList_PLM_BombTorizosCrumblingChozo:
     dw Instruction_PLM_PreInstruction_inY                                ;84D36C;
     dw PreInstruction_PLM_WakePLMIfSamusHasBombs                         ;84D36E;
     dw Instruction_PLM_Sleep                                             ;84D370;
-    dw $0078,DrawInst_BombTorizosCrumblingChozo_0                        ;84D372;
+    dw $0078*!FPS,DrawInst_BombTorizosCrumblingChozo_0                   ;84D372;
     dw Instruction_PLM_TransferBytesToVRAM                               ;84D376;
     dw $0400 : dl Tiles_BombTorizosCrumblingChozo : dw $6E00             ;84D378;
-    dw $0060,DrawInst_BombTorizosCrumblingChozo_0                        ;84D37D;
+    dw $0060*!FPS,DrawInst_BombTorizosCrumblingChozo_0                   ;84D37D;
     dw Instruction_PLM_SpawnBombTorizoStatueBreakingWithArgY,$0000       ;84D383;
-    dw $0030,DrawInst_BombTorizosCrumblingChozo_0                        ;84D385;
+    dw $0030*!FPS,DrawInst_BombTorizosCrumblingChozo_0                   ;84D385;
     dw Instruction_PLM_SpawnBombTorizoStatueBreakingWithArgY,$0002       ;84D38B;
-    dw $000F,DrawInst_BombTorizosCrumblingChozo_0                        ;84D38D;
+    dw regional($000F, $000A),DrawInst_BombTorizosCrumblingChozo_0       ;84D38D;
     dw Instruction_PLM_SpawnBombTorizoStatueBreakingWithArgY,$0004       ;84D393;
-    dw $000E,DrawInst_BombTorizosCrumblingChozo_0                        ;84D395;
+    dw regional($000E, $000A),DrawInst_BombTorizosCrumblingChozo_0       ;84D395;
     dw Instruction_PLM_SpawnBombTorizoStatueBreakingWithArgY,$0006       ;84D39B;
-    dw $000D,DrawInst_BombTorizosCrumblingChozo_0                        ;84D39D;
+    dw regional($000D, $000A),DrawInst_BombTorizosCrumblingChozo_0       ;84D39D;
     dw Instruction_PLM_SpawnBombTorizoStatueBreakingWithArgY,$0008       ;84D3A3;
-    dw $000C,DrawInst_BombTorizosCrumblingChozo_0                        ;84D3A5;
+    dw regional($000C, $000A),DrawInst_BombTorizosCrumblingChozo_0       ;84D3A5;
     dw Instruction_PLM_SpawnBombTorizoStatueBreakingWithArgY,$000A       ;84D3AB;
     dw $000B,DrawInst_BombTorizosCrumblingChozo_0                        ;84D3AD;
     dw Instruction_PLM_SpawnBombTorizoStatueBreakingWithArgY,$000C       ;84D3B3;
@@ -13431,9 +13446,9 @@ UNUSED_InstList_PLM_AlternateLowerNorfairChozoHand_84D46E:
 UNUSED_Instruction_PLM_DrainAcidLake_84D476:
     LDA.W #$02D2                                                         ;84D476;
     STA.W FX_TargetYPosition                                             ;84D479;
-    LDA.W #$0070                                                         ;84D47C;
+    LDA.W #regional($0070, $005A)                                        ;84D47C;
     STA.W FX_YSubVelocity                                                ;84D47F;
-    LDA.W #$0020                                                         ;84D482;
+    LDA.W #regional($0020, $0019)                                        ;84D482;
     STA.W FX_Timer                                                       ;84D485;
     RTS                                                                  ;84D488;
 
@@ -13507,6 +13522,11 @@ InstList_PLM_NoobTube_0:
     dw Instruction_PLM_Sleep                                             ;84D4E6;
 
 InstList_PLM_NoobTube_1:
+if !PAL != 0
+    ; 30h frame delay before responding to buttons
+    dw Instruction_PLM_ClearPreInstruction
+    dw $0030,DrawInst_NoobTube_0
+endif
     dw Instruction_PLM_LinkInstruction_Y                                 ;84D4E8;
     dw InstList_PLM_NoobTube_2                                           ;84D4EA;
     dw Instruction_PLM_PreInstruction_inY                                ;84D4EC;
@@ -13517,13 +13537,17 @@ InstList_PLM_NoobTube_2:
     dw Instruction_PLM_ClearPreInstruction                               ;84D4F2;
     dw Instruction_PLM_LockSamus                                         ;84D4F4;
     dw Instruction_PLM_SpawnNoobTubeCrackEnemyProjectile                 ;84D4F6;
-    dw $0030,DrawInst_NoobTube_1                                         ;84D4F8;
+    dw $0030*!FPS,DrawInst_NoobTube_1                                    ;84D4F8;
     dw $0001,DrawInst_NoobTube_5                                         ;84D4FC;
     dw $0001,DrawInst_NoobTube_6                                         ;84D500;
+if !PAL == 0
     dw Instruction_PLM_QueueSound_Y_Lib2_Max6 : db $1A                   ;84D504;
+else
+    dw Instruction_PLM_QueueSound_Y_Lib2_Max15 : db $1A
+endif
     dw Inst_PLM_SpawnANoobTubeShards_6NoobTubeReleasedAirBubbles         ;84D507;
     dw Instruction_PLM_TriggerNoobTubeEarthquake                         ;84D509;
-    dw $0060,DrawInst_NoobTube_2                                         ;84D50B;
+    dw $0060*!FPS,DrawInst_NoobTube_2                                    ;84D50B;
     dw Instruction_PLM_SetTheEvent,$000B                                 ;84D50F;
     dw Instruction_PLM_EnableWaterPhysics                                ;84D513;
     dw Instruction_PLM_UnlockSamus                                       ;84D515;
@@ -16257,7 +16281,7 @@ InstList_PLM_SpeedBoosterChozoOrb_4:
 
 ;;; $E63B: Instruction - FX Y velocity = FFE0h ;;;
 Instruction_PLM_FXYVelocity_FFE0:
-    LDA.W #$FFE0                                                         ;84E63B;
+    LDA.W #regional($FFE0, $FFDC)                                        ;84E63B;
     STA.W FX_YSubVelocity                                                ;84E63E;
     RTS                                                                  ;84E641;
 

@@ -400,83 +400,26 @@ Instruction_CommonA5_DisableOffScreenProcessing:
 
 ;;; $8187: Common enemy speeds - linearly increasing ;;;
 CommonA5EnemySpeeds_LinearlyIncreasing:
-;        _____________________ Speed
-;       |      _______________ Subspeed
-;       |     |      _________ Negated speed
-;       |     |     |      ___ Negated subspeed
-;       |     |     |     |
-  .speed:
-    dw $0000                                                             ;A58187;
-  .subspeed:
-    dw       $0000                                                       ;A58189;
-  .negatedSpeed:
-    dw             $0000                                                 ;A5818B;
-  .negatedSubspeed:
-    dw                   $0000                                           ;A5818D;
-    dw $0000,$1000,$FFFF,$F000
-    dw $0000,$2000,$FFFF,$E000
-    dw $0000,$3000,$FFFF,$D000
-    dw $0000,$4000,$FFFF,$C000
-    dw $0000,$5000,$FFFF,$B000
-    dw $0000,$6000,$FFFF,$A000
-    dw $0000,$7000,$FFFF,$9000
-    dw $0000,$8000,$FFFF,$8000
-    dw $0000,$9000,$FFFF,$7000
-    dw $0000,$A000,$FFFF,$6000
-    dw $0000,$B000,$FFFF,$5000
-    dw $0000,$C000,$FFFF,$4000
-    dw $0000,$D000,$FFFF,$3000
-    dw $0000,$E000,$FFFF,$2000
-    dw $0000,$F000,$FFFF,$1000
-    dw $0001,$0000,$FFFF,$0000
-    dw $0001,$1000,$FFFE,$F000
-    dw $0001,$2000,$FFFE,$E000
-    dw $0001,$3000,$FFFE,$D000
-    dw $0001,$4000,$FFFE,$C000
-    dw $0001,$5000,$FFFE,$B000
-    dw $0001,$6000,$FFFE,$A000
-    dw $0001,$7000,$FFFE,$9000
-    dw $0001,$8000,$FFFE,$8000
-    dw $0001,$9000,$FFFE,$7000
-    dw $0001,$A000,$FFFE,$6000
-    dw $0001,$B000,$FFFE,$5000
-    dw $0001,$C000,$FFFE,$4000
-    dw $0001,$D000,$FFFE,$3000
-    dw $0001,$E000,$FFFE,$2000
-    dw $0001,$F000,$FFFE,$1000
-    dw $0002,$0000,$FFFE,$0000
-    dw $0002,$1000,$FFFD,$F000
-    dw $0002,$2000,$FFFD,$E000
-    dw $0002,$3000,$FFFD,$D000
-    dw $0002,$4000,$FFFD,$C000
-    dw $0002,$5000,$FFFD,$B000
-    dw $0002,$6000,$FFFD,$A000
-    dw $0002,$7000,$FFFD,$9000
-    dw $0002,$8000,$FFFD,$8000
-    dw $0002,$9000,$FFFD,$7000
-    dw $0002,$A000,$FFFD,$6000
-    dw $0002,$B000,$FFFD,$5000
-    dw $0002,$C000,$FFFD,$4000
-    dw $0002,$D000,$FFFD,$3000
-    dw $0002,$E000,$FFFD,$2000
-    dw $0002,$F000,$FFFD,$1000
-    dw $0003,$0000,$FFFD,$0000
-    dw $0003,$1000,$FFFC,$F000
-    dw $0003,$2000,$FFFC,$E000
-    dw $0003,$3000,$FFFC,$D000
-    dw $0003,$4000,$FFFC,$C000
-    dw $0003,$5000,$FFFC,$B000
-    dw $0003,$6000,$FFFC,$A000
-    dw $0003,$7000,$FFFC,$9000
-    dw $0003,$8000,$FFFC,$8000
-    dw $0003,$9000,$FFFC,$7000
-    dw $0003,$A000,$FFFC,$6000
-    dw $0003,$B000,$FFFC,$5000
-    dw $0003,$C000,$FFFC,$4000
-    dw $0003,$D000,$FFFC,$3000
-    dw $0003,$E000,$FFFC,$2000
-    dw $0003,$F000,$FFFC,$1000
-    dw $0004,$0000,$FFFC,$0000
+  .speed                                                                 ;A08187;
+skip 2
+  .subspeed                                                              ;A08189;
+skip 2
+  .negatedSpeed                                                          ;A0818B;
+skip 2
+  .negatedSubspeed                                                       ;A0818D;
+skip -6
+
+!i = 0
+if !PAL == 0
+    !n = $41
+else
+    !n = $43
+endif
+while !i < !n
+    !v #= $1000*!SPF*!i ; !i must be last in product to reproduce PAL rounding errors
+    dw !v>>$10, !v, -!v>>$10, -!v
+    !i #= !i+1
+endif
 
 
 ;;; $838F: Common enemy speeds - quadratically increasing ;;;
@@ -498,6 +441,7 @@ CommonA5EnemySpeeds_QuadraticallyIncreasing:
     dw                   $0000                                           ;A58395;
     dw $0109,$0000,$FEF7,$FFFF
     dw $031B,$0000,$FCE5,$FFFF
+if !PAL == 0
     dw $0636,$0000,$F9CA,$FFFF
     dw $0A5A,$0000,$F5A6,$FFFF
     dw $0F87,$0000,$F079,$FFFF
@@ -590,6 +534,100 @@ CommonA5EnemySpeeds_QuadraticallyIncreasing:
     dw $BC66,$0010,$439A,$FFEF
     dw $13AB,$0011,$EC55,$FFEE
     dw $74F9,$0011,$8B07,$FFEE
+else
+    dw $073F,$0000,$F8C1,$FFFF
+    dw $0B63,$0000,$F49D,$FFFF
+    dw $1199,$0000,$EE67,$FFFF
+    dw $19E1,$0000,$E61F,$FFFF
+    dw $2229,$0000,$DDD7,$FFFF
+    dw $2C83,$0000,$D37D,$FFFF
+    dw $36DD,$0000,$C923,$FFFF
+    dw $4349,$0000,$BCB7,$FFFF
+    dw $51C7,$0000,$AE39,$FFFF
+    dw $6045,$0000,$9FBB,$FFFF
+    dw $70D5,$0000,$8F2B,$FFFF
+    dw $8165,$0000,$7E9B,$FFFF
+    dw $9407,$0000,$6BF9,$FFFF
+    dw $A8BB,$0000,$5745,$FFFF
+    dw $BD6F,$0000,$4291,$FFFF
+    dw $D435,$0000,$2BCB,$FFFF
+    dw $EAFB,$0000,$1505,$FFFF
+    dw $03D3,$0001,$FC2D,$FFFE
+    dw $15BD,$0001,$EA43,$FFFE
+    dw $30A7,$0001,$CF59,$FFFE
+    dw $4DA3,$0001,$B25D,$FFFE
+    dw $6A9F,$0001,$9561,$FFFE
+    dw $89AD,$0001,$7653,$FFFE
+    dw $AACD,$0001,$5533,$FFFE
+    dw $CBED,$0001,$3413,$FFFE
+    dw $EF1F,$0001,$10E1,$FFFE
+    dw $0951,$0002,$F6AF,$FFFD
+    dw $2E95,$0002,$D16B,$FFFD
+    dw $55EB,$0002,$AA15,$FFFD
+    dw $7D41,$0002,$82BF,$FFFD
+    dw $A6A9,$0002,$5957,$FFFD
+    dw $D011,$0002,$2FEF,$FFFD
+    dw $FB8B,$0002,$0475,$FFFD
+    dw $2017,$0003,$DFE9,$FFFC
+    dw $4DA3,$0003,$B25D,$FFFC
+    dw $7D41,$0003,$82BF,$FFFC
+    dw $ACDF,$0003,$5321,$FFFC
+    dw $DE8F,$0003,$2171,$FFFC
+    dw $0951,$0004,$F6AF,$FFFB
+    dw $3D13,$0004,$C2ED,$FFFB
+    dw $72E7,$0004,$8D19,$FFFB
+    dw $A8BB,$0004,$5745,$FFFB
+    dw $E0A1,$0004,$1F5F,$FFFB
+    dw $1199,$0005,$EE67,$FFFA
+    dw $4B91,$0005,$B46F,$FFFA
+    dw $879B,$0005,$7865,$FFFA
+    dw $C3A5,$0005,$3C5B,$FFFA
+    dw $01C1,$0005,$FE3F,$FFFA
+    dw $38EF,$0006,$C711,$FFF9
+    dw $791D,$0006,$86E3,$FFF9
+    dw $BB5D,$0006,$44A3,$FFF9
+    dw $FD9D,$0006,$0263,$FFF9
+    dw $38EF,$0007,$C711,$FFF8
+    dw $7F53,$0007,$80AD,$FFF8
+    dw $C5B7,$0007,$3A49,$FFF8
+    dw $052D,$0008,$FAD3,$FFF7
+    dw $4DA3,$0008,$B25D,$FFF7
+    dw $982B,$0008,$67D5,$FFF7
+    dw $E4C5,$0008,$1B3B,$FFF7
+    dw $285F,$0009,$D7A1,$FFF6
+    dw $770B,$0009,$88F5,$FFF6
+    dw $C5B7,$0009,$3A49,$FFF6
+    dw $0D75,$000A,$F28B,$FFF5
+    dw $6045,$000A,$9FBB,$FFF5
+    dw $B315,$000A,$4CEB,$FFF5
+    dw $07F7,$000B,$F809,$FFF5
+    dw $53D9,$000B,$AC27,$FFF4
+    dw $AACD,$000B,$5533,$FFF4
+    dw $03D3,$000C,$FC2D,$FFF3
+    dw $53D9,$000C,$AC27,$FFF3
+    dw $AEF1,$000C,$510F,$FFF3
+    dw $0109,$000D,$FEF7,$FFF2
+    dw $5E33,$000D,$A1CD,$FFF2
+    dw $BD6F,$000D,$4291,$FFF2
+    dw $13AB,$000E,$EC55,$FFF1
+    dw $74F9,$000E,$8B07,$FFF1
+    dw $D647,$000E,$29B9,$FFF1
+    dw $30A7,$000F,$CF59,$FFF0
+    dw $9619,$000F,$69E7,$FFF0
+    dw $FB8B,$000F,$0475,$FFF0
+    dw $5A0F,$0010,$A5F1,$FFEF
+    dw $C193,$0010,$3E6D,$FFEF
+    dw $2229,$0011,$DDD7,$FFEE
+    dw $8DD1,$0011,$722F,$FFEE
+    dw $F979,$0011,$0687,$FFEE
+    dw $5E33,$0012,$A1CD,$FFED
+    dw $CBED,$0012,$3413,$FFED
+    dw $32B9,$0013,$CD47,$FFEC
+    dw $A497,$0013,$5B69,$FFEC
+    dw $0D75,$0014,$F28B,$FFEB
+    dw $8165,$0014,$7E9B,$FFEB
+    dw $F555,$0014,$0AAB,$FFEB
+endif
 
 
 ;;; $8687: Initialisation AI - enemy $DE3F (Draygon body) ;;;
@@ -665,7 +703,7 @@ Function_DraygonBody_FightIntro_InitialDelay:
     JSR.W HandleFiringWallTurret                                         ;A5871B;
     LDX.W EnemyIndex                                                     ;A5871E; >.<
     LDA.W DraygonBody.functionTimer                                      ;A58721;
-    CMP.W #$0100                                                         ;A58724;
+    CMP.W #$0100*!SPF                                                    ;A58724;
     BPL .done                                                            ;A58727;
     LDA.W DraygonBody.functionTimer                                      ;A58729;
     BNE .incFunctionTimer                                                ;A5872C;
@@ -703,7 +741,7 @@ Function_DraygonBody_FightIntro_InitialDelay:
     STA.W Enemy.XPosition                                                ;A58779; >.<
     LDA.L DraygonBody.resetYPosition                                     ;A5877C;
     STA.W Enemy.YPosition                                                ;A58780; >.<
-    LDA.W #$0018                                                         ;A58783;
+    LDA.W #$0018*!SPF                                                    ;A58783;
     STA.L DraygonBody.swoopYAcceleration                                 ;A58786;
     RTS                                                                  ;A5878A;
 
@@ -713,7 +751,7 @@ Function_DraygonBody_FightIntro_Dance:
     JSR.W HandleFiringWallTurret                                         ;A5878B;
     LDX.W EnemyIndex                                                     ;A5878E; >.<
     LDA.W DraygonBody.functionTimer                                      ;A58791;
-    CMP.W #$04D0                                                         ;A58794;
+    CMP.W #$04D0*!SPF                                                    ;A58794;
     BPL .startFight                                                      ;A58797;
     JSR.W HandleDraygonFightIntroDance                                   ;A58799;
     INC.W DraygonBody.functionTimer                                      ;A5879C;
@@ -746,7 +784,7 @@ HandleFiringWallTurret:
     LDA.W .YPosition,Y                                                   ;A587CC;
     STA.B DP_Temp14                                                      ;A587CF;
     LDY.W #EnemyProjectile_DraygonWallTurret                             ;A587D1;
-    LDA.W #$0003                                                         ;A587D4;
+    LDA.W #regional($0003, $0004)                                        ;A587D4;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A587D7;
 
   .return:
@@ -1146,9 +1184,9 @@ Function_DraygonBody_GoopRight_Setup:
     STA.W Enemy.XPosition                                                ;A58B10;
     LDA.W #$0180                                                         ;A58B13;
     STA.W Enemy.YPosition                                                ;A58B16;
-    LDA.W #$0000                                                         ;A58B19;
+    LDA.W #$10000*!SPF                                                   ;A58B19;
     STA.W DraygonBody.XSubSpeed                                          ;A58B1C;
-    LDA.W #$0001                                                         ;A58B1F;
+    LDA.W #$10000*!SPF>>$10                                              ;A58B1F;
     STA.W DraygonBody.XSpeed                                             ;A58B22;
     LDA.W #$0000                                                         ;A58B25;
     STA.L DraygonBody.goopYOscillationAngle                              ;A58B28;
@@ -1316,9 +1354,9 @@ Function_DraygonBody_GoopLeft_Setup:
     STA.W Enemy.XPosition                                                ;A58C92;
     LDA.W #$0180                                                         ;A58C95;
     STA.W Enemy.YPosition                                                ;A58C98;
-    LDA.W #$0000                                                         ;A58C9B;
+    LDA.W #$10000*!SPF                                                   ;A58C9B;
     STA.W DraygonBody.XSubSpeed                                          ;A58C9E;
-    LDA.W #$0001                                                         ;A58CA1;
+    LDA.W #$10000*!SPF>>$10                                              ;A58CA1;
     STA.W DraygonBody.XSpeed                                             ;A58CA4;
     LDA.W #$0000                                                         ;A58CA7;
     STA.L DraygonBody.goopYOscillationAngle                              ;A58CAA;
@@ -1879,7 +1917,7 @@ Function_DraygonBody_GrabbedSamus_FlyStraightUp:
     JSR.W HandleFiringWallTurret                                         ;A59154;
     LDA.W Enemy.YPosition                                                ;A59157;
     SEC                                                                  ;A5915A;
-    SBC.W #$0004                                                         ;A5915B;
+    SBC.W #regional($0004, $0005)                                        ;A5915B;
     STA.W Enemy.YPosition                                                ;A5915E;
     BMI .offScreenTop                                                    ;A59161;
     RTS                                                                  ;A59163;
@@ -1994,7 +2032,7 @@ Function_DraygonBody_DeathSequence_DriftToDeathSpot:
     STA.W DraygonBody.function                                           ;A59250;
     LDA.W #$0003                                                         ;A59253;
     JSL.L QueueMusicDataOrTrack_8FrameDelay                              ;A59256;
-    LDA.W #$01A0                                                         ;A5925A;
+    LDA.W #regional($01A0, $01C0)                                        ;A5925A;
     STA.W DraygonBody.functionTimer                                      ;A5925D;
     LDA.W #InstList_Draygon_Sleep                                        ;A59260;
     STA.W Enemy.instList                                                 ;A59263;
@@ -3168,7 +3206,7 @@ Instruction_DraygonTail_TailWhipHit:
 ; Uses the damage from the Draygon body enemy and not the Draygon tail enemy :(
     PHX                                                                  ;A59B9A;
     PHY                                                                  ;A59B9B;
-    LDA.W #$0018                                                         ;A59B9C;
+    LDA.W #$0018*!SPF                                                    ;A59B9C;
     STA.L DraygonBody.swoopYAcceleration                                 ;A59B9F;
     LDX.W Enemy.ID                                                       ;A59BA3;
     LDA.L EnemyHeaders_damage,X                                          ;A59BA6;
@@ -3400,7 +3438,9 @@ InstList_DraygonEye_FacingRight_LookingDown:
 
 ;;; $9D68: Instruction list - Draygon tail - facing right - idle ;;;
 InstList_DraygonTail_FacingRight_Idle_0:
+if !PAL == 0
     dw $0008,ExtendedSpritemap_Draygon_59                                ;A59D68;
+endif
     dw $0007,ExtendedSpritemap_Draygon_5A                                ;A59D6C;
     dw $0006,ExtendedSpritemap_Draygon_5B                                ;A59D70;
     dw $0006,ExtendedSpritemap_Draygon_5C                                ;A59D74;
@@ -7280,8 +7320,13 @@ InstList_SporeSpawn_FightHasStarted:
 ;;; $E6E3: Instruction list - open and stop ;;;
 InstList_SporeSpawn_OpenAndStop_0:
     dw Instruction_SporeSpawn_SporeGenerationFlagInY,$0001               ;A5E6E3;
+if !PAL == 0
     dw Instruction_SporeSpawn_QueueSFXInY_Lib2_Max6,$002C                ;A5E6E7;
     dw $0001,ExtendedSpritemap_SporeSpawn_Closed_Closing_Opening_0       ;A5E6E9;
+else
+    dw $0001,ExtendedSpritemap_SporeSpawn_Closed_Closing_Opening_0
+    dw Instruction_SporeSpawn_QueueSFXInY_Lib2_Max6,$002C
+endif
     dw $0008,ExtendedSpritemap_SporeSpawn_Closed_Closing_Opening_1       ;A5E6EF;
     dw $0008,ExtendedSpritemap_SporeSpawn_Closed_Closing_Opening_2       ;A5E6F3;
     dw $0008,ExtendedSpritemap_SporeSpawn_Closed_Closing_Opening_3       ;A5E6F7;
@@ -7350,17 +7395,26 @@ Instruction_SporeSpawn_ClearDamagedFlag:
 
 ;;; $E77D: Instruction list - death sequence ;;;
 InstList_SporeSpawn_DeathSequence_0:
+if !PAL == 0
     dw Instruction_SporeSpawn_FunctionInY                                ;A5E77D;
     dw Function_SporeSpawn_SetupDeath                                    ;A5E77F;
     dw $0001,ExtendedSpritemap_SporeSpawn_Closed_Closing_Opening_6       ;A5E781;
     dw Instruction_SporeSpawn_FunctionInY                                ;A5E785;
     dw Function_SporeSpawn_Dying                                         ;A5E787;
+else
+    dw $0001,ExtendedSpritemap_SporeSpawn_Closed_Closing_Opening_6       ;A5E781;
+endif
     dw Instruction_Common_TimerInY,$000A                                 ;A5E789;
 
 InstList_SporeSpawn_DeathSequence_1:
+if !PAL == 0
     dw $0001,ExtendedSpritemap_SporeSpawn_Closed_Closing_Opening_6       ;A5E78D;
     dw Instruction_SporeSpawn_SpawnDyingExplosion                        ;A5E791;
     dw Instruction_Common_WaitYFrames,$0008                              ;A5E793;
+else
+    dw $0008,ExtendedSpritemap_SporeSpawn_Closed_Closing_Opening_6
+    dw Instruction_SporeSpawn_SpawnDyingExplosion
+endif
     dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;A5E797;
     dw InstList_SporeSpawn_DeathSequence_1                               ;A5E799;
     dw $0008,ExtendedSpritemap_SporeSpawn_Closed_Closing_Opening_6       ;A5E79B;
@@ -7501,9 +7555,14 @@ Instruction_SporeSpawn_Harden:
 Instruction_SporeSpawn_QueueSFXInY_Lib2_Max6:
     PHX                                                                  ;A5E895;
     PHY                                                                  ;A5E896;
+if !PAL != 0
+    LDA.W Enemy.health
+    BEQ +
+endif
     LDA.W $0000,Y                                                        ;A5E897;
-    JSL.L QueueSound_Lib2_Max6                                           ;A5E89A;
-    PLY                                                                  ;A5E89E;
+    JSL.L regional(QueueSound_Lib2_Max6, QueueSound_Lib2_Max1)           ;A5E89A;
+    
++   PLY                                                                  ;A5E89E;
     PLX                                                                  ;A5E89F;
     INY                                                                  ;A5E8A0;
     INY                                                                  ;A5E8A1;
@@ -7515,7 +7574,7 @@ Instruction_SporeSpawn_QueueSFXInY_Lib3_Max6:
     PHX                                                                  ;A5E8A3;
     PHY                                                                  ;A5E8A4;
     LDA.W $0000,Y                                                        ;A5E8A5;
-    JSL.L QueueSound_Lib3_Max6                                           ;A5E8A8;
+    JSL.L regional(QueueSound_Lib3_Max6, QueueSound_Lib3_Max1)           ;A5E8A8;
     PLY                                                                  ;A5E8AC;
     PLX                                                                  ;A5E8AD;
     INY                                                                  ;A5E8AE;
@@ -7682,7 +7741,7 @@ Instruction_SporeSpawn_SpawnHardeningDustCloud:
     LDY.W #EnemyProjectile_MiscDust                                      ;A5E9A0;
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics                  ;A5E9A3;
     LDA.W #$0029                                                         ;A5E9A7;
-    JSL.L QueueSound_Lib2_Max6                                           ;A5E9AA;
+    JSL.L regional(QueueSound_Lib2_Max6, QueueSound_Lib2_Max1)           ;A5E9AA;
     PLX                                                                  ;A5E9AE;
     PLY                                                                  ;A5E9AF;
     RTL                                                                  ;A5E9B0;
@@ -7717,7 +7776,7 @@ Instruction_SporeSpawn_SpawnDyingExplosion:
     STZ.B DP_Temp18                                                      ;A5E9E5;
     JSL.L Create_Sprite_Object                                           ;A5E9E7;
     LDA.W #$0025                                                         ;A5E9EB;
-    JSL.L QueueSound_Lib2_Max6                                           ;A5E9EE;
+    JSL.L regional(QueueSound_Lib2_Max6, QueueSound_Lib2_Max15)          ;A5E9EE;
     PLX                                                                  ;A5E9F2;
     PLY                                                                  ;A5E9F3;
     RTL                                                                  ;A5E9F4;
@@ -7873,6 +7932,10 @@ Function_SporeSpawn_Descent:
     STA.L SporeSpawn.maxXRadius                                          ;A5EB3F;
     LDA.W #$0001                                                         ;A5EB43;
     STA.L SporeSpawn.angleDelta                                          ;A5EB46;
+if !PAL != 0
+    LDA.W #$3333
+    STA.L SporeSpawn.subangleDelta
+endif
     LDA.W #$00C0                                                         ;A5EB4A;
     STA.L SporeSpawn.angle                                               ;A5EB4D;
     RTS                                                                  ;A5EB51;
@@ -7900,6 +7963,25 @@ Function_SporeSpawn_Moving:
     CLC                                                                  ;A5EB83;
     ADC.W SporeSpawn.YOrigin,X                                           ;A5EB84;
     STA.W Enemy.YPosition,X                                              ;A5EB87;
+if !PAL != 0
+    LDA.L SporeSpawn.subangleDelta
+    CLC
+    ADC.L SporeSpawn.subangle
+    STA.L SporeSpawn.subangle
+    BCC ++
+    LDA.L SporeSpawn.angleDelta
+    BMI +
+    LDA.L SporeSpawn.angle
+    INC A
+    STA.L SporeSpawn.angle
+    BRA ++
+    
++   LDA.L SporeSpawn.angle
+    DEC A
+    STA.L SporeSpawn.angle
+    
+++
+endif
     LDA.L SporeSpawn.angle                                               ;A5EB8A;
     CLC                                                                  ;A5EB8E;
     ADC.L SporeSpawn.angleDelta                                          ;A5EB8F;
@@ -8136,6 +8218,10 @@ EnemyShot_SporeSpawn_Vulnerable:
   .negativeAngleDelta:
     TYA                                                                  ;A5ED93;
     STA.L SporeSpawn.angleDelta                                          ;A5ED94;
+if !PAL != 0
+    LDA.W #$6666
+    STA.L SporeSpawn.subangleDelta
+endif
 
   .noSpeedUp:
     LDA.L SporeSpawn.damagedFlag                                         ;A5ED98;
@@ -8220,6 +8306,11 @@ SporeSpawnReaction_Common:
     JSL.L Spawn_Hardcoded_PLM                                            ;A5EE41;
     db $07,$1E                                                           ;A5EE45;
     dw PLMEntries_crumbleSporeSpawnCeiling                               ;A5EE47;
+if !PAL != 0
+    JSR.W Function_SporeSpawn_SetupDeath
+    LDA.W #Function_SporeSpawn_Dying
+    STA.W SporeSpawn.function
+endif
 
   .return:
     RTL                                                                  ;A5EE49;

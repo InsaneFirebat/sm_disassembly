@@ -2241,7 +2241,7 @@ PreInstruction_EnemyProjectile_MetalSkreeParticle:
     STA.W EnemyProjectile_YPositions,X                                   ;868BAC;
     LDA.W EnemyProjectile_YVelocity,X                                    ;868BAF;
     CLC                                                                  ;868BB2;
-    ADC.W #$0050                                                         ;868BB3;
+    ADC.W #regional($0050, $0080)                                        ;868BB3;
     STA.W EnemyProjectile_YVelocity,X                                    ;868BB6;
     JSR.W CheckIf_EnemyProjectile_IsOffScreen_duplicate_again4           ;868BB9;
     BEQ .return                                                          ;868BBC;
@@ -2885,16 +2885,16 @@ EnemyProjectile_CrocomireBridgeCrumbling:                                ;868F9D
 ;;; $8FAB: Unused. Instruction list - Crocomire's projectile - part 1/3 ;;;
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_EnemyProj_CrocomiresProjectile_Part1_868FAB:
-    dw $0005,EnemyProjSpritemaps_CrocomiresProjectile_0                  ;868FAB;
-    dw $0005,EnemyProjSpritemaps_CrocomiresProjectile_1                  ;868FAF;
+    dw $0005*!FPS,EnemyProjSpritemaps_CrocomiresProjectile_0             ;868FAB;
+    dw $0005*!FPS,EnemyProjSpritemaps_CrocomiresProjectile_1             ;868FAF;
     dw Instruction_EnemyProjectile_GotoY                                 ;868FB3;
     dw UNUSED_InstList_EnemyProj_CrocomiresProjectile_Part1_868FAB       ;868FB5;
 
 
 ;;; $8FB7: Unused. Instruction list - Crocomire's projectile - part 2/3 ;;;
 UNUSED_InstList_EnemyProj_CrocomiresProjectile_Part2_868FB7:
-    dw $0005,EnemyProjSpritemaps_CrocomiresProjectile_2                  ;868FB7;
-    dw $0005,EnemyProjSpritemaps_CrocomiresProjectile_3                  ;868FBB;
+    dw $0005*!FPS,EnemyProjSpritemaps_CrocomiresProjectile_2             ;868FB7;
+    dw $0005*!FPS,EnemyProjSpritemaps_CrocomiresProjectile_3             ;868FBB;
     dw Instruction_EnemyProjectile_GotoY                                 ;868FBF;
     dw UNUSED_InstList_EnemyProj_CrocomiresProjectile_Part2_868FB7       ;868FC1;
 
@@ -2902,8 +2902,8 @@ UNUSED_InstList_EnemyProj_CrocomiresProjectile_Part2_868FB7:
 ;;; $8FC3: Unused. Instruction list ;;;
 UNUSED_InstList_EnemyProj_OldCrocomiresProjectile_868FC3:
 ; Might have been an old version of Crocomire's projectile that uses enemy graphics
-    dw $0005,UNUSED_EnemyProjSpritemaps_OldCrocomiresProjectile_0_8D8082 ;868FC3;
-    dw $0005,UNUSED_EnemyProjSpritemaps_OldCrocomiresProjectile_1_8D8098 ;868FC7;
+    dw $0005*!FPS,UNUSED_EnemyProjSpritemaps_OldCrocomiresProjectile_0_8D8082 ;868FC3;
+    dw $0005*!FPS,UNUSED_EnemyProjSpritemaps_OldCrocomiresProjectile_1_8D8098 ;868FC7;
     dw Instruction_EnemyProjectile_GotoY                                 ;868FCB;
     dw UNUSED_InstList_EnemyProj_OldCrocomiresProjectile_868FC3          ;868FCD;
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -2911,11 +2911,11 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $8FCF: Instruction list - enemy projectile $8F8F (Crocomire's projectile) ;;;
 InstList_EnemyProjectile_CrocomiresProjectile:
-    dw $0003,EnemyProjSpritemaps_CrocomiresProjectile_0                  ;868FCF;
+    dw $0003*!FPS,EnemyProjSpritemaps_CrocomiresProjectile_0             ;868FCF;
     dw $0003,EnemyProjSpritemaps_CrocomiresProjectile_1                  ;868FD3;
-    dw $0003,EnemyProjSpritemaps_CrocomiresProjectile_2                  ;868FD7;
+    dw $0003*!FPS,EnemyProjSpritemaps_CrocomiresProjectile_2             ;868FD7;
     dw $0003,EnemyProjSpritemaps_CrocomiresProjectile_3                  ;868FDB;
-    dw $0003,EnemyProjSpritemaps_CrocomiresProjectile_2                  ;868FDF;
+    dw $0003*!FPS,EnemyProjSpritemaps_CrocomiresProjectile_2             ;868FDF;
     dw $0003,EnemyProjSpritemaps_CrocomiresProjectile_1                  ;868FE3;
     dw Instruction_EnemyProjectile_GotoY                                 ;868FE7;
     dw InstList_EnemyProjectile_CrocomiresProjectile                     ;868FE9;
@@ -2940,7 +2940,7 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_InstList_EnemyProj_CrocomireBridgeCrumbling_868FFB:
 ; Referenced by unused routine UNUSED_MoveEnemyProjectileUpFor6FramesThenDelete_86922F
 ; Looks vaguely related to Crocomire bridge crumbling
-    dw $0002,UNUSED_EnemyProjSpritemaps_CrocomireBridgeCrumbling_0_8D8132 ;868FFB;
+    dw $0002*!FPS,UNUSED_EnemyProjSpritemaps_CrocomireBridgeCrumbling_0_8D8132 ;868FFB;
     dw $0002,UNUSED_EnemyProjSpritemaps_CrocomireBridgeCrumbling_1_8D813E ;868FFF;
     dw $7FFF,UNUSED_EnemyProjSpritemaps_CrocomireBridgeCrumbling_2_8D815E ;869003;
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -2948,11 +2948,11 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $9007: Shot instruction list - enemy projectile $8F8F (Crocomire's projectile) ;;;
 InstList_EnemyProjectile_Shot_CrocomiresProjectile:
-    dw $0004,EnemyProjSpritemaps_Common_0                                ;869007;
-    dw $0004,EnemyProjSpritemaps_Common_1                                ;86900B;
-    dw $0004,EnemyProjSpritemaps_Common_2                                ;86900F;
+    dw $0004*!FPS,EnemyProjSpritemaps_Common_0                           ;869007;
+    dw $0004*!FPS,EnemyProjSpritemaps_Common_1                           ;86900B;
+    dw $0004*!FPS,EnemyProjSpritemaps_Common_2                           ;86900F;
     dw $0004,EnemyProjSpritemaps_Common_3                                ;869013;
-    dw $0004,EnemyProjSpritemaps_Common_4                                ;869017;
+    dw $0004*!FPS,EnemyProjSpritemaps_Common_4                           ;869017;
     dw Instruction_SpawnEnemyDropsWithCrocomiresDropChances              ;86901B;
     dw Instruction_EnemyProjectile_GotoY                                 ;86901D;
     dw InstList_EnemyProjectile_Delete                                   ;86901F;
@@ -2964,7 +2964,7 @@ InitAI_EnemyProjectile_CrocomiresProjectile:
 ;; Parameters:
 ;;     Y: Enemy projectile index
     LDX.W EnemyIndex                                                     ;869023;
-    LDA.W #$FE00                                                         ;869026;
+    LDA.W #-$0200*!SPF                                                   ;869026;
     STA.W EnemyProjectile_XVelocity,Y                                    ;869029;
     LDA.W #$0001                                                         ;86902C;
     STA.W EnemyProjectile_YVelocity,Y                                    ;86902F;
@@ -3085,7 +3085,7 @@ InitAI_EnemyProjectile_CrocomireSpikeWallPieces:
     STA.W EnemyProjectile_Var1,Y                                         ;8690EF;
     STA.W EnemyProjectile_XSubPositions,Y                                ;8690F2;
     STA.W EnemyProjectile_YSubPositions,Y                                ;8690F5;
-    LDA.W #$FFFB                                                         ;8690F8;
+    LDA.W #-$0005*!SPF                                                   ;8690F8;
     STA.W EnemyProjectile_YVelocity,Y                                    ;8690FB;
     LDA.W #$8800                                                         ;8690FE;
     STA.W EnemyProjectile_Var1,Y                                         ;869101;
@@ -3271,7 +3271,7 @@ InitAI_EnemyProjectile_CrocomireBridgeCrumbling:
     LDA.W RandomNumberSeed                                               ;8692A5;
     AND.W #$003F                                                         ;8692A8;
     CLC                                                                  ;8692AB;
-    ADC.W #$0040                                                         ;8692AC;
+    ADC.W #$0040*!SPF                                                    ;8692AC;
     STA.W EnemyProjectile_YVelocity,Y                                    ;8692AF;
     LDA.W #$0400                                                         ;8692B2;
     STA.W EnemyProjectile_GraphicsIndices,Y                              ;8692B5;
@@ -3289,7 +3289,7 @@ PreInstruction_EnemyProjectile_CrocomireBridgeCrumbling:
     BCS .delete                                                          ;8692C0;
     LDA.W EnemyProjectile_YVelocity,X                                    ;8692C2;
     CLC                                                                  ;8692C5;
-    ADC.W #$0018                                                         ;8692C6;
+    ADC.W #$0018*!SPF                                                    ;8692C6;
     AND.W #$3FFF                                                         ;8692C9;
     STA.W EnemyProjectile_YVelocity,X                                    ;8692CC;
     PLP                                                                  ;8692CF;
@@ -4284,12 +4284,12 @@ PhantoonDestroyableFlameInit_Type2_Enraged:
     TAX                                                                  ;86987F;
     CPX.W #$0008                                                         ;869880;
     BPL .greaterThan7                                                    ;869883;
-    LDA.W #$0002                                                         ;869885;
+    LDA.W #regional($0002, $0003)                                        ;869885;
     STA.W EnemyProjectile_XVelocity,Y                                    ;869888;
     BRA +                                                                ;86988B;
 
   .greaterThan7:
-    LDA.W #$FFFE                                                         ;86988D;
+    LDA.W #regional($FFFE, $FFFD)                                        ;86988D;
     STA.W EnemyProjectile_XVelocity,Y                                    ;869890;
 
 +   LDA.W .angles,X                                                      ;869893;
@@ -4420,7 +4420,7 @@ PreInst_EnemyProj_PhantoonDestroyableFlame_Casual_Falling:
 ;;     X: Enemy projectile index
     LDA.W EnemyProjectile_YVelocity,X                                    ;869981;
     CLC                                                                  ;869984;
-    ADC.W #$0010                                                         ;869985;
+    ADC.W #$0010*!SPF                                                    ;869985;
     STA.W EnemyProjectile_YVelocity,X                                    ;869988;
     JSR.W Move_EnemyProjectile_Vertically                                ;86998B;
     BCC .return                                                          ;86998E;
@@ -4464,18 +4464,18 @@ PreInst_EnemyProj_PhantoonDestroyableFlame_Casual_HitGround:
     SEC                                                                  ;8699DB;
     SBC.W #$0008                                                         ;8699DC;
     STA.W EnemyProjectile_YPositions,X                                   ;8699DF;
-    LDA.W #$FD00                                                         ;8699E2;
+    LDA.W #-$0300*!SPF                                                   ;8699E2;
     STA.W EnemyProjectile_YVelocity,X                                    ;8699E5;
     STZ.W EnemyProjectile_Var0,X                                         ;8699E8;
     LDA.W NMI_FrameCounter                                               ;8699EB;
     BIT.W #$0001                                                         ;8699EE;
     BNE .negative                                                        ;8699F1;
-    LDA.W #$0080                                                         ;8699F3;
+    LDA.W #$0080*!SPF                                                    ;8699F3;
     STA.W EnemyProjectile_XVelocity,X                                    ;8699F6;
     RTS                                                                  ;8699F9;
 
   .negative:
-    LDA.W #$FF80                                                         ;8699FA;
+    LDA.W #-$0080*!SPF                                                   ;8699FA;
     STA.W EnemyProjectile_XVelocity,X                                    ;8699FD;
 
   .return:
@@ -4488,7 +4488,7 @@ PreInst_EnemyProj_PhantoonDestroyableFlame_Casual_Bouncing:
 ;;     X: Enemy projectile index
     LDA.W EnemyProjectile_YVelocity,X                                    ;869A01;
     CLC                                                                  ;869A04;
-    ADC.W #$0010                                                         ;869A05;
+    ADC.W #$0010*!SPF                                                    ;869A05;
     STA.W EnemyProjectile_YVelocity,X                                    ;869A08;
     JSR.W Move_EnemyProjectile_Vertically                                ;869A0B;
     BCC .noCollision                                                     ;869A0E;
@@ -4519,7 +4519,7 @@ PreInst_EnemyProj_PhantoonDestroyableFlame_Casual_Bouncing:
 
   .Yvelocity:
 ; Y velocity, indexed by bounce counter. First entry is unused
-    dw $FD00,$FE00,$FF00                                                 ;869A3E;
+    dw -$0300*!SPF,-$0200*!SPF,-$0100*!SPF                               ;869A3E;
 
 
 ;;; $9A44: RTS ;;;
@@ -4533,7 +4533,7 @@ PreInst_EnemyProj_PhantoonDestroyableFlame_Enraged:
 ;;     X: Enemy projectile index
     LDA.W EnemyProjectile_YVelocity,X                                    ;869A45;
     CLC                                                                  ;869A48;
-    ADC.W #$0004                                                         ;869A49;
+    ADC.W #regional($0004, $0005)                                        ;869A49;
     STA.W EnemyProjectile_YVelocity,X                                    ;869A4C;
     LDA.W EnemyProjectile_Var0,X                                         ;869A4F;
     CLC                                                                  ;869A52;
@@ -4586,7 +4586,7 @@ PreInst_EnemyProj_PhantoonDestroyableFlame_Rain:
   .falling:
     LDA.W EnemyProjectile_YVelocity,X                                    ;869AA7;
     CLC                                                                  ;869AAA;
-    ADC.W #$0010                                                         ;869AAB;
+    ADC.W #$0010*!SPF                                                    ;869AAB;
     STA.W EnemyProjectile_YVelocity,X                                    ;869AAE;
     JSR.W Move_EnemyProjectile_Vertically                                ;869AB1;
     BCC .return                                                          ;869AB4;
@@ -4613,11 +4613,11 @@ PreInst_EnemyProj_PhantoonDestroyableFlame_Spiral:
 ;;     X: Enemy projectile index
     LDA.W EnemyProjectile_YVelocity,X                                    ;869ADA;
     CLC                                                                  ;869ADD;
-    ADC.W #$0002                                                         ;869ADE;
+    ADC.W #regional($0002, $0003)                                        ;869ADE;
     STA.W EnemyProjectile_YVelocity,X                                    ;869AE1;
     LDA.W EnemyProjectile_Var0,X                                         ;869AE4;
     CLC                                                                  ;869AE7;
-    ADC.W #$0002                                                         ;869AE8;
+    ADC.W #regional($0002, $0003)                                        ;869AE8;
     AND.W #$00FF                                                         ;869AEB;
     STA.W EnemyProjectile_Var0,X                                         ;869AEE;
     TAY                                                                  ;869AF1;
@@ -4894,11 +4894,11 @@ InstList_EnemyProjectile_KraidFloorRocks_Right:
 InstList_EnemyProjectile_Shot_KraidRockSpit:
     dw Instruction_EnemyProjectile_PreInstructionInY                     ;869C89;
     dw PreInstruction_EnemyProjectile_KraidRockSpit_UsePalette0          ;869C8B;
-    dw $0004,EnemyProjSpritemaps_Common_0                                ;869C8D;
-    dw $0004,EnemyProjSpritemaps_Common_1                                ;869C91;
-    dw $0004,EnemyProjSpritemaps_Common_2                                ;869C95;
+    dw $0004*!FPS,EnemyProjSpritemaps_Common_0                           ;869C8D;
+    dw $0004*!FPS,EnemyProjSpritemaps_Common_1                           ;869C91;
+    dw $0004*!FPS,EnemyProjSpritemaps_Common_2                           ;869C95;
     dw $0004,EnemyProjSpritemaps_Common_3                                ;869C99;
-    dw $0004,EnemyProjSpritemaps_Common_4                                ;869C9D;
+    dw $0004*!FPS,EnemyProjSpritemaps_Common_4                           ;869C9D;
     dw Instruction_EnemyProjectile_Delete                                ;869CA1;
 
 
@@ -4922,7 +4922,7 @@ InitAI_EnemyProjectile_KraidRockSpit:
     STA.W EnemyProjectile_XSubPositions,Y                                ;869CC1;
     LDA.W EnemyProjectile_InitParam0                                     ;869CC4;
     STA.W EnemyProjectile_XVelocity,Y                                    ;869CC7;
-    LDA.W #$FC00                                                         ;869CCA;
+    LDA.W #-$0400*!SPF                                                   ;869CCA;
     STA.W EnemyProjectile_YVelocity,Y                                    ;869CCD;
     LDA.W #$0600                                                         ;869CD0;
     STA.W EnemyProjectile_GraphicsIndices,Y                              ;869CD3;
@@ -4949,7 +4949,7 @@ Instruction_EnemyProjectile_KraidCeilingRocks:
     LDA.W RandomNumberSeed                                               ;869CF7;
     AND.W #$003F                                                         ;869CFA;
     CLC                                                                  ;869CFD;
-    ADC.W #$0040                                                         ;869CFE;
+    ADC.W #$0040*!SPF                                                    ;869CFE;
     STA.W EnemyProjectile_YVelocity,Y                                    ;869D01;
     LDA.W #$0600                                                         ;869D04;
     STA.W EnemyProjectile_GraphicsIndices,Y                              ;869D07;
@@ -4985,7 +4985,7 @@ Instruction_EnemyProjectile_KraidRisingRocks:
     STA.W EnemyProjectile_XSubPositions,Y                                ;869D38;
     LDA.W EnemyProjectile_InitParam0                                     ;869D3B;
     STA.W EnemyProjectile_XVelocity,Y                                    ;869D3E;
-    LDA.W #$FB00                                                         ;869D41;
+    LDA.W #-$0500*!SPF                                                   ;869D41;
     STA.W EnemyProjectile_YVelocity,Y                                    ;869D44;
     LDA.W #$0600                                                         ;869D47;
     STA.W EnemyProjectile_GraphicsIndices,Y                              ;869D4A;
@@ -5007,16 +5007,16 @@ PreInstruction_EnemyProjectile_KraidRocks:
     BCS .delete                                                          ;869D61;
     LDA.W EnemyProjectile_XVelocity,X                                    ;869D63;
     CLC                                                                  ;869D66;
-    ADC.W #$0008                                                         ;869D67;
+    ADC.W #regional($0008, $000A)                                        ;869D67;
     STA.W EnemyProjectile_XVelocity,X                                    ;869D6A;
-    CMP.W #$0100                                                         ;869D6D;
+    CMP.W #$0100*!SPF                                                    ;869D6D;
     BMI +                                                                ;869D70;
-    LDA.W #$FF00                                                         ;869D72;
+    LDA.W #-$0100*!SPF                                                   ;869D72;
 
 +   STA.W EnemyProjectile_XVelocity,X                                    ;869D75;
     LDA.W EnemyProjectile_YVelocity,X                                    ;869D78;
     CLC                                                                  ;869D7B;
-    ADC.W #$0040                                                         ;869D7C;
+    ADC.W #$0040*!SPF                                                    ;869D7C;
     STA.W EnemyProjectile_YVelocity,X                                    ;869D7F;
     PLP                                                                  ;869D82;
     RTS                                                                  ;869D83;
@@ -5037,7 +5037,7 @@ PreInstruction_EnemyProjectile_KraidCeilingRocks:
     BCS .collision                                                       ;869D8F;
     LDA.W EnemyProjectile_YVelocity,X                                    ;869D91;
     CLC                                                                  ;869D94;
-    ADC.W #$0018                                                         ;869D95;
+    ADC.W #$0018*!SPF                                                    ;869D95;
     AND.W #$3FFF                                                         ;869D98;
     STA.W EnemyProjectile_YVelocity,X                                    ;869D9B;
     PLP                                                                  ;869D9E;
@@ -5148,11 +5148,11 @@ PreInstruction_EnemyProjectile_MiniKraidSpit:
     BCS .delete                                                          ;869E29;
     LDA.W EnemyProjectile_YVelocity,X                                    ;869E2B;
     CLC                                                                  ;869E2E;
-    ADC.W #$0040                                                         ;869E2F;
+    ADC.W #$0040*!SPF                                                    ;869E2F;
     BMI .setYvelocity                                                    ;869E32;
-    CMP.W #$0400                                                         ;869E34;
+    CMP.W #$0400*!SPF                                                    ;869E34;
     BMI .setYvelocity                                                    ;869E37;
-    LDA.W #$0400                                                         ;869E39;
+    LDA.W #$0400*!SPF                                                    ;869E39;
 
   .setYvelocity:
     STA.W EnemyProjectile_YVelocity,X                                    ;869E3C;
@@ -5169,7 +5169,7 @@ PreInstruction_EnemyProjectile_MiniKraidSpit:
 InitAI_EnemyProjectile_MiniKraidSpikes_Left:
 ;; Parameters:
 ;;     Y: Enemy projectile index
-    LDA.W #$FE00                                                         ;869E46;
+    LDA.W #-$0200*!SPF                                                   ;869E46;
     BRA InitAI_EnemyProjectile_MiniKraidSpikes_Common                    ;869E49;
 
 
@@ -5177,7 +5177,7 @@ InitAI_EnemyProjectile_MiniKraidSpikes_Left:
 InitAI_EnemyProjectile_MiniKraidSpikes_Right:
 ;; Parameters:
 ;;     Y: Enemy projectile index
-    LDA.W #$0200                                                         ;869E4B; fallthrough to InitAI_EnemyProjectile_MiniKraidSpikes_Common
+    LDA.W #$0200*!SPF                                                    ;869E4B; fallthrough to InitAI_EnemyProjectile_MiniKraidSpikes_Common
 
 
 ;;; $9E4E: Fake Kraid spikes common initialisation ;;;
@@ -5236,9 +5236,9 @@ EnemyProjectile_AlcoonFireball:                                          ;869E90
 
 ;;; $9E9E: Instruction list - enemy projectile $9E90 (alcoon fireball) ;;;
 InstList_EnemyProjectile_AlcoonFireball:
-    dw $0003,EnemyProjSpritemaps_AlcoonFireball_0                        ;869E9E;
+    dw $0003*!FPS,EnemyProjSpritemaps_AlcoonFireball_0                   ;869E9E;
     dw $0003,EnemyProjSpritemaps_AlcoonFireball_1                        ;869EA2;
-    dw $0003,EnemyProjSpritemaps_AlcoonFireball_2                        ;869EA6;
+    dw $0003*!FPS,EnemyProjSpritemaps_AlcoonFireball_2                   ;869EA6;
     dw $0003,EnemyProjSpritemaps_AlcoonFireball_3                        ;869EAA;
     dw Instruction_EnemyProjectile_GotoY                                 ;869EAE;
     dw InstList_EnemyProjectile_AlcoonFireball                           ;869EB0;
@@ -5255,7 +5255,7 @@ InitAI_EnemyProjectile_AlcoonFireball:
     SEC                                                                  ;869EB9;
     SBC.W #$000C                                                         ;869EBA;
     STA.W EnemyProjectile_YPositions,Y                                   ;869EBD;
-    LDA.W #$FC00                                                         ;869EC0;
+    LDA.W #-$0400*!SPF                                                   ;869EC0;
     STA.W EnemyProjectile_XVelocity,Y                                    ;869EC3;
     LDA.W Enemy.XPosition,X                                              ;869EC6;
     SEC                                                                  ;869EC9;
@@ -5263,7 +5263,7 @@ InitAI_EnemyProjectile_AlcoonFireball:
     STA.W EnemyProjectile_XPositions,Y                                   ;869ECD;
     LDA.W Enemy.var3,X                                                   ;869ED0;
     BMI +                                                                ;869ED3;
-    LDA.W #$0400                                                         ;869ED5;
+    LDA.W #$0400*!SPF                                                    ;869ED5;
     STA.W EnemyProjectile_XVelocity,Y                                    ;869ED8;
     LDA.W Enemy.XPosition,X                                              ;869EDB;
     CLC                                                                  ;869EDE;
@@ -5281,7 +5281,7 @@ InitAI_EnemyProjectile_AlcoonFireball:
 
   .Yvelocity:
 ; Y velocities
-    dw $FF00,$0000,$0100                                                 ;869EF9;
+    dw -$0100*!SPF,$0000,$0100*!SPF                                      ;869EF9;
 
 
 ;;; $9EFF: Pre-instruction - enemy projectile $9E90 (alcoon fireball) ;;;
@@ -5297,21 +5297,21 @@ PreInstruction_EnemyProjectile_AlcoonFireball:
     BPL .positive                                                        ;869F0E;
     LDA.W EnemyProjectile_XVelocity,X                                    ;869F10;
     CLC                                                                  ;869F13;
-    ADC.W #$0040                                                         ;869F14;
+    ADC.W #$0040*!SPF                                                    ;869F14;
     STA.W EnemyProjectile_XVelocity,X                                    ;869F17;
-    CMP.W #$FE00                                                         ;869F1A;
+    CMP.W #-$0200*!SPF                                                   ;869F1A;
     BMI .return                                                          ;869F1D;
-    LDA.W #$FE00                                                         ;869F1F;
+    LDA.W #-$0200*!SPF                                                   ;869F1F;
     BRA .return                                                          ;869F22;
 
   .positive:
     LDA.W EnemyProjectile_XVelocity,X                                    ;869F24;
     SEC                                                                  ;869F27;
-    SBC.W #$0040                                                         ;869F28;
+    SBC.W #$0040*!SPF                                                    ;869F28;
     STA.W EnemyProjectile_XVelocity,X                                    ;869F2B;
-    CMP.W #$0200                                                         ;869F2E;
+    CMP.W #$0200*!SPF                                                    ;869F2E;
     BPL .return                                                          ;869F31;
-    LDA.W #$0200                                                         ;869F33;
+    LDA.W #$0200*!SPF                                                    ;869F33;
 
   .return:
     STA.W EnemyProjectile_XVelocity,X                                    ;869F36;
@@ -5476,13 +5476,33 @@ PreInstruction_EnemyProjectile_Pirate_MotherBrain_Laser_Left:
 ;;     X: Enemy projectile index
     DEC.W EnemyProjectile_XPositions,X                                   ;86A05C;
     DEC.W EnemyProjectile_XPositions,X                                   ;86A05F;
+if !PAL != 0
+    ; This is supposed to be a subtraction >_<;
+    LDA.W EnemyProjectile_XSubPositions,X
+    CLC
+    ADC.W #$20000*!SPF
+    STA.W EnemyProjectile_XSubPositions,X
+    BCC +
+    DEC.W EnemyProjectile_XPositions,X
++
+endif
     LDA.W EnemyProjectile_Var0,X                                         ;86A062;
     BIT.W #$8000                                                         ;86A065;
-    BNE +                                                                ;86A068;
+    BNE .halfSpeed                                                       ;86A068;
     DEC.W EnemyProjectile_XPositions,X                                   ;86A06A;
     DEC.W EnemyProjectile_XPositions,X                                   ;86A06D;
+if !PAL != 0
+    ; Should be subtraction
+    LDA.W EnemyProjectile_XSubPositions,X
+    CLC
+    ADC.W #$20000*!SPF
+    STA.W EnemyProjectile_XSubPositions,X
+    BCC .halfSpeed
+    DEC.W EnemyProjectile_XPositions,X
+endif
 
-+   JSR.W CheckIf_EnemyProjectile_IsOffScreen_duplicate_again4           ;86A070;
+  .halfSpeed
+    JSR.W CheckIf_EnemyProjectile_IsOffScreen_duplicate_again4           ;86A070;
     BNE .offScreen                                                       ;86A073;
     RTS                                                                  ;86A075;
 
@@ -5497,13 +5517,31 @@ PreInst_EnemyProjectile_Pirate_MotherBrain_Laser_Right:
 ;;     X: Enemy projectile index
     INC.W EnemyProjectile_XPositions,X                                   ;86A07A;
     INC.W EnemyProjectile_XPositions,X                                   ;86A07D;
+if !PAL != 0
+    LDA.W EnemyProjectile_XSubPositions,X
+    CLC
+    ADC.W #$20000*!SPF
+    STA.W EnemyProjectile_XSubPositions,X
+    BCC +
+    INC.W EnemyProjectile_XPositions,X
++
+endif
     LDA.W EnemyProjectile_Var0,X                                         ;86A080;
     BIT.W #$8000                                                         ;86A083;
-    BNE +                                                                ;86A086;
+    BNE .halfSpeed                                                       ;86A086;
     INC.W EnemyProjectile_XPositions,X                                   ;86A088;
     INC.W EnemyProjectile_XPositions,X                                   ;86A08B;
+if !PAL != 0
+    LDA.W EnemyProjectile_XSubPositions,X
+    CLC
+    ADC.W #$20000*!SPF
+    STA.W EnemyProjectile_XSubPositions,X
+    BCC .halfSpeed
+    INC.W EnemyProjectile_XPositions,X
+endif
 
-+   JSR.W CheckIf_EnemyProjectile_IsOffScreen_duplicate_again4           ;86A08E;
+  .halfSpeed
+    JSR.W CheckIf_EnemyProjectile_IsOffScreen_duplicate_again4           ;86A08E;
     BNE .offScreen                                                       ;86A091;
     RTS                                                                  ;86A093;
 
@@ -6140,161 +6178,161 @@ InstList_EnemyProjectile_BombTorizoExplosionSwipe:
 
 ;;; $A4C3: Instruction list - Bomb Torizo statue breaking - index = 0 ;;;
 InstList_EnemyProjectile_BombTorizoChozoBreaking_Index0:
-    dw $0080,EnemyProjSpritemaps_BombTorizoChozoBreaking_0               ;86A4C3;
+    dw regional($0080, $0069),EnemyProjSpritemaps_BombTorizoChozoBreaking_0 ;86A4C3;
     dw Instruction_EnemyProjectile_QueueSoundInY_Lib2_Max6 : db $0C      ;86A4C7;
     dw Instruction_EnemyProjectile_PreInstructionInY                     ;86A4CA;
     dw PreInst_EnemyProjectile_BombTorizoChozoBreaking_Falling           ;86A4CC;
-    dw $0070,EnemyProjSpritemaps_BombTorizoChozoBreaking_0               ;86A4CE;
+    dw regional($0070, $005A),EnemyProjSpritemaps_BombTorizoChozoBreaking_0 ;86A4CE;
     dw Instruction_EnemyProjectile_Delete                                ;86A4D2;
 
 
 ;;; $A4D4: Instruction list - Bomb Torizo statue breaking - index = 2 ;;;
 InstList_EnemyProjectile_BombTorizoChozoBreaking_Index2:
-    dw $0078,EnemyProjSpritemaps_BombTorizoChozoBreaking_1               ;86A4D4;
+    dw $0078*!FPS,EnemyProjSpritemaps_BombTorizoChozoBreaking_1          ;86A4D4;
     dw Instruction_EnemyProjectile_QueueSoundInY_Lib2_Max6 : db $0C      ;86A4D8;
     dw Instruction_EnemyProjectile_PreInstructionInY                     ;86A4DB;
     dw PreInst_EnemyProjectile_BombTorizoChozoBreaking_Falling           ;86A4DD;
-    dw $0070,EnemyProjSpritemaps_BombTorizoChozoBreaking_1               ;86A4DF;
+    dw regional($0070, $005A),EnemyProjSpritemaps_BombTorizoChozoBreaking_1 ;86A4DF;
     dw Instruction_EnemyProjectile_Delete                                ;86A4E3;
 
 
 ;;; $A4E5: Instruction list - Bomb Torizo statue breaking - index = 4 ;;;
 InstList_EnemyProjectile_BombTorizoChozoBreaking_Index4:
-    dw $0070,EnemyProjSpritemaps_BombTorizoChozoBreaking_2               ;86A4E5;
+    dw regional($0070, $005A),EnemyProjSpritemaps_BombTorizoChozoBreaking_2 ;86A4E5;
     dw Instruction_EnemyProjectile_QueueSoundInY_Lib2_Max6 : db $0C      ;86A4E9;
     dw Instruction_EnemyProjectile_PreInstructionInY                     ;86A4EC;
     dw PreInst_EnemyProjectile_BombTorizoChozoBreaking_Falling           ;86A4EE;
-    dw $0070,EnemyProjSpritemaps_BombTorizoChozoBreaking_2               ;86A4F0;
+    dw regional($0070, $005A),EnemyProjSpritemaps_BombTorizoChozoBreaking_2 ;86A4F0;
     dw Instruction_EnemyProjectile_Delete                                ;86A4F4;
 
 
 ;;; $A4F6: Instruction list - Bomb Torizo statue breaking - index = 6 ;;;
 InstList_EnemyProjectile_BombTorizoChozoBreaking_Index6:
-    dw $0068,EnemyProjSpritemaps_BombTorizoChozoBreaking_3               ;86A4F6;
+    dw regional($0068, $0055),EnemyProjSpritemaps_BombTorizoChozoBreaking_3 ;86A4F6;
     dw Instruction_EnemyProjectile_QueueSoundInY_Lib2_Max6 : db $0C      ;86A4FA;
     dw Instruction_EnemyProjectile_PreInstructionInY                     ;86A4FD;
     dw PreInst_EnemyProjectile_BombTorizoChozoBreaking_Falling           ;86A4FF;
-    dw $0070,EnemyProjSpritemaps_BombTorizoChozoBreaking_3               ;86A501;
+    dw regional($0070, $005A),EnemyProjSpritemaps_BombTorizoChozoBreaking_3 ;86A501;
     dw Instruction_EnemyProjectile_Delete                                ;86A505;
 
 
 ;;; $A507: Instruction list - Bomb Torizo statue breaking - index = 8 ;;;
 InstList_EnemyProjectile_BombTorizoChozoBreaking_Index8:
-    dw $0060,EnemyProjSpritemaps_BombTorizoChozoBreaking_4               ;86A507;
+    dw $0060*!FPS,EnemyProjSpritemaps_BombTorizoChozoBreaking_4          ;86A507;
     dw Instruction_EnemyProjectile_QueueSoundInY_Lib2_Max6 : db $0C      ;86A50B;
     dw Instruction_EnemyProjectile_PreInstructionInY                     ;86A50E;
     dw PreInst_EnemyProjectile_BombTorizoChozoBreaking_Falling           ;86A510;
-    dw $0070,EnemyProjSpritemaps_BombTorizoChozoBreaking_4               ;86A512;
+    dw regional($0070, $005A),EnemyProjSpritemaps_BombTorizoChozoBreaking_4 ;86A512;
     dw Instruction_EnemyProjectile_Delete                                ;86A516;
 
 
 ;;; $A518: Instruction list - Bomb Torizo statue breaking - index = Ah ;;;
 InstList_EnemyProjectile_BombTorizoChozoBreaking_IndexA:
-    dw $0058,EnemyProjSpritemaps_BombTorizoChozoBreaking_5               ;86A518;
+    dw regional($0058, $0046),EnemyProjSpritemaps_BombTorizoChozoBreaking_5 ;86A518;
     dw Instruction_EnemyProjectile_QueueSoundInY_Lib2_Max6 : db $0C      ;86A51C;
     dw Instruction_EnemyProjectile_PreInstructionInY                     ;86A51F;
     dw PreInst_EnemyProjectile_BombTorizoChozoBreaking_Falling           ;86A521;
-    dw $0070,EnemyProjSpritemaps_BombTorizoChozoBreaking_5               ;86A523;
+    dw regional($0070, $005A),EnemyProjSpritemaps_BombTorizoChozoBreaking_5 ;86A523;
     dw Instruction_EnemyProjectile_Delete                                ;86A527;
 
 
 ;;; $A529: Instruction list - Bomb Torizo statue breaking - index = Ch ;;;
 InstList_EnemyProjectile_BombTorizoChozoBreaking_IndexC:
-    dw $0050,EnemyProjSpritemaps_BombTorizoChozoBreaking_6               ;86A529;
+    dw regional($0050,$0041),EnemyProjSpritemaps_BombTorizoChozoBreaking_6 ;86A529;
     dw Instruction_EnemyProjectile_QueueSoundInY_Lib2_Max6 : db $0C      ;86A52D;
     dw Instruction_EnemyProjectile_PreInstructionInY                     ;86A530;
     dw PreInst_EnemyProjectile_BombTorizoChozoBreaking_Falling           ;86A532;
-    dw $0070,EnemyProjSpritemaps_BombTorizoChozoBreaking_6               ;86A534;
+    dw regional($0070, $005A),EnemyProjSpritemaps_BombTorizoChozoBreaking_6 ;86A534;
     dw Instruction_EnemyProjectile_Delete                                ;86A538;
 
 
 ;;; $A53A: Instruction list - Bomb Torizo statue breaking - index = Eh ;;;
 InstList_EnemyProjectile_BombTorizoChozoBreaking_IndexE:
-    dw $0048,EnemyProjSpritemaps_BombTorizoChozoBreaking_7               ;86A53A;
+    dw $0048*!FPS,EnemyProjSpritemaps_BombTorizoChozoBreaking_7          ;86A53A;
     dw Instruction_EnemyProjectile_QueueSoundInY_Lib2_Max6 : db $0C      ;86A53E;
     dw Instruction_EnemyProjectile_PreInstructionInY                     ;86A541;
     dw PreInst_EnemyProjectile_BombTorizoChozoBreaking_Falling           ;86A543;
-    dw $0070,EnemyProjSpritemaps_BombTorizoChozoBreaking_7               ;86A545;
+    dw regional($0070, $005A),EnemyProjSpritemaps_BombTorizoChozoBreaking_7 ;86A545;
     dw Instruction_EnemyProjectile_Delete                                ;86A549;
 
 
 ;;; $A54B: Instruction list - Bomb Torizo statue breaking - index = 10h ;;;
 InstList_EnemyProjectile_BombTorizoChozoBreaking_Index10:
-    dw $0040,EnemyProjSpritemaps_BombTorizoChozoBreaking_8               ;86A54B;
+    dw regional($0040, $0032),EnemyProjSpritemaps_BombTorizoChozoBreaking_8 ;86A54B;
     dw Instruction_EnemyProjectile_QueueSoundInY_Lib2_Max6 : db $0C      ;86A54F;
     dw Instruction_EnemyProjectile_PreInstructionInY                     ;86A552;
     dw PreInst_EnemyProjectile_BombTorizoChozoBreaking_Falling           ;86A554;
-    dw $0070,EnemyProjSpritemaps_BombTorizoChozoBreaking_8               ;86A556;
+    dw regional($0070, $005A),EnemyProjSpritemaps_BombTorizoChozoBreaking_8 ;86A556;
     dw Instruction_EnemyProjectile_Delete                                ;86A55A;
 
 
 ;;; $A55C: Instruction list - Bomb Torizo statue breaking - index = 12h ;;;
 InstList_EnemyProjectile_BombTorizoChozoBreaking_Index12:
-    dw $0040,EnemyProjSpritemaps_BombTorizoChozoBreaking_9               ;86A55C;
+    dw regional($0040, $0032),EnemyProjSpritemaps_BombTorizoChozoBreaking_9 ;86A55C;
     dw Instruction_EnemyProjectile_QueueSoundInY_Lib2_Max6 : db $0C      ;86A560;
     dw Instruction_EnemyProjectile_PreInstructionInY                     ;86A563;
     dw PreInst_EnemyProjectile_BombTorizoChozoBreaking_Falling           ;86A565;
-    dw $0070,EnemyProjSpritemaps_BombTorizoChozoBreaking_9               ;86A567;
+    dw regional($0070, $005A),EnemyProjSpritemaps_BombTorizoChozoBreaking_9 ;86A567;
     dw Instruction_EnemyProjectile_Delete                                ;86A56B;
 
 
 ;;; $A56D: Instruction list - Bomb Torizo statue breaking - index = 14h ;;;
 InstList_EnemyProjectile_BombTorizoChozoBreaking_Index14:
-    dw $0040,EnemyProjSpritemaps_BombTorizoChozoBreaking_A               ;86A56D;
+    dw regional($0040, $0032),EnemyProjSpritemaps_BombTorizoChozoBreaking_A ;86A56D;
     dw Instruction_EnemyProjectile_QueueSoundInY_Lib2_Max6 : db $0C      ;86A571;
     dw Instruction_EnemyProjectile_PreInstructionInY                     ;86A574;
     dw PreInst_EnemyProjectile_BombTorizoChozoBreaking_Falling           ;86A576;
-    dw $0070,EnemyProjSpritemaps_BombTorizoChozoBreaking_A               ;86A578;
+    dw regional($0070, $005A),EnemyProjSpritemaps_BombTorizoChozoBreaking_A ;86A578;
     dw Instruction_EnemyProjectile_Delete                                ;86A57C;
 
 
 ;;; $A57E: Instruction list - Bomb Torizo statue breaking - index = 16h ;;;
 InstList_EnemyProjectile_BombTorizoChozoBreaking_Index16:
-    dw $0040,EnemyProjSpritemaps_BombTorizoChozoBreaking_B               ;86A57E;
+    dw regional($0040, $0032),EnemyProjSpritemaps_BombTorizoChozoBreaking_B ;86A57E;
     dw Instruction_EnemyProjectile_QueueSoundInY_Lib2_Max6 : db $0C      ;86A582;
     dw Instruction_EnemyProjectile_PreInstructionInY                     ;86A585;
     dw PreInst_EnemyProjectile_BombTorizoChozoBreaking_Falling           ;86A587;
-    dw $0070,EnemyProjSpritemaps_BombTorizoChozoBreaking_B               ;86A589;
+    dw regional($0070, $005A),EnemyProjSpritemaps_BombTorizoChozoBreaking_B ;86A589;
     dw Instruction_EnemyProjectile_Delete                                ;86A58D;
 
 
 ;;; $A58F: Instruction list - Bomb Torizo statue breaking - index = 18h ;;;
 InstList_EnemyProjectile_BombTorizoChozoBreaking_Index18:
-    dw $0040,EnemyProjSpritemaps_BombTorizoChozoBreaking_C               ;86A58F;
+    dw regional($0040, $0032),EnemyProjSpritemaps_BombTorizoChozoBreaking_C ;86A58F;
     dw Instruction_EnemyProjectile_QueueSoundInY_Lib2_Max6 : db $0C      ;86A593;
     dw Instruction_EnemyProjectile_PreInstructionInY                     ;86A596;
     dw PreInst_EnemyProjectile_BombTorizoChozoBreaking_Falling           ;86A598;
-    dw $0070,EnemyProjSpritemaps_BombTorizoChozoBreaking_C               ;86A59A;
+    dw regional($0070, $005A),EnemyProjSpritemaps_BombTorizoChozoBreaking_C ;86A59A;
     dw Instruction_EnemyProjectile_Delete                                ;86A59E;
 
 
 ;;; $A5A0: Instruction list - Bomb Torizo statue breaking - index = 1Ah ;;;
 InstList_EnemyProjectile_BombTorizoChozoBreaking_Index1A:
-    dw $0040,EnemyProjSpritemaps_BombTorizoChozoBreaking_D               ;86A5A0;
+    dw regional($0040, $0032),EnemyProjSpritemaps_BombTorizoChozoBreaking_D ;86A5A0;
     dw Instruction_EnemyProjectile_QueueSoundInY_Lib2_Max6 : db $0C      ;86A5A4;
     dw Instruction_EnemyProjectile_PreInstructionInY                     ;86A5A7;
     dw PreInst_EnemyProjectile_BombTorizoChozoBreaking_Falling           ;86A5A9;
-    dw $0070,EnemyProjSpritemaps_BombTorizoChozoBreaking_D               ;86A5AB;
+    dw regional($0070, $005A),EnemyProjSpritemaps_BombTorizoChozoBreaking_D ;86A5AB;
     dw Instruction_EnemyProjectile_Delete                                ;86A5AF;
 
 
 ;;; $A5B1: Instruction list - Bomb Torizo statue breaking - index = 1Ch ;;;
 InstList_EnemyProjectile_BombTorizoChozoBreaking_Index1C:
-    dw $0040,EnemyProjSpritemaps_BombTorizoChozoBreaking_E               ;86A5B1;
+    dw regional($0040, $0032),EnemyProjSpritemaps_BombTorizoChozoBreaking_E ;86A5B1;
     dw Instruction_EnemyProjectile_QueueSoundInY_Lib2_Max6 : db $0C      ;86A5B5;
     dw Instruction_EnemyProjectile_PreInstructionInY                     ;86A5B8;
     dw PreInst_EnemyProjectile_BombTorizoChozoBreaking_Falling           ;86A5BA;
-    dw $0070,EnemyProjSpritemaps_BombTorizoChozoBreaking_E               ;86A5BC;
+    dw regional($0070, $005A),EnemyProjSpritemaps_BombTorizoChozoBreaking_E ;86A5BC;
     dw Instruction_EnemyProjectile_Delete                                ;86A5C0;
 
 
 ;;; $A5C2: Instruction list - Bomb Torizo statue breaking - index = 1Eh ;;;
 InstList_EnemyProjectile_BombTorizoChozoBreaking_Index1E:
-    dw $0040,EnemyProjSpritemaps_BombTorizoChozoBreaking_F               ;86A5C2;
+    dw regional($0040, $0032),EnemyProjSpritemaps_BombTorizoChozoBreaking_F ;86A5C2;
     dw Instruction_EnemyProjectile_QueueSoundInY_Lib2_Max6 : db $0C      ;86A5C6;
     dw Instruction_EnemyProjectile_PreInstructionInY                     ;86A5C9;
     dw PreInst_EnemyProjectile_BombTorizoChozoBreaking_Falling           ;86A5CB;
-    dw $0070,EnemyProjSpritemaps_BombTorizoChozoBreaking_F               ;86A5CD;
+    dw regional($0070, $005A),EnemyProjSpritemaps_BombTorizoChozoBreaking_F ;86A5CD;
     dw Instruction_EnemyProjectile_Delete                                ;86A5D1;
 
 
@@ -6660,7 +6698,7 @@ PreInst_EnemyProjectile_BombTorizoLowHealthDrool_Falling:
 
 +   LDA.W EnemyProjectile_YVelocity,X                                    ;86A8B5;
     CLC                                                                  ;86A8B8;
-    ADC.W #$0010                                                         ;86A8B9;
+    ADC.W #regional($0010, $0012)                                        ;86A8B9;
     STA.W EnemyProjectile_YVelocity,X                                    ;86A8BC;
     AND.W #$F000                                                         ;86A8BF;
     CMP.W #$1000                                                         ;86A8C2;
@@ -7469,7 +7507,7 @@ InitAI_EnemyProjectile_TorizoSonicBoom:
     CLC                                                                  ;86AE41;
     ADC.W #$FFE0                                                         ;86AE42;
     STA.W EnemyProjectile_XPositions,Y                                   ;86AE45;
-    LDA.W #$FD90                                                         ;86AE48;
+    LDA.W #regional($FD90, $FD18)                                        ;86AE48;
     STA.W EnemyProjectile_XVelocity,Y                                    ;86AE4B;
     LDA.W #InstList_EnemyProjectile_TorizoSonicBoom_FiredLeft            ;86AE4E;
     STA.W EnemyProjectile_InstListPointers,Y                             ;86AE51;
@@ -7480,7 +7518,7 @@ InitAI_EnemyProjectile_TorizoSonicBoom:
     CLC                                                                  ;86AE58;
     ADC.W #$0020                                                         ;86AE59;
     STA.W EnemyProjectile_XPositions,Y                                   ;86AE5C;
-    LDA.W #$0270                                                         ;86AE5F;
+    LDA.W #regional($0270, $02E8)                                        ;86AE5F;
     STA.W EnemyProjectile_XVelocity,Y                                    ;86AE62;
     LDA.W #InstList_EnemyProjectile_TorizoSonicBoom_FiredRight           ;86AE65;
     STA.W EnemyProjectile_InstListPointers,Y                             ;86AE68;
@@ -7496,12 +7534,12 @@ PreInstruction_EnemyProjectile_TorizoSonicBoom:
     LDA.W EnemyProjectile_XVelocity,X                                    ;86AE71;
     BMI .subtract10                                                      ;86AE74;
     CLC                                                                  ;86AE76;
-    ADC.W #$0010                                                         ;86AE77;
+    ADC.W #regional($0010, $0012)                                        ;86AE77;
     BRA +                                                                ;86AE7A;
 
   .subtract10:
     SEC                                                                  ;86AE7C;
-    SBC.W #$0010                                                         ;86AE7D;
+    SBC.W #regional($0010, $0012)                                        ;86AE7D;
 
 +   STA.W EnemyProjectile_XVelocity,X                                    ;86AE80;
     AND.W #$F000                                                         ;86AE83;
@@ -7787,10 +7825,18 @@ InitAI_EnemyProjectile_GoldenTorizoEgg:
 ;       |     |     |     |
   .rightwards:
     dw InstList_EnemyProjectile_GoldenTorizoEgg_BouncingRight            ;86B02F;
+if !PAL == 0
     dw $0010,$0080,$FFFF,$FE80                                           ;86B031;
+else
+    dw $0010,$0096,$FFFF,$FE38
+endif
   .leftwards:
     dw InstList_EnemyProjectile_GoldenTorizoEgg_BouncingLeft             ;86B039;
+if !PAL == 0
     dw $FFF0,$FF80,$FFFF,$FE80                                           ;86B03B;
+else
+    dw $FFF0,$FF6A,$FFFF,$FE38
+endif
 
 
 ;;; $B043: Pre-instruction - Golden Torizo egg - bouncing ;;;
@@ -7833,7 +7879,7 @@ PreInstruction_EnemyProjectile_GoldenTorizoEgg_Bouncing:
   .bounceEnd:
     LDA.W EnemyProjectile_YVelocity,X                                    ;86B086;
     CLC                                                                  ;86B089;
-    ADC.W #$0030                                                         ;86B08A;
+    ADC.W #regional($0030, $0036)                                        ;86B08A;
     STA.W EnemyProjectile_YVelocity,X                                    ;86B08D;
     AND.W #$F000                                                         ;86B090;
     CMP.W #$1000                                                         ;86B093;
@@ -7850,11 +7896,11 @@ PreInstruction_EnemyProjectile_GoldenTorizoEgg_Bouncing:
     STA.W EnemyProjectile_InstructionTimers,X                            ;86B0A5;
     BIT.W EnemyProjectile_Var0,X                                         ;86B0A8;
     BMI .rightwards                                                      ;86B0AB;
-    LDA.W #$FF00                                                         ;86B0AD;
+    LDA.W #regional($FF00, $FECE)                                        ;86B0AD;
     BRA +                                                                ;86B0B0;
 
   .rightwards:
-    LDA.W #$0100                                                         ;86B0B2;
+    LDA.W #regional($0100, $0132)                                        ;86B0B2;
 
 +   STA.W EnemyProjectile_XVelocity,X                                    ;86B0B5;
     RTS                                                                  ;86B0B8;
@@ -7868,11 +7914,11 @@ PreInstruction_EnemyProjectile_GoldenTorizoEgg_Hatched:
     BCS .hitWall                                                         ;86B0BC;
     BIT.W EnemyProjectile_Var0,X                                         ;86B0BE;
     BMI .rightwards                                                      ;86B0C1;
-    LDA.W #$FFD0                                                         ;86B0C3;
+    LDA.W #regional($FFD0, $FFCA)                                        ;86B0C3;
     BRA +                                                                ;86B0C6;
 
   .rightwards:
-    LDA.W #$0030                                                         ;86B0C8;
+    LDA.W #regional($0030, $0036)                                        ;86B0C8;
 
 +   CLC                                                                  ;86B0CB;
     ADC.W EnemyProjectile_XVelocity,X                                    ;86B0CC;
@@ -7892,7 +7938,7 @@ PreInstruction_EnemyProjectile_GoldenTorizoEgg_HitWall:
 ;;     X: Enemy projectile index
     JSR.W Move_EnemyProjectile_Vertically                                ;86B0DD;
     BCS .collision                                                       ;86B0E0;
-    LDA.W #$0030                                                         ;86B0E2;
+    LDA.W #regional($0030, $0036)                                        ;86B0E2;
     CLC                                                                  ;86B0E5;
     ADC.W EnemyProjectile_YVelocity,X                                    ;86B0E6;
     STA.W EnemyProjectile_YVelocity,X                                    ;86B0E9;
@@ -8189,7 +8235,7 @@ CalculateGoldenTorizoSuperMissileVelocitiesFromAngle:
 
 ;;; $B293: Instruction list - Golden Torizo super missile - rightwards ;;;
 InstList_EnemyProj_GoldenTorizoSuperMissile_Rightwards_0:
-    dw $0030,EnemyProjSpritemaps_GoldenTorizoSuperMissile_6              ;86B293;
+    dw $0030*!FPS,EnemyProjSpritemaps_GoldenTorizoSuperMissile_6         ;86B293;
     dw Instruction_AimSuperMissile_Rightwards                            ;86B297;
     dw Instruction_EnemyProjectile_PreInstructionInY                     ;86B299;
     dw PreInst_EnemyProjectile_GoldenTorizoSuperMissile_Thrown           ;86B29B;
@@ -8209,7 +8255,7 @@ InstList_EnemyProj_GoldenTorizoSuperMissile_Rightwards_1:
 
 ;;; $B2C1: Instruction list - Golden Torizo super missile - leftwards ;;;
 InstList_EnemyProj_GoldenTorizoSuperMissile_Leftwards_0:
-    dw $0030,EnemyProjSpritemaps_GoldenTorizoSuperMissile_6              ;86B2C1;
+    dw $0030*!FPS,EnemyProjSpritemaps_GoldenTorizoSuperMissile_6         ;86B2C1;
     dw Instruction_AimSuperMissile_Leftwards                             ;86B2C5;
     dw Instruction_EnemyProjectile_PreInstructionInY                     ;86B2C7;
     dw PreInst_EnemyProjectile_GoldenTorizoSuperMissile_Thrown           ;86B2C9;
@@ -8307,10 +8353,18 @@ InitAI_EnemyProjectile_GoldenTorizoEyeBeam:
 ;       |     |     |     |
   .rightwards:
     dw InstList_EnemyProjectile_GoldenTorizoEyeBeam_Normal               ;86B376;
+if !PAL == 0
     dw $0014,$0400,$FFE2,$0400                                           ;86B378;
+else
+    dw $0014,$04C8,$FFE2,$04C8
+endif
   .leftwards:
     dw InstList_EnemyProjectile_GoldenTorizoEyeBeam_Normal               ;86B380;
+if !PAL == 0
     dw $FFEC,$FC00,$FFE2,$0400                                           ;86B382;
+else
+    dw $FFEC,$FB38,$FFE2,$04C8
+endif
 
 
 ;;; $B38A: Pre-instruction - enemy projectile $B428 (Golden Torizo eye beam) ;;;
@@ -10181,10 +10235,17 @@ InitAI_EnemyProjectile_MotherBrainsTurretBullets:
     dw $FFEF,$FFF4,$0000,$000C,$0011,$000C,$0000,$FFF4                   ;86BF9F;
   .Yoffset:
     dw $FFF7,$0003,$0007,$0003,$FFF7,$FFED,$FFEB,$FFED                   ;86BFAF;
+if !PAL == 0
   .Xvelocity:
     dw $FD40,$FE0E,$0000,$01F2,$02C0,$01F2,$0000,$FE0E                   ;86BFBF;
   .Yvelocity:
     dw $0000,$01F2,$02C0,$01F2,$0000,$FE0E,$FD40,$FE0E                   ;86BFCF;
+else
+  .Xvelocity:
+    dw $FCB4,$FDAC,$0000,$0254,$034C,$0254,$0000,$FDAC
+  .Yvelocity:
+    dw $0000,$0254,$034C,$0254,$0000,$FDAC,$FCB4,$FDAC
+endif
 
 
 ;;; $BFDF: Pre-instruction - enemy projectile $C17E (Mother Brain's room turrets) ;;;
@@ -10806,12 +10867,12 @@ InitAI_EnemyProjectile_MotherBrainsOnionRings:
     STA.W EnemyProjectile_GraphicsIndices,X                              ;86C300;
     LDA.W EnemyProjectile_InitParam0                                     ;86C303;
     STA.B DP_Temp12                                                      ;86C306;
-    LDA.W #$0450                                                         ;86C308;
+    LDA.W #$0450*!SPF                                                    ;86C308;
     PHX                                                                  ;86C30B;
     JSL.L CalculateXVelocityFromSpeedAndAngle                            ;86C30C;
     PLX                                                                  ;86C310;
     STA.W EnemyProjectile_XVelocity,X                                    ;86C311;
-    LDA.W #$0450                                                         ;86C314;
+    LDA.W #$0450*!SPF                                                    ;86C314;
     PHX                                                                  ;86C317;
     JSL.L CalculateYVelocityFromSpeedAndAngle                            ;86C318;
     PLX                                                                  ;86C31C;
@@ -11060,9 +11121,9 @@ InitAI_EnemyProjectile_MotherBrainsBomb:
     LDA.W EnemyProjectile_InitParam0                                     ;86C484;
     STA.W EnemyProjectile_XSubPositions,Y                                ;86C487;
     REP #$20                                                             ;86C48A;
-    LDA.W #$0100                                                         ;86C48C;
+    LDA.W #$0100*!SPF                                                    ;86C48C;
     STA.W EnemyProjectile_YVelocity,Y                                    ;86C48F;
-    LDA.W #$00E0                                                         ;86C492;
+    LDA.W #$00E0*!SPF                                                    ;86C492;
     STA.W EnemyProjectile_XVelocity,Y                                    ;86C495;
     LDA.W Enemy[1].XPosition                                             ;86C498;
     CLC                                                                  ;86C49B;
@@ -11074,7 +11135,7 @@ InitAI_EnemyProjectile_MotherBrainsBomb:
     STA.W EnemyProjectile_YPositions,Y                                   ;86C4A9;
     LDA.W #$0400                                                         ;86C4AC;
     STA.W EnemyProjectile_GraphicsIndices,Y                              ;86C4AF;
-    LDA.W #$0070                                                         ;86C4B2;
+    LDA.W #$0070*!SPF                                                    ;86C4B2;
     STA.W EnemyProjectile_Var0,Y                                         ;86C4B5;
     LDA.W #$0000                                                         ;86C4B8;
     STA.W EnemyProjectile_Var1,Y                                         ;86C4BB;
@@ -11154,8 +11215,8 @@ PreInstruction_EnemyProjectile_MotherBrainsBomb:
 
   .Yaccelerations:
 ; (1/100h px/frame^2) indexed by bounce counter
-    dw $0007,$0010,$0020,$0040,$0070,$00B0,$00F0,$0130                   ;86C550;
-    dw $0170,$0000                                                       ;86C560;
+    dw $0007*!SPF,$0010*!SPF,$0020*!SPF,$0040*!SPF,$0070*!SPF,$00B0*!SPF,$00F0*!SPF,$0130*!SPF ;86C550;
+    dw $0170*!SPF,$0000                                                  ;86C560;
 
 
 ;;; $C564: Mother Brain's bomb / bomb collision detection ;;;
@@ -11289,10 +11350,10 @@ InitAI_EnemyProjectile_MotherBrainRedBeam_Charging:
     AND.W #$00FF                                                         ;86C664;
     STA.B DP_Temp12                                                      ;86C667;
     STA.L MotherBrainBody.deathBeamNextAngle                             ;86C669;
-    LDA.W #$0C00                                                         ;86C66D;
+    LDA.W #$0C00*!SPF                                                    ;86C66D;
     JSL.L CalculateXVelocityFromSpeedAndAngle                            ;86C670;
     STA.L MotherBrainBody.deathBeamNextXVelocity                         ;86C674;
-    LDA.W #$0C00                                                         ;86C678;
+    LDA.W #$0C00*!SPF                                                    ;86C678;
     JSL.L CalculateYVelocityFromSpeedAndAngle                            ;86C67B;
     STA.L MotherBrainBody.deathBeamNextYVelocity                         ;86C67F;
     RTS                                                                  ;86C683;
@@ -11538,7 +11599,7 @@ PreInstruction_EnemyProjectile_MotherBrainsDrool_Falling:
 ;;     X: Enemy projectile index
     LDA.W EnemyProjectile_YVelocity,X                                    ;86C886;
     CLC                                                                  ;86C889;
-    ADC.W #$000C                                                         ;86C88A;
+    ADC.W #$000C*!SPF                                                    ;86C88A;
     STA.W EnemyProjectile_YVelocity,X                                    ;86C88D;
     JSR.W Move_EnemyProjectile_Vertically_AccordingToVelocity            ;86C890;
     CMP.W #$00D7                                                         ;86C893;
@@ -11709,14 +11770,14 @@ InitAI_EnemyProjectile_MotherBrainExplodedEscapeDoorParticle:
   .Xoffsets:
     dw $0000                                                             ;86C992;
   .Yoffsets:
-    dw       $FFE0,$0000,$FFE8,$0000,$FFF0,$0000,$FFF8                   ;86C994;
-    dw $0000,$0000,$0000,$0008,$0000,$0010,$0000,$0018                   ;86C9A4;
+    dw       $FFE0, $0000,$FFE8, $0000,$FFF0, $0000,$FFF8                ;86C994;
+    dw $0000,$0000, $0000,$0008, $0000,$0010, $0000,$0018                ;86C9A2;
 
   .Xvelocities:
-    dw $0500                                                             ;86C9B2;
+    dw $0500*!SPF                                                        ;86C9B2;
   .Yvelocities:
-    dw       $FE00,$0500,$FF00,$0500,$FF00,$0500,$FF80                   ;86C9B4;
-    dw $0500,$FF80,$0500,$0080,$0500,$FF00,$0500,$0200                   ;86C9C4;
+    dw            -$0200*!SPF, $0500*!SPF,-$0100*!SPF, $0500*!SPF,-$0100*!SPF, $0500*!SPF,-$0080*!SPF ;86C9B4;
+    dw $0500*!SPF,-$0080*!SPF, $0500*!SPF,$0080*!SPF, $0500*!SPF,-$0100*!SPF, $0500*!SPF,$0200*!SPF ;86C9C2;
 
 
 ;;; $C9D2: Pre-instruction - enemy projectile $CB21 (Mother Brain's exploded escape door particles) ;;;
@@ -11870,15 +11931,15 @@ Instruction_EnemyProjectile_MotherBrainPurpleBreath_Inactive:
 
 
 ;;; $CAF6: Initialisation AI - enemy projectile $CBBB (time bomb set Japanese text) ;;;
-InitAI_EnemyProjectile_TimeBombSetJapanText:
+InitAI_EnemyProjectile_TimeBombSetSubtitle:
 ;; Parameters:
 ;;     Y: Enemy projectile index
     TYX                                                                  ;86CAF6;
-    STZ.W EnemyProjectile_GraphicsIndices,X                              ;86CAF7; fallthrough to PreInstruction_EnemyProjectile_TimeBombSetJapanText
+    STZ.W EnemyProjectile_GraphicsIndices,X                              ;86CAF7; fallthrough to PreInstruction_EnemyProjectile_TimeBombSetSubtitle
 
 
 ;;; $CAFA: Pre-instruction - enemy projectile $CBBB (time bomb set Japanese text) ;;;
-PreInstruction_EnemyProjectile_TimeBombSetJapanText:
+PreInstruction_EnemyProjectile_TimeBombSetSubtitle:
 ;; Parameters:
 ;;     X: Enemy projectile index
     STZ.W EnemyProjectile_XVelocity,X                                    ;86CAFA;
@@ -11891,7 +11952,7 @@ PreInstruction_EnemyProjectile_TimeBombSetJapanText:
 
 
 ;;; $CB0D: Instruction list - enemy projectile $CBBB (time bomb set Japanese text) ;;;
-InstList_EnemyProjectile_TimeBombSetJapanText:
+InstList_EnemyProjectile_TimeBombSetSubtitle:
     dw $0001,EnemyProjSpritemaps_TimeBombSetJapanSet                     ;86CB0D;
     dw Instruction_EnemyProjectile_Sleep                                 ;86CB11;
 
@@ -12017,11 +12078,11 @@ EnemyProjectile_MotherBrainRainbowBeam_Explosion:                        ;86CBAD
     %hitList(0),
     %shotList(InstList_EnemyProjectile_Delete))
 
-EnemyProjectile_TimeBombSetJapanText:                                    ;86CBBB;
+EnemyProjectile_TimeBombSetSubtitle:                                     ;86CBBB;
     %EnemyProjectile(\
-    %initAI(InitAI_EnemyProjectile_TimeBombSetJapanText),
-    %preInst(PreInstruction_EnemyProjectile_TimeBombSetJapanText),
-    %instList(InstList_EnemyProjectile_TimeBombSetJapanText),
+    %initAI(InitAI_EnemyProjectile_TimeBombSetSubtitle),
+    %preInst(PreInstruction_EnemyProjectile_TimeBombSetSubtitle),
+    %instList(InstList_EnemyProjectile_TimeBombSetSubtitle),
     %radius(0, 0),
     %properties($1000),
     %hitList(0),
@@ -12504,10 +12565,10 @@ EnemyProjectile_KiHunterAcidSpit_Right:                                  ;86CF26
 
 ;;; $CF34: Instruction list - enemy projectile $CF18 (ki hunter acid spit - left) ;;;
 InstList_EnemyProjectile_KiHunterAcidSpit_Left:
-    dw $0003,EnemyProjSpritemaps_KihunterAcidSpit_Left_0                 ;86CF34;
+    dw $0003*!FPS,EnemyProjSpritemaps_KihunterAcidSpit_Left_0            ;86CF34;
     dw $0003,EnemyProjSpritemaps_KihunterAcidSpit_Left_1                 ;86CF38;
-    dw $0004,EnemyProjSpritemaps_KihunterAcidSpit_Left_2                 ;86CF3C;
-    dw $0003,EnemyProjSpritemaps_KihunterAcidSpit_Left_3                 ;86CF40;
+    dw $0004*!FPS,EnemyProjSpritemaps_KihunterAcidSpit_Left_2            ;86CF3C;
+    dw $0003*!FPS,EnemyProjSpritemaps_KihunterAcidSpit_Left_3            ;86CF40;
     dw $0001,EnemyProjSpritemaps_KihunterAcidSpit_Left_4                 ;86CF44;
     dw Instruction_EnemyProjectile_PreInstructionInY                     ;86CF48;
     dw PreInstruction_EnemyProj_KiHunterAcidSpit_Left_StartMoving        ;86CF4A;
@@ -12519,20 +12580,20 @@ InstList_EnemyProjectile_KiHunterAcidSpit_Left:
 ;;; $CF56: Instruction list - ki hunter acid spit - hit floor ;;;
 InstList_EnemyProjectile_KiHunterAcidSpit_HitFloor:
     dw Instruction_EnemyProjectile_ClearPreInstruction                   ;86CF56;
-    dw $000C,EnemyProjSpritemaps_KihunterAcidSpit_0                      ;86CF58;
-    dw $000A,EnemyProjSpritemaps_KihunterAcidSpit_1                      ;86CF5C;
-    dw $000A,EnemyProjSpritemaps_KihunterAcidSpit_2                      ;86CF60;
-    dw $0008,EnemyProjSpritemaps_KihunterAcidSpit_3                      ;86CF64;
-    dw $0008,EnemyProjSpritemaps_KihunterAcidSpit_4                      ;86CF68;
+    dw $000C*!FPS,EnemyProjSpritemaps_KihunterAcidSpit_0                 ;86CF58;
+    dw $000A*!FPS,EnemyProjSpritemaps_KihunterAcidSpit_1                 ;86CF5C;
+    dw $000A*!FPS,EnemyProjSpritemaps_KihunterAcidSpit_2                 ;86CF60;
+    dw regional($0008, $0007),EnemyProjSpritemaps_KihunterAcidSpit_3     ;86CF64;
+    dw regional($0008, $0007),EnemyProjSpritemaps_KihunterAcidSpit_4     ;86CF68;
     dw Instruction_EnemyProjectile_Delete                                ;86CF6C;
 
 
 ;;; $CF6E: Instruction list - enemy projectile $CF26 (ki hunter acid spit - right) ;;;
 InstList_EnemyProjectile_KiHunterAcidSpit_Right:
-    dw $0003,EnemyProjSpritemaps_KihunterAcidSpit_Right_0                ;86CF6E;
+    dw $0003*!FPS,EnemyProjSpritemaps_KihunterAcidSpit_Right_0           ;86CF6E;
     dw $0003,EnemyProjSpritemaps_KihunterAcidSpit_Right_1                ;86CF72;
-    dw $0004,EnemyProjSpritemaps_KihunterAcidSpit_Right_2                ;86CF76;
-    dw $0003,EnemyProjSpritemaps_KihunterAcidSpit_Right_3                ;86CF7A;
+    dw $0004*!FPS,EnemyProjSpritemaps_KihunterAcidSpit_Right_2           ;86CF76;
+    dw $0003*!FPS,EnemyProjSpritemaps_KihunterAcidSpit_Right_3           ;86CF7A;
     dw $0001,EnemyProjSpritemaps_KihunterAcidSpit_Right_4                ;86CF7E;
     dw Instruction_EnemyProjectile_PreInstructionInY                     ;86CF82;
     dw PreInstruction_EnemyProj_KiHunterAcidSpit_Right_StartMoving       ;86CF84;
@@ -12547,7 +12608,7 @@ InitAI_EnemyProjectile_KiHunterAcidSpit_Left:
 ;;     Y: Enemy projectile index
     PHX                                                                  ;86CF90;
     LDX.W EnemyIndex                                                     ;86CF91;
-    LDA.W #$FD00                                                         ;86CF94;
+    LDA.W #-$0300*!SPF                                                   ;86CF94;
     STA.W EnemyProjectile_XVelocity,Y                                    ;86CF97;
     LDA.W Enemy.XPosition,X                                              ;86CF9A;
     SEC                                                                  ;86CF9D;
@@ -12562,7 +12623,7 @@ InitAI_EnemyProjectile_KiHunterAcidSpit_Right:
 ;;     Y: Enemy projectile index
     PHX                                                                  ;86CFA6;
     LDX.W EnemyIndex                                                     ;86CFA7;
-    LDA.W #$0300                                                         ;86CFAA;
+    LDA.W #$0300*!SPF                                                    ;86CFAA;
     STA.W EnemyProjectile_XVelocity,Y                                    ;86CFAD;
     LDA.W Enemy.XPosition,X                                              ;86CFB0;
     CLC                                                                  ;86CFB3;
@@ -12668,7 +12729,7 @@ EnemyProjectile_KagoBug:                                                 ;86D02E
 
 ;;; $D03C: Instruction list - kago bug - hit floor ;;;
 InstList_EnemyProjectile_KagoBug_HitFloor:
-    dw $0005,EnemyProjSpritemaps_KagoBugs_2                              ;86D03C;
+    dw regional($0005, $0003),EnemyProjSpritemaps_KagoBugs_2             ;86D03C;
     dw Instruction_EnemyProjectile_KagoBug_StartIdling                   ;86D040;
     dw $7FFF,EnemyProjSpritemaps_KagoBugs_1                              ;86D042;
     dw Instruction_EnemyProjectile_GotoY                                 ;86D046;
@@ -12684,8 +12745,8 @@ InstList_EnemyProjectile_KagoBug_Falling:
 
 ;;; $D052: Instruction list - kago bug - jump ;;;
 InstList_EnemyProjectile_KagoBug_Jump_0:
-    dw $0010,EnemyProjSpritemaps_KagoBugs_2                              ;86D052;
-    dw $0005,EnemyProjSpritemaps_KagoBugs_1                              ;86D056;
+    dw $0010*!FPS,EnemyProjSpritemaps_KagoBugs_2                         ;86D052;
+    dw $0005*!FPS,EnemyProjSpritemaps_KagoBugs_1                         ;86D056;
     dw Instruction_EnemyProjectile_KagoBug_StartJumping                  ;86D05A;
 
 InstList_EnemyProjectile_KagoBug_Jump_1:
@@ -12697,11 +12758,11 @@ InstList_EnemyProjectile_KagoBug_Jump_1:
 ;;; $D064: Shot instruction list - enemy projectile $D02E (kago bug) ;;;
 InstList_EnemyProjectile_Shot_KagoBug:
     dw Instruction_EnemyProjectile_UsePalette0_duplicate_again           ;86D064;
-    dw $0004,EnemyProjSpritemaps_Common_0                                ;86D066;
-    dw $0004,EnemyProjSpritemaps_Common_1                                ;86D06A;
-    dw $0004,EnemyProjSpritemaps_Common_2                                ;86D06E;
+    dw $0004*!FPS,EnemyProjSpritemaps_Common_0                           ;86D066;
+    dw $0004*!FPS,EnemyProjSpritemaps_Common_1                           ;86D06A;
+    dw $0004*!FPS,EnemyProjSpritemaps_Common_2                           ;86D06E;
     dw $0004,EnemyProjSpritemaps_Common_3                                ;86D072;
-    dw $0004,EnemyProjSpritemaps_Common_4                                ;86D076;
+    dw $0004*!FPS,EnemyProjSpritemaps_Common_4                           ;86D076;
     dw PreInstruction_EnemyProjectile_KagoBug_SpawnDrop                  ;86D07A;
     dw Instruction_EnemyProjectile_GotoY                                 ;86D07C;
     dw InstList_EnemyProjectile_Delete                                   ;86D07E;
@@ -12715,11 +12776,11 @@ InstList_EnemyProjectile_Delete_duplicate:
 ;;; $D082: Kago bug constants ;;;
 KagoBug_Constants:
   .Yacceleration:
-    dw $00E0                                                             ;86D082; Unit 1/100h px/frame²
+    dw $00E0*!SPF                                                        ;86D082; Unit 1/100h px/frame²
   .Xproximity:
     dw $0030                                                             ;86D084; Kago bug will jump towards kago if it's at least this many pixels away
   .Xvelocity:
-    dw $0200                                                             ;86D086; Unit 1/100h px/frame
+    dw $0200*!SPF                                                        ;86D086; Unit 1/100h px/frame
 
 
 ;;; $D088: Initialisation AI - enemy projectile $D02E (kago bug) ;;;
@@ -12809,7 +12870,7 @@ PreInstruction_EnemyProjectile_KagoBug_Jumping:
     STA.W EnemyProjectile_XVelocity,X                                    ;86D10C;
 
   .hitCeiling:
-    LDA.W #$0100                                                         ;86D10F;
+    LDA.W #$0100*!SPF                                                    ;86D10F;
     STA.W EnemyProjectile_YVelocity,X                                    ;86D112;
 
   .falling:
@@ -12997,19 +13058,19 @@ InstList_EnemyProjectile_PowampSpike_Delete:
 
 
 ;;; $D21A: Powamp spike velocity table ;;;
-;        _____________________________________________ 0: Up
-;       |      _______________________________________ 1: Up-right
-;       |     |      _________________________________ 2: Right
-;       |     |     |      ___________________________ 3: Down-right
-;       |     |     |     |      _____________________ 4: Down
-;       |     |     |     |     |      _______________ 5: Down-left
-;       |     |     |     |     |     |      _________ 6: Left
-;       |     |     |     |     |     |     |      ___ 7: Up-left
-;       |     |     |     |     |     |     |     |
+;       ___________________________________________________________________________________________ 0: Up
+;      |             ______________________________________________________________________________ 1: Up-right
+;      |            |             _________________________________________________________________ 2: Right
+;      |            |            |            _____________________________________________________ 3: Down-right
+;      |            |            |           |            _________________________________________ 4: Down
+;      |            |            |           |           |            _____________________________ 5: Down-left
+;      |            |            |           |           |           |             ________________ 6: Left
+;      |            |            |           |           |           |            |             ___ 7: Up-left
+;      |            |            |           |           |           |            |            |
 PowampSpike_VelocityTable_X:
-    dw $0000,$0020,$0020,$0020,$0000,$FFE0,$FFE0,$FFE0                   ;86D21A;
+    dw $0000,       $0020*!SPF,  $0020*!SPF, $0020*!SPF, $0000,      -$0020*!SPF, -$0020*!SPF, -$0020*!SPF ;86D21A;
 PowampSpike_VelocityTable_Y:
-    dw $FFE0,$FFE0,$0000,$0020,$0020,$0020,$0000,$FFE0                   ;86D22A;
+    dw -$0020*!SPF, -$0020*!SPF, $0000,      $0020*!SPF, $0020*!SPF, $0020*!SPF,  $0000,       -$0020*!SPF ;86D22A;
 
 
 ;;; $D23A: Initialisation AI - enemy projectile $D298 (powamp spike) ;;;
@@ -13142,14 +13203,14 @@ EnemyProjectile_RobotLaser_DownRight:                                    ;86D2DE
 
 ;;; $D2EC: Instruction list - enemy projectile $D2A6/$D2B4/$D2C2/$D2D0/$D2DE (work robot laser) ;;;
 InstList_EnemyProjectile_WreckedShipRobotLaser_0:
-    dw $0004,EnemyProjSpritemaps_WorkRobotLaser_0                        ;86D2EC;
-    dw $0004,EnemyProjSpritemaps_WorkRobotLaser_1                        ;86D2F0;
-    dw $0004,EnemyProjSpritemaps_WorkRobotLaser_2                        ;86D2F4;
+    dw $0004*!FPS,EnemyProjSpritemaps_WorkRobotLaser_0                   ;86D2EC;
+    dw $0004*!FPS,EnemyProjSpritemaps_WorkRobotLaser_1                   ;86D2F0;
+    dw $0004*!FPS,EnemyProjSpritemaps_WorkRobotLaser_2                   ;86D2F4;
 
 InstList_EnemyProjectile_WreckedShipRobotLaser_1:
     dw $0004,EnemyProjSpritemaps_WorkRobotLaser_3                        ;86D2F8;
-    dw $0004,EnemyProjSpritemaps_WorkRobotLaser_4                        ;86D2FC;
-    dw $0004,EnemyProjSpritemaps_WorkRobotLaser_5                        ;86D300;
+    dw $0004*!FPS,EnemyProjSpritemaps_WorkRobotLaser_4                   ;86D2FC;
+    dw $0004*!FPS,EnemyProjSpritemaps_WorkRobotLaser_5                   ;86D300;
     dw $0004,EnemyProjSpritemaps_WorkRobotLaser_4                        ;86D304;
     dw Instruction_EnemyProjectile_GotoY                                 ;86D308;
     dw InstList_EnemyProjectile_WreckedShipRobotLaser_1                  ;86D30A;
@@ -13170,7 +13231,7 @@ InitAI_EnemyProjectile_WreckedShipRobotLaser_DownLeft_Right:
     ADC.W #$0100                                                         ;86D31D;
 
   .pointlessBranch:
-    LDA.W #$0080                                                         ;86D320;
+    LDA.W #$0080*!SPF                                                    ;86D320;
     STA.W EnemyProjectile_YVelocity,Y                                    ;86D323;
     LDA.W #$0000                                                         ;86D326;
     STA.W EnemyProjectile_GraphicsIndices,Y                              ;86D329;
@@ -13206,7 +13267,7 @@ InitAI_EnemyProjectile_WreckedShipRobotLaser_UpLeft_Right:
     ADC.W #$0100                                                         ;86D352;
 
   .pointlessBranch:
-    LDA.W #$FF80                                                         ;86D355;
+    LDA.W #-$0080*!SPF                                                   ;86D355;
     STA.W EnemyProjectile_YVelocity,Y                                    ;86D358; fallthrough to InitAI_EnemyProjectile_WreckedShipRobotLaser_Common
 
 
@@ -13291,12 +13352,12 @@ PreInstruction_EnemyProjectile_WreckedShipRobotLaser:
 
 ;;; $D3D7: Instruction list - enemy projectile $D904 (n00b tube crack) ;;;
 InstList_EnemyProjectile_NoobTubeCrack_0:
-    dw $000C,EnemyProjSpritemaps_NoobTubeCrack_0                         ;86D3D7;
-    dw $000A,EnemyProjSpritemaps_NoobTubeCrack_1                         ;86D3DB;
-    dw $0008,EnemyProjSpritemaps_NoobTubeCrack_2                         ;86D3DF;
-    dw $0006,EnemyProjSpritemaps_NoobTubeCrack_3                         ;86D3E3;
-    dw $0006,EnemyProjSpritemaps_NoobTubeCrack_4                         ;86D3E7;
-    dw $0006,EnemyProjSpritemaps_NoobTubeCrack_5                         ;86D3EB;
+    dw regional($000C, $000A),EnemyProjSpritemaps_NoobTubeCrack_0        ;86D3D7;
+    dw regional($000A, $0005),EnemyProjSpritemaps_NoobTubeCrack_1        ;86D3DB;
+    dw regional($0008, $0005),EnemyProjSpritemaps_NoobTubeCrack_2        ;86D3DF;
+    dw regional($0006, $0005),EnemyProjSpritemaps_NoobTubeCrack_3        ;86D3E3;
+    dw regional($0006, $0005),EnemyProjSpritemaps_NoobTubeCrack_4        ;86D3E7;
+    dw regional($0006, $0005),EnemyProjSpritemaps_NoobTubeCrack_5        ;86D3EB;
     dw Instruction_EnemyProjectile_PreInstructionInY                     ;86D3EF;
     dw PreInstruction_EnemyProjectile_NoobTubeCrack_Flickering           ;86D3F1;
     dw $0001,EnemyProjSpritemaps_NoobTubeCrack_6                         ;86D3F3;
@@ -13306,36 +13367,35 @@ InstList_EnemyProjectile_NoobTubeCrack_0:
     dw $0001,EnemyProjSpritemaps_NoobTubeCrack_A                         ;86D403;
     dw $0002,EnemyProjSpritemaps_NoobTubeCrack_B                         ;86D407;
     dw $0003,EnemyProjSpritemaps_NoobTubeCrack_C                         ;86D40B;
-    dw $0006,EnemyProjSpritemaps_NoobTubeCrack_D                         ;86D40F;
-    dw $0009,EnemyProjSpritemaps_NoobTubeCrack_E                         ;86D413;
-    dw $0008,EnemyProjSpritemaps_NoobTubeCrack_F                         ;86D417;
+    dw regional($0006, $0005),EnemyProjSpritemaps_NoobTubeCrack_D        ;86D40F;
+    dw regional($0009, $0005),EnemyProjSpritemaps_NoobTubeCrack_E        ;86D413;
+    dw regional($0008, $0005),EnemyProjSpritemaps_NoobTubeCrack_F        ;86D417;
     dw Instruction_EnemyProjectile_PreInstructionInY                     ;86D41B;
     dw PreInstruction_EnemyProjectile_NoobTubeCrack_Falling              ;86D41D;
-    dw $0007,EnemyProjSpritemaps_NoobTubeCrack_10                        ;86D41F;
-    dw $0007,EnemyProjSpritemaps_NoobTubeCrack_11                        ;86D423;
-    dw $0007,EnemyProjSpritemaps_NoobTubeCrack_12                        ;86D427;
-    dw $0007,EnemyProjSpritemaps_NoobTubeCrack_13                        ;86D42B;
-    dw $0007,EnemyProjSpritemaps_NoobTubeCrack_14                        ;86D42F;
-    dw $0007,EnemyProjSpritemaps_NoobTubeCrack_15                        ;86D433;
-    dw $0007,EnemyProjSpritemaps_NoobTubeCrack_16                        ;86D437;
-    dw $0007,EnemyProjSpritemaps_NoobTubeCrack_17                        ;86D43B;
-    dw $0007,EnemyProjSpritemaps_NoobTubeCrack_18                        ;86D43F;
-    dw $0007,EnemyProjSpritemaps_NoobTubeCrack_19                        ;86D443;
-    dw $0007,EnemyProjSpritemaps_NoobTubeCrack_1A                        ;86D447;
-    dw $0007,EnemyProjSpritemaps_NoobTubeCrack_1B                        ;86D44B;
-    dw $0007,EnemyProjSpritemaps_NoobTubeCrack_1C                        ;86D44F;
-    dw $0007,EnemyProjSpritemaps_NoobTubeCrack_1D                        ;86D453;
-    dw $0007,EnemyProjSpritemaps_NoobTubeCrack_1E                        ;86D457;
-    dw $0007,EnemyProjSpritemaps_NoobTubeCrack_1F                        ;86D45B;
-    dw $0007,EnemyProjSpritemaps_NoobTubeCrack_20                        ;86D45F;
-    dw $0007,EnemyProjSpritemaps_NoobTubeCrack_21                        ;86D463;
-    dw $0010,EnemyProjSpritemaps_NoobTubeCrack_22                        ;86D467;
-    dw Instruction_EnemyProjectile_TimerInY                              ;86D46B;
-    dw $0006                                                             ;86D46D;
+    dw regional($0007, $0005),EnemyProjSpritemaps_NoobTubeCrack_10       ;86D41F;
+    dw regional($0007, $0005),EnemyProjSpritemaps_NoobTubeCrack_11       ;86D423;
+    dw regional($0007, $0005),EnemyProjSpritemaps_NoobTubeCrack_12       ;86D427;
+    dw regional($0007, $0005),EnemyProjSpritemaps_NoobTubeCrack_13       ;86D42B;
+    dw regional($0007, $0005),EnemyProjSpritemaps_NoobTubeCrack_14       ;86D42F;
+    dw regional($0007, $0005),EnemyProjSpritemaps_NoobTubeCrack_15       ;86D433;
+    dw regional($0007, $0005),EnemyProjSpritemaps_NoobTubeCrack_16       ;86D437;
+    dw regional($0007, $0005),EnemyProjSpritemaps_NoobTubeCrack_17       ;86D43B;
+    dw regional($0007, $0005),EnemyProjSpritemaps_NoobTubeCrack_18       ;86D43F;
+    dw regional($0007, $0005),EnemyProjSpritemaps_NoobTubeCrack_19       ;86D443;
+    dw regional($0007, $0005),EnemyProjSpritemaps_NoobTubeCrack_1A       ;86D447;
+    dw regional($0007, $0005),EnemyProjSpritemaps_NoobTubeCrack_1B       ;86D44B;
+    dw regional($0007, $0005),EnemyProjSpritemaps_NoobTubeCrack_1C       ;86D44F;
+    dw regional($0007, $0005),EnemyProjSpritemaps_NoobTubeCrack_1D       ;86D453;
+    dw regional($0007, $0005),EnemyProjSpritemaps_NoobTubeCrack_1E       ;86D457;
+    dw regional($0007, $0005),EnemyProjSpritemaps_NoobTubeCrack_1F       ;86D45B;
+    dw regional($0007, $0005),EnemyProjSpritemaps_NoobTubeCrack_20       ;86D45F;
+    dw regional($0007, $0005),EnemyProjSpritemaps_NoobTubeCrack_21       ;86D463;
+    dw regional($0010, $000A),EnemyProjSpritemaps_NoobTubeCrack_22       ;86D467;
+    dw Instruction_EnemyProjectile_TimerInY,$0006                        ;86D46B;
 
 InstList_EnemyProjectile_NoobTubeCrack_1:
-    dw $0010,EnemyProjSpritemaps_NoobTubeCrack_23                        ;86D46F;
-    dw $0010,EnemyProjSpritemaps_NoobTubeCrack_22                        ;86D473;
+    dw regional($0010, $000A),EnemyProjSpritemaps_NoobTubeCrack_23       ;86D46F;
+    dw regional($0010, $000A),EnemyProjSpritemaps_NoobTubeCrack_22       ;86D473;
     dw Instruction_EnemyProjectile_DecrementTimer_GotoYIfNonZero         ;86D477;
     dw InstList_EnemyProjectile_NoobTubeCrack_1                          ;86D479;
     dw Instruction_EnemyProjectile_Delete                                ;86D47B;
@@ -13590,7 +13650,7 @@ Instruction_EnemyProjectile_AssignNoobTubeShardFallingAngle:
     JSL.L GenerateRandomNumber                                           ;86D5E1;
     LDA.W RandomNumberSeed+1                                             ;86D5E5;
     STA.W EnemyProjectile_XVelocity,X                                    ;86D5E8;
-    LDA.W #$00C0                                                         ;86D5EB;
+    LDA.W #regional($00C0, $00E4)                                        ;86D5EB;
     STA.W EnemyProjectile_YVelocity,X                                    ;86D5EE;
     RTS                                                                  ;86D5F1;
 
@@ -13855,7 +13915,7 @@ PreInstruction_EnemyProjectile_NoobTubeCrack_Falling:
 ;     LDA EnemyProjectile_YPositions,x : ADC #$0000 : STA EnemyProjectile_YPositions,x
     STZ.B DP_Temp12                                                      ;86D7DE;
     STZ.B DP_Temp14                                                      ;86D7E0;
-    LDA.W #$00C0                                                         ;86D7E2;
+    LDA.W #regional($00C0, $00E4)                                        ;86D7E2;
     BPL +                                                                ;86D7E5;
     DEC.B DP_Temp14                                                      ;86D7E7;
 
@@ -14168,9 +14228,9 @@ InitAI_EnemyProjectile_CacatacSpike:
     STA.W EnemyProjectile_YPositions,Y                                   ;86D9B1;
     LDA.W Enemy.YSubPosition,X                                           ;86D9B4;
     STA.W EnemyProjectile_YSubPositions,Y                                ;86D9B7;
-    LDA.W #$FE00                                                         ;86D9BA;
+    LDA.W #regional($FE00, $FE40)                                        ;86D9BA;
     STA.W EnemyProjectile_YVelocity,Y                                    ;86D9BD;
-    LDA.W #$0200                                                         ;86D9C0;
+    LDA.W #regional($0200, $01C0)                                        ;86D9C0;
     STA.W EnemyProjectile_XVelocity,Y                                    ;86D9C3;
     LDA.W EnemyProjectile_InitParam0                                     ;86D9C6;
     CMP.W #$000C                                                         ;86D9C9;
@@ -14908,11 +14968,19 @@ InstList_EnemyProjectile_NamiFuneFireball_Right:
 ;;; $DEB6: Namihe/fune fireball X velocity table ;;;
 NamiFuneFireball_XVelocityTable:
 ; Left velocity, right velocity
+if !PAL == 0
   .left:
     dw $FFC0                                                             ;86DEB6;
   .right:
     dw       $0040, $FF80,$0080, $FF40,$00C0, $FF00,$0100                ;86DEB8;
-    dw $FEC0,$0140, $FE80,$0180, $FE40,$01C0, $FE00,$0200                ;86DEC8;
+    dw $FEC0,$0140, $FE80,$0180, $FE40,$01C0, $FE00,$0200                ;86DEC6;
+else
+  .left:
+    dw $FFB0
+  .right:
+    dw       $0050, $FF60,$00A0, $FF20,$00E0, $FED0,$0130
+    dw $FEA0,$0160, $FE40,$01C0, $FE00,$0200, $FDA0,$0260
+endif
 
 
 ;;; $DED6: Initialisation AI - enemy projectile $DFBC/$DFCA (namihe/fune fireball) ;;;
@@ -16057,7 +16125,7 @@ EnemyProjectile_UpwardsShotGateInitiallyClosed:                          ;86E675
 
 ;;; $E683: Instruction list - enemy projectile $E6D2 (save station electricity) ;;;
 InstList_EnemyProjectile_SaveStationElectricity_0:
-    dw Instruction_EnemyProjectile_TimerInY,$0014                        ;86E683;
+    dw Instruction_EnemyProjectile_TimerInY,regional($0014, $000F)       ;86E683;
 
 InstList_EnemyProjectile_SaveStationElectricity_1:
     dw $0001,EnemyProjSpritemaps_SaveStationElectricity_0                ;86E687;
@@ -16074,7 +16142,7 @@ InstList_EnemyProjectile_SaveStationElectricity_1:
 
 
 ;;; $E6AD: Initialisation AI - enemy projectile $E6D2 (save station electricity) ;;;
-InitAI_EnemyProjectile_SaveStationElectrictiy:
+InitAI_EnemyProjectile_SaveStationElectricity:
 ;; Parameters:
 ;;     Y: Enemy projectile index
     LDX.W PLM_Index                                                      ;86E6AD;
@@ -16106,7 +16174,7 @@ RTS_86E6D1:
 ;;; $E6D2: Enemy projectile - save station electricity ;;;
 EnemyProjectile_SaveStationElectricity:                                  ;86E6D2;
     %EnemyProjectile(\
-    %initAI(InitAI_EnemyProjectile_SaveStationElectrictiy),
+    %initAI(InitAI_EnemyProjectile_SaveStationElectricity),
     %preInst(RTS_86E6D1),
     %instList(InstList_EnemyProjectile_SaveStationElectricity_0),
     %radius(0, 0),
@@ -16834,7 +16902,7 @@ Function_EnemyProjectile_BotwoonsBody_Dying_Falling:
   .falling:
     LDA.W EnemyProjectile_YVelocity,Y                                    ;86EB7F;
     CLC                                                                  ;86EB82;
-    ADC.W #$00C0                                                         ;86EB83;
+    ADC.W #regional($00C0, $0100)                                        ;86EB83;
     STA.W EnemyProjectile_YVelocity,Y                                    ;86EB86;
     LDA.W #$0000                                                         ;86EB89;
     STA.W EnemyProjectile_InstructionTimers,Y                            ;86EB8C;

@@ -400,83 +400,26 @@ Instruction_CommonA6_DisableOffScreenProcessing:
 
 ;;; $8187: Common enemy speeds - linearly increasing ;;;
 CommonA6EnemySpeeds_LinearlyIncreasing:
-;        _____________________ Speed
-;       |      _______________ Subspeed
-;       |     |      _________ Negated speed
-;       |     |     |      ___ Negated subspeed
-;       |     |     |     |
-  .speed:
-    dw $0000                                                             ;A68187;
-  .subspeed:
-    dw       $0000                                                       ;A68189;
-  .negatedSpeed:
-    dw             $0000                                                 ;A6818B;
-  .negatedSubspeed:
-    dw                   $0000                                           ;A6818D;
-    dw $0000,$1000,$FFFF,$F000
-    dw $0000,$2000,$FFFF,$E000
-    dw $0000,$3000,$FFFF,$D000
-    dw $0000,$4000,$FFFF,$C000
-    dw $0000,$5000,$FFFF,$B000
-    dw $0000,$6000,$FFFF,$A000
-    dw $0000,$7000,$FFFF,$9000
-    dw $0000,$8000,$FFFF,$8000
-    dw $0000,$9000,$FFFF,$7000
-    dw $0000,$A000,$FFFF,$6000
-    dw $0000,$B000,$FFFF,$5000
-    dw $0000,$C000,$FFFF,$4000
-    dw $0000,$D000,$FFFF,$3000
-    dw $0000,$E000,$FFFF,$2000
-    dw $0000,$F000,$FFFF,$1000
-    dw $0001,$0000,$FFFF,$0000
-    dw $0001,$1000,$FFFE,$F000
-    dw $0001,$2000,$FFFE,$E000
-    dw $0001,$3000,$FFFE,$D000
-    dw $0001,$4000,$FFFE,$C000
-    dw $0001,$5000,$FFFE,$B000
-    dw $0001,$6000,$FFFE,$A000
-    dw $0001,$7000,$FFFE,$9000
-    dw $0001,$8000,$FFFE,$8000
-    dw $0001,$9000,$FFFE,$7000
-    dw $0001,$A000,$FFFE,$6000
-    dw $0001,$B000,$FFFE,$5000
-    dw $0001,$C000,$FFFE,$4000
-    dw $0001,$D000,$FFFE,$3000
-    dw $0001,$E000,$FFFE,$2000
-    dw $0001,$F000,$FFFE,$1000
-    dw $0002,$0000,$FFFE,$0000
-    dw $0002,$1000,$FFFD,$F000
-    dw $0002,$2000,$FFFD,$E000
-    dw $0002,$3000,$FFFD,$D000
-    dw $0002,$4000,$FFFD,$C000
-    dw $0002,$5000,$FFFD,$B000
-    dw $0002,$6000,$FFFD,$A000
-    dw $0002,$7000,$FFFD,$9000
-    dw $0002,$8000,$FFFD,$8000
-    dw $0002,$9000,$FFFD,$7000
-    dw $0002,$A000,$FFFD,$6000
-    dw $0002,$B000,$FFFD,$5000
-    dw $0002,$C000,$FFFD,$4000
-    dw $0002,$D000,$FFFD,$3000
-    dw $0002,$E000,$FFFD,$2000
-    dw $0002,$F000,$FFFD,$1000
-    dw $0003,$0000,$FFFD,$0000
-    dw $0003,$1000,$FFFC,$F000
-    dw $0003,$2000,$FFFC,$E000
-    dw $0003,$3000,$FFFC,$D000
-    dw $0003,$4000,$FFFC,$C000
-    dw $0003,$5000,$FFFC,$B000
-    dw $0003,$6000,$FFFC,$A000
-    dw $0003,$7000,$FFFC,$9000
-    dw $0003,$8000,$FFFC,$8000
-    dw $0003,$9000,$FFFC,$7000
-    dw $0003,$A000,$FFFC,$6000
-    dw $0003,$B000,$FFFC,$5000
-    dw $0003,$C000,$FFFC,$4000
-    dw $0003,$D000,$FFFC,$3000
-    dw $0003,$E000,$FFFC,$2000
-    dw $0003,$F000,$FFFC,$1000
-    dw $0004,$0000,$FFFC,$0000
+  .speed                                                                 ;A08187;
+skip 2
+  .subspeed                                                              ;A08189;
+skip 2
+  .negatedSpeed                                                          ;A0818B;
+skip 2
+  .negatedSubspeed                                                       ;A0818D;
+skip -6
+
+!i = 0
+if !PAL == 0
+    !n = $41
+else
+    !n = $43
+endif
+while !i < !n
+    !v #= $1000*!SPF*!i ; !i must be last in product to reproduce PAL rounding errors
+    dw !v>>$10, !v, -!v>>$10, -!v
+    !i #= !i+1
+endif
 
 
 ;;; $838F: Common enemy speeds - quadratically increasing ;;;
@@ -498,6 +441,7 @@ CommonA6EnemySpeeds_QuadraticallyIncreasing:
     dw                   $0000                                           ;A68395;
     dw $0109,$0000,$FEF7,$FFFF
     dw $031B,$0000,$FCE5,$FFFF
+if !PAL == 0
     dw $0636,$0000,$F9CA,$FFFF
     dw $0A5A,$0000,$F5A6,$FFFF
     dw $0F87,$0000,$F079,$FFFF
@@ -590,6 +534,100 @@ CommonA6EnemySpeeds_QuadraticallyIncreasing:
     dw $BC66,$0010,$439A,$FFEF
     dw $13AB,$0011,$EC55,$FFEE
     dw $74F9,$0011,$8B07,$FFEE
+else
+    dw $073F,$0000,$F8C1,$FFFF
+    dw $0B63,$0000,$F49D,$FFFF
+    dw $1199,$0000,$EE67,$FFFF
+    dw $19E1,$0000,$E61F,$FFFF
+    dw $2229,$0000,$DDD7,$FFFF
+    dw $2C83,$0000,$D37D,$FFFF
+    dw $36DD,$0000,$C923,$FFFF
+    dw $4349,$0000,$BCB7,$FFFF
+    dw $51C7,$0000,$AE39,$FFFF
+    dw $6045,$0000,$9FBB,$FFFF
+    dw $70D5,$0000,$8F2B,$FFFF
+    dw $8165,$0000,$7E9B,$FFFF
+    dw $9407,$0000,$6BF9,$FFFF
+    dw $A8BB,$0000,$5745,$FFFF
+    dw $BD6F,$0000,$4291,$FFFF
+    dw $D435,$0000,$2BCB,$FFFF
+    dw $EAFB,$0000,$1505,$FFFF
+    dw $03D3,$0001,$FC2D,$FFFE
+    dw $15BD,$0001,$EA43,$FFFE
+    dw $30A7,$0001,$CF59,$FFFE
+    dw $4DA3,$0001,$B25D,$FFFE
+    dw $6A9F,$0001,$9561,$FFFE
+    dw $89AD,$0001,$7653,$FFFE
+    dw $AACD,$0001,$5533,$FFFE
+    dw $CBED,$0001,$3413,$FFFE
+    dw $EF1F,$0001,$10E1,$FFFE
+    dw $0951,$0002,$F6AF,$FFFD
+    dw $2E95,$0002,$D16B,$FFFD
+    dw $55EB,$0002,$AA15,$FFFD
+    dw $7D41,$0002,$82BF,$FFFD
+    dw $A6A9,$0002,$5957,$FFFD
+    dw $D011,$0002,$2FEF,$FFFD
+    dw $FB8B,$0002,$0475,$FFFD
+    dw $2017,$0003,$DFE9,$FFFC
+    dw $4DA3,$0003,$B25D,$FFFC
+    dw $7D41,$0003,$82BF,$FFFC
+    dw $ACDF,$0003,$5321,$FFFC
+    dw $DE8F,$0003,$2171,$FFFC
+    dw $0951,$0004,$F6AF,$FFFB
+    dw $3D13,$0004,$C2ED,$FFFB
+    dw $72E7,$0004,$8D19,$FFFB
+    dw $A8BB,$0004,$5745,$FFFB
+    dw $E0A1,$0004,$1F5F,$FFFB
+    dw $1199,$0005,$EE67,$FFFA
+    dw $4B91,$0005,$B46F,$FFFA
+    dw $879B,$0005,$7865,$FFFA
+    dw $C3A5,$0005,$3C5B,$FFFA
+    dw $01C1,$0005,$FE3F,$FFFA
+    dw $38EF,$0006,$C711,$FFF9
+    dw $791D,$0006,$86E3,$FFF9
+    dw $BB5D,$0006,$44A3,$FFF9
+    dw $FD9D,$0006,$0263,$FFF9
+    dw $38EF,$0007,$C711,$FFF8
+    dw $7F53,$0007,$80AD,$FFF8
+    dw $C5B7,$0007,$3A49,$FFF8
+    dw $052D,$0008,$FAD3,$FFF7
+    dw $4DA3,$0008,$B25D,$FFF7
+    dw $982B,$0008,$67D5,$FFF7
+    dw $E4C5,$0008,$1B3B,$FFF7
+    dw $285F,$0009,$D7A1,$FFF6
+    dw $770B,$0009,$88F5,$FFF6
+    dw $C5B7,$0009,$3A49,$FFF6
+    dw $0D75,$000A,$F28B,$FFF5
+    dw $6045,$000A,$9FBB,$FFF5
+    dw $B315,$000A,$4CEB,$FFF5
+    dw $07F7,$000B,$F809,$FFF5
+    dw $53D9,$000B,$AC27,$FFF4
+    dw $AACD,$000B,$5533,$FFF4
+    dw $03D3,$000C,$FC2D,$FFF3
+    dw $53D9,$000C,$AC27,$FFF3
+    dw $AEF1,$000C,$510F,$FFF3
+    dw $0109,$000D,$FEF7,$FFF2
+    dw $5E33,$000D,$A1CD,$FFF2
+    dw $BD6F,$000D,$4291,$FFF2
+    dw $13AB,$000E,$EC55,$FFF1
+    dw $74F9,$000E,$8B07,$FFF1
+    dw $D647,$000E,$29B9,$FFF1
+    dw $30A7,$000F,$CF59,$FFF0
+    dw $9619,$000F,$69E7,$FFF0
+    dw $FB8B,$000F,$0475,$FFF0
+    dw $5A0F,$0010,$A5F1,$FFEF
+    dw $C193,$0010,$3E6D,$FFEF
+    dw $2229,$0011,$DDD7,$FFEE
+    dw $8DD1,$0011,$722F,$FFEE
+    dw $F979,$0011,$0687,$FFEE
+    dw $5E33,$0012,$A1CD,$FFED
+    dw $CBED,$0012,$3413,$FFED
+    dw $32B9,$0013,$CD47,$FFEC
+    dw $A497,$0013,$5B69,$FFEC
+    dw $0D75,$0014,$F28B,$FFEB
+    dw $8165,$0014,$7E9B,$FFEB
+    dw $F555,$0014,$0AAB,$FFEB
+endif
 
 
 ;;; $8687: Palette - enemy $DFBF (boulder) ;;;
@@ -1256,7 +1294,7 @@ Function_Kzan_Falling:
     LDA.W Enemy.YPosition,X                                              ;A68BFD;
     CMP.W Kzan.fallingTargetYPosition,X                                  ;A68C00;
     BMI .notReachedTarget                                                ;A68C03;
-    LDA.W #$0040                                                         ;A68C05;
+    LDA.W #regional($0040, $0032)                                        ;A68C05;
     STA.L Kzan.riseWaitTimer,X                                           ;A68C08;
     LDA.W #Function_Kzan_WaitingToRise                                   ;A68C0C;
     STA.W Kzan.function,X                                                ;A68C0F;
@@ -1308,7 +1346,7 @@ Function_Kzan_Rising:
     LDX.W EnemyIndex                                                     ;A68C5E;
     LDA.W Enemy.YPosition,X                                              ;A68C61;
     STA.L Kzan.previousYPosition,X                                       ;A68C64;
-    LDA.W #$8000                                                         ;A68C68;
+    LDA.W #regional($8000, $A000)                                        ;A68C68;
     STA.B DP_Temp12                                                      ;A68C6B;
     LDA.W #$0000                                                         ;A68C6D;
     STA.B DP_Temp14                                                      ;A68C70;
@@ -2830,10 +2868,10 @@ InstList_MiniKraid_ChooseAction:
 
 ;;; $99AE: Instruction list - step forwards - facing left ;;;
 InstList_MiniKraid_StepForwards_FacingLeft:
-    dw $0010,Spritemap_MiniKraid_Stepping_FacingLeft_0                   ;A699AE;
-    dw $000C,Spritemap_MiniKraid_Stepping_FacingLeft_1                   ;A699B2;
-    dw $0008,Spritemap_MiniKraid_Stepping_FacingLeft_2                   ;A699B6;
-    dw $000C,Spritemap_MiniKraid_Stepping_FacingLeft_3                   ;A699BA;
+    dw $0010*!FPS,Spritemap_MiniKraid_Stepping_FacingLeft_0              ;A699AE;
+    dw $000C*!FPS,Spritemap_MiniKraid_Stepping_FacingLeft_1              ;A699B2;
+    dw regional($0008, $0007),Spritemap_MiniKraid_Stepping_FacingLeft_2  ;A699B6;
+    dw $000C*!FPS,Spritemap_MiniKraid_Stepping_FacingLeft_3              ;A699BA;
     dw Instruction_MiniKraid_Move                                        ;A699BE;
     dw Instruction_Common_GotoY                                          ;A699C0;
     dw InstList_MiniKraid_ChooseAction                                   ;A699C2;
@@ -2846,23 +2884,23 @@ InstList_MiniKraid_ChooseAction_duplicate:
 
 ;;; $99C6: Instruction list - step backwards - facing left ;;;
 InstList_MiniKraid_StepBackwards_FacingLeft:
-    dw $0010,Spritemap_MiniKraid_Stepping_FacingLeft_0                   ;A699C6;
+    dw $0010*!FPS,Spritemap_MiniKraid_Stepping_FacingLeft_0              ;A699C6;
     dw Instruction_MiniKraid_Move                                        ;A699CA;
-    dw $000C,Spritemap_MiniKraid_Stepping_FacingLeft_3                   ;A699CC;
-    dw $0008,Spritemap_MiniKraid_Stepping_FacingLeft_2                   ;A699D0;
-    dw $000C,Spritemap_MiniKraid_Stepping_FacingLeft_1                   ;A699D4;
+    dw $000C*!FPS,Spritemap_MiniKraid_Stepping_FacingLeft_3              ;A699CC;
+    dw regional($0008, $0007),Spritemap_MiniKraid_Stepping_FacingLeft_2  ;A699D0;
+    dw $000C*!FPS,Spritemap_MiniKraid_Stepping_FacingLeft_1              ;A699D4;
     dw Instruction_Common_GotoY                                          ;A699D8;
     dw InstList_MiniKraid_ChooseAction_duplicate                         ;A699DA;
 
 
 ;;; $99DC: Instruction list - fire spit - facing left ;;;
 InstList_MiniKraid_FireSpit_FacingLeft:
-    dw $0010,Spritemap_MiniKraid_FiringSpit_FacingLeft_0                 ;A699DC;
+    dw $0010*!FPS,Spritemap_MiniKraid_FiringSpit_FacingLeft_0            ;A699DC;
     dw Instruction_MiniKraid_PlayCrySFX                                  ;A699E0;
-    dw $0008,Spritemap_MiniKraid_FiringSpit_FacingLeft_1                 ;A699E2;
+    dw regional($0008, $0007),Spritemap_MiniKraid_FiringSpit_FacingLeft_1 ;A699E2;
     dw Instruction_MiniKraid_FireSpitLeft                                ;A699E6;
-    dw $0010,Spritemap_MiniKraid_FiringSpit_FacingLeft_2                 ;A699E8;
-    dw $0008,Spritemap_MiniKraid_FiringSpit_FacingLeft_1                 ;A699EC;
+    dw $0010*!FPS,Spritemap_MiniKraid_FiringSpit_FacingLeft_2            ;A699E8;
+    dw regional($0008, $0007),Spritemap_MiniKraid_FiringSpit_FacingLeft_1 ;A699EC;
     dw Instruction_Common_GotoY                                          ;A699F0;
     dw InstList_MiniKraid_ChooseAction                                   ;A699F2;
 
@@ -2882,10 +2920,10 @@ InstList_MiniKraid_ChooseAction_duplicate_again2:
 
 ;;; $99FC: Instruction list - step forwards - facing right ;;;
 InstList_MiniKraid_StepForwards_FacingRight:
-    dw $0010,Spritemap_MiniKraid_Stepping_FacingRight_0                  ;A699FC;
-    dw $000C,Spritemap_MiniKraid_Stepping_FacingRight_1                  ;A69A00;
-    dw $0008,Spritemap_MiniKraid_Stepping_FacingRight_2                  ;A69A04;
-    dw $000C,Spritemap_MiniKraid_Stepping_FacingRight_3                  ;A69A08;
+    dw $0010*!FPS,Spritemap_MiniKraid_Stepping_FacingRight_0             ;A699FC;
+    dw $000C*!FPS,Spritemap_MiniKraid_Stepping_FacingRight_1             ;A69A00;
+    dw regional($0008, $0007),Spritemap_MiniKraid_Stepping_FacingRight_2 ;A69A04;
+    dw $000C*!FPS,Spritemap_MiniKraid_Stepping_FacingRight_3             ;A69A08;
     dw Instruction_MiniKraid_Move                                        ;A69A0C;
     dw Instruction_Common_GotoY                                          ;A69A0E;
     dw InstList_MiniKraid_ChooseAction_duplicate_again2                  ;A69A10;
@@ -2898,23 +2936,23 @@ InstList_MiniKraid_ChooseAction_duplicate_again3:
 
 ;;; $9A14: Instruction list - step backwards - facing right ;;;
 InstList_MiniKraid_StepBackwards_FacingRight:
-    dw $0010,Spritemap_MiniKraid_Stepping_FacingRight_0                  ;A69A14;
+    dw $0010*!FPS,Spritemap_MiniKraid_Stepping_FacingRight_0             ;A69A14;
     dw Instruction_MiniKraid_Move                                        ;A69A18;
-    dw $000C,Spritemap_MiniKraid_Stepping_FacingRight_3                  ;A69A1A;
-    dw $0008,Spritemap_MiniKraid_Stepping_FacingRight_2                  ;A69A1E;
-    dw $000C,Spritemap_MiniKraid_Stepping_FacingRight_1                  ;A69A22;
+    dw $000C*!FPS,Spritemap_MiniKraid_Stepping_FacingRight_3             ;A69A1A;
+    dw regional($0008, $0007),Spritemap_MiniKraid_Stepping_FacingRight_2 ;A69A1E;
+    dw $000C*!FPS,Spritemap_MiniKraid_Stepping_FacingRight_1             ;A69A22;
     dw Instruction_Common_GotoY                                          ;A69A26;
     dw InstList_MiniKraid_ChooseAction_duplicate_again3                  ;A69A28;
 
 
 ;;; $9A2A: Instruction list - fire spit - facing right ;;;
 InstList_MiniKraid_FireSpit_FacingRight:
-    dw $0010,Spritemap_MiniKraid_FiringSpit_FacingRight_0                ;A69A2A;
+    dw $0010*!FPS,Spritemap_MiniKraid_FiringSpit_FacingRight_0           ;A69A2A;
     dw Instruction_MiniKraid_PlayCrySFX                                  ;A69A2E;
-    dw $0008,Spritemap_MiniKraid_FiringSpit_FacingRight_1                ;A69A30;
+    dw regional($0008, $0007),Spritemap_MiniKraid_FiringSpit_FacingRight_1 ;A69A30;
     dw Instruction_MiniKraid_FireSpitRight                               ;A69A34;
-    dw $0010,Spritemap_MiniKraid_FiringSpit_FacingRight_2                ;A69A36;
-    dw $0008,Spritemap_MiniKraid_FiringSpit_FacingRight_1                ;A69A3A;
+    dw $0010*!FPS,Spritemap_MiniKraid_FiringSpit_FacingRight_2           ;A69A36;
+    dw regional($0008, $0007),Spritemap_MiniKraid_FiringSpit_FacingRight_1 ;A69A3A;
     dw Instruction_Common_GotoY                                          ;A69A3E;
     dw InstList_MiniKraid_ChooseAction_duplicate_again2                  ;A69A40;
 
@@ -2929,22 +2967,22 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $9A48: Fake Kraid spit velocity table ;;;
 MiniKraidSpitVelocityTable_leftward_X1:
-    dw $FE00                                                             ;A69A48;
+    dw -$0200*!SPF                                                       ;A69A48;
 MiniKraidSpitVelocityTable_leftward_Y1:
-    dw       $FB00                                                       ;A69A4A;
+    dw       -$0500*!SPF                                                 ;A69A4A;
 MiniKraidSpitVelocityTable_leftward_X2:
-    dw              $FC00                                                ;A69A4C;
+    dw              -$0400*!SPF                                          ;A69A4C;
 MiniKraidSpitVelocityTable_leftward_Y2:
-    dw                    $FB00                                          ;A69A4E;
+    dw                    -$0500*!SPF                                    ;A69A4E;
 
 MiniKraidSpitVelocityTable_rightward_X1:
-    dw $0200                                                             ;A69A50;
+    dw $0200*!SPF                                                        ;A69A50;
 MiniKraidSpitVelocityTable_rightward_Y1:
-    dw       $FB00                                                       ;A69A52;
+    dw       -$0500*!SPF                                                 ;A69A52;
 MiniKraidSpitVelocityTable_rightward_X2:
-    dw              $0400                                                ;A69A54;
+    dw              $0400*!SPF                                           ;A69A54;
 MiniKraidSpitVelocityTable_rightward_Y2:
-    dw                    $FB00                                          ;A69A56;
+    dw                    -$0500*!SPF                                    ;A69A56;
 
 
 ;;; $9A58: Initialisation AI - enemy $E0FF (fake Kraid) ;;;
@@ -3973,9 +4011,9 @@ Function_Ridley_Startup_ColorBGInNorfair_RaiseAcid_MainAI:
     BCC Function_Ridley_Startup_RidleyRoars_return                       ;A6A496;
     LDA.W #$01B8                                                         ;A6A498;
     STA.W $197A                                                          ;A6A49B;
-    LDA.W #$FFA0                                                         ;A6A49E;
+    LDA.W #-$0060*!SPF                                                   ;A6A49E;
     STA.W $197C                                                          ;A6A4A1;
-    LDA.W #$0020                                                         ;A6A4A4;
+    LDA.W #$0020*!SPF                                                    ;A6A4A4;
     STA.W $1980                                                          ;A6A4A7;
     BRA .merge                                                           ;A6A4AA;
 
@@ -6222,28 +6260,28 @@ SetSpeedsForTailbouncing:
     dw .randomYSpeed3                                                    ;A6B973;
 
   .randomXSpeed0:
-    dw $0058,$0070,$00A0,$00A8,$00B0,$00B8                               ;A6B975; slow
+    dw $0058*!SPF,$0070*!SPF,$00A0*!SPF,$00A8*!SPF,$00B0*!SPF,$00B8*!SPF ;A6B975; slow
 
   .randomXSpeed1:
-    dw $0078,$0090,$00C0,$00C8,$00D0,$00D8                               ;A6B981;
+    dw $0078*!SPF,$0090*!SPF,$00C0*!SPF,$00C8*!SPF,$00D0*!SPF,$00D8*!SPF ;A6B981;
 
   .randomXSpeed2:
-    dw $0098,$00B0,$00E0,$00E8,$00F0,$00F8                               ;A6B98D;
+    dw $0098*!SPF,$00B0*!SPF,$00E0*!SPF,$00E8*!SPF,$00F0*!SPF,$00F8*!SPF ;A6B98D;
 
   .randomXSpeed3:
-    dw $00B8,$00D0,$0100,$0108,$0110,$0118                               ;A6B999; fast
+    dw $00B8*!SPF,$00D0*!SPF,$0100*!SPF,$0108*!SPF,$0110*!SPF,$0118*!SPF ;A6B999; fast
 
   .randomYSpeed0:
-    dw $FE60,$FDE0,$FCE0,$FC20,$FA80,$F980                               ;A6B9A5; slow
+    dw -$01A0*!SPF,-$0220*!SPF,-$0320*!SPF,-$03E0*!SPF,-$0580*!SPF,-$0680*!SPF ;A6B9A5; slow
 
   .randomYSpeed1:
-    dw $FE00,$FD80,$FC80,$FBC0,$FA60,$F960                               ;A6B9B1;
+    dw -$0200*!SPF,-$0280*!SPF,-$0380*!SPF,-$0440*!SPF,-$05A0*!SPF,-$06A0*!SPF ;A6B9B1;
 
   .randomYSpeed2:
-    dw $FDE0,$FD60,$FC60,$FB80,$FA40,$F940                               ;A6B9BD;
+    dw -$0220*!SPF,-$02A0*!SPF,-$03A0*!SPF,-$0480*!SPF,-$05C0*!SPF,-$06C0*!SPF ;A6B9BD;
 
   .randomYSpeed3:
-    dw $FDC0,$FD40,$FC40,$FB60,$FA20,$F920                               ;A6B9C9; fast
+    dw -$0240*!SPF,-$02C0*!SPF,-$03C0*!SPF,-$04A0*!SPF,-$05E0*!SPF,-$06E0*!SPF ;A6B9C9; fast
 
 
 ;;; $B9D5:  ;;;
@@ -7180,7 +7218,7 @@ PostGetawayFunction_UpdateColors_TransferTimerSpriteTiles:
     STA.L $7EC0A2                                                        ;A6C076;
     LDA.L $7EC026                                                        ;A6C07A;
     STA.L $7EC0A6                                                        ;A6C07E;
-    LDX.W #ZebesEscapeTimerSpriteTileTransferEntries_size                ;A6C082;
+    LDX.W #EscapeTimerSpriteTileTransferEntries_Ceres                    ;A6C082;
     STX.W $0FB0                                                          ;A6C085;
     INC.W $0FB2                                                          ;A6C088;
     INC.W $0FB2                                                          ;A6C08B; fallthrough to PostGetawayFunction_TransferTimerBackgroundTiles
@@ -7224,12 +7262,14 @@ PostGetawayFunction_SetupCeresEscapeTimer:
     STA.L $7E803E                                                        ;A6C0D9;
     LDA.W #$0020                                                         ;A6C0DD;
     STA.W $0FB0                                                          ;A6C0E0;
+if !PAL == 0
     LDA.W $09E2                                                          ;A6C0E3;
-    BNE .japanText                                                       ;A6C0E6;
+    BNE .subtitles                                                       ;A6C0E6;
     INC.W $0FB2                                                          ;A6C0E8;
     INC.W $0FB2                                                          ;A6C0EB;
+endif
 
-  .japanText:
+  .subtitles:
     INC.W $0FB2                                                          ;A6C0EE;
     INC.W $0FB2                                                          ;A6C0F1;
 
@@ -7243,7 +7283,14 @@ PostGetawayFunction_Wait20f_QueueTilemapTransfers:
     BNE PostGetawayFunction_CycleEmergencyTextColors_HandleTyping        ;A6C0F8;
     INC.W $0FB2                                                          ;A6C0FA;
     INC.W $0FB2                                                          ;A6C0FD;
-    JSL.L QueueCeresEscapeJapaneseTextTilemapTransfers                   ;A6C100; fallthrough to PostGetawayFunction_CycleEmergencyTextColors_HandleTyping
+if !PAL != 0
+    LDA.W AltText  
+    BNE +
+    JSL.L QueueCeresEscapeSubtitleTilemapTransfers_DefaultLanguage
+    BRA PostGetawayFunction_CycleEmergencyTextColors_HandleTyping
+
+endif
++   JSL.L QueueCeresEscapeSubtitleTilemapTransfers_AltLanguage           ;A6C100; fallthrough to PostGetawayFunction_CycleEmergencyTextColors_HandleTyping
 
 
 ;;; $C104:  ;;;
@@ -7554,11 +7601,44 @@ HandleTypewriterText:
     RTS                                                                  ;A6C382;
 
 
+if !PAL != 0
+QueueZebesEscapeSubtitleTilemapTransfers:
+    LDA.W AltText  
+    BNE .French
+
+    LDX.W #TypewriterZebesEscapeSubtitleTilemapTransfer_German
+    BRA QueueEscapeSubtitleTilemapTransfers
+
+  .French
+    LDX.W #TypewriterZebesEscapeSubtitleTilemapTransfer_French
+    BRA QueueEscapeSubtitleTilemapTransfers
+
+
+QueueCeresEscapeSubtitleTilemapTransfers_DefaultLanguage:
+    LDX.W #TypewriterCeresEscapeSubtitleTilemapTransfer_German
+    BRA QueueEscapeSubtitleTilemapTransfers
+endif
+
+
 ;;; $C383:  ;;;
-QueueCeresEscapeJapaneseTextTilemapTransfers:
-    LDX.W #TypewriterCeresEscapeJapaneseTextTilemapTransfer_size         ;A6C383;
+QueueCeresEscapeSubtitleTilemapTransfers_AltLanguage:
+if !PAL == 0
+    LDX.W #TypewriterCeresEscapeSubtitleTilemapTransfer_Japanese         ;A6C383;
+else
+    LDX.W #TypewriterCeresEscapeSubtitleTilemapTransfer_French
+endif
+
+
+QueueEscapeSubtitleTilemapTransfers:
+;; Parameter:
+;;     X: Pointer to subtitle tilemap transfer data
     PHB                                                                  ;A6C386;
+if !PAL == 0
     PHK                                                                  ;A6C387;
+else
+    PEA.w TypewriterCeresEscapeSubtitleTilemapTransfer_German>>8&$FF00
+    PLB
+endif
     PLB                                                                  ;A6C388;
     LDY.W VRAMWriteStack                                                 ;A6C389;
 
@@ -7582,30 +7662,31 @@ QueueCeresEscapeJapaneseTextTilemapTransfers:
     BRA .loop                                                            ;A6C3B1;
 
   .done:
-    STY.W VRAMWriteStack                                                          ;A6C3B3;
+    STY.W VRAMWriteStack                                                 ;A6C3B3;
     PLB                                                                  ;A6C3B6;
     RTL                                                                  ;A6C3B7;
 
 
+if !PAL == 0 ; repointed to bank $AD in PAL
 ;;; $C3B8: Tilemap transfer entries ;;;
-TypewriterCeresEscapeJapaneseTextTilemapTransfer:
+TypewriterCeresEscapeSubtitleTilemapTransfer_Japanese:
   .size:
     dw $0018                                                             ;A6C3B8;
   .src:
-    dl TypewriterCeresEscapeJapanTextTilemap_Line0_Row0                  ;A6C3BA;
+    dl TypewriterCeresEscapeSubtitleTilemapTransfer_Japanese_Line0_Row0  ;A6C3BA;
   .VRAM:
     dw $528A                                                             ;A6C3BD;
 
     dw $0018                                                             ;A6C3BF; Size
-    dl TypewriterCeresEscapeJapanTextTilemap_Line0_Row1                  ;A6C3C1; Source address
+    dl TypewriterCeresEscapeSubtitleTilemapTransfer_Japanese_Line0_Row1  ;A6C3C1; Source address
     dw $52AA                                                             ;A6C3C4; VRAM address
 
     dw $0016                                                             ;A6C3C6; Size
-    dl TypewriterCeresEscapeJapanTextTilemap_Line1_Row0                  ;A6C3C8; Source address
+    dl TypewriterCeresEscapeSubtitleTilemapTransfer_Japanese_Line1_Row0  ;A6C3C8; Source address
     dw $52CA                                                             ;A6C3CB; VRAM address
 
     dw $0016                                                             ;A6C3CD; Size
-    dl TypewriterCeresEscapeJapanTextTilemap_Line1_Row1                  ;A6C3CF; Source address
+    dl TypewriterCeresEscapeSubtitleTilemapTransfer_Japanese_Line1_Row1  ;A6C3CF; Source address
     dw $52EA                                                             ;A6C3D2; VRAM address
 
     dw $0000                                                             ;A6C3D4; Zero terminator
@@ -7613,19 +7694,19 @@ TypewriterCeresEscapeJapaneseTextTilemapTransfer:
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_TypewriterCeresEscapeJapanTextTilemapTransfer_A6C3D6:
     dw $0018                                                             ;A6C3D6; Size
-    dl TypewriterCeresEscapeJapanTextTilemap_Line0_Row0                  ;A6C3D8; Source address
+    dl TypewriterCeresEscapeSubtitleTilemapTransfer_Japanese_Line0_Row0  ;A6C3D8; Source address
     dw $4A8A                                                             ;A6C3DB; VRAM address
 
     dw $0018                                                             ;A6C3DD; Size
-    dl TypewriterCeresEscapeJapanTextTilemap_Line0_Row1                  ;A6C3DF; Source address
+    dl TypewriterCeresEscapeSubtitleTilemapTransfer_Japanese_Line0_Row1  ;A6C3DF; Source address
     dw $4AAA                                                             ;A6C3E2; VRAM address
 
     dw $0016                                                             ;A6C3E4; Size
-    dl TypewriterCeresEscapeJapanTextTilemap_Line1_Row0                  ;A6C3E6; Source address
+    dl TypewriterCeresEscapeSubtitleTilemapTransfer_Japanese_Line1_Row0  ;A6C3E6; Source address
     dw $4ACA                                                             ;A6C3E9; VRAM address
 
     dw $0016                                                             ;A6C3EB; Size
-    dl TypewriterCeresEscapeJapanTextTilemap_Line1_Row1                  ;A6C3ED; Source address
+    dl TypewriterCeresEscapeSubtitleTilemapTransfer_Japanese_Line1_Row1  ;A6C3ED; Source address
     dw $4AEA                                                             ;A6C3F0; VRAM address
 
     dw $0000                                                             ;A6C3F2; Zero terminator
@@ -7636,22 +7717,23 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 ; Ceres Escape Japanese text
 ; uses two tile high text
 ; first line
-TypewriterCeresEscapeJapanTextTilemap_Line0_Row0:
+TypewriterCeresEscapeSubtitleTilemapTransfer_Japanese_Line0_Row0:
     dw $3DA0,$3DA1,$3DA2,$3DA3,$3DA4,$3DA5,$3DA6,$3DA7                   ;A6C3F4;
     dw $3DAF,$3DA8,$3DAF,$3DA9                                           ;A6C404;
 
-TypewriterCeresEscapeJapanTextTilemap_Line0_Row1:
+TypewriterCeresEscapeSubtitleTilemapTransfer_Japanese_Line0_Row1:
     dw $3DB0,$3DB1,$3DB2,$3DB3,$3DB4,$3DB5,$3DB6,$3DB7                   ;A6C40C;
     dw $3DBF,$3DB8,$3DBF,$3DB9                                           ;A6C41C;
 
 ; second line
-TypewriterCeresEscapeJapanTextTilemap_Line1_Row0:
+TypewriterCeresEscapeSubtitleTilemapTransfer_Japanese_Line1_Row0:
     dw $3DA9,$3DAA,$3DAB,$3DAC,$3DAD,$3DAE,$3DAF,$3D9C                   ;A6C424;
     dw $3D9D,$3D9E,$3D9F                                                 ;A6C434;
 
-TypewriterCeresEscapeJapanTextTilemap_Line1_Row1:
+TypewriterCeresEscapeSubtitleTilemapTransfer_Japanese_Line1_Row1:
     dw $3DB9,$3DBA,$3DBB,$3DBC,$3DBD,$3DBE,$3DBF,$3DC0                   ;A6C43A;
     dw $3DC1,$3DC2,$3DC3                                                 ;A6C44A;
+endif
 
 
 ;;; $C450: Typewriter text - Ceres escape timer ;;;
@@ -7676,8 +7758,51 @@ TypewriterText_ZebesEscapeTimer:
     dw $0000                                                             ;A6C4C9;
 
 
+EscapeTimerSpriteTileTransferEntries_Zebes:
+; Loaded by Mother Brain
+if !PAL != 0
+  .size
+    dw $0200
+  .src:
+    dl Tiles_EscapeTimer_0
+  .VRAM:
+    dw $7E00
+
+    dw $0120               ; Size
+    dl Tiles_EscapeTimer_1 ; Source address
+    dw $7F00               ; VRAM address
+
+    dw $01C0                   ; Size
+    dl Tiles_EscapeTimerText_0 ; Source address
+    dw $1820                   ; VRAM address
+
+    dw $0200                   ; Size
+    dl Tiles_EscapeTimerText_1 ; Source address
+    dw $1900                   ; VRAM address
+
+    dw $0200                   ; Size
+    dl Tiles_EscapeTimerText_2 ; Source address
+    dw $1A00                   ; VRAM address
+
+    dw $0200                   ; Size
+    dl Tiles_EscapeTimerText_3 ; Source address
+    dw $1B00                   ; VRAM address
+
+    dw $0100                   ; Size
+    dl Tiles_EscapeTimerText_4 ; Source address
+    dw $1C00                   ; VRAM address
+
+    dw $0100                   ; Size
+    dl Tiles_EscapeTimerText_5 ; Source address
+    dw $1D00                   ; VRAM address
+
+    dw $0000
+endif
+
+
 ;;; $C4CB: Zebes escape timer sprite tile transfer entries ;;;
-ZebesEscapeTimerSpriteTileTransferEntries:
+EscapeTimerSpriteTileTransferEntries_Ceres:
+
 ; Escape timer numbers
   .size:
     dw $0200                                                             ;A6C4CB;
@@ -7691,6 +7816,7 @@ ZebesEscapeTimerSpriteTileTransferEntries:
     dw $7F00                                                             ;A6C4D7; VRAM address
 
 ; Escape timer text
+if !PAL == 0
     dw $0200                                                             ;A6C4D9; Size
     dl Tiles_EscapeTimerText_0                                           ;A6C4DB; Source address
     dw $7820                                                             ;A6C4DE; VRAM address
@@ -7710,6 +7836,31 @@ ZebesEscapeTimerSpriteTileTransferEntries:
     dw $0100                                                             ;A6C4F5; Size
     dl Tiles_EscapeTimerText_4                                           ;A6C4F7; Source address
     dw $7C20                                                             ;A6C4FA; VRAM address
+else
+    dw $01C0                   ; Size
+    dl Tiles_EscapeTimerText_0 ; Source address
+    dw $7820                   ; VRAM address
+
+    dw $0200                   ; Size
+    dl Tiles_EscapeTimerText_1 ; Source address
+    dw $7900                   ; VRAM address
+
+    dw $0200                   ; Size
+    dl Tiles_EscapeTimerText_2 ; Source address
+    dw $7A00                   ; VRAM address
+
+    dw $0200                   ; Size
+    dl Tiles_EscapeTimerText_3 ; Source address
+    dw $7B00                   ; VRAM address
+
+    dw $0100                   ; Size
+    dl Tiles_EscapeTimerText_4 ; Source address
+    dw $7C00                   ; VRAM address
+
+    dw $0100                   ; Size
+    dl Tiles_EscapeTimerText_5 ; Source address
+    dw $7D00                   ; VRAM address
+endif
 
     dw $0000                                                             ;A6C4FC; Zero terminator
 
@@ -7717,6 +7868,7 @@ ZebesEscapeTimerSpriteTileTransferEntries:
 ;;; $C4FE: Ceres escape timer BG1/2 tile transfer entries ;;;
 CeresEscapeTimerBG12TransferEntries:
 ; Escape timer text
+if !PAL == 0
   .size:
     dw $0200                                                             ;A6C4FE;
   .src:
@@ -7739,6 +7891,34 @@ CeresEscapeTimerBG12TransferEntries:
     dw $0100                                                             ;A6C51A; Size
     dl Tiles_EscapeTimerText_4                                           ;A6C51C; Source address
     dw $1C20                                                             ;A6C51F; VRAM address
+else
+  .size:
+    dw $01C0
+  .src:
+    dl Tiles_EscapeTimerText_0
+  .VRAM:
+    dw $1820
+
+    dw $0200                   ; Size
+    dl Tiles_EscapeTimerText_1 ; Source address
+    dw $1900                   ; VRAM address
+                               
+    dw $0200                   ; Size
+    dl Tiles_EscapeTimerText_2 ; Source address
+    dw $1A00                   ; VRAM address
+                               
+    dw $0200                   ; Size
+    dl Tiles_EscapeTimerText_3 ; Source address
+    dw $1B00                   ; VRAM address
+                               
+    dw $0100                   ; Size
+    dl Tiles_EscapeTimerText_4 ; Source address
+    dw $1C00                   ; VRAM address
+    
+    dw $0100                   ; Size
+    dl Tiles_EscapeTimerText_5 ; Source address
+    dw $1D00                   ; VRAM address
+endif
 
 ; Ceres door tiles
     dw $0200                                                             ;A6C521; Size
@@ -11712,7 +11892,6 @@ Palette_RidleyExplosion_1:
 
 
 ;;; $E1CF: Palettes ;;;
-; Enemy $E1FF (Ceres steam) palette points to Palette_CeresSteam, right in the middle of this section...
 Palette_NorfairRidleyInit:
 ; Norfair Ridley init, sprite palette 2
     dw $3800,$6B5A,$5652,$28E7,$1863,$62B5,$4A10,$396B                   ;A6E1CF;
@@ -11733,10 +11912,7 @@ Palette_BabyMetroidCutscene_HorizontalSquish:
 
 Palette_BabyMetroidCutscene_Round:
     dw $77F8,$1344,$12A4,$1204,$6ABF,$249F,$1C77,$146D                   ;A6E22D;
-    dw $1067                                                             ;A6E23D;
-
-Palette_CeresSteam:
-    dw $5BFF,$4B38,$3A72,$7BD3,$7FFF,$6B43                               ;A6E23F;
+    dw $1067,$5BFF,$4B38,$3A72,$7BD3,$7FFF,$6B43                         ;A6E23D;
 
 Palette_BabyMetroidCutscene_VerticalSquish:
     dw $7FFB,$1FA7,$1F07,$1E67,$771F,$30FF,$28DA,$20D0                   ;A6E24B;
@@ -12407,10 +12583,10 @@ Instruction_Ridley_CalculateFireballAngleAndXYSpeeds:
 +   STA.B $12                                                            ;A6E8E9;
 
   .merge:
-    LDA.W #$0500                                                         ;A6E8EB;
+    LDA.W #$0500*!SPF                                                    ;A6E8EB;
     JSL.L CalculateXVelocityFromSpeedAndAngle                            ;A6E8EE;
     STA.L $7E7832                                                        ;A6E8F2;
-    LDA.W #$0500                                                         ;A6E8F6;
+    LDA.W #$0500*!SPF                                                    ;A6E8F6;
     JSL.L CalculateYVelocityFromSpeedAndAngle                            ;A6E8F9;
     STA.L $7E7834                                                        ;A6E8FD;
     PLY                                                                  ;A6E901;

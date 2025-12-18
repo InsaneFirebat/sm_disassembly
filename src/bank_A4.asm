@@ -400,83 +400,26 @@ Instruction_CommonA4_DisableOffScreenProcessing:
 
 ;;; $8187: Common enemy speeds - linearly increasing ;;;
 CommonA4EnemySpeeds_LinearlyIncreasing:
-;        _____________________ Speed
-;       |      _______________ Subspeed
-;       |     |      _________ Negated speed
-;       |     |     |      ___ Negated subspeed
-;       |     |     |     |
-  .speed:
-    dw $0000                                                             ;A48187;
-  .subspeed:
-    dw       $0000                                                       ;A48189;
-  .negatedSpeed:
-    dw             $0000                                                 ;A4818B;
-  .negatedSubspeed:
-    dw                   $0000                                           ;A4818D;
-    dw $0000,$1000,$FFFF,$F000
-    dw $0000,$2000,$FFFF,$E000
-    dw $0000,$3000,$FFFF,$D000
-    dw $0000,$4000,$FFFF,$C000
-    dw $0000,$5000,$FFFF,$B000
-    dw $0000,$6000,$FFFF,$A000
-    dw $0000,$7000,$FFFF,$9000
-    dw $0000,$8000,$FFFF,$8000
-    dw $0000,$9000,$FFFF,$7000
-    dw $0000,$A000,$FFFF,$6000
-    dw $0000,$B000,$FFFF,$5000
-    dw $0000,$C000,$FFFF,$4000
-    dw $0000,$D000,$FFFF,$3000
-    dw $0000,$E000,$FFFF,$2000
-    dw $0000,$F000,$FFFF,$1000
-    dw $0001,$0000,$FFFF,$0000
-    dw $0001,$1000,$FFFE,$F000
-    dw $0001,$2000,$FFFE,$E000
-    dw $0001,$3000,$FFFE,$D000
-    dw $0001,$4000,$FFFE,$C000
-    dw $0001,$5000,$FFFE,$B000
-    dw $0001,$6000,$FFFE,$A000
-    dw $0001,$7000,$FFFE,$9000
-    dw $0001,$8000,$FFFE,$8000
-    dw $0001,$9000,$FFFE,$7000
-    dw $0001,$A000,$FFFE,$6000
-    dw $0001,$B000,$FFFE,$5000
-    dw $0001,$C000,$FFFE,$4000
-    dw $0001,$D000,$FFFE,$3000
-    dw $0001,$E000,$FFFE,$2000
-    dw $0001,$F000,$FFFE,$1000
-    dw $0002,$0000,$FFFE,$0000
-    dw $0002,$1000,$FFFD,$F000
-    dw $0002,$2000,$FFFD,$E000
-    dw $0002,$3000,$FFFD,$D000
-    dw $0002,$4000,$FFFD,$C000
-    dw $0002,$5000,$FFFD,$B000
-    dw $0002,$6000,$FFFD,$A000
-    dw $0002,$7000,$FFFD,$9000
-    dw $0002,$8000,$FFFD,$8000
-    dw $0002,$9000,$FFFD,$7000
-    dw $0002,$A000,$FFFD,$6000
-    dw $0002,$B000,$FFFD,$5000
-    dw $0002,$C000,$FFFD,$4000
-    dw $0002,$D000,$FFFD,$3000
-    dw $0002,$E000,$FFFD,$2000
-    dw $0002,$F000,$FFFD,$1000
-    dw $0003,$0000,$FFFD,$0000
-    dw $0003,$1000,$FFFC,$F000
-    dw $0003,$2000,$FFFC,$E000
-    dw $0003,$3000,$FFFC,$D000
-    dw $0003,$4000,$FFFC,$C000
-    dw $0003,$5000,$FFFC,$B000
-    dw $0003,$6000,$FFFC,$A000
-    dw $0003,$7000,$FFFC,$9000
-    dw $0003,$8000,$FFFC,$8000
-    dw $0003,$9000,$FFFC,$7000
-    dw $0003,$A000,$FFFC,$6000
-    dw $0003,$B000,$FFFC,$5000
-    dw $0003,$C000,$FFFC,$4000
-    dw $0003,$D000,$FFFC,$3000
-    dw $0003,$E000,$FFFC,$2000
-    dw $0003,$F000,$FFFC,$1000
-    dw $0004,$0000,$FFFC,$0000
+  .speed                                                                 ;A08187;
+skip 2
+  .subspeed                                                              ;A08189;
+skip 2
+  .negatedSpeed                                                          ;A0818B;
+skip 2
+  .negatedSubspeed                                                       ;A0818D;
+skip -6
+
+!i = 0
+if !PAL == 0
+    !n = $41
+else
+    !n = $43
+endif
+while !i < !n
+    !v #= $1000*!SPF*!i ; !i must be last in product to reproduce PAL rounding errors
+    dw !v>>$10, !v, -!v>>$10, -!v
+    !i #= !i+1
+endif
 
 
 ;;; $838F: Common enemy speeds - quadratically increasing ;;;
@@ -498,6 +441,7 @@ CommonA4EnemySpeeds_QuadraticallyIncreasing:
     dw                   $0000                                           ;A48395;
     dw $0109,$0000,$FEF7,$FFFF
     dw $031B,$0000,$FCE5,$FFFF
+if !PAL == 0
     dw $0636,$0000,$F9CA,$FFFF
     dw $0A5A,$0000,$F5A6,$FFFF
     dw $0F87,$0000,$F079,$FFFF
@@ -590,6 +534,100 @@ CommonA4EnemySpeeds_QuadraticallyIncreasing:
     dw $BC66,$0010,$439A,$FFEF
     dw $13AB,$0011,$EC55,$FFEE
     dw $74F9,$0011,$8B07,$FFEE
+else
+    dw $073F,$0000,$F8C1,$FFFF
+    dw $0B63,$0000,$F49D,$FFFF
+    dw $1199,$0000,$EE67,$FFFF
+    dw $19E1,$0000,$E61F,$FFFF
+    dw $2229,$0000,$DDD7,$FFFF
+    dw $2C83,$0000,$D37D,$FFFF
+    dw $36DD,$0000,$C923,$FFFF
+    dw $4349,$0000,$BCB7,$FFFF
+    dw $51C7,$0000,$AE39,$FFFF
+    dw $6045,$0000,$9FBB,$FFFF
+    dw $70D5,$0000,$8F2B,$FFFF
+    dw $8165,$0000,$7E9B,$FFFF
+    dw $9407,$0000,$6BF9,$FFFF
+    dw $A8BB,$0000,$5745,$FFFF
+    dw $BD6F,$0000,$4291,$FFFF
+    dw $D435,$0000,$2BCB,$FFFF
+    dw $EAFB,$0000,$1505,$FFFF
+    dw $03D3,$0001,$FC2D,$FFFE
+    dw $15BD,$0001,$EA43,$FFFE
+    dw $30A7,$0001,$CF59,$FFFE
+    dw $4DA3,$0001,$B25D,$FFFE
+    dw $6A9F,$0001,$9561,$FFFE
+    dw $89AD,$0001,$7653,$FFFE
+    dw $AACD,$0001,$5533,$FFFE
+    dw $CBED,$0001,$3413,$FFFE
+    dw $EF1F,$0001,$10E1,$FFFE
+    dw $0951,$0002,$F6AF,$FFFD
+    dw $2E95,$0002,$D16B,$FFFD
+    dw $55EB,$0002,$AA15,$FFFD
+    dw $7D41,$0002,$82BF,$FFFD
+    dw $A6A9,$0002,$5957,$FFFD
+    dw $D011,$0002,$2FEF,$FFFD
+    dw $FB8B,$0002,$0475,$FFFD
+    dw $2017,$0003,$DFE9,$FFFC
+    dw $4DA3,$0003,$B25D,$FFFC
+    dw $7D41,$0003,$82BF,$FFFC
+    dw $ACDF,$0003,$5321,$FFFC
+    dw $DE8F,$0003,$2171,$FFFC
+    dw $0951,$0004,$F6AF,$FFFB
+    dw $3D13,$0004,$C2ED,$FFFB
+    dw $72E7,$0004,$8D19,$FFFB
+    dw $A8BB,$0004,$5745,$FFFB
+    dw $E0A1,$0004,$1F5F,$FFFB
+    dw $1199,$0005,$EE67,$FFFA
+    dw $4B91,$0005,$B46F,$FFFA
+    dw $879B,$0005,$7865,$FFFA
+    dw $C3A5,$0005,$3C5B,$FFFA
+    dw $01C1,$0005,$FE3F,$FFFA
+    dw $38EF,$0006,$C711,$FFF9
+    dw $791D,$0006,$86E3,$FFF9
+    dw $BB5D,$0006,$44A3,$FFF9
+    dw $FD9D,$0006,$0263,$FFF9
+    dw $38EF,$0007,$C711,$FFF8
+    dw $7F53,$0007,$80AD,$FFF8
+    dw $C5B7,$0007,$3A49,$FFF8
+    dw $052D,$0008,$FAD3,$FFF7
+    dw $4DA3,$0008,$B25D,$FFF7
+    dw $982B,$0008,$67D5,$FFF7
+    dw $E4C5,$0008,$1B3B,$FFF7
+    dw $285F,$0009,$D7A1,$FFF6
+    dw $770B,$0009,$88F5,$FFF6
+    dw $C5B7,$0009,$3A49,$FFF6
+    dw $0D75,$000A,$F28B,$FFF5
+    dw $6045,$000A,$9FBB,$FFF5
+    dw $B315,$000A,$4CEB,$FFF5
+    dw $07F7,$000B,$F809,$FFF5
+    dw $53D9,$000B,$AC27,$FFF4
+    dw $AACD,$000B,$5533,$FFF4
+    dw $03D3,$000C,$FC2D,$FFF3
+    dw $53D9,$000C,$AC27,$FFF3
+    dw $AEF1,$000C,$510F,$FFF3
+    dw $0109,$000D,$FEF7,$FFF2
+    dw $5E33,$000D,$A1CD,$FFF2
+    dw $BD6F,$000D,$4291,$FFF2
+    dw $13AB,$000E,$EC55,$FFF1
+    dw $74F9,$000E,$8B07,$FFF1
+    dw $D647,$000E,$29B9,$FFF1
+    dw $30A7,$000F,$CF59,$FFF0
+    dw $9619,$000F,$69E7,$FFF0
+    dw $FB8B,$000F,$0475,$FFF0
+    dw $5A0F,$0010,$A5F1,$FFEF
+    dw $C193,$0010,$3E6D,$FFEF
+    dw $2229,$0011,$DDD7,$FFEE
+    dw $8DD1,$0011,$722F,$FFEE
+    dw $F979,$0011,$0687,$FFEE
+    dw $5E33,$0012,$A1CD,$FFED
+    dw $CBED,$0012,$3413,$FFED
+    dw $32B9,$0013,$CD47,$FFEC
+    dw $A497,$0013,$5B69,$FFEC
+    dw $0D75,$0014,$F28B,$FFEB
+    dw $8165,$0014,$7E9B,$FFEB
+    dw $F555,$0014,$0AAB,$FFEB
+endif
 
 
 ;;; $8687: Hurt AI - enemy $DD8F (Crocomire) ;;;
@@ -797,7 +835,7 @@ FightAI_Crocomire_8_ProjectileAttack:
 
   .notDamaged:
     LDA.W Crocomire.projectileCounter                                    ;A48784;
-    CMP.W #$0012                                                         ;A48787;
+    CMP.W #regional($0012, $0010)                                        ;A48787;
     BPL .stepForward                                                     ;A4878A;
     INC.W Crocomire.projectileCounter                                    ;A4878C;
     INC.W Crocomire.projectileCounter                                    ;A4878F;
@@ -3259,6 +3297,9 @@ MainAI_Crocomire_DeathSequence_42_BehindWall_NoMoreRumbling:
     LDA.W #$0029                                                         ;A49982;
     JSL.L QueueSound_Lib2_Max6                                           ;A49985;
     LDA.W #InstList_CrocomireCorpse_Skeleton_FallsApart_0                ;A49989;
+if !PAL != 0
+    LDA.W #InstList_CrocomireCorpse_Skeleton_Falling
+endif
     STA.W Enemy.instList                                                 ;A4998C;
     LDA.W #$0001                                                         ;A4998F;
     STA.W Enemy.instTimer                                                ;A49992;
@@ -3312,12 +3353,16 @@ MainAI_Crocomire_DeathSequence_44_BreaksDownWall:
     BPL .timer                                                           ;A499EB;
     LDA.W Crocomire.YVelocity                                            ;A499ED;
     CLC                                                                  ;A499F0;
-    ADC.W #$8000                                                         ;A499F1;
+    ADC.W #$8000*!SPF                                                    ;A499F1;
     STA.W Crocomire.YVelocity                                            ;A499F4;
     LDA.W Crocomire.projectileCounter                                    ;A499F7;
     ADC.W #$0000                                                         ;A499FA;
     CMP.W #$0002                                                         ;A499FD;
     BMI +                                                                ;A49A00;
+if !PAL != 0
+    LDA.W #$9999
+    STA.W Crocomire.YVelocity
+endif
     LDA.W #$0002                                                         ;A49A02;
 
 +   STA.W Crocomire.projectileCounter                                    ;A49A05;
@@ -3349,21 +3394,21 @@ MainAI_Crocomire_DeathSequence_44_BreaksDownWall:
 MainAI_Crocomire_DeathSequence_46_SkeletonFalls:
     LDA.W Crocomire.YVelocity                                            ;A49A38;
     CLC                                                                  ;A49A3B;
-    ADC.W #$0800                                                         ;A49A3C;
+    ADC.W #$0800*!SPF                                                    ;A49A3C;
     STA.W Crocomire.YVelocity                                            ;A49A3F;
     LDA.W Crocomire.projectileCounter                                    ;A49A42;
     ADC.W #$0000                                                         ;A49A45;
-    CMP.W #$0005                                                         ;A49A48;
+    CMP.W #regional($0005, $0006)                                        ;A49A48;
     BMI +                                                                ;A49A4B;
-    LDA.W #$0005                                                         ;A49A4D;
+    LDA.W #regional($0005, $0006)                                        ;A49A4D;
 
 +   STA.W Crocomire.projectileCounter                                    ;A49A50;
-    LDA.W #$E000                                                         ;A49A53;
+    LDA.W #$E000*!SPF                                                    ;A49A53;
     CLC                                                                  ;A49A56;
     ADC.W Enemy.YSubPosition                                             ;A49A57;
     STA.W Enemy.YSubPosition                                             ;A49A5A;
     LDA.W Enemy.YPosition                                                ;A49A5D;
-    ADC.W #$0000                                                         ;A49A60;
+    ADC.W #$E000*!SPF>>$10                                               ;A49A60;
     STA.W Enemy.YPosition                                                ;A49A63;
     LDA.W Enemy.XSubPosition                                             ;A49A66;
     CLC                                                                  ;A49A69;
@@ -4033,73 +4078,73 @@ InstList_Crocomire_Initial:
 
 ;;; $BAEA: Instruction list - Crocomire - charge forward one step (unused) ;;;
 UNUSED_InstList_Crocomire_ChargeForwardOneStep_A4BAEA:
-    dw $0008,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_0        ;A4BAEA;
+    dw regional($0008, $0006),ExtendedSpritemap_Crocomire_ChargeForward_StepBack_0 ;A4BAEA;
     dw Instruction_Crocomire_ShakeScreen                                 ;A4BAEE;
     dw Instruction_Crocomire_MoveLeft4Pixels_SpawnBigDustCloud           ;A4BAF0;
-    dw $0008,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_1        ;A4BAF2;
+    dw regional($0008, $0007),ExtendedSpritemap_Crocomire_ChargeForward_StepBack_1 ;A4BAF2;
     dw Instruction_Crocomire_MoveLeft4Pixels                             ;A4BAF6;
-    dw $0008,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_2        ;A4BAF8;
+    dw regional($0008, $0007),ExtendedSpritemap_Crocomire_ChargeForward_StepBack_2 ;A4BAF8;
     dw Instruction_Crocomire_MoveLeft4Pixels                             ;A4BAFC;
-    dw $0008,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_3        ;A4BAFE;
+    dw regional($0008, $0006),ExtendedSpritemap_Crocomire_ChargeForward_StepBack_3 ;A4BAFE;
     dw Instruction_Crocomire_MoveLeft4Pixels_SpawnBigDustCloud           ;A4BB02;
-    dw $0008,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_4        ;A4BB04;
+    dw regional($0008, $0007),ExtendedSpritemap_Crocomire_ChargeForward_StepBack_4 ;A4BB04;
     dw Instruction_Crocomire_MoveLeft4Pixels                             ;A4BB08;
-    dw $0008,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_5        ;A4BB0A;
+    dw regional($0008, $0007),ExtendedSpritemap_Crocomire_ChargeForward_StepBack_5 ;A4BB0A;
     dw Instruction_Crocomire_MoveLeft4Pixels                             ;A4BB0E;
-    dw $0008,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_6        ;A4BB10;
+    dw regional($0008, $0006),ExtendedSpritemap_Crocomire_ChargeForward_StepBack_6 ;A4BB10;
     dw Instruction_Crocomire_ShakeScreen                                 ;A4BB14;
     dw Instruction_Crocomire_MoveLeft4Pixels_SpawnBigDustCloud           ;A4BB16;
-    dw $0008,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_7        ;A4BB18;
+    dw regional($0008, $0007),ExtendedSpritemap_Crocomire_ChargeForward_StepBack_7 ;A4BB18;
     dw Instruction_Crocomire_MoveLeft4Pixels                             ;A4BB1C;
-    dw $0008,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_8        ;A4BB1E;
+    dw regional($0008, $0007),ExtendedSpritemap_Crocomire_ChargeForward_StepBack_8 ;A4BB1E;
     dw Instruction_Crocomire_MoveLeft4Pixels                             ;A4BB22;
-    dw $0008,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_9        ;A4BB24;
+    dw regional($0008, $0006),ExtendedSpritemap_Crocomire_ChargeForward_StepBack_9 ;A4BB24;
     dw Instruction_Crocomire_MoveLeft4Pixels_SpawnBigDustCloud           ;A4BB28;
-    dw $0008,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_A        ;A4BB2A;
+    dw regional($0008, $0007),ExtendedSpritemap_Crocomire_ChargeForward_StepBack_A ;A4BB2A;
     dw Instruction_Crocomire_MoveLeft4Pixels                             ;A4BB2E;
-    dw $0008,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_B        ;A4BB30;
+    dw regional($0008, $0007),ExtendedSpritemap_Crocomire_ChargeForward_StepBack_B ;A4BB30;
     dw Instruction_Crocomire_FightAI                                     ;A4BB34;
 
 
 ;;; $BB36: Instruction list - Crocomire - projectile attack ;;;
 InstList_Crocomire_ProjectileAttack_0:
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_10              ;A4BB36;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_0                   ;A4BB38;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_1                   ;A4BB3C;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_0              ;A4BB38;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_1              ;A4BB3C;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_0               ;A4BB40;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_2                   ;A4BB42;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_3                   ;A4BB46;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_4                   ;A4BB4A;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_2              ;A4BB42;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_3              ;A4BB46;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_4              ;A4BB4A;
     dw Instruction_Crocomire_QueueBigExplosionSFX                        ;A4BB4E;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_Negative20      ;A4BB50;
     dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_0                   ;A4BB52;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_1                   ;A4BB56;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_1              ;A4BB56;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_Negative10      ;A4BB5A;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_2                   ;A4BB5C;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_3                   ;A4BB60;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_4                   ;A4BB64;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_2              ;A4BB5C;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_3              ;A4BB60;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_4              ;A4BB64;
     dw Instruction_Crocomire_QueueBigExplosionSFX                        ;A4BB68;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_0               ;A4BB6A;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_0                   ;A4BB6C;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_0              ;A4BB6C;
     dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_1                   ;A4BB70;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_28              ;A4BB74;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_2                   ;A4BB76;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_3                   ;A4BB7A;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_4                   ;A4BB7E;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_2              ;A4BB76;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_3              ;A4BB7A;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_4              ;A4BB7E;
     dw Instruction_Crocomire_QueueBigExplosionSFX                        ;A4BB82;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_Negative10      ;A4BB84;
-    dw $0005,ExtendedSpritemap_Crocomire_7                               ;A4BB86;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_7                          ;A4BB86;
     dw Instruction_Crocomire_QueueCrySFX                                 ;A4BB8A;
-    dw $0005,ExtendedSpritemap_Crocomire_8                               ;A4BB8C;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_8                          ;A4BB8C;
     dw $0005,ExtendedSpritemap_Crocomire_9                               ;A4BB90;
 
 InstList_Crocomire_ProjectileAttack_1:
     dw Instruction_Crocomire_FightAI                                     ;A4BB94;
-    dw $0008,ExtendedSpritemap_Crocomire_20                              ;A4BB96;
-    dw $0007,ExtendedSpritemap_Crocomire_21                              ;A4BB9A;
-    dw $0007,ExtendedSpritemap_Crocomire_22                              ;A4BB9E;
-    dw $0007,ExtendedSpritemap_Crocomire_23                              ;A4BBA2;
-    dw $0007,ExtendedSpritemap_Crocomire_24                              ;A4BBA6;
+    dw regional($0008, $0007),ExtendedSpritemap_Crocomire_20             ;A4BB96;
+    dw regional($0007, $0006),ExtendedSpritemap_Crocomire_21             ;A4BB9A;
+    dw regional($0007, $0006),ExtendedSpritemap_Crocomire_22             ;A4BB9E;
+    dw regional($0007, $0006),ExtendedSpritemap_Crocomire_23             ;A4BBA2;
+    dw regional($0007, $0006),ExtendedSpritemap_Crocomire_24             ;A4BBA6;
     dw Instruction_Common_GotoY                                          ;A4BBAA;
     dw InstList_Crocomire_ProjectileAttack_1                             ;A4BBAC;
 
@@ -4107,15 +4152,15 @@ InstList_Crocomire_ProjectileAttack_1:
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $BBAE: Unused. Instruction list - Crocomire ;;;
 UNUSED_InstList_Crocomire_A4BBAE:
-    dw $0004,ExtendedSpritemap_Crocomire_14                              ;A4BBAE;
+    dw $0004*!FPS,ExtendedSpritemap_Crocomire_14                         ;A4BBAE;
     dw Instruction_Crocomire_ShakeScreen                                 ;A4BBB2;
     dw Instruction_Crocomire_MoveLeft4Pixels_SpawnBigDustCloud           ;A4BBB4;
     dw Instruction_Crocomire_FightAI                                     ;A4BBB6;
     dw Instruction_Crocomire_MaybeStartProjectileAttack                  ;A4BBB8;
-    dw $0004,ExtendedSpritemap_Crocomire_15                              ;A4BBBA;
+    dw $0004*!FPS,ExtendedSpritemap_Crocomire_15                         ;A4BBBA;
     dw Instruction_Crocomire_MoveLeft4Pixels                             ;A4BBBE;
     dw Instruction_Crocomire_FightAI                                     ;A4BBC0;
-    dw $0004,ExtendedSpritemap_Crocomire_16                              ;A4BBC2;
+    dw $0004*!FPS,ExtendedSpritemap_Crocomire_16                         ;A4BBC2;
     dw Instruction_Crocomire_MoveLeft4Pixels_SpawnBigDustCloud           ;A4BBC6;
     dw Instruction_Crocomire_FightAI                                     ;A4BBC8;
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -4123,36 +4168,36 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $BBCA: Instruction list - Crocomire - step forward after delay ;;;
 InstList_Crocomire_StepForwardAfterDelay:
-    dw $00B4,ExtendedSpritemap_Crocomire_14                              ;A4BBCA;
+    dw $00B4*!FPS,ExtendedSpritemap_Crocomire_14                         ;A4BBCA;
 
 
 ;;; $BBCE: Instruction list - Crocomire - step forward ;;;
 InstList_Crocomire_StepForward:
     dw Instruction_Crocomire_MaybeStartProjectileAttack                  ;A4BBCE;
-    dw $0005,ExtendedSpritemap_Crocomire_7                               ;A4BBD0;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_7                          ;A4BBD0;
     dw Instruction_Crocomire_FightAI                                     ;A4BBD4;
-    dw $0005,ExtendedSpritemap_Crocomire_8                               ;A4BBD6;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_8                          ;A4BBD6;
     dw Instruction_Crocomire_QueueCrySFX                                 ;A4BBDA;
     dw Instruction_Crocomire_FightAI                                     ;A4BBDC;
-    dw $0005,ExtendedSpritemap_Crocomire_9                               ;A4BBDE;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_9                          ;A4BBDE;
     dw Instruction_Crocomire_FightAI                                     ;A4BBE2;
-    dw $0010,ExtendedSpritemap_Crocomire_17                              ;A4BBE4;
+    dw $0010*!FPS,ExtendedSpritemap_Crocomire_17                         ;A4BBE4;
     dw Instruction_Crocomire_MoveLeft4Pixels_SpawnBigDustCloud           ;A4BBE8;
     dw Instruction_Crocomire_FightAI                                     ;A4BBEA;
-    dw $0004,ExtendedSpritemap_Crocomire_18                              ;A4BBEC;
+    dw $0004*!FPS,ExtendedSpritemap_Crocomire_18                         ;A4BBEC;
     dw Instruction_Crocomire_MoveLeft4Pixels                             ;A4BBF0;
     dw Instruction_Crocomire_FightAI                                     ;A4BBF2;
     dw $0004,ExtendedSpritemap_Crocomire_19                              ;A4BBF4;
     dw Instruction_Crocomire_MoveLeft4Pixels                             ;A4BBF8;
     dw Instruction_Crocomire_FightAI                                     ;A4BBFA;
-    dw $0004,ExtendedSpritemap_Crocomire_1A                              ;A4BBFC;
+    dw $0004*!FPS,ExtendedSpritemap_Crocomire_1A                         ;A4BBFC;
     dw Instruction_Crocomire_ShakeScreen                                 ;A4BC00;
     dw Instruction_Crocomire_MoveLeft4Pixels_SpawnBigDustCloud           ;A4BC02;
     dw Instruction_Crocomire_FightAI                                     ;A4BC04;
-    dw $0004,ExtendedSpritemap_Crocomire_1B                              ;A4BC06;
+    dw $0004*!FPS,ExtendedSpritemap_Crocomire_1B                         ;A4BC06;
     dw Instruction_Crocomire_MoveLeft4Pixels                             ;A4BC0A;
     dw Instruction_Crocomire_FightAI                                     ;A4BC0C;
-    dw $0004,ExtendedSpritemap_Crocomire_1C                              ;A4BC0E;
+    dw $0004*!FPS,ExtendedSpritemap_Crocomire_1C                         ;A4BC0E;
     dw Instruction_Crocomire_MoveLeft4Pixels                             ;A4BC12;
     dw Instruction_Crocomire_FightAI                                     ;A4BC14;
     dw $0004,ExtendedSpritemap_Crocomire_1D                              ;A4BC16;
@@ -4174,15 +4219,15 @@ InstList_Crocomire_StepBack:
 
 ;;; $BC34: Instruction list - Crocomire - stepping back ;;;
 InstList_Crocomire_SteppingBack:
-    dw $0008,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_B        ;A4BC34;
+    dw regional($0008, $0006),ExtendedSpritemap_Crocomire_ChargeForward_StepBack_B ;A4BC34;
     dw Instruction_Crocomire_MoveRight4PixelsIfOnScreen_SpawnCloud       ;A4BC38;
-    dw $0008,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_A        ;A4BC3A;
+    dw regional($0008, $0007),ExtendedSpritemap_Crocomire_ChargeForward_StepBack_A ;A4BC3A;
     dw Instruction_Crocomire_MoveRight4PixelsIfOnScreen                  ;A4BC3E;
-    dw $0008,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_9        ;A4BC40;
+    dw regional($0008, $0007),ExtendedSpritemap_Crocomire_ChargeForward_StepBack_9 ;A4BC40;
     dw Instruction_Crocomire_MoveRight4PixelsIfOnScreen                  ;A4BC44;
-    dw $0008,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_8        ;A4BC46;
+    dw regional($0008, $0006),ExtendedSpritemap_Crocomire_ChargeForward_StepBack_8 ;A4BC46;
     dw Instruction_Crocomire_MoveRight4PixelsIfOnScreen_SpawnCloud       ;A4BC4A;
-    dw $0008,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_7        ;A4BC4C;
+    dw regional($0008, $0007),ExtendedSpritemap_Crocomire_ChargeForward_StepBack_7 ;A4BC4C;
     dw Instruction_Crocomire_ShakeScreen                                 ;A4BC50;
     dw Instruction_Crocomire_MoveRight4PixelsIfOnScreen                  ;A4BC52;
     dw Instruction_Crocomire_FightAI                                     ;A4BC54;
@@ -4191,20 +4236,20 @@ InstList_Crocomire_SteppingBack:
 ;;; $BC56: Instruction list - Crocomire - wait for first/second damage ;;;
 InstList_Crocomire_WaitForFirstSecondDamage:
 ; Blinking in disbelief
-    dw $0022,ExtendedSpritemap_Crocomire_6                               ;A4BC56;
-    dw $0002,ExtendedSpritemap_Crocomire_5                               ;A4BC5A;
-    dw $0002,ExtendedSpritemap_Crocomire_4                               ;A4BC5E;
-    dw $0002,ExtendedSpritemap_Crocomire_3                               ;A4BC62;
-    dw $0002,ExtendedSpritemap_Crocomire_2                               ;A4BC66;
-    dw $0002,ExtendedSpritemap_Crocomire_1                               ;A4BC6A;
-    dw $0002,ExtendedSpritemap_Crocomire_0                               ;A4BC6E;
-    dw $0010,ExtendedSpritemap_Crocomire_0                               ;A4BC72;
+    dw $0022*!FPS,ExtendedSpritemap_Crocomire_6                          ;A4BC56;
+    dw $0002*!FPS,ExtendedSpritemap_Crocomire_5                          ;A4BC5A;
+    dw $0002*!FPS,ExtendedSpritemap_Crocomire_4                          ;A4BC5E;
+    dw $0002*!FPS,ExtendedSpritemap_Crocomire_3                          ;A4BC62;
+    dw $0002*!FPS,ExtendedSpritemap_Crocomire_2                          ;A4BC66;
+    dw $0002*!FPS,ExtendedSpritemap_Crocomire_1                          ;A4BC6A;
+    dw $0002*!FPS,ExtendedSpritemap_Crocomire_0                          ;A4BC6E;
+    dw regional($0010, $000E),ExtendedSpritemap_Crocomire_0              ;A4BC72;
     dw $0001,ExtendedSpritemap_Crocomire_1                               ;A4BC76;
     dw $0001,ExtendedSpritemap_Crocomire_2                               ;A4BC7A;
     dw $0001,ExtendedSpritemap_Crocomire_3                               ;A4BC7E;
     dw $0001,ExtendedSpritemap_Crocomire_4                               ;A4BC82;
     dw $0001,ExtendedSpritemap_Crocomire_5                               ;A4BC86;
-    dw $0010,ExtendedSpritemap_Crocomire_6                               ;A4BC8A;
+    dw regional($0010, $000E),ExtendedSpritemap_Crocomire_6              ;A4BC8A;
     dw $0001,ExtendedSpritemap_Crocomire_5                               ;A4BC8E;
     dw $0001,ExtendedSpritemap_Crocomire_4                               ;A4BC92;
     dw $0001,ExtendedSpritemap_Crocomire_3                               ;A4BC96;
@@ -4229,28 +4274,28 @@ InstList_Crocomire_WaitForFirstSecondDamage:
 ;;; $BCD8: Instruction list - Crocomire - wait for first/second damage - moving claws ;;;
 InstList_Crocomire_WaitForFirstSecondDamage_MovingClaws:
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_10              ;A4BCD8;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_0                   ;A4BCDA;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_1                   ;A4BCDE;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_0              ;A4BCDA;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_1              ;A4BCDE;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_0               ;A4BCE2;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_2                   ;A4BCE4;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_3                   ;A4BCE8;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_4                   ;A4BCEC;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_2              ;A4BCE4;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_3              ;A4BCE8;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_4              ;A4BCEC;
     dw Instruction_Crocomire_QueueBigExplosionSFX                        ;A4BCF0;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_Negative20      ;A4BCF2;
     dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_0                   ;A4BCF4;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_1                   ;A4BCF8;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_1              ;A4BCF8;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_Negative10      ;A4BCFC;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_2                   ;A4BCFE;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_3                   ;A4BD02;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_4                   ;A4BD06;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_2              ;A4BCFE;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_3              ;A4BD02;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_4              ;A4BD06;
     dw Instruction_Crocomire_QueueBigExplosionSFX                        ;A4BD0A;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_0               ;A4BD0C;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_0                   ;A4BD0E;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_0              ;A4BD0E;
     dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_1                   ;A4BD12;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_28              ;A4BD16;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_2                   ;A4BD18;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_3                   ;A4BD1C;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_4                   ;A4BD20;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_2              ;A4BD18;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_3              ;A4BD1C;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_4              ;A4BD20;
     dw Instruction_Crocomire_QueueBigExplosionSFX                        ;A4BD24;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_Negative10      ;A4BD26;
     dw Instruction_Crocomire_FightAI                                     ;A4BD28;
@@ -4259,26 +4304,26 @@ InstList_Crocomire_WaitForFirstSecondDamage_MovingClaws:
 ;;; $BD2A: Instruction list - Crocomire - wait for first/second damage - roar ;;;
 InstList_Crocomire_WaitForFirstSecondDamage_Roar:
 ; Rawr, open mouth
-    dw $0030,ExtendedSpritemap_Crocomire_7                               ;A4BD2A;
+    dw $0030*!FPS,ExtendedSpritemap_Crocomire_7                          ;A4BD2A;
     dw Instruction_Crocomire_QueueCrySFX                                 ;A4BD2E;
-    dw $0005,ExtendedSpritemap_Crocomire_8                               ;A4BD30;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_8                          ;A4BD30;
     dw $0002,ExtendedSpritemap_Crocomire_9                               ;A4BD34;
     dw Instruction_Crocomire_FightAI                                     ;A4BD38;
     dw $0002,ExtendedSpritemap_Crocomire_9                               ;A4BD3A;
     dw Instruction_Crocomire_FightAI                                     ;A4BD3E;
-    dw $0002,ExtendedSpritemap_Crocomire_9                               ;A4BD40;
+    dw $0002*!FPS,ExtendedSpritemap_Crocomire_9                          ;A4BD40;
     dw Instruction_Crocomire_FightAI                                     ;A4BD44;
     dw $0002,ExtendedSpritemap_Crocomire_9                               ;A4BD46;
     dw Instruction_Crocomire_FightAI                                     ;A4BD4A;
-    dw $0002,ExtendedSpritemap_Crocomire_9                               ;A4BD4C;
+    dw $0002*!FPS,ExtendedSpritemap_Crocomire_9                          ;A4BD4C;
     dw Instruction_Crocomire_FightAI                                     ;A4BD50;
     dw $0002,ExtendedSpritemap_Crocomire_9                               ;A4BD52;
     dw Instruction_Crocomire_FightAI                                     ;A4BD56;
-    dw $0002,ExtendedSpritemap_Crocomire_9                               ;A4BD58;
+    dw $0002*!FPS,ExtendedSpritemap_Crocomire_9                          ;A4BD58;
     dw Instruction_Crocomire_FightAI                                     ;A4BD5C;
     dw $0002,ExtendedSpritemap_Crocomire_9                               ;A4BD5E;
     dw Instruction_Crocomire_FightAI                                     ;A4BD62;
-    dw $0002,ExtendedSpritemap_Crocomire_9                               ;A4BD64;
+    dw $0002*!FPS,ExtendedSpritemap_Crocomire_9                          ;A4BD64;
     dw Instruction_Crocomire_FightAI                                     ;A4BD68;
     dw $0002,ExtendedSpritemap_Crocomire_9                               ;A4BD6A;
     dw Instruction_Crocomire_FightAI                                     ;A4BD6E;
@@ -4288,7 +4333,7 @@ InstList_Crocomire_WaitForFirstSecondDamage_Roar:
     dw Instruction_Crocomire_FightAI                                     ;A4BD7A;
     dw $0002,ExtendedSpritemap_Crocomire_9                               ;A4BD7C;
     dw Instruction_Crocomire_FightAI                                     ;A4BD80;
-    dw $0020,ExtendedSpritemap_Crocomire_9                               ;A4BD82;
+    dw regional($0020, $001B),ExtendedSpritemap_Crocomire_9              ;A4BD82;
     dw Instruction_Crocomire_FightAI                                     ;A4BD86;
     dw $0001,ExtendedSpritemap_Crocomire_9                               ;A4BD88;
     dw Instruction_Crocomire_FightAI                                     ;A4BD8C;
@@ -4297,12 +4342,12 @@ InstList_Crocomire_WaitForFirstSecondDamage_Roar:
 ;;; $BD8E: Instruction list - Crocomire - wait for first/second damage - roar - close mouth ;;;
 ; Rawr, close mouth
 InstList_Crocomire_WaitForFirstSecondDamage_RoarCloseMouth_0:
-    dw $0020,ExtendedSpritemap_Crocomire_9                               ;A4BD8E;
+    dw regional($0020, $001E),ExtendedSpritemap_Crocomire_9              ;A4BD8E;
     dw Instruction_Crocomire_FightAI                                     ;A4BD92;
-    dw $0005,ExtendedSpritemap_Crocomire_8                               ;A4BD94;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_8                          ;A4BD94;
     dw Instruction_Crocomire_FightAI                                     ;A4BD98;
-    dw $0008,ExtendedSpritemap_Crocomire_8                               ;A4BD9A;
-    dw $0002,ExtendedSpritemap_Crocomire_7                               ;A4BD9E;
+    dw $0008*!FPS,ExtendedSpritemap_Crocomire_8                          ;A4BD9A;
+    dw $0002*!FPS,ExtendedSpritemap_Crocomire_7                          ;A4BD9E;
 
 InstList_Crocomire_WaitForFirstSecondDamage_RoarCloseMouth_1:
     dw $0001,ExtendedSpritemap_Crocomire_7                               ;A4BDA2;
@@ -4324,55 +4369,55 @@ InstList_Crocomire_PowerBombReaction_MouthPartiallyOpen:
 ;;; $BDB6: Instruction list - Crocomire - power bomb reaction - mouth not open ;;;
 InstList_Crocomire_PowerBombReaction_MouthNotOpen_0:
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_10              ;A4BDB6;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_0                   ;A4BDB8;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_1                   ;A4BDBC;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_0              ;A4BDB8;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_1              ;A4BDBC;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_0               ;A4BDC0;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_2                   ;A4BDC2;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_3                   ;A4BDC6;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_4                   ;A4BDCA;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_2              ;A4BDC2;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_3              ;A4BDC6;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_4              ;A4BDCA;
     dw Instruction_Crocomire_QueueBigExplosionSFX                        ;A4BDCE;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_Negative20      ;A4BDD0;
     dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_0                   ;A4BDD2;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_1                   ;A4BDD6;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_1              ;A4BDD6;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_Negative10      ;A4BDDA;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_2                   ;A4BDDC;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_3                   ;A4BDE0;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_4                   ;A4BDE4;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_2              ;A4BDDC;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_3              ;A4BDE0;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_4              ;A4BDE4;
     dw Instruction_Crocomire_QueueBigExplosionSFX                        ;A4BDE8;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_0               ;A4BDEA;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_0                   ;A4BDEC;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_0              ;A4BDEC;
     dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_1                   ;A4BDF0;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_28              ;A4BDF4;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_2                   ;A4BDF6;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_3                   ;A4BDFA;
-    dw $0005,ExtendedSpritemap_Crocomire_MovingClaws_4                   ;A4BDFE;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_2              ;A4BDF6;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_3              ;A4BDFA;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_MovingClaws_4              ;A4BDFE;
     dw Instruction_Crocomire_QueueBigExplosionSFX                        ;A4BE02;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_Negative10      ;A4BE04;
 
 InstList_Crocomire_PowerBombReaction_MouthNotOpen_1:
-    dw $0004,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_0        ;A4BE06;
+    dw $0004*!FPS,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_0   ;A4BE06;
     dw Instruction_Crocomire_ShakeScreen                                 ;A4BE0A;
     dw Instruction_Crocomire_MoveLeft4Pixels_SpawnBigDustCloud           ;A4BE0C;
-    dw $0004,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_1        ;A4BE0E;
+    dw $0004*!FPS,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_1   ;A4BE0E;
     dw Instruction_Crocomire_MoveLeft4Pixels                             ;A4BE12;
-    dw $0004,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_2        ;A4BE14;
+    dw $0004*!FPS,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_2   ;A4BE14;
     dw Instruction_Crocomire_MoveLeft4Pixels                             ;A4BE18;
     dw $0004,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_3        ;A4BE1A;
     dw Instruction_Crocomire_MoveLeft4Pixels_SpawnBigDustCloud           ;A4BE1E;
-    dw $0004,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_4        ;A4BE20;
+    dw $0004*!FPS,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_4   ;A4BE20;
     dw Instruction_Crocomire_MoveLeft4Pixels                             ;A4BE24;
-    dw $0004,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_5        ;A4BE26;
+    dw $0004*!FPS,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_5   ;A4BE26;
     dw Instruction_Crocomire_MoveLeft4Pixels                             ;A4BE2A;
-    dw $0004,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_6        ;A4BE2C;
+    dw $0004*!FPS,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_6   ;A4BE2C;
     dw Instruction_Crocomire_ShakeScreen                                 ;A4BE30;
     dw Instruction_Crocomire_MoveLeft4Pixels_SpawnBigDustCloud           ;A4BE32;
     dw $0004,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_7        ;A4BE34;
     dw Instruction_Crocomire_MoveLeft4Pixels                             ;A4BE38;
-    dw $0004,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_8        ;A4BE3A;
+    dw $0004*!FPS,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_8   ;A4BE3A;
     dw Instruction_Crocomire_MoveLeft4Pixels                             ;A4BE3E;
-    dw $0004,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_9        ;A4BE40;
+    dw $0004*!FPS,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_9   ;A4BE40;
     dw Instruction_Crocomire_MoveLeft4Pixels_SpawnBigDustCloud           ;A4BE44;
-    dw $0004,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_A        ;A4BE46;
+    dw $0004*!FPS,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_A   ;A4BE46;
     dw Instruction_Crocomire_MoveLeft4Pixels                             ;A4BE4A;
     dw $0004,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_B        ;A4BE4C;
     dw Instruction_Crocomire_FightAI                                     ;A4BE50;
@@ -4382,10 +4427,10 @@ InstList_Crocomire_PowerBombReaction_MouthNotOpen_1:
 
 ;;; $BE56: Instruction list - Crocomire tongue - fight ;;;
 InstList_CrocomireTongue_Fight:
-    dw $0005,ExtendedSpritemap_Crocomire_10                              ;A4BE56;
-    dw $0005,ExtendedSpritemap_Crocomire_11                              ;A4BE5A;
-    dw $0005,ExtendedSpritemap_Crocomire_12                              ;A4BE5E;
-    dw $0005,ExtendedSpritemap_Crocomire_13                              ;A4BE62;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_10                         ;A4BE56;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_11                         ;A4BE5A;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_12                         ;A4BE5E;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_13                         ;A4BE62;
     dw Instruction_Common_GotoY                                          ;A4BE66;
     dw InstList_CrocomireTongue_Fight                                    ;A4BE68;
 
@@ -4393,10 +4438,10 @@ InstList_CrocomireTongue_Fight:
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $BE6A: Unused. Instruction list - Crocomire tongue - reversed version of fight ;;;
 UNUSED_InstList_CrocomireTongue_ReverseVersionOfFight_A4BE6A:
-    dw $0005,ExtendedSpritemap_Crocomire_13                              ;A4BE6A;
-    dw $0005,ExtendedSpritemap_Crocomire_12                              ;A4BE6E;
-    dw $0005,ExtendedSpritemap_Crocomire_11                              ;A4BE72;
-    dw $0005,ExtendedSpritemap_Crocomire_10                              ;A4BE76;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_13                         ;A4BE6A;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_12                         ;A4BE6E;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_11                         ;A4BE72;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_10                         ;A4BE76;
     dw Instruction_Common_GotoY                                          ;A4BE7A;
     dw InstList_CrocomireTongue_Fight                                    ;A4BE7C;
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -4404,10 +4449,10 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $BE7E: Instruction list - Crocomire - near spike wall charge ;;;
 InstList_CrocomireTongue_NearSpikeWallCharge_0:
-    dw $0005,ExtendedSpritemap_Crocomire_7                               ;A4BE7E;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_7                          ;A4BE7E;
     dw Instruction_Crocomire_QueueCrySFX                                 ;A4BE82;
     dw Instruction_Crocomire_FightAI                                     ;A4BE84;
-    dw $0005,ExtendedSpritemap_Crocomire_8                               ;A4BE86;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_8                          ;A4BE86;
     dw Instruction_Crocomire_FightAI                                     ;A4BE8A;
     dw $0002,ExtendedSpritemap_Crocomire_9                               ;A4BE8C;
     dw Instruction_Crocomire_FightAI                                     ;A4BE90;
@@ -4415,7 +4460,7 @@ InstList_CrocomireTongue_NearSpikeWallCharge_0:
     dw Instruction_Crocomire_FightAI                                     ;A4BE96;
     dw $0002,ExtendedSpritemap_Crocomire_9                               ;A4BE98;
     dw Instruction_Crocomire_FightAI                                     ;A4BE9C;
-    dw $0002,ExtendedSpritemap_Crocomire_9                               ;A4BE9E;
+    dw $0002*!FPS,ExtendedSpritemap_Crocomire_9                          ;A4BE9E;
     dw Instruction_Crocomire_FightAI                                     ;A4BEA2;
     dw $0002,ExtendedSpritemap_Crocomire_9                               ;A4BEA4;
     dw Instruction_Crocomire_FightAI                                     ;A4BEA8;
@@ -4425,7 +4470,7 @@ InstList_CrocomireTongue_NearSpikeWallCharge_0:
     dw Instruction_Crocomire_FightAI                                     ;A4BEB4;
     dw $0002,ExtendedSpritemap_Crocomire_9                               ;A4BEB6;
     dw Instruction_Crocomire_FightAI                                     ;A4BEBA;
-    dw $0002,ExtendedSpritemap_Crocomire_9                               ;A4BEBC;
+    dw $0002*!FPS,ExtendedSpritemap_Crocomire_9                          ;A4BEBC;
     dw Instruction_Crocomire_FightAI                                     ;A4BEC0;
     dw $0002,ExtendedSpritemap_Crocomire_9                               ;A4BEC2;
     dw Instruction_Crocomire_FightAI                                     ;A4BEC6;
@@ -4435,37 +4480,37 @@ InstList_CrocomireTongue_NearSpikeWallCharge_0:
     dw Instruction_Crocomire_FightAI                                     ;A4BED2;
     dw $0002,ExtendedSpritemap_Crocomire_9                               ;A4BED4;
     dw Instruction_Crocomire_FightAI                                     ;A4BED8;
-    dw $0005,ExtendedSpritemap_Crocomire_8                               ;A4BEDA;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_8                          ;A4BEDA;
     dw Instruction_Crocomire_FightAI                                     ;A4BEDE;
-    dw $0008,ExtendedSpritemap_Crocomire_8                               ;A4BEE0;
+    dw $0008*!FPS,ExtendedSpritemap_Crocomire_8                          ;A4BEE0;
     dw Instruction_Crocomire_FightAI                                     ;A4BEE4;
-    dw $0002,ExtendedSpritemap_Crocomire_7                               ;A4BEE6;
+    dw $0002*!FPS,ExtendedSpritemap_Crocomire_7                          ;A4BEE6;
     dw Instruction_Crocomire_FightAI                                     ;A4BEEA;
 
 InstList_CrocomireTongue_NearSpikeWallCharge_1:
-    dw $0003,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_0        ;A4BEEC;
+    dw $0003*!FPS,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_0   ;A4BEEC;
     dw Instruction_Crocomire_ShakeScreen                                 ;A4BEF0;
     dw Instruction_Crocomire_MoveLeft4Pixels_SpawnBigDustCloud_dup       ;A4BEF2;
     dw $0003,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_1        ;A4BEF4;
     dw Instruction_Crocomire_MoveLeft_SpawnCloud_HandleSpikeWall         ;A4BEF8;
-    dw $0003,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_2        ;A4BEFA;
+    dw $0003*!FPS,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_2   ;A4BEFA;
     dw Instruction_Crocomire_MoveLeft_SpawnCloud_HandleSpikeWall         ;A4BEFE;
     dw $0003,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_3        ;A4BF00;
     dw Instruction_Crocomire_MoveLeft4Pixels_SpawnBigDustCloud_dup       ;A4BF04;
-    dw $0003,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_4        ;A4BF06;
+    dw $0003*!FPS,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_4   ;A4BF06;
     dw Instruction_Crocomire_MoveLeft_SpawnCloud_HandleSpikeWall         ;A4BF0A;
     dw $0003,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_5        ;A4BF0C;
     dw Instruction_Crocomire_MoveLeft_SpawnCloud_HandleSpikeWall         ;A4BF10;
-    dw $0003,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_6        ;A4BF12;
+    dw $0003*!FPS,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_6   ;A4BF12;
     dw Instruction_Crocomire_ShakeScreen                                 ;A4BF16;
     dw Instruction_Crocomire_MoveLeft4Pixels_SpawnBigDustCloud_dup       ;A4BF18;
     dw $0003,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_7        ;A4BF1A;
     dw Instruction_Crocomire_MoveLeft_SpawnCloud_HandleSpikeWall         ;A4BF1E;
-    dw $0003,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_8        ;A4BF20;
+    dw $0003*!FPS,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_8   ;A4BF20;
     dw Instruction_Crocomire_MoveLeft_SpawnCloud_HandleSpikeWall         ;A4BF24;
     dw $0003,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_9        ;A4BF26;
     dw Instruction_Crocomire_MoveLeft4Pixels_SpawnBigDustCloud_dup       ;A4BF2A;
-    dw $0003,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_A        ;A4BF2C;
+    dw $0003*!FPS,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_A   ;A4BF2C;
     dw Instruction_Crocomire_MoveLeft_SpawnCloud_HandleSpikeWall         ;A4BF30;
     dw $0003,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_B        ;A4BF32;
     dw Instruction_Crocomire_FightAI                                     ;A4BF36;
@@ -4475,15 +4520,15 @@ InstList_CrocomireTongue_NearSpikeWallCharge_1:
 
 ;;; $BF3C: Instruction list - Crocomire - back off from spike wall ;;;
 InstList_Crocomire_BackOffFromSpikeWall:
-    dw $0008,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_B        ;A4BF3C;
+    dw regional($0008, $0006),ExtendedSpritemap_Crocomire_ChargeForward_StepBack_B ;A4BF3C;
     dw Instruction_Crocomire_MoveRight4Pixels_SpawnBigDustCloud          ;A4BF40;
-    dw $0008,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_A        ;A4BF42;
+    dw regional($0008, $0007),ExtendedSpritemap_Crocomire_ChargeForward_StepBack_A ;A4BF42;
     dw Instruction_Crocomire_MoveRight4Pixels                            ;A4BF46;
-    dw $0008,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_9        ;A4BF48;
+    dw regional($0008, $0007),ExtendedSpritemap_Crocomire_ChargeForward_StepBack_9 ;A4BF48;
     dw Instruction_Crocomire_MoveRight4Pixels                            ;A4BF4C;
-    dw $0008,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_8        ;A4BF4E;
+    dw regional($0008, $0006),ExtendedSpritemap_Crocomire_ChargeForward_StepBack_8 ;A4BF4E;
     dw Instruction_Crocomire_MoveRight4Pixels_SpawnBigDustCloud          ;A4BF52;
-    dw $0008,ExtendedSpritemap_Crocomire_ChargeForward_StepBack_7        ;A4BF54;
+    dw regional($0008, $0007),ExtendedSpritemap_Crocomire_ChargeForward_StepBack_7 ;A4BF54;
     dw Instruction_Crocomire_ShakeScreen                                 ;A4BF58;
     dw Instruction_Crocomire_MoveRight4Pixels                            ;A4BF5A;
     dw Instruction_Crocomire_FightAI                                     ;A4BF5C;
@@ -4548,22 +4593,22 @@ InstList_Crocomire_Melting2_Top4Rows:
 
 ;;; $BF98: Instruction list - Crocomire tongue - melting ;;;
 InstList_CrocomireTongue_Melting:
-    dw $0005,ExtendedSpritemap_Crocomire_2D                              ;A4BF98;
-    dw $0005,ExtendedSpritemap_Crocomire_2E                              ;A4BF9C;
-    dw $0005,ExtendedSpritemap_Crocomire_2F                              ;A4BFA0;
-    dw $0005,ExtendedSpritemap_Crocomire_30                              ;A4BFA4;
-    dw $0005,ExtendedSpritemap_Crocomire_31                              ;A4BFA8;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_2D                         ;A4BF98;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_2E                         ;A4BF9C;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_2F                         ;A4BFA0;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_30                         ;A4BFA4;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_31                         ;A4BFA8;
     dw Instruction_Common_GotoY                                          ;A4BFAC;
     dw InstList_CrocomireTongue_Melting                                  ;A4BFAE;
 
 
 ;;; $BFB0: Instruction list - Crocomire - bridge collapsed ;;;
 InstList_CrocomireTongue_BridgeCollapsed:
-    dw $0005,ExtendedSpritemap_Crocomire_8                               ;A4BFB0;
-    dw $0005,ExtendedSpritemap_Crocomire_7                               ;A4BFB4;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_8                          ;A4BFB0;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_7                          ;A4BFB4;
     dw Instruction_Crocomire_QueueCrySFX                                 ;A4BFB8;
-    dw $0005,ExtendedSpritemap_Crocomire_8                               ;A4BFBA;
-    dw $0005,ExtendedSpritemap_Crocomire_9                               ;A4BFBE;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_8                          ;A4BFBA;
+    dw $0005*!FPS,ExtendedSpritemap_Crocomire_9                          ;A4BFBE;
     dw Instruction_Common_Sleep                                          ;A4BFC2;
 
 
@@ -7053,46 +7098,46 @@ Spritemap_Crocomire_29:
 
 ;;; $E14A: Instruction list - Crocomire - skeleton - falling ;;;
 InstList_CrocomireCorpse_Skeleton_Falling:
-    dw $000A,ExtendedSpritemap_CrocomireCorpse_0                         ;A4E14A;
-    dw $000A,ExtendedSpritemap_CrocomireCorpse_1                         ;A4E14E;
-    dw $000A,ExtendedSpritemap_CrocomireCorpse_2                         ;A4E152;
+    dw regional($000A, $0008),ExtendedSpritemap_CrocomireCorpse_0        ;A4E14A;
+    dw regional($000A, $0008),ExtendedSpritemap_CrocomireCorpse_1        ;A4E14E;
+    dw regional($000A, $0009),ExtendedSpritemap_CrocomireCorpse_2        ;A4E152;
     dw Instruction_Common_Sleep                                          ;A4E156;
 
 
 ;;; $E158: Instruction list - Crocomire - skeleton - falls apart ;;;
 InstList_CrocomireCorpse_Skeleton_FallsApart_0:
-    dw $000A,ExtendedSpritemap_CrocomireCorpse_3                         ;A4E158;
+    dw $000A*!FPS,ExtendedSpritemap_CrocomireCorpse_3                    ;A4E158;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_Negative20      ;A4E15C;
-    dw $0005,ExtendedSpritemap_CrocomireCorpse_4                         ;A4E15E;
+    dw $0005*!FPS,ExtendedSpritemap_CrocomireCorpse_4                    ;A4E15E;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_0               ;A4E162;
-    dw $0005,ExtendedSpritemap_CrocomireCorpse_4                         ;A4E164;
+    dw $0005*!FPS,ExtendedSpritemap_CrocomireCorpse_4                    ;A4E164;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_Negative10      ;A4E168;
-    dw $0005,ExtendedSpritemap_CrocomireCorpse_5                         ;A4E16A;
+    dw $0005*!FPS,ExtendedSpritemap_CrocomireCorpse_5                    ;A4E16A;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_10              ;A4E16E;
     dw $0005,ExtendedSpritemap_CrocomireCorpse_5                         ;A4E170;
-    dw $000A,ExtendedSpritemap_CrocomireCorpse_6                         ;A4E174;
-    dw $0020,ExtendedSpritemap_CrocomireCorpse_7                         ;A4E178;
-    dw $0010,ExtendedSpritemap_CrocomireCorpse_8                         ;A4E17C;
+    dw $000A*!FPS,ExtendedSpritemap_CrocomireCorpse_6                    ;A4E174;
+    dw $0020*!FPS,ExtendedSpritemap_CrocomireCorpse_7                    ;A4E178;
+    dw $0010*!FPS,ExtendedSpritemap_CrocomireCorpse_8                    ;A4E17C;
     dw Instruction_Crocomire_QueueSkeletonCollapseSFX                    ;A4E180;
-    dw $000A,ExtendedSpritemap_CrocomireCorpse_9                         ;A4E182;
-    dw $0009,ExtendedSpritemap_CrocomireCorpse_A                         ;A4E186;
-    dw $0009,ExtendedSpritemap_CrocomireCorpse_B                         ;A4E18A;
+    dw $000A*!FPS,ExtendedSpritemap_CrocomireCorpse_9                    ;A4E182;
+    dw $0009*!FPS,ExtendedSpritemap_CrocomireCorpse_A                    ;A4E186;
+    dw regional($0009, $0008),ExtendedSpritemap_CrocomireCorpse_B        ;A4E18A;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_0_dup           ;A4E18E;
-    dw $0008,ExtendedSpritemap_CrocomireCorpse_C                         ;A4E190;
+    dw $0008*!FPS,ExtendedSpritemap_CrocomireCorpse_C                    ;A4E190;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_8               ;A4E194;
-    dw $0008,ExtendedSpritemap_CrocomireCorpse_D                         ;A4E196;
+    dw $0008*!FPS,ExtendedSpritemap_CrocomireCorpse_D                    ;A4E196;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_10_dup          ;A4E19A;
-    dw $0007,ExtendedSpritemap_CrocomireCorpse_E                         ;A4E19C;
+    dw regional($0007, $0006),ExtendedSpritemap_CrocomireCorpse_E        ;A4E19C;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_18              ;A4E1A0;
     dw $0007,ExtendedSpritemap_CrocomireCorpse_F                         ;A4E1A2;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_20              ;A4E1A6;
-    dw $0006,ExtendedSpritemap_CrocomireCorpse_10                        ;A4E1A8;
+    dw $0006*!FPS,ExtendedSpritemap_CrocomireCorpse_10                   ;A4E1A8;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_28              ;A4E1AC;
-    dw $0006,ExtendedSpritemap_CrocomireCorpse_11                        ;A4E1AE;
+    dw $0006*!FPS,ExtendedSpritemap_CrocomireCorpse_11                   ;A4E1AE;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_30              ;A4E1B2;
     dw $0006,ExtendedSpritemap_CrocomireCorpse_12                        ;A4E1B4;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_38              ;A4E1B8;
-    dw $0005,ExtendedSpritemap_CrocomireCorpse_13                        ;A4E1BA;
+    dw $0005*!FPS,ExtendedSpritemap_CrocomireCorpse_13                   ;A4E1BA;
     dw Instruction_Crocomire_SpawnBigDustCloudProjectile_40              ;A4E1BE;
     dw Instruction_Crocomire_QueueBigExplosionSFX                        ;A4E1C0;
     dw $0005,ExtendedSpritemap_CrocomireCorpse_14                        ;A4E1C2;
@@ -7110,16 +7155,16 @@ InstList_CrocomireCorpse_Skeleton_Dead:
 
 ;;; $E1D2: Instruction list - Crocomire - skeleton - flowing down the river ;;;
 InstList_CrocomireCorpse_Skeleton_FlowingDownTheRiver:
-    dw $0004,ExtendedSpritemap_CrocomireCorpse_17                        ;A4E1D2;
-    dw $0004,ExtendedSpritemap_CrocomireCorpse_18                        ;A4E1D6;
-    dw $0004,ExtendedSpritemap_CrocomireCorpse_19                        ;A4E1DA;
-    dw $0004,ExtendedSpritemap_CrocomireCorpse_1A                        ;A4E1DE;
-    dw $0004,ExtendedSpritemap_CrocomireCorpse_1B                        ;A4E1E2;
-    dw $0004,ExtendedSpritemap_CrocomireCorpse_1C                        ;A4E1E6;
-    dw $0004,ExtendedSpritemap_CrocomireCorpse_1D                        ;A4E1EA;
-    dw $0004,ExtendedSpritemap_CrocomireCorpse_1E                        ;A4E1EE;
-    dw $0004,ExtendedSpritemap_CrocomireCorpse_1F                        ;A4E1F2;
-    dw $0014,ExtendedSpritemap_CrocomireCorpse_20                        ;A4E1F6;
+    dw $0004*!FPS,ExtendedSpritemap_CrocomireCorpse_17                   ;A4E1D2;
+    dw $0004*!FPS,ExtendedSpritemap_CrocomireCorpse_18                   ;A4E1D6;
+    dw $0004*!FPS,ExtendedSpritemap_CrocomireCorpse_19                   ;A4E1DA;
+    dw $0004*!FPS,ExtendedSpritemap_CrocomireCorpse_1A                   ;A4E1DE;
+    dw $0004*!FPS,ExtendedSpritemap_CrocomireCorpse_1B                   ;A4E1E2;
+    dw $0004*!FPS,ExtendedSpritemap_CrocomireCorpse_1C                   ;A4E1E6;
+    dw $0004*!FPS,ExtendedSpritemap_CrocomireCorpse_1D                   ;A4E1EA;
+    dw $0004*!FPS,ExtendedSpritemap_CrocomireCorpse_1E                   ;A4E1EE;
+    dw $0004*!FPS,ExtendedSpritemap_CrocomireCorpse_1F                   ;A4E1F2;
+    dw regional($0014, $0011),ExtendedSpritemap_CrocomireCorpse_20       ;A4E1F6;
     dw Instruction_Common_GotoY                                          ;A4E1FA;
     dw InstList_CrocomireCorpse_Skeleton_FlowingDownTheRiver             ;A4E1FC;
 

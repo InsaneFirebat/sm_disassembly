@@ -399,83 +399,26 @@ Instruction_CommonA2_DisableOffScreenProcessing:
 
 ;;; $8187: Common enemy speeds - linearly increasing ;;;
 CommonA2EnemySpeeds_LinearlyIncreasing:
-;        _____________________ Speed
-;       |      _______________ Subspeed
-;       |     |      _________ Negated speed
-;       |     |     |      ___ Negated subspeed
-;       |     |     |     |
-  .speed:
-    dw $0000                                                             ;A28187;
-  .subspeed:
-    dw       $0000                                                       ;A28189;
-  .negatedSpeed:
-    dw             $0000                                                 ;A2818B;
-  .negatedSubspeed:
-    dw                   $0000                                           ;A2818D;
-    dw $0000,$1000,$FFFF,$F000
-    dw $0000,$2000,$FFFF,$E000
-    dw $0000,$3000,$FFFF,$D000
-    dw $0000,$4000,$FFFF,$C000
-    dw $0000,$5000,$FFFF,$B000
-    dw $0000,$6000,$FFFF,$A000
-    dw $0000,$7000,$FFFF,$9000
-    dw $0000,$8000,$FFFF,$8000
-    dw $0000,$9000,$FFFF,$7000
-    dw $0000,$A000,$FFFF,$6000
-    dw $0000,$B000,$FFFF,$5000
-    dw $0000,$C000,$FFFF,$4000
-    dw $0000,$D000,$FFFF,$3000
-    dw $0000,$E000,$FFFF,$2000
-    dw $0000,$F000,$FFFF,$1000
-    dw $0001,$0000,$FFFF,$0000
-    dw $0001,$1000,$FFFE,$F000
-    dw $0001,$2000,$FFFE,$E000
-    dw $0001,$3000,$FFFE,$D000
-    dw $0001,$4000,$FFFE,$C000
-    dw $0001,$5000,$FFFE,$B000
-    dw $0001,$6000,$FFFE,$A000
-    dw $0001,$7000,$FFFE,$9000
-    dw $0001,$8000,$FFFE,$8000
-    dw $0001,$9000,$FFFE,$7000
-    dw $0001,$A000,$FFFE,$6000
-    dw $0001,$B000,$FFFE,$5000
-    dw $0001,$C000,$FFFE,$4000
-    dw $0001,$D000,$FFFE,$3000
-    dw $0001,$E000,$FFFE,$2000
-    dw $0001,$F000,$FFFE,$1000
-    dw $0002,$0000,$FFFE,$0000
-    dw $0002,$1000,$FFFD,$F000
-    dw $0002,$2000,$FFFD,$E000
-    dw $0002,$3000,$FFFD,$D000
-    dw $0002,$4000,$FFFD,$C000
-    dw $0002,$5000,$FFFD,$B000
-    dw $0002,$6000,$FFFD,$A000
-    dw $0002,$7000,$FFFD,$9000
-    dw $0002,$8000,$FFFD,$8000
-    dw $0002,$9000,$FFFD,$7000
-    dw $0002,$A000,$FFFD,$6000
-    dw $0002,$B000,$FFFD,$5000
-    dw $0002,$C000,$FFFD,$4000
-    dw $0002,$D000,$FFFD,$3000
-    dw $0002,$E000,$FFFD,$2000
-    dw $0002,$F000,$FFFD,$1000
-    dw $0003,$0000,$FFFD,$0000
-    dw $0003,$1000,$FFFC,$F000
-    dw $0003,$2000,$FFFC,$E000
-    dw $0003,$3000,$FFFC,$D000
-    dw $0003,$4000,$FFFC,$C000
-    dw $0003,$5000,$FFFC,$B000
-    dw $0003,$6000,$FFFC,$A000
-    dw $0003,$7000,$FFFC,$9000
-    dw $0003,$8000,$FFFC,$8000
-    dw $0003,$9000,$FFFC,$7000
-    dw $0003,$A000,$FFFC,$6000
-    dw $0003,$B000,$FFFC,$5000
-    dw $0003,$C000,$FFFC,$4000
-    dw $0003,$D000,$FFFC,$3000
-    dw $0003,$E000,$FFFC,$2000
-    dw $0003,$F000,$FFFC,$1000
-    dw $0004,$0000,$FFFC,$0000
+  .speed                                                                 ;A08187;
+skip 2
+  .subspeed                                                              ;A08189;
+skip 2
+  .negatedSpeed                                                          ;A0818B;
+skip 2
+  .negatedSubspeed                                                       ;A0818D;
+skip -6
+
+!i = 0
+if !PAL == 0
+    !n = $41
+else
+    !n = $43
+endif
+while !i < !n
+    !v #= $1000*!SPF*!i ; !i must be last in product to reproduce PAL rounding errors
+    dw !v>>$10, !v, -!v>>$10, -!v
+    !i #= !i+1
+endif
 
 
 ;;; $838F: Common enemy speeds - quadratically increasing ;;;
@@ -497,6 +440,7 @@ CommonA2EnemySpeeds_QuadraticallyIncreasing:
     dw                   $0000                                           ;A28395;
     dw $0109,$0000,$FEF7,$FFFF
     dw $031B,$0000,$FCE5,$FFFF
+if !PAL == 0
     dw $0636,$0000,$F9CA,$FFFF
     dw $0A5A,$0000,$F5A6,$FFFF
     dw $0F87,$0000,$F079,$FFFF
@@ -589,6 +533,100 @@ CommonA2EnemySpeeds_QuadraticallyIncreasing:
     dw $BC66,$0010,$439A,$FFEF
     dw $13AB,$0011,$EC55,$FFEE
     dw $74F9,$0011,$8B07,$FFEE
+else
+    dw $073F,$0000,$F8C1,$FFFF
+    dw $0B63,$0000,$F49D,$FFFF
+    dw $1199,$0000,$EE67,$FFFF
+    dw $19E1,$0000,$E61F,$FFFF
+    dw $2229,$0000,$DDD7,$FFFF
+    dw $2C83,$0000,$D37D,$FFFF
+    dw $36DD,$0000,$C923,$FFFF
+    dw $4349,$0000,$BCB7,$FFFF
+    dw $51C7,$0000,$AE39,$FFFF
+    dw $6045,$0000,$9FBB,$FFFF
+    dw $70D5,$0000,$8F2B,$FFFF
+    dw $8165,$0000,$7E9B,$FFFF
+    dw $9407,$0000,$6BF9,$FFFF
+    dw $A8BB,$0000,$5745,$FFFF
+    dw $BD6F,$0000,$4291,$FFFF
+    dw $D435,$0000,$2BCB,$FFFF
+    dw $EAFB,$0000,$1505,$FFFF
+    dw $03D3,$0001,$FC2D,$FFFE
+    dw $15BD,$0001,$EA43,$FFFE
+    dw $30A7,$0001,$CF59,$FFFE
+    dw $4DA3,$0001,$B25D,$FFFE
+    dw $6A9F,$0001,$9561,$FFFE
+    dw $89AD,$0001,$7653,$FFFE
+    dw $AACD,$0001,$5533,$FFFE
+    dw $CBED,$0001,$3413,$FFFE
+    dw $EF1F,$0001,$10E1,$FFFE
+    dw $0951,$0002,$F6AF,$FFFD
+    dw $2E95,$0002,$D16B,$FFFD
+    dw $55EB,$0002,$AA15,$FFFD
+    dw $7D41,$0002,$82BF,$FFFD
+    dw $A6A9,$0002,$5957,$FFFD
+    dw $D011,$0002,$2FEF,$FFFD
+    dw $FB8B,$0002,$0475,$FFFD
+    dw $2017,$0003,$DFE9,$FFFC
+    dw $4DA3,$0003,$B25D,$FFFC
+    dw $7D41,$0003,$82BF,$FFFC
+    dw $ACDF,$0003,$5321,$FFFC
+    dw $DE8F,$0003,$2171,$FFFC
+    dw $0951,$0004,$F6AF,$FFFB
+    dw $3D13,$0004,$C2ED,$FFFB
+    dw $72E7,$0004,$8D19,$FFFB
+    dw $A8BB,$0004,$5745,$FFFB
+    dw $E0A1,$0004,$1F5F,$FFFB
+    dw $1199,$0005,$EE67,$FFFA
+    dw $4B91,$0005,$B46F,$FFFA
+    dw $879B,$0005,$7865,$FFFA
+    dw $C3A5,$0005,$3C5B,$FFFA
+    dw $01C1,$0005,$FE3F,$FFFA
+    dw $38EF,$0006,$C711,$FFF9
+    dw $791D,$0006,$86E3,$FFF9
+    dw $BB5D,$0006,$44A3,$FFF9
+    dw $FD9D,$0006,$0263,$FFF9
+    dw $38EF,$0007,$C711,$FFF8
+    dw $7F53,$0007,$80AD,$FFF8
+    dw $C5B7,$0007,$3A49,$FFF8
+    dw $052D,$0008,$FAD3,$FFF7
+    dw $4DA3,$0008,$B25D,$FFF7
+    dw $982B,$0008,$67D5,$FFF7
+    dw $E4C5,$0008,$1B3B,$FFF7
+    dw $285F,$0009,$D7A1,$FFF6
+    dw $770B,$0009,$88F5,$FFF6
+    dw $C5B7,$0009,$3A49,$FFF6
+    dw $0D75,$000A,$F28B,$FFF5
+    dw $6045,$000A,$9FBB,$FFF5
+    dw $B315,$000A,$4CEB,$FFF5
+    dw $07F7,$000B,$F809,$FFF5
+    dw $53D9,$000B,$AC27,$FFF4
+    dw $AACD,$000B,$5533,$FFF4
+    dw $03D3,$000C,$FC2D,$FFF3
+    dw $53D9,$000C,$AC27,$FFF3
+    dw $AEF1,$000C,$510F,$FFF3
+    dw $0109,$000D,$FEF7,$FFF2
+    dw $5E33,$000D,$A1CD,$FFF2
+    dw $BD6F,$000D,$4291,$FFF2
+    dw $13AB,$000E,$EC55,$FFF1
+    dw $74F9,$000E,$8B07,$FFF1
+    dw $D647,$000E,$29B9,$FFF1
+    dw $30A7,$000F,$CF59,$FFF0
+    dw $9619,$000F,$69E7,$FFF0
+    dw $FB8B,$000F,$0475,$FFF0
+    dw $5A0F,$0010,$A5F1,$FFEF
+    dw $C193,$0010,$3E6D,$FFEF
+    dw $2229,$0011,$DDD7,$FFEE
+    dw $8DD1,$0011,$722F,$FFEE
+    dw $F979,$0011,$0687,$FFEE
+    dw $5E33,$0012,$A1CD,$FFED
+    dw $CBED,$0012,$3413,$FFED
+    dw $32B9,$0013,$CD47,$FFEC
+    dw $A497,$0013,$5B69,$FFEC
+    dw $0D75,$0014,$F28B,$FFEB
+    dw $8165,$0014,$7E9B,$FFEB
+    dw $F555,$0014,$0AAB,$FFEB
+endif
 
 
 ;;; $8687: Palette - enemy $CEBF (boyon) ;;;
@@ -640,8 +678,29 @@ BoyonData:
 
   .speedTable:
 ; Speed table. k (k+1) / 2 (sum of 0..k)
-    db $00,$01,$03,$06,$0A,$0F,$15,$1C,$24,$2D,$37,$42,$4E,$5B,$69,$78   ;A28701;
-    db $88,$99,$AB,$BE,$D2,$E7,$FD                                       ;A28711;
+    db $00                                                               ;A28701;
+    db $01*!SPF
+    db $03*!SPF
+    db $06*!SPF
+    db $0A*!SPF
+    db $0F*!SPF
+    db $15*!SPF
+    db regional($1C, $22)
+    db $24*!SPF
+    db $2D*!SPF
+    db $37*!SPF
+    db $42*!SPF
+    db $4E*!SPF
+    db regional($5B, $6E)
+    db $69*!SPF
+    db $78*!SPF
+    db $88*!SPF
+    db $99*!SPF
+    db $AB*!SPF
+    db $BE*!SPF
+    db $D2*!SPF
+    db min($FF, $E7*!SPF)
+    db min($FF, $FD*!SPF)
 
   .bounceFunctionPointers:
 ; Bounce movement functions
@@ -2926,30 +2985,30 @@ InstList_Puyo_HoppingRight_4_HoppingLeft_0:
 
 ;;; $9A07: Hop table ;;;
 PuyoHopTable:
-;        _____________________ 0: Jump height
-;       |      _______________ 2: X speed. Unit of 1/100h px/frame
-;       |     |      _________ 4: Y speed table index delta. Also used for dropping speed, unit of 1/100h px/frame
-;       |     |     |      ___ 6: Airborne function
-;       |     |     |     |
+;        _______________________________ 0: Jump height
+;       |      _________________________ 2: X speed. Unit of 1/100h px/frame
+;       |     |                _________ 4: Y speed table index delta. Also used for dropping speed, unit of 1/100h px/frame
+;       |     |               |      ___ 6: Airborne function
+;       |     |               |     |
   .jumpHeight:
     dw $0010                                                             ;A29A07; 0: Normal - small hop
   .XSpeed:
-    dw       $0100                                                       ;A29A09;
+    dw       regional($0100, $0140)                                      ;A29A09;
   .YSpeedTableIndexDelta:
-    dw             $0200                                                 ;A29A0B;
+    dw                              $0200                                ;A29A0B;
   .airborneFunction:
     dw Function_Puyo_Airborne_Normal_ShortHop                            ;A29A0D;
-    dw $0020,$0100,$0200                                                 ;A29A0F; 1: Normal - big hop
+    dw $0020,regional($0100, $0140),$0200                                ;A29A0F; 1: Normal - big hop
     dw Function_Puyo_Airborne_Normal_BigHop                              ;A29A15;
-    dw $0020,$0200,$0300                                                 ;A29A17; 2: Unused. Normal - long hop
+    dw $0020,regional($0200, $0270),$0300                                ;A29A17; 2: Unused. Normal - long hop
     dw Function_Puyo_Airborne_Normal_LongHop                             ;A29A1D;
-    dw $0080,$0140,$0200                                                 ;A29A1F; 3: Giant hop
+    dw $0080,$0140,                 $0200                                ;A29A1F; 3: Giant hop
     dw Function_Puyo_Airborne_GiantHop                                   ;A29A25;
-    dw $0000,$0000,$0100                                                 ;A29A27; 4: Dropping
+    dw $0000,$0000,                 $0100                                ;A29A27; 4: Dropping
     dw Function_Puyo_Airborne_Dropping                                   ;A29A2D;
-    dw $0010,$0100,$01C0                                                 ;A29A2F; 5: Dropped - small hop
+    dw $0010,regional($0100, $0140),$01C0                                ;A29A2F; 5: Dropped - small hop
     dw Function_Puyo_Airborne_Dropped                                    ;A29A35;
-    dw $0015,$0100,$01C0                                                 ;A29A37; 6: Dropped - big hop
+    dw $0015,regional($0100, $0140),$01C0                                ;A29A37; 6: Dropped - big hop
     dw Function_Puyo_Airborne_Dropped                                    ;A29A3D;
 
 
@@ -3191,7 +3250,11 @@ PuyoMovement:
     STA.L Puyo.hoppingAnimationFlag,X                                    ;A29BEF;
 
   .gotoReturn:
+if !PAL == 0
     BRA .return                                                          ;A29BF3; >.<
+else
+    JMP.W .return
+endif
 
   .noCollision:
     LDY.W Puyo.hopTableIndex,X                                           ;A29BF5;
@@ -3222,7 +3285,14 @@ PuyoMovement:
     AND.W #$FF00                                                         ;A29C2C;
     XBA                                                                  ;A29C2F;
     STA.B DP_Temp14                                                      ;A29C30;
+if !PAL == 0
     STZ.B DP_Temp12                                                      ;A29C32;
+else
+    LDA.W PuyoHopTable_XSpeed,Y
+    AND.W #$00FF
+    XBA
+    STA.B DP_Temp12
+endif
     LDA.L Puyo.direction,X                                               ;A29C34;
     BEQ .moveRight                                                       ;A29C38;
     LDA.B DP_Temp14                                                      ;A29C3A;
@@ -3539,24 +3609,24 @@ Palette_Cacatac:
 ;;; $9E8A: Instruction list - upside up - idling ;;;
 InstList_Cacatac_UpsideUp_Idling:
     dw Instruction_Cacatac_SetFunction_MovingLeftRight                   ;A29E8A;
-    dw $0008,Spritemap_Cacatac_0                                         ;A29E8C;
-    dw $0008,Spritemap_Cacatac_1                                         ;A29E90;
-    dw $0008,Spritemap_Cacatac_2                                         ;A29E94;
-    dw $0008,Spritemap_Cacatac_3                                         ;A29E98;
-    dw $0008,Spritemap_Cacatac_4                                         ;A29E9C;
-    dw $0008,Spritemap_Cacatac_5                                         ;A29EA0;
-    dw $0008,Spritemap_Cacatac_6                                         ;A29EA4;
-    dw $0008,Spritemap_Cacatac_7                                         ;A29EA8;
+    dw $0008*!FPS,Spritemap_Cacatac_0                                    ;A29E8C;
+    dw $0008*!FPS,Spritemap_Cacatac_1                                    ;A29E90;
+    dw $0008*!FPS,Spritemap_Cacatac_2                                    ;A29E94;
+    dw $0008*!FPS,Spritemap_Cacatac_3                                    ;A29E98;
+    dw $0008*!FPS,Spritemap_Cacatac_4                                    ;A29E9C;
+    dw $0008*!FPS,Spritemap_Cacatac_5                                    ;A29EA0;
+    dw $0008*!FPS,Spritemap_Cacatac_6                                    ;A29EA4;
+    dw $0008*!FPS,Spritemap_Cacatac_7                                    ;A29EA8;
     dw Instruction_Common_GotoY                                          ;A29EAC;
     dw InstList_Cacatac_UpsideUp_Idling                                  ;A29EAE;
 
 
 ;;; $9EB0: Instruction list - upside up - attacking ;;;
 InstList_Cacatac_UpsideUp_Attacking:
-    dw $0015,Spritemap_Cacatac_0                                         ;A29EB0;
-    dw $0005,Spritemap_Cacatac_8                                         ;A29EB4;
-    dw $0015,Spritemap_Cacatac_9                                         ;A29EB8;
-    dw $0005,Spritemap_Cacatac_8                                         ;A29EBC;
+    dw $0015*!FPS,Spritemap_Cacatac_0                                    ;A29EB0;
+    dw $0005*!FPS,Spritemap_Cacatac_8                                    ;A29EB4;
+    dw $0015*!FPS,Spritemap_Cacatac_9                                    ;A29EB8;
+    dw $0005*!FPS,Spritemap_Cacatac_8                                    ;A29EBC;
     dw Instruction_Cacatac_PlaySpikesSFX                                 ;A29EC0;
     dw Instruction_Cacatac_SpawnSpikeProjectileWithParameterInY,$0000    ;A29EC2;
     dw Instruction_Cacatac_SpawnSpikeProjectileWithParameterInY,$000C    ;A29EC6;
@@ -3572,24 +3642,24 @@ InstList_Cacatac_UpsideDown_Idling_0:
     dw Instruction_Cacatac_SetFunction_MovingLeftRight                   ;A29EDA;
 
 InstList_Cacatac_UpsideDown_Idling_1:
-    dw $0008,Spritemap_Cacatac_A                                         ;A29EDC;
-    dw $0008,Spritemap_Cacatac_B                                         ;A29EE0;
-    dw $0008,Spritemap_Cacatac_C                                         ;A29EE4;
-    dw $0008,Spritemap_Cacatac_D                                         ;A29EE8;
-    dw $0008,Spritemap_Cacatac_E                                         ;A29EEC;
-    dw $0008,Spritemap_Cacatac_F                                         ;A29EF0;
-    dw $0008,Spritemap_Cacatac_10                                        ;A29EF4;
-    dw $0008,Spritemap_Cacatac_11                                        ;A29EF8;
+    dw $0008*!FPS,Spritemap_Cacatac_A                                    ;A29EDC;
+    dw $0008*!FPS,Spritemap_Cacatac_B                                    ;A29EE0;
+    dw $0008*!FPS,Spritemap_Cacatac_C                                    ;A29EE4;
+    dw $0008*!FPS,Spritemap_Cacatac_D                                    ;A29EE8;
+    dw $0008*!FPS,Spritemap_Cacatac_E                                    ;A29EEC;
+    dw $0008*!FPS,Spritemap_Cacatac_F                                    ;A29EF0;
+    dw $0008*!FPS,Spritemap_Cacatac_10                                   ;A29EF4;
+    dw $0008*!FPS,Spritemap_Cacatac_11                                   ;A29EF8;
     dw Instruction_Common_GotoY                                          ;A29EFC;
     dw InstList_Cacatac_UpsideDown_Idling_1                              ;A29EFE;
 
 
 ;;; $9F00: Instruction list - upside down - attacking ;;;
 InstList_Cacatac_UpsideDown_Attacking:
-    dw $0015,Spritemap_Cacatac_A                                         ;A29F00;
-    dw $0005,Spritemap_Cacatac_12                                        ;A29F04;
-    dw $0015,Spritemap_Cacatac_13                                        ;A29F08;
-    dw $0005,Spritemap_Cacatac_12                                        ;A29F0C;
+    dw $0015*!FPS,Spritemap_Cacatac_A                                    ;A29F00;
+    dw $0005*!FPS,Spritemap_Cacatac_12                                   ;A29F04;
+    dw $0015*!FPS,Spritemap_Cacatac_13                                   ;A29F08;
+    dw $0005*!FPS,Spritemap_Cacatac_12                                   ;A29F0C;
     dw Instruction_Cacatac_PlaySpikesSFX                                 ;A29F10;
     dw Instruction_Cacatac_SpawnSpikeProjectileWithParameterInY,$0006    ;A29F12;
     dw Instruction_Cacatac_SpawnSpikeProjectileWithParameterInY,$0010    ;A29F16;
@@ -4092,7 +4162,7 @@ OwtchConstants:
 
   .undergroundTimers:
 ; Underground timers
-    dw $0020,$0040,$0060,$0080,$00A0,$00C0                               ;A2A3ED;
+    dw $0020*!FPS,$0020*!FPS*2,$0020*!FPS*3,$0020*!FPS*4,$0020*!FPS*5,$0020*!FPS*6 ;A2A3ED;
 
 
 ;;; $A3F9: Initialisation AI - enemy $D03F (owtch) ;;;
@@ -4350,16 +4420,16 @@ Palette_Ship:
 
 ;;; $A5BE: Instruction list - gunship entrance pad - opening ;;;
 InstList_ShipEntrancePad_Opening_0:
-    dw $0028,Spritemap_Ship_C                                            ;A2A5BE;
-    dw $0008,Spritemap_Ship_B                                            ;A2A5C2;
-    dw $0008,Spritemap_Ship_2                                            ;A2A5C6;
-    dw $0008,Spritemap_Ship_3                                            ;A2A5CA;
-    dw $0018,Spritemap_Ship_4                                            ;A2A5CE;
-    dw $0008,Spritemap_Ship_5                                            ;A2A5D2;
-    dw $0007,Spritemap_Ship_6                                            ;A2A5D6;
-    dw $0006,Spritemap_Ship_7                                            ;A2A5DA;
-    dw $0005,Spritemap_Ship_8                                            ;A2A5DE;
-    dw $0004,Spritemap_Ship_9                                            ;A2A5E2;
+    dw regional($0028, $0010),Spritemap_Ship_C                           ;A2A5BE;
+    dw $0008*!FPS,Spritemap_Ship_B                                       ;A2A5C2;
+    dw $0008*!FPS,Spritemap_Ship_2                                       ;A2A5C6;
+    dw $0008*!FPS,Spritemap_Ship_3                                       ;A2A5CA;
+    dw regional($0018, $0013),Spritemap_Ship_4                           ;A2A5CE;
+    dw $0008*!FPS,Spritemap_Ship_5                                       ;A2A5D2;
+    dw regional($0007, $0006),Spritemap_Ship_6                           ;A2A5D6;
+    dw $0006*!FPS,Spritemap_Ship_7                                       ;A2A5DA;
+    dw $0005*!FPS,Spritemap_Ship_8                                       ;A2A5DE;
+    dw $0004*!FPS,Spritemap_Ship_9                                       ;A2A5E2;
 
 InstList_ShipEntrancePad_Opening_1:
     dw $0004,Spritemap_Ship_A                                            ;A2A5E6;
@@ -4369,14 +4439,14 @@ InstList_ShipEntrancePad_Opening_1:
 
 ;;; $A5EE: Instruction list - gunship entrance pad - closing ;;;
 InstList_ShipEntrancePad_Closing:
-    dw $0004,Spritemap_Ship_9                                            ;A2A5EE;
-    dw $0005,Spritemap_Ship_8                                            ;A2A5F2;
-    dw $0006,Spritemap_Ship_7                                            ;A2A5F6;
-    dw $0007,Spritemap_Ship_6                                            ;A2A5FA;
-    dw $0008,Spritemap_Ship_5                                            ;A2A5FE;
-    dw $0018,Spritemap_Ship_4                                            ;A2A602;
-    dw $0008,Spritemap_Ship_3                                            ;A2A606;
-    dw $0008,Spritemap_Ship_B                                            ;A2A60A;
+    dw $0004*!FPS,Spritemap_Ship_9                                       ;A2A5EE;
+    dw $0005*!FPS,Spritemap_Ship_8                                       ;A2A5F2;
+    dw $0006*!FPS,Spritemap_Ship_7                                       ;A2A5F6;
+    dw regional($0007, $0006),Spritemap_Ship_6                           ;A2A5FA;
+    dw $0008*!FPS,Spritemap_Ship_5                                       ;A2A5FE;
+    dw regional($0018, $0013),Spritemap_Ship_4                           ;A2A602;
+    dw $0008*!FPS,Spritemap_Ship_3                                       ;A2A606;
+    dw $0008*!FPS,Spritemap_Ship_B                                       ;A2A60A;
 
 
 ;;; $A60E: Instruction list - gunship entrance pad - closed ;;;
@@ -4510,7 +4580,7 @@ InitAI_ShipBottomEntrance:
     CLC                                                                  ;A2A723;
     ADC.W #$000F                                                         ;A2A724;
     STA.W Enemy.YPosition,X                                              ;A2A727;
-    LDA.W #$0047                                                         ;A2A72A;
+    LDA.W #regional($0047, $0039)                                        ;A2A72A;
     STA.W ShipBottomEntrance.hoverSFXTimer,X                             ;A2A72D;
     BRA .merge                                                           ;A2A730;
 
@@ -4544,7 +4614,7 @@ MainAI_ShipTop:
   .SFX:
     LDA.W #$004D                                                         ;A2A763;
     JSL.L QueueSound_Lib2_Max6                                           ;A2A766;
-    LDA.W #$0046                                                         ;A2A76A;
+    LDA.W #regional($0046, $0038)                                        ;A2A76A;
     STA.W Enemy[1].var3,X                                                ;A2A76D;
 
   .noSFX:
@@ -4778,7 +4848,7 @@ Function_Ship_LandingOnZebes_ApplyBrakes:
     STA.W Enemy[2].instTimer,X                                           ;A2A92B;
     LDA.W #InstList_ShipEntrancePad_Opening_0                            ;A2A92E;
     STA.W Enemy[2].instList,X                                            ;A2A931;
-    LDA.W #$0090                                                         ;A2A934;
+    LDA.W #regional($0090, $0073)                                        ;A2A934;
     STA.W ShipTop.functionTimer                                          ;A2A937;
     LDA.W #$0014                                                         ;A2A93A;
     JSL.L QueueSound_Lib3_Max6                                           ;A2A93D;
@@ -4819,7 +4889,7 @@ Function_Ship_LandingOnZebes_EjectSamus:
     STA.W Enemy[2].instTimer,X                                           ;A2A970;
     LDA.W #InstList_ShipEntrancePad_Closing                              ;A2A973;
     STA.W Enemy[2].instList,X                                            ;A2A976;
-    LDA.W #$0090                                                         ;A2A979;
+    LDA.W #regional($0090, $0073)                                        ;A2A979;
     STA.W ShipTop.functionTimer                                          ;A2A97C;
     LDA.W #$0015                                                         ;A2A97F;
     JSL.L QueueSound_Lib3_Max6                                           ;A2A982;
@@ -4912,7 +4982,7 @@ Function_Ship_Idle_HandleLettingSamusEnter:
     STA.W Enemy[2].instTimer,X                                           ;A2AA38;
     LDA.W #InstList_ShipEntrancePad_Opening_0                            ;A2AA3B;
     STA.W Enemy[2].instList,X                                            ;A2AA3E;
-    LDA.W #$0090                                                         ;A2AA41;
+    LDA.W #regional($0090, $0073)                                        ;A2AA41;
     STA.W ShipTop.functionTimer                                          ;A2AA44;
     LDA.W #$0014                                                         ;A2AA47;
     JSL.L QueueSound_Lib3_Max6                                           ;A2AA4A;
@@ -4951,7 +5021,7 @@ Function_Ship_SamusEntering_LowerSamus:
     STA.W Enemy[2].instTimer,X                                           ;A2AA7D;
     LDA.W #InstList_ShipEntrancePad_Closing                              ;A2AA80;
     STA.W Enemy[2].instList,X                                            ;A2AA83;
-    LDA.W #$0090                                                         ;A2AA86;
+    LDA.W #regional($0090, $0073)                                        ;A2AA86;
     STA.W ShipTop.functionTimer                                          ;A2AA89;
     LDA.W #$0015                                                         ;A2AA8C;
     JSL.L QueueSound_Lib3_Max6                                           ;A2AA8F;
@@ -5053,7 +5123,7 @@ Function_Ship_SamusEntered_HandleSaveConfirmation:
     STA.W Enemy[2].instTimer,X                                           ;A2AB49;
     LDA.W #InstList_ShipEntrancePad_Opening_0                            ;A2AB4C;
     STA.W Enemy[2].instList,X                                            ;A2AB4F;
-    LDA.W #$0090                                                         ;A2AB52;
+    LDA.W #regional($0090, $0073)                                        ;A2AB52;
     STA.W ShipTop.functionTimer                                          ;A2AB55;
     LDA.W #$0014                                                         ;A2AB58;
     JSL.L QueueSound_Lib3_Max6                                           ;A2AB5B;
@@ -5093,7 +5163,7 @@ Function_Ship_SamusExiting_RaiseSamus:
     STA.W Enemy[2].instTimer,X                                           ;A2AB8E;
     LDA.W #InstList_ShipEntrancePad_Closing                              ;A2AB91;
     STA.W Enemy[2].instList,X                                            ;A2AB94;
-    LDA.W #$0090                                                         ;A2AB97;
+    LDA.W #regional($0090, $0073)                                        ;A2AB97;
     STA.W ShipTop.functionTimer                                          ;A2AB9A;
     LDA.W #$0015                                                         ;A2AB9D;
     JSL.L QueueSound_Lib3_Max6                                           ;A2ABA0;
@@ -6527,11 +6597,11 @@ Function_Rinka_Fire:
     INC                                                                  ;A2B823;
     AND.W #$00FF                                                         ;A2B824;
     STA.B DP_Temp12                                                      ;A2B827;
-    LDA.W #$0120                                                         ;A2B829;
+    LDA.W #$0120*!SPF                                                    ;A2B829;
     JSL.L CalculateXVelocityFromSpeedAndAngle                            ;A2B82C;
     LDX.W EnemyIndex                                                     ;A2B830;
     STA.W Rinka.XVelocity,X                                              ;A2B833;
-    LDA.W #$0120                                                         ;A2B836;
+    LDA.W #$0120*!SPF                                                    ;A2B836;
     JSL.L CalculateYVelocityFromSpeedAndAngle                            ;A2B839;
     LDX.W EnemyIndex                                                     ;A2B83D;
     STA.W Rinka.YVelocity,X                                              ;A2B840;
@@ -7000,11 +7070,11 @@ InstList_Rio_SwoopCooldown:
 
 ;;; $BBBB: Rio constants ;;;
 RioConstants_YVelocity:
-    dw $0580                                                             ;A2BBBB;
+    dw regional($0580, $0600)                                            ;A2BBBB;
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_RioConstants_A2BBBD:
-    dw $0600                                                             ;A2BBBD;
+    dw regional($0600, $0680)                                            ;A2BBBD;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 RioConstants_XVelocity:
@@ -7114,7 +7184,7 @@ Function_Rio_Swoop_Descending:
     BCS .collidedVertically                                              ;A2BC6C;
     LDA.W Rio.YVelocity,X                                                ;A2BC6E;
     SEC                                                                  ;A2BC71;
-    SBC.W #$0018                                                         ;A2BC72;
+    SBC.W #$0018*!SPF                                                    ;A2BC72;
     STA.W Rio.YVelocity,X                                                ;A2BC75;
     BMI .homing                                                          ;A2BC78;
     LDA.W Rio.animationFinishedFlag,X                                    ;A2BC7A;
@@ -7179,7 +7249,7 @@ Function_Rio_Swoop_Ascending:
     BCS .notCollidedWithBlock                                            ;A2BCE5;
     LDA.W Rio.YVelocity,X                                                ;A2BCE7;
     SEC                                                                  ;A2BCEA;
-    SBC.W #$0018                                                         ;A2BCEB;
+    SBC.W #$0018*!SPF                                                    ;A2BCEB;
     STA.W Rio.YVelocity,X                                                ;A2BCEE;
     RTL                                                                  ;A2BCF1;
 
@@ -7471,7 +7541,7 @@ Function_Squeept_Rising:
     STA.W Enemy.YPosition,X                                              ;A2BF5C;
     LDA.W Squeept.YVelocity,X                                            ;A2BF5F;
     CLC                                                                  ;A2BF62;
-    ADC.W #$0038                                                         ;A2BF63;
+    ADC.W #regional($0038, $0048)                                        ;A2BF63;
     STA.W Squeept.YVelocity,X                                            ;A2BF66;
     CMP.W #$FC00                                                         ;A2BF69;
     BCS .maxHeight                                                       ;A2BF6C;
@@ -7505,7 +7575,7 @@ Function_Squeept_Flipping:
     STA.W Enemy.YPosition,X                                              ;A2BF9A;
     LDA.W Squeept.YVelocity,X                                            ;A2BF9D;
     CLC                                                                  ;A2BFA0;
-    ADC.W #$0038                                                         ;A2BFA1;
+    ADC.W #regional($0038, $0048)                                        ;A2BFA1;
     STA.W Squeept.YVelocity,X                                            ;A2BFA4;
     LDA.L Squeept.animationFinishedFlag,X                                ;A2BFA7;
     BNE .animationFinished                                               ;A2BFAB;
@@ -7542,7 +7612,7 @@ Function_Squeept_Falling:
     BEQ .nextJump                                                        ;A2BFE3;
     LDA.W Squeept.YVelocity,X                                            ;A2BFE5;
     CLC                                                                  ;A2BFE8;
-    ADC.W #$0038                                                         ;A2BFE9;
+    ADC.W #regional($0038, $0048)                                        ;A2BFE9;
     STA.W Squeept.YVelocity,X                                            ;A2BFEC;
     RTL                                                                  ;A2BFEF;
 
@@ -8020,7 +8090,7 @@ Function_Geruta_Swoop_Descending:
     BCS .collidedWithBlock                                               ;A2C38F;
     LDA.W Geruta.YVelocity,X                                             ;A2C391;
     SEC                                                                  ;A2C394;
-    SBC.W #$0020                                                         ;A2C395;
+    SBC.W #regional($0020, $0030)                                        ;A2C395;
     STA.W Geruta.YVelocity,X                                             ;A2C398;
     BMI .collidedWithBlock                                               ;A2C39B;
     RTL                                                                  ;A2C39D;
@@ -8063,7 +8133,7 @@ Function_Geruta_Swoop_Ascending:
     BCS .collidedVertically                                              ;A2C3DF;
     LDA.W Geruta.YVelocity,X                                             ;A2C3E1;
     SEC                                                                  ;A2C3E4;
-    SBC.W #$0020                                                         ;A2C3E5;
+    SBC.W #regional($0020, $0030)                                        ;A2C3E5;
     STA.W Geruta.YVelocity,X                                             ;A2C3E8;
     LDA.L Geruta.finishedSwoopStartAnimationFlag,X                       ;A2C3EB;
     BEQ .return                                                          ;A2C3EF;
@@ -8539,7 +8609,7 @@ Function_Holtz_Swoop_Descending:
     BCS .notCollidedWithBlock                                            ;A2C804;
     LDA.W Holtz.YVelocity,X                                              ;A2C806;
     SEC                                                                  ;A2C809;
-    SBC.W #$0020                                                         ;A2C80A;
+    SBC.W #regional($0020, $0030)                                        ;A2C80A;
     STA.W Holtz.YVelocity,X                                              ;A2C80D;
     BMI .notCollidedWithBlock                                            ;A2C810;
     RTL                                                                  ;A2C812;
@@ -8584,7 +8654,7 @@ Function_Holtz_Swoop_Ascending:
     BCS .collidedVertically                                              ;A2C85B;
     LDA.W Holtz.YVelocity,X                                              ;A2C85D;
     SEC                                                                  ;A2C860;
-    SBC.W #$0020                                                         ;A2C861;
+    SBC.W #regional($0020, $0030)                                        ;A2C861;
     STA.W Holtz.YVelocity,X                                              ;A2C864;
     LDA.L Holtz.animationFinishedFlag,X                                  ;A2C867;
     BEQ .return                                                          ;A2C86B;
@@ -11198,17 +11268,17 @@ InstList_Dragon_Idle_FacingRight:
 
 ;;; $E5B3: Instruction list - wings - facing right ;;;
 InstList_Dragon_Wings_FacingRight:
-    dw $0005,Spritemap_Dragon_A                                          ;A2E5B3;
-    dw $0005,Spritemap_Dragon_B                                          ;A2E5B7;
+    dw $0005*!FPS,Spritemap_Dragon_A                                     ;A2E5B3;
+    dw $0005*!FPS,Spritemap_Dragon_B                                     ;A2E5B7;
     dw Instruction_Common_GotoY                                          ;A2E5BB;
     dw InstList_Dragon_Wings_FacingRight                                 ;A2E5BD;
 
 
 ;;; $E5BF: Instruction list - attacking - facing left ;;;
 InstList_Dragon_Attacking_FacingLeft:
-    dw $0020,Spritemap_Dragon_1                                          ;A2E5BF;
+    dw $0020*!FPS,Spritemap_Dragon_1                                     ;A2E5BF;
     dw $0003,Spritemap_Dragon_2                                          ;A2E5C3;
-    dw $0007,Spritemap_Dragon_3                                          ;A2E5C7;
+    dw regional($0007, $0006),Spritemap_Dragon_3                         ;A2E5C7;
     dw $0003,Spritemap_Dragon_2                                          ;A2E5CB;
     dw $0001,Spritemap_Dragon_1                                          ;A2E5CF;
     dw Instruction_Dragon_SetAnimationFinishedFlag                       ;A2E5D3;
@@ -11217,9 +11287,9 @@ InstList_Dragon_Attacking_FacingLeft:
 
 ;;; $E5D7: Instruction list - attacking - facing right ;;;
 InstList_Dragon_Attacking_FacingRight:
-    dw $0020,Spritemap_Dragon_7                                          ;A2E5D7;
+    dw $0020*!FPS,Spritemap_Dragon_7                                     ;A2E5D7;
     dw $0003,Spritemap_Dragon_8                                          ;A2E5DB;
-    dw $0007,Spritemap_Dragon_9                                          ;A2E5DF;
+    dw regional($0007, $0006),Spritemap_Dragon_9                         ;A2E5DF;
     dw $0003,Spritemap_Dragon_8                                          ;A2E5E3;
     dw $0001,Spritemap_Dragon_7                                          ;A2E5E7;
     dw Instruction_Dragon_SetAnimationFinishedFlag                       ;A2E5EB;
@@ -11288,7 +11358,7 @@ Function_Dragon_WaitToRise:
     RTL                                                                  ;A2E659;
 
   .timerExpired:
-    LDA.W #$0030                                                         ;A2E65A;
+    LDA.W #$0030*!FPS                                                    ;A2E65A;
     STA.W Dragon.functionTimer,X                                         ;A2E65D;
     LDA.W #Function_Dragon_Rising                                        ;A2E660;
     STA.W Dragon.function,X                                              ;A2E663;
@@ -11339,17 +11409,17 @@ Function_Dragon_Rising:
   .timerNotExpired:
     LDA.W Enemy.YSubPosition,X                                           ;A2E6CA;
     SEC                                                                  ;A2E6CD;
-    SBC.W #$0000                                                         ;A2E6CE;
+    SBC.W #$10*!SPF*$1000                                                ;A2E6CE;
     STA.W Enemy.YSubPosition,X                                           ;A2E6D1;
     LDA.W Enemy.YPosition,X                                              ;A2E6D4;
-    SBC.W #$0001                                                         ;A2E6D7;
+    SBC.W #$10*!SPF*$1000>>$10                                           ;A2E6D7;
     STA.W Enemy.YPosition,X                                              ;A2E6DA;
     LDA.W Enemy[1].YSubPosition,X                                        ;A2E6DD;
     SEC                                                                  ;A2E6E0;
-    SBC.W #$0000                                                         ;A2E6E1;
+    SBC.W #$10*!SPF*$1000                                                ;A2E6E1;
     STA.W Enemy[1].YSubPosition,X                                        ;A2E6E4;
     LDA.W Enemy[1].YPosition,X                                           ;A2E6E7;
-    SBC.W #$0001                                                         ;A2E6EA;
+    SBC.W #$10*!SPF*$1000>>$10                                           ;A2E6EA;
     STA.W Enemy[1].YPosition,X                                           ;A2E6ED;
     RTL                                                                  ;A2E6F0;
 
@@ -11373,7 +11443,7 @@ Function_Dragon_Attacking:
     SEC                                                                  ;A2E71F;
     SBC.W #$0004                                                         ;A2E720;
     STA.L Dragon.newInstListIndex,X                                      ;A2E723;
-    LDA.W #$0060                                                         ;A2E727;
+    LDA.W #regional($0060, $0040)                                        ;A2E727;
     STA.W Dragon.functionTimer,X                                         ;A2E72A;
     LDA.W #Function_Dragon_WaitToSink                                    ;A2E72D;
     STA.W Dragon.function,X                                              ;A2E730;
@@ -11386,7 +11456,7 @@ Function_Dragon_Attacking:
 Function_Dragon_WaitToSink:
     DEC.W Dragon.functionTimer,X                                         ;A2E734;
     BNE .return                                                          ;A2E737;
-    LDA.W #$0030                                                         ;A2E739;
+    LDA.W #$0030*!FPS                                                    ;A2E739;
     STA.W Dragon.functionTimer,X                                         ;A2E73C;
     LDA.W #Function_Dragon_Sinking                                       ;A2E73F;
     STA.W Dragon.function,X                                              ;A2E742;
@@ -11400,7 +11470,7 @@ Function_Dragon_WaitToSink:
 Function_Dragon_Sinking:
     DEC.W Dragon.functionTimer,X                                         ;A2E749;
     BPL .timerNotExpired                                                 ;A2E74C;
-    LDA.W #$0080                                                         ;A2E74E;
+    LDA.W #regional($0080, $0060)                                        ;A2E74E;
     STA.W Dragon.functionTimer,X                                         ;A2E751;
     LDA.W #Function_Dragon_WaitToRise                                    ;A2E754;
     STA.W Dragon.function,X                                              ;A2E757;
@@ -11408,17 +11478,17 @@ Function_Dragon_Sinking:
   .timerNotExpired:
     LDA.W Enemy.YSubPosition,X                                           ;A2E75A;
     CLC                                                                  ;A2E75D;
-    ADC.W #$0000                                                         ;A2E75E;
+    ADC.W #$10*!SPF*$1000                                                ;A2E75E;
     STA.W Enemy.YSubPosition,X                                           ;A2E761;
     LDA.W Enemy.YPosition,X                                              ;A2E764;
-    ADC.W #$0001                                                         ;A2E767;
+    ADC.W #$10*!SPF*$1000>>$10                                           ;A2E767;
     STA.W Enemy.YPosition,X                                              ;A2E76A;
     LDA.W Enemy[1].YSubPosition,X                                        ;A2E76D;
     CLC                                                                  ;A2E770;
-    ADC.W #$0000                                                         ;A2E771;
+    ADC.W #$10*!SPF*$1000                                                ;A2E771;
     STA.W Enemy[1].YSubPosition,X                                        ;A2E774;
     LDA.W Enemy[1].YPosition,X                                           ;A2E777;
-    ADC.W #$0001                                                         ;A2E77A;
+    ADC.W #$10*!SPF*$1000>>$10                                           ;A2E77A;
     STA.W Enemy[1].YPosition,X                                           ;A2E77D;
     RTL                                                                  ;A2E780;
 

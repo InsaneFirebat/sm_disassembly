@@ -33,15 +33,24 @@ incbin "../data/Tiles_Gunship_Ceres_Mode7.bin" ; $285A bytes
 
 ;;; $95:D089: Tiles - font 1 ;;;
 Tiles_Font1_BG3:
+if !PAL == 0
 ; Decompressed to $7F:8000..88FF around $8B:A410, then transferred to VRAM $4000..447F (BG3 tiles)
 incbin "../data/Tiles_Font1_BG3.bin" ; $68A bytes
+else
+incbin "../data/Tiles_Font1_BG3_PAL.bin" ; $7E5 bytes
+endif
 
 
 ;;; $95:D713: Tiles - font 2 ;;;
+if !PAL == 0
 Tiles_Font2_BG3:
 ; Decompressed to $7F:A000..B1FF around $8B:A549, and then loaded via $8B:8D23 to the $7E:4000..45FF tilemap (and transferred to VRAM $4180..447F)
 ; 2bpp, Japanese text
 incbin "../data/Tiles_Font2_BG3.bin" ; $DAF bytes
+else
+Intro_BG3_Text_Tilemap:
+incbin "../data/Intro_BG3_Text_Tilemap_PAL.bin" ; $709 bytes
+endif
 
 
 ;;; $95:E4C2: Tiles - intro sprites ;;;
@@ -58,14 +67,22 @@ incbin "../data/Tiles_Intro_BG1_BG2.bin" ; $57FC bytes
 
 ;;; $96:D10A: Tiles - space/Ceres ;;;
 Tiles_Space_Ceres:
+if !PAL == 0
 ; Decompressed to $7F:5000..8FFF around $8B:BCEF/C187, then transferred to VRAM $6000..7FFF (sprite tiles)
 incbin "../data/Tiles_Space_Ceres.bin" ; $1B6C bytes
+else
+incbin "../data/Tiles_Space_Ceres_PAL.bin" ; $1CE9 bytes
+endif
 
 
 ;;; $96:EC76: Tiles - Zebes ;;;
 Tiles_Zebes:
+if !PAL == 0
 ; Decompressed to $7F:5000..8FFF around $8B:C6CF, then transferred to VRAM $6000..7FFF (sprite tiles)
 incbin "../data/Tiles_Zebes.bin" ; $F8E bytes
+else
+incbin "../data/Tiles_Zebes_PAL.bin" ; $109A bytes
+endif
 
 
 ;;; $96:FC04: Tilemap - title (mode 7) ;;;
@@ -113,8 +130,12 @@ incbin "../data/Intro_BG3_TheLastMetroidIsInCaptivity_Tilemap.bin" ; $E2 bytes
 
 ;;; $97:8DF4: Tilemap - game options menu - options screen ;;;
 GameOptionsMenu_OptionsScreen_Tilemap:
+if !PAL == 0
 ; Decompressed to $7F:C000..C7FF around $82:EC77, eventually copied to $7E:3000..37FF and transferred to VRAM $5000 (BG1 tilemap)
 incbin "../data/GameOptionsMenu_OptionsScreen_Tilemap.bin" ; $1D9 bytes
+else
+incbin "../data/GameOptionsMenu_OptionsScreen_Tilemap_PAL.bin" ; $19E bytes
+endif
 
 
 ;;; $97:8FCD: Tilemap - game options menu - controller settings - English ;;;
@@ -169,14 +190,22 @@ incbin "../data/Tiles_PostCredits_Samus_Shooting_the_Screen.bin" ; $FE2 bytes
 
 ;;; $97:E7DE: Tiles - font 3 ;;;
 Tiles_Font3_Background:
+if !PAL == 0
 ; Decompressed to $7E:A000..B7FF / $7F:C000..D7FF around $8B:D604/$DEE0/$E41F, then transferred to VRAM $5000..57FF / $4000..47FF / $4800..49FF (BG tiles)
 incbin "../data/Tiles_Font3_Background.bin" ; $721 bytes
+else
+incbin "../data/Tiles_Font3_Background_PAL.bin" ; $8A5 bytes
+endif
 
 
 ;;; $97:EEFF: Tilemap - credits ;;;
 Credits_Tilemap:
+if !PAL == 0
 ; Decompressed to $7F:0000..1FFF around $8B:E0CE, eventually copied to $7E:3000..37FF and transferred to VRAM $4800 (BG1 tilemap)
 incbin "../data/Credits_Tilemap.bin" ; $A88 bytes
+else
+incbin "../data/Credits_Tilemap_PAL.bin" ; $A88 bytes
+endif
 
 
 ;;; $97:F987: Interleaved tiles/tilemap - post-credits Samus beam (mode 7) ;;;

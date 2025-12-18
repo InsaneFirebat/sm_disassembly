@@ -400,83 +400,26 @@ Instruction_CommonA3_DisableOffScreenProcessing:
 
 ;;; $8187: Common enemy speeds - linearly increasing ;;;
 CommonA3EnemySpeeds_LinearlyIncreasing:
-;        _____________________ Speed
-;       |      _______________ Subspeed
-;       |     |      _________ Negated speed
-;       |     |     |      ___ Negated subspeed
-;       |     |     |     |
-  .speed:
-    dw $0000                                                             ;A38187;
-  .subspeed:
-    dw       $0000                                                       ;A38189;
-  .negatedSpeed:
-    dw             $0000                                                 ;A3818B;
-  .negatedSubspeed:
-    dw                   $0000                                           ;A3818D;
-    dw $0000,$1000,$FFFF,$F000
-    dw $0000,$2000,$FFFF,$E000
-    dw $0000,$3000,$FFFF,$D000
-    dw $0000,$4000,$FFFF,$C000
-    dw $0000,$5000,$FFFF,$B000
-    dw $0000,$6000,$FFFF,$A000
-    dw $0000,$7000,$FFFF,$9000
-    dw $0000,$8000,$FFFF,$8000
-    dw $0000,$9000,$FFFF,$7000
-    dw $0000,$A000,$FFFF,$6000
-    dw $0000,$B000,$FFFF,$5000
-    dw $0000,$C000,$FFFF,$4000
-    dw $0000,$D000,$FFFF,$3000
-    dw $0000,$E000,$FFFF,$2000
-    dw $0000,$F000,$FFFF,$1000
-    dw $0001,$0000,$FFFF,$0000
-    dw $0001,$1000,$FFFE,$F000
-    dw $0001,$2000,$FFFE,$E000
-    dw $0001,$3000,$FFFE,$D000
-    dw $0001,$4000,$FFFE,$C000
-    dw $0001,$5000,$FFFE,$B000
-    dw $0001,$6000,$FFFE,$A000
-    dw $0001,$7000,$FFFE,$9000
-    dw $0001,$8000,$FFFE,$8000
-    dw $0001,$9000,$FFFE,$7000
-    dw $0001,$A000,$FFFE,$6000
-    dw $0001,$B000,$FFFE,$5000
-    dw $0001,$C000,$FFFE,$4000
-    dw $0001,$D000,$FFFE,$3000
-    dw $0001,$E000,$FFFE,$2000
-    dw $0001,$F000,$FFFE,$1000
-    dw $0002,$0000,$FFFE,$0000
-    dw $0002,$1000,$FFFD,$F000
-    dw $0002,$2000,$FFFD,$E000
-    dw $0002,$3000,$FFFD,$D000
-    dw $0002,$4000,$FFFD,$C000
-    dw $0002,$5000,$FFFD,$B000
-    dw $0002,$6000,$FFFD,$A000
-    dw $0002,$7000,$FFFD,$9000
-    dw $0002,$8000,$FFFD,$8000
-    dw $0002,$9000,$FFFD,$7000
-    dw $0002,$A000,$FFFD,$6000
-    dw $0002,$B000,$FFFD,$5000
-    dw $0002,$C000,$FFFD,$4000
-    dw $0002,$D000,$FFFD,$3000
-    dw $0002,$E000,$FFFD,$2000
-    dw $0002,$F000,$FFFD,$1000
-    dw $0003,$0000,$FFFD,$0000
-    dw $0003,$1000,$FFFC,$F000
-    dw $0003,$2000,$FFFC,$E000
-    dw $0003,$3000,$FFFC,$D000
-    dw $0003,$4000,$FFFC,$C000
-    dw $0003,$5000,$FFFC,$B000
-    dw $0003,$6000,$FFFC,$A000
-    dw $0003,$7000,$FFFC,$9000
-    dw $0003,$8000,$FFFC,$8000
-    dw $0003,$9000,$FFFC,$7000
-    dw $0003,$A000,$FFFC,$6000
-    dw $0003,$B000,$FFFC,$5000
-    dw $0003,$C000,$FFFC,$4000
-    dw $0003,$D000,$FFFC,$3000
-    dw $0003,$E000,$FFFC,$2000
-    dw $0003,$F000,$FFFC,$1000
-    dw $0004,$0000,$FFFC,$0000
+  .speed                                                                 ;A08187;
+skip 2
+  .subspeed                                                              ;A08189;
+skip 2
+  .negatedSpeed                                                          ;A0818B;
+skip 2
+  .negatedSubspeed                                                       ;A0818D;
+skip -6
+
+!i = 0
+if !PAL == 0
+    !n = $41
+else
+    !n = $43
+endif
+while !i < !n
+    !v #= $1000*!SPF*!i ; !i must be last in product to reproduce PAL rounding errors
+    dw !v>>$10, !v, -!v>>$10, -!v
+    !i #= !i+1
+endif
 
 
 ;;; $838F: Common enemy speeds - quadratically increasing ;;;
@@ -498,6 +441,7 @@ CommonA3EnemySpeeds_QuadraticallyIncreasing:
     dw                   $0000                                           ;A38395;
     dw $0109,$0000,$FEF7,$FFFF
     dw $031B,$0000,$FCE5,$FFFF
+if !PAL == 0
     dw $0636,$0000,$F9CA,$FFFF
     dw $0A5A,$0000,$F5A6,$FFFF
     dw $0F87,$0000,$F079,$FFFF
@@ -590,6 +534,100 @@ CommonA3EnemySpeeds_QuadraticallyIncreasing:
     dw $BC66,$0010,$439A,$FFEF
     dw $13AB,$0011,$EC55,$FFEE
     dw $74F9,$0011,$8B07,$FFEE
+else
+    dw $073F,$0000,$F8C1,$FFFF
+    dw $0B63,$0000,$F49D,$FFFF
+    dw $1199,$0000,$EE67,$FFFF
+    dw $19E1,$0000,$E61F,$FFFF
+    dw $2229,$0000,$DDD7,$FFFF
+    dw $2C83,$0000,$D37D,$FFFF
+    dw $36DD,$0000,$C923,$FFFF
+    dw $4349,$0000,$BCB7,$FFFF
+    dw $51C7,$0000,$AE39,$FFFF
+    dw $6045,$0000,$9FBB,$FFFF
+    dw $70D5,$0000,$8F2B,$FFFF
+    dw $8165,$0000,$7E9B,$FFFF
+    dw $9407,$0000,$6BF9,$FFFF
+    dw $A8BB,$0000,$5745,$FFFF
+    dw $BD6F,$0000,$4291,$FFFF
+    dw $D435,$0000,$2BCB,$FFFF
+    dw $EAFB,$0000,$1505,$FFFF
+    dw $03D3,$0001,$FC2D,$FFFE
+    dw $15BD,$0001,$EA43,$FFFE
+    dw $30A7,$0001,$CF59,$FFFE
+    dw $4DA3,$0001,$B25D,$FFFE
+    dw $6A9F,$0001,$9561,$FFFE
+    dw $89AD,$0001,$7653,$FFFE
+    dw $AACD,$0001,$5533,$FFFE
+    dw $CBED,$0001,$3413,$FFFE
+    dw $EF1F,$0001,$10E1,$FFFE
+    dw $0951,$0002,$F6AF,$FFFD
+    dw $2E95,$0002,$D16B,$FFFD
+    dw $55EB,$0002,$AA15,$FFFD
+    dw $7D41,$0002,$82BF,$FFFD
+    dw $A6A9,$0002,$5957,$FFFD
+    dw $D011,$0002,$2FEF,$FFFD
+    dw $FB8B,$0002,$0475,$FFFD
+    dw $2017,$0003,$DFE9,$FFFC
+    dw $4DA3,$0003,$B25D,$FFFC
+    dw $7D41,$0003,$82BF,$FFFC
+    dw $ACDF,$0003,$5321,$FFFC
+    dw $DE8F,$0003,$2171,$FFFC
+    dw $0951,$0004,$F6AF,$FFFB
+    dw $3D13,$0004,$C2ED,$FFFB
+    dw $72E7,$0004,$8D19,$FFFB
+    dw $A8BB,$0004,$5745,$FFFB
+    dw $E0A1,$0004,$1F5F,$FFFB
+    dw $1199,$0005,$EE67,$FFFA
+    dw $4B91,$0005,$B46F,$FFFA
+    dw $879B,$0005,$7865,$FFFA
+    dw $C3A5,$0005,$3C5B,$FFFA
+    dw $01C1,$0005,$FE3F,$FFFA
+    dw $38EF,$0006,$C711,$FFF9
+    dw $791D,$0006,$86E3,$FFF9
+    dw $BB5D,$0006,$44A3,$FFF9
+    dw $FD9D,$0006,$0263,$FFF9
+    dw $38EF,$0007,$C711,$FFF8
+    dw $7F53,$0007,$80AD,$FFF8
+    dw $C5B7,$0007,$3A49,$FFF8
+    dw $052D,$0008,$FAD3,$FFF7
+    dw $4DA3,$0008,$B25D,$FFF7
+    dw $982B,$0008,$67D5,$FFF7
+    dw $E4C5,$0008,$1B3B,$FFF7
+    dw $285F,$0009,$D7A1,$FFF6
+    dw $770B,$0009,$88F5,$FFF6
+    dw $C5B7,$0009,$3A49,$FFF6
+    dw $0D75,$000A,$F28B,$FFF5
+    dw $6045,$000A,$9FBB,$FFF5
+    dw $B315,$000A,$4CEB,$FFF5
+    dw $07F7,$000B,$F809,$FFF5
+    dw $53D9,$000B,$AC27,$FFF4
+    dw $AACD,$000B,$5533,$FFF4
+    dw $03D3,$000C,$FC2D,$FFF3
+    dw $53D9,$000C,$AC27,$FFF3
+    dw $AEF1,$000C,$510F,$FFF3
+    dw $0109,$000D,$FEF7,$FFF2
+    dw $5E33,$000D,$A1CD,$FFF2
+    dw $BD6F,$000D,$4291,$FFF2
+    dw $13AB,$000E,$EC55,$FFF1
+    dw $74F9,$000E,$8B07,$FFF1
+    dw $D647,$000E,$29B9,$FFF1
+    dw $30A7,$000F,$CF59,$FFF0
+    dw $9619,$000F,$69E7,$FFF0
+    dw $FB8B,$000F,$0475,$FFF0
+    dw $5A0F,$0010,$A5F1,$FFEF
+    dw $C193,$0010,$3E6D,$FFEF
+    dw $2229,$0011,$DDD7,$FFEE
+    dw $8DD1,$0011,$722F,$FFEE
+    dw $F979,$0011,$0687,$FFEE
+    dw $5E33,$0012,$A1CD,$FFED
+    dw $CBED,$0012,$3413,$FFED
+    dw $32B9,$0013,$CD47,$FFEC
+    dw $A497,$0013,$5B69,$FFEC
+    dw $0D75,$0014,$F28B,$FFEB
+    dw $8165,$0014,$7E9B,$FFEB
+    dw $F555,$0014,$0AAB,$FFEB
+endif
 
 
 ;;; $8687: Palette - enemy $D63F (waver) ;;;
@@ -650,25 +688,25 @@ Instruction_Waver_SetSpinFinishedFlag:
 ;;; $86ED: Initialisation AI - enemy $D63F (waver) ;;;
 InitAI_Waver:
     LDX.W EnemyIndex                                                     ;A386ED;
-    LDA.W #$0180                                                         ;A386F0;
+    LDA.W #regional($0180, $01D0)                                        ;A386F0;
     AND.W #$FF00                                                         ;A386F3;
     XBA                                                                  ;A386F6;
     STA.W Waver.XVelocity,X                                              ;A386F7;
-    LDA.W #$0180                                                         ;A386FA;
+    LDA.W #regional($0180, $01D0)                                        ;A386FA;
     AND.W #$00FF                                                         ;A386FD;
     XBA                                                                  ;A38700;
     STA.W Waver.XSubVelocity,X                                           ;A38701;
     LDA.W Enemy.init0,X                                                  ;A38704;
     AND.W #$0001                                                         ;A38707;
     BNE .facingLeft                                                      ;A3870A;
-    LDA.W #$0180                                                         ;A3870C;
+    LDA.W #regional($0180, $01D0)                                        ;A3870C;
     EOR.W #$FFFF                                                         ;A3870F;
     INC                                                                  ;A38712;
     AND.W #$FF00                                                         ;A38713;
     XBA                                                                  ;A38716;
     JSL.L Sign_Extend_A                                                  ;A38717;
     STA.W Waver.XVelocity,X                                              ;A3871B;
-    LDA.W #$0180                                                         ;A3871E;
+    LDA.W #regional($0180, $1D0)                                         ;A3871E;
     EOR.W #$FFFF                                                         ;A38721;
     INC                                                                  ;A38724;
     AND.W #$00FF                                                         ;A38725;
@@ -982,7 +1020,7 @@ DetermineMetareeYVelocity:
     SBC.W Enemy.YPosition,X                                              ;A389B0;
     STA.W $4204                                                          ;A389B3;
     SEP #$20                                                             ;A389B6;
-    LDA.B #$18                                                           ;A389B8;
+    LDA.B #regional($18, $12)                                            ;A389B8;
     STA.W $4206                                                          ;A389BA;
     REP #$20                                                             ;A389BD;
     NOP                                                                  ;A389BF;
@@ -1020,7 +1058,7 @@ Function_Metaree_PrepareToLaunchAttack:
 ;;; $89F3: Metaree function - launched attack ;;;
 Function_Metaree_LaunchedAttack:
     LDX.W EnemyIndex                                                     ;A389F3;
-    LDA.W #$0015                                                         ;A389F6;
+    LDA.W #regional($0015, $000D)                                        ;A389F6;
     STA.W Metaree.burrowTimer,X                                          ;A389F9;
     LDA.W Metaree.YVelocity,X                                            ;A389FC;
     STA.B DP_Temp14                                                      ;A389FF;
@@ -1072,7 +1110,7 @@ Function_Metaree_Burrowing:
     DEC.W Metaree.burrowTimer,X                                          ;A38A5F;
     BEQ .delete                                                          ;A38A62;
     LDA.W Metaree.burrowTimer,X                                          ;A38A64;
-    CMP.W #$0008                                                         ;A38A67;
+    CMP.W #regional($0008, $0005)                                        ;A38A67;
     BNE .timerNot8                                                       ;A38A6A;
     LDX.W EnemyIndex                                                     ;A38A6C;
     LDY.W #EnemyProjectile_MetalSkreeParticles_DownRight                 ;A38A6F;
@@ -2258,7 +2296,7 @@ ElevatorAI_1_LeavingRoom:
     STA.W ElevatorDirection                                              ;A39584;
     LDA.W Enemy.YSubPosition,X                                           ;A39587;
     CLC                                                                  ;A3958A;
-    ADC.W #$8000                                                         ;A3958B;
+    ADC.W #regional($8000, $C800)                                        ;A3958B;
     STA.W Enemy.YSubPosition,X                                           ;A3958E;
     LDA.W Enemy.YPosition,X                                              ;A39591;
     ADC.W #$0001                                                         ;A39594;
@@ -2270,7 +2308,7 @@ ElevatorAI_1_LeavingRoom:
     STA.W ElevatorDirection                                              ;A3959F;
     LDA.W Enemy.YSubPosition,X                                           ;A395A2;
     SEC                                                                  ;A395A5;
-    SBC.W #$8000                                                         ;A395A6;
+    SBC.W #regional($8000, $C800)                                        ;A395A6;
     STA.W Enemy.YSubPosition,X                                           ;A395A9;
     LDA.W Enemy.YPosition,X                                              ;A395AC;
     SBC.W #$0001                                                         ;A395AF;
@@ -2292,7 +2330,7 @@ ElevatorAI_3_EnteringRoom:
     BEQ .down                                                            ;A395C2;
     LDA.W Enemy.YSubPosition,X                                           ;A395C4;
     CLC                                                                  ;A395C7;
-    ADC.W #$8000                                                         ;A395C8;
+    ADC.W #regional($8000, $C800)                                        ;A395C8;
     STA.W Enemy.YSubPosition,X                                           ;A395CB;
     LDA.W Enemy.YPosition,X                                              ;A395CE;
     ADC.W #$0001                                                         ;A395D1;
@@ -2304,7 +2342,7 @@ ElevatorAI_3_EnteringRoom:
   .down:
     LDA.W Enemy.YSubPosition,X                                           ;A395DE;
     SEC                                                                  ;A395E1;
-    SBC.W #$8000                                                         ;A395E2;
+    SBC.W #regional($8000, $C800)                                        ;A395E2;
     STA.W Enemy.YSubPosition,X                                           ;A395E5;
     LDA.W Enemy.YPosition,X                                              ;A395E8;
     SBC.W #$0001                                                         ;A395EB;
@@ -4530,15 +4568,15 @@ Function_Mochtroid_0_NotTouchingSamus:
     SBC.B DP_Temp14                                                      ;A3A7D4;
     STA.W Mochtroid.YVelocity,X                                          ;A3A7D6;
     BMI .negativeY                                                       ;A3A7D9;
-    CMP.W #$0003                                                         ;A3A7DB;
+    CMP.W #regional($0003, $0004)                                        ;A3A7DB;
     BCC +                                                                ;A3A7DE;
-    LDA.W #$0003                                                         ;A3A7E0;
+    LDA.W #regional($0003, $0004)                                        ;A3A7E0;
     BRA .storeYVelocity                                                  ;A3A7E3;
 
   .negativeY:
-    CMP.W #$FFFD                                                         ;A3A7E5;
+    CMP.W #regional($FFFD, $FFFC)                                        ;A3A7E5;
     BCS +                                                                ;A3A7E8;
-    LDA.W #$FFFD                                                         ;A3A7EA;
+    LDA.W #regional($FFFD, $FFFC)                                        ;A3A7EA;
 
   .storeYVelocity:
     STA.W Mochtroid.YVelocity,X                                          ;A3A7ED;
@@ -4584,15 +4622,15 @@ Function_Mochtroid_0_NotTouchingSamus:
     SBC.B DP_Temp14                                                      ;A3A843;
     STA.W Mochtroid.XVelocity,X                                          ;A3A845;
     BMI .negativeX                                                       ;A3A848;
-    CMP.W #$0003                                                         ;A3A84A;
+    CMP.W #regional($0003, $0004)                                        ;A3A84A;
     BCC +                                                                ;A3A84D;
-    LDA.W #$0003                                                         ;A3A84F;
+    LDA.W #regional($0003, $0004)                                        ;A3A84F;
     BRA .storeXVelocity                                                  ;A3A852;
 
   .negativeX:
-    CMP.W #$FFFD                                                         ;A3A854;
+    CMP.W #regional($FFFD, $FFFC)                                        ;A3A854;
     BCS +                                                                ;A3A857;
-    LDA.W #$FFFD                                                         ;A3A859;
+    LDA.W #regional($FFFD, $FFFC)                                        ;A3A859;
 
   .storeXVelocity:
     STA.W Mochtroid.XVelocity,X                                          ;A3A85C;
@@ -4650,6 +4688,8 @@ UNUSED_Function_Mochtroid_2_Shaking_A3A88F:
 
 ;;; $A8C8: Mochtroid function index 1 - touching Samus ;;;
 Function_Mochtroid_1_TouchingSamus:
+    !speed #= $1000*!SPF*$10
+
     LDX.W EnemyIndex                                                     ;A3A8C8;
     LDA.W Enemy.XPosition,X                                              ;A3A8CB;
     CMP.W SamusXPosition                                                 ;A3A8CE;
@@ -4663,14 +4703,25 @@ Function_Mochtroid_1_TouchingSamus:
     BRA .moveX                                                           ;A3A8DD;
 
   .moveLeft:
+if !speed&$FFFF == 0
     STZ.W Mochtroid.XSubVelocity,X                                       ;A3A8DF;
-    LDA.W #$FFFF                                                         ;A3A8E2;
+else
+    LDA.W #-!speed&$FFFF
+    STA.W Mochtroid.XSubVelocity,X
+endif
+
+    LDA.W #-!speed>>$10                                                  ;A3A8E2;
     STA.W Mochtroid.XVelocity,X                                          ;A3A8E5;
     BRA .moveX                                                           ;A3A8E8;
 
   .moveRight:
+if !speed&$FFFF == 0
     STZ.W Mochtroid.XSubVelocity,X                                       ;A3A8EA;
-    LDA.W #$0001                                                         ;A3A8ED;
+else
+    LDA.W #!speed&$FFFF
+    STA.W Mochtroid.XSubVelocity,X
+endif
+    LDA.W #!speed>>$10                                                   ;A3A8ED;
     STA.W Mochtroid.XVelocity,X                                          ;A3A8F0;
     BRA .moveX                                                           ;A3A8F3;
 
@@ -4692,14 +4743,24 @@ Function_Mochtroid_1_TouchingSamus:
     BRA .moveY                                                           ;A3A915;
 
   .moveUp:
+if !speed&$FFFF == 0
     STZ.W Mochtroid.YSubVelocity,X                                       ;A3A917;
-    LDA.W #$FFFF                                                         ;A3A91A;
+else
+    LDA.W #-!speed&$FFFF
+    STA.W Mochtroid.YSubVelocity,X
+endif
+    LDA.W #-!speed>>$10                                                  ;A3A91A;
     STA.W Mochtroid.YVelocity,X                                          ;A3A91D;
     BRA .moveY                                                           ;A3A920;
 
   .moveDown:
+if !speed&$FFFF == 0
     STZ.W Mochtroid.YSubVelocity,X                                       ;A3A922;
-    LDA.W #$0001                                                         ;A3A925;
+else
+    LDA.W #!speed&$FFFF
+    STA.W Mochtroid.YSubVelocity,X
+endif
+    LDA.W #!speed>>$10                                                   ;A3A925;
     STA.W Mochtroid.YVelocity,X                                          ;A3A928;
     BRA .moveY                                                           ;A3A92B;
 
@@ -4710,6 +4771,8 @@ Function_Mochtroid_1_TouchingSamus:
     STA.B DP_Temp14                                                      ;A3A935;
     JSL.L MoveEnemyDownBy_14_12                                          ;A3A937;
     RTS                                                                  ;A3A93B;
+
+undef "speed"
 
 
 ;;; $A93C: Set mochtroid instruction list ;;;
@@ -5956,9 +6019,9 @@ ZoaXSpeedTable:
     dw $0000                                                             ;A3B415;
   .subSpeed:
     dw       $0000                                                       ;A3B417;
-    dw $0000,$8000
-    dw $0000,$A000
-    dw $0002,$0000
+    dw $0000,regional($8000, $A000)
+    dw $0000,regional($A000, $C000)
+    dw $0002,regional($0000, $6000)
     dw $0000,$0000
 
 
@@ -6052,7 +6115,7 @@ Function_Zoa_Rising:
   .rising:
     LDA.W #$0000                                                         ;A3B4C7;
     STA.B DP_Temp14                                                      ;A3B4CA;
-    LDA.W #$8000                                                         ;A3B4CC;
+    LDA.W #regional($8000, $A000)                                        ;A3B4CC;
     STA.B DP_Temp12                                                      ;A3B4CF;
     JSL.L MoveEnemyY_minus_12_14                                         ;A3B4D1;
     RTL                                                                  ;A3B4D5;
@@ -7281,7 +7344,7 @@ StrugglingWithMultiWordNegation:
 ; Actual result is as follows:
 ;     If [$18].[$16] = 0.0:
 ;        Return
-;     
+;
 ;     If [$16] != 0:
 ;         $1E.$1C = -[$18].[$16]
 ;     Else ([$16] = 0):
@@ -8194,9 +8257,9 @@ Function_Skree_PrepareToLaunchAttack:
 ;;; $C716: Skree function - launched attack ;;;
 Function_Skree_LaunchedAttack:
     LDX.W EnemyIndex                                                     ;A3C716;
-    LDA.W #$0015                                                         ;A3C719;
+    LDA.W #regional($0015, $000D)                                        ;A3C719;
     STA.W Skree.burrowTimer,X                                            ;A3C71C;
-    LDA.W #$0006                                                         ;A3C71F;
+    LDA.W #regional($0006, $000A)                                        ;A3C71F;
     STA.B DP_Temp14                                                      ;A3C722;
     STZ.B DP_Temp12                                                      ;A3C724;
     LDA.W Enemy.properties,X                                             ;A3C726;
@@ -8208,7 +8271,7 @@ Function_Skree_LaunchedAttack:
     LDX.W EnemyIndex                                                     ;A3C738;
     LDA.W Enemy.YPosition,X                                              ;A3C73B;
     CLC                                                                  ;A3C73E;
-    ADC.W #$0006                                                         ;A3C73F;
+    ADC.W #regional($0006, $000A)                                        ;A3C73F;
     STA.W Enemy.YPosition,X                                              ;A3C742;
     LDA.W #$0001                                                         ;A3C745;
     STA.W Temp_XVelocity                                                 ;A3C748;
@@ -8246,7 +8309,7 @@ Function_Skree_Burrowing:
     DEC.W Skree.burrowTimer,X                                            ;A3C782;
     BEQ .delete                                                          ;A3C785;
     LDA.W Skree.burrowTimer,X                                            ;A3C787;
-    CMP.W #$0008                                                         ;A3C78A;
+    CMP.W #regional($0008, $0005)                                        ;A3C78A;
     BNE .timerNot8                                                       ;A3C78D;
     LDX.W EnemyIndex                                                     ;A3C78F;
     LDY.W #EnemyProjectile_SkreeParticles_DownRight                      ;A3C792;
@@ -8916,10 +8979,10 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 ;;; $CCA2: Yard crawling speeds ;;;
 YardCrawlingSpeeds:
 ; Unit 1/100h px/frame. Indexed by [enemy parameter 1] * 2
-    dw $0040,$0080,$00C0,$0100,$0140,$0180,$01C0,$0200                   ;A3CCA2;
-    dw $0240,$0280,$02C0,$0300,$0340,$0380,$0400,$0440                   ;A3CCB2;
-    dw $0540,$0580,$05C0,$0600,$0640,$0680,$06C0,$0700                   ;A3CCC2;
-    dw $0740,$0780,$07C0,$0800,$0840,$0880,$0800,$0000                   ;A3CCD2;
+    dw $0040*!SPF,                       $0080*!SPF,$00C0*!SPF,$0100*!SPF,regional($0140, $017F),$0180*!SPF,$01C0*!SPF,$0200*!SPF ;A3CCA2;
+    dw $0240*!SPF,regional($0280, $02FF),$02C0*!SPF,$0300*!SPF,$0340*!SPF,                       $0380*!SPF,$0400*!SPF,$0440*!SPF ;A3CCB2;
+    dw $0540*!SPF,                       $0580*!SPF,$05C0*!SPF,$0600*!SPF,regional($0640, $077F),$0680*!SPF,$06C0*!SPF,$0700*!SPF ;A3CCC2;
+    dw $0740*!SPF,regional($0780, $08FF),$07C0*!SPF,$0800*!SPF,$0840*!SPF,                       $0880*!SPF,$0800*!SPF,$0000*!SPF ;A3CCD2;
 
 
 ;;; $CCE2: Yard turn data ;;;
@@ -9682,7 +9745,7 @@ Function_Yard_Movement_Airborne:
     BCS .hitWall                                                         ;A3D1CC;
     LDA.L Yard.airborneXVelocity,X                                       ;A3D1CE;
     BMI .right                                                           ;A3D1D2;
-    LDA.W #$1000                                                         ;A3D1D4;
+    LDA.W #$100*!SPF*$10                                                 ;A3D1D4;
     EOR.W #$FFFF                                                         ;A3D1D7;
     INC                                                                  ;A3D1DA;
     STA.B DP_Temp16                                                      ;A3D1DB;
@@ -9692,7 +9755,7 @@ Function_Yard_Movement_Airborne:
     BRA +                                                                ;A3D1E5;
 
   .right:
-    LDA.W #$1000                                                         ;A3D1E7;
+    LDA.W #$100*!SPF*$10                                                 ;A3D1E7;
     STA.B DP_Temp16                                                      ;A3D1EA;
     LDA.W #$0000                                                         ;A3D1EC;
     STA.B DP_Temp18                                                      ;A3D1EF;
@@ -9733,7 +9796,7 @@ Function_Yard_Movement_Airborne:
     BCS .collidedVertically                                              ;A3D243;
     CLC                                                                  ;A3D245;
     LDA.L Yard.airborneYSubVelocity,X                                    ;A3D246;
-    ADC.W #$2000                                                         ;A3D24A;
+    ADC.W #$200*!SPF*$10                                                 ;A3D24A;
     STA.L Yard.airborneYSubVelocity,X                                    ;A3D24D;
     LDA.L Yard.airborneYVelocity,X                                       ;A3D251;
     ADC.W #$0000                                                         ;A3D255;
@@ -11038,25 +11101,61 @@ EnemyShot_Reflec:
 
   .reflectedDirectionTable_offsetNegatives:                              ;A3DD2E;
 ; Offset function for negative entries of above table
-;        _______________________________________________________ Up, facing right
-;       |      _________________________________________________ Up-right
-;       |     |      ___________________________________________ Right
-;       |     |     |      _____________________________________ Down-right
-;       |     |     |     |      _______________________________ Down, facing right
-;       |     |     |     |     |      _________________________ Down, facing left
-;       |     |     |     |     |     |      ___________________ Down-left
-;       |     |     |     |     |     |     |      _____________ Left
-;       |     |     |     |     |     |     |     |      _______ Up-left
-;       |     |     |     |     |     |     |     |     |      _ Up, facing left
-;       |     |     |     |     |     |     |     |     |     |
-    dw $0000,$DDAE,$0000,$DDAE,$0000,$0000,$DDCF,$0000,$DDCF,$0000, $0000,$0000,$0000,$0000,$0000,$0000 ; 0: Vertical
-    dw $DDF0,$0000,$DE0D,$0000,$DE2A,$DE2A,$0000,$DE47,$0000,$DDF0, $0000,$0000,$0000,$0000,$0000,$0000 ; 1: Up-right diagonal
-    dw $0000,$DE64,$0000,$DE85,$0000,$0000,$DE85,$0000,$DE64,$0000, $0000,$0000,$0000,$0000,$0000,$0000 ; 2: Horizontal
-    dw $DEA6,$0000,$DEC3,$0000,$DEE0,$DEE0,$0000,$DEFD,$0000,$DEA6, $0000,$0000,$0000,$0000,$0000,$0000 ; 3: Down-right diagonal
+    ; 0: Vertical
+    dw $0000                       ; Up, facing right
+    dw .vertical_UpRight_DownRight ; Up-right
+    dw $0000                       ; Right
+    dw .vertical_UpRight_DownRight ; Down-right
+    dw $0000                       ; Down, facing right
+    dw $0000                       ; Down, facing left
+    dw .vertical_UpLeft_DownLeft   ; Down-left
+    dw $0000                       ; Left
+    dw .vertical_UpLeft_DownLeft   ; Up-left
+    dw $0000                       ; Up, facing left
+    dw $0000,$0000,$0000,$0000,$0000,$0000
+
+    ; 1: Up-right diagonal
+    dw .upRightDiagonal_Up    ; Up, facing right
+    dw $0000                  ; Up-right               
+    dw .upRightDiagonal_Right ; Right
+    dw $0000                  ; Down-right
+    dw .upRightDiagonal_Down  ; Down, facing right
+    dw .upRightDiagonal_Down  ; Down, facing left
+    dw $0000                  ; Down-left
+    dw .upRightDiagonal_Left  ; Left
+    dw $0000                  ; Up-left
+    dw .upRightDiagonal_Up    ; Up, facing left
+    dw $0000,$0000,$0000,$0000,$0000,$0000
+
+    ; 2: Horizontal
+    dw $0000                          ; Up, facing right
+    dw .horizontal_UpRight_UpLeft     ; Up-right               
+    dw $0000                          ; Right
+    dw .horizontal_DownRight_DownLeft ; Down-right
+    dw $0000                          ; Down, facing right
+    dw $0000                          ; Down, facing left
+    dw .horizontal_DownRight_DownLeft ; Down-left
+    dw $0000                          ; Left
+    dw .horizontal_UpRight_UpLeft     ; Up-left
+    dw $0000                          ; Up, facing left
+    dw $0000,$0000,$0000,$0000,$0000,$0000
+
+    ; 3: Down-right diagonal
+    dw .downRightDiagonal_Up    ; Up, facing right
+    dw $0000                    ; Up-right               
+    dw .downRightDiagonal_Right ; Right
+    dw $0000                    ; Down-right
+    dw .downRightDiagonal_Down  ; Down, facing right
+    dw .downRightDiagonal_Down  ; Down, facing left
+    dw $0000                    ; Down-left
+    dw .downRightDiagonal_Left  ; Left
+    dw $0000                    ; Up-left
+    dw .downRightDiagonal_Up    ; Up, facing left
+    dw $0000,$0000,$0000,$0000,$0000,$0000
 
 
 ;;; $DDAE: Reflection offset function - vertical - up-right / down-right ;;;
-Function_Reflec_ReflectionOffset_Vertical_UpRight_DownRight:
+  .vertical_UpRight_DownRight:
     LDX.W EnemyIndex                                                     ;A3DDAE;
     LDA.W Enemy.XPosition,X                                              ;A3DDB1;
     SEC                                                                  ;A3DDB4;
@@ -11066,17 +11165,17 @@ Function_Reflec_ReflectionOffset_Vertical_UpRight_DownRight:
     CLC                                                                  ;A3DDBE;
     ADC.W SamusProjectile_XRadii,Y                                       ;A3DDBF;
     CMP.W Temp_Unknown0E36                                               ;A3DDC2;
-    BPL .return1                                                         ;A3DDC5;
+    BPL ..return1                                                        ;A3DDC5;
     LDA.W #$0000                                                         ;A3DDC7;
     RTS                                                                  ;A3DDCA;
 
-  .return1:
+  ..return1:
     LDA.W #$0001                                                         ;A3DDCB;
     RTS                                                                  ;A3DDCE;
 
 
 ;;; $DDCF: Reflection offset function - vertical - up-left / down-left ;;;
-Function_Reflec_ReflectionOffset_Vertical_UpLeft_DownLeft:
+  .vertical_UpLeft_DownLeft:
     LDX.W EnemyIndex                                                     ;A3DDCF;
     LDA.W Enemy.XPosition,X                                              ;A3DDD2;
     CLC                                                                  ;A3DDD5;
@@ -11086,17 +11185,17 @@ Function_Reflec_ReflectionOffset_Vertical_UpLeft_DownLeft:
     SEC                                                                  ;A3DDDF;
     SBC.W SamusProjectile_XRadii,Y                                       ;A3DDE0;
     CMP.W Temp_Unknown0E36                                               ;A3DDE3;
-    BMI .return1                                                         ;A3DDE6;
+    BMI ..return1                                                        ;A3DDE6;
     LDA.W #$0000                                                         ;A3DDE8;
     RTS                                                                  ;A3DDEB;
 
-  .return1:
+  ..return1:
     LDA.W #$0001                                                         ;A3DDEC;
     RTS                                                                  ;A3DDEF;
 
 
 ;;; $DDF0: Reflection offset function - up-right diagonal - up ;;;
-Function_Reflec_ReflectionOffset_UpRightDiagonal_Up:
+  .upRightDiagonal_Up:
     LDX.W EnemyIndex                                                     ;A3DDF0;
     LDA.W Enemy.XPosition,X                                              ;A3DDF3;
     STA.W Temp_Unknown0E36                                               ;A3DDF6;
@@ -11104,17 +11203,17 @@ Function_Reflec_ReflectionOffset_UpRightDiagonal_Up:
     CLC                                                                  ;A3DDFC;
     ADC.W SamusProjectile_XRadii,Y                                       ;A3DDFD;
     CMP.W Temp_Unknown0E36                                               ;A3DE00;
-    BMI .return1                                                         ;A3DE03;
+    BMI ..return1                                                        ;A3DE03;
     LDA.W #$0000                                                         ;A3DE05;
     RTS                                                                  ;A3DE08;
 
-  .return1:
+  ..return1:
     LDA.W #$0001                                                         ;A3DE09;
     RTS                                                                  ;A3DE0C;
 
 
 ;;; $DE0D: Reflection offset function - up-right diagonal - right ;;;
-Function_Reflec_ReflectionOffset_UpRightDiagonal_Right:
+  .upRightDiagonal_Right:
     LDX.W EnemyIndex                                                     ;A3DE0D;
     LDA.W Enemy.YPosition,X                                              ;A3DE10;
     STA.W Temp_Unknown0E36                                               ;A3DE13;
@@ -11122,17 +11221,17 @@ Function_Reflec_ReflectionOffset_UpRightDiagonal_Right:
     SEC                                                                  ;A3DE19;
     SBC.W SamusProjectile_YRadii,Y                                       ;A3DE1A;
     CMP.W Temp_Unknown0E36                                               ;A3DE1D;
-    BPL .return1                                                         ;A3DE20;
+    BPL ..return1                                                        ;A3DE20;
     LDA.W #$0000                                                         ;A3DE22;
     RTS                                                                  ;A3DE25;
 
-  .return1:
+  ..return1:
     LDA.W #$0001                                                         ;A3DE26;
     RTS                                                                  ;A3DE29;
 
 
 ;;; $DE2A: Reflection offset function - up-right diagonal - down ;;;
-Function_Reflec_ReflectionOffset_UpRightDiagonal_Down:
+  .upRightDiagonal_Down:
     LDX.W EnemyIndex                                                     ;A3DE2A;
     LDA.W Enemy.XPosition,X                                              ;A3DE2D;
     STA.W Temp_Unknown0E36                                               ;A3DE30;
@@ -11140,17 +11239,17 @@ Function_Reflec_ReflectionOffset_UpRightDiagonal_Down:
     SEC                                                                  ;A3DE36;
     SBC.W SamusProjectile_XRadii,Y                                       ;A3DE37;
     CMP.W Temp_Unknown0E36                                               ;A3DE3A;
-    BPL .return1                                                         ;A3DE3D;
+    BPL ..return1                                                        ;A3DE3D;
     LDA.W #$0000                                                         ;A3DE3F;
     RTS                                                                  ;A3DE42;
 
-  .return1:
+  ..return1:
     LDA.W #$0001                                                         ;A3DE43;
     RTS                                                                  ;A3DE46;
 
 
 ;;; $DE47: Reflection offset function - up-right diagonal - left ;;;
-Function_Reflec_ReflectionOffset_UpRightDiagonal_Left:
+  .upRightDiagonal_Left:
     LDX.W EnemyIndex                                                     ;A3DE47;
     LDA.W Enemy.YPosition,X                                              ;A3DE4A;
     STA.W Temp_Unknown0E36                                               ;A3DE4D;
@@ -11158,17 +11257,17 @@ Function_Reflec_ReflectionOffset_UpRightDiagonal_Left:
     CLC                                                                  ;A3DE53;
     ADC.W SamusProjectile_YRadii,Y                                       ;A3DE54;
     CMP.W Temp_Unknown0E36                                               ;A3DE57;
-    BMI .return1                                                         ;A3DE5A;
+    BMI ..return1                                                        ;A3DE5A;
     LDA.W #$0000                                                         ;A3DE5C;
     RTS                                                                  ;A3DE5F;
 
-  .return1:
+  ..return1:
     LDA.W #$0001                                                         ;A3DE60;
     RTS                                                                  ;A3DE63;
 
 
 ;;; $DE64: Reflection offset function - horizontal - up-right / up-left ;;;
-Function_Reflec_ReflectionOffset_Horizontal_UpRight_UpLeft:
+  .horizontal_UpRight_UpLeft:
     LDX.W EnemyIndex                                                     ;A3DE64;
     LDA.W Enemy.YPosition,X                                              ;A3DE67;
     CLC                                                                  ;A3DE6A;
@@ -11178,17 +11277,17 @@ Function_Reflec_ReflectionOffset_Horizontal_UpRight_UpLeft:
     SEC                                                                  ;A3DE74;
     SBC.W SamusProjectile_YRadii,Y                                       ;A3DE75;
     CMP.W Temp_Unknown0E36                                               ;A3DE78;
-    BMI .return1                                                         ;A3DE7B;
+    BMI ..return1                                                        ;A3DE7B;
     LDA.W #$0000                                                         ;A3DE7D;
     RTS                                                                  ;A3DE80;
 
-  .return1:
+  ..return1:
     LDA.W #$0001                                                         ;A3DE81;
     RTS                                                                  ;A3DE84;
 
 
 ;;; $DE85: Reflection offset function - horizontal - down-right / down-left ;;;
-Func_Reflec_ReflectionOffset_Horizontal_DownRight_DownLeft:
+  .horizontal_DownRight_DownLeft:
     LDX.W EnemyIndex                                                     ;A3DE85;
     LDA.W Enemy.YPosition,X                                              ;A3DE88;
     SEC                                                                  ;A3DE8B;
@@ -11198,17 +11297,17 @@ Func_Reflec_ReflectionOffset_Horizontal_DownRight_DownLeft:
     CLC                                                                  ;A3DE95;
     ADC.W SamusProjectile_YRadii,Y                                       ;A3DE96;
     CMP.W Temp_Unknown0E36                                               ;A3DE99;
-    BPL .return1                                                         ;A3DE9C;
+    BPL ..return1                                                        ;A3DE9C;
     LDA.W #$0000                                                         ;A3DE9E;
     RTS                                                                  ;A3DEA1;
 
-  .return1:
+  ..return1:
     LDA.W #$0001                                                         ;A3DEA2;
     RTS                                                                  ;A3DEA5;
 
 
 ;;; $DEA6: Reflection offset function - down-right diagonal - up ;;;
-Function_Reflec_ReflectionOffset_DownRightDiagonal_Up:
+  .downRightDiagonal_Up:
     LDX.W EnemyIndex                                                     ;A3DEA6;
     LDA.W Enemy.XPosition,X                                              ;A3DEA9;
     STA.W Temp_Unknown0E36                                               ;A3DEAC;
@@ -11216,17 +11315,17 @@ Function_Reflec_ReflectionOffset_DownRightDiagonal_Up:
     SEC                                                                  ;A3DEB2;
     SBC.W SamusProjectile_XRadii,Y                                       ;A3DEB3;
     CMP.W Temp_Unknown0E36                                               ;A3DEB6;
-    BMI .return1                                                         ;A3DEB9;
+    BMI ..return1                                                        ;A3DEB9;
     LDA.W #$0000                                                         ;A3DEBB;
     RTS                                                                  ;A3DEBE;
 
-  .return1:
+  ..return1:
     LDA.W #$0001                                                         ;A3DEBF;
     RTS                                                                  ;A3DEC2;
 
 
 ;;; $DEC3: Reflection offset function - down-right diagonal - right ;;;
-Function_Reflec_ReflectionOffset_DownRightDiagonal_Right:
+  .downRightDiagonal_Right:
     LDX.W EnemyIndex                                                     ;A3DEC3;
     LDA.W Enemy.YPosition,X                                              ;A3DEC6;
     STA.W Temp_Unknown0E36                                               ;A3DEC9;
@@ -11234,17 +11333,17 @@ Function_Reflec_ReflectionOffset_DownRightDiagonal_Right:
     CLC                                                                  ;A3DECF;
     ADC.W SamusProjectile_YRadii,Y                                       ;A3DED0;
     CMP.W Temp_Unknown0E36                                               ;A3DED3;
-    BPL .return0                                                         ;A3DED6;
+    BPL ..return0                                                        ;A3DED6;
     LDA.W #$0001                                                         ;A3DED8;
     RTS                                                                  ;A3DEDB;
 
-  .return0:
+  ..return0:
     LDA.W #$0000                                                         ;A3DEDC;
     RTS                                                                  ;A3DEDF;
 
 
 ;;; $DEE0: Reflection offset function - down-right diagonal - down ;;;
-Function_Reflec_ReflectionOffset_DownRightDiagonal_Down:
+  .downRightDiagonal_Down:
     LDX.W EnemyIndex                                                     ;A3DEE0;
     LDA.W Enemy.XPosition,X                                              ;A3DEE3;
     STA.W Temp_Unknown0E36                                               ;A3DEE6;
@@ -11252,17 +11351,17 @@ Function_Reflec_ReflectionOffset_DownRightDiagonal_Down:
     SEC                                                                  ;A3DEEC;
     SBC.W SamusProjectile_XRadii,Y                                       ;A3DEED;
     CMP.W Temp_Unknown0E36                                               ;A3DEF0;
-    BMI .return1                                                         ;A3DEF3;
+    BMI ..return1                                                        ;A3DEF3;
     LDA.W #$0000                                                         ;A3DEF5;
     RTS                                                                  ;A3DEF8;
 
-  .return1:
+  ..return1:
     LDA.W #$0001                                                         ;A3DEF9;
     RTS                                                                  ;A3DEFC;
 
 
 ;;; $DEFD: Reflection offset function - down-right diagonal - left ;;;
-Function_Reflec_ReflectionOffset_DownRightDiagonal_Left:
+  .downRightDiagonal_Left:
     LDX.W EnemyIndex                                                     ;A3DEFD;
     LDA.W Enemy.YPosition,X                                              ;A3DF00;
     STA.W Temp_Unknown0E36                                               ;A3DF03;
@@ -11270,11 +11369,11 @@ Function_Reflec_ReflectionOffset_DownRightDiagonal_Left:
     SEC                                                                  ;A3DF09;
     SBC.W SamusProjectile_YRadii,Y                                       ;A3DF0A;
     CMP.W Temp_Unknown0E36                                               ;A3DF0D;
-    BPL .return1                                                         ;A3DF10;
+    BPL ..return1                                                        ;A3DF10;
     LDA.W #$0000                                                         ;A3DF12;
     RTS                                                                  ;A3DF15;
 
-  .return1:
+  ..return1:
     LDA.W #$0001                                                         ;A3DF16;
     RTS                                                                  ;A3DF19;
 
@@ -12023,10 +12122,10 @@ Palette_MZoomer:
 ;;; $E5F0: Creepy crawly speed table ;;;
 CrawlersSpeedTable:
 ; Speed. Unit is 1/100h px/frame. Indexed by [enemy parameter 1] * 2
-    dw $0040,$0080,$00C0,$0100,$0140,$0180,$01C0,$0200                   ;A3E5F0;
-    dw $0240,$0280,$02C0,$0300,$0340,$0380,$0400,$0440                   ;A3E600;
-    dw $0540,$0580,$05C0,$0600,$0640,$0680,$06C0,$0700                   ;A3E610;
-    dw $0740,$0780,$07C0,$0800,$0840,$0880,$0800,$0000                   ;A3E620;
+    dw $0040*!SPF,                       $0080*!SPF,$00C0*!SPF,$0100*!SPF,regional($0140, $017F),$0180*!SPF,$01C0*!SPF,$0200*!SPF ;A3E5F0;
+    dw $0240*!SPF,regional($0280, $02FF),$02C0*!SPF,$0300*!SPF,$0340*!SPF,                       $0380*!SPF,$0400*!SPF,$0440*!SPF ;A3E600;
+    dw $0540*!SPF,                       $0580*!SPF,$05C0*!SPF,$0600*!SPF,regional($0640, $077F),$0680*!SPF,$06C0*!SPF,$0700*!SPF ;A3E610;
+    dw $0740*!SPF,regional($0780, $08FF),$07C0*!SPF,$0800*!SPF,$0840*!SPF,                       $0880*!SPF,$0800*!SPF,$0000*!SPF ;A3E620;
 
 
 ;;; $E630: Creepy crawly instruction list pointer table ;;;
@@ -12261,7 +12360,7 @@ Function_Crawlers_Falling:
     BPL .fallSpeedCapped                                                 ;A3E7C6;
     LDA.L Crawler.fallingYSubVelocity,X                                  ;A3E7C8;
     CLC                                                                  ;A3E7CC;
-    ADC.W #$8000                                                         ;A3E7CD;
+    ADC.W #regional($8000, $A000)                                        ;A3E7CD;
     STA.L Crawler.fallingYSubVelocity,X                                  ;A3E7D0;
     LDA.L Crawler.fallingYVelocity,X                                     ;A3E7D4;
     ADC.W #$0000                                                         ;A3E7D8;
@@ -12764,15 +12863,15 @@ Function_Metroid_0_ChaseSamus:
     SBC.B DP_Temp14                                                      ;A3EC3B;
     STA.W Metroid.YVelocity,X                                            ;A3EC3D;
     BMI .negativeY                                                       ;A3EC40;
-    CMP.W #$0003                                                         ;A3EC42;
+    CMP.W #regional($0003, $0004)                                        ;A3EC42;
     BCC .moveDown                                                        ;A3EC45;
-    LDA.W #$0003                                                         ;A3EC47;
+    LDA.W #regional($0003, $0004)                                        ;A3EC47;
     BRA .storeYVelocity                                                  ;A3EC4A;
 
   .negativeY:
-    CMP.W #$FFFD                                                         ;A3EC4C;
+    CMP.W #regional($FFFD, $FFFC)                                        ;A3EC4C;
     BCS .moveDown                                                        ;A3EC4F;
-    LDA.W #$FFFD                                                         ;A3EC51;
+    LDA.W #regional($FFFD, $FFFC)                                        ;A3EC51;
 
   .storeYVelocity:
     STA.W Metroid.YVelocity,X                                            ;A3EC54;
@@ -12814,15 +12913,15 @@ Function_Metroid_0_ChaseSamus:
     SBC.B DP_Temp14                                                      ;A3ECA0;
     STA.W Metroid.XVelocity,X                                            ;A3ECA2;
     BMI .negativeX                                                       ;A3ECA5;
-    CMP.W #$0003                                                         ;A3ECA7;
+    CMP.W #regional($0003, $0004)                                        ;A3ECA7;
     BCC .moveRight                                                       ;A3ECAA;
-    LDA.W #$0003                                                         ;A3ECAC;
+    LDA.W #regional($0003, $0004)                                        ;A3ECAC;
     BRA .storeXVelocity                                                  ;A3ECAF;
 
   .negativeX:
-    CMP.W #$FFFD                                                         ;A3ECB1;
+    CMP.W #regional($FFFD, $FFFC)                                        ;A3ECB1;
     BCS .moveRight                                                       ;A3ECB4;
-    LDA.W #$FFFD                                                         ;A3ECB6;
+    LDA.W #regional($FFFD, $FFFC)                                        ;A3ECB6;
 
   .storeXVelocity:
     STA.W Metroid.XVelocity,X                                            ;A3ECB9;
@@ -12873,15 +12972,15 @@ Function_Metroid_1_LatchOntoSamus:
 
 +   LDA.B DP_Temp14                                                      ;A3ECFF;
     BMI .negativeY                                                       ;A3ED01;
-    CMP.W #$0003                                                         ;A3ED03;
+    CMP.W #regional($0003, $0004)                                        ;A3ED03;
     BCC .moveDown                                                        ;A3ED06;
-    LDA.W #$0003                                                         ;A3ED08;
+    LDA.W #regional($0003, $0004)                                        ;A3ED08;
     BRA .alwaysClamped                                                   ;A3ED0B;
 
   .negativeY:
-    CMP.W #$FFFD                                                         ;A3ED0D;
+    CMP.W #regional($FFFD, $FFFC)                                        ;A3ED0D;
     BCS .moveDown                                                        ;A3ED10;
-    LDA.W #$FFFD                                                         ;A3ED12;
+    LDA.W #regional($FFFD, $FFFC)                                        ;A3ED12;
 
   .alwaysClamped:
     STA.B DP_Temp14                                                      ;A3ED15;
@@ -12920,15 +13019,15 @@ Function_Metroid_1_LatchOntoSamus:
 
 +   LDA.B DP_Temp14                                                      ;A3ED58;
     BMI .negativeX                                                       ;A3ED5A;
-    CMP.W #$0003                                                         ;A3ED5C;
+    CMP.W #regional($0003, $0004)                                        ;A3ED5C;
     BCC .moveRight                                                       ;A3ED5F;
-    LDA.W #$0003                                                         ;A3ED61;
+    LDA.W #regional($0003, $0004)                                        ;A3ED61;
     BRA .storeXVelocity                                                  ;A3ED64;
 
   .negativeX:
-    CMP.W #$FFFD                                                         ;A3ED66;
+    CMP.W #regional($FFFD, $FFFC)                                        ;A3ED66;
     BCS .moveRight                                                       ;A3ED69;
-    LDA.W #$FFFD                                                         ;A3ED6B;
+    LDA.W #regional($FFFD, $FFFC)                                        ;A3ED6B;
 
   .storeXVelocity:
     STA.B DP_Temp14                                                      ;A3ED6E;
@@ -13202,7 +13301,7 @@ EnemyShot_Metroid:
     AND.W #$0F00                                                         ;A3EF84;
     CMP.W #$0500                                                         ;A3EF87;
     BNE .returnLower                                                     ;A3EF8A;
-    LDA.W #$0004                                                         ;A3EF8C;
+    LDA.W #regional($0004, $0005)                                        ;A3EF8C;
     STA.W Metroid.bombedOffSamusCooldownTimer,X                          ;A3EF8F;
     LDA.W #$0003                                                         ;A3EF92;
     STA.W Metroid.functionIndex,X                                        ;A3EF95;

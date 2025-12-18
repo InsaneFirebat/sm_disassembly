@@ -33,9 +33,11 @@ SM_NTSC_SHA256 = "12b77c4bc9c1832cee8881244659065ee1d84c70c3d29e6eaf92e6798cc2ca
 
 def make_argument_parser():
     parser = argparse.ArgumentParser(
-            description="Splits out data from an SM rom into separate data files for use with the disassembly.")
+            description="Splits out data from an SM ROM into separate data files for use with the disassembly.")
     parser.add_argument('rom_file', type=argparse.FileType('rb'),
-            help="Path to input ROM file. Must be an unheadered SM NTSC ROM.")
+            help="Path to input ROM file. Must be an unheadered SM NTSC or PAL ROM.")
+    parser.add_argument('--pal', action='store_true',
+            help="Rip assets for PAL build from PAL ROM")
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument('--output', '-o', type=Path,
             help="Directory to output split files to. Will be created if it doesn't exist.")
@@ -82,19 +84,24 @@ def write_file(path, data):
         path.write_bytes(data)
 
 
-def dump_rom(rom_data, output_path):
+def dump_rom(rom_data, output_path, is_pal):
     def dump_range(lorom_addr_start, lorom_addr_end, filename):
         offset_start = addr_to_lorom_offset(lorom_addr_start)
-        offset_end = addr_to_lorom_offset(lorom_addr_end)
-        if offset_start >= len(rom_data) or offset_end >= len(rom_data):
-            raise ValueError("File offset out of bounds")
-
-        data_to_dump = rom_data[offset_start:offset_end + 1]
-        write_file(output_path / filename, data_to_dump)
-
+        offset_end = addr_to_lorom_offset(lorom_addr_end) # inclusive end
+        dump(lorom_addr_start, offset_end + 1 - offset_start, filename)
 
     def dump(lorom_addr, length, filename):
-        dump_range(lorom_addr, lorom_addr + length - 1, filename)
+        hex2snes = lambda address: address << 1 & 0xFF0000 | address & 0xFFFF | 0x808000
+        
+        offset_start = addr_to_lorom_offset(lorom_addr)
+        offset_end = offset_start + length
+        if offset_end > len(rom_data):
+            raise ValueError("File offset out of bounds")
+
+        data_to_dump = rom_data[offset_start:offset_end]
+        write_file(output_path / filename, data_to_dump)
+        
+        return hex2snes(offset_end)
 
 
 #    dump(0x80_8000, 0x8000, "bank_80.bin") # System routines
@@ -105,7 +112,10 @@ def dump_rom(rom_data, output_path):
 #    dump(0x85_8000, 0x8000, "bank_85.bin") # Message boxes
 
 #    dump(0x86_8000, 0x8000, "bank_86.bin") # Enemy projectiles
-    dump(0x86_A9BD, 0x0080, "Tiles_EnemyProj_QuestionMark.bin") # Enemy projectiles
+    if not is_pal:
+        dump(0x86_A9BD, 0x0080, "Tiles_EnemyProj_QuestionMark.bin") # Enemy projectiles
+    else:
+        dump(0x86_A9F9, 0x0080, "Tiles_EnemyProj_QuestionMark.bin") # Enemy projectiles
 
 #    dump(0x87_8000, 0x8000, "bank_87.bin") # Animated tiles
     dump(0x87_8564, 0x0200, "AnimatedTiles_CrateriaLake_0.bin")
@@ -217,60 +227,81 @@ def dump_rom(rom_data, output_path):
 
 #    dump(0x94_8000, 0x8000, "bank_94.bin") # Block properties, some cutscene graphics
     dump(0x94_C800, 0x1400, "Tiles_GunshipLiftoffDustClouds.bin")
-    dump_range(0x94_E000, 0x95_80D7, "Tiles_Title_Background_Mode7.bin")
+    
+    p = 0x94_E000
+    p = dump(p, 0x20D8, "Tiles_Title_Background_Mode7.bin")
 
 #    dump(0x95_8000, 0x8000, "bank_95.bin") # Cutscene graphics
-    dump(0x95_80D8, 0x2509, "Tiles_Title_Sprite.bin")
-    dump(0x95_A5E1, 0x024E, "Tiles_Baby_Metroid_Mode7.bin")
-    dump(0x95_A82F, 0x285A, "Tiles_Gunship_Ceres_Mode7.bin")
-    dump(0x95_D089, 0x068A, "Tiles_Font1_BG3.bin")
-    dump(0x95_D713, 0x0DAF, "Tiles_Font2_BG3.bin")
-    dump(0x95_E4C2, 0x144C, "Tiles_Intro_Sprite.bin")
-    dump_range(0x95_F90E, 0x96_D109, "Tiles_Intro_BG1_BG2.bin")
+    p = dump(p, 0x2509, "Tiles_Title_Sprite.bin")
+    p = dump(p, 0x024E, "Tiles_Baby_Metroid_Mode7.bin")
+    p = dump(p, 0x285A, "Tiles_Gunship_Ceres_Mode7.bin")
+    if not is_pal:
+        p = dump(p, 0x068A, "Tiles_Font1_BG3.bin")
+        p = dump(p, 0x0DAF, "Tiles_Font2_BG3.bin")
+    else:
+        p = dump(p, 0x07E5, "Tiles_Font1_BG3_PAL.bin")
+        p = dump(p, 0x0709, "Intro_BG3_Text_Tilemap_PAL.bin")
+
+    p = dump(p, 0x144C, "Tiles_Intro_Sprite.bin")
+    p = dump(p, 0x57FC, "Tiles_Intro_BG1_BG2.bin")
 
 #    dump(0x96_8000, 0x8000, "bank_96.bin") # Cutscene graphics
-    dump(0x96_D10A, 0x1B6C, "Tiles_Space_Ceres.bin")
-    dump(0x96_EC76, 0x0F8E, "Tiles_Zebes.bin")
-    dump(0x96_FC04, 0x0265, "Title_Mode7_Tilemap.bin")
-    dump(0x96_FE69, 0x00AB, "Gunship_Ceres_Tilemap.bin")
-    dump_range(0x96_FF14, 0x97_88CB, "Intro_BG1_MotherBrainsRoom_Tilemap.bin")
+    if not is_pal:
+        p = dump(p, 0x1B6C, "Tiles_Space_Ceres.bin")
+        p = dump(p, 0x0F8E, "Tiles_Zebes.bin")
+    else:
+        p = dump(p, 0x1CE9, "Tiles_Space_Ceres_PAL.bin")
+        p = dump(p, 0x109A, "Tiles_Zebes_PAL.bin")
+
+    p = dump(p, 0x0265, "Title_Mode7_Tilemap.bin")
+    p = dump(p, 0x00AB, "Gunship_Ceres_Tilemap.bin")
+    p = dump(p, 0x09B8, "Intro_BG1_MotherBrainsRoom_Tilemap.bin")
 
 #    dump(0x97_8000, 0x8000, "bank_97.bin") # Cutscene graphics
-    dump(0x97_88CC, 0x020F, "Intro_BG2_SamusHead_Tilemap.bin")
-    dump(0x97_8ADB, 0x0237, "Zebes_Tilemap.bin")
-    dump(0x97_8D12, 0x00E2, "Intro_BG3_TheLastMetroidIsInCaptivity_Tilemap.bin")
-    dump(0x97_8DF4, 0x01D9, "GameOptionsMenu_OptionsScreen_Tilemap.bin")
-    dump(0x97_8FCD, 0x01F7, "GameOptionsMenu_ControllerSettings_English_Tilemap.bin")
-    dump(0x97_91C4, 0x01C9, "GameOptionsMenu_ControllerSettings_Japanese_Tilemap.bin")
-    dump(0x97_938D, 0x01AD, "GameOptionsMenu_SpecialSettings_English_Tilemap.bin")
-    dump(0x97_953A, 0x01BA, "GameOptionsMenu_SpecialSettings_Japanese_Tilemap.bin")
-    dump(0x97_96F4, 0x010F, "Samus_Waiting_for_Credits_to_End_Tilemap.bin")
-    dump(0x97_9803, 0x2154, "Tiles_Samus_Waiting_for_Credits_to_End.bin")
-    dump(0x97_B957, 0x1EA5, "Tiles_PostCredits_SuitlessSamus.bin")
-    dump(0x97_D7FC, 0x0FE2, "Tiles_PostCredits_Samus_Shooting_the_Screen.bin")
-    dump(0x97_E7DE, 0x0721, "Tiles_Font3_Background.bin")
-    dump(0x97_EEFF, 0x0A88, "Credits_Tilemap.bin")
-    dump_range(0x97_F987, 0x98_8303, "InterleavedTilesTilemapPostCreditsSamusBeamMode7.bin")
+    p = dump(p, 0x020F, "Intro_BG2_SamusHead_Tilemap.bin")
+    p = dump(p, 0x0237, "Zebes_Tilemap.bin")
+    p = dump(p, 0x00E2, "Intro_BG3_TheLastMetroidIsInCaptivity_Tilemap.bin")
+    if not is_pal:
+        p = dump(p, 0x01D9, "GameOptionsMenu_OptionsScreen_Tilemap.bin")
+    else:
+        p = dump(p, 0x019E, "GameOptionsMenu_OptionsScreen_Tilemap_PAL.bin")
+
+    p = dump(p, 0x01F7, "GameOptionsMenu_ControllerSettings_English_Tilemap.bin")
+    p = dump(p, 0x01C9, "GameOptionsMenu_ControllerSettings_Japanese_Tilemap.bin")
+    p = dump(p, 0x01AD, "GameOptionsMenu_SpecialSettings_English_Tilemap.bin")
+    p = dump(p, 0x01BA, "GameOptionsMenu_SpecialSettings_Japanese_Tilemap.bin")
+    p = dump(p, 0x010F, "Samus_Waiting_for_Credits_to_End_Tilemap.bin")
+    p = dump(p, 0x2154, "Tiles_Samus_Waiting_for_Credits_to_End.bin")
+    p = dump(p, 0x1EA5, "Tiles_PostCredits_SuitlessSamus.bin")
+    p = dump(p, 0x0FE2, "Tiles_PostCredits_Samus_Shooting_the_Screen.bin")
+    if not is_pal:
+        p = dump(p, 0x0721, "Tiles_Font3_Background.bin")
+        p = dump(p, 0x0A88, "Credits_Tilemap.bin")
+    else:
+        p = dump(p, 0x08A5, "Tiles_Font3_Background_PAL.bin")
+        p = dump(p, 0x0A88, "Credits_Tilemap_PAL.bin")
+
+    p = dump(p, 0x097D, "InterleavedTilesTilemapPostCreditsSamusBeamMode7.bin")
 
 #    dump(0x98_8000, 0x8000, "bank_98.bin") # Cutscene graphics
-    dump(0x98_8304, 0x32BD, "Tiles_Zebes_Explosion.bin")
-    dump(0x98_B5C1, 0x0296, "Wide_Part_of_Zebes_Explosion_Tilemap.bin")
-    dump(0x98_B857, 0x0296, "Concentric_Wide_Part_of_Zebes_Explosion_Tilemap.bin")
-    dump(0x98_BAED, 0x01E0, "Eclipse_of_Zebes_during_Explosion_Tilemap.bin")
-    dump(0x98_BCCD, 0x0009, "Blank_BG2_Tilemap.bin")
-    dump(0x98_BCD6, 0x3079, "Tiles_Zebes_Being_Zoomed_Out_during_Zebes_Explosion_Mode7.bin")
-    dump_range(0x98_ED4F, 0x99_9100, "Tiles_Grey_Clouds_during_Zebes_Explosion_Mode7.bin")
+    p = dump(p, 0x32BD, "Tiles_Zebes_Explosion.bin")
+    p = dump(p, 0x0296, "Wide_Part_of_Zebes_Explosion_Tilemap.bin")
+    p = dump(p, 0x0296, "Concentric_Wide_Part_of_Zebes_Explosion_Tilemap.bin")
+    p = dump(p, 0x01E0, "Eclipse_of_Zebes_during_Explosion_Tilemap.bin")
+    p = dump(p, 0x0009, "Blank_BG2_Tilemap.bin")
+    p = dump(p, 0x3079, "Tiles_Zebes_Being_Zoomed_Out_during_Zebes_Explosion_Mode7.bin")
+    p = dump(p, 0x23B2, "Tiles_Grey_Clouds_during_Zebes_Explosion_Mode7.bin")
 
 #    dump(0x99_8000, 0x8000, "bank_99.bin") # Cutscene graphics
-    dump(0x99_9101, 0x146E, "Tiles_Big_Zebes_during_Zebes_Explosion.bin")
-    dump(0x99_A56F, 0x2C0F, "Tiles_Yellow_Clouds_during_Zebes_Explosion.bin")
-    dump(0x99_D17E, 0x04DD, "InterleavedTilesTilemap_ZebesBeingZoomedOutExplosion_Mode7.bin")
-    dump(0x99_D65B, 0x02D7, "InterleavedTilesTilemap_GreyCloudsDuringZebesExplosion_Mode7.bin")
-    dump(0x99_D932, 0x016D, "InterleavedTilesTilemap_BigZebesDuringZebesExplosion_Mode7.bin")
-    dump(0x99_DA9F, 0x0012, "Tiles_PostCredits_Samus_Transformation_Effect.bin")
-    dump(0x99_DAB1, 0x05D8, "PostCredits_Samus_Transformation_Effect_Tilemap.bin")
-    dump(0x99_E089, 0x0C3B, "Tiles_PostCredits_SuperMetroid_Icon.bin")
-    dump(0x99_ECC4, 0x015D, "PostCredits_SuperMetroid_Icon_Tilemap.bin")
+    p = dump(p, 0x146E, "Tiles_Big_Zebes_during_Zebes_Explosion.bin")
+    p = dump(p, 0x2C0F, "Tiles_Yellow_Clouds_during_Zebes_Explosion.bin")
+    p = dump(p, 0x04DD, "InterleavedTilesTilemap_ZebesBeingZoomedOutExplosion_Mode7.bin")
+    p = dump(p, 0x02D7, "InterleavedTilesTilemap_GreyCloudsDuringZebesExplosion_Mode7.bin")
+    p = dump(p, 0x016D, "InterleavedTilesTilemap_BigZebesDuringZebesExplosion_Mode7.bin")
+    p = dump(p, 0x0012, "Tiles_PostCredits_Samus_Transformation_Effect.bin")
+    p = dump(p, 0x05D8, "PostCredits_Samus_Transformation_Effect_Tilemap.bin")
+    p = dump(p, 0x0C3B, "Tiles_PostCredits_SuperMetroid_Icon.bin")
+    dump(p, 0x015D, "PostCredits_SuperMetroid_Icon_Tilemap.bin")
 
 #    dump(0x9A_8000, 0x8000, "bank_9a.bin") # Projectile and map graphics
     dump(0x9A_8200, 0x0800, "Tiles_GrappleBeam_Horizontal_Beam.bin")
@@ -749,18 +780,29 @@ def dump_rom(rom_data, output_path):
 #    dump(0xA3_8000, 0x8000, "bank_a3.bin") # Enemy AI - inc. elevator & metroid
 
 #    dump(0xA4_8000, 0x8000, "bank_a4.bin") # Enemy AI - Crocomire
-    dump(0xA4_A07D, 0x0C00, "Tiles_Crocomire_Melting1.bin")
-    dump(0xA4_AC7D, 0x0C00, "Tiles_Crocomire_Melting2.bin")
+    if not is_pal:
+        p = 0xA4_A07D
+    else:
+        p = 0xA4_A096
+    
+    p = dump(p, 0x0C00, "Tiles_Crocomire_Melting1.bin")
+    dump(p, 0x0C00, "Tiles_Crocomire_Melting2.bin")
 
 #    dump(0xA5_8000, 0x8000, "bank_a5.bin") # Enemy AI - Draygon & Spore Spawn
 #    dump(0xA6_8000, 0x8000, "bank_a6.bin") # Enemy AI - inc. Ridley & zebetites
 #    dump(0xA7_8000, 0x8000, "bank_a7.bin") # Enemy AI - inc. Kraid & Phantoon
-    dump(0xA7_A716, 0x0200, "Tiles_KraidRoomBackground.bin")
+    if not is_pal:
+        dump(0xA7_A716, 0x0200, "Tiles_KraidRoomBackground.bin")
+    else:
+        dump(0xA7_A726, 0x0200, "Tiles_KraidRoomBackground.bin")
 
 #    dump(0xA8_8000, 0x8000, "bank_a8.bin") # Enemy AI - inc. ki-hunter
 #    dump(0xA9_8000, 0x8000, "bank_a9.bin") # Enemy AI - Mother Brain, Shitroid & dead monsters
 #    dump(0xAA_8000, 0x8000, "bank_aa.bin") # Enemy AI - inc. Torizo & Tourian statue
-    dump(0xAA_B279, 0x0600, "Tiles_Torizo.bin")
+    if not is_pal:
+        dump(0xAA_B279, 0x0600, "Tiles_Torizo.bin")
+    else:
+        dump(0xAA_B289, 0x0600, "Tiles_Torizo.bin")
 
 #    dump(0xAB_8000, 0x8000, "bank_ab.bin") # Enemy graphics - inc. Kraid
     dump(0xAB_8000, 0x1000, "Tiles_MiniKraid.bin")
@@ -906,13 +948,24 @@ def dump_rom(rom_data, output_path):
     dump(0xB7_A800, 0x1800, "Tiles_CorpseTorizo.bin")
     dump(0xB7_C000, 0x0E00, "Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree.bin")
     dump(0xB7_CE00, 0x0C00, "Tiles_CorpseMotherBrain.bin")
-    dump(0xB7_DA00, 0x0200, "Tiles_EscapeTimerText_0.bin")
-    dump(0xB7_DC00, 0x0200, "Tiles_EscapeTimerText_1.bin")
-    dump(0xB7_DE00, 0x0200, "Tiles_EscapeTimerText_2.bin")
-    dump(0xB7_E000, 0x0200, "Tiles_EscapeTimerText_3.bin")
-    dump(0xB7_E200, 0x0100, "Tiles_EscapeTimerText_4.bin")
-    dump(0xB7_E300, 0x1800, "Tiles_Botwoon.bin")
-    dump(0xB7_FB00, 0x0200, "UNUSED_Tiles_SpinningTurtleEye_B7FB00.bin")
+    
+    p = 0xB7_DA00
+    if not is_pal:
+        p = dump(p, 0x0200, "Tiles_EscapeTimerText_0.bin")
+        p = dump(p, 0x0200, "Tiles_EscapeTimerText_1.bin")
+        p = dump(p, 0x0200, "Tiles_EscapeTimerText_2.bin")
+        p = dump(p, 0x0200, "Tiles_EscapeTimerText_3.bin")
+        p = dump(p, 0x0100, "Tiles_EscapeTimerText_4.bin")
+    else:
+        p = dump(p, 0x01C0, "Tiles_EscapeTimerText_0_PAL.bin")
+        p = dump(p, 0x0200, "Tiles_EscapeTimerText_1_PAL.bin")
+        p = dump(p, 0x0200, "Tiles_EscapeTimerText_2_PAL.bin")
+        p = dump(p, 0x0200, "Tiles_EscapeTimerText_3_PAL.bin")
+        p = dump(p, 0x0200, "Tiles_EscapeTimerText_4_PAL.bin")
+        p = dump(p, 0x0200, "Tiles_EscapeTimerText_5_PAL.bin")
+        
+    p = dump(p, 0x1800, "Tiles_Botwoon.bin")
+    dump(p, 0x0200, "UNUSED_Tiles_SpinningTurtleEye_B7FB00.bin")
 
     # Bank B8 is unused (apparently extra dev RAM)
 
@@ -926,7 +979,7 @@ def dump_rom(rom_data, output_path):
     dump(0xB9_A75E, 0x004A, "Background_Norfair_9_A_SmallPatternBrownPurple_1.bin")
     dump(0xB9_A7A8, 0x0092, "Background_Norfair_9_HorizontalPatternBrick.bin")
     dump(0xB9_A83A, 0x0449, "Background_Norfair_9_VerticalPatternBrick.bin")
-    dump(0xB9_AC83, 0x027C, "Background_Norfair_9_A_CavernStalagtites.bin")
+    dump(0xB9_AC83, 0x027C, "Background_Norfair_9_A_CavernStalactites.bin")
     dump(0xB9_AEFF, 0x03F1, "Background_Norfair_9_A_CavernVertical.bin")
     dump(0xB9_B2F0, 0x03CB, "Background_Norfair_9_CavernHorizontalRuins.bin")
     dump(0xB9_B6BB, 0x04EA, "Background_Norfair_9_CavernVerticalRuins.bin")
@@ -962,7 +1015,7 @@ def dump_rom(rom_data, output_path):
     dump(0xB9_F94F, 0x00E9, "Background_Brinstar_7_BlueGridBlocks.bin")
     dump(0xB9_FA38, 0x0406, "Background_Brinstar_1A_Kraid_Upper.bin")
     dump(0xB9_FE3E, 0x0110, "Background_Brinstar_1A_Kraid_Lower_0.bin")
-    dump_range(0xB9_FF4E, 0xBA_807D, "Background_Brinstar_1A_Kraid_Lower_1.bin")
+    dump(0xB9_FF4E, 0x0130, "Background_Brinstar_1A_Kraid_Lower_1.bin")
 
 #    dump(0xBA_8000, 0x8000, "bank_ba.bin") # CRE, background images, tile graphics, tile tables, palettes, level data
     dump(0xBA_807E, 0x0246, "Background_Crateria_0_VerticalPatternRocks.bin")
@@ -994,32 +1047,32 @@ def dump_rom(rom_data, output_path):
     dump(0xBA_C4BC, 0x0164, "Background_Tourian_15_Statues.bin")
     dump(0xBA_C620, 0x0009, "Background_Blank.bin")
     dump(0xBA_C629, 0x32E8, "Tiles_0_1_UpperCrateria.bin")
-    dump_range(0xBA_F911, 0xBB_AE9D, "Tiles_2_3_LowerCrateria.bin")
+    dump(0xBA_F911, 0x358D, "Tiles_2_3_LowerCrateria.bin")
 
 #    dump(0xBB_8000, 0x8000, "bank_bb.bin") # CRE, background images, tile graphics, tile tables, palettes, level data
     dump(0xBB_AE9E, 0x3812, "Tiles_4_5_WreckedShip.bin")
-    dump_range(0xBB_E6B0, 0xBC_A5A9, "Tiles_6_GreenBlueBrinstar.bin")
+    dump(0xBB_E6B0, 0x3EFA, "Tiles_6_GreenBlueBrinstar.bin")
 
 #    dump(0xBC_8000, 0x8000, "bank_bc.bin") # CRE, background images, tile graphics, tile tables, palettes, level data
     dump(0xBC_A5AA, 0x3A46, "Tiles_7_8_RedBrinstar_Kraid_StatuesHall.bin")
-    dump_range(0xBC_DFF0, 0xBD_C3F8, "Tiles_1A_Kraid.bin")
+    dump(0xBC_DFF0, 0x6409, "Tiles_1A_Kraid.bin")
 
 #    dump(0xBD_8000, 0x8000, "bank_bd.bin") # CRE, background images, tile graphics, tile tables, palettes, level data
     dump(0xBD_C3F9, 0x3A31, "Tiles_9_A_Norfair.bin")
-    dump_range(0xBD_FE2A, 0xBE_B12F, "Tiles_1B_Crocomire.bin")
+    dump(0xBD_FE2A, 0x3306, "Tiles_1B_Crocomire.bin")
 
 #    dump(0xBE_8000, 0x8000, "bank_be.bin") # CRE, background images, tile graphics, tile tables, palettes, level data
     dump(0xBE_B130, 0x365D, "Tiles_B_SandlessMaridia.bin")
-    dump_range(0xBE_E78D, 0xBF_9DE9, "Tiles_C_SandyMaridia.bin")
+    dump(0xBE_E78D, 0x365D, "Tiles_C_SandyMaridia.bin")
 
 #    dump(0xBF_8000, 0x8000, "bank_bf.bin") # CRE, background images, tile graphics, tile tables, palettes, level data
     dump(0xBF_9DEA, 0x362A, "Tiles_1C_Draygon.bin")
-    dump_range(0xBF_D414, 0xC0_860A, "Tiles_D_E_Tourian.bin")
+    dump(0xBF_D414, 0x31F7, "Tiles_D_E_Tourian.bin")
 
 #    dump(0xC0_8000, 0x8000, "bank_c0.bin") # CRE, background images, tile graphics, tile tables, palettes, level data
     dump(0xC0_860B, 0x29F9, "Tiles_15_16_17_18_19_UtilityRoom_Statues.bin")
     dump(0xC0_B004, 0x3226, "Tiles_F_10_Ceres.bin")
-    dump_range(0xC0_E22A, 0xC1_8DA8, "Tiles_11_12_CeresElevator.bin")
+    dump(0xC0_E22A, 0x2B7F, "Tiles_11_12_CeresElevator.bin")
 
 #    dump(0xC1_8000, 0x8000, "bank_c1.bin") # CRE, background images, tile graphics, tile tables, palettes, level data
     dump(0xC1_8DA9, 0x294D, "Tiles_13_14_CeresRidley.bin")
@@ -1031,7 +1084,7 @@ def dump_rom(rom_data, output_path):
     dump(0xC1_E189, 0x01D8, "TileTables_1A_Kraid.bin")
     dump(0xC1_E361, 0x104E, "TileTables_9_A_Norfair.bin")
     dump(0xC1_F3AF, 0x0102, "TileTables_1B_Crocomire.bin")
-    dump_range(0xC1_F4B1, 0xC2_855E, "TileTables_B_SandlessMaridia.bin")
+    dump(0xC1_F4B1, 0x10AE, "TileTables_B_SandlessMaridia.bin")
 
 #    dump(0xC2_8000, 0x8000, "bank_c2.bin") # CRE, background images, tile graphics, tile tables, palettes, level data
 
@@ -1069,7 +1122,7 @@ def dump_rom(rom_data, output_path):
     dump(0xC2_D6E8, 0x04DC, "LevelData_GauntletEntrance.bin")
     dump(0xC2_DBC4, 0x0DB3, "LevelData_Parlor.bin")
     dump(0xC2_E977, 0x01CE, "LevelData_CrateriaPowerBombs.bin")
-    dump_range(0xC2_EB45, 0xC3_8E1E, "LevelData_WestOcean.bin")
+    dump(0xC2_EB45, 0x22DA, "LevelData_WestOcean.bin")
 
 #    dump(0xC3_8000, 0x8000, "bank_c3.bin") # CRE, background images, tile graphics, tile tables, palettes, level data
     dump(0xC3_8E1F, 0x01DF, "LevelData_BowlingAlleyPath.bin")
@@ -1094,7 +1147,7 @@ def dump_rom(rom_data, output_path):
     dump(0xC3_E985, 0x01B0, "LevelData_GreenBrinstarElev.bin")
     dump(0xC3_EB35, 0x032B, "LevelData_LowerMushrooms.bin")
     dump(0xC3_EE60, 0x0673, "LevelData_GreenPiratesShaft.bin")
-    dump_range(0xC3_F4D3, 0xC4_811D, "LevelData_CrateriaSuper.bin")
+    dump(0xC3_F4D3, 0x0C4B, "LevelData_CrateriaSuper.bin")
 
 #    dump(0xC4_8000, 0x8000, "bank_c4.bin") # CRE, background images, tile graphics, tile tables, palettes, level data
     dump(0xC4_811E, 0x0114, "LevelData_FinalMissileBombway.bin")
@@ -1116,7 +1169,7 @@ def dump_rom(rom_data, output_path):
     dump(0xC4_EA8F, 0x0309, "LevelData_WSEastSuper_State0.bin")
     dump(0xC4_ED98, 0x0309, "LevelData_WSEastSuper_State1.bin")
     dump(0xC4_F0A1, 0x012D, "LevelData_GravitySuit.bin")
-    dump_range(0xC4_F1CE, 0xC5_8BD4, "LevelData_GreenBrinstarMainShaft.bin")
+    dump(0xC4_F1CE, 0x1A07, "LevelData_GreenBrinstarMainShaft.bin")
 
 #    dump(0xC5_8000, 0x8000, "bank_c5.bin") # CRE, background images, tile graphics, tile tables, palettes, level data
     dump(0xC5_8BD5, 0x0A6D, "LevelData_SporeSpawnSuper.bin")
@@ -1140,7 +1193,7 @@ def dump_rom(rom_data, output_path):
     dump(0xC5_F4C9, 0x02AF, "LevelData_SporeSpawnFarming.bin")
     dump(0xC5_F778, 0x05D8, "LevelData_WaterwayETank.bin")
     dump(0xC5_FD50, 0x00CB, "LevelData_FirstMissile.bin")
-    dump_range(0xC5_FE1B, 0xC6_81C1, "LevelData_PinkBrinstarHoppers.bin")
+    dump(0xC5_FE1B, 0x03A7, "LevelData_PinkBrinstarHoppers.bin")
 
 #    dump(0xC6_8000, 0x8000, "bank_c6.bin") # CRE, background images, tile graphics, tile tables, palettes, level data
     dump(0xC6_81C2, 0x0156, "LevelData_HopperETank.bin")
@@ -1170,7 +1223,7 @@ def dump_rom(rom_data, output_path):
     dump(0xC6_E5F5, 0x06C4, "LevelData_Cathedral.bin")
     dump(0xC6_ECB9, 0x0628, "LevelData_CathedralEntrance.bin")
     dump(0xC6_F2E1, 0x05E0, "LevelData_BusinessCenter.bin")
-    dump_range(0xC6_F8C1, 0xC7_82EC, "LevelData_IceBeamGate.bin")
+    dump(0xC6_F8C1, 0x0A2C, "LevelData_IceBeamGate.bin")
 
 #    dump(0xC7_8000, 0x8000, "bank_c7.bin") # CRE, background images, tile graphics, tile tables, palettes, level data
     dump(0xC7_82ED, 0x01B6, "LevelData_IceBeamTutorial.bin")
@@ -1197,7 +1250,7 @@ def dump_rom(rom_data, output_path):
     dump(0xC7_E08C, 0x0A1C, "LevelData_SpeedBoosterHall.bin")
     dump(0xC7_EAA8, 0x015B, "LevelData_SpeedBooster.bin")
     dump(0xC7_EC03, 0x12FF, "LevelData_SingleChamber.bin")
-    dump_range(0xC7_FF02, 0xC8_8531, "LevelData_DoubleChamber.bin")
+    dump(0xC7_FF02, 0x0630, "LevelData_DoubleChamber.bin")
 
 #    dump(0xC8_8000, 0x8000, "bank_c8.bin") # CRE, background images, tile graphics, tile tables, palettes, level data
     dump(0xC8_8532, 0x012A, "LevelData_WaveBeam.bin")
@@ -1226,7 +1279,7 @@ def dump_rom(rom_data, output_path):
     dump(0xC8_F01F, 0x03EC, "LevelData_FastPillarsSetup.bin")
     dump(0xC8_F40B, 0x0180, "UNUSED_LevelData_C8F40B.bin")
     dump(0xC8_F58B, 0x073A, "LevelData_MickeyMouse.bin")
-    dump_range(0xC8_FCC5, 0xC9_8221, "LevelData_Pillar.bin")
+    dump(0xC8_FCC5, 0x055D, "LevelData_Pillar.bin")
 
 #    dump(0xC9_8000, 0x8000, "bank_c9.bin") # CRE, background images, tile graphics, tile tables, palettes, level data
     dump(0xC9_8222, 0x02B1, "LevelData_Plowerhouse.bin")
@@ -1245,7 +1298,7 @@ def dump_rom(rom_data, output_path):
     dump(0xC9_E129, 0x0585, "LevelData_GlassTunnel_State1.bin")
     dump(0xC9_E6AE, 0x015B, "LevelData_WestTunnel.bin")
     dump(0xC9_E809, 0x0A1C, "LevelData_EastTunnel.bin")
-    dump_range(0xC9_F225, 0xCA_8EFE, "LevelData_MainStreet.bin")
+    dump(0xC9_F225, 0x1CDA, "LevelData_MainStreet.bin")
 
 #    dump(0xCA_8000, 0x8000, "bank_ca.bin") # CRE, background images, tile graphics, tile tables, palettes, level data
     dump(0xCA_8EFF, 0x1214, "LevelData_FishTank.bin")
@@ -1256,7 +1309,7 @@ def dump_rom(rom_data, output_path):
     dump(0xCA_D474, 0x0754, "LevelData_WateringHole.bin")
     dump(0xCA_DBC8, 0x0890, "LevelData_NWestMaridiaBug.bin")
     dump(0xCA_E458, 0x1144, "LevelData_CrabShaft.bin")
-    dump_range(0xCA_F59C, 0xCB_83DA, "LevelData_PseudoPlasmaSpark.bin")
+    dump(0xCA_F59C, 0x0E3F, "LevelData_PseudoPlasmaSpark.bin")
 
 #    dump(0xCB_8000, 0x8000, "bank_cb.bin") # CRE, background images, tile graphics, tile tables, palettes, level data
     dump(0xCB_83DB, 0x045F, "LevelData_CrabHole.bin")
@@ -1274,7 +1327,7 @@ def dump_rom(rom_data, output_path):
     dump(0xCB_E899, 0x0399, "LevelData_EastSandHall.bin")
     dump(0xCB_EC32, 0x094E, "LevelData_WestSandHole.bin")
     dump(0xCB_F580, 0x0948, "LevelData_EastSandHole.bin")
-    dump_range(0xCB_FEC8, 0xCC_80B7, "LevelData_WestAqueductQuicksand.bin")
+    dump(0xCB_FEC8, 0x01F0, "LevelData_WestAqueductQuicksand.bin")
 
 #    dump(0xCC_8000, 0x8000, "bank_cc.bin") # CRE, background images, tile graphics, tile tables, palettes, level data
     dump(0xCC_80B8, 0x01F0, "LevelData_EastAqueductQuicksand.bin")
@@ -1290,7 +1343,7 @@ def dump_rom(rom_data, output_path):
     dump(0xCC_EE0C, 0x0C81, "LevelData_BotwoonETank.bin")
     dump(0xCC_FA8D, 0x00FB, "LevelData_PlasmaBeachQuicksand.bin")
     dump(0xCC_FB88, 0x01ED, "LevelData_BotwoonQuicksand.bin")
-    dump_range(0xCC_FD75, 0xCD_8403, "LevelData_Shaktool_State0.bin")
+    dump(0xCC_FD75, 0x068F, "LevelData_Shaktool_State0.bin")
 
 #    dump(0xCD_8000, 0x8000, "bank_cd.bin") # CRE, background images, tile graphics, tile tables, palettes, level data
     dump(0xCD_8404, 0x0633, "LevelData_Shaktool_State1.bin")
@@ -1321,14 +1374,14 @@ def dump_rom(rom_data, output_path):
     dump(0xCD_E914, 0x0247, "LevelData_TourianEscape1.bin")
     dump(0xCD_EB5B, 0x021F, "LevelData_TourianEscape2.bin")
     dump(0xCD_ED7A, 0x07BA, "LevelData_TourianEscape3.bin")
-    dump_range(0xCD_F534, 0xCE_83C2, "LevelData_TourianEscape4.bin")
+    dump(0xCD_F534, 0x0E8F, "LevelData_TourianEscape4.bin")
 
 #    dump(0xCE_8000, 0x8000, "bank_ce.bin") # CRE, background images, tile graphics, tile tables, palettes, level data
     dump(0xCE_83C3, 0x02FA, "LevelData_MapStation_RightSideDoor.bin")
     dump(0xCE_86BD, 0x02F9, "LevelData_MapStation_LeftSideDoor.bin")
     dump(0xCE_89B6, 0x02FD, "LevelData_EnergyRefill_RightSideDoor.bin")
     dump(0xCE_8CB3, 0x02F3, "LevelData_MissileRefill_RightSideDoor.bin")
-    dump(0xCE_8FA6, 0x0325, "LevelData_EnergyRefeill_BothDoors.bin")
+    dump(0xCE_8FA6, 0x0325, "LevelData_EnergyRefill_BothDoors.bin")
     dump(0xCE_92CB, 0x02F7, "LevelData_SaveStation_RightSideDoor.bin")
     dump(0xCE_95C2, 0x031A, "LevelData_SaveStation_LeftSideDoor.bin")
     dump(0xCE_98DC, 0x030D, "LevelData_EnergyRefill_LeftSideDoor.bin")
@@ -1341,66 +1394,101 @@ def dump_rom(rom_data, output_path):
     dump(0xCE_AE3E, 0x03F0, "LevelData_DebugRoom.bin")
 
     # Banks CF..DF: Music
-    dump_range(0xCF_8000, 0xD0_E20C, "SPCEngine.bin")
+    p = 0xCF_8000
+    if not is_pal:
+        p = dump(p, 0xE20D, "SPCEngine.bin")
+    else:
+        p = dump(p, 0xE1CF, "SPCEngine_PAL.bin")
 
-    dump_range(0xD0_E20D, 0xD1_B629, "Music_TitleSequence.bin")
+    if not is_pal:
+        p = dump(p, 0x541D, "Music_TitleSequence.bin")
+    else:
+        p = dump(p, 0x541F, "Music_TitleSequence_PAL.bin")
 
-    dump_range(0xD1_B62A, 0xD2_88C9, "Music_EmptyCrateria.bin")
+    p = dump(p, 0x52A0, "Music_EmptyCrateria.bin")
 
-    dump(0xD2_88CA, 0x50EC, "Music_LowerCrateria.bin")
-    dump_range(0xD2_D9B6, 0xD3_933B, "Music_UpperCrateria.bin")
+    if not is_pal:
+        p = dump(p, 0x50EC, "Music_LowerCrateria.bin")
+    else:
+        p = dump(p, 0x50EC, "Music_LowerCrateria_PAL.bin")
+        
+    p = dump(p, 0x3986, "Music_UpperCrateria.bin")
 
-    dump(0xD3_933C, 0x54D6, "Music_GreenBrinstar.bin")
-    dump_range(0xD3_E812, 0xD4_B86B, "Music_RedBrinstar.bin")
+    p = dump(p, 0x54D6, "Music_GreenBrinstar.bin")
+    p = dump(p, 0x505A, "Music_RedBrinstar.bin")
 
-    dump(0xD4_B86C, 0x3BB4, "Music_UpperNofair.bin")
-    dump_range(0xD4_F420, 0xD5_C843, "Music_LowerNorfair.bin")
+    p = dump(p, 0x3BB4, "Music_UpperNorfair.bin")
+    p = dump(p, 0x5424, "Music_LowerNorfair.bin")
 
-    dump_range(0xD5_C844, 0xD6_98B6, "Music_Maridia.bin")
+    p = dump(p, 0x5073, "Music_Maridia.bin")
 
-    dump(0xD6_98B7, 0x56E6, "Music_Tourian.bin")
-    dump_range(0xD6_EF9D, 0xD7_BF72, "Music_MotherBrain.bin")
+    p = dump(p, 0x56E6, "Music_Tourian.bin")
+    p = dump(p, 0x4FD6, "Music_MotherBrain.bin")
 
-    dump_range(0xD7_BF73, 0xD8_99B1, "Music_BossFight1.bin")
+    if not is_pal:
+        p = dump(p, 0x5A3F, "Music_BossFight1.bin")
+    else:
+        p = dump(p, 0x5A47, "Music_BossFight1_PAL.bin")
 
-    dump(0xD8_99B2, 0x50D9, "Music_BossFight2.bin")
-    dump_range(0xD8_EA8B, 0xD9_B67A, "Music_MiniBossFight.bin")
+    p = dump(p, 0x50D9, "Music_BossFight2.bin")
+    p = dump(p, 0x4BF0, "Music_MiniBossFight.bin")
 
-    dump(0xD9_B67B, 0x3F62, "Music_Ceres.bin")
-    dump_range(0xD9_F5DD, 0xDA_B64F, "Music_WreckedShip.bin")
+    p = dump(p, 0x3F62, "Music_Ceres.bin")
+    p = dump(p, 0x4073, "Music_WreckedShip.bin")
 
-    dump(0xDA_B650, 0x1FEB, "Music_ZebesExplosion.bin")
-    dump_range(0xDA_D63B, 0xDB_A40E, "Music_Intro.bin")
+    p = dump(p, 0x1FEB, "Music_ZebesExplosion.bin")
+    p = dump(p, 0x4DD4, "Music_Intro.bin")
 
-    dump(0xDB_A40F, 0x3B40, "Music_Death.bin")
-    dump_range(0xDB_DF4F, 0xDC_AF6B, "Music_Credits.bin")
+    p = dump(p, 0x3B40, "Music_Death.bin")
+    p = dump(p, 0x501D, "Music_Credits.bin")
 
-    dump(0xDC_AF6C, 0x4B5B, "Music_TheLastMetroidIsInCaptivity.bin")
-    dump_range(0xDC_FAC7, 0xDD_B103, "Music_TheGalaxyIsAtPeace.bin")
+    p = dump(p, 0x4B5B, "Music_TheLastMetroidIsInCaptivity.bin")
+    p = dump(p, 0x363D, "Music_TheGalaxyIsAtPeace.bin")
 
-    dump_range(0xDD_B104, 0xDE_81C0, "Music_BabyMetroid_BossFight2.bin")
+    p = dump(p, 0x50BD, "Music_BabyMetroid_BossFight2.bin")
 
-    dump(0xDE_81C1, 0x4FFF, "Music_SamusTheme_UpperCrateria.bin")
+    dump(p, 0x4FFF, "Music_SamusTheme_UpperCrateria.bin")
 
-    dump_range(0xDF_8000, 0xDF_D4DE, "UNUSED_Music_DF8000.bin")
+    dump(0xDF_8000, 0x54DF, "UNUSED_Music_DF8000.bin")
 
+
+ROM_CHECKSUMS = {
+    # (CRC32, SHA256)
+    "NTSC": (0xD63ED5F8, "12b77c4bc9c1832cee8881244659065ee1d84c70c3d29e6eaf92e6798cc2ca72"),
+    "PAL": (0xAD2CBF9C, "640ACB63DAE038AD6F0AE65E103416F5A1F84D4A37DDAEEAB5046122DEF774D5"),
+}
+
+def rom_valid(rom_data, variant):
+    if len(rom_data) != 0x300000: # 3MB
+        print("Unexpected size: " + str(len(rom_data)))
+        return False
+
+    expected_crc32, expected_sha256 = ROM_CHECKSUMS[variant]
+    if zlib.crc32(rom_data) != expected_crc32:
+        print("Unexpected CRC32: " + hex(zlib.crc32(rom_data))[2:].upper())
+        return False
+
+    if hashlib.sha256(rom_data).hexdigest() != expected_sha256:
+        print("Unexpected SHA256: " + hashlib.sha256(rom_data).hexdigest())
+        return False
+
+    return True
 
 def main():
-    args = make_argument_parser().parse_args()
-
-    with args.rom_file as inf:
-        rom_data = inf.read()
-
-    if not rom_valid(rom_data):
-        print("Invalid ROM. Ensure it's unheadered and the NTSC version:\n"
+    # ...
+    variant = "NTSC" if not args.pal else "PAL"
+    if not rom_valid(rom_data, variant):
+        expected_crc32, expected_sha256 = ROM_CHECKSUMS[variant]
+        print(f"Invalid ROM. Ensure it's unheadered and the {variant} version:\n"
               "Expected size: 3145728 (3 MB)\n"
-              "Expected CRC32:", hex(SM_NTSC_CRC32)[2:].upper(), "\n"
-              "Expected SHA256:", SM_NTSC_SHA256,
+              f"Expected CRC32: {expected_crc32:X}\n"
+              "Expected SHA256:", expected_sha256,
               file=sys.stderr)
-        sys.exit(1)
+        sys.exit(1) 
+    # ...
 
     if not args.check:
-        dump_rom(rom_data, args.output)
+        dump_rom(rom_data, args.output, args.pal)
 
 
 if __name__ == "__main__":

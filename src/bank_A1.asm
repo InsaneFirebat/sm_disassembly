@@ -3991,7 +3991,7 @@ EnemyPopulations_EarlySupers:
     %initParam($0001),
     %properties($A800),
     %extraProperties($0000),
-    %speedParams($0090, $0010))
+    %speedParams(regional($0090, $00A4), $0010))
 
     %EnemyPopulations(\
     %enemyID(EnemyHeaders_ShutterGrowing),
@@ -5296,7 +5296,7 @@ EnemyPopulations_IceBeamGate:
     %initParam($0001),
     %properties($A800),
     %extraProperties($0000),
-    %speedParams($00F0, $000D))
+    %speedParams($00F0, regional($000D, $0010)))
 
     %EnemyPopulations(\
     %enemyID(EnemyHeaders_ShutterGrowing),
@@ -5305,7 +5305,7 @@ EnemyPopulations_IceBeamGate:
     %initParam($0001),
     %properties($A800),
     %extraProperties($0000),
-    %speedParams($0068, $0010))
+    %speedParams(regional($0068, $0070), $0010))
 
     %EnemyPopulations(\
     %enemyID(EnemyHeaders_Dessgeega),
@@ -7763,7 +7763,7 @@ EnemyPopulations_BubbleMountainSave:
 EnemyPopulations_HiJumpETank:
 ; Room $AA41, state $AA4E
     dw EnemyHeaders_Sova                                                 ;A1B3C5;
-    dw $0177,$00B5,$0002,$2801,$0000,$0004,$0004                         ;A1B3C7;
+    dw $0177,$00B5,$0002,$2801,$0000,regional($0004, $0005),$0004        ;A1B3C7;
     dw $FFFF : db $01                                                    ;A1B3D5;
 
 EnemyPopulations_BubbleMountain:
@@ -7876,7 +7876,7 @@ EnemyPopulations_IceBeamTutorial:
     %EnemyPopulations(\
     %enemyID(EnemyHeaders_Boyon),
     %XPosition($0078),
-    %YPosition($00D9),
+    %YPosition(regional($00D9, $00D5)),
     %initParam($0000),
     %properties($2000),
     %extraProperties($0000),
@@ -7885,7 +7885,7 @@ EnemyPopulations_IceBeamTutorial:
     %EnemyPopulations(\
     %enemyID(EnemyHeaders_Boyon),
     %XPosition($00A8),
-    %YPosition($00D9),
+    %YPosition(regional($00D9, $00D5)),
     %initParam($0000),
     %properties($2000),
     %extraProperties($0000),
@@ -7894,7 +7894,7 @@ EnemyPopulations_IceBeamTutorial:
     %EnemyPopulations(\
     %enemyID(EnemyHeaders_Boyon),
     %XPosition($00D8),
-    %YPosition($00D9),
+    %YPosition(regional($00D9, $00D5)),
     %initParam($0000),
     %properties($2000),
     %extraProperties($0000),
@@ -8192,7 +8192,7 @@ EnemyPopulations_IceBeamSnake:
     %initParam($0003),
     %properties($2800),
     %extraProperties($0000),
-    %speedParams($0001, $0004))
+    %speedParams(regional($0001, $0002), $0004))
 
     %EnemyPopulations(\
     %enemyID(EnemyHeaders_Sova),
@@ -8201,7 +8201,7 @@ EnemyPopulations_IceBeamSnake:
     %initParam($0003),
     %properties($2800),
     %extraProperties($0000),
-    %speedParams($0001, $0004))
+    %speedParams(regional($0001, $0002), $0004))
 
     %EnemyPopulations(\
     %enemyID(EnemyHeaders_Sova),
@@ -8210,7 +8210,7 @@ EnemyPopulations_IceBeamSnake:
     %initParam($0003),
     %properties($2800),
     %extraProperties($0000),
-    %speedParams($0001, $0004))
+    %speedParams(regional($0001, $0002), $0004))
 
     %EnemyPopulations(\
     %enemyID(EnemyHeaders_Fune),
@@ -8407,7 +8407,7 @@ EnemyPopulations_SingleChamber:
     %initParam($0000),
     %properties($2800),
     %extraProperties($0000),
-    %speedParams($00D0, $0002))
+    %speedParams(regional($00D0, $00D8), $0002))
 
     %EnemyPopulations(\
     %enemyID(EnemyHeaders_Multiviola),
@@ -8425,7 +8425,7 @@ EnemyPopulations_SingleChamber:
     %initParam($0000),
     %properties($2800),
     %extraProperties($0000),
-    %speedParams($0088, $0002))
+    %speedParams(regional($0088, $0098), $0002))
 
     %EnemyPopulations(\
     %enemyID(EnemyHeaders_Alcoon),
@@ -11886,7 +11886,7 @@ EnemyPopulations_CrabShaft:
     %initParam($0002),
     %properties($2801),
     %extraProperties($0000),
-    %speedParams($0003, $0000))
+    %speedParams(regional($0003, $0002), $0000))
 
     %EnemyPopulations(\
     %enemyID(EnemyHeaders_Sciser),

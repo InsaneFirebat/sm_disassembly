@@ -400,83 +400,26 @@ Instruction_CommonA9_DisableOffScreenProcessing:
 
 ;;; $8187: Common enemy speeds - linearly increasing ;;;
 CommonA9EnemySpeeds_LinearlyIncreasing:
-;        _____________________ Speed
-;       |      _______________ Subspeed
-;       |     |      _________ Negated speed
-;       |     |     |      ___ Negated subspeed
-;       |     |     |     |
-  .speed:
-    dw $0000                                                             ;A98187;
-  .subspeed:
-    dw       $0000                                                       ;A98189;
-  .negatedSpeed:
-    dw             $0000                                                 ;A9818B;
-  .negatedSubspeed:
-    dw                   $0000                                           ;A9818D;
-    dw $0000,$1000,$FFFF,$F000
-    dw $0000,$2000,$FFFF,$E000
-    dw $0000,$3000,$FFFF,$D000
-    dw $0000,$4000,$FFFF,$C000
-    dw $0000,$5000,$FFFF,$B000
-    dw $0000,$6000,$FFFF,$A000
-    dw $0000,$7000,$FFFF,$9000
-    dw $0000,$8000,$FFFF,$8000
-    dw $0000,$9000,$FFFF,$7000
-    dw $0000,$A000,$FFFF,$6000
-    dw $0000,$B000,$FFFF,$5000
-    dw $0000,$C000,$FFFF,$4000
-    dw $0000,$D000,$FFFF,$3000
-    dw $0000,$E000,$FFFF,$2000
-    dw $0000,$F000,$FFFF,$1000
-    dw $0001,$0000,$FFFF,$0000
-    dw $0001,$1000,$FFFE,$F000
-    dw $0001,$2000,$FFFE,$E000
-    dw $0001,$3000,$FFFE,$D000
-    dw $0001,$4000,$FFFE,$C000
-    dw $0001,$5000,$FFFE,$B000
-    dw $0001,$6000,$FFFE,$A000
-    dw $0001,$7000,$FFFE,$9000
-    dw $0001,$8000,$FFFE,$8000
-    dw $0001,$9000,$FFFE,$7000
-    dw $0001,$A000,$FFFE,$6000
-    dw $0001,$B000,$FFFE,$5000
-    dw $0001,$C000,$FFFE,$4000
-    dw $0001,$D000,$FFFE,$3000
-    dw $0001,$E000,$FFFE,$2000
-    dw $0001,$F000,$FFFE,$1000
-    dw $0002,$0000,$FFFE,$0000
-    dw $0002,$1000,$FFFD,$F000
-    dw $0002,$2000,$FFFD,$E000
-    dw $0002,$3000,$FFFD,$D000
-    dw $0002,$4000,$FFFD,$C000
-    dw $0002,$5000,$FFFD,$B000
-    dw $0002,$6000,$FFFD,$A000
-    dw $0002,$7000,$FFFD,$9000
-    dw $0002,$8000,$FFFD,$8000
-    dw $0002,$9000,$FFFD,$7000
-    dw $0002,$A000,$FFFD,$6000
-    dw $0002,$B000,$FFFD,$5000
-    dw $0002,$C000,$FFFD,$4000
-    dw $0002,$D000,$FFFD,$3000
-    dw $0002,$E000,$FFFD,$2000
-    dw $0002,$F000,$FFFD,$1000
-    dw $0003,$0000,$FFFD,$0000
-    dw $0003,$1000,$FFFC,$F000
-    dw $0003,$2000,$FFFC,$E000
-    dw $0003,$3000,$FFFC,$D000
-    dw $0003,$4000,$FFFC,$C000
-    dw $0003,$5000,$FFFC,$B000
-    dw $0003,$6000,$FFFC,$A000
-    dw $0003,$7000,$FFFC,$9000
-    dw $0003,$8000,$FFFC,$8000
-    dw $0003,$9000,$FFFC,$7000
-    dw $0003,$A000,$FFFC,$6000
-    dw $0003,$B000,$FFFC,$5000
-    dw $0003,$C000,$FFFC,$4000
-    dw $0003,$D000,$FFFC,$3000
-    dw $0003,$E000,$FFFC,$2000
-    dw $0003,$F000,$FFFC,$1000
-    dw $0004,$0000,$FFFC,$0000
+  .speed                                                                 ;A08187;
+skip 2
+  .subspeed                                                              ;A08189;
+skip 2
+  .negatedSpeed                                                          ;A0818B;
+skip 2
+  .negatedSubspeed                                                       ;A0818D;
+skip -6
+
+!i = 0
+if !PAL == 0
+    !n = $41
+else
+    !n = $43
+endif
+while !i < !n
+    !v #= $1000*!SPF*!i ; !i must be last in product to reproduce PAL rounding errors
+    dw !v>>$10, !v, -!v>>$10, -!v
+    !i #= !i+1
+endif
 
 
 ;;; $838F: Common enemy speeds - quadratically increasing ;;;
@@ -498,6 +441,7 @@ CommonA9EnemySpeeds_QuadraticallyIncreasing:
     dw                   $0000                                           ;A98395;
     dw $0109,$0000,$FEF7,$FFFF
     dw $031B,$0000,$FCE5,$FFFF
+if !PAL == 0
     dw $0636,$0000,$F9CA,$FFFF
     dw $0A5A,$0000,$F5A6,$FFFF
     dw $0F87,$0000,$F079,$FFFF
@@ -590,6 +534,100 @@ CommonA9EnemySpeeds_QuadraticallyIncreasing:
     dw $BC66,$0010,$439A,$FFEF
     dw $13AB,$0011,$EC55,$FFEE
     dw $74F9,$0011,$8B07,$FFEE
+else
+    dw $073F,$0000,$F8C1,$FFFF
+    dw $0B63,$0000,$F49D,$FFFF
+    dw $1199,$0000,$EE67,$FFFF
+    dw $19E1,$0000,$E61F,$FFFF
+    dw $2229,$0000,$DDD7,$FFFF
+    dw $2C83,$0000,$D37D,$FFFF
+    dw $36DD,$0000,$C923,$FFFF
+    dw $4349,$0000,$BCB7,$FFFF
+    dw $51C7,$0000,$AE39,$FFFF
+    dw $6045,$0000,$9FBB,$FFFF
+    dw $70D5,$0000,$8F2B,$FFFF
+    dw $8165,$0000,$7E9B,$FFFF
+    dw $9407,$0000,$6BF9,$FFFF
+    dw $A8BB,$0000,$5745,$FFFF
+    dw $BD6F,$0000,$4291,$FFFF
+    dw $D435,$0000,$2BCB,$FFFF
+    dw $EAFB,$0000,$1505,$FFFF
+    dw $03D3,$0001,$FC2D,$FFFE
+    dw $15BD,$0001,$EA43,$FFFE
+    dw $30A7,$0001,$CF59,$FFFE
+    dw $4DA3,$0001,$B25D,$FFFE
+    dw $6A9F,$0001,$9561,$FFFE
+    dw $89AD,$0001,$7653,$FFFE
+    dw $AACD,$0001,$5533,$FFFE
+    dw $CBED,$0001,$3413,$FFFE
+    dw $EF1F,$0001,$10E1,$FFFE
+    dw $0951,$0002,$F6AF,$FFFD
+    dw $2E95,$0002,$D16B,$FFFD
+    dw $55EB,$0002,$AA15,$FFFD
+    dw $7D41,$0002,$82BF,$FFFD
+    dw $A6A9,$0002,$5957,$FFFD
+    dw $D011,$0002,$2FEF,$FFFD
+    dw $FB8B,$0002,$0475,$FFFD
+    dw $2017,$0003,$DFE9,$FFFC
+    dw $4DA3,$0003,$B25D,$FFFC
+    dw $7D41,$0003,$82BF,$FFFC
+    dw $ACDF,$0003,$5321,$FFFC
+    dw $DE8F,$0003,$2171,$FFFC
+    dw $0951,$0004,$F6AF,$FFFB
+    dw $3D13,$0004,$C2ED,$FFFB
+    dw $72E7,$0004,$8D19,$FFFB
+    dw $A8BB,$0004,$5745,$FFFB
+    dw $E0A1,$0004,$1F5F,$FFFB
+    dw $1199,$0005,$EE67,$FFFA
+    dw $4B91,$0005,$B46F,$FFFA
+    dw $879B,$0005,$7865,$FFFA
+    dw $C3A5,$0005,$3C5B,$FFFA
+    dw $01C1,$0005,$FE3F,$FFFA
+    dw $38EF,$0006,$C711,$FFF9
+    dw $791D,$0006,$86E3,$FFF9
+    dw $BB5D,$0006,$44A3,$FFF9
+    dw $FD9D,$0006,$0263,$FFF9
+    dw $38EF,$0007,$C711,$FFF8
+    dw $7F53,$0007,$80AD,$FFF8
+    dw $C5B7,$0007,$3A49,$FFF8
+    dw $052D,$0008,$FAD3,$FFF7
+    dw $4DA3,$0008,$B25D,$FFF7
+    dw $982B,$0008,$67D5,$FFF7
+    dw $E4C5,$0008,$1B3B,$FFF7
+    dw $285F,$0009,$D7A1,$FFF6
+    dw $770B,$0009,$88F5,$FFF6
+    dw $C5B7,$0009,$3A49,$FFF6
+    dw $0D75,$000A,$F28B,$FFF5
+    dw $6045,$000A,$9FBB,$FFF5
+    dw $B315,$000A,$4CEB,$FFF5
+    dw $07F7,$000B,$F809,$FFF5
+    dw $53D9,$000B,$AC27,$FFF4
+    dw $AACD,$000B,$5533,$FFF4
+    dw $03D3,$000C,$FC2D,$FFF3
+    dw $53D9,$000C,$AC27,$FFF3
+    dw $AEF1,$000C,$510F,$FFF3
+    dw $0109,$000D,$FEF7,$FFF2
+    dw $5E33,$000D,$A1CD,$FFF2
+    dw $BD6F,$000D,$4291,$FFF2
+    dw $13AB,$000E,$EC55,$FFF1
+    dw $74F9,$000E,$8B07,$FFF1
+    dw $D647,$000E,$29B9,$FFF1
+    dw $30A7,$000F,$CF59,$FFF0
+    dw $9619,$000F,$69E7,$FFF0
+    dw $FB8B,$000F,$0475,$FFF0
+    dw $5A0F,$0010,$A5F1,$FFEF
+    dw $C193,$0010,$3E6D,$FFEF
+    dw $2229,$0011,$DDD7,$FFEE
+    dw $8DD1,$0011,$722F,$FFEE
+    dw $F979,$0011,$0687,$FFEE
+    dw $5E33,$0012,$A1CD,$FFED
+    dw $CBED,$0012,$3413,$FFED
+    dw $32B9,$0013,$CD47,$FFEC
+    dw $A497,$0013,$5B69,$FFEC
+    dw $0D75,$0014,$F28B,$FFEB
+    dw $8165,$0014,$7E9B,$FFEB
+    dw $F555,$0014,$0AAB,$FFEB
+endif
 
 
 ;;; $8687: Initialisation AI - enemy $EC7F (Mother Brain body) ;;;
@@ -5525,11 +5563,45 @@ Function_MBBody_Phase3_DeathSequence_20FrameDelay:
     BPL .return                                                          ;A9B214;
     STZ.W Enemy[1].XPosition                                             ;A9B216;
     STZ.W Enemy[1].YPosition                                             ;A9B219;
+if !PAL != 0
+    LDA.W #$0000
+    STA.W EnemyBG2TilemapSize
+    STA.L Palettes_BG12P4+$D*2
+    LDA.W #$7FFF
+    STA.L Palettes_BG12P4+$E*2
+endif
     LDA.W #Function_MBBody_Phase3_DeathSequence_LoadEscapeTimerTiles     ;A9B21C;
     STA.W MotherBrainBody.function                                       ;A9B21F;
+if !PAL != 0
+    LDA.W #$0000
+    STA.L MotherBrainBody.enableUnpauseHookFlag
+    LDA.W #UnpauseHook_ZebesEscapeTimer>>$10<<8
+    STA.W PauseHook_Unpause+1
+    LDA.W #UnpauseHook_ZebesEscapeTimer
+    STA.W PauseHook_Unpause
+endif
 
   .return:
     RTS                                                                  ;A9B222;
+
+
+if !PAL != 0
+UnpauseHook_ZebesEscapeTimer:
+    LDY.W VRAMWriteStack
+    LDA.W #Tiles_EscapeTimerText_end-Tiles_EscapeTimerText
+    STA.W VRAMWrite.size,Y
+    LDA.W #Tiles_EscapeTimerText>>$10<<8
+    STA.W VRAMWrite.src+1,Y
+    LDA.W #Tiles_EscapeTimerText
+    STA.W VRAMWrite.src,Y
+    LDA.W #$1820
+    STA.W VRAMWrite.dest,Y
+    TYA
+    CLC
+    ADC.W #$0007
+    STA.W VRAMWriteStack
+    RTL
+endif
 
 
 ;;; $B223: Corpse rotting rot entry finished hook - Mother Brain ;;;
@@ -5563,10 +5635,10 @@ CorpseRottingRotEntryFinishedHook_MotherBrain:
 ;;; $B258: Mother Brain body function - third phase - death sequence - load escape timer tiles ;;;
 Function_MBBody_Phase3_DeathSequence_LoadEscapeTimerTiles:
     PHB                                                                  ;A9B258;
-    PEA.W ZebesEscapeTimerSpriteTileTransferEntries>>8&$FF00             ;A9B259;
+    PEA.W EscapeTimerSpriteTileTransferEntries_Zebes>>8&$FF00            ;A9B259;
     PLB                                                                  ;A9B25C;
     PLB                                                                  ;A9B25D;
-    LDX.W #ZebesEscapeTimerSpriteTileTransferEntries_size                ;A9B25E;
+    LDX.W #EscapeTimerSpriteTileTransferEntries_Zebes                    ;A9B25E;
     JSR.W ProcessSpriteTilesTransfers                                    ;A9B261;
     PLB                                                                  ;A9B264;
     BCC Function_MBBody_Phase3_DeathSequence_StartEscape_return          ;A9B265;
@@ -5602,12 +5674,14 @@ Function_MBBody_Phase3_DeathSequence_StartEscape:
     JSL.L SetupZebesEscapeTypewriter                                     ;A9B2B8;
     LDA.W #$0020                                                         ;A9B2BC;
     STA.W MotherBrainBody.functionTimer                                  ;A9B2BF;
-    LDY.W #Function_MBBody_Phase3_DeathSequence_SpawnTimeBombSetJapanText;A9B2C2;
-    LDA.W JapanText                                                      ;A9B2C5;
-    BNE .keepJapanText                                                   ;A9B2C8;
+    LDY.W #Function_MBBody_Phase3_DeathSequence_SpawnTimeBombSetSubtitle ;A9B2C2;
+if !PAL == 0
+    LDA.W AltText                                                        ;A9B2C5;
+    BNE .keepSubtitle                                                    ;A9B2C8;
     LDY.W #Function_MBBody_Phase3_DeathSequence_TypeOutZebesEscapeText   ;A9B2CA;
+endif
 
-  .keepJapanText:
+  .keepSubtitle:
     STY.W MotherBrainBody.function                                       ;A9B2CD;
 
   .return:
@@ -5615,13 +5689,17 @@ Function_MBBody_Phase3_DeathSequence_StartEscape:
 
 
 ;;; $B2D1: Mother Brain body function - third phase - death sequence - spawn time bomb set Japanese text ;;;
-Function_MBBody_Phase3_DeathSequence_SpawnTimeBombSetJapanText:
+Function_MBBody_Phase3_DeathSequence_SpawnTimeBombSetSubtitle:
     DEC.W MotherBrainBody.functionTimer                                  ;A9B2D1;
     BPL Function_MBBody_Phase3_DeathSequence_TypeOutZebesEscapeText      ;A9B2D4;
     LDA.W #Function_MBBody_Phase3_DeathSequence_TypeOutZebesEscapeText   ;A9B2D6;
     STA.W MotherBrainBody.function                                       ;A9B2D9;
-    LDY.W #EnemyProjectile_TimeBombSetJapanText                          ;A9B2DC;
+if !PAL == 0
+    LDY.W #EnemyProjectile_TimeBombSetSubtitle                           ;A9B2DC;
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics                  ;A9B2DF; fallthrough to Function_MBBody_Phase3_DeathSequence_TypeOutZebesEscapeText
+else
+    JSL.L QueueZebesEscapeSubtitleTilemapTransfers
+endif
 
 
 ;;; $B2E3: Mother Brain body function - third phase - death sequence - type out Zebes escape text ;;;
@@ -6571,7 +6649,7 @@ MotherBrainPhase2_FiringDeathBeam_Finish:
 Function_MotherBrainBody_Phase2_FiringRainbowBeam_ExtendNeck:
     LDA.W #InstList_MotherBrainHead_Neutral_Phase2_0                     ;A9B8EB;
     JSR.W SetMotherBrainHeadInstList                                     ;A9B8EE;
-    LDA.W #$0040                                                         ;A9B8F1;
+    LDA.W #$0040*!SPF                                                    ;A9B8F1;
     STA.L MotherBrainBody.neckAngleDelta                                 ;A9B8F4;
     LDA.W #$0001                                                         ;A9B8F8;
     STA.L MotherBrainBody.enableNeckMovementFlag                         ;A9B8FB;
@@ -6626,11 +6704,11 @@ Function_MBBody_Phase2_FiringRainbowBeam_ExtendNeckDown:
     LDA.W #$0006                                                         ;A9B957;
     STA.L MotherBrainBody.lowerNeckMovementIndex                         ;A9B95A;
     STA.L MotherBrainBody.upperNeckMovementIndex                         ;A9B95E;
-    LDA.W #$0500                                                         ;A9B962;
+    LDA.W #regional($0500, $0700)                                        ;A9B962;
     STA.L MotherBrainBody.neckAngleDelta                                 ;A9B965;
     LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_StartFiringRainbowBeam ;A9B969;
     STA.W MotherBrainBody.function                                       ;A9B96C;
-    LDA.W #$0010                                                         ;A9B96F;
+    LDA.W #regional($0010, $000C)                                        ;A9B96F;
     STA.W MotherBrainBody.functionTimer                                  ;A9B972; fallthough to Function_MBBody_Phase2_FiringRainbowBeam_StartFiringRainbowBeam
 
 
@@ -6656,7 +6734,7 @@ Function_MBBody_Phase2_FiringRainbowBeam_StartFiringRainbowBeam:
     STA.L MotherBrainBody.rainbowBeamAngularWidth                        ;A9B997;
     JSL.L Spawn_MotherBrainRainbowBeam_HDMAObject                        ;A9B99B;
     STA.L MotherBrainBody.HDMAObjectIndex                                ;A9B99F;
-    LDA.W #$0040                                                         ;A9B9A3;
+    LDA.W #$0040*!SPF                                                    ;A9B9A3;
     STA.L MotherBrainBody.neckAngleDelta                                 ;A9B9A6;
     LDA.W #$0001                                                         ;A9B9AA;
     STA.L MotherBrainBody.enableNeckMovementFlag                         ;A9B9AD;
@@ -6752,7 +6830,7 @@ Function_MBBody_Phase2_FiringRainbowBeam_FinishFiring:
     JSR.W HandleMotherBrainRainbowBeamExplosions                         ;A9BA67;
     LDA.L MotherBrainBody.rainbowBeamAngularWidth                        ;A9BA6A;
     SEC                                                                  ;A9BA6E;
-    SBC.W #$0180                                                         ;A9BA6F;
+    SBC.W #$0180*!SPF                                                    ;A9BA6F;
     STA.L MotherBrainBody.rainbowBeamAngularWidth                        ;A9BA72;
     CMP.W #$0200                                                         ;A9BA76;
     BPL .return                                                          ;A9BA79;
@@ -6805,7 +6883,7 @@ Function_MBBody_Phase2_FiringRainbowBeam_WaitForSamusToLand:
 
 ;;; $BADD: Mother Brain body function - second phase - firing rainbow beam - lower head ;;;
 Function_MBBody_Phase2_FiringRainbowBeam_LowerHead:
-    LDA.W #$0040                                                         ;A9BADD;
+    LDA.W #$0040*!SPF                                                    ;A9BADD;
     STA.L MotherBrainBody.neckAngleDelta                                 ;A9BAE0;
     LDA.W #$0001                                                         ;A9BAE4;
     STA.L MotherBrainBody.enableNeckMovementFlag                         ;A9BAE7;
@@ -6869,7 +6947,7 @@ MakeMBWalkBackwardsReallySlowTowardsXPositionInA_RetractHead:
 
 ;;; $BB51: Retract Mother Brain's head ;;;
 RetractMotherBrainsHead:
-    LDA.W #$0050                                                         ;A9BB51;
+    LDA.W #regional($0050, $0063)                                        ;A9BB51;
     STA.L MotherBrainBody.neckAngleDelta                                 ;A9BB54;
     LDA.W #$0001                                                         ;A9BB58;
     STA.L MotherBrainBody.enableNeckMovementFlag                         ;A9BB5B;
@@ -6884,7 +6962,7 @@ RetractMotherBrainsHead:
 AimMotherBrainRainbowBeam_IncreaseWidth:
     LDA.L MotherBrainBody.rainbowBeamAngularWidth                        ;A9BB6E;
     CLC                                                                  ;A9BB72;
-    ADC.W #$0180                                                         ;A9BB73;
+    ADC.W #$0180*!SPF                                                    ;A9BB73;
     CMP.W #$0C00                                                         ;A9BB76;
     BMI +                                                                ;A9BB79;
     LDA.W #$0C00                                                         ;A9BB7B;

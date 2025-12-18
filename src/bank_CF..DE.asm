@@ -8,12 +8,20 @@ check bankcross off
 
 ;;; $CF:8000: SPC engine ;;;
 SPC_Engine:
+if !PAL == 0
 incbin "../data/SPCEngine.bin" ; $E20C bytes
+else
+incbin "../data/SPCEngine_PAL.bin"
+endif
 
 
 ;;; $D0:E20D: Title sequence ;;;
 Music_TitleSequence:
+if !PAL == 0
 incbin "../data/Music_TitleSequence.bin" ; $541C bytes
+else
+incbin "../data/Music_TitleSequence_PAL.bin"
+endif
 
 
 ;;; $D1:B62A: Empty Crateria ;;;
@@ -23,7 +31,11 @@ incbin "../data/Music_EmptyCrateria.bin" ; $541C bytes
 
 ;;; $D2:88CA: Lower Crateria ;;;
 Music_LowerCrateria:
+if !PAL == 0
 incbin "../data/Music_LowerCrateria.bin" ; $529F bytes
+else
+incbin "../data/Music_LowerCrateria_PAL.bin" ; $529F bytes
+endif
 
 
 ;;; $D2:D9B6: Upper Crateria ;;;
@@ -42,8 +54,8 @@ incbin "../data/Music_RedBrinstar.bin" ; $505A bytes
 
 
 ;;; $D4:B86C: Upper Norfair ;;;
-Music_UpperNofair:
-incbin "../data/Music_UpperNofair.bin" ; $3BB4 bytes
+Music_UpperNorfair:
+incbin "../data/Music_UpperNorfair.bin" ; $3BB4 bytes
 
 
 ;;; $D4:F420: Lower Norfair ;;;
@@ -68,7 +80,11 @@ incbin "../data/Music_MotherBrain.bin" ; $4FD5 bytes
 
 ;;; $D7:BF73: Boss fight 1 ;;;
 Music_BossFight1:
+if !PAL == 0
 incbin "../data/Music_BossFight1.bin" ; $5A3E bytes
+else
+incbin "../data/Music_BossFight1_PAL.bin"
+endif
 
 
 ;;; $D8:99B2: Boss fight 2 ;;;
