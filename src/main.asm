@@ -24,7 +24,7 @@ else
 print "DEBUG FEATURES REMOVED"
 endif
 
-!PAL ?= 1
+!PAL ?= 0
 
 if !PAL
 print "PAL VERSION"
