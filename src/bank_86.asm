@@ -3487,9 +3487,9 @@ InitAI_EnemyProjectile_RidleyFireball:
     STA.W EnemyProjectile_YPositions,Y                                   ;8693EB;
     LDA.W #$0A00                                                         ;8693EE;
     STA.W EnemyProjectile_GraphicsIndices,Y                              ;8693F1;
-    LDA.L Ridley.fireballXComponentOfSpeed                               ;8693F4;
+    LDA.L Ridley.fireballXVelocity                                       ;8693F4;
     STA.W EnemyProjectile_XVelocity,Y                                    ;8693F8;
-    LDA.L Ridley.fireballYComponentOfSpeed                               ;8693FB;
+    LDA.L Ridley.fireballYVelocity                                       ;8693FB;
     STA.W EnemyProjectile_YVelocity,Y                                    ;8693FF; fallthrough to Set_RidleyFireball_Afterburn_Properties
 
 

@@ -14906,7 +14906,7 @@ MainASM_HandleCeresRidleyGetawayCutscene:
     LDA.W CeresStatus                                                    ;8FE571;
     LSR                                                                  ;8FE574;
     BCC .return                                                          ;8FE575;
-    JSL.L HandleCeresRidleyGetawayCutscene                               ;8FE577;
+    JSL.L HandleCeresRidleyGetawayCutsceneIfActive                       ;8FE577;
 
   .return:
     RTS                                                                  ;8FE57B;
