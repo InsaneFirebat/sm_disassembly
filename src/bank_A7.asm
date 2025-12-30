@@ -9861,7 +9861,7 @@ CalculateAthTransitionalColorFromXToY:
 ;; Returns:
 ;;     A: Result colour
 
-; Same as $82:DAA6, except palette change denominator is Phantoon.paletteChangeDenominator instead of $C402
+; Same as CalculateTheAth_TransitionalColorComponent_fromXtoY, except palette change denominator is Phantoon.paletteChangeDenominator instead of PaletteChangeDenominator
     PHA                                                                  ;A7DC95;
     PHA                                                                  ;A7DC96;
     PHX                                                                  ;A7DC97;
@@ -9934,7 +9934,7 @@ CalculateTheAthTransitionalColorComponentFromXToY:
 ;;     Otherwise:
 ;;         A = [X] + ([Y] - [X]) / ([Phantoon palette change denominator] + 1 - [A])
 
-; Same as $82:DAA6, except palette change denominator is Phantoon.paletteChangeDenominator instead of $C402
+; Same as CalculateTheAth_TransitionalColorComponent_fromXtoY, except palette change denominator is Phantoon.paletteChangeDenominator instead of PaletteChangeDenominator
     CMP.W #$0000                                                         ;A7DCF1;
     BNE .notZero                                                         ;A7DCF4;
     TXA                                                                  ;A7DCF6;

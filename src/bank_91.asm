@@ -14265,7 +14265,7 @@ DetermineKnockbackDirection_Morphed:
 ;;; $EE48: Determine knockback direction - movement type 7 ;;;
 UNUSED_DetermineKnockbackDirection_MovementType7_91EE48:
 ; 7: Unused
-; Clone of $EE27 except that the (ignored) carry return is set
+; Clone of DetermineKnockbackDirection_Morphed except that the (ignored) carry return is set
     LDA.W PoseXDirection                                                 ;91EE48;
     AND.W #$00FF                                                         ;91EE4B;
     CMP.W #$0004                                                         ;91EE4E;

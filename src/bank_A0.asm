@@ -9457,7 +9457,7 @@ EnemyBlockCollisionReaction_HorizontalExtension:
 ;; Returns:
 ;;     Carry: Clear. No collision
 
-; Clone of $94:9411
+; Clone of BlockShotBombedGrappledCollisionInsideReaction_HorizontalExt
 ; If BTS is 0, acts like air
 ; Otherwise, offsets block index by block BTS, updates X, and loops back to the `JSR (xxxx, X)` instruction that jumped to here
     LDX.W CurrentBlockIndex                                              ;A0C619;
@@ -9499,7 +9499,7 @@ EnemyBlockCollisionReaction_VerticalExtension:
 ;; Returns:
 ;;     Carry: Clear. No collision
 
-; Clone of $94:9447
+; Clone of BlockShotBombedGrappledCollisionInsideReaction_VerticalExt
 ; If BTS is 0, acts like air
 ; Otherwise, offsets block index by block BTS, updates X, and loops back to the `JSR (xxxx, X)` instruction that jumped to here
     LDX.W CurrentBlockIndex                                              ;A0C64F;

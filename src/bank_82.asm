@@ -8770,7 +8770,7 @@ MenuSpritemap_1A_1F_EndOfEquipmentScreenReserveHealthBar:
     %spritemapEntry(0, $00, $00, 0, 0, 3, 2, $4F)
 
 MenuSpritemap_1D_FullEquipmentScreenReserveHealthBar:
-; Spritemap 1Dh: unused. Clone of $C35B (full equipment screen reserve tank)
+; Spritemap 1Dh: unused. Clone of MenuSpritemap_1B_FullEquipmentScreenReserveTank
     dw $0001                                                             ;82C370;
     %spritemapEntry(0, $00, $00, 0, 0, 3, 2, $4E)
 

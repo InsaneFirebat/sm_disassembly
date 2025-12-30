@@ -6883,7 +6883,7 @@ Load_Beam_Palette_withStackPrepped:
 
 ; Requires DB and PSR to have been pushed
     LDA.W #$0090                                                         ;90ACCD;
-    XBA                                                                  ;90ACD0;
+    XBA                                                                  ;90ACD0; >.<
     STA.B DP_Temp01                                                      ;90ACD1;
     LDA.W BeamPalettePointers,Y                                          ;90ACD3;
     STA.B DP_Temp00                                                      ;90ACD6;
@@ -6909,7 +6909,7 @@ Load_Beam_Palette_External:
 ;; Parameters:
 ;;     A: Equipped beams
 
-; Same as $ACC2. Called for grapple start/finish
+; Same as Load_Beam_Palette_Setup. Called for grapple start/finish
     PHP                                                                  ;90ACF0;
     PHB                                                                  ;90ACF1;
     PHK                                                                  ;90ACF2;
@@ -6929,7 +6929,7 @@ Load_Beam_Palette:
     ASL                                                                  ;90ACFF;
     TAY                                                                  ;90AD00;
     LDA.W #$0090                                                         ;90AD01;
-    XBA                                                                  ;90AD04;
+    XBA                                                                  ;90AD04; >.<
     STA.B DP_Temp01                                                      ;90AD05;
     LDA.W BeamPalettePointers,Y                                          ;90AD07;
     STA.B DP_Temp00                                                      ;90AD0A;
@@ -11591,7 +11591,7 @@ Math_90CC8A:
 ;; Returns:
 ;;     A: Sine component
 
-; Clone of $8B:8EA3
+; Clone of UNUSED_Math_8B8EA3
 ; Angle [X] / 2 must be less than 80h, as this routine does unsigned multiplication
     SEP #$20                                                             ;90CC8A;
     LDA.L SineCosineTables_8bitSine_SignExtended,X                       ;90CC8C;

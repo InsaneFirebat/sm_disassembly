@@ -2203,7 +2203,7 @@ UNUSED_CalculateXYComponentsOfRadiusAAngleY_8B8E52:
 ;;     $14: X component of radius
 ;;     $16: Y component of radius
 
-; Clone of $86:9BA2
+; Clone of Calculate_XY_ComponentsOf_RadiusA_AngleY
     PHP                                                                  ;8B8E52;
     REP #$30                                                             ;8B8E53;
     PHX                                                                  ;8B8E55;
@@ -2263,7 +2263,7 @@ UNUSED_Math_8B8EA3:
 ;; Returns:
 ;;     A: Sine component
 
-; Clone of $86:9BF3
+; Clone of DoSomeMathWithSineAndPi_869BF3
 ; Only called by above unused routine
     SEP #$20                                                             ;8B8EA3;
     LDA.L SineCosineTables_8bitSine_SignExtended,X                       ;8B8EA5;
@@ -3818,7 +3818,7 @@ Draw_CinematicSpriteObjects_EndingCredits:
     BPL .loop                                                            ;8B97E7;
     PLB                                                                  ;8B97E9;
     LDA.W CinematicFunction                                              ;8B97EA;
-    CMP.W #CinematicFunc_Ending_ZebesDestruction2_CrossFade_FadingIn     ;8B97ED;
+    CMP.W #CinematicFunc_Ending_ZebesDestruction2_CrossFade_FadingIn     ;8B97ED; If [cinematic function] < $DA02: (hardcoded address check)
     BPL .return                                                          ;8B97F0;
     JSR.W MoveUnusedSpritesOffScreen                                     ;8B97F2;
 
