@@ -5680,15 +5680,15 @@ Instruction_LavaSoundTimer_70:
 ;;; $B3B0: Pre-instruction - lava/acid BG3 Y scroll ;;;
 PreInstruction_LavaAcid_BG3YScroll:
 ; For on-screen lava/acid,
-; the calculation 200h - [A] at $B477 is equivalent to 100h + (Y position of screen on lava/acid)
+; the calculation 200h - [A] at .merge2 is equivalent to 100h + (Y position of screen on lava/acid)
 ; (100h is the offset of lava/acid in the BG3 tilemap)
 
 ; As far as I can tell, the HDMA done here is completely pointless and a big waste of time and space
 ; I suspect that lava/acid was a copy+paste job from water FX, and this BG3 HDMA is a leftover by-product
 ; The HDMA set up here writes the zero BG3 Y scroll on every scanline up until 8 pixels above the FX tilemap starts,
-; and then writes the calculated [$7E:9C02] BG3 Y scroll for the remaining scanlines
+; and then writes the calculated LavaAcidBG3YScrollHDMADataTable+2 BG3 Y scroll for the remaining scanlines
 ; But there's (more than) a full screen of transparent padding before the FX tilemap, so this is completely unnecessary
-; It would be sufficient to set $7E:CADC instead of $7E:9C02 at $B41A to set the BG3 Y position via *the* BG3 scroll HDMA object
+; It would be sufficient to set BG3YPosition instead of LavaAcidBG3YScrollHDMADataTable+2 at .merge to set the BG3 Y position via *the* BG3 scroll HDMA object
     PHB                                                                  ;88B3B0;
     LDA.W LayerBlending_Layer3Config                                     ;88B3B1;
     STA.W LayerBlending_Config                                           ;88B3B4;

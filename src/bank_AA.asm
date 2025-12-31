@@ -10118,7 +10118,8 @@ Spritemaps_Chozo_10:
     %spritemapEntry(1, $43FC, $D7, 0, 0, 2, 1, $102)
     %spritemapEntry(1, $43EC, $D7, 0, 0, 2, 1, $100)
 
-Spritemaps_Chozo_11:
+if !FEATURE_KEEP_UNREFERENCED
+UNUSED_Spritemaps_Chozo_11_AAEE85:
     dw $002A                                                             ;AAEE85;
     %spritemapEntry(1, $43E0, $98, 0, 0, 2, 1, $144)
     %spritemapEntry(1, $4242, $98, 0, 0, 2, 1, $14A)
@@ -10163,7 +10164,7 @@ Spritemaps_Chozo_11:
     %spritemapEntry(1, $43D0, $B8, 0, 0, 2, 2, $142)
     %spritemapEntry(1, $43C0, $B8, 0, 0, 2, 2, $140)
 
-Spritemaps_Chozo_12:
+UNUSED_Spritemaps_Chozo_12_AAEF59:
     dw $0019                                                             ;AAEF59;
     %spritemapEntry(1, $4238, $88, 0, 0, 2, 1, $10D)
     %spritemapEntry(1, $4240, $80, 0, 0, 2, 1, $10B)
@@ -10190,6 +10191,7 @@ Spritemaps_Chozo_12:
     %spritemapEntry(1, $43E9, $98, 0, 0, 2, 1, $104)
     %spritemapEntry(1, $43F9, $88, 0, 0, 2, 1, $102)
     %spritemapEntry(1, $43E9, $88, 0, 0, 2, 1, $100)
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemaps_Chozo_13:
     dw $0012                                                             ;AAEFD8;
@@ -10273,7 +10275,8 @@ Spritemaps_Chozo_16:
     %spritemapEntry(1, $43F4, $D7, 0, 1, 2, 1, $102)
     %spritemapEntry(1, $4204, $D7, 0, 1, 2, 1, $100)
 
-Spritemaps_Chozo_17:
+if !FEATURE_KEEP_UNREFERENCED
+UNUSED_Spritemaps_Chozo_17_AAF13E:
     dw $0015                                                             ;AAF13E;
     %spritemapEntry(0, $1E0, $F9, 0, 0, 2, 1, $11F)
     %spritemapEntry(1, $43E8, $ED, 0, 0, 2, 1, $126)
@@ -10297,7 +10300,7 @@ Spritemaps_Chozo_17:
     %spritemapEntry(1, $43FC, $D7, 0, 0, 2, 1, $102)
     %spritemapEntry(1, $43EC, $D7, 0, 0, 2, 1, $100)
 
-Spritemaps_Chozo_18:
+UNUSED_Spritemaps_Chozo_18_AAF1A9:
     dw $0016                                                             ;AAF1A9;
     %spritemapEntry(0, $1E0, $F8, 0, 0, 2, 1, $11F)
     %spritemapEntry(1, $43E8, $EC, 0, 0, 2, 1, $126)
@@ -10322,7 +10325,7 @@ Spritemaps_Chozo_18:
     %spritemapEntry(1, $43FC, $D6, 0, 0, 2, 1, $102)
     %spritemapEntry(1, $43EC, $D6, 0, 0, 2, 1, $100)
 
-Spritemaps_Chozo_19:
+UNUSED_Spritemaps_Chozo_19_AAF219:
     dw $0016                                                             ;AAF219;
     %spritemapEntry(1, $43E8, $EB, 0, 0, 2, 1, $126)
     %spritemapEntry(0, $1E0, $F7, 0, 0, 2, 1, $11F)
@@ -10347,7 +10350,7 @@ Spritemaps_Chozo_19:
     %spritemapEntry(1, $43FC, $D5, 0, 0, 2, 1, $102)
     %spritemapEntry(1, $43EC, $D5, 0, 0, 2, 1, $100)
 
-Spritemaps_Chozo_1A:
+UNUSED_Spritemaps_Chozo_1A_AAF289:
     dw $0016                                                             ;AAF289;
     %spritemapEntry(0, $1E0, $F8, 0, 0, 2, 1, $11F)
     %spritemapEntry(1, $43E8, $EC, 0, 0, 2, 1, $126)
@@ -10372,7 +10375,7 @@ Spritemaps_Chozo_1A:
     %spritemapEntry(1, $43FC, $D6, 0, 0, 2, 1, $102)
     %spritemapEntry(1, $43EC, $D6, 0, 0, 2, 1, $100)
 
-Spritemaps_Chozo_1B:
+UNUSED_Spritemaps_Chozo_1B_AAF2F9:
     dw $0015                                                             ;AAF2F9;
     %spritemapEntry(1, $43E8, $ED, 0, 0, 2, 1, $126)
     %spritemapEntry(0, $1E0, $F9, 0, 0, 2, 1, $11F)
@@ -10396,7 +10399,7 @@ Spritemaps_Chozo_1B:
     %spritemapEntry(1, $43FC, $D7, 0, 0, 2, 1, $102)
     %spritemapEntry(1, $43EC, $D7, 0, 0, 2, 1, $100)
 
-Spritemaps_Chozo_1C:
+UNUSED_Spritemaps_Chozo_1C_AAF364:
     dw $0016                                                             ;AAF364;
     %spritemapEntry(0, $1E0, $F8, 0, 0, 2, 1, $11F)
     %spritemapEntry(1, $43E8, $EC, 0, 0, 2, 1, $126)
@@ -10421,7 +10424,7 @@ Spritemaps_Chozo_1C:
     %spritemapEntry(1, $43F7, $04, 0, 0, 2, 2, $152)
     %spritemapEntry(1, $43F7, $FC, 0, 0, 2, 2, $142)
 
-Spritemaps_Chozo_1D:
+UNUSED_Spritemaps_Chozo_1D_AAF3D4:
     dw $0016                                                             ;AAF3D4;
     %spritemapEntry(1, $43E8, $EB, 0, 0, 2, 1, $126)
     %spritemapEntry(0, $1E0, $F7, 0, 0, 2, 1, $11F)
@@ -10446,7 +10449,7 @@ Spritemaps_Chozo_1D:
     %spritemapEntry(1, $43FC, $D5, 0, 0, 2, 1, $102)
     %spritemapEntry(1, $43EC, $D5, 0, 0, 2, 1, $100)
 
-Spritemaps_Chozo_1E:
+UNUSED_Spritemaps_Chozo_1E_AAF444:
     dw $0016                                                             ;AAF444;
     %spritemapEntry(0, $1E0, $F8, 0, 0, 2, 1, $11F)
     %spritemapEntry(1, $43E8, $EC, 0, 0, 2, 1, $126)
@@ -10470,6 +10473,7 @@ Spritemaps_Chozo_1E:
     %spritemapEntry(1, $43EC, $E6, 0, 0, 2, 1, $104)
     %spritemapEntry(1, $43FC, $D6, 0, 0, 2, 1, $102)
     %spritemapEntry(1, $43EC, $D6, 0, 0, 2, 1, $100)
+if !FEATURE_KEEP_UNREFERENCED
 
 Spritemaps_Chozo_1F:
     dw $0012                                                             ;AAF4B4;
@@ -10576,7 +10580,8 @@ Spritemaps_Chozo_23:
     %spritemapEntry(1, $43F4, $D7, 0, 1, 2, 1, $102)
     %spritemapEntry(1, $4204, $D7, 0, 1, 2, 1, $100)
 
-Spritemaps_Chozo_24:
+if !FEATURE_KEEP_UNREFERENCED
+UNUSED_Spritemaps_Chozo_24_AAF680:
     dw $002A                                                             ;AAF680;
     %spritemapEntry(1, $43E0, $98, 0, 0, 2, 1, $144)
     %spritemapEntry(1, $4242, $98, 0, 0, 2, 1, $14A)
@@ -10621,7 +10626,7 @@ Spritemaps_Chozo_24:
     %spritemapEntry(1, $43D0, $B8, 0, 0, 2, 2, $142)
     %spritemapEntry(1, $43C0, $B8, 0, 0, 2, 2, $140)
 
-Spritemaps_Chozo_25:
+UNUSED_Spritemaps_Chozo_25_AAF754:
     dw $0019                                                             ;AAF754;
     %spritemapEntry(1, $4238, $88, 0, 0, 2, 1, $10D)
     %spritemapEntry(1, $4240, $80, 0, 0, 2, 1, $10B)
@@ -10648,6 +10653,7 @@ Spritemaps_Chozo_25:
     %spritemapEntry(1, $43E9, $98, 0, 0, 2, 1, $104)
     %spritemapEntry(1, $43F9, $88, 0, 0, 2, 1, $102)
     %spritemapEntry(1, $43E9, $88, 0, 0, 2, 1, $100)
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Freespace_BankAA_F7D3:                                                   ;AAF7D3;

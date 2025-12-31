@@ -1734,6 +1734,8 @@ HandleFadingIn:
 Finalise_OAM:
 ; Move unused sprites to Y = F0h and reset OAM stack pointer
 ; Uses one hell of an unrolled loop
+
+; Sprites must be 10h px or less. For large sprites, see $8B:8ED9
     PHP                                                                  ;80896E;
     REP #$30                                                             ;80896F;
     LDA.W OAMStack                                                       ;808971;

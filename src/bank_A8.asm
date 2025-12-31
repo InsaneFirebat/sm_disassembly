@@ -8134,19 +8134,19 @@ Palette_Robot:
 
 ;;; $C6D3: Instruction list - work robot deactivated - neutral ;;;
 InstList_RobotNoPower_Neutral:
-    dw $7FFF,Spritemap_Robot_19                                          ;A8C6D3;
+    dw $7FFF,Spritemap_Robot_Deactivated_1                               ;A8C6D3;
     dw Instruction_Common_Sleep                                          ;A8C6D7;
 
 
 ;;; $C6D9: Instruction list - work robot deactivated - leaning left ;;;
 InstList_RobotNoPower_LeaningLeft:
-    dw $7FFF,Spritemap_Robot_18                                          ;A8C6D9;
+    dw $7FFF,Spritemap_Robot_Deactivated_0                               ;A8C6D9;
     dw Instruction_Common_Sleep                                          ;A8C6DD;
 
 
 ;;; $C6DF: Instruction list - work robot deactivated - leaning right ;;;
 InstList_RobotNoPower_LeaningRight:
-    dw $7FFF,Spritemap_Robot_1A                                          ;A8C6DF;
+    dw $7FFF,Spritemap_Robot_Deactivated_2                               ;A8C6DF;
     dw Instruction_Common_Sleep                                          ;A8C6E3;
 
 
@@ -9831,7 +9831,7 @@ Spritemap_Robot_17:
     %spritemapEntry(1, $1F0, $E1, 0, 1, 2, 0, $106)
     %spritemapEntry(1, $00, $E1, 0, 1, 2, 0, $104)
 
-Spritemap_Robot_18:
+Spritemap_Robot_Deactivated_0:
     dw $0006                                                             ;A8D7C1;
     %spritemapEntry(1, $00, $01, 0, 0, 2, 0, $12E)
     %spritemapEntry(1, $1F0, $01, 0, 0, 2, 0, $12C)
@@ -9840,7 +9840,7 @@ Spritemap_Robot_18:
     %spritemapEntry(1, $00, $E1, 0, 0, 2, 0, $102)
     %spritemapEntry(1, $1F0, $E1, 0, 0, 2, 0, $100)
 
-Spritemap_Robot_19:
+Spritemap_Robot_Deactivated_1:
     dw $0006                                                             ;A8D7E1;
     %spritemapEntry(1, $00, $01, 0, 0, 2, 0, $146)
     %spritemapEntry(1, $1F0, $01, 0, 0, 2, 0, $144)
@@ -9849,7 +9849,7 @@ Spritemap_Robot_19:
     %spritemapEntry(1, $00, $E1, 0, 0, 2, 0, $106)
     %spritemapEntry(1, $1F0, $E1, 0, 0, 2, 0, $104)
 
-Spritemap_Robot_1A:
+Spritemap_Robot_Deactivated_2:
     dw $0006                                                             ;A8D801;
     %spritemapEntry(1, $00, $01, 0, 0, 2, 0, $142)
     %spritemapEntry(1, $1F0, $01, 0, 0, 2, 0, $140)

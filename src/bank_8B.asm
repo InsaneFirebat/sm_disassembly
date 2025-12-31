@@ -2297,8 +2297,9 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 ;;; $8ED9: Move unused sprites off-screen ;;;
 MoveUnusedSpritesOffScreen:
 ; Move unused sprites to X = 180h
+; Handles large sprites, unlike $80:896E
 ; Uses one hell of an unrolled loop
-; TODO: this might be buggy for [OAM stack pointer] = 1FCh
+; BUG: If (number of sprites) / 4 % 2 != 0, the OAM stack pointer is clobbered
     PHP                                                                  ;8B8ED9;
     REP #$30                                                             ;8B8EDA;
     LDA.W OAMStack                                                       ;8B8EDC;

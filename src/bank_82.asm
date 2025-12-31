@@ -494,8 +494,9 @@ GameState_21_BlackoutFromCeres:
     RTS                                                                  ;828410;
 
 
-;;; $8411: Game state 23h (time up) ;;;
-GameState_23_TimeUp:
+;;; $8411: Game state 23h (time up - white out) ;;;
+GameState_23_TimeUpWhiteOut:
+; Used for Ceres and Zebes
     PHP                                                                  ;828411;
     REP #$30                                                             ;828412;
     JSR.W GameState_8_MainGameplay                                       ;828414;
@@ -513,8 +514,9 @@ GameState_23_TimeUp:
     RTS                                                                  ;828430;
 
 
-;;; $8431: Game state 24h (whiting out from time up) ;;;
-GameState_24_WhitingOutFromTimeUp:
+;;; $8431: Game state 24h (time up - black out) ;;;
+GameState_23_TimeUpBlackOut:
+; Used for Ceres and Zebes
     PHP                                                                  ;828431;
     REP #$30                                                             ;828432;
     JSL.L HandleFadingOut                                                ;828434;
@@ -1209,8 +1211,8 @@ endif
     dw GameState_20_MadeItToCeresElevator                                ;8289C1;
     dw GameState_21_BlackoutFromCeres                                    ;8289C3;
     dw GameState_1E_22_25_Intro_CeresGoesBoom_SamusGoesToZebes           ;8289C5;
-    dw GameState_23_TimeUp                                               ;8289C7;
-    dw GameState_24_WhitingOutFromTimeUp                                 ;8289C9;
+    dw GameState_23_TimeUpWhiteOut                                       ;8289C7;
+    dw GameState_23_TimeUpBlackOut                                       ;8289C9;
     dw GameState_1E_22_25_Intro_CeresGoesBoom_SamusGoesToZebes           ;8289CB;
     dw GameState_26_SamusEscapesFromZebes                                ;8289CD;
     dw GameState_27_EndingAndCredits                                     ;8289CF;

@@ -12951,7 +12951,7 @@ UpdateSamusPoseDueToChangeOfEquipment:
 ; Called by SamusCommand_C_UpdateSamusDueToUnpause
 ; Seems to have been coded far more generally than for just map station release
 ; Notably, this handles equipping speed booster mid-run
-; (if it did not, the speed boost timer might be 0 and underflow during the speed boost check $90:857D)
+; (if it did not, the speed boost timer might be 0 and underflow during the speed boost check Handle_SpeedBooster_AnimationDelay_speedBoostTimer)
     PHP                                                                  ;91E633;
     PHB                                                                  ;91E634;
     PHK                                                                  ;91E635;

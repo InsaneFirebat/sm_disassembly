@@ -10078,7 +10078,7 @@ FlipRidleyTail:
 
 
 if !FEATURE_KEEP_UNREFERENCED
-;;; $D431: Check if all Ridley tail segments are active ;;;
+;;; $D431: Unused. Check if all Ridley tail segments are active ;;;
 UNUSED_CheckIfAllTailSegmentsAreActive_A6D431:
 ;; Returns:
 ;;     Carry: Set if all tail segments are active, clear otherwise

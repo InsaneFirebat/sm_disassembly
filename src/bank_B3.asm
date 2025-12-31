@@ -1056,7 +1056,7 @@ Set_Zeb_Zebbo_InstList:
     RTS                                                                  ;B389B6;
 
 
-;;; $89B7: Spritemaps ;;;
+;;; $89B7: Spritemaps - zeb ;;;
 Spritemaps_Zeb_0:
     dw $0001                                                             ;B389B7;
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $100)
@@ -1144,7 +1144,7 @@ InstList_Zebbo_FacingRight_Shooting:
     dw InstList_Zebbo_FacingRight_Shooting                               ;B38A6B;
 
 
-;;; $8A6D: Spritemaps ;;;
+;;; $8A6D: Spritemaps - zebbo ;;;
 Spritemaps_Zebbo_0:
     dw $0001                                                             ;B38A6D;
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $100)

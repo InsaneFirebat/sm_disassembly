@@ -6158,7 +6158,7 @@ Spritemap_Multiviola_7:
     dw $0001                                                             ;A2B4DB;
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $10E)
 
-; Unused instruction list
+; Unused instruction list. Tile numbers in these spritemaps are past the end of multiviola tile data
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Multiviola_A2B4E2:
     dw $0001                                                             ;A2B4E2;
@@ -6176,7 +6176,7 @@ UNUSED_Spritemap_Multiviola_A2B4F7:
     dw $0001                                                             ;A2B4F7;
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $126)
 
-; Unused instruction list
+; Unused instruction list. Tile numbers in these spritemaps are past the end of multiviola tile data
 UNUSED_Spritemap_Multiviola_A2B4FE:
     dw $0001                                                             ;A2B4FE;
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $128)
