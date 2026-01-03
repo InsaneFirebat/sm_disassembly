@@ -2499,7 +2499,7 @@ FileSelectMenu_Index0_TitleSequenceToMain_FadeOutConfigGfx:
 
 ;;; $9486: Load file select palettes ;;;
 LoadFileSelectPalettes:
-; Clone of LoadMenuPalettes, excect with no `REP #$30`
+; Clone of LoadMenuPalettes, except with no `REP #$30`
     LDX.W #$0000                                                         ;819486;
 
   .loop:

@@ -14522,6 +14522,7 @@ SamusTimerHackHandler_LetSamusFailToStandUpFromBeingDrained:
 
 ;;; $E0E6: Timer / Samus hack handler - handle timer ;;;
 SamusTimerHackHandler_HandleTimer:
+; Used for both Ceres (via PushingSamusOutOfCeresRidleysWay_Leftwards/Rightwards) and Zebes (via Function_MBBody_Phase3_DeathSequence_DoorExploding_StartTimer)
     JSL.L ProcessTimer                                                   ;90E0E6;
     BCC .timerNotExpired                                                 ;90E0EA;
     LDA.W #$0023                                                         ;90E0EC;
@@ -15760,6 +15761,8 @@ endif
 
 ;;; $E8AA: Samus new state handler - Ceres ;;;
 SamusNewStateHandler_Ceres:
+; The setting of the game state to 23h here *should* be unnecessary,
+; it's already handled by the generic timer code SamusTimerHackHandler_HandleTimer and edge case code Handle_UnspinSFX_CancellingEchoSound_SettingTimeUpGameState
     PHP                                                                  ;90E8AA;
     PHB                                                                  ;90E8AB;
     PHK                                                                  ;90E8AC;
@@ -18044,8 +18047,8 @@ endif
 ;;; $F576: Handle unspin sound effects, cancelling echo sound and setting time up game state ;;;
 Handle_UnspinSFX_CancellingEchoSound_SettingTimeUpGameState:
 ; Also enables debug invincibility if debug mode is enabled and controller 2 newly presses A whilst L + R is pressed
-; The code at $90:E0E6 is supposed to set the time up game state, and also sets HackHandler to $E114
-; The purpose of the code at $F619 checking for HackHandler = $E114 and setting the time up game state seems to be for handling edge cases like entering at door at timer = 00'00"00
+; The code at SamusTimerHackHandler_HandleTimer is supposed to set the time up game state, and also sets HackHandler to SamusTimerHackHandler_DrawTimer
+; The purpose of the code at Handle_UnspinSFX_CancellingEchoSound_SettingTimeUpGameState_debugEnd checking for HackHandler = SamusTimerHackHandler_DrawTimer and setting the time up game state seems to be for handling edge cases like entering at door at timer = 00'00"00
     PHP                                                                  ;90F576;
     REP #$30                                                             ;90F577;
     LDA.W ResumeChargingBeamSFXFlag                                      ;90F579;
