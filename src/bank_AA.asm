@@ -10473,7 +10473,7 @@ UNUSED_Spritemaps_Chozo_1E_AAF444:
     %spritemapEntry(1, $43EC, $E6, 0, 0, 2, 1, $104)
     %spritemapEntry(1, $43FC, $D6, 0, 0, 2, 1, $102)
     %spritemapEntry(1, $43EC, $D6, 0, 0, 2, 1, $100)
-if !FEATURE_KEEP_UNREFERENCED
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemaps_Chozo_1F:
     dw $0012                                                             ;AAF4B4;

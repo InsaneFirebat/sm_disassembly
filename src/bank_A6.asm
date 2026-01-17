@@ -6317,7 +6317,7 @@ SetRidleyPogoSpeeds:
   .randomXSpeed3:
     dw $00B8*!SPF,$00D0*!SPF,$0100*!SPF,$0108*!SPF,$0110*!SPF,$0118*!SPF ;A6B999; fast
 
-; Y velocity tables. First two entries are unused, then indexed by [Ridley.accelerationIndex] * 2
+; Initial Y velocity tables (determines bounce height). First two entries are unused, then indexed by [Ridley.accelerationIndex] * 2
   .randomYSpeed0:
     dw -$01A0*!SPF,-$0220*!SPF,-$0320*!SPF,-$03E0*!SPF,-$0580*!SPF,-$0680*!SPF ;A6B9A5; slow
 

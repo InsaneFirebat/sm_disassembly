@@ -1,5 +1,6 @@
 
 ; SPC engine
+; See https://github.com/PJBoy/SM-SPC/tree/master/vanilla for a complete disassembly of the SPC engine
 
 org $CF8000
 

@@ -145,7 +145,7 @@ struct VRAMWrite $D0 ; $D0..02CF
   .dest: skip 2 ; $D5
 endstruct
 
-struct Mode7Transfer $2D0
+struct Mode7Transfer $02D0
   .control: skip 1 ; $02D0
   .src: skip 3 ; $02D1
   .size: skip 2 ; $02D4

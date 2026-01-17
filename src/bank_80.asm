@@ -1151,7 +1151,7 @@ Crash_Handler:
 ;     $93:80A0: Initialise (power) bomb
 ;     $93:8163: Initialise shinespark echo or spazer SBA trail projectile
 ;     $93:81A4: Initialise SBA projectile
-    JML.L Crash_Handler                                                  ;808573; Crash handler, jump to self
+    JML.L Crash_Handler                                                  ;808573; Sit here and think about what you've done
 
 
 if !FEATURE_KEEP_UNREFERENCED

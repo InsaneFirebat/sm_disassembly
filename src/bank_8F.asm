@@ -2764,7 +2764,7 @@ RoomState_BombTorizo_2:                                                  ;8F984F
     %enemySet(EnemySets_BombTorizo_2),
     %layer2Scrolls($C1, $C1),
     %scrollPointer(0),
-    %specialXray(RoomVar_BombTorizo),
+    %specialXray(RoomVar_BombTorizo_AnimalEscapeBlocks),
     %mainASM(MainASM_SetScreenShaking_GenerateRandomExplosions),
     %PLMPop(PLMPopulation_BombTorizo_State2),
     %libraryBG(LibBG_Crateria_2_3_Mechanical),
@@ -2773,7 +2773,8 @@ RoomState_BombTorizo_2:                                                  ;8F984F
 RoomDoors_BombTorizo:
     dw Door_BombTorizo_0                                                 ;8F9869;
 
-RoomVar_BombTorizo:
+RoomVar_BombTorizo_AnimalEscapeBlocks:
+; the only RoomVar / special Xray blocks
     db $0F,$0A : dw $0052                                                ;8F986B;
     db $0F,$0B : dw $0052
     db $0F,$0C : dw $0052

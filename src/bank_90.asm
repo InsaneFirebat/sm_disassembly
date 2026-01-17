@@ -2941,6 +2941,28 @@ Samus_Y_Movement_WithSpeedCalculations:
 ;     $DF5D: Knockback movement - straight up (unused)
 ;     $E04C: Samus movement handler - bomb jump - main - horizontal
 ;     $E066: Samus movement handler - bomb jump - main - straight
+
+; Moonfall glitch:
+;     Consider moonwalk aiming down-left, which is pose 77h
+;     When jump is pressed, the following transition table entry is used
+;         0080, 0000, 00C0 ; Tap jump => pose C0h (facing left - moonwalking - turn/jump right)
+;     
+;     As part of initialising a turning around pose ($91:EB88 -> $91:F404 -> $91:F433 -> $91:F468),
+;     Samus pose is updated to take her old pose shot direction into account (down-left),
+;     resulting in pose C4h (facing left - moonwalking - turn/jump right - aiming down-left)
+;     
+;     Pose C4h's animation delay sequence ends with the instruction
+;         F8,19 ; Transition to pose 19h (facing right - spin jump)
+;     which sets Samus using the super special prospective pose mechanism ($91:EBB0),
+;     which notably does *not* call $91:F404 (handle Samus pose change),
+;     which is responsible for making Samus jump ($91:FBBB -> $91:FC99 -> $90:98BC)
+;     
+;     Because Samus doesn't technically jump, Samus Y direction ($0B36) isn't set to 1 (up) and remains 0 (none)
+;     This means the spin jumping movement code ($90:9040) doesn't run the released jump detection code,
+;     so Samus Y direction is never set to 2 (down)
+;     This means the Samus Y movement code ($90:90E2) doesn't apply the falling speed cap and instead applies the jumping logic
+;     The jumping logic decreases Samus Y speed (intending to cause deceleration) and applies Samus Y speed in the upwards direction
+;     But Samus Y speed is getting increasingly negative, so as a result, she moves downwards with perpetually increasing speed
     PHP                                                                  ;9090E2;
     REP #$30                                                             ;9090E3;
     LDA.W SamusYSubSpeed                                                 ;9090E5;
