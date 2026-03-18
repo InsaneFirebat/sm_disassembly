@@ -1,5 +1,1 @@
 
-$838650 Should be 16bit pointer to bank $83
-$83876A Should be 16bit pointer to bank $83
-$83883C Should be 16bit pointer to bank $83
-$888607 UNUSED_Inst_HDMAObject_DecTimer_GotoY_IfNonZero_88860 -> UNUSED_Inst_HDMAObject_DecTimer_GotoY_IfNonZero_888607

@@ -3488,19 +3488,21 @@ RoomHeader_Dachora:                                                      ;8F9CB3
     %doorList(RoomDoors_Dachora))
     %stateChecks(0)
 
-RoomState_Dachora:
-    dl LevelData_Dachora                                                 ;8F9CC0;
-    db $06,$00,$00                                                       ;8F9CC3;
-    dw FXHeader_Dachora                                                  ;8F9CC6;
-    dw EnemyPopulations_Dachora                                          ;8F9CC8;
-    dw EnemySets_Dachora                                                 ;8F9CCA;
-    db $C0,$00                                                           ;8F9CCC;
-    dw RoomScrolls_Dachora                                               ;8F9CCE;
-    dw $0000                                                             ;8F9CD0;
-    dw MainASM_ScrollScreenRightInDachoraRoom                            ;8F9CD2;
-    dw PLMPopulation_Dachora                                             ;8F9CD4;
-    dw $0000                                                             ;8F9CD6;
-    dw RTS_8F91D5                                                        ;8F9CD8;
+RoomState_Dachora:                                                       ;8F9CC0;
+    %StateHeader(\
+    %levelData(LevelData_Dachora),
+    %tileset(6),
+    %music(0, 0),
+    %FX(FXHeader_Dachora),
+    %enemyPop(EnemyPopulations_Dachora),
+    %enemySet(EnemySets_Dachora),
+    %layer2Scrolls($C0, 0),
+    %scrollPointer(RoomScrolls_Dachora),
+    %specialXray(0),
+    %mainASM(MainASM_ScrollScreenRightInDachoraRoom),
+    %PLMPop(PLMPopulation_Dachora),
+    %libraryBG(0),
+    %setupASM(RTS_8F91D5))
 
 RoomDoors_Dachora:
     dw Door_Dachora_0                                                    ;8F9CDA;
@@ -7600,7 +7602,7 @@ RoomHeader_Plowerhouse:                                                  ;8FB482
     %scrollers($70, $A0),
     %CRE(0),
     %doorList(RoomDoors_Plowerhouse))
-    dw Use_StatePointer_inX                                              ;8FB48D;
+    %stateChecks(0)
 
 RoomState_Plowerhouse:                                                   ;8FB48F;
     %StateHeader(\
@@ -10283,12 +10285,8 @@ RoomDoors_BowlingAlley:
     dw Door_BowlingAlley_2                                               ;8FC9D8;
 
 RoomScrolls_BowlingAlley:
-    db $00,$00,$01,$01,$01,$02,$01,$01,$01                               ;8FC9DA;
-    dw $0101                                                             ;8FC9E3;
-    dw $0002                                                             ;8FC9E5;
-    db $01                                                               ;8FC9E7;
-    dw $0000                                                             ;8FC9E8;
-    dw $0200                                                             ;8FC9EA;
+    db $00,$00,$01,$01,$01,$02,$01,$01,$01,$01,$01,$02,$00,$01,$00,$00   ;8FC9DA;
+    db $00,$02                                                           ;8FC9EA;
 
 RoomPLM_BowlingAlley_0:
     db $0E,$01, $0F,$01, $80                                             ;8FC9EC;
