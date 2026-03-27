@@ -2097,7 +2097,7 @@ FXHeader_LNSave:                                                         ;8388EC
 ;       |    |  |  |  |  |  |  |    |
 ;       rrrr ee oo xx yy XX YY dddd aaaa
 Door_VariousRooms_Elevator:
-    db $00,$00                                                           ;8388FC;
+    dw $0000                                                             ;8388FC;
 
 Door_LandingSite_LandingCutscene:                                        ;8388FE;
     %DoorHeader(\

@@ -348,8 +348,9 @@ endif
     dw Use_StatePointer_inX
 endmacro
 
-macro stateCheckDoor(arg)
+macro stateCheckDoor(arg, state)
     dw UNUSED_RoomStateCheck_Door_8FE5EB, <arg>
+    dw <state>
 endmacro
 
 macro stateCheckMainBoss(arg)

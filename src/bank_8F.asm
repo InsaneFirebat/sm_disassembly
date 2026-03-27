@@ -2142,7 +2142,7 @@ RoomState_CrateriaKihunter:                                              ;8F9499
     %enemyPop(EnemyPopulations_CrateriaKihunter),
     %enemySet(EnemySets_CrateriaKihunter),
     %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScroll_CrateriaKihunter),
+    %scrollPointer(RoomScrolls_CrateriaKihunter),
     %specialXray(0),
     %mainASM(0),
     %PLMPop(PLMPopulation_CrateriaKihunter),
@@ -2154,7 +2154,7 @@ RoomDoors_CrateriaKihunter:
     dw Door_CrateriaKihunter_1                                           ;8F94B5;
     dw Door_CrateriaKihunter_2                                           ;8F94B7;
 
-RoomScroll_CrateriaKihunter:
+RoomScrolls_CrateriaKihunter:
     db $01,$01,$01,$00,$00,$00,$00,$02,$00                               ;8F94B9;
 
 RoomPLM_CrateriaKihunter_0:
@@ -5002,7 +5002,7 @@ RoomState_Kraid_1:                                                       ;8FA5CB
     %specialXray(0),
     %mainASM(0),
     %PLMPop(PLMPopulation_Kraid_State0_1),
-    %libraryBG(LibBG_Standard_BG3_Tiles),
+    %libraryBG(LibBG_Kraid_Dead),
     %setupASM(RTS_8F91D6))
 
 RoomDoors_Kraid:
@@ -8123,8 +8123,10 @@ LibBG_Brinstar_1A_Kraid_Upper_Lower:                                     ;8FB815
     dw $0002 : dl BG2Tilemap : dw $4800,$1000
     dw $0000
 
-LibBG_Standard_BG3_Tiles:                                                ;8FB840;
-    dw $0008 : dl Tiles_Standard_BG3 : dw $2000,$1000,$000C,$0000
+LibBG_Kraid_Dead:                                                        ;8FB840;
+    dw $0008 : dl Tiles_Standard_BG3 : dw $2000,$1000
+    dw $000C
+    dw $0000
 
 LibBG_Crocomire_State0:                                                  ;8FB84D;
     dw $0002 : dl $7E2000 : dw $4800,$1000
@@ -15430,7 +15432,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 RoomPLM_Debug:
 ; Room $E82C, state $E839: PLM
-    db $00,$00                                                           ;8FE87F;
+    db $0000                                                             ;8FE87F;
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $E881: Unused. PLM metadata - Wrecked Ship / Maridia / Tourian (/ Ceres?) ;;;
