@@ -12808,8 +12808,8 @@ Function_Kihunter_Winged_Swoop:
     CMP.L Kihunter.arcAngularVelocityCap,X                               ;A8F410;
     BPL +                                                                ;A8F414;
 if !PAL != 0
-    LDA #$6666
-    STA Kihunter.arcAngularSubVelocity,X
+    LDA.W #$6666
+    STA.L Kihunter.arcAngularSubVelocity,X
 endif
     LDA.L Kihunter.arcAngularVelocityCap,X                               ;A8F416;
 

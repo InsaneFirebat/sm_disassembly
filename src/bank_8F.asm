@@ -15432,7 +15432,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 RoomPLM_Debug:
 ; Room $E82C, state $E839: PLM
-    db $0000                                                             ;8FE87F;
+    dw $0000                                                             ;8FE87F;
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $E881: Unused. PLM metadata - Wrecked Ship / Maridia / Tourian (/ Ceres?) ;;;

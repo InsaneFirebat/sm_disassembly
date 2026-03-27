@@ -5799,20 +5799,20 @@ if !PAL != 0
     BNE .return
     LDX.W VRAMWriteStack
     LDA.W #$0100
-    STA.B $D0,X
+    STA.B VRAMWrite.size,X
     INX
     INX
     LDA.W #CinematicBGTilemap_initialSubtitles
-    STA.B $D0,X
+    STA.B VRAMWrite.size,X
     INX
     INX
     SEP #$20
     LDA.B #CinematicBGTilemap_initialSubtitles>>$10
-    STA.B $D0,X
+    STA.B VRAMWrite.size,X
     REP #$20
     INX
     LDA.W #$4EE0
-    STA $D0,X
+    STA.B VRAMWrite.size,X
     INX
     INX
     STX.W VRAMWriteStack
@@ -6020,21 +6020,21 @@ if !PAL == 0
 
   .loop:
     LDA.L IntroFont1Tiles+$290                                           ;8BA872;
-    STA.L IntroBG3SubtitleTiles,X                                       ;8BA876;
+    STA.L IntroBG3SubtitleTiles,X                                        ;8BA876;
     LDA.L IntroFont1Tiles+$292                                           ;8BA87A;
-    STA.L IntroBG3SubtitleTiles+2,X                                     ;8BA87E;
+    STA.L IntroBG3SubtitleTiles+2,X                                      ;8BA87E;
     LDA.L IntroFont1Tiles+$294                                           ;8BA882;
-    STA.L IntroBG3SubtitleTiles+4,X                                     ;8BA886;
+    STA.L IntroBG3SubtitleTiles+4,X                                      ;8BA886;
     LDA.L IntroFont1Tiles+$296                                           ;8BA88A;
-    STA.L IntroBG3SubtitleTiles+6,X                                     ;8BA88E;
+    STA.L IntroBG3SubtitleTiles+6,X                                      ;8BA88E;
     LDA.L IntroFont1Tiles+$298                                           ;8BA892;
-    STA.L IntroBG3SubtitleTiles+8,X                                     ;8BA896;
+    STA.L IntroBG3SubtitleTiles+8,X                                      ;8BA896;
     LDA.L IntroFont1Tiles+$29A                                           ;8BA89A;
-    STA.L IntroBG3SubtitleTiles+$A,X                                    ;8BA89E;
+    STA.L IntroBG3SubtitleTiles+$A,X                                     ;8BA89E;
     LDA.L IntroFont1Tiles+$29C                                           ;8BA8A2;
-    STA.L IntroBG3SubtitleTiles+$C,X                                    ;8BA8A6;
+    STA.L IntroBG3SubtitleTiles+$C,X                                     ;8BA8A6;
     LDA.L IntroFont1Tiles+$29E                                           ;8BA8AA;
-    STA.L IntroBG3SubtitleTiles+$E,X                                    ;8BA8AE;
+    STA.L IntroBG3SubtitleTiles+$E,X                                     ;8BA8AE;
     TXA                                                                  ;8BA8B2;
     CLC                                                                  ;8BA8B3;
     ADC.W #$0010                                                         ;8BA8B4;
@@ -6043,10 +6043,10 @@ if !PAL == 0
     BMI .loop                                                            ;8BA8BB;
     PLY                                                                  ;8BA8BD;
 else
-    LDX #CinematicBGTilemap_subtitles_end-CinematicBGTilemap_subtitles-2
-    LDA #$3C29
+    LDX.W #CinematicBGTilemap_subtitles_end-CinematicBGTilemap_subtitles-2
+    LDA.W #$3C29
 
--   STA CinematicBGTilemap_subtitles,X
+-   STA.L CinematicBGTilemap_subtitles,X
     DEX
     DEX
     BPL -
