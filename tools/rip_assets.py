@@ -1476,6 +1476,10 @@ def rom_valid(rom_data, variant):
 
 def main():
     # ...
+    parser = make_argument_parser()
+    args = parser.parse_args()
+    rom_data = args.rom_file.read()
+
     variant = "NTSC" if not args.pal else "PAL"
     if not rom_valid(rom_data, variant):
         expected_crc32, expected_sha256 = ROM_CHECKSUMS[variant]
