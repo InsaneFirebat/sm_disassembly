@@ -1455,7 +1455,7 @@ def dump_rom(rom_data, output_path, is_pal):
 ROM_CHECKSUMS = {
     # (CRC32, SHA256)
     "NTSC": (0xD63ED5F8, "12b77c4bc9c1832cee8881244659065ee1d84c70c3d29e6eaf92e6798cc2ca72"),
-    "PAL": (0xAD2CBF9C, "640ACB63DAE038AD6F0AE65E103416F5A1F84D4A37DDAEEAB5046122DEF774D5"),
+    "PAL": (0xAD2CBF9C, "640acb63dae038ad6f0ae65e103416f5a1f84d4a37ddaeeab5046122def774d5"),
 }
 
 def rom_valid(rom_data, variant):
@@ -1475,7 +1475,6 @@ def rom_valid(rom_data, variant):
     return True
 
 def main():
-    # ...
     parser = make_argument_parser()
     args = parser.parse_args()
     rom_data = args.rom_file.read()
@@ -1489,7 +1488,6 @@ def main():
               "Expected SHA256:", expected_sha256,
               file=sys.stderr)
         sys.exit(1) 
-    # ...
 
     if not args.check:
         dump_rom(rom_data, args.output, args.pal)
