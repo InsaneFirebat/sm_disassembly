@@ -816,10 +816,12 @@ Multiplication_16bitUnsigned_8B85EE:
     RTS                                                                  ;8B8665;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 ;;; $8666: Handle fading in ;;;
-Handle_Fading_In_from_Bank8B:
+UNUSED_Handle_Fading_In_8B8666:
     JSL.L HandleFadingIn                                                 ;8B8666;
     RTS                                                                  ;8B866A;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $866B: Activate title sequence blue light ;;;
