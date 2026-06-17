@@ -2946,7 +2946,7 @@ Function_Coven_Materialized:
     LDA.W Enemy.YPosition,X                                              ;A89C95;
     ADC.L Coven.YVelocity,X                                              ;A89C98;
     STA.W Enemy.YPosition,X                                              ;A89C9C;
-    LDA.W Enemy.YPosition,X                                              ;A89C9F;
+    LDA.W Enemy.YPosition,X                                              ;A89C9F; >_<;
     CMP.L Coven.hoverCenterYPosition,X                                   ;A89CA2;
     BMI .subvelocity                                                     ;A89CA6;
     LDA.L Coven.YSubVelocity,X                                           ;A89CA8;
@@ -7013,6 +7013,10 @@ Function_Beetom_DrainingSamus_FacingRight:
 
 ;;; $BD8C: Update beetom button counter ;;;
 UpdateBeetomButtonCounter:
+; This function updates (enemy previous controller 1 input) for the next button counter check
+; For the first button counter check,
+; (enemy previous controller 1 input) is stale input from either the init AI or when it was last flung
+; PreviousController1InputDrawing, which is updated every frame, would have been a better source of previous input for the check
     LDX.W EnemyIndex                                                     ;A8BD8C;
     LDA.B DP_Controller1Input                                            ;A8BD8F;
     CMP.W Beetom.previousController1Input,X                              ;A8BD91;
@@ -10474,6 +10478,18 @@ AlcoonConstants_XThresholdToHide:
 
 ;;; $DCCD: Initialisation AI - enemy $E9BF (alcoon) ;;;
 InitAI_Alcoon:
+; To calculate landing Y position, this routine simulates a jump and landing
+; It does so by setting an initial Y velocity and calculating Y movement in loop until velocity reaches zero
+; Then from the peak of the jump, it runs Y movement with collision detection in a loop until a collision is detected
+; Displacement travelled until velocity reaches zero is given by
+;     u / 2 - u² / (2 a)
+; where
+;     u: Initial velocity
+;     a: Acceleration
+; For alcoon (u = -Ch, a = 0.8h), this is -96h
+; So the first loop can be replaced by a single movement upwards of 96h px
+; The second loop can be replaced by a single call to collision detection with distance [room height in scrolls] * 100h
+; (or distance 96h if it's guaranteed to be spawned under a solid block)
     LDX.W EnemyIndex                                                     ;A8DCCD;
     LDA.W #$0000                                                         ;A8DCD0;
     STA.L Alcoon.stepCounter,X                                           ;A8DCD3;

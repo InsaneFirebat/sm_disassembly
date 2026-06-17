@@ -1379,7 +1379,7 @@ CheckIfKzanIsTouchingSamusFromBelow:
 ;; Returns:
 ;;     Zero: clear if touching Samus, otherwise set
 
-; This is a copy+paste of $A0:ABE7 with the Y delta threshold changed from 3 to 5
+; This is a copy+paste of CheckIfEnemyIsTouchingSamusFromBelow with the Y delta threshold changed from 3 to 5
     LDA.W SamusXPosition                                                 ;A68CA1;
     SEC                                                                  ;A68CA4;
     SBC.W Enemy.XPosition,X                                              ;A68CA5;
@@ -5555,7 +5555,7 @@ Function_Ridley_LungeMissed_Setup:
 ;;; $B3F8: Ridley function - lunge missed - move to position ;;;
 Function_Ridley_LungeMissed_MoveToPosition:
     DEC.W RidleyCeres.functionTimer                                      ;A6B3F8;
-    BMI .timerExpired                                                    ;A6B3FB;
+    BMI .done                                                            ;A6B3FB;
     LDX.W #$00C0                                                         ;A6B3FD;
     LDA.L Ridley.facingDirection                                         ;A6B400;
     BEQ .facingLeft                                                      ;A6B404;
@@ -5572,10 +5572,10 @@ Function_Ridley_LungeMissed_MoveToPosition:
     STA.B DP_Temp16                                                      ;A6B41C;
     STA.B DP_Temp18                                                      ;A6B41E;
     JSL.L CheckForEnemyCollisionWithRectangle                            ;A6B420;
-    BCC .timerExpired                                                    ;A6B424;
+    BCC .done                                                            ;A6B424;
     RTS                                                                  ;A6B426;
 
-  .timerExpired:
+  .done:
     LDA.W #Function_Ridley_DecideAction                                  ;A6B427;
     STA.W Ridley.function                                                ;A6B42A;
     RTS                                                                  ;A6B42D;
@@ -5583,7 +5583,7 @@ Function_Ridley_LungeMissed_MoveToPosition:
 
 ;;; $B42E: Y = [$B439 + [Ridley acceleration index] * 2] ;;;
 GetRidleyInertiaTable:
-; Y = 4, 8, A, or C, depending on general speed byte
+; Acceleration factor for lunge missed and dodging power bomb
     LDA.L Ridley.accelerationIndex                                       ;A6B42E;
     ASL                                                                  ;A6B432;
     TAY                                                                  ;A6B433;
@@ -5661,15 +5661,15 @@ Function_Ridley_Swoop_Descending_AimingDown:
     RTS                                                                  ;A6B4C2;
 
   .timerExpired:
-    LDA.W #Function_Ridley_Swoop_Descending_AimingLeft                   ;A6B4C3;
+    LDA.W #Function_Ridley_Swoop_Descending_AimingHorizontal             ;A6B4C3;
     STA.W Ridley.function                                                ;A6B4C6;
     LDA.W #$0014                                                         ;A6B4C9;
     STA.L Ridley.timer                                                   ;A6B4CC;
     RTS                                                                  ;A6B4D0;
 
 
-;;; $B4D1: Ridley function - swoop - descending - aiming left ;;;
-Function_Ridley_Swoop_Descending_AimingLeft:
+;;; $B4D1: Ridley function - swoop - descending - aiming horizontal ;;;
+Function_Ridley_Swoop_Descending_AimingHorizontal:
     LDA.L Ridley.facingDirection                                         ;A6B4D1;
     BNE .facingRight                                                     ;A6B4D5;
     LDA.W #$FEC0                                                         ;A6B4D7;
@@ -6255,6 +6255,7 @@ SetRidleyPogoXMovementDirection:
 
 ;;; $B90F: Set Ridley pogo speeds ;;;
 SetRidleyPogoSpeeds:
+; Called for initial downwards movement, then called for each subsequent upwards movement
     LDA.W RandomNumberSeed                                               ;A6B90F;
     AND.W #$0003                                                         ;A6B912;
     ASL                                                                  ;A6B915;
@@ -6298,7 +6299,7 @@ SetRidleyPogoSpeeds:
     dw .randomXSpeed2                                                    ;A6B969;
     dw .randomXSpeed3                                                    ;A6B96B;
   .YSpeedPointers:
-    ; Y velocity table pointers
+    ; Initial Y velocity table pointers
     dw .randomYSpeed0                                                    ;A6B96D;
     dw .randomYSpeed1                                                    ;A6B96F;
     dw .randomYSpeed2                                                    ;A6B971;

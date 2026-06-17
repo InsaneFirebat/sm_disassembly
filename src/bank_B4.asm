@@ -6920,7 +6920,7 @@ InstList_SpriteObject_18_ShortDraygonBreathBubbles:
     dw Instruction_SpriteObject_Delete                                   ;B4C130;
 
 
-;;; $C132: Instruction list - sprite object 19h (unused. Save station electricity) ;;;
+;;; $C132: Instruction list - sprite object 19h (unused. Save station laser) ;;;
 UNSUED_InstList_SpriteObject_19_SaveStationElectricity:
     dw $0001,UNUSED_SpriteObjectSpritemaps_19_SaveStationElect_0_B4C9A0  ;B4C132;
     dw $0001,UNUSED_SpriteObjectSpritemaps_19_SaveStationElect_1_B4C9B6  ;B4C136;

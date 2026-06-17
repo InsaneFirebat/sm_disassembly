@@ -261,7 +261,7 @@ GenerateRandomNumber:
 ;; Returns:
 ;;     A: New random number
 
-; r(t+1) = r(t) * 5 + 0x111 (roughly; if the adding of x * 100h causes overflow, then a further 1 is added)
+; r(t+1) = r(t) * 5 + 111h (roughly; if the adding of x * 100h causes overflow, then a further 1 is added)
     SEP #$20                                                             ;808111;
     LDA.W RandomNumberSeed                                               ;808113;
     STA.W $4202                                                          ;808116;
@@ -8586,9 +8586,9 @@ endif
 ; Indices 10h+ are debug load points, except for Crateria's index 12h, which is used for the gunship landing sequence,
 ; these debug load points are unconditionally selectable in the debug file select map
 
-;        _________________________ Room pointer
-;        _________________________ Door pointer
-;        _________________________ Door BTS
+;        _________________________ Room pointer (used for the room select screen)
+;        _________________________ Door pointer (used for room pointer to load the room, door ASM and scrolling sky library background)
+;        _________________________ Door BTS (used only for demo recorder)
 ;       |      ___________________ Screen X position
 ;       |     |      _____________ Screen Y position
 ;       |     |     |      _______ Samus Y offset (relative to screen top)

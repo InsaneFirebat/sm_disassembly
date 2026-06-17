@@ -9573,6 +9573,10 @@ InitialWaveBeamBlockCollision_Left:
 ProjectileReflection:
 ;; Parameters:
 ;;     $14: Projectile index
+
+; Used by gold ninja space pirate, and unused enemies reflect and bang
+; Reflected projectile is non-damaging by default
+; For a damaging projectile, the caller has to clear the MSB of projectile type
     PHP                                                                  ;90BE00;
     PHB                                                                  ;90BE01;
     PHK                                                                  ;90BE02;
@@ -16008,7 +16012,14 @@ SamusMovementHandler_Xray:
 
 ;;; $E9CE: Handle periodic damage to Samus ;;;
 HandlePeriodicDamageToSamus:
-; (Lava, acid, heat, not Metroids)
+; Used by:
+;     Samus in heat/lava/acid
+;     Spike collision reaction
+;     Air spike inside reaction
+;     Draygon's broken turret grappled reaction
+;     Brinstar floor/ceiling plant inside reaction
+
+; Notably not used for metroid damage (or beetom, rainbow beam, shinespark)
     PHP                                                                  ;90E9CE;
     REP #$30                                                             ;90E9CF;
     LDA.W TimeIsFrozenFlag                                               ;90E9D1;
@@ -16450,9 +16461,9 @@ Get_Samus_BottomTop_Boundary:
     RTL                                                                  ;90EC7D;
 
 
-;;; $EC7E: Align Samus bottom position with previous pose ;;;
+;;; $EC7E: Align Samus bottom position with old pose ;;;
 AlignSamusBottomPositionWithPreviousPose:
-; Move Samus to align Samus bottom position to be the same as with previous pose
+; Move Samus to align Samus bottom position to be the same as with old pose
     PHP                                                                  ;90EC7E;
     REP #$30                                                             ;90EC7F;
     LDA.W Pose                                                           ;90EC81;
@@ -17077,7 +17088,7 @@ Run_Samus_Command:
 ;;         9: Set up Samus for Zebes start
 ;;         Ah: Stop drawing Samus
 ;;         Bh: Unlock Samus from facing forward
-;;         Ch: Unlock Samus from map station
+;;         Ch: Unlock Samus from map station / update Samus due to unpause
 ;;         Dh: Check if grapple beam is active
 ;;         Eh: Unlock Samus from Ceres elevator
 ;;         Fh: Enable timer handling
@@ -17161,7 +17172,7 @@ Run_Samus_Command:
     dw SamusCommand_1F_KillGrappleBeam                                   ;90F0EC;
 
 
-;;; $F0EE: Update Samus previous pose ;;;
+;;; $F0EE: Update Samus old pose ;;;
 Update_Samus_PreviousPose:
     LDA.W PreviousPose                                                   ;90F0EE;
     STA.W LastDifferentPose                                              ;90F0F1;

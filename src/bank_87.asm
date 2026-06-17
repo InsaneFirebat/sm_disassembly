@@ -950,6 +950,7 @@ InstList_AnimatedTilesObject_TourianStatueDraygon_grey:
 
 
 ;;; $854C: Animated tiles objects - Tourian entrance statue ;;;
+; Instruction list, size, VRAM address
 AnimatedTilesObject_TourianStatuePhantoon:
     dw InstList_AnimatedTilesObject_TourianStatuePhantoon                ;87854C;
     dw $0080,$7800                                                       ;87854E;

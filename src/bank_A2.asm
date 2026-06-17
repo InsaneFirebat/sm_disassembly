@@ -5333,7 +5333,7 @@ Function_Ship_Liftoff_SteadyRise:
     SEC                                                                  ;A2ACDA;
     SBC.W #$0002                                                         ;A2ACDB;
     STA.W SamusYPosition                                                 ;A2ACDE;
-    LDA.W SamusYPosition                                                 ;A2ACE1;
+    LDA.W SamusYPosition                                                 ;A2ACE1; >_<;
     SEC                                                                  ;A2ACE4;
     SBC.W #$0011                                                         ;A2ACE5;
     STA.W Enemy.YPosition,X                                              ;A2ACE8;
@@ -5399,7 +5399,7 @@ Function_Ship_Liftoff_Accelerating:
     LDA.W SamusYPosition                                                 ;A2AD5E;
     SBC.B DP_Temp12                                                      ;A2AD61;
     STA.W SamusYPosition                                                 ;A2AD63;
-    LDA.W SamusYPosition                                                 ;A2AD66;
+    LDA.W SamusYPosition                                                 ;A2AD66; >_<;
     SEC                                                                  ;A2AD69;
     SBC.W #$0011                                                         ;A2AD6A;
     STA.W Enemy.YPosition,X                                              ;A2AD6D;

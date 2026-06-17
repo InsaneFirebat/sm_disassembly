@@ -87,7 +87,7 @@ LoadFromSRAM:
 ;; Parameter:
 ;;     A: SRAM slot (0, 1 or 2)
 ;; Returns:
-;;     Carry: Set if SRAM was corrupt
+;;     Carry: Set if SRAM was cleared
 
 ; Copies all the data from the SRAM slot out to $7E:D7C0..DE1B
 ; If SRAM is not corrupt (according to the checksums):
@@ -1187,6 +1187,8 @@ AddSpritemapToOAM_Common:
 ;;     $12: Spritemap Y origin
 ;;     $14: Spritemap X origin
 ;;     $18: Number of entries
+
+; Expects a pushed DB
 
 ; Spritemap format is roughly:
 ;     nnnn         ; Number of entries (2 bytes)
@@ -3628,14 +3630,14 @@ FileSelectMenu_Index1A_FileClear_ClearCompleted:
     INC.W PauseMenu_MenuIndex                                            ;819D35;
     LDA.W #$0000                                                         ;819D38;
     JSL.L LoadFromSRAM                                                   ;819D3B;
-    BCS .slotACorrupt                                                    ;819D3F;
+    BCS .slotAEmpty                                                      ;819D3F;
 
   .selectSlotA:
     LDA.W #$0000                                                         ;819D41;
     STA.W SaveSlotSelected                                               ;819D44;
     RTS                                                                  ;819D47;
 
-  .slotACorrupt:
+  .slotAEmpty:
     LDA.W #$0001                                                         ;819D48;
     JSL.L LoadFromSRAM                                                   ;819D4B;
     BCS +                                                                ;819D4F;
@@ -4006,7 +4008,7 @@ LoadFromSRAM_external:
 ;; Parameter:
 ;;     A: SRAM slot (0, 1 or 2)
 ;; Returns:
-;;     Carry: Set if SRAM was corrupt
+;;     Carry: Set if SRAM was cleared
     JSL.L LoadFromSRAM                                                   ;81A053;
     RTS                                                                  ;81A057;
 
@@ -4111,7 +4113,7 @@ Draw_FileSelection_Energy:
     SEC                                                                  ;81A107;
     SBC.W #$004E                                                         ;81A108;
     TAX                                                                  ;81A10B;
-    LDA.W #$0008                                                         ;81A10C;
+    LDA.W #$0008                                                         ;81A10C; harmless off-by-one error
     STA.B DP_Temp18                                                      ;81A10F;
     BRA .loop                                                            ;81A111;
 
@@ -4149,7 +4151,7 @@ Draw_FileSelection_Energy:
 Draw_FileSelection_Time:
 ;; Parameters:
 ;;     X: Menu tilemap index
-;;     Zero: Clear if SRAM is corrupt
+;;     Zero: Clear if save slot is empty
     BNE .return                                                          ;81A14E;
     STX.B DP_Temp1A                                                      ;81A150;
     LDA.W IGTHours                                                       ;81A152;

@@ -14,7 +14,7 @@ Tiles_MotherBrainLegs:
 incbin "../data/Tiles_MotherBrainLegs.bin" ; $1000 bytes
 
 
-;;; $A000: Tiles - Mother Brain - bomb shells, death beam, unused graphics ;;;
+;;; $A000: Tiles - Mother Brain - bomb shells, hand beam, unused graphics ;;;
 Tiles_MotherBrain_BombShells_DeathBeam_UnusedGFX:
 incbin "../data/Tiles_MotherBrain_BombShells_DeathBeam_UnusedGFX.bin" ; $800 bytes
 

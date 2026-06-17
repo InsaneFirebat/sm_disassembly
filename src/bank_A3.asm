@@ -1505,7 +1505,7 @@ MainAI_Fireflea:
     LDA.W Enemy.YPosition,X                                              ;A38E43;
     ADC.W CommonEnemySpeeds_LinearlyIncreasing,Y                         ;A38E46;
     STA.W Enemy.YPosition,X                                              ;A38E49;
-    LDA.W Enemy.YPosition,X                                              ;A38E4C;
+    LDA.W Enemy.YPosition,X                                              ;A38E4C; >_<;
     CMP.L Fireflea.minimumYPosition,X                                    ;A38E4F;
     BMI +                                                                ;A38E53;
     LDA.W Enemy.YPosition,X                                              ;A38E55;
@@ -13326,7 +13326,7 @@ EnemyShot_Metroid:
     LDY.W #$FF00                                                         ;A3EFBE;
 
 +   PHA                                                                  ;A3EFC1;
-    TYA                                                                  ;A3EFC2;
+    TYA                                                                  ;A3EFC2; <-- bug
     STA.W Metroid.XVelocity,X                                            ;A3EFC3;
     PLA                                                                  ;A3EFC6;
     ASL                                                                  ;A3EFC7;
@@ -13343,7 +13343,7 @@ EnemyShot_Metroid:
     LDY.W #$FF00                                                         ;A3EFDB;
 
 +   PHA                                                                  ;A3EFDE;
-    TYA                                                                  ;A3EFDF;
+    TYA                                                                  ;A3EFDF; <-- bug
     STA.W Metroid.YVelocity,X                                            ;A3EFE0;
     PLA                                                                  ;A3EFE3;
     ASL                                                                  ;A3EFE4;

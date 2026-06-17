@@ -10157,7 +10157,7 @@ SetupASM_SetZebesTimebombEvent_SetLightHorizontalRoomShaking:
 ; Room $DE4D. Escape room 1
 ; The Zebes timebomb set event was already marked by Mother Brain when she started the time ($A9:B313),
 ; no reason to do it here
-    LDA.W #$000E                                                         ;8FC91F;
+    LDA.W #$000E                                                         ;8FC91F; (Zebes timebomb set)
     JSL.L MarkEvent_inA                                                  ;8FC922;
     LDA.W #$0012                                                         ;8FC926;
     STA.W EarthquakeType                                                 ;8FC929;
@@ -15142,7 +15142,7 @@ Door_Closing_PLMs:
 
 Tileset_Table_0_UpperCrateria:
 ; 0: Upper Crateria
-    dl TileTables_0_1_UpperCrateria                                      ;8FE6A2; Tile table pointer
+    dl TileTables_0_1_UpperCrateria                                      ;8FE6A2; Tile table pointer (see $7E:A000 in RAM map)
     dl Tiles_0_1_UpperCrateria                                           ;8FE6A5; Tiles pointer
     dl Palettes_0_UpperCrateria                                          ;8FE6A8; Palette pointer
 
@@ -15317,6 +15317,7 @@ Tileset_Table_1C_Draygon:
 
 ;;; $E7A7: Tileset pointers ;;;
 Tileset_Pointers:
+; Indexed by state header tileset
     dw Tileset_Table_0_UpperCrateria                                     ;8FE7A7;
     dw Tileset_Table_1_RedCrateria                                       ;8FE7A9;
     dw Tileset_Table_2_LowerCrateria                                     ;8FE7AB;

@@ -1930,7 +1930,7 @@ MotherBrainFightSpriteTileTransferEntries:
     dw $7B00
 
   .attacks:
-; Bomb shells, death beam, unused graphics
+; Bomb shells, hand beam, unused graphics
     dw $0200                                                             ;A98FC7;
     dl Tiles_MotherBrain_BombShells_DeathBeam_UnusedGFX
     dw $7C00
@@ -2940,7 +2940,7 @@ Instruction_MotherBrainBody_SetPoseToCrouchingTransition:
     RTL                                                                  ;A9971F;
 
 
-;;; $9720: Instruction - Mother Brain's pose = death beam mode ;;;
+;;; $9720: Instruction - Mother Brain's pose = hand beam mode ;;;
 Instruction_MotherBrainBody_SetPoseToDeathBeamMode:
     LDA.W #$0004                                                         ;A99720;
     STA.L MotherBrainBody.pose                                           ;A99723;
@@ -3300,7 +3300,7 @@ InstList_MotherBrainBody_Crouch_Fast:
     dw Instruction_Common_Sleep                                          ;A99A40;
 
 
-;;; $9A42: Instruction list - Mother Brain body - death beam mode ;;;
+;;; $9A42: Instruction list - Mother Brain body - hand beam mode ;;;
 InstList_MotherBrainBody_DeathBeamMode:
     dw Instruction_MotherBrainBody_SetPoseToDeathBeamMode                ;A99A42;
     dw $0001,ExtendedSpritemap_MotherBrainBody_Standing                  ;A99A44;
@@ -3367,7 +3367,7 @@ Instruction_MotherBrainBody_SpawnDustCloudExplosionProj:
     RTL                                                                  ;A99AEE;
 
 
-;;; $9AEF: Instruction - spawn death beam enemy projectile ;;;
+;;; $9AEF: Instruction - spawn hand beam enemy projectile ;;;
 Instruction_MotherBrainBody_SpawnDeathBeamProjectile:
     PHX                                                                  ;A99AEF;
     PHY                                                                  ;A99AF0;
@@ -3381,7 +3381,7 @@ Instruction_MotherBrainBody_SpawnDeathBeamProjectile:
     RTL                                                                  ;A99B04;
 
 
-;;; $9B05: Instruction - increment Mother Brain death beam attack phase ;;;
+;;; $9B05: Instruction - increment Mother Brain hand beam attack phase ;;;
 Instruction_MotherBrainBody_IncrementDeathBeamAttackPhase:
     LDA.L MotherBrainBody.deathBeamAttackPhase                           ;A99B05;
     INC                                                                  ;A99B09;
@@ -3622,7 +3622,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $9C87: Instruction list - Mother Brain brain - neutral - phase 2 ;;;
-; Includes firing death beam (which is done by body)
+; Includes firing hand beam (which is done by body)
 InstList_MotherBrainHead_Neutral_Phase2_0:
     dw $0004,Spritemaps_MotherBrain_0                                    ;A99C87;
     dw $0004,Spritemaps_MotherBrain_1                                    ;A99C8B;
@@ -6574,7 +6574,7 @@ Function_MotherBrainBody_Phase2_FiringLaser_FinishAttack:
     JMP.W Function_MotherBrainBody_Phase2_Thinking                       ;A9B87A;
 
 
-;;; $B87D: Mother Brain body function - second phase - firing death beam ;;;
+;;; $B87D: Mother Brain body function - second phase - firing hand beam ;;;
 Function_MotherBrainBody_Phase2_FiringDeathBeam:
     LDA.L MotherBrainBody.deathBeamAttackPhase                           ;A9B87D;
     ASL                                                                  ;A9B881;
@@ -6589,7 +6589,7 @@ Function_MotherBrainBody_Phase2_FiringDeathBeam:
     dw MotherBrainPhase2_FiringDeathBeam_Finish                          ;A9B88D;
 
 
-;;; $B88F: Mother Brain second phase - firing death beam - back up ;;;
+;;; $B88F: Mother Brain second phase - firing hand beam - back up ;;;
 MotherBrainPhase2_FiringDeathBeam_BackUp:
 ; [Mother Brain death beam attack phase] = 0
     LDY.W #$0008                                                         ;A9B88F;
@@ -6608,7 +6608,7 @@ MotherBrainPhase2_FiringDeathBeam_BackUp:
     RTS                                                                  ;A9B8B1;
 
 
-;;; $B8B2: Mother Brain second phase - firing death beam - wait for any active bombs ;;;
+;;; $B8B2: Mother Brain second phase - firing hand beam - wait for any active bombs ;;;
 MotherBrainPhase2_FiringDeathBeam_WaitForAnyActiveBombs:
 ; [Mother Brain death beam attack phase] = 1
     LDA.L MotherBrainBody.bombCounter                                    ;A9B8B2;
@@ -6625,13 +6625,13 @@ MotherBrainPhase2_FiringDeathBeam_WaitForAnyActiveBombs:
 
 ;;; $B8C8: RTS ;;;
 RTS_A9B8C8:
-; [Mother Brain death beam attack phase] = 2
+; [Mother Brain hand beam attack phase] = 2
     RTS                                                                  ;A9B8C8;
 
 
-;;; $B8C9: Mother Brain second phase - firing death beam - finish ;;;
+;;; $B8C9: Mother Brain second phase - firing hand beam - finish ;;;
 MotherBrainPhase2_FiringDeathBeam_Finish:
-; [Mother Brain death beam attack phase] = 4
+; [Mother Brain hand beam attack phase] = 4
     LDA.W #InstList_MotherBrainHead_Neutral_Phase2_0                     ;A9B8C9;
     JSR.W SetMotherBrainHeadInstList                                     ;A9B8CC;
     LDA.W #$0002                                                         ;A9B8CF;
@@ -11968,8 +11968,8 @@ CorpseRottingInit_Sidehopper_Param1_2:
 
 ;;; $DF4F: Corpse rotting initialisation function - zoomer - enemy parameter 1 = 0 ;;;
 CorpseRottingInit_Zoomer_Param1_0:
-; $7E:2940..99
-; $7E:29A0..FF
+; $7E:2940..99: Row 0
+; $7E:29A0..FF: Row 1
     PHB                                                                  ;A9DF4F;
     LDX.W #Tiles_Corpse_Sidehopper_Zoomer_Ripper_Skree+$A60              ;A9DF50;
     LDY.W #CorpseRottingGFX_Zoomer0                                      ;A9DF53;
@@ -14207,6 +14207,10 @@ CheckForEnemyCollisionWithRectangle:
 
 ;;; $EF37: Initialisation AI - enemy $EEBF (Shitroid) ;;;
 InitAI_BabyMetroid:
+; The layer 1 X position check relies on enemy initialisation being run before door transition scrolling finishes
+; I timed 26 frames of scrolling before enemy initialisation is run,
+; which sits comfortably in the 64 frame duration of horizontal door transition scrolling
+; If door transition time were shortened and/or room loading time increased, this check could stop working correctly
     PHB                                                                  ;A9EF37;
     PEA.W $7E7E                                                          ;A9EF38;
     PLB                                                                  ;A9EF3B;

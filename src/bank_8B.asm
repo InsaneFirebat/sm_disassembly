@@ -817,7 +817,7 @@ Multiplication_16bitUnsigned_8B85EE:
 
 
 if !FEATURE_KEEP_UNREFERENCED
-;;; $8666: Handle fading in ;;;
+;;; $8666: Unused. Handle fading in ;;;
 UNUSED_Handle_Fading_In_8B8666:
     JSL.L HandleFadingIn                                                 ;8B8666;
     RTS                                                                  ;8B866A;
@@ -2302,6 +2302,18 @@ MoveUnusedSpritesOffScreen:
 ; Handles large sprites, unlike $80:896E
 ; Uses one hell of an unrolled loop
 ; BUG: If (number of sprites) / 4 % 2 != 0, the OAM stack pointer is clobbered
+;      The loop at .loop always writes 2-byte values, but doesn't ensure 2-byte alignment of X
+
+; Called for cinematic functions:
+;     $D6D7: Cinematic function - ending - wait for music to change
+;     $D6F2: Cinematic function - ending - Zebes destruction scene 0 - zooming out, clouds on left/right - fading in
+;     $D701: Cinematic function - ending - Zebes destruction scene 0 - zooming out, clouds on left/right
+;     $D731: Cinematic function - ending - Zebes destruction scene 1 - zooming out, clouds on top/bottom - setup
+;     $D7F8: Cinematic function - ending - Zebes destruction scene 1 - zooming out, clouds on top/bottom - fading in
+;     $D807: Cinematic function - ending - Zebes destruction scene 1 - zooming out, clouds on top/bottom
+;     $D837: Cinematic function - ending - Zebes destruction scene 2 - cross-fade to space view - setup
+
+; In all these cases, the number of sprites is 40h or 80h
     PHP                                                                  ;8B8ED9;
     REP #$30                                                             ;8B8EDA;
     LDA.W OAMStack                                                       ;8B8EDC;

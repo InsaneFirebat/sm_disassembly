@@ -1548,6 +1548,13 @@ SamusBlockCollisionReaction_Horizontal_Slope_Square:
 ;; Returns:
 ;;     Carry: Set if collision, clear otherwise
 ;;     $12.$14: Adjusted distance to move Samus or distance to collision
+
+; Only the left or right half of the slope is considered for collision (depending on which half [$20] is in)
+; So if Samus is moving 8+ px/frame, she can collide with the far half and be positioned halfway into the slope
+; This notably happens in the shinespark zebetite skip;
+; diagonal shinespark X speed is indeed 8+ px/frame, and Samus is aligned with the wall under the zebetite,
+; so it's guaranteed that the left half of the half height slope under the Zebetite is considered for collision
+; Samus does collide with it, and the code at $8DA6 aligns her with that left half, placing her into the wall
     ASL                                                                  ;948D2B;
     ASL                                                                  ;948D2C;
     STA.W SolidSlopeDefinitionTableBaseIndex                             ;948D2D;

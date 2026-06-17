@@ -11309,7 +11309,7 @@ Move_MotherBrains_Bomb:
     RTS                                                                  ;86C604;
 
 
-;;; $C605: Initialisation AI - enemy projectile $CB67 (Mother Brain's death beam - charging) ;;;
+;;; $C605: Initialisation AI - enemy projectile $CB67 (Mother Brain's hand beam - charging) ;;;
 InitAI_EnemyProjectile_MotherBrainRedBeam_Charging:
 ;; Parameters:
 ;;     Y: Enemy projectile index
@@ -11448,7 +11448,7 @@ if !FEATURE_KEEP_UNREFERENCED
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
-;;; $C76D: RTS. Pre-instruction - enemy projectile $CB67/$CB75 (Mother Brain's death beam) ;;;
+;;; $C76D: RTS. Pre-instruction - enemy projectile $CB67/$CB75 (Mother Brain's hand beam) ;;;
 RTS_86C76D:
     RTS                                                                  ;86C76D;
 
@@ -11468,7 +11468,7 @@ InstList_EnemyProjectile_MotherBrainBomb:
     dw InstList_EnemyProjectile_MotherBrainBomb                          ;86C794;
 
 
-;;; $C796: Instruction list - enemy projectile $CB67/$CB75 (Mother Brain's death beam) ;;;
+;;; $C796: Instruction list - enemy projectile $CB67/$CB75 (Mother Brain's hand beam) ;;;
 InstList_EnemyProjectile_MotherBrainRedBeam:
     dw $0003,EnemyProjSpritemaps_MotherBrainsRedBeam_0                   ;86C796;
     dw Instruction_EnemyProjectile_CallExternalFunctionInY               ;86C79A;
@@ -11500,7 +11500,7 @@ InstList_EnemyProjectile_MotherBrainRedBeam:
     dw Instruction_EnemyProjectile_Delete                                ;86C7F9;
 
 
-;;; $C7FB: Spawn Mother Brain's death beam - fired enemy projectile ;;;
+;;; $C7FB: Spawn Mother Brain's hand beam - fired enemy projectile ;;;
 Spawn_MotherBrainRedBeam_Fired:
 ;; Parameters:
 ;;     X: Enemy projectile index
@@ -15650,7 +15650,7 @@ InstList_EnemyProj_MiscDust_18_LongDraygonBreathBubbles:
     dw Instruction_EnemyProjectile_Delete                                ;86E3C4;
 
 
-;;; $E3C6: Instruction list - dust cloud / explosion - index = 19h (unused. Save station electricity) ;;;
+;;; $E3C6: Instruction list - dust cloud / explosion - index = 19h (unused. Save station laser) ;;;
 UNUSED_InstList_EnemyProj_MiscDust_19_SaveStationElec_86E3C6:
     dw $0001,EnemyProjSpritemaps_DustCloud_Explosion_25                  ;86E3C6;
     dw $0001,EnemyProjSpritemaps_DustCloud_Explosion_26                  ;86E3CA;
@@ -16123,7 +16123,7 @@ EnemyProjectile_UpwardsShotGateInitiallyClosed:                          ;86E675
     %shotList(InstList_EnemyProjectile_Delete))
 
 
-;;; $E683: Instruction list - enemy projectile $E6D2 (save station electricity) ;;;
+;;; $E683: Instruction list - enemy projectile $E6D2 (save station laser) ;;;
 InstList_EnemyProjectile_SaveStationElectricity_0:
     dw Instruction_EnemyProjectile_TimerInY,regional($0014, $000F)       ;86E683;
 
@@ -16141,7 +16141,7 @@ InstList_EnemyProjectile_SaveStationElectricity_1:
     dw Instruction_EnemyProjectile_Delete                                ;86E6AB;
 
 
-;;; $E6AD: Initialisation AI - enemy projectile $E6D2 (save station electricity) ;;;
+;;; $E6AD: Initialisation AI - enemy projectile $E6D2 (save station laser) ;;;
 InitAI_EnemyProjectile_SaveStationElectricity:
 ;; Parameters:
 ;;     Y: Enemy projectile index
@@ -16166,12 +16166,12 @@ InitAI_EnemyProjectile_SaveStationElectricity:
     RTS                                                                  ;86E6D0;
 
 
-;;; $E6D1: RTS. Pre-instruction - enemy projectile $E6D2 (save station electricity) ;;;
+;;; $E6D1: RTS. Pre-instruction - enemy projectile $E6D2 (save station laser) ;;;
 RTS_86E6D1:
     RTS                                                                  ;86E6D1;
 
 
-;;; $E6D2: Enemy projectile - save station electricity ;;;
+;;; $E6D2: Enemy projectile - save station laser ;;;
 EnemyProjectile_SaveStationElectricity:                                  ;86E6D2;
     %EnemyProjectile(\
     %initAI(InitAI_EnemyProjectile_SaveStationElectricity),

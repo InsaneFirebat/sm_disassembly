@@ -1914,7 +1914,7 @@ Load_FX_Header:
   .load:
     STY.W FX_CurrentEntryOffset                                          ;89ABB9;
     STX.W FX_CurrentEntryPointer                                         ;89ABBC;
-    LDX.W FX_CurrentEntryPointer                                         ;89ABBF;
+    LDX.W FX_CurrentEntryPointer                                         ;89ABBF; >_<;
     LDA.W $0002,X                                                        ;89ABC2;
     STA.W FX_BaseYPosition                                               ;89ABC5;
     LDA.W $0004,X                                                        ;89ABC8;

@@ -7315,7 +7315,7 @@ Function_Kraid_RaiseThruFloor_RaiseKraid:
     LDA.W Enemy.YPosition                                                ;A7C955;
     SBC.W #$0000                                                         ;A7C958;
     STA.W Enemy.YPosition                                                ;A7C95B;
-    LDA.W Enemy.YPosition                                                ;A7C95E;
+    LDA.W Enemy.YPosition                                                ;A7C95E; >_<;
     CMP.W #$01C9                                                         ;A7C961;
     BPL .return                                                          ;A7C964;
     LDA.W #$00B0                                                         ;A7C966;
@@ -10814,7 +10814,7 @@ InstList_Etecoon_Flexing_1:
 ;;; $E900: Etecoon constants ;;;
 EtecoonConstants:
   .initialYVelocityOfHopsAndFailedJumps:
-; Initial Y velocity of hops and failed jump
+; Initial Y velocity of hops, wall jump and failed jump
     dd wordSwap(-$000300*!SPF*$100)                                      ;A7E900;
 
   .initialYVelocityOfSuccessfulJump:

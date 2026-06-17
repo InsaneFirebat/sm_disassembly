@@ -12,7 +12,7 @@ org $A08000
 ;     $8EB6 - determine which enemies to process
 ;     $9785 - Samus / projectile interaction handler
 ;     $8FD4 - main enemy routine
-;         $9758 - enemy collision handling
+;         $9758 - enemy collision handling (projectiles, bombs, Samus)
 ;         $C26A - process enemy instructions
 ;         $9423 - add enemy to drawing queue
 ;     $A8F0 - Samus / solid enemy collision detection, executed at least twice
@@ -469,11 +469,40 @@ endif
 CommonEnemySpeeds_QuadraticallyIncreasing:
 ; I.e. gravity
 ; Used by e.g. Botwoon when dying and falling to the floor
-;        _____________________ Subspeed
-;       |      _______________ Speed
-;       |     |      _________ Negated subspeed
-;       |     |     |      ___ Negated speed
-;       |     |     |     |
+
+; This table appears to have been generated with a buggy calculation
+; Recall that the sum of 0..k is
+;     T(t) = t (t + 1) / 2
+; The first 22 values of this table (ignoring the negated part) can be calculated with
+;     v(t) = T(t) * 0.0109h
+; Which is likely the intended calculation
+
+; From 22 onwards, values in the table are too low by a multiple of 0.0900h with occasional discontinuities (see "Quadratic speed table.png")
+; My best guess is that buggy calculation determined the whole and fractional parts separately using the high and low bytes of T(t):
+;     v_frac(t) = (T(t) & FFh) * 109h
+;     v_whole(t) = (T(t) >> 8) / 10000h
+; And truncated the value of v_frac to 16 bits without carrying bit 17 into v_whole
+;     v(t) = v_whole(t) + (v_frac(t) & FFFFh) / 10000h
+
+; Generate the table with this python code
+;     def triangle(n):
+;         return n * (n + 1) // 2
+;     
+;     for t in range(95):
+;         T = triangle(t)
+;     
+;         T_low = T & 0xFF
+;         T_high = T >> 8
+;         
+;         v_frac = T_low * 0x109 & 0xFFFF # Truncated
+;         v_whole = T_high
+;         
+;         print(f'{t}: {v_whole:X}.{v_frac:04X}h')
+
+; The PAL table is a tad better, but still with anomalous inaccuracies
+; See https://patrickjohnston.org/ASM/ROM%20data/Super%20Metroid/generate%20quadratic%20speed%20table.py
+
+; Subspeed, speed, negated subspeed, negated speed
   .subspeed:
     dw $0000                                                             ;A0838F;
   .speed:
@@ -2285,22 +2314,22 @@ SpawnEnemy_AlwaysSucceed:
     LDA.W $0000,X                                                        ;A092E1;
     LDX.W #$0000                                                         ;A092E4;
     CMP.L EnemyGFXData_IDs                                               ;A092E7;
-    BEQ .graphics                                                        ;A092EB;
+    BEQ .foundMatchingID                                                 ;A092EB;
     LDX.W #$0002                                                         ;A092ED;
     CMP.L EnemyGFXData_IDs+2                                             ;A092F0;
-    BEQ .graphics                                                        ;A092F4;
+    BEQ .foundMatchingID                                                 ;A092F4;
     LDX.W #$0004                                                         ;A092F6;
     CMP.L EnemyGFXData_IDs+4                                             ;A092F9;
-    BEQ .graphics                                                        ;A092FD;
+    BEQ .foundMatchingID                                                 ;A092FD;
     LDX.W #$0006                                                         ;A092FF;
     CMP.L EnemyGFXData_IDs+6                                             ;A09302;
-    BEQ .graphics                                                        ;A09306;
+    BEQ .foundMatchingID                                                 ;A09306;
     LDA.W #$0000                                                         ;A09308;
     STA.W Enemy.GFXOffset,Y                                              ;A0930B;
     STA.W Enemy.palette,Y                                                ;A0930E;
     BRA +                                                                ;A09311;
 
-  .graphics:
+  .foundMatchingID:
     LDA.L EnemyGFXData_TilesIndex,X                                      ;A09313;
     STA.W Enemy.GFXOffset,Y                                              ;A09317;
     LDA.L EnemyGFXData_PaletteIndices,X                                  ;A0931A;
@@ -4089,8 +4118,9 @@ GrappleAI_SamusLatchesOnWithGrapple_NoInvincibility:
     RTL                                                                  ;A0A03D;
 
 
-;;; $A03E: Samus latches on with grapple - paralyse enemy ;;;
+;;; $A03E: Unused. Samus latches on with grapple - paralyse enemy ;;;
 GrappleAI_SamusLatchesOnWithGrapple_ParalyzeEnemy:
+; Called by UNUSED_Common_GrappleAI_SamusLatchesOn_ParalyzeEnemy_A08019
     LDX.W EnemyIndex                                                     ;A0A03E;
     LDX.W EnemyIndex                                                     ;A0A041;
     LDA.W Enemy.ID,X                                                     ;A0A044;
@@ -5337,6 +5367,9 @@ Samus_vs_SolidEnemy_CollisionDetection:
 ; The BEQs at $A931/A959/A980/A9A7 I can't make sense of based on the above logic. Seems like the increments/decrements should be unconditional
 ; Perhaps it affects the logic for choosing between .touching and .notTouching(?) Didn't notice any jank when NOP'ing the BEQs
 
+; The zeroing of Samus Y subposition at $AAC8 (BRANCH_TOUCHING) is done even for horizontal collision,
+; this means pressing against the side of a solid enemy pushes Samus up each frame
+
 ; On the zebetite skip:
 ; The way this behaviour is implemented is effectively just incrementing the $12 parameter (unfortunately not written so straight forwardly)
 ; Consequently, Samus can collide with enemies one pixel further than she should be able to reach (i.e. one pixel further than in block collision),
@@ -5614,7 +5647,7 @@ Samus_vs_SolidEnemy_CollisionDetection:
     JMP.W .loop                                                          ;A0AAC5;
 
   .touching:
-    STZ.W SamusYSubPosition                                              ;A0AAC8;
+    STZ.W SamusYSubPosition                                              ;A0AAC8; (!)
     LDX.W CollisionIndex                                                 ;A0AACB;
     LDA.W SamusXPosition                                                 ;A0AACE;
     STA.W neverRead184A                                                  ;A0AAD1;

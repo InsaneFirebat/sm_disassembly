@@ -355,6 +355,7 @@ UNUSED_EnemyProjSpritemaps_2_8D8356:
     dw $0001                                                             ;8D8356;
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 2, $1E2)
 
+; Enemy projectile $CB67/$CB75 (Mother Brain's hand beam)
 EnemyProjSpritemaps_MotherBrainsRedBeam_0:
     dw $0001                                                             ;8D835D;
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 2, $1E3)
@@ -4330,6 +4331,7 @@ EnemyProjSpritemaps_DrayTurretProj_DustCloud_Explosion_B:
     %spritemapEntry(0, $00, $02, 1, 0, 3, 5, $5D)
 
 EnemyProjSpritemaps_Common_SmallExplosion_0:
+; Also used by Mother Brain elbow charge energy
     dw $0001                                                             ;8DB023;
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $5F)
 

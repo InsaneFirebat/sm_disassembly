@@ -13946,7 +13946,7 @@ ProspectivePoseCmd_1_Decelerate:
     JSL.L Cancel_SpeedBoosting                                           ;91EC76;
     STZ.W SamusXExtraRunSubSpeed                                         ;91EC7A;
     STZ.W SamusXExtraRunSpeed                                            ;91EC7D;
-    JSL.L PossiblyNoPurpose_91FB8E                                       ;91EC80;
+    JSL.L KillYSpeedIfStartedFalling                                     ;91EC80;
     RTS                                                                  ;91EC84;
 
 
@@ -13964,7 +13964,7 @@ ProspectivePoseCmd_8_KillRunSpeed:
     JSL.L Cancel_SpeedBoosting                                           ;91EC8E;
     STZ.W SamusXExtraRunSubSpeed                                         ;91EC92;
     STZ.W SamusXExtraRunSpeed                                            ;91EC95;
-    JSL.L PossiblyNoPurpose_91FB8E                                       ;91EC98;
+    JSL.L KillYSpeedIfStartedFalling                                     ;91EC98;
     RTS                                                                  ;91EC9C;
 
 
@@ -15017,7 +15017,7 @@ SolidVerticalCollision_WallJumpTriggered:
     RTS                                                                  ;91F2EF;
 
 
-;;; $F2F0: Solid vertical collision - [Samus solid vertical collision result] = 6 ;;;
+;;; $F2F0: Solid vertical collision - [Samus solid vertical collision result] = 6 (unused) ;;;
 SolidVerticalCollision_6:
 ; This is the only code in the game that sets $0A46 to a non-3 value
 ; Code that checks this variable only cares if the 2 bit is set or not,
@@ -16373,8 +16373,8 @@ Set_Samus_AnimationFrame_if_PoseChanged:
     RTL                                                                  ;91FB8D;
 
 
-;;; $FB8E:  ;;;
-PossiblyNoPurpose_91FB8E:
+;;; $FB8E: Kill Y speed if started falling ;;;
+KillYSpeedIfStartedFalling:
 ; Don't think this routine serves any purpose...
 ; Called by:
 ;     $EC50: Prospective pose change command 1 - decelerate

@@ -8895,7 +8895,7 @@ PreInst_PLM_AdvanceLavaAsSamusMovesLeft_SetLavaquakeEvent:
     RTS                                                                  ;84B86D;
 
   .setLavaquake:
-    LDA.W #$0015                                                         ;84B86E;
+    LDA.W #$0015                                                         ;84B86E; (outran speed booster lavaquake)
     JSL.L MarkEvent_inA                                                  ;84B871;
     RTS                                                                  ;84B875;
 
@@ -8964,7 +8964,7 @@ PreInstruction_PLM_ShaktoolsRoom:
     LDA.W #$0348                                                         ;84B8C3;
     CMP.W SamusXPosition                                                 ;84B8C6;
     BCS .return                                                          ;84B8C9;
-    LDA.W #$000D                                                         ;84B8CB;
+    LDA.W #$000D                                                         ;84B8CB; (Shaktool cleared a path)
     JSL.L MarkEvent_inA                                                  ;84B8CE;
     STZ.W PLM_IDs,X                                                      ;84B8D2;
 
@@ -9157,7 +9157,7 @@ InstList_PLM_CrittersEscapeBlock:
 
 ;;; $B9B9: Instruction - set critters escaped event ;;;
 Instruction_PLM_SetCrittersEscapedEvent:
-    LDA.W #$000F                                                         ;84B9B9;
+    LDA.W #$000F                                                         ;84B9B9; (critters escaped)
     JSL.L MarkEvent_inA                                                  ;84B9BC;
     RTS                                                                  ;84B9C0;
 
@@ -9864,8 +9864,8 @@ Goto_Link_Instruction:
     RTS                                                                  ;84BDC3;
 
 
-;;; $BDC4: Play dud sound ;;;
-Play_Dud_Sound:
+;;; $BDC4: Play dud sound if shot ;;;
+Play_Dud_Sound_if_Shot:
 ;; Parameter:
 ;;     X: PLM index
     LDA.W PLM_Timers,X                                                   ;84BDC4;
@@ -9878,7 +9878,7 @@ Play_Dud_Sound:
     RTS                                                                  ;84BDD3;
 
 
-;;; $BDD4: Pre-instruction - go to link instruction if area boss is dead else play dud sound ;;;
+;;; $BDD4: Pre-instruction - go to link instruction if area boss is dead else play dud sound if shot ;;;
 PreInstruction_PLM_GotoLinkInstructionIfAreaBossDead:
 ;; Parameter:
 ;;     X: PLM index
@@ -9888,7 +9888,7 @@ PreInstruction_PLM_GotoLinkInstructionIfAreaBossDead:
     JMP.W Goto_Link_Instruction                                          ;84BDDD;
 
   .playSFX:
-    JMP.W Play_Dud_Sound                                                 ;84BDE0;
+    JMP.W Play_Dud_Sound_if_Shot                                         ;84BDE0;
 
 
 ;;; $BDE3: Pre-instruction - go to link instruction if area mini-boss (inc. Mother Brain) is dead else play dud sound ;;;
@@ -9901,20 +9901,23 @@ PreInstruction_PLM_GotoLinkInstructionIfAreaMiniBossIsDead:
     JMP.W Goto_Link_Instruction                                          ;84BDEC;
 
   .playSFX:
-    JMP.W Play_Dud_Sound                                                 ;84BDEF;
+    JMP.W Play_Dud_Sound_if_Shot                                         ;84BDEF;
 
 
+;;; $BDF2: Pre-instruction - go to link instruction if area torizo is dead else play dud sound if shot ;;;
 PreInstruction_PLM_GotoLinkInstructionIfAreaTorizoIsDead:
+;; Parameter:
+;;     X: PLM index
     LDA.W #$0004                                                         ;84BDF2;
     JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA                   ;84BDF5;
     BCC .playSFX                                                         ;84BDF9;
     JMP.W Goto_Link_Instruction                                          ;84BDFB;
 
   .playSFX:
-    JMP.W Play_Dud_Sound                                                 ;84BDFE;
+    JMP.W Play_Dud_Sound_if_Shot                                         ;84BDFE;
 
 
-;;; $BDF2: Pre-instruction - go to link instruction if area torizo is dead else play dud sound ;;;
+;;; $BE01: Pre-instruction - go to link instruction and set Zebes is awake event if enemy death quota is met else play dud sound if shot ;;;
 PreInst_PLM_GotoLinkInst_SetZebesAwakeEventIfEnemiesDead:
 ;; Parameter:
 ;;     X: PLM index
@@ -9932,14 +9935,14 @@ PreInst_PLM_GotoLinkInst_SetZebesAwakeEventIfEnemiesDead:
   .playSFX:
     PLX                                                                  ;84BE17;
     PLY                                                                  ;84BE18;
-    JMP.W Play_Dud_Sound                                                 ;84BE19;
+    JMP.W Play_Dud_Sound_if_Shot                                         ;84BE19;
 
 
-;;; $BE1C: Pre-instruction - play dud sound ;;;
-PreInstruction_PLM_PlayDudSound:
+;;; $BE1C: Pre-instruction - play dud sound if shot ;;;
+PreInstruction_PLM_PlayDudSoundIfShot:
 ;; Parameter:
 ;;     X: PLM index
-    JMP.W Play_Dud_Sound                                                 ;84BE1C;
+    JMP.W Play_Dud_Sound_if_Shot                                         ;84BE1C;
 
 
 ;;; $BE1F: Pre-instruction - go to link instruction if Tourian entrance statue has finished processing else play dud sound ;;;
@@ -9957,10 +9960,10 @@ PreInst_PLM_GotoLinkInstIfTourianStatueFinishedProcessing:
   .playSFX:
     PLX                                                                  ;84BE2B;
     PLY                                                                  ;84BE2C;
-    JMP.W Play_Dud_Sound                                                 ;84BE2D;
+    JMP.W Play_Dud_Sound_if_Shot                                         ;84BE2D;
 
 
-;;; $BE30: Pre-instruction - go to link instruction if critters escaped else play dud sound ;;;
+;;; $BE30: Pre-instruction - go to link instruction if critters escaped else play dud sound if shot ;;;
 PreInstruction_PLM_GotoLinkInstructionIfCrittersEscaped:
 ;; Parameter:
 ;;     X: PLM index
@@ -9970,7 +9973,7 @@ PreInstruction_PLM_GotoLinkInstructionIfCrittersEscaped:
     JMP.W Goto_Link_Instruction                                          ;84BE39;
 
   .playSFX:
-    JMP.W Play_Dud_Sound                                                 ;84BE3C;
+    JMP.W Play_Dud_Sound_if_Shot                                         ;84BE3C;
 
 
 ;;; $BE3F: Instruction - set grey door pre-instruction ;;;
@@ -9989,7 +9992,7 @@ Instruction_PLM_SetGreyDoorPreInstruction:
     dw PreInstruction_PLM_GotoLinkInstructionIfAreaMiniBossIsDead        ;84BE4D;
     dw PreInstruction_PLM_GotoLinkInstructionIfAreaTorizoIsDead          ;84BE4F;
     dw PreInst_PLM_GotoLinkInst_SetZebesAwakeEventIfEnemiesDead          ;84BE51;
-    dw PreInstruction_PLM_PlayDudSound                                   ;84BE53;
+    dw PreInstruction_PLM_PlayDudSoundIfShot                             ;84BE53;
     dw PreInst_PLM_GotoLinkInstIfTourianStatueFinishedProcessing         ;84BE55;
     dw PreInstruction_PLM_GotoLinkInstructionIfCrittersEscaped           ;84BE57;
 
@@ -13056,7 +13059,7 @@ Setup_Reaction_LowerNorfairChozoHandTrigger:
     BNE .return                                                          ;84D1B2;
 
   .react:
-    LDA.W #$000C                                                         ;84D1B4;
+    LDA.W #$000C                                                         ;84D1B4; (Lower Norfair chozo has lowered the acid)
     JSL.L MarkEvent_inA                                                  ;84D1B7;
     LDA.W #$0001                                                         ;84D1BB;
     STA.W Enemy.init0                                                    ;84D1BE;
@@ -14497,7 +14500,7 @@ PreInst_PLM_SetMetroidsClearedStateWhenRequired_RoomArg12:
     CMP.W NumberOfEnemiesRequiredToKill                                  ;84DAE1;
     BCC .return                                                          ;84DAE4;
     LDA.W #$0010                                                         ;84DAE6;
-    JSL.L MarkEvent_inA                                                  ;84DAE9;
+    JSL.L MarkEvent_inA                                                  ;84DAE9; (1st metroid room cleared)
 
   .return:
     RTS                                                                  ;84DAED;
@@ -14508,7 +14511,7 @@ PreInst_PLM_SetMetroidsClearedStateWhenRequired_RoomArg14:
     LDA.W NumberOfEnemiesKilled                                          ;84DAEE;
     CMP.W NumberOfEnemiesRequiredToKill                                  ;84DAF1;
     BCC .return                                                          ;84DAF4;
-    LDA.W #$0011                                                         ;84DAF6;
+    LDA.W #$0011                                                         ;84DAF6; (2nd metroid room cleared)
     JSL.L MarkEvent_inA                                                  ;84DAF9;
 
   .return:
@@ -14520,7 +14523,7 @@ PreInst_PLM_SetMetroidsClearedStateWhenRequired_RoomArg16:
     LDA.W NumberOfEnemiesKilled                                          ;84DAFE;
     CMP.W NumberOfEnemiesRequiredToKill                                  ;84DB01;
     BCC .return                                                          ;84DB04;
-    LDA.W #$0012                                                         ;84DB06;
+    LDA.W #$0012                                                         ;84DB06; (3rd metroid room cleared)
     JSL.L MarkEvent_inA                                                  ;84DB09;
 
   .return:
@@ -14532,7 +14535,7 @@ PreInst_PLM_SetMetroidsClearedStateWhenRequired_RoomArg18:
     LDA.W NumberOfEnemiesKilled                                          ;84DB0E;
     CMP.W NumberOfEnemiesRequiredToKill                                  ;84DB11;
     BCC .return                                                          ;84DB14;
-    LDA.W #$0013                                                         ;84DB16;
+    LDA.W #$0013                                                         ;84DB16; (4th metroid room cleared)
     JSL.L MarkEvent_inA                                                  ;84DB19;
 
   .return:
