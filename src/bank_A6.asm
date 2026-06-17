@@ -8623,175 +8623,175 @@ RidleyExplosionEntry_B:
     dw $0000,$0000,$0000,$2C00,$0000,$0016,$0000                         ;A6CA39;
 
 
-;;; $CA47: Instruction list -  ;;;
+;;; $CA47: Instruction list - Ridley explosion - index = 0/2 (tail segment 0/1) ;;;
 InstList_RidleyTail_Large:
     dw $0001,Spritemap_RidleyTail_Large                                  ;A6CA47;
     dw Instruction_Common_Sleep                                          ;A6CA4B;
 
 
-;;; $CA4D: Instruction list -  ;;;
+;;; $CA4D: Instruction list - Ridley explosion - index = 4/6 (tail segment 2/3) ;;;
 InstList_RidleyTail_Medium:
     dw $0001,Spritemap_RidleyTail_Medium                                 ;A6CA4D;
     dw Instruction_Common_Sleep                                          ;A6CA51;
 
 
-;;; $CA53: Instruction list -  ;;;
+;;; $CA53: Instruction list - Ridley explosion - index = 8/Ah (tail segment 4/5) ;;;
 InstList_RidleyTail_Small:
     dw $0001,Spritemap_RidleyTail_Small                                  ;A6CA53;
     dw Instruction_Common_Sleep                                          ;A6CA57;
 
 
-;;; $CA59: Instruction list -  ;;;
+;;; $CA59: Instruction list - Ridley explosion - index = Eh (wings) - facing left ;;;
 InstList_RidleyWings_FullyRaised_FacingLeft:
     dw $0001,Spritemap_RidleyWings_FacingLeft_FullyRaised                ;A6CA59;
     dw Instruction_Common_Sleep                                          ;A6CA5D;
 
 
-;;; $CA5F: Instruction list -  ;;;
+;;; $CA5F: Instruction list - Ridley explosion - index = Eh (wings) - facing right ;;;
 InstList_RidleyWings_FullyRaised_FacingRight:
     dw $0001,Spritemap_RidleyWings_FacingRight_FullyRaised               ;A6CA5F;
     dw Instruction_Common_Sleep                                          ;A6CA63;
 
 
-;;; $CA65: Instruction list -  ;;;
+;;; $CA65: Instruction list - Ridley explosion - index = 10h (legs) - facing left ;;;
 InstList_RidleyLegs_PulledUp_FacingLeft:
     dw $0001,Spritemap_Ridley_FacingLeft_Legs_NotExtended                ;A6CA65;
     dw Instruction_Common_Sleep                                          ;A6CA69;
 
 
-;;; $CA6B: Instruction list -  ;;;
+;;; $CA6B: Instruction list - Ridley explosion - index = 10h (legs) - facing right ;;;
 InstList_RidleyLegs_PulledUp_FacingRight:
     dw $0001,Spritemap_Ridley_FacingRight_Legs_NotExtended               ;A6CA6B;
     dw Instruction_Common_Sleep                                          ;A6CA6F;
 
 
-;;; $CA71: Instruction list -  ;;;
+;;; $CA71: Instruction list - Ridley explosion - index = 12h (mouth) - facing left ;;;
 InstList_RidleyHead_MouthOpen_FacingLeft:
     dw $0001,Spritemap_Ridley_FacingLeft_HeadNeck_MouthOpen              ;A6CA71;
     dw Instruction_Common_Sleep                                          ;A6CA75;
 
 
-;;; $CA77: Instruction list -  ;;;
+;;; $CA77: Instruction list - Ridley explosion - index = 12h (mouth) - facing right ;;;
 InstList_RidleyHead_MouthOpen_FacingRight:
     dw $0001,Spritemap_Ridley_FacingRight_HeadNeck_MouthOpen             ;A6CA77;
     dw Instruction_Common_Sleep                                          ;A6CA7B;
 
 
-;;; $CA7D: Instruction list -  ;;;
+;;; $CA7D: Instruction list - Ridley explosion - index = 14h (torso) - facing left ;;;
 InstList_RidleyTorso_FacingLeft:
     dw $0001,Spritemap_Ridley_FacingLeft_Torso                           ;A6CA7D;
     dw Instruction_Common_Sleep                                          ;A6CA81;
 
 
-;;; $CA83: Instruction list -  ;;;
+;;; $CA83: Instruction list - Ridley explosion - index = 14h (torso) - facing right ;;;
 InstList_RidleyTorso_FacingRight:
     dw $0001,Spritemap_Ridley_FacingRight_Torso                          ;A6CA83;
     dw Instruction_Common_Sleep                                          ;A6CA87;
 
 
-;;; $CA89: Instruction list -  ;;;
+;;; $CA89: Instruction list - Ridley explosion - index = 16h (hand) - facing left ;;;
 InstList_RidleyClaw_FacingLeft:
     dw $0001,Spritemap_Ridley_FacingLeft_Hand                            ;A6CA89;
     dw Instruction_Common_Sleep                                          ;A6CA8D;
 
 
-;;; $CA8F: Instruction list -  ;;;
+;;; $CA8F: Instruction list - Ridley explosion - index = 16h (hand) - facing right ;;;
 InstList_RidleyClaw_FacingRight:
     dw $0001,Spritemap_Ridley_FacingRight_Hand                           ;A6CA8F;
     dw Instruction_Common_Sleep                                          ;A6CA93;
 
 
-;;; $CA95: Instruction list -  ;;;
+;;; $CA95: Instruction list - Ridley explosion - index = Ch (tail tip) - angle = -8..7 ;;;
 InstList_RidleyTailTip_PointingDown:
     dw $0001,Spritemap_RidleyTailTip_PointingDown                        ;A6CA95;
     dw Instruction_Common_Sleep                                          ;A6CA99;
 
 
-;;; $CA9B: Instruction list -  ;;;
+;;; $CA9B: Instruction list - Ridley explosion - index = Ch (tail tip) - angle = 8..17h ;;;
 InstList_RidleyTailTip_PointingDownDownRight:
     dw $0001,Spritemap_RidleyTailTip_PointingDownDownRight               ;A6CA9B;
     dw Instruction_Common_Sleep                                          ;A6CA9F;
 
 
-;;; $CAA1: Instruction list -  ;;;
+;;; $CAA1: Instruction list - Ridley explosion - index = Ch (tail tip) - angle = 18h..27h ;;;
 InstList_RidleyTailTip_PointingDownRight:
     dw $0001,Spritemap_RidleyTailTip_PointingDownRight                   ;A6CAA1;
     dw Instruction_Common_Sleep                                          ;A6CAA5;
 
 
-;;; $CAA7: Instruction list -  ;;;
+;;; $CAA7: Instruction list - Ridley explosion - index = Ch (tail tip) - angle = 28h..37h ;;;
 InstList_RidleyTailTip_PointingRightDownRight:
     dw $0001,Spritemap_RidleyTailTip_PointingRightDownRight              ;A6CAA7;
     dw Instruction_Common_Sleep                                          ;A6CAAB;
 
 
-;;; $CAAD: Instruction list -  ;;;
+;;; $CAAD: Instruction list - Ridley explosion - index = Ch (tail tip) - angle = 38h..47h ;;;
 InstList_RidleyTailTip_PointingRight:
     dw $0001,Spritemap_RidleyTailTip_PointingRight                       ;A6CAAD;
     dw Instruction_Common_Sleep                                          ;A6CAB1;
 
 
-;;; $CAB3: Instruction list -  ;;;
+;;; $CAB3: Instruction list - Ridley explosion - index = Ch (tail tip) - angle = 48h..57h ;;;
 InstList_RidleyTailTip_PointingRightUpRight:
     dw $0001,Spritemap_RidleyTailTip_PointingRightUpRight                ;A6CAB3;
     dw Instruction_Common_Sleep                                          ;A6CAB7;
 
 
-;;; $CAB9: Instruction list -  ;;;
+;;; $CAB9: Instruction list - Ridley explosion - index = Ch (tail tip) - angle = 58h..67h ;;;
 InstList_RidleyTailTip_PointingUpRight:
     dw $0001,Spritemap_RidleyTailTip_PointingUpRight                     ;A6CAB9;
     dw Instruction_Common_Sleep                                          ;A6CABD;
 
 
-;;; $CABF: Instruction list -  ;;;
+;;; $CABF: Instruction list - Ridley explosion - index = Ch (tail tip) - angle = 68h..77h ;;;
 InstList_RidleyTailTip_PointingUpUpRight:
     dw $0001,Spritemap_RidleyTailTip_PointingUpUpRight                   ;A6CABF;
     dw Instruction_Common_Sleep                                          ;A6CAC3;
 
 
-;;; $CAC5: Instruction list -  ;;;
+;;; $CAC5: Instruction list - Ridley explosion - index = Ch (tail tip) - angle = 78h..87h ;;;
 InstList_RidleyTailTip_PointingUp:
     dw $0001,Spritemap_RidleyTailTip_PointingUp                          ;A6CAC5;
     dw Instruction_Common_Sleep                                          ;A6CAC9;
 
 
-;;; $CACB: Instruction list -  ;;;
+;;; $CACB: Instruction list - Ridley explosion - index = Ch (tail tip) - angle = 88h..97h ;;;
 InstList_RidleyTailTip_PointingUpUpLeft:
     dw $0001,Spritemap_RidleyTailTip_PointingUpUpLeft                    ;A6CACB;
     dw Instruction_Common_Sleep                                          ;A6CACF;
 
 
-;;; $CAD1: Instruction list -  ;;;
+;;; $CAD1: Instruction list - Ridley explosion - index = Ch (tail tip) - angle = 98h..A7h ;;;
 InstList_RidleyTailTip_PointingUpLeft:
     dw $0001,Spritemap_RidleyTailTip_PointingUpLeft                      ;A6CAD1;
     dw Instruction_Common_Sleep                                          ;A6CAD5;
 
 
-;;; $CAD7: Instruction list -  ;;;
+;;; $CAD7: Instruction list - Ridley explosion - index = Ch (tail tip) - angle = A8h..B7h ;;;
 InstList_RidleyTailTip_PointingLeftUpLeft:
     dw $0001,Spritemap_RidleyTailTip_PointingLeftUpLeft                  ;A6CAD7;
     dw Instruction_Common_Sleep                                          ;A6CADB;
 
 
-;;; $CADD: Instruction list -  ;;;
+;;; $CADD: Instruction list - Ridley explosion - index = Ch (tail tip) - angle = B8h..C7h ;;;
 InstList_RidleyTailTip_PointingLeft:
     dw $0001,Spritemap_RidleyTailTip_PointingLeft                        ;A6CADD;
     dw Instruction_Common_Sleep                                          ;A6CAE1;
 
 
-;;; $CAE3: Instruction list -  ;;;
+;;; $CAE3: Instruction list - Ridley explosion - index = Ch (tail tip) - angle = C8h..D7h ;;;
 InstList_RidleyTailTip_PointingLeftDownLeft:
     dw $0001,Spritemap_RidleyTailTip_PointingLeftDownLeft                ;A6CAE3;
     dw Instruction_Common_Sleep                                          ;A6CAE7;
 
 
-;;; $CAE9: Instruction list -  ;;;
+;;; $CAE9: Instruction list - Ridley explosion - index = Ch (tail tip) - angle = D8h..E7h ;;;
 InstList_RidleyTailTip_PointingDownLeft:
     dw $0001,Spritemap_RidleyTailTip_PointingDownLeft                    ;A6CAE9;
     dw Instruction_Common_Sleep                                          ;A6CAED;
 
 
-;;; $CAEF: Instruction list -  ;;;
+;;; $CAEF: Instruction list - Ridley explosion - index = Ch (tail tip) - angle = E8h..F7h ;;;
 InstList_RidleyTailTip_PointingDownDownLeft:
     dw $0001,Spritemap_RidleyTailTip_PointingDownDownLeft                ;A6CAEF;
     dw Instruction_Common_Sleep                                          ;A6CAF3;
