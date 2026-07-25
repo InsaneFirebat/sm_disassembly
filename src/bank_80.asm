@@ -9359,7 +9359,7 @@ Freespace_Bank80_CD8E:                                                   ;80CD8E
 ; $2F32 bytes
 
 
-warnpc $80FFC0
+assert pc() <= $80FFC0
 ORG $80FFC0
 ROM_HEADER:
     db "Super Metroid        "                                           ;80FFC0;

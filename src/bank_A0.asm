@@ -462,7 +462,7 @@ while !i < !n
     !v #= $1000*!SPF*!i ; !i must be last in product to reproduce PAL rounding errors
     dw !v>>$10, !v, -!v>>$10, -!v
     !i #= !i+1
-endif
+endwhile
 
 
 ;;; $838F: Common enemy speeds - quadratically increasing ;;;
@@ -10196,7 +10196,7 @@ while !i < !n
     !v #= $1000*!SPF*!i
     dw !v>>$10, !v, -!v>>$10, -!v
     !i #= !i+1
-endif
+endwhile
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 

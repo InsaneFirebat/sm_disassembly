@@ -419,7 +419,7 @@ while !i < !n
     !v #= $1000*!SPF*!i ; !i must be last in product to reproduce PAL rounding errors
     dw !v>>$10, !v, -!v>>$10, -!v
     !i #= !i+1
-endif
+endwhile
 
 
 ;;; $838F: Common enemy speeds - quadratically increasing ;;;
@@ -5566,9 +5566,9 @@ Function_MBBody_Phase3_DeathSequence_20FrameDelay:
 if !PAL != 0
     LDA.W #$0000
     STA.W EnemyBG2TilemapSize
-    STA.L Palettes_BG12P4+$D*2
+    STA.L Palettes_BG12P4+($D*2)
     LDA.W #$7FFF
-    STA.L Palettes_BG12P4+$E*2
+    STA.L Palettes_BG12P4+($E*2)
 endif
     LDA.W #Function_MBBody_Phase3_DeathSequence_LoadEscapeTimerTiles     ;A9B21C;
     STA.W MotherBrainBody.function                                       ;A9B21F;

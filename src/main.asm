@@ -1,6 +1,5 @@
 
 lorom
-math pri on
 
 ; -------------
 ; Build options

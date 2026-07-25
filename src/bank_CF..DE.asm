@@ -147,7 +147,7 @@ incbin "../data/Music_BabyMetroid_BossFight2.bin" ; $50BC bytes
 Music_SamusTheme_UpperCrateria:
 incbin "../data/Music_SamusTheme_UpperCrateria.bin" ; $4FFF bytes
 
-check bankcross on
+check bankcross full
 
 
 Freespace_BankDE_D1C0:                                                   ;DED1C0;

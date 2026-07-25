@@ -3925,7 +3925,7 @@ skip $7DE84C
   .backupXPosition: skip 2 ; $7E7800
 endstruct
 
-check bankcross on
+check bankcross full
 
 
 ; SRAM $700000..2000

@@ -1,7 +1,7 @@
 
 macro anchor(desired)
     if !ANCHOR_LABELS
-        warnpc <desired>
+        assert pc() <= <desired>
         org <desired>
     endif
 endmacro
@@ -12,7 +12,7 @@ function regional(value_ntsc, value_pal) = select(!PAL, value_pal, value_ntsc)
 ; So the low word mask here is required
 ; It also implements right shift with sign extension -_-
 ; So the high word mask is *also* required, and has to be done after the shift
-function wordSwap(value) = value>>$10&$FFFF|(value&$FFFF)<<$10
+ function wordSwap(value) = (value>>$10&$FFFF)|((value&$FFFF)<<$10)
 
 macro spritemapEntry(Size, XOffset, YOffset, YFlip, XFlip, Priority, Palette, Tile)
 ; Spritemap entry format is:
@@ -26,9 +26,9 @@ macro spritemapEntry(Size, XOffset, YOffset, YFlip, XFlip, Priority, Palette, Ti
 ;     p = priority (relative to background)
 ;     P = palette (often unused)
 ;     t = tile number
-    dw <Size><<15|<XOffset>
+    dw (<Size><<15)|<XOffset>
     db <YOffset>
-    dw <YFlip><<15|<XFlip><<14|<Priority><<12|<Palette><<9|<Tile>
+    dw (<YFlip><<15)|(<XFlip><<14)|(<Priority><<12)|(<Palette><<9)|<Tile>
 endmacro
 
 macro PLMPopEntry(ID, X, Y, Param)
@@ -336,14 +336,14 @@ macro doorList(arg)
 endmacro
 
 macro stateChecks(...)
-if <0> > 0
-    <1>
+if sizeof(...) > 0
+    <...[0]>
 endif
-if <0> > 1
-    <2>
+if sizeof(...) > 1
+    <...[1]>
 endif
-if <0> > 2
-    <3>
+if sizeof(...) > 2
+    <...[2]>
 endif
     dw Use_StatePointer_inX
 endmacro

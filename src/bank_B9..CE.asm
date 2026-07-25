@@ -1158,7 +1158,7 @@ incbin "../data/LevelData_MissileRefill_LeftSideDoor.bin" ; $30D bytes
 LevelData_DebugRoom:
 incbin "../data/LevelData_DebugRoom.bin" ; $3F0 bytes
 
-check bankcross on
+check bankcross full
 
 
 Freespace_BankCE_B22E:                                                   ;CEB22E;

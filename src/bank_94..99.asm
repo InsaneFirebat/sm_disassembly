@@ -312,7 +312,7 @@ PostCredits_SuperMetroid_Icon_Tilemap:
 ; Decompressed to $7E:8000..87FF around $8B:E00A, then transferred to VRAM $5400..57FF
 incbin "../data/PostCredits_SuperMetroid_Icon_Tilemap.bin" ; $15D bytes
 
-check bankcross on
+check bankcross full
 
 
 Freespace_Bank99_EE21:                                                   ;99EE21;
