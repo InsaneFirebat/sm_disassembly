@@ -3582,7 +3582,7 @@ UNUSED_Instruction_DisableCollisionsWithSamus_869475:
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
-;;; $947F: Initialisation AI - enemy projectile $9650/$965E (afterburn - centre) ;;;
+;;; $947F: Initialisation AI - enemy projectile $9650/$965E (afterburn - center) ;;;
 InitAI_EnemyProjectile_Afterburn_Center:
 ;; Parameters:
 ;;     Y: Enemy projectile index
@@ -3675,7 +3675,7 @@ InitAI_EnemyProjectile_Afterburn_Common:
     JMP.W Set_RidleyFireball_Afterburn_Properties                        ;869509;
 
 
-;;; $950C: RTS. Pre-instruction - enemy projectile $9650/$965E (afterburn - centre) ;;;
+;;; $950C: RTS. Pre-instruction - enemy projectile $9650/$965E (afterburn - center) ;;;
 RTS_86950C:
     RTS                                                                  ;86950C;
 
@@ -10586,8 +10586,8 @@ Instruction_EnemyProjectile_UsePalette0:
 ;;; $C1B8: Check for bomb collision with rectangle ;;;
 Check_for_Bomb_Collision_with_Rectangle:
 ;; Parameters:
-;;     $12: Rectangle centre X position
-;;     $14: Rectangle centre Y position
+;;     $12: Rectangle center X position
+;;     $14: Rectangle center Y position
 ;;     $16: Rectangle X radius
 ;;     $18: Rectangle Y radius
 ;; Returns:
@@ -10652,8 +10652,8 @@ Check_for_Bomb_Collision_with_Rectangle:
 Check_for_Enemy_Collision_with_Rectangle:
 ;; Parameters:
 ;;     X: Enemy index
-;;     $12: Rectangle centre X position
-;;     $14: Rectangle centre Y position
+;;     $12: Rectangle center X position
+;;     $14: Rectangle center Y position
 ;;     $16: Rectangle X radius
 ;;     $18: Rectangle Y radius
 ;; Returns:
@@ -10699,8 +10699,8 @@ Check_for_Collision_with_Samus:
 ;;     X: Enemy projectile index
 
 ; After executing $C3E9:
-;     $12: Enemy projectile centre X position
-;     $14: Enemy projectile centre Y position
+;     $12: Enemy projectile center X position
+;     $14: Enemy projectile center Y position
 ;     $16: Enemy projectile X radius
 ;     $18: Enemy projectile Y radius
     JSR.W Setup_Variables_for_EnemyProjectile_Collision_Detection        ;86C239;
@@ -11031,8 +11031,8 @@ Setup_Variables_for_EnemyProjectile_Collision_Detection:
 ;; Parameters:
 ;;     X: Enemy projectile index
 ;; Returns:
-;;     $12: Enemy projectile centre X position
-;;     $14: Enemy projectile centre Y position
+;;     $12: Enemy projectile center X position
+;;     $14: Enemy projectile center Y position
 ;;     $16: Enemy projectile X radius
 ;;     $18: Enemy projectile Y radius
     LDA.W EnemyProjectile_XPositions,X                                   ;86C3E9;

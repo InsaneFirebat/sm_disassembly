@@ -4618,6 +4618,10 @@ EnemyDeath:
 ;;         2: Normal explosion. Used by super missile killed default, atomic / robot / ghost, bull / floater / oum / yard / fish, fune, sidehopper, desgeega, mochtroid, slug, sciser, metaree, chute, rio, squeept, rio, cacatac
 ;;         3: Fake Kraid explosion
 ;;         4: Big explosion. Used by space pirates, Shaktool, ki-hunter, dragon, kago, yapping maw, evir, metroid, super-sidehopper/desgeega, tatori
+;;     X: Enemy index
+; Callers aren't making an effort to provide the enemy index in X
+; In fact, there are multiple callers passing garbage in X
+; Enemy index is loaded into X at $A3D3, so only the enemy AI handler read is affected
     PHP                                                                  ;A0A3AF;
     PHB                                                                  ;A0A3B0;
     PEA.W EnemyDeath>>8&$FF00                                            ;A0A3B1;
@@ -4626,7 +4630,7 @@ EnemyDeath:
     REP #$30                                                             ;A0A3B6;
     PHA                                                                  ;A0A3B8;
     LDA.W Enemy.AI,X                                                     ;A0A3B9;
-    CMP.W #$0001                                                         ;A0A3BC;
+    CMP.W #$0001                                                         ;A0A3BC; broken check, see note
     BNE .checkA                                                          ;A0A3BF;
     LDA.W #GrappleBeamFunction_Dropped                                   ;A0A3C1;
     STA.W GrappleBeam_Function                                           ;A0A3C4;
@@ -6049,10 +6053,10 @@ UNUSED_NegateA_A0AD62:
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
-;;; $AD70: Check if enemy centre is on screen or not ;;;
+;;; $AD70: Check if enemy center is on screen or not ;;;
 CheckIfEnemyCenterIsOnScreen:
 ;; Returns:
-;;     A/zero: 0/set if enemy centre is on screen, 1/clear otherwise
+;;     A/zero: 0/set if enemy center is on screen, 1/clear otherwise
     LDX.W EnemyIndex                                                     ;A0AD70;
     LDA.W Enemy.XPosition,X                                              ;A0AD73;
     CMP.W Layer1XPosition                                                ;A0AD76;
@@ -6078,12 +6082,12 @@ CheckIfEnemyCenterIsOnScreen:
     RTL                                                                  ;A0ADA2;
 
 
-;;; $ADA3: Check if enemy centre is over [A] pixels off-screen ;;;
+;;; $ADA3: Check if enemy center is over [A] pixels off-screen ;;;
 CheckIfEnemyCenterIsOverAPixelsOffScreen:
 ;; Parameters:
 ;;     A: Target off-screen distance
 ;; Returns:
-;;     Zero: Clear if enemy centre is over [A] pixels off-screen, set otherwise
+;;     Zero: Clear if enemy center is over [A] pixels off-screen, set otherwise
 
 ; Called by evir only
     PHX                                                                  ;A0ADA3;
@@ -6126,7 +6130,7 @@ CheckIfEnemyCenterIsOverAPixelsOffScreen:
 ;;; $ADE7: Check if enemy is on screen or not off screen ;;;
 CheckIfEnemyIsOnScreen:
 ;; Returns:
-;;     A/zero: 0/set if enemy centre is on screen, 1/clear otherwise
+;;     A/zero: 0/set if enemy center is on screen, 1/clear otherwise
     PHX                                                                  ;A0ADE7;
     LDX.W EnemyIndex                                                     ;A0ADE8;
     LDA.W Enemy.XPosition,X                                              ;A0ADEB;

@@ -13346,7 +13346,7 @@ Function_KihunterWings_Falling_DriftingLeft:
     RTL                                                                  ;A8F850;
 
 
-;;; $F851: Determine falling ki-hunter wings left arc centre offsets ;;;
+;;; $F851: Determine falling ki-hunter wings left arc center offsets ;;;
 DetermineFallingKihunterWingsLeftArcCenterOffsets:
     LDX.W EnemyIndex                                                     ;A8F851;
     LDA.W KihunterConstants_fallingWingsArcRadius                        ;A8F854;
@@ -13366,7 +13366,7 @@ DetermineFallingKihunterWingsLeftArcCenterOffsets:
     RTS                                                                  ;A8F87E;
 
 
-;;; $F87F: Determine falling ki-hunter wings right arc centre offsets ;;;
+;;; $F87F: Determine falling ki-hunter wings right arc center offsets ;;;
 DetermineFallingKihunterWingsRightArcCenterOffsets:
     LDX.W EnemyIndex                                                     ;A8F87F;
     LDA.W KihunterConstants_fallingWingsArcRadius                        ;A8F882;

@@ -2484,8 +2484,8 @@ DrawMotherBrainNeckSegment:
 AddSpritemapToOAM_RoomCoordinates:
 ;; Parameters:
 ;;     DB:YYYY = address of spritemap
-;;     $12     = X position of spritemap centre
-;;     $14     = Y position of spritemap centre
+;;     $12     = X position of spritemap center
+;;     $14     = Y position of spritemap center
 ;;     $16     = palette bits of sprite (palette * 200h)
 
 ; Compared to the usual 'add spritemap to OAM' routine,
@@ -2498,8 +2498,8 @@ AddSpritemapToOAM_RoomCoordinates:
 ;     ...          ; Entry 1...
 ; Where:
 ;     n = number of entries
-;     x = X offset of sprite from centre
-;     y = Y offset of sprite from centre
+;     x = X offset of sprite from center
+;     y = Y offset of sprite from center
 ;     a = attributes
 ;     t = tile number
 
@@ -2507,8 +2507,8 @@ AddSpritemapToOAM_RoomCoordinates:
 ;     s000000xxxxxxxxx yyyyyyyy YXppPPPttttttttt
 ; Where:
 ;     s = size bit
-;     x = X offset of sprite from centre
-;     y = Y offset of sprite from centre
+;     x = X offset of sprite from center
+;     y = Y offset of sprite from center
 ;     Y = Y flip
 ;     X = X flip
 ;     P = palette
@@ -14167,8 +14167,8 @@ CheckForEnemyCollisionWithEnemy:
 ;;; $EF06: Check for enemy collision with rectangle ;;;
 CheckForEnemyCollisionWithRectangle:
 ;; Parameters:
-;;     $12: Rectangle centre X position
-;;     $14: Rectangle centre Y position
+;;     $12: Rectangle center X position
+;;     $14: Rectangle center Y position
 ;;     $16: Rectangle X radius
 ;;     $18: Rectangle Y radius
 ;; Returns:

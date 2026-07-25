@@ -6982,8 +6982,8 @@ Function_RidleyCeres_FakeRetreat_RetrieveBabyMetroid:
 ;;; $BE61: Check for baby metroid collision with rectangle ;;;
 CheckForBabyMetroidCollisionWithRectangle:
 ;; Parameters:
-;;     $12: Rectangle centre X position
-;;     $14: Rectangle centre Y position
+;;     $12: Rectangle center X position
+;;     $14: Rectangle center Y position
 ;;     $16: Rectangle X radius
 ;;     $18: Rectangle Y radius
 ;; Returns:
@@ -11367,8 +11367,8 @@ RidleyGeneralUseDrawing:
 ;     ...          ; Entry 1...
 ; Where:
 ;     n = number of entries
-;     x = X offset of sprite from centre
-;     y = Y offset of sprite from centre
+;     x = X offset of sprite from center
+;     y = Y offset of sprite from center
 ;     a = attributes
 ;     t = tile number
 
@@ -11376,8 +11376,8 @@ RidleyGeneralUseDrawing:
 ;     s000000xxxxxxxxx yyyyyyyy YXppPPPttttttttt
 ; Where:
 ;     s = size bit
-;     x = X offset of sprite from centre
-;     y = Y offset of sprite from centre
+;     x = X offset of sprite from center
+;     y = Y offset of sprite from center
 ;     Y = Y flip
 ;     X = X flip
 ;     P = palette
@@ -11690,8 +11690,8 @@ CheckIfRidleyIsOnScreen:
 ;;; $DEA6: Check for projectile collision with rectangle ;;;
 CheckForProjectileCollisionWithRectangle:
 ;; Parameters:
-;;     $12: Rectangle centre X position
-;;     $14: Rectangle centre Y position
+;;     $12: Rectangle center X position
+;;     $14: Rectangle center Y position
 ;;     $16: Rectangle X radius
 ;;     $18: Rectangle Y radius
 ;; Returns:
@@ -11791,8 +11791,8 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 ;;; $DF29: Check for Samus collision with rectangle ;;;
 CheckForSamusCollisionWithRectangle:
 ;; Parameters:
-;;     $12: Rectangle centre X position
-;;     $14: Rectangle centre Y position
+;;     $12: Rectangle center X position
+;;     $14: Rectangle center Y position
 ;;     $16: Rectangle X radius
 ;;     $18: Rectangle Y radius
 ;; Returns:

@@ -9367,7 +9367,7 @@ ExplosionSoundEffects:
 ;;; $C1E6: Main ASM: scroll screen right in Dachora room ;;;
 MainASM_ScrollScreenRightInDachoraRoom:
 ; Room $9CB3. Dachora room
-; The intent of the code is probably to scroll the screen so that it's centred when falling down the shaft;
+; The intent of the code is probably to scroll the screen so that it's centered when falling down the shaft;
 ; in practice, the conditions for the scrolling never occur
     LDA.L Scrolls+$B                                                     ;8FC1E6;
     AND.W #$00FF                                                         ;8FC1EA;

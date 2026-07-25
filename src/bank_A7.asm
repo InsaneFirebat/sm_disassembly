@@ -7545,7 +7545,7 @@ InstList_Phantoon_Eye_Close:
     dw InstList_Phantoon_Eye_Closed                                      ;A7CC9B;
 
 
-;;; $CC9D: Instruction list - eyeball - centred ;;;
+;;; $CC9D: Instruction list - eyeball - centered ;;;
 InstList_Phantoon_Eyeball_Centered:
     dw $0001,ExtendedSpritemap_Phantoon_Eyeball_Centered                 ;A7CC9D;
     dw Instruction_Common_CallFunctionInY                                ;A7CCA1;
@@ -10069,7 +10069,7 @@ EnemyShot_Phantoon:
     LDA.W #$0073                                                         ;A7DDB9;
     JSL.L QueueSound_Lib2_Max6                                           ;A7DDBC;
     LDA.W #$0001                                                         ;A7DDC0;
-    STA.W Enemy[2].init1                                                 ;A7DDC3;
+    STA.W Enemy[2].init1                                                 ;A7DDC3; never read
     LDA.W Enemy.properties                                               ;A7DDC6;
     ORA.W #$0400                                                         ;A7DDC9;
     STA.W Enemy.properties                                               ;A7DDCC;
@@ -10148,11 +10148,11 @@ EnemyShot_Phantoon:
     TAY                                                                  ;A7DE63;
     LDA.W Phantoon_Unknown0FEAValues_A7CDA5,Y                            ;A7DE64;
     AND.W #$00FF                                                         ;A7DE67;
-    STA.W Enemy[1].var1                                                  ;A7DE6A;
+    STA.W Enemy[1].var1                                                  ;A7DE6A; never read
     TYA                                                                  ;A7DE6D;
-    STA.W Enemy[3].init1                                                 ;A7DE6E;
+    STA.W Enemy[3].init1                                                 ;A7DE6E; never read
     LDA.W #$0001                                                         ;A7DE71;
-    STA.W Enemy[2].init1                                                 ;A7DE74;
+    STA.W Enemy[2].init1                                                 ;A7DE74; never read
     LDA.W Phantoon.swoopingTriggeredFlag                                 ;A7DE77;
     BNE .returnLower                                                     ;A7DE7A;
     LDA.W #$0001                                                         ;A7DE7C;
@@ -10169,7 +10169,7 @@ EnemyShot_Phantoon:
 
   .return1036_2:
     LDA.W #$0002                                                         ;A7DE92;
-    STA.W Enemy[2].init1                                                 ;A7DE95;
+    STA.W Enemy[2].init1                                                 ;A7DE95; never read
     PLB                                                                  ;A7DE98;
     RTL                                                                  ;A7DE99;
 
