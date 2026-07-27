@@ -12,7 +12,7 @@ org $A08000
 ;     $8EB6 - determine which enemies to process
 ;     $9785 - Samus / projectile interaction handler
 ;     $8FD4 - main enemy routine
-;         $9758 - enemy collision handling
+;         $9758 - enemy collision handling (projectiles, bombs, Samus)
 ;         $C26A - process enemy instructions
 ;         $9423 - add enemy to drawing queue
 ;     $A8F0 - Samus / solid enemy collision detection, executed at least twice
@@ -443,94 +443,66 @@ Instruction_Common_DisableOffScreenProcessing:
 
 ;;; $8187: Common enemy speeds - linearly increasing ;;;
 CommonEnemySpeeds_LinearlyIncreasing:
-;        _____________________ Speed
-;       |      _______________ Subspeed
-;       |     |      _________ Negated speed
-;       |     |     |      ___ Negated subspeed
-;       |     |     |     |
-  .speed:
-    dw $0000                                                             ;A08187;
-  .subspeed:
-    dw       $0000                                                       ;A08189;
-  .negatedSpeed:
-    dw             $0000                                                 ;A0818B;
-  .negatedSubspeed:
-    dw                   $0000                                           ;A0818D;
-    dw $0000,$1000,$FFFF,$F000
-    dw $0000,$2000,$FFFF,$E000
-    dw $0000,$3000,$FFFF,$D000
-    dw $0000,$4000,$FFFF,$C000
-    dw $0000,$5000,$FFFF,$B000
-    dw $0000,$6000,$FFFF,$A000
-    dw $0000,$7000,$FFFF,$9000
-    dw $0000,$8000,$FFFF,$8000
-    dw $0000,$9000,$FFFF,$7000
-    dw $0000,$A000,$FFFF,$6000
-    dw $0000,$B000,$FFFF,$5000
-    dw $0000,$C000,$FFFF,$4000
-    dw $0000,$D000,$FFFF,$3000
-    dw $0000,$E000,$FFFF,$2000
-    dw $0000,$F000,$FFFF,$1000
-    dw $0001,$0000,$FFFF,$0000
-    dw $0001,$1000,$FFFE,$F000
-    dw $0001,$2000,$FFFE,$E000
-    dw $0001,$3000,$FFFE,$D000
-    dw $0001,$4000,$FFFE,$C000
-    dw $0001,$5000,$FFFE,$B000
-    dw $0001,$6000,$FFFE,$A000
-    dw $0001,$7000,$FFFE,$9000
-    dw $0001,$8000,$FFFE,$8000
-    dw $0001,$9000,$FFFE,$7000
-    dw $0001,$A000,$FFFE,$6000
-    dw $0001,$B000,$FFFE,$5000
-    dw $0001,$C000,$FFFE,$4000
-    dw $0001,$D000,$FFFE,$3000
-    dw $0001,$E000,$FFFE,$2000
-    dw $0001,$F000,$FFFE,$1000
-    dw $0002,$0000,$FFFE,$0000
-    dw $0002,$1000,$FFFD,$F000
-    dw $0002,$2000,$FFFD,$E000
-    dw $0002,$3000,$FFFD,$D000
-    dw $0002,$4000,$FFFD,$C000
-    dw $0002,$5000,$FFFD,$B000
-    dw $0002,$6000,$FFFD,$A000
-    dw $0002,$7000,$FFFD,$9000
-    dw $0002,$8000,$FFFD,$8000
-    dw $0002,$9000,$FFFD,$7000
-    dw $0002,$A000,$FFFD,$6000
-    dw $0002,$B000,$FFFD,$5000
-    dw $0002,$C000,$FFFD,$4000
-    dw $0002,$D000,$FFFD,$3000
-    dw $0002,$E000,$FFFD,$2000
-    dw $0002,$F000,$FFFD,$1000
-    dw $0003,$0000,$FFFD,$0000
-    dw $0003,$1000,$FFFC,$F000
-    dw $0003,$2000,$FFFC,$E000
-    dw $0003,$3000,$FFFC,$D000
-    dw $0003,$4000,$FFFC,$C000
-    dw $0003,$5000,$FFFC,$B000
-    dw $0003,$6000,$FFFC,$A000
-    dw $0003,$7000,$FFFC,$9000
-    dw $0003,$8000,$FFFC,$8000
-    dw $0003,$9000,$FFFC,$7000
-    dw $0003,$A000,$FFFC,$6000
-    dw $0003,$B000,$FFFC,$5000
-    dw $0003,$C000,$FFFC,$4000
-    dw $0003,$D000,$FFFC,$3000
-    dw $0003,$E000,$FFFC,$2000
-    dw $0003,$F000,$FFFC,$1000
-    dw $0004,$0000,$FFFC,$0000
+  .speed                                                                 ;A08187;
+skip 2
+  .subspeed                                                              ;A08189;
+skip 2
+  .negatedSpeed                                                          ;A0818B;
+skip 2
+  .negatedSubspeed                                                       ;A0818D;
+skip -6
+
+!i = 0
+if !PAL == 0
+    !n = $41
+else
+    !n = $43
+endif
+while !i < !n
+    !v #= $1000*!SPF*!i ; !i must be last in product to reproduce PAL rounding errors
+    dw !v>>$10, !v, -!v>>$10, -!v
+    !i #= !i+1
+endif
 
 
 ;;; $838F: Common enemy speeds - quadratically increasing ;;;
 CommonEnemySpeeds_QuadraticallyIncreasing:
 ; I.e. gravity
 ; Used by e.g. Botwoon when dying and falling to the floor
-;        _____________________ Subspeed
-;       |      _______________ Speed
-;       |     |      _________ Negated subspeed
-;       |     |     |      ___ Negated speed
-;       |     |     |     |
+
+; This table appears to have been generated with a buggy calculation
+; Recall that the sum of 0..k is
+;     T(t) = t (t + 1) / 2
+; The first 22 values of this table (ignoring the negated part) can be calculated with
+;     v(t) = T(t) * 0.0109h
+; Which is likely the intended calculation
+
+; From 22 onwards, values in the table are too low by a multiple of 0.0900h with occasional discontinuities (see "Quadratic speed table.png")
+; My best guess is that buggy calculation determined the whole and fractional parts separately using the high and low bytes of T(t):
+;     v_frac(t) = (T(t) & FFh) * 109h
+;     v_whole(t) = (T(t) >> 8) / 10000h
+; And truncated the value of v_frac to 16 bits without carrying bit 17 into v_whole
+;     v(t) = v_whole(t) + (v_frac(t) & FFFFh) / 10000h
+
+; Generate the table with this python code
+;     def triangle(n):
+;         return n * (n + 1) // 2
+;     
+;     for t in range(95):
+;         T = triangle(t)
+;     
+;         T_low = T & 0xFF
+;         T_high = T >> 8
+;         
+;         v_frac = T_low * 0x109 & 0xFFFF # Truncated
+;         v_whole = T_high
+;         
+;         print(f'{t}: {v_whole:X}.{v_frac:04X}h')
+
+; The PAL table is a tad better, but still with anomalous inaccuracies
+; See https://patrickjohnston.org/ASM/ROM%20data/Super%20Metroid/generate%20quadratic%20speed%20table.py
+
+; Subspeed, speed, negated subspeed, negated speed
   .subspeed:
     dw $0000                                                             ;A0838F;
   .speed:
@@ -541,6 +513,7 @@ CommonEnemySpeeds_QuadraticallyIncreasing:
     dw                   $0000                                           ;A08395;
     dw $0109,$0000,$FEF7,$FFFF
     dw $031B,$0000,$FCE5,$FFFF
+if !PAL == 0
     dw $0636,$0000,$F9CA,$FFFF
     dw $0A5A,$0000,$F5A6,$FFFF
     dw $0F87,$0000,$F079,$FFFF
@@ -633,6 +606,100 @@ CommonEnemySpeeds_QuadraticallyIncreasing:
     dw $BC66,$0010,$439A,$FFEF
     dw $13AB,$0011,$EC55,$FFEE
     dw $74F9,$0011,$8B07,$FFEE
+else
+    dw $073F,$0000,$F8C1,$FFFF
+    dw $0B63,$0000,$F49D,$FFFF
+    dw $1199,$0000,$EE67,$FFFF
+    dw $19E1,$0000,$E61F,$FFFF
+    dw $2229,$0000,$DDD7,$FFFF
+    dw $2C83,$0000,$D37D,$FFFF
+    dw $36DD,$0000,$C923,$FFFF
+    dw $4349,$0000,$BCB7,$FFFF
+    dw $51C7,$0000,$AE39,$FFFF
+    dw $6045,$0000,$9FBB,$FFFF
+    dw $70D5,$0000,$8F2B,$FFFF
+    dw $8165,$0000,$7E9B,$FFFF
+    dw $9407,$0000,$6BF9,$FFFF
+    dw $A8BB,$0000,$5745,$FFFF
+    dw $BD6F,$0000,$4291,$FFFF
+    dw $D435,$0000,$2BCB,$FFFF
+    dw $EAFB,$0000,$1505,$FFFF
+    dw $03D3,$0001,$FC2D,$FFFE
+    dw $15BD,$0001,$EA43,$FFFE
+    dw $30A7,$0001,$CF59,$FFFE
+    dw $4DA3,$0001,$B25D,$FFFE
+    dw $6A9F,$0001,$9561,$FFFE
+    dw $89AD,$0001,$7653,$FFFE
+    dw $AACD,$0001,$5533,$FFFE
+    dw $CBED,$0001,$3413,$FFFE
+    dw $EF1F,$0001,$10E1,$FFFE
+    dw $0951,$0002,$F6AF,$FFFD
+    dw $2E95,$0002,$D16B,$FFFD
+    dw $55EB,$0002,$AA15,$FFFD
+    dw $7D41,$0002,$82BF,$FFFD
+    dw $A6A9,$0002,$5957,$FFFD
+    dw $D011,$0002,$2FEF,$FFFD
+    dw $FB8B,$0002,$0475,$FFFD
+    dw $2017,$0003,$DFE9,$FFFC
+    dw $4DA3,$0003,$B25D,$FFFC
+    dw $7D41,$0003,$82BF,$FFFC
+    dw $ACDF,$0003,$5321,$FFFC
+    dw $DE8F,$0003,$2171,$FFFC
+    dw $0951,$0004,$F6AF,$FFFB
+    dw $3D13,$0004,$C2ED,$FFFB
+    dw $72E7,$0004,$8D19,$FFFB
+    dw $A8BB,$0004,$5745,$FFFB
+    dw $E0A1,$0004,$1F5F,$FFFB
+    dw $1199,$0005,$EE67,$FFFA
+    dw $4B91,$0005,$B46F,$FFFA
+    dw $879B,$0005,$7865,$FFFA
+    dw $C3A5,$0005,$3C5B,$FFFA
+    dw $01C1,$0005,$FE3F,$FFFA
+    dw $38EF,$0006,$C711,$FFF9
+    dw $791D,$0006,$86E3,$FFF9
+    dw $BB5D,$0006,$44A3,$FFF9
+    dw $FD9D,$0006,$0263,$FFF9
+    dw $38EF,$0007,$C711,$FFF8
+    dw $7F53,$0007,$80AD,$FFF8
+    dw $C5B7,$0007,$3A49,$FFF8
+    dw $052D,$0008,$FAD3,$FFF7
+    dw $4DA3,$0008,$B25D,$FFF7
+    dw $982B,$0008,$67D5,$FFF7
+    dw $E4C5,$0008,$1B3B,$FFF7
+    dw $285F,$0009,$D7A1,$FFF6
+    dw $770B,$0009,$88F5,$FFF6
+    dw $C5B7,$0009,$3A49,$FFF6
+    dw $0D75,$000A,$F28B,$FFF5
+    dw $6045,$000A,$9FBB,$FFF5
+    dw $B315,$000A,$4CEB,$FFF5
+    dw $07F7,$000B,$F809,$FFF5
+    dw $53D9,$000B,$AC27,$FFF4
+    dw $AACD,$000B,$5533,$FFF4
+    dw $03D3,$000C,$FC2D,$FFF3
+    dw $53D9,$000C,$AC27,$FFF3
+    dw $AEF1,$000C,$510F,$FFF3
+    dw $0109,$000D,$FEF7,$FFF2
+    dw $5E33,$000D,$A1CD,$FFF2
+    dw $BD6F,$000D,$4291,$FFF2
+    dw $13AB,$000E,$EC55,$FFF1
+    dw $74F9,$000E,$8B07,$FFF1
+    dw $D647,$000E,$29B9,$FFF1
+    dw $30A7,$000F,$CF59,$FFF0
+    dw $9619,$000F,$69E7,$FFF0
+    dw $FB8B,$000F,$0475,$FFF0
+    dw $5A0F,$0010,$A5F1,$FFEF
+    dw $C193,$0010,$3E6D,$FFEF
+    dw $2229,$0011,$DDD7,$FFEE
+    dw $8DD1,$0011,$722F,$FFEE
+    dw $F979,$0011,$0687,$FFEE
+    dw $5E33,$0012,$A1CD,$FFED
+    dw $CBED,$0012,$3413,$FFED
+    dw $32B9,$0013,$CD47,$FFEC
+    dw $A497,$0013,$5B69,$FFEC
+    dw $0D75,$0014,$F28B,$FFEB
+    dw $8165,$0014,$7E9B,$FFEB
+    dw $F555,$0014,$0AAB,$FFEB
+endif
 
 
 ;;; $8687: Handle room shaking ;;;
@@ -2272,22 +2339,22 @@ SpawnEnemy_AlwaysSucceed:
     LDA.W $0000,X                                                        ;A092E1;
     LDX.W #$0000                                                         ;A092E4;
     CMP.L EnemyGFXData_IDs                                               ;A092E7;
-    BEQ .graphics                                                        ;A092EB;
+    BEQ .foundMatchingID                                                 ;A092EB;
     LDX.W #$0002                                                         ;A092ED;
     CMP.L EnemyGFXData_IDs+2                                             ;A092F0;
-    BEQ .graphics                                                        ;A092F4;
+    BEQ .foundMatchingID                                                 ;A092F4;
     LDX.W #$0004                                                         ;A092F6;
     CMP.L EnemyGFXData_IDs+4                                             ;A092F9;
-    BEQ .graphics                                                        ;A092FD;
+    BEQ .foundMatchingID                                                 ;A092FD;
     LDX.W #$0006                                                         ;A092FF;
     CMP.L EnemyGFXData_IDs+6                                             ;A09302;
-    BEQ .graphics                                                        ;A09306;
+    BEQ .foundMatchingID                                                 ;A09306;
     LDA.W #$0000                                                         ;A09308;
     STA.W Enemy.GFXOffset,Y                                              ;A0930B;
     STA.W Enemy.palette,Y                                                ;A0930E;
     BRA +                                                                ;A09311;
 
-  .graphics:
+  .foundMatchingID:
     LDA.L EnemyGFXData_TilesIndex,X                                      ;A09313;
     STA.W Enemy.GFXOffset,Y                                              ;A09317;
     LDA.L EnemyGFXData_PaletteIndices,X                                  ;A0931A;
@@ -4076,8 +4143,9 @@ GrappleAI_SamusLatchesOnWithGrapple_NoInvincibility:
     RTL                                                                  ;A0A03D;
 
 
-;;; $A03E: Samus latches on with grapple - paralyse enemy ;;;
+;;; $A03E: Unused. Samus latches on with grapple - paralyse enemy ;;;
 GrappleAI_SamusLatchesOnWithGrapple_ParalyzeEnemy:
+; Called by UNUSED_Common_GrappleAI_SamusLatchesOn_ParalyzeEnemy_A08019
     LDX.W EnemyIndex                                                     ;A0A03E;
     LDX.W EnemyIndex                                                     ;A0A041;
     LDA.W Enemy.ID,X                                                     ;A0A044;
@@ -4575,6 +4643,10 @@ EnemyDeath:
 ;;         2: Normal explosion. Used by super missile killed default, atomic / robot / ghost, bull / floater / oum / yard / fish, fune, sidehopper, desgeega, mochtroid, slug, sciser, metaree, chute, rio, squeept, rio, cacatac
 ;;         3: Fake Kraid explosion
 ;;         4: Big explosion. Used by space pirates, Shaktool, ki-hunter, dragon, kago, yapping maw, evir, metroid, super-sidehopper/desgeega, tatori
+;;     X: Enemy index
+; Callers aren't making an effort to provide the enemy index in X
+; In fact, there are multiple callers passing garbage in X
+; Enemy index is loaded into X at $A3D3, so only the enemy AI handler read is affected
     PHP                                                                  ;A0A3AF;
     PHB                                                                  ;A0A3B0;
     PEA.W EnemyDeath>>8&$FF00                                            ;A0A3B1;
@@ -4583,7 +4655,7 @@ EnemyDeath:
     REP #$30                                                             ;A0A3B6;
     PHA                                                                  ;A0A3B8;
     LDA.W Enemy.AI,X                                                     ;A0A3B9;
-    CMP.W #$0001                                                         ;A0A3BC;
+    CMP.W #$0001                                                         ;A0A3BC; broken check, see note
     BNE .checkA                                                          ;A0A3BF;
     LDA.W #GrappleBeamFunction_Dropped                                   ;A0A3C1;
     STA.W GrappleBeam_Function                                           ;A0A3C4;
@@ -5325,6 +5397,9 @@ Samus_vs_SolidEnemy_CollisionDetection:
 ; The BEQs at $A931/A959/A980/A9A7 I can't make sense of based on the above logic. Seems like the increments/decrements should be unconditional
 ; Perhaps it affects the logic for choosing between .touching and .notTouching(?) Didn't notice any jank when NOP'ing the BEQs
 
+; The zeroing of Samus Y subposition at $AAC8 (BRANCH_TOUCHING) is done even for horizontal collision,
+; this means pressing against the side of a solid enemy pushes Samus up each frame
+
 ; On the zebetite skip:
 ; The way this behaviour is implemented is effectively just incrementing the $12 parameter (unfortunately not written so straight forwardly)
 ; Consequently, Samus can collide with enemies one pixel further than she should be able to reach (i.e. one pixel further than in block collision),
@@ -5602,7 +5677,7 @@ Samus_vs_SolidEnemy_CollisionDetection:
     JMP.W .loop                                                          ;A0AAC5;
 
   .touching:
-    STZ.W SamusYSubPosition                                              ;A0AAC8;
+    STZ.W SamusYSubPosition                                              ;A0AAC8; (!)
     LDX.W CollisionIndex                                                 ;A0AACB;
     LDA.W SamusXPosition                                                 ;A0AACE;
     STA.W neverRead184A                                                  ;A0AAD1;
@@ -6004,10 +6079,10 @@ UNUSED_NegateA_A0AD62:
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
-;;; $AD70: Check if enemy centre is on screen or not ;;;
+;;; $AD70: Check if enemy center is on screen or not ;;;
 CheckIfEnemyCenterIsOnScreen:
 ;; Returns:
-;;     A/zero: 0/set if enemy centre is on screen, 1/clear otherwise
+;;     A/zero: 0/set if enemy center is on screen, 1/clear otherwise
     LDX.W EnemyIndex                                                     ;A0AD70;
     LDA.W Enemy.XPosition,X                                              ;A0AD73;
     CMP.W Layer1XPosition                                                ;A0AD76;
@@ -6033,12 +6108,12 @@ CheckIfEnemyCenterIsOnScreen:
     RTL                                                                  ;A0ADA2;
 
 
-;;; $ADA3: Check if enemy centre is over [A] pixels off-screen ;;;
+;;; $ADA3: Check if enemy center is over [A] pixels off-screen ;;;
 CheckIfEnemyCenterIsOverAPixelsOffScreen:
 ;; Parameters:
 ;;     A: Target off-screen distance
 ;; Returns:
-;;     Zero: Clear if enemy centre is over [A] pixels off-screen, set otherwise
+;;     Zero: Clear if enemy center is over [A] pixels off-screen, set otherwise
 
 ; Called by evir only
     PHX                                                                  ;A0ADA3;
@@ -6081,7 +6156,7 @@ CheckIfEnemyCenterIsOverAPixelsOffScreen:
 ;;; $ADE7: Check if enemy is on screen or not off screen ;;;
 CheckIfEnemyIsOnScreen:
 ;; Returns:
-;;     A/zero: 0/set if enemy centre is on screen, 1/clear otherwise
+;;     A/zero: 0/set if enemy center is on screen, 1/clear otherwise
     PHX                                                                  ;A0ADE7;
     LDX.W EnemyIndex                                                     ;A0ADE8;
     LDA.W Enemy.XPosition,X                                              ;A0ADEB;
@@ -9445,7 +9520,7 @@ EnemyBlockCollisionReaction_HorizontalExtension:
 ;; Returns:
 ;;     Carry: Clear. No collision
 
-; Clone of $94:9411
+; Clone of BlockShotBombedGrappledCollisionInsideReaction_HorizontalExt
 ; If BTS is 0, acts like air
 ; Otherwise, offsets block index by block BTS, updates X, and loops back to the `JSR (xxxx, X)` instruction that jumped to here
     LDX.W CurrentBlockIndex                                              ;A0C619;
@@ -9487,7 +9562,7 @@ EnemyBlockCollisionReaction_VerticalExtension:
 ;; Returns:
 ;;     Carry: Clear. No collision
 
-; Clone of $94:9447
+; Clone of BlockShotBombedGrappledCollisionInsideReaction_VerticalExt
 ; If BTS is 0, acts like air
 ; Otherwise, offsets block index by block BTS, updates X, and loops back to the `JSR (xxxx, X)` instruction that jumped to here
     LDX.W CurrentBlockIndex                                              ;A0C64F;
@@ -10128,83 +10203,26 @@ if !FEATURE_KEEP_UNREFERENCED
 ;;; $C9BF: Unused. Common enemy projectile speeds - linearly increasing ;;;
 UNUSED_CommonEnemyProjectileSpeeds_LinearlyIncreasing_A0C9BF:
 ; Clone of CommonEnemySpeeds_LinearlyIncreasing
-;        _____________________ Speed
-;       |      _______________ Subspeed
-;       |     |      _________ Negated speed
-;       |     |     |      ___ Negated subspeed
-;       |     |     |     |
-  .speed:
-    dw $0000                                                             ;A0C9BF;
-  .subspeed:
-    dw       $0000                                                       ;A0C9C1;
-  .negatedSpeed:
-    dw             $0000                                                 ;A0C9C3;
-  .negatedSubspeed:
-    dw                   $0000                                           ;A0C9C5;
-    dw $0000,$1000,$FFFF,$F000
-    dw $0000,$2000,$FFFF,$E000
-    dw $0000,$3000,$FFFF,$D000
-    dw $0000,$4000,$FFFF,$C000
-    dw $0000,$5000,$FFFF,$B000
-    dw $0000,$6000,$FFFF,$A000
-    dw $0000,$7000,$FFFF,$9000
-    dw $0000,$8000,$FFFF,$8000
-    dw $0000,$9000,$FFFF,$7000
-    dw $0000,$A000,$FFFF,$6000
-    dw $0000,$B000,$FFFF,$5000
-    dw $0000,$C000,$FFFF,$4000
-    dw $0000,$D000,$FFFF,$3000
-    dw $0000,$E000,$FFFF,$2000
-    dw $0000,$F000,$FFFF,$1000
-    dw $0001,$0000,$FFFF,$0000
-    dw $0001,$1000,$FFFE,$F000
-    dw $0001,$2000,$FFFE,$E000
-    dw $0001,$3000,$FFFE,$D000
-    dw $0001,$4000,$FFFE,$C000
-    dw $0001,$5000,$FFFE,$B000
-    dw $0001,$6000,$FFFE,$A000
-    dw $0001,$7000,$FFFE,$9000
-    dw $0001,$8000,$FFFE,$8000
-    dw $0001,$9000,$FFFE,$7000
-    dw $0001,$A000,$FFFE,$6000
-    dw $0001,$B000,$FFFE,$5000
-    dw $0001,$C000,$FFFE,$4000
-    dw $0001,$D000,$FFFE,$3000
-    dw $0001,$E000,$FFFE,$2000
-    dw $0001,$F000,$FFFE,$1000
-    dw $0002,$0000,$FFFE,$0000
-    dw $0002,$1000,$FFFD,$F000
-    dw $0002,$2000,$FFFD,$E000
-    dw $0002,$3000,$FFFD,$D000
-    dw $0002,$4000,$FFFD,$C000
-    dw $0002,$5000,$FFFD,$B000
-    dw $0002,$6000,$FFFD,$A000
-    dw $0002,$7000,$FFFD,$9000
-    dw $0002,$8000,$FFFD,$8000
-    dw $0002,$9000,$FFFD,$7000
-    dw $0002,$A000,$FFFD,$6000
-    dw $0002,$B000,$FFFD,$5000
-    dw $0002,$C000,$FFFD,$4000
-    dw $0002,$D000,$FFFD,$3000
-    dw $0002,$E000,$FFFD,$2000
-    dw $0002,$F000,$FFFD,$1000
-    dw $0003,$0000,$FFFD,$0000
-    dw $0003,$1000,$FFFC,$F000
-    dw $0003,$2000,$FFFC,$E000
-    dw $0003,$3000,$FFFC,$D000
-    dw $0003,$4000,$FFFC,$C000
-    dw $0003,$5000,$FFFC,$B000
-    dw $0003,$6000,$FFFC,$A000
-    dw $0003,$7000,$FFFC,$9000
-    dw $0003,$8000,$FFFC,$8000
-    dw $0003,$9000,$FFFC,$7000
-    dw $0003,$A000,$FFFC,$6000
-    dw $0003,$B000,$FFFC,$5000
-    dw $0003,$C000,$FFFC,$4000
-    dw $0003,$D000,$FFFC,$3000
-    dw $0003,$E000,$FFFC,$2000
-    dw $0003,$F000,$FFFC,$1000
-    dw $0004,$0000,$FFFC,$0000
+  .speed                                                                 ;A0C9BF;
+skip 2
+  .subspeed                                                              ;A0C9C1;
+skip 2
+  .negatedSpeed                                                          ;A0C9C3;
+skip 2
+  .negatedSubspeed                                                       ;A0C9C5;
+skip -6
+
+!i = 0
+if !PAL == 0
+    !n = $41
+else
+    !n = $43
+endif
+while !i < !n
+    !v #= $1000*!SPF*!i
+    dw !v>>$10, !v, -!v>>$10, -!v
+    !i #= !i+1
+endif
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
@@ -10227,6 +10245,7 @@ CommonEnemyProjectileSpeeds_QuadraticallyIncreasing:
     dw                   $0000                                           ;A0CBCD;
     dw $0109,$0000,$FEF7,$FFFF
     dw $031B,$0000,$FCE5,$FFFF
+if !PAL == 0
     dw $0636,$0000,$F9CA,$FFFF
     dw $0A5A,$0000,$F5A6,$FFFF
     dw $0F87,$0000,$F079,$FFFF
@@ -10319,6 +10338,100 @@ CommonEnemyProjectileSpeeds_QuadraticallyIncreasing:
     dw $BC66,$0010,$439A,$FFEF
     dw $13AB,$0011,$EC55,$FFEE
     dw $74F9,$0011,$8B07,$FFEE
+else
+    dw $073F,$0000,$F8C1,$FFFF
+    dw $0B63,$0000,$F49D,$FFFF
+    dw $1199,$0000,$EE67,$FFFF
+    dw $19E1,$0000,$E61F,$FFFF
+    dw $2229,$0000,$DDD7,$FFFF
+    dw $2C83,$0000,$D37D,$FFFF
+    dw $36DD,$0000,$C923,$FFFF
+    dw $4349,$0000,$BCB7,$FFFF
+    dw $51C7,$0000,$AE39,$FFFF
+    dw $6045,$0000,$9FBB,$FFFF
+    dw $70D5,$0000,$8F2B,$FFFF
+    dw $8165,$0000,$7E9B,$FFFF
+    dw $9407,$0000,$6BF9,$FFFF
+    dw $A8BB,$0000,$5745,$FFFF
+    dw $BD6F,$0000,$4291,$FFFF
+    dw $D435,$0000,$2BCB,$FFFF
+    dw $EAFB,$0000,$1505,$FFFF
+    dw $03D3,$0001,$FC2D,$FFFE
+    dw $15BD,$0001,$EA43,$FFFE
+    dw $30A7,$0001,$CF59,$FFFE
+    dw $4DA3,$0001,$B25D,$FFFE
+    dw $6A9F,$0001,$9561,$FFFE
+    dw $89AD,$0001,$7653,$FFFE
+    dw $AACD,$0001,$5533,$FFFE
+    dw $CBED,$0001,$3413,$FFFE
+    dw $EF1F,$0001,$10E1,$FFFE
+    dw $0951,$0002,$F6AF,$FFFD
+    dw $2E95,$0002,$D16B,$FFFD
+    dw $55EB,$0002,$AA15,$FFFD
+    dw $7D41,$0002,$82BF,$FFFD
+    dw $A6A9,$0002,$5957,$FFFD
+    dw $D011,$0002,$2FEF,$FFFD
+    dw $FB8B,$0002,$0475,$FFFD
+    dw $2017,$0003,$DFE9,$FFFC
+    dw $4DA3,$0003,$B25D,$FFFC
+    dw $7D41,$0003,$82BF,$FFFC
+    dw $ACDF,$0003,$5321,$FFFC
+    dw $DE8F,$0003,$2171,$FFFC
+    dw $0951,$0004,$F6AF,$FFFB
+    dw $3D13,$0004,$C2ED,$FFFB
+    dw $72E7,$0004,$8D19,$FFFB
+    dw $A8BB,$0004,$5745,$FFFB
+    dw $E0A1,$0004,$1F5F,$FFFB
+    dw $1199,$0005,$EE67,$FFFA
+    dw $4B91,$0005,$B46F,$FFFA
+    dw $879B,$0005,$7865,$FFFA
+    dw $C3A5,$0005,$3C5B,$FFFA
+    dw $01C1,$0005,$FE3F,$FFFA
+    dw $38EF,$0006,$C711,$FFF9
+    dw $791D,$0006,$86E3,$FFF9
+    dw $BB5D,$0006,$44A3,$FFF9
+    dw $FD9D,$0006,$0263,$FFF9
+    dw $38EF,$0007,$C711,$FFF8
+    dw $7F53,$0007,$80AD,$FFF8
+    dw $C5B7,$0007,$3A49,$FFF8
+    dw $052D,$0008,$FAD3,$FFF7
+    dw $4DA3,$0008,$B25D,$FFF7
+    dw $982B,$0008,$67D5,$FFF7
+    dw $E4C5,$0008,$1B3B,$FFF7
+    dw $285F,$0009,$D7A1,$FFF6
+    dw $770B,$0009,$88F5,$FFF6
+    dw $C5B7,$0009,$3A49,$FFF6
+    dw $0D75,$000A,$F28B,$FFF5
+    dw $6045,$000A,$9FBB,$FFF5
+    dw $B315,$000A,$4CEB,$FFF5
+    dw $07F7,$000B,$F809,$FFF5
+    dw $53D9,$000B,$AC27,$FFF4
+    dw $AACD,$000B,$5533,$FFF4
+    dw $03D3,$000C,$FC2D,$FFF3
+    dw $53D9,$000C,$AC27,$FFF3
+    dw $AEF1,$000C,$510F,$FFF3
+    dw $0109,$000D,$FEF7,$FFF2
+    dw $5E33,$000D,$A1CD,$FFF2
+    dw $BD6F,$000D,$4291,$FFF2
+    dw $13AB,$000E,$EC55,$FFF1
+    dw $74F9,$000E,$8B07,$FFF1
+    dw $D647,$000E,$29B9,$FFF1
+    dw $30A7,$000F,$CF59,$FFF0
+    dw $9619,$000F,$69E7,$FFF0
+    dw $FB8B,$000F,$0475,$FFF0
+    dw $5A0F,$0010,$A5F1,$FFEF
+    dw $C193,$0010,$3E6D,$FFEF
+    dw $2229,$0011,$DDD7,$FFEE
+    dw $8DD1,$0011,$722F,$FFEE
+    dw $F979,$0011,$0687,$FFEE
+    dw $5E33,$0012,$A1CD,$FFED
+    dw $CBED,$0012,$3413,$FFED
+    dw $32B9,$0013,$CD47,$FFEC
+    dw $A497,$0013,$5B69,$FFEC
+    dw $0D75,$0014,$F28B,$FFEB
+    dw $8165,$0014,$7E9B,$FFEB
+    dw $F555,$0014,$0AAB,$FFEB
+endif
 
 
 ;;; $CEBF: Enemy headers ;;;
@@ -12445,7 +12558,7 @@ EnemyHeaders_SporeSpawn:                                                 ;A0DF3F
     %height($20),
     %bank(InitAI_SporeSpawn>>16),
     %hurtAITime(4),
-    %cry($002C),
+    %cry(regional($002C, $0000)),
     %bossID(4),
     %initAI(InitAI_SporeSpawn),
     %parts(1),
@@ -12790,7 +12903,7 @@ EnemyHeaders_RidleyExplosion:                                            ;A0E1BF
 EnemyHeaders_Steam:                                                      ;A0E1FF;
     %EnemyHeader(\
     %tileDataSize(0),
-    %palette(Palette_CeresSteam),
+    %palette(EnemyHeaders_CeresDoor),
     %health(32767),
     %damage(0),
     %width(8),

@@ -4254,8 +4254,8 @@ Draw4DigitHexValue:
 Add_Debug_Spritemap_to_OAM:
 ;; Parameters:
 ;;     A:   Index into $A201 table
-;;     $12: Y position of spritemap centre
-;;     $14: X position of spritemap centre
+;;     $12: Y position of spritemap center
+;;     $14: X position of spritemap center
 ;;     $26: Palette bits of sprite. If zero, spritemap entry palette is used
 
 ; Spritemap format is roughly:
@@ -4264,8 +4264,8 @@ Add_Debug_Spritemap_to_OAM:
 ;     ...          ; Entry 1...
 ; Where:
 ;     n = number of entries
-;     x = X offset of sprite from centre
-;     y = Y offset of sprite from centre
+;     x = X offset of sprite from center
+;     y = Y offset of sprite from center
 ;     a = attributes
 ;     t = tile number
 
@@ -4273,8 +4273,8 @@ Add_Debug_Spritemap_to_OAM:
 ;     00000s0xxxxxxxxx yyyyyyyy YXppPPPttttttttt
 ; Where:
 ;     s = size bit <-- This is different to the regular spritemap format
-;     x = X offset of sprite from centre
-;     y = Y offset of sprite from centre
+;     x = X offset of sprite from center
+;     y = Y offset of sprite from center
 ;     Y = Y flip
 ;     X = X flip
 ;     P = palette
@@ -6920,7 +6920,7 @@ InstList_SpriteObject_18_ShortDraygonBreathBubbles:
     dw Instruction_SpriteObject_Delete                                   ;B4C130;
 
 
-;;; $C132: Instruction list - sprite object 19h (unused. Save station electricity) ;;;
+;;; $C132: Instruction list - sprite object 19h (unused. Save station laser) ;;;
 UNSUED_InstList_SpriteObject_19_SaveStationElectricity:
     dw $0001,UNUSED_SpriteObjectSpritemaps_19_SaveStationElect_0_B4C9A0  ;B4C132;
     dw $0001,UNUSED_SpriteObjectSpritemaps_19_SaveStationElect_1_B4C9B6  ;B4C136;

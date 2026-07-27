@@ -87,7 +87,7 @@ LoadFromSRAM:
 ;; Parameter:
 ;;     A: SRAM slot (0, 1 or 2)
 ;; Returns:
-;;     Carry: Set if SRAM was corrupt
+;;     Carry: Set if SRAM was cleared
 
 ; Copies all the data from the SRAM slot out to $7E:D7C0..DE1B
 ; If SRAM is not corrupt (according to the checksums):
@@ -1188,6 +1188,8 @@ AddSpritemapToOAM_Common:
 ;;     $14: Spritemap X origin
 ;;     $18: Number of entries
 
+; Expects a pushed DB
+
 ; Spritemap format is roughly:
 ;     nnnn         ; Number of entries (2 bytes)
 ;     xxxx yy aatt ; Entry 0 (5 bytes)
@@ -1873,7 +1875,7 @@ LoadDebugGameOverMenuTilemap:
     LDA.W #$000F                                                         ;818E82;
 
   .loopClear:
-    STA.L CinematicBGTilemap,X                                           ;818E85;
+    STA.L DebugGameOverMenuTilemap,X                                     ;818E85;
     INX                                                                  ;818E89;
     INX                                                                  ;818E8A;
     CPX.W #$0800                                                         ;818E8B;
@@ -2499,7 +2501,7 @@ FileSelectMenu_Index0_TitleSequenceToMain_FadeOutConfigGfx:
 
 ;;; $9486: Load file select palettes ;;;
 LoadFileSelectPalettes:
-; Clone of $8E60, expect with no `REP #$30`
+; Clone of LoadMenuPalettes, except with no `REP #$30`
     LDX.W #$0000                                                         ;819486;
 
   .loop:
@@ -2739,7 +2741,7 @@ Draw_FileCopyClear_SaveSlotAInfo:
     LDA.W NonEmptySaveSlots                                              ;819612;
     EOR.W #$FFFF                                                         ;819615;
     AND.W #$0001                                                         ;819618;
-    JSR.W Draw_FileSelection_Health                                      ;81961B;
+    JSR.W Draw_FileSelection_Energy                                      ;81961B;
     LDX.W #$0272                                                         ;81961E;
     LDA.W NonEmptySaveSlots                                              ;819621;
     EOR.W #$FFFF                                                         ;819624;
@@ -2759,7 +2761,7 @@ Draw_FileCopyClear_SaveSlotBInfo:
     LDA.W NonEmptySaveSlots                                              ;819642;
     EOR.W #$FFFF                                                         ;819645;
     AND.W #$0002                                                         ;819648;
-    JSR.W Draw_FileSelection_Health                                      ;81964B;
+    JSR.W Draw_FileSelection_Energy                                      ;81964B;
     LDX.W #$0372                                                         ;81964E;
     LDA.W NonEmptySaveSlots                                              ;819651;
     EOR.W #$FFFF                                                         ;819654;
@@ -2779,7 +2781,7 @@ Draw_FileCopyClear_SaveSlotCInfo:
     LDA.W NonEmptySaveSlots                                              ;819672;
     EOR.W #$FFFF                                                         ;819675;
     AND.W #$0004                                                         ;819678;
-    JSR.W Draw_FileSelection_Health                                      ;81967B;
+    JSR.W Draw_FileSelection_Energy                                      ;81967B;
     LDX.W #$0472                                                         ;81967E;
     LDA.W NonEmptySaveSlots                                              ;819681;
     EOR.W #$FFFF                                                         ;819684;
@@ -3628,14 +3630,14 @@ FileSelectMenu_Index1A_FileClear_ClearCompleted:
     INC.W PauseMenu_MenuIndex                                            ;819D35;
     LDA.W #$0000                                                         ;819D38;
     JSL.L LoadFromSRAM                                                   ;819D3B;
-    BCS .slotACorrupt                                                    ;819D3F;
+    BCS .slotAEmpty                                                      ;819D3F;
 
   .selectSlotA:
     LDA.W #$0000                                                         ;819D41;
     STA.W SaveSlotSelected                                               ;819D44;
     RTS                                                                  ;819D47;
 
-  .slotACorrupt:
+  .slotAEmpty:
     LDA.W #$0001                                                         ;819D48;
     JSL.L LoadFromSRAM                                                   ;819D4B;
     BCS +                                                                ;819D4F;
@@ -3894,7 +3896,7 @@ FileSelectMenu_Index10_1C_ReloadMain:
     LDX.W #$015C                                                         ;819F25;
     LDA.W NonEmptySaveSlots                                              ;819F28;
     BIT.W #$8000                                                         ;819F2B;
-    JSR.W Draw_FileSelection_Health                                      ;819F2E;
+    JSR.W Draw_FileSelection_Energy                                      ;819F2E;
     LDX.W #$01B4                                                         ;819F31;
     LDA.W NonEmptySaveSlots                                              ;819F34;
     BIT.W #$8000                                                         ;819F37;
@@ -3912,7 +3914,7 @@ FileSelectMenu_Index10_1C_ReloadMain:
     LDX.W #$029C                                                         ;819F5B;
     LDA.W NonEmptySaveSlots                                              ;819F5E;
     BIT.W #$8000                                                         ;819F61;
-    JSR.W Draw_FileSelection_Health                                      ;819F64;
+    JSR.W Draw_FileSelection_Energy                                      ;819F64;
     LDX.W #$02F4                                                         ;819F67;
     LDA.W NonEmptySaveSlots                                              ;819F6A;
     BIT.W #$8000                                                         ;819F6D;
@@ -3930,7 +3932,7 @@ FileSelectMenu_Index10_1C_ReloadMain:
     LDX.W #$03DC                                                         ;819F91;
     LDA.W NonEmptySaveSlots                                              ;819F94;
     BIT.W #$8000                                                         ;819F97;
-    JSR.W Draw_FileSelection_Health                                      ;819F9A;
+    JSR.W Draw_FileSelection_Energy                                      ;819F9A;
     LDX.W #$0434                                                         ;819F9D;
     LDA.W NonEmptySaveSlots                                              ;819FA0;
     BIT.W #$8000                                                         ;819FA3;
@@ -4006,7 +4008,7 @@ LoadFromSRAM_external:
 ;; Parameter:
 ;;     A: SRAM slot (0, 1 or 2)
 ;; Returns:
-;;     Carry: Set if SRAM was corrupt
+;;     Carry: Set if SRAM was cleared
     JSL.L LoadFromSRAM                                                   ;81A053;
     RTS                                                                  ;81A057;
 
@@ -4036,10 +4038,10 @@ FileSelectMenu_Index3_TitleSequenceToMain_FadeIn:
 
 
 ;;; $A087: Draw file selection health ;;;
-Draw_FileSelection_Health:
+Draw_FileSelection_Energy:
 ;; Parameters:
 ;;     X: Menu tilemap index
-;;     Zero: Clear if SRAM is corrupt
+;;     Zero: Clear if save slot is empty
     BEQ .zero                                                            ;81A087;
     PHX                                                                  ;81A089;
     JSR.W ClearResetOfMenuTilemapRow                                     ;81A08A;
@@ -4111,7 +4113,7 @@ Draw_FileSelection_Health:
     SEC                                                                  ;81A107;
     SBC.W #$004E                                                         ;81A108;
     TAX                                                                  ;81A10B;
-    LDA.W #$0008                                                         ;81A10C;
+    LDA.W #$0008                                                         ;81A10C; harmless off-by-one error
     STA.B DP_Temp18                                                      ;81A10F;
     BRA .loop                                                            ;81A111;
 
@@ -4149,7 +4151,7 @@ Draw_FileSelection_Health:
 Draw_FileSelection_Time:
 ;; Parameters:
 ;;     X: Menu tilemap index
-;;     Zero: Clear if SRAM is corrupt
+;;     Zero: Clear if save slot is empty
     BNE .return                                                          ;81A14E;
     STX.B DP_Temp1A                                                      ;81A150;
     LDA.W IGTHours                                                       ;81A152;
@@ -6272,7 +6274,7 @@ NewSaveFile:
     STZ.W IGTSeconds                                                     ;81B351;
     STZ.W IGTMinutes                                                     ;81B354;
     STZ.W IGTHours                                                       ;81B357;
-    STZ.W JapanText                                                      ;81B35A;
+    STZ.W AltText                                                        ;81B35A;
     STZ.W Moonwalk                                                       ;81B35D;
     STZ.W IconCancel                                                     ;81B360;
     LDA.W #$0001                                                         ;81B363;

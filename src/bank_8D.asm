@@ -355,6 +355,7 @@ UNUSED_EnemyProjSpritemaps_2_8D8356:
     dw $0001                                                             ;8D8356;
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 2, $1E2)
 
+; Enemy projectile $CB67/$CB75 (Mother Brain's hand beam)
 EnemyProjSpritemaps_MotherBrainsRedBeam_0:
     dw $0001                                                             ;8D835D;
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 2, $1E3)
@@ -1353,67 +1354,67 @@ EnemyProjSpritemaps_Common_4:
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_0:
     dw $0001                                                             ;8D8DFB;
-    %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 7, $E0)
+    %spritemapEntry(1, $43F8, $F8, 0, 0, regional(2, 3), 7, $E0)
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_1:
     dw $0001                                                             ;8D8E02;
-    %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 7, $E2)
+    %spritemapEntry(1, $43F8, $F8, 0, 0, regional(2, 3), 7, $E2)
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_2:
     dw $0001                                                             ;8D8E09;
-    %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 7, $E4)
+    %spritemapEntry(1, $43F8, $F8, 0, 0, regional(2, 3), 7, $E4)
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_3:
     dw $0001                                                             ;8D8E10;
-    %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 7, $E6)
+    %spritemapEntry(1, $43F8, $F8, 0, 0, regional(2, 3), 7, $E6)
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_4:
     dw $0001                                                             ;8D8E17;
-    %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 7, $E8)
+    %spritemapEntry(1, $43F8, $F8, 0, 0, regional(2, 3), 7, $E8)
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_5:
     dw $0001                                                             ;8D8E1E;
-    %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 7, $EA)
+    %spritemapEntry(1, $43F8, $F8, 0, 0, regional(2, 3), 7, $EA)
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_6:
     dw $0001                                                             ;8D8E25;
-    %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 7, $EC)
+    %spritemapEntry(1, $43F8, $F8, 0, 0, regional(2, 3), 7, $EC)
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_7:
     dw $0001                                                             ;8D8E2C;
-    %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 7, $EE)
+    %spritemapEntry(1, $43F8, $F8, 0, 0, regional(2, 3), 7, $EE)
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_8:
     dw $0001                                                             ;8D8E33;
-    %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 7, $E0)
+    %spritemapEntry(1, $43F8, $F8, 0, 1, regional(2, 3), 7, $E0)
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_9:
     dw $0001                                                             ;8D8E3A;
-    %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 7, $E2)
+    %spritemapEntry(1, $43F8, $F8, 0, 1, regional(2, 3), 7, $E2)
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_A:
     dw $0001                                                             ;8D8E41;
-    %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 7, $E4)
+    %spritemapEntry(1, $43F8, $F8, 0, 1, regional(2, 3), 7, $E4)
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_B:
     dw $0001                                                             ;8D8E48;
-    %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 7, $E6)
+    %spritemapEntry(1, $43F8, $F8, 0, 1, regional(2, 3), 7, $E6)
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_C:
     dw $0001                                                             ;8D8E4F;
-    %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 7, $E8)
+    %spritemapEntry(1, $43F8, $F8, 0, 1, regional(2, 3), 7, $E8)
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_D:
     dw $0001                                                             ;8D8E56;
-    %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 7, $EA)
+    %spritemapEntry(1, $43F8, $F8, 0, 1, regional(2, 3), 7, $EA)
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_E:
     dw $0001                                                             ;8D8E5D;
-    %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 7, $EC)
+    %spritemapEntry(1, $43F8, $F8, 0, 1, regional(2, 3), 7, $EC)
 
 EnemyProjSpritemaps_BombTorizoChozoBreaking_F:
     dw $0001                                                             ;8D8E64;
-    %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 7, $EE)
+    %spritemapEntry(1, $43F8, $F8, 0, 1, regional(2, 3), 7, $EE)
 
 EnemyProjSpritemaps_GoldenTorizoSuperMissile_0:
     dw $0002                                                             ;8D8E6B;
@@ -4330,6 +4331,7 @@ EnemyProjSpritemaps_DrayTurretProj_DustCloud_Explosion_B:
     %spritemapEntry(0, $00, $02, 1, 0, 3, 5, $5D)
 
 EnemyProjSpritemaps_Common_SmallExplosion_0:
+; Also used by Mother Brain elbow charge energy
     dw $0001                                                             ;8DB023;
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 5, $5F)
 
@@ -7136,46 +7138,46 @@ InstList_PaletteFXObject_GunshipGlow_0:
     dw Instruction_PaletteFXObject_ColorIndexInY,$01FE                   ;8DCA4E;
 
 InstList_PaletteFXObject_GunshipGlow_1:
-    dw $0005                                                             ;8DCA52;
+    dw $0005*!FPS                                                        ;8DCA52;
     dw $0000
     dw Instruction_PaletteFXObject_Done
-    dw $0005
+    dw $0005*!FPS
     dw $0402
     dw Instruction_PaletteFXObject_Done
-    dw $0005
+    dw $0005*!FPS
     dw $0404
     dw Instruction_PaletteFXObject_Done
-    dw $0005
+    dw $0005*!FPS
     dw $0806
     dw Instruction_PaletteFXObject_Done
-    dw $0005
+    dw $0005*!FPS
     dw $0C08
     dw Instruction_PaletteFXObject_Done
-    dw $0005
+    dw $0005*!FPS
     dw $0C0A
     dw Instruction_PaletteFXObject_Done
-    dw $0005
+    dw $0005*!FPS
     dw $100C
     dw Instruction_PaletteFXObject_Done
-    dw $0005
+    dw $0005*!FPS
     dw $180E
     dw Instruction_PaletteFXObject_Done
-    dw $0005
+    dw $0005*!FPS
     dw $100C
     dw Instruction_PaletteFXObject_Done
-    dw $0005
+    dw $0005*!FPS
     dw $0C0A
     dw Instruction_PaletteFXObject_Done
-    dw $0005
+    dw $0005*!FPS
     dw $0C08
     dw Instruction_PaletteFXObject_Done
-    dw $0005
+    dw $0005*!FPS
     dw $0806
     dw Instruction_PaletteFXObject_Done
-    dw $0005
+    dw $0005*!FPS
     dw $0404
     dw Instruction_PaletteFXObject_Done
-    dw $0005
+    dw $0005*!FPS
     dw $0402
     dw Instruction_PaletteFXObject_Done                                  ;8DCAA4;
     dw Instruction_PaletteFXObject_GotoY                                 ;8DCAA6;

@@ -261,7 +261,7 @@ GenerateRandomNumber:
 ;; Returns:
 ;;     A: New random number
 
-; r(t+1) = r(t) * 5 + 0x111 (roughly; if the adding of x * 100h causes overflow, then a further 1 is added)
+; r(t+1) = r(t) * 5 + 111h (roughly; if the adding of x * 100h causes overflow, then a further 1 is added)
     SEP #$20                                                             ;808111;
     LDA.W RandomNumberSeed                                               ;808113;
     STA.W $4202                                                          ;808116;
@@ -1151,7 +1151,7 @@ Crash_Handler:
 ;     $93:80A0: Initialise (power) bomb
 ;     $93:8163: Initialise shinespark echo or spazer SBA trail projectile
 ;     $93:81A4: Initialise SBA projectile
-    JML.L Crash_Handler                                                  ;808573; Crash handler, jump to self
+    JML.L Crash_Handler                                                  ;808573; Sit here and think about what you've done
 
 
 if !FEATURE_KEEP_UNREFERENCED
@@ -1260,13 +1260,13 @@ NTSC_PAL_SRAM_MappingCheck:
   .region:
     LDA.L ROM_HEADER_country&$00FFFF                                     ;808602;
     CMP.B #$00                                                           ;808606; If country code != Japan:
-    BEQ .japan                                                           ;808608;
+    BEQ .Japan                                                           ;808608;
     LDA.W $213F                                                          ;80860A;
     BIT.B #$10                                                           ;80860D; If PPU set to PAL:
     BEQ .failedRegion                                                    ;80860F;
     JMP.W .SRAMCheck                                                     ;808611;
 
-  .japan:
+  .Japan:
     LDA.W $213F                                                          ;808614;
     BIT.B #$10                                                           ;808617; If PPU set to NTSC: go to .SRAMCheck
     BEQ .SRAMCheck                                                       ;808619;
@@ -1734,6 +1734,8 @@ HandleFadingIn:
 Finalise_OAM:
 ; Move unused sprites to Y = F0h and reset OAM stack pointer
 ; Uses one hell of an unrolled loop
+
+; Sprites must be 10h px or less. For large sprites, see $8B:8ED9
     PHP                                                                  ;80896E;
     REP #$30                                                             ;80896F;
     LDA.W OAMStack                                                       ;808971;
@@ -4799,7 +4801,7 @@ ProcessTimer_RunningMovingIntoPlace:
 ;; Returns:
 ;;     Carry: Set if timer has reached zero, otherwise clear
     LDY.W #$0000                                                         ;809E58;
-    LDA.W #$00E0                                                         ;809E5B;
+    LDA.W #$00E0*!SPF                                                    ;809E5B;
     CLC                                                                  ;809E5E;
     ADC.W TimerXSubPosition                                              ;809E5F;
     CMP.W #$DC00                                                         ;809E62;
@@ -4809,7 +4811,7 @@ ProcessTimer_RunningMovingIntoPlace:
 
   .XinPosition:
     STA.W TimerXSubPosition                                              ;809E6B;
-    LDA.W #$FF3F                                                         ;809E6E;
+    LDA.W #-$00C1*!SPF                                                   ;809E6E;
     CLC                                                                  ;809E71;
     ADC.W TimerYSubPosition                                              ;809E72;
     CMP.W #$3000                                                         ;809E75;
@@ -4894,6 +4896,7 @@ DecrementTimer:
 
   .centiseconds:
 ; Timer centisecond decrements (43 1s and 85 2s)
+if !PAL == 0
     db $01,$02,$02,$01,$02,$02,$01,$02,$02,$01,$02,$02,$02,$01,$02,$02   ;809EEC;
     db $01,$02,$02,$01,$02,$02,$01,$02,$01,$02,$02,$01,$02,$02,$01,$02   ;809EFC;
     db $01,$02,$02,$01,$02,$02,$01,$02,$02,$01,$02,$02,$02,$01,$02,$02   ;809F0C;
@@ -4902,6 +4905,17 @@ DecrementTimer:
     db $01,$02,$02,$01,$02,$02,$01,$02,$01,$02,$02,$01,$02,$02,$01,$02   ;809F3C;
     db $01,$02,$02,$01,$02,$02,$01,$02,$02,$01,$02,$02,$02,$01,$02,$02   ;809F4C;
     db $01,$02,$02,$01,$02,$02,$01,$02,$02,$01,$02,$02,$02,$01,$02,$02   ;809F5C;
+else
+; Timer centisecond decrements (3 1s and 125 2s)
+    db $01,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02
+    db $02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02
+    db $02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02
+    db $01,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02
+    db $02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02
+    db $02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02
+    db $01,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02
+    db $02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02
+endif
 
 
 ;;; $9F6C: Draw timer ;;;
@@ -8204,6 +8218,7 @@ Tilemap_FailedRegionCheck:
 
 ;;; $BC37: Tilemap - failed SRAM mapping check ;;;
 Tilemap_FailedSRAMMappingCheck:
+if !PAL == 0
 ; '            WARNING             '
 ; '                                '
 ; ' IT IS A SERIOUS CRIME TO COPY  '
@@ -8348,6 +8363,146 @@ Tilemap_FailedSRAMMappingCheck:
     dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F                   ;80C407;
     dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F                   ;80C417;
     dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F                   ;80C427;
+else
+; '            WARNING             '
+; '                                '
+; '                                '
+; '   TO RESUME GAME PLAY, TURN    '
+; '   OFF YOUR CONTROL DECK AND    '
+; '   DISCONNECT ANY ATTACHMENT    '
+; '   OR GAME ALTERING DEVICE.     '
+; '   REFER TO YOUR GAME PAK       '
+; '   INSTRUCTION BOOKLET FOR      '
+; '   FURTHER INFORMATION.         '
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$002F,$000A,$000D,$0027
+    dw $0022,$0027,$000C,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$003F,$001A,$003A,$0037
+    dw $0011,$0037,$0030,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$007D,$0078,$000F,$007B,$006E
+    dw $007C,$007E,$0076,$006E,$000F,$0070,$006A,$0076
+    dw $006E,$000F,$0079,$0075,$006A,$0082,$0089,$000F
+    dw $007D,$007E,$007B,$0077,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$0078,$006F,$006F,$000F,$0082
+    dw $0078,$007E,$007B,$000F,$006C,$0078,$0077,$007D
+    dw $007B,$0078,$0075,$000F,$006D,$006E,$006C,$0074
+    dw $000F,$006A,$0077,$006D,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$006D,$0072,$007C,$006C,$0078
+    dw $0077,$0077,$006E,$006C,$007D,$000F,$006A,$0077
+    dw $0082,$000F,$006A,$007D,$007D,$006A,$006C,$0071
+    dw $0076,$006E,$0077,$007D,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$0078,$007B,$000F,$0070,$006A
+    dw $0076,$006E,$000F,$006A,$0075,$007D,$006E,$007B
+    dw $0072,$0077,$0070,$000F,$006D,$006E,$007F,$0072
+    dw $006C,$006E,$0088,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$007B,$006E,$006F,$006E,$007B
+    dw $000F,$007D,$0078,$000F,$0082,$0078,$007E,$007B
+    dw $000F,$0070,$006A,$0076,$006E,$000F,$0079,$006A
+    dw $0074,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$0072,$0077,$007C,$007D,$007B
+    dw $007E,$006C,$007D,$0072,$0078,$0077,$000F,$006B
+    dw $0078,$0078,$0074,$0075,$006E,$007D,$000F,$006F
+    dw $0078,$007B,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$006F,$007E,$007B,$007D,$0071
+    dw $006E,$007B,$000F,$0072,$0077,$006F,$0078,$007B
+    dw $0076,$006A,$007D,$0072,$0078,$0077,$0088,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F
+endif
 
 
 ;;; $C437: Load from load station ;;;
@@ -8432,9 +8587,9 @@ endif
 ; Indices 10h+ are debug load points, except for Crateria's index 12h, which is used for the gunship landing sequence,
 ; these debug load points are unconditionally selectable in the debug file select map
 
-;        _________________________ Room pointer
-;        _________________________ Door pointer
-;        _________________________ Door BTS
+;        _________________________ Room pointer (used for the room select screen)
+;        _________________________ Door pointer (used for room pointer to load the room, door ASM and scrolling sky library background)
+;        _________________________ Door BTS (used only for demo recorder)
 ;       |      ___________________ Screen X position
 ;       |     |      _____________ Screen Y position
 ;       |     |     |      _______ Samus Y offset (relative to screen top)
@@ -9281,8 +9436,13 @@ ROM_HEADER:
     db $03                                                               ;80FFD8;
 
   .country:
+if !PAL == 0
 ; Country code: Japan
     db $00                                                               ;80FFD9;
+else
+; Country code: Europe, Australia, Asia
+    db $02
+endif
 
   .developer:
 ; Developer code: Nintendo
@@ -9294,11 +9454,11 @@ ROM_HEADER:
 
   .complement:
 ; Checksum complement
-    dw $0720                                                             ;80FFDC;
+    dw regional($0720, $8404)                                            ;80FFDC;
 
   .checksum:
 ; Checksum
-    dw $F8DF                                                             ;80FFDE;
+    dw regional($F8DF, $7BFB)                                            ;80FFDE;
 
 ; Native interrupt vectors
     dw Crash_Handler                                                     ;80FFE0;

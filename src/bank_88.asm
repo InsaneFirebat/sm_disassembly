@@ -5045,7 +5045,7 @@ RoomMainASM_ScrollingSky:
 ;; Parameters:
 ;;     $00: Address of scrolling sky chunk pointers
 
-; The scrolling sky tilemap is divided into 800h byte chunks, the entire scrolling sky background is 7 scrolls high and it loaded from $8A:B180..E97F.
+; The scrolling sky tilemap is divided into 800h byte chunks, the entire scrolling sky background is 7 scrolls high and is loaded from $8A:B180..E97F.
 ; The landing site scrolling sky uses the first 5 scrolls only;
 ; the ocean part of the background is actually stored starting from $8A:D980, which is the 6th scroll into the tilemap.
 ; So what happens for the ocean rooms is the 5th scroll is skipped and first 4 scrolls and the last 2 scrolls are spliced together.
@@ -5681,15 +5681,15 @@ Instruction_LavaSoundTimer_70:
 ;;; $B3B0: Pre-instruction - lava/acid BG3 Y scroll ;;;
 PreInstruction_LavaAcid_BG3YScroll:
 ; For on-screen lava/acid,
-; the calculation 200h - [A] at $B477 is equivalent to 100h + (Y position of screen on lava/acid)
+; the calculation 200h - [A] at .merge2 is equivalent to 100h + (Y position of screen on lava/acid)
 ; (100h is the offset of lava/acid in the BG3 tilemap)
 
 ; As far as I can tell, the HDMA done here is completely pointless and a big waste of time and space
 ; I suspect that lava/acid was a copy+paste job from water FX, and this BG3 HDMA is a leftover by-product
 ; The HDMA set up here writes the zero BG3 Y scroll on every scanline up until 8 pixels above the FX tilemap starts,
-; and then writes the calculated [$7E:9C02] BG3 Y scroll for the remaining scanlines
+; and then writes the calculated LavaAcidBG3YScrollHDMADataTable+2 BG3 Y scroll for the remaining scanlines
 ; But there's (more than) a full screen of transparent padding before the FX tilemap, so this is completely unnecessary
-; It would be sufficient to set $7E:CADC instead of $7E:9C02 at $B41A to set the BG3 Y position via *the* BG3 scroll HDMA object
+; It would be sufficient to set BG3YPosition instead of LavaAcidBG3YScrollHDMADataTable+2 at .merge to set the BG3 Y position via *the* BG3 scroll HDMA object
     PHB                                                                  ;88B3B0;
     LDA.W LayerBlending_Layer3Config                                     ;88B3B1;
     STA.W LayerBlending_Config                                           ;88B3B4;
@@ -7337,7 +7337,7 @@ PreInstruction_Water_BG3_Xscroll:
     LDA.W FX_BaseYPosition                                               ;88C4B5;
     ADC.W FX_YOffset                                                     ;88C4B8;
     STA.W FX_YPosition                                                   ;88C4BB;
-    LDA.W FX_YPosition                                                   ;88C4BE;
+    LDA.W FX_YPosition                                                   ;88C4BE; >_<;
     BMI .negative                                                        ;88C4C1;
     SEC                                                                  ;88C4C3;
     SBC.W Layer1YPosition                                                ;88C4C4;
@@ -9824,7 +9824,7 @@ PreInstruction_TourianEntranceStatue_BG2_Yscroll_Descending:
     dw PLMEntries_crumbleAccessToTourianElevator                         ;88DC9F;
     PLP                                                                  ;88DCA1;
     PLX                                                                  ;88DCA2;
-    LDA.W #$000A                                                         ;88DCA3;
+    LDA.W #$000A                                                         ;88DCA3; (entrance to Tourian is unlocked)
     JSL.L MarkEvent_inA                                                  ;88DCA6;
     LDA.W #$0001                                                         ;88DCAA;
     STA.W HDMAObject_InstructionTimers,X                                 ;88DCAD;

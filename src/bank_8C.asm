@@ -926,21 +926,21 @@ IntroCeresExplosionSpritemaps_RinkaFrame3:
 
 
 ;;; $8CCF: Intro Japanese text next-page arrow (frame 1) ;;;
-IntroCeresExplosionSpritemaps_JapanTextNextPageArrowFrame1:
+IntroCeresExplosionSpritemaps_SubtitleNextPageArrowFrame1:
     dw $0002                                                             ;8C8CCF;
     %spritemapEntry(0, $1FF, $00, 0, 1, 3, 6, $1A8)
     %spritemapEntry(0, $1F8, $00, 0, 0, 3, 6, $1A8)
 
 
 ;;; $8CDB: Intro Japanese text next-page arrow (frame 2) ;;;
-IntroCeresExplosionSpritemaps_JapanTextNextPageArrowFrame2:
+IntroCeresExplosionSpritemaps_SubtitleNextPageArrowFrame2:
     dw $0002                                                             ;8C8CDB;
     %spritemapEntry(0, $1FF, $00, 0, 1, 3, 6, $19F)
     %spritemapEntry(0, $1F8, $00, 0, 0, 3, 6, $19F)
 
 
 ;;; $8CE7: Intro Japanese text next-page arrow (frame 3) ;;;
-IntroCeresExplosionSpritemaps_JapanTextNextPageArrowFrame3:
+IntroCeresExplosionSpritemaps_SubtitleNextPageArrowFrame3:
     dw $0002                                                             ;8C8CE7;
     %spritemapEntry(0, $1FF, $00, 0, 1, 3, 6, $1AF)
     %spritemapEntry(0, $1F8, $00, 0, 0, 3, 6, $1AF)
@@ -1422,7 +1422,7 @@ UNUSED_SpaceSpritemaps_SPACECOLONY_8C921F:
 
 
 ;;; $9258: Unused. 'スペースコロニー' ;;;
-UNUSED_SpaceSpritemaps_JapanText_SPACECOLONY_8C9258:
+UNUSED_SpaceSpritemaps_Subtitle_SPACECOLONY_8C9258:
     dw $0010                                                             ;8C9258;
     %spritemapEntry(0, $1FC, $00, 0, 0, 3, 0, $E2)
     %spritemapEntry(0, $1FC, $F8, 0, 0, 3, 0, $1BA)
@@ -1712,7 +1712,8 @@ SpaceSpritemaps_PlanetZebes:
 
 
 ;;; $968D: '惑星ゼーベス' ;;;
-SpaceSpritemaps_JapanText_PlanetZebes:
+SpaceSpritemaps_Subtitle_PlanetZebes:
+if !PAL == 0
     dw $000C                                                             ;8C968D;
     %spritemapEntry(0, $10, $00, 0, 0, 0, 0, $AA)
     %spritemapEntry(0, $08, $00, 0, 0, 0, 0, $A9)
@@ -1726,6 +1727,34 @@ SpaceSpritemaps_JapanText_PlanetZebes:
     %spritemapEntry(0, $1F8, $F8, 0, 0, 0, 0, $A1)
     %spritemapEntry(0, $1F0, $F8, 0, 0, 0, 0, $A0)
     %spritemapEntry(0, $1E8, $F8, 0, 0, 0, 0, $9F)
+else
+; 'PLANETE ZEBES'
+    dw $0018
+    %spritemapEntry(0, $2B, $00, 0, 0, 0, 0, $BE)
+    %spritemapEntry(0, $2B, $F8, 0, 0, 0, 0, $BD)
+    %spritemapEntry(0, $1B, $00, 0, 0, 0, 0, $BC)
+    %spritemapEntry(0, $1B, $F8, 0, 0, 0, 0, $BB)
+    %spritemapEntry(0, $23, $F8, 0, 0, 0, 0, $B6)
+    %spritemapEntry(0, $13, $F8, 0, 0, 0, 0, $B6)
+    %spritemapEntry(0, $23, $00, 0, 0, 0, 0, $B5)
+    %spritemapEntry(0, $13, $00, 0, 0, 0, 0, $B5)
+    %spritemapEntry(0, $0B, $00, 0, 0, 0, 0, $BA)
+    %spritemapEntry(0, $0B, $F8, 0, 0, 0, 0, $B9)
+    %spritemapEntry(0, $1FD, $F8, 0, 0, 0, 0, $B6)
+    %spritemapEntry(0, $1FD, $00, 0, 0, 0, 0, $B5)
+    %spritemapEntry(0, $1F5, $00, 0, 0, 0, 0, $B8)
+    %spritemapEntry(0, $1F5, $F8, 0, 0, 0, 0, $B7)
+    %spritemapEntry(0, $1ED, $00, 0, 0, 0, 0, $B5)
+    %spritemapEntry(0, $1ED, $F8, 0, 0, 0, 0, $B6)
+    %spritemapEntry(0, $1E5, $00, 0, 0, 0, 0, $B3)
+    %spritemapEntry(0, $1E5, $F8, 0, 0, 0, 0, $B2)
+    %spritemapEntry(0, $1DD, $00, 0, 0, 0, 0, $B1)
+    %spritemapEntry(0, $1DD, $F8, 0, 0, 0, 0, $B0)
+    %spritemapEntry(0, $1D5, $F8, 0, 0, 0, 0, $AE)
+    %spritemapEntry(0, $1D5, $00, 0, 0, 0, 0, $AF)
+    %spritemapEntry(0, $1CD, $F8, 0, 0, 0, 0, $AC)
+    %spritemapEntry(0, $1CD, $00, 0, 0, 0, 0, $AD)
+endif
 
 
 if !FEATURE_KEEP_UNREFERENCED
@@ -4547,524 +4576,524 @@ CinematicBGObjectInstLists_IntroTextPage1:
 ; MOTHER BRAIN TO USE THE
 ; CREATURES TO ATTACK
 ; GALACTIC CIVILIZATION...
-    dw Instruction_HandleCreatingJapanText_Page1                         ;8CC383;
+    dw Instruction_HandleCreatingSubtitle_Page1                          ;8CC383;
     dw $0001                                                             ;8CC385;
     db $01,$01                                                           ;8CC387;
     dw IndirectInstructions_IntroText_Nothing                            ;8CC389;
-    dw $0005                                                             ;8CC38B;
+    dw $0005*!FPS                                                        ;8CC38B;
     db $01,$04                                                           ;8CC38D;
     dw IndirectInstructions_IntroText_I                                  ;8CC38F; "I"
-    dw $0005                                                             ;8CC391;
+    dw $0005*!FPS                                                        ;8CC391;
     db $02,$04                                                           ;8CC393;
     dw IndirectInstructions_IntroText_Space                              ;8CC395; " "
-    dw $0005                                                             ;8CC397;
+    dw $0005*!FPS                                                        ;8CC397;
     db $03,$04                                                           ;8CC399;
     dw IndirectInstructions_IntroText_F                                  ;8CC39B; "F"
-    dw $0005                                                             ;8CC39D;
+    dw $0005*!FPS                                                        ;8CC39D;
     db $04,$04                                                           ;8CC39F;
     dw IndirectInstructions_IntroText_I                                  ;8CC3A1; "I"
-    dw $0005                                                             ;8CC3A3;
+    dw $0005*!FPS                                                        ;8CC3A3;
     db $05,$04                                                           ;8CC3A5;
     dw IndirectInstructions_IntroText_R                                  ;8CC3A7; "R"
-    dw $0005                                                             ;8CC3A9;
+    dw $0005*!FPS                                                        ;8CC3A9;
     db $06,$04                                                           ;8CC3AB;
     dw IndirectInstructions_IntroText_S                                  ;8CC3AD; "S"
-    dw $0005                                                             ;8CC3AF;
+    dw $0005*!FPS                                                        ;8CC3AF;
     db $07,$04                                                           ;8CC3B1;
     dw IndirectInstructions_IntroText_T                                  ;8CC3B3; "T"
-    dw $0005                                                             ;8CC3B5;
+    dw $0005*!FPS                                                        ;8CC3B5;
     db $08,$04                                                           ;8CC3B7;
     dw IndirectInstructions_IntroText_Space                              ;8CC3B9; " "
-    dw $0005                                                             ;8CC3BB;
+    dw $0005*!FPS                                                        ;8CC3BB;
     db $09,$04                                                           ;8CC3BD;
     dw IndirectInstructions_IntroText_B                                  ;8CC3BF; "B"
-    dw $0005                                                             ;8CC3C1;
+    dw $0005*!FPS                                                        ;8CC3C1;
     db $0A,$04                                                           ;8CC3C3;
     dw IndirectInstructions_IntroText_A                                  ;8CC3C5; "A"
-    dw $0005                                                             ;8CC3C7;
+    dw $0005*!FPS                                                        ;8CC3C7;
     db $0B,$04                                                           ;8CC3C9;
     dw IndirectInstructions_IntroText_T                                  ;8CC3CB; "T"
-    dw $0005                                                             ;8CC3CD;
+    dw $0005*!FPS                                                        ;8CC3CD;
     db $0C,$04                                                           ;8CC3CF;
     dw IndirectInstructions_IntroText_T                                  ;8CC3D1; "T"
-    dw $0005                                                             ;8CC3D3;
+    dw $0005*!FPS                                                        ;8CC3D3;
     db $0D,$04                                                           ;8CC3D5;
     dw IndirectInstructions_IntroText_L                                  ;8CC3D7; "L"
-    dw $0005                                                             ;8CC3D9;
+    dw $0005*!FPS                                                        ;8CC3D9;
     db $0E,$04                                                           ;8CC3DB;
     dw IndirectInstructions_IntroText_E                                  ;8CC3DD; "E"
-    dw $0005                                                             ;8CC3DF;
+    dw $0005*!FPS                                                        ;8CC3DF;
     db $0F,$04                                                           ;8CC3E1;
     dw IndirectInstructions_IntroText_D                                  ;8CC3E3; "D"
-    dw $0005                                                             ;8CC3E5;
+    dw $0005*!FPS                                                        ;8CC3E5;
     db $10,$04                                                           ;8CC3E7;
     dw IndirectInstructions_IntroText_Space                              ;8CC3E9; " "
-    dw $0005                                                             ;8CC3EB;
+    dw $0005*!FPS                                                        ;8CC3EB;
     db $11,$04                                                           ;8CC3ED;
     dw IndirectInstructions_IntroText_T                                  ;8CC3EF; "T"
-    dw $0005                                                             ;8CC3F1;
+    dw $0005*!FPS                                                        ;8CC3F1;
     db $12,$04                                                           ;8CC3F3;
     dw IndirectInstructions_IntroText_H                                  ;8CC3F5; "H"
-    dw $0005                                                             ;8CC3F7;
+    dw $0005*!FPS                                                        ;8CC3F7;
     db $13,$04                                                           ;8CC3F9;
     dw IndirectInstructions_IntroText_E                                  ;8CC3FB; "E"
-    dw $0005                                                             ;8CC3FD;
+    dw $0005*!FPS                                                        ;8CC3FD;
     db $14,$04                                                           ;8CC3FF;
     dw IndirectInstructions_IntroText_Space                              ;8CC401; " "
-    dw $0005                                                             ;8CC403;
+    dw $0005*!FPS                                                        ;8CC403;
     db $15,$04                                                           ;8CC405;
     dw IndirectInstructions_IntroText_M                                  ;8CC407; "M"
-    dw $0005                                                             ;8CC409;
+    dw $0005*!FPS                                                        ;8CC409;
     db $16,$04                                                           ;8CC40B;
     dw IndirectInstructions_IntroText_E                                  ;8CC40D; "E"
-    dw $0005                                                             ;8CC40F;
+    dw $0005*!FPS                                                        ;8CC40F;
     db $17,$04                                                           ;8CC411;
     dw IndirectInstructions_IntroText_T                                  ;8CC413; "T"
-    dw $0005                                                             ;8CC415;
+    dw $0005*!FPS                                                        ;8CC415;
     db $18,$04                                                           ;8CC417;
     dw IndirectInstructions_IntroText_R                                  ;8CC419; "R"
-    dw $0005                                                             ;8CC41B;
+    dw $0005*!FPS                                                        ;8CC41B;
     db $19,$04                                                           ;8CC41D;
     dw IndirectInstructions_IntroText_O                                  ;8CC41F; "O"
-    dw $0005                                                             ;8CC421;
+    dw $0005*!FPS                                                        ;8CC421;
     db $1A,$04                                                           ;8CC423;
     dw IndirectInstructions_IntroText_I                                  ;8CC425; "I"
-    dw $0005                                                             ;8CC427;
+    dw $0005*!FPS                                                        ;8CC427;
     db $1B,$04                                                           ;8CC429;
     dw IndirectInstructions_IntroText_D                                  ;8CC42B; "D"
-    dw $0005                                                             ;8CC42D;
+    dw $0005*!FPS                                                        ;8CC42D;
     db $1C,$04                                                           ;8CC42F;
     dw IndirectInstructions_IntroText_S                                  ;8CC431; "S"
-    dw $0005                                                             ;8CC433;
+    dw $0005*!FPS                                                        ;8CC433;
     db $01,$06                                                           ;8CC435;
     dw IndirectInstructions_IntroText_O                                  ;8CC437; "O"
-    dw $0005                                                             ;8CC439;
+    dw $0005*!FPS                                                        ;8CC439;
     db $02,$06                                                           ;8CC43B;
     dw IndirectInstructions_IntroText_N                                  ;8CC43D; "N"
-    dw $0005                                                             ;8CC43F;
+    dw $0005*!FPS                                                        ;8CC43F;
     db $03,$06                                                           ;8CC441;
     dw IndirectInstructions_IntroText_Space                              ;8CC443; " "
-    dw $0005                                                             ;8CC445;
+    dw $0005*!FPS                                                        ;8CC445;
     db $04,$06                                                           ;8CC447;
     dw IndirectInstructions_IntroText_P                                  ;8CC449; "P"
-    dw $0005                                                             ;8CC44B;
+    dw $0005*!FPS                                                        ;8CC44B;
     db $05,$06                                                           ;8CC44D;
     dw IndirectInstructions_IntroText_L                                  ;8CC44F; "L"
-    dw $0005                                                             ;8CC451;
+    dw $0005*!FPS                                                        ;8CC451;
     db $06,$06                                                           ;8CC453;
     dw IndirectInstructions_IntroText_A                                  ;8CC455; "A"
-    dw $0005                                                             ;8CC457;
+    dw $0005*!FPS                                                        ;8CC457;
     db $07,$06                                                           ;8CC459;
     dw IndirectInstructions_IntroText_N                                  ;8CC45B; "N"
-    dw $0005                                                             ;8CC45D;
+    dw $0005*!FPS                                                        ;8CC45D;
     db $08,$06                                                           ;8CC45F;
     dw IndirectInstructions_IntroText_E                                  ;8CC461; "E"
-    dw $0005                                                             ;8CC463;
+    dw $0005*!FPS                                                        ;8CC463;
     db $09,$06                                                           ;8CC465;
     dw IndirectInstructions_IntroText_T                                  ;8CC467; "T"
-    dw $0005                                                             ;8CC469;
+    dw $0005*!FPS                                                        ;8CC469;
     db $0A,$06                                                           ;8CC46B;
     dw IndirectInstructions_IntroText_Space                              ;8CC46D; " "
-    dw $0005                                                             ;8CC46F;
+    dw $0005*!FPS                                                        ;8CC46F;
     db $0B,$06                                                           ;8CC471;
     dw IndirectInstructions_IntroText_Z                                  ;8CC473; "Z"
-    dw $0005                                                             ;8CC475;
+    dw $0005*!FPS                                                        ;8CC475;
     db $0C,$06                                                           ;8CC477;
     dw IndirectInstructions_IntroText_E                                  ;8CC479; "E"
-    dw $0005                                                             ;8CC47B;
+    dw $0005*!FPS                                                        ;8CC47B;
     db $0D,$06                                                           ;8CC47D;
     dw IndirectInstructions_IntroText_B                                  ;8CC47F; "B"
-    dw $0005                                                             ;8CC481;
+    dw $0005*!FPS                                                        ;8CC481;
     db $0E,$06                                                           ;8CC483;
     dw IndirectInstructions_IntroText_E                                  ;8CC485; "E"
-    dw $0005                                                             ;8CC487;
+    dw $0005*!FPS                                                        ;8CC487;
     db $0F,$06                                                           ;8CC489;
     dw IndirectInstructions_IntroText_S                                  ;8CC48B; "S"
-    dw $0005                                                             ;8CC48D;
+    dw $0005*!FPS                                                        ;8CC48D;
     db $10,$06                                                           ;8CC48F;
     dw IndirectInstructions_IntroText_Period                             ;8CC491; "."
-    dw $0005                                                             ;8CC493;
+    dw $0005*!FPS                                                        ;8CC493;
     db $11,$06                                                           ;8CC495;
     dw IndirectInstructions_IntroText_Space                              ;8CC497; " "
-    dw $0005                                                             ;8CC499;
+    dw $0005*!FPS                                                        ;8CC499;
     db $12,$06                                                           ;8CC49B;
     dw IndirectInstructions_IntroText_I                                  ;8CC49D; "I"
-    dw $0005                                                             ;8CC49F;
+    dw $0005*!FPS                                                        ;8CC49F;
     db $13,$06                                                           ;8CC4A1;
     dw IndirectInstructions_IntroText_T                                  ;8CC4A3; "T"
-    dw $0005                                                             ;8CC4A5;
+    dw $0005*!FPS                                                        ;8CC4A5;
     db $14,$06                                                           ;8CC4A7;
     dw IndirectInstructions_IntroText_Space                              ;8CC4A9; " "
-    dw $0005                                                             ;8CC4AB;
+    dw $0005*!FPS                                                        ;8CC4AB;
     db $15,$06                                                           ;8CC4AD;
     dw IndirectInstructions_IntroText_W                                  ;8CC4AF; "W"
-    dw $0005                                                             ;8CC4B1;
+    dw $0005*!FPS                                                        ;8CC4B1;
     db $16,$06                                                           ;8CC4B3;
     dw IndirectInstructions_IntroText_A                                  ;8CC4B5; "A"
-    dw $0005                                                             ;8CC4B7;
+    dw $0005*!FPS                                                        ;8CC4B7;
     db $17,$06                                                           ;8CC4B9;
     dw IndirectInstructions_IntroText_S                                  ;8CC4BB; "S"
-    dw $0005                                                             ;8CC4BD;
+    dw $0005*!FPS                                                        ;8CC4BD;
     db $18,$06                                                           ;8CC4BF;
     dw IndirectInstructions_IntroText_Space                              ;8CC4C1; " "
-    dw $0005                                                             ;8CC4C3;
+    dw $0005*!FPS                                                        ;8CC4C3;
     db $19,$06                                                           ;8CC4C5;
     dw IndirectInstructions_IntroText_T                                  ;8CC4C7; "T"
-    dw $0005                                                             ;8CC4C9;
+    dw $0005*!FPS                                                        ;8CC4C9;
     db $1A,$06                                                           ;8CC4CB;
     dw IndirectInstructions_IntroText_H                                  ;8CC4CD; "H"
-    dw $0005                                                             ;8CC4CF;
+    dw $0005*!FPS                                                        ;8CC4CF;
     db $1B,$06                                                           ;8CC4D1;
     dw IndirectInstructions_IntroText_E                                  ;8CC4D3; "E"
-    dw $0005                                                             ;8CC4D5;
+    dw $0005*!FPS                                                        ;8CC4D5;
     db $1C,$06                                                           ;8CC4D7;
     dw IndirectInstructions_IntroText_R                                  ;8CC4D9; "R"
-    dw $0005                                                             ;8CC4DB;
+    dw $0005*!FPS                                                        ;8CC4DB;
     db $1D,$06                                                           ;8CC4DD;
     dw IndirectInstructions_IntroText_E                                  ;8CC4DF; "E"
-    dw $0005                                                             ;8CC4E1;
+    dw $0005*!FPS                                                        ;8CC4E1;
     db $01,$08                                                           ;8CC4E3;
     dw IndirectInstructions_IntroText_T                                  ;8CC4E5; "T"
-    dw $0005                                                             ;8CC4E7;
+    dw $0005*!FPS                                                        ;8CC4E7;
     db $02,$08                                                           ;8CC4E9;
     dw IndirectInstructions_IntroText_H                                  ;8CC4EB; "H"
-    dw $0005                                                             ;8CC4ED;
+    dw $0005*!FPS                                                        ;8CC4ED;
     db $03,$08                                                           ;8CC4EF;
     dw IndirectInstructions_IntroText_A                                  ;8CC4F1; "A"
-    dw $0005                                                             ;8CC4F3;
+    dw $0005*!FPS                                                        ;8CC4F3;
     db $04,$08                                                           ;8CC4F5;
     dw IndirectInstructions_IntroText_T                                  ;8CC4F7; "T"
-    dw $0005                                                             ;8CC4F9;
+    dw $0005*!FPS                                                        ;8CC4F9;
     db $05,$08                                                           ;8CC4FB;
     dw IndirectInstructions_IntroText_Space                              ;8CC4FD; " "
-    dw $0005                                                             ;8CC4FF;
+    dw $0005*!FPS                                                        ;8CC4FF;
     db $06,$08                                                           ;8CC501;
     dw IndirectInstructions_IntroText_I                                  ;8CC503; "I"
-    dw $0005                                                             ;8CC505;
+    dw $0005*!FPS                                                        ;8CC505;
     db $07,$08                                                           ;8CC507;
     dw IndirectInstructions_IntroText_Space                              ;8CC509; " "
-    dw $0005                                                             ;8CC50B;
+    dw $0005*!FPS                                                        ;8CC50B;
     db $08,$08                                                           ;8CC50D;
     dw IndirectInstructions_IntroText_F                                  ;8CC50F; "F"
-    dw $0005                                                             ;8CC511;
+    dw $0005*!FPS                                                        ;8CC511;
     db $09,$08                                                           ;8CC513;
     dw IndirectInstructions_IntroText_O                                  ;8CC515; "O"
-    dw $0005                                                             ;8CC517;
+    dw $0005*!FPS                                                        ;8CC517;
     db $0A,$08                                                           ;8CC519;
     dw IndirectInstructions_IntroText_I                                  ;8CC51B; "I"
-    dw $0005                                                             ;8CC51D;
+    dw $0005*!FPS                                                        ;8CC51D;
     db $0B,$08                                                           ;8CC51F;
     dw IndirectInstructions_IntroText_L                                  ;8CC521; "L"
-    dw $0005                                                             ;8CC523;
+    dw $0005*!FPS                                                        ;8CC523;
     db $0C,$08                                                           ;8CC525;
     dw IndirectInstructions_IntroText_E                                  ;8CC527; "E"
-    dw $0005                                                             ;8CC529;
+    dw $0005*!FPS                                                        ;8CC529;
     db $0D,$08                                                           ;8CC52B;
     dw IndirectInstructions_IntroText_D                                  ;8CC52D; "D"
-    dw $0005                                                             ;8CC52F;
+    dw $0005*!FPS                                                        ;8CC52F;
     db $0E,$08                                                           ;8CC531;
     dw IndirectInstructions_IntroText_Space                              ;8CC533; " "
-    dw $0005                                                             ;8CC535;
+    dw $0005*!FPS                                                        ;8CC535;
     db $0F,$08                                                           ;8CC537;
     dw IndirectInstructions_IntroText_T                                  ;8CC539; "T"
-    dw $0005                                                             ;8CC53B;
+    dw $0005*!FPS                                                        ;8CC53B;
     db $10,$08                                                           ;8CC53D;
     dw IndirectInstructions_IntroText_H                                  ;8CC53F; "H"
-    dw $0005                                                             ;8CC541;
+    dw $0005*!FPS                                                        ;8CC541;
     db $11,$08                                                           ;8CC543;
     dw IndirectInstructions_IntroText_E                                  ;8CC545; "E"
-    dw $0005                                                             ;8CC547;
+    dw $0005*!FPS                                                        ;8CC547;
     db $12,$08                                                           ;8CC549;
     dw IndirectInstructions_IntroText_Space                              ;8CC54B; " "
-    dw $0005                                                             ;8CC54D;
+    dw $0005*!FPS                                                        ;8CC54D;
     db $13,$08                                                           ;8CC54F;
     dw IndirectInstructions_IntroText_P                                  ;8CC551; "P"
-    dw $0005                                                             ;8CC553;
+    dw $0005*!FPS                                                        ;8CC553;
     db $14,$08                                                           ;8CC555;
     dw IndirectInstructions_IntroText_L                                  ;8CC557; "L"
-    dw $0005                                                             ;8CC559;
+    dw $0005*!FPS                                                        ;8CC559;
     db $15,$08                                                           ;8CC55B;
     dw IndirectInstructions_IntroText_A                                  ;8CC55D; "A"
-    dw $0005                                                             ;8CC55F;
+    dw $0005*!FPS                                                        ;8CC55F;
     db $16,$08                                                           ;8CC561;
     dw IndirectInstructions_IntroText_N                                  ;8CC563; "N"
-    dw $0005                                                             ;8CC565;
+    dw $0005*!FPS                                                        ;8CC565;
     db $17,$08                                                           ;8CC567;
     dw IndirectInstructions_IntroText_S                                  ;8CC569; "S"
-    dw $0005                                                             ;8CC56B;
+    dw $0005*!FPS                                                        ;8CC56B;
     db $18,$08                                                           ;8CC56D;
     dw IndirectInstructions_IntroText_Space                              ;8CC56F; " "
-    dw $0005                                                             ;8CC571;
+    dw $0005*!FPS                                                        ;8CC571;
     db $19,$08                                                           ;8CC573;
     dw IndirectInstructions_IntroText_O                                  ;8CC575; "O"
-    dw $0005                                                             ;8CC577;
+    dw $0005*!FPS                                                        ;8CC577;
     db $1A,$08                                                           ;8CC579;
     dw IndirectInstructions_IntroText_F                                  ;8CC57B; "F"
-    dw $0005                                                             ;8CC57D;
+    dw $0005*!FPS                                                        ;8CC57D;
     db $01,$0A                                                           ;8CC57F;
     dw IndirectInstructions_IntroText_T                                  ;8CC581; "T"
-    dw $0005                                                             ;8CC583;
+    dw $0005*!FPS                                                        ;8CC583;
     db $02,$0A                                                           ;8CC585;
     dw IndirectInstructions_IntroText_H                                  ;8CC587; "H"
-    dw $0005                                                             ;8CC589;
+    dw $0005*!FPS                                                        ;8CC589;
     db $03,$0A                                                           ;8CC58B;
     dw IndirectInstructions_IntroText_E                                  ;8CC58D; "E"
-    dw $0005                                                             ;8CC58F;
+    dw $0005*!FPS                                                        ;8CC58F;
     db $04,$0A                                                           ;8CC591;
     dw IndirectInstructions_IntroText_Space                              ;8CC593; " "
-    dw $0005                                                             ;8CC595;
+    dw $0005*!FPS                                                        ;8CC595;
     db $05,$0A                                                           ;8CC597;
     dw IndirectInstructions_IntroText_S                                  ;8CC599; "S"
-    dw $0005                                                             ;8CC59B;
+    dw $0005*!FPS                                                        ;8CC59B;
     db $06,$0A                                                           ;8CC59D;
     dw IndirectInstructions_IntroText_P                                  ;8CC59F; "P"
-    dw $0005                                                             ;8CC5A1;
+    dw $0005*!FPS                                                        ;8CC5A1;
     db $07,$0A                                                           ;8CC5A3;
     dw IndirectInstructions_IntroText_A                                  ;8CC5A5; "A"
-    dw $0005                                                             ;8CC5A7;
+    dw $0005*!FPS                                                        ;8CC5A7;
     db $08,$0A                                                           ;8CC5A9;
     dw IndirectInstructions_IntroText_C                                  ;8CC5AB; "C"
-    dw $0005                                                             ;8CC5AD;
+    dw $0005*!FPS                                                        ;8CC5AD;
     db $09,$0A                                                           ;8CC5AF;
     dw IndirectInstructions_IntroText_E                                  ;8CC5B1; "E"
-    dw $0005                                                             ;8CC5B3;
+    dw $0005*!FPS                                                        ;8CC5B3;
     db $0A,$0A                                                           ;8CC5B5;
     dw IndirectInstructions_IntroText_Space                              ;8CC5B7; " "
-    dw $0005                                                             ;8CC5B9;
+    dw $0005*!FPS                                                        ;8CC5B9;
     db $0B,$0A                                                           ;8CC5BB;
     dw IndirectInstructions_IntroText_P                                  ;8CC5BD; "P"
-    dw $0005                                                             ;8CC5BF;
+    dw $0005*!FPS                                                        ;8CC5BF;
     db $0C,$0A                                                           ;8CC5C1;
     dw IndirectInstructions_IntroText_I                                  ;8CC5C3; "I"
-    dw $0005                                                             ;8CC5C5;
+    dw $0005*!FPS                                                        ;8CC5C5;
     db $0D,$0A                                                           ;8CC5C7;
     dw IndirectInstructions_IntroText_R                                  ;8CC5C9; "R"
-    dw $0005                                                             ;8CC5CB;
+    dw $0005*!FPS                                                        ;8CC5CB;
     db $0E,$0A                                                           ;8CC5CD;
     dw IndirectInstructions_IntroText_A                                  ;8CC5CF; "A"
-    dw $0005                                                             ;8CC5D1;
+    dw $0005*!FPS                                                        ;8CC5D1;
     db $0F,$0A                                                           ;8CC5D3;
     dw IndirectInstructions_IntroText_T                                  ;8CC5D5; "T"
-    dw $0005                                                             ;8CC5D7;
+    dw $0005*!FPS                                                        ;8CC5D7;
     db $10,$0A                                                           ;8CC5D9;
     dw IndirectInstructions_IntroText_E                                  ;8CC5DB; "E"
-    dw $0005                                                             ;8CC5DD;
+    dw $0005*!FPS                                                        ;8CC5DD;
     db $11,$0A                                                           ;8CC5DF;
     dw IndirectInstructions_IntroText_Space                              ;8CC5E1; " "
-    dw $0005                                                             ;8CC5E3;
+    dw $0005*!FPS                                                        ;8CC5E3;
     db $12,$0A                                                           ;8CC5E5;
     dw IndirectInstructions_IntroText_L                                  ;8CC5E7; "L"
-    dw $0005                                                             ;8CC5E9;
+    dw $0005*!FPS                                                        ;8CC5E9;
     db $13,$0A                                                           ;8CC5EB;
     dw IndirectInstructions_IntroText_E                                  ;8CC5ED; "E"
-    dw $0005                                                             ;8CC5EF;
+    dw $0005*!FPS                                                        ;8CC5EF;
     db $14,$0A                                                           ;8CC5F1;
     dw IndirectInstructions_IntroText_A                                  ;8CC5F3; "A"
-    dw $0005                                                             ;8CC5F5;
+    dw $0005*!FPS                                                        ;8CC5F5;
     db $15,$0A                                                           ;8CC5F7;
     dw IndirectInstructions_IntroText_D                                  ;8CC5F9; "D"
-    dw $0005                                                             ;8CC5FB;
+    dw $0005*!FPS                                                        ;8CC5FB;
     db $16,$0A                                                           ;8CC5FD;
     dw IndirectInstructions_IntroText_E                                  ;8CC5FF; "E"
-    dw $0005                                                             ;8CC601;
+    dw $0005*!FPS                                                        ;8CC601;
     db $17,$0A                                                           ;8CC603;
     dw IndirectInstructions_IntroText_R                                  ;8CC605; "R"
-    dw $0005                                                             ;8CC607;
+    dw $0005*!FPS                                                        ;8CC607;
     db $01,$0C                                                           ;8CC609;
     dw IndirectInstructions_IntroText_M                                  ;8CC60B; "M"
-    dw $0005                                                             ;8CC60D;
+    dw $0005*!FPS                                                        ;8CC60D;
     db $02,$0C                                                           ;8CC60F;
     dw IndirectInstructions_IntroText_O                                  ;8CC611; "O"
-    dw $0005                                                             ;8CC613;
+    dw $0005*!FPS                                                        ;8CC613;
     db $03,$0C                                                           ;8CC615;
     dw IndirectInstructions_IntroText_T                                  ;8CC617; "T"
-    dw $0005                                                             ;8CC619;
+    dw $0005*!FPS                                                        ;8CC619;
     db $04,$0C                                                           ;8CC61B;
     dw IndirectInstructions_IntroText_H                                  ;8CC61D; "H"
-    dw $0005                                                             ;8CC61F;
+    dw $0005*!FPS                                                        ;8CC61F;
     db $05,$0C                                                           ;8CC621;
     dw IndirectInstructions_IntroText_E                                  ;8CC623; "E"
-    dw $0005                                                             ;8CC625;
+    dw $0005*!FPS                                                        ;8CC625;
     db $06,$0C                                                           ;8CC627;
     dw IndirectInstructions_IntroText_R                                  ;8CC629; "R"
-    dw $0005                                                             ;8CC62B;
+    dw $0005*!FPS                                                        ;8CC62B;
     db $07,$0C                                                           ;8CC62D;
     dw IndirectInstructions_IntroText_Space                              ;8CC62F; " "
-    dw $0005                                                             ;8CC631;
+    dw $0005*!FPS                                                        ;8CC631;
     db $08,$0C                                                           ;8CC633;
     dw IndirectInstructions_IntroText_B                                  ;8CC635; "B"
-    dw $0005                                                             ;8CC637;
+    dw $0005*!FPS                                                        ;8CC637;
     db $09,$0C                                                           ;8CC639;
     dw IndirectInstructions_IntroText_R                                  ;8CC63B; "R"
-    dw $0005                                                             ;8CC63D;
+    dw $0005*!FPS                                                        ;8CC63D;
     db $0A,$0C                                                           ;8CC63F;
     dw IndirectInstructions_IntroText_A                                  ;8CC641; "A"
-    dw $0005                                                             ;8CC643;
+    dw $0005*!FPS                                                        ;8CC643;
     db $0B,$0C                                                           ;8CC645;
     dw IndirectInstructions_IntroText_I                                  ;8CC647; "I"
-    dw $0005                                                             ;8CC649;
+    dw $0005*!FPS                                                        ;8CC649;
     db $0C,$0C                                                           ;8CC64B;
     dw IndirectInstructions_IntroText_N                                  ;8CC64D; "N"
-    dw $0005                                                             ;8CC64F;
+    dw $0005*!FPS                                                        ;8CC64F;
     db $0D,$0C                                                           ;8CC651;
     dw IndirectInstructions_IntroText_Space                              ;8CC653; " "
-    dw $0005                                                             ;8CC655;
+    dw $0005*!FPS                                                        ;8CC655;
     db $0E,$0C                                                           ;8CC657;
     dw IndirectInstructions_IntroText_T                                  ;8CC659; "T"
-    dw $0005                                                             ;8CC65B;
+    dw $0005*!FPS                                                        ;8CC65B;
     db $0F,$0C                                                           ;8CC65D;
     dw IndirectInstructions_IntroText_O                                  ;8CC65F; "O"
-    dw $0005                                                             ;8CC661;
+    dw $0005*!FPS                                                        ;8CC661;
     db $10,$0C                                                           ;8CC663;
     dw IndirectInstructions_IntroText_Space                              ;8CC665; " "
-    dw $0005                                                             ;8CC667;
+    dw $0005*!FPS                                                        ;8CC667;
     db $11,$0C                                                           ;8CC669;
     dw IndirectInstructions_IntroText_U                                  ;8CC66B; "U"
-    dw $0005                                                             ;8CC66D;
+    dw $0005*!FPS                                                        ;8CC66D;
     db $12,$0C                                                           ;8CC66F;
     dw IndirectInstructions_IntroText_S                                  ;8CC671; "S"
-    dw $0005                                                             ;8CC673;
+    dw $0005*!FPS                                                        ;8CC673;
     db $13,$0C                                                           ;8CC675;
     dw IndirectInstructions_IntroText_E                                  ;8CC677; "E"
-    dw $0005                                                             ;8CC679;
+    dw $0005*!FPS                                                        ;8CC679;
     db $14,$0C                                                           ;8CC67B;
     dw IndirectInstructions_IntroText_Space                              ;8CC67D; " "
-    dw $0005                                                             ;8CC67F;
+    dw $0005*!FPS                                                        ;8CC67F;
     db $15,$0C                                                           ;8CC681;
     dw IndirectInstructions_IntroText_T                                  ;8CC683; "T"
-    dw $0005                                                             ;8CC685;
+    dw $0005*!FPS                                                        ;8CC685;
     db $16,$0C                                                           ;8CC687;
     dw IndirectInstructions_IntroText_H                                  ;8CC689; "H"
-    dw $0005                                                             ;8CC68B;
+    dw $0005*!FPS                                                        ;8CC68B;
     db $17,$0C                                                           ;8CC68D;
     dw IndirectInstructions_IntroText_E                                  ;8CC68F; "E"
-    dw $0005                                                             ;8CC691;
+    dw $0005*!FPS                                                        ;8CC691;
     db $01,$0E                                                           ;8CC693;
     dw IndirectInstructions_IntroText_C                                  ;8CC695; "C"
-    dw $0005                                                             ;8CC697;
+    dw $0005*!FPS                                                        ;8CC697;
     db $02,$0E                                                           ;8CC699;
     dw IndirectInstructions_IntroText_R                                  ;8CC69B; "R"
-    dw $0005                                                             ;8CC69D;
+    dw $0005*!FPS                                                        ;8CC69D;
     db $03,$0E                                                           ;8CC69F;
     dw IndirectInstructions_IntroText_E                                  ;8CC6A1; "E"
-    dw $0005                                                             ;8CC6A3;
+    dw $0005*!FPS                                                        ;8CC6A3;
     db $04,$0E                                                           ;8CC6A5;
     dw IndirectInstructions_IntroText_A                                  ;8CC6A7; "A"
-    dw $0005                                                             ;8CC6A9;
+    dw $0005*!FPS                                                        ;8CC6A9;
     db $05,$0E                                                           ;8CC6AB;
     dw IndirectInstructions_IntroText_T                                  ;8CC6AD; "T"
-    dw $0005                                                             ;8CC6AF;
+    dw $0005*!FPS                                                        ;8CC6AF;
     db $06,$0E                                                           ;8CC6B1;
     dw IndirectInstructions_IntroText_U                                  ;8CC6B3; "U"
-    dw $0005                                                             ;8CC6B5;
+    dw $0005*!FPS                                                        ;8CC6B5;
     db $07,$0E                                                           ;8CC6B7;
     dw IndirectInstructions_IntroText_R                                  ;8CC6B9; "R"
-    dw $0005                                                             ;8CC6BB;
+    dw $0005*!FPS                                                        ;8CC6BB;
     db $08,$0E                                                           ;8CC6BD;
     dw IndirectInstructions_IntroText_E                                  ;8CC6BF; "E"
-    dw $0005                                                             ;8CC6C1;
+    dw $0005*!FPS                                                        ;8CC6C1;
     db $09,$0E                                                           ;8CC6C3;
     dw IndirectInstructions_IntroText_S                                  ;8CC6C5; "S"
-    dw $0005                                                             ;8CC6C7;
+    dw $0005*!FPS                                                        ;8CC6C7;
     db $0A,$0E                                                           ;8CC6C9;
     dw IndirectInstructions_IntroText_Space                              ;8CC6CB; " "
-    dw $0005                                                             ;8CC6CD;
+    dw $0005*!FPS                                                        ;8CC6CD;
     db $0B,$0E                                                           ;8CC6CF;
     dw IndirectInstructions_IntroText_T                                  ;8CC6D1; "T"
-    dw $0005                                                             ;8CC6D3;
+    dw $0005*!FPS                                                        ;8CC6D3;
     db $0C,$0E                                                           ;8CC6D5;
     dw IndirectInstructions_IntroText_O                                  ;8CC6D7; "O"
-    dw $0005                                                             ;8CC6D9;
+    dw $0005*!FPS                                                        ;8CC6D9;
     db $0D,$0E                                                           ;8CC6DB;
     dw IndirectInstructions_IntroText_Space                              ;8CC6DD; " "
-    dw $0005                                                             ;8CC6DF;
+    dw $0005*!FPS                                                        ;8CC6DF;
     db $0E,$0E                                                           ;8CC6E1;
     dw IndirectInstructions_IntroText_A                                  ;8CC6E3; "A"
-    dw $0005                                                             ;8CC6E5;
+    dw $0005*!FPS                                                        ;8CC6E5;
     db $0F,$0E                                                           ;8CC6E7;
     dw IndirectInstructions_IntroText_T                                  ;8CC6E9; "T"
-    dw $0005                                                             ;8CC6EB;
+    dw $0005*!FPS                                                        ;8CC6EB;
     db $10,$0E                                                           ;8CC6ED;
     dw IndirectInstructions_IntroText_T                                  ;8CC6EF; "T"
-    dw $0005                                                             ;8CC6F1;
+    dw $0005*!FPS                                                        ;8CC6F1;
     db $11,$0E                                                           ;8CC6F3;
     dw IndirectInstructions_IntroText_A                                  ;8CC6F5; "A"
-    dw $0005                                                             ;8CC6F7;
+    dw $0005*!FPS                                                        ;8CC6F7;
     db $12,$0E                                                           ;8CC6F9;
     dw IndirectInstructions_IntroText_C                                  ;8CC6FB; "C"
-    dw $0005                                                             ;8CC6FD;
+    dw $0005*!FPS                                                        ;8CC6FD;
     db $13,$0E                                                           ;8CC6FF;
     dw IndirectInstructions_IntroText_K                                  ;8CC701; "K"
-    dw $0005                                                             ;8CC703;
+    dw $0005*!FPS                                                        ;8CC703;
     db $01,$10                                                           ;8CC705;
     dw IndirectInstructions_IntroText_G                                  ;8CC707; "G"
-    dw $0005                                                             ;8CC709;
+    dw $0005*!FPS                                                        ;8CC709;
     db $02,$10                                                           ;8CC70B;
     dw IndirectInstructions_IntroText_A                                  ;8CC70D; "A"
-    dw $0005                                                             ;8CC70F;
+    dw $0005*!FPS                                                        ;8CC70F;
     db $03,$10                                                           ;8CC711;
     dw IndirectInstructions_IntroText_L                                  ;8CC713; "L"
-    dw $0005                                                             ;8CC715;
+    dw $0005*!FPS                                                        ;8CC715;
     db $04,$10                                                           ;8CC717;
     dw IndirectInstructions_IntroText_A                                  ;8CC719; "A"
-    dw $0005                                                             ;8CC71B;
+    dw $0005*!FPS                                                        ;8CC71B;
     db $05,$10                                                           ;8CC71D;
     dw IndirectInstructions_IntroText_C                                  ;8CC71F; "C"
-    dw $0005                                                             ;8CC721;
+    dw $0005*!FPS                                                        ;8CC721;
     db $06,$10                                                           ;8CC723;
     dw IndirectInstructions_IntroText_T                                  ;8CC725; "T"
-    dw $0005                                                             ;8CC727;
+    dw $0005*!FPS                                                        ;8CC727;
     db $07,$10                                                           ;8CC729;
     dw IndirectInstructions_IntroText_I                                  ;8CC72B; "I"
-    dw $0005                                                             ;8CC72D;
+    dw $0005*!FPS                                                        ;8CC72D;
     db $08,$10                                                           ;8CC72F;
     dw IndirectInstructions_IntroText_C                                  ;8CC731; "C"
-    dw $0005                                                             ;8CC733;
+    dw $0005*!FPS                                                        ;8CC733;
     db $09,$10                                                           ;8CC735;
     dw IndirectInstructions_IntroText_Space                              ;8CC737; " "
-    dw $0005                                                             ;8CC739;
+    dw $0005*!FPS                                                        ;8CC739;
     db $0A,$10                                                           ;8CC73B;
     dw IndirectInstructions_IntroText_C                                  ;8CC73D; "C"
-    dw $0005                                                             ;8CC73F;
+    dw $0005*!FPS                                                        ;8CC73F;
     db $0B,$10                                                           ;8CC741;
     dw IndirectInstructions_IntroText_I                                  ;8CC743; "I"
-    dw $0005                                                             ;8CC745;
+    dw $0005*!FPS                                                        ;8CC745;
     db $0C,$10                                                           ;8CC747;
     dw IndirectInstructions_IntroText_V                                  ;8CC749; "V"
-    dw $0005                                                             ;8CC74B;
+    dw $0005*!FPS                                                        ;8CC74B;
     db $0D,$10                                                           ;8CC74D;
     dw IndirectInstructions_IntroText_I                                  ;8CC74F; "I"
-    dw $0005                                                             ;8CC751;
+    dw $0005*!FPS                                                        ;8CC751;
     db $0E,$10                                                           ;8CC753;
     dw IndirectInstructions_IntroText_L                                  ;8CC755; "L"
-    dw $0005                                                             ;8CC757;
+    dw $0005*!FPS                                                        ;8CC757;
     db $0F,$10                                                           ;8CC759;
     dw IndirectInstructions_IntroText_I                                  ;8CC75B; "I"
-    dw $0005                                                             ;8CC75D;
+    dw $0005*!FPS                                                        ;8CC75D;
     db $10,$10                                                           ;8CC75F;
     dw IndirectInstructions_IntroText_Z                                  ;8CC761; "Z"
-    dw $0005                                                             ;8CC763;
+    dw $0005*!FPS                                                        ;8CC763;
     db $11,$10                                                           ;8CC765;
     dw IndirectInstructions_IntroText_A                                  ;8CC767; "A"
-    dw $0005                                                             ;8CC769;
+    dw $0005*!FPS                                                        ;8CC769;
     db $12,$10                                                           ;8CC76B;
     dw IndirectInstructions_IntroText_T                                  ;8CC76D; "T"
-    dw $0005                                                             ;8CC76F;
+    dw $0005*!FPS                                                        ;8CC76F;
     db $13,$10                                                           ;8CC771;
     dw IndirectInstructions_IntroText_I                                  ;8CC773; "I"
-    dw $0005                                                             ;8CC775;
+    dw $0005*!FPS                                                        ;8CC775;
     db $14,$10                                                           ;8CC777;
     dw IndirectInstructions_IntroText_O                                  ;8CC779; "O"
-    dw $0005                                                             ;8CC77B;
+    dw $0005*!FPS                                                        ;8CC77B;
     db $15,$10                                                           ;8CC77D;
     dw IndirectInstructions_IntroText_N                                  ;8CC77F; "N"
-    dw $0005                                                             ;8CC781;
+    dw $0005*!FPS                                                        ;8CC781;
     db $16,$10                                                           ;8CC783;
     dw IndirectInstructions_IntroText_Period                             ;8CC785; "."
-    dw $0005                                                             ;8CC787;
+    dw $0005*!FPS                                                        ;8CC787;
     db $17,$10                                                           ;8CC789;
     dw IndirectInstructions_IntroText_Period                             ;8CC78B; "."
-    dw $0005                                                             ;8CC78D;
+    dw $0005*!FPS                                                        ;8CC78D;
     db $18,$10                                                           ;8CC78F;
     dw IndirectInstructions_IntroText_Period                             ;8CC791; "."
     dw Instruction_SpawnBlinkingMarkers_WaitForInput_Page1               ;8CC793;
@@ -5079,473 +5108,473 @@ CinematicBGObjectInstLists_IntroTextPage2:
 ; EXCEPT FOR A LARVA, WHICH
 ; AFTER HATCHING FOLLOWED ME
 ; LIKE A CONFUSED CHILD...
-    dw Instruction_HandleCreatingJapanText_Page2                         ;8CC797;
+    dw Instruction_HandleCreatingSubtitle_Page2                          ;8CC797;
     dw $0001                                                             ;8CC799;
     db $01,$01                                                           ;8CC79B;
     dw IndirectInstructions_IntroText_Nothing                            ;8CC79D;
-    dw $0005                                                             ;8CC79F;
+    dw $0005*!FPS                                                        ;8CC79F;
     db $01,$04                                                           ;8CC7A1;
     dw IndirectInstructions_IntroText_I                                  ;8CC7A3; "I"
-    dw $0005                                                             ;8CC7A5;
+    dw $0005*!FPS                                                        ;8CC7A5;
     db $02,$04                                                           ;8CC7A7;
     dw IndirectInstructions_IntroText_Space                              ;8CC7A9; " "
-    dw $0005                                                             ;8CC7AB;
+    dw $0005*!FPS                                                        ;8CC7AB;
     db $03,$04                                                           ;8CC7AD;
     dw IndirectInstructions_IntroText_N                                  ;8CC7AF; "N"
-    dw $0005                                                             ;8CC7B1;
+    dw $0005*!FPS                                                        ;8CC7B1;
     db $04,$04                                                           ;8CC7B3;
     dw IndirectInstructions_IntroText_E                                  ;8CC7B5; "E"
-    dw $0005                                                             ;8CC7B7;
+    dw $0005*!FPS                                                        ;8CC7B7;
     db $05,$04                                                           ;8CC7B9;
     dw IndirectInstructions_IntroText_X                                  ;8CC7BB; "X"
-    dw $0005                                                             ;8CC7BD;
+    dw $0005*!FPS                                                        ;8CC7BD;
     db $06,$04                                                           ;8CC7BF;
     dw IndirectInstructions_IntroText_T                                  ;8CC7C1; "T"
-    dw $0005                                                             ;8CC7C3;
+    dw $0005*!FPS                                                        ;8CC7C3;
     db $07,$04                                                           ;8CC7C5;
     dw IndirectInstructions_IntroText_Space                              ;8CC7C7; " "
-    dw $0005                                                             ;8CC7C9;
+    dw $0005*!FPS                                                        ;8CC7C9;
     db $08,$04                                                           ;8CC7CB;
     dw IndirectInstructions_IntroText_F                                  ;8CC7CD; "F"
-    dw $0005                                                             ;8CC7CF;
+    dw $0005*!FPS                                                        ;8CC7CF;
     db $09,$04                                                           ;8CC7D1;
     dw IndirectInstructions_IntroText_O                                  ;8CC7D3; "O"
-    dw $0005                                                             ;8CC7D5;
+    dw $0005*!FPS                                                        ;8CC7D5;
     db $0A,$04                                                           ;8CC7D7;
     dw IndirectInstructions_IntroText_U                                  ;8CC7D9; "U"
-    dw $0005                                                             ;8CC7DB;
+    dw $0005*!FPS                                                        ;8CC7DB;
     db $0B,$04                                                           ;8CC7DD;
     dw IndirectInstructions_IntroText_G                                  ;8CC7DF; "G"
-    dw $0005                                                             ;8CC7E1;
+    dw $0005*!FPS                                                        ;8CC7E1;
     db $0C,$04                                                           ;8CC7E3;
     dw IndirectInstructions_IntroText_H                                  ;8CC7E5; "H"
-    dw $0005                                                             ;8CC7E7;
+    dw $0005*!FPS                                                        ;8CC7E7;
     db $0D,$04                                                           ;8CC7E9;
     dw IndirectInstructions_IntroText_T                                  ;8CC7EB; "T"
-    dw $0005                                                             ;8CC7ED;
+    dw $0005*!FPS                                                        ;8CC7ED;
     db $0E,$04                                                           ;8CC7EF;
     dw IndirectInstructions_IntroText_Space                              ;8CC7F1; " "
-    dw $0005                                                             ;8CC7F3;
+    dw $0005*!FPS                                                        ;8CC7F3;
     db $0F,$04                                                           ;8CC7F5;
     dw IndirectInstructions_IntroText_T                                  ;8CC7F7; "T"
-    dw $0005                                                             ;8CC7F9;
+    dw $0005*!FPS                                                        ;8CC7F9;
     db $10,$04                                                           ;8CC7FB;
     dw IndirectInstructions_IntroText_H                                  ;8CC7FD; "H"
-    dw $0005                                                             ;8CC7FF;
+    dw $0005*!FPS                                                        ;8CC7FF;
     db $11,$04                                                           ;8CC801;
     dw IndirectInstructions_IntroText_E                                  ;8CC803; "E"
-    dw $0005                                                             ;8CC805;
+    dw $0005*!FPS                                                        ;8CC805;
     db $12,$04                                                           ;8CC807;
     dw IndirectInstructions_IntroText_Space                              ;8CC809; " "
-    dw $0005                                                             ;8CC80B;
+    dw $0005*!FPS                                                        ;8CC80B;
     db $13,$04                                                           ;8CC80D;
     dw IndirectInstructions_IntroText_M                                  ;8CC80F; "M"
-    dw $0005                                                             ;8CC811;
+    dw $0005*!FPS                                                        ;8CC811;
     db $14,$04                                                           ;8CC813;
     dw IndirectInstructions_IntroText_E                                  ;8CC815; "E"
-    dw $0005                                                             ;8CC817;
+    dw $0005*!FPS                                                        ;8CC817;
     db $15,$04                                                           ;8CC819;
     dw IndirectInstructions_IntroText_T                                  ;8CC81B; "T"
-    dw $0005                                                             ;8CC81D;
+    dw $0005*!FPS                                                        ;8CC81D;
     db $16,$04                                                           ;8CC81F;
     dw IndirectInstructions_IntroText_R                                  ;8CC821; "R"
-    dw $0005                                                             ;8CC823;
+    dw $0005*!FPS                                                        ;8CC823;
     db $17,$04                                                           ;8CC825;
     dw IndirectInstructions_IntroText_O                                  ;8CC827; "O"
-    dw $0005                                                             ;8CC829;
+    dw $0005*!FPS                                                        ;8CC829;
     db $18,$04                                                           ;8CC82B;
     dw IndirectInstructions_IntroText_I                                  ;8CC82D; "I"
-    dw $0005                                                             ;8CC82F;
+    dw $0005*!FPS                                                        ;8CC82F;
     db $19,$04                                                           ;8CC831;
     dw IndirectInstructions_IntroText_D                                  ;8CC833; "D"
-    dw $0005                                                             ;8CC835;
+    dw $0005*!FPS                                                        ;8CC835;
     db $1A,$04                                                           ;8CC837;
     dw IndirectInstructions_IntroText_S                                  ;8CC839; "S"
-    dw $0005                                                             ;8CC83B;
+    dw $0005*!FPS                                                        ;8CC83B;
     db $1B,$04                                                           ;8CC83D;
     dw IndirectInstructions_IntroText_Space                              ;8CC83F; " "
-    dw $0005                                                             ;8CC841;
+    dw $0005*!FPS                                                        ;8CC841;
     db $1C,$04                                                           ;8CC843;
     dw IndirectInstructions_IntroText_O                                  ;8CC845; "O"
-    dw $0005                                                             ;8CC847;
+    dw $0005*!FPS                                                        ;8CC847;
     db $1D,$04                                                           ;8CC849;
     dw IndirectInstructions_IntroText_N                                  ;8CC84B; "N"
-    dw $0005                                                             ;8CC84D;
+    dw $0005*!FPS                                                        ;8CC84D;
     db $01,$06                                                           ;8CC84F;
     dw IndirectInstructions_IntroText_T                                  ;8CC851; "T"
-    dw $0005                                                             ;8CC853;
+    dw $0005*!FPS                                                        ;8CC853;
     db $02,$06                                                           ;8CC855;
     dw IndirectInstructions_IntroText_H                                  ;8CC857; "H"
-    dw $0005                                                             ;8CC859;
+    dw $0005*!FPS                                                        ;8CC859;
     db $03,$06                                                           ;8CC85B;
     dw IndirectInstructions_IntroText_E                                  ;8CC85D; "E"
-    dw $0005                                                             ;8CC85F;
+    dw $0005*!FPS                                                        ;8CC85F;
     db $04,$06                                                           ;8CC861;
     dw IndirectInstructions_IntroText_I                                  ;8CC863; "I"
-    dw $0005                                                             ;8CC865;
+    dw $0005*!FPS                                                        ;8CC865;
     db $05,$06                                                           ;8CC867;
     dw IndirectInstructions_IntroText_R                                  ;8CC869; "R"
-    dw $0005                                                             ;8CC86B;
+    dw $0005*!FPS                                                        ;8CC86B;
     db $06,$06                                                           ;8CC86D;
     dw IndirectInstructions_IntroText_Space                              ;8CC86F; " "
-    dw $0005                                                             ;8CC871;
+    dw $0005*!FPS                                                        ;8CC871;
     db $07,$06                                                           ;8CC873;
     dw IndirectInstructions_IntroText_H                                  ;8CC875; "H"
-    dw $0005                                                             ;8CC877;
+    dw $0005*!FPS                                                        ;8CC877;
     db $08,$06                                                           ;8CC879;
     dw IndirectInstructions_IntroText_O                                  ;8CC87B; "O"
-    dw $0005                                                             ;8CC87D;
+    dw $0005*!FPS                                                        ;8CC87D;
     db $09,$06                                                           ;8CC87F;
     dw IndirectInstructions_IntroText_M                                  ;8CC881; "M"
-    dw $0005                                                             ;8CC883;
+    dw $0005*!FPS                                                        ;8CC883;
     db $0A,$06                                                           ;8CC885;
     dw IndirectInstructions_IntroText_E                                  ;8CC887; "E"
-    dw $0005                                                             ;8CC889;
+    dw $0005*!FPS                                                        ;8CC889;
     db $0B,$06                                                           ;8CC88B;
     dw IndirectInstructions_IntroText_W                                  ;8CC88D; "W"
-    dw $0005                                                             ;8CC88F;
+    dw $0005*!FPS                                                        ;8CC88F;
     db $0C,$06                                                           ;8CC891;
     dw IndirectInstructions_IntroText_O                                  ;8CC893; "O"
-    dw $0005                                                             ;8CC895;
+    dw $0005*!FPS                                                        ;8CC895;
     db $0D,$06                                                           ;8CC897;
     dw IndirectInstructions_IntroText_R                                  ;8CC899; "R"
-    dw $0005                                                             ;8CC89B;
+    dw $0005*!FPS                                                        ;8CC89B;
     db $0E,$06                                                           ;8CC89D;
     dw IndirectInstructions_IntroText_L                                  ;8CC89F; "L"
-    dw $0005                                                             ;8CC8A1;
+    dw $0005*!FPS                                                        ;8CC8A1;
     db $0F,$06                                                           ;8CC8A3;
     dw IndirectInstructions_IntroText_D                                  ;8CC8A5; "D"
-    dw $0005                                                             ;8CC8A7;
+    dw $0005*!FPS                                                        ;8CC8A7;
     db $10,$06                                                           ;8CC8A9;
     dw IndirectInstructions_IntroText_Comma                              ;8CC8AB; ","
-    dw $0005                                                             ;8CC8AD;
+    dw $0005*!FPS                                                        ;8CC8AD;
     db $11,$06                                                           ;8CC8AF;
     dw IndirectInstructions_IntroText_Space                              ;8CC8B1; " "
-    dw $0005                                                             ;8CC8B3;
+    dw $0005*!FPS                                                        ;8CC8B3;
     db $12,$06                                                           ;8CC8B5;
     dw IndirectInstructions_IntroText_S                                  ;8CC8B7; "S"
-    dw $0005                                                             ;8CC8B9;
+    dw $0005*!FPS                                                        ;8CC8B9;
     db $13,$06                                                           ;8CC8BB;
     dw IndirectInstructions_IntroText_R                                  ;8CC8BD; "R"
-    dw $0005                                                             ;8CC8BF;
+    dw $0005*!FPS                                                        ;8CC8BF;
     db $14,$06                                                           ;8CC8C1;
     dw IndirectInstructions_IntroText_3                                  ;8CC8C3; "3"
-    dw $0005                                                             ;8CC8C5;
+    dw $0005*!FPS                                                        ;8CC8C5;
     db $15,$06                                                           ;8CC8C7;
     dw IndirectInstructions_IntroText_8                                  ;8CC8C9; "8"
-    dw $0005                                                             ;8CC8CB;
+    dw $0005*!FPS                                                        ;8CC8CB;
     db $16,$06                                                           ;8CC8CD;
     dw IndirectInstructions_IntroText_8                                  ;8CC8CF; "8"
-    dw $0005                                                             ;8CC8D1;
+    dw $0005*!FPS                                                        ;8CC8D1;
     db $17,$06                                                           ;8CC8D3;
     dw IndirectInstructions_IntroText_Period                             ;8CC8D5; "."
-    dw $0005                                                             ;8CC8D7;
+    dw $0005*!FPS                                                        ;8CC8D7;
     db $18,$06                                                           ;8CC8D9;
     dw IndirectInstructions_IntroText_Space                              ;8CC8DB; " "
-    dw $0005                                                             ;8CC8DD;
+    dw $0005*!FPS                                                        ;8CC8DD;
     db $19,$06                                                           ;8CC8DF;
     dw IndirectInstructions_IntroText_I                                  ;8CC8E1; "I"
-    dw $0005                                                             ;8CC8E3;
+    dw $0005*!FPS                                                        ;8CC8E3;
     db $01,$08                                                           ;8CC8E5;
     dw IndirectInstructions_IntroText_C                                  ;8CC8E7; "C"
-    dw $0005                                                             ;8CC8E9;
+    dw $0005*!FPS                                                        ;8CC8E9;
     db $02,$08                                                           ;8CC8EB;
     dw IndirectInstructions_IntroText_O                                  ;8CC8ED; "O"
-    dw $0005                                                             ;8CC8EF;
+    dw $0005*!FPS                                                        ;8CC8EF;
     db $03,$08                                                           ;8CC8F1;
     dw IndirectInstructions_IntroText_M                                  ;8CC8F3; "M"
-    dw $0005                                                             ;8CC8F5;
+    dw $0005*!FPS                                                        ;8CC8F5;
     db $04,$08                                                           ;8CC8F7;
     dw IndirectInstructions_IntroText_P                                  ;8CC8F9; "P"
-    dw $0005                                                             ;8CC8FB;
+    dw $0005*!FPS                                                        ;8CC8FB;
     db $05,$08                                                           ;8CC8FD;
     dw IndirectInstructions_IntroText_L                                  ;8CC8FF; "L"
-    dw $0005                                                             ;8CC901;
+    dw $0005*!FPS                                                        ;8CC901;
     db $06,$08                                                           ;8CC903;
     dw IndirectInstructions_IntroText_E                                  ;8CC905; "E"
-    dw $0005                                                             ;8CC907;
+    dw $0005*!FPS                                                        ;8CC907;
     db $07,$08                                                           ;8CC909;
     dw IndirectInstructions_IntroText_T                                  ;8CC90B; "T"
-    dw $0005                                                             ;8CC90D;
+    dw $0005*!FPS                                                        ;8CC90D;
     db $08,$08                                                           ;8CC90F;
     dw IndirectInstructions_IntroText_E                                  ;8CC911; "E"
-    dw $0005                                                             ;8CC913;
+    dw $0005*!FPS                                                        ;8CC913;
     db $09,$08                                                           ;8CC915;
     dw IndirectInstructions_IntroText_L                                  ;8CC917; "L"
-    dw $0005                                                             ;8CC919;
+    dw $0005*!FPS                                                        ;8CC919;
     db $0A,$08                                                           ;8CC91B;
     dw IndirectInstructions_IntroText_Y                                  ;8CC91D; "Y"
-    dw $0005                                                             ;8CC91F;
+    dw $0005*!FPS                                                        ;8CC91F;
     db $0B,$08                                                           ;8CC921;
     dw IndirectInstructions_IntroText_Space                              ;8CC923; " "
-    dw $0005                                                             ;8CC925;
+    dw $0005*!FPS                                                        ;8CC925;
     db $0C,$08                                                           ;8CC927;
     dw IndirectInstructions_IntroText_E                                  ;8CC929; "E"
-    dw $0005                                                             ;8CC92B;
+    dw $0005*!FPS                                                        ;8CC92B;
     db $0D,$08                                                           ;8CC92D;
     dw IndirectInstructions_IntroText_R                                  ;8CC92F; "R"
-    dw $0005                                                             ;8CC931;
+    dw $0005*!FPS                                                        ;8CC931;
     db $0E,$08                                                           ;8CC933;
     dw IndirectInstructions_IntroText_A                                  ;8CC935; "A"
-    dw $0005                                                             ;8CC937;
+    dw $0005*!FPS                                                        ;8CC937;
     db $0F,$08                                                           ;8CC939;
     dw IndirectInstructions_IntroText_D                                  ;8CC93B; "D"
-    dw $0005                                                             ;8CC93D;
+    dw $0005*!FPS                                                        ;8CC93D;
     db $10,$08                                                           ;8CC93F;
     dw IndirectInstructions_IntroText_I                                  ;8CC941; "I"
-    dw $0005                                                             ;8CC943;
+    dw $0005*!FPS                                                        ;8CC943;
     db $11,$08                                                           ;8CC945;
     dw IndirectInstructions_IntroText_C                                  ;8CC947; "C"
-    dw $0005                                                             ;8CC949;
+    dw $0005*!FPS                                                        ;8CC949;
     db $12,$08                                                           ;8CC94B;
     dw IndirectInstructions_IntroText_A                                  ;8CC94D; "A"
-    dw $0005                                                             ;8CC94F;
+    dw $0005*!FPS                                                        ;8CC94F;
     db $13,$08                                                           ;8CC951;
     dw IndirectInstructions_IntroText_T                                  ;8CC953; "T"
-    dw $0005                                                             ;8CC955;
+    dw $0005*!FPS                                                        ;8CC955;
     db $14,$08                                                           ;8CC957;
     dw IndirectInstructions_IntroText_E                                  ;8CC959; "E"
-    dw $0005                                                             ;8CC95B;
+    dw $0005*!FPS                                                        ;8CC95B;
     db $15,$08                                                           ;8CC95D;
     dw IndirectInstructions_IntroText_D                                  ;8CC95F; "D"
-    dw $0005                                                             ;8CC961;
+    dw $0005*!FPS                                                        ;8CC961;
     db $16,$08                                                           ;8CC963;
     dw IndirectInstructions_IntroText_Space                              ;8CC965; " "
-    dw $0005                                                             ;8CC967;
+    dw $0005*!FPS                                                        ;8CC967;
     db $17,$08                                                           ;8CC969;
     dw IndirectInstructions_IntroText_T                                  ;8CC96B; "T"
-    dw $0005                                                             ;8CC96D;
+    dw $0005*!FPS                                                        ;8CC96D;
     db $18,$08                                                           ;8CC96F;
     dw IndirectInstructions_IntroText_H                                  ;8CC971; "H"
-    dw $0005                                                             ;8CC973;
+    dw $0005*!FPS                                                        ;8CC973;
     db $19,$08                                                           ;8CC975;
     dw IndirectInstructions_IntroText_E                                  ;8CC977; "E"
-    dw $0005                                                             ;8CC979;
+    dw $0005*!FPS                                                        ;8CC979;
     db $1A,$08                                                           ;8CC97B;
     dw IndirectInstructions_IntroText_M                                  ;8CC97D; "M"
-    dw $0005                                                             ;8CC97F;
+    dw $0005*!FPS                                                        ;8CC97F;
     db $01,$0A                                                           ;8CC981;
     dw IndirectInstructions_IntroText_E                                  ;8CC983; "E"
-    dw $0005                                                             ;8CC985;
+    dw $0005*!FPS                                                        ;8CC985;
     db $02,$0A                                                           ;8CC987;
     dw IndirectInstructions_IntroText_X                                  ;8CC989; "X"
-    dw $0005                                                             ;8CC98B;
+    dw $0005*!FPS                                                        ;8CC98B;
     db $03,$0A                                                           ;8CC98D;
     dw IndirectInstructions_IntroText_C                                  ;8CC98F; "C"
-    dw $0005                                                             ;8CC991;
+    dw $0005*!FPS                                                        ;8CC991;
     db $04,$0A                                                           ;8CC993;
     dw IndirectInstructions_IntroText_E                                  ;8CC995; "E"
-    dw $0005                                                             ;8CC997;
+    dw $0005*!FPS                                                        ;8CC997;
     db $05,$0A                                                           ;8CC999;
     dw IndirectInstructions_IntroText_P                                  ;8CC99B; "P"
-    dw $0005                                                             ;8CC99D;
+    dw $0005*!FPS                                                        ;8CC99D;
     db $06,$0A                                                           ;8CC99F;
     dw IndirectInstructions_IntroText_T                                  ;8CC9A1; "T"
-    dw $0005                                                             ;8CC9A3;
+    dw $0005*!FPS                                                        ;8CC9A3;
     db $07,$0A                                                           ;8CC9A5;
     dw IndirectInstructions_IntroText_Space                              ;8CC9A7; " "
-    dw $0005                                                             ;8CC9A9;
+    dw $0005*!FPS                                                        ;8CC9A9;
     db $08,$0A                                                           ;8CC9AB;
     dw IndirectInstructions_IntroText_F                                  ;8CC9AD; "F"
-    dw $0005                                                             ;8CC9AF;
+    dw $0005*!FPS                                                        ;8CC9AF;
     db $09,$0A                                                           ;8CC9B1;
     dw IndirectInstructions_IntroText_O                                  ;8CC9B3; "O"
-    dw $0005                                                             ;8CC9B5;
+    dw $0005*!FPS                                                        ;8CC9B5;
     db $0A,$0A                                                           ;8CC9B7;
     dw IndirectInstructions_IntroText_R                                  ;8CC9B9; "R"
-    dw $0005                                                             ;8CC9BB;
+    dw $0005*!FPS                                                        ;8CC9BB;
     db $0B,$0A                                                           ;8CC9BD;
     dw IndirectInstructions_IntroText_Space                              ;8CC9BF; " "
-    dw $0005                                                             ;8CC9C1;
+    dw $0005*!FPS                                                        ;8CC9C1;
     db $0C,$0A                                                           ;8CC9C3;
     dw IndirectInstructions_IntroText_A                                  ;8CC9C5; "A"
-    dw $0005                                                             ;8CC9C7;
+    dw $0005*!FPS                                                        ;8CC9C7;
     db $0D,$0A                                                           ;8CC9C9;
     dw IndirectInstructions_IntroText_Space                              ;8CC9CB; " "
-    dw $0005                                                             ;8CC9CD;
+    dw $0005*!FPS                                                        ;8CC9CD;
     db $0E,$0A                                                           ;8CC9CF;
     dw IndirectInstructions_IntroText_L                                  ;8CC9D1; "L"
-    dw $0005                                                             ;8CC9D3;
+    dw $0005*!FPS                                                        ;8CC9D3;
     db $0F,$0A                                                           ;8CC9D5;
     dw IndirectInstructions_IntroText_A                                  ;8CC9D7; "A"
-    dw $0005                                                             ;8CC9D9;
+    dw $0005*!FPS                                                        ;8CC9D9;
     db $10,$0A                                                           ;8CC9DB;
     dw IndirectInstructions_IntroText_R                                  ;8CC9DD; "R"
-    dw $0005                                                             ;8CC9DF;
+    dw $0005*!FPS                                                        ;8CC9DF;
     db $11,$0A                                                           ;8CC9E1;
     dw IndirectInstructions_IntroText_V                                  ;8CC9E3; "V"
-    dw $0005                                                             ;8CC9E5;
+    dw $0005*!FPS                                                        ;8CC9E5;
     db $12,$0A                                                           ;8CC9E7;
     dw IndirectInstructions_IntroText_A                                  ;8CC9E9; "A"
-    dw $0005                                                             ;8CC9EB;
+    dw $0005*!FPS                                                        ;8CC9EB;
     db $13,$0A                                                           ;8CC9ED;
     dw IndirectInstructions_IntroText_Comma                              ;8CC9EF; ","
-    dw $0005                                                             ;8CC9F1;
+    dw $0005*!FPS                                                        ;8CC9F1;
     db $14,$0A                                                           ;8CC9F3;
     dw IndirectInstructions_IntroText_Space                              ;8CC9F5; " "
-    dw $0005                                                             ;8CC9F7;
+    dw $0005*!FPS                                                        ;8CC9F7;
     db $15,$0A                                                           ;8CC9F9;
     dw IndirectInstructions_IntroText_W                                  ;8CC9FB; "W"
-    dw $0005                                                             ;8CC9FD;
+    dw $0005*!FPS                                                        ;8CC9FD;
     db $16,$0A                                                           ;8CC9FF;
     dw IndirectInstructions_IntroText_H                                  ;8CCA01; "H"
-    dw $0005                                                             ;8CCA03;
+    dw $0005*!FPS                                                        ;8CCA03;
     db $17,$0A                                                           ;8CCA05;
     dw IndirectInstructions_IntroText_I                                  ;8CCA07; "I"
-    dw $0005                                                             ;8CCA09;
+    dw $0005*!FPS                                                        ;8CCA09;
     db $18,$0A                                                           ;8CCA0B;
     dw IndirectInstructions_IntroText_C                                  ;8CCA0D; "C"
-    dw $0005                                                             ;8CCA0F;
+    dw $0005*!FPS                                                        ;8CCA0F;
     db $19,$0A                                                           ;8CCA11;
     dw IndirectInstructions_IntroText_H                                  ;8CCA13; "H"
-    dw $0005                                                             ;8CCA15;
+    dw $0005*!FPS                                                        ;8CCA15;
     db $01,$0C                                                           ;8CCA17;
     dw IndirectInstructions_IntroText_A                                  ;8CCA19; "A"
-    dw $0005                                                             ;8CCA1B;
+    dw $0005*!FPS                                                        ;8CCA1B;
     db $02,$0C                                                           ;8CCA1D;
     dw IndirectInstructions_IntroText_F                                  ;8CCA1F; "F"
-    dw $0005                                                             ;8CCA21;
+    dw $0005*!FPS                                                        ;8CCA21;
     db $03,$0C                                                           ;8CCA23;
     dw IndirectInstructions_IntroText_T                                  ;8CCA25; "T"
-    dw $0005                                                             ;8CCA27;
+    dw $0005*!FPS                                                        ;8CCA27;
     db $04,$0C                                                           ;8CCA29;
     dw IndirectInstructions_IntroText_E                                  ;8CCA2B; "E"
-    dw $0005                                                             ;8CCA2D;
+    dw $0005*!FPS                                                        ;8CCA2D;
     db $05,$0C                                                           ;8CCA2F;
     dw IndirectInstructions_IntroText_R                                  ;8CCA31; "R"
-    dw $0005                                                             ;8CCA33;
+    dw $0005*!FPS                                                        ;8CCA33;
     db $06,$0C                                                           ;8CCA35;
     dw IndirectInstructions_IntroText_Space                              ;8CCA37; " "
-    dw $0005                                                             ;8CCA39;
+    dw $0005*!FPS                                                        ;8CCA39;
     db $07,$0C                                                           ;8CCA3B;
     dw IndirectInstructions_IntroText_H                                  ;8CCA3D; "H"
-    dw $0005                                                             ;8CCA3F;
+    dw $0005*!FPS                                                        ;8CCA3F;
     db $08,$0C                                                           ;8CCA41;
     dw IndirectInstructions_IntroText_A                                  ;8CCA43; "A"
-    dw $0005                                                             ;8CCA45;
+    dw $0005*!FPS                                                        ;8CCA45;
     db $09,$0C                                                           ;8CCA47;
     dw IndirectInstructions_IntroText_T                                  ;8CCA49; "T"
-    dw $0005                                                             ;8CCA4B;
+    dw $0005*!FPS                                                        ;8CCA4B;
     db $0A,$0C                                                           ;8CCA4D;
     dw IndirectInstructions_IntroText_C                                  ;8CCA4F; "C"
-    dw $0005                                                             ;8CCA51;
+    dw $0005*!FPS                                                        ;8CCA51;
     db $0B,$0C                                                           ;8CCA53;
     dw IndirectInstructions_IntroText_H                                  ;8CCA55; "H"
-    dw $0005                                                             ;8CCA57;
+    dw $0005*!FPS                                                        ;8CCA57;
     db $0C,$0C                                                           ;8CCA59;
     dw IndirectInstructions_IntroText_I                                  ;8CCA5B; "I"
-    dw $0005                                                             ;8CCA5D;
+    dw $0005*!FPS                                                        ;8CCA5D;
     db $0D,$0C                                                           ;8CCA5F;
     dw IndirectInstructions_IntroText_N                                  ;8CCA61; "N"
-    dw $0005                                                             ;8CCA63;
+    dw $0005*!FPS                                                        ;8CCA63;
     db $0E,$0C                                                           ;8CCA65;
     dw IndirectInstructions_IntroText_G                                  ;8CCA67; "G"
-    dw $0005                                                             ;8CCA69;
+    dw $0005*!FPS                                                        ;8CCA69;
     db $0F,$0C                                                           ;8CCA6B;
     dw IndirectInstructions_IntroText_Space                              ;8CCA6D; " "
-    dw $0005                                                             ;8CCA6F;
+    dw $0005*!FPS                                                        ;8CCA6F;
     db $10,$0C                                                           ;8CCA71;
     dw IndirectInstructions_IntroText_F                                  ;8CCA73; "F"
-    dw $0005                                                             ;8CCA75;
+    dw $0005*!FPS                                                        ;8CCA75;
     db $11,$0C                                                           ;8CCA77;
     dw IndirectInstructions_IntroText_O                                  ;8CCA79; "O"
-    dw $0005                                                             ;8CCA7B;
+    dw $0005*!FPS                                                        ;8CCA7B;
     db $12,$0C                                                           ;8CCA7D;
     dw IndirectInstructions_IntroText_L                                  ;8CCA7F; "L"
-    dw $0005                                                             ;8CCA81;
+    dw $0005*!FPS                                                        ;8CCA81;
     db $13,$0C                                                           ;8CCA83;
     dw IndirectInstructions_IntroText_L                                  ;8CCA85; "L"
-    dw $0005                                                             ;8CCA87;
+    dw $0005*!FPS                                                        ;8CCA87;
     db $14,$0C                                                           ;8CCA89;
     dw IndirectInstructions_IntroText_O                                  ;8CCA8B; "O"
-    dw $0005                                                             ;8CCA8D;
+    dw $0005*!FPS                                                        ;8CCA8D;
     db $15,$0C                                                           ;8CCA8F;
     dw IndirectInstructions_IntroText_W                                  ;8CCA91; "W"
-    dw $0005                                                             ;8CCA93;
+    dw $0005*!FPS                                                        ;8CCA93;
     db $16,$0C                                                           ;8CCA95;
     dw IndirectInstructions_IntroText_E                                  ;8CCA97; "E"
-    dw $0005                                                             ;8CCA99;
+    dw $0005*!FPS                                                        ;8CCA99;
     db $17,$0C                                                           ;8CCA9B;
     dw IndirectInstructions_IntroText_D                                  ;8CCA9D; "D"
-    dw $0005                                                             ;8CCA9F;
+    dw $0005*!FPS                                                        ;8CCA9F;
     db $18,$0C                                                           ;8CCAA1;
     dw IndirectInstructions_IntroText_Space                              ;8CCAA3; " "
-    dw $0005                                                             ;8CCAA5;
+    dw $0005*!FPS                                                        ;8CCAA5;
     db $19,$0C                                                           ;8CCAA7;
     dw IndirectInstructions_IntroText_M                                  ;8CCAA9; "M"
-    dw $0005                                                             ;8CCAAB;
+    dw $0005*!FPS                                                        ;8CCAAB;
     db $1A,$0C                                                           ;8CCAAD;
     dw IndirectInstructions_IntroText_E                                  ;8CCAAF; "E"
-    dw $0005                                                             ;8CCAB1;
+    dw $0005*!FPS                                                        ;8CCAB1;
     db $01,$0E                                                           ;8CCAB3;
     dw IndirectInstructions_IntroText_L                                  ;8CCAB5; "L"
-    dw $0005                                                             ;8CCAB7;
+    dw $0005*!FPS                                                        ;8CCAB7;
     db $02,$0E                                                           ;8CCAB9;
     dw IndirectInstructions_IntroText_I                                  ;8CCABB; "I"
-    dw $0005                                                             ;8CCABD;
+    dw $0005*!FPS                                                        ;8CCABD;
     db $03,$0E                                                           ;8CCABF;
     dw IndirectInstructions_IntroText_K                                  ;8CCAC1; "K"
-    dw $0005                                                             ;8CCAC3;
+    dw $0005*!FPS                                                        ;8CCAC3;
     db $04,$0E                                                           ;8CCAC5;
     dw IndirectInstructions_IntroText_E                                  ;8CCAC7; "E"
-    dw $0005                                                             ;8CCAC9;
+    dw $0005*!FPS                                                        ;8CCAC9;
     db $05,$0E                                                           ;8CCACB;
     dw IndirectInstructions_IntroText_Space                              ;8CCACD; " "
-    dw $0005                                                             ;8CCACF;
+    dw $0005*!FPS                                                        ;8CCACF;
     db $06,$0E                                                           ;8CCAD1;
     dw IndirectInstructions_IntroText_A                                  ;8CCAD3; "A"
-    dw $0005                                                             ;8CCAD5;
+    dw $0005*!FPS                                                        ;8CCAD5;
     db $07,$0E                                                           ;8CCAD7;
     dw IndirectInstructions_IntroText_Space                              ;8CCAD9; " "
-    dw $0005                                                             ;8CCADB;
+    dw $0005*!FPS                                                        ;8CCADB;
     db $08,$0E                                                           ;8CCADD;
     dw IndirectInstructions_IntroText_C                                  ;8CCADF; "C"
-    dw $0005                                                             ;8CCAE1;
+    dw $0005*!FPS                                                        ;8CCAE1;
     db $09,$0E                                                           ;8CCAE3;
     dw IndirectInstructions_IntroText_O                                  ;8CCAE5; "O"
-    dw $0005                                                             ;8CCAE7;
+    dw $0005*!FPS                                                        ;8CCAE7;
     db $0A,$0E                                                           ;8CCAE9;
     dw IndirectInstructions_IntroText_N                                  ;8CCAEB; "N"
-    dw $0005                                                             ;8CCAED;
+    dw $0005*!FPS                                                        ;8CCAED;
     db $0B,$0E                                                           ;8CCAEF;
     dw IndirectInstructions_IntroText_F                                  ;8CCAF1; "F"
-    dw $0005                                                             ;8CCAF3;
+    dw $0005*!FPS                                                        ;8CCAF3;
     db $0C,$0E                                                           ;8CCAF5;
     dw IndirectInstructions_IntroText_U                                  ;8CCAF7; "U"
-    dw $0005                                                             ;8CCAF9;
+    dw $0005*!FPS                                                        ;8CCAF9;
     db $0D,$0E                                                           ;8CCAFB;
     dw IndirectInstructions_IntroText_S                                  ;8CCAFD; "S"
-    dw $0005                                                             ;8CCAFF;
+    dw $0005*!FPS                                                        ;8CCAFF;
     db $0E,$0E                                                           ;8CCB01;
     dw IndirectInstructions_IntroText_E                                  ;8CCB03; "E"
-    dw $0005                                                             ;8CCB05;
+    dw $0005*!FPS                                                        ;8CCB05;
     db $0F,$0E                                                           ;8CCB07;
     dw IndirectInstructions_IntroText_D                                  ;8CCB09; "D"
-    dw $0005                                                             ;8CCB0B;
+    dw $0005*!FPS                                                        ;8CCB0B;
     db $10,$0E                                                           ;8CCB0D;
     dw IndirectInstructions_IntroText_Space                              ;8CCB0F; " "
-    dw $0005                                                             ;8CCB11;
+    dw $0005*!FPS                                                        ;8CCB11;
     db $11,$0E                                                           ;8CCB13;
     dw IndirectInstructions_IntroText_C                                  ;8CCB15; "C"
-    dw $0005                                                             ;8CCB17;
+    dw $0005*!FPS                                                        ;8CCB17;
     db $12,$0E                                                           ;8CCB19;
     dw IndirectInstructions_IntroText_H                                  ;8CCB1B; "H"
-    dw $0005                                                             ;8CCB1D;
+    dw $0005*!FPS                                                        ;8CCB1D;
     db $13,$0E                                                           ;8CCB1F;
     dw IndirectInstructions_IntroText_I                                  ;8CCB21; "I"
-    dw $0005                                                             ;8CCB23;
+    dw $0005*!FPS                                                        ;8CCB23;
     db $14,$0E                                                           ;8CCB25;
     dw IndirectInstructions_IntroText_L                                  ;8CCB27; "L"
-    dw $0005                                                             ;8CCB29;
+    dw $0005*!FPS                                                        ;8CCB29;
     db $15,$0E                                                           ;8CCB2B;
     dw IndirectInstructions_IntroText_D                                  ;8CCB2D; "D"
-    dw $0005                                                             ;8CCB2F;
+    dw $0005*!FPS                                                        ;8CCB2F;
     db $16,$0E                                                           ;8CCB31;
     dw IndirectInstructions_IntroText_Period                             ;8CCB33; "."
-    dw $0005                                                             ;8CCB35;
+    dw $0005*!FPS                                                        ;8CCB35;
     db $17,$0E                                                           ;8CCB37;
     dw IndirectInstructions_IntroText_Period                             ;8CCB39; "."
-    dw $0005                                                             ;8CCB3B;
+    dw $0005*!FPS                                                        ;8CCB3B;
     db $18,$0E                                                           ;8CCB3D;
     dw IndirectInstructions_IntroText_Period                             ;8CCB3F; "."
     dw Instruction_SpawnBlinkingMarkers_WaitForInput_Page2               ;8CCB41;
@@ -5559,377 +5588,377 @@ CinematicBGObjectInstLists_IntroTextPage3:
 ; AT CERES SO SCIENTISTS COULD
 ; STUDY ITS ENERGY PRODUCING
 ; QUALITIES...
-    dw Instruction_HandleCreatingJapanText_Page3                         ;8CCB45;
+    dw Instruction_HandleCreatingSubtitle_Page3                          ;8CCB45;
     dw $0001                                                             ;8CCB47;
     db $01,$01                                                           ;8CCB49;
     dw IndirectInstructions_IntroText_Nothing                            ;8CCB4B;
-    dw $0005                                                             ;8CCB4D;
+    dw $0005*!FPS                                                        ;8CCB4D;
     db $01,$04                                                           ;8CCB4F;
     dw IndirectInstructions_IntroText_I                                  ;8CCB51; "I"
-    dw $0005                                                             ;8CCB53;
+    dw $0005*!FPS                                                        ;8CCB53;
     db $02,$04                                                           ;8CCB55;
     dw IndirectInstructions_IntroText_Space                              ;8CCB57; " "
-    dw $0005                                                             ;8CCB59;
+    dw $0005*!FPS                                                        ;8CCB59;
     db $03,$04                                                           ;8CCB5B;
     dw IndirectInstructions_IntroText_P                                  ;8CCB5D; "P"
-    dw $0005                                                             ;8CCB5F;
+    dw $0005*!FPS                                                        ;8CCB5F;
     db $04,$04                                                           ;8CCB61;
     dw IndirectInstructions_IntroText_E                                  ;8CCB63; "E"
-    dw $0005                                                             ;8CCB65;
+    dw $0005*!FPS                                                        ;8CCB65;
     db $05,$04                                                           ;8CCB67;
     dw IndirectInstructions_IntroText_R                                  ;8CCB69; "R"
-    dw $0005                                                             ;8CCB6B;
+    dw $0005*!FPS                                                        ;8CCB6B;
     db $06,$04                                                           ;8CCB6D;
     dw IndirectInstructions_IntroText_S                                  ;8CCB6F; "S"
-    dw $0005                                                             ;8CCB71;
+    dw $0005*!FPS                                                        ;8CCB71;
     db $07,$04                                                           ;8CCB73;
     dw IndirectInstructions_IntroText_O                                  ;8CCB75; "O"
-    dw $0005                                                             ;8CCB77;
+    dw $0005*!FPS                                                        ;8CCB77;
     db $08,$04                                                           ;8CCB79;
     dw IndirectInstructions_IntroText_N                                  ;8CCB7B; "N"
-    dw $0005                                                             ;8CCB7D;
+    dw $0005*!FPS                                                        ;8CCB7D;
     db $09,$04                                                           ;8CCB7F;
     dw IndirectInstructions_IntroText_A                                  ;8CCB81; "A"
-    dw $0005                                                             ;8CCB83;
+    dw $0005*!FPS                                                        ;8CCB83;
     db $0A,$04                                                           ;8CCB85;
     dw IndirectInstructions_IntroText_L                                  ;8CCB87; "L"
-    dw $0005                                                             ;8CCB89;
+    dw $0005*!FPS                                                        ;8CCB89;
     db $0B,$04                                                           ;8CCB8B;
     dw IndirectInstructions_IntroText_L                                  ;8CCB8D; "L"
-    dw $0005                                                             ;8CCB8F;
+    dw $0005*!FPS                                                        ;8CCB8F;
     db $0C,$04                                                           ;8CCB91;
     dw IndirectInstructions_IntroText_Y                                  ;8CCB93; "Y"
-    dw $0005                                                             ;8CCB95;
+    dw $0005*!FPS                                                        ;8CCB95;
     db $0D,$04                                                           ;8CCB97;
     dw IndirectInstructions_IntroText_Space                              ;8CCB99; " "
-    dw $0005                                                             ;8CCB9B;
+    dw $0005*!FPS                                                        ;8CCB9B;
     db $0E,$04                                                           ;8CCB9D;
     dw IndirectInstructions_IntroText_D                                  ;8CCB9F; "D"
-    dw $0005                                                             ;8CCBA1;
+    dw $0005*!FPS                                                        ;8CCBA1;
     db $0F,$04                                                           ;8CCBA3;
     dw IndirectInstructions_IntroText_E                                  ;8CCBA5; "E"
-    dw $0005                                                             ;8CCBA7;
+    dw $0005*!FPS                                                        ;8CCBA7;
     db $10,$04                                                           ;8CCBA9;
     dw IndirectInstructions_IntroText_L                                  ;8CCBAB; "L"
-    dw $0005                                                             ;8CCBAD;
+    dw $0005*!FPS                                                        ;8CCBAD;
     db $11,$04                                                           ;8CCBAF;
     dw IndirectInstructions_IntroText_I                                  ;8CCBB1; "I"
-    dw $0005                                                             ;8CCBB3;
+    dw $0005*!FPS                                                        ;8CCBB3;
     db $12,$04                                                           ;8CCBB5;
     dw IndirectInstructions_IntroText_V                                  ;8CCBB7; "V"
-    dw $0005                                                             ;8CCBB9;
+    dw $0005*!FPS                                                        ;8CCBB9;
     db $13,$04                                                           ;8CCBBB;
     dw IndirectInstructions_IntroText_E                                  ;8CCBBD; "E"
-    dw $0005                                                             ;8CCBBF;
+    dw $0005*!FPS                                                        ;8CCBBF;
     db $14,$04                                                           ;8CCBC1;
     dw IndirectInstructions_IntroText_R                                  ;8CCBC3; "R"
-    dw $0005                                                             ;8CCBC5;
+    dw $0005*!FPS                                                        ;8CCBC5;
     db $15,$04                                                           ;8CCBC7;
     dw IndirectInstructions_IntroText_E                                  ;8CCBC9; "E"
-    dw $0005                                                             ;8CCBCB;
+    dw $0005*!FPS                                                        ;8CCBCB;
     db $16,$04                                                           ;8CCBCD;
     dw IndirectInstructions_IntroText_D                                  ;8CCBCF; "D"
-    dw $0005                                                             ;8CCBD1;
+    dw $0005*!FPS                                                        ;8CCBD1;
     db $17,$04                                                           ;8CCBD3;
     dw IndirectInstructions_IntroText_Space                              ;8CCBD5; " "
-    dw $0005                                                             ;8CCBD7;
+    dw $0005*!FPS                                                        ;8CCBD7;
     db $18,$04                                                           ;8CCBD9;
     dw IndirectInstructions_IntroText_I                                  ;8CCBDB; "I"
-    dw $0005                                                             ;8CCBDD;
+    dw $0005*!FPS                                                        ;8CCBDD;
     db $19,$04                                                           ;8CCBDF;
     dw IndirectInstructions_IntroText_T                                  ;8CCBE1; "T"
-    dw $0005                                                             ;8CCBE3;
+    dw $0005*!FPS                                                        ;8CCBE3;
     db $1A,$04                                                           ;8CCBE5;
     dw IndirectInstructions_IntroText_Space                              ;8CCBE7; " "
-    dw $0005                                                             ;8CCBE9;
+    dw $0005*!FPS                                                        ;8CCBE9;
     db $1B,$04                                                           ;8CCBEB;
     dw IndirectInstructions_IntroText_T                                  ;8CCBED; "T"
-    dw $0005                                                             ;8CCBEF;
+    dw $0005*!FPS                                                        ;8CCBEF;
     db $1C,$04                                                           ;8CCBF1;
     dw IndirectInstructions_IntroText_O                                  ;8CCBF3; "O"
-    dw $0005                                                             ;8CCBF5;
+    dw $0005*!FPS                                                        ;8CCBF5;
     db $01,$06                                                           ;8CCBF7;
     dw IndirectInstructions_IntroText_T                                  ;8CCBF9; "T"
-    dw $0005                                                             ;8CCBFB;
+    dw $0005*!FPS                                                        ;8CCBFB;
     db $02,$06                                                           ;8CCBFD;
     dw IndirectInstructions_IntroText_H                                  ;8CCBFF; "H"
-    dw $0005                                                             ;8CCC01;
+    dw $0005*!FPS                                                        ;8CCC01;
     db $03,$06                                                           ;8CCC03;
     dw IndirectInstructions_IntroText_E                                  ;8CCC05; "E"
-    dw $0005                                                             ;8CCC07;
+    dw $0005*!FPS                                                        ;8CCC07;
     db $04,$06                                                           ;8CCC09;
     dw IndirectInstructions_IntroText_Space                              ;8CCC0B; " "
-    dw $0005                                                             ;8CCC0D;
+    dw $0005*!FPS                                                        ;8CCC0D;
     db $05,$06                                                           ;8CCC0F;
     dw IndirectInstructions_IntroText_G                                  ;8CCC11; "G"
-    dw $0005                                                             ;8CCC13;
+    dw $0005*!FPS                                                        ;8CCC13;
     db $06,$06                                                           ;8CCC15;
     dw IndirectInstructions_IntroText_A                                  ;8CCC17; "A"
-    dw $0005                                                             ;8CCC19;
+    dw $0005*!FPS                                                        ;8CCC19;
     db $07,$06                                                           ;8CCC1B;
     dw IndirectInstructions_IntroText_L                                  ;8CCC1D; "L"
-    dw $0005                                                             ;8CCC1F;
+    dw $0005*!FPS                                                        ;8CCC1F;
     db $08,$06                                                           ;8CCC21;
     dw IndirectInstructions_IntroText_A                                  ;8CCC23; "A"
-    dw $0005                                                             ;8CCC25;
+    dw $0005*!FPS                                                        ;8CCC25;
     db $09,$06                                                           ;8CCC27;
     dw IndirectInstructions_IntroText_C                                  ;8CCC29; "C"
-    dw $0005                                                             ;8CCC2B;
+    dw $0005*!FPS                                                        ;8CCC2B;
     db $0A,$06                                                           ;8CCC2D;
     dw IndirectInstructions_IntroText_T                                  ;8CCC2F; "T"
-    dw $0005                                                             ;8CCC31;
+    dw $0005*!FPS                                                        ;8CCC31;
     db $0B,$06                                                           ;8CCC33;
     dw IndirectInstructions_IntroText_I                                  ;8CCC35; "I"
-    dw $0005                                                             ;8CCC37;
+    dw $0005*!FPS                                                        ;8CCC37;
     db $0C,$06                                                           ;8CCC39;
     dw IndirectInstructions_IntroText_C                                  ;8CCC3B; "C"
-    dw $0005                                                             ;8CCC3D;
+    dw $0005*!FPS                                                        ;8CCC3D;
     db $0D,$06                                                           ;8CCC3F;
     dw IndirectInstructions_IntroText_Space                              ;8CCC41; " "
-    dw $0005                                                             ;8CCC43;
+    dw $0005*!FPS                                                        ;8CCC43;
     db $0E,$06                                                           ;8CCC45;
     dw IndirectInstructions_IntroText_R                                  ;8CCC47; "R"
-    dw $0005                                                             ;8CCC49;
+    dw $0005*!FPS                                                        ;8CCC49;
     db $0F,$06                                                           ;8CCC4B;
     dw IndirectInstructions_IntroText_E                                  ;8CCC4D; "E"
-    dw $0005                                                             ;8CCC4F;
+    dw $0005*!FPS                                                        ;8CCC4F;
     db $10,$06                                                           ;8CCC51;
     dw IndirectInstructions_IntroText_S                                  ;8CCC53; "S"
-    dw $0005                                                             ;8CCC55;
+    dw $0005*!FPS                                                        ;8CCC55;
     db $11,$06                                                           ;8CCC57;
     dw IndirectInstructions_IntroText_E                                  ;8CCC59; "E"
-    dw $0005                                                             ;8CCC5B;
+    dw $0005*!FPS                                                        ;8CCC5B;
     db $12,$06                                                           ;8CCC5D;
     dw IndirectInstructions_IntroText_A                                  ;8CCC5F; "A"
-    dw $0005                                                             ;8CCC61;
+    dw $0005*!FPS                                                        ;8CCC61;
     db $13,$06                                                           ;8CCC63;
     dw IndirectInstructions_IntroText_R                                  ;8CCC65; "R"
-    dw $0005                                                             ;8CCC67;
+    dw $0005*!FPS                                                        ;8CCC67;
     db $14,$06                                                           ;8CCC69;
     dw IndirectInstructions_IntroText_C                                  ;8CCC6B; "C"
-    dw $0005                                                             ;8CCC6D;
+    dw $0005*!FPS                                                        ;8CCC6D;
     db $15,$06                                                           ;8CCC6F;
     dw IndirectInstructions_IntroText_H                                  ;8CCC71; "H"
-    dw $0005                                                             ;8CCC73;
+    dw $0005*!FPS                                                        ;8CCC73;
     db $16,$06                                                           ;8CCC75;
     dw IndirectInstructions_IntroText_Space                              ;8CCC77; " "
-    dw $0005                                                             ;8CCC79;
+    dw $0005*!FPS                                                        ;8CCC79;
     db $17,$06                                                           ;8CCC7B;
     dw IndirectInstructions_IntroText_S                                  ;8CCC7D; "S"
-    dw $0005                                                             ;8CCC7F;
+    dw $0005*!FPS                                                        ;8CCC7F;
     db $18,$06                                                           ;8CCC81;
     dw IndirectInstructions_IntroText_T                                  ;8CCC83; "T"
-    dw $0005                                                             ;8CCC85;
+    dw $0005*!FPS                                                        ;8CCC85;
     db $19,$06                                                           ;8CCC87;
     dw IndirectInstructions_IntroText_A                                  ;8CCC89; "A"
-    dw $0005                                                             ;8CCC8B;
+    dw $0005*!FPS                                                        ;8CCC8B;
     db $1A,$06                                                           ;8CCC8D;
     dw IndirectInstructions_IntroText_T                                  ;8CCC8F; "T"
-    dw $0005                                                             ;8CCC91;
+    dw $0005*!FPS                                                        ;8CCC91;
     db $1B,$06                                                           ;8CCC93;
     dw IndirectInstructions_IntroText_I                                  ;8CCC95; "I"
-    dw $0005                                                             ;8CCC97;
+    dw $0005*!FPS                                                        ;8CCC97;
     db $1C,$06                                                           ;8CCC99;
     dw IndirectInstructions_IntroText_O                                  ;8CCC9B; "O"
-    dw $0005                                                             ;8CCC9D;
+    dw $0005*!FPS                                                        ;8CCC9D;
     db $1D,$06                                                           ;8CCC9F;
     dw IndirectInstructions_IntroText_N                                  ;8CCCA1; "N"
-    dw $0005                                                             ;8CCCA3;
+    dw $0005*!FPS                                                        ;8CCCA3;
     db $01,$08                                                           ;8CCCA5;
     dw IndirectInstructions_IntroText_A                                  ;8CCCA7; "A"
-    dw $0005                                                             ;8CCCA9;
+    dw $0005*!FPS                                                        ;8CCCA9;
     db $02,$08                                                           ;8CCCAB;
     dw IndirectInstructions_IntroText_T                                  ;8CCCAD; "T"
-    dw $0005                                                             ;8CCCAF;
+    dw $0005*!FPS                                                        ;8CCCAF;
     db $03,$08                                                           ;8CCCB1;
     dw IndirectInstructions_IntroText_Space                              ;8CCCB3; " "
-    dw $0005                                                             ;8CCCB5;
+    dw $0005*!FPS                                                        ;8CCCB5;
     db $04,$08                                                           ;8CCCB7;
     dw IndirectInstructions_IntroText_C                                  ;8CCCB9; "C"
-    dw $0005                                                             ;8CCCBB;
+    dw $0005*!FPS                                                        ;8CCCBB;
     db $05,$08                                                           ;8CCCBD;
     dw IndirectInstructions_IntroText_E                                  ;8CCCBF; "E"
-    dw $0005                                                             ;8CCCC1;
+    dw $0005*!FPS                                                        ;8CCCC1;
     db $06,$08                                                           ;8CCCC3;
     dw IndirectInstructions_IntroText_R                                  ;8CCCC5; "R"
-    dw $0005                                                             ;8CCCC7;
+    dw $0005*!FPS                                                        ;8CCCC7;
     db $07,$08                                                           ;8CCCC9;
     dw IndirectInstructions_IntroText_E                                  ;8CCCCB; "E"
-    dw $0005                                                             ;8CCCCD;
+    dw $0005*!FPS                                                        ;8CCCCD;
     db $08,$08                                                           ;8CCCCF;
     dw IndirectInstructions_IntroText_S                                  ;8CCCD1; "S"
-    dw $0005                                                             ;8CCCD3;
+    dw $0005*!FPS                                                        ;8CCCD3;
     db $09,$08                                                           ;8CCCD5;
     dw IndirectInstructions_IntroText_Space                              ;8CCCD7; " "
-    dw $0005                                                             ;8CCCD9;
+    dw $0005*!FPS                                                        ;8CCCD9;
     db $0A,$08                                                           ;8CCCDB;
     dw IndirectInstructions_IntroText_S                                  ;8CCCDD; "S"
-    dw $0005                                                             ;8CCCDF;
+    dw $0005*!FPS                                                        ;8CCCDF;
     db $0B,$08                                                           ;8CCCE1;
     dw IndirectInstructions_IntroText_O                                  ;8CCCE3; "O"
-    dw $0005                                                             ;8CCCE5;
+    dw $0005*!FPS                                                        ;8CCCE5;
     db $0C,$08                                                           ;8CCCE7;
     dw IndirectInstructions_IntroText_Space                              ;8CCCE9; " "
-    dw $0005                                                             ;8CCCEB;
+    dw $0005*!FPS                                                        ;8CCCEB;
     db $0D,$08                                                           ;8CCCED;
     dw IndirectInstructions_IntroText_S                                  ;8CCCEF; "S"
-    dw $0005                                                             ;8CCCF1;
+    dw $0005*!FPS                                                        ;8CCCF1;
     db $0E,$08                                                           ;8CCCF3;
     dw IndirectInstructions_IntroText_C                                  ;8CCCF5; "C"
-    dw $0005                                                             ;8CCCF7;
+    dw $0005*!FPS                                                        ;8CCCF7;
     db $0F,$08                                                           ;8CCCF9;
     dw IndirectInstructions_IntroText_I                                  ;8CCCFB; "I"
-    dw $0005                                                             ;8CCCFD;
+    dw $0005*!FPS                                                        ;8CCCFD;
     db $10,$08                                                           ;8CCCFF;
     dw IndirectInstructions_IntroText_E                                  ;8CCD01; "E"
-    dw $0005                                                             ;8CCD03;
+    dw $0005*!FPS                                                        ;8CCD03;
     db $11,$08                                                           ;8CCD05;
     dw IndirectInstructions_IntroText_N                                  ;8CCD07; "N"
-    dw $0005                                                             ;8CCD09;
+    dw $0005*!FPS                                                        ;8CCD09;
     db $12,$08                                                           ;8CCD0B;
     dw IndirectInstructions_IntroText_T                                  ;8CCD0D; "T"
-    dw $0005                                                             ;8CCD0F;
+    dw $0005*!FPS                                                        ;8CCD0F;
     db $13,$08                                                           ;8CCD11;
     dw IndirectInstructions_IntroText_I                                  ;8CCD13; "I"
-    dw $0005                                                             ;8CCD15;
+    dw $0005*!FPS                                                        ;8CCD15;
     db $14,$08                                                           ;8CCD17;
     dw IndirectInstructions_IntroText_S                                  ;8CCD19; "S"
-    dw $0005                                                             ;8CCD1B;
+    dw $0005*!FPS                                                        ;8CCD1B;
     db $15,$08                                                           ;8CCD1D;
     dw IndirectInstructions_IntroText_T                                  ;8CCD1F; "T"
-    dw $0005                                                             ;8CCD21;
+    dw $0005*!FPS                                                        ;8CCD21;
     db $16,$08                                                           ;8CCD23;
     dw IndirectInstructions_IntroText_S                                  ;8CCD25; "S"
-    dw $0005                                                             ;8CCD27;
+    dw $0005*!FPS                                                        ;8CCD27;
     db $17,$08                                                           ;8CCD29;
     dw IndirectInstructions_IntroText_Space                              ;8CCD2B; " "
-    dw $0005                                                             ;8CCD2D;
+    dw $0005*!FPS                                                        ;8CCD2D;
     db $18,$08                                                           ;8CCD2F;
     dw IndirectInstructions_IntroText_C                                  ;8CCD31; "C"
-    dw $0005                                                             ;8CCD33;
+    dw $0005*!FPS                                                        ;8CCD33;
     db $19,$08                                                           ;8CCD35;
     dw IndirectInstructions_IntroText_O                                  ;8CCD37; "O"
-    dw $0005                                                             ;8CCD39;
+    dw $0005*!FPS                                                        ;8CCD39;
     db $1A,$08                                                           ;8CCD3B;
     dw IndirectInstructions_IntroText_U                                  ;8CCD3D; "U"
-    dw $0005                                                             ;8CCD3F;
+    dw $0005*!FPS                                                        ;8CCD3F;
     db $1B,$08                                                           ;8CCD41;
     dw IndirectInstructions_IntroText_L                                  ;8CCD43; "L"
-    dw $0005                                                             ;8CCD45;
+    dw $0005*!FPS                                                        ;8CCD45;
     db $1C,$08                                                           ;8CCD47;
     dw IndirectInstructions_IntroText_D                                  ;8CCD49; "D"
-    dw $0005                                                             ;8CCD4B;
+    dw $0005*!FPS                                                        ;8CCD4B;
     db $01,$0A                                                           ;8CCD4D;
     dw IndirectInstructions_IntroText_S                                  ;8CCD4F; "S"
-    dw $0005                                                             ;8CCD51;
+    dw $0005*!FPS                                                        ;8CCD51;
     db $02,$0A                                                           ;8CCD53;
     dw IndirectInstructions_IntroText_T                                  ;8CCD55; "T"
-    dw $0005                                                             ;8CCD57;
+    dw $0005*!FPS                                                        ;8CCD57;
     db $03,$0A                                                           ;8CCD59;
     dw IndirectInstructions_IntroText_U                                  ;8CCD5B; "U"
-    dw $0005                                                             ;8CCD5D;
+    dw $0005*!FPS                                                        ;8CCD5D;
     db $04,$0A                                                           ;8CCD5F;
     dw IndirectInstructions_IntroText_D                                  ;8CCD61; "D"
-    dw $0005                                                             ;8CCD63;
+    dw $0005*!FPS                                                        ;8CCD63;
     db $05,$0A                                                           ;8CCD65;
     dw IndirectInstructions_IntroText_Y                                  ;8CCD67; "Y"
-    dw $0005                                                             ;8CCD69;
+    dw $0005*!FPS                                                        ;8CCD69;
     db $06,$0A                                                           ;8CCD6B;
     dw IndirectInstructions_IntroText_Space                              ;8CCD6D; " "
-    dw $0005                                                             ;8CCD6F;
+    dw $0005*!FPS                                                        ;8CCD6F;
     db $07,$0A                                                           ;8CCD71;
     dw IndirectInstructions_IntroText_I                                  ;8CCD73; "I"
-    dw $0005                                                             ;8CCD75;
+    dw $0005*!FPS                                                        ;8CCD75;
     db $08,$0A                                                           ;8CCD77;
     dw IndirectInstructions_IntroText_T                                  ;8CCD79; "T"
-    dw $0005                                                             ;8CCD7B;
+    dw $0005*!FPS                                                        ;8CCD7B;
     db $09,$0A                                                           ;8CCD7D;
     dw IndirectInstructions_IntroText_S                                  ;8CCD7F; "S"
-    dw $0005                                                             ;8CCD81;
+    dw $0005*!FPS                                                        ;8CCD81;
     db $0A,$0A                                                           ;8CCD83;
     dw IndirectInstructions_IntroText_Space                              ;8CCD85; " "
-    dw $0005                                                             ;8CCD87;
+    dw $0005*!FPS                                                        ;8CCD87;
     db $0B,$0A                                                           ;8CCD89;
     dw IndirectInstructions_IntroText_E                                  ;8CCD8B; "E"
-    dw $0005                                                             ;8CCD8D;
+    dw $0005*!FPS                                                        ;8CCD8D;
     db $0C,$0A                                                           ;8CCD8F;
     dw IndirectInstructions_IntroText_N                                  ;8CCD91; "N"
-    dw $0005                                                             ;8CCD93;
+    dw $0005*!FPS                                                        ;8CCD93;
     db $0D,$0A                                                           ;8CCD95;
     dw IndirectInstructions_IntroText_E                                  ;8CCD97; "E"
-    dw $0005                                                             ;8CCD99;
+    dw $0005*!FPS                                                        ;8CCD99;
     db $0E,$0A                                                           ;8CCD9B;
     dw IndirectInstructions_IntroText_R                                  ;8CCD9D; "R"
-    dw $0005                                                             ;8CCD9F;
+    dw $0005*!FPS                                                        ;8CCD9F;
     db $0F,$0A                                                           ;8CCDA1;
     dw IndirectInstructions_IntroText_G                                  ;8CCDA3; "G"
-    dw $0005                                                             ;8CCDA5;
+    dw $0005*!FPS                                                        ;8CCDA5;
     db $10,$0A                                                           ;8CCDA7;
     dw IndirectInstructions_IntroText_Y                                  ;8CCDA9; "Y"
-    dw $0005                                                             ;8CCDAB;
+    dw $0005*!FPS                                                        ;8CCDAB;
     db $11,$0A                                                           ;8CCDAD;
     dw IndirectInstructions_IntroText_Space                              ;8CCDAF; " "
-    dw $0005                                                             ;8CCDB1;
+    dw $0005*!FPS                                                        ;8CCDB1;
     db $12,$0A                                                           ;8CCDB3;
     dw IndirectInstructions_IntroText_P                                  ;8CCDB5; "P"
-    dw $0005                                                             ;8CCDB7;
+    dw $0005*!FPS                                                        ;8CCDB7;
     db $13,$0A                                                           ;8CCDB9;
     dw IndirectInstructions_IntroText_R                                  ;8CCDBB; "R"
-    dw $0005                                                             ;8CCDBD;
+    dw $0005*!FPS                                                        ;8CCDBD;
     db $14,$0A                                                           ;8CCDBF;
     dw IndirectInstructions_IntroText_O                                  ;8CCDC1; "O"
-    dw $0005                                                             ;8CCDC3;
+    dw $0005*!FPS                                                        ;8CCDC3;
     db $15,$0A                                                           ;8CCDC5;
     dw IndirectInstructions_IntroText_D                                  ;8CCDC7; "D"
-    dw $0005                                                             ;8CCDC9;
+    dw $0005*!FPS                                                        ;8CCDC9;
     db $16,$0A                                                           ;8CCDCB;
     dw IndirectInstructions_IntroText_U                                  ;8CCDCD; "U"
-    dw $0005                                                             ;8CCDCF;
+    dw $0005*!FPS                                                        ;8CCDCF;
     db $17,$0A                                                           ;8CCDD1;
     dw IndirectInstructions_IntroText_C                                  ;8CCDD3; "C"
-    dw $0005                                                             ;8CCDD5;
+    dw $0005*!FPS                                                        ;8CCDD5;
     db $18,$0A                                                           ;8CCDD7;
     dw IndirectInstructions_IntroText_I                                  ;8CCDD9; "I"
-    dw $0005                                                             ;8CCDDB;
+    dw $0005*!FPS                                                        ;8CCDDB;
     db $19,$0A                                                           ;8CCDDD;
     dw IndirectInstructions_IntroText_N                                  ;8CCDDF; "N"
-    dw $0005                                                             ;8CCDE1;
+    dw $0005*!FPS                                                        ;8CCDE1;
     db $1A,$0A                                                           ;8CCDE3;
     dw IndirectInstructions_IntroText_G                                  ;8CCDE5; "G"
-    dw $0005                                                             ;8CCDE7;
+    dw $0005*!FPS                                                        ;8CCDE7;
     db $01,$0C                                                           ;8CCDE9;
     dw IndirectInstructions_IntroText_Q                                  ;8CCDEB; "Q"
-    dw $0005                                                             ;8CCDED;
+    dw $0005*!FPS                                                        ;8CCDED;
     db $02,$0C                                                           ;8CCDEF;
     dw IndirectInstructions_IntroText_U                                  ;8CCDF1; "U"
-    dw $0005                                                             ;8CCDF3;
+    dw $0005*!FPS                                                        ;8CCDF3;
     db $03,$0C                                                           ;8CCDF5;
     dw IndirectInstructions_IntroText_A                                  ;8CCDF7; "A"
-    dw $0005                                                             ;8CCDF9;
+    dw $0005*!FPS                                                        ;8CCDF9;
     db $04,$0C                                                           ;8CCDFB;
     dw IndirectInstructions_IntroText_L                                  ;8CCDFD; "L"
-    dw $0005                                                             ;8CCDFF;
+    dw $0005*!FPS                                                        ;8CCDFF;
     db $05,$0C                                                           ;8CCE01;
     dw IndirectInstructions_IntroText_I                                  ;8CCE03; "I"
-    dw $0005                                                             ;8CCE05;
+    dw $0005*!FPS                                                        ;8CCE05;
     db $06,$0C                                                           ;8CCE07;
     dw IndirectInstructions_IntroText_T                                  ;8CCE09; "T"
-    dw $0005                                                             ;8CCE0B;
+    dw $0005*!FPS                                                        ;8CCE0B;
     db $07,$0C                                                           ;8CCE0D;
     dw IndirectInstructions_IntroText_I                                  ;8CCE0F; "I"
-    dw $0005                                                             ;8CCE11;
+    dw $0005*!FPS                                                        ;8CCE11;
     db $08,$0C                                                           ;8CCE13;
     dw IndirectInstructions_IntroText_E                                  ;8CCE15; "E"
-    dw $0005                                                             ;8CCE17;
+    dw $0005*!FPS                                                        ;8CCE17;
     db $09,$0C                                                           ;8CCE19;
     dw IndirectInstructions_IntroText_S                                  ;8CCE1B; "S"
-    dw $0005                                                             ;8CCE1D;
+    dw $0005*!FPS                                                        ;8CCE1D;
     db $0A,$0C                                                           ;8CCE1F;
     dw IndirectInstructions_IntroText_Period                             ;8CCE21; "."
-    dw $0005                                                             ;8CCE23;
+    dw $0005*!FPS                                                        ;8CCE23;
     db $0B,$0C                                                           ;8CCE25;
     dw IndirectInstructions_IntroText_Period                             ;8CCE27; "."
-    dw $0005                                                             ;8CCE29;
+    dw $0005*!FPS                                                        ;8CCE29;
     db $0C,$0C                                                           ;8CCE2B;
     dw IndirectInstructions_IntroText_Period                             ;8CCE2D; "."
     dw Instruction_SpawnBlinkingMarkers_WaitForInput_Page3               ;8CCE2F;
@@ -5943,407 +5972,407 @@ CinematicBGObjectInstLists_IntroTextPage4:
 ; THAT THE POWERS OF THE
 ; METROID MIGHT BE HARNESSED
 ; FOR THE GOOD OF CIVILIZATION!
-    dw Instruction_HandleCreatingJapanText_Page4                         ;8CCE33;
+    dw Instruction_HandleCreatingSubtitle_Page4                          ;8CCE33;
     dw $0001                                                             ;8CCE35;
     db $01,$01                                                           ;8CCE37;
     dw IndirectInstructions_IntroText_Nothing                            ;8CCE39;
-    dw $0005                                                             ;8CCE3B;
+    dw $0005*!FPS                                                        ;8CCE3B;
     db $01,$04                                                           ;8CCE3D;
     dw IndirectInstructions_IntroText_T                                  ;8CCE3F; "T"
-    dw $0005                                                             ;8CCE41;
+    dw $0005*!FPS                                                        ;8CCE41;
     db $02,$04                                                           ;8CCE43;
     dw IndirectInstructions_IntroText_H                                  ;8CCE45; "H"
-    dw $0005                                                             ;8CCE47;
+    dw $0005*!FPS                                                        ;8CCE47;
     db $03,$04                                                           ;8CCE49;
     dw IndirectInstructions_IntroText_E                                  ;8CCE4B; "E"
-    dw $0005                                                             ;8CCE4D;
+    dw $0005*!FPS                                                        ;8CCE4D;
     db $04,$04                                                           ;8CCE4F;
     dw IndirectInstructions_IntroText_Space                              ;8CCE51; " "
-    dw $0005                                                             ;8CCE53;
+    dw $0005*!FPS                                                        ;8CCE53;
     db $05,$04                                                           ;8CCE55;
     dw IndirectInstructions_IntroText_S                                  ;8CCE57; "S"
-    dw $0005                                                             ;8CCE59;
+    dw $0005*!FPS                                                        ;8CCE59;
     db $06,$04                                                           ;8CCE5B;
     dw IndirectInstructions_IntroText_C                                  ;8CCE5D; "C"
-    dw $0005                                                             ;8CCE5F;
+    dw $0005*!FPS                                                        ;8CCE5F;
     db $07,$04                                                           ;8CCE61;
     dw IndirectInstructions_IntroText_I                                  ;8CCE63; "I"
-    dw $0005                                                             ;8CCE65;
+    dw $0005*!FPS                                                        ;8CCE65;
     db $08,$04                                                           ;8CCE67;
     dw IndirectInstructions_IntroText_E                                  ;8CCE69; "E"
-    dw $0005                                                             ;8CCE6B;
+    dw $0005*!FPS                                                        ;8CCE6B;
     db $09,$04                                                           ;8CCE6D;
     dw IndirectInstructions_IntroText_N                                  ;8CCE6F; "N"
-    dw $0005                                                             ;8CCE71;
+    dw $0005*!FPS                                                        ;8CCE71;
     db $0A,$04                                                           ;8CCE73;
     dw IndirectInstructions_IntroText_T                                  ;8CCE75; "T"
-    dw $0005                                                             ;8CCE77;
+    dw $0005*!FPS                                                        ;8CCE77;
     db $0B,$04                                                           ;8CCE79;
     dw IndirectInstructions_IntroText_I                                  ;8CCE7B; "I"
-    dw $0005                                                             ;8CCE7D;
+    dw $0005*!FPS                                                        ;8CCE7D;
     db $0C,$04                                                           ;8CCE7F;
     dw IndirectInstructions_IntroText_S                                  ;8CCE81; "S"
-    dw $0005                                                             ;8CCE83;
+    dw $0005*!FPS                                                        ;8CCE83;
     db $0D,$04                                                           ;8CCE85;
     dw IndirectInstructions_IntroText_T                                  ;8CCE87; "T"
-    dw $0005                                                             ;8CCE89;
+    dw $0005*!FPS                                                        ;8CCE89;
     db $0E,$04                                                           ;8CCE8B;
     dw IndirectInstructions_IntroText_S                                  ;8CCE8D; "S"
-    dw $0005                                                             ;8CCE8F;
+    dw $0005*!FPS                                                        ;8CCE8F;
     db $0F,$04                                                           ;8CCE91;
     dw IndirectInstructions_IntroText_Apostrophe                         ;8CCE93; "'"
-    dw $0005                                                             ;8CCE95;
+    dw $0005*!FPS                                                        ;8CCE95;
     db $10,$04                                                           ;8CCE97;
     dw IndirectInstructions_IntroText_Space                              ;8CCE99; " "
-    dw $0005                                                             ;8CCE9B;
+    dw $0005*!FPS                                                        ;8CCE9B;
     db $11,$04                                                           ;8CCE9D;
     dw IndirectInstructions_IntroText_F                                  ;8CCE9F; "F"
-    dw $0005                                                             ;8CCEA1;
+    dw $0005*!FPS                                                        ;8CCEA1;
     db $12,$04                                                           ;8CCEA3;
     dw IndirectInstructions_IntroText_I                                  ;8CCEA5; "I"
-    dw $0005                                                             ;8CCEA7;
+    dw $0005*!FPS                                                        ;8CCEA7;
     db $13,$04                                                           ;8CCEA9;
     dw IndirectInstructions_IntroText_N                                  ;8CCEAB; "N"
-    dw $0005                                                             ;8CCEAD;
+    dw $0005*!FPS                                                        ;8CCEAD;
     db $14,$04                                                           ;8CCEAF;
     dw IndirectInstructions_IntroText_D                                  ;8CCEB1; "D"
-    dw $0005                                                             ;8CCEB3;
+    dw $0005*!FPS                                                        ;8CCEB3;
     db $15,$04                                                           ;8CCEB5;
     dw IndirectInstructions_IntroText_I                                  ;8CCEB7; "I"
-    dw $0005                                                             ;8CCEB9;
+    dw $0005*!FPS                                                        ;8CCEB9;
     db $16,$04                                                           ;8CCEBB;
     dw IndirectInstructions_IntroText_N                                  ;8CCEBD; "N"
-    dw $0005                                                             ;8CCEBF;
+    dw $0005*!FPS                                                        ;8CCEBF;
     db $17,$04                                                           ;8CCEC1;
     dw IndirectInstructions_IntroText_G                                  ;8CCEC3; "G"
-    dw $0005                                                             ;8CCEC5;
+    dw $0005*!FPS                                                        ;8CCEC5;
     db $18,$04                                                           ;8CCEC7;
     dw IndirectInstructions_IntroText_S                                  ;8CCEC9; "S"
-    dw $0005                                                             ;8CCECB;
+    dw $0005*!FPS                                                        ;8CCECB;
     db $19,$04                                                           ;8CCECD;
     dw IndirectInstructions_IntroText_Space                              ;8CCECF; " "
-    dw $0005                                                             ;8CCED1;
+    dw $0005*!FPS                                                        ;8CCED1;
     db $1A,$04                                                           ;8CCED3;
     dw IndirectInstructions_IntroText_W                                  ;8CCED5; "W"
-    dw $0005                                                             ;8CCED7;
+    dw $0005*!FPS                                                        ;8CCED7;
     db $1B,$04                                                           ;8CCED9;
     dw IndirectInstructions_IntroText_E                                  ;8CCEDB; "E"
-    dw $0005                                                             ;8CCEDD;
+    dw $0005*!FPS                                                        ;8CCEDD;
     db $1C,$04                                                           ;8CCEDF;
     dw IndirectInstructions_IntroText_R                                  ;8CCEE1; "R"
-    dw $0005                                                             ;8CCEE3;
+    dw $0005*!FPS                                                        ;8CCEE3;
     db $1D,$04                                                           ;8CCEE5;
     dw IndirectInstructions_IntroText_E                                  ;8CCEE7; "E"
-    dw $0005                                                             ;8CCEE9;
+    dw $0005*!FPS                                                        ;8CCEE9;
     db $01,$06                                                           ;8CCEEB;
     dw IndirectInstructions_IntroText_A                                  ;8CCEED; "A"
-    dw $0005                                                             ;8CCEEF;
+    dw $0005*!FPS                                                        ;8CCEEF;
     db $02,$06                                                           ;8CCEF1;
     dw IndirectInstructions_IntroText_S                                  ;8CCEF3; "S"
-    dw $0005                                                             ;8CCEF5;
+    dw $0005*!FPS                                                        ;8CCEF5;
     db $03,$06                                                           ;8CCEF7;
     dw IndirectInstructions_IntroText_T                                  ;8CCEF9; "T"
-    dw $0005                                                             ;8CCEFB;
+    dw $0005*!FPS                                                        ;8CCEFB;
     db $04,$06                                                           ;8CCEFD;
     dw IndirectInstructions_IntroText_O                                  ;8CCEFF; "O"
-    dw $0005                                                             ;8CCF01;
+    dw $0005*!FPS                                                        ;8CCF01;
     db $05,$06                                                           ;8CCF03;
     dw IndirectInstructions_IntroText_U                                  ;8CCF05; "U"
-    dw $0005                                                             ;8CCF07;
+    dw $0005*!FPS                                                        ;8CCF07;
     db $06,$06                                                           ;8CCF09;
     dw IndirectInstructions_IntroText_N                                  ;8CCF0B; "N"
-    dw $0005                                                             ;8CCF0D;
+    dw $0005*!FPS                                                        ;8CCF0D;
     db $07,$06                                                           ;8CCF0F;
     dw IndirectInstructions_IntroText_D                                  ;8CCF11; "D"
-    dw $0005                                                             ;8CCF13;
+    dw $0005*!FPS                                                        ;8CCF13;
     db $08,$06                                                           ;8CCF15;
     dw IndirectInstructions_IntroText_I                                  ;8CCF17; "I"
-    dw $0005                                                             ;8CCF19;
+    dw $0005*!FPS                                                        ;8CCF19;
     db $09,$06                                                           ;8CCF1B;
     dw IndirectInstructions_IntroText_N                                  ;8CCF1D; "N"
-    dw $0005                                                             ;8CCF1F;
+    dw $0005*!FPS                                                        ;8CCF1F;
     db $0A,$06                                                           ;8CCF21;
     dw IndirectInstructions_IntroText_G                                  ;8CCF23; "G"
-    dw $0005                                                             ;8CCF25;
+    dw $0005*!FPS                                                        ;8CCF25;
     db $0B,$06                                                           ;8CCF27;
     dw IndirectInstructions_IntroText_ExclamationPoint                   ;8CCF29; "!"
-    dw $0005                                                             ;8CCF2B;
+    dw $0005*!FPS                                                        ;8CCF2B;
     db $0C,$06                                                           ;8CCF2D;
     dw IndirectInstructions_IntroText_Space                              ;8CCF2F; " "
-    dw $0005                                                             ;8CCF31;
+    dw $0005*!FPS                                                        ;8CCF31;
     db $0D,$06                                                           ;8CCF33;
     dw IndirectInstructions_IntroText_T                                  ;8CCF35; "T"
-    dw $0005                                                             ;8CCF37;
+    dw $0005*!FPS                                                        ;8CCF37;
     db $0E,$06                                                           ;8CCF39;
     dw IndirectInstructions_IntroText_H                                  ;8CCF3B; "H"
-    dw $0005                                                             ;8CCF3D;
+    dw $0005*!FPS                                                        ;8CCF3D;
     db $0F,$06                                                           ;8CCF3F;
     dw IndirectInstructions_IntroText_E                                  ;8CCF41; "E"
-    dw $0005                                                             ;8CCF43;
+    dw $0005*!FPS                                                        ;8CCF43;
     db $10,$06                                                           ;8CCF45;
     dw IndirectInstructions_IntroText_Y                                  ;8CCF47; "Y"
-    dw $0005                                                             ;8CCF49;
+    dw $0005*!FPS                                                        ;8CCF49;
     db $11,$06                                                           ;8CCF4B;
     dw IndirectInstructions_IntroText_Space                              ;8CCF4D; " "
-    dw $0005                                                             ;8CCF4F;
+    dw $0005*!FPS                                                        ;8CCF4F;
     db $12,$06                                                           ;8CCF51;
     dw IndirectInstructions_IntroText_D                                  ;8CCF53; "D"
-    dw $0005                                                             ;8CCF55;
+    dw $0005*!FPS                                                        ;8CCF55;
     db $13,$06                                                           ;8CCF57;
     dw IndirectInstructions_IntroText_I                                  ;8CCF59; "I"
-    dw $0005                                                             ;8CCF5B;
+    dw $0005*!FPS                                                        ;8CCF5B;
     db $14,$06                                                           ;8CCF5D;
     dw IndirectInstructions_IntroText_S                                  ;8CCF5F; "S"
-    dw $0005                                                             ;8CCF61;
+    dw $0005*!FPS                                                        ;8CCF61;
     db $15,$06                                                           ;8CCF63;
     dw IndirectInstructions_IntroText_C                                  ;8CCF65; "C"
-    dw $0005                                                             ;8CCF67;
+    dw $0005*!FPS                                                        ;8CCF67;
     db $16,$06                                                           ;8CCF69;
     dw IndirectInstructions_IntroText_O                                  ;8CCF6B; "O"
-    dw $0005                                                             ;8CCF6D;
+    dw $0005*!FPS                                                        ;8CCF6D;
     db $17,$06                                                           ;8CCF6F;
     dw IndirectInstructions_IntroText_V                                  ;8CCF71; "V"
-    dw $0005                                                             ;8CCF73;
+    dw $0005*!FPS                                                        ;8CCF73;
     db $18,$06                                                           ;8CCF75;
     dw IndirectInstructions_IntroText_E                                  ;8CCF77; "E"
-    dw $0005                                                             ;8CCF79;
+    dw $0005*!FPS                                                        ;8CCF79;
     db $19,$06                                                           ;8CCF7B;
     dw IndirectInstructions_IntroText_R                                  ;8CCF7D; "R"
-    dw $0005                                                             ;8CCF7F;
+    dw $0005*!FPS                                                        ;8CCF7F;
     db $1A,$06                                                           ;8CCF81;
     dw IndirectInstructions_IntroText_E                                  ;8CCF83; "E"
-    dw $0005                                                             ;8CCF85;
+    dw $0005*!FPS                                                        ;8CCF85;
     db $1B,$06                                                           ;8CCF87;
     dw IndirectInstructions_IntroText_D                                  ;8CCF89; "D"
-    dw $0005                                                             ;8CCF8B;
+    dw $0005*!FPS                                                        ;8CCF8B;
     db $01,$08                                                           ;8CCF8D;
     dw IndirectInstructions_IntroText_T                                  ;8CCF8F; "T"
-    dw $0005                                                             ;8CCF91;
+    dw $0005*!FPS                                                        ;8CCF91;
     db $02,$08                                                           ;8CCF93;
     dw IndirectInstructions_IntroText_H                                  ;8CCF95; "H"
-    dw $0005                                                             ;8CCF97;
+    dw $0005*!FPS                                                        ;8CCF97;
     db $03,$08                                                           ;8CCF99;
     dw IndirectInstructions_IntroText_A                                  ;8CCF9B; "A"
-    dw $0005                                                             ;8CCF9D;
+    dw $0005*!FPS                                                        ;8CCF9D;
     db $04,$08                                                           ;8CCF9F;
     dw IndirectInstructions_IntroText_T                                  ;8CCFA1; "T"
-    dw $0005                                                             ;8CCFA3;
+    dw $0005*!FPS                                                        ;8CCFA3;
     db $05,$08                                                           ;8CCFA5;
     dw IndirectInstructions_IntroText_Space                              ;8CCFA7; " "
-    dw $0005                                                             ;8CCFA9;
+    dw $0005*!FPS                                                        ;8CCFA9;
     db $06,$08                                                           ;8CCFAB;
     dw IndirectInstructions_IntroText_T                                  ;8CCFAD; "T"
-    dw $0005                                                             ;8CCFAF;
+    dw $0005*!FPS                                                        ;8CCFAF;
     db $07,$08                                                           ;8CCFB1;
     dw IndirectInstructions_IntroText_H                                  ;8CCFB3; "H"
-    dw $0005                                                             ;8CCFB5;
+    dw $0005*!FPS                                                        ;8CCFB5;
     db $08,$08                                                           ;8CCFB7;
     dw IndirectInstructions_IntroText_E                                  ;8CCFB9; "E"
-    dw $0005                                                             ;8CCFBB;
+    dw $0005*!FPS                                                        ;8CCFBB;
     db $09,$08                                                           ;8CCFBD;
     dw IndirectInstructions_IntroText_Space                              ;8CCFBF; " "
-    dw $0005                                                             ;8CCFC1;
+    dw $0005*!FPS                                                        ;8CCFC1;
     db $0A,$08                                                           ;8CCFC3;
     dw IndirectInstructions_IntroText_P                                  ;8CCFC5; "P"
-    dw $0005                                                             ;8CCFC7;
+    dw $0005*!FPS                                                        ;8CCFC7;
     db $0B,$08                                                           ;8CCFC9;
     dw IndirectInstructions_IntroText_O                                  ;8CCFCB; "O"
-    dw $0005                                                             ;8CCFCD;
+    dw $0005*!FPS                                                        ;8CCFCD;
     db $0C,$08                                                           ;8CCFCF;
     dw IndirectInstructions_IntroText_W                                  ;8CCFD1; "W"
-    dw $0005                                                             ;8CCFD3;
+    dw $0005*!FPS                                                        ;8CCFD3;
     db $0D,$08                                                           ;8CCFD5;
     dw IndirectInstructions_IntroText_E                                  ;8CCFD7; "E"
-    dw $0005                                                             ;8CCFD9;
+    dw $0005*!FPS                                                        ;8CCFD9;
     db $0E,$08                                                           ;8CCFDB;
     dw IndirectInstructions_IntroText_R                                  ;8CCFDD; "R"
-    dw $0005                                                             ;8CCFDF;
+    dw $0005*!FPS                                                        ;8CCFDF;
     db $0F,$08                                                           ;8CCFE1;
     dw IndirectInstructions_IntroText_S                                  ;8CCFE3; "S"
-    dw $0005                                                             ;8CCFE5;
+    dw $0005*!FPS                                                        ;8CCFE5;
     db $10,$08                                                           ;8CCFE7;
     dw IndirectInstructions_IntroText_Space                              ;8CCFE9; " "
-    dw $0005                                                             ;8CCFEB;
+    dw $0005*!FPS                                                        ;8CCFEB;
     db $11,$08                                                           ;8CCFED;
     dw IndirectInstructions_IntroText_O                                  ;8CCFEF; "O"
-    dw $0005                                                             ;8CCFF1;
+    dw $0005*!FPS                                                        ;8CCFF1;
     db $12,$08                                                           ;8CCFF3;
     dw IndirectInstructions_IntroText_F                                  ;8CCFF5; "F"
-    dw $0005                                                             ;8CCFF7;
+    dw $0005*!FPS                                                        ;8CCFF7;
     db $13,$08                                                           ;8CCFF9;
     dw IndirectInstructions_IntroText_Space                              ;8CCFFB; " "
-    dw $0005                                                             ;8CCFFD;
+    dw $0005*!FPS                                                        ;8CCFFD;
     db $14,$08                                                           ;8CCFFF;
     dw IndirectInstructions_IntroText_T                                  ;8CD001; "T"
-    dw $0005                                                             ;8CD003;
+    dw $0005*!FPS                                                        ;8CD003;
     db $15,$08                                                           ;8CD005;
     dw IndirectInstructions_IntroText_H                                  ;8CD007; "H"
-    dw $0005                                                             ;8CD009;
+    dw $0005*!FPS                                                        ;8CD009;
     db $16,$08                                                           ;8CD00B;
     dw IndirectInstructions_IntroText_E                                  ;8CD00D; "E"
-    dw $0005                                                             ;8CD00F;
+    dw $0005*!FPS                                                        ;8CD00F;
     db $01,$0A                                                           ;8CD011;
     dw IndirectInstructions_IntroText_M                                  ;8CD013; "M"
-    dw $0005                                                             ;8CD015;
+    dw $0005*!FPS                                                        ;8CD015;
     db $02,$0A                                                           ;8CD017;
     dw IndirectInstructions_IntroText_E                                  ;8CD019; "E"
-    dw $0005                                                             ;8CD01B;
+    dw $0005*!FPS                                                        ;8CD01B;
     db $03,$0A                                                           ;8CD01D;
     dw IndirectInstructions_IntroText_T                                  ;8CD01F; "T"
-    dw $0005                                                             ;8CD021;
+    dw $0005*!FPS                                                        ;8CD021;
     db $04,$0A                                                           ;8CD023;
     dw IndirectInstructions_IntroText_R                                  ;8CD025; "R"
-    dw $0005                                                             ;8CD027;
+    dw $0005*!FPS                                                        ;8CD027;
     db $05,$0A                                                           ;8CD029;
     dw IndirectInstructions_IntroText_O                                  ;8CD02B; "O"
-    dw $0005                                                             ;8CD02D;
+    dw $0005*!FPS                                                        ;8CD02D;
     db $06,$0A                                                           ;8CD02F;
     dw IndirectInstructions_IntroText_I                                  ;8CD031; "I"
-    dw $0005                                                             ;8CD033;
+    dw $0005*!FPS                                                        ;8CD033;
     db $07,$0A                                                           ;8CD035;
     dw IndirectInstructions_IntroText_D                                  ;8CD037; "D"
-    dw $0005                                                             ;8CD039;
+    dw $0005*!FPS                                                        ;8CD039;
     db $08,$0A                                                           ;8CD03B;
     dw IndirectInstructions_IntroText_Space                              ;8CD03D; " "
-    dw $0005                                                             ;8CD03F;
+    dw $0005*!FPS                                                        ;8CD03F;
     db $09,$0A                                                           ;8CD041;
     dw IndirectInstructions_IntroText_M                                  ;8CD043; "M"
-    dw $0005                                                             ;8CD045;
+    dw $0005*!FPS                                                        ;8CD045;
     db $0A,$0A                                                           ;8CD047;
     dw IndirectInstructions_IntroText_I                                  ;8CD049; "I"
-    dw $0005                                                             ;8CD04B;
+    dw $0005*!FPS                                                        ;8CD04B;
     db $0B,$0A                                                           ;8CD04D;
     dw IndirectInstructions_IntroText_G                                  ;8CD04F; "G"
-    dw $0005                                                             ;8CD051;
+    dw $0005*!FPS                                                        ;8CD051;
     db $0C,$0A                                                           ;8CD053;
     dw IndirectInstructions_IntroText_H                                  ;8CD055; "H"
-    dw $0005                                                             ;8CD057;
+    dw $0005*!FPS                                                        ;8CD057;
     db $0D,$0A                                                           ;8CD059;
     dw IndirectInstructions_IntroText_T                                  ;8CD05B; "T"
-    dw $0005                                                             ;8CD05D;
+    dw $0005*!FPS                                                        ;8CD05D;
     db $0E,$0A                                                           ;8CD05F;
     dw IndirectInstructions_IntroText_Space                              ;8CD061; " "
-    dw $0005                                                             ;8CD063;
+    dw $0005*!FPS                                                        ;8CD063;
     db $0F,$0A                                                           ;8CD065;
     dw IndirectInstructions_IntroText_B                                  ;8CD067; "B"
-    dw $0005                                                             ;8CD069;
+    dw $0005*!FPS                                                        ;8CD069;
     db $10,$0A                                                           ;8CD06B;
     dw IndirectInstructions_IntroText_E                                  ;8CD06D; "E"
-    dw $0005                                                             ;8CD06F;
+    dw $0005*!FPS                                                        ;8CD06F;
     db $11,$0A                                                           ;8CD071;
     dw IndirectInstructions_IntroText_Space                              ;8CD073; " "
-    dw $0005                                                             ;8CD075;
+    dw $0005*!FPS                                                        ;8CD075;
     db $12,$0A                                                           ;8CD077;
     dw IndirectInstructions_IntroText_H                                  ;8CD079; "H"
-    dw $0005                                                             ;8CD07B;
+    dw $0005*!FPS                                                        ;8CD07B;
     db $13,$0A                                                           ;8CD07D;
     dw IndirectInstructions_IntroText_A                                  ;8CD07F; "A"
-    dw $0005                                                             ;8CD081;
+    dw $0005*!FPS                                                        ;8CD081;
     db $14,$0A                                                           ;8CD083;
     dw IndirectInstructions_IntroText_R                                  ;8CD085; "R"
-    dw $0005                                                             ;8CD087;
+    dw $0005*!FPS                                                        ;8CD087;
     db $15,$0A                                                           ;8CD089;
     dw IndirectInstructions_IntroText_N                                  ;8CD08B; "N"
-    dw $0005                                                             ;8CD08D;
+    dw $0005*!FPS                                                        ;8CD08D;
     db $16,$0A                                                           ;8CD08F;
     dw IndirectInstructions_IntroText_E                                  ;8CD091; "E"
-    dw $0005                                                             ;8CD093;
+    dw $0005*!FPS                                                        ;8CD093;
     db $17,$0A                                                           ;8CD095;
     dw IndirectInstructions_IntroText_S                                  ;8CD097; "S"
-    dw $0005                                                             ;8CD099;
+    dw $0005*!FPS                                                        ;8CD099;
     db $18,$0A                                                           ;8CD09B;
     dw IndirectInstructions_IntroText_S                                  ;8CD09D; "S"
-    dw $0005                                                             ;8CD09F;
+    dw $0005*!FPS                                                        ;8CD09F;
     db $19,$0A                                                           ;8CD0A1;
     dw IndirectInstructions_IntroText_E                                  ;8CD0A3; "E"
-    dw $0005                                                             ;8CD0A5;
+    dw $0005*!FPS                                                        ;8CD0A5;
     db $1A,$0A                                                           ;8CD0A7;
     dw IndirectInstructions_IntroText_D                                  ;8CD0A9; "D"
-    dw $0005                                                             ;8CD0AB;
+    dw $0005*!FPS                                                        ;8CD0AB;
     db $01,$0C                                                           ;8CD0AD;
     dw IndirectInstructions_IntroText_F                                  ;8CD0AF; "F"
-    dw $0005                                                             ;8CD0B1;
+    dw $0005*!FPS                                                        ;8CD0B1;
     db $02,$0C                                                           ;8CD0B3;
     dw IndirectInstructions_IntroText_O                                  ;8CD0B5; "O"
-    dw $0005                                                             ;8CD0B7;
+    dw $0005*!FPS                                                        ;8CD0B7;
     db $03,$0C                                                           ;8CD0B9;
     dw IndirectInstructions_IntroText_R                                  ;8CD0BB; "R"
-    dw $0005                                                             ;8CD0BD;
+    dw $0005*!FPS                                                        ;8CD0BD;
     db $04,$0C                                                           ;8CD0BF;
     dw IndirectInstructions_IntroText_Space                              ;8CD0C1; " "
-    dw $0005                                                             ;8CD0C3;
+    dw $0005*!FPS                                                        ;8CD0C3;
     db $05,$0C                                                           ;8CD0C5;
     dw IndirectInstructions_IntroText_T                                  ;8CD0C7; "T"
-    dw $0005                                                             ;8CD0C9;
+    dw $0005*!FPS                                                        ;8CD0C9;
     db $06,$0C                                                           ;8CD0CB;
     dw IndirectInstructions_IntroText_H                                  ;8CD0CD; "H"
-    dw $0005                                                             ;8CD0CF;
+    dw $0005*!FPS                                                        ;8CD0CF;
     db $07,$0C                                                           ;8CD0D1;
     dw IndirectInstructions_IntroText_E                                  ;8CD0D3; "E"
-    dw $0005                                                             ;8CD0D5;
+    dw $0005*!FPS                                                        ;8CD0D5;
     db $08,$0C                                                           ;8CD0D7;
     dw IndirectInstructions_IntroText_Space                              ;8CD0D9; " "
-    dw $0005                                                             ;8CD0DB;
+    dw $0005*!FPS                                                        ;8CD0DB;
     db $09,$0C                                                           ;8CD0DD;
     dw IndirectInstructions_IntroText_G                                  ;8CD0DF; "G"
-    dw $0005                                                             ;8CD0E1;
+    dw $0005*!FPS                                                        ;8CD0E1;
     db $0A,$0C                                                           ;8CD0E3;
     dw IndirectInstructions_IntroText_O                                  ;8CD0E5; "O"
-    dw $0005                                                             ;8CD0E7;
+    dw $0005*!FPS                                                        ;8CD0E7;
     db $0B,$0C                                                           ;8CD0E9;
     dw IndirectInstructions_IntroText_O                                  ;8CD0EB; "O"
-    dw $0005                                                             ;8CD0ED;
+    dw $0005*!FPS                                                        ;8CD0ED;
     db $0C,$0C                                                           ;8CD0EF;
     dw IndirectInstructions_IntroText_D                                  ;8CD0F1; "D"
-    dw $0005                                                             ;8CD0F3;
+    dw $0005*!FPS                                                        ;8CD0F3;
     db $0D,$0C                                                           ;8CD0F5;
     dw IndirectInstructions_IntroText_Space                              ;8CD0F7; " "
-    dw $0005                                                             ;8CD0F9;
+    dw $0005*!FPS                                                        ;8CD0F9;
     db $0E,$0C                                                           ;8CD0FB;
     dw IndirectInstructions_IntroText_O                                  ;8CD0FD; "O"
-    dw $0005                                                             ;8CD0FF;
+    dw $0005*!FPS                                                        ;8CD0FF;
     db $0F,$0C                                                           ;8CD101;
     dw IndirectInstructions_IntroText_F                                  ;8CD103; "F"
-    dw $0005                                                             ;8CD105;
+    dw $0005*!FPS                                                        ;8CD105;
     db $10,$0C                                                           ;8CD107;
     dw IndirectInstructions_IntroText_Space                              ;8CD109; " "
-    dw $0005                                                             ;8CD10B;
+    dw $0005*!FPS                                                        ;8CD10B;
     db $11,$0C                                                           ;8CD10D;
     dw IndirectInstructions_IntroText_C                                  ;8CD10F; "C"
-    dw $0005                                                             ;8CD111;
+    dw $0005*!FPS                                                        ;8CD111;
     db $12,$0C                                                           ;8CD113;
     dw IndirectInstructions_IntroText_I                                  ;8CD115; "I"
-    dw $0005                                                             ;8CD117;
+    dw $0005*!FPS                                                        ;8CD117;
     db $13,$0C                                                           ;8CD119;
     dw IndirectInstructions_IntroText_V                                  ;8CD11B; "V"
-    dw $0005                                                             ;8CD11D;
+    dw $0005*!FPS                                                        ;8CD11D;
     db $14,$0C                                                           ;8CD11F;
     dw IndirectInstructions_IntroText_I                                  ;8CD121; "I"
-    dw $0005                                                             ;8CD123;
+    dw $0005*!FPS                                                        ;8CD123;
     db $15,$0C                                                           ;8CD125;
     dw IndirectInstructions_IntroText_L                                  ;8CD127; "L"
-    dw $0005                                                             ;8CD129;
+    dw $0005*!FPS                                                        ;8CD129;
     db $16,$0C                                                           ;8CD12B;
     dw IndirectInstructions_IntroText_I                                  ;8CD12D; "I"
-    dw $0005                                                             ;8CD12F;
+    dw $0005*!FPS                                                        ;8CD12F;
     db $17,$0C                                                           ;8CD131;
     dw IndirectInstructions_IntroText_Z                                  ;8CD133; "Z"
-    dw $0005                                                             ;8CD135;
+    dw $0005*!FPS                                                        ;8CD135;
     db $18,$0C                                                           ;8CD137;
     dw IndirectInstructions_IntroText_A                                  ;8CD139; "A"
-    dw $0005                                                             ;8CD13B;
+    dw $0005*!FPS                                                        ;8CD13B;
     db $19,$0C                                                           ;8CD13D;
     dw IndirectInstructions_IntroText_T                                  ;8CD13F; "T"
-    dw $0005                                                             ;8CD141;
+    dw $0005*!FPS                                                        ;8CD141;
     db $1A,$0C                                                           ;8CD143;
     dw IndirectInstructions_IntroText_I                                  ;8CD145; "I"
-    dw $0005                                                             ;8CD147;
+    dw $0005*!FPS                                                        ;8CD147;
     db $1B,$0C                                                           ;8CD149;
     dw IndirectInstructions_IntroText_O                                  ;8CD14B; "O"
-    dw $0005                                                             ;8CD14D;
+    dw $0005*!FPS                                                        ;8CD14D;
     db $1C,$0C                                                           ;8CD14F;
     dw IndirectInstructions_IntroText_N                                  ;8CD151; "N"
-    dw $0005                                                             ;8CD153;
+    dw $0005*!FPS                                                        ;8CD153;
     db $1D,$0C                                                           ;8CD155;
     dw IndirectInstructions_IntroText_ExclamationPoint                   ;8CD157; "!"
     dw Instruction_SpawnBlinkingMarkers_WaitForInput_Page4               ;8CD159;
@@ -6358,476 +6387,476 @@ CinematicBGObjectInstLists_IntroTextPage5:
 ; HAD HARDLY GONE BEYOND THE
 ; ASTEROID BELT WHEN I PICKED
 ; UP A DISTRESS SIGNAL!
-    dw Instruction_HandleCreatingJapanText_Page5                         ;8CD15D;
+    dw Instruction_HandleCreatingSubtitle_Page5                          ;8CD15D;
     dw $0001                                                             ;8CD15F;
     db $01,$01                                                           ;8CD161;
     dw IndirectInstructions_IntroText_Nothing                            ;8CD163;
-    dw $0005                                                             ;8CD165;
+    dw $0005*!FPS                                                        ;8CD165;
     db $01,$04                                                           ;8CD167;
     dw IndirectInstructions_IntroText_S                                  ;8CD169; "S"
-    dw $0005                                                             ;8CD16B;
+    dw $0005*!FPS                                                        ;8CD16B;
     db $02,$04                                                           ;8CD16D;
     dw IndirectInstructions_IntroText_A                                  ;8CD16F; "A"
-    dw $0005                                                             ;8CD171;
+    dw $0005*!FPS                                                        ;8CD171;
     db $03,$04                                                           ;8CD173;
     dw IndirectInstructions_IntroText_T                                  ;8CD175; "T"
-    dw $0005                                                             ;8CD177;
+    dw $0005*!FPS                                                        ;8CD177;
     db $04,$04                                                           ;8CD179;
     dw IndirectInstructions_IntroText_I                                  ;8CD17B; "I"
-    dw $0005                                                             ;8CD17D;
+    dw $0005*!FPS                                                        ;8CD17D;
     db $05,$04                                                           ;8CD17F;
     dw IndirectInstructions_IntroText_S                                  ;8CD181; "S"
-    dw $0005                                                             ;8CD183;
+    dw $0005*!FPS                                                        ;8CD183;
     db $06,$04                                                           ;8CD185;
     dw IndirectInstructions_IntroText_F                                  ;8CD187; "F"
-    dw $0005                                                             ;8CD189;
+    dw $0005*!FPS                                                        ;8CD189;
     db $07,$04                                                           ;8CD18B;
     dw IndirectInstructions_IntroText_I                                  ;8CD18D; "I"
-    dw $0005                                                             ;8CD18F;
+    dw $0005*!FPS                                                        ;8CD18F;
     db $08,$04                                                           ;8CD191;
     dw IndirectInstructions_IntroText_E                                  ;8CD193; "E"
-    dw $0005                                                             ;8CD195;
+    dw $0005*!FPS                                                        ;8CD195;
     db $09,$04                                                           ;8CD197;
     dw IndirectInstructions_IntroText_D                                  ;8CD199; "D"
-    dw $0005                                                             ;8CD19B;
+    dw $0005*!FPS                                                        ;8CD19B;
     db $0A,$04                                                           ;8CD19D;
     dw IndirectInstructions_IntroText_Space                              ;8CD19F; " "
-    dw $0005                                                             ;8CD1A1;
+    dw $0005*!FPS                                                        ;8CD1A1;
     db $0B,$04                                                           ;8CD1A3;
     dw IndirectInstructions_IntroText_T                                  ;8CD1A5; "T"
-    dw $0005                                                             ;8CD1A7;
+    dw $0005*!FPS                                                        ;8CD1A7;
     db $0C,$04                                                           ;8CD1A9;
     dw IndirectInstructions_IntroText_H                                  ;8CD1AB; "H"
-    dw $0005                                                             ;8CD1AD;
+    dw $0005*!FPS                                                        ;8CD1AD;
     db $0D,$04                                                           ;8CD1AF;
     dw IndirectInstructions_IntroText_A                                  ;8CD1B1; "A"
-    dw $0005                                                             ;8CD1B3;
+    dw $0005*!FPS                                                        ;8CD1B3;
     db $0E,$04                                                           ;8CD1B5;
     dw IndirectInstructions_IntroText_T                                  ;8CD1B7; "T"
-    dw $0005                                                             ;8CD1B9;
+    dw $0005*!FPS                                                        ;8CD1B9;
     db $0F,$04                                                           ;8CD1BB;
     dw IndirectInstructions_IntroText_Space                              ;8CD1BD; " "
-    dw $0005                                                             ;8CD1BF;
+    dw $0005*!FPS                                                        ;8CD1BF;
     db $10,$04                                                           ;8CD1C1;
     dw IndirectInstructions_IntroText_A                                  ;8CD1C3; "A"
-    dw $0005                                                             ;8CD1C5;
+    dw $0005*!FPS                                                        ;8CD1C5;
     db $11,$04                                                           ;8CD1C7;
     dw IndirectInstructions_IntroText_L                                  ;8CD1C9; "L"
-    dw $0005                                                             ;8CD1CB;
+    dw $0005*!FPS                                                        ;8CD1CB;
     db $12,$04                                                           ;8CD1CD;
     dw IndirectInstructions_IntroText_L                                  ;8CD1CF; "L"
-    dw $0005                                                             ;8CD1D1;
+    dw $0005*!FPS                                                        ;8CD1D1;
     db $13,$04                                                           ;8CD1D3;
     dw IndirectInstructions_IntroText_Space                              ;8CD1D5; " "
-    dw $0005                                                             ;8CD1D7;
+    dw $0005*!FPS                                                        ;8CD1D7;
     db $14,$04                                                           ;8CD1D9;
     dw IndirectInstructions_IntroText_W                                  ;8CD1DB; "W"
-    dw $0005                                                             ;8CD1DD;
+    dw $0005*!FPS                                                        ;8CD1DD;
     db $15,$04                                                           ;8CD1DF;
     dw IndirectInstructions_IntroText_A                                  ;8CD1E1; "A"
-    dw $0005                                                             ;8CD1E3;
+    dw $0005*!FPS                                                        ;8CD1E3;
     db $16,$04                                                           ;8CD1E5;
     dw IndirectInstructions_IntroText_S                                  ;8CD1E7; "S"
-    dw $0005                                                             ;8CD1E9;
+    dw $0005*!FPS                                                        ;8CD1E9;
     db $17,$04                                                           ;8CD1EB;
     dw IndirectInstructions_IntroText_Space                              ;8CD1ED; " "
-    dw $0005                                                             ;8CD1EF;
+    dw $0005*!FPS                                                        ;8CD1EF;
     db $18,$04                                                           ;8CD1F1;
     dw IndirectInstructions_IntroText_W                                  ;8CD1F3; "W"
-    dw $0005                                                             ;8CD1F5;
+    dw $0005*!FPS                                                        ;8CD1F5;
     db $19,$04                                                           ;8CD1F7;
     dw IndirectInstructions_IntroText_E                                  ;8CD1F9; "E"
-    dw $0005                                                             ;8CD1FB;
+    dw $0005*!FPS                                                        ;8CD1FB;
     db $1A,$04                                                           ;8CD1FD;
     dw IndirectInstructions_IntroText_L                                  ;8CD1FF; "L"
-    dw $0005                                                             ;8CD201;
+    dw $0005*!FPS                                                        ;8CD201;
     db $1B,$04                                                           ;8CD203;
     dw IndirectInstructions_IntroText_L                                  ;8CD205; "L"
-    dw $0005                                                             ;8CD207;
+    dw $0005*!FPS                                                        ;8CD207;
     db $1C,$04                                                           ;8CD209;
     dw IndirectInstructions_IntroText_Comma                              ;8CD20B; ","
-    dw $0005                                                             ;8CD20D;
+    dw $0005*!FPS                                                        ;8CD20D;
     db $01,$06                                                           ;8CD20F;
     dw IndirectInstructions_IntroText_I                                  ;8CD211; "I"
-    dw $0005                                                             ;8CD213;
+    dw $0005*!FPS                                                        ;8CD213;
     db $02,$06                                                           ;8CD215;
     dw IndirectInstructions_IntroText_Space                              ;8CD217; " "
-    dw $0005                                                             ;8CD219;
+    dw $0005*!FPS                                                        ;8CD219;
     db $03,$06                                                           ;8CD21B;
     dw IndirectInstructions_IntroText_L                                  ;8CD21D; "L"
-    dw $0005                                                             ;8CD21F;
+    dw $0005*!FPS                                                        ;8CD21F;
     db $04,$06                                                           ;8CD221;
     dw IndirectInstructions_IntroText_E                                  ;8CD223; "E"
-    dw $0005                                                             ;8CD225;
+    dw $0005*!FPS                                                        ;8CD225;
     db $05,$06                                                           ;8CD227;
     dw IndirectInstructions_IntroText_F                                  ;8CD229; "F"
-    dw $0005                                                             ;8CD22B;
+    dw $0005*!FPS                                                        ;8CD22B;
     db $06,$06                                                           ;8CD22D;
     dw IndirectInstructions_IntroText_T                                  ;8CD22F; "T"
-    dw $0005                                                             ;8CD231;
+    dw $0005*!FPS                                                        ;8CD231;
     db $07,$06                                                           ;8CD233;
     dw IndirectInstructions_IntroText_Space                              ;8CD235; " "
-    dw $0005                                                             ;8CD237;
+    dw $0005*!FPS                                                        ;8CD237;
     db $08,$06                                                           ;8CD239;
     dw IndirectInstructions_IntroText_T                                  ;8CD23B; "T"
-    dw $0005                                                             ;8CD23D;
+    dw $0005*!FPS                                                        ;8CD23D;
     db $09,$06                                                           ;8CD23F;
     dw IndirectInstructions_IntroText_H                                  ;8CD241; "H"
-    dw $0005                                                             ;8CD243;
+    dw $0005*!FPS                                                        ;8CD243;
     db $0A,$06                                                           ;8CD245;
     dw IndirectInstructions_IntroText_E                                  ;8CD247; "E"
-    dw $0005                                                             ;8CD249;
+    dw $0005*!FPS                                                        ;8CD249;
     db $0B,$06                                                           ;8CD24B;
     dw IndirectInstructions_IntroText_Space                              ;8CD24D; " "
-    dw $0005                                                             ;8CD24F;
+    dw $0005*!FPS                                                        ;8CD24F;
     db $0C,$06                                                           ;8CD251;
     dw IndirectInstructions_IntroText_S                                  ;8CD253; "S"
-    dw $0005                                                             ;8CD255;
+    dw $0005*!FPS                                                        ;8CD255;
     db $0D,$06                                                           ;8CD257;
     dw IndirectInstructions_IntroText_T                                  ;8CD259; "T"
-    dw $0005                                                             ;8CD25B;
+    dw $0005*!FPS                                                        ;8CD25B;
     db $0E,$06                                                           ;8CD25D;
     dw IndirectInstructions_IntroText_A                                  ;8CD25F; "A"
-    dw $0005                                                             ;8CD261;
+    dw $0005*!FPS                                                        ;8CD261;
     db $0F,$06                                                           ;8CD263;
     dw IndirectInstructions_IntroText_T                                  ;8CD265; "T"
-    dw $0005                                                             ;8CD267;
+    dw $0005*!FPS                                                        ;8CD267;
     db $10,$06                                                           ;8CD269;
     dw IndirectInstructions_IntroText_I                                  ;8CD26B; "I"
-    dw $0005                                                             ;8CD26D;
+    dw $0005*!FPS                                                        ;8CD26D;
     db $11,$06                                                           ;8CD26F;
     dw IndirectInstructions_IntroText_O                                  ;8CD271; "O"
-    dw $0005                                                             ;8CD273;
+    dw $0005*!FPS                                                        ;8CD273;
     db $12,$06                                                           ;8CD275;
     dw IndirectInstructions_IntroText_N                                  ;8CD277; "N"
-    dw $0005                                                             ;8CD279;
+    dw $0005*!FPS                                                        ;8CD279;
     db $13,$06                                                           ;8CD27B;
     dw IndirectInstructions_IntroText_Space                              ;8CD27D; " "
-    dw $0005                                                             ;8CD27F;
+    dw $0005*!FPS                                                        ;8CD27F;
     db $14,$06                                                           ;8CD281;
     dw IndirectInstructions_IntroText_T                                  ;8CD283; "T"
-    dw $0005                                                             ;8CD285;
+    dw $0005*!FPS                                                        ;8CD285;
     db $15,$06                                                           ;8CD287;
     dw IndirectInstructions_IntroText_O                                  ;8CD289; "O"
-    dw $0005                                                             ;8CD28B;
+    dw $0005*!FPS                                                        ;8CD28B;
     db $16,$06                                                           ;8CD28D;
     dw IndirectInstructions_IntroText_Space                              ;8CD28F; " "
-    dw $0005                                                             ;8CD291;
+    dw $0005*!FPS                                                        ;8CD291;
     db $17,$06                                                           ;8CD293;
     dw IndirectInstructions_IntroText_S                                  ;8CD295; "S"
-    dw $0005                                                             ;8CD297;
+    dw $0005*!FPS                                                        ;8CD297;
     db $18,$06                                                           ;8CD299;
     dw IndirectInstructions_IntroText_E                                  ;8CD29B; "E"
-    dw $0005                                                             ;8CD29D;
+    dw $0005*!FPS                                                        ;8CD29D;
     db $19,$06                                                           ;8CD29F;
     dw IndirectInstructions_IntroText_E                                  ;8CD2A1; "E"
-    dw $0005                                                             ;8CD2A3;
+    dw $0005*!FPS                                                        ;8CD2A3;
     db $1A,$06                                                           ;8CD2A5;
     dw IndirectInstructions_IntroText_K                                  ;8CD2A7; "K"
-    dw $0005                                                             ;8CD2A9;
+    dw $0005*!FPS                                                        ;8CD2A9;
     db $1B,$06                                                           ;8CD2AB;
     dw IndirectInstructions_IntroText_Space                              ;8CD2AD; " "
-    dw $0005                                                             ;8CD2AF;
+    dw $0005*!FPS                                                        ;8CD2AF;
     db $1C,$06                                                           ;8CD2B1;
     dw IndirectInstructions_IntroText_A                                  ;8CD2B3; "A"
-    dw $0005                                                             ;8CD2B5;
+    dw $0005*!FPS                                                        ;8CD2B5;
     db $01,$08                                                           ;8CD2B7;
     dw IndirectInstructions_IntroText_N                                  ;8CD2B9; "N"
-    dw $0005                                                             ;8CD2BB;
+    dw $0005*!FPS                                                        ;8CD2BB;
     db $02,$08                                                           ;8CD2BD;
     dw IndirectInstructions_IntroText_E                                  ;8CD2BF; "E"
-    dw $0005                                                             ;8CD2C1;
+    dw $0005*!FPS                                                        ;8CD2C1;
     db $03,$08                                                           ;8CD2C3;
     dw IndirectInstructions_IntroText_W                                  ;8CD2C5; "W"
-    dw $0005                                                             ;8CD2C7;
+    dw $0005*!FPS                                                        ;8CD2C7;
     db $04,$08                                                           ;8CD2C9;
     dw IndirectInstructions_IntroText_Space                              ;8CD2CB; " "
-    dw $0005                                                             ;8CD2CD;
+    dw $0005*!FPS                                                        ;8CD2CD;
     db $05,$08                                                           ;8CD2CF;
     dw IndirectInstructions_IntroText_B                                  ;8CD2D1; "B"
-    dw $0005                                                             ;8CD2D3;
+    dw $0005*!FPS                                                        ;8CD2D3;
     db $06,$08                                                           ;8CD2D5;
     dw IndirectInstructions_IntroText_O                                  ;8CD2D7; "O"
-    dw $0005                                                             ;8CD2D9;
+    dw $0005*!FPS                                                        ;8CD2D9;
     db $07,$08                                                           ;8CD2DB;
     dw IndirectInstructions_IntroText_U                                  ;8CD2DD; "U"
-    dw $0005                                                             ;8CD2DF;
+    dw $0005*!FPS                                                        ;8CD2DF;
     db $08,$08                                                           ;8CD2E1;
     dw IndirectInstructions_IntroText_N                                  ;8CD2E3; "N"
-    dw $0005                                                             ;8CD2E5;
+    dw $0005*!FPS                                                        ;8CD2E5;
     db $09,$08                                                           ;8CD2E7;
     dw IndirectInstructions_IntroText_T                                  ;8CD2E9; "T"
-    dw $0005                                                             ;8CD2EB;
+    dw $0005*!FPS                                                        ;8CD2EB;
     db $0A,$08                                                           ;8CD2ED;
     dw IndirectInstructions_IntroText_Y                                  ;8CD2EF; "Y"
-    dw $0005                                                             ;8CD2F1;
+    dw $0005*!FPS                                                        ;8CD2F1;
     db $0B,$08                                                           ;8CD2F3;
     dw IndirectInstructions_IntroText_Space                              ;8CD2F5; " "
-    dw $0005                                                             ;8CD2F7;
+    dw $0005*!FPS                                                        ;8CD2F7;
     db $0C,$08                                                           ;8CD2F9;
     dw IndirectInstructions_IntroText_T                                  ;8CD2FB; "T"
-    dw $0005                                                             ;8CD2FD;
+    dw $0005*!FPS                                                        ;8CD2FD;
     db $0D,$08                                                           ;8CD2FF;
     dw IndirectInstructions_IntroText_O                                  ;8CD301; "O"
-    dw $0005                                                             ;8CD303;
+    dw $0005*!FPS                                                        ;8CD303;
     db $0E,$08                                                           ;8CD305;
     dw IndirectInstructions_IntroText_Space                              ;8CD307; " "
-    dw $0005                                                             ;8CD309;
+    dw $0005*!FPS                                                        ;8CD309;
     db $0F,$08                                                           ;8CD30B;
     dw IndirectInstructions_IntroText_H                                  ;8CD30D; "H"
-    dw $0005                                                             ;8CD30F;
+    dw $0005*!FPS                                                        ;8CD30F;
     db $10,$08                                                           ;8CD311;
     dw IndirectInstructions_IntroText_U                                  ;8CD313; "U"
-    dw $0005                                                             ;8CD315;
+    dw $0005*!FPS                                                        ;8CD315;
     db $11,$08                                                           ;8CD317;
     dw IndirectInstructions_IntroText_N                                  ;8CD319; "N"
-    dw $0005                                                             ;8CD31B;
+    dw $0005*!FPS                                                        ;8CD31B;
     db $12,$08                                                           ;8CD31D;
     dw IndirectInstructions_IntroText_T                                  ;8CD31F; "T"
-    dw $0005                                                             ;8CD321;
+    dw $0005*!FPS                                                        ;8CD321;
     db $13,$08                                                           ;8CD323;
     dw IndirectInstructions_IntroText_Period                             ;8CD325; "."
-    dw $0005                                                             ;8CD327;
+    dw $0005*!FPS                                                        ;8CD327;
     db $14,$08                                                           ;8CD329;
     dw IndirectInstructions_IntroText_Space                              ;8CD32B; " "
-    dw $0005                                                             ;8CD32D;
+    dw $0005*!FPS                                                        ;8CD32D;
     db $15,$08                                                           ;8CD32F;
     dw IndirectInstructions_IntroText_B                                  ;8CD331; "B"
-    dw $0005                                                             ;8CD333;
+    dw $0005*!FPS                                                        ;8CD333;
     db $16,$08                                                           ;8CD335;
     dw IndirectInstructions_IntroText_U                                  ;8CD337; "U"
-    dw $0005                                                             ;8CD339;
+    dw $0005*!FPS                                                        ;8CD339;
     db $17,$08                                                           ;8CD33B;
     dw IndirectInstructions_IntroText_T                                  ;8CD33D; "T"
-    dw $0005                                                             ;8CD33F;
+    dw $0005*!FPS                                                        ;8CD33F;
     db $18,$08                                                           ;8CD341;
     dw IndirectInstructions_IntroText_Comma                              ;8CD343; ","
-    dw $0005                                                             ;8CD345;
+    dw $0005*!FPS                                                        ;8CD345;
     db $19,$08                                                           ;8CD347;
     dw IndirectInstructions_IntroText_Space                              ;8CD349; " "
-    dw $0005                                                             ;8CD34B;
+    dw $0005*!FPS                                                        ;8CD34B;
     db $1A,$08                                                           ;8CD34D;
     dw IndirectInstructions_IntroText_I                                  ;8CD34F; "I"
-    dw $0005                                                             ;8CD351;
+    dw $0005*!FPS                                                        ;8CD351;
     db $01,$0A                                                           ;8CD353;
     dw IndirectInstructions_IntroText_H                                  ;8CD355; "H"
-    dw $0005                                                             ;8CD357;
+    dw $0005*!FPS                                                        ;8CD357;
     db $02,$0A                                                           ;8CD359;
     dw IndirectInstructions_IntroText_A                                  ;8CD35B; "A"
-    dw $0005                                                             ;8CD35D;
+    dw $0005*!FPS                                                        ;8CD35D;
     db $03,$0A                                                           ;8CD35F;
     dw IndirectInstructions_IntroText_D                                  ;8CD361; "D"
-    dw $0005                                                             ;8CD363;
+    dw $0005*!FPS                                                        ;8CD363;
     db $04,$0A                                                           ;8CD365;
     dw IndirectInstructions_IntroText_Space                              ;8CD367; " "
-    dw $0005                                                             ;8CD369;
+    dw $0005*!FPS                                                        ;8CD369;
     db $05,$0A                                                           ;8CD36B;
     dw IndirectInstructions_IntroText_H                                  ;8CD36D; "H"
-    dw $0005                                                             ;8CD36F;
+    dw $0005*!FPS                                                        ;8CD36F;
     db $06,$0A                                                           ;8CD371;
     dw IndirectInstructions_IntroText_A                                  ;8CD373; "A"
-    dw $0005                                                             ;8CD375;
+    dw $0005*!FPS                                                        ;8CD375;
     db $07,$0A                                                           ;8CD377;
     dw IndirectInstructions_IntroText_R                                  ;8CD379; "R"
-    dw $0005                                                             ;8CD37B;
+    dw $0005*!FPS                                                        ;8CD37B;
     db $08,$0A                                                           ;8CD37D;
     dw IndirectInstructions_IntroText_D                                  ;8CD37F; "D"
-    dw $0005                                                             ;8CD381;
+    dw $0005*!FPS                                                        ;8CD381;
     db $09,$0A                                                           ;8CD383;
     dw IndirectInstructions_IntroText_L                                  ;8CD385; "L"
-    dw $0005                                                             ;8CD387;
+    dw $0005*!FPS                                                        ;8CD387;
     db $0A,$0A                                                           ;8CD389;
     dw IndirectInstructions_IntroText_Y                                  ;8CD38B; "Y"
-    dw $0005                                                             ;8CD38D;
+    dw $0005*!FPS                                                        ;8CD38D;
     db $0B,$0A                                                           ;8CD38F;
     dw IndirectInstructions_IntroText_Space                              ;8CD391; " "
-    dw $0005                                                             ;8CD393;
+    dw $0005*!FPS                                                        ;8CD393;
     db $0C,$0A                                                           ;8CD395;
     dw IndirectInstructions_IntroText_G                                  ;8CD397; "G"
-    dw $0005                                                             ;8CD399;
+    dw $0005*!FPS                                                        ;8CD399;
     db $0D,$0A                                                           ;8CD39B;
     dw IndirectInstructions_IntroText_O                                  ;8CD39D; "O"
-    dw $0005                                                             ;8CD39F;
+    dw $0005*!FPS                                                        ;8CD39F;
     db $0E,$0A                                                           ;8CD3A1;
     dw IndirectInstructions_IntroText_N                                  ;8CD3A3; "N"
-    dw $0005                                                             ;8CD3A5;
+    dw $0005*!FPS                                                        ;8CD3A5;
     db $0F,$0A                                                           ;8CD3A7;
     dw IndirectInstructions_IntroText_E                                  ;8CD3A9; "E"
-    dw $0005                                                             ;8CD3AB;
+    dw $0005*!FPS                                                        ;8CD3AB;
     db $10,$0A                                                           ;8CD3AD;
     dw IndirectInstructions_IntroText_Space                              ;8CD3AF; " "
-    dw $0005                                                             ;8CD3B1;
+    dw $0005*!FPS                                                        ;8CD3B1;
     db $11,$0A                                                           ;8CD3B3;
     dw IndirectInstructions_IntroText_B                                  ;8CD3B5; "B"
-    dw $0005                                                             ;8CD3B7;
+    dw $0005*!FPS                                                        ;8CD3B7;
     db $12,$0A                                                           ;8CD3B9;
     dw IndirectInstructions_IntroText_E                                  ;8CD3BB; "E"
-    dw $0005                                                             ;8CD3BD;
+    dw $0005*!FPS                                                        ;8CD3BD;
     db $13,$0A                                                           ;8CD3BF;
     dw IndirectInstructions_IntroText_Y                                  ;8CD3C1; "Y"
-    dw $0005                                                             ;8CD3C3;
+    dw $0005*!FPS                                                        ;8CD3C3;
     db $14,$0A                                                           ;8CD3C5;
     dw IndirectInstructions_IntroText_O                                  ;8CD3C7; "O"
-    dw $0005                                                             ;8CD3C9;
+    dw $0005*!FPS                                                        ;8CD3C9;
     db $15,$0A                                                           ;8CD3CB;
     dw IndirectInstructions_IntroText_N                                  ;8CD3CD; "N"
-    dw $0005                                                             ;8CD3CF;
+    dw $0005*!FPS                                                        ;8CD3CF;
     db $16,$0A                                                           ;8CD3D1;
     dw IndirectInstructions_IntroText_D                                  ;8CD3D3; "D"
-    dw $0005                                                             ;8CD3D5;
+    dw $0005*!FPS                                                        ;8CD3D5;
     db $17,$0A                                                           ;8CD3D7;
     dw IndirectInstructions_IntroText_Space                              ;8CD3D9; " "
-    dw $0005                                                             ;8CD3DB;
+    dw $0005*!FPS                                                        ;8CD3DB;
     db $18,$0A                                                           ;8CD3DD;
     dw IndirectInstructions_IntroText_T                                  ;8CD3DF; "T"
-    dw $0005                                                             ;8CD3E1;
+    dw $0005*!FPS                                                        ;8CD3E1;
     db $19,$0A                                                           ;8CD3E3;
     dw IndirectInstructions_IntroText_H                                  ;8CD3E5; "H"
-    dw $0005                                                             ;8CD3E7;
+    dw $0005*!FPS                                                        ;8CD3E7;
     db $1A,$0A                                                           ;8CD3E9;
     dw IndirectInstructions_IntroText_E                                  ;8CD3EB; "E"
-    dw $0005                                                             ;8CD3ED;
+    dw $0005*!FPS                                                        ;8CD3ED;
     db $01,$0C                                                           ;8CD3EF;
     dw IndirectInstructions_IntroText_A                                  ;8CD3F1; "A"
-    dw $0005                                                             ;8CD3F3;
+    dw $0005*!FPS                                                        ;8CD3F3;
     db $02,$0C                                                           ;8CD3F5;
     dw IndirectInstructions_IntroText_S                                  ;8CD3F7; "S"
-    dw $0005                                                             ;8CD3F9;
+    dw $0005*!FPS                                                        ;8CD3F9;
     db $03,$0C                                                           ;8CD3FB;
     dw IndirectInstructions_IntroText_T                                  ;8CD3FD; "T"
-    dw $0005                                                             ;8CD3FF;
+    dw $0005*!FPS                                                        ;8CD3FF;
     db $04,$0C                                                           ;8CD401;
     dw IndirectInstructions_IntroText_E                                  ;8CD403; "E"
-    dw $0005                                                             ;8CD405;
+    dw $0005*!FPS                                                        ;8CD405;
     db $05,$0C                                                           ;8CD407;
     dw IndirectInstructions_IntroText_R                                  ;8CD409; "R"
-    dw $0005                                                             ;8CD40B;
+    dw $0005*!FPS                                                        ;8CD40B;
     db $06,$0C                                                           ;8CD40D;
     dw IndirectInstructions_IntroText_O                                  ;8CD40F; "O"
-    dw $0005                                                             ;8CD411;
+    dw $0005*!FPS                                                        ;8CD411;
     db $07,$0C                                                           ;8CD413;
     dw IndirectInstructions_IntroText_I                                  ;8CD415; "I"
-    dw $0005                                                             ;8CD417;
+    dw $0005*!FPS                                                        ;8CD417;
     db $08,$0C                                                           ;8CD419;
     dw IndirectInstructions_IntroText_D                                  ;8CD41B; "D"
-    dw $0005                                                             ;8CD41D;
+    dw $0005*!FPS                                                        ;8CD41D;
     db $09,$0C                                                           ;8CD41F;
     dw IndirectInstructions_IntroText_Space                              ;8CD421; " "
-    dw $0005                                                             ;8CD423;
+    dw $0005*!FPS                                                        ;8CD423;
     db $0A,$0C                                                           ;8CD425;
     dw IndirectInstructions_IntroText_B                                  ;8CD427; "B"
-    dw $0005                                                             ;8CD429;
+    dw $0005*!FPS                                                        ;8CD429;
     db $0B,$0C                                                           ;8CD42B;
     dw IndirectInstructions_IntroText_E                                  ;8CD42D; "E"
-    dw $0005                                                             ;8CD42F;
+    dw $0005*!FPS                                                        ;8CD42F;
     db $0C,$0C                                                           ;8CD431;
     dw IndirectInstructions_IntroText_L                                  ;8CD433; "L"
-    dw $0005                                                             ;8CD435;
+    dw $0005*!FPS                                                        ;8CD435;
     db $0D,$0C                                                           ;8CD437;
     dw IndirectInstructions_IntroText_T                                  ;8CD439; "T"
-    dw $0005                                                             ;8CD43B;
+    dw $0005*!FPS                                                        ;8CD43B;
     db $0E,$0C                                                           ;8CD43D;
     dw IndirectInstructions_IntroText_Space                              ;8CD43F; " "
-    dw $0005                                                             ;8CD441;
+    dw $0005*!FPS                                                        ;8CD441;
     db $0F,$0C                                                           ;8CD443;
     dw IndirectInstructions_IntroText_W                                  ;8CD445; "W"
-    dw $0005                                                             ;8CD447;
+    dw $0005*!FPS                                                        ;8CD447;
     db $10,$0C                                                           ;8CD449;
     dw IndirectInstructions_IntroText_H                                  ;8CD44B; "H"
-    dw $0005                                                             ;8CD44D;
+    dw $0005*!FPS                                                        ;8CD44D;
     db $11,$0C                                                           ;8CD44F;
     dw IndirectInstructions_IntroText_E                                  ;8CD451; "E"
-    dw $0005                                                             ;8CD453;
+    dw $0005*!FPS                                                        ;8CD453;
     db $12,$0C                                                           ;8CD455;
     dw IndirectInstructions_IntroText_N                                  ;8CD457; "N"
-    dw $0005                                                             ;8CD459;
+    dw $0005*!FPS                                                        ;8CD459;
     db $13,$0C                                                           ;8CD45B;
     dw IndirectInstructions_IntroText_Space                              ;8CD45D; " "
-    dw $0005                                                             ;8CD45F;
+    dw $0005*!FPS                                                        ;8CD45F;
     db $14,$0C                                                           ;8CD461;
     dw IndirectInstructions_IntroText_I                                  ;8CD463; "I"
-    dw $0005                                                             ;8CD465;
+    dw $0005*!FPS                                                        ;8CD465;
     db $15,$0C                                                           ;8CD467;
     dw IndirectInstructions_IntroText_Space                              ;8CD469; " "
-    dw $0005                                                             ;8CD46B;
+    dw $0005*!FPS                                                        ;8CD46B;
     db $16,$0C                                                           ;8CD46D;
     dw IndirectInstructions_IntroText_P                                  ;8CD46F; "P"
-    dw $0005                                                             ;8CD471;
+    dw $0005*!FPS                                                        ;8CD471;
     db $17,$0C                                                           ;8CD473;
     dw IndirectInstructions_IntroText_I                                  ;8CD475; "I"
-    dw $0005                                                             ;8CD477;
+    dw $0005*!FPS                                                        ;8CD477;
     db $18,$0C                                                           ;8CD479;
     dw IndirectInstructions_IntroText_C                                  ;8CD47B; "C"
-    dw $0005                                                             ;8CD47D;
+    dw $0005*!FPS                                                        ;8CD47D;
     db $19,$0C                                                           ;8CD47F;
     dw IndirectInstructions_IntroText_K                                  ;8CD481; "K"
-    dw $0005                                                             ;8CD483;
+    dw $0005*!FPS                                                        ;8CD483;
     db $1A,$0C                                                           ;8CD485;
     dw IndirectInstructions_IntroText_E                                  ;8CD487; "E"
-    dw $0005                                                             ;8CD489;
+    dw $0005*!FPS                                                        ;8CD489;
     db $1B,$0C                                                           ;8CD48B;
     dw IndirectInstructions_IntroText_D                                  ;8CD48D; "D"
-    dw $0005                                                             ;8CD48F;
+    dw $0005*!FPS                                                        ;8CD48F;
     db $01,$0E                                                           ;8CD491;
     dw IndirectInstructions_IntroText_U                                  ;8CD493; "U"
-    dw $0005                                                             ;8CD495;
+    dw $0005*!FPS                                                        ;8CD495;
     db $02,$0E                                                           ;8CD497;
     dw IndirectInstructions_IntroText_P                                  ;8CD499; "P"
-    dw $0005                                                             ;8CD49B;
+    dw $0005*!FPS                                                        ;8CD49B;
     db $03,$0E                                                           ;8CD49D;
     dw IndirectInstructions_IntroText_Space                              ;8CD49F; " "
-    dw $0005                                                             ;8CD4A1;
+    dw $0005*!FPS                                                        ;8CD4A1;
     db $04,$0E                                                           ;8CD4A3;
     dw IndirectInstructions_IntroText_A                                  ;8CD4A5; "A"
-    dw $0005                                                             ;8CD4A7;
+    dw $0005*!FPS                                                        ;8CD4A7;
     db $05,$0E                                                           ;8CD4A9;
     dw IndirectInstructions_IntroText_Space                              ;8CD4AB; " "
-    dw $0005                                                             ;8CD4AD;
+    dw $0005*!FPS                                                        ;8CD4AD;
     db $06,$0E                                                           ;8CD4AF;
     dw IndirectInstructions_IntroText_D                                  ;8CD4B1; "D"
-    dw $0005                                                             ;8CD4B3;
+    dw $0005*!FPS                                                        ;8CD4B3;
     db $07,$0E                                                           ;8CD4B5;
     dw IndirectInstructions_IntroText_I                                  ;8CD4B7; "I"
-    dw $0005                                                             ;8CD4B9;
+    dw $0005*!FPS                                                        ;8CD4B9;
     db $08,$0E                                                           ;8CD4BB;
     dw IndirectInstructions_IntroText_S                                  ;8CD4BD; "S"
-    dw $0005                                                             ;8CD4BF;
+    dw $0005*!FPS                                                        ;8CD4BF;
     db $09,$0E                                                           ;8CD4C1;
     dw IndirectInstructions_IntroText_T                                  ;8CD4C3; "T"
-    dw $0005                                                             ;8CD4C5;
+    dw $0005*!FPS                                                        ;8CD4C5;
     db $0A,$0E                                                           ;8CD4C7;
     dw IndirectInstructions_IntroText_R                                  ;8CD4C9; "R"
-    dw $0005                                                             ;8CD4CB;
+    dw $0005*!FPS                                                        ;8CD4CB;
     db $0B,$0E                                                           ;8CD4CD;
     dw IndirectInstructions_IntroText_E                                  ;8CD4CF; "E"
-    dw $0005                                                             ;8CD4D1;
+    dw $0005*!FPS                                                        ;8CD4D1;
     db $0C,$0E                                                           ;8CD4D3;
     dw IndirectInstructions_IntroText_S                                  ;8CD4D5; "S"
-    dw $0005                                                             ;8CD4D7;
+    dw $0005*!FPS                                                        ;8CD4D7;
     db $0D,$0E                                                           ;8CD4D9;
     dw IndirectInstructions_IntroText_S                                  ;8CD4DB; "S"
-    dw $0005                                                             ;8CD4DD;
+    dw $0005*!FPS                                                        ;8CD4DD;
     db $0E,$0E                                                           ;8CD4DF;
     dw IndirectInstructions_IntroText_Space                              ;8CD4E1; " "
-    dw $0005                                                             ;8CD4E3;
+    dw $0005*!FPS                                                        ;8CD4E3;
     db $0F,$0E                                                           ;8CD4E5;
     dw IndirectInstructions_IntroText_S                                  ;8CD4E7; "S"
-    dw $0005                                                             ;8CD4E9;
+    dw $0005*!FPS                                                        ;8CD4E9;
     db $10,$0E                                                           ;8CD4EB;
     dw IndirectInstructions_IntroText_I                                  ;8CD4ED; "I"
-    dw $0005                                                             ;8CD4EF;
+    dw $0005*!FPS                                                        ;8CD4EF;
     db $11,$0E                                                           ;8CD4F1;
     dw IndirectInstructions_IntroText_G                                  ;8CD4F3; "G"
-    dw $0005                                                             ;8CD4F5;
+    dw $0005*!FPS                                                        ;8CD4F5;
     db $12,$0E                                                           ;8CD4F7;
     dw IndirectInstructions_IntroText_N                                  ;8CD4F9; "N"
-    dw $0005                                                             ;8CD4FB;
+    dw $0005*!FPS                                                        ;8CD4FB;
     db $13,$0E                                                           ;8CD4FD;
     dw IndirectInstructions_IntroText_A                                  ;8CD4FF; "A"
-    dw $0005                                                             ;8CD501;
+    dw $0005*!FPS                                                        ;8CD501;
     db $14,$0E                                                           ;8CD503;
     dw IndirectInstructions_IntroText_L                                  ;8CD505; "L"
-    dw $0005                                                             ;8CD507;
+    dw $0005*!FPS                                                        ;8CD507;
     db $15,$0E                                                           ;8CD509;
     dw IndirectInstructions_IntroText_ExclamationPoint                   ;8CD50B; "!"
     dw Instruction_SpawnBlinkingMarkers_WaitForInput_Page5               ;8CD50D;
@@ -6838,101 +6867,101 @@ CinematicBGObjectInstLists_IntroTextPage5:
 CinematicBGObjectInstLists_IntroTextPage6:
 ; CERES STATION WAS UNDER
 ; ATTACK!!
-    dw Instruction_HandleCreatingJapanText_Page6                         ;8CD511;
+    dw Instruction_HandleCreatingSubtitle_Page6                          ;8CD511;
     dw $0001                                                             ;8CD513;
     db $01,$01                                                           ;8CD515;
     dw IndirectInstructions_IntroText_Nothing                            ;8CD517;
-    dw $0005                                                             ;8CD519;
+    dw $0005*!FPS                                                        ;8CD519;
     db $01,$04                                                           ;8CD51B;
     dw IndirectInstructions_IntroText_C                                  ;8CD51D; "C"
-    dw $0005                                                             ;8CD51F;
+    dw $0005*!FPS                                                        ;8CD51F;
     db $02,$04                                                           ;8CD521;
     dw IndirectInstructions_IntroText_E                                  ;8CD523; "E"
-    dw $0005                                                             ;8CD525;
+    dw $0005*!FPS                                                        ;8CD525;
     db $03,$04                                                           ;8CD527;
     dw IndirectInstructions_IntroText_R                                  ;8CD529; "R"
-    dw $0005                                                             ;8CD52B;
+    dw $0005*!FPS                                                        ;8CD52B;
     db $04,$04                                                           ;8CD52D;
     dw IndirectInstructions_IntroText_E                                  ;8CD52F; "E"
-    dw $0005                                                             ;8CD531;
+    dw $0005*!FPS                                                        ;8CD531;
     db $05,$04                                                           ;8CD533;
     dw IndirectInstructions_IntroText_S                                  ;8CD535; "S"
-    dw $0005                                                             ;8CD537;
+    dw $0005*!FPS                                                        ;8CD537;
     db $06,$04                                                           ;8CD539;
     dw IndirectInstructions_IntroText_Space                              ;8CD53B; " "
-    dw $0005                                                             ;8CD53D;
+    dw $0005*!FPS                                                        ;8CD53D;
     db $07,$04                                                           ;8CD53F;
     dw IndirectInstructions_IntroText_S                                  ;8CD541; "S"
-    dw $0005                                                             ;8CD543;
+    dw $0005*!FPS                                                        ;8CD543;
     db $08,$04                                                           ;8CD545;
     dw IndirectInstructions_IntroText_T                                  ;8CD547; "T"
-    dw $0005                                                             ;8CD549;
+    dw $0005*!FPS                                                        ;8CD549;
     db $09,$04                                                           ;8CD54B;
     dw IndirectInstructions_IntroText_A                                  ;8CD54D; "A"
-    dw $0005                                                             ;8CD54F;
+    dw $0005*!FPS                                                        ;8CD54F;
     db $0A,$04                                                           ;8CD551;
     dw IndirectInstructions_IntroText_T                                  ;8CD553; "T"
-    dw $0005                                                             ;8CD555;
+    dw $0005*!FPS                                                        ;8CD555;
     db $0B,$04                                                           ;8CD557;
     dw IndirectInstructions_IntroText_I                                  ;8CD559; "I"
-    dw $0005                                                             ;8CD55B;
+    dw $0005*!FPS                                                        ;8CD55B;
     db $0C,$04                                                           ;8CD55D;
     dw IndirectInstructions_IntroText_O                                  ;8CD55F; "O"
-    dw $0005                                                             ;8CD561;
+    dw $0005*!FPS                                                        ;8CD561;
     db $0D,$04                                                           ;8CD563;
     dw IndirectInstructions_IntroText_N                                  ;8CD565; "N"
-    dw $0005                                                             ;8CD567;
+    dw $0005*!FPS                                                        ;8CD567;
     db $0E,$04                                                           ;8CD569;
     dw IndirectInstructions_IntroText_Space                              ;8CD56B; " "
-    dw $0005                                                             ;8CD56D;
+    dw $0005*!FPS                                                        ;8CD56D;
     db $0F,$04                                                           ;8CD56F;
     dw IndirectInstructions_IntroText_W                                  ;8CD571; "W"
-    dw $0005                                                             ;8CD573;
+    dw $0005*!FPS                                                        ;8CD573;
     db $10,$04                                                           ;8CD575;
     dw IndirectInstructions_IntroText_A                                  ;8CD577; "A"
-    dw $0005                                                             ;8CD579;
+    dw $0005*!FPS                                                        ;8CD579;
     db $11,$04                                                           ;8CD57B;
     dw IndirectInstructions_IntroText_S                                  ;8CD57D; "S"
-    dw $0005                                                             ;8CD57F;
+    dw $0005*!FPS                                                        ;8CD57F;
     db $12,$04                                                           ;8CD581;
     dw IndirectInstructions_IntroText_Space                              ;8CD583; " "
-    dw $0005                                                             ;8CD585;
+    dw $0005*!FPS                                                        ;8CD585;
     db $13,$04                                                           ;8CD587;
     dw IndirectInstructions_IntroText_U                                  ;8CD589; "U"
-    dw $0005                                                             ;8CD58B;
+    dw $0005*!FPS                                                        ;8CD58B;
     db $14,$04                                                           ;8CD58D;
     dw IndirectInstructions_IntroText_N                                  ;8CD58F; "N"
-    dw $0005                                                             ;8CD591;
+    dw $0005*!FPS                                                        ;8CD591;
     db $15,$04                                                           ;8CD593;
     dw IndirectInstructions_IntroText_D                                  ;8CD595; "D"
-    dw $0005                                                             ;8CD597;
+    dw $0005*!FPS                                                        ;8CD597;
     db $16,$04                                                           ;8CD599;
     dw IndirectInstructions_IntroText_E                                  ;8CD59B; "E"
-    dw $0005                                                             ;8CD59D;
+    dw $0005*!FPS                                                        ;8CD59D;
     db $17,$04                                                           ;8CD59F;
     dw IndirectInstructions_IntroText_R                                  ;8CD5A1; "R"
-    dw $0005                                                             ;8CD5A3;
+    dw $0005*!FPS                                                        ;8CD5A3;
     db $01,$06                                                           ;8CD5A5;
     dw IndirectInstructions_IntroText_A                                  ;8CD5A7; "A"
-    dw $0005                                                             ;8CD5A9;
+    dw $0005*!FPS                                                        ;8CD5A9;
     db $02,$06                                                           ;8CD5AB;
     dw IndirectInstructions_IntroText_T                                  ;8CD5AD; "T"
-    dw $0005                                                             ;8CD5AF;
+    dw $0005*!FPS                                                        ;8CD5AF;
     db $03,$06                                                           ;8CD5B1;
     dw IndirectInstructions_IntroText_T                                  ;8CD5B3; "T"
-    dw $0005                                                             ;8CD5B5;
+    dw $0005*!FPS                                                        ;8CD5B5;
     db $04,$06                                                           ;8CD5B7;
     dw IndirectInstructions_IntroText_A                                  ;8CD5B9; "A"
-    dw $0005                                                             ;8CD5BB;
+    dw $0005*!FPS                                                        ;8CD5BB;
     db $05,$06                                                           ;8CD5BD;
     dw IndirectInstructions_IntroText_C                                  ;8CD5BF; "C"
-    dw $0005                                                             ;8CD5C1;
+    dw $0005*!FPS                                                        ;8CD5C1;
     db $06,$06                                                           ;8CD5C3;
     dw IndirectInstructions_IntroText_K                                  ;8CD5C5; "K"
-    dw $0005                                                             ;8CD5C7;
+    dw $0005*!FPS                                                        ;8CD5C7;
     db $07,$06                                                           ;8CD5C9;
     dw IndirectInstructions_IntroText_ExclamationPoint                   ;8CD5CB; "!"
-    dw $0005                                                             ;8CD5CD;
+    dw $0005*!FPS                                                        ;8CD5CD;
     db $08,$06                                                           ;8CD5CF;
     dw IndirectInstructions_IntroText_ExclamationPoint                   ;8CD5D1; "!"
     dw Instruction_SetCaretToBlink                                       ;8CD5D3;
@@ -6992,43 +7021,61 @@ CinematicBGObjectInstLists_SamusBlinkingDeadpan:
 
 ;;; $D629: Space colony ;;;
 CinematicBGObjectInstLists_SpaceColony:
-    dw $0010                                                             ;8CD629;
+    dw regional($0010, $000C)                                            ;8CD629;
     db $0A,$18                                                           ;8CD62B;
     dw IndirectInstructions_IntroText_SpaceColony_S                      ;8CD62D; "S"
-    dw $0010                                                             ;8CD62F;
+    dw regional($0010, $000C)                                            ;8CD62F;
     db $0B,$18                                                           ;8CD631;
     dw IndirectInstructions_IntroText_SpaceColony_P                      ;8CD633; "P"
-    dw $0010                                                             ;8CD635;
+    dw regional($0010, $000C)                                            ;8CD635;
     db $0C,$18                                                           ;8CD637;
     dw IndirectInstructions_IntroText_SpaceColony_A                      ;8CD639; "A"
-    dw $0010                                                             ;8CD63B;
+    dw regional($0010, $000C)                                            ;8CD63B;
     db $0D,$18                                                           ;8CD63D;
     dw IndirectInstructions_IntroText_SpaceColony_C                      ;8CD63F; "C"
-    dw $0010                                                             ;8CD641;
+    dw regional($0010, $000C)                                            ;8CD641;
     db $0E,$18                                                           ;8CD643;
     dw IndirectInstructions_IntroText_SpaceColony_E                      ;8CD645; "E"
-    dw $0010                                                             ;8CD647;
+    dw regional($0010, $000C)                                            ;8CD647;
     db $10,$18                                                           ;8CD649;
     dw IndirectInstructions_IntroText_SpaceColony_C                      ;8CD64B; "C"
-    dw $0010                                                             ;8CD64D;
+    dw regional($0010, $000C)                                            ;8CD64D;
     db $11,$18                                                           ;8CD64F;
     dw IndirectInstructions_IntroText_SpaceColony_O                      ;8CD651; "O"
-    dw $0010                                                             ;8CD653;
+    dw regional($0010, $000C)                                            ;8CD653;
     db $12,$18                                                           ;8CD655;
     dw IndirectInstructions_IntroText_SpaceColony_L                      ;8CD657; "L"
-    dw $0010                                                             ;8CD659;
+    dw regional($0010, $000C)                                            ;8CD659;
     db $13,$18                                                           ;8CD65B;
     dw IndirectInstructions_IntroText_SpaceColony_O                      ;8CD65D; "O"
-    dw $0010                                                             ;8CD65F;
+    dw regional($0010, $000C)                                            ;8CD65F;
     db $14,$18                                                           ;8CD661;
     dw IndirectInstructions_IntroText_SpaceColony_N                      ;8CD663; "N"
-    dw $0010                                                             ;8CD665;
+    dw regional($0010, $000C)                                            ;8CD665;
     db $15,$18                                                           ;8CD667;
     dw IndirectInstructions_IntroText_SpaceColony_Y                      ;8CD669; "Y"
-    dw Instruction_SkipNextInstructionIfEnglishText                      ;8CD66B;
+    dw Instruction_SkipNextInstructionIfDefaultLanguage                  ;8CD66B;
+  .altLanguage
+if !PAL == 0
     dw $0001                                                             ;8CD66D;
     db $0C,$1A                                                           ;8CD66F;
-    dw IndirectInstructions_IntroText_JapanText_SpaceColony              ;8CD671;
+    dw IndirectInstructions_IntroSubtitle_SpaceColony_AltLanguage        ;8CD671;
+  .defaultLanguage
+else
+    dw $0001
+    db $08,$1A
+    dw IndirectInstructions_IntroSubtitle_SpaceColony_AltLanguage
+    dw $0080
+    db $01,$01
+    dw IndirectInstructions_IntroText_Nothing
+    dw Instruction_FinishFlyToCeres
+    dw CinematicBGObject_Instruction_Delete
+    
+  .defaultLanguage
+    dw $0001
+    db $08,$1A
+    dw IndirectInstructions_IntroSubtitle_SpaceColony_DefaultLanguage
+endif
     dw $0080                                                             ;8CD673;
     db $01,$01                                                           ;8CD675;
     dw IndirectInstructions_IntroText_Nothing                            ;8CD677;
@@ -7320,7 +7367,8 @@ IndirectInstructions_IntroText_SpaceColony_Y:
     db $01,$01                                                           ;8CD7F3;
     dw $21B9                                                             ;8CD7F5;
 
-IndirectInstructions_IntroText_JapanText_SpaceColony:
+if !PAL == 0
+IndirectInstructions_IntroSubtitle_SpaceColony_AltLanguage:
 ; "スペースコロニー" (space colony)
     dw IndirectInstructionFunction_DrawTextToTilemap                     ;8CD7F7;
     db $08,$02                                                           ;8CD7F9;
@@ -7329,7 +7377,7 @@ IndirectInstructions_IntroText_JapanText_SpaceColony:
 
 
 ;;; $D81B: Initial intro Japanese text tilemap ;;;
-InitialIntroJapanTextTilemap:
+InitialIntroSubtitleTilemap_AltLanguage:
 ; 最後のメトロイドが 獲えられ (the last metroid was captured)
 ; 銀河宇宙に平和が訪れた... (peace came to the Milky Way...)
     dw $002F,$002F,$002F,$002F,$002F,$002F,$002F,$002F                   ;8CD81B;
@@ -7348,6 +7396,83 @@ InitialIntroJapanTextTilemap:
     dw $002F,$1087,$1088,$1089,$108A,$108B,$108C,$108D                   ;8CD8EB;
     dw $1082,$108E,$1086,$108F,$1026,$1026,$1026,$002F                   ;8CD8FB;
     dw $002F,$002F,$002F,$002F,$002F,$002F,$002F,$002F                   ;8CD90B;
+else
+IndirectInstructions_IntroSubtitle_SpaceColony_DefaultLanguage:
+; FORSCHUNGSSTATION
+    dw IndirectInstructionFunction_DrawTextToTilemap
+    db $11,$02
+    dw $20C4,$20CA,$20C3,$20C7,$20CC,$20C2,$20C1,$20CB,$20C0,$20C7,$20C7,$20C8,$20C5,$20C8,$20C9,$20CA,$20CB
+    dw $20D4,$20DA,$20D3,$20D7,$20DC,$20D2,$20D1,$20DB,$20D0,$20D7,$20D7,$20D8,$20D5,$20D8,$20D9,$20DA,$20DB
+
+
+IndirectInstructions_IntroSubtitle_SpaceColony_AltLanguage:
+; COLONIE SPATIALE
+    dw IndirectInstructionFunction_DrawTextToTilemap
+    db $10,$02
+    dw $20CC,$20CA,$20CD,$20CA,$20CB,$20C9,$20CE,$202F,$20C7,$20CF,$20C5,$20C8,$20C9,$20C5,$20CD,$20CE
+    dw $20DC,$20DA,$20DD,$20DA,$20DB,$20D9,$20DE,$202F,$20D7,$20DF,$20D5,$20D8,$20D9,$20D5,$20DD,$20DE
+
+
+InitialIntroSubtitleTilemap_DefaultLanguage_Subpage1:
+; DER LETZTE METROID IST
+;   IN GEFANGENSCHAFT.
+    dw $002F,$002F,$002F,$002F,$002F,$1073,$1074,$1091
+    dw $002F,$107B,$1074,$1093,$1099,$1093,$1074,$002F
+    dw $107C,$1074,$1093,$1091,$107E,$1078,$1073,$002F
+    dw $1078,$1092,$1093,$002F,$002F,$002F,$002F,$002F
+    dw $002F,$002F,$002F,$002F,$002F,$1083,$1084,$10A1
+    dw $002F,$108B,$1084,$10A3,$10A9,$10A3,$1084,$002F
+    dw $108C,$1084,$10A3,$10A1,$108E,$1088,$1083,$002F
+    dw $1088,$10A2,$10A3,$002F,$002F,$002F,$002F,$002F
+    dw $002F,$002F,$002F,$002F,$002F,$002F,$002F,$1078
+    dw $107D,$002F,$1076,$1074,$1075,$1070,$107D,$1076
+    dw $1074,$107D,$1092,$1072,$1077,$1070,$1075,$1093
+    dw $002F,$002F,$002F,$002F,$002F,$002F,$002F,$002F
+    dw $002F,$002F,$002F,$002F,$002F,$002F,$002F,$1088
+    dw $108D,$002F,$1086,$1084,$1085,$1080,$108D,$1086
+    dw $1084,$108D,$10A2,$1082,$1087,$1080,$1085,$10A3
+    dw $106B,$002F,$002F,$002F,$002F,$002F,$002F,$002F
+    
+InitialIntroSubtitleTilemap_DefaultLanguage_Subpage2:
+;  ES HERRSCHT WIEDER
+; FRIEDEN IM UNIVERSUM...
+    dw $002F,$002F,$002F,$002F,$002F,$002F,$1074,$1092
+    dw $002F,$1077,$1074,$1091,$1091,$1092,$1072,$1077
+    dw $1093,$002F,$1096,$1078,$1074,$1073,$1074,$1091
+    dw $002F,$002F,$002F,$002F,$002F,$002F,$002F,$002F
+    dw $002F,$002F,$002F,$002F,$002F,$002F,$1084,$10A2
+    dw $002F,$1087,$1084,$10A1,$10A1,$10A2,$1082,$1087
+    dw $10A3,$002F,$10A6,$1088,$1084,$1083,$1084,$10A1
+    dw $002F,$002F,$002F,$002F,$002F,$002F,$002F,$002F
+    dw $002F,$002F,$002F,$002F,$002F,$1075,$1091,$1078
+    dw $1074,$1073,$1074,$107D,$002F,$1078,$107C,$002F
+    dw $1094,$107D,$1078,$1095,$1074,$1091,$1092,$1094
+    dw $107C,$002F,$002F,$002F,$002F,$002F,$002F,$002F
+    dw $002F,$002F,$002F,$002F,$002F,$1085,$10A1,$1088
+    dw $1084,$1083,$1084,$108D,$002F,$1088,$108C,$002F
+    dw $10A4,$108D,$1088,$10A5,$1084,$10A1,$10A2,$10A4
+    dw $108C,$106B,$106B,$106B,$002F,$002F,$002F,$002F
+
+InitialIntroSubtitleTilemap_AltLanguage:
+; LE DERNIER METROIDE EST
+; CAPTIF. LA PAIX REGNE.
+    dw $002F,$002F,$002F,$002F,$002F,$107B,$1074,$002F
+    dw $1073,$1074,$1091,$107D,$1078,$1074,$1091,$002F
+    dw $107C,$1074,$1093,$1091,$107E,$1078,$1073,$1074
+    dw $002F,$1074,$1092,$1093,$002F,$002F,$002F,$002F
+    dw $002F,$002F,$002F,$002F,$002F,$108B,$1084,$002F
+    dw $1083,$1084,$10A1,$108D,$1088,$1084,$10A1,$002F
+    dw $108C,$1084,$10A3,$10A1,$108E,$1088,$1083,$1084
+    dw $002F,$1084,$10A2,$10A3,$002F,$002F,$002F,$002F
+    dw $002F,$002F,$002F,$002F,$002F,$1072,$1070,$107F
+    dw $1093,$1078,$1075,$002F,$002F,$107B,$1070,$002F
+    dw $107F,$1070,$1078,$1097,$002F,$1091,$1074,$1076
+    dw $107D,$1074,$002F,$002F,$002F,$002F,$002F,$002F
+    dw $002F,$002F,$002F,$002F,$002F,$1082,$1080,$108F
+    dw $10A3,$1088,$1085,$106B,$002F,$108B,$1080,$002F
+    dw $108F,$1080,$1088,$10A7,$002F,$10A1,$1084,$1086
+    dw $108D,$1084,$106B,$002F,$002F,$002F,$002F,$002F
+endif
 
 
 ;;; $D91B: Instruction list - credits ;;;
@@ -7359,7 +7484,7 @@ InstList_Credits_Start:
 
 ; Strangely (to me), this doesn't just load the credits tilemap in the original order,
 ; but actually rearranges some sections and omits(!) some credits
-    dw Instruction_CreditsObject_TimerInY,$0008                          ;8CD91B;
+    dw Instruction_CreditsObject_TimerInY,$0008*!FPS                     ;8CD91B;
 
 InstList_Credits_SuperMetroidStaff:
     dw $0000,$1FC0                                                       ;8CD91F;
@@ -7642,7 +7767,7 @@ InstList_Credits_GeneralManager:
     dw $0000,$1FC0
     dw $0000,$0140
     dw $0000,$0180
-    dw Instruction_CreditsObject_TimerInY,$0023                          ;8CDC8B;
+    dw Instruction_CreditsObject_TimerInY,regional($0023, $0022)         ;8CDC8B;
 
 InstList_Credits_End:
     dw $0000,$1FC0                                                       ;8CDC8F;
@@ -7693,6 +7818,7 @@ Tilemap_PostCredits_DeeRForCe:
 
 
 ;;; $DEDB: Tilemap - post-credits - 1994 Nintendo ;;;
+if !PAL == 0
 Tilemap_PostCredits_1994Nintendo:
     dw $007F,$007F,$007F,$007F,$007F,$007F,$007F,$007F                   ;8CDEDB;
     dw $007F,$0061,$0069,$0069,$0064,$007F,$007F,$002D                   ;8CDEEB;
@@ -7705,7 +7831,7 @@ Tilemap_PostCredits_1994Nintendo:
 
 
 ;;; $DF5B: Tilemap - post-credits - item percentage Japanese text ;;;
-Tilemap_PostCredits_ItemPercentageJapanText:
+Tilemap_PostCredits_ItemPercentageSubtitle_AltLanguage:
 ; アイテム発見パーセンテージ (percentage of items discovered)
     dw $004F,$004F,$004F,$004F,$004F,$004F,$004F,$004F                   ;8CDF5B;
     dw $004F,$005B,$005C,$005D,$005E,$005F,$0080,$0081                   ;8CDF6B;
@@ -7715,6 +7841,48 @@ Tilemap_PostCredits_ItemPercentageJapanText:
     dw $004F,$006B,$006C,$006D,$006E,$006F,$0090,$0091                   ;8CDFAB;
     dw $0092,$0093,$0094,$0095,$0096,$0097,$004F,$004F                   ;8CDFBB;
     dw $004F,$004F,$004F,$004F,$004F,$004F,$004F,$004F                   ;8CDFCB;
+else
+Tilemap_PostCredits_1994Nintendo:
+    dw $004F,$004F,$004F,$004F,$004F,$004F,$004F,$004F
+    dw $004F,$0061,$0069,$0069,$0064,$004F,$004F,$002D
+    dw $0028,$002D,$0043,$0024,$002D,$0023,$002E,$004F
+    dw $004F,$004F,$004F,$004F,$004F,$004F,$004F,$004F
+    dw $004F,$004F,$004F,$004F,$004F,$004F,$004F,$004F
+    dw $004F,$0071,$0079,$0079,$0074,$004F,$004F,$003D
+    dw $0038,$003D,$0053,$0034,$003D,$0033,$003E,$004F
+    dw $004F,$004F,$004F,$004F,$004F,$004F,$004F,$004F
+
+Tilemap_PostCredits_ItemPercentageSubtitle_DefaultLanguage:
+; EINGESAMMELTE
+;  GEGENSTÄNDE
+    dw $004F,$004F,$004F,$004F,$004F,$004F,$004F,$004F
+    dw $004F,$0088,$0089,$008A,$008B,$0088,$008C,$008D
+    dw $008E,$008E,$0088,$008F,$00A0,$0088,$004F,$004F
+    dw $004F,$004F,$004F,$004F,$004F,$004F,$004F,$004F
+    dw $004F,$004F,$004F,$004F,$004F,$004F,$004F,$004F
+    dw $004F,$0098,$0099,$009A,$009B,$0098,$009C,$009D
+    dw $009E,$009E,$0098,$009F,$00B0,$0098,$004F,$004F
+    dw $004F,$004F,$004F,$004F,$004F,$004F,$004F,$004F
+    dw $004F,$004F,$004F,$004F,$004F,$004F,$004F,$004F
+    dw $004F,$004F,$008B,$0088,$008B,$0088,$008A,$008C
+    dw $00A0,$00A1,$008A,$00A2,$0088,$004F,$004F,$004F
+    dw $004F,$004F,$004F,$004F,$004F,$004F,$004F,$004F
+    dw $004F,$004F,$004F,$004F,$004F,$004F,$004F,$004F
+    dw $004F,$004F,$009B,$0098,$009B,$0098,$009A,$009C
+    dw $00B0,$00B1,$009A,$00B2,$0098,$004F,$004F,$004F
+    dw $004F,$004F,$004F,$004F,$004F,$004F,$004F,$004F
+
+Tilemap_PostCredits_ItemPercentageSubtitle_AltLanguage:
+; TAUX D'OBJETS AMASSES
+    dw $004F,$004F,$004F,$004F,$004F,$00A0,$008D,$00A3
+    dw $00A4,$004F,$00A2,$007F,$00A5,$00A6,$00A7,$0088
+    dw $00A0,$008C,$004F,$008D,$008E,$008D,$008C,$008C
+    dw $0088,$008C,$004F,$004F,$004F,$004F,$004F,$004F
+    dw $004F,$004F,$004F,$004F,$004F,$00B0,$009D,$00B3
+    dw $00B4,$004F,$00B2,$004F,$00B5,$00B6,$00B7,$0098
+    dw $00B0,$009C,$004F,$009D,$009E,$009D,$009C,$009C
+    dw $0098,$009C,$004F,$004F,$004F,$004F,$004F,$004F
+endif
 
 
 ;;; $DFDB: Item percentage ;;;
@@ -7724,108 +7892,108 @@ CinematicBGObjectInstLists_Ending_ItemPercentage:
     dw $0040                                                             ;8CDFDB;
     db $00,$00                                                           ;8CDFDD;
     dw IndirectInstructions_Ending_Nothing                               ;8CDFDF;
-    dw $0004                                                             ;8CDFE1;
+    dw $0004*!FPS                                                        ;8CDFE1;
     db $09,$0A                                                           ;8CDFE3;
     dw IndirectInstructions_EndingSmall_Y                                ;8CDFE5; "Y"
-    dw $0004                                                             ;8CDFE7;
+    dw $0004*!FPS                                                        ;8CDFE7;
     db $0A,$0A                                                           ;8CDFE9;
     dw IndirectInstructions_EndingSmall_O                                ;8CDFEB; "O"
-    dw $0004                                                             ;8CDFED;
+    dw $0004*!FPS                                                        ;8CDFED;
     db $0B,$0A                                                           ;8CDFEF;
     dw IndirectInstructions_EndingSmall_U                                ;8CDFF1; "U"
-    dw $0004                                                             ;8CDFF3;
+    dw $0004*!FPS                                                        ;8CDFF3;
     db $0C,$0A                                                           ;8CDFF5;
     dw IndirectInstructions_EndingSmall_R                                ;8CDFF7; "R"
-    dw $0004                                                             ;8CDFF9;
+    dw $0004*!FPS                                                        ;8CDFF9;
     db $0D,$0A                                                           ;8CDFFB;
     dw IndirectInstructions_EndingSmall_Space                            ;8CDFFD; " "
-    dw $0004                                                             ;8CDFFF;
+    dw $0004*!FPS                                                        ;8CDFFF;
     db $0E,$0A                                                           ;8CE001;
     dw IndirectInstructions_EndingSmall_R                                ;8CE003; "R"
-    dw $0004                                                             ;8CE005;
+    dw $0004*!FPS                                                        ;8CE005;
     db $0F,$0A                                                           ;8CE007;
     dw IndirectInstructions_EndingSmall_A                                ;8CE009; "A"
-    dw $0004                                                             ;8CE00B;
+    dw $0004*!FPS                                                        ;8CE00B;
     db $10,$0A                                                           ;8CE00D;
     dw IndirectInstructions_EndingSmall_T                                ;8CE00F; "T"
-    dw $0004                                                             ;8CE011;
+    dw $0004*!FPS                                                        ;8CE011;
     db $11,$0A                                                           ;8CE013;
     dw IndirectInstructions_EndingSmall_E                                ;8CE015; "E"
-    dw $0004                                                             ;8CE017;
+    dw $0004*!FPS                                                        ;8CE017;
     db $12,$0A                                                           ;8CE019;
     dw IndirectInstructions_EndingSmall_Space                            ;8CE01B; " "
-    dw $0004                                                             ;8CE01D;
+    dw $0004*!FPS                                                        ;8CE01D;
     db $13,$0A                                                           ;8CE01F;
     dw IndirectInstructions_EndingSmall_F                                ;8CE021; "F"
-    dw $0004                                                             ;8CE023;
+    dw $0004*!FPS                                                        ;8CE023;
     db $14,$0A                                                           ;8CE025;
     dw IndirectInstructions_EndingSmall_O                                ;8CE027; "O"
-    dw $0004                                                             ;8CE029;
+    dw $0004*!FPS                                                        ;8CE029;
     db $15,$0A                                                           ;8CE02B;
     dw IndirectInstructions_EndingSmall_R                                ;8CE02D; "R"
-    dw $0004                                                             ;8CE02F;
+    dw $0004*!FPS                                                        ;8CE02F;
     db $06,$0C                                                           ;8CE031;
     dw IndirectInstructions_EndingSmall_C                                ;8CE033; "C"
-    dw $0004                                                             ;8CE035;
+    dw $0004*!FPS                                                        ;8CE035;
     db $07,$0C                                                           ;8CE037;
     dw IndirectInstructions_EndingSmall_O                                ;8CE039; "O"
-    dw $0004                                                             ;8CE03B;
+    dw $0004*!FPS                                                        ;8CE03B;
     db $08,$0C                                                           ;8CE03D;
     dw IndirectInstructions_EndingSmall_L                                ;8CE03F; "L"
-    dw $0004                                                             ;8CE041;
+    dw $0004*!FPS                                                        ;8CE041;
     db $09,$0C                                                           ;8CE043;
     dw IndirectInstructions_EndingSmall_L                                ;8CE045; "L"
-    dw $0004                                                             ;8CE047;
+    dw $0004*!FPS                                                        ;8CE047;
     db $0A,$0C                                                           ;8CE049;
     dw IndirectInstructions_EndingSmall_E                                ;8CE04B; "E"
-    dw $0004                                                             ;8CE04D;
+    dw $0004*!FPS                                                        ;8CE04D;
     db $0B,$0C                                                           ;8CE04F;
     dw IndirectInstructions_EndingSmall_C                                ;8CE051; "C"
-    dw $0004                                                             ;8CE053;
+    dw $0004*!FPS                                                        ;8CE053;
     db $0C,$0C                                                           ;8CE055;
     dw IndirectInstructions_EndingSmall_T                                ;8CE057; "T"
-    dw $0004                                                             ;8CE059;
+    dw $0004*!FPS                                                        ;8CE059;
     db $0D,$0C                                                           ;8CE05B;
     dw IndirectInstructions_EndingSmall_I                                ;8CE05D; "I"
-    dw $0004                                                             ;8CE05F;
+    dw $0004*!FPS                                                        ;8CE05F;
     db $0E,$0C                                                           ;8CE061;
     dw IndirectInstructions_EndingSmall_N                                ;8CE063; "N"
-    dw $0004                                                             ;8CE065;
+    dw $0004*!FPS                                                        ;8CE065;
     db $0F,$0C                                                           ;8CE067;
     dw IndirectInstructions_EndingSmall_G                                ;8CE069; "G"
-    dw $0004                                                             ;8CE06B;
+    dw $0004*!FPS                                                        ;8CE06B;
     db $10,$0C                                                           ;8CE06D;
     dw IndirectInstructions_EndingSmall_Space                            ;8CE06F; " "
-    dw $0004                                                             ;8CE071;
+    dw $0004*!FPS                                                        ;8CE071;
     db $11,$0C                                                           ;8CE073;
     dw IndirectInstructions_EndingSmall_I                                ;8CE075; "I"
-    dw $0004                                                             ;8CE077;
+    dw $0004*!FPS                                                        ;8CE077;
     db $12,$0C                                                           ;8CE079;
     dw IndirectInstructions_EndingSmall_T                                ;8CE07B; "T"
-    dw $0004                                                             ;8CE07D;
+    dw $0004*!FPS                                                        ;8CE07D;
     db $13,$0C                                                           ;8CE07F;
     dw IndirectInstructions_EndingSmall_E                                ;8CE081; "E"
-    dw $0004                                                             ;8CE083;
+    dw $0004*!FPS                                                        ;8CE083;
     db $14,$0C                                                           ;8CE085;
     dw IndirectInstructions_EndingSmall_M                                ;8CE087; "M"
-    dw $0004                                                             ;8CE089;
+    dw $0004*!FPS                                                        ;8CE089;
     db $15,$0C                                                           ;8CE08B;
     dw IndirectInstructions_EndingSmall_S                                ;8CE08D; "S"
-    dw $0004                                                             ;8CE08F;
+    dw $0004*!FPS                                                        ;8CE08F;
     db $16,$0C                                                           ;8CE091;
     dw IndirectInstructions_EndingSmall_Space                            ;8CE093; " "
-    dw $0004                                                             ;8CE095;
+    dw $0004*!FPS                                                        ;8CE095;
     db $17,$0C                                                           ;8CE097;
     dw IndirectInstructions_EndingSmall_I                                ;8CE099; "I"
-    dw $0004                                                             ;8CE09B;
+    dw $0004*!FPS                                                        ;8CE09B;
     db $18,$0C                                                           ;8CE09D;
     dw IndirectInstructions_EndingSmall_S                                ;8CE09F; "S"
     dw Instruction_DrawItemPercentageCount                               ;8CE0A1;
-    dw Instruction_DrawItemPercentageJapanText                           ;8CE0A3;
+    dw Instruction_DrawItemPercentageSubtitle                            ;8CE0A3;
     dw $0080                                                             ;8CE0A5;
     db $00,$00                                                           ;8CE0A7;
     dw IndirectInstructions_Ending_Nothing                               ;8CE0A9;
-    dw Instruction_ClearItemPercentageJapanText                          ;8CE0AB;
+    dw Instruction_ClearItemPercentageSubtitle                           ;8CE0AB;
     dw CinematicBGObject_Instruction_Delete                              ;8CE0AD;
 
 
@@ -7834,64 +8002,64 @@ CinematicBGObjectInstLists_Ending_SeeYouNextMission:
     dw $0040                                                             ;8CE0AF;
     db $00,$00                                                           ;8CE0B1;
     dw IndirectInstructions_Ending_Nothing                               ;8CE0B3;
-    dw $0004                                                             ;8CE0B5;
+    dw $0004*!FPS                                                        ;8CE0B5;
     db $06,$02                                                           ;8CE0B7;
     dw IndirectInstructions_Ending_S                                     ;8CE0B9; "S"
-    dw $0004                                                             ;8CE0BB;
+    dw $0004*!FPS                                                        ;8CE0BB;
     db $07,$02                                                           ;8CE0BD;
     dw IndirectInstructions_Ending_E                                     ;8CE0BF; "E"
-    dw $0004                                                             ;8CE0C1;
+    dw $0004*!FPS                                                        ;8CE0C1;
     db $08,$02                                                           ;8CE0C3;
     dw IndirectInstructions_Ending_E                                     ;8CE0C5; "E"
-    dw $0004                                                             ;8CE0C7;
+    dw $0004*!FPS                                                        ;8CE0C7;
     db $09,$02                                                           ;8CE0C9;
     dw IndirectInstructions_Ending_Space                                 ;8CE0CB; " "
-    dw $0004                                                             ;8CE0CD;
+    dw $0004*!FPS                                                        ;8CE0CD;
     db $0A,$02                                                           ;8CE0CF;
     dw IndirectInstructions_Ending_Y                                     ;8CE0D1; "Y"
-    dw $0004                                                             ;8CE0D3;
+    dw $0004*!FPS                                                        ;8CE0D3;
     db $0B,$02                                                           ;8CE0D5;
     dw IndirectInstructions_Ending_O                                     ;8CE0D7; "O"
-    dw $0004                                                             ;8CE0D9;
+    dw $0004*!FPS                                                        ;8CE0D9;
     db $0C,$02                                                           ;8CE0DB;
     dw IndirectInstructions_Ending_U                                     ;8CE0DD; "U"
-    dw $0004                                                             ;8CE0DF;
+    dw $0004*!FPS                                                        ;8CE0DF;
     db $0D,$02                                                           ;8CE0E1;
     dw IndirectInstructions_Ending_Space                                 ;8CE0E3; " "
-    dw $0004                                                             ;8CE0E5;
+    dw $0004*!FPS                                                        ;8CE0E5;
     db $0E,$02                                                           ;8CE0E7;
     dw IndirectInstructions_Ending_N                                     ;8CE0E9; "N"
-    dw $0004                                                             ;8CE0EB;
+    dw $0004*!FPS                                                        ;8CE0EB;
     db $0F,$02                                                           ;8CE0ED;
     dw IndirectInstructions_Ending_E                                     ;8CE0EF; "E"
-    dw $0004                                                             ;8CE0F1;
+    dw $0004*!FPS                                                        ;8CE0F1;
     db $10,$02                                                           ;8CE0F3;
     dw IndirectInstructions_Ending_X                                     ;8CE0F5; "X"
-    dw $0004                                                             ;8CE0F7;
+    dw $0004*!FPS                                                        ;8CE0F7;
     db $11,$02                                                           ;8CE0F9;
     dw IndirectInstructions_Ending_T                                     ;8CE0FB; "T"
-    dw $0004                                                             ;8CE0FD;
+    dw $0004*!FPS                                                        ;8CE0FD;
     db $12,$02                                                           ;8CE0FF;
     dw IndirectInstructions_Ending_Space                                 ;8CE101; " "
-    dw $0004                                                             ;8CE103;
+    dw $0004*!FPS                                                        ;8CE103;
     db $13,$02                                                           ;8CE105;
     dw IndirectInstructions_Ending_M                                     ;8CE107; "M"
-    dw $0004                                                             ;8CE109;
+    dw $0004*!FPS                                                        ;8CE109;
     db $14,$02                                                           ;8CE10B;
     dw IndirectInstructions_Ending_I                                     ;8CE10D; "I"
-    dw $0004                                                             ;8CE10F;
+    dw $0004*!FPS                                                        ;8CE10F;
     db $15,$02                                                           ;8CE111;
     dw IndirectInstructions_Ending_S                                     ;8CE113; "S"
-    dw $0004                                                             ;8CE115;
+    dw $0004*!FPS                                                        ;8CE115;
     db $16,$02                                                           ;8CE117;
     dw IndirectInstructions_Ending_S                                     ;8CE119; "S"
-    dw $0004                                                             ;8CE11B;
+    dw $0004*!FPS                                                        ;8CE11B;
     db $17,$02                                                           ;8CE11D;
     dw IndirectInstructions_Ending_I                                     ;8CE11F; "I"
-    dw $0004                                                             ;8CE121;
+    dw $0004*!FPS                                                        ;8CE121;
     db $18,$02                                                           ;8CE123;
     dw IndirectInstructions_Ending_O                                     ;8CE125; "O"
-    dw $0004                                                             ;8CE127;
+    dw $0004*!FPS                                                        ;8CE127;
     db $19,$02                                                           ;8CE129;
     dw IndirectInstructions_Ending_N                                     ;8CE12B; "N"
     dw CinematicBGObject_Instruction_Delete                              ;8CE12D;
@@ -7904,7 +8072,11 @@ IndirectInstructions_Ending_Nothing:
 IndirectInstructions_Ending_Space:
     dw IndirectInstructionFunction_DrawTextToTilemap                     ;8CE131;
     db $01,$02                                                           ;8CE133;
+if !PAL == 0
     dw $207F,$207F                                                       ;8CE135;
+else
+    dw $204F,$204F
+endif
 
 IndirectInstructions_Ending_S:
     dw IndirectInstructionFunction_DrawTextToTilemap                     ;8CE139;
@@ -8034,7 +8206,11 @@ IndirectInstructions_EndingSmall_Y:
 IndirectInstructions_EndingSmall_Space:
     dw IndirectInstructionFunction_DrawTextToTilemap                     ;8CE1E3;
     db $01,$01                                                           ;8CE1E5;
+if !PAL == 0
     dw $207F                                                             ;8CE1E7;
+else
+    dw $204F
+endif
 
 
 ;;; $E1E9: Palettes - title screen ;;;

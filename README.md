@@ -3,8 +3,6 @@
 
  Assembles with asar v1.81: https://github.com/RPGHacker/asar/releases/tag/v1.81
 
- This project was released when it was considered "usable" but more work is planned.
-
 
 ## Getting Started
  1. Have python3 installed. Windows users may also need to setup their PATH environment variable so python can be accessed from anywhere.

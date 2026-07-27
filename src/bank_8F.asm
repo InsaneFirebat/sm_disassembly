@@ -2142,7 +2142,7 @@ RoomState_CrateriaKihunter:                                              ;8F9499
     %enemyPop(EnemyPopulations_CrateriaKihunter),
     %enemySet(EnemySets_CrateriaKihunter),
     %layer2Scrolls($C1, $C1),
-    %scrollPointer(RoomScroll_CrateriaKihunter),
+    %scrollPointer(RoomScrolls_CrateriaKihunter),
     %specialXray(0),
     %mainASM(0),
     %PLMPop(PLMPopulation_CrateriaKihunter),
@@ -2154,7 +2154,7 @@ RoomDoors_CrateriaKihunter:
     dw Door_CrateriaKihunter_1                                           ;8F94B5;
     dw Door_CrateriaKihunter_2                                           ;8F94B7;
 
-RoomScroll_CrateriaKihunter:
+RoomScrolls_CrateriaKihunter:
     db $01,$01,$01,$00,$00,$00,$00,$02,$00                               ;8F94B9;
 
 RoomPLM_CrateriaKihunter_0:
@@ -2764,7 +2764,7 @@ RoomState_BombTorizo_2:                                                  ;8F984F
     %enemySet(EnemySets_BombTorizo_2),
     %layer2Scrolls($C1, $C1),
     %scrollPointer(0),
-    %specialXray(RoomVar_BombTorizo),
+    %specialXray(RoomVar_BombTorizo_AnimalEscapeBlocks),
     %mainASM(MainASM_SetScreenShaking_GenerateRandomExplosions),
     %PLMPop(PLMPopulation_BombTorizo_State2),
     %libraryBG(LibBG_Crateria_2_3_Mechanical),
@@ -2773,7 +2773,8 @@ RoomState_BombTorizo_2:                                                  ;8F984F
 RoomDoors_BombTorizo:
     dw Door_BombTorizo_0                                                 ;8F9869;
 
-RoomVar_BombTorizo:
+RoomVar_BombTorizo_AnimalEscapeBlocks:
+; the only RoomVar / special Xray blocks
     db $0F,$0A : dw $0052                                                ;8F986B;
     db $0F,$0B : dw $0052
     db $0F,$0C : dw $0052
@@ -3487,19 +3488,21 @@ RoomHeader_Dachora:                                                      ;8F9CB3
     %doorList(RoomDoors_Dachora))
     %stateChecks(0)
 
-RoomState_Dachora:
-    dl LevelData_Dachora                                                 ;8F9CC0;
-    db $06,$00,$00                                                       ;8F9CC3;
-    dw FXHeader_Dachora                                                  ;8F9CC6;
-    dw EnemyPopulations_Dachora                                          ;8F9CC8;
-    dw EnemySets_Dachora                                                 ;8F9CCA;
-    db $C0,$00                                                           ;8F9CCC;
-    dw RoomScrolls_Dachora                                               ;8F9CCE;
-    dw $0000                                                             ;8F9CD0;
-    dw MainASM_ScrollScreenRightInDachoraRoom                            ;8F9CD2;
-    dw PLMPopulation_Dachora                                             ;8F9CD4;
-    dw $0000                                                             ;8F9CD6;
-    dw RTS_8F91D5                                                        ;8F9CD8;
+RoomState_Dachora:                                                       ;8F9CC0;
+    %StateHeader(\
+    %levelData(LevelData_Dachora),
+    %tileset(6),
+    %music(0, 0),
+    %FX(FXHeader_Dachora),
+    %enemyPop(EnemyPopulations_Dachora),
+    %enemySet(EnemySets_Dachora),
+    %layer2Scrolls($C0, 0),
+    %scrollPointer(RoomScrolls_Dachora),
+    %specialXray(0),
+    %mainASM(MainASM_ScrollScreenRightInDachoraRoom),
+    %PLMPop(PLMPopulation_Dachora),
+    %libraryBG(0),
+    %setupASM(RTS_8F91D5))
 
 RoomDoors_Dachora:
     dw Door_Dachora_0                                                    ;8F9CDA;
@@ -4999,7 +5002,7 @@ RoomState_Kraid_1:                                                       ;8FA5CB
     %specialXray(0),
     %mainASM(0),
     %PLMPop(PLMPopulation_Kraid_State0_1),
-    %libraryBG(LibBG_Standard_BG3_Tiles),
+    %libraryBG(LibBG_Kraid_Dead),
     %setupASM(RTS_8F91D6))
 
 RoomDoors_Kraid:
@@ -5902,7 +5905,7 @@ RoomState_PostCrocPowerBombs:                                            ;8FAAEB
     %specialXray(0),
     %mainASM(0),
     %PLMPop(PLMPopulation_PostCrocPowerBombs),
-    %libraryBG(LibBG_Norfair_9_A_CavernStalagtites),
+    %libraryBG(LibBG_Norfair_9_A_CavernStalactites),
     %setupASM(RTS_8F91F6))
 
 RoomDoors_PostCrocPowerBombs:
@@ -5968,7 +5971,7 @@ RoomState_PostCrocMissile:                                               ;8FAB48
     %specialXray(0),
     %mainASM(0),
     %PLMPop(PLMPopulation_PostCrocMissile),
-    %libraryBG(LibBG_Norfair_9_A_CavernStalagtites),
+    %libraryBG(LibBG_Norfair_9_A_CavernStalactites),
     %setupASM(RTS_8F91F6))
 
 RoomDoors_PostCrocMissile:
@@ -6098,7 +6101,7 @@ RoomState_GrappleTutorial1:                                              ;8FAC0D
     %specialXray(0),
     %mainASM(0),
     %PLMPop(PLMPopulation_GrappleTutorial1),
-    %libraryBG(LibBG_Norfair_9_A_CavernStalagtites),
+    %libraryBG(LibBG_Norfair_9_A_CavernStalactites),
     %setupASM(RTS_8F91F6))
 
 RoomDoors_GrappleTutorial1:
@@ -6425,7 +6428,7 @@ RoomState_WaveBeam:                                                      ;8FADEB
     %specialXray(0),
     %mainASM(0),
     %PLMPop(PLMPopulation_WaveBeam),
-    %libraryBG(LibBG_Norfair_9_A_CavernStalagtites),
+    %libraryBG(LibBG_Norfair_9_A_CavernStalactites),
     %setupASM(RTS_8F91F6))
 
 RoomDoors_WaveBeam:
@@ -6455,7 +6458,7 @@ RoomState_SpikyPlatformsTunnel:                                          ;8FAE14
     %specialXray(0),
     %mainASM(0),
     %PLMPop(PLMPopulation_SpikyPlatformsTunnel),
-    %libraryBG(LibBG_Norfair_9_A_CavernStalagtites),
+    %libraryBG(LibBG_Norfair_9_A_CavernStalactites),
     %setupASM(RTS_8F91F6))
 
 RoomDoors_SpikyPlatformsTunnel:
@@ -6577,7 +6580,7 @@ RoomState_MagdolliteTunnel:                                              ;8FAEC1
     %specialXray(0),
     %mainASM(0),
     %PLMPop(PLMPopulation_MagdolliteTunnel),
-    %libraryBG(LibBG_Norfair_9_A_CavernStalagtites),
+    %libraryBG(LibBG_Norfair_9_A_CavernStalactites),
     %setupASM(RTS_8F91F6))
 
 RoomDoors_MagdolliteTunnel:
@@ -6677,7 +6680,7 @@ RoomState_LowerNorfairElev:                                              ;8FAF4C
     %specialXray(0),
     %mainASM(0),
     %PLMPop(PLMPopulation_LowerNorfairElev),
-    %libraryBG(LibBG_Norfair_9_A_CavernStalagtites),
+    %libraryBG(LibBG_Norfair_9_A_CavernStalactites),
     %setupASM(RTS_8F91F6))
 
 RoomDoors_LowerNorfairElev:
@@ -6751,7 +6754,7 @@ RoomState_RisingTide:                                                    ;8FAFB0
     %specialXray(0),
     %mainASM(0),
     %PLMPop(PLMPopulation_RisingTide),
-    %libraryBG(LibBG_Norfair_9_A_CavernStalagtites),
+    %libraryBG(LibBG_Norfair_9_A_CavernStalactites),
     %setupASM(RTS_8F91F6))
 
 RoomDoors_RisingTide:
@@ -6782,7 +6785,7 @@ RoomState_AcidSnakesTunnel:                                              ;8FAFDB
     %specialXray(0),
     %mainASM(0),
     %PLMPop(PLMPopulation_AcidSnakesTunnel),
-    %libraryBG(LibBG_Norfair_9_A_CavernStalagtites),
+    %libraryBG(LibBG_Norfair_9_A_CavernStalactites),
     %setupASM(RTS_8F91F6))
 
 RoomDoors_AcidSnakesTunnel:
@@ -6814,7 +6817,7 @@ RoomState_SpikyAcidSnakesTunnel:                                         ;8FB008
     %specialXray(0),
     %mainASM(0),
     %PLMPop(PLMPopulation_SpikyAcidSnakesTunnel),
-    %libraryBG(LibBG_Norfair_9_A_CavernStalagtites),
+    %libraryBG(LibBG_Norfair_9_A_CavernStalactites),
     %setupASM(RTS_8F91F6))
 
 RoomDoors_SpikyAcidSnakesTunnel:
@@ -6834,7 +6837,7 @@ RoomHeader_UpperNorfairRefill:                                           ;8FB026
 
 RoomState_UpperNorfairRefill:                                            ;8FB033;
     %StateHeader(\
-    %levelData(LevelData_EnergyRefeill_BothDoors),
+    %levelData(LevelData_EnergyRefill_BothDoors),
     %tileset($17),
     %music(0, 0),
     %FX(FXHeader_UpperNorfairRefill),
@@ -7599,7 +7602,7 @@ RoomHeader_Plowerhouse:                                                  ;8FB482
     %scrollers($70, $A0),
     %CRE(0),
     %doorList(RoomDoors_Plowerhouse))
-    dw Use_StatePointer_inX                                              ;8FB48D;
+    %stateChecks(0)
 
 RoomState_Plowerhouse:                                                   ;8FB48F;
     %StateHeader(\
@@ -8120,8 +8123,10 @@ LibBG_Brinstar_1A_Kraid_Upper_Lower:                                     ;8FB815
     dw $0002 : dl BG2Tilemap : dw $4800,$1000
     dw $0000
 
-LibBG_Standard_BG3_Tiles:                                                ;8FB840;
-    dw $0008 : dl Tiles_Standard_BG3 : dw $2000,$1000,$000C,$0000
+LibBG_Kraid_Dead:                                                        ;8FB840;
+    dw $0008 : dl Tiles_Standard_BG3 : dw $2000,$1000
+    dw $000C
+    dw $0000
 
 LibBG_Crocomire_State0:                                                  ;8FB84D;
     dw $0002 : dl $7E2000 : dw $4800,$1000
@@ -8847,7 +8852,7 @@ LibBG_Norfair_9_VerticalPatternBrick:                                    ;8FBEAB
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-LibBG_Norfair_9_A_CavernStalagtites:                                     ;8FBEC6;
+LibBG_Norfair_9_A_CavernStalactites:                                     ;8FBEC6;
 ; Room $AADE, state $AAEB: Post Crocomire power bombs room
 ; Room $AB3B, state $AB48: Post Crocomire fluctuating acid missiles cave
 ; Room $AC00, state $AC0D: Single lake grapple practice room
@@ -8858,7 +8863,7 @@ LibBG_Norfair_9_A_CavernStalagtites:                                     ;8FBEC6
 ; Room $AFA3, state $AFB0: Norfair long lavaquake hall
 ; Room $AFCE, state $AFDB: Boring near-Crocomire hall
 ; Room $AFFB, state $B008: Norfair spike floor hall
-    dw $0004 : dl Background_Norfair_9_A_CavernStalagtites : dw $4000
+    dw $0004 : dl Background_Norfair_9_A_CavernStalactites : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
@@ -9362,7 +9367,7 @@ ExplosionSoundEffects:
 ;;; $C1E6: Main ASM: scroll screen right in Dachora room ;;;
 MainASM_ScrollScreenRightInDachoraRoom:
 ; Room $9CB3. Dachora room
-; The intent of the code is probably to scroll the screen so that it's centred when falling down the shaft;
+; The intent of the code is probably to scroll the screen so that it's centered when falling down the shaft;
 ; in practice, the conditions for the scrolling never occur
     LDA.L Scrolls+$B                                                     ;8FC1E6;
     AND.W #$00FF                                                         ;8FC1EA;
@@ -10152,7 +10157,7 @@ SetupASM_SetZebesTimebombEvent_SetLightHorizontalRoomShaking:
 ; Room $DE4D. Escape room 1
 ; The Zebes timebomb set event was already marked by Mother Brain when she started the time ($A9:B313),
 ; no reason to do it here
-    LDA.W #$000E                                                         ;8FC91F;
+    LDA.W #$000E                                                         ;8FC91F; (Zebes timebomb set)
     JSL.L MarkEvent_inA                                                  ;8FC922;
     LDA.W #$0012                                                         ;8FC926;
     STA.W EarthquakeType                                                 ;8FC929;
@@ -10282,12 +10287,8 @@ RoomDoors_BowlingAlley:
     dw Door_BowlingAlley_2                                               ;8FC9D8;
 
 RoomScrolls_BowlingAlley:
-    db $00,$00,$01,$01,$01,$02,$01,$01,$01                               ;8FC9DA;
-    dw $0101                                                             ;8FC9E3;
-    dw $0002                                                             ;8FC9E5;
-    db $01                                                               ;8FC9E7;
-    dw $0000                                                             ;8FC9E8;
-    dw $0200                                                             ;8FC9EA;
+    db $00,$00,$01,$01,$01,$02,$01,$01,$01,$01,$01,$02,$00,$01,$00,$00   ;8FC9DA;
+    db $00,$02                                                           ;8FC9EA;
 
 RoomPLM_BowlingAlley_0:
     db $0E,$01, $0F,$01, $80                                             ;8FC9EC;
@@ -14906,7 +14907,7 @@ MainASM_HandleCeresRidleyGetawayCutscene:
     LDA.W CeresStatus                                                    ;8FE571;
     LSR                                                                  ;8FE574;
     BCC .return                                                          ;8FE575;
-    JSL.L HandleCeresRidleyGetawayCutscene                               ;8FE577;
+    JSL.L HandleCeresRidleyGetawayCutsceneIfActive                       ;8FE577;
 
   .return:
     RTS                                                                  ;8FE57B;
@@ -15141,7 +15142,7 @@ Door_Closing_PLMs:
 
 Tileset_Table_0_UpperCrateria:
 ; 0: Upper Crateria
-    dl TileTables_0_1_UpperCrateria                                      ;8FE6A2; Tile table pointer
+    dl TileTables_0_1_UpperCrateria                                      ;8FE6A2; Tile table pointer (see $7E:A000 in RAM map)
     dl Tiles_0_1_UpperCrateria                                           ;8FE6A5; Tiles pointer
     dl Palettes_0_UpperCrateria                                          ;8FE6A8; Palette pointer
 
@@ -15199,7 +15200,7 @@ Tileset_Table_9_HeatedNorfair:
     dl Tiles_9_A_Norfair                                                 ;8FE6F6; Tiles pointer
     dl Palettes_9_HeatedNorfair                                          ;8FE6F9; Palette pointer
 
-Tileset_Table_A_UnheatedNofair:
+Tileset_Table_A_UnheatedNorfair:
 ; Ah: Unheated Norfair
     dl TileTables_9_A_Norfair                                            ;8FE6FC; Tile table pointer
     dl Tiles_9_A_Norfair                                                 ;8FE6FF; Tiles pointer
@@ -15316,6 +15317,7 @@ Tileset_Table_1C_Draygon:
 
 ;;; $E7A7: Tileset pointers ;;;
 Tileset_Pointers:
+; Indexed by state header tileset
     dw Tileset_Table_0_UpperCrateria                                     ;8FE7A7;
     dw Tileset_Table_1_RedCrateria                                       ;8FE7A9;
     dw Tileset_Table_2_LowerCrateria                                     ;8FE7AB;
@@ -15326,7 +15328,7 @@ Tileset_Pointers:
     dw Tileset_Table_7_RedBrinstar_Kraid                                 ;8FE7B5;
     dw Tileset_Table_8_StatuesHall                                       ;8FE7B7;
     dw Tileset_Table_9_HeatedNorfair                                     ;8FE7B9;
-    dw Tileset_Table_A_UnheatedNofair                                    ;8FE7BB;
+    dw Tileset_Table_A_UnheatedNorfair                                   ;8FE7BB;
     dw Tileset_Table_B_SandlessMaridia                                   ;8FE7BD;
     dw Tileset_Table_C_SandyMaridia                                      ;8FE7BF;
     dw Tileset_Table_D_Tourian                                           ;8FE7C1;
@@ -15356,7 +15358,7 @@ Music_Pointers:
     dl Music_UpperCrateria                                               ;8FE7ED; Ch  - Upper Crateria
     dl Music_GreenBrinstar                                               ;8FE7F0; Fh  - Green Brinstar
     dl Music_RedBrinstar                                                 ;8FE7F3; 12h - Red Brinstar
-    dl Music_UpperNofair                                                 ;8FE7F6; 15h - Upper Norfair
+    dl Music_UpperNorfair                                                ;8FE7F6; 15h - Upper Norfair
     dl Music_LowerNorfair                                                ;8FE7F9; 18h - Lower Norfair
     dl Music_Maridia                                                     ;8FE7FC; 1Bh - Maridia
     dl Music_Tourian                                                     ;8FE7FF; 1Eh - Tourian
@@ -15431,7 +15433,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 RoomPLM_Debug:
 ; Room $E82C, state $E839: PLM
-    db $00,$00                                                           ;8FE87F;
+    dw $0000                                                             ;8FE87F;
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $E881: Unused. PLM metadata - Wrecked Ship / Maridia / Tourian (/ Ceres?) ;;;

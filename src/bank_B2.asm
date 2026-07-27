@@ -400,83 +400,26 @@ Instruction_CommonB2_DisableOffScreenProcessing:
 
 ;;; $8187: Common enemy speeds - linearly increasing ;;;
 CommonB2EnemySpeeds_LinearlyIncreasing:
-;        _____________________ Speed
-;       |      _______________ Subspeed
-;       |     |      _________ Negated speed
-;       |     |     |      ___ Negated subspeed
-;       |     |     |     |
-  .speed:
-    dw $0000                                                             ;B28187;
-  .subspeed:
-    dw       $0000                                                       ;B28189;
-  .negatedSpeed:
-    dw             $0000                                                 ;B2818B;
-  .negatedSubspeed:
-    dw                   $0000                                           ;B2818D;
-    dw $0000,$1000,$FFFF,$F000
-    dw $0000,$2000,$FFFF,$E000
-    dw $0000,$3000,$FFFF,$D000
-    dw $0000,$4000,$FFFF,$C000
-    dw $0000,$5000,$FFFF,$B000
-    dw $0000,$6000,$FFFF,$A000
-    dw $0000,$7000,$FFFF,$9000
-    dw $0000,$8000,$FFFF,$8000
-    dw $0000,$9000,$FFFF,$7000
-    dw $0000,$A000,$FFFF,$6000
-    dw $0000,$B000,$FFFF,$5000
-    dw $0000,$C000,$FFFF,$4000
-    dw $0000,$D000,$FFFF,$3000
-    dw $0000,$E000,$FFFF,$2000
-    dw $0000,$F000,$FFFF,$1000
-    dw $0001,$0000,$FFFF,$0000
-    dw $0001,$1000,$FFFE,$F000
-    dw $0001,$2000,$FFFE,$E000
-    dw $0001,$3000,$FFFE,$D000
-    dw $0001,$4000,$FFFE,$C000
-    dw $0001,$5000,$FFFE,$B000
-    dw $0001,$6000,$FFFE,$A000
-    dw $0001,$7000,$FFFE,$9000
-    dw $0001,$8000,$FFFE,$8000
-    dw $0001,$9000,$FFFE,$7000
-    dw $0001,$A000,$FFFE,$6000
-    dw $0001,$B000,$FFFE,$5000
-    dw $0001,$C000,$FFFE,$4000
-    dw $0001,$D000,$FFFE,$3000
-    dw $0001,$E000,$FFFE,$2000
-    dw $0001,$F000,$FFFE,$1000
-    dw $0002,$0000,$FFFE,$0000
-    dw $0002,$1000,$FFFD,$F000
-    dw $0002,$2000,$FFFD,$E000
-    dw $0002,$3000,$FFFD,$D000
-    dw $0002,$4000,$FFFD,$C000
-    dw $0002,$5000,$FFFD,$B000
-    dw $0002,$6000,$FFFD,$A000
-    dw $0002,$7000,$FFFD,$9000
-    dw $0002,$8000,$FFFD,$8000
-    dw $0002,$9000,$FFFD,$7000
-    dw $0002,$A000,$FFFD,$6000
-    dw $0002,$B000,$FFFD,$5000
-    dw $0002,$C000,$FFFD,$4000
-    dw $0002,$D000,$FFFD,$3000
-    dw $0002,$E000,$FFFD,$2000
-    dw $0002,$F000,$FFFD,$1000
-    dw $0003,$0000,$FFFD,$0000
-    dw $0003,$1000,$FFFC,$F000
-    dw $0003,$2000,$FFFC,$E000
-    dw $0003,$3000,$FFFC,$D000
-    dw $0003,$4000,$FFFC,$C000
-    dw $0003,$5000,$FFFC,$B000
-    dw $0003,$6000,$FFFC,$A000
-    dw $0003,$7000,$FFFC,$9000
-    dw $0003,$8000,$FFFC,$8000
-    dw $0003,$9000,$FFFC,$7000
-    dw $0003,$A000,$FFFC,$6000
-    dw $0003,$B000,$FFFC,$5000
-    dw $0003,$C000,$FFFC,$4000
-    dw $0003,$D000,$FFFC,$3000
-    dw $0003,$E000,$FFFC,$2000
-    dw $0003,$F000,$FFFC,$1000
-    dw $0004,$0000,$FFFC,$0000
+  .speed                                                                 ;A08187;
+skip 2
+  .subspeed                                                              ;A08189;
+skip 2
+  .negatedSpeed                                                          ;A0818B;
+skip 2
+  .negatedSubspeed                                                       ;A0818D;
+skip -6
+
+!i = 0
+if !PAL == 0
+    !n = $41
+else
+    !n = $43
+endif
+while !i < !n
+    !v #= $1000*!SPF*!i ; !i must be last in product to reproduce PAL rounding errors
+    dw !v>>$10, !v, -!v>>$10, -!v
+    !i #= !i+1
+endif
 
 
 ;;; $838F: Common enemy speeds - quadratically increasing ;;;
@@ -498,6 +441,7 @@ CommonB2EnemySpeeds_QuadraticallyIncreasing:
     dw                   $0000                                           ;B28395;
     dw $0109,$0000,$FEF7,$FFFF
     dw $031B,$0000,$FCE5,$FFFF
+if !PAL == 0
     dw $0636,$0000,$F9CA,$FFFF
     dw $0A5A,$0000,$F5A6,$FFFF
     dw $0F87,$0000,$F079,$FFFF
@@ -590,6 +534,100 @@ CommonB2EnemySpeeds_QuadraticallyIncreasing:
     dw $BC66,$0010,$439A,$FFEF
     dw $13AB,$0011,$EC55,$FFEE
     dw $74F9,$0011,$8B07,$FFEE
+else
+    dw $073F,$0000,$F8C1,$FFFF
+    dw $0B63,$0000,$F49D,$FFFF
+    dw $1199,$0000,$EE67,$FFFF
+    dw $19E1,$0000,$E61F,$FFFF
+    dw $2229,$0000,$DDD7,$FFFF
+    dw $2C83,$0000,$D37D,$FFFF
+    dw $36DD,$0000,$C923,$FFFF
+    dw $4349,$0000,$BCB7,$FFFF
+    dw $51C7,$0000,$AE39,$FFFF
+    dw $6045,$0000,$9FBB,$FFFF
+    dw $70D5,$0000,$8F2B,$FFFF
+    dw $8165,$0000,$7E9B,$FFFF
+    dw $9407,$0000,$6BF9,$FFFF
+    dw $A8BB,$0000,$5745,$FFFF
+    dw $BD6F,$0000,$4291,$FFFF
+    dw $D435,$0000,$2BCB,$FFFF
+    dw $EAFB,$0000,$1505,$FFFF
+    dw $03D3,$0001,$FC2D,$FFFE
+    dw $15BD,$0001,$EA43,$FFFE
+    dw $30A7,$0001,$CF59,$FFFE
+    dw $4DA3,$0001,$B25D,$FFFE
+    dw $6A9F,$0001,$9561,$FFFE
+    dw $89AD,$0001,$7653,$FFFE
+    dw $AACD,$0001,$5533,$FFFE
+    dw $CBED,$0001,$3413,$FFFE
+    dw $EF1F,$0001,$10E1,$FFFE
+    dw $0951,$0002,$F6AF,$FFFD
+    dw $2E95,$0002,$D16B,$FFFD
+    dw $55EB,$0002,$AA15,$FFFD
+    dw $7D41,$0002,$82BF,$FFFD
+    dw $A6A9,$0002,$5957,$FFFD
+    dw $D011,$0002,$2FEF,$FFFD
+    dw $FB8B,$0002,$0475,$FFFD
+    dw $2017,$0003,$DFE9,$FFFC
+    dw $4DA3,$0003,$B25D,$FFFC
+    dw $7D41,$0003,$82BF,$FFFC
+    dw $ACDF,$0003,$5321,$FFFC
+    dw $DE8F,$0003,$2171,$FFFC
+    dw $0951,$0004,$F6AF,$FFFB
+    dw $3D13,$0004,$C2ED,$FFFB
+    dw $72E7,$0004,$8D19,$FFFB
+    dw $A8BB,$0004,$5745,$FFFB
+    dw $E0A1,$0004,$1F5F,$FFFB
+    dw $1199,$0005,$EE67,$FFFA
+    dw $4B91,$0005,$B46F,$FFFA
+    dw $879B,$0005,$7865,$FFFA
+    dw $C3A5,$0005,$3C5B,$FFFA
+    dw $01C1,$0005,$FE3F,$FFFA
+    dw $38EF,$0006,$C711,$FFF9
+    dw $791D,$0006,$86E3,$FFF9
+    dw $BB5D,$0006,$44A3,$FFF9
+    dw $FD9D,$0006,$0263,$FFF9
+    dw $38EF,$0007,$C711,$FFF8
+    dw $7F53,$0007,$80AD,$FFF8
+    dw $C5B7,$0007,$3A49,$FFF8
+    dw $052D,$0008,$FAD3,$FFF7
+    dw $4DA3,$0008,$B25D,$FFF7
+    dw $982B,$0008,$67D5,$FFF7
+    dw $E4C5,$0008,$1B3B,$FFF7
+    dw $285F,$0009,$D7A1,$FFF6
+    dw $770B,$0009,$88F5,$FFF6
+    dw $C5B7,$0009,$3A49,$FFF6
+    dw $0D75,$000A,$F28B,$FFF5
+    dw $6045,$000A,$9FBB,$FFF5
+    dw $B315,$000A,$4CEB,$FFF5
+    dw $07F7,$000B,$F809,$FFF5
+    dw $53D9,$000B,$AC27,$FFF4
+    dw $AACD,$000B,$5533,$FFF4
+    dw $03D3,$000C,$FC2D,$FFF3
+    dw $53D9,$000C,$AC27,$FFF3
+    dw $AEF1,$000C,$510F,$FFF3
+    dw $0109,$000D,$FEF7,$FFF2
+    dw $5E33,$000D,$A1CD,$FFF2
+    dw $BD6F,$000D,$4291,$FFF2
+    dw $13AB,$000E,$EC55,$FFF1
+    dw $74F9,$000E,$8B07,$FFF1
+    dw $D647,$000E,$29B9,$FFF1
+    dw $30A7,$000F,$CF59,$FFF0
+    dw $9619,$000F,$69E7,$FFF0
+    dw $FB8B,$000F,$0475,$FFF0
+    dw $5A0F,$0010,$A5F1,$FFEF
+    dw $C193,$0010,$3E6D,$FFEF
+    dw $2229,$0011,$DDD7,$FFEE
+    dw $8DD1,$0011,$722F,$FFEE
+    dw $F979,$0011,$0687,$FFEE
+    dw $5E33,$0012,$A1CD,$FFED
+    dw $CBED,$0012,$3413,$FFED
+    dw $32B9,$0013,$CD47,$FFEC
+    dw $A497,$0013,$5B69,$FFEC
+    dw $0D75,$0014,$F28B,$FFEB
+    dw $8165,$0014,$7E9B,$FFEB
+    dw $F555,$0014,$0AAB,$FFEB
+endif
 
 
 ;;; $8687: Palette - enemy $F353/$F4D3/$F653 (grey space pirate) ;;;
@@ -9062,15 +9100,15 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 InstList_PirateWall_FireLaser_WallJumpLeft:
     dw Instruction_PirateWall_FunctionInY                                ;B2ECC0;
     dw RTS_B2F0E3                                                        ;B2ECC2;
-    dw $0009,ExtendedSpritemaps_PirateWall_E                             ;B2ECC4;
-    dw $000F,ExtendedSpritemaps_PirateWall_F                             ;B2ECC8;
+    dw $0009*!FPS,ExtendedSpritemaps_PirateWall_E                        ;B2ECC4;
+    dw $000F*!FPS,ExtendedSpritemaps_PirateWall_F                        ;B2ECC8;
     dw Instruction_PirateWall_FireLaserLeft                              ;B2ECCC;
-    dw Instruction_Common_WaitYFrames,$0020                              ;B2ECCE;
+    dw Instruction_Common_WaitYFrames,$0020*!FPS                         ;B2ECCE;
     dw Instruction_PirateWall_PrepareWallJumpToLeft                      ;B2ECD2;
     dw Instruction_PirateWall_FunctionInY                                ;B2ECD4;
     dw Function_PirateWall_WallJumpingLeft                               ;B2ECD6;
     dw Instruction_PirateWall_QueueSpacePirateAttackSFX                  ;B2ECD8;
-    dw $000A,ExtendedSpritemaps_PirateWall_10                            ;B2ECDA;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWall_10                       ;B2ECDA;
     dw $0001,ExtendedSpritemaps_PirateWall_11                            ;B2ECDE;
     dw Instruction_Common_Sleep                                          ;B2ECE2;
 
@@ -9079,7 +9117,7 @@ InstList_PirateWall_FireLaser_WallJumpLeft:
 InstList_PirateWall_LandedOnLeftWall:
     dw Instruction_PirateWall_FunctionInY                                ;B2ECE4;
     dw Function_PirateWall_ClimbingLeftWall                              ;B2ECE6;
-    dw $000A,ExtendedSpritemaps_PirateWall_10                            ;B2ECE8;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWall_10                       ;B2ECE8;
 
 
 ;;; $ECEC: Instruction list - moving up left wall ;;;
@@ -9089,21 +9127,21 @@ InstList_PirateWall_MovingUpLeftWall_0:
     dw Instruction_Common_TimerInY,$0004                                 ;B2ECF0;
 
 InstList_PirateWall_MovingUpLeftWall_1:
-    dw $000A,ExtendedSpritemaps_PirateWall_0                             ;B2ECF4;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWall_0                        ;B2ECF4;
     dw Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Left,$FFFD   ;B2ECF8;
-    dw $0008,ExtendedSpritemaps_PirateWall_1                             ;B2ECFA;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWall_1                        ;B2ECFA;
     dw Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Left,$FFFD   ;B2ED00;
-    dw $0005,ExtendedSpritemaps_PirateWall_2                             ;B2ED02;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateWall_2                        ;B2ED02;
     dw Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Left,$FFFD   ;B2ED08;
-    dw $0008,ExtendedSpritemaps_PirateWall_3                             ;B2ED0A;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWall_3                        ;B2ED0A;
     dw Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Left,$FFFD   ;B2ED10;
-    dw $000A,ExtendedSpritemaps_PirateWall_4                             ;B2ED12;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWall_4                        ;B2ED12;
     dw Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Left,$FFFD   ;B2ED18;
-    dw $0008,ExtendedSpritemaps_PirateWall_3                             ;B2ED1A;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWall_3                        ;B2ED1A;
     dw Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Left,$FFFD   ;B2ED20;
-    dw $0005,ExtendedSpritemaps_PirateWall_2                             ;B2ED22;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateWall_2                        ;B2ED22;
     dw Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Left,$FFFD   ;B2ED28;
-    dw $0008,ExtendedSpritemaps_PirateWall_1                             ;B2ED2A;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWall_1                        ;B2ED2A;
     dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;B2ED30;
     dw InstList_PirateWall_MovingUpLeftWall_1                            ;B2ED32;
     dw Instruction_PirateWall_RandomlyChooseADirection_LeftWall          ;B2ED34;
@@ -9116,21 +9154,21 @@ InstList_PirateWall_MovingDownLeftWall_0:
     dw Instruction_Common_TimerInY,$0004                                 ;B2ED3A;
 
 InstList_PirateWall_MovingDownLeftWall_1:
-    dw $000A,ExtendedSpritemaps_PirateWall_0                             ;B2ED3E;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWall_0                        ;B2ED3E;
     dw Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Left,$0003   ;B2ED42;
-    dw $0008,ExtendedSpritemaps_PirateWall_1                             ;B2ED44;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWall_1                        ;B2ED44;
     dw Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Left,$0003   ;B2ED4A;
-    dw $0005,ExtendedSpritemaps_PirateWall_2                             ;B2ED4C;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateWall_2                        ;B2ED4C;
     dw Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Left,$0003   ;B2ED52;
-    dw $0008,ExtendedSpritemaps_PirateWall_3                             ;B2ED54;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWall_3                        ;B2ED54;
     dw Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Left,$0003   ;B2ED5A;
-    dw $000A,ExtendedSpritemaps_PirateWall_4                             ;B2ED5E;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWall_4                        ;B2ED5E;
     dw Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Left,$0003   ;B2ED62;
-    dw $0008,ExtendedSpritemaps_PirateWall_3                             ;B2ED64;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWall_3                        ;B2ED64;
     dw Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Left,$0003   ;B2ED6A;
-    dw $0005,ExtendedSpritemaps_PirateWall_2                             ;B2ED6E;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateWall_2                        ;B2ED6E;
     dw Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Left,$0003   ;B2ED72;
-    dw $0008,ExtendedSpritemaps_PirateWall_1                             ;B2ED74;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWall_1                        ;B2ED74;
     dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;B2ED7A;
     dw InstList_PirateWall_MovingDownLeftWall_1                          ;B2ED7C;
     dw Instruction_PirateWall_RandomlyChooseADirection_LeftWall          ;B2ED7E;
@@ -9140,15 +9178,15 @@ InstList_PirateWall_MovingDownLeftWall_1:
 InstList_PirateWall_FireLaser_WallJumpRight:
     dw Instruction_PirateWall_FunctionInY                                ;B2ED80;
     dw RTS_B2F04F                                                        ;B2ED82;
-    dw $0009,ExtendedSpritemaps_PirateWall_5                             ;B2ED84;
+    dw $0009*!FPS,ExtendedSpritemaps_PirateWall_5                        ;B2ED84;
     dw $0001,ExtendedSpritemaps_PirateWall_6                             ;B2ED88;
     dw Instruction_PirateWall_FireLaserRight                             ;B2ED8C;
-    dw Instruction_Common_WaitYFrames,$0020                              ;B2ED8E;
+    dw Instruction_Common_WaitYFrames,$0020*!FPS                         ;B2ED8E;
     dw Instruction_PirateWall_PrepareWallJumpToRight                     ;B2ED92;
     dw Instruction_PirateWall_FunctionInY                                ;B2ED94;
     dw Function_PirateWall_WallJumpingRight                              ;B2ED96;
     dw Instruction_PirateWall_QueueSpacePirateAttackSFX                  ;B2ED98;
-    dw $000A,ExtendedSpritemaps_PirateWall_7                             ;B2ED9A;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWall_7                        ;B2ED9A;
     dw $0001,ExtendedSpritemaps_PirateWall_8                             ;B2ED9E;
     dw Instruction_Common_Sleep                                          ;B2EDA2;
 
@@ -9157,7 +9195,7 @@ InstList_PirateWall_FireLaser_WallJumpRight:
 InstList_PirateWall_LandingOnRightWall:
     dw Instruction_PirateWall_FunctionInY                                ;B2EDA4;
     dw Function_PirateWall_ClimbingRightWall                             ;B2EDA6;
-    dw $000A,ExtendedSpritemaps_PirateWall_7                             ;B2EDA8;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWall_7                        ;B2EDA8;
 
 
 ;;; $EDAC: Instruction list - moving down right wall ;;;
@@ -9167,21 +9205,21 @@ InstList_PirateWall_MovingDownRightWall_0:
     dw Instruction_Common_TimerInY,$0004                                 ;B2EDB0;
 
 InstList_PirateWall_MovingDownRightWall_1:
-    dw $000A,ExtendedSpritemaps_PirateWall_9                             ;B2EDB4;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWall_9                        ;B2EDB4;
     dw Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Right,$0003  ;B2EDB8;
-    dw $0008,ExtendedSpritemaps_PirateWall_A                             ;B2EDBA;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWall_A                        ;B2EDBA;
     dw Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Right,$0003  ;B2EDC0;
-    dw $0005,ExtendedSpritemaps_PirateWall_B                             ;B2EDC4;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateWall_B                        ;B2EDC4;
     dw Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Right,$0003  ;B2EDC8;
-    dw $0008,ExtendedSpritemaps_PirateWall_C                             ;B2EDCA;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWall_C                        ;B2EDCA;
     dw Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Right,$0003  ;B2EDD0;
-    dw $000A,ExtendedSpritemaps_PirateWall_D                             ;B2EDD2;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWall_D                        ;B2EDD2;
     dw Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Right,$0003  ;B2EDD8;
-    dw $0008,ExtendedSpritemaps_PirateWall_C                             ;B2EDDA;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWall_C                        ;B2EDDA;
     dw Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Right,$0003  ;B2EDE0;
-    dw $0005,ExtendedSpritemaps_PirateWall_B                             ;B2EDE2;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateWall_B                        ;B2EDE2;
     dw Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Right,$0003  ;B2EDE8;
-    dw $0008,ExtendedSpritemaps_PirateWall_A                             ;B2EDEA;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWall_A                        ;B2EDEA;
     dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;B2EDF0;
     dw InstList_PirateWall_MovingDownRightWall_1                         ;B2EDF2;
     dw Instruction_PirateWall_RandomlyChooseADirection_RightWall         ;B2EDF4;
@@ -9194,21 +9232,21 @@ InstList_PirateWall_MovingUpRightWall_0:
     dw Instruction_Common_TimerInY,$0004                                 ;B2EDFA;
 
 InstList_PirateWall_MovingUpRightWall_1:
-    dw $000A,ExtendedSpritemaps_PirateWall_9                             ;B2EDFE;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWall_9                        ;B2EDFE;
     dw Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Right,$FFFD  ;B2EE02;
-    dw $0008,ExtendedSpritemaps_PirateWall_A                             ;B2EE04;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWall_A                        ;B2EE04;
     dw Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Right,$FFFD  ;B2EE0A;
-    dw $0005,ExtendedSpritemaps_PirateWall_B                             ;B2EE0C;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateWall_B                        ;B2EE0C;
     dw Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Right,$FFFD  ;B2EE12;
-    dw $0008,ExtendedSpritemaps_PirateWall_C                             ;B2EE14;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWall_C                        ;B2EE14;
     dw Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Right,$FFFD  ;B2EE1A;
-    dw $000A,ExtendedSpritemaps_PirateWall_D                             ;B2EE1C;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWall_D                        ;B2EE1C;
     dw Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Right,$FFFD  ;B2EE22;
-    dw $0008,ExtendedSpritemaps_PirateWall_C                             ;B2EE24;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWall_C                        ;B2EE24;
     dw Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Right,$FFFD  ;B2EE2A;
-    dw $0005,ExtendedSpritemaps_PirateWall_B                             ;B2EE2C;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateWall_B                        ;B2EE2C;
     dw Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Right,$FFFD  ;B2EE32;
-    dw $0008,ExtendedSpritemaps_PirateWall_A                             ;B2EE34;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWall_A                        ;B2EE34;
     dw Instruction_Common_DecrementTimer_GotoYIfNonZero_duplicate        ;B2EE3A;
     dw InstList_PirateWall_MovingUpRightWall_1                           ;B2EE3C;
     dw Instruction_PirateWall_RandomlyChooseADirection_RightWall         ;B2EE3E;
@@ -9449,8 +9487,13 @@ InitAI_PirateWall:
     STA.L PirateWall.wallJumpArcRightTargetAngle,X                       ;B2EFB7;
     LDA.W #$0042                                                         ;B2EFBB;
     STA.L PirateWall.wallJumpArcLeftTargetAngle,X                        ;B2EFBE;
+if !PAL == 0
     LDA.W #$0002                                                         ;B2EFC2;
     STA.L PirateWall.wallJumpArcAngleDelta,X                             ;B2EFC5;
+else
+    LDA.W #$0233
+    STA.L PirateWall.wallJumpArcAngleDeltaHighRes,X
+endif
     LDA.W Enemy.init0,X                                                  ;B2EFC9;
     BIT.W #$8000                                                         ;B2EFCC;
     BNE .notFastJump                                                     ;B2EFCF;
@@ -9462,10 +9505,15 @@ InitAI_PirateWall:
     SEC                                                                  ;B2EFE1;
     SBC.W #$0002                                                         ;B2EFE2;
     STA.L PirateWall.wallJumpArcLeftTargetAngle,X                        ;B2EFE5;
+if !PAL == 0
     LDA.L PirateWall.wallJumpArcAngleDelta,X                             ;B2EFE9;
     CLC                                                                  ;B2EFED;
     ADC.W #$0002                                                         ;B2EFEE;
     STA.L PirateWall.wallJumpArcAngleDelta,X                             ;B2EFF1;
+else
+    LDA.W #$0466
+    STA.L PirateWall.wallJumpArcAngleDeltaHighRes,X
+endif
 
   .notFastJump:
     LDY.W #Function_PirateWall_ClimbingLeftWall                          ;B2EFF5;
@@ -9552,6 +9600,31 @@ Function_PirateWall_WallJumpingRight:
     CLC                                                                  ;B2F07B;
     ADC.W PirateWall.wallJumpArcCenterYPosition,X                        ;B2F07C;
     STA.W Enemy.YPosition,X                                              ;B2F07F;
+if !PAL != 0
+    LDA.L PirateWall.wallJumpArcAngleDeltaHighRes,X
+    AND.W #$00FF
+    XBA
+    CLC
+    ADC.L PirateWall.wallJumpArcSubAngle,X
+    STA.L PirateWall.wallJumpArcSubAngle,X
+    BCC +
+    LDA.L PirateWall.wallJumpArcAngleDeltaHighRes,X
+    AND.W #$FF00
+    XBA
+    STA.L PirateWall.wallJumpArcAngleDelta,X
+    LDA.W PirateWall.wallJumpArcAngle,X
+    SEC
+    SBC.L PirateWall.wallJumpArcAngleDelta,X
+    AND.W #$00FF
+    STA.W PirateWall.wallJumpArcAngle,X
+    CMP.L PirateWall.wallJumpArcRightTargetAngle,X
+    BEQ .reachedTarget
+
++   LDA.L PirateWall.wallJumpArcAngleDeltaHighRes,X
+    AND.W #$FF00
+    XBA
+    STA.L PirateWall.wallJumpArcAngleDelta,X
+endif
     LDA.W PirateWall.wallJumpArcAngle,X                                  ;B2F082;
     SEC                                                                  ;B2F085;
     SBC.L PirateWall.wallJumpArcAngleDelta,X                             ;B2F086;
@@ -9559,6 +9632,8 @@ Function_PirateWall_WallJumpingRight:
     STA.W PirateWall.wallJumpArcAngle,X                                  ;B2F08D;
     CMP.L PirateWall.wallJumpArcRightTargetAngle,X                       ;B2F090;
     BNE .return                                                          ;B2F094;
+
+  .reachedTarget
     LDA.W #InstList_PirateWall_LandingOnRightWall                        ;B2F096;
     STA.W Enemy.instList,X                                               ;B2F099;
     LDA.W #$0001                                                         ;B2F09C;
@@ -9632,13 +9707,40 @@ Function_PirateWall_WallJumpingLeft:
     CLC                                                                  ;B2F10F;
     ADC.W PirateWall.wallJumpArcCenterYPosition,X                        ;B2F110;
     STA.W Enemy.YPosition,X                                              ;B2F113;
+if !PAL == 0
     LDA.W PirateWall.wallJumpArcAngle,X                                  ;B2F116;
     CLC                                                                  ;B2F119;
     ADC.L PirateWall.wallJumpArcAngleDelta,X                             ;B2F11A;
+else
+    LDA.L PirateWall.wallJumpArcAngleDeltaHighRes,X
+    AND.W #$00FF
+    XBA
+    CLC
+    ADC.L PirateWall.wallJumpArcSubAngle,X
+    STA.L PirateWall.wallJumpArcSubAngle,X
+    BCC +
+    LDA.L PirateWall.wallJumpArcAngleDeltaHighRes,X
+    AND.W #$FF00
+    XBA
+    CLC
+    ADC.W PirateWall.wallJumpArcAngle,X
+    AND.W #$00FF
+    STA.W PirateWall.wallJumpArcAngle,X
+    CMP.L PirateWall.wallJumpArcLeftTargetAngle,X
+    BEQ .reachedTarget
+
++   LDA.L PirateWall.wallJumpArcAngleDeltaHighRes,X
+    AND.W #$FF00
+    XBA
+    CLC
+    ADC.W PirateWall.wallJumpArcAngle,X
+endif
     AND.W #$00FF                                                         ;B2F11E;
     STA.W PirateWall.wallJumpArcAngle,X                                  ;B2F121;
     CMP.L PirateWall.wallJumpArcLeftTargetAngle,X                        ;B2F124;
     BNE .return                                                          ;B2F128;
+
+  .reachedTarget
     LDA.W #InstList_PirateWall_LandedOnLeftWall                          ;B2F12A;
     STA.W Enemy.instList,X                                               ;B2F12D;
     LDA.W #$0001                                                         ;B2F130;
@@ -9668,11 +9770,11 @@ Function_PirateWall_WallJumpingLeft:
 InstList_PirateNinja_ProjectileClawAttack_Left:
     dw Instruction_PirateWall_FunctionInY                                ;B2F15C;
     dw RTS_A0804B                                                        ;B2F15E;
-    dw $0005,ExtendedSpritemaps_PirateNinja_0                            ;B2F160;
-    dw $0005,ExtendedSpritemaps_PirateNinja_1                            ;B2F164;
-    dw $0005,ExtendedSpritemaps_PirateNinja_2                            ;B2F168;
-    dw $0005,ExtendedSpritemaps_PirateNinja_3                            ;B2F16C;
-    dw $0005,ExtendedSpritemaps_PirateNinja_4                            ;B2F170;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_0                       ;B2F160;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_1                       ;B2F164;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_2                       ;B2F168;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_3                       ;B2F16C;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_4                       ;B2F170;
     dw $0002,ExtendedSpritemaps_PirateNinja_5                            ;B2F174;
     dw Instruction_PirateNinja_SpawnClawProjWithThrowDirSpawnOffset      ;B2F178;
     dw $0000,$FFE0,$FFF8                                                 ;B2F17A;
@@ -9680,11 +9782,11 @@ InstList_PirateNinja_ProjectileClawAttack_Left:
     dw $0002,ExtendedSpritemaps_PirateNinja_6                            ;B2F182;
     dw $0002,ExtendedSpritemaps_PirateNinja_7                            ;B2F188;
     dw $0002,ExtendedSpritemaps_PirateNinja_8                            ;B2F18C;
-    dw $0005,ExtendedSpritemaps_PirateNinja_0                            ;B2F190;
-    dw $0005,ExtendedSpritemaps_PirateNinja_1                            ;B2F194;
-    dw $0005,ExtendedSpritemaps_PirateNinja_2                            ;B2F198;
-    dw $0005,ExtendedSpritemaps_PirateNinja_3                            ;B2F19C;
-    dw $0005,ExtendedSpritemaps_PirateNinja_4                            ;B2F1A0;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_0                       ;B2F190;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_1                       ;B2F194;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_2                       ;B2F198;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_3                       ;B2F19C;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_4                       ;B2F1A0;
     dw $0002,ExtendedSpritemaps_PirateNinja_5                            ;B2F1A4;
     dw Instruction_PirateNinja_SpawnClawProjWithThrowDirSpawnOffset      ;B2F1A8;
     dw $0000,$FFF0,$0008                                                 ;B2F1AA;
@@ -9700,11 +9802,11 @@ InstList_PirateNinja_ProjectileClawAttack_Left:
 InstList_PirateNinja_SpinJumpLeft_0:
     dw Instruction_PirateWall_FunctionInY                                ;B2F1C4;
     dw RTS_A0804B                                                        ;B2F1C6;
-    dw $0005,ExtendedSpritemaps_PirateNinja_0                            ;B2F1C8;
-    dw $0005,ExtendedSpritemaps_PirateNinja_1                            ;B2F1CC;
-    dw $0005,ExtendedSpritemaps_PirateNinja_2                            ;B2F1D0;
-    dw $0005,ExtendedSpritemaps_PirateNinja_3                            ;B2F1D4;
-    dw $0005,ExtendedSpritemaps_PirateNinja_4                            ;B2F1D8;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_0                       ;B2F1C8;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_1                       ;B2F1CC;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_2                       ;B2F1D0;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_3                       ;B2F1D4;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_4                       ;B2F1D8;
     dw $0002,ExtendedSpritemaps_PirateNinja_5                            ;B2F1DC;
     dw Instruction_PirateNinja_SpawnClawProjWithThrowDirSpawnOffset      ;B2F1E0;
     dw $0000,$FFE0,$FFF8                                                 ;B2F1E2;
@@ -9715,7 +9817,7 @@ InstList_PirateNinja_SpinJumpLeft_0:
     dw Instruction_PirateNinja_ResetSpeed                                ;B2F1F8;
     dw Instruction_PirateWall_FunctionInY                                ;B2F1FA;
     dw RTS_A0804B                                                        ;B2F1FC;
-    dw $0008,ExtendedSpritemaps_PirateNinja_0                            ;B2F1FE;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateNinja_0                       ;B2F1FE;
     dw Instruction_PirateWall_FunctionInY                                ;B2F202;
     dw Function_PirateNinja_SpinJumpleft_Rising                          ;B2F204;
 
@@ -9739,10 +9841,10 @@ InstList_PirateNinja_Active_FacingLeft_0:
     dw Function_PirateNinja_Active                                       ;B2F230;
 
 InstList_PirateNinja_Active_FacingLeft_1:
-    dw $000A,ExtendedSpritemaps_PirateNinja_32                           ;B2F232;
-    dw $000A,ExtendedSpritemaps_PirateNinja_33                           ;B2F236;
-    dw $000A,ExtendedSpritemaps_PirateNinja_34                           ;B2F23A;
-    dw $000A,ExtendedSpritemaps_PirateNinja_33                           ;B2F23E;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateNinja_32                      ;B2F232;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateNinja_33                      ;B2F236;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateNinja_34                      ;B2F23A;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateNinja_33                      ;B2F23E;
     dw Instruction_PirateWall_FunctionInY                                ;B2F242;
     dw RTS_A0804B                                                        ;B2F244;
     dw Instruction_PirateNinja_SetFunction0FAC_Active                    ;B2F246;
@@ -9753,14 +9855,14 @@ InstList_PirateNinja_Active_FacingLeft_1:
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $F24C: Unused. Instruction list - walking left ;;;
 UNUSED_InstList_PirateNinja_WalkingLeft_B2F24C:
-    dw $0005,ExtendedSpritemaps_PirateNinja_22                           ;B2F24C;
-    dw $0005,ExtendedSpritemaps_PirateNinja_23                           ;B2F250;
-    dw $0005,ExtendedSpritemaps_PirateNinja_24                           ;B2F254;
-    dw $0005,ExtendedSpritemaps_PirateNinja_25                           ;B2F258;
-    dw $0005,ExtendedSpritemaps_PirateNinja_26                           ;B2F25C;
-    dw $0005,ExtendedSpritemaps_PirateNinja_27                           ;B2F260;
-    dw $0005,ExtendedSpritemaps_PirateNinja_28                           ;B2F264;
-    dw $0005,ExtendedSpritemaps_PirateNinja_29                           ;B2F268;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_22                      ;B2F24C;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_23                      ;B2F250;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_24                      ;B2F254;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_25                      ;B2F258;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_26                      ;B2F25C;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_27                      ;B2F260;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_28                      ;B2F264;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_29                      ;B2F268;
     dw Instruction_Common_GotoY                                          ;B2F26C;
     dw UNUSED_InstList_PirateNinja_WalkingLeft_B2F24C                    ;B2F26E;
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -9770,7 +9872,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 InstList_PirateNinja_Flinch_FacingLeft:
     dw Instruction_PirateWall_FunctionInY                                ;B2F270;
     dw RTS_A0804B                                                        ;B2F272;
-    dw $0010,ExtendedSpritemaps_PirateNinja_38                           ;B2F274;
+    dw $0010*!FPS,ExtendedSpritemaps_PirateNinja_38                      ;B2F274;
     dw Instruction_Common_GotoY                                          ;B2F278;
     dw InstList_PirateNinja_Active_FacingLeft_0                          ;B2F27A;
 
@@ -9779,7 +9881,7 @@ InstList_PirateNinja_Flinch_FacingLeft:
 InstList_PirateNinja_DivekickLeft_Jump_0:
     dw Instruction_PirateWall_FunctionInY                                ;B2F27C;
     dw RTS_B2804B                                                        ;B2F27E;
-    dw $0008,ExtendedSpritemaps_PirateNinja_42                           ;B2F280;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateNinja_42                      ;B2F280;
     dw Instruction_PirateNinja_SetLeftDivekickJumpInitialYSpeed          ;B2F284;
     dw Instruction_PirateWall_FunctionInY                                ;B2F286;
     dw Instruction_PirateNinja_DivekickLeft_Jump                         ;B2F288;
@@ -9810,14 +9912,14 @@ InstList_PirateNinja_DivekickLeft_WalkToLeftPost_0:
     dw Instruction_PirateNinja_DivekickLeft_WalkToLeftPost               ;B2F2B4;
 
 InstList_PirateNinja_DivekickLeft_WalkToLeftPost_1:
-    dw $0005,ExtendedSpritemaps_PirateNinja_22                           ;B2F2B6;
-    dw $0005,ExtendedSpritemaps_PirateNinja_23                           ;B2F2BA;
-    dw $0005,ExtendedSpritemaps_PirateNinja_24                           ;B2F2BE;
-    dw $0005,ExtendedSpritemaps_PirateNinja_25                           ;B2F2C2;
-    dw $0005,ExtendedSpritemaps_PirateNinja_26                           ;B2F2C6;
-    dw $0005,ExtendedSpritemaps_PirateNinja_27                           ;B2F2CA;
-    dw $0005,ExtendedSpritemaps_PirateNinja_28                           ;B2F2CE;
-    dw $0005,ExtendedSpritemaps_PirateNinja_29                           ;B2F2D2;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_22                      ;B2F2B6;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_23                      ;B2F2BA;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_24                      ;B2F2BE;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_25                      ;B2F2C2;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_26                      ;B2F2C6;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_27                      ;B2F2CA;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_28                      ;B2F2CE;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_29                      ;B2F2D2;
     dw Instruction_Common_GotoY                                          ;B2F2D6;
     dw InstList_PirateNinja_DivekickLeft_WalkToLeftPost_1                ;B2F2D8;
 
@@ -9828,11 +9930,11 @@ InstList_PirateNinja_Initial_FacingLeft_0:
     dw Function_PirateNinja_Initial                                      ;B2F2DC;
 
 InstList_PirateNinja_Initial_FacingLeft_1:
-    dw $0020,ExtendedSpritemaps_PirateNinja_46                           ;B2F2DE;
-    dw $000A,ExtendedSpritemaps_PirateNinja_47                           ;B2F2E2;
-    dw $0020,ExtendedSpritemaps_PirateNinja_48                           ;B2F2E6;
-    dw $000A,ExtendedSpritemaps_PirateNinja_47                           ;B2F2EA;
-    dw $0020,ExtendedSpritemaps_PirateNinja_46                           ;B2F2EE;
+    dw $0020*!FPS,ExtendedSpritemaps_PirateNinja_46                      ;B2F2DE;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateNinja_47                      ;B2F2E2;
+    dw $0020*!FPS,ExtendedSpritemaps_PirateNinja_48                      ;B2F2E6;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateNinja_47                      ;B2F2EA;
+    dw $0020*!FPS,ExtendedSpritemaps_PirateNinja_46                      ;B2F2EE;
     dw Instruction_Common_GotoY                                          ;B2F2F2;
     dw InstList_PirateNinja_Initial_FacingLeft_1                         ;B2F2F4;
     dw Instruction_Common_Sleep                                          ;B2F2F6;
@@ -9843,18 +9945,18 @@ InstList_PirateNinja_Land_FacingLeft_0:
     dw Instruction_PirateNinja_PaletteIndexInY,$0200                     ;B2F2F8;
     dw Instruction_PirateWall_FunctionInY                                ;B2F2FC;
     dw RTS_A0804B                                                        ;B2F2FE;
-    dw $0004,ExtendedSpritemaps_PirateNinja_47                           ;B2F300;
-    dw $0008,ExtendedSpritemaps_PirateNinja_46                           ;B2F304;
-    dw $0004,ExtendedSpritemaps_PirateNinja_4C                           ;B2F308;
-    dw $0004,ExtendedSpritemaps_PirateNinja_4A                           ;B2F30C;
+    dw $0004*!FPS,ExtendedSpritemaps_PirateNinja_47                      ;B2F300;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateNinja_46                      ;B2F304;
+    dw $0004*!FPS,ExtendedSpritemaps_PirateNinja_4C                      ;B2F308;
+    dw $0004*!FPS,ExtendedSpritemaps_PirateNinja_4A                      ;B2F30C;
     dw Instruction_PirateWall_FunctionInY                                ;B2F310;
     dw Function_PirateNinja_ReadingToDivekick                            ;B2F312;
 
 InstList_PirateNinja_Land_FacingLeft_1:
-    dw $000A,ExtendedSpritemaps_PirateNinja_35                           ;B2F314;
-    dw $000A,ExtendedSpritemaps_PirateNinja_36                           ;B2F318;
-    dw $000A,ExtendedSpritemaps_PirateNinja_37                           ;B2F31C;
-    dw $000A,ExtendedSpritemaps_PirateNinja_36                           ;B2F320;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateNinja_35                      ;B2F314;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateNinja_36                      ;B2F318;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateNinja_37                      ;B2F31C;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateNinja_36                      ;B2F320;
     dw Instruction_Common_GotoY                                          ;B2F324;
     dw InstList_PirateNinja_Land_FacingLeft_1                            ;B2F326;
 
@@ -9862,7 +9964,7 @@ InstList_PirateNinja_Land_FacingLeft_1:
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $F328: Unused. Instruction list - facing forward ;;;
 UNUSED_InstList_PirateNinja_FacingForward_B2F328:
-    dw $0008,ExtendedSpritemaps_PirateNinja_4C                           ;B2F328;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateNinja_4C                      ;B2F328;
     dw Instruction_Common_Sleep                                          ;B2F32C;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -9874,7 +9976,7 @@ InstList_PirateNinja_StandingKick_FacingLeft:
     dw $0004,ExtendedSpritemaps_PirateNinja_3E                           ;B2F332;
     dw Instruction_PirateNinja_QueueSoundInY_Lib2_Max6,$0066             ;B2F336;
     dw $0004,ExtendedSpritemaps_PirateNinja_44                           ;B2F338;
-    dw $0020,ExtendedSpritemaps_PirateNinja_3F                           ;B2F33E;
+    dw $0020*!FPS,ExtendedSpritemaps_PirateNinja_3F                      ;B2F33E;
     dw $0004,ExtendedSpritemaps_PirateNinja_44                           ;B2F342;
     dw Instruction_Common_GotoY                                          ;B2F346;
     dw InstList_PirateNinja_Active_FacingLeft_0                          ;B2F348;
@@ -9884,11 +9986,11 @@ InstList_PirateNinja_StandingKick_FacingLeft:
 InstList_PirateNinja_ProjectileClawAttack_Right:
     dw Instruction_PirateWall_FunctionInY                                ;B2F34A;
     dw RTS_B2804B                                                        ;B2F34C;
-    dw $0005,ExtendedSpritemaps_PirateNinja_9                            ;B2F34E;
-    dw $0005,ExtendedSpritemaps_PirateNinja_A                            ;B2F352;
-    dw $0005,ExtendedSpritemaps_PirateNinja_B                            ;B2F356;
-    dw $0005,ExtendedSpritemaps_PirateNinja_C                            ;B2F35A;
-    dw $0005,ExtendedSpritemaps_PirateNinja_D                            ;B2F35E;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_9                       ;B2F34E;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_A                       ;B2F352;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_B                       ;B2F356;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_C                       ;B2F35A;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_D                       ;B2F35E;
     dw $0002,ExtendedSpritemaps_PirateNinja_E                            ;B2F362;
     dw Instruction_PirateNinja_SpawnClawProjWithThrowDirSpawnOffset      ;B2F366;
     dw $0001,$0020,$FFF8                                                 ;B2F368;
@@ -9896,11 +9998,11 @@ InstList_PirateNinja_ProjectileClawAttack_Right:
     dw $0002,ExtendedSpritemaps_PirateNinja_A                            ;B2F370;
     dw $0002,ExtendedSpritemaps_PirateNinja_F                            ;B2F376;
     dw $0002,ExtendedSpritemaps_PirateNinja_11                           ;B2F37A;
-    dw $0005,ExtendedSpritemaps_PirateNinja_9                            ;B2F37E;
-    dw $0005,ExtendedSpritemaps_PirateNinja_A                            ;B2F382;
-    dw $0005,ExtendedSpritemaps_PirateNinja_B                            ;B2F386;
-    dw $0005,ExtendedSpritemaps_PirateNinja_C                            ;B2F38A;
-    dw $0005,ExtendedSpritemaps_PirateNinja_D                            ;B2F38E;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_9                       ;B2F37E;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_A                       ;B2F382;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_B                       ;B2F386;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_C                       ;B2F38A;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_D                       ;B2F38E;
     dw $0002,ExtendedSpritemaps_PirateNinja_E                            ;B2F392;
     dw Instruction_PirateNinja_SpawnClawProjWithThrowDirSpawnOffset      ;B2F396;
     dw $0001,$0010,$0008                                                 ;B2F398;
@@ -9916,11 +10018,11 @@ InstList_PirateNinja_ProjectileClawAttack_Right:
 InstList_PirateNinja_SpinJumpRight_0:
     dw Instruction_PirateWall_FunctionInY                                ;B2F3B2;
     dw RTS_B2804B                                                        ;B2F3B4;
-    dw $0005,ExtendedSpritemaps_PirateNinja_9                            ;B2F3B6;
-    dw $0005,ExtendedSpritemaps_PirateNinja_A                            ;B2F3BA;
-    dw $0005,ExtendedSpritemaps_PirateNinja_B                            ;B2F3BE;
-    dw $0005,ExtendedSpritemaps_PirateNinja_C                            ;B2F3C2;
-    dw $0005,ExtendedSpritemaps_PirateNinja_D                            ;B2F3C6;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_9                       ;B2F3B6;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_A                       ;B2F3BA;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_B                       ;B2F3BE;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_C                       ;B2F3C2;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_D                       ;B2F3C6;
     dw $0002,ExtendedSpritemaps_PirateNinja_E                            ;B2F3CA;
     dw Instruction_PirateNinja_SpawnClawProjWithThrowDirSpawnOffset      ;B2F3CE;
     dw $0001,$0020,$FFF8                                                 ;B2F3D0;
@@ -9931,7 +10033,7 @@ InstList_PirateNinja_SpinJumpRight_0:
     dw Instruction_PirateNinja_ResetSpeed                                ;B2F3E6;
     dw Instruction_PirateWall_FunctionInY                                ;B2F3E8;
     dw RTS_A0804B                                                        ;B2F3EA;
-    dw $0008,ExtendedSpritemaps_PirateNinja_9                            ;B2F3EC;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateNinja_9                       ;B2F3EC;
     dw Instruction_PirateWall_FunctionInY                                ;B2F3F0;
     dw Function_PirateNinja_SpinJumpRight_Rising                         ;B2F3F2;
 
@@ -9952,7 +10054,7 @@ InstList_PirateNinja_SpinJumpRight_1:
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $F41C: Unused. Instruction list ;;;
 UNUSED_InstList_PirateNinja_B2F41C:
-    dw $0010,ExtendedSpritemaps_PirateNinja_9                            ;B2F41C;
+    dw $0010*!FPS,ExtendedSpritemaps_PirateNinja_9                       ;B2F41C;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
@@ -9962,10 +10064,10 @@ InstList_PirateNinja_Active_FacingRight_0:
     dw Function_PirateNinja_Active                                       ;B2F422;
 
 InstList_PirateNinja_Active_FacingRight_1:
-    dw $000A,ExtendedSpritemaps_PirateNinja_35                           ;B2F424;
-    dw $000A,ExtendedSpritemaps_PirateNinja_36                           ;B2F428;
-    dw $000A,ExtendedSpritemaps_PirateNinja_37                           ;B2F42C;
-    dw $000A,ExtendedSpritemaps_PirateNinja_36                           ;B2F430;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateNinja_35                      ;B2F424;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateNinja_36                      ;B2F428;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateNinja_37                      ;B2F42C;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateNinja_36                      ;B2F430;
     dw Instruction_PirateWall_FunctionInY                                ;B2F434;
     dw RTS_B2804B                                                        ;B2F436;
     dw Instruction_PirateNinja_SetFunction0FAC_Active                    ;B2F438;
@@ -9976,14 +10078,14 @@ InstList_PirateNinja_Active_FacingRight_1:
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $F43E: Unused. Instruction list - walking right ;;;
 UNUSED_InstList_PirateNinja_WalkingRight_B2F43E:
-    dw $0005,ExtendedSpritemaps_PirateNinja_2A                           ;B2F43E;
-    dw $0005,ExtendedSpritemaps_PirateNinja_2B                           ;B2F442;
-    dw $0005,ExtendedSpritemaps_PirateNinja_2C                           ;B2F446;
-    dw $0005,ExtendedSpritemaps_PirateNinja_2D                           ;B2F44A;
-    dw $0005,ExtendedSpritemaps_PirateNinja_2E                           ;B2F44E;
-    dw $0005,ExtendedSpritemaps_PirateNinja_2F                           ;B2F452;
-    dw $0005,ExtendedSpritemaps_PirateNinja_30                           ;B2F456;
-    dw $0005,ExtendedSpritemaps_PirateNinja_31                           ;B2F45A;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_2A                      ;B2F43E;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_2B                      ;B2F442;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_2C                      ;B2F446;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_2D                      ;B2F44A;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_2E                      ;B2F44E;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_2F                      ;B2F452;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_30                      ;B2F456;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_31                      ;B2F45A;
     dw Instruction_Common_GotoY                                          ;B2F45E;
     dw UNUSED_InstList_PirateNinja_WalkingRight_B2F43E                   ;B2F460;
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -9993,7 +10095,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 InstList_PirateNinja_Flinch_FacingRight:
     dw Instruction_PirateWall_FunctionInY                                ;B2F462;
     dw RTS_B2804B                                                        ;B2F464;
-    dw $0010,ExtendedSpritemaps_PirateNinja_39                           ;B2F466;
+    dw $0010*!FPS,ExtendedSpritemaps_PirateNinja_39                      ;B2F466;
     dw Instruction_Common_GotoY                                          ;B2F46A;
     dw InstList_PirateNinja_Active_FacingRight_0                         ;B2F46C;
 
@@ -10002,7 +10104,7 @@ InstList_PirateNinja_Flinch_FacingRight:
 InstList_PirateNinja_DivekickRight_Jump_0:
     dw Instruction_PirateWall_FunctionInY                                ;B2F46E;
     dw RTS_B2804B                                                        ;B2F470;
-    dw $0008,ExtendedSpritemaps_PirateNinja_43                           ;B2F472;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateNinja_43                      ;B2F472;
     dw Instruction_PirateNinja_SetRightDivekickJumpInitialYSpeed         ;B2F476;
     dw Instruction_PirateWall_FunctionInY                                ;B2F478;
     dw Instruction_PirateNinja_DivekickRight_Jump                        ;B2F47A;
@@ -10033,14 +10135,14 @@ InstList_PirateNinja_DivekickRight_WalkToRightPost_0:
     dw Instruction_PirateNinja_DivekickRight_WalkToRightPost             ;B2F4A6;
 
 InstList_PirateNinja_DivekickRight_WalkToRightPost_1:
-    dw $0005,ExtendedSpritemaps_PirateNinja_2A                           ;B2F4A8;
-    dw $0005,ExtendedSpritemaps_PirateNinja_2B                           ;B2F4AC;
-    dw $0005,ExtendedSpritemaps_PirateNinja_2C                           ;B2F4B0;
-    dw $0005,ExtendedSpritemaps_PirateNinja_2D                           ;B2F4B4;
-    dw $0005,ExtendedSpritemaps_PirateNinja_2E                           ;B2F4B8;
-    dw $0005,ExtendedSpritemaps_PirateNinja_2F                           ;B2F4BC;
-    dw $0005,ExtendedSpritemaps_PirateNinja_30                           ;B2F4C0;
-    dw $0005,ExtendedSpritemaps_PirateNinja_31                           ;B2F4C4;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_2A                      ;B2F4A8;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_2B                      ;B2F4AC;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_2C                      ;B2F4B0;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_2D                      ;B2F4B4;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_2E                      ;B2F4B8;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_2F                      ;B2F4BC;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_30                      ;B2F4C0;
+    dw $0005*!FPS,ExtendedSpritemaps_PirateNinja_31                      ;B2F4C4;
     dw Instruction_Common_GotoY                                          ;B2F4C8;
     dw InstList_PirateNinja_DivekickRight_WalkToRightPost_1              ;B2F4CA;
 
@@ -10051,11 +10153,11 @@ InstList_PirateNinja_Initial_FacingRight_0:
     dw Function_PirateNinja_Initial                                      ;B2F4CE;
 
 InstList_PirateNinja_Initial_FacingRight_1:
-    dw $0020,ExtendedSpritemaps_PirateNinja_49                           ;B2F4D0;
-    dw $000A,ExtendedSpritemaps_PirateNinja_4A                           ;B2F4D4;
-    dw $0020,ExtendedSpritemaps_PirateNinja_4B                           ;B2F4D8;
-    dw $000A,ExtendedSpritemaps_PirateNinja_4A                           ;B2F4DC;
-    dw $0020,ExtendedSpritemaps_PirateNinja_49                           ;B2F4E0;
+    dw $0020*!FPS,ExtendedSpritemaps_PirateNinja_49                      ;B2F4D0;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateNinja_4A                      ;B2F4D4;
+    dw $0020*!FPS,ExtendedSpritemaps_PirateNinja_4B                      ;B2F4D8;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateNinja_4A                      ;B2F4DC;
+    dw $0020*!FPS,ExtendedSpritemaps_PirateNinja_49                      ;B2F4E0;
     dw Instruction_Common_GotoY                                          ;B2F4E4;
     dw InstList_PirateNinja_Initial_FacingRight_1                        ;B2F4E6;
     dw Instruction_Common_Sleep                                          ;B2F4E8;
@@ -10067,17 +10169,17 @@ InstList_PirateNinja_Land_FacingRight_0:
     dw Instruction_PirateWall_FunctionInY                                ;B2F4EE;
     dw RTS_A0804B                                                        ;B2F4F0;
     dw $0004,ExtendedSpritemaps_PirateNinja_4A                           ;B2F4F2;
-    dw $0008,ExtendedSpritemaps_PirateNinja_49                           ;B2F4F6;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateNinja_49                      ;B2F4F6;
     dw $0004,ExtendedSpritemaps_PirateNinja_4C                           ;B2F4FA;
     dw $0004,ExtendedSpritemaps_PirateNinja_47                           ;B2F4FE;
     dw Instruction_PirateWall_FunctionInY                                ;B2F502;
     dw Function_PirateNinja_ReadingToDivekick                            ;B2F504;
 
 InstList_PirateNinja_Land_FacingRight_1:
-    dw $000A,ExtendedSpritemaps_PirateNinja_32                           ;B2F506;
-    dw $000A,ExtendedSpritemaps_PirateNinja_33                           ;B2F50A;
-    dw $000A,ExtendedSpritemaps_PirateNinja_34                           ;B2F50E;
-    dw $000A,ExtendedSpritemaps_PirateNinja_33                           ;B2F512;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateNinja_32                      ;B2F506;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateNinja_33                      ;B2F50A;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateNinja_34                      ;B2F50E;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateNinja_33                      ;B2F512;
     dw Instruction_Common_GotoY                                          ;B2F516;
     dw InstList_PirateNinja_Land_FacingRight_1                           ;B2F518;
 
@@ -10089,7 +10191,7 @@ InstList_PirateNinja_StandingKick_FacingRight:
     dw $0004,ExtendedSpritemaps_PirateNinja_40                           ;B2F51E;
     dw Instruction_PirateNinja_QueueSoundInY_Lib2_Max6,$0066             ;B2F522;
     dw $0004,ExtendedSpritemaps_PirateNinja_45                           ;B2F524;
-    dw $0020,ExtendedSpritemaps_PirateNinja_41                           ;B2F52A;
+    dw $0020*!FPS,ExtendedSpritemaps_PirateNinja_41                      ;B2F52A;
     dw $0004,ExtendedSpritemaps_PirateNinja_45                           ;B2F52E;
     dw Instruction_Common_GotoY                                          ;B2F532;
     dw InstList_PirateNinja_Active_FacingRight_0                         ;B2F534;
@@ -10263,7 +10365,7 @@ InitAI_PirateNinja:
     STA.B DP_Temp14                                                      ;B2F638;
 
   .loop:
-    LDA.W #$0020                                                         ;B2F63A;
+    LDA.W #$0020*!SPF                                                    ;B2F63A;
     CLC                                                                  ;B2F63D;
     ADC.B DP_Temp12                                                      ;B2F63E;
     STA.B DP_Temp12                                                      ;B2F640;
@@ -10565,7 +10667,7 @@ Function_PirateNinja_SpinJumpleft_Rising:
     DEC.W Enemy.YPosition,X                                              ;B2F82D;
     LDA.L PirateNinja.speed,X                                            ;B2F830;
     CLC                                                                  ;B2F834;
-    ADC.W #$0020                                                         ;B2F835;
+    ADC.W #$0020*!SPF                                                    ;B2F835;
     STA.L PirateNinja.speed,X                                            ;B2F838;
     LDA.W Enemy.XPosition,X                                              ;B2F83C;
     CMP.W PirateNinja.postsMidpointXPosition,X                           ;B2F83F;
@@ -10592,7 +10694,7 @@ Function_PirateNinja_SpinJumpLeft_Falling:
     INC.W Enemy.YPosition,X                                              ;B2F862;
     LDA.L PirateNinja.speed,X                                            ;B2F865;
     SEC                                                                  ;B2F869;
-    SBC.W #$0020                                                         ;B2F86A;
+    SBC.W #$0020*!SPF                                                    ;B2F86A;
     STA.L PirateNinja.speed,X                                            ;B2F86D;
     BEQ .landing                                                         ;B2F871;
     RTS                                                                  ;B2F873;
@@ -10624,7 +10726,7 @@ Function_PirateNinja_SpinJumpRight_Rising:
     DEC.W Enemy.YPosition,X                                              ;B2F8A6;
     LDA.L PirateNinja.speed,X                                            ;B2F8A9;
     CLC                                                                  ;B2F8AD;
-    ADC.W #$0020                                                         ;B2F8AE;
+    ADC.W #$0020*!SPF                                                    ;B2F8AE;
     STA.L PirateNinja.speed,X                                            ;B2F8B1;
     LDA.W Enemy.XPosition,X                                              ;B2F8B5;
     CMP.W PirateNinja.postsMidpointXPosition,X                           ;B2F8B8;
@@ -10651,7 +10753,7 @@ Function_PirateNinja_SpinJumpRight_Falling:
     INC.W Enemy.YPosition,X                                              ;B2F8DB;
     LDA.L PirateNinja.speed,X                                            ;B2F8DE;
     SEC                                                                  ;B2F8E2;
-    SBC.W #$0020                                                         ;B2F8E3;
+    SBC.W #$0020*!SPF                                                    ;B2F8E3;
     STA.L PirateNinja.speed,X                                            ;B2F8E6;
     BEQ .landing                                                         ;B2F8EA;
     RTS                                                                  ;B2F8EC;
@@ -10763,7 +10865,7 @@ Instruction_PirateNinja_DivekickLeft_Jump:
     STA.W Enemy.YPosition,X                                              ;B2F995;
     LDA.L PirateNinja.speed,X                                            ;B2F998;
     SEC                                                                  ;B2F99C;
-    SBC.W #$0040                                                         ;B2F99D;
+    SBC.W #$0040*!SPF                                                    ;B2F99D;
     STA.L PirateNinja.speed,X                                            ;B2F9A0;
     BMI .negativeSpeed                                                   ;B2F9A4;
     RTS                                                                  ;B2F9A6;
@@ -10797,7 +10899,7 @@ Instruction_PirateNinja_DivekickLeft_Divekick:
     BCS .collision                                                       ;B2F9E2;
     LDA.L PirateNinja.speed,X                                            ;B2F9E4;
     SEC                                                                  ;B2F9E8;
-    SBC.W #$0040                                                         ;B2F9E9;
+    SBC.W #$0040*!SPF                                                    ;B2F9E9;
     STA.L PirateNinja.speed,X                                            ;B2F9EC;
     BMI .collision                                                       ;B2F9F0;
     BIT.W #$FF00                                                         ;B2F9F2;
@@ -10821,7 +10923,7 @@ Instruction_PirateNinja_DivekickLeft_Divekick:
 Instruction_PirateNinja_DivekickLeft_WalkToLeftPost:
     LDA.W Enemy.XPosition,X                                              ;B2FA15;
     CLC                                                                  ;B2FA18;
-    ADC.W #$FFFE                                                         ;B2FA19;
+    ADC.W #regional($FFFE, $FFFD)                                        ;B2FA19;
     STA.W Enemy.XPosition,X                                              ;B2FA1C;
     CMP.W PirateNinja.leftPostXPosition,X                                ;B2FA1F;
     BPL .return                                                          ;B2FA22;
@@ -10868,7 +10970,7 @@ Instruction_PirateNinja_DivekickRight_Jump:
     STA.W Enemy.YPosition,X                                              ;B2FA69;
     LDA.L PirateNinja.speed,X                                            ;B2FA6C;
     SEC                                                                  ;B2FA70;
-    SBC.W #$0040                                                         ;B2FA71;
+    SBC.W #$0040*!SPF                                                    ;B2FA71;
     STA.L PirateNinja.speed,X                                            ;B2FA74;
     BMI .negativeSpeed                                                   ;B2FA78;
     RTS                                                                  ;B2FA7A;
@@ -10902,7 +11004,7 @@ Instruction_PirateNinja_DivekickRight_Divekick:
     BCS .landing                                                         ;B2FAB6;
     LDA.L PirateNinja.speed,X                                            ;B2FAB8;
     SEC                                                                  ;B2FABC;
-    SBC.W #$0040                                                         ;B2FABD;
+    SBC.W #$0040*!SPF                                                    ;B2FABD;
     STA.L PirateNinja.speed,X                                            ;B2FAC0;
     BMI .landing                                                         ;B2FAC4;
     BIT.W #$FF00                                                         ;B2FAC6;
@@ -10926,7 +11028,7 @@ Instruction_PirateNinja_DivekickRight_Divekick:
 Instruction_PirateNinja_DivekickRight_WalkToRightPost:
     LDA.W Enemy.XPosition,X                                              ;B2FAE9;
     CLC                                                                  ;B2FAEC;
-    ADC.W #$0002                                                         ;B2FAED;
+    ADC.W #regional($0002, $0003)                                        ;B2FAED;
     STA.W Enemy.XPosition,X                                              ;B2FAF0;
     CMP.W PirateNinja.rightPostXPosition,X                               ;B2FAF3;
     BMI .return                                                          ;B2FAF6;
@@ -10976,7 +11078,7 @@ PirateNinja_SpawnLandingDustCloud:
 InstList_PirateWalking_Flinch_FacingLeft:
     dw Instruction_PirateWalking_FunctionInY                             ;B2FB4C;
     dw RTS_A0804B                                                        ;B2FB4E;
-    dw $0010,ExtendedSpritemaps_PirateWalking_23                         ;B2FB50;
+    dw $0010*!FPS,ExtendedSpritemaps_PirateWalking_23                    ;B2FB50;
     dw Instruction_Common_GotoY                                          ;B2FB54;
     dw InstList_PirateWalking_WalkingLeft_0                              ;B2FB56;
 
@@ -10985,7 +11087,7 @@ InstList_PirateWalking_Flinch_FacingLeft:
 InstList_PirateWalking_Flinch_FacingRight:
     dw Instruction_PirateWalking_FunctionInY                             ;B2FB58;
     dw RTS_A0804B                                                        ;B2FB5A;
-    dw $0010,ExtendedSpritemaps_PirateWalking_24                         ;B2FB5C;
+    dw $0010*!FPS,ExtendedSpritemaps_PirateWalking_24                    ;B2FB5C;
     dw Instruction_Common_GotoY                                          ;B2FB60;
     dw InstList_PirateWalking_WalkingRight_0                             ;B2FB62;
 
@@ -10996,14 +11098,14 @@ InstList_PirateWalking_WalkingLeft_0:
     dw Function_PirateWalking_WalkingLeft                                ;B2FB66;
 
 InstList_PirateWalking_WalkingLeft_1:
-    dw $000A,ExtendedSpritemaps_PirateWalking_0                          ;B2FB68;
-    dw $000A,ExtendedSpritemaps_PirateWalking_1                          ;B2FB6C;
-    dw $000A,ExtendedSpritemaps_PirateWalking_2                          ;B2FB70;
-    dw $000A,ExtendedSpritemaps_PirateWalking_3                          ;B2FB74;
-    dw $000A,ExtendedSpritemaps_PirateWalking_4                          ;B2FB78;
-    dw $000A,ExtendedSpritemaps_PirateWalking_5                          ;B2FB7C;
-    dw $000A,ExtendedSpritemaps_PirateWalking_6                          ;B2FB80;
-    dw $000A,ExtendedSpritemaps_PirateWalking_7                          ;B2FB84;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWalking_0                     ;B2FB68;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWalking_1                     ;B2FB6C;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWalking_2                     ;B2FB70;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWalking_3                     ;B2FB74;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWalking_4                     ;B2FB78;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWalking_5                     ;B2FB7C;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWalking_6                     ;B2FB80;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWalking_7                     ;B2FB84;
     dw Instruction_Common_GotoY                                          ;B2FB88;
     dw InstList_PirateWalking_WalkingLeft_1                              ;B2FB8A;
 
@@ -11012,19 +11114,19 @@ InstList_PirateWalking_WalkingLeft_1:
 InstList_PirateWalking_FireLasersLeft:
     dw Instruction_PirateWalking_FunctionInY                             ;B2FB8C;
     dw RTS_B2FE4A                                                        ;B2FB8E;
-    dw $0018,ExtendedSpritemaps_PirateWalking_10                         ;B2FB90;
-    dw $0008,ExtendedSpritemaps_PirateWalking_11                         ;B2FB94;
-    dw $0008,ExtendedSpritemaps_PirateWalking_12                         ;B2FB98;
-    dw $0008,ExtendedSpritemaps_PirateWalking_13                         ;B2FB9C;
+    dw regional($0018, $0013),ExtendedSpritemaps_PirateWalking_10        ;B2FB90;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWalking_11                    ;B2FB94;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWalking_12                    ;B2FB98;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWalking_13                    ;B2FB9C;
     dw Instruction_PirateWalking_FireLaserLeftWithYOffsetInY,$0008       ;B2FBA0;
-    dw $0008,ExtendedSpritemaps_PirateWalking_14                         ;B2FBA2;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWalking_14                    ;B2FBA2;
     dw Instruction_PirateWalking_FireLaserLeftWithYOffsetInY,$0002       ;B2FBA8;
-    dw $0018,ExtendedSpritemaps_PirateWalking_15                         ;B2FBAA;
+    dw regional($0018, $0013),ExtendedSpritemaps_PirateWalking_15        ;B2FBAA;
     dw Instruction_PirateWalking_FireLaserLeftWithYOffsetInY,$FFF8       ;B2FBB0;
-    dw $0008,ExtendedSpritemaps_PirateWalking_14                         ;B2FBB2;
-    dw $0008,ExtendedSpritemaps_PirateWalking_13                         ;B2FBB8;
-    dw $0008,ExtendedSpritemaps_PirateWalking_12                         ;B2FBBC;
-    dw $0008,ExtendedSpritemaps_PirateWalking_11                         ;B2FBC0;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWalking_14                    ;B2FBB2;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWalking_13                    ;B2FBB8;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWalking_12                    ;B2FBBC;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWalking_11                    ;B2FBC0;
     dw Instruction_PirateWalking_ChooseAMovement                         ;B2FBC4;
 
 
@@ -11032,12 +11134,12 @@ InstList_PirateWalking_FireLasersLeft:
 InstList_PirateWalking_LookingAround_FacingLeft:
     dw Instruction_PirateWalking_FunctionInY                             ;B2FBC6;
     dw RTS_B2FE4A                                                        ;B2FBC8;
-    dw $0020,ExtendedSpritemaps_PirateWalking_1C                         ;B2FBCA;
-    dw $000A,ExtendedSpritemaps_PirateWalking_1D                         ;B2FBCE;
-    dw $0020,ExtendedSpritemaps_PirateWalking_1E                         ;B2FBD2;
-    dw $000A,ExtendedSpritemaps_PirateWalking_1D                         ;B2FBD6;
-    dw $0020,ExtendedSpritemaps_PirateWalking_1C                         ;B2FBDA;
-    dw $0008,ExtendedSpritemaps_PirateWalking_22                         ;B2FBDE;
+    dw regional($0020, $0019),ExtendedSpritemaps_PirateWalking_1C        ;B2FBCA;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWalking_1D                    ;B2FBCE;
+    dw regional($0020, $0019),ExtendedSpritemaps_PirateWalking_1E        ;B2FBD2;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWalking_1D                    ;B2FBD6;
+    dw regional($0020, $0019),ExtendedSpritemaps_PirateWalking_1C        ;B2FBDA;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWalking_22                    ;B2FBDE;
     dw Instruction_Common_GotoY                                          ;B2FBE2;
     dw InstList_PirateWalking_WalkingRight_0                             ;B2FBE4;
 
@@ -11048,14 +11150,14 @@ InstList_PirateWalking_WalkingRight_0:
     dw Function_PirateWalking_WalkingRight                               ;B2FBE8;
 
 InstList_PirateWalking_WalkingRight_1:
-    dw $000A,ExtendedSpritemaps_PirateWalking_8                          ;B2FBEA;
-    dw $000A,ExtendedSpritemaps_PirateWalking_9                          ;B2FBEE;
-    dw $000A,ExtendedSpritemaps_PirateWalking_A                          ;B2FBF2;
-    dw $000A,ExtendedSpritemaps_PirateWalking_B                          ;B2FBF6;
-    dw $000A,ExtendedSpritemaps_PirateWalking_C                          ;B2FBFA;
-    dw $000A,ExtendedSpritemaps_PirateWalking_D                          ;B2FBFE;
-    dw $000A,ExtendedSpritemaps_PirateWalking_E                          ;B2FC02;
-    dw $000A,ExtendedSpritemaps_PirateWalking_F                          ;B2FC06;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWalking_8                     ;B2FBEA;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWalking_9                     ;B2FBEE;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWalking_A                     ;B2FBF2;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWalking_B                     ;B2FBF6;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWalking_C                     ;B2FBFA;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWalking_D                     ;B2FBFE;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWalking_E                     ;B2FC02;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWalking_F                     ;B2FC06;
     dw Instruction_Common_GotoY                                          ;B2FC0A;
     dw InstList_PirateWalking_WalkingRight_1                             ;B2FC0C;
 
@@ -11064,19 +11166,19 @@ InstList_PirateWalking_WalkingRight_1:
 InstList_PirateWalking_FireLasersRight:
     dw Instruction_PirateWalking_FunctionInY                             ;B2FC0E;
     dw RTS_B2FE4A                                                        ;B2FC10;
-    dw $0018,ExtendedSpritemaps_PirateWalking_16                         ;B2FC12;
-    dw $0008,ExtendedSpritemaps_PirateWalking_17                         ;B2FC16;
-    dw $0008,ExtendedSpritemaps_PirateWalking_18                         ;B2FC1A;
-    dw $0008,ExtendedSpritemaps_PirateWalking_19                         ;B2FC1E;
+    dw regional($0018, $0013),ExtendedSpritemaps_PirateWalking_16        ;B2FC12;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWalking_17                    ;B2FC16;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWalking_18                    ;B2FC1A;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWalking_19                    ;B2FC1E;
     dw Instruction_PirateWalking_FireLaserRightWithYOffsetInY,$0008      ;B2FC22;
-    dw $0008,ExtendedSpritemaps_PirateWalking_1A                         ;B2FC24;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWalking_1A                    ;B2FC24;
     dw Instruction_PirateWalking_FireLaserRightWithYOffsetInY,$0002      ;B2FC2A;
-    dw $0018,ExtendedSpritemaps_PirateWalking_1B                         ;B2FC2C;
+    dw regional($0018, $0013),ExtendedSpritemaps_PirateWalking_1B        ;B2FC2C;
     dw Instruction_PirateWalking_FireLaserRightWithYOffsetInY,$FFF8      ;B2FC32;
-    dw $0008,ExtendedSpritemaps_PirateWalking_1A                         ;B2FC34;
-    dw $0008,ExtendedSpritemaps_PirateWalking_19                         ;B2FC3A;
-    dw $0008,ExtendedSpritemaps_PirateWalking_18                         ;B2FC3E;
-    dw $0008,ExtendedSpritemaps_PirateWalking_17                         ;B2FC42;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWalking_1A                    ;B2FC34;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWalking_19                    ;B2FC3A;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWalking_18                    ;B2FC3E;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWalking_17                    ;B2FC42;
     dw Instruction_PirateWalking_ChooseAMovement                         ;B2FC46;
 
 
@@ -11084,12 +11186,12 @@ InstList_PirateWalking_FireLasersRight:
 InstList_PirateWalking_LookingAround_FacingRight:
     dw Instruction_PirateWalking_FunctionInY                             ;B2FC48;
     dw RTS_B2FE4A                                                        ;B2FC4A;
-    dw $0020,ExtendedSpritemaps_PirateWalking_1F                         ;B2FC4C;
-    dw $000A,ExtendedSpritemaps_PirateWalking_20                         ;B2FC50;
-    dw $0020,ExtendedSpritemaps_PirateWalking_21                         ;B2FC54;
-    dw $000A,ExtendedSpritemaps_PirateWalking_20                         ;B2FC58;
-    dw $0020,ExtendedSpritemaps_PirateWalking_1F                         ;B2FC5C;
-    dw $0008,ExtendedSpritemaps_PirateWalking_22                         ;B2FC60;
+    dw regional($0020, $0016),ExtendedSpritemaps_PirateWalking_1F        ;B2FC4C;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWalking_20                    ;B2FC50;
+    dw regional($0020, $0016),ExtendedSpritemaps_PirateWalking_21        ;B2FC54;
+    dw $000A*!FPS,ExtendedSpritemaps_PirateWalking_20                    ;B2FC58;
+    dw regional($0020, $0016),ExtendedSpritemaps_PirateWalking_1F        ;B2FC5C;
+    dw $0008*!FPS,ExtendedSpritemaps_PirateWalking_22                    ;B2FC60;
     dw Instruction_Common_GotoY                                          ;B2FC64;
     dw InstList_PirateWalking_WalkingLeft_0                              ;B2FC66;
 
@@ -11275,7 +11377,7 @@ Function_PirateWalking_WalkingLeft:
     LDA.W #$FFF7                                                         ;B2FDA0;
     STA.B DP_Temp14                                                      ;B2FDA3;
     JSL.L CheckForHorizontalSolidBlockCollision                          ;B2FDA5;
-    LDA.W #$C7FF                                                         ;B2FDA9;
+    LDA.W #-$3801*!SPF                                                   ;B2FDA9;
     STA.B DP_Temp12                                                      ;B2FDAC;
     LDA.W #$FFFF                                                         ;B2FDAE;
     STA.B DP_Temp14                                                      ;B2FDB1;
@@ -11335,7 +11437,7 @@ Function_PirateWalking_WalkingRight:
     STA.W Enemy.XPosition,X                                              ;B2FE1F;
     PLP                                                                  ;B2FE22;
     BCC .collision                                                       ;B2FE23;
-    LDA.W #$3800                                                         ;B2FE25;
+    LDA.W #$3800*!SPF                                                    ;B2FE25;
     STA.B DP_Temp12                                                      ;B2FE28;
     LDA.W #$0000                                                         ;B2FE2A;
     STA.B DP_Temp14                                                      ;B2FE2D;

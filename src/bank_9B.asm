@@ -3115,7 +3115,7 @@ UpdateGrappleBeamTiles:
     DEC                                                                  ;9BBFC0;
     STA.W GrappleBeam_StartAnimationTimer                                ;9BBFC1;
     BPL .timerNotExpired                                                 ;9BBFC4;
-    LDA.W #$0005                                                         ;9BBFC6;
+    LDA.W #$0005*!FPS                                                    ;9BBFC6;
     STA.W GrappleBeam_StartAnimationTimer                                ;9BBFC9;
     LDA.W GrappleBeam_StartAnimationTilePointer                          ;9BBFCC;
     CLC                                                                  ;9BBFCF;
@@ -3315,23 +3315,23 @@ GrappleBeamFireAngles:                                                   ;9BC104
 ;;; $C118: Grapple swing constants ;;;
 GrappleSwingConstants_AccelerationDueToAngleOfSwing:
 ; Grapple swing Samus base acceleration due to angle of swing
-    dw $0018                                                             ;9BC118;
+    dw $0018*!SPF                                                        ;9BC118;
 
 GrappleSwingConstants_AccelerationDueToButtonInput:
 ; Grapple swing Samus base acceleration due to button input
-    dw $000C                                                             ;9BC11A;
+    dw $000C*!SPF                                                        ;9BC11A;
 
 GrappleSwingConstants_Deceleration:
 ; Grapple swing Samus base deceleration
-    dw $0005                                                             ;9BC11C;
+    dw $0005*!SPF                                                        ;9BC11C;
 
 GrappleSwingConstants_AbsoluteAngularVelocity:
 ; Absolute grapple swing angular velocity
-    dw $0480                                                             ;9BC11E;
+    dw $0480*!SPF                                                        ;9BC11E;
 
 GrappleSwingConstants_ExtraAngularVelocity_GrappleKick:
 ; Extra grapple swing angular velocity (for grapple kick)
-    dw $0300                                                             ;9BC120;
+    dw $0300*!SPF                                                        ;9BC120;
 
 
 ;;; $C122: Grapple beam fire offsets ;;;
@@ -3824,7 +3824,7 @@ GrappleBeamFunction_Fire_GotoCancel:
     LDA.W #$0002                                                         ;9BC63C;
     STA.W GrappleBeam_NeverRead0D3A                                      ;9BC63F;
     STZ.W GrappleBeam_NeverRead0D3C                                      ;9BC642;
-    LDA.W #$0005                                                         ;9BC645;
+    LDA.W #$0005*!FPS                                                    ;9BC645;
     STA.W GrappleBeam_StartAnimationTimer                                ;9BC648;
     LDA.W GrappleBeamStartTilesBeginEndPointers_0                        ;9BC64B;
     STA.W GrappleBeam_StartAnimationTilePointer                          ;9BC64E;

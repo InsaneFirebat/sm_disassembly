@@ -32,8 +32,8 @@ incbin "../data/Background_Norfair_9_HorizontalPatternBrick.bin" ; $92 bytes
 Background_Norfair_9_VerticalPatternBrick:
 incbin "../data/Background_Norfair_9_VerticalPatternBrick.bin" ; $449 bytes
 
-Background_Norfair_9_A_CavernStalagtites:
-incbin "../data/Background_Norfair_9_A_CavernStalagtites.bin" ; $27C bytes
+Background_Norfair_9_A_CavernStalactites:
+incbin "../data/Background_Norfair_9_A_CavernStalactites.bin" ; $27C bytes
 
 Background_Norfair_9_A_CavernVertical:
 incbin "../data/Background_Norfair_9_A_CavernVertical.bin" ; $3F1 bytes
@@ -1123,8 +1123,8 @@ incbin "../data/LevelData_EnergyRefill_RightSideDoor.bin" ; $2FD bytes
 LevelData_MissileRefill_RightSideDoor:
 incbin "../data/LevelData_MissileRefill_RightSideDoor.bin" ; $2F3 bytes
 
-LevelData_EnergyRefeill_BothDoors:
-incbin "../data/LevelData_EnergyRefeill_BothDoors.bin" ; $325 bytes
+LevelData_EnergyRefill_BothDoors:
+incbin "../data/LevelData_EnergyRefill_BothDoors.bin" ; $325 bytes
 
 LevelData_SaveStation_RightSideDoor:
 incbin "../data/LevelData_SaveStation_RightSideDoor.bin" ; $2F7 bytes
