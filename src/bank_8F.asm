@@ -409,7 +409,7 @@ PLMPopulation_GreenBrinstarMap:                                          ;8F8540
 
 PLMPopulation_GreenBrinstarFirefleas:                                    ;8F8548;
 ; Room $9C5E, state $9C6B: PLM
-    %PLMPopEntry(PLMEntries_greenDoorFacingRight, $01, $26, $0027)
+    %PLMPopEntry(PLMEntries_greenDoorFacingRight, $01, $26, $0027) ; <-- out of bounds
     dw $0000
 
 PLMPopulation_GreenBrinstarMissileRefill:                                ;8F8550;
@@ -9793,7 +9793,7 @@ PLMPopulation_BelowBotwoonETank:
 
 PLMPopulation_Colosseum:                                                 ;8FC6EF;
     %PLMPopEntry(PLMEntries_redDoorFacingLeft, $6E, $06, $0098)
-    %PLMPopEntry(PLMEntries_greenDoorFacingLeft, $4E, $26, $0099)
+    %PLMPopEntry(PLMEntries_greenDoorFacingLeft, $4E, $26, $0099) ; <-- out of bounds
     %PLMPopEntry(PLMEntries_greenDoorFacingLeft, $6E, $16, $009A)
     dw $0000
 
