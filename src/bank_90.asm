@@ -16635,8 +16635,8 @@ DemoRecorder_DisplaySamusPositionAsAmmoIfMorphed:
 
 
 if !FEATURE_KEEP_UNREFERENCED
-;;; $ED6C: Unused. Display in-game time as ammo ;;;
-UNUSED_DisplayInGameTimeAsAmmo_90ED6C:
+;;; $ED6C: Unused. Display game time as ammo ;;;
+UNUSED_DisplayGameTimeAsAmmo_90ED6C:
     LDA.W IGTHours                                                       ;90ED6C;
     STA.W Missiles                                                       ;90ED6F;
     STA.W MaxMissiles                                                    ;90ED72;
