@@ -1081,13 +1081,13 @@ endif
     LDA.W #RTL_A0804C                                                    ;A08A37;
     STA.W EnemyGraphicsDrawnHook                                         ;A08A3A;
     LDA.W #RTL_A0804C>>16                                                ;A08A3D;
-    STA.W unused1790+2                                                   ;A08A40;
+    STA.W neverRead1790+2                                                ;A08A40;
     LDA.W #RTL_A0804C                                                    ;A08A43;
-    STA.W unused1790                                                     ;A08A46;
+    STA.W neverRead1790                                                  ;A08A46;
     LDA.W #$0800                                                         ;A08A49;
     STA.W EnemyBG2TilemapSize                                            ;A08A4C;
-    STZ.W unused179E                                                     ;A08A4F;
-    STZ.W unused17A0                                                     ;A08A52;
+    STZ.W neverRead179E                                                  ;A08A4F;
+    STZ.W neverRead17A0                                                  ;A08A52;
     STZ.W BossID                                                         ;A08A55;
     JSL.L ClearEnemyData_ProcessEnemySet                                 ;A08A58;
     JSL.L LoadEnemyTileData                                              ;A08A5C;

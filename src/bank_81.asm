@@ -6288,7 +6288,7 @@ NewSaveFile:
     STA.L SRAMMirror_Items,X                                             ;81B376;
     STA.L SRAMMirror_Items,X                                             ;81B37A; >.<
     STA.L SRAMMirror_Doors,X                                             ;81B37E;
-    STA.L unusedD8F0,X                                                   ;81B382;
+    STA.L neverReadD8F0,X                                                ;81B382;
     STA.L SRAMMirror_MapStations,X                                       ;81B386;
     STA.L SRAMMirror_UsedSaveStationsElevators,X                         ;81B38A;
     STA.L SRAMMirror_UsedSaveStationsElevators+8,X                       ;81B38E;

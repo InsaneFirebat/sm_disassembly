@@ -5191,12 +5191,12 @@ FXType_24_Fireflea:
     dw InstList_Fireflea_BG3XScroll_0                                    ;88B08E;
     LDA.W #$0000                                                         ;88B090;
     STA.L DummyHDMATable                                                 ;88B093;
-    STZ.W Unused177C                                                     ;88B097;
+    STZ.W neverRead177C                                                  ;88B097;
     STZ.W FirefleaFlashing_DarknessLevel                                 ;88B09A;
     LDA.W #$0018                                                         ;88B09D;
-    STA.W Unused1780                                                     ;88B0A0;
+    STA.W neverRead1780                                                  ;88B0A0;
     LDA.L Fireflea_Flashing_Shades                                       ;88B0A3;
-    STA.W Unused1782                                                     ;88B0A7;
+    STA.W neverRead1782                                                  ;88B0A7;
     PLP                                                                  ;88B0AA;
     RTL                                                                  ;88B0AB;
 
