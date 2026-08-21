@@ -12179,7 +12179,7 @@ if !DEBUG
     LDA.W DebugInvincibility                                             ;91E013;
     STA.B DP_Temp12                                                      ;91E016;
 endif
-    LDX.W #DistanceToEjectSamusDownDueToPostGrappleCollision+1           ;91E018;
+    LDX.W #EndSamusRAM-1                                                 ;91E018;
     SEP #$20                                                             ;91E01B;
     LDA.B #$00                                                           ;91E01D;
 

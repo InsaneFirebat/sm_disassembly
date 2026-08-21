@@ -1312,7 +1312,7 @@ InitAI_Crocomire:
     LDA.W #$0004                                                         ;A48AAE;
     STA.W Crocomire.fightFunctionIndex,X                                 ;A48AB1;
     LDA.W #$0010                                                         ;A48AB4;
-    STA.W unused179E                                                     ;A48AB7;
+    STA.W neverRead179E                                                  ;A48AB7;
     LDA.W #$0002                                                         ;A48ABA;
     STA.W CameraDistanceIndex                                            ;A48ABD;
     LDA.W #$0400                                                         ;A48AC0;
