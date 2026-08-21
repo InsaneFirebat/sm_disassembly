@@ -12186,7 +12186,7 @@ endif
   .loopClearSamusRAM:
     STA.W $0000,X                                                        ;91E01F;
     DEX                                                                  ;91E022;
-    CPX.W #unused0A02                                                    ;91E023;
+    CPX.W #StartSamusRAM_Unused0A02                                      ;91E023;
     BPL .loopClearSamusRAM                                               ;91E026;
     REP #$20                                                             ;91E028;
     LDA.W GameState                                                      ;91E02A;
