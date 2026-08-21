@@ -888,7 +888,7 @@ LoadDemoRoomData:
     LDA.W #$FFFF                                                         ;8286FC;
     STA.L SRAMMirror_ChozeBlockDestroyed,X                               ;8286FF;
     STA.L SRAMMirror_Items,X                                             ;828703;
-    STA.L unusedD8F0,X                                                   ;828707;
+    STA.L neverReadD8F0,X                                                ;828707;
     STA.L SRAMMirror_MapStations,X                                       ;82870B;
     STA.L SRAMMirror_UsedSaveStationsElevators,X                         ;82870F;
     STA.L SRAMMirror_UsedSaveStationsElevators+8,X                       ;828713;
