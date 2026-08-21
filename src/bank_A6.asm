@@ -3571,7 +3571,7 @@ InitAI_Ridley:
     AND.W #$0001                                                         ;A6A0FC;
     BEQ .notDead                                                         ;A6A0FF;
     LDA.W Enemy.properties                                               ;A6A101;
-    AND.W #$FFFF                                                         ;A6A104;
+    AND.W #$FFFF                                                         ;A6A104; >.<
     ORA.W #$0700                                                         ;A6A107;
     STA.W Enemy.properties                                               ;A6A10A;
     RTL                                                                  ;A6A10D;
@@ -12127,13 +12127,11 @@ Palette_RidleyCeres_InitialAdditionalPalettes:
     dw $0000,$7E20,$6560,$2060,$1000,$7940,$5D00,$4CA0                   ;A6E16F;
     dw $3CA0,$43FF,$0113,$000F,$175C,$0299,$01D6,$57E0                   ;A6E17F;
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Palette_BabyMetroid_Initial_A6E18F:
+Palette_BabyMetroid_Initial:
 ; Initial baby metroid
 ; Sprite palette 3
     dw $0000,$6BF5,$06E1,$0641,$05A1,$5E5F,$183F,$1014                   ;A6E18F;
     dw $080A,$0404,$4F9F,$3ED8,$2E12,$6F70,$7FFF,$5EE0                   ;A6E19F;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $E1AF: Palette - enemy $E1BF (Ridley explosion) ;;;
