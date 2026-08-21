@@ -569,7 +569,7 @@ neverRead09E8: skip 2 ; $09E8
 IconCancel: skip 2 ; $09EA
 Unused09EC: skip $16 ; $09EC..0A01
 
-unused0A02: skip 2 ; $0A02
+StartSamusRAM_Unused0A02: skip 2 ; $0A02
 AutoCancelHUDItemIndex: skip 2 ; $0A04
 PreviousEnergy: skip 2 ; $0A06
 PreviousMissiles: skip 2 ; $0A08
