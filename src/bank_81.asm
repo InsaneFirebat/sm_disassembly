@@ -2008,7 +2008,7 @@ DebugGameOverMenu_Index3_Main:
     BNE +                                                                ;81901E;
     LDA.W SaveSlotSelected                                               ;819020;
     JSL.L SaveToSRAM                                                     ;819023;
-    JML.L SoftReset                                                      ;819027;
+    JML SoftReset                                                        ;819027;
 
 +   INC.W PauseMenu_MenuIndex                                            ;81902B;
     RTS                                                                  ;81902E;
@@ -2150,7 +2150,7 @@ GameOverMenu_Index7_FadeOutIntoGameMapView:
     RTS                                                                  ;819111;
 
   .softReset:
-    JML.L SoftReset                                                      ;819112;
+    JML SoftReset                                                        ;819112;
 
 
 ;;; $9116: Game over menu - index 6: load game map view ;;;
@@ -2554,7 +2554,7 @@ FileSelectMenu_Index21_MainToTitleSequence:
     LDA.B DP_Brightness                                                  ;8194E2;
     AND.W #$000F                                                         ;8194E4;
     BNE .return                                                          ;8194E7;
-    JML.L SoftReset                                                      ;8194E9;
+    JML SoftReset                                                        ;8194E9;
 
   .return:
     RTS                                                                  ;8194ED;

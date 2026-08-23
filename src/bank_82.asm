@@ -7758,7 +7758,7 @@ Draw_Menu_Selection_Missile:
     TAX                                                                  ;82BAA3;
     PLA                                                                  ;82BAA4;
     PLB                                                                  ;82BAA5;
-    JML.L AddSpritemapFrom_82C569_TableToOAM                             ;82BAA6;
+    JML AddSpritemapFrom_82C569_TableToOAM                               ;82BAA6;
 
   .animTimer:
     dw $0008,$0008,$0008,$0008                                           ;82BAAA;
@@ -7809,7 +7809,7 @@ Draw_FileCopy_Arrow:
     TAX                                                                  ;82BB05;
     PLA                                                                  ;82BB06;
     PLB                                                                  ;82BB07;
-    JML.L AddSpritemapFrom_82C569_TableToOAM                             ;82BB08;
+    JML AddSpritemapFrom_82C569_TableToOAM                               ;82BB08;
 
 ;        _______________ Spritemap index
 ;       |      _________ X position
