@@ -12039,7 +12039,7 @@ Deal_A_Damage_to_Samus:
     STA.B DP_Temp12                                                      ;91DF58;
     TAX                                                                  ;91DF5A;
     BPL .noCrash                                                         ;91DF5B;
-    JML.L Crash_Handler                                                  ;91DF5D;
+    JML Crash_Handler                                                    ;91DF5D;
 
   .noCrash:
     CMP.W #$012C                                                         ;91DF61;

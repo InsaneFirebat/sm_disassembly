@@ -16107,7 +16107,7 @@ HandlePeriodicDamageToSamus:
   .crashIfNegative:
     LDA.W PeriodicDamage                                                 ;90EA11;
     BPL .dontCrash                                                       ;90EA14;
-    JML.L Crash_Handler                                                  ;90EA16;
+    JML Crash_Handler                                                    ;90EA16;
 
   .dontCrash:
     LDA.w PeriodicSubDamage : ORA.w PeriodicDamage : BEQ +

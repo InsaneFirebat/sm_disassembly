@@ -6564,7 +6564,7 @@ MainAI_Rinka:
     BEQ .function                                                        ;A2B7D0;
     JSR.W DecrementRinkaCounter                                          ;A2B7D2;
     JSR.W MarkRinkaSpawnPointAvailable                                   ;A2B7D5;
-    JML.L RinkaDeath                                                     ;A2B7D8;
+    JML RinkaDeath                                                       ;A2B7D8;
 
   .function:
     JMP.W (Rinka.function,X)                                             ;A2B7DC;
@@ -6648,7 +6648,7 @@ DeleteAndRespawnRinka:
     LDA.L MotherBrainBody.deleteTurretsRinkasFlag                        ;A2B86D;
     BEQ .notMBRoom                                                       ;A2B871;
     JSR.W DecrementRinkaCounter                                          ;A2B873;
-    JML.L DeleteEnemyAndAnyConnectedEnemies                              ;A2B876;
+    JML DeleteEnemyAndAnyConnectedEnemies                                ;A2B876;
 
   .notMBRoom:
     JSR.W DecrementRinkaCounter                                          ;A2B87A;
@@ -6789,7 +6789,7 @@ FrozenAI_Rinka:
   .delete:
     JSR.W DecrementRinkaCounter                                          ;A2B93D;
     JSR.W MarkRinkaSpawnPointAvailable                                   ;A2B940;
-    JML.L RinkaDeath                                                     ;A2B943;
+    JML RinkaDeath                                                       ;A2B943;
 
 
 ;;; $B947: Enemy touch - enemy $D23F (rinka) ;;;
@@ -6827,7 +6827,7 @@ ContactReaction_Rinka_Common:
     LDA.W Enemy.init0,X                                                  ;A2B96C;
     BNE .MBRoom                                                          ;A2B96F;
     LDA.W #$0000                                                         ;A2B971;
-    JML.L RinkaDeath                                                     ;A2B974;
+    JML RinkaDeath                                                       ;A2B974;
 
   .MBRoom:
     LDA.W Enemy.properties,X                                             ;A2B978;
