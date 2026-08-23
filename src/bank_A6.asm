@@ -8514,7 +8514,7 @@ MainAI_RidleyExplosion:
     DEC.W RidleyExplosion.lifeTimer,X                                    ;A6C906;
     BPL .return                                                          ;A6C909;
     LDA.W #$0000                                                         ;A6C90B;
-    JML.L EnemyDeath                                                     ;A6C90E;
+    JML EnemyDeath                                                       ;A6C90E;
 
   .return:
     RTL                                                                  ;A6C912;
@@ -15001,7 +15001,7 @@ Function_Zebetite_Active:
 
   .noMore:
     LDA.W #$0000                                                         ;A6FC8A;
-    JML.L EnemyDeath                                                     ;A6FC8D;
+    JML EnemyDeath                                                       ;A6FC8D;
 
   .singlePart:
     JSR.W MarkZebetiteDestroyedEvent                                     ;A6FC91;

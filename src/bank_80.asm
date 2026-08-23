@@ -961,7 +961,7 @@ Boot:
     SEI                                                                  ;80841C; Disable IRQ
     CLC                                                                  ;80841D;
     XCE                                                                  ;80841E; Enable native mode
-    JML.L .bank80                                                        ;80841F; Execute in bank $80 (FastROM)
+    JML .bank80                                                          ;80841F; Execute in bank $80 (FastROM)
 
   .bank80:
     SEP #$20                                                             ;808423;
@@ -1134,7 +1134,7 @@ endif
     JSL.L DetermineNumberOfDemoSets                                      ;808564; Check for non-corrupt SRAM
     STZ.W DisableSounds                                                  ;808568; Enable sounds
     STZ.W APU_SoundHandlerDowntime                                       ;80856B; Sound handler downtime = 0
-    JML.L MainGameLoop                                                   ;80856E; Go to main game loop
+    JML MainGameLoop                                                     ;80856E; Go to main game loop
 
 
 ;;; $8572: Unused. BRK ;;;
@@ -1151,7 +1151,7 @@ Crash_Handler:
 ;     $93:80A0: Initialise (power) bomb
 ;     $93:8163: Initialise shinespark echo or spazer SBA trail projectile
 ;     $93:81A4: Initialise SBA projectile
-    JML.L Crash_Handler                                                  ;808573; Sit here and think about what you've done
+    JML Crash_Handler                                                    ;808573; Sit here and think about what you've done
 
 
 if !FEATURE_KEEP_UNREFERENCED
@@ -3498,7 +3498,7 @@ endif
 ;;; $9583: NMI ;;;
 NMI:
     REP #$30                                                             ;809583;
-    JML.L .bank80                                                        ;809585;
+    JML .bank80                                                          ;809585;
 
   .bank80:
     PHB                                                                  ;809589;
@@ -4045,7 +4045,7 @@ IRQ:
 ; Also note that the IRQ timing is a bit loose. For the h-counter target 98h,
 ; I've seen the IRQ fire at all different points in the range 95h..A3h on different frames (according to Mesen-S event viewer)
     REP #$30                                                             ;80986A;
-    JML.L .bank80                                                        ;80986C;
+    JML .bank80                                                          ;80986C;
 
   .bank80:
     PHB                                                                  ;809870;
