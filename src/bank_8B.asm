@@ -4009,7 +4009,7 @@ Clear_CreditsObject_CinematicBGTilemapInA:
     BPL .loop                                                            ;8B9906;
     LDA.W #$0000                                                         ;8B9908;
     STA.W CreditsObject_CinematicBGTilemapRowIndex                       ;8B990B;
-    STZ.W TextGlowObject_IndirectInstructionPointers                     ;8B990E;
+    STZ.W CreditsObject_InstListPointer                                  ;8B990E;
     STZ.W CreditsObject_InstructionTimer                                 ;8B9911;
     STZ.W CreditsObject_Timer                                            ;8B9914;
     STZ.W CreditsObject_PreInstruction                                   ;8B9917;
@@ -4034,7 +4034,7 @@ Spawn_CreditsObject:
     LDA.W $0002,X                                                        ;8B9937;
     STA.W CreditsObject_PreInstruction                                   ;8B993A;
     LDA.W $0004,X                                                        ;8B993D;
-    STA.W TextGlowObject_IndirectInstructionPointers                     ;8B9940;
+    STA.W CreditsObject_InstListPointer                                  ;8B9940;
     LDA.W #$0001                                                         ;8B9943;
     STA.W CreditsObject_InstructionTimer                                 ;8B9946;
     LDA.W #$0000                                                         ;8B9949;
@@ -4051,7 +4051,7 @@ Handle_CreditsObject:
     REP #$30                                                             ;8B9956;
     BIT.W CreditsObject_Enable                                           ;8B9958;
     BPL .return                                                          ;8B995B;
-    LDA.W TextGlowObject_IndirectInstructionPointers                     ;8B995D;
+    LDA.W CreditsObject_InstListPointer                                  ;8B995D;
     BEQ .updateTilemap                                                   ;8B9960;
     JSR.W Process_CreditsObject_InstList                                 ;8B9962;
 
@@ -4086,7 +4086,7 @@ Process_CreditsObject_InstList:
     BMI .return                                                          ;8B9990;
     LDA.W CinematicBG1_YPosition                                         ;8B9992;
     STA.W CreditsObject_LastCreditsUpdateYPosition                       ;8B9995;
-    LDY.W TextGlowObject_IndirectInstructionPointers                     ;8B9998;
+    LDY.W CreditsObject_InstListPointer                                  ;8B9998;
 
   .loop:
     LDA.W $0000,Y                                                        ;8B999B;
@@ -4106,7 +4106,7 @@ Process_CreditsObject_InstList:
     TYA                                                                  ;8B99B7;
     CLC                                                                  ;8B99B8;
     ADC.W #$0004                                                         ;8B99B9;
-    STA.W TextGlowObject_IndirectInstructionPointers                     ;8B99BC;
+    STA.W CreditsObject_InstListPointer                                  ;8B99BC;
 
   .return:
     PLB                                                                  ;8B99BF;
@@ -4155,7 +4155,7 @@ Copy_CreditsRow_ToCinematicBGTilemap:
 ;;; $99FE: Instruction - delete ;;;
 Instruction_CreditsObject_Delete:
     REP #$30                                                             ;8B99FE;
-    STZ.W TextGlowObject_IndirectInstructionPointers                     ;8B9A00;
+    STZ.W CreditsObject_InstListPointer                                  ;8B9A00;
     PLA                                                                  ;8B9A03;
     PLB                                                                  ;8B9A04;
     RTS                                                                  ;8B9A05;
@@ -12288,7 +12288,7 @@ CinematicFunc_Ending_SpaceView_GunshipEmergence_Setup:
     LDA.W #$0001                                                         ;8BDC36;
     STA.W CinematicFunctionTimer                                         ;8BDC39;
     LDA.W #$00C0                                                         ;8BDC3C;
-    STA.W EndingShipXVelocity                                            ;8BDC3F;
+    STA.W ZebesExplosionAfterglowTimer                                   ;8BDC3F;
     STZ.W EndingShipShakeIndex                                           ;8BDC42;
     LDA.W #CinematicFunc_Ending_SpaceView_GunshipEmergence_SpinningFast  ;8BDC45;
     STA.W CinematicFunction                                              ;8BDC48;
@@ -12359,10 +12359,10 @@ FadeOut_ZebesExplosion_AfterGlow:
 
 ;;; $DCA5: Cinematic function - ending - space view - gunship emergence - spinning fast ;;;
 CinematicFunc_Ending_SpaceView_GunshipEmergence_SpinningFast:
-    LDA.W IntroCrossFadeTimer                                            ;8BDCA5;
+    LDA.W ZebesExplosionAfterglowTimer                                   ;8BDCA5;
     BEQ .fadeOutAfterGlow                                                ;8BDCA8;
     DEC                                                                  ;8BDCAA;
-    STA.W IntroCrossFadeTimer                                            ;8BDCAB;
+    STA.W ZebesExplosionAfterglowTimer                                   ;8BDCAB;
     BRA .timerExpired                                                    ;8BDCAE;
 
   .fadeOutAfterGlow:
@@ -13043,7 +13043,7 @@ CinematicFunction_PostCredits_IdleSamus1:
     STZ.B DP_ColorMathB                                                  ;8BE2CC;
     REP #$20                                                             ;8BE2CE;
     LDA.W #regional($00B4, $0084)                                        ;8BE2D0;
-    STA.W IntroCrossFadeTimer                                            ;8BE2D3;
+    STA.W PostCreditsCinematicFunctionTimer                              ;8BE2D3;
     LDA.W #CinematicFunction_PostCredits_1994Nintendo                    ;8BE2D6;
     STA.W CinematicFunction                                              ;8BE2D9;
 
@@ -13053,7 +13053,7 @@ CinematicFunction_PostCredits_IdleSamus1:
 
 ;;; $E2DD: Cinematic function - post-credits - 1994 Nintendo ;;;
 CinematicFunction_PostCredits_1994Nintendo:
-    DEC.W PostCreditsSamusBeamVRAMTransferIndex                          ;8BE2DD;
+    DEC.W PostCreditsCinematicFunctionTimer                              ;8BE2DD;
     BEQ .timerExpired                                                    ;8BE2E0;
     BPL .return                                                          ;8BE2E2;
 
@@ -13162,10 +13162,10 @@ CinematicFunction_PostCredits_IdleSamus2:
 
 ;;; $E3AE: Cinematic function - post-credits - Samus shoots screen ;;;
 CinematicFunction_PostCredits_SamusShootsScreen:
-    LDA.W PostCreditsSMIconVRAMTransferIndex                             ;8BE3AE;
+    LDA.W PostCreditsStarsFadeTimer                                      ;8BE3AE;
     BEQ .timerExpired                                                    ;8BE3B1;
     DEC                                                                  ;8BE3B3;
-    STA.W PostCreditsSMIconVRAMTransferIndex                             ;8BE3B4;
+    STA.W PostCreditsStarsFadeTimer                                      ;8BE3B4;
     LDX.W #$0180                                                         ;8BE3B7;
     LDY.W #$0010                                                         ;8BE3BA;
     JSR.W PaletteCrossFading_FadeOutYColorsStartingFromColorIndexX       ;8BE3BD;
@@ -13628,9 +13628,9 @@ Instruction_DrawItemPercentageCount:
     ASL                                                                  ;8BE6BC;
     TAY                                                                  ;8BE6BD;
     LDA.W TilemapValuesForDecimalDigits_topHalf,Y                        ;8BE6BE;
-    STA.L $7E339C                                                        ;8BE6C1;
+    STA.L CinematicBGTilemap_rowsCD+$9C                                  ;8BE6C1;
     LDA.W TilemapValuesForDecimalDigits_bottomHalf,Y                     ;8BE6C5;
-    STA.L $7E33DC                                                        ;8BE6C8;
+    STA.L CinematicBGTilemap_rowsCD+$DC                                  ;8BE6C8;
 
 +   LDA.B DP_Temp14                                                      ;8BE6CC;
     BNE +                                                                ;8BE6CE;
@@ -13642,9 +13642,9 @@ Instruction_DrawItemPercentageCount:
     ASL                                                                  ;8BE6D7;
     TAY                                                                  ;8BE6D8;
     LDA.W TilemapValuesForDecimalDigits_topHalf,Y                        ;8BE6D9;
-    STA.L $7E339E                                                        ;8BE6DC;
+    STA.L CinematicBGTilemap_rowsCD+$9E                                  ;8BE6DC;
     LDA.W TilemapValuesForDecimalDigits_bottomHalf,Y                     ;8BE6E0;
-    STA.L $7E33DE                                                        ;8BE6E3;
+    STA.L CinematicBGTilemap_rowsCD+$DE                                  ;8BE6E3;
 
   .unitsOnly:
     LDA.B DP_Temp16                                                      ;8BE6E7;
@@ -13652,13 +13652,13 @@ Instruction_DrawItemPercentageCount:
     ASL                                                                  ;8BE6EA;
     TAY                                                                  ;8BE6EB;
     LDA.W TilemapValuesForDecimalDigits_topHalf,Y                        ;8BE6EC;
-    STA.L $7E33A0                                                        ;8BE6EF;
+    STA.L CinematicBGTilemap_rowsCD+$A0                                  ;8BE6EF;
     LDA.W TilemapValuesForDecimalDigits_bottomHalf,Y                     ;8BE6F3;
-    STA.L $7E33E0                                                        ;8BE6F6;
+    STA.L CinematicBGTilemap_rowsCD+$E0                                  ;8BE6F6;
     LDA.W #$386A                                                         ;8BE6FA;
-    STA.L $7E33A2                                                        ;8BE6FD;
+    STA.L CinematicBGTilemap_rowsCD+$A2                                  ;8BE6FD;
     LDA.W #$387A                                                         ;8BE701;
-    STA.L $7E33E2                                                        ;8BE704;
+    STA.L CinematicBGTilemap_rowsCD+$E2                                  ;8BE704;
     PLY                                                                  ;8BE708;
     PLX                                                                  ;8BE709;
     PLB                                                                  ;8BE70A;
@@ -13806,33 +13806,33 @@ Initialize_ShootingStars:
   .loop:
     PHX                                                                  ;8BE7C6;
     TXA                                                                  ;8BE7C7;
-    STA.W $0000,Y                                                        ;8BE7C8;
+    STA.W $0000,Y                                                        ;8BE7C8; index + animation frame
     ASL                                                                  ;8BE7CB;
     ASL                                                                  ;8BE7CC;
     ASL                                                                  ;8BE7CD;
     TAX                                                                  ;8BE7CE;
     LDA.W #$0000                                                         ;8BE7CF;
-    STA.W $000C,Y                                                        ;8BE7D2;
-    STA.W $000E,Y                                                        ;8BE7D5;
+    STA.W $000C,Y                                                        ;8BE7D2; X velocity
+    STA.W $000E,Y                                                        ;8BE7D5; Y velocity
     LDA.W ShootingStar_Table_delay,X                                     ;8BE7D8;
     BEQ .zero                                                            ;8BE7DB;
-    STA.W $000A,Y                                                        ;8BE7DD;
-    LDA.W $0000,Y                                                        ;8BE7E0;
+    STA.W $000A,Y                                                        ;8BE7DD; animation timer
+    LDA.W $0000,Y                                                        ;8BE7E0; index + animation frame
     ORA.W #$8000                                                         ;8BE7E3;
-    STA.W $0000,Y                                                        ;8BE7E6;
+    STA.W $0000,Y                                                        ;8BE7E6; index + animation frame
     BRA +                                                                ;8BE7E9;
 
   .zero:
     LDA.W #$0020                                                         ;8BE7EB;
-    STA.W $000A,Y                                                        ;8BE7EE;
+    STA.W $000A,Y                                                        ;8BE7EE; animation timer
 
 +   PLX                                                                  ;8BE7F1;
     LDA.W #$0080                                                         ;8BE7F2;
-    STA.W $0002,Y                                                        ;8BE7F5;
-    STA.W $0006,Y                                                        ;8BE7F8;
+    STA.W $0002,Y                                                        ;8BE7F5; X position
+    STA.W $0006,Y                                                        ;8BE7F8; Y position
     LDA.W #$0000                                                         ;8BE7FB;
-    STA.W $0004,Y                                                        ;8BE7FE;
-    STA.W $0008,Y                                                        ;8BE801;
+    STA.W $0004,Y                                                        ;8BE7FE; X subposition
+    STA.W $0008,Y                                                        ;8BE801; Y subposition
     TYA                                                                  ;8BE804;
     CLC                                                                  ;8BE805;
     ADC.W #$0010                                                         ;8BE806;
@@ -13860,21 +13860,21 @@ Handle_ShootingStars:
     BRA .loopProcess                                                     ;8BE824;
 
   .delay:
-    LDA.W $000A,Y                                                        ;8BE826;
+    LDA.W $000A,Y                                                        ;8BE826; animation timer
     DEC                                                                  ;8BE829;
-    STA.W $000A,Y                                                        ;8BE82A;
+    STA.W $000A,Y                                                        ;8BE82A; animation timer
     BPL .gotoNextProcess                                                 ;8BE82D;
     LDA.W #$0020                                                         ;8BE82F;
-    STA.W $000A,Y                                                        ;8BE832;
-    LDA.W $0000,Y                                                        ;8BE835;
+    STA.W $000A,Y                                                        ;8BE832; animation timer
+    LDA.W $0000,Y                                                        ;8BE835; index + animation frame
     AND.W #$00FF                                                         ;8BE838;
-    STA.W $0000,Y                                                        ;8BE83B;
+    STA.W $0000,Y                                                        ;8BE83B; index + animation frame
 
   .gotoNextProcess:
     JMP.W .nextProcess                                                   ;8BE83E;
 
   .loopProcess:
-    LDA.W $0000,Y                                                        ;8BE841;
+    LDA.W $0000,Y                                                        ;8BE841; index + animation frame
     BMI .delay                                                           ;8BE844;
     PHA                                                                  ;8BE846;
     AND.W #$FF00                                                         ;8BE847;
@@ -13886,18 +13886,18 @@ Handle_ShootingStars:
     ASL                                                                  ;8BE854;
     ASL                                                                  ;8BE855;
     TAX                                                                  ;8BE856;
-    LDA.W $000C,Y                                                        ;8BE857;
+    LDA.W $000C,Y                                                        ;8BE857; X velocity
     CLC                                                                  ;8BE85A;
     ADC.W ShootingStar_Table_Xaccel,X                                    ;8BE85B;
     CLC                                                                  ;8BE85E;
     ADC.W ShootingStar_Table_Xaccel,X                                    ;8BE85F;
-    STA.W $000C,Y                                                        ;8BE862;
-    LDA.W $000E,Y                                                        ;8BE865;
+    STA.W $000C,Y                                                        ;8BE862; X velocity
+    LDA.W $000E,Y                                                        ;8BE865; Y velocity
     CLC                                                                  ;8BE868;
     ADC.W ShootingStar_Table_Yaccel,X                                    ;8BE869;
     CLC                                                                  ;8BE86C;
     ADC.W ShootingStar_Table_Yaccel,X                                    ;8BE86D;
-    STA.W $000E,Y                                                        ;8BE870;
+    STA.W $000E,Y                                                        ;8BE870; Y velocity
     BRA +                                                                ;8BE873;
 
   .lessThan4:
@@ -13907,16 +13907,16 @@ Handle_ShootingStars:
     ASL                                                                  ;8BE87A;
     ASL                                                                  ;8BE87B;
     TAX                                                                  ;8BE87C;
-    LDA.W $000C,Y                                                        ;8BE87D;
+    LDA.W $000C,Y                                                        ;8BE87D; X velocity
     CLC                                                                  ;8BE880;
     ADC.W ShootingStar_Table_Xaccel,X                                    ;8BE881;
-    STA.W $000C,Y                                                        ;8BE884;
-    LDA.W $000E,Y                                                        ;8BE887;
+    STA.W $000C,Y                                                        ;8BE884; X velocity
+    LDA.W $000E,Y                                                        ;8BE887; Y velocity
     CLC                                                                  ;8BE88A;
     ADC.W ShootingStar_Table_Yaccel,X                                    ;8BE88B;
-    STA.W $000E,Y                                                        ;8BE88E;
+    STA.W $000E,Y                                                        ;8BE88E; Y velocity
 
-+   LDA.W $000C,Y                                                        ;8BE891;
++   LDA.W $000C,Y                                                        ;8BE891; X velocity
     PHA                                                                  ;8BE894;
     XBA                                                                  ;8BE895;
     AND.W #$00FF                                                         ;8BE896;
@@ -13929,14 +13929,14 @@ Handle_ShootingStars:
     XBA                                                                  ;8BE8A4;
     AND.W #$FF00                                                         ;8BE8A5;
     STA.B DP_Temp14                                                      ;8BE8A8;
-    LDA.W $0004,Y                                                        ;8BE8AA;
+    LDA.W $0004,Y                                                        ;8BE8AA; X subposition
     CLC                                                                  ;8BE8AD;
     ADC.B DP_Temp14                                                      ;8BE8AE;
-    STA.W $0004,Y                                                        ;8BE8B0;
-    LDA.W $0002,Y                                                        ;8BE8B3;
+    STA.W $0004,Y                                                        ;8BE8B0; X subposition
+    LDA.W $0002,Y                                                        ;8BE8B3; X position
     ADC.B DP_Temp12                                                      ;8BE8B6;
-    STA.W $0002,Y                                                        ;8BE8B8;
-    LDA.W $000E,Y                                                        ;8BE8BB;
+    STA.W $0002,Y                                                        ;8BE8B8; X position
+    LDA.W $000E,Y                                                        ;8BE8BB; Y velocity
     PHA                                                                  ;8BE8BE;
     XBA                                                                  ;8BE8BF;
     AND.W #$00FF                                                         ;8BE8C0;
@@ -13949,13 +13949,13 @@ Handle_ShootingStars:
     XBA                                                                  ;8BE8CE;
     AND.W #$FF00                                                         ;8BE8CF;
     STA.B DP_Temp14                                                      ;8BE8D2;
-    LDA.W $0008,Y                                                        ;8BE8D4;
+    LDA.W $0008,Y                                                        ;8BE8D4; Y subposition
     CLC                                                                  ;8BE8D7;
     ADC.B DP_Temp14                                                      ;8BE8D8;
-    STA.W $0008,Y                                                        ;8BE8DA;
-    LDA.W $0006,Y                                                        ;8BE8DD;
+    STA.W $0008,Y                                                        ;8BE8DA; Y subposition
+    LDA.W $0006,Y                                                        ;8BE8DD; Y position
     ADC.B DP_Temp12                                                      ;8BE8E0;
-    STA.W $0006,Y                                                        ;8BE8E2;
+    STA.W $0006,Y                                                        ;8BE8E2; Y position
 
   .nextProcess:
     TYA                                                                  ;8BE8E5;
@@ -13973,9 +13973,9 @@ Handle_ShootingStars:
     LDY.W #ShootingStars_StarIndex                                       ;8BE8FA;
 
   .loopDraw:
-    LDA.W $0000,Y                                                        ;8BE8FD;
+    LDA.W $0000,Y                                                        ;8BE8FD; index + animation frame
     BMI .nextDraw                                                        ;8BE900;
-    LDA.W $0002,Y                                                        ;8BE902;
+    LDA.W $0002,Y                                                        ;8BE902; X position
     BIT.W #$FF00                                                         ;8BE905;
     BNE .offScreen                                                       ;8BE908;
     SEC                                                                  ;8BE90A;
@@ -13983,7 +13983,7 @@ Handle_ShootingStars:
     BIT.W #$FF00                                                         ;8BE90E;
     BNE .offScreen                                                       ;8BE911;
     STA.W OAMLow,X                                                       ;8BE913;
-    LDA.W $0006,Y                                                        ;8BE916;
+    LDA.W $0006,Y                                                        ;8BE916; Y position
     BIT.W #$FF00                                                         ;8BE919;
     BNE .offScreen                                                       ;8BE91C;
     SEC                                                                  ;8BE91E;
@@ -13991,15 +13991,15 @@ Handle_ShootingStars:
     BIT.W #$FF00                                                         ;8BE922;
     BNE .offScreen                                                       ;8BE925;
     STA.W OAMLow+1,X                                                     ;8BE927;
-    LDA.W $000A,Y                                                        ;8BE92A;
+    LDA.W $000A,Y                                                        ;8BE92A; animation timer
     DEC                                                                  ;8BE92D;
-    STA.W $000A,Y                                                        ;8BE92E;
+    STA.W $000A,Y                                                        ;8BE92E; animation timer
     BEQ .timerExpired                                                    ;8BE931;
     BPL .nonZero                                                         ;8BE933;
 
   .timerExpired:
     PHX                                                                  ;8BE935;
-    LDA.W $0000,Y                                                        ;8BE936;
+    LDA.W $0000,Y                                                        ;8BE936; index + animation frame
     PHA                                                                  ;8BE939;
     AND.W #$00FF                                                         ;8BE93A;
     ASL                                                                  ;8BE93D;
@@ -14007,15 +14007,15 @@ Handle_ShootingStars:
     ASL                                                                  ;8BE93F;
     TAX                                                                  ;8BE940;
     LDA.W ShootingStar_Table_timer,X                                     ;8BE941;
-    STA.W $000A,Y                                                        ;8BE944;
+    STA.W $000A,Y                                                        ;8BE944; animation timer
     PLA                                                                  ;8BE947;
     CLC                                                                  ;8BE948;
     ADC.W #$0200                                                         ;8BE949;
-    STA.W $0000,Y                                                        ;8BE94C;
+    STA.W $0000,Y                                                        ;8BE94C; index + animation frame
     PLX                                                                  ;8BE94F;
 
   .nonZero:
-    LDA.W $0000,Y                                                        ;8BE950;
+    LDA.W $0000,Y                                                        ;8BE950; index + animation frame
     BIT.W #$FF00                                                         ;8BE953;
     BEQ .nextDraw                                                        ;8BE956;
     PHY                                                                  ;8BE958;
@@ -14046,18 +14046,18 @@ Handle_ShootingStars:
 
   .offScreen:
     LDA.W #$0020                                                         ;8BE97D;
-    STA.W $000A,Y                                                        ;8BE980;
+    STA.W $000A,Y                                                        ;8BE980; animation timer
     LDA.W #$0080                                                         ;8BE983;
-    STA.W $0002,Y                                                        ;8BE986;
-    STA.W $0006,Y                                                        ;8BE989;
+    STA.W $0002,Y                                                        ;8BE986; X position
+    STA.W $0006,Y                                                        ;8BE989; Y position
     LDA.W #$0000                                                         ;8BE98C;
-    STA.W $0004,Y                                                        ;8BE98F;
-    STA.W $0008,Y                                                        ;8BE992;
-    STA.W $000C,Y                                                        ;8BE995;
-    STA.W $000E,Y                                                        ;8BE998;
-    LDA.W $0000,Y                                                        ;8BE99B;
+    STA.W $0004,Y                                                        ;8BE98F; X subposition
+    STA.W $0008,Y                                                        ;8BE992; Y subposition
+    STA.W $000C,Y                                                        ;8BE995; X velocity
+    STA.W $000E,Y                                                        ;8BE998; Y velocity
+    LDA.W $0000,Y                                                        ;8BE99B; index + animation frame
     AND.W #$00FF                                                         ;8BE99E;
-    STA.W $0000,Y                                                        ;8BE9A1;
+    STA.W $0000,Y                                                        ;8BE9A1; index + animation frame
     JMP.W .nextDraw                                                      ;8BE9A4;
 
   .tilemapValues:

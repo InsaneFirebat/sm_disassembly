@@ -2678,7 +2678,7 @@ QueueSmallExplosionSFX:
 
 ;;; $9583: Initialisation AI - enemy $F293 (Botwoon) ;;;
 InitAI_Botwoon:
-    LDA.L SRAMMirror_BossMaridia                                         ;B39583;
+    LDA.L SRAMMirror_Boss_Maridia                                        ;B39583;
     AND.W #$0002                                                         ;B39587;
     BEQ .notDead                                                         ;B3958A;
     LDX.W EnemyIndex                                                     ;B3958C;

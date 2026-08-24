@@ -1054,12 +1054,12 @@ Handle_SpeedBooster_AnimationDelay:
     STA.W SamusBoostTimer                                                ;908581;
     BIT.W #$00FF                                                         ;908584;
     BNE .finish                                                          ;908587;
-    LDA.W SamusBoostTimer                                                ;908589;
+    LDA.W SamusBoostCounter-1                                            ;908589;
     BIT.W #$0400                                                         ;90858C;
     BNE +                                                                ;90858F;
     CLC                                                                  ;908591;
     ADC.W #$0100                                                         ;908592;
-    STA.W SamusBoostTimer                                                ;908595;
+    STA.W SamusBoostCounter-1                                            ;908595;
     BIT.W #$0400                                                         ;908598;
     BEQ +                                                                ;90859B;
     LDA.W #$0001                                                         ;90859D;
@@ -1468,7 +1468,7 @@ DrawSamusEchoes:
     REP #$30                                                             ;9087BE;
     LDA.W SpeedEcho_Index                                                ;9087C0;
     BMI .mergingEchoes                                                   ;9087C3;
-    LDA.W SamusBoostTimer                                                ;9087C5;
+    LDA.W SamusBoostCounter-1                                            ;9087C5;
     AND.W #$FF00                                                         ;9087C8;
     CMP.W #$0400                                                         ;9087CB;
     BEQ +                                                                ;9087CE;
@@ -3543,7 +3543,7 @@ MoveSamus_Down:
   .move:
     JSL.L MoveSamusDown_NoSolidEnemyCollision                            ;90945B;
     LDA.B DP_Temp14                                                      ;90945F;
-    STA.W neverRead0DB8                                                  ;909461;
+    STA.W ProjSpeed_SubDistanceSamusMovedDown                            ;909461;
     LDA.B DP_Temp12                                                      ;909464;
     STA.W ProjSpeed_DistanceSamusMovedDown                               ;909466;
     JSR.W SetSamusSolidVerticalCollisionResult_DownwardsMovement         ;909469;
@@ -4054,7 +4054,7 @@ Handle_Samus_XExtraRunSpeed:
     STZ.W SamusXExtraRunSubSpeed                                         ;909810;
 
   .done:
-    LDA.W SamusBoostTimer                                                ;909813;
+    LDA.W SamusBoostCounter-1                                            ;909813;
     AND.W #$FF00                                                         ;909816;
     CMP.W #$0400                                                         ;909819;
     BNE .return                                                          ;90981C;
@@ -4124,7 +4124,7 @@ MoveSamus_Down_NoCollisionDetection:
     ADC.B DP_Temp12                                                      ;90987D;
     STA.W SamusYPosition                                                 ;90987F;
     LDA.B DP_Temp14                                                      ;909882;
-    STA.W neverRead0DB8                                                  ;909884;
+    STA.W ProjSpeed_SubDistanceSamusMovedDown                            ;909884;
     LDA.B DP_Temp12                                                      ;909887;
     STA.W ProjSpeed_DistanceSamusMovedDown                               ;909889;
     RTS                                                                  ;90988C;
@@ -5439,7 +5439,7 @@ SamusMovement_Running:
     BNE .return                                                          ;90A40C;
     LDA.W SpecialPaletteTimer                                            ;90A40E;
     BNE .return                                                          ;90A411;
-    LDA.W SamusBoostTimer                                                ;90A413;
+    LDA.W SamusBoostCounter-1                                            ;90A413;
     BIT.W #$0400                                                         ;90A416;
     BNE .return                                                          ;90A419;
     LDA.W #$0006                                                         ;90A41B;
@@ -7781,11 +7781,11 @@ InitializeProjectileVelocities:
 ;     ProjSpeed_DistanceSamusMovedLeft.ProjSpeed_SubDistanceSamusMovedLeft: Distance Samus moved left
 ;     ProjSpeed_DistanceSamusMovedRight.ProjSpeed_SubDistanceSamusMovedRight: Distance Samus moved right
 ;     ProjSpeed_DistanceSamusMovedUp.ProjSpeed_SubDistanceSamusMovedUp: Distance Samus moved up
-;     ProjSpeed_DistanceSamusMovedDown.neverRead0DB8: Distance Samus moved down
+;     ProjSpeed_DistanceSamusMovedDown.ProjSpeed_SubDistanceSamusMovedDown: Distance Samus moved down
 
 ; Notice that the most significant word is stored before the least significant
 ; Generally speaking, it's more useful to extend little endian ordering and store the least significant word first
-; If distance Samus moved left was ProjSpeed_SubDistanceSamusMovedLeft.ProjSpeed_DistanceSamusMovedLeft, then loading $0DAB would give (distance Samus moved left) * 100h,
+; If distance Samus moved left was ProjSpeed_SubDistanceSamusMovedLeft.ProjSpeed_DistanceSamusMovedLeft, then loading ProjSpeed_DistanceSamusMovedLeft+1 would give (distance Samus moved left) * 100h,
 ; disregarding the high byte of ProjSpeed_SubDistanceSamusMovedLeft and low byte of ProjSpeed_DistanceSamusMovedLeft, which is a common trick used a lot in SM
 
 ; It looks like they tried to apply this trick without realising the ordering of the words isn't suitable
@@ -9864,7 +9864,7 @@ HUDSelectionHandler_MorphBall:
     LDA.W SamusYPosition                                                 ;90BFF5;
     STA.W SamusProjectile_YPositions,X                                   ;90BFF8;
     LDA.W BombTimerResetValue                                            ;90BFFB;
-    STA.W SamusProjectile_Variables,X                                    ;90BFFE;
+    STA.W SamusProjectile_BombTimers-$A,X                                ;90BFFE;
     JSL.L InitializeBomb                                                 ;90C001;
     LDA.W #ProjectilePreInstruction_Bomb                                 ;90C005;
     STA.W SamusProjectile_PreInstructions,X                              ;90C008;
@@ -9925,7 +9925,7 @@ HUDSelectionHandler_MorphBall:
     LDA.W SamusYPosition                                                 ;90C067;
     STA.W SamusProjectile_YPositions,X                                   ;90C06A;
     LDA.W BombTimerResetValue                                            ;90C06D;
-    STA.W SamusProjectile_Variables,X                                    ;90C070;
+    STA.W SamusProjectile_BombTimers-$A,X                                ;90C070;
     JSL.L InitializeBomb                                                 ;90C073;
     LDA.W #ProjectilePreInstruction_PowerBomb                            ;90C077;
     STA.W SamusProjectile_PreInstructions,X                              ;90C07A;
@@ -10032,10 +10032,10 @@ HandleBomb:
     PHP                                                                  ;90C128;
     REP #$30                                                             ;90C129;
     LDX.W ProjectileIndex                                                ;90C12B;
-    LDA.W SamusProjectile_Variables,X                                    ;90C12E;
+    LDA.W SamusProjectile_BombTimers-$A,X                                ;90C12E;
     BEQ .return                                                          ;90C131;
     DEC                                                                  ;90C133;
-    STA.W SamusProjectile_Variables,X                                    ;90C134;
+    STA.W SamusProjectile_BombTimers-$A,X                                ;90C134;
     BEQ .explosion                                                       ;90C137;
     CMP.W #$000F                                                         ;90C139;
     BNE .return                                                          ;90C13C;
@@ -10062,10 +10062,10 @@ HandlePowerBomb:
     PHP                                                                  ;90C157;
     REP #$30                                                             ;90C158;
     LDX.W ProjectileIndex                                                ;90C15A;
-    LDA.W SamusProjectile_Variables,X                                    ;90C15D;
+    LDA.W SamusProjectile_BombTimers-$A,X                                ;90C15D;
     BEQ .zero                                                            ;90C160;
     DEC                                                                  ;90C162;
-    STA.W SamusProjectile_Variables,X                                    ;90C163;
+    STA.W SamusProjectile_BombTimers-$A,X                                ;90C163;
     BEQ .explosion                                                       ;90C166;
     CMP.W #$000F                                                         ;90C168;
     BNE .return                                                          ;90C16B;
@@ -10091,7 +10091,7 @@ HandlePowerBomb:
     PLY                                                                  ;90C193;
     PLX                                                                  ;90C194;
     LDA.W #$FFFF                                                         ;90C195;
-    STA.W SamusProjectile_Variables,X                                    ;90C198;
+    STA.W SamusProjectile_BombTimers-$A,X                                ;90C198;
     BRA .return                                                          ;90C19B;
 
   .zero:
@@ -10326,7 +10326,7 @@ ProjectileAccelerations:
 ;;; $C37B: Proto weapon constants ;;;
 ProtoWeaponConstants:
   .Beams:                                                                ;90C37B;
-; Used only by $94:9C73 to set ProjectileProtoType as part of bomb explosion block collision detection
+; Used only by DetermineProjectile_Prototype to set ProjectileProtoType as part of bomb explosion block collision detection
 ; Highly likely that these tables were supposed to be abandoned entirely and that one check was left over
 ;        _________ Unused. Uncharged damage?
 ;       |    _____ Unused. Charged damage?
@@ -10683,7 +10683,7 @@ UpdateArmCannonIsOpenState:
   .toggleArmCannon:
     LDA.B DP_Temp12                                                      ;90C61B;
     ORA.W #$0100                                                         ;90C61D;
-    STA.W ArmCannonOpenFlag                                              ;90C620;
+    STA.W ArmCannonCloseFlag-1                                           ;90C620;
     SEC                                                                  ;90C623;
     RTS                                                                  ;90C624;
 
@@ -12075,7 +12075,7 @@ TriggerShinesparkWindup:
     LDA.W #$0001                                                         ;90D006;
     STA.W SamusYDirection                                                ;90D009;
     LDA.W #$0400                                                         ;90D00C;
-    STA.W SamusBoostTimer                                                ;90D00F;
+    STA.W SamusBoostCounter-1                                            ;90D00F;
     STZ.W SamusYSubSpeed                                                 ;90D012;
     STZ.W SamusYSpeed                                                    ;90D015;
     STZ.W KnockbackDirection                                             ;90D018;
@@ -12483,7 +12483,7 @@ EndShinesparkIfCollisionDetectedOrLowEnergy:
 SamusMovementHandler_ShinesparkCrash_EchoesCircleSamus:
     LDA.W #$000F                                                         ;90D346;
     STA.W SpecialPaletteTimer                                            ;90D349;
-    LDA.W CrashEcho_Phase                                                          ;90D34C;
+    LDA.W CrashEcho_Phase                                                ;90D34C;
     AND.W #$00FF                                                         ;90D34F;
     ASL                                                                  ;90D352;
     TAX                                                                  ;90D353;
@@ -12607,7 +12607,7 @@ ShinesparkCrash_Finish:
     LDA.W #$0040                                                         ;90D420;
     STA.W SpeedEcho_DrawFlag2                                            ;90D423;
     LDA.W SamusXPosition                                                 ;90D426;
-    STA.W CrashEcho_AngleDelta                                           ;90D429;
+    STA.W SpeedEcho_XPosition2                                           ;90D429;
     LDA.W SamusYPosition                                                 ;90D42C;
     STA.W SpeedEcho_YPosition2                                           ;90D42F;
     LDA.W #$8029                                                         ;90D432;
@@ -12878,7 +12878,7 @@ CrystalFlash:
   .skipInputHandler:
     LDA.W #$0009                                                         ;90D642;
     STA.W ShinesparkWindupCrashTimer                                     ;90D645;
-    STZ.W CrystalFlashAmmoDecrementingIndex                              ;90D648;
+    STZ.W CrystalFlash_AmmoDecrementingIndex                             ;90D648;
     LDA.W #$000A                                                         ;90D64B;
     STA.W CrystalFlash_AmmoDecrementingTimer                             ;90D64E;
     STZ.W ShinesparkYSubAcceleration                                     ;90D651;
@@ -12942,7 +12942,7 @@ SamusMovementHandler_CrystalFlash_RaiseSamus_GenerateBubble:
 
 ;;; $D6CE: Samus movement handler - crystal flash - main (decrement ammo) ;;;
 SamusMovementHandler_CrystalFlash_DecrementAmmo:
-    LDA.W CrystalFlashAmmoDecrementingIndex                              ;90D6CE;
+    LDA.W CrystalFlash_AmmoDecrementingIndex                             ;90D6CE;
     ASL                                                                  ;90D6D1;
     TAX                                                                  ;90D6D2;
     JSR.W (.pointers,X)                                                  ;90D6D3;
@@ -12971,7 +12971,7 @@ CrystalFlash_DecrementMissiles:
   .timerExpired:
     LDA.W #$000A                                                         ;90D6FC;
     STA.W CrystalFlash_AmmoDecrementingTimer                             ;90D6FF;
-    INC.W CrystalFlashAmmoDecrementingIndex                              ;90D702;
+    INC.W CrystalFlash_AmmoDecrementingIndex                             ;90D702;
 
   .return:
     RTS                                                                  ;90D705;
@@ -12992,7 +12992,7 @@ CrystalFlash_DecrementSuperMissiles:
   .timerExpired:
     LDA.W #$000A                                                         ;90D71F;
     STA.W CrystalFlash_AmmoDecrementingTimer                             ;90D722;
-    INC.W CrystalFlashAmmoDecrementingIndex                              ;90D725;
+    INC.W CrystalFlash_AmmoDecrementingIndex                             ;90D725;
 
   .return:
     RTS                                                                  ;90D728;
@@ -13176,7 +13176,7 @@ BombSpread:
   .loop:
     LDA.W #$8500                                                         ;90D856;
     STA.W SamusProjectile_Types,X                                        ;90D859;
-    STZ.W SamusProjectile_Directions,X                                   ;90D85C;
+    STZ.W SamusProjectile_BombDirections-$A,X                            ;90D85C;
     LDA.W #ProjectilePreInstruction_BombSpread                           ;90D85F;
     STA.W SamusProjectile_PreInstructions,X                              ;90D862;
     JSL.L InitializeBomb                                                 ;90D865;
@@ -13191,9 +13191,9 @@ BombSpread:
     SBC.W #$000A                                                         ;90D87D;
     TAY                                                                  ;90D880;
     LDA.W BombSpreadData_XVelocities,Y                                   ;90D881;
-    STA.W SamusProjectile_XVelocities,X                                  ;90D884;
+    STA.W SamusProjectile_BombXVelocities-$A,X                           ;90D884;
     LDA.W BombSpreadData_YSubSpeeds,Y                                    ;90D887;
-    STA.W SamusProjectile_TrailTimers,X                                  ;90D88A;
+    STA.W SamusProjectile_BombYSubVelocities-$A,X                        ;90D88A;
     LDA.W SamusProjectile_BombSpreadChargeTimeoutCounter                 ;90D88D;
     ASL                                                                  ;90D890;
     ASL                                                                  ;90D891;
@@ -13203,10 +13203,10 @@ BombSpread:
     ADC.W BombSpreadData_YSpeeds,Y                                       ;90D897;
     EOR.W #$FFFF                                                         ;90D89A;
     INC                                                                  ;90D89D;
-    STA.W SamusProjectile_YVelocities,X                                  ;90D89E;
-    STA.W SamusProjectile_Phases,X                                       ;90D8A1;
+    STA.W SamusProjectile_BombYVelocities-$A,X                           ;90D89E;
+    STA.W SamusProjectile_BombBounceYVelocities-$A,X                     ;90D8A1;
     LDA.W BombSpreadData_timers,Y                                        ;90D8A4;
-    STA.W SamusProjectile_Variables,X                                    ;90D8A7;
+    STA.W SamusProjectile_BombTimers-$A,X                                ;90D8A7;
     INX                                                                  ;90D8AA;
     INX                                                                  ;90D8AB;
     CPX.W #$0014                                                         ;90D8AC;
@@ -13250,24 +13250,24 @@ ProjectilePreInstruction_BombSpread:
 
   .notDeleted:
     JSR.W HandleBomb                                                     ;90D904;
-    LDA.W SamusProjectile_Variables,X                                    ;90D907;
+    LDA.W SamusProjectile_BombTimers-$A,X                                ;90D907;
     BNE .timerNotExpired                                                 ;90D90A;
     JMP.W .movementDone                                                  ;90D90C;
 
   .timerNotExpired:
-    LDA.W SamusProjectile_TrailTimers,X                                  ;90D90F;
+    LDA.W SamusProjectile_BombYSubVelocities-$A,X                        ;90D90F;
     CLC                                                                  ;90D912;
     ADC.W SamusYSubAcceleration                                          ;90D913;
-    STA.W SamusProjectile_TrailTimers,X                                  ;90D916;
-    LDA.W SamusProjectile_YVelocities,X                                  ;90D919;
+    STA.W SamusProjectile_BombYSubVelocities-$A,X                        ;90D916;
+    LDA.W SamusProjectile_BombYVelocities-$A,X                           ;90D919;
     ADC.W SamusYAcceleration                                             ;90D91C;
-    STA.W SamusProjectile_YVelocities,X                                  ;90D91F;
+    STA.W SamusProjectile_BombYVelocities-$A,X                           ;90D91F;
     LDA.W SamusProjectile_YSubPositions,X                                ;90D922;
     CLC                                                                  ;90D925;
-    ADC.W SamusProjectile_TrailTimers,X                                  ;90D926;
+    ADC.W SamusProjectile_BombYSubVelocities-$A,X                        ;90D926;
     STA.W SamusProjectile_YSubPositions,X                                ;90D929;
     LDA.W SamusProjectile_YPositions,X                                   ;90D92C;
-    ADC.W SamusProjectile_YVelocities,X                                  ;90D92F;
+    ADC.W SamusProjectile_BombYVelocities-$A,X                           ;90D92F;
     STA.W SamusProjectile_YPositions,X                                   ;90D932;
     JSL.L BombSpreadBlockCollisionDetection                              ;90D935;
     BCC .falling                                                         ;90D939;
@@ -13278,27 +13278,27 @@ ProjectilePreInstruction_BombSpread:
     TAY                                                                  ;90D943;
     LDA.W SamusProjectile_YSubPositions,X                                ;90D944;
     SEC                                                                  ;90D947;
-    SBC.W SamusProjectile_TrailTimers,X                                  ;90D948;
+    SBC.W SamusProjectile_BombYSubVelocities-$A,X                        ;90D948;
     STA.W SamusProjectile_YSubPositions,X                                ;90D94B;
     LDA.W SamusProjectile_YPositions,X                                   ;90D94E;
-    SBC.W SamusProjectile_YVelocities,X                                  ;90D951;
+    SBC.W SamusProjectile_BombYVelocities-$A,X                           ;90D951;
     STA.W SamusProjectile_YPositions,X                                   ;90D954;
-    LDA.W SamusProjectile_YVelocities,X                                  ;90D957;
+    LDA.W SamusProjectile_BombYVelocities-$A,X                           ;90D957;
     BMI .negativeYVelocity                                               ;90D95A;
     LDA.W BombSpreadData_YSubSpeeds,Y                                    ;90D95C;
-    STA.W SamusProjectile_TrailTimers,X                                  ;90D95F;
-    LDA.W SamusProjectile_Phases,X                                       ;90D962;
-    STA.W SamusProjectile_YVelocities,X                                  ;90D965;
+    STA.W SamusProjectile_BombYSubVelocities-$A,X                        ;90D95F;
+    LDA.W SamusProjectile_BombBounceYVelocities-$A,X                     ;90D962;
+    STA.W SamusProjectile_BombYVelocities-$A,X                           ;90D965;
     JMP.W .return                                                        ;90D968;
 
   .negativeYVelocity:
-    STZ.W SamusProjectile_YVelocities,X                                  ;90D96B;
+    STZ.W SamusProjectile_BombYVelocities-$A,X                           ;90D96B;
     STZ.W SamusProjectile_YRadii,X                                       ;90D96E;
     JMP.W .return                                                        ;90D971;
 
   .falling:
     LDX.W ProjectileIndex                                                ;90D974;
-    LDA.W SamusProjectile_XVelocities,X                                  ;90D977;
+    LDA.W SamusProjectile_BombXVelocities-$A,X                           ;90D977;
     XBA                                                                  ;90D97A;
     PHA                                                                  ;90D97B;
     AND.W #$FF00                                                         ;90D97C;
@@ -13335,7 +13335,7 @@ ProjectilePreInstruction_BombSpread:
     JSL.L BombSpreadBlockCollisionDetection                              ;90D9B7;
     BCC .return                                                          ;90D9BB;
     LDX.W ProjectileIndex                                                ;90D9BD;
-    LDA.W SamusProjectile_XVelocities,X                                  ;90D9C0;
+    LDA.W SamusProjectile_BombXVelocities-$A,X                           ;90D9C0;
     PHA                                                                  ;90D9C3;
     XBA                                                                  ;90D9C4;
     PHA                                                                  ;90D9C5;
@@ -13348,7 +13348,7 @@ ProjectilePreInstruction_BombSpread:
     BIT.W #$8000                                                         ;90D9D2;
     BEQ .bounceLeft                                                      ;90D9D5;
     AND.W #$7FFF                                                         ;90D9D7;
-    STA.W SamusProjectile_XVelocities,X                                  ;90D9DA;
+    STA.W SamusProjectile_BombXVelocities-$A,X                           ;90D9DA;
     LDA.W SamusProjectile_XSubPositions,X                                ;90D9DD;
     CLC                                                                  ;90D9E0;
     ADC.B DP_Temp14                                                      ;90D9E1;
@@ -13360,7 +13360,7 @@ ProjectilePreInstruction_BombSpread:
 
   .bounceLeft:
     ORA.W #$8000                                                         ;90D9F0;
-    STA.W SamusProjectile_XVelocities,X                                  ;90D9F3;
+    STA.W SamusProjectile_BombXVelocities-$A,X                           ;90D9F3;
     LDA.W SamusProjectile_XSubPositions,X                                ;90D9F6;
     SEC                                                                  ;90D9F9;
     SBC.B DP_Temp14                                                      ;90D9FA;
@@ -13970,7 +13970,7 @@ HUDSelectionHandler_GrabbedByDraygon:
 SamusIsHit_Interruption:
 ; Called by "active" NewStateHandler (where active = normal or title/intro demo)
 ; Checks for knockback start, knockback finish, and bomb jump
-; The pose written to SuperSpecialProspectivePose is ignored, it just needs to be a positive value (per SuperSpecialProspectivePoseChangeCommand = 1 branch of $91:EB88)
+; The pose written to SuperSpecialProspectivePose is ignored, it just needs to be a positive value (per SuperSpecialProspectivePoseChangeCommand = 1 branch of UpdateSamusPose)
 ; This is why Samus can land immediately when knockback finishes and not need to fall for a frame first
     PHP                                                                  ;90DDE9;
     REP #$30                                                             ;90DDEA;
@@ -16210,7 +16210,7 @@ ResetMovementAndPoseChangeVariables:
     STZ.W ProjSpeed_DistanceSamusMovedUp                                 ;90EB11;
     STZ.W ProjSpeed_SubDistanceSamusMovedUp                              ;90EB14;
     STZ.W ProjSpeed_DistanceSamusMovedDown                               ;90EB17;
-    STZ.W neverRead0DB8                                                  ;90EB1A;
+    STZ.W ProjSpeed_SubDistanceSamusMovedDown                            ;90EB1A;
     STZ.W NewPoseSamusAnimationFrame                                     ;90EB1D;
     STZ.W PoseTransitionShotDirection                                    ;90EB20;
     LDA.W neverRead0DFA                                                  ;90EB23;
@@ -16787,7 +16787,7 @@ FootstepGraphics_Maridia:
 
 ;;; $EE64: Footstep graphics - common ;;;
 FootstepGraphics_Common:
-    LDA.W SamusBoostTimer                                                ;90EE64;
+    LDA.W SamusBoostCounter-1                                            ;90EE64;
     AND.W #$FF00                                                         ;90EE67;
     CMP.W #$0400                                                         ;90EE6A;
     BNE .return                                                          ;90EE6D;
@@ -16852,7 +16852,7 @@ FootstepGraphics_Common:
 
 ;;; $EEE7: Update speed echo position ;;;
 UpdateSamusEchoPosition:
-    LDA.W SamusBoostTimer                                                ;90EEE7;
+    LDA.W SamusBoostCounter-1                                            ;90EEE7;
     AND.W #$FF00                                                         ;90EEEA;
     CMP.W #$0400                                                         ;90EEED;
     BNE .return                                                          ;90EEF0;
@@ -18099,7 +18099,7 @@ Handle_UnspinSFX_CancellingEchoSound_SettingTimeUpGameState:
   .notSet:
     LDA.W SamusEchoesSFXFlag                                             ;90F591;
     BEQ .echoes                                                          ;90F594;
-    LDA.W SamusBoostTimer                                                ;90F596;
+    LDA.W SamusBoostCounter-1                                            ;90F596;
     BIT.W #$0400                                                         ;90F599;
     BNE .echoes                                                          ;90F59C;
     STZ.W SamusEchoesSFXFlag                                             ;90F59E;

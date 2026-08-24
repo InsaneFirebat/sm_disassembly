@@ -1054,7 +1054,7 @@ ShootEvirProjectileAtSamus:
     JSL.L IsSamusWithinAPixelColumnsOfEnemy                              ;A889DF;
     BEQ .return                                                          ;A889E3;
     LDA.W #$0004                                                         ;A889E5;
-    STA.W Temp_Unknown0E32                                               ;A889E8;
+    STA.W Temp_Radius                                                    ;A889E8;
     JSL.L CalculateAngleOfSamusFromEnemy                                 ;A889EB;
     SEC                                                                  ;A889EF;
     SBC.W #$0040                                                         ;A889F0;
@@ -1064,12 +1064,12 @@ ShootEvirProjectileAtSamus:
     STA.B DP_Temp16                                                      ;A889FA;
     JSL.L EightBitCosineMultiplication_A0B0B2                            ;A889FC;
     STA.L Evir.XVelocity,X                                               ;A88A00;
-    LDA.W Temp_Unknown0E38                                               ;A88A04;
+    LDA.W Temp_SubVelocity                                               ;A88A04;
     STA.L Evir.XSubVelocity,X                                            ;A88A07;
     LDA.B DP_Temp16                                                      ;A88A0B;
     JSL.L EightBitNegativeSineMultiplication_A0B0C6                      ;A88A0D;
     STA.L Evir.YVelocity,X                                               ;A88A11;
-    LDA.W Temp_Unknown0E38                                               ;A88A15;
+    LDA.W Temp_SubVelocity                                               ;A88A15;
     STA.L Evir.YSubVelocity,X                                            ;A88A18;
     LDA.W #InstList_Evir_Projectile_Normal                               ;A88A1C;
     STA.L Evir.newInstList,X                                             ;A88A1F;
@@ -3806,13 +3806,13 @@ Function_YappingMaw_Attack:
 CalculateYappingMawOriginPosition:
     LDX.W EnemyIndex                                                     ;A8A310;
     LDA.L YappingMaw.length,X                                            ;A8A313;
-    STA.W Temp_Unknown0E32                                               ;A8A317;
+    STA.W Temp_Radius                                                    ;A8A317;
     LDA.W #$0080                                                         ;A8A31A;
     JSL.L Math_Cosine_A8A73E                                             ;A8A31D;
     STA.L YappingMaw.originXPosition,X                                   ;A8A321;
     LDA.L YappingMaw.length,X                                            ;A8A325;
     LSR                                                                  ;A8A329;
-    STA.W Temp_Unknown0E32                                               ;A8A32A;
+    STA.W Temp_Radius                                                    ;A8A32A;
     LDA.W #$0080                                                         ;A8A32D;
     JSL.L Math_Sine_A8A742                                               ;A8A330;
     STA.L YappingMaw.originYPosition,X                                   ;A8A334;
@@ -3823,7 +3823,7 @@ CalculateYappingMawOriginPosition:
 CalculateBodySegment1Velocities:
     LDX.W EnemyIndex                                                     ;A8A339;
     LDA.L YappingMaw.bodySegment1XOffset,X                               ;A8A33C;
-    STA.W Temp_Unknown0E32                                               ;A8A340;
+    STA.W Temp_Radius                                                    ;A8A340;
     LDA.W #$0000                                                         ;A8A343;
     JSL.L Math_Cosine_A8A73E                                             ;A8A346;
     STA.L ExtraEnemy7800+$20,X                                           ;A8A34A;
@@ -3847,7 +3847,7 @@ CalculateBodySegment1Velocities:
 CalculateBodySegment2Velocities:
     LDX.W EnemyIndex                                                     ;A8A37C;
     LDA.L YappingMaw.bodySegment2XOffset,X                               ;A8A37F;
-    STA.W Temp_Unknown0E32                                               ;A8A383;
+    STA.W Temp_Radius                                                    ;A8A383;
     LDA.W #$0000                                                         ;A8A386;
     JSL.L Math_Cosine_A8A73E                                             ;A8A389;
     STA.L ExtraEnemy7800+$20,X                                           ;A8A38D;
@@ -3871,7 +3871,7 @@ CalculateBodySegment2Velocities:
 CalculateBodySegment3Velocities:
     LDX.W EnemyIndex                                                     ;A8A3BF;
     LDA.L YappingMaw.bodySegment3XOffset,X                               ;A8A3C2;
-    STA.W Temp_Unknown0E32                                               ;A8A3C6;
+    STA.W Temp_Radius                                                    ;A8A3C6;
     LDA.W #$0000                                                         ;A8A3C9;
     JSL.L Math_Cosine_A8A73E                                             ;A8A3CC;
     STA.L ExtraEnemy7800+$20,X                                           ;A8A3D0;
@@ -3895,7 +3895,7 @@ CalculateBodySegment3Velocities:
 CalculateHeadSegmentVelocities:
     LDX.W EnemyIndex                                                     ;A8A402;
     LDA.L YappingMaw.headSegmentXOffset,X                                ;A8A405;
-    STA.W Temp_Unknown0E32                                               ;A8A409;
+    STA.W Temp_Radius                                                    ;A8A409;
     LDA.W #$0000                                                         ;A8A40C;
     JSL.L Math_Cosine_A8A73E                                             ;A8A40F;
     STA.L ExtraEnemy7800+$20,X                                           ;A8A413;
@@ -3954,7 +3954,7 @@ Function_YappingMaw_Attacking:
     STA.L YappingMaw.bodySegmentAngle,X                                  ;A8A48B;
 
 +   LDA.L YappingMaw.length,X                                            ;A8A48F;
-    STA.W Temp_Unknown0E32                                               ;A8A493;
+    STA.W Temp_Radius                                                    ;A8A493;
     LDA.L YappingMaw.bodySegment1Angle,X                                 ;A8A496;
     JSL.L Math_Cosine_A8A73E                                             ;A8A49A;
     SEC                                                                  ;A8A49E;
@@ -3977,7 +3977,7 @@ Function_YappingMaw_Attacking:
     STA.L YappingMaw.headSegmentXOffset,X                                ;A8A4D6;
     LDA.L YappingMaw.length,X                                            ;A8A4DA;
     LSR                                                                  ;A8A4DE;
-    STA.W Temp_Unknown0E32                                               ;A8A4DF;
+    STA.W Temp_Radius                                                    ;A8A4DF;
     LDA.L YappingMaw.bodySegment1Angle,X                                 ;A8A4E2;
     JSL.L Math_Sine_A8A742                                               ;A8A4E6;
     SEC                                                                  ;A8A4EA;
@@ -4288,7 +4288,7 @@ Math_Sine_A8A742:
     XBA                                                                  ;A8A763;
     SEP #$20                                                             ;A8A764;
     STA.W $4202                                                          ;A8A766;
-    LDA.W Temp_Unknown0E32                                               ;A8A769;
+    LDA.W Temp_Radius                                                    ;A8A769;
     BEQ +                                                                ;A8A76C;
     STA.W $4203                                                          ;A8A76E;
     NOP                                                                  ;A8A771;
@@ -12864,7 +12864,7 @@ endif
 
   .swoopContinues:
     LDA.L Kihunter.arcXRadius,X                                          ;A8F46F;
-    STA.W Temp_Unknown0E32                                               ;A8F473;
+    STA.W Temp_Radius                                                    ;A8F473;
     LDA.W Kihunter.arcAngle,X                                            ;A8F476;
     JSL.L EightBitCosineMultiplication_A0B0B2                            ;A8F479;
     CLC                                                                  ;A8F47D;
@@ -12877,7 +12877,7 @@ endif
     BCS .collidedHorizontally                                            ;A8F48D;
     JSL.L AlignEnemyYPositionWIthNonSquareSlope                          ;A8F48F;
     LDA.L Kihunter.arcYRadius,X                                          ;A8F493;
-    STA.W Temp_Unknown0E32                                               ;A8F497;
+    STA.W Temp_Radius                                                    ;A8F497;
     LDA.W Kihunter.arcAngle,X                                            ;A8F49A;
     JSL.L EightBitNegativeSineMultiplication_A0B0C6                      ;A8F49D;
     CLC                                                                  ;A8F4A1;
@@ -13307,7 +13307,7 @@ Function_KihunterWings_Falling_DriftingLeft:
     STA.W KihunterWings.arcAngle,X                                       ;A8F7F0;
     LDA.W KihunterConstants_fallingWingsArcRadius                        ;A8F7F3;
     AND.W #$00FF                                                         ;A8F7F6;
-    STA.W Temp_Unknown0E32                                               ;A8F7F9;
+    STA.W Temp_Radius                                                    ;A8F7F9;
     LDA.W KihunterWings.arcAngle,X                                       ;A8F7FC;
     XBA                                                                  ;A8F7FF;
     AND.W #$00FF                                                         ;A8F800;
@@ -13319,7 +13319,7 @@ Function_KihunterWings_Falling_DriftingLeft:
     STA.W Enemy.YPosition,X                                              ;A8F811;
     LDA.W KihunterConstants_fallingWingsArcRadius                        ;A8F814;
     AND.W #$00FF                                                         ;A8F817;
-    STA.W Temp_Unknown0E32                                               ;A8F81A;
+    STA.W Temp_Radius                                                    ;A8F81A;
     LDA.W KihunterWings.arcAngle,X                                       ;A8F81D;
     XBA                                                                  ;A8F820;
     AND.W #$00FF                                                         ;A8F821;
@@ -13351,14 +13351,14 @@ DetermineFallingKihunterWingsLeftArcCenterOffsets:
     LDX.W EnemyIndex                                                     ;A8F851;
     LDA.W KihunterConstants_fallingWingsArcRadius                        ;A8F854;
     AND.W #$00FF                                                         ;A8F857;
-    STA.W Temp_Unknown0E32                                               ;A8F85A;
+    STA.W Temp_Radius                                                    ;A8F85A;
     LDA.W #$E000                                                         ;A8F85D;
     XBA                                                                  ;A8F860;
     JSL.L EightBitCosineMultiplication_A0B0B2                            ;A8F861;
     STA.L KihunterWings.leftArcCenterXOffset,X                           ;A8F865;
     LDA.W KihunterConstants_fallingWingsArcRadius                        ;A8F869;
     AND.W #$00FF                                                         ;A8F86C;
-    STA.W Temp_Unknown0E32                                               ;A8F86F;
+    STA.W Temp_Radius                                                    ;A8F86F;
     LDA.W #$E000                                                         ;A8F872;
     XBA                                                                  ;A8F875;
     JSL.L EightBitNegativeSineMultiplication_A0B0C6                      ;A8F876;
@@ -13371,14 +13371,14 @@ DetermineFallingKihunterWingsRightArcCenterOffsets:
     LDX.W EnemyIndex                                                     ;A8F87F;
     LDA.W KihunterConstants_fallingWingsArcRadius                        ;A8F882;
     AND.W #$00FF                                                         ;A8F885;
-    STA.W Temp_Unknown0E32                                               ;A8F888;
+    STA.W Temp_Radius                                                    ;A8F888;
     LDA.W #$A000                                                         ;A8F88B;
     XBA                                                                  ;A8F88E;
     JSL.L EightBitCosineMultiplication_A0B0B2                            ;A8F88F;
     STA.L KihunterWings.rightArcCenterXOffset,X                          ;A8F893;
     LDA.W KihunterConstants_fallingWingsArcRadius                        ;A8F897;
     AND.W #$00FF                                                         ;A8F89A;
-    STA.W Temp_Unknown0E32                                               ;A8F89D;
+    STA.W Temp_Radius                                                    ;A8F89D;
     LDA.W #$A000                                                         ;A8F8A0;
     XBA                                                                  ;A8F8A3;
     JSL.L EightBitNegativeSineMultiplication_A0B0C6                      ;A8F8A4;
@@ -13402,7 +13402,7 @@ Function_KihunterWings_Falling_DriftingRight:
     STA.W KihunterWings.arcAngle,X                                       ;A8F8C2;
     LDA.W KihunterConstants_fallingWingsArcRadius                        ;A8F8C5;
     AND.W #$00FF                                                         ;A8F8C8;
-    STA.W Temp_Unknown0E32                                               ;A8F8CB;
+    STA.W Temp_Radius                                                    ;A8F8CB;
     LDA.W KihunterWings.arcAngle,X                                       ;A8F8CE;
     XBA                                                                  ;A8F8D1;
     AND.W #$00FF                                                         ;A8F8D2;
@@ -13419,7 +13419,7 @@ Function_KihunterWings_Falling_DriftingRight:
     BCS .collidedVertically                                              ;A8F8EF;
     LDA.W KihunterConstants_fallingWingsArcRadius                        ;A8F8F1;
     AND.W #$00FF                                                         ;A8F8F4;
-    STA.W Temp_Unknown0E32                                               ;A8F8F7;
+    STA.W Temp_Radius                                                    ;A8F8F7;
     LDA.W KihunterWings.arcAngle,X                                       ;A8F8FA;
     XBA                                                                  ;A8F8FD;
     AND.W #$00FF                                                         ;A8F8FE;

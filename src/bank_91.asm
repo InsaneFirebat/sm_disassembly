@@ -10461,10 +10461,10 @@ RevealedBlockTable_BombableBlock_7:
 
 ;;; $D4DA: Game state 1Ch (unused) ;;;
 UNUSED_GameState1C_91D4DA:
-; CrystalFlashAmmoDecrementingIndex is never set to a pointer
+; CrystalFlash_AmmoDecrementingIndex is never set to a pointer
     PHP                                                                  ;91D4DA;
     REP #$30                                                             ;91D4DB;
-    JMP.W (CrystalFlashAmmoDecrementingIndex)                            ;91D4DD;
+    JMP.W (CrystalFlash_AmmoDecrementingIndex)                           ;91D4DD;
 
 
 ;;; $D4E0: Unused. PLP : RTL ;;;
@@ -10991,19 +10991,19 @@ HandleVisorPalette:
     INC                                                                  ;91D879;
     CMP.W #$000C                                                         ;91D87A;
     BMI +                                                                ;91D87D;
-    LDA.W VisorPaletteTimer                                              ;91D87F;
+    LDA.W VisorPaletteIndex-1                                            ;91D87F;
     AND.W #$00FF                                                         ;91D882;
     ORA.W #$0600                                                         ;91D885;
-    STA.W VisorPaletteTimer                                              ;91D888;
+    STA.W VisorPaletteIndex-1                                            ;91D888;
     CLC                                                                  ;91D88B;
     RTS                                                                  ;91D88C;
 
 +   XBA                                                                  ;91D88D;
     STA.B DP_Temp12                                                      ;91D88E;
-    LDA.W VisorPaletteTimer                                              ;91D890;
+    LDA.W VisorPaletteIndex-1                                            ;91D890;
     AND.W #$00FF                                                         ;91D893;
     ORA.B DP_Temp12                                                      ;91D896;
-    STA.W VisorPaletteTimer                                              ;91D898;
+    STA.W VisorPaletteIndex-1                                            ;91D898;
     CLC                                                                  ;91D89B;
     RTS                                                                  ;91D89C;
 
@@ -11217,7 +11217,7 @@ Handle_ScrewAttack_SpeedBoosting_Palette:
     BEQ .wallJumping                                                     ;91D9E8;
 
   .notScrewAttacking:
-    LDA.W SamusBoostTimer                                                ;91D9EA;
+    LDA.W SamusBoostCounter-1                                            ;91D9EA;
     AND.W #$FF00                                                         ;91D9ED;
     CMP.W #$0400                                                         ;91D9F0;
     BEQ .speedBoosting                                                   ;91D9F3;
@@ -15777,7 +15777,7 @@ InitializeSamusPose_CrouchingTransition:
 ;;     Carry: Clear. No movement change
 
 ; Gives Samus shinespark
-    LDA.W SamusBoostTimer                                                ;91F7B0;
+    LDA.W SamusBoostCounter-1                                            ;91F7B0;
     AND.W #$FF00                                                         ;91F7B3;
     CMP.W #$0400                                                         ;91F7B6;
     BMI .returnCarryClear                                                ;91F7B9;

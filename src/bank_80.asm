@@ -943,7 +943,7 @@ WriteYBytesOfATo_7F0000_X_16bit:
     REP #$30                                                             ;80840D;
 
   .loop:
-    STA.L $7F0000,X                                                      ;80840F;
+    STA.L HighRAM,X                                                      ;80840F;
     INX                                                                  ;808413;
     INX                                                                  ;808414;
     DEY                                                                  ;808415;
@@ -1326,7 +1326,7 @@ NTSC_PAL_SRAM_MappingCheck:
 
   .backupSRAM:
     LDA.L SRAM_Start,X                                                   ;808698;
-    STA.L $7F0000,X                                                      ;80869C; $7F:0000..1FFF = [$70:0000..1FFF]
+    STA.L BackupSRAM,X                                                   ;80869C; $7F:0000..1FFF = [$70:0000..1FFF]
     DEX                                                                  ;8086A0;
     DEX                                                                  ;8086A1;
     BPL .backupSRAM                                                      ;8086A2;
@@ -1362,7 +1362,7 @@ NTSC_PAL_SRAM_MappingCheck:
     LDX.W #$1FFE                                                         ;8086D2;
 
   .restoreSRAM:
-    LDA.L $7F0000,X                                                      ;8086D5;
+    LDA.L BackupSRAM,X                                                   ;8086D5;
     STA.L SRAM_Start,X                                                   ;8086D9; $70:0000..1FFF = [$7F:0000..1FFF]
     DEX                                                                  ;8086DD;
     DEX                                                                  ;8086DE;
@@ -4767,8 +4767,8 @@ ProcessTimer_InitialDelay:
 ;; Returns:
 ;;     Carry: Clear (timer not reached zero)
     SEP #$20                                                             ;809E2F;
-    INC.W TimerXSubPosition                                              ;809E31;
-    LDA.W TimerXSubPosition                                              ;809E34;
+    INC.W TimerStatusCounter                                             ;809E31;
+    LDA.W TimerStatusCounter                                             ;809E34;
     CMP.B #$10                                                           ;809E37;
     BCC .return                                                          ;809E39;
     INC.W TimerStatus                                                    ;809E3B;
@@ -4782,12 +4782,13 @@ ProcessTimer_InitialDelay:
 ProcessTimer_RunningMovementDelayed:
 ;; Returns:
 ;;     Carry: Set if timer has reached zero, otherwise clear
+; TimerStatusCounter and TimerXPosition are shared RAM
     SEP #$20                                                             ;809E41;
-    INC.W TimerXSubPosition                                              ;809E43;
-    LDA.W TimerXSubPosition                                              ;809E46;
+    INC.W TimerStatusCounter                                             ;809E43;
+    LDA.W TimerStatusCounter                                             ;809E46;
     CMP.B #$60                                                           ;809E49;
     BCC .return                                                          ;809E4B;
-    STZ.W TimerXSubPosition                                              ;809E4D;
+    STZ.W TimerXPosition-1                                               ;809E4D;
     INC.W TimerStatus                                                    ;809E50;
 
   .return:
@@ -4809,7 +4810,7 @@ ProcessTimer_RunningMovingIntoPlace:
     LDA.W #$DC00                                                         ;809E68;
 
   .XinPosition:
-    STA.W TimerXSubPosition                                              ;809E6B;
+    STA.W TimerXPosition-1                                               ;809E6B;
     LDA.W #-$00C1*!SPF                                                   ;809E6E;
     CLC                                                                  ;809E71;
     ADC.W TimerYSubPosition                                              ;809E72;
@@ -4819,7 +4820,7 @@ ProcessTimer_RunningMovingIntoPlace:
     LDA.W #$3000                                                         ;809E7B;
 
   .YinPosition:
-    STA.W TimerYSubPosition                                              ;809E7E;
+    STA.W TimerYPosition-1                                               ;809E7E;
     CPY.W #$0002                                                         ;809E81;
     BNE ProcessTimer_RunningMovingIntoPlace_return                       ;809E84;
     INC.W TimerStatus                                                    ;809E86;
@@ -4845,9 +4846,9 @@ SetTimer:
 ;;; $9E93: Clear timer RAM ;;;
 ClearTimerRAM:
     LDA.W #$8000                                                         ;809E93;
-    STA.W TimerXSubPosition                                              ;809E96;
+    STA.W TimerXPosition-1                                               ;809E96;
     LDA.W #$8000                                                         ;809E99;
-    STA.W TimerYSubPosition                                              ;809E9C;
+    STA.W TimerYPosition-1                                               ;809E9C;
     STZ.W TimerCentiseconds                                              ;809E9F;
     STZ.W TimerSeconds                                                   ;809EA2;
     STZ.W TimerStatus                                                    ;809EA5;
@@ -4978,7 +4979,7 @@ DrawTimerSpritemap:
 ;;     A: X position offset
 ;;     DB:Y: Spritemap pointer
     STA.B DP_Temp14                                                      ;809FB3;
-    LDA.W TimerXSubPosition                                              ;809FB5;
+    LDA.W TimerXPosition-1                                               ;809FB5;
     XBA                                                                  ;809FB8;
     AND.W #$00FF                                                         ;809FB9;
     CLC                                                                  ;809FBC;
@@ -5425,15 +5426,15 @@ CalculateLayer2XPosition:
     STA.W $4202                                                          ;80A30A;
     LDA.W Layer1XPosition                                                ;80A30D;
     STA.W $4203                                                          ;80A310;
-    STZ.W VRAMOffsetBlocksToUpdate+1                                     ;80A313;
+    STZ.W PositionOfScrollBoundary+1                                     ;80A313;
     PHA                                                                  ;80A316;
     PLA                                                                  ;80A317;
     LDA.W $4217                                                          ;80A318;
-    STA.W VRAMOffsetBlocksToUpdate                                       ;80A31B;
+    STA.W PositionOfScrollBoundary                                       ;80A31B;
     LDA.W Layer1XPosition+1                                              ;80A31E;
     STA.W $4203                                                          ;80A321;
     REP #$20                                                             ;80A324;
-    LDA.W VRAMOffsetBlocksToUpdate                                       ;80A326;
+    LDA.W PositionOfScrollBoundary                                       ;80A326;
     CLC                                                                  ;80A329;
     ADC.W $4216                                                          ;80A32A;
     TAY                                                                  ;80A32D;
@@ -5797,18 +5798,18 @@ HandleScrollZones_HorizontalAutoscrolling:
 ; If layer 1 position + 1/2 scroll down's scroll = red:
 ; {
 ;     PositionOfScrollBoundary = position of right scroll boundary
-;     ProposedScrolledLayer1XPosition = [layer 1 X position] + [camera X speed] + 2
-;     Layer 1 X position = min(ProposedScrolledLayer1XPosition, PositionOfScrollBoundary)
-;     If ProposedScrolledLayer1XPosition < PositionOfScrollBoundary and layer 1 position + 1/2 scroll down + 1 scroll right's scroll = red:
+;     ProposedScrolledLayer1Position  = [layer 1 X position] + [camera X speed] + 2
+;     Layer 1 X position = min(ProposedScrolledLayer1Position , PositionOfScrollBoundary)
+;     If ProposedScrolledLayer1Position  < PositionOfScrollBoundary and layer 1 position + 1/2 scroll down + 1 scroll right's scroll = red:
 ;         Round layer 1 X position to left scroll boundary
 ; }
 ; Else if layer 1 position + 1/2 scroll down + 1 scroll right's scroll = red:
 ; {
 ;     PositionOfScrollBoundary = position of left scroll boundary
-;     ProposedScrolledLayer1XPosition = [layer 1 X position] - [camera X speed] - 2
-;     Layer 1 X position = max(ProposedScrolledLayer1XPosition, PositionOfScrollBoundary)
-;     If ProposedScrolledLayer1XPosition >= PositionOfScrollBoundary and layer 1 position + 1/2 scroll down's scroll = red:
-;         Layer 1 X position = ProposedScrolledLayer1XPosition rounded to right scroll boundary
+;     ProposedScrolledLayer1Position  = [layer 1 X position] - [camera X speed] - 2
+;     Layer 1 X position = max(ProposedScrolledLayer1Position , PositionOfScrollBoundary)
+;     If ProposedScrolledLayer1Position  >= PositionOfScrollBoundary and layer 1 position + 1/2 scroll down's scroll = red:
+;         Layer 1 X position = ProposedScrolledLayer1Position  rounded to right scroll boundary
 ; }
     PHP                                                                  ;80A528;
     PHB                                                                  ;80A529;
@@ -5824,7 +5825,7 @@ HandleScrollZones_HorizontalAutoscrolling:
     PLB                                                                  ;80A53A;
     REP #$30                                                             ;80A53B;
     LDA.W Layer1XPosition                                                ;80A53D;
-    STA.W ProposedScrolledLayer1XPosition                                ;80A540;
+    STA.W ProposedScrolledLayer1Position                                 ;80A540;
     BPL +                                                                ;80A543;
     STZ.W Layer1XPosition                                                ;80A545;
 
@@ -5857,13 +5858,13 @@ HandleScrollZones_HorizontalAutoscrolling:
     CLC                                                                  ;80A584;
     ADC.W #$0100                                                         ;80A585;
     STA.W PositionOfScrollBoundary                                       ;80A588;
-    LDA.W ProposedScrolledLayer1XPosition                                ;80A58B;
+    LDA.W ProposedScrolledLayer1Position                                 ;80A58B;
     CLC                                                                  ;80A58E;
     ADC.W CameraXSpeed                                                   ;80A58F;
     ADC.W #$0002                                                         ;80A592;
     CMP.W PositionOfScrollBoundary                                       ;80A595;
     BCS .reachedRightScrollBoundary                                      ;80A598;
-    STA.W ProposedScrolledLayer1XPosition                                ;80A59A;
+    STA.W ProposedScrolledLayer1Position                                 ;80A59A;
     LDA.W Layer1YPosition                                                ;80A59D;
     CLC                                                                  ;80A5A0;
     ADC.W #$0080                                                         ;80A5A1;
@@ -5882,12 +5883,12 @@ HandleScrollZones_HorizontalAutoscrolling:
     LDA.L Scrolls,X                                                      ;80A5BE;
     AND.W #$00FF                                                         ;80A5C2;
     BNE .returnLayer1X                                                   ;80A5C5;
-    LDA.W ProposedScrolledLayer1XPosition                                ;80A5C7;
+    LDA.W ProposedScrolledLayer1Position                                 ;80A5C7;
     AND.W #$FF00                                                         ;80A5CA;
     BRA +                                                                ;80A5CD;
 
   .returnLayer1X:
-    LDA.W ProposedScrolledLayer1XPosition                                ;80A5CF;
+    LDA.W ProposedScrolledLayer1Position                                 ;80A5CF;
     BRA +                                                                ;80A5D2;
 
   .reachedRightScrollBoundary:
@@ -5902,13 +5903,13 @@ HandleScrollZones_HorizontalAutoscrolling:
     LDA.W Layer1XPosition                                                ;80A5E3;
     AND.W #$FF00                                                         ;80A5E6;
     STA.W PositionOfScrollBoundary                                       ;80A5E9;
-    LDA.W ProposedScrolledLayer1XPosition                                ;80A5EC;
+    LDA.W ProposedScrolledLayer1Position                                 ;80A5EC;
     SEC                                                                  ;80A5EF;
     SBC.W CameraXSpeed                                                   ;80A5F0;
     SBC.W #$0002                                                         ;80A5F3;
     CMP.W PositionOfScrollBoundary                                       ;80A5F6;
     BMI .reachedLeftScrollBoundary                                       ;80A5F9;
-    STA.W ProposedScrolledLayer1XPosition                                ;80A5FB;
+    STA.W ProposedScrolledLayer1Position                                 ;80A5FB;
     LDA.W Layer1YPosition                                                ;80A5FE;
     CLC                                                                  ;80A601;
     ADC.W #$0080                                                         ;80A602;
@@ -5926,14 +5927,14 @@ HandleScrollZones_HorizontalAutoscrolling:
     LDA.L Scrolls,X                                                      ;80A61E;
     AND.W #$00FF                                                         ;80A622;
     BNE .return0939                                                      ;80A625;
-    LDA.W ProposedScrolledLayer1XPosition                                ;80A627;
+    LDA.W ProposedScrolledLayer1Position                                 ;80A627;
     AND.W #$FF00                                                         ;80A62A;
     CLC                                                                  ;80A62D;
     ADC.W #$0100                                                         ;80A62E;
     BRA +                                                                ;80A631;
 
   .return0939:
-    LDA.W ProposedScrolledLayer1XPosition                                ;80A633;
+    LDA.W ProposedScrolledLayer1Position                                 ;80A633;
     BRA +                                                                ;80A636;
 
   .reachedLeftScrollBoundary:
@@ -5959,7 +5960,7 @@ HandleScrollZones_ScrollingRight:
     PLB                                                                  ;80A648;
     REP #$30                                                             ;80A649;
     LDA.W Layer1XPosition                                                ;80A64B;
-    STA.W ProposedScrolledLayer1XPosition                                ;80A64E;
+    STA.W ProposedScrolledLayer1Position                                 ;80A64E;
     LDA.W IdealLayer1XPosition                                           ;80A651;
     CMP.W Layer1XPosition                                                ;80A654;
     BPL +                                                                ;80A657;
@@ -5995,7 +5996,7 @@ HandleScrollZones_ScrollingRight:
     LDA.W Layer1XPosition                                                ;80A69A;
     AND.W #$FF00                                                         ;80A69D;
     STA.W PositionOfScrollBoundary                                       ;80A6A0;
-    LDA.W ProposedScrolledLayer1XPosition                                ;80A6A3;
+    LDA.W ProposedScrolledLayer1Position                                 ;80A6A3;
     SEC                                                                  ;80A6A6;
     SBC.W CameraXSpeed                                                   ;80A6A7;
     SBC.W #$0002                                                         ;80A6AA;
@@ -6023,7 +6024,7 @@ HandleScrollZones_ScrollingLeft:
     PLB                                                                  ;80A6C2;
     REP #$30                                                             ;80A6C3;
     LDA.W Layer1XPosition                                                ;80A6C5;
-    STA.W ProposedScrolledLayer1XPosition                                ;80A6C8;
+    STA.W ProposedScrolledLayer1Position                                 ;80A6C8;
     CMP.W IdealLayer1XPosition                                           ;80A6CB;
     BPL +                                                                ;80A6CE;
     LDA.W IdealLayer1XPosition                                           ;80A6D0;
@@ -6057,7 +6058,7 @@ HandleScrollZones_ScrollingLeft:
     CLC                                                                  ;80A712;
     ADC.W #$0100                                                         ;80A713;
     STA.W PositionOfScrollBoundary                                       ;80A716;
-    LDA.W ProposedScrolledLayer1XPosition                                ;80A719;
+    LDA.W ProposedScrolledLayer1Position                                 ;80A719;
     CLC                                                                  ;80A71C;
     ADC.W CameraXSpeed                                                   ;80A71D;
     ADC.W #$0002                                                         ;80A720;
@@ -6092,9 +6093,9 @@ HandleScrollZones_VerticalAutoscrolling:
 ; If layer 1 position + 1/2 scroll right's scroll = red:
 ; {
 ;     XBlockOfVRAMBlocksToUpdate = position of bottom scroll boundary
-;     ProposedScrolledLayer1XPosition = [layer 1 Y position] + [camera Y speed] + 2
-;     Layer 1 X position = min(ProposedScrolledLayer1XPosition, XBlockOfVRAMBlocksToUpdate)
-;     If ProposedScrolledLayer1XPosition < XBlockOfVRAMBlocksToUpdate and layer 1 position + 1/2 scroll right + 1 scroll down's scroll = red:
+;     ProposedScrolledLayer1Position  = [layer 1 Y position] + [camera Y speed] + 2
+;     Layer 1 X position = min(ProposedScrolledLayer1Position , XBlockOfVRAMBlocksToUpdate)
+;     If ProposedScrolledLayer1Position  < XBlockOfVRAMBlocksToUpdate and layer 1 position + 1/2 scroll right + 1 scroll down's scroll = red:
 ;         Round layer 1 Y position to top scroll boundary
 ; }
 ; Else if layer 1 position + 1/2 scroll right + 1 scroll down's scroll = red:
@@ -6102,10 +6103,10 @@ HandleScrollZones_VerticalAutoscrolling:
 ;     $0937 = position of top scroll boundary + PositionOfScrollBoundary
 ;     If [$0937] < [layer 1 Y position]:
 ;     {
-;         ProposedScrolledLayer1XPosition = [layer 1 Y position] - [camera Y speed] - 2
-;         Layer 1 Y position = max(ProposedScrolledLayer1XPosition, [$0937])
-;         If ProposedScrolledLayer1XPosition >= [$0937] and layer 1 position + 1/2 scroll right's scroll = red:
-;             Layer 1 Y position = ProposedScrolledLayer1XPosition rounded to right bottom boundary
+;         ProposedScrolledLayer1Position  = [layer 1 Y position] - [camera Y speed] - 2
+;         Layer 1 Y position = max(ProposedScrolledLayer1Position , [$0937])
+;         If ProposedScrolledLayer1Position  >= [$0937] and layer 1 position + 1/2 scroll right's scroll = red:
+;             Layer 1 Y position = ProposedScrolledLayer1Position  rounded to right bottom boundary
 ;     }
 ; }
     PHP                                                                  ;80A731;
@@ -6144,7 +6145,7 @@ HandleScrollZones_VerticalAutoscrolling:
 
 +   STY.W PositionOfScrollBoundary                                       ;80A77A;
     LDA.W Layer1YPosition                                                ;80A77D;
-    STA.W ProposedScrolledLayer1XPosition                                ;80A780;
+    STA.W ProposedScrolledLayer1Position                                 ;80A780;
     BPL +                                                                ;80A783;
     STZ.W Layer1YPosition                                                ;80A785;
 
@@ -6179,13 +6180,13 @@ HandleScrollZones_VerticalAutoscrolling:
     CLC                                                                  ;80A7C8;
     ADC.W #$0100                                                         ;80A7C9;
     STA.W XBlockOfVRAMBlocksToUpdate                                     ;80A7CC;
-    LDA.W ProposedScrolledLayer1XPosition                                ;80A7CF;
+    LDA.W ProposedScrolledLayer1Position                                 ;80A7CF;
     CLC                                                                  ;80A7D2;
     ADC.W CameraYSpeed                                                   ;80A7D3;
     ADC.W #$0002                                                         ;80A7D6;
     CMP.W XBlockOfVRAMBlocksToUpdate                                     ;80A7D9;
     BCS .reachedBottomScrollBoundary                                     ;80A7DC;
-    STA.W ProposedScrolledLayer1XPosition                                ;80A7DE;
+    STA.W ProposedScrolledLayer1Position                                 ;80A7DE;
     SEP #$20                                                             ;80A7E1;
     LDA.W BackgroundDataLoopCounter+1                                    ;80A7E3;
     INC                                                                  ;80A7E6;
@@ -6204,11 +6205,11 @@ HandleScrollZones_VerticalAutoscrolling:
     LDA.L Scrolls,X                                                      ;80A802;
     AND.W #$00FF                                                         ;80A806;
     BNE +                                                                ;80A809;
-    LDA.W ProposedScrolledLayer1XPosition                                ;80A80B;
+    LDA.W ProposedScrolledLayer1Position                                 ;80A80B;
     AND.W #$FF00                                                         ;80A80E;
     BRA .returnLayer1Y                                                   ;80A811;
 
-+   LDA.W ProposedScrolledLayer1XPosition                                ;80A813;
++   LDA.W ProposedScrolledLayer1Position                                 ;80A813;
     BRA .returnLayer1Y                                                   ;80A816;
 
   .reachedBottomScrollBoundary:
@@ -6230,13 +6231,13 @@ HandleScrollZones_VerticalAutoscrolling:
     STA.W UpperScrollPosition                                            ;80A836;
     CMP.W Layer1YPosition                                                ;80A839;
     BCS .return                                                          ;80A83C;
-    LDA.W ProposedScrolledLayer1XPosition                                ;80A83E;
+    LDA.W ProposedScrolledLayer1Position                                 ;80A83E;
     SEC                                                                  ;80A841;
     SBC.W CameraYSpeed                                                   ;80A842;
     SBC.W #$0002                                                         ;80A845;
     CMP.W UpperScrollPosition                                            ;80A848;
     BMI .reachedTopScrollBoundary                                        ;80A84B;
-    STA.W ProposedScrolledLayer1XPosition                                ;80A84D;
+    STA.W ProposedScrolledLayer1Position                                 ;80A84D;
     SEP #$20                                                             ;80A850;
     LDA.W BackgroundDataLoopCounter+1                                    ;80A852;
     STA.W $4202                                                          ;80A855;
@@ -6254,14 +6255,14 @@ HandleScrollZones_VerticalAutoscrolling:
     LDA.L Scrolls,X                                                      ;80A870;
     AND.W #$00FF                                                         ;80A874;
     BNE .returnProposedLayer1X                                           ;80A877;
-    LDA.W ProposedScrolledLayer1XPosition                                ;80A879;
+    LDA.W ProposedScrolledLayer1Position                                 ;80A879;
     AND.W #$FF00                                                         ;80A87C;
     CLC                                                                  ;80A87F;
     ADC.W #$0100                                                         ;80A880;
     BRA .returnLayer1Y                                                   ;80A883;
 
   .returnProposedLayer1X:
-    LDA.W ProposedScrolledLayer1XPosition                                ;80A885;
+    LDA.W ProposedScrolledLayer1Position                                 ;80A885;
     BRA .returnLayer1Y                                                   ;80A888;
 
   .reachedTopScrollBoundary:
@@ -6288,7 +6289,7 @@ HandleScrollZones_ScrollingDown:
     PLB                                                                  ;80A89A;
     REP #$30                                                             ;80A89B;
     LDA.W Layer1YPosition                                                ;80A89D;
-    STA.W ProposedScrolledLayer1XPosition                                ;80A8A0;
+    STA.W ProposedScrolledLayer1Position                                 ;80A8A0;
     LDY.W #$0000                                                         ;80A8A3;
     SEP #$20                                                             ;80A8A6;
     LDA.W Layer1YPosition+1                                              ;80A8A8;
@@ -6343,7 +6344,7 @@ HandleScrollZones_ScrollingDown:
     BCS .return                                                          ;80A91C;
 
   .setLayer1Y:
-    LDA.W ProposedScrolledLayer1XPosition                                ;80A91E;
+    LDA.W ProposedScrolledLayer1Position                                 ;80A91E;
     SEC                                                                  ;80A921;
     SBC.W CameraYSpeed                                                   ;80A922;
     SBC.W #$0002                                                         ;80A925;
@@ -6371,7 +6372,7 @@ HandleScrollZones_ScrollingUp:
     PLB                                                                  ;80A93D;
     REP #$30                                                             ;80A93E;
     LDA.W Layer1YPosition                                                ;80A940;
-    STA.W ProposedScrolledLayer1XPosition                                ;80A943;
+    STA.W ProposedScrolledLayer1Position                                 ;80A943;
     CMP.W IdealLayer1YPosition                                           ;80A946;
     BPL +                                                                ;80A949;
     LDA.W IdealLayer1YPosition                                           ;80A94B;
@@ -6405,7 +6406,7 @@ HandleScrollZones_ScrollingUp:
     CLC                                                                  ;80A98D;
     ADC.W #$0100                                                         ;80A98E;
     STA.W PositionOfScrollBoundary                                       ;80A991;
-    LDA.W ProposedScrolledLayer1XPosition                                ;80A994;
+    LDA.W ProposedScrolledLayer1Position                                 ;80A994;
     CLC                                                                  ;80A997;
     ADC.W CameraYSpeed                                                   ;80A998;
     ADC.W #$0002                                                         ;80A99B;
@@ -6557,7 +6558,7 @@ UpdateLevelBackgroundDataColumn:
     ASL                                                                  ;80AA3C;
     CLC                                                                  ;80AA3D;
     ADC.W $4216                                                          ;80AA3E;
-    STA.W PositionOfScrollBoundary                                       ;80AA41;
+    STA.W VRAMOffsetBlocksToUpdate                                       ;80AA41;
     LDA.W #$5000                                                         ;80AA44;
     LDY.W XBlockOfVRAMBlocksToUpdate                                     ;80AA47;
     CPY.W #$0010                                                         ;80AA4A;
@@ -6571,7 +6572,7 @@ UpdateLevelBackgroundDataColumn:
 
 +   STA.W VRAMTilemapScreenBaseAddr                                      ;80AA59;
     CLC                                                                  ;80AA5C;
-    ADC.W PositionOfScrollBoundary                                       ;80AA5D;
+    ADC.W VRAMOffsetBlocksToUpdate                                       ;80AA5D;
     STA.W BG1Col_unwrappedTilemapVRAMUpdateDest,X                        ;80AA60;
     LDA.W VRAMTilemapScreenBaseAddr                                      ;80AA63;
     CLC                                                                  ;80AA66;
@@ -6591,7 +6592,7 @@ UpdateLevelBackgroundDataColumn:
     CLC                                                                  ;80AA88;
     ADC.W #$0040                                                         ;80AA89;
     STA.W BG1Col_wrappedTilemapVRAMUpdateRightHalvesSrc,X                ;80AA8C;
-    STY.W VRAMTilemapScreenBaseAddr                                      ;80AA8F;
+    STY.W VRAMTilemapSourceDataIndex                                     ;80AA8F;
     SEP #$20                                                             ;80AA92;
     LDA.B #$7E                                                           ;80AA94;
     PHA                                                                  ;80AA96;
@@ -6600,7 +6601,7 @@ UpdateLevelBackgroundDataColumn:
     PHX                                                                  ;80AA9A;
     LDY.W #$0000                                                         ;80AA9B;
     LDA.W #$0010                                                         ;80AA9E;
-    STA.W ProposedScrolledLayer1XPosition                                ;80AAA1;
+    STA.W BackgroundDataLoopCounter                                      ;80AAA1;
 
   .loop:
     LDA.B [DP_BlocksToUpdate],Y                                          ;80AAA4;
@@ -6611,7 +6612,7 @@ UpdateLevelBackgroundDataColumn:
     ASL                                                                  ;80AAAE;
     TAX                                                                  ;80AAAF;
     PHY                                                                  ;80AAB0;
-    LDY.W VRAMTilemapScreenBaseAddr                                      ;80AAB1;
+    LDY.W VRAMTilemapSourceDataIndex                                     ;80AAB1;
     LDA.W BackgroundBlockToUpdate                                        ;80AAB4;
     AND.W #$0C00                                                         ;80AAB7;
     BNE +                                                                ;80AABA;
@@ -6675,13 +6676,13 @@ UpdateLevelBackgroundDataColumn:
     INY                                                                  ;80AB52;
     INY                                                                  ;80AB53;
     INY                                                                  ;80AB54;
-    STY.W VRAMTilemapScreenBaseAddr                                      ;80AB55;
+    STY.W VRAMTilemapSourceDataIndex                                     ;80AB55;
     PLA                                                                  ;80AB58;
     CLC                                                                  ;80AB59;
     ADC.W RoomWidthBlocks                                                ;80AB5A;
     ADC.W RoomWidthBlocks                                                ;80AB5D;
     TAY                                                                  ;80AB60;
-    DEC.W ProposedScrolledLayer1XPosition                                ;80AB61;
+    DEC.W BackgroundDataLoopCounter                                      ;80AB61;
     BEQ .return                                                          ;80AB64;
     JMP.W .loop                                                          ;80AB66;
 
@@ -6744,14 +6745,14 @@ UpdateBackgroundLevelDataRow:
     STA.B DP_BlocksToUpdate+2                                            ;80ABA8;
     LDA.W VRAMBlocksToUpdateXBlock                                       ;80ABAA;
     AND.W #$000F                                                         ;80ABAD;
-    STA.W PositionOfScrollBoundary                                       ;80ABB0;
+    STA.W VRAMBlocksToUpdateXBlock0993                                   ;80ABB0;
     LDA.W #$0010                                                         ;80ABB3;
     SEC                                                                  ;80ABB6;
-    SBC.W PositionOfScrollBoundary                                       ;80ABB7;
+    SBC.W VRAMBlocksToUpdateXBlock0993                                   ;80ABB7;
     ASL                                                                  ;80ABBA;
     ASL                                                                  ;80ABBB;
     STA.W BG1Row_unwrappedTilemapVRAMUpdateSize,X                        ;80ABBC;
-    LDA.W PositionOfScrollBoundary                                       ;80ABBF;
+    LDA.W VRAMBlocksToUpdateXBlock0993                                   ;80ABBF;
     INC                                                                  ;80ABC2;
     ASL                                                                  ;80ABC3;
     ASL                                                                  ;80ABC4;
@@ -6769,15 +6770,15 @@ UpdateBackgroundLevelDataRow:
     ASL                                                                  ;80ABE2;
     CLC                                                                  ;80ABE3;
     ADC.W $4216                                                          ;80ABE4;
-    STA.W PositionOfScrollBoundary                                       ;80ABE7;
+    STA.W VRAMBlocksToUpdateXBlock0993                                   ;80ABE7;
     LDA.W #$5400                                                         ;80ABEA;
-    STA.W VRAMTilemapScreenBaseAddr                                      ;80ABED;
+    STA.W WrappedVRAMTilemapScreenBaseAddr                               ;80ABED;
     LDA.W #$5000                                                         ;80ABF0;
     LDY.W XBlockOfVRAMBlocksToUpdate                                     ;80ABF3;
     CPY.W #$0010                                                         ;80ABF6;
     BCC +                                                                ;80ABF9;
     LDA.W #$5000                                                         ;80ABFB;
-    STA.W VRAMTilemapScreenBaseAddr                                      ;80ABFE;
+    STA.W WrappedVRAMTilemapScreenBaseAddr                               ;80ABFE;
     LDA.W #$53E0                                                         ;80AC01;
 
 +   TXY                                                                  ;80AC04;
@@ -6786,9 +6787,9 @@ UpdateBackgroundLevelDataRow:
     SBC.W SizeOfBG2                                                      ;80AC08;
 
 +   CLC                                                                  ;80AC0B;
-    ADC.W PositionOfScrollBoundary                                       ;80AC0C;
+    ADC.W VRAMBlocksToUpdateXBlock0993                                   ;80AC0C;
     STA.W BG1Row_unwrappedTilemapVRAMUpdateDest,X                        ;80AC0F;
-    LDA.W VRAMTilemapScreenBaseAddr                                      ;80AC12;
+    LDA.W WrappedVRAMTilemapScreenBaseAddr                               ;80AC12;
     TXY                                                                  ;80AC15;
     BEQ +                                                                ;80AC16;
     SEC                                                                  ;80AC18;
@@ -6810,7 +6811,7 @@ UpdateBackgroundLevelDataRow:
     CLC                                                                  ;80AC3B;
     ADC.W #$0044                                                         ;80AC3C;
     STA.W BG1Row_wrappedTilemapVRAMUpdateRightHalvesSrc,X                ;80AC3F;
-    STY.W VRAMTilemapScreenBaseAddr                                      ;80AC42;
+    STY.W VRAMTilemapSourceDataIndex                                     ;80AC42;
     SEP #$20                                                             ;80AC45;
     LDA.B #$7E                                                           ;80AC47;
     PHA                                                                  ;80AC49;
@@ -6819,7 +6820,7 @@ UpdateBackgroundLevelDataRow:
     PHX                                                                  ;80AC4D;
     LDY.W #$0000                                                         ;80AC4E;
     LDA.W #$0011                                                         ;80AC51;
-    STA.W ProposedScrolledLayer1XPosition                                ;80AC54;
+    STA.W BackgroundDataLoopCounter                                      ;80AC54;
 
   .loop:
     LDA.B [DP_BlocksToUpdate],Y                                          ;80AC57;
@@ -6830,7 +6831,7 @@ UpdateBackgroundLevelDataRow:
     ASL                                                                  ;80AC61;
     TAX                                                                  ;80AC62;
     PHY                                                                  ;80AC63;
-    LDY.W VRAMTilemapScreenBaseAddr                                      ;80AC64;
+    LDY.W VRAMTilemapSourceDataIndex                                     ;80AC64;
     LDA.W BackgroundBlockToUpdate                                        ;80AC67;
     AND.W #$0C00                                                         ;80AC6A;
     BNE +                                                                ;80AC6D;
@@ -6894,11 +6895,11 @@ UpdateBackgroundLevelDataRow:
     INY                                                                  ;80AD05;
     INY                                                                  ;80AD06;
     INY                                                                  ;80AD07;
-    STY.W VRAMTilemapScreenBaseAddr                                      ;80AD08;
+    STY.W VRAMTilemapSourceDataIndex                                     ;80AD08;
     PLY                                                                  ;80AD0B;
     INY                                                                  ;80AD0C;
     INY                                                                  ;80AD0D;
-    DEC.W ProposedScrolledLayer1XPosition                                ;80AD0E;
+    DEC.W BackgroundDataLoopCounter                                      ;80AD0E;
     BEQ .return                                                          ;80AD11;
     JMP.W .loop                                                          ;80AD13;
 

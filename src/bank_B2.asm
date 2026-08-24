@@ -9583,7 +9583,7 @@ Function_PirateWall_WallJumpingRight:
     LDX.W EnemyIndex                                                     ;B2F050;
     LDA.W Enemy.init1,X                                                  ;B2F053;
     LSR                                                                  ;B2F056;
-    STA.W Temp_Unknown0E32                                               ;B2F057;
+    STA.W Temp_Radius                                                    ;B2F057;
     LDA.W PirateWall.wallJumpArcAngle,X                                  ;B2F05A;
     JSL.L EightBitNegativeSineMultiplication_A0B0C6                      ;B2F05D;
     CLC                                                                  ;B2F061;
@@ -9592,7 +9592,7 @@ Function_PirateWall_WallJumpingRight:
     LDA.W Enemy.init1,X                                                  ;B2F068;
     LSR                                                                  ;B2F06B;
     LSR                                                                  ;B2F06C;
-    STA.W Temp_Unknown0E32                                               ;B2F06D;
+    STA.W Temp_Radius                                                    ;B2F06D;
     LDA.W PirateWall.wallJumpArcAngle,X                                  ;B2F070;
     JSL.L EightBitCosineMultiplication_A0B0B2                            ;B2F073;
     EOR.W #$FFFF                                                         ;B2F077;
@@ -9690,7 +9690,7 @@ Function_PirateWall_WallJumpingLeft:
     LDX.W EnemyIndex                                                     ;B2F0E4;
     LDA.W Enemy.init1,X                                                  ;B2F0E7;
     LSR                                                                  ;B2F0EA;
-    STA.W Temp_Unknown0E32                                               ;B2F0EB;
+    STA.W Temp_Radius                                                    ;B2F0EB;
     LDA.W PirateWall.wallJumpArcAngle,X                                  ;B2F0EE;
     JSL.L EightBitNegativeSineMultiplication_A0B0C6                      ;B2F0F1;
     CLC                                                                  ;B2F0F5;
@@ -9699,7 +9699,7 @@ Function_PirateWall_WallJumpingLeft:
     LDA.W Enemy.init1,X                                                  ;B2F0FC;
     LSR                                                                  ;B2F0FF;
     LSR                                                                  ;B2F100;
-    STA.W Temp_Unknown0E32                                               ;B2F101;
+    STA.W Temp_Radius                                                    ;B2F101;
     LDA.W PirateWall.wallJumpArcAngle,X                                  ;B2F104;
     JSL.L EightBitCosineMultiplication_A0B0B2                            ;B2F107;
     EOR.W #$FFFF                                                         ;B2F10B;

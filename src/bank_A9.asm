@@ -11787,7 +11787,7 @@ CorpseRottingDefinitions_Skree_Param1_4:
     dw CorpseRotEntryFinishedHook_Normal                                 ;A9DE06; Eh: Corpse rotting rot entry finished hook
 
 CorpseRottingDefinitions_MotherBrain:
-    dw CorpseRottingTable+$700                                           ;A9DE08; 0: Corpse rotting rot table pointer (bank $7E)
+    dw MotherBrainCorpseRottingRotTable                                  ;A9DE08; 0: Corpse rotting rot table pointer (bank $7E)
     dw CorpseRottingVRAMTransferDefinitions_MotherBrain                  ;A9DE0A; 2: Corpse rotting VRAM transfers pointer
     dw CorpseRottingRotEntry_Copy_MotherBrain                            ;A9DE0C; 4: Corpse rotting rot entry copy function
     dw CorpseRottingRotEntry_Move_MotherBrain                            ;A9DE0E; 6: Corpse rotting rot entry move function

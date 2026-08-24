@@ -821,8 +821,8 @@ Function_DraygonBody_SwoopRight_Setup:
 ;;; $8817: Calculate Draygon swoop Y positions ;;;
 CalculateDraygonSwoopYPositions:
     LDA.W #$0180                                                         ;A58817;
-    STA.W Temp_NeverRead0E28                                             ;A5881A;
-    LDA.W Temp_NeverRead0E28                                             ;A5881D; >.<
+    STA.W Temp_neverRead0E28                                             ;A5881A;
+    LDA.W Temp_neverRead0E28                                             ;A5881D; >.<
     STA.W Temp_SwoopYPosition                                            ;A58820;
     STZ.W Temp_SwoopYSpeed                                               ;A58823;
     STZ.W Temp_SwoopYPositionIndex                                       ;A58826;
@@ -1761,7 +1761,7 @@ Function_DraygonBody_GrabbedSamus_RisingSpiralMovement:
 
   .noSpank:
     LDA.L DraygonBody.spiralXRadius                                      ;A59011;
-    STA.W Temp_Unknown0E32                                               ;A59015;
+    STA.W Temp_Radius                                                    ;A59015;
     LDA.L DraygonBody.spiralAngle                                        ;A59018;
     JSL.L EightBitCosineMultiplication_A0B0B2                            ;A5901C;
     CLC                                                                  ;A59020;
@@ -1770,7 +1770,7 @@ Function_DraygonBody_GrabbedSamus_RisingSpiralMovement:
     LDA.L DraygonBody.spiralXRadius                                      ;A59028;
     LSR                                                                  ;A5902C;
     LSR                                                                  ;A5902D;
-    STA.W Temp_Unknown0E32                                               ;A5902E;
+    STA.W Temp_Radius                                                    ;A5902E;
     LDA.L DraygonBody.spiralAngle                                        ;A59031;
     JSL.L EightBitNegativeSineMultiplication_A0B0C6                      ;A59035;
     CLC                                                                  ;A59039;
@@ -1990,10 +1990,10 @@ Function_DraygonBody_DeathSequence_DriftToDeathSpot:
     EOR.W #$FFFF                                                         ;A591E6;
     INC                                                                  ;A591E9;
     AND.W #$00FF                                                         ;A591EA;
-    STA.L ExtraEnemy8800+6                                               ;A591ED;
+    STA.L DraygonBody.angle                                              ;A591ED;
     LDA.W #$0001                                                         ;A591F1;
     STA.B DP_Temp14                                                      ;A591F4;
-    LDA.L ExtraEnemy8800+6                                               ;A591F6;
+    LDA.L DraygonBody.angle                                              ;A591F6;
     AND.W #$00FF                                                         ;A591FA;
     STA.B DP_Temp12                                                      ;A591FD;
     JSL.L Do_Some_Math_With_Sine_Cosine_Terrible_Label_Name              ;A591FF; ($16.$18, $1A.$1C) = ([$14] * |cos([$12] * pi / 80h)|, [$14] * |sin([$12] * pi / 80h)|)
@@ -2005,9 +2005,9 @@ Function_DraygonBody_DeathSequence_DriftToDeathSpot:
     STA.W Temp_YSpeed                                                    ;A5920F;
     LDA.B DP_Temp1C                                                      ;A59212;
     STA.W Temp_YSubSpeed                                                 ;A59214;
-    LDA.L ExtraEnemy8800+6                                               ;A59217;
+    LDA.L DraygonBody.angle                                              ;A59217;
     AND.W #$00FF                                                         ;A5921B;
-    STA.W Temp_Unknown0E20                                               ;A5921E;
+    STA.W Temp_DraygonAngle                                              ;A5921E;
     JSL.L MoveEnemyAccordingToAngleAndXYSpeeds                           ;A59221;
     LDA.W Enemy.XPosition                                                ;A59225;
     SEC                                                                  ;A59228;
@@ -2598,10 +2598,10 @@ DraygonReaction_Common:
     EOR.W #$FFFF                                                         ;A59675;
     INC                                                                  ;A59678;
     AND.W #$00FF                                                         ;A59679;
-    STA.L ExtraEnemy8800+6                                               ;A5967C;
+    STA.L DraygonBody.angle                                              ;A5967C;
     LDA.W #$0001                                                         ;A59680;
     STA.B DP_Temp14                                                      ;A59683;
-    LDA.L ExtraEnemy8800+6                                               ;A59685;
+    LDA.L DraygonBody.angle                                              ;A59685;
     AND.W #$00FF                                                         ;A59689;
     STA.B DP_Temp12                                                      ;A5968C;
     JSL.L Do_Some_Math_With_Sine_Cosine_Terrible_Label_Name              ;A5968E; ($16.$18, $1A.$1C) = ([$14] * |cos([$12] * pi / 80h)|, [$14] * |sin([$12] * pi / 80h)|)
@@ -3719,7 +3719,7 @@ HandleDeathSequenceEvirMovement:
     SBC.W DraygonDeathSequenceEvirSubSpeeds_X,Y                          ;A5A011;
     STA.L SpriteObjects_XSubPositions,X                                  ;A5A014;
     LDA.L SpriteObjects_XPositions,X                                     ;A5A018;
-    SBC.W Temp_XVelocity                                                 ;A5A01C;
+    SBC.W Temp_ErroneousXVelocity                                        ;A5A01C;
     STA.L SpriteObjects_XPositions,X                                     ;A5A01F;
 
   .YPosition:

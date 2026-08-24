@@ -3822,8 +3822,8 @@ GrappleBeamFunction_Fire_GotoCancel:
     STZ.W GrappleBeam_neverRead0D1E                                      ;9BC636;
     STZ.W GrappleBeam_neverRead0D20                                      ;9BC639;
     LDA.W #$0002                                                         ;9BC63C;
-    STA.W GrappleBeam_NeverRead0D3A                                      ;9BC63F;
-    STZ.W GrappleBeam_NeverRead0D3C                                      ;9BC642;
+    STA.W GrappleBeam_neverRead0D3A                                      ;9BC63F;
+    STZ.W GrappleBeam_neverRead0D3C                                      ;9BC642;
     LDA.W #$0005*!FPS                                                    ;9BC645;
     STA.W GrappleBeam_StartAnimationTimer                                ;9BC648;
     LDA.W GrappleBeamStartTilesBeginEndPointers_0                        ;9BC64B;

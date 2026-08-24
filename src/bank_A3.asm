@@ -760,7 +760,7 @@ MainAI_Waver:
 
   .noWallCollision:
     LDA.W #$0004                                                         ;A38796;
-    STA.W Temp_Unknown0E32                                               ;A38799;
+    STA.W Temp_Radius                                                    ;A38799;
     LDA.W Waver.angle,X                                                  ;A3879C;
     AND.W #$00FF                                                         ;A3879F;
     JSL.L EightBitNegativeSineMultiplication_A0B0C6                      ;A387A2;
@@ -1436,14 +1436,14 @@ SetInitialCirclingFirefleaPosition:
 ; This seems to be missing a division by 100h of the enemy angle,
 ; which is of little consequence as the main AI sets the position every frame anyway
     LDA.W Fireflea.radius,X                                              ;A38DAE;
-    STA.W Temp_Unknown0E32                                               ;A38DB1;
+    STA.W Temp_Radius                                                    ;A38DB1;
     LDA.W Enemy.var3,X                                                   ;A38DB4;
     JSL.L EightBitCosineMultiplication_A0B0B2                            ;A38DB7;
     CLC                                                                  ;A38DBB;
     ADC.W Fireflea.XCenter,X                                             ;A38DBC;
     STA.W Enemy.XPosition,X                                              ;A38DBF;
     LDA.W Fireflea.radius,X                                              ;A38DC2;
-    STA.W Temp_Unknown0E32                                               ;A38DC5;
+    STA.W Temp_Radius                                                    ;A38DC5;
     LDA.W Enemy.var3,X                                                   ;A38DC8;
     JSL.L EightBitNegativeSineMultiplication_A0B0C6                      ;A38DCB;
     CLC                                                                  ;A38DCF;
@@ -1472,7 +1472,7 @@ MainAI_Fireflea:
     AND.W #$0002                                                         ;A38DF4;
     BEQ .verticalMovement                                                ;A38DF7;
     LDA.W Fireflea.radius,X                                              ;A38DF9;
-    STA.W Temp_Unknown0E32                                               ;A38DFC;
+    STA.W Temp_Radius                                                    ;A38DFC;
     LDA.W Enemy.var3,X                                                   ;A38DFF;
     AND.W #$FF00                                                         ;A38E02;
     XBA                                                                  ;A38E05;
@@ -1481,7 +1481,7 @@ MainAI_Fireflea:
     ADC.W Fireflea.XCenter,X                                             ;A38E0B;
     STA.W Enemy.XPosition,X                                              ;A38E0E;
     LDA.W Fireflea.radius,X                                              ;A38E11;
-    STA.W Temp_Unknown0E32                                               ;A38E14;
+    STA.W Temp_Radius                                                    ;A38E14;
     LDA.W Enemy.var3,X                                                   ;A38E17;
     AND.W #$FF00                                                         ;A38E1A;
     XBA                                                                  ;A38E1D;
@@ -1827,7 +1827,7 @@ InitAI_Skultera:
     STA.W Skulltera.angle,X                                              ;A39111;
     STA.L Skulltera.turnFinishedFlag,X                                   ;A39114;
     LDA.L Skulltera.radius,X                                             ;A39118;
-    STA.W Temp_Unknown0E32                                               ;A3911C;
+    STA.W Temp_Radius                                                    ;A3911C;
     LDA.W Skulltera.angle,X                                              ;A3911F;
     JSL.L EightBitNegativeSineMultiplication_A0B0C6                      ;A39122;
     STA.L Skulltera.previousYOffset,X                                    ;A39126;
@@ -1861,7 +1861,7 @@ Function_Skultera_SwimmingLeft:
 
   .noWallCollision:
     LDA.L Skulltera.radius,X                                             ;A3915C;
-    STA.W Temp_Unknown0E32                                               ;A39160;
+    STA.W Temp_Radius                                                    ;A39160;
     LDA.W Skulltera.angle,X                                              ;A39163;
     JSL.L EightBitNegativeSineMultiplication_A0B0C6                      ;A39166;
     STA.L Skulltera.YOffset,X                                            ;A3916A;
@@ -1913,7 +1913,7 @@ Function_Skultera_SwimmingRight:
 
   .noWallCollision:
     LDA.L Skulltera.radius,X                                             ;A391D5;
-    STA.W Temp_Unknown0E32                                               ;A391D9;
+    STA.W Temp_Radius                                                    ;A391D9;
     LDA.W Skulltera.angle,X                                              ;A391DC;
     JSL.L EightBitNegativeSineMultiplication_A0B0C6                      ;A391DF;
     STA.L Skulltera.YOffset,X                                            ;A391E3;
@@ -3744,23 +3744,23 @@ UNUSED_CalculateMovingForwardVelocities_A3A1B0:
 ; Not sure why, but moving forward calculations are done with CalculateMovingForwardSpeeds instead
     LDA.W Enemy.init0,X                                                  ;A3A1B0;
     AND.W #$00FF                                                         ;A3A1B3;
-    STA.W Temp_Unknown0E32                                               ;A3A1B6;
+    STA.W Temp_Radius                                                    ;A3A1B6;
     LDA.W Enemy.init0+1,X                                                ;A3A1B9;
     AND.W #$00FF                                                         ;A3A1BC;
     JSL.L EightBitCosineMultiplication_A0B0B2                            ;A3A1BF;
-    LDA.W Temp_Unknown0E36                                               ;A3A1C3;
+    LDA.W Temp_Velocity                                                  ;A3A1C3;
     STA.L Sbug.movingForwardXSpeed,X                                     ;A3A1C6;
-    LDA.W Temp_Unknown0E38                                               ;A3A1CA;
+    LDA.W Temp_SubVelocity                                               ;A3A1CA;
     STA.L Sbug.movingForwardXSubSpeed,X                                  ;A3A1CD;
     LDA.W Enemy.init0,X                                                  ;A3A1D1;
     AND.W #$00FF                                                         ;A3A1D4;
-    STA.W Temp_Unknown0E32                                               ;A3A1D7;
+    STA.W Temp_Radius                                                    ;A3A1D7;
     LDA.W Enemy.init0+1,X                                                ;A3A1DA;
     AND.W #$00FF                                                         ;A3A1DD;
     JSL.L EightBitNegativeSineMultiplication_A0B0C6                      ;A3A1E0;
-    LDA.W Temp_Unknown0E36                                               ;A3A1E4;
+    LDA.W Temp_Velocity                                                  ;A3A1E4;
     STA.L Sbug.movingForwardYSpeed,X                                     ;A3A1E7;
-    LDA.W Temp_Unknown0E38                                               ;A3A1EB;
+    LDA.W Temp_SubVelocity                                               ;A3A1EB;
     STA.L Sbug.movingForwardYSubSpeed,X                                  ;A3A1EE;
     RTS                                                                  ;A3A1F2;
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -3770,27 +3770,27 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 CalculateMovingLeftVelocities:
     LDA.W Enemy.init0,X                                                  ;A3A1F3;
     AND.W #$00FF                                                         ;A3A1F6;
-    STA.W Temp_Unknown0E32                                               ;A3A1F9;
+    STA.W Temp_Radius                                                    ;A3A1F9;
     LDA.W Enemy.init0+1,X                                                ;A3A1FC;
     SEC                                                                  ;A3A1FF;
     SBC.W #$0020                                                         ;A3A200;
     AND.W #$00FF                                                         ;A3A203;
     JSL.L EightBitCosineMultiplication_A0B0B2                            ;A3A206;
-    LDA.W Temp_Unknown0E36                                               ;A3A20A;
+    LDA.W Temp_Velocity                                                  ;A3A20A;
     STA.L Sbug.movingLeftXVelocity,X                                     ;A3A20D;
-    LDA.W Temp_Unknown0E38                                               ;A3A211;
+    LDA.W Temp_SubVelocity                                               ;A3A211;
     STA.L Sbug.movingLeftXSubVelocity,X                                  ;A3A214;
     LDA.W Enemy.init0,X                                                  ;A3A218;
     AND.W #$00FF                                                         ;A3A21B;
-    STA.W Temp_Unknown0E32                                               ;A3A21E;
+    STA.W Temp_Radius                                                    ;A3A21E;
     LDA.W Enemy.init0+1,X                                                ;A3A221;
     SEC                                                                  ;A3A224;
     SBC.W #$0020                                                         ;A3A225;
     AND.W #$00FF                                                         ;A3A228;
     JSL.L EightBitNegativeSineMultiplication_A0B0C6                      ;A3A22B;
-    LDA.W Temp_Unknown0E36                                               ;A3A22F;
+    LDA.W Temp_Velocity                                                  ;A3A22F;
     STA.L Sbug.movingLeftYVelocity,X                                     ;A3A232;
-    LDA.W Temp_Unknown0E38                                               ;A3A236;
+    LDA.W Temp_SubVelocity                                               ;A3A236;
     STA.L Sbug.movingLeftYSubVelocity,X                                  ;A3A239;
     RTS                                                                  ;A3A23D;
 
@@ -3799,27 +3799,27 @@ CalculateMovingLeftVelocities:
 CalculateMovingRightVelocities:
     LDA.W Enemy.init0,X                                                  ;A3A23E;
     AND.W #$00FF                                                         ;A3A241;
-    STA.W Temp_Unknown0E32                                               ;A3A244;
+    STA.W Temp_Radius                                                    ;A3A244;
     LDA.W Enemy.init0+1,X                                                ;A3A247;
     CLC                                                                  ;A3A24A;
     ADC.W #$0020                                                         ;A3A24B;
     AND.W #$00FF                                                         ;A3A24E;
     JSL.L EightBitCosineMultiplication_A0B0B2                            ;A3A251;
-    LDA.W Temp_Unknown0E36                                               ;A3A255;
+    LDA.W Temp_Velocity                                                  ;A3A255;
     STA.L Sbug.movingRightXVelocity,X                                    ;A3A258;
-    LDA.W Temp_Unknown0E38                                               ;A3A25C;
+    LDA.W Temp_SubVelocity                                               ;A3A25C;
     STA.L Sbug.movingRightXSubVelocity,X                                 ;A3A25F;
     LDA.W Enemy.init0,X                                                  ;A3A263;
     AND.W #$00FF                                                         ;A3A266;
-    STA.W Temp_Unknown0E32                                               ;A3A269;
+    STA.W Temp_Radius                                                    ;A3A269;
     LDA.W Enemy.init0+1,X                                                ;A3A26C;
     CLC                                                                  ;A3A26F;
     ADC.W #$0020                                                         ;A3A270;
     AND.W #$00FF                                                         ;A3A273;
     JSL.L EightBitNegativeSineMultiplication_A0B0C6                      ;A3A276;
-    LDA.W Temp_Unknown0E36                                               ;A3A27A;
+    LDA.W Temp_Velocity                                                  ;A3A27A;
     STA.L Sbug.movingRightYVelocity,X                                    ;A3A27D;
-    LDA.W Temp_Unknown0E38                                               ;A3A281;
+    LDA.W Temp_SubVelocity                                               ;A3A281;
     STA.L Sbug.movingRightYSubVelocity,X                                 ;A3A284;
     RTS                                                                  ;A3A288;
 
@@ -4021,21 +4021,21 @@ DetermineCustomInstListIndex:
 CalculateCustomVelocities:
     LDA.W Enemy.init0,X                                                  ;A3A3CA;
     AND.W #$00FF                                                         ;A3A3CD;
-    STA.W Temp_Unknown0E32                                               ;A3A3D0;
+    STA.W Temp_Radius                                                    ;A3A3D0;
     LDA.W Sbug.customAngle,X                                             ;A3A3D3;
     JSL.L EightBitCosineMultiplication_A0B0B2                            ;A3A3D6;
-    LDA.W Temp_Unknown0E36                                               ;A3A3DA;
+    LDA.W Temp_Velocity                                                  ;A3A3DA;
     STA.L Sbug.customXVelocity,X                                         ;A3A3DD;
-    LDA.W Temp_Unknown0E38                                               ;A3A3E1;
+    LDA.W Temp_SubVelocity                                               ;A3A3E1;
     STA.L Sbug.customXSubVelocity,X                                      ;A3A3E4;
     LDA.W Enemy.init0,X                                                  ;A3A3E8;
     AND.W #$00FF                                                         ;A3A3EB;
-    STA.W Temp_Unknown0E32                                               ;A3A3EE;
+    STA.W Temp_Radius                                                    ;A3A3EE;
     LDA.W Sbug.customAngle,X                                             ;A3A3F1;
     JSL.L EightBitNegativeSineMultiplication_A0B0C6                      ;A3A3F4;
-    LDA.W Temp_Unknown0E36                                               ;A3A3F8;
+    LDA.W Temp_Velocity                                                  ;A3A3F8;
     STA.L Sbug.customYVelocity,X                                         ;A3A3FB;
-    LDA.W Temp_Unknown0E38                                               ;A3A3FF;
+    LDA.W Temp_SubVelocity                                               ;A3A3FF;
     STA.L Sbug.customYSubVelocity,X                                      ;A3A402;
     RTS                                                                  ;A3A406;
 
@@ -11019,14 +11019,14 @@ EnemyShot_Reflec:
     ASL                                                                  ;A3DC2F;
     ASL                                                                  ;A3DC30;
     ASL                                                                  ;A3DC31;
-    STA.W Temp_Unknown0E32                                               ;A3DC32;
+    STA.W Temp_ReflectionIndex                                           ;A3DC32;
     LDA.W SamusProjectile_Directions,Y                                   ;A3DC35;
     AND.W #$000F                                                         ;A3DC38;
     ASL                                                                  ;A3DC3B;
     CLC                                                                  ;A3DC3C;
-    ADC.W Temp_Unknown0E32                                               ;A3DC3D;
+    ADC.W Temp_ReflectionIndex                                           ;A3DC3D;
     TAX                                                                  ;A3DC40;
-    STA.W Temp_Unknown0E32                                               ;A3DC41;
+    STA.W Temp_ReflectionIndex                                           ;A3DC41;
     LDA.W .reflectedDirectionTable,X                                     ;A3DC44;
     CMP.W #$8000                                                         ;A3DC47;
     BEQ +                                                                ;A3DC4A;
@@ -11036,7 +11036,7 @@ EnemyShot_Reflec:
 
   .executeFunction:
     JSR.W (.reflectedDirectionTable_offsetNegatives,X)                   ;A3DC53;
-    LDX.W Temp_Unknown0E32                                               ;A3DC56;
+    LDX.W Temp_ReflectionIndex                                           ;A3DC56;
     LDA.W .reflectedDirectionTable,X                                     ;A3DC59;
     EOR.W #$FFFF                                                         ;A3DC5C;
     INC                                                                  ;A3DC5F;
@@ -11160,11 +11160,11 @@ EnemyShot_Reflec:
     LDA.W Enemy.XPosition,X                                              ;A3DDB1;
     SEC                                                                  ;A3DDB4;
     SBC.W #$0008                                                         ;A3DDB5;
-    STA.W Temp_Unknown0E36                                               ;A3DDB8;
+    STA.W Temp_Position                                                  ;A3DDB8;
     LDA.W SamusProjectile_XPositions,Y                                   ;A3DDBB;
     CLC                                                                  ;A3DDBE;
     ADC.W SamusProjectile_XRadii,Y                                       ;A3DDBF;
-    CMP.W Temp_Unknown0E36                                               ;A3DDC2;
+    CMP.W Temp_Position                                                  ;A3DDC2;
     BPL ..return1                                                        ;A3DDC5;
     LDA.W #$0000                                                         ;A3DDC7;
     RTS                                                                  ;A3DDCA;
@@ -11180,11 +11180,11 @@ EnemyShot_Reflec:
     LDA.W Enemy.XPosition,X                                              ;A3DDD2;
     CLC                                                                  ;A3DDD5;
     ADC.W #$0008                                                         ;A3DDD6;
-    STA.W Temp_Unknown0E36                                               ;A3DDD9;
+    STA.W Temp_Position                                                  ;A3DDD9;
     LDA.W SamusProjectile_XPositions,Y                                   ;A3DDDC;
     SEC                                                                  ;A3DDDF;
     SBC.W SamusProjectile_XRadii,Y                                       ;A3DDE0;
-    CMP.W Temp_Unknown0E36                                               ;A3DDE3;
+    CMP.W Temp_Position                                                  ;A3DDE3;
     BMI ..return1                                                        ;A3DDE6;
     LDA.W #$0000                                                         ;A3DDE8;
     RTS                                                                  ;A3DDEB;
@@ -11198,11 +11198,11 @@ EnemyShot_Reflec:
   .upRightDiagonal_Up:
     LDX.W EnemyIndex                                                     ;A3DDF0;
     LDA.W Enemy.XPosition,X                                              ;A3DDF3;
-    STA.W Temp_Unknown0E36                                               ;A3DDF6;
+    STA.W Temp_Position                                                  ;A3DDF6;
     LDA.W SamusProjectile_XPositions,Y                                   ;A3DDF9;
     CLC                                                                  ;A3DDFC;
     ADC.W SamusProjectile_XRadii,Y                                       ;A3DDFD;
-    CMP.W Temp_Unknown0E36                                               ;A3DE00;
+    CMP.W Temp_Position                                                  ;A3DE00;
     BMI ..return1                                                        ;A3DE03;
     LDA.W #$0000                                                         ;A3DE05;
     RTS                                                                  ;A3DE08;
@@ -11216,11 +11216,11 @@ EnemyShot_Reflec:
   .upRightDiagonal_Right:
     LDX.W EnemyIndex                                                     ;A3DE0D;
     LDA.W Enemy.YPosition,X                                              ;A3DE10;
-    STA.W Temp_Unknown0E36                                               ;A3DE13;
+    STA.W Temp_Position                                                  ;A3DE13;
     LDA.W SamusProjectile_YPositions,Y                                   ;A3DE16;
     SEC                                                                  ;A3DE19;
     SBC.W SamusProjectile_YRadii,Y                                       ;A3DE1A;
-    CMP.W Temp_Unknown0E36                                               ;A3DE1D;
+    CMP.W Temp_Position                                                  ;A3DE1D;
     BPL ..return1                                                        ;A3DE20;
     LDA.W #$0000                                                         ;A3DE22;
     RTS                                                                  ;A3DE25;
@@ -11234,11 +11234,11 @@ EnemyShot_Reflec:
   .upRightDiagonal_Down:
     LDX.W EnemyIndex                                                     ;A3DE2A;
     LDA.W Enemy.XPosition,X                                              ;A3DE2D;
-    STA.W Temp_Unknown0E36                                               ;A3DE30;
+    STA.W Temp_Position                                                  ;A3DE30;
     LDA.W SamusProjectile_XPositions,Y                                   ;A3DE33;
     SEC                                                                  ;A3DE36;
     SBC.W SamusProjectile_XRadii,Y                                       ;A3DE37;
-    CMP.W Temp_Unknown0E36                                               ;A3DE3A;
+    CMP.W Temp_Position                                                  ;A3DE3A;
     BPL ..return1                                                        ;A3DE3D;
     LDA.W #$0000                                                         ;A3DE3F;
     RTS                                                                  ;A3DE42;
@@ -11252,11 +11252,11 @@ EnemyShot_Reflec:
   .upRightDiagonal_Left:
     LDX.W EnemyIndex                                                     ;A3DE47;
     LDA.W Enemy.YPosition,X                                              ;A3DE4A;
-    STA.W Temp_Unknown0E36                                               ;A3DE4D;
+    STA.W Temp_Position                                                  ;A3DE4D;
     LDA.W SamusProjectile_YPositions,Y                                   ;A3DE50;
     CLC                                                                  ;A3DE53;
     ADC.W SamusProjectile_YRadii,Y                                       ;A3DE54;
-    CMP.W Temp_Unknown0E36                                               ;A3DE57;
+    CMP.W Temp_Position                                                  ;A3DE57;
     BMI ..return1                                                        ;A3DE5A;
     LDA.W #$0000                                                         ;A3DE5C;
     RTS                                                                  ;A3DE5F;
@@ -11272,11 +11272,11 @@ EnemyShot_Reflec:
     LDA.W Enemy.YPosition,X                                              ;A3DE67;
     CLC                                                                  ;A3DE6A;
     ADC.W #$0008                                                         ;A3DE6B;
-    STA.W Temp_Unknown0E36                                               ;A3DE6E;
+    STA.W Temp_Position                                                  ;A3DE6E;
     LDA.W SamusProjectile_YPositions,Y                                   ;A3DE71;
     SEC                                                                  ;A3DE74;
     SBC.W SamusProjectile_YRadii,Y                                       ;A3DE75;
-    CMP.W Temp_Unknown0E36                                               ;A3DE78;
+    CMP.W Temp_Position                                                  ;A3DE78;
     BMI ..return1                                                        ;A3DE7B;
     LDA.W #$0000                                                         ;A3DE7D;
     RTS                                                                  ;A3DE80;
@@ -11292,11 +11292,11 @@ EnemyShot_Reflec:
     LDA.W Enemy.YPosition,X                                              ;A3DE88;
     SEC                                                                  ;A3DE8B;
     SBC.W #$0008                                                         ;A3DE8C;
-    STA.W Temp_Unknown0E36                                               ;A3DE8F;
+    STA.W Temp_Position                                                  ;A3DE8F;
     LDA.W SamusProjectile_YPositions,Y                                   ;A3DE92;
     CLC                                                                  ;A3DE95;
     ADC.W SamusProjectile_YRadii,Y                                       ;A3DE96;
-    CMP.W Temp_Unknown0E36                                               ;A3DE99;
+    CMP.W Temp_Position                                                  ;A3DE99;
     BPL ..return1                                                        ;A3DE9C;
     LDA.W #$0000                                                         ;A3DE9E;
     RTS                                                                  ;A3DEA1;
@@ -11310,11 +11310,11 @@ EnemyShot_Reflec:
   .downRightDiagonal_Up:
     LDX.W EnemyIndex                                                     ;A3DEA6;
     LDA.W Enemy.XPosition,X                                              ;A3DEA9;
-    STA.W Temp_Unknown0E36                                               ;A3DEAC;
+    STA.W Temp_Position                                                  ;A3DEAC;
     LDA.W SamusProjectile_XPositions,Y                                   ;A3DEAF;
     SEC                                                                  ;A3DEB2;
     SBC.W SamusProjectile_XRadii,Y                                       ;A3DEB3;
-    CMP.W Temp_Unknown0E36                                               ;A3DEB6;
+    CMP.W Temp_Position                                                  ;A3DEB6;
     BMI ..return1                                                        ;A3DEB9;
     LDA.W #$0000                                                         ;A3DEBB;
     RTS                                                                  ;A3DEBE;
@@ -11328,11 +11328,11 @@ EnemyShot_Reflec:
   .downRightDiagonal_Right:
     LDX.W EnemyIndex                                                     ;A3DEC3;
     LDA.W Enemy.YPosition,X                                              ;A3DEC6;
-    STA.W Temp_Unknown0E36                                               ;A3DEC9;
+    STA.W Temp_Position                                                  ;A3DEC9;
     LDA.W SamusProjectile_YPositions,Y                                   ;A3DECC;
     CLC                                                                  ;A3DECF;
     ADC.W SamusProjectile_YRadii,Y                                       ;A3DED0;
-    CMP.W Temp_Unknown0E36                                               ;A3DED3;
+    CMP.W Temp_Position                                                  ;A3DED3;
     BPL ..return0                                                        ;A3DED6;
     LDA.W #$0001                                                         ;A3DED8;
     RTS                                                                  ;A3DEDB;
@@ -11346,11 +11346,11 @@ EnemyShot_Reflec:
   .downRightDiagonal_Down:
     LDX.W EnemyIndex                                                     ;A3DEE0;
     LDA.W Enemy.XPosition,X                                              ;A3DEE3;
-    STA.W Temp_Unknown0E36                                               ;A3DEE6;
+    STA.W Temp_Position                                                  ;A3DEE6;
     LDA.W SamusProjectile_XPositions,Y                                   ;A3DEE9;
     SEC                                                                  ;A3DEEC;
     SBC.W SamusProjectile_XRadii,Y                                       ;A3DEED;
-    CMP.W Temp_Unknown0E36                                               ;A3DEF0;
+    CMP.W Temp_Position                                                  ;A3DEF0;
     BMI ..return1                                                        ;A3DEF3;
     LDA.W #$0000                                                         ;A3DEF5;
     RTS                                                                  ;A3DEF8;
@@ -11364,11 +11364,11 @@ EnemyShot_Reflec:
   .downRightDiagonal_Left:
     LDX.W EnemyIndex                                                     ;A3DEFD;
     LDA.W Enemy.YPosition,X                                              ;A3DF00;
-    STA.W Temp_Unknown0E36                                               ;A3DF03;
+    STA.W Temp_Position                                                  ;A3DF03;
     LDA.W SamusProjectile_YPositions,Y                                   ;A3DF06;
     SEC                                                                  ;A3DF09;
     SBC.W SamusProjectile_YRadii,Y                                       ;A3DF0A;
-    CMP.W Temp_Unknown0E36                                               ;A3DF0D;
+    CMP.W Temp_Position                                                  ;A3DF0D;
     BPL ..return1                                                        ;A3DF10;
     LDA.W #$0000                                                         ;A3DF12;
     RTS                                                                  ;A3DF15;
