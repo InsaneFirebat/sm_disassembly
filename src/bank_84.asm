@@ -12269,7 +12269,7 @@ Setup_Collision_RespawningSpeedBoostBlock:
 ;;     Y: PLM index
 ;; Returns:
 ;;     Carry: Set if collision, clear otherwise
-    LDA.W SamusBoostTimer                                                ;84CDEA;
+    LDA.W SamusBoostCounter-1                                            ;84CDEA;
     AND.W #$0F00                                                         ;84CDED;
     CMP.W #$0400                                                         ;84CDF0;
     BEQ .speed                                                           ;84CDF3;
@@ -12353,7 +12353,7 @@ Setup_Reaction_RespawningShotBlock:
 Setup_Collision_RespawningBombBlock:
 ;; Parameters:
 ;;     Y: PLM index
-    LDA.W SamusBoostTimer                                                ;84CE83;
+    LDA.W SamusBoostCounter-1                                            ;84CE83;
     AND.W #$0F00                                                         ;84CE86;
     CMP.W #$0400                                                         ;84CE89;
     BEQ .screwOrSpeed                                                    ;84CE8C;

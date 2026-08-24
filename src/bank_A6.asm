@@ -2321,7 +2321,7 @@ InitAI_Puromi:
     LDA.W Enemy.YPosition,X                                              ;A69553;
     STA.L Puromi.arcOriginYPosition,X                                    ;A69556;
     LDA.W Puromi.arcRadius,X                                             ;A6955A;
-    STA.W Temp_Unknown0E32                                               ;A6955D;
+    STA.W Temp_Radius                                                    ;A6955D;
     LDA.L Puromi.startAngle,X                                            ;A69560;
     JSL.L EightBitCosineMultiplication_A0B0B2                            ;A69564;
     CLC                                                                  ;A69568;
@@ -2329,7 +2329,7 @@ InitAI_Puromi:
     STA.L Puromi.bodyPartSpawnXPosition,X                                ;A6956D;
     STA.W Enemy.XPosition,X                                              ;A69571;
     LDA.W Puromi.arcRadius,X                                             ;A69574;
-    STA.W Temp_Unknown0E32                                               ;A69577;
+    STA.W Temp_Radius                                                    ;A69577;
     LDA.L Puromi.startAngle,X                                            ;A6957A;
     JSL.L EightBitNegativeSineMultiplication_A0B0C6                      ;A6957E;
     CLC                                                                  ;A69582;
@@ -2458,7 +2458,7 @@ Function_Puromi_Inactive:
 Function_Puromi_Active:
     LDX.W EnemyIndex                                                     ;A69682;
     LDA.W Puromi.arcRadius,X                                             ;A69685;
-    STA.W Temp_Unknown0E32                                               ;A69688;
+    STA.W Temp_Radius                                                    ;A69688;
     LDA.L Puromi.angle,X                                                 ;A6968B;
     JSR.W CheckExplosionCondition                                        ;A6968F;
     STA.B DP_Temp1E                                                      ;A69692;

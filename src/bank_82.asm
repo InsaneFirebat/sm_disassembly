@@ -1135,7 +1135,7 @@ DemoRoomCode_Kraid_KraidFunctionTimer:
 DemoRoomCode_TourianEntrance_KraidIsDead:
     SEP #$20                                                             ;828932;
     LDA.B #$01                                                           ;828934;
-    STA.L SRAMMirror_BossBrinstar                                        ;828936;
+    STA.L SRAMMirror_Boss_Brinstar                                       ;828936;
     REP #$20                                                             ;82893A;
     RTS                                                                  ;82893C;
 
@@ -1594,7 +1594,7 @@ Spawn_GameOptionsMenu_Object:
     PHP                                                                  ;828BCB;
     REP #$30                                                             ;828BCC;
     PHX                                                                  ;828BCE;
-    STA.W GameOptionsMenuObject_InitParam                                ;828BCF;
+    STA.W GameOptionsMenuObject_InitParam                                ;828BCF; neverRead?
     TYX                                                                  ;828BD2;
     LDY.W #$000E                                                         ;828BD3;
 
@@ -2120,7 +2120,7 @@ LoadPauseScreen_BaseTilemaps:
     STA.W $420B                                                          ;828F3A;
     REP #$30                                                             ;828F3D;
     LDY.W #Dummy_Samus_Wireframe_Tilemap                                 ;828F3F;
-    LDX.W #$01D8                                                         ;828F42;
+    LDX.W #DummySamusWireframeTilemap-PauseMenuTilemap                   ;828F42;
     LDA.W #$0011                                                         ;828F45;
     STA.B DP_Temp14                                                      ;828F48;
 
@@ -2130,7 +2130,7 @@ LoadPauseScreen_BaseTilemaps:
 
   .loopColumns:
     LDA.W $0000,Y                                                        ;828F4F;
-    STA.L GameOptionsMenuTilemap,X                                       ;828F52;
+    STA.L PauseMenuTilemap,X                                             ;828F52;
     INX                                                                  ;828F56;
     INX                                                                  ;828F57;
     INY                                                                  ;828F58;
@@ -5612,7 +5612,7 @@ EquipmentScreen_Main:
 EquipmentScreen_Main_Tanks:
     PHP                                                                  ;82AC70;
     REP #$30                                                             ;82AC71;
-    LDA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82AC73;
+    LDA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82AC73;
     XBA                                                                  ;82AC76;
     AND.W #$00FF                                                         ;82AC77;
     ASL                                                                  ;82AC7A;
@@ -5661,17 +5661,17 @@ EquipmentScreen_Main_Tanks_DPadResponse:
     BNE .up                                                              ;82ACB5;
     BIT.W #$0400                                                         ;82ACB7;
     BEQ .exit                                                            ;82ACBA;
-    LDA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82ACBC;
+    LDA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82ACBC;
     AND.W #$FF00                                                         ;82ACBF;
     CMP.W #$0100                                                         ;82ACC2;
     BEQ .moveToBeams                                                     ;82ACC5;
     LDA.W ReserveTankMode                                                ;82ACC7;
     CMP.W #$0001                                                         ;82ACCA;
     BEQ .moveToBeams                                                     ;82ACCD;
-    LDA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82ACCF;
+    LDA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82ACCF;
     CLC                                                                  ;82ACD2;
     ADC.W #$0100                                                         ;82ACD3;
-    STA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82ACD6;
+    STA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82ACD6;
     LDA.W ReserveEnergy                                                  ;82ACD9;
     BEQ .moveToBeams                                                     ;82ACDC;
     LDA.W #$0037                                                         ;82ACDE;
@@ -5684,15 +5684,15 @@ EquipmentScreen_Main_Tanks_DPadResponse:
     BRA .return                                                          ;82ACED;
 
   .up:
-    LDA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82ACEF;
+    LDA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82ACEF;
     AND.W #$FF00                                                         ;82ACF2;
     BEQ .return                                                          ;82ACF5;
     LDA.W #$0037                                                         ;82ACF7;
     JSL.L QueueSound_Lib1_Max6                                           ;82ACFA;
-    LDA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82ACFE;
+    LDA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82ACFE;
     SEC                                                                  ;82AD01;
     SBC.W #$0100                                                         ;82AD02;
-    STA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82AD05;
+    STA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82AD05;
 
   .return:
     PLP                                                                  ;82AD08;
@@ -6072,13 +6072,13 @@ EquipmentScreen_Main_Weapons_MoveResponse:
     BNE .down                                                            ;82B00D;
     BIT.W #$0800                                                         ;82B00F;
     BEQ .return                                                          ;82B012;
-    LDA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B014;
+    LDA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82B014;
     AND.W #$FF00                                                         ;82B017;
     BEQ .moveToReserve                                                   ;82B01A;
-    LDA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B01C;
+    LDA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82B01C;
     SEC                                                                  ;82B01F;
     SBC.W #$0100                                                         ;82B020;
-    STA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B023;
+    STA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82B023;
     XBA                                                                  ;82B026;
     AND.W #$00FF                                                         ;82B027;
     ASL                                                                  ;82B02A;
@@ -6093,19 +6093,19 @@ EquipmentScreen_Main_Weapons_MoveResponse:
     CMP.W #$0000                                                         ;82B03A;
     BNE .return                                                          ;82B03D;
     LDA.B DP_Temp12                                                      ;82B03F;
-    STA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B041;
+    STA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82B041;
     BRA .return                                                          ;82B044;
 
   .down:
     LDA.W HyperBeam                                                      ;82B046;
     BNE .return                                                          ;82B049;
-    LDA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B04B;
+    LDA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82B04B;
     CMP.W #$0401                                                         ;82B04E;
     BEQ .return                                                          ;82B051;
-    LDA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B053;
+    LDA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82B053;
     CLC                                                                  ;82B056;
     ADC.W #$0100                                                         ;82B057;
-    STA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B05A;
+    STA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82B05A;
     XBA                                                                  ;82B05D;
     AND.W #$00FF                                                         ;82B05E;
     ASL                                                                  ;82B061;
@@ -6206,14 +6206,14 @@ EquipmentScreen_SuitsMisc_MoveResponse:
     BNE .up                                                              ;82B101;
     BIT.W #$0400                                                         ;82B103;
     BEQ .return                                                          ;82B106;
-    LDA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B108;
+    LDA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82B108;
     AND.W #$FF00                                                         ;82B10B;
     CMP.W #$0500                                                         ;82B10E;
     BEQ .moveToBoots                                                     ;82B111;
-    LDA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B113;
+    LDA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82B113;
     CLC                                                                  ;82B116;
     ADC.W #$0100                                                         ;82B117;
-    STA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B11A;
+    STA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82B11A;
     XBA                                                                  ;82B11D;
     AND.W #$00FF                                                         ;82B11E;
     ASL                                                                  ;82B121;
@@ -6228,13 +6228,13 @@ EquipmentScreen_SuitsMisc_MoveResponse:
     BRA .return                                                          ;82B131;
 
   .up:
-    LDA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B133;
+    LDA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82B133;
     AND.W #$FF00                                                         ;82B136;
     BEQ .return                                                          ;82B139;
-    LDA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B13B;
+    LDA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82B13B;
     SEC                                                                  ;82B13E;
     SBC.W #$0100                                                         ;82B13F;
-    STA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B142;
+    STA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82B142;
     XBA                                                                  ;82B145;
     AND.W #$00FF                                                         ;82B146;
     ASL                                                                  ;82B149;
@@ -6288,13 +6288,13 @@ EquipmentScreen_Main_Boots_MoveResponse:
     BNE .down                                                            ;82B194;
     BIT.W #$0800                                                         ;82B196;
     BEQ .return                                                          ;82B199;
-    LDA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B19B;
+    LDA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82B19B;
     AND.W #$FF00                                                         ;82B19E;
     BEQ .moveToSuitsMisc                                                 ;82B1A1;
-    LDA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B1A3;
+    LDA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82B1A3;
     SEC                                                                  ;82B1A6;
     SBC.W #$0100                                                         ;82B1A7;
-    STA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B1AA;
+    STA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82B1AA;
     XBA                                                                  ;82B1AD;
     AND.W #$00FF                                                         ;82B1AE;
     ASL                                                                  ;82B1B1;
@@ -6309,13 +6309,13 @@ EquipmentScreen_Main_Boots_MoveResponse:
     BRA .return                                                          ;82B1C1;
 
   .down:
-    LDA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B1C3;
+    LDA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82B1C3;
     CMP.W #$0203                                                         ;82B1C6;
     BEQ .return                                                          ;82B1C9;
-    LDA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B1CB;
+    LDA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82B1CB;
     CLC                                                                  ;82B1CE;
     ADC.W #$0100                                                         ;82B1CF;
-    STA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B1D2;
+    STA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82B1D2;
     XBA                                                                  ;82B1D5;
     AND.W #$00FF                                                         ;82B1D6;
     ASL                                                                  ;82B1D9;
@@ -6932,7 +6932,7 @@ EquipmentScreen_Main_ButtonResponse:
     ASL                                                                  ;82B581;
     TAX                                                                  ;82B582;
     STA.B DP_Temp1A                                                      ;82B583;
-    LDA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B585;
+    LDA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82B585;
     XBA                                                                  ;82B588;
     AND.W #$00FF                                                         ;82B589;
     ASL                                                                  ;82B58C;
@@ -8093,7 +8093,7 @@ Cancel_Sound_Effects:
 Queue_Samus_Movement_SoundEffects:
 ; Called by message boxes and unpausing
     REP #$30                                                             ;82BE2F;
-    LDA.W SamusBoostTimer                                                ;82BE31;
+    LDA.W SamusBoostCounter-1                                            ;82BE31;
     AND.W #$FF00                                                         ;82BE34;
     CMP.W #$0400                                                         ;82BE37;
     BNE +                                                                ;82BE3A;
@@ -12945,7 +12945,7 @@ Load_Level_Scroll_and_CRE_Data:
     LDA.W LevelDataPointer                                               ;82EA97;
     STA.B DP_DecompSrc                                                   ;82EA9A;
     JSL.L Decompression_HardcodedDestination                             ;82EA9C;
-    dl $7F0000                                                           ;82EAA0;
+    dl SizeOfLevelData                                                   ;82EAA0;
     PHB                                                                  ;82EAA3;
     PEA.W $7F00                                                          ;82EAA4;
     PLB                                                                  ;82EAA7;
