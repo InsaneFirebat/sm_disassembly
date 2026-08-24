@@ -2598,7 +2598,7 @@ MainAI_Crocomire_DeathSequence_12_2E_Hop_3_4_LoadMeltTiles:
     STA.W CrocomireMelting_MaxAdjustedDestYOffset                        ;A49458;
     STA.W CrocomireMelting_InitialAdjustedDestYOffset                    ;A4945B;
     LDA.W MeltingCrocomireTilesLoadingTable_Melting1_0+2,X               ;A4945E;
-    STA.W CrocomireMelting_NeverRead0696                                 ;A49461;
+    STA.W CrocomireMelting_neverRead0696                                 ;A49461;
     LDA.W MeltingCrocomireTilesLoadingTable_Melting1_0+4,X               ;A49464;
     STA.W CrocomireMelting_WordsToLoad                                   ;A49467;
     STZ.B DP_Temp00                                                      ;A4946A;

@@ -271,7 +271,7 @@ Temp_Minimap: skip 2 ; $060B
 RemainingEnemyHitboxEntries: skip 0 ; $060D
 NumberOfExtendedTilemapTiles: skip 0 ; $060D
 BotwoonSpitLoopCounter: skip 2 ; $060D
-ProjectileCounterMirror: skip 2 ; $060F
+ProjectileCounterMirror_neverRead: skip 2 ; $060F
 skip 6 ; $0611..16
 
 APU_UploadingFlag: skip 2 ; $0617
@@ -313,7 +313,7 @@ CrocomireMelting_WordsToLoad: skip 2 ; $068E
 CrocomireMelting_XOffsetTableIndex: skip 2 ; $0690
 CrocomireMelting_DisplacementCoefficient: skip 2 ; $0692
 CrocomireMelting_InitialAdjustedDestYOffset: skip 2 ; $0694
-CrocomireMelting_NeverRead0696: skip 2 ; $0696
+CrocomireMelting_neverRead0696: skip 2 ; $0696
 CrocomireMelting_MaxAdjustedDestYOffset: skip 2 ; $0698
 CrocomireMelting_TilesLoadingTableIndex: skip 2 ; $069A
 CrocomireMelting_YOffsets: skip $81 ; $069C..071D
@@ -473,8 +473,7 @@ RoomHeightInPixels: skip 0 ; $0937
 VRAMTilemapScreenBaseAddr: skip 0 ; $0937
 VRAMTilemapSourceDataIndex: skip 0 ; $0937
 WrappedVRAMTilemapScreenBaseAddr: skip 2 ; $0937
-ProposedScrolledLayer1XPosition: skip 0 ; $0939
-ProposedScrolledLayer1YPosition: skip 0 ; $0939
+ProposedScrolledLayer1Position: skip 0 ; $0939
 BackgroundDataLoopCounter: skip 2 ; $0939
 BackgroundBlockToUpdate: skip 2 ; $093B
 skip 2 ; $093D
@@ -484,6 +483,7 @@ TimerStatus: skip 2 ; $0943
 TimerCentiseconds: skip 1 ; $0945
 TimerSeconds: skip 1 ; $0946
 TimerMinutes: skip 1 ; $0947
+TimerStatusCounter: skip 0 ; $0948
 TimerXSubPosition: skip 1 ; $0948
 TimerXPosition: skip 1 ; $0949
 TimerYSubPosition: skip 1 ; $094A
@@ -680,7 +680,8 @@ ArmCannonFrame: skip 2 ; $0AA8
 ArmCannonToggleFlag: skip 2 ; $0AAA
 ArmCannonDrawingMode: skip 2 ; $0AAC
 
-SpeedEcho_Index: skip 2 ; $0AAE
+SpeedEcho_Index: skip 1 ; $0AAE
+CrashEcho_Phase: skip 1 ; $0AAF
 SpeedEcho_XPosition0: skip 2 ; $0AB0
 SpeedEcho_XPosition1: skip 2 ; $0AB2
 SpeedEcho_XPosition2: skip 2 ; $0AB4
@@ -696,21 +697,6 @@ SpeedEcho_DrawFlag3: skip 2 ; $0AC6
 SpeedEcho_SamusTopHalfSpritemapIndex: skip 2 ; $0AC8
 SpeedEcho_SamusBottomHalfSpritemapIndex: skip 2 ; $0ACA
 
-org $0AAE
-CrashEcho_DistanceFromSamus: skip 1 ; $0AAE
-CrashEcho_Phase: skip 1 ; $0AAF
-CrashEcho_XPosition0: skip 2 ; $0AB0
-CrashEcho_XPosition1: skip 2 ; $0AB2
-CrashEcho_AngleDelta: skip 2 ; $0AB4
-skip 2 ; $0AB6
-CrashEcho_YPosition0: skip 2 ; $0AB8
-CrashEcho_YPosition1: skip 2 ; $0ABA
-CrashEcho_CircleTimer: skip 2 ; $0ABC
-skip 2 ; $0ABE
-CrashEcho_Angle0: skip 2 ; $0AC0
-CrashEcho_Angle1: skip 2 ; $0AC2
-
-org $0ACC
 SpecialSamusPaletteType: skip 2 ; $0ACC
 SpecialSamusPaletteFrame: skip 2 ; $0ACE
 CommonPaletteTimer: skip 2 ; $0AD0
@@ -857,8 +843,8 @@ GrappleBeam_Function: skip 2 ; $0D32
 GrappleBeam_DirectionFired: skip 2 ; $0D34
 GrappleBeam_SpecialAngleHandlingFlag: skip 2 ; $0D36
 GrappleBeam_FailedSwingMovementCounter: skip 2 ; $0D38
-GrappleBeam_NeverRead0D3A: skip 2 ; $0D3A
-GrappleBeam_NeverRead0D3C: skip 2 ; $0D3C
+GrappleBeam_neverRead0D3A: skip 2 ; $0D3A
+GrappleBeam_neverRead0D3C: skip 2 ; $0D3C
 GrappleBeam_StartAnimationTimer: skip 2 ; $0D3E
 GrappleBeam_StartAnimationTilePointer: skip 2 ; $0D40
 GrappleBeam_SegmentAnimationInstructionTimers: skip $20 ; $0D42..61
@@ -868,6 +854,7 @@ GrappleCollision_XQuarterSubVelocity: skip 0 ; $0D82
 GrappleCollision_JumpAddress: skip 0 ; $0D82
 GrappleCollision_EndAngleParam: skip 2 ; $0D82
 GrappleCollision_XQuarterVelocity: skip 0 ; $0D84
+GrappleCollision_BeamLength: skip 0 ; $0D84
 GrappleCollision_DistanceFromEndParam: skip 2 ; $0D84
 GrappleCollision_YQuarterSubVelocity: skip 0 ; $0D86
 GrappleCollision_NewEndAngle: skip 2 ; $0D86
@@ -909,7 +896,7 @@ ProjSpeed_SubDistanceSamusMovedRight: skip 2 ; $0DB0
 ProjSpeed_DistanceSamusMovedUp: skip 2 ; $0DB2
 ProjSpeed_SubDistanceSamusMovedUp: skip 2 ; $0DB4
 ProjSpeed_DistanceSamusMovedDown: skip 2 ; $0DB6
-neverRead0DB8: skip 2 ; $0DB8
+ProjSpeed_SubDistanceSamusMovedDown: skip 2 ; $0DB8
 SamusPositionAdjustedBySlopeFlag: skip 2 ; $0DBA
 TotalSamusXSpeed: skip 2 ; $0DBC
 TotalSamusXSubSpeed: skip 2 ; $0DBE
@@ -945,9 +932,8 @@ DeathAnimation_PreFlashingTimer: skip 2 ; $0DE8
 
 org $0DE2
 GameOptionsMenuIndex: skip 2 ; $0DE2
-skip 6
-CrystalFlashAmmoDecrementingIndex: skip 2 ; $0DEA
 
+org $0DEC
 EndingClearTime_HoursTens: skip 2 ; $0DEC
 EndingClearTime_HoursUnits: skip 2 ; $0DEE
 EndingClearTime_MinutesTens: skip 2 ; $0DF0
@@ -964,7 +950,8 @@ SuitPickup_ColorMathGreen: skip 1 ; $0DF1
 SuitPickup_ColorMathBlue: skip 1 ; $0DF2
 SuitPickup_PaletteTransitionColor: skip 1 ; $0DF3
 
-org $0DEC
+org $0DEA
+CrystalFlash_AmmoDecrementingIndex: skip 2 ; $0DEA
 CrystalFlash_AmmoDecrementingTimer: skip 2 ; $0DEC
 skip 2 ; $0DEE
 CrystalFlash_SamusYPosition: skip 2 ; $0DF0
@@ -994,17 +981,7 @@ DistanceToEjectSamusDownDueToPostGrappleCollision: skip 2 ; $0E0A
 EndSamusRAM:
 
 ShootingStars_StarIndex: skip 1 ; $0E0C
-ShootingStars_AnimationFrame: skip 1 ; $0E0D
-ShootingStars_XPosition: skip 2 ; $0E0E
-ShootingStars_XSubPosition: skip 2 ; $0E10
-ShootingStars_YPosition: skip 2 ; $0E12
-ShootingStars_YSubPosition: skip 2 ; $0E14
-ShootingStars_AnimationTimer: skip 2 ; $0E16
-ShootingStars_XVelocity: skip 2 ; $0E18
-ShootingStars_YVelocity: skip 2 ; $0E1A
-
-org $0E0C
-skip 6 ; $0E0C..11
+skip 5 ; $0E0D..11
 DebugDisableSpriteInteractions: skip 2 ; $0E12
 skip 2 ; $0E14
 ElevatorProperties: skip 2 ; $0E16
@@ -1027,7 +1004,7 @@ Temp_AngleToMove: skip 0 ; $0E20
 Temp_DebuggerHexValueXPosition: skip 0 ; $0E20
 Temp_InstListIndex: skip 0 ; $0E20
 Temp_TargetHoleAngle: skip 0 ; $0E20
-Temp_Unknown0E20: skip 2 ; $0E20
+Temp_DraygonAngle: skip 2 ; $0E20
 Temp_DemoRecorderFrameCounterYPosition: skip 0 ; $0E22
 Temp_ProjectileYRadius: skip 0 ; $0E22
 Temp_SpawnEnemyLoopCounter: skip 0 ; $0E22
@@ -1048,10 +1025,10 @@ Temp_XSquaredDividedByRadius: skip 0 ; $0E26
 Temp_XSubSpeed: skip 0 ; $0E26
 Temp_SwoopYPositionIndex: skip 0 ; $0E26
 Temp_EnemySetEntryPointer: skip 2 ; $0E26
-Temp_NeverRead0E28: skip 0 ; $0E28
+Temp_neverRead0E28: skip 0 ; $0E28
 Temp_YSpeed: skip 2 ; $0E28
 Temp_YSubSpeed: skip 0 ; $0E2A
-Temp_NeverRead0E2A: skip 0 ; $0E2A
+Temp_neverRead0E2A: skip 0 ; $0E2A
 Temp_MetareeParticleVRAMTilesIndex: skip 0 ; $0E2A
 Temp_RowYPosition: skip 2 ; $0E2A
 Temp_MetareeParticlePaletteIndex: skip 0 ; $0E2C
@@ -1065,23 +1042,23 @@ Temp_RightBottomBoundaryPosition: skip 0 ; $0E32
 Temp_XPosition: skip 0 ; $0E32
 Temp_Operand: skip 0 ; $0E32
 Temp_AbsoluteValue: skip 0 ; $0E32
-Temp_Magnitude: skip 0 ; $0E32
-Temp_UnknownIndex: skip 0 ; $0E32
 Temp_TargetYPosition: skip 0 ; $0E32
-Temp_Unknown0E32: skip 0 ; $0E32
+Temp_SwapNybblesByte: skip 0 ; $0E32
+Temp_Radius: skip 0 ; $0E32
+Temp_SamusPosition: skip 0 ; $0E32
+Temp_ReflectionIndex: skip 0 ; $0E32
 Temp_SpitProjectileSpeed: skip 2 ; $0E32
 Temp_DrawingQueueIndex0E34: skip 0 ; $0E34
 Temp_YPosition: skip 0 ; $0E34
 Temp_AbsoluteDifference: skip 0 ; $0E34
 Temp_Angle: skip 0 ; $0E34
-Temp_SwapNybbles: skip 0 ; $0E34
-Temp_Unknown0E34: skip 2 ; $0E34
-Temp_Unknown0E36: skip 0 ; $0E36
+Temp_SwapNybbles: skip 2 ; $0E34
+Temp_Position: skip 0 ; $0E36
+Temp_Velocity: skip 0 ; $0E36
 Temp_DrawingQueueSizeBackup: skip 0 ; $0E36
 Temp_SamusXPosition: skip 0 ; $0E36
-Temp_SineProduct: skip 0 ; $0E36
-Temp_TargetPosition: skip 2 ; $0E36
-Temp_Unknown0E38: skip 0 ; $0E38
+Temp_SineProduct: skip 2 ; $0E36
+Temp_SubVelocity: skip 0 ; $0E38
 Temp_DrawingQueueIndex0E38: skip 0 ; $0E38
 Temp_SamusYPosition: skip 0 ; $0E38
 Temp_SineProductFractionalPart: skip 2 ; $0E38
@@ -1390,11 +1367,11 @@ CreditsObject_ShootingStarsEnable: skip 2 ; $1A05
 
 org $1A49
 CinematicFunctionTimer: skip 2 ; $1A49
+PostCreditsCinematicFunctionTimer: skip 0 ; $1A4B
 IntroCrossFadeTimer: skip 0 ; $1A4B
 CeresExplosion2OffsetIndex: skip 0 ; $1A4B
 ZebesExplosionAfterglowTimer: skip 0 ; $1A4B
-EndingShipXVelocity: skip 0 ; $1A4B
-PostCreditsSamusBeamVRAMTransferIndex: skip 2 ; $1A4B
+EndingShipXVelocity: skip 2 ; $1A4B
 neverRead1A4D: skip 0 ; $1A4D
 IntroBabyMetroidXVelocity: skip 0 ; $1A4D
 IntroBabyMetroidIdleTimer: skip 0 ; $1A4D
@@ -1466,7 +1443,6 @@ CustomDrawInst_NumberOfBlocks: skip 2 ; $1E67
 CustomDrawInst_PLMBlock: skip 2 ; $1E69
 CustomDrawInst_Terminator: skip 2 ; $1E6B
 
-org $1E6D
 TourianStatueFinishedProcessing: skip 2 ; $1E6D
 TourianStatueAnimationState: skip 2 ; $1E6F
 SamusInQuicksand: skip 2 ; $1E71
@@ -1478,7 +1454,7 @@ PaletteFXObject_Enable: skip 2 ; $1E79
 PaletteFXObject_Index: skip 2 ; $1E7B
 PaletteFXObject_IDs: skip $10 ; $1E7D..8C
 PaletteFXObject_ColorIndices: skip $10 ; $1E8D..9C
-PaletteFXObject_Vars: skip $10 ; $1E9D..AC
+skip $10 ; $1E9D..AC
 PaletteFXObject_PreInstructions: skip $10 ; $1EAD..BC
 PaletteFXObject_InstListPointers: skip $10 ; $1EBD..CC
 PaletteFXObject_InstructionTimers: skip $10 ; $1ECD..DC
@@ -1535,6 +1511,7 @@ org $7E2000
 RoomTiles: ; $7E2000..9FFF
 GreyCloudsDuringZebesExplosionTilemap: ; $7E2000..5FFF
 PostCreditsSuitlessSamusTiles: ; $7E2000..??
+DecompressionBufferForKraidBottomHalfBG2Tilemap: ; $7E2000..25FF
 EnemyBG2Tilemap: ; $7E2000..2FFF
 
 org $7E3000
@@ -1555,6 +1532,7 @@ skip $80
 
 org $7E3000
 GameOptionsMenuTilemap: ; $7E3000..37FF
+PauseMenuTilemap: ; $7E3000..37FF
 PauseMenuMapTilemap: ; $7E3000..37FF
 
 MessageBoxBG3YScrollHDMADataTable: ; $7E3000..31DF
@@ -1613,15 +1591,13 @@ EnemyTileData: ; $7E7000..97FF
 CRETiles: ; $7E7000..9FFF
 
 struct EnemySpawnData $7E7000
-  .unused7000: skip 2 ; $7E7000
-  .neverRead7002: skip 2 ; $7E7002
-  .unknown7004: skip 2 ; $7E7004
+skip 6 ; $7E7000..04
   .VRAMTilesIndex: skip 2 ; $7E7006
   .paletteIndex: skip 2 ; $7E7008
-skip 6
+skip 6 ; $7E7008..0F
   .graphicalXOffset: skip 2 ; $7E7010
   .graphicalYOffset: skip 2 ; $7E7012
-skip 10
+skip 10 ; $7E7014..1D
   .ID: skip 2 ; $7E701E
   .XPosition: skip 2 ; $7E7020
   .YPosition: skip 2 ; $7E7022
@@ -1630,7 +1606,7 @@ skip 10
   .extraProperties: skip 2 ; $7E7028
   .param1: skip 2 ; $7E702A
   .param2: skip 2 ; $7E702C
-  .name: skip 12 ; $7E702E..39
+skip 12 ; $7E702E..39
 endstruct
 
 ; also see "ENEMY RAM" section below for extra enemy RAM ($7800, $8000, $8800)
@@ -1678,17 +1654,16 @@ BotwoonPositionHistory: ; $7E9000..93FF
 WavyPhantoonBG2XScrollIndirectHDMATable: ; $7E9000..19
 EyeBeamWindow1IndirectHDMATable: ; $7E9000..0A
 KraidDeathSequenceQuakeSoundTimer: skip 2 ; $7E9000
-DisableSporeSpawnSporeGeneration: ; $7E9000
 DraygonSwoopYPositions: ; $7E9002..97FF
 
 org $7E9000
 CrocomireDeath_PreBridgeBlockDustCloudSpawnedFlag: skip 2 ; $7E9000
 CrocomireDeath_BridgePart1CrumbledFlag: skip 2 ; $7E9002
-skip 2
+skip 2 ; $7E9004
 CrocomireDeath_BridgePart2CrumbledFlag: skip 2 ; $7E9006
-skip 2
+skip 2 ; $7E9008
 neverRead900A: skip 2 ; $7E900A
-skip 10
+skip 10 ; $7E900C..15
 CrocomireDeath_CrumblingBridgeIndex: skip 2 ; $7E9016
 CrocomireDeath_AcidDamageSmokeTimer: skip 2 ; $7E9018
 
@@ -1698,16 +1673,16 @@ PhantoonMaterializationSFXIndex: ; $7E9032
 org $7E9080
 EyeBeamAngularWidthDelta: skip 2 ; $7E9080
 EyeBeamAngularSubWidthDelta: ; $7E9082
-skip 14
+skip 14 ; $7E9082..8F
 EyeBeamColorIndex: ; $7E9090
-skip $70
+skip $70 ; $7E9090..FF
 EyeBeamWindow1HDMADataTable: ; $7E9100..92FF
 WavyPhantoonBG2XScrollHDMADataTable: ; $7E9100..FF
-skip $400
+skip $400 ; $7E9100..94FF
 TorizoCorpseRottingGFX: ; $7E9500..??
-skip $200
+skip $200 ; $7E9500..96FF
 MotherBrainCorpseRottingRotTable: ; $7E9700..BF
-skip $DC
+skip $DC ; $7E9700..DB
 EnemyProjectileAngles: ; $7E97DC..FF
 
 org $7E9800
@@ -1715,23 +1690,23 @@ XrayWindow2HDMADataTable: ; $7E9800..99FF
 SuitPickupWindow1HDMADataTable: ; $7E9800..99FF
 WavySamusBG3XScrollHDMADataTable: ; $7E9800..FF
 TitleScreenGradientColorMathSubScreenBackdropColorHDMATable: ; $7E9800..41
-skip $400
+skip $400 ; $7E9800..9BFF
 ExpandingContractingEffectBG2YScrollIndirectHDMADataTable: ; $7E9C00..9DBF
 FXType22BG3YScrollHDMATable: ; $7E9C00..2B
 MotherBrainRainbowBeamWindow1IndirectHDMATable: ; $7E9C00..0D
 LavaAcidBG3YScrollHDMADataTable: ; $7E9C00..03
 AboveSurfaceWaterBG3XScrollHDMADataEntry: ; $7E9C00
-skip 4
+skip 4 ; $7E9C00..03
 WaterBG3XScrollHDMADataTable: ; $7E9C04..23
-skip $42
+skip $42 ; $7E9C04..45
 LavaAcidBG2YScrollHDMADataTable: ; $7E9C46..65
-skip 2
+skip 2 ; $7E9C48
 WaterBG2XScrollHDMADataTable: ; $7E9C48..67
 
 org $7E9D00
 MotherBrainRainbowBeamWindow1HDMADataTable: ; $7E9D00..??
 HazeColorMathSubscreenBackdropColorHDMADataTable: ; $7E9D00..0F
-skip $100
+skip $100 ; $7E9D00..9DFF
 DummyHDMATable: ; $7E9E00
 ExpandingSquareTransitionWindow1LeftIndirectHDMATable: ; $7E9E00..0B
 ExpandingContractingEffectBG2YScrollIndirectHDMATable: ; $7E9E00..07
@@ -1742,7 +1717,7 @@ org $7E9E10
 ExpandingSquare_TransitionWindow1RightIndirectHDMATable: skip $10 ; $7E9E10..1B
 ExpandingSquare_TopBottomMarginRightPosition: skip 2 ; $7E9E20
 ExpandingSquare_TopBottomMarginLeftPosition: skip 2 ; $7E9E22
-skip 12
+skip 12 ; $7E9E24..2F
 ExpandingSquare_LeftSubPosition: skip 2 ; $7E9E30
 ExpandingSquare_LeftPosition: skip 2 ; $7E9E32
 ExpandingSquare_RightSubPosition: skip 2 ; $7E9E34
@@ -1763,7 +1738,7 @@ ExpandingSquare_Timer: skip 2 ; $7E9E50
 
 org $7E9E80
 FXType22BG3XScrollHDMADataTable: ; $7E9E80..??
-skip $80
+skip $80 ; $7E9E80..9F00
 ScrollingSkyBG2XScrollIndirectHDMATable: skip 2 ; $7E9F00..7F
 FXType22BG1XScrollIndirectHDMADataTable: skip $7E ; $7E9F02..??
 ScrollingSkyBG2XScrollHDMADataTable: ; $7E9F80..DB
@@ -1778,7 +1753,7 @@ TileTable:
 org $7EA000
 DecompressedCRE: ; $7EA000..A7FF
 EndingFont3Tiles: ; $7EA000..AFFF
-skip $800
+skip $800 ; $7EA000..A800
 DecompressedSCE: ; $7EA800..BFFF
 
 org $7EC000
@@ -1787,29 +1762,15 @@ Palettes_MainBackdrop: skip 2 ; $7EC000
 Palettes_BG3P0AcidHighlight: skip 2 ; $7EC002
 Palettes_BG3P0AcidBubbles: skip 2 ; $7EC004
 Palettes_BG3P0AcidBackground: skip 2 ; $7EC006
-Palettes_BG3P1: skip 8 ; $7EC008..0F
+skip 8 ; $7EC008..0F
 Palettes_BG3P2: skip 2 ; $7EC010
-Palettes_BG3P2MinimapExplored: skip 0 ; $7EC012
-Palettes_BG3P2NonEmptyEtank: skip 0 ; $7EC012
-Palettes_BG3P2MessageBoxHeaderText: skip 0 ; $7EC012
-Palettes_BG3P2MessageBoxAButton: skip 2 ; $7EC012
-Palettes_BG3P2MinimapExploredFeature: skip 0 ; $7EC014
-Palettes_BG3P2NonEmptyEtankOutline: skip 0 ; $7EC014
-Palettes_BG3P2MinimapMessageBoxBodyText: skip 2 ; $7EC014
-Palettes_BG3P2MinimapExploredBackground: skip 0 ; $7EC016
-Palettes_BG3P2NonEmptyEtankBackground: skip 0 ; $7EC016
-Palettes_BG3P2MessageBoxBackground: skip 2 ; $7EC016
+Palettes_BG3P2MinimapExplored: skip 2 ; $7EC012
+Palettes_BG3P2MinimapExploredFeature: skip 2 ; $7EC014
+skip 2 ; $7EC016
 Palettes_BG3P3: skip 2 ; $7EC018
-Palettes_BG3P3MinimapUnexplored: skip 0 ; $7EC01A
-Palettes_BG3P3HUDTextOutline: skip 0 ; $7EC01A
-Palettes_BG3P3EmptyReserveAutoIcon: skip 0 ; $7EC01A
-Palettes_BG3P3MessageBoxXButton: skip 0 ; $7EC01A
-Palettes_BG3P3UnselectedSaveDialog: skip 2 ; $7EC01A
-Palettes_BG3P3MinimapUnexploredFeature: skip 0 ; $7EC01C
-Palettes_BG3P3HUDText: skip 0 ; $7EC01C
-Palettes_BG3P3MinimapGrid: skip 2 ; $7EC01C
-Palettes_BG3P3MinimapUnexploredBackground: skip 0 ; $7EC01E
-Palettes_BG3P3HUDBackground: skip 2 ; $7EC01E
+Palettes_BG3P3MinimapUnexplored: skip 2 ; $7EC01A
+Palettes_BG3P3MinimapUnexploredFeature: skip 2 ; $7EC01C
+skip 2 ; $7EC01E
 Palettes_BG3P4: skip 2 ; $7EC020
 Palettes_BG3P4HighlightedHUDItemBackgroundOutline: skip 2 ; $7EC022
 Palettes_BG3P4HighlightedHUDItemBackground: skip 2 ; $7EC024
@@ -1823,18 +1784,8 @@ Palettes_BG3P6FXPrimary: skip 2 ; $7EC032
 Palettes_BG3P6FXSecondary: skip 2 ; $7EC034
 Palettes_BG3P6FXBackground: skip 2 ; $7EC036
 Palettes_BG3P7: skip 2 ; $7EC038
-Palettes_BG3P7MinimapRoomHighlight: skip 0 ; $7EC03A
-Palettes_BG3P7NonEmptyReserveAutoIcon: skip 0 ; $7EC03A
-Palettes_BG3P7SaveDialogText: skip 0 ; $7EC03A
-Palettes_BG3P7MessageBoxBButton: skip 0 ; $7EC03A
-Palettes_BG3P7MessageBoxSamusSuit: skip 2 ; $7EC03A
-Palettes_BG3P7MinimapRoomFeatureHighlight: skip 0 ; $7EC03C
-Palettes_BG3P7MessageBoxSamusSuitShading: skip 2 ; $7EC03C
-Palettes_BG3P7MinimapBackground: skip 0 ; $7EC03E
-Palettes_BG3P7NonEmptyReserveAutoIconBackground: skip 0 ; $7EC03E
-Palettes_BG3P7SaveDialogBackgrond: skip 0 ; $7EC03E
-Palettes_BG3P7MessageBoxSamusBackground: skip 2 ; $7EC03E
-Palettes_BG12P2: skip $20 ; $7EC040..5F
+Palettes_BG3P7MinimapRoomHighlight: skip 2 ; $7EC03A
+skip $24 ; $7EC040..5F
 Palettes_BG12P3: skip $20 ; $7EC060..7F
 Palettes_BG12P4: skip $20 ; $7EC080..9F
 Palettes_BG12P5: skip $20 ; $7EC0A0..BF
@@ -1867,10 +1818,10 @@ Palettes_SpriteP7: skip $20 ; $7EC1E0..FF
 TargetPalettes_BGP0: skip $20 ; $7EC200..1F
 TargetPalettes_BGP1: skip $20 ; $7EC220..3F
 TargetPalettes_BGP2: skip $20 ; $7EC240..5F
-TargetPalettes_BGP3: skip $20 ; $7EC260..7F
+skip $20 ; $7EC260..7F
 TargetPalettes_BGP4: skip $20 ; $7EC280..9F
-TargetPalettes_BGP5: skip $20 ; $7EC2A0..BF
-TargetPalettes_BGP6: skip $20 ; $7EC2C0..DF
+skip $20 ; $7EC2A0..BF
+skip $20 ; $7EC2C0..DF
 TargetPalettes_BGP7: skip $20 ; $7EC2E0..FF
 TargetPalettes_SpriteP0: skip $20 ; $7EC300..1F
 TargetPalettes_SpriteP1: skip $20 ; $7EC320..3F
@@ -1886,50 +1837,29 @@ PaletteChangeDenominator: skip 2 ; $7EC402
 ColorIndexInPaletteChangeRoutines: skip 2 ; $7EC404
 
 PowerBombExplosionWindow2LeftHDMADataTable: skip $C0 ; $7EC406..C5
-skip $40
+skip $40 ; $7EC4C6..C505
 PowerBombExplosionWindow2RightHDMADataTable: skip $C0 ; $7EC506..C5
-skip $40
+skip $40 ; $7EC5C6..C605
 OffScreenPowerBombExplosionWindow2LeftHDMADataTable: skip 1 ; $7EC606
 OffScreenPowerBombExplosionWindow2RightHDMADataTable: skip 1 ; $7EC607
 
-HUDTilemap: skip 2 ; $7EC608
-HUDTilemap_Row1EnergyTanks: skip 14 ; $7EC60A..17
+HUDTilemap: skip 0 ; $7EC608
+skip $10 ; $7EC608..17
 HUDTilemap_Row1AutoReserve: skip 4 ; $7EC618..1B
 HUDTilemap_Row1Missiles: skip 6 ; $7EC61C..21
-skip 2
-HUDTilemap_Row1SuperMissiles: skip 4 ; $7EC624..27
-skip 2
-HUDTilemap_Row1PowerBombs: skip 4 ; $7EC62A..2D
-skip 2
-HUDTilemap_Row1Grapple: skip 4 ; $7EC630..33
-skip 2
-HUDTilemap_Row1Xray: skip 4 ; $7EC636..39
-skip 2
+skip $1A ; $7EC624..3B
 HUDTilemap_Row1Minimap: skip 10 ; $7EC63C..45
-skip 2
-HUDTilemap_Row2: skip 2 ; $7EC648
-HUDTilemap_Row2EnergyTanks: skip 14 ; $7EC64A..57
+skip 2; $7EC646
+HUDTilemap_Row2: skip 0 ; $7EC648
+skip $10 ; $7EC648..57
 HUDTilemap_Row2AutoReserve: skip 4 ; $7EC658..5B
 HUDTilemap_Row2Missiles: skip 6 ; $7EC65C..61
-skip 2
-HUDTilemap_Row2SuperMissiles: skip 4 ; $7EC664..67
-skip 2
-HUDTilemap_Row2PowerBombs: skip 4 ; $7EC66A..6D
-skip 2
-HUDTilemap_Row2Grapple: skip 4 ; $7EC670..73
-skip 2
-HUDTilemap_Row2Xray: skip 4 ; $7EC676..79
-skip 2
+skip $1A ; $7EC664..7B
 HUDTilemap_Row2Minimap: skip 4 ; $7EC67C..85
 HUDTilemap_SamusMinimapPosition: skip 2 ; $7EC680
-skip $12
-HUDTilemap_Row3EnergyCount: skip 4 ; $7EC694..97
+skip $16 ; $7EC682..97
 HUDTilemap_Row3AutoReserve: skip 4 ; $7EC698..9B
-HUDTilemap_Row3MissileCount: skip 6 ; $7EC69C..A1
-HUDTilemap_Row3SuperMissileCount: skip 4 ; $7EC6A4..A7
-HUDTilemap_Row3DebugExtraDigit: skip 2 ; $7EC6A8
-HUDTilemap_Row3PowerBombCount: skip 4 ; $7EC6AA..AD
-skip $10
+skip $20 ; $7EC69C..AD
 HUDTilemap_Row3Minimap: skip 10 ; $7EC6BC..C5
 
 org $7EC6C8
@@ -1952,19 +1882,9 @@ CrocomireBG2YScrollHDMADataTable: skip $210 ; $7ECAF0..CCEF
 skip $20
 Scrolls: skip $32 ; $7ECD20..51
 
-ExploredMapTiles: skip 0 ; $7ECD52
-ExploredMapTiles_Crateria: skip $100 ; $7ECD52..CE51
-ExploredMapTiles_Brinstar: skip $100 ; $7ECE52..CF51
-ExploredMapTiles_Norfair: skip $100 ; $7ECF52..D051
-ExploredMapTiles_WreckedShip: skip $100 ; $7ED052..D151
-ExploredMapTiles_Maridia: skip $100 ; $7ED152..D251
-ExploredMapTiles_Tourian: skip $100 ; $7ED252..D351
-ExploredMapTiles_Ceres: skip $100 ; $7ED352..D451
-ExploredMapTiles_Debug: skip $100 ; $7ED452..D551
+ExploredMapTiles: skip $800 ; $7ECD52..D551
 
-EnemySetName: skip 7 ; $7ED552..58
-EnemySetData_Name: skip 10 ; $7ED559
-EnemySetData_PaletteIndex: skip 2 ; $7ED563
+EnemySetName: skip 7 ; $7ED552..65
 
 org $7ED652
 RobotPaletteAnimationPaletteIndex: skip 2 ; $7ED652
@@ -1983,20 +1903,14 @@ ProjectileTrail_LeftYPosition: skip $24 ; $7ED778..9B
 ProjectileTrail_RightYPosition: skip $24 ; $7ED79C..BF
 
 SRAMMirror_Equipment: skip $60 ; $7ED7C0..D81F
-SRAMMirror_Event: skip 0 ; $7ED820
-SRAMMirror_Event0: skip 1 ; $7ED820
-SRAMMirror_Event1: skip 1 ; $7ED821
-SRAMMirror_Event2: skip 1 ; $7ED822
+SRAMMirror_Event: skip 3 ; $7ED820..22
 skip 5
 SRAMMirror_Boss: skip 0 ; $7ED828
-SRAMMirror_BossCrateria: skip 1 ; $7ED828
-SRAMMirror_BossBrinstar: skip 1 ; $7ED829
-SRAMMirror_BossNorfair: skip 1 ; $7ED82A
-SRAMMirror_BossWreckedShip: skip 1 ; $7ED82B
-SRAMMirror_BossMaridia: skip 1 ; $7ED82C
-SRAMMirror_BossTourian: skip 1 ; $7ED82D
-SRAMMirror_BossCeres: skip 1 ; $7ED82E
-SRAMMirror_BossDebug: skip 1 ; $7ED82F
+skip 1 ; $7ED828
+  .Brinstar: skip 1 ; $7ED829
+skip 2 ; $7ED82A..2B
+  .Maridia: skip 1 ; $7ED82C
+skip 3 ; $7ED82D..2F
 SRAMMirror_ChozeBlockDestroyed: skip $40 ; $7ED830..6F
 SRAMMirror_Items: skip $40 ; $7ED870..AF
 SRAMMirror_Doors: skip $40 ; $7ED8B0..EF
@@ -2008,13 +1922,8 @@ SRAMMirror_LoadingGameState: skip 2 ; $7ED914
 SRAMMirror_SaveStationIndex: skip 2 ; $7ED916
 SRAMMirror_AreaIndex: skip 2 ; $7ED918
 SRAMMirror_GlobalNumberOfItemsLoadedCounter: skip 2 ; $7ED91A
-SRAMMirror_MapDataCrateria: skip $4A ; $7ED91C..65
-SRAMMirror_MapDataBrinstar: skip $48 ; $7ED966..AD
-SRAMMirror_MapDataNorfair: skip $4C ; $7ED9AE..F9
-SRAMMirror_MapDataWreckedShip: skip $12 ; $7ED9FA..DA0B
-SRAMMirror_MapDataMaridia: skip $42 ; $7EDA0C..4D
-SRAMMirror_MapDataTourian: skip $15 ; $7EDA4E..62
-skip $3B8
+SRAMMirror_MapData: skip $147 ; $7ED91C..DA62
+skip $3B8 ; $7EDA63..DE1A
 SRAMMirror_End: ; $7EDE1B
 
 org $7EDE1C
@@ -2032,8 +1941,7 @@ EnemyGFXData_StackPointer: skip 2 ; $7EDE74
 EnemyGFXData_NextTilesIndex: skip 2 ; $7EDE76
 
 SpriteObjects_InstListPointers: skip $80 ; $7EEF78..F7
-SpriteObjects_Instructions: skip 0 ; $7EEFF8..F077
-SpriteObjects_Timers: skip $80 ; $7EEFF8..F077
+SpriteObjects_InstructionsTimers: skip $80 ; $7EEFF8..F077
 SpriteObjects_Palettes: skip 0 ; $7EF078..F7
 SpriteObjects_VRAMIndices: skip $80 ; $7EF078..F7
 SpriteObjects_XPositions: skip $80 ; $7EF0F8..F177
@@ -2065,8 +1973,8 @@ BTS: skip $3200 ; $7F6402..9601
 CustomBackground: skip $6400 ; $7F9602..FA01
 
 org $7F0000 ; non-gameplay
+HighRAM: ; $7F0000..FFFF
 BackupSRAM: ; $7F0000..1FFF
-EndingShipTiles: ; $7F0000..3FFF
 CreditsTilemap: ; $7F0000..1FFF
 SamusWaitingForCreditsToEndTiles: ; $7F0000..??
 IntroBackgroundTiles: ; $7F0000..??
@@ -2075,7 +1983,6 @@ CeresGunshipMode7Tiles: ; $7F0000..??
 ZebesExplosionZoomedOutMode7Tiles: ; $7F0000..??
 skip $4000
 PostCreditsSamusBeamInterleavedTilesTilemap: ; $7F4000..BFFF
-EndingShipTilemap: ; $7F4000..7FFF
 CeresCutsceneTilemap_ShipFront: ; $7F4000..42FF
 TitleMode7Tilemap: ; $7F4000..??
 YellowCloudsZebesExplosionTiles: ; $7F4000..??
@@ -2743,7 +2650,9 @@ skip 2
   .swoopYAcceleration: skip 2 ; $7E781E
 skip $7E0
   .facingDirection: skip 2 ; $7E8000
-skip $80A
+skip $804
+  .angle skip 2 ; $7E8806
+skip 4
   .fightIntroDanceIndex: skip 2 ; $7E880C
 skip $2E
   .bodyGraphicsXDisplacement: skip 2 ; $7E883C
@@ -3934,28 +3843,14 @@ check bankcross on
 
 org $700000
 SRAM_Start: skip 0 ; $700000
-SRAM_Slot0Checksum0: skip 2 ; $700000
-SRAM_Slot1Checksum0: skip 2 ; $700002
-SRAM_Slot2Checksum0: skip 2 ; $700004
+SRAM_Checksum0: skip 6 ; $700000..05
 skip 2 ; $700006
-SRAM_Slot0Complement0: skip 2 ; $700008
-SRAM_Slot1Complement0: skip 2 ; $70000A
-SRAM_Slot2Complement0: skip 2 ; $70000C
-skip 2
-SRAM_Slot0: skip $065C ; $700010..066B
-SRAM_Slot1: skip $065C ; $70066C..0CC7
-SRAM_Slot2: skip $065C ; $700CC8..1323
+SRAM_Complement0: skip 6 ; $700008..0D
 
 org $701FE0
 SRAM_GameCompletionFlag: skip 12 ; $701FE0..EB
 SRAM_SaveSlotSelected: skip 2 ; $701FEC
 SRAM_SaveSlotSelectedComplement: skip 2 ; $701FEE
-SRAM_Slot0Checksum1: skip 2 ; $701FF0
-SRAM_Slot1Checksum1: skip 2 ; $701FF2
-SRAM_Slot2Checksum1: skip 2 ; $701FF4
-skip 2
-SRAM_Slot0Complement1: skip 2 ; $701FF8
-SRAM_Slot1Complement1: skip 2 ; $701FFA
-SRAM_Slot2Complement1: skip 2 ; $701FFC
-skip 2
-SRAM_Mirror: skip 0 ; $702000
+SRAM_Checksum1: skip 6 ; $701FF0..F5
+skip 2 ; $701FF6
+SRAM_Complement1: skip 6 ; $701FF8..FD

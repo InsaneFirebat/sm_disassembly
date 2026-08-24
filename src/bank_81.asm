@@ -57,7 +57,7 @@ SaveToSRAM:
 
   .loopToSRAM:
     LDA.W $0000,Y                                                        ;818053;
-    STA.L $700000,X                                                      ;818056;
+    STA.L SRAM_Start,X                                                   ;818056;
     CLC                                                                  ;81805A;
     ADC.B DP_Temp14                                                      ;81805B;
     STA.B DP_Temp14                                                      ;81805D;
@@ -69,11 +69,11 @@ SaveToSRAM:
     BNE .loopToSRAM                                                      ;818066;
     LDX.B DP_Temp12                                                      ;818068;
     LDA.B DP_Temp14                                                      ;81806A;
-    STA.L SRAM_Slot0Checksum0,X                                          ;81806C;
-    STA.L SRAM_Slot0Checksum1,X                                          ;818070;
+    STA.L SRAM_Checksum0,X                                               ;81806C;
+    STA.L SRAM_Checksum1,X                                               ;818070;
     EOR.W #$FFFF                                                         ;818074;
-    STA.L SRAM_Slot0Complement0,X                                        ;818077;
-    STA.L SRAM_Slot0Complement1,X                                        ;81807B;
+    STA.L SRAM_Complement0,X                                             ;818077;
+    STA.L SRAM_Complement1,X                                             ;81807B;
     PLY                                                                  ;81807F;
     PLX                                                                  ;818080;
     CLC                                                                  ;818081;
@@ -102,7 +102,7 @@ LoadFromSRAM:
     PHB                                                                  ;818087;
     PHX                                                                  ;818088;
     PHY                                                                  ;818089;
-    PEA.W SRAMMirror_Equipment>>8&$FF00                                                          ;81808A;
+    PEA.W SRAMMirror_Equipment>>8&$FF00                                  ;81808A;
     PLB                                                                  ;81808D;
     PLB                                                                  ;81808E;
     STZ.B DP_Temp14                                                      ;81808F;
@@ -115,7 +115,7 @@ LoadFromSRAM:
     LDY.W #SRAMMirror_Equipment                                          ;81809D;
 
   .loop:
-    LDA.L SRAM_Slot0Checksum0,X                                                      ;8180A0;
+    LDA.L SRAM_Checksum0,X                                               ;8180A0;
     STA.W $0000,Y                                                        ;8180A4;
     CLC                                                                  ;8180A7;
     ADC.B DP_Temp14                                                      ;8180A8;
@@ -128,19 +128,19 @@ LoadFromSRAM:
     BNE .loop                                                            ;8180B3;
     LDX.B DP_Temp12                                                      ;8180B5;
     LDA.B DP_Temp14                                                      ;8180B7;
-    CMP.L SRAM_Slot0Checksum0,X                                                      ;8180B9;
+    CMP.L SRAM_Checksum0,X                                               ;8180B9;
     BNE .doubleCheck                                                     ;8180BD;
     EOR.W #$FFFF                                                         ;8180BF;
-    CMP.L SRAM_Slot0Complement0,X                                                      ;8180C2;
+    CMP.L SRAM_Complement0,X                                             ;8180C2;
     BNE .doubleCheck                                                     ;8180C6;
     BRA .success                                                         ;8180C8;
 
   .doubleCheck:
     LDA.B DP_Temp14                                                      ;8180CA;
-    CMP.L SRAM_Slot0Checksum1,X                                          ;8180CC;
+    CMP.L SRAM_Checksum1,X                                               ;8180CC;
     BNE .corrupt                                                         ;8180D0;
     EOR.W #$FFFF                                                         ;8180D2;
-    CMP.L SRAM_Slot0Complement1,X                                        ;8180D5;
+    CMP.L SRAM_Complement1,X                                             ;8180D5;
     BNE .corrupt                                                         ;8180D9;
 
   .success:
@@ -172,7 +172,7 @@ LoadFromSRAM:
     LDA.W #$0000                                                         ;818108;
 
   .loopCorrupt:
-    STA.L SRAM_Slot0Checksum0,X                                                      ;81810B;
+    STA.L SRAM_Checksum0,X                                               ;81810B;
     CLC                                                                  ;81810F;
     ADC.B DP_Temp14                                                      ;818110;
     STA.B DP_Temp14                                                      ;818112;
@@ -461,7 +461,7 @@ LoadMap:
     ADC.B DP_Temp14                                                      ;81832B;
     TAY                                                                  ;81832D;
     SEP #$20                                                             ;81832E;
-    LDA.L SRAMMirror_MapDataCrateria,X                                   ;818330;
+    LDA.L SRAMMirror_MapData,X                                           ;818330;
     STA.B [DP_Temp03],Y                                                  ;818334;
     REP #$20                                                             ;818336;
     INC.B DP_Temp00                                                      ;818338;
@@ -515,7 +515,7 @@ SaveMap:
     TAY                                                                  ;818381;
     SEP #$20                                                             ;818382;
     LDA.B [DP_Temp03],Y                                                  ;818384;
-    STA.L SRAMMirror_MapDataCrateria,X                                   ;818386;
+    STA.L SRAMMirror_MapData,X                                           ;818386;
     REP #$20                                                             ;81838A;
     INC.B DP_Temp00                                                      ;81838C;
     INX                                                                  ;81838E;
@@ -1743,7 +1743,7 @@ Debug_GameOverMenu_Index1_Initialise:
     INC.W PauseMenu_MenuIndex                                            ;818D97;
     STZ.W ScreenFadeDelay                                                ;818D9A;
     STZ.W ScreenFadeCounter                                              ;818D9D;
-    STZ.W FileSelectMapAreaIndex                                         ;818DA0;
+    STZ.W GameOverMenuSelectionIndex                                     ;818DA0;
     RTS                                                                  ;818DA3;
 
 
@@ -2004,7 +2004,7 @@ DebugGameOverMenu_Index3_Main:
     BNE .toggleSelection                                                 ;819014;
     BIT.W #$9080                                                         ;819016;
     BEQ .noChange                                                        ;819019;
-    LDA.W FileSelectMapAreaIndex                                         ;81901B;
+    LDA.W GameOverMenuSelectionIndex                                     ;81901B;
     BNE +                                                                ;81901E;
     LDA.W SaveSlotSelected                                               ;819020;
     JSL.L SaveToSRAM                                                     ;819023;
@@ -2014,13 +2014,13 @@ DebugGameOverMenu_Index3_Main:
     RTS                                                                  ;81902E;
 
   .toggleSelection:
-    LDA.W FileSelectMapAreaIndex                                         ;81902F;
+    LDA.W GameOverMenuSelectionIndex                                     ;81902F;
     EOR.W #$0001                                                         ;819032;
-    STA.W FileSelectMapAreaIndex                                         ;819035;
+    STA.W GameOverMenuSelectionIndex                                     ;819035;
 
   .noChange:
     LDX.W #$7800                                                         ;819038;
-    LDA.W FileSelectMapAreaIndex                                         ;81903B;
+    LDA.W GameOverMenuSelectionIndex                                     ;81903B;
     BEQ +                                                                ;81903E;
     LDX.W #$8800                                                         ;819040;
 
@@ -2081,7 +2081,7 @@ DebugGameOverMenu_Index5_Continue:
     REP #$30                                                             ;8190A0;
     LDA.W #$0010                                                         ;8190A2;
     STA.W GameState                                                      ;8190A5;
-    STZ.W FileSelectMapAreaIndex                                         ;8190A8;
+    STZ.W GameOverMenuSelectionIndex                                     ;8190A8;
     JMP.W RestorePalettesAndIORegistersFromDebugGameOverMenu             ;8190AB;
 endif
 
@@ -2180,7 +2180,7 @@ GameOverMenu_Index4_Main:
     BEQ .noChange                                                        ;819149;
     LDA.W #$00B4                                                         ;81914B;
     STA.W Enemy.instTimer                                                ;81914E;
-    LDA.W FileSelectMapAreaIndex                                         ;819151;
+    LDA.W GameOverMenuSelectionIndex                                     ;819151;
     BEQ +                                                                ;819154;
     LDA.W #$0007                                                         ;819156;
     STA.W PauseMenu_MenuIndex                                            ;819159;
@@ -2202,14 +2202,14 @@ GameOverMenu_Index4_Main:
   .toggleSelection:
     LDA.W #$0037                                                         ;81917C;
     JSL.L QueueSound_Lib1_Max6                                           ;81917F;
-    LDA.W FileSelectMapAreaIndex                                         ;819183;
+    LDA.W GameOverMenuSelectionIndex                                     ;819183;
     EOR.W #$0001                                                         ;819186;
-    STA.W FileSelectMapAreaIndex                                         ;819189;
+    STA.W GameOverMenuSelectionIndex                                     ;819189;
 
   .noChange:
     LDX.W #$0028                                                         ;81918C;
     LDY.W #$00A0                                                         ;81918F;
-    LDA.W FileSelectMapAreaIndex                                         ;819192;
+    LDA.W GameOverMenuSelectionIndex                                     ;819192;
     BEQ +                                                                ;819195;
     LDX.W #$0028                                                         ;819197;
     LDY.W #$00C0                                                         ;81919A;
@@ -2298,7 +2298,7 @@ GameOverMenu_Index1_Initialise:
     INC.W PauseMenu_MenuIndex                                            ;819264;
     STZ.W ScreenFadeDelay                                                ;819267;
     STZ.W ScreenFadeCounter                                              ;81926A;
-    STZ.W FileSelectMapAreaIndex                                         ;81926D;
+    STZ.W GameOverMenuSelectionIndex                                     ;81926D;
     LDA.W #$0028                                                         ;819270;
     STA.W Mode7Object_InstListPointers                                   ;819273;
     LDA.W #$00A0                                                         ;819276;
@@ -2594,7 +2594,7 @@ FileSelectMenu_IndexF_1B_FadeOutToMain:
 ;;; $951E: File select menu - index 11h/1Dh: fade in to main ;;;
 FileSelectMenu_Index11_10_FadeInToMain:
     REP #$30                                                             ;81951E;
-    LDA.W SaveSlotSelected                                               ;819520;
+    LDA.W FileSelectMenuSelection                                        ;819520;
     ASL                                                                  ;819523;
     ASL                                                                  ;819524;
     TAX                                                                  ;819525;
@@ -2676,7 +2676,7 @@ SetInitial_FileCopyClear_MenuSelection:
     BMI .loop                                                            ;8195A0;
 
   .return:
-    STY.W CinematicBGObject_IndirectInstructionPointers                  ;8195A2;
+    STY.W TitleMenu_FileCopyClearMenuSelection                           ;8195A2;
     RTS                                                                  ;8195A5;
 
 
@@ -2831,7 +2831,7 @@ FileSelectMenu_Index8_FileCopy_SelectSource:
     BEQ Set_FileCopyMenu_SelectionMissile_Position                       ;8196E0;
     SEP #$30                                                             ;8196E2;
     LDA.W NonEmptySaveSlots                                              ;8196E4;
-    LDX.W CinematicBGObject_IndirectInstructionPointers                  ;8196E7;
+    LDX.W TitleMenu_FileCopyClearMenuSelection                           ;8196E7;
 
   .loopDown:
     INX                                                                  ;8196EA;
@@ -2842,7 +2842,7 @@ FileSelectMenu_Index8_FileCopy_SelectSource:
     BIT.W .bitmasks,X                                                    ;8196F3;
     BEQ .loopDown                                                        ;8196F6;
 
-+   STX.W CinematicBGObject_IndirectInstructionPointers                  ;8196F8;
++   STX.W TitleMenu_FileCopyClearMenuSelection                           ;8196F8;
     REP #$30                                                             ;8196FB;
     LDA.W #$0037                                                         ;8196FD;
     JSL.L QueueSound_Lib1_Max6                                           ;819700;
@@ -2861,14 +2861,14 @@ FileSelectMenu_Index8_FileCopy_SelectSource:
   .up:
     SEP #$30                                                             ;81971A;
     LDA.W NonEmptySaveSlots                                              ;81971C;
-    LDX.W CinematicBGObject_IndirectInstructionPointers                  ;81971F;
+    LDX.W TitleMenu_FileCopyClearMenuSelection                           ;81971F;
 
   .loopUp:
     DEX                                                                  ;819722;
     BMI Set_FileCopyMenu_SelectionMissile_Position                       ;819723;
     BIT.W .bitmasks,X                                                    ;819725;
     BEQ .loopUp                                                          ;819728;
-    STX.W CinematicBGObject_IndirectInstructionPointers                  ;81972A;
+    STX.W TitleMenu_FileCopyClearMenuSelection                           ;81972A;
     REP #$30                                                             ;81972D;
     LDA.W #$0037                                                         ;81972F;
     JSL.L QueueSound_Lib1_Max6                                           ;819732;
@@ -2878,7 +2878,7 @@ FileSelectMenu_Index8_FileCopy_SelectSource:
     REP #$30                                                             ;819738;
     LDA.W #$0037                                                         ;81973A;
     JSL.L QueueSound_Lib1_Max6                                           ;81973D;
-    LDA.W CinematicBGObject_IndirectInstructionPointers                  ;819741;
+    LDA.W TitleMenu_FileCopyClearMenuSelection                           ;819741;
     CMP.W #$0003                                                         ;819744;
     BEQ +                                                                ;819747;
     STA.W TitleMenu_FileCopySrcFileClearSlot                             ;819749;
@@ -2898,7 +2898,7 @@ FileSelectMenu_Index8_FileCopy_SelectSource:
 ;;; $975E: Set file copy menu selection missile position ;;;
 Set_FileCopyMenu_SelectionMissile_Position:
     REP #$30                                                             ;81975E;
-    LDA.W CinematicBGObject_IndirectInstructionPointers                  ;819760;
+    LDA.W TitleMenu_FileCopyClearMenuSelection                           ;819760;
     ASL                                                                  ;819763;
     TAX                                                                  ;819764;
     LDA.W .position,X                                                    ;819765;
@@ -2926,7 +2926,7 @@ FileSelectMenu_Index9_FileCopy_InitialiseSelectDestination:
     CMP.W #$0003                                                         ;81978F;
     BMI .loop                                                            ;819792;
 
-+   STA.W CinematicBGObject_IndirectInstructionPointers                  ;819794;
++   STA.W TitleMenu_FileCopyClearMenuSelection                           ;819794;
     BRA Set_FileCopyMenu_SelectionMissile_Position                       ;819797;
 
 
@@ -2997,7 +2997,7 @@ FileSelectMenu_IndexA_FileCopy_SelectDestination:
     BEQ .setMissilePosition                                              ;819831;
     LDA.W #$0037                                                         ;819833;
     JSL.L QueueSound_Lib1_Max6                                           ;819836;
-    LDX.W CinematicBGObject_IndirectInstructionPointers                  ;81983A;
+    LDX.W TitleMenu_FileCopyClearMenuSelection                           ;81983A;
 
   .loopDown:
     INX                                                                  ;81983D;
@@ -3008,10 +3008,10 @@ FileSelectMenu_IndexA_FileCopy_SelectDestination:
     BRA .loopDown                                                        ;819848;
 
   .setMenuSelection:
-    STX.W CinematicBGObject_IndirectInstructionPointers                  ;81984A;
+    STX.W TitleMenu_FileCopyClearMenuSelection                           ;81984A;
 
   .setMissilePosition:
-    LDA.W CinematicBGObject_IndirectInstructionPointers                  ;81984D;
+    LDA.W TitleMenu_FileCopyClearMenuSelection                           ;81984D;
     ASL                                                                  ;819850;
     TAX                                                                  ;819851;
     LDA.W .positions,X                                                   ;819852;
@@ -3026,7 +3026,7 @@ FileSelectMenu_IndexA_FileCopy_SelectDestination:
     SBC.W #$0002                                                         ;819863;
     STA.W PauseMenu_MenuIndex                                            ;819866;
     LDA.W TitleMenu_FileCopySrcFileClearSlot                             ;819869;
-    STA.W CinematicBGObject_IndirectInstructionPointers                  ;81986C;
+    STA.W TitleMenu_FileCopyClearMenuSelection                           ;81986C;
     LDA.W #$0037                                                         ;81986F;
     JSL.L QueueSound_Lib1_Max6                                           ;819872;
     JMP.W Initialise_FileSelectMenu_FileCopy                             ;819876;
@@ -3034,7 +3034,7 @@ FileSelectMenu_IndexA_FileCopy_SelectDestination:
   .select:
     LDA.W #$0037                                                         ;819879;
     JSL.L QueueSound_Lib1_Max6                                           ;81987C;
-    LDA.W CinematicBGObject_IndirectInstructionPointers                  ;819880;
+    LDA.W TitleMenu_FileCopyClearMenuSelection                           ;819880;
     CMP.W #$0003                                                         ;819883;
     BEQ +                                                                ;819886;
     STA.W TitleMenu_FileCopyDestSlot                                     ;819888;
@@ -3050,7 +3050,7 @@ FileSelectMenu_IndexA_FileCopy_SelectDestination:
   .up:
     LDA.W #$0037                                                         ;81989B;
     JSL.L QueueSound_Lib1_Max6                                           ;81989E;
-    LDX.W CinematicBGObject_IndirectInstructionPointers                  ;8198A2;
+    LDX.W TitleMenu_FileCopyClearMenuSelection                           ;8198A2;
 
   .loopUp:
     DEX                                                                  ;8198A5;
@@ -3080,9 +3080,9 @@ FileSelectMenu_IndexB_FileCopy_InitialiseConfirmation:
     STA.L MenuTilemap+$176                                               ;8198D9;
     JSR.W Draw_FileCopyClear_Confirmation                                ;8198DD;
     INC.W PauseMenu_MenuIndex                                            ;8198E0;
-    STZ.W CinematicBGObject_IndirectInstructionPointers                  ;8198E3;
+    STZ.W TitleMenu_FileCopyClearMenuSelection                           ;8198E3;
     LDA.W #$0008                                                         ;8198E6;
-    STA.W Mode7TransformationZoomLevel                                   ;8198E9;
+    STA.W TitleMenu_FileCopyArrowPaletteTimer                            ;8198E9;
     RTS                                                                  ;8198EC;
 
 
@@ -3171,7 +3171,7 @@ FileSelectMenu_IndexC_FileCopy_Confirmation:
     BEQ .setMissilePosition                                              ;8199A2;
     LDA.W #$0038                                                         ;8199A4;
     JSL.L QueueSound_Lib1_Max6                                           ;8199A7;
-    LDA.W CinematicBGObject_IndirectInstructionPointers                  ;8199AB;
+    LDA.W TitleMenu_FileCopyClearMenuSelection                           ;8199AB;
     BEQ .yes                                                             ;8199AE;
     LDA.W PauseMenu_MenuIndex                                            ;8199B0;
     SEC                                                                  ;8199B3;
@@ -3185,7 +3185,7 @@ FileSelectMenu_IndexC_FileCopy_Confirmation:
     SBC.W #$0003                                                         ;8199C1;
     STA.W PauseMenu_MenuIndex                                            ;8199C4;
     LDA.W TitleMenu_FileCopyDestSlot                                     ;8199C7;
-    STA.W CinematicBGObject_IndirectInstructionPointers                  ;8199CA;
+    STA.W TitleMenu_FileCopyClearMenuSelection                           ;8199CA;
     LDA.W #$0037                                                         ;8199CD;
     JSL.L QueueSound_Lib1_Max6                                           ;8199D0;
     RTS                                                                  ;8199D4;
@@ -3195,15 +3195,15 @@ FileSelectMenu_IndexC_FileCopy_Confirmation:
     RTS                                                                  ;8199D8;
 
   .toggle:
-    LDA.W CinematicBGObject_IndirectInstructionPointers                  ;8199D9;
+    LDA.W TitleMenu_FileCopyClearMenuSelection                           ;8199D9;
     EOR.W #$0001                                                         ;8199DC;
-    STA.W CinematicBGObject_IndirectInstructionPointers                  ;8199DF;
+    STA.W TitleMenu_FileCopyClearMenuSelection                           ;8199DF;
     LDA.W #$0037                                                         ;8199E2;
     JSL.L QueueSound_Lib1_Max6                                           ;8199E5;
 
   .setMissilePosition:
     LDY.W #$00B8                                                         ;8199E9;
-    LDA.W CinematicBGObject_IndirectInstructionPointers                  ;8199EC;
+    LDA.W TitleMenu_FileCopyClearMenuSelection                           ;8199EC;
     BEQ +                                                                ;8199EF;
     LDY.W #$00D0                                                         ;8199F1;
 
@@ -3215,13 +3215,13 @@ FileSelectMenu_IndexC_FileCopy_Confirmation:
 
 ;;; $99FE: Handle file copy arrow palette ;;;
 HandleFileCopyArrowPalette:
-    LDA.W Mode7TransformationZoomLevel                                   ;8199FE;
+    LDA.W TitleMenu_FileCopyArrowPaletteTimer                            ;8199FE;
     BEQ .return                                                          ;819A01;
     DEC                                                                  ;819A03;
-    STA.W Mode7TransformationZoomLevel                                   ;819A04;
+    STA.W TitleMenu_FileCopyArrowPaletteTimer                            ;819A04;
     BNE .return                                                          ;819A07;
     LDA.W #$0004                                                         ;819A09;
-    STA.W Mode7TransformationZoomLevel                                   ;819A0C;
+    STA.W TitleMenu_FileCopyArrowPaletteTimer                            ;819A0C;
     LDA.L Palettes_SpriteP1+2                                            ;819A0F;
     TAY                                                                  ;819A13;
     LDX.W #$0000                                                         ;819A14;
@@ -3271,25 +3271,25 @@ FileSelectMenu_Index0_FileCopy_DoFileCopy:
     LDA.W TitleMenu_FileCopySrcFileClearSlot                             ;819A66;
     ASL                                                                  ;819A69;
     TAX                                                                  ;819A6A;
-    LDA.L SRAM_Slot0Checksum1,X                                          ;819A6B;
+    LDA.L SRAM_Checksum1,X                                               ;819A6B;
     PHA                                                                  ;819A6F;
-    LDA.L SRAM_Slot0Complement1,X                                        ;819A70;
+    LDA.L SRAM_Complement1,X                                             ;819A70;
     PHA                                                                  ;819A74;
-    LDA.L SRAM_Slot0Checksum0,X                                          ;819A75;
+    LDA.L SRAM_Checksum0,X                                               ;819A75;
     PHA                                                                  ;819A79;
-    LDA.L SRAM_Slot0Complement0,X                                        ;819A7A;
+    LDA.L SRAM_Complement0,X                                             ;819A7A;
     PHA                                                                  ;819A7E;
     LDA.W TitleMenu_FileCopyDestSlot                                     ;819A7F;
     ASL                                                                  ;819A82;
     TAX                                                                  ;819A83;
     PLA                                                                  ;819A84;
-    STA.L SRAM_Slot0Complement0,X                                        ;819A85;
+    STA.L SRAM_Complement0,X                                             ;819A85;
     PLA                                                                  ;819A89;
-    STA.L SRAM_Slot0Checksum0,X                                          ;819A8A;
+    STA.L SRAM_Checksum0,X                                               ;819A8A;
     PLA                                                                  ;819A8E;
-    STA.L SRAM_Slot0Complement1,X                                        ;819A8F;
+    STA.L SRAM_Complement1,X                                             ;819A8F;
     PLA                                                                  ;819A93;
-    STA.L SRAM_Slot0Checksum1,X                                          ;819A94;
+    STA.L SRAM_Checksum1,X                                               ;819A94;
     INC.W PauseMenu_MenuIndex                                            ;819A98;
     LDX.W #$0500                                                         ;819A9B;
     LDA.W #$000F                                                         ;819A9E;
@@ -3419,7 +3419,7 @@ FileSelectMenu_Index16_FileClear_SelectSlot:
     BEQ Set_FileClearMenuSelection_MissilePosition                       ;819B82;
     SEP #$30                                                             ;819B84;
     LDA.W NonEmptySaveSlots                                              ;819B86;
-    LDX.W CinematicBGObject_IndirectInstructionPointers                  ;819B89;
+    LDX.W TitleMenu_FileCopyClearMenuSelection                           ;819B89;
 
   .loopDown:
     INX                                                                  ;819B8C;
@@ -3430,7 +3430,7 @@ FileSelectMenu_Index16_FileClear_SelectSlot:
     BIT.W .data,X                                                        ;819B95;
     BEQ .loopDown                                                        ;819B98;
 
-+   STX.W CinematicBGObject_IndirectInstructionPointers                  ;819B9A;
++   STX.W TitleMenu_FileCopyClearMenuSelection                           ;819B9A;
     LDA.B #$37                                                           ;819B9D;
     JSL.L QueueSound_Lib1_Max6                                           ;819B9F;
     BRA Set_FileClearMenuSelection_MissilePosition                       ;819BA3;
@@ -3448,14 +3448,14 @@ FileSelectMenu_Index16_FileClear_SelectSlot:
   .up:
     SEP #$30                                                             ;819BB9;
     LDA.W NonEmptySaveSlots                                              ;819BBB;
-    LDX.W CinematicBGObject_IndirectInstructionPointers                  ;819BBE;
+    LDX.W TitleMenu_FileCopyClearMenuSelection                           ;819BBE;
 
   .loopUp:
     DEX                                                                  ;819BC1;
     BMI Set_FileClearMenuSelection_MissilePosition                       ;819BC2;
     BIT.W .data,X                                                        ;819BC4;
     BEQ .loopUp                                                          ;819BC7;
-    STX.W CinematicBGObject_IndirectInstructionPointers                  ;819BC9;
+    STX.W TitleMenu_FileCopyClearMenuSelection                           ;819BC9;
     LDA.B #$37                                                           ;819BCC;
     JSL.L QueueSound_Lib1_Max6                                           ;819BCE;
     BRA Set_FileClearMenuSelection_MissilePosition                       ;819BD2;
@@ -3464,7 +3464,7 @@ FileSelectMenu_Index16_FileClear_SelectSlot:
     REP #$30                                                             ;819BD4;
     LDA.W #$0037                                                         ;819BD6;
     JSL.L QueueSound_Lib1_Max6                                           ;819BD9;
-    LDA.W CinematicBGObject_IndirectInstructionPointers                  ;819BDD;
+    LDA.W TitleMenu_FileCopyClearMenuSelection                           ;819BDD;
     CMP.W #$0003                                                         ;819BE0;
     BEQ .exit                                                            ;819BE3;
     STA.W TitleMenu_FileCopySrcFileClearSlot                             ;819BE5;
@@ -3478,7 +3478,7 @@ FileSelectMenu_Index16_FileClear_SelectSlot:
 ;;; $9BEF: Set file clear menu selection missile position ;;;
 Set_FileClearMenuSelection_MissilePosition:
     REP #$30                                                             ;819BEF;
-    LDA.W CinematicBGObject_IndirectInstructionPointers                  ;819BF1;
+    LDA.W TitleMenu_FileCopyClearMenuSelection                           ;819BF1;
     ASL                                                                  ;819BF4;
     TAX                                                                  ;819BF5;
     LDA.W .positions,X                                                   ;819BF6;
@@ -3506,7 +3506,7 @@ FileSelectMenu_Index17_FileClear_InitialiseConfirmation:
     STA.W TitleMenu_FileCopyDestSlot                                     ;819C29;
     JSR.W Draw_FileCopyClear_Confirmation                                ;819C2C;
     INC.W PauseMenu_MenuIndex                                            ;819C2F;
-    STZ.W CinematicBGObject_IndirectInstructionPointers                  ;819C32;
+    STZ.W TitleMenu_FileCopyClearMenuSelection                           ;819C32;
     RTS                                                                  ;819C35;
 
 
@@ -3523,7 +3523,7 @@ FileSelectMenu_Index18_FileClear_Confirmation:
     BEQ .setMissilePosition                                              ;819C4D;
     LDA.W #$0038                                                         ;819C4F;
     JSL.L QueueSound_Lib1_Max6                                           ;819C52;
-    LDA.W CinematicBGObject_IndirectInstructionPointers                  ;819C56;
+    LDA.W TitleMenu_FileCopyClearMenuSelection                           ;819C56;
     BEQ .yes                                                             ;819C59;
 
   .B:
@@ -3532,7 +3532,7 @@ FileSelectMenu_Index18_FileClear_Confirmation:
     SBC.W #$0002                                                         ;819C5F;
     STA.W PauseMenu_MenuIndex                                            ;819C62;
     LDA.W TitleMenu_FileCopySrcFileClearSlot                             ;819C65;
-    STA.W CinematicBGObject_IndirectInstructionPointers                  ;819C68;
+    STA.W TitleMenu_FileCopyClearMenuSelection                           ;819C68;
     LDA.W #$0037                                                         ;819C6B;
     JSL.L QueueSound_Lib1_Max6                                           ;819C6E;
     JMP.W Initialise_FileSelectMenu_FileClear                            ;819C72;
@@ -3542,15 +3542,15 @@ FileSelectMenu_Index18_FileClear_Confirmation:
     RTS                                                                  ;819C78;
 
   .toggle:
-    LDA.W CinematicBGObject_IndirectInstructionPointers                  ;819C79;
+    LDA.W TitleMenu_FileCopyClearMenuSelection                           ;819C79;
     EOR.W #$0001                                                         ;819C7C;
-    STA.W CinematicBGObject_IndirectInstructionPointers                  ;819C7F;
+    STA.W TitleMenu_FileCopyClearMenuSelection                           ;819C7F;
     LDA.W #$0037                                                         ;819C82;
     JSL.L QueueSound_Lib1_Max6                                           ;819C85;
 
   .setMissilePosition:
     LDY.W #$00B8                                                         ;819C89;
-    LDA.W CinematicBGObject_IndirectInstructionPointers                  ;819C8C;
+    LDA.W TitleMenu_FileCopyClearMenuSelection                           ;819C8C;
     BEQ +                                                                ;819C8F;
     LDY.W #$00D0                                                         ;819C91;
 
@@ -3584,10 +3584,10 @@ FileSelectMenu_Index19_FileClear_DoFileClear:
     ASL                                                                  ;819CC6;
     TAX                                                                  ;819CC7;
     LDA.W #$0000                                                         ;819CC8;
-    STA.L SRAM_Slot0Checksum0,X                                          ;819CCB;
-    STA.L SRAM_Slot0Complement0,X                                        ;819CCF;
-    STA.L SRAM_Slot0Checksum1,X                                          ;819CD3;
-    STA.L SRAM_Slot0Complement1,X                                        ;819CD7;
+    STA.L SRAM_Checksum0,X                                               ;819CCB;
+    STA.L SRAM_Complement0,X                                             ;819CCF;
+    STA.L SRAM_Checksum1,X                                               ;819CD3;
+    STA.L SRAM_Complement1,X                                             ;819CD7;
     INC.W PauseMenu_MenuIndex                                            ;819CDB;
     JSR.W NewSaveFile                                                    ;819CDE;
     LDA.W TitleMenu_FileCopySrcFileClearSlot                             ;819CE1;
@@ -3634,7 +3634,7 @@ FileSelectMenu_Index1A_FileClear_ClearCompleted:
 
   .selectSlotA:
     LDA.W #$0000                                                         ;819D41;
-    STA.W SaveSlotSelected                                               ;819D44;
+    STA.W FileSelectMenuSelection                                        ;819D44;
     RTS                                                                  ;819D47;
 
   .slotAEmpty:
@@ -3642,14 +3642,14 @@ FileSelectMenu_Index1A_FileClear_ClearCompleted:
     JSL.L LoadFromSRAM                                                   ;819D4B;
     BCS +                                                                ;819D4F;
     LDA.W #$0001                                                         ;819D51;
-    STA.W SaveSlotSelected                                               ;819D54;
+    STA.W FileSelectMenuSelection                                        ;819D54;
     RTS                                                                  ;819D57;
 
 +   LDA.W #$0002                                                         ;819D58;
     JSL.L LoadFromSRAM                                                   ;819D5B;
     BCS .selectSlotA                                                     ;819D5F;
     LDA.W #$0002                                                         ;819D61;
-    STA.W SaveSlotSelected                                               ;819D64;
+    STA.W FileSelectMenuSelection                                        ;819D64;
 
   .return:
     RTS                                                                  ;819D67;
@@ -3969,7 +3969,7 @@ FileSelectMenu_Index10_1C_ReloadMain:
     LDA.W #$0001                                                         ;819FED;
     STA.W EnemyProjectile_Enable                                         ;819FF0;
     DEC                                                                  ;819FF3;
-    STA.W Mode7TransformationZoomLevel                                   ;819FF4;
+    STA.W TitleMenu_FileCopyArrowPaletteTimer                            ;819FF4;
     STA.W TitleMenu_SlotAHelmetAnimationTimer                            ;819FF7;
     STA.W TitleMenu_SlotBHelmetAnimationTimer                            ;819FFA;
     STA.W TitleMenu_SlotCHelmetAnimationTimer                            ;819FFD;
@@ -3997,7 +3997,7 @@ FileSelectMenu_Index10_1C_ReloadMain:
     STA.W ScreenFadeCounter                                              ;81A03F;
     JSL.L ClearForceBlankAndWaitForNMI                                   ;81A042;
     INC.W PauseMenu_MenuIndex                                            ;81A046;
-    STZ.W CinematicBGObject_IndirectInstructionPointers                  ;81A049;
+    STZ.W TitleMenu_FileCopyClearMenuSelection                           ;81A049;
     STZ.W TitleMenu_FileCopySrcFileClearSlot                             ;81A04C;
     STZ.W TitleMenu_FileCopyDestSlot                                     ;81A04F;
     RTS                                                                  ;81A052;
@@ -4016,7 +4016,7 @@ LoadFromSRAM_external:
 ;;; $A058: File select menu - index 3: title sequence to main - fade in ;;;
 FileSelectMenu_Index3_TitleSequenceToMain_FadeIn:
     JSR.W Draw_FileSelect_SamusHelmets                                   ;81A058;
-    LDA.W SaveSlotSelected                                               ;81A05B;
+    LDA.W FileSelectMenuSelection                                        ;81A05B;
     ASL                                                                  ;81A05E;
     ASL                                                                  ;81A05F;
     TAX                                                                  ;81A060;
@@ -4209,6 +4209,7 @@ Draw_FileSelection_Time:
 
 ;;; $A1C2: File select menu - index 4: main ;;;
 FileSelectMenu_Index4_Main:
+; FileSelectMenuSelection and SaveSlotSelected are shared RAM
     REP #$30                                                             ;81A1C2;
     JSL.L Draw_Border_Around_SAMUS_DATA                                  ;81A1C4;
     JSL.L Draw_Menu_Selection_Missile                                    ;81A1C8;
@@ -4240,7 +4241,7 @@ FileSelectMenu_Index4_Main:
     JMP.W .done                                                          ;81A20B;
 
   .select:
-    LDA.W SaveSlotSelected                                               ;81A20E;
+    LDA.W FileSelectMenuSelection                                        ;81A20E;
     CMP.W #$0003                                                         ;81A211;
     BMI +                                                                ;81A214;
     JMP.W .fileOperation                                                 ;81A216;
@@ -4251,14 +4252,14 @@ FileSelectMenu_Index4_Main:
     CLC                                                                  ;81A223;
     ADC.W #$001B                                                         ;81A224;
     STA.W PauseMenu_MenuIndex                                            ;81A227;
-    LDA.W SaveSlotSelected                                               ;81A22A;
+    LDA.W FileSelectMenuSelection                                        ;81A22A;
     CLC                                                                  ;81A22D;
     ADC.W #$0002                                                         ;81A22E;
     ASL                                                                  ;81A231;
     TAX                                                                  ;81A232;
     LDA.W #$0001                                                         ;81A233;
     STA.W EnemyProjectile_Enable,X                                       ;81A236;
-    LDA.W SaveSlotSelected                                               ;81A239;
+    LDA.W FileSelectMenuSelection                                        ;81A239;
     STA.L SRAM_SaveSlotSelected                                          ;81A23C;
     EOR.W #$FFFF                                                         ;81A240;
     STA.L SRAM_SaveSlotSelectedComplement                                ;81A243;
@@ -4275,13 +4276,13 @@ FileSelectMenu_Index4_Main:
   .up:
     LDA.W NonEmptySaveSlots                                              ;81A25E;
     BEQ +                                                                ;81A261;
-    LDA.W SaveSlotSelected                                               ;81A263;
+    LDA.W FileSelectMenuSelection                                        ;81A263;
     DEC                                                                  ;81A266;
     BPL .storeSelection                                                  ;81A267;
     LDA.W #$0005                                                         ;81A269;
     BRA .storeSelection                                                  ;81A26C;
 
-+   LDA.W SaveSlotSelected                                               ;81A26E;
++   LDA.W FileSelectMenuSelection                                        ;81A26E;
     DEC                                                                  ;81A271;
     BPL +                                                                ;81A272;
     LDA.W #$0005                                                         ;81A274;
@@ -4292,20 +4293,20 @@ FileSelectMenu_Index4_Main:
     LDA.W #$0002                                                         ;81A27E;
 
   .storeSelection:
-    STA.W SaveSlotSelected                                               ;81A281;
+    STA.W FileSelectMenuSelection                                        ;81A281;
     BRA .cursorSound                                                     ;81A284;
 
   .down:
     LDA.W NonEmptySaveSlots                                              ;81A286;
     BEQ +                                                                ;81A289;
-    LDA.W SaveSlotSelected                                               ;81A28B;
+    LDA.W FileSelectMenuSelection                                        ;81A28B;
     INC                                                                  ;81A28E;
     CMP.W #$0006                                                         ;81A28F;
     BMI .storeSelection2                                                 ;81A292;
     LDA.W #$0000                                                         ;81A294;
     BRA .storeSelection2                                                 ;81A297;
 
-+   LDA.W SaveSlotSelected                                               ;81A299;
++   LDA.W FileSelectMenuSelection                                        ;81A299;
     INC                                                                  ;81A29C;
     CMP.W #$0003                                                         ;81A29D;
     BMI .storeSelection2                                                 ;81A2A0;
@@ -4318,14 +4319,14 @@ FileSelectMenu_Index4_Main:
     LDA.W #$0000                                                         ;81A2AC;
 
   .storeSelection2:
-    STA.W SaveSlotSelected                                               ;81A2AF;
+    STA.W FileSelectMenuSelection                                        ;81A2AF;
 
   .cursorSound:
     LDA.W #$0037                                                         ;81A2B2;
     JSL.L QueueSound_Lib1_Max6                                           ;81A2B5;
 
   .done:
-    LDA.W SaveSlotSelected                                               ;81A2B9;
+    LDA.W FileSelectMenuSelection                                        ;81A2B9;
     ASL                                                                  ;81A2BC;
     ASL                                                                  ;81A2BD;
     TAX                                                                  ;81A2BE;

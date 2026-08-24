@@ -3409,9 +3409,9 @@ SetupKraidGFXWithTheTilePriorityCleared:
     STA.L DP_DecompSrc+1                                                 ;A7AAD0; >.<
     LDA.B #(Background_Brinstar_1A_Kraid_Upper>>16)                      ;A7AAD4;
     STA.L DP_DecompSrc+2                                                 ;A7AAD6; >.<
-    LDA.B #$00                                                           ;A7AADA;
+    LDA.B #DecompressionBufferForKraidTopHalfBG2Tilemap                  ;A7AADA;
     STA.L DP_DecompDest                                                  ;A7AADC; >.<
-    LDA.B #$40                                                           ;A7AAE0;
+    LDA.B #DecompressionBufferForKraidTopHalfBG2Tilemap>>8               ;A7AAE0;
     STA.L DP_DecompDest+1                                                ;A7AAE2; >.<
     JSL.L Decompression_VariableDestination                              ;A7AAE6;
     LDA.B #Background_Brinstar_1A_Kraid_Lower_0                          ;A7AAEA;
@@ -3420,9 +3420,9 @@ SetupKraidGFXWithTheTilePriorityCleared:
     STA.L DP_DecompSrc+1                                                 ;A7AAF2; >.<
     LDA.B #(Background_Brinstar_1A_Kraid_Lower_0>>16)                    ;A7AAF6;
     STA.L DP_DecompSrc+2                                                 ;A7AAF8; >.<
-    LDA.B #$00                                                           ;A7AAFC;
+    LDA.B #DecompressionBufferForKraidBottomHalfBG2Tilemap               ;A7AAFC;
     STA.L DP_DecompDest                                                  ;A7AAFE; >.<
-    LDA.B #$20                                                           ;A7AB02;
+    LDA.B #DecompressionBufferForKraidBottomHalfBG2Tilemap>>8            ;A7AB02;
     STA.L DP_DecompDest+1                                                ;A7AB04; >.<
     JSL.L Decompression_VariableDestination                              ;A7AB08;
     REP #$20                                                             ;A7AB0C;
@@ -4506,13 +4506,13 @@ UNUSED_HandleProjectileDamageAndSound:
 
   .determinedVulnerability:
     AND.W #$00FF                                                         ;A7B2DA;
-    STA.W Temp_Unknown0E32                                               ;A7B2DD;
+    STA.W Temp_DamageMultiplier                                          ;A7B2DD;
     BEQ .return                                                          ;A7B2E0;
     LDA.W EnemySpritemapEntryXPositionDuringCollision                    ;A7B2E2;
     LSR                                                                  ;A7B2E5;
     STA.W $4202                                                          ;A7B2E6;
     SEP #$20                                                             ;A7B2E9;
-    LDA.W Temp_Unknown0E32                                               ;A7B2EB;
+    LDA.W Temp_DamageMultiplier                                          ;A7B2EB;
     STA.W $4203                                                          ;A7B2EE;
     NOP                                                                  ;A7B2F1;
     NOP                                                                  ;A7B2F2;

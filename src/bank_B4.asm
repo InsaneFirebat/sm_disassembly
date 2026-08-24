@@ -6333,7 +6333,7 @@ Create_Sprite_Object:
     TAX                                                                  ;B4BC71;
     LDA.L SpriteObjectInstLists,X                                        ;B4BC72;
     PLX                                                                  ;B4BC76;
-    STA.L SpriteObjects_Instructions,X                                   ;B4BC77;
+    STA.L SpriteObjects_InstructionsTimers,X                             ;B4BC77;
     STX.B DP_Temp12                                                      ;B4BC7B;
 
   .return:
@@ -6369,10 +6369,10 @@ endif
     LDA.L SpriteObjects_DisableFlags,X                                   ;B4BCA4;
     BIT.W #$0001                                                         ;B4BCA8;
     BNE .next                                                            ;B4BCAB;
-    LDA.L SpriteObjects_Instructions,X                                   ;B4BCAD;
+    LDA.L SpriteObjects_InstructionsTimers,X                             ;B4BCAD;
     BMI .ASMInstruction                                                  ;B4BCB1;
     DEC                                                                  ;B4BCB3;
-    STA.L SpriteObjects_Instructions,X                                   ;B4BCB4;
+    STA.L SpriteObjects_InstructionsTimers,X                             ;B4BCB4;
     BNE .next                                                            ;B4BCB8;
     LDA.L SpriteObjects_InstListPointers,X                               ;B4BCBA;
     INC                                                                  ;B4BCBE;
@@ -6385,7 +6385,7 @@ endif
     CMP.W #$8000                                                         ;B4BCCB;
     BPL .ASMInstruction                                                  ;B4BCCE;
     LDX.W SpriteObjectIndex                                              ;B4BCD0;
-    STA.L SpriteObjects_Instructions,X                                   ;B4BCD3;
+    STA.L SpriteObjects_InstructionsTimers,X                             ;B4BCD3;
 
   .next:
     LDA.W SpriteObjectIndex                                              ;B4BCD7;
@@ -6418,7 +6418,7 @@ Instruction_SpriteObject_GoBack4Bytes:
     DEC                                                                  ;B4BCFA;
     STA.L SpriteObjects_InstListPointers,X                               ;B4BCFB;
     LDA.W #$7FFF                                                         ;B4BCFF;
-    STA.L SpriteObjects_Instructions,X                                   ;B4BD02;
+    STA.L SpriteObjects_InstructionsTimers,X                             ;B4BD02;
     RTS                                                                  ;B4BD06;
 
 
@@ -6441,7 +6441,7 @@ Instruction_SpriteObject_GotoParameter:
     TAX                                                                  ;B4BD25;
     LDA.L SpriteObjectInstLists,X                                        ;B4BD26;
     LDX.W SpriteObjectIndex                                              ;B4BD2A;
-    STA.L SpriteObjects_Instructions,X                                   ;B4BD2D;
+    STA.L SpriteObjects_InstructionsTimers,X                             ;B4BD2D;
     RTS                                                                  ;B4BD31;
 
 

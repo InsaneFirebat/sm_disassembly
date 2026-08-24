@@ -379,7 +379,7 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Instruction_SamusProj_GotoY_BasedOnBombTimer_938240:
     REP #$30                                                             ;938240;
     LDA.W $0000,Y                                                        ;938242;
-    CMP.W SamusProjectile_Variables,X                                    ;938245;
+    CMP.W SamusProjectile_BombTimers-$A,X                                ;938245;
     BPL .lessThanY                                                       ;938248;
     LDA.W $0004,Y                                                        ;93824A;
     TAY                                                                  ;93824D;
@@ -563,7 +563,7 @@ DrawBombsAndProjectileExplosions:
     BRA .calculatedPosition                                              ;938378;
 
   .powerBomb:
-    LDA.W SamusProjectile_Variables,X                                    ;93837A;
+    LDA.W SamusProjectile_BombTimers-$A,X                                ;93837A;
     BEQ .next                                                            ;93837D;
 
   .normalPositionCalculation:

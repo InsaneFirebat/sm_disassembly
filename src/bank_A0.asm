@@ -3051,7 +3051,7 @@ Samus_Projectiles_Interaction_Handling:
     BNE .notABomb                                                        ;A0982A;
 
   .checkBombTimer:
-    LDA.W SamusProjectile_Variables,Y                                    ;A0982C;
+    LDA.W SamusProjectile_BombTimers-$A,Y                                ;A0982C;
     CMP.W #$0008                                                         ;A0982F;
     BNE .next                                                            ;A09832;
     LDA.W SamusXPosition                                                 ;A09834;
@@ -3523,7 +3523,7 @@ Enemy_vs_Projectile_CollisionHandling_ExtendedSpritemap:
     RTS                                                                  ;A09B9A;
 
   .nonZeroCounter:
-    STA.W ProjectileCounterMirror                                        ;A09B9B;
+    STA.W ProjectileCounterMirror_neverRead                              ;A09B9B;
     LDY.W EnemyIndex                                                     ;A09B9E;
     LDA.W Enemy.spritemap,Y                                              ;A09BA1;
     BEQ .returnUpper                                                     ;A09BA4;
@@ -3774,7 +3774,7 @@ Enemy_vs_Bomb_CollisionHandling_ExtendedSpritemap:
     JMP.W .nextProjectile                                                ;A09D8E;
 
   .bomb:
-    LDA.W SamusProjectile_Variables,Y                                    ;A09D91;
+    LDA.W SamusProjectile_BombTimers-$A,Y                                ;A09D91;
     BEQ .timerExpired                                                    ;A09D94;
     JMP.W .nextProjectile                                                ;A09D96;
 
@@ -4467,7 +4467,7 @@ Enemy_vs_Bomb_CollisionHandling:
     JMP.W .next                                                          ;A0A27D;
 
   .projectileType:
-    LDA.W SamusProjectile_Variables,Y                                    ;A0A280;
+    LDA.W SamusProjectile_BombTimers-$A,Y                                ;A0A280;
     BNE .next                                                            ;A0A283;
     LDA.W SamusProjectile_Types,Y                                        ;A0A285;
     AND.W #$0F00                                                         ;A0A288;
@@ -4511,7 +4511,7 @@ Enemy_vs_Bomb_CollisionHandling:
 +   LDA.W CollisionIndex                                                 ;A0A2CD;
     ASL                                                                  ;A0A2D0;
     TAY                                                                  ;A0A2D1;
-    LDA.W SamusProjectile_Variables,Y                                    ;A0A2D2;
+    LDA.W SamusProjectile_BombTimers-$A,Y                                ;A0A2D2;
     BNE .next                                                            ;A0A2D5;
     LDA.W SamusProjectile_Directions,Y                                   ;A0A2D7;
     ORA.W #$0010                                                         ;A0A2DA;
@@ -4851,7 +4851,7 @@ NormalEnemyTouchAI_NoDeathCheck:
     ADC.B DP_Temp14                                                      ;A0A4F3;
     TAX                                                                  ;A0A4F5;
     LDA.L EnemyVulnerabilities_power,X                                   ;A0A4F6;
-    STA.W Temp_BeamVulnerability                                         ;A0A4FA;
+    STA.W Temp_ContactVulnerability                                      ;A0A4FA;
     AND.W #$007F                                                         ;A0A4FD;
     STA.W Temp_DamageMultiplier                                          ;A0A500;
     BEQ .return                                                          ;A0A503;
@@ -6581,11 +6581,11 @@ UNUSED_SwapLowByteNybbles_A0B01F:
     STA.W Temp_SwapNybbles                                               ;A0B023;
     PLA                                                                  ;A0B026;
     AND.W #$00FF                                                         ;A0B027;
-    STA.W Temp_Unknown0E32                                               ;A0B02A;
+    STA.W Temp_SwapNybblesByte                                           ;A0B02A;
     SEP #$20                                                             ;A0B02D; >_<
     XBA                                                                  ;A0B02F;
     REP #$20                                                             ;A0B030;
-    ORA.W Temp_Unknown0E32                                               ;A0B032;
+    ORA.W Temp_SwapNybblesByte                                           ;A0B032;
     LSR                                                                  ;A0B035;
     LSR                                                                  ;A0B036;
     LSR                                                                  ;A0B037;
@@ -6602,11 +6602,11 @@ UNUSED_SwapHighByteNybbles_A0B040:
     STA.W Temp_SwapNybbles                                               ;A0B044;
     PLA                                                                  ;A0B047;
     AND.W #$FF00                                                         ;A0B048;
-    STA.W Temp_Unknown0E32                                               ;A0B04B;
+    STA.W Temp_SwapNybblesByte                                           ;A0B04B;
     SEP #$20                                                             ;A0B04E; >_<
     XBA                                                                  ;A0B050;
     REP #$20                                                             ;A0B051;
-    ORA.W Temp_Unknown0E32                                               ;A0B053;
+    ORA.W Temp_SwapNybblesByte                                           ;A0B053;
     ASL                                                                  ;A0B056;
     ASL                                                                  ;A0B057;
     ASL                                                                  ;A0B058;
@@ -6628,15 +6628,15 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $B067: A = |[A]| ;;;
 NegateA_A0B067:
-    STA.W Temp_Unknown0E32                                               ;A0B067;
+    STA.W Temp_AbsoluteValue                                             ;A0B067;
     AND.W #$8000                                                         ;A0B06A;
     BEQ +                                                                ;A0B06D;
-    LDA.W Temp_Unknown0E32                                               ;A0B06F;
+    LDA.W Temp_AbsoluteValue                                             ;A0B06F;
     EOR.W #$FFFF                                                         ;A0B072;
     INC                                                                  ;A0B075;
-    STA.W Temp_Unknown0E32                                               ;A0B076;
+    STA.W Temp_AbsoluteValue                                             ;A0B076;
 
-+   LDA.W Temp_Unknown0E32                                               ;A0B079;
++   LDA.W Temp_AbsoluteValue                                             ;A0B079;
     RTL                                                                  ;A0B07C;
 
 
@@ -6645,19 +6645,19 @@ GetSignedYMinusX_A0B07D:
     PHX                                                                  ;A0B07D;
     PHY                                                                  ;A0B07E;
     TXA                                                                  ;A0B07F; >.<
-    STA.W Temp_Unknown0E32                                               ;A0B080;
+    STA.W Temp_SamusPosition                                             ;A0B080;
     TYA                                                                  ;A0B083;
     SEC                                                                  ;A0B084;
-    SBC.W Temp_Unknown0E32                                               ;A0B085;
-    STA.W Temp_Unknown0E34                                               ;A0B088;
+    SBC.W Temp_SamusPosition                                             ;A0B085;
+    STA.W Temp_AbsoluteDifference                                        ;A0B088;
     AND.W #$8000                                                         ;A0B08B;
     BEQ +                                                                ;A0B08E;
-    LDA.W Temp_Unknown0E34                                               ;A0B090;
+    LDA.W Temp_AbsoluteDifference                                        ;A0B090;
     EOR.W #$FFFF                                                         ;A0B093;
     INC                                                                  ;A0B096;
-    STA.W Temp_Unknown0E34                                               ;A0B097;
+    STA.W Temp_AbsoluteDifference                                        ;A0B097;
 
-+   LDA.W Temp_Unknown0E34                                               ;A0B09A;
++   LDA.W Temp_AbsoluteDifference                                        ;A0B09A;
     PLY                                                                  ;A0B09D;
     PLX                                                                  ;A0B09E;
     RTL                                                                  ;A0B09F;
@@ -6685,13 +6685,13 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $B0B2: 8-bit cosine multiplication ;;;
 EightBitCosineMultiplication_A0B0B2:
-; $0E36.$0E38 = cos([A] * pi / 80h) * FFh * Temp_Unknown0E32 / 100h
+; $0E36.$0E38 = cos([A] * pi / 80h) * FFh * Temp_Radius / 100h
 
 ; Bug. Only accurate for angles in the range C0h..3Fh (see EightBitSineMultiplication_A0B0DA)
     CLC                                                                  ;A0B0B2;
     ADC.W #$0040                                                         ;A0B0B3;
     AND.W #$00FF                                                         ;A0B0B6;
-    STA.W Temp_Unknown0E34                                               ;A0B0B9;
+    STA.W Temp_Angle                                                     ;A0B0B9;
     PHX                                                                  ;A0B0BC;
     PHY                                                                  ;A0B0BD;
     PHB                                                                  ;A0B0BE;
@@ -6704,13 +6704,13 @@ EightBitCosineMultiplication_A0B0B2:
 
 ;;; $B0C6: 8-bit negative sine multiplication ;;;
 EightBitNegativeSineMultiplication_A0B0C6:
-; $0E36.$0E38 = -sin([A] * pi / 80h) * FFh * Temp_Unknown0E32 / 100h
+; $0E36.$0E38 = -sin([A] * pi / 80h) * FFh * Temp_Radius / 100h
 
 ; Bug. Only accurate for angles in the range 80h..FFh (see EightBitSineMultiplication_A0B0DA)
     CLC                                                                  ;A0B0C6;
     ADC.W #$0080                                                         ;A0B0C7;
     AND.W #$00FF                                                         ;A0B0CA;
-    STA.W Temp_Unknown0E34                                               ;A0B0CD;
+    STA.W Temp_Angle                                                     ;A0B0CD;
     PHX                                                                  ;A0B0D0;
     PHY                                                                  ;A0B0D1;
     PHB                                                                  ;A0B0D2;
@@ -6723,7 +6723,7 @@ EightBitNegativeSineMultiplication_A0B0C6:
 
 ;;; $B0DA: 8-bit sine multiplication ;;;
 EightBitSineMultiplication_A0B0DA:
-; $0E36.$0E38 = sin(Temp_Unknown0E34 * pi / 80h) * FFh * Temp_Unknown0E32 / 100h
+; $0E36.$0E38 = sin(Temp_Angle * pi / 80h) * FFh * Temp_Radius      / 100h
 
 ; Bug. Only accurate for angles in the range 0..7Fh because the negation code of $B11B..2E does not do a correct multi-word increment.
 ; Accurate code would be more like:
@@ -6736,14 +6736,14 @@ EightBitSineMultiplication_A0B0DA:
     PHA                                                                  ;A0B0DE;
     PLB                                                                  ;A0B0DF;
     REP #$30                                                             ;A0B0E0;
-    LDA.W Temp_Unknown0E34                                               ;A0B0E2;
+    LDA.W Temp_Angle                                                     ;A0B0E2;
     AND.W #$007F                                                         ;A0B0E5;
     TAY                                                                  ;A0B0E8;
     LDA.W SineCosineTables_8bitSine,Y                                    ;A0B0E9;
     AND.W #$00FF                                                         ;A0B0EC;
     SEP #$20                                                             ;A0B0EF;
     STA.W $4202                                                          ;A0B0F1;
-    LDA.W Temp_Unknown0E32                                               ;A0B0F4;
+    LDA.W Temp_Radius                                                    ;A0B0F4;
     STA.W $4203                                                          ;A0B0F7;
     NOP                                                                  ;A0B0FA;
     NOP                                                                  ;A0B0FB;
@@ -6759,7 +6759,7 @@ EightBitSineMultiplication_A0B0DA:
     PLA                                                                  ;A0B10C;
     AND.W #$FF00                                                         ;A0B10D;
     STA.W Temp_SineProductFractionalPart                                 ;A0B110;
-    LDA.W Temp_Unknown0E34                                               ;A0B113;
+    LDA.W Temp_Angle                                                     ;A0B113;
     AND.W #$0080                                                         ;A0B116;
     BEQ .return                                                          ;A0B119;
     LDA.W Temp_SineProduct                                               ;A0B11B;

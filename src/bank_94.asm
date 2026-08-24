@@ -4296,7 +4296,7 @@ BombAndPowerBombExplosionBlockCollisionHandling:
 BombExplosionBlockCollisionHandling:
 ;; Parameters:
 ;;     X: Projectile index
-    LDA.W SamusProjectile_Variables,X                                    ;949CF4;
+    LDA.W SamusProjectile_BombTimers-$A,X                                ;949CF4;
     BNE .return                                                          ;949CF7;
     LDA.W SamusProjectile_Types,X                                        ;949CF9;
     BIT.W #$0001                                                         ;949CFC;
@@ -4890,10 +4890,10 @@ BlockBombedReaction:
 PowerBombExplosionBlockCollisionHandling:
 ;; Parameters:
 ;;     X: Projectile index
-    LDA.W SamusProjectile_Variables,X                                    ;94A06A;
+    LDA.W SamusProjectile_BombTimers-$A,X                                ;94A06A;
     BEQ .zero                                                            ;94A06D;
     BPL .return                                                          ;94A06F;
-    STZ.W SamusProjectile_Variables,X                                    ;94A071;
+    STZ.W SamusProjectile_BombTimers-$A,X                                ;94A071;
 
   .return:
     RTS                                                                  ;94A074;
@@ -5883,10 +5883,10 @@ BlockShotReaction_Slope_NonSquare:
     LDA.W SamusProjectile_YPositions,Y                                   ;94A5C1;
     AND.W #$000F                                                         ;94A5C4;
     EOR.W #$000F                                                         ;94A5C7;
-    STA.W CollisionVariable                                              ;94A5CA;
+    STA.W CollisionProjectileYOffset                                     ;94A5CA;
     LDA.W SlopeDefinitions_SlopeTopXOffsetByYPixel,X                     ;94A5CD;
     AND.W #$001F                                                         ;94A5D0;
-    CMP.W CollisionVariable                                              ;94A5D3;
+    CMP.W CollisionProjectileYOffset                                     ;94A5D3;
     BMI .collision                                                       ;94A5D6;
     BEQ .collision                                                       ;94A5D8;
     CLC                                                                  ;94A5DA;
@@ -5902,10 +5902,10 @@ BlockShotReaction_Slope_NonSquare:
     PLX                                                                  ;94A5E2;
     LDA.W SamusProjectile_YPositions,Y                                   ;94A5E3;
     AND.W #$000F                                                         ;94A5E6;
-    STA.W CollisionVariable                                              ;94A5E9;
+    STA.W CollisionProjectileYOffset                                     ;94A5E9;
     LDA.W SlopeDefinitions_SlopeTopXOffsetByYPixel,X                     ;94A5EC;
     AND.W #$001F                                                         ;94A5EF;
-    CMP.W CollisionVariable                                              ;94A5F2;
+    CMP.W CollisionProjectileYOffset                                     ;94A5F2;
     BMI ..collision                                                      ;94A5F5;
     BEQ ..collision                                                      ;94A5F7;
     CLC                                                                  ;94A5F9;
@@ -5959,7 +5959,7 @@ BombSpreadBlockCollisionDetection:
     PHX                                                                  ;94A638;
     JSR.W CalculateBlockAt_12_1E_1C_20                                   ;94A639;
     PLX                                                                  ;94A63C;
-    LDA.W SamusProjectile_Variables,X                                    ;94A63D;
+    LDA.W SamusProjectile_BombTimers-$A,X                                ;94A63D;
     BNE .nonZeroTimer                                                    ;94A640;
     JSR.W BombExplosionBlockCollisionHandling                            ;94A642;
     BRA .returnNoCollision                                               ;94A645;
@@ -6365,12 +6365,12 @@ GrappleBeamBlockCollisionDetection:
     PHK                                                                  ;94A85C;
     PLB                                                                  ;94A85D;
     LDA.W GrappleBeam_ExtensionXSubVelocity                              ;94A85E;
-    STA.W GrappleCollision_EndAngleParam+1                               ;94A861;
+    STA.W GrappleCollision_XQuarterSubVelocity+1                         ;94A861;
     CLC                                                                  ;94A864;
     ROR.W GrappleCollision_XQuarterVelocity                              ;94A865;
-    ROR.W GrappleCollision_EndAngleParam                                 ;94A868;
+    ROR.W GrappleCollision_XQuarterSubVelocity                           ;94A868;
     ROR.W GrappleCollision_XQuarterVelocity                              ;94A86B;
-    ROR.W GrappleCollision_EndAngleParam                                 ;94A86E;
+    ROR.W GrappleCollision_XQuarterSubVelocity                           ;94A86E;
     LDA.W GrappleBeam_ExtensionXSubVelocity                              ;94A871;
     BPL .YQuarterVelocity                                                ;94A874;
     LDA.W #$FFC0                                                         ;94A876;
@@ -6396,7 +6396,7 @@ GrappleBeamBlockCollisionDetection:
   .loop:
     LDA.W GrappleBeam_EndXSubOffset                                      ;94A8A0;
     CLC                                                                  ;94A8A3;
-    ADC.W GrappleCollision_EndAngleParam                                 ;94A8A4;
+    ADC.W GrappleCollision_XQuarterSubVelocity                           ;94A8A4;
     STA.W GrappleBeam_EndXSubOffset                                      ;94A8A7;
     LDA.W GrappleBeam_EndXOffset                                         ;94A8AA;
     ADC.W GrappleCollision_XQuarterVelocity                              ;94A8AD;
@@ -6532,7 +6532,7 @@ CalculatePositionFromGrappleBeamEndWithDistanceAndAngle:
 
   .grapplingEnemy:
     SEP #$20                                                             ;94A999;
-    LDA.W GrappleCollision_XQuarterVelocity                              ;94A99B;
+    LDA.W GrappleCollision_DistanceFromEndParam                          ;94A99B;
     STA.W $4202                                                          ;94A99E;
     REP #$20                                                             ;94A9A1;
     LDA.L SineCosineTables_8bitSine_SignExtended,X                       ;94A9A3;
@@ -6541,7 +6541,7 @@ CalculatePositionFromGrappleBeamEndWithDistanceAndAngle:
     BNE .not100                                                          ;94A9AC;
     LDA.W GrappleBeam_EndXPosition                                       ;94A9AE;
     CLC                                                                  ;94A9B1;
-    ADC.W GrappleCollision_XQuarterVelocity                              ;94A9B2;
+    ADC.W GrappleCollision_DistanceFromEndParam                          ;94A9B2;
     BRA +                                                                ;94A9B5;
 
   .not100:
@@ -6562,7 +6562,7 @@ CalculatePositionFromGrappleBeamEndWithDistanceAndAngle:
     BNE .notFF00                                                         ;94A9D0;
     LDA.W GrappleBeam_EndXPosition                                       ;94A9D2;
     SEC                                                                  ;94A9D5;
-    SBC.W GrappleCollision_XQuarterVelocity                              ;94A9D6;
+    SBC.W GrappleCollision_DistanceFromEndParam                          ;94A9D6;
     BRA +                                                                ;94A9D9;
 
   .notFF00:
@@ -6594,7 +6594,7 @@ CalculatePositionFromGrappleBeamEndWithDistanceAndAngle:
     BNE .not100again                                                     ;94AA0C;
     LDA.W GrappleBeam_EndYPosition                                       ;94AA0E;
     CLC                                                                  ;94AA11;
-    ADC.W GrappleCollision_XQuarterVelocity                              ;94AA12;
+    ADC.W GrappleCollision_DistanceFromEndParam                          ;94AA12;
     BRA +                                                                ;94AA15;
 
   .not100again:
@@ -6615,7 +6615,7 @@ CalculatePositionFromGrappleBeamEndWithDistanceAndAngle:
     BNE .notFF00again                                                    ;94AA30;
     LDA.W GrappleBeam_EndYPosition                                       ;94AA32;
     SEC                                                                  ;94AA35;
-    SBC.W GrappleCollision_XQuarterVelocity                              ;94AA36;
+    SBC.W GrappleCollision_DistanceFromEndParam                          ;94AA36;
     BRA +                                                                ;94AA39;
 
   .notFF00again:
@@ -6847,16 +6847,16 @@ GrappleSwingCollisionDetectionDueToSwinging:
     LDA.W #$0008                                                         ;94ABEC;
     CLC                                                                  ;94ABEF;
     ADC.W GrappleBeam_Length                                             ;94ABF0;
-    STA.W GrappleCollision_XQuarterVelocity                              ;94ABF3;
+    STA.W GrappleCollision_DistanceFromEndParam                          ;94ABF3;
 
   .loop:
     JSR.W CalculatePositionFromGrappleBeamEndWithDistanceAndAngle        ;94ABF6;
     JSR.W GrappleSwingCollisionReaction_duplicate                        ;94ABF9;
     BCS .return                                                          ;94ABFC;
-    LDA.W GrappleCollision_XQuarterVelocity                              ;94ABFE;
+    LDA.W GrappleCollision_DistanceFromEndParam                          ;94ABFE;
     CLC                                                                  ;94AC01;
     ADC.W #$0008                                                         ;94AC02;
-    STA.W GrappleCollision_XQuarterVelocity                              ;94AC05;
+    STA.W GrappleCollision_DistanceFromEndParam                          ;94AC05;
     DEC.W GrappleCollision_DistanceFromSamusFeet                         ;94AC08;
     BNE .loop                                                            ;94AC0B;
     CLC                                                                  ;94AC0D;
@@ -7043,13 +7043,13 @@ HandleGrappleBeamSwingingMovement:
     XBA                                                                  ;94AD44;
     AND.W #$00FF                                                         ;94AD45;
     ASL                                                                  ;94AD48;
-    STA.W GrappleCollision_YQuarterVelocity                              ;94AD49;
+    STA.W GrappleCollision_TargetEndAngle                                ;94AD49;
     LDA.W GrappleBeam_Length                                             ;94AD4C;
-    STA.W GrappleCollision_XQuarterVelocity                              ;94AD4F;
+    STA.W GrappleCollision_BeamLength                                    ;94AD4F;
     LDA.W GrappleBeam_EndAngle+1                                         ;94AD52;
     AND.W #$00FF                                                         ;94AD55;
     ASL                                                                  ;94AD58;
-    CMP.W GrappleCollision_YQuarterVelocity                              ;94AD59;
+    CMP.W GrappleCollision_TargetEndAngle                                ;94AD59;
     BEQ ..reachedTarget                                                  ;94AD5C;
 
   ..loop:
@@ -7153,13 +7153,13 @@ HandleGrappleBeamSwingingMovement:
     XBA                                                                  ;94AE14;
     AND.W #$00FF                                                         ;94AE15;
     ASL                                                                  ;94AE18;
-    STA.W GrappleCollision_YQuarterVelocity                              ;94AE19;
+    STA.W GrappleCollision_TargetEndAngle                                ;94AE19;
     LDA.W GrappleBeam_Length                                             ;94AE1C;
-    STA.W GrappleCollision_XQuarterVelocity                              ;94AE1F;
+    STA.W GrappleCollision_BeamLength                                    ;94AE1F;
     LDA.W GrappleBeam_EndAngle+1                                         ;94AE22;
     AND.W #$00FF                                                         ;94AE25;
     ASL                                                                  ;94AE28;
-    CMP.W GrappleCollision_YQuarterVelocity                              ;94AE29;
+    CMP.W GrappleCollision_TargetEndAngle                                ;94AE29;
     BEQ ..reachedTarget                                                  ;94AE2C;
 
   ..loop:
@@ -7174,7 +7174,7 @@ HandleGrappleBeamSwingingMovement:
     DEC                                                                  ;94AE41;
     DEC                                                                  ;94AE42;
     AND.W #$01FF                                                         ;94AE43;
-    CMP.W GrappleCollision_YQuarterVelocity                              ;94AE46;
+    CMP.W GrappleCollision_TargetEndAngle                                ;94AE46;
     BNE ..loop                                                           ;94AE49;
 
   ..reachedTarget:
