@@ -1,3 +1,7 @@
+
+# ARCHIVED
+ This branch is a snapshot of the disassembly before RAM labels were applied. No changes will be made here.
+
 # sm_disassembly
  A relocatable disassembly of Super Metroid (SNES) based on P.JBoy's bank logs.
 
