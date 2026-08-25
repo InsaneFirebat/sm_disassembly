@@ -821,8 +821,6 @@ Function_DraygonBody_SwoopRight_Setup:
 ;;; $8817: Calculate Draygon swoop Y positions ;;;
 CalculateDraygonSwoopYPositions:
     LDA.W #$0180                                                         ;A58817;
-    STA.W Temp_neverRead0E28                                             ;A5881A;
-    LDA.W Temp_neverRead0E28                                             ;A5881D; >.<
     STA.W Temp_SwoopYPosition                                            ;A58820;
     STZ.W Temp_SwoopYSpeed                                               ;A58823;
     STZ.W Temp_SwoopYPositionIndex                                       ;A58826;

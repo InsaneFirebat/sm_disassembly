@@ -1080,14 +1080,8 @@ endif
     STA.W EnemyGraphicsDrawnHook+2                                       ;A08A34;
     LDA.W #RTL_A0804C                                                    ;A08A37;
     STA.W EnemyGraphicsDrawnHook                                         ;A08A3A;
-    LDA.W #RTL_A0804C>>16                                                ;A08A3D;
-    STA.W neverRead1790+2                                                ;A08A40;
-    LDA.W #RTL_A0804C                                                    ;A08A43;
-    STA.W neverRead1790                                                  ;A08A46;
     LDA.W #$0800                                                         ;A08A49;
     STA.W EnemyBG2TilemapSize                                            ;A08A4C;
-    STZ.W neverRead179E                                                  ;A08A4F;
-    STZ.W neverRead17A0                                                  ;A08A52;
     STZ.W BossID                                                         ;A08A55;
     JSL.L ClearEnemyData_ProcessEnemySet                                 ;A08A58;
     JSL.L LoadEnemyTileData                                              ;A08A5C;
@@ -1151,7 +1145,6 @@ Initialise_Enemies:
     PLB                                                                  ;A08AB5;
     PLB                                                                  ;A08AB6;
     REP #$30                                                             ;A08AB7;
-    STZ.W neverRead0E4E                                                  ;A08AB9;
     STZ.W NumberOfEnemiesKilled                                          ;A08ABC;
     STZ.W GlobalOffScreenEnemyProcessingFlag                             ;A08ABF;
     LDX.W #$011E                                                         ;A08AC2;
@@ -1176,8 +1169,7 @@ Initialise_Enemies:
     BNE +                                                                ;A08AE8;
     JMP.W .return                                                        ;A08AEA;
 
-+   STZ.W neverRead0E48                                                  ;A08AED;
-    LDY.W #$0000                                                         ;A08AF0;
++   LDY.W #$0000                                                         ;A08AF0;
 
   .loop:
     JSR.W LoadEnemyGFXIndices                                            ;A08AF3;
@@ -1270,14 +1262,6 @@ Initialise_Enemies:
     JMP.W .loop                                                          ;A08BCC;
 
 +   STY.W FirstFreeEnemyIndex                                            ;A08BCF;
-    TYA                                                                  ;A08BD2;
-    LSR                                                                  ;A08BD3;
-    LSR                                                                  ;A08BD4;
-    LSR                                                                  ;A08BD5;
-    LSR                                                                  ;A08BD6;
-    LSR                                                                  ;A08BD7;
-    LSR                                                                  ;A08BD8;
-    STA.W neverRead0E4E                                                  ;A08BD9;
     LDA.L EnemyPopulations_XPosition,X                                   ;A08BDC;
     AND.W #$00FF                                                         ;A08BE0;
     STA.W NumberOfEnemiesRequiredToKill                                  ;A08BE3;
@@ -1670,7 +1654,6 @@ Determine_Which_Enemies_to_Process:
     PLB                                                                  ;A08EBA;
     PLB                                                                  ;A08EBB;
     REP #$30                                                             ;A08EBC;
-    INC.W neverRead0E46                                                  ;A08EBE;
     STZ.W EnemyIndex                                                     ;A08EC1;
     STZ.W ActiveEnemyIndicesStackPointer                                 ;A08EC4;
     STZ.W InteractiveEnemyIndicesStackPointer                            ;A08EC7;
@@ -2072,10 +2055,6 @@ endif
     STA.W EnemyIndexSamusCollidesRight                                   ;A09152;
     STA.W EnemyIndexSamusCollidesUp                                      ;A09155;
     STA.W EnemyIndexSamusCollidesDown                                    ;A09158;
-    STZ.W neverRead1834                                                  ;A0915B;
-    STZ.W neverRead1836                                                  ;A0915E;
-    STZ.W neverRead1838                                                  ;A09161;
-    STZ.W neverRead183A                                                  ;A09164;
     PLB                                                                  ;A09167;
     RTL                                                                  ;A09168;
 
@@ -2535,12 +2514,6 @@ WriteEnemyOAM_IfNotFrozenOrInvincibleFrame:
     LDA.W Enemy.properties2,X                                            ;A094C7;
     BIT.W #$0004                                                         ;A094CA;
     BNE .extendedSpritemap                                               ;A094CD;
-    LDA.W Enemy.ID,X                                                     ;A094CF;
-    STA.L neverReadF37E                                                  ;A094D2;
-    LDA.W Enemy.instList,X                                               ;A094D6;
-    STA.L neverReadF37A                                                  ;A094D9;
-    LDA.W EnemyIndex                                                     ;A094DD;
-    STA.L neverReadF37C                                                  ;A094E0;
     LDA.W #$0001                                                         ;A094E4;
     STA.L EnemyProcessingStage                                           ;A094E7;
     LDY.W Enemy.spritemap,X                                              ;A094EB;
@@ -3498,7 +3471,6 @@ Enemy_vs_Projectile_CollisionHandling_ExtendedSpritemap:
     RTS                                                                  ;A09B9A;
 
   .nonZeroCounter:
-    STA.W ProjectileCounterMirror_neverRead                              ;A09B9B;
     LDY.W EnemyIndex                                                     ;A09B9E;
     LDA.W Enemy.spritemap,Y                                              ;A09BA1;
     BEQ .returnUpper                                                     ;A09BA4;
@@ -5652,25 +5624,6 @@ Samus_vs_SolidEnemy_CollisionDetection:
 
   .touching:
     STZ.W SamusYSubPosition                                              ;A0AAC8; (!)
-    LDX.W CollisionIndex                                                 ;A0AACB;
-    LDA.W SamusXPosition                                                 ;A0AACE;
-    STA.W neverRead184A                                                  ;A0AAD1;
-    LDA.W SamusXSubPosition                                              ;A0AAD4;
-    STA.W neverRead184C                                                  ;A0AAD7;
-    LDA.W Enemy.XPosition,X                                              ;A0AADA;
-    STA.W neverRead184E                                                  ;A0AADD;
-    LDA.W Enemy.XSubPosition,X                                           ;A0AAE0;
-    STA.W neverRead1850                                                  ;A0AAE3;
-    LDA.B DP_Temp12                                                      ;A0AAE6;
-    STA.W neverRead1852                                                  ;A0AAE8;
-    LDA.B DP_Temp14                                                      ;A0AAEB;
-    STA.W neverRead1854                                                  ;A0AAED;
-    LDA.W SamusYPosition                                                 ;A0AAF0;
-    STA.W neverRead1856                                                  ;A0AAF3;
-    LDA.W SamusYSubPosition                                              ;A0AAF6;
-    STA.W neverRead1858                                                  ;A0AAF9;
-    LDA.W #$0001                                                         ;A0AAFC;
-    STA.W neverRead185A                                                  ;A0AAFF;
     STZ.B DP_Temp12                                                      ;A0AB02;
     STZ.B DP_Temp14                                                      ;A0AB04;
     LDA.W CollisionIndex                                                 ;A0AB06;
@@ -5681,7 +5634,6 @@ Samus_vs_SolidEnemy_CollisionDetection:
     TAX                                                                  ;A0AB12;
     LDA.W CollisionIndex                                                 ;A0AB13;
     STA.W EnemyIndexSamusCollidesLeft,X                                  ;A0AB16;
-    STZ.W neverRead1834,X                                                ;A0AB19;
     LDA.W #$FFFF                                                         ;A0AB1C;
     PLB                                                                  ;A0AB1F;
     PLP                                                                  ;A0AB20;
@@ -5689,36 +5641,15 @@ Samus_vs_SolidEnemy_CollisionDetection:
 
   .notTouching:
     PHA                                                                  ;A0AB22;
-    LDX.W CollisionIndex                                                 ;A0AB23;
-    LDA.W SamusXPosition                                                 ;A0AB26;
-    STA.W neverRead184A                                                  ;A0AB29;
-    LDA.W SamusXSubPosition                                              ;A0AB2C;
-    STA.W neverRead184C                                                  ;A0AB2F;
-    LDA.W Enemy.XPosition,X                                              ;A0AB32;
-    STA.W neverRead184E                                                  ;A0AB35;
-    LDA.W Enemy.XSubPosition,X                                           ;A0AB38;
-    STA.W neverRead1850                                                  ;A0AB3B;
-    LDA.B DP_Temp12                                                      ;A0AB3E;
-    STA.W neverRead1852                                                  ;A0AB40;
-    LDA.B DP_Temp14                                                      ;A0AB43;
-    STA.W neverRead1854                                                  ;A0AB45;
-    LDA.W SamusYPosition                                                 ;A0AB48;
-    STA.W neverRead1856                                                  ;A0AB4B;
-    LDA.W SamusYSubPosition                                              ;A0AB4E;
-    STA.W neverRead1858                                                  ;A0AB51;
-    LDA.W #$0002                                                         ;A0AB54;
-    STA.W neverRead185A                                                  ;A0AB57;
     LDA.W CollisionMovementDirection                                     ;A0AB5A;
     AND.W #$0003                                                         ;A0AB5D;
     ASL                                                                  ;A0AB60;
     TAX                                                                  ;A0AB61;
     PLA                                                                  ;A0AB62;
     STA.B DP_Temp12                                                      ;A0AB63;
-    STA.W neverRead1834,X                                                ;A0AB65;
     STZ.B DP_Temp14                                                      ;A0AB68;
     LDA.W CollisionIndex                                                 ;A0AB6A;
     STA.B DP_Temp16                                                      ;A0AB6D;
-    LDA.W CollisionIndex                                                 ;A0AB6F; >.<
     STA.W EnemyIndexSamusCollidesLeft,X                                  ;A0AB72;
     LDA.W #$FFFF                                                         ;A0AB75;
     PLB                                                                  ;A0AB78;
@@ -5737,25 +5668,6 @@ Samus_vs_SolidEnemy_CollisionDetection:
 if !FEATURE_KEEP_UNREFERENCED
   .unused:
     PHA                                                                  ;A0AB84;
-    LDX.W CollisionIndex                                                 ;A0AB85;
-    LDA.W SamusXPosition                                                 ;A0AB88;
-    STA.W neverRead184A                                                  ;A0AB8B;
-    LDA.W SamusXSubPosition                                              ;A0AB8E;
-    STA.W neverRead184C                                                  ;A0AB91;
-    LDA.W Enemy.XPosition,X                                              ;A0AB94;
-    STA.W neverRead184E                                                  ;A0AB97;
-    LDA.W Enemy.XSubPosition,X                                           ;A0AB9A;
-    STA.W neverRead1850                                                  ;A0AB9D;
-    LDA.B DP_Temp12                                                      ;A0ABA0;
-    STA.W neverRead1852                                                  ;A0ABA2;
-    LDA.B DP_Temp14                                                      ;A0ABA5;
-    STA.W neverRead1854                                                  ;A0ABA7;
-    LDA.W SamusYPosition                                                 ;A0ABAA;
-    STA.W neverRead1856                                                  ;A0ABAD;
-    LDA.W SamusYSubPosition                                              ;A0ABB0;
-    STA.W neverRead1858                                                  ;A0ABB3;
-    LDA.W #$0003                                                         ;A0ABB6;
-    STA.W neverRead185A                                                  ;A0ABB9;
     LDA.W CollisionMovementDirection                                     ;A0ABBC;
     AND.W #$0003                                                         ;A0ABBF;
     ASL                                                                  ;A0ABC2;
@@ -5764,11 +5676,9 @@ if !FEATURE_KEEP_UNREFERENCED
     EOR.W #$FFFF                                                         ;A0ABC5;
     INC                                                                  ;A0ABC8;
     STA.B DP_Temp12                                                      ;A0ABC9;
-    STA.W neverRead1834,X                                                ;A0ABCB;
     STZ.B DP_Temp14                                                      ;A0ABCE;
     LDA.W CollisionIndex                                                 ;A0ABD0;
     STA.B DP_Temp16                                                      ;A0ABD3;
-    LDA.W CollisionIndex                                                 ;A0ABD5;
     STA.W EnemyIndexSamusCollidesLeft,X                                  ;A0ABD8;
     LDA.W #$FFFF                                                         ;A0ABDB;
     PLB                                                                  ;A0ABDE;

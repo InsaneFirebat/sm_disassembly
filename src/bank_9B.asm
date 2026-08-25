@@ -3819,11 +3819,6 @@ GrappleBeamFunction_Fire_GotoCancel:
     STZ.W GrappleBeam_SwingAngularDeceleration                           ;9BC62D;
     STZ.W GrappleBeam_ExtraSwingAngularVelocity                          ;9BC630;
     STZ.W GrappleBeam_KickCooldownTimer                                  ;9BC633;
-    STZ.W GrappleBeam_neverRead0D1E                                      ;9BC636;
-    STZ.W GrappleBeam_neverRead0D20                                      ;9BC639;
-    LDA.W #$0002                                                         ;9BC63C;
-    STA.W GrappleBeam_neverRead0D3A                                      ;9BC63F;
-    STZ.W GrappleBeam_neverRead0D3C                                      ;9BC642;
     LDA.W #$0005*!FPS                                                    ;9BC645;
     STA.W GrappleBeam_StartAnimationTimer                                ;9BC648;
     LDA.W GrappleBeamStartTilesBeginEndPointers_0                        ;9BC64B;
@@ -4153,9 +4148,7 @@ GrappleBeamFunction_HitNothing_Cancel:
     LDA.W #$001C                                                         ;9BC86E;
     JSL.L Run_Samus_Command                                              ;9BC871;
 
-+   STZ.W GrappleBeam_neverRead0D1E                                      ;9BC875;
-    STZ.W GrappleBeam_neverRead0D20                                      ;9BC878;
-    STZ.W GrappleBeam_DirectionFired                                     ;9BC87B;
++   STZ.W GrappleBeam_DirectionFired                                     ;9BC87B;
     STZ.W GrappleBeam_SpecialAngleHandlingFlag                           ;9BC87E;
     STZ.W GrappleWalljumpTimer                                           ;9BC881;
     STZ.W GrappleBeam_SlowScrollingFlag                                  ;9BC884;
@@ -4268,8 +4261,6 @@ GrappleBeamFunction_Dropped:
     STZ.W SamusXBaseSubSpeed                                             ;9BC961;
     STZ.W SamusYSubSpeed                                                 ;9BC964;
     STZ.W SamusYSpeed                                                    ;9BC967;
-    STZ.W GrappleBeam_neverRead0D1E                                      ;9BC96A;
-    STZ.W GrappleBeam_neverRead0D20                                      ;9BC96D;
     STZ.W GrappleBeam_DirectionFired                                     ;9BC970;
     STZ.W GrappleBeam_SpecialAngleHandlingFlag                           ;9BC973;
     STZ.W GrappleWalljumpTimer                                           ;9BC976;
@@ -4326,16 +4317,11 @@ GrappleBeamFunction_WallJumping:
     STZ.W SamusXAccelerationMode                                         ;9BC9F4;
     STZ.W SamusXSpeedKilledDueToCollisionFlag                            ;9BC9F7;
     STZ.W SamusIsFallingFlag                                             ;9BC9FA;
-    STZ.W neverRead0B1A                                                  ;9BC9FD;
-    STZ.W neverRead0B2A                                                  ;9BCA00;
     STZ.W SamusYSubSpeed                                                 ;9BCA03;
     STZ.W SamusYSpeed                                                    ;9BCA06;
     STZ.W SamusYDirection                                                ;9BCA09;
-    STZ.W neverRead0B38                                                  ;9BCA0C;
     STZ.W SamusXBaseSpeed                                                ;9BCA0F;
     STZ.W SamusXBaseSubSpeed                                             ;9BCA12;
-    STZ.W GrappleBeam_neverRead0D1E                                      ;9BCA15;
-    STZ.W GrappleBeam_neverRead0D20                                      ;9BCA18;
     STZ.W GrappleBeam_DirectionFired                                     ;9BCA1B;
     STZ.W GrappleBeam_SpecialAngleHandlingFlag                           ;9BCA1E;
     STZ.W GrappleWalljumpTimer                                           ;9BCA21;
@@ -4530,8 +4516,6 @@ GrappleBeamFunction_ReleasedFromSwing:
 
 +   LDA.W #$0007                                                         ;9BCBA5;
     STA.W SuperSpecialProspectivePoseChangeCommand                       ;9BCBA8;
-    STZ.W GrappleBeam_neverRead0D1E                                      ;9BCBAB;
-    STZ.W GrappleBeam_neverRead0D20                                      ;9BCBAE;
     STZ.W GrappleBeam_DirectionFired                                     ;9BCBB1;
     STZ.W GrappleBeam_SpecialAngleHandlingFlag                           ;9BCBB4;
     STZ.W GrappleWalljumpTimer                                           ;9BCBB7;

@@ -181,8 +181,7 @@ skip 2 ; $0594
 BG3XScrollHDMADataTableSize: skip 2 ; $0596
 YPositionOnScreenFX22: skip 2 ; $0598
 ExpandContract_HDMATableUpdateCounter: skip 0 ; $059A
-neverRead059A: skip 2 ; $059A
-neverRead059C: skip 2 ; $059C
+skip 4 ; $059A..9D
 HUDBG2XPositionScrollingSky: skip 2 ; $059E
 ContractingFlag: skip 2 ; $05A0
 
@@ -267,8 +266,7 @@ Temp_Minimap: skip 2 ; $060B
 RemainingEnemyHitboxEntries: skip 0 ; $060D
 NumberOfExtendedTilemapTiles: skip 0 ; $060D
 BotwoonSpitLoopCounter: skip 2 ; $060D
-ProjectileCounterMirror_neverRead: skip 2 ; $060F
-skip 6 ; $0611..16
+skip 8 ; $060F..16
 
 APU_UploadingFlag: skip 2 ; $0617
 APU_MusicQueueEntries: skip $10 ; $0619..28
@@ -309,7 +307,7 @@ CrocomireMelting_WordsToLoad: skip 2 ; $068E
 CrocomireMelting_XOffsetTableIndex: skip 2 ; $0690
 CrocomireMelting_DisplacementCoefficient: skip 2 ; $0692
 CrocomireMelting_InitialAdjustedDestYOffset: skip 2 ; $0694
-CrocomireMelting_neverRead0696: skip 2 ; $0696
+skip 2 ; $0696
 CrocomireMelting_MaxAdjustedDestYOffset: skip 2 ; $0698
 CrocomireMelting_TilesLoadingTableIndex: skip 2 ; $069A
 CrocomireMelting_YOffsets: skip $81 ; $069C..071D
@@ -380,8 +378,7 @@ PauseMenu_End: ; $077C
 HUDItemTilemapPaletteBits: skip 2 ; $077C
 skip 5 ; $077E..82
 Mode7Flag: skip 2 ; $0783
-UnusedMode7RotationAngle: skip 2 ; $0785
-neverRead0787: skip 2 ; $0787
+skip 4 ; $0785..87
 CurrentAreaMapCollectedFlag: skip 2 ; $0789
 LoadStationIndex: skip 2 ; $078B
 DoorPointer: skip 2 ; $078D
@@ -564,7 +561,7 @@ IGTHours: skip 2 ; $09E0
 AltText: skip 2 ; $09E2
 Moonwalk: skip 2 ; $09E4
 SamusPlacementMode: skip 2 ; $09E6
-neverRead09E8: skip 2 ; $09E8
+skip 2 ; $09E8
 IconCancel: skip 2 ; $09EA
 skip $16 ; $09EC..0A01
 
@@ -575,13 +572,12 @@ PreviousMissiles: skip 2 ; $0A08
 PreviousSuperMissiles: skip 2 ; $0A0A
 PreviousPowerBombs: skip 2 ; $0A0C
 PreviousHUDItemIndex: skip 2 ; $0A0E
-neverRead0A10: skip 1 ; $0A10
+skip 1 ; $0A10
 PreviousMovementTypeXray: skip 1 ; $0A11
 PreviousEnergyHurtCheck: skip 2 ; $0A12
 BackupController1InputDemo: skip 2 ; $0A14
 BackupController1NewDemo: skip 2 ; $0A16
-neverRead0A18: skip 2 ; $0A18
-skip 2 ; $0A1A
+skip 4 ; $0A18..1B
 Pose: skip 2 ; $0A1C
 PoseXDirection: skip 1 ; $0A1E
 MovementType: skip 1 ; $0A1F
@@ -669,7 +665,7 @@ SamusAnimationFrameBuffer: skip 2 ; $0A9C
 GrappleWalljumpTimer: skip 2 ; $0A9E
 CeresElevatorFadeTimer: skip 2 ; $0AA0
 ShinesparkWindupCrashTimer: skip 2 ; $0AA2
-neverRead0AA4: skip 2 ; $0AA4
+skip 2 ; $0AA4
 ArmCannonOpenFlag: skip 1 ; $0AA6
 ArmCannonCloseFlag: skip 1 ; $0AA7
 ArmCannonFrame: skip 2 ; $0AA8
@@ -720,14 +716,12 @@ SamusPreviousXSubPosition: skip 2 ; $0B12
 SamusPreviousYPosition: skip 2 ; $0B14
 SamusPreviousYSubPosition: skip 2 ; $0B16
 ChargedShotGlowTimer: skip 2 ; $0B18
-neverRead0B1A: skip 2 ; $0B1A
-skip 4 ; $0B1C
+skip 6 ; $0B1A..1D
 MorphBallBounceState: skip 2 ; $0B20
 SamusIsFallingFlag: skip 2 ; $0B22
 Temp0B24: skip 2 ; $0B24
 Temp0B26: skip 2 ; $0B26
-skip 2 ; $0B28
-neverRead0B2A: skip 2 ; $0B2A
+skip 4 ; $0B28..2B
 SamusYSubSpeed: skip 1 ; $0B2C
 SamusYSpeedCombined: skip 1 ; $0B2D
 SamusYSpeed: skip 2 ; $0B2E
@@ -735,8 +729,7 @@ skip 2 ; $0B30
 SamusYSubAcceleration: skip 2 ; $0B32
 SamusYAcceleration: skip 2 ; $0B34
 SamusYDirection: skip 2 ; $0B36
-neverRead0B38: skip 2 ; $0B38
-skip 2 ; $0B3A
+skip 4 ; $0B38..3B
 SamusRunningMomentumFlag: skip 2 ; $0B3C
 SamusBoostTimer: skip 1 ; $0B3E
 SamusBoostCounter: skip 1 ; $0B3F
@@ -823,8 +816,7 @@ GrappleBeam_StartYPosition: skip 2 ; $0D18
 GrappleBeam_FlareXPosition: skip 2 ; $0D1A
 GrappleBeam_FlareYPosition: skip 2 ; $0D1C
 OffScreenBeamHDMADataTableIndex: skip 0 ; $0D1E
-GrappleBeam_neverRead0D1E: skip 2 ; $0D1E
-GrappleBeam_neverRead0D20: skip 2 ; $0D20
+skip 4 ; $0D1E..21
 GrappleBeam_ExtensionXSubVelocity: skip 1 ; $0D22
 GrappleBeam_ExtensionXVelocity: skip 1 ; $0D23
 GrappleBeam_ExtensionYSubVelocity: skip 1 ; $0D24
@@ -839,8 +831,7 @@ GrappleBeam_Function: skip 2 ; $0D32
 GrappleBeam_DirectionFired: skip 2 ; $0D34
 GrappleBeam_SpecialAngleHandlingFlag: skip 2 ; $0D36
 GrappleBeam_FailedSwingMovementCounter: skip 2 ; $0D38
-GrappleBeam_neverRead0D3A: skip 2 ; $0D3A
-GrappleBeam_neverRead0D3C: skip 2 ; $0D3C
+skip 4 ; $0D3A..3D
 GrappleBeam_StartAnimationTimer: skip 2 ; $0D3E
 GrappleBeam_StartAnimationTilePointer: skip 2 ; $0D40
 GrappleBeam_SegmentAnimationInstructionTimers: skip $20 ; $0D42..61
@@ -964,9 +955,7 @@ DraygonEscapePreviousDpadInput: skip 2 ; $0DEE
 skip 4
 DebugSpareCPUDisplayFlag: skip 2 ; $0DF4
 DebugSamusTileViewerFlag: skip 2 ; $0DF6
-unknown0DF8: skip 2 ; $0DF8
-neverRead0DFA: skip 2 ; $0DFA
-neverRead0DFC: skip 2 ; $0DFC
+skip 6 ; $0DF8..FD
 PreviousController1InputDrawing: skip 2 ; $0DFE
 PreviousController1NewDrawing: skip 2 ; $0E00
 SamusBottomBoundaryPosition: skip 2 ; $0E02
@@ -1021,10 +1010,8 @@ Temp_XSquaredDividedByRadius: skip 0 ; $0E26
 Temp_XSubSpeed: skip 0 ; $0E26
 Temp_SwoopYPositionIndex: skip 0 ; $0E26
 Temp_EnemySetEntryPointer: skip 2 ; $0E26
-Temp_neverRead0E28: skip 0 ; $0E28
 Temp_YSpeed: skip 2 ; $0E28
 Temp_YSubSpeed: skip 0 ; $0E2A
-Temp_neverRead0E2A: skip 0 ; $0E2A
 Temp_MetareeParticleVRAMTilesIndex: skip 0 ; $0E2A
 Temp_RowYPosition: skip 2 ; $0E2A
 Temp_MetareeParticlePaletteIndex: skip 0 ; $0E2C
@@ -1067,11 +1054,10 @@ Temp_ContactVulnerability: skip 2 ; $0E40
 
 skip 2 ; $0E42
 NumberOfTimesMainEnemyRoutineExecuted: skip 2 ; $0E44
-neverRead0E46: skip 2 ; $0E46
-neverRead0E48: skip 2 ; $0E48
+skip 2 ; $0E46..49
 NewEnemyIndex: skip 2 ; $0E4A
 FirstFreeEnemyIndex: skip 2 ; $0E4C
-neverRead0E4E: skip 2 ; $0E4E
+skip 2 ; $0E4E
 NumberOfEnemiesKilled: skip 2 ; $0E50
 NumberOfEnemiesRequiredToKill: skip 2 ; $0E52
 EnemyIndex: skip 2 ; $0E54
@@ -1135,15 +1121,14 @@ endstruct
 org $1778
 FirefleaFlashing_Timer: skip 2 ; $1778
 FirefleaFlashing_Index: skip 2 ; $177A
-neverRead177C: skip 2 ; $177C
+skip 2 ; $177C
 FirefleaFlashing_DarknessLevel: skip 2 ; $177E
-neverRead1780: skip 2 ; $1780
-neverRead1782: skip 2 ; $1782
+skip 4 ; $1780..83
 
 EnemyAIPointer: skip 4 ; $1784
 BackupEnemyAIPointer: skip 4 ; $1788
 EnemyGraphicsDrawnHook: skip 4 ; $178C
-neverRead1790: skip 4 ; $1790
+skip 4 ; $1790..93
 
 EnemyPaletteCycle_PaletteIndex: skip 2 ; $1794
 EnemyPaletteCycle_ColorSetIndex: skip 2 ; $1796
@@ -1151,8 +1136,7 @@ EnemyPaletteCycle_Timer: skip 2 ; $1798
 
 EnemyBG2TilemapSize: skip 2 ; $179A
 BossID: skip 2 ; $179C
-neverRead179E: skip 2 ; $179E
-neverRead17A0: skip 2 ; $17A0
+skip 4 ; $179E..A1
 DisableDrawingOfEnemies: skip 2 ; $17A2
 ActiveEnemyIndicesStackPointer: skip 2 ; $17A4
 InteractiveEnemyIndicesStackPointer: skip 2 ; $17A6
@@ -1164,10 +1148,7 @@ EnemyIndexSamusCollidesLeft: skip 2 ; $182C
 EnemyIndexSamusCollidesRight: skip 2 ; $182E
 EnemyIndexSamusCollidesUp: skip 2 ; $1830
 EnemyIndexSamusCollidesDown: skip 2 ; $1832
-neverRead1834: skip 2 ; $1834
-neverRead1836: skip 2 ; $1836
-neverRead1838: skip 2 ; $1838
-neverRead183A: skip 2 ; $183A
+skip 8 ; $1834..3B
 GlobalOffScreenEnemyProcessingFlag: skip 2 ; $183C
 EarthquakeType: skip 2 ; $183E
 EarthquakeTimer: skip 2 ; $1840
@@ -1175,15 +1156,8 @@ NumberOfTimesRoomShakingExecuted: skip 2 ; $1842
 SpriteObjectIndex: skip 2 ; $1844
 DebugEnemyIndex: skip 2 ; $1846
 LogIndex: skip 2 ; $1848
-neverRead184A: skip 2 ; $184A
-neverRead184C: skip 2 ; $184C
-neverRead184E: skip 2 ; $184E
-neverRead1850: skip 2 ; $1850
-neverRead1852: skip 2 ; $1852
-neverRead1854: skip 2 ; $1854
-neverRead1856: skip 2 ; $1856
-neverRead1858: skip 2 ; $1858
-neverRead185A: skip 2 ; $185A
+skip $10 ; $184A..59
+DebugHandler185A: skip 2 ; $185A
 DebugIndex: skip 2 ; $185C
 DebugTimeIsFrozenForEnemies: skip 2 ; $185E
 DebugTextCursorXPosition: skip 2 ; $1860
@@ -1305,7 +1279,7 @@ Mode7Object_PreInstructions: skip 4 ; $19A5..A8
 Mode7Object_InstructionTimers: skip 4 ; $19A9..AC
 Mode7Object_Timers: skip 4 ; $19AD..B0
 Mode7Object_Index: skip 2 ; $19B1
-neverRead19B3: skip 2 ; $19B3
+skip 2 ; $19B3
 
 CinematicBGObject_IndirectInstructionPointers: skip 8 ; $19B5..BC
 skip $10
@@ -1333,17 +1307,17 @@ TitleMenu_SlotAHelmetAnimationTimer: skip 2 ; $1991
 TitleMenu_SlotBHelmetAnimationTimer: skip 2 ; $1993
 TitleMenu_SlotCHelmetAnimationTimer: skip 2 ; $1995
 TitleMenu_SelectionMissileAnimFrame: skip 2 ; $1997
-neverRead1999: skip 2 ; $1999
+skip 2 ; $1999
 TitleMenu_SlotAHelmetAnimationFrame: skip 2 ; $199B
 TitleMenu_SlotBHelmetAnimationFrame: skip 2 ; $199D
 TitleMenu_SlotCHelmetAnimationFrame: skip 2 ; $199F
 TitleMenu_SelectionMissileXPosition: skip 2 ; $19A1
-neverRead19A3: skip 2 ; $19A3
+skip 2 ; $19A3
 TitleMenu_SlotAHelmetXPosition: skip 2 ; $19A5
 TitleMenu_SlotBHelmetXPosition: skip 2 ; $19A7
 TitleMenu_SlotCHelmetXPosition: skip 2 ; $19A9
 TitleMenu_SelectionMissileYPosition: skip 2 ; $19AB
-neverRead19AD: skip 2 ; $19AD
+skip 2 ; $19AD
 TitleMenu_SlotAHelmetYPosition: skip 2 ; $19AF
 TitleMenu_SlotBHelmetYPosition: skip 2 ; $19B1
 TitleMenu_SlotCHelmetYPosition: skip 2 ; $19B3
@@ -1368,7 +1342,6 @@ IntroCrossFadeTimer: skip 0 ; $1A4B
 CeresExplosion2OffsetIndex: skip 0 ; $1A4B
 ZebesExplosionAfterglowTimer: skip 0 ; $1A4B
 EndingShipXVelocity: skip 2 ; $1A4B
-neverRead1A4D: skip 0 ; $1A4D
 IntroBabyMetroidXVelocity: skip 0 ; $1A4D
 IntroBabyMetroidIdleTimer: skip 0 ; $1A4D
 EndingShipShakeIndex: skip 0 ; $1A4D
@@ -1408,8 +1381,7 @@ GameOptionsMenuObject_SpritemapPointers: skip $10 ; $1A9D..AC
 GameOptionsMenuObject_XPositions: skip $10 ; $1AAD..BC
 GameOptionsMenuObject_YPositions: skip $10 ; $1ABD..CC
 GameOptionsMenuObject_PaletteIndices: skip $10 ; $1ACD..DC
-neverRead1ADD: skip $10 ; $1ADD..EC
-neverRead1AED: skip $10 ; $1AED..FC
+skip $20 ; $1ADD..FC
 GameOptionsMenuObject_InstListPointers: skip $10 ; $1AFD..1B0C
 GameOptionsMenuObject_PreInstructions: skip $10 ; $1B0D..1C
 GameOptionsMenuObject_InstructionTimers: skip $10 ; $1B1D..2C
@@ -1657,9 +1629,7 @@ CrocomireDeath_PreBridgeBlockDustCloudSpawnedFlag: skip 2 ; $7E9000
 CrocomireDeath_BridgePart1CrumbledFlag: skip 2 ; $7E9002
 skip 2 ; $7E9004
 CrocomireDeath_BridgePart2CrumbledFlag: skip 2 ; $7E9006
-skip 2 ; $7E9008
-neverRead900A: skip 2 ; $7E900A
-skip 10 ; $7E900C..15
+skip 14 ; $7E9008..15
 CrocomireDeath_CrumblingBridgeIndex: skip 2 ; $7E9016
 CrocomireDeath_AcidDamageSmokeTimer: skip 2 ; $7E9018
 
@@ -1910,7 +1880,7 @@ skip 3 ; $7ED82D..2F
 SRAMMirror_ChozeBlockDestroyed: skip $40 ; $7ED830..6F
 SRAMMirror_Items: skip $40 ; $7ED870..AF
 SRAMMirror_Doors: skip $40 ; $7ED8B0..EF
-neverReadD8F0: skip 8 ; $7ED8F0..F7
+skip 8 ; $7ED8F0..F7
 SRAMMirror_UsedSaveStationsElevators: skip $10 ; $7ED8F8..D907
 SRAMMirror_MapStations: skip 8 ; $7ED908..0F
 skip 4 ; $7ED910..13
@@ -1947,9 +1917,7 @@ SpriteObjects_YSubPositions: skip $80 ; $7EF278..F7
 SpriteObjects_DisableFlags: skip $80 ; $7EF2F8..F377
 
 EnemyProcessingStage: skip 2 ; $7EF378
-neverReadF37A: skip 2 ; $7EF37A
-neverReadF37C: skip 2 ; $7EF37C
-neverReadF37E: skip 2 ; $7EF37E
+skip 6 ; $7EF37A..7E
 
 EnemyProjectileData_CollisionOptions: skip $24 ; $7EF380..A3
 skip $24
@@ -2844,7 +2812,7 @@ skip $7C6
   .maxXPosition: skip 2 ; $7E8006
 skip $18
   .mode7ZoomLevel: skip 2 ; $7E8020
-  .neverRead8022: skip 2 ; $7E8022
+skip 2 ; $7E8022
   .getawayFinished: skip 2 ; $7E8024
   .getawayTableIndex: skip 2 ; $7E8026
   .mode7XPosition: skip 2 ; $7E8028
@@ -2852,15 +2820,14 @@ skip $18
   .mode7BabyMetroidAnimationFrame: skip 2 ; $7E802C
   .mode7WingsAnimationFrame: skip 2 ; $7E802E
   .emergencyTextGlowAnimationFrame: skip 2 ; $7E8030
-  .unusedRedBackgroundGlowAnimationFrame: skip 2 ; $7E8032
-skip $7CC
+skip $7CE
   .BabyMetroidFunction: skip 2 ; $7E8800
 skip 2
   .BabyMetroidXPosition: skip 2 ; $7E8804
 skip 1
   .BabyMetroidYSubPosition: skip 1 ; $7E8807
   .BabyMetroidYPosition: skip 2 ; $7E8808
-  .neverRead880A: skip 2 ; $7E880A
+skip 2 ; $7E880A
   .BabyMetroidCrySFXFlag: skip 2 ; $7E880C
 endstruct
 
@@ -2934,7 +2901,7 @@ skip $7C0
   .smallExplosionTimer: skip 2 ; $7E800E
   .smallExplosionIndex: skip 2 ; $7E8010
 skip $10
-  .neverRead8022: skip 2 ; $7E8022
+skip 2 ; $7E8022
 endstruct
 
 struct RidleyTail $7E2020

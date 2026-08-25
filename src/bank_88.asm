@@ -4486,10 +4486,6 @@ FXType_20_ScrollingSky_RoomSetupASM_ScrollingSkyLand:
     JSL.L Spawn_HDMAObject                                               ;88A7EB;
     db $42,$0F                                                           ;88A7EF;
     dw InstList_ScrollingSkyLand_BG2XScroll_0                            ;88A7F1;
-    REP #$30                                                             ;88A7F3;
-    LDA.W #$00E0                                                         ;88A7F5;
-    STA.W neverRead059A                                                  ;88A7F8;
-    STZ.W neverRead059C                                                  ;88A7FB;
     PLP                                                                  ;88A7FE;
     RTL                                                                  ;88A7FF;
 
@@ -4503,10 +4499,6 @@ RoomSetupASM_ScrollingSkyOcean:
     JSL.L Spawn_HDMAObject                                               ;88A807;
     db $42,$0F                                                           ;88A80B;
     dw InstList_ScrollingSkyOcean_BG2XScroll_0                           ;88A80D;
-    REP #$30                                                             ;88A80F;
-    LDA.W #$00E0                                                         ;88A811;
-    STA.W neverRead059A                                                  ;88A814;
-    STZ.W neverRead059C                                                  ;88A817;
     PLP                                                                  ;88A81A;
     RTL                                                                  ;88A81B;
 
@@ -5191,12 +5183,7 @@ FXType_24_Fireflea:
     dw InstList_Fireflea_BG3XScroll_0                                    ;88B08E;
     LDA.W #$0000                                                         ;88B090;
     STA.L DummyHDMATable                                                 ;88B093;
-    STZ.W neverRead177C                                                  ;88B097;
     STZ.W FirefleaFlashing_DarknessLevel                                 ;88B09A;
-    LDA.W #$0018                                                         ;88B09D;
-    STA.W neverRead1780                                                  ;88B0A0;
-    LDA.L Fireflea_Flashing_Shades                                       ;88B0A3;
-    STA.W neverRead1782                                                  ;88B0A7;
     PLP                                                                  ;88B0AA;
     RTL                                                                  ;88B0AB;
 

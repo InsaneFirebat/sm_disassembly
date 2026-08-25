@@ -1311,8 +1311,6 @@ InitAI_Crocomire:
     LDX.W EnemyIndex                                                     ;A48AAB;
     LDA.W #$0004                                                         ;A48AAE;
     STA.W Crocomire.fightFunctionIndex,X                                 ;A48AB1;
-    LDA.W #$0010                                                         ;A48AB4;
-    STA.W neverRead179E                                                  ;A48AB7;
     LDA.W #$0002                                                         ;A48ABA;
     STA.W CameraDistanceIndex                                            ;A48ABD;
     LDA.W #$0400                                                         ;A48AC0;
@@ -1729,7 +1727,6 @@ HandleCrocomiresBridge:
     STA.L CrocomireDeath_PreBridgeBlockDustCloudSpawnedFlag              ;A48D92;
     STA.L CrocomireDeath_BridgePart1CrumbledFlag                         ;A48D96;
     STA.L CrocomireDeath_BridgePart2CrumbledFlag                         ;A48D9A;
-    STA.L neverRead900A                                                  ;A48D9E;
     PLY                                                                  ;A48DA2;
     RTL                                                                  ;A48DA3;
 
@@ -1763,7 +1760,6 @@ HandleCrocomiresBridge:
     LDA.W #$0000                                                         ;A48DDC;
     STA.L CrocomireDeath_BridgePart1CrumbledFlag                         ;A48DDF;
     STA.L CrocomireDeath_BridgePart2CrumbledFlag                         ;A48DE3;
-    STA.L neverRead900A                                                  ;A48DE7;
     PLY                                                                  ;A48DEB;
     RTL                                                                  ;A48DEC;
 
@@ -1799,7 +1795,6 @@ HandleCrocomiresBridge:
 ; This branch is never executed
     LDA.W #$0000                                                         ;A48E2D;
     STA.L CrocomireDeath_BridgePart2CrumbledFlag                         ;A48E30;
-    STA.L neverRead900A                                                  ;A48E34;
     PLY                                                                  ;A48E38;
     RTL                                                                  ;A48E39;
 
@@ -2596,8 +2591,6 @@ MainAI_Crocomire_DeathSequence_12_2E_Hop_3_4_LoadMeltTiles:
     LDA.W MeltingCrocomireTilesLoadingTable_Melting1_0,X                 ;A49455;
     STA.W CrocomireMelting_MaxAdjustedDestYOffset                        ;A49458;
     STA.W CrocomireMelting_InitialAdjustedDestYOffset                    ;A4945B;
-    LDA.W MeltingCrocomireTilesLoadingTable_Melting1_0+2,X               ;A4945E;
-    STA.W CrocomireMelting_neverRead0696                                 ;A49461;
     LDA.W MeltingCrocomireTilesLoadingTable_Melting1_0+4,X               ;A49464;
     STA.W CrocomireMelting_WordsToLoad                                   ;A49467;
     STZ.B DP_Temp00                                                      ;A4946A;

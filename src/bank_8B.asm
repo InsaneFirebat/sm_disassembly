@@ -3228,7 +3228,6 @@ Spawn_Mode7Objects:
     PHP                                                                  ;8B94E4;
     REP #$30                                                             ;8B94E5;
     PHX                                                                  ;8B94E7;
-    STA.W neverRead19B3                                                  ;8B94E8;
     TYX                                                                  ;8B94EB;
     LDY.W #$0002                                                         ;8B94EC;
 
@@ -8025,7 +8024,6 @@ PreInstruction_CinematicSpriteObject_ConfusedBabyMetroid:
     BMI .return                                                          ;8BBA64;
     LDA.W #PreInstruction_ConfusedBabyMetroid_Hatched                    ;8BBA66;
     STA.W CinematicSpriteObject_PreInstructions,X                        ;8BBA69;
-    STZ.W neverRead1A4D                                                  ;8BBA6C;
     STZ.W IntroBabyMetroidYVelocity                                      ;8BBA6F;
 
   .return:

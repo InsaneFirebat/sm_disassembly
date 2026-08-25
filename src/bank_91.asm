@@ -448,7 +448,6 @@ DetermineProspectivePoseFromTransitionTable:
     BNE .loop                                                            ;9181D9;
 
   .noInput:
-    STZ.W neverRead0A18                                                  ;9181DB;
     JSL.L HandleTransitionTableLookupFailure                             ;9181DE;
 
   .notFound:
@@ -1405,12 +1404,8 @@ LoadDemoData:
     LDA.W #$0020                                                         ;918869;
     STA.W AimDownBinding                                                 ;91886C;
     LDA.W #$0001                                                         ;91886F;
-    STA.W neverRead09E8                                                  ;918872;
     STA.W SamusPlacementMode                                             ;918875;
     STZ.W Moonwalk                                                       ;918878;
-    STZ.W unknown0DF8                                                    ;91887B;
-    STZ.W neverRead0DFA                                                  ;91887E;
-    STZ.W neverRead0DFC                                                  ;918881;
     RTS                                                                  ;918884;
 
 
@@ -14506,7 +14501,6 @@ RTS_91EFDE:
 SolidVerticalCollision_HitCeiling:
     STZ.W SamusYSubSpeed                                                 ;91EFDF;
     STZ.W SamusYSpeed                                                    ;91EFE2;
-    STZ.W neverRead0B1A                                                  ;91EFE5;
     LDA.W #$0002                                                         ;91EFE8;
     STA.W SamusYDirection                                                ;91EFEB;
     RTS                                                                  ;91EFEE;
@@ -14526,7 +14520,6 @@ SolidVerticalCollision_Falling:
     STA.W SamusYDirection                                                ;91F009;
 
   .fallingUp:
-    STZ.W neverRead0A18                                                  ;91F00C;
     RTS                                                                  ;91F00F;
 
 
@@ -14548,7 +14541,6 @@ SolidVerticalCollision_Landed:
     RTS                                                                  ;91F029;
 
   .carryClear:
-    STZ.W neverRead0A18                                                  ;91F02A;
     STZ.W SamusXAccelerationMode                                         ;91F02D;
     STZ.W SamusXBaseSpeed                                                ;91F030;
     STZ.W SamusXBaseSubSpeed                                             ;91F033;
@@ -14822,12 +14814,9 @@ HandleLandingGraphics_Tourian:
 SolidVerticalCollision_Landed_SetSamusAsNotBouncing:
 ; More of a "set grounded state" operation
     STZ.W SamusIsFallingFlag                                             ;91F1D3;
-    STZ.W neverRead0B1A                                                  ;91F1D6;
-    STZ.W neverRead0B2A                                                  ;91F1D9;
     STZ.W SamusYSubSpeed                                                 ;91F1DC;
     STZ.W SamusYSpeed                                                    ;91F1DF;
     STZ.W SamusYDirection                                                ;91F1E2;
-    STZ.W neverRead0B38                                                  ;91F1E5;
     STZ.W MorphBallBounceState                                           ;91F1E8;
     RTS                                                                  ;91F1EB;
 
@@ -15008,10 +14997,8 @@ SolidVerticalCollision_WallJumpTriggered:
     STZ.W SamusXAccelerationMode                                         ;91F2D3;
     STZ.W SamusXSpeedKilledDueToCollisionFlag                            ;91F2D6;
     STZ.W SamusIsFallingFlag                                             ;91F2D9;
-    STZ.W neverRead0B1A                                                  ;91F2DC;
     STZ.W SamusXBaseSpeed                                                ;91F2DF;
     STZ.W SamusXBaseSubSpeed                                             ;91F2E2;
-    STZ.W neverRead0A18                                                  ;91F2E5;
     LDA.W #$0005                                                         ;91F2E8;
     JSL.L QueueSound_Lib3_Max6                                           ;91F2EB;
     RTS                                                                  ;91F2EF;
@@ -15034,18 +15021,13 @@ SolidVerticalCollision_6:
     BEQ .disableHorizontalSlopeDetection                                 ;91F309;
     LDA.W #$0001                                                         ;91F30B;
     STA.W HorizontalSlopeCollision                                       ;91F30E;
-    BRA .returnClear0A18                                                 ;91F311;
+    RTS
 
   .disableHorizontalSlopeDetection:
     STZ.W HorizontalSlopeCollision                                       ;91F313;
-    BRA .returnClear0A18                                                 ;91F316;
 
   .return:
     RTS                                                                  ;91F318;
-
-  .returnClear0A18:
-    STZ.W neverRead0A18                                                  ;91F319;
-    RTS                                                                  ;91F31C;
 
 
 ;;; $F31D: Super special prospective pose change command 1 - knockback finished ;;;
@@ -15372,29 +15354,6 @@ InitializeSamusPose_Running:
     STA.W NewPoseSamusAnimationFrame                                     ;91F51A;
 
   .notRunning:
-    LDA.W unknown0DF8                                                    ;91F51D;
-    BEQ .returnCarryClear                                                ;91F520;
-    LDA.W Pose                                                           ;91F522;
-    CMP.W #$0045                                                         ;91F525;
-    BEQ .turnLeft                                                        ;91F528;
-    CMP.W #$0046                                                         ;91F52A;
-    BEQ .turnRight                                                       ;91F52D;
-    BRA .returnCarryClear                                                ;91F52F;
-
-  .turnLeft:
-    LDA.W #$0025                                                         ;91F531;
-    STA.W Pose                                                           ;91F534;
-    BRA .returnCarrySet                                                  ;91F537;
-
-  .turnRight:
-    LDA.W #$0026                                                         ;91F539;
-    STA.W Pose                                                           ;91F53C;
-
-  .returnCarrySet:
-    SEC                                                                  ;91F53F;
-    RTS                                                                  ;91F540;
-
-  .returnCarryClear:
     CLC                                                                  ;91F541;
     RTS                                                                  ;91F542;
 

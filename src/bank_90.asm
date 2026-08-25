@@ -5530,11 +5530,7 @@ SamusMovement_SpinJumping:
     CMP.W SamusPhysicsConstants_SpaceJumpMaximumYVelocityInAir           ;90A4AC;
     BPL .screwAttackEligible                                             ;90A4AF;
 
-+   LDA.W neverRead0DFA                                                  ;90A4B1;
-    AND.W #$FF00                                                         ;90A4B4;
-    ORA.W #$0001                                                         ;90A4B7;
-    STA.W neverRead0DFA                                                  ;90A4BA;
-    LDA.B DP_Controller1New                                              ;90A4BD;
++   LDA.B DP_Controller1New                                              ;90A4BD;
     AND.W JumpBinding                                                    ;90A4BF;
     BEQ .screwAttackEligible                                             ;90A4C2;
     JSL.L Make_Samus_Jump                                                ;90A4C4;
@@ -5805,7 +5801,6 @@ RTS_90A671:
 Enable_Horizontal_Slope_Detection:
     LDA.W #$0003                                                         ;90A672;
     STA.W HorizontalSlopeCollision                                       ;90A675;
-    STZ.W neverRead0AA4                                                  ;90A678;
     RTS                                                                  ;90A67B;
 
 
@@ -12456,7 +12451,6 @@ EndShinesparkIfCollisionDetectedOrLowEnergy:
     STZ.W SamusXExtraRunSpeed                                            ;90D300;
     STZ.W SamusXExtraRunSubSpeed                                         ;90D303;
     STZ.W SamusBoostTimer                                                ;90D306;
-    STZ.W neverRead0B1A                                                  ;90D309;
     STZ.W SamusYDirection                                                ;90D30C;
     LDA.W #SamusMovementHandler_ShinesparkCrash_EchoesCircleSamus        ;90D30F;
     STA.W MovementHandler                                                ;90D312;
@@ -14289,12 +14283,9 @@ HandleKnockbackVerticalCollision:
     STZ.W SamusXAccelerationMode                                         ;90DF73;
     STZ.W SamusXSpeedKilledDueToCollisionFlag                            ;90DF76;
     STZ.W SamusIsFallingFlag                                             ;90DF79;
-    STZ.W neverRead0B1A                                                  ;90DF7C;
-    STZ.W neverRead0B2A                                                  ;90DF7F;
     STZ.W SamusYSubSpeed                                                 ;90DF82;
     STZ.W SamusYSpeed                                                    ;90DF85;
     STZ.W SamusYDirection                                                ;90DF88;
-    STZ.W neverRead0B38                                                  ;90DF8B;
     STZ.W SamusXBaseSpeed                                                ;90DF8E;
     STZ.W SamusXBaseSubSpeed                                             ;90DF91;
     JSL.L AlignSamusBottomPositionWithPreviousPose                       ;90DF94;
@@ -16213,12 +16204,6 @@ ResetMovementAndPoseChangeVariables:
     STZ.W ProjSpeed_SubDistanceSamusMovedDown                            ;90EB1A;
     STZ.W NewPoseSamusAnimationFrame                                     ;90EB1D;
     STZ.W PoseTransitionShotDirection                                    ;90EB20;
-    LDA.W neverRead0DFA                                                  ;90EB23;
-    XBA                                                                  ;90EB26;
-    AND.W #$FF00                                                         ;90EB27;
-    STA.W neverRead0DFA                                                  ;90EB2A;
-    LDA.W PoseXDirection                                                 ;90EB2D;
-    STA.W neverRead0A10                                                  ;90EB30;
     PLP                                                                  ;90EB33;
     RTS                                                                  ;90EB34;
 
@@ -17972,8 +17957,6 @@ SamusCommand_1F_KillGrappleBeam:
     RTS                                                                  ;90F4D9;
 
   .grappleActive:
-    STZ.W GrappleBeam_neverRead0D1E                                      ;90F4DA;
-    STZ.W GrappleBeam_neverRead0D20                                      ;90F4DD;
     STZ.W GrappleBeam_DirectionFired                                     ;90F4E0;
     STZ.W GrappleBeam_SpecialAngleHandlingFlag                           ;90F4E3;
     STZ.W GrappleWalljumpTimer                                           ;90F4E6;

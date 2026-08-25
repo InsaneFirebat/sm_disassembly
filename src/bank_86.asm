@@ -17790,12 +17790,8 @@ Random_Drop_Routine:
     PEA.W EnemyHeaders>>8                                                ;86F109;
     PLB                                                                  ;86F10C;
     PLB                                                                  ;86F10D;
-    LDA.L EnemyProjectileData_KilledEnemyIndex,X                         ;86F10E;
-    AND.W #$7FFF                                                         ;86F112;
-    STA.W Temp_neverRead0E2A                                             ;86F115;
     LDA.L EnemyProjectileData_EnemyHeaderPointer,X                       ;86F118;
     TAX                                                                  ;86F11C;
-    STA.W Temp_neverRead0E28                                             ;86F11D;
     LDA.L EnemyHeaders_dropChances,X                                     ;86F120;
     TAX                                                                  ;86F124;
     BNE .enemyHasDrops                                                   ;86F125;

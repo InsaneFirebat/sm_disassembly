@@ -3314,37 +3314,37 @@ DebugHandler_3_SpriteTilesViewer_SecondHalf:
     LDA.W Debug_InputL                                                   ;B4986A;
     BIT.W #$0080                                                         ;B4986D;
     BEQ .noChange                                                        ;B49870;
-    LDA.W neverRead185A                                                  ;B49872;
+    LDA.W DebugHandler185A                                               ;B49872;
     CMP.W #$0000                                                         ;B49875;
     BNE +                                                                ;B49878;
     LDA.W #$0200                                                         ;B4987A;
-    STA.W neverRead185A                                                  ;B4987D;
+    STA.W DebugHandler185A                                               ;B4987D;
     BRA .merge                                                           ;B49880;
 
 +   CMP.W #$0200                                                         ;B49882;
     BNE +                                                                ;B49885;
     LDA.W #$0400                                                         ;B49887;
-    STA.W neverRead185A                                                  ;B4988A;
+    STA.W DebugHandler185A                                               ;B4988A;
     BRA .merge                                                           ;B4988D;
 
 +   CMP.W #$0400                                                         ;B4988F;
     BNE +                                                                ;B49892;
     LDA.W #$0600                                                         ;B49894;
-    STA.W neverRead185A                                                  ;B49897;
+    STA.W DebugHandler185A                                               ;B49897;
     BRA .merge                                                           ;B4989A;
 
 +   CMP.W #$0600                                                         ;B4989C;
     BNE +                                                                ;B4989F;
     LDA.W #$0E00                                                         ;B498A1;
-    STA.W neverRead185A                                                  ;B498A4;
+    STA.W DebugHandler185A                                               ;B498A4;
     BRA .merge                                                           ;B498A7;
 
 +   LDA.W #$0000                                                         ;B498A9;
-    STA.W neverRead185A                                                  ;B498AC;
+    STA.W DebugHandler185A                                               ;B498AC;
     BRA .merge                                                           ;B498AF;
 
   .noChange:
-    LDA.W neverRead185A                                                  ;B498B1;
+    LDA.W DebugHandler185A                                               ;B498B1;
 
   .merge:
     STA.B DP_Temp26                                                      ;B498B4;

@@ -4643,8 +4643,6 @@ SetupCeresRidleyMode7:
     STA.B DP_BG1YScroll                                                  ;A6AA9E;
     LDA.W #$0800                                                         ;A6AAA0;
     STA.L RidleyCeres.mode7ZoomLevel                                     ;A6AAA3;
-    LDA.W #$0400                                                         ;A6AAA7;
-    STA.L Ridley.neverRead8022                                           ;A6AAAA;
     RTS                                                                  ;A6AAAE;
 
 
@@ -7060,7 +7058,6 @@ Function_BabyMetroid_HeldByRidleyFeet:
 Function_BabyMetroid_StartFalling:
 ; Initialise baby metroid falling to ground
     LDA.W #$0000                                                         ;A6BECA;
-    STA.L RidleyCeres.neverRead880A                                      ;A6BECD;
     STA.L RidleyCeres.BabyMetroidCrySFXFlag                              ;A6BED1;
     LDA.W #Function_BabyMetroid_Falling                                  ;A6BED5;
     STA.L RidleyCeres.BabyMetroidFunction                                ;A6BED8; fallthrough to Function_BabyMetroid_Falling
@@ -7417,28 +7414,6 @@ DrawEmergencyText:
   .emergencyTilemap:
 ;       E     M     E     R     G     E     N     C     Y
     dw $3986,$398E,$3986,$3993,$3988,$3986,$398F,$3984,$399A             ;A6C164;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $C176: Unused. Red background glow ;;;
-UNUSED_CycleColor_A6C176:
-    LDX.W #$0016                                                         ;A6C176;
-    LDA.L RidleyCeres.unusedRedBackgroundGlowAnimationFrame              ;A6C179;
-    INC                                                                  ;A6C17D;
-    CMP.W #$0020                                                         ;A6C17E;
-    BMI +                                                                ;A6C181;
-    LDA.W #$FFE1                                                         ;A6C183;
-
-+   STA.L RidleyCeres.unusedRedBackgroundGlowAnimationFrame              ;A6C186;
-    LDA.L RidleyCeres.unusedRedBackgroundGlowAnimationFrame              ;A6C18A;
-    BPL +                                                                ;A6C18E;
-    EOR.W #$FFFF                                                         ;A6C190;
-    INC                                                                  ;A6C193;
-
-+   AND.W #$001F                                                         ;A6C194;
-    STA.L Palettes,X                                                     ;A6C197;
-    RTS                                                                  ;A6C19B;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $C19C: Ceres escape sequence "emergency" text glow ;;;

@@ -888,7 +888,6 @@ LoadDemoRoomData:
     LDA.W #$FFFF                                                         ;8286FC;
     STA.L SRAMMirror_ChozeBlockDestroyed,X                               ;8286FF;
     STA.L SRAMMirror_Items,X                                             ;828703;
-    STA.L neverReadD8F0,X                                                ;828707;
     STA.L SRAMMirror_MapStations,X                                       ;82870B;
     STA.L SRAMMirror_UsedSaveStationsElevators,X                         ;82870F;
     STA.L SRAMMirror_UsedSaveStationsElevators+8,X                       ;828713;
@@ -1439,9 +1438,6 @@ endif
 
 ;;; $8AE4: Game state 0 (reset/start) ;;;
 GameState_0_ResetStart:
-    STZ.W unknown0DF8                                                    ;828AE4;
-    STZ.W neverRead0DFA                                                  ;828AE7;
-    STZ.W neverRead0DFC                                                  ;828AEA;
     LDA.W #CinematicFunction_LoadTitleSequence                           ;828AED;
     STA.W CinematicFunction                                              ;828AF0;
     STZ.W DemoSet                                                        ;828AF3;
@@ -1621,8 +1617,6 @@ Spawn_GameOptionsMenu_Object:
     STA.W GameOptionsMenuObject_SpritemapPointers,Y                      ;828BFA;
     LDA.W #$0000                                                         ;828BFD;
     STA.W GameOptionsMenuObject_Timers,Y                                 ;828C00;
-    STA.W neverRead1ADD,Y                                                ;828C03;
-    STA.W neverRead1AED,Y                                                ;828C06;
     JSR.W ($0000,X)                                                      ;828C09;
     PLX                                                                  ;828C0C;
     PLP                                                                  ;828C0D;

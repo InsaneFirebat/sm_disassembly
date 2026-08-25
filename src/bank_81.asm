@@ -3974,14 +3974,11 @@ FileSelectMenu_Index10_1C_ReloadMain:
     STA.W TitleMenu_SlotBHelmetAnimationTimer                            ;819FFA;
     STA.W TitleMenu_SlotCHelmetAnimationTimer                            ;819FFD;
     STA.W EnemyProjectile_ID                                             ;81A000;
-    STA.W neverRead1999                                                  ;81A003;
     STA.W TitleMenu_SlotAHelmetAnimationFrame                            ;81A006;
     STA.W TitleMenu_SlotBHelmetAnimationFrame                            ;81A009;
     STA.W TitleMenu_SlotCHelmetAnimationFrame                            ;81A00C;
     STA.W Mode7Object_InstListPointers                                   ;81A00F;
     STA.W Mode7Object_InstructionTimers+2                                ;81A012;
-    STA.W neverRead19A3                                                  ;81A015;
-    STA.W neverRead19AD                                                  ;81A018;
     LDA.W #$0064                                                         ;81A01B;
     STA.W TitleMenu_SlotAHelmetXPosition                                 ;81A01E;
     STA.W TitleMenu_SlotBHelmetXPosition                                 ;81A021;
@@ -4465,7 +4462,6 @@ FileSelectMap_Index1_GameOptionsToAreaSelectMap_FadeOut:
     CPX.W #$0006                                                         ;81A3BF;
     BMI .loopAreaColors                                                  ;81A3C2;
     INC.W PauseMenu_MenuIndex                                            ;81A3C4;
-    STZ.W neverRead0787                                                  ;81A3C7;
     SEP #$20                                                             ;81A3CA;
     LDA.B #$02                                                           ;81A3CC;
     STA.B DP_MainScreenLayers                                            ;81A3CE;
@@ -6280,7 +6276,6 @@ NewSaveFile:
     STZ.W IconCancel                                                     ;81B360;
     LDA.W #$0001                                                         ;81B363;
     STA.W SamusPlacementMode                                             ;81B366;
-    STA.W neverRead09E8                                                  ;81B369;
     LDX.W #$0000                                                         ;81B36C;
     LDA.W #$0000                                                         ;81B36F;
 
@@ -6289,7 +6284,6 @@ NewSaveFile:
     STA.L SRAMMirror_Items,X                                             ;81B376;
     STA.L SRAMMirror_Items,X                                             ;81B37A; >.<
     STA.L SRAMMirror_Doors,X                                             ;81B37E;
-    STA.L neverReadD8F0,X                                                ;81B382;
     STA.L SRAMMirror_MapStations,X                                       ;81B386;
     STA.L SRAMMirror_UsedSaveStationsElevators,X                         ;81B38A;
     STA.L SRAMMirror_UsedSaveStationsElevators+8,X                       ;81B38E;

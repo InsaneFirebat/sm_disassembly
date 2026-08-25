@@ -7435,41 +7435,6 @@ UNUSED_SetupRotatingMode7Background_80B032:
     RTL                                                                  ;80B0C1;
 
 
-;;; $B0C2: Unused. Configure mode 7 rotation matrix ;;;
-UNUSED_ConfigureMode7RotationMatrix_80B0C2:
-    PHP                                                                  ;80B0C2;
-    REP #$30                                                             ;80B0C3;
-    LDA.W Mode7Flag                                                      ;80B0C5;
-    BEQ .return                                                          ;80B0C8;
-    LDA.W NMI_FrameCounter                                               ;80B0CA;
-    AND.W #$0007                                                         ;80B0CD;
-    BNE .return                                                          ;80B0D0;
-    LDA.W UnusedMode7RotationAngle                                       ;80B0D2;
-    AND.W #$00FF                                                         ;80B0D5;
-    ASL                                                                  ;80B0D8;
-    TAX                                                                  ;80B0D9;
-    LDA.L SineCosineTables_8bitSine_SignExtended,X                       ;80B0DA;
-    STA.B DP_Mode7TransMatrixB                                           ;80B0DE;
-    EOR.W #$FFFF                                                         ;80B0E0;
-    INC                                                                  ;80B0E3;
-    STA.B DP_Mode7TransMatrixC                                           ;80B0E4;
-    LDA.W UnusedMode7RotationAngle                                       ;80B0E6;
-    CLC                                                                  ;80B0E9;
-    ADC.W #$0040                                                         ;80B0EA;
-    AND.W #$00FF                                                         ;80B0ED;
-    ASL                                                                  ;80B0F0;
-    TAX                                                                  ;80B0F1;
-    LDA.L SineCosineTables_8bitSine_SignExtended,X                       ;80B0F2;
-    STA.B DP_Mode7TransMatrixA                                           ;80B0F6;
-    STA.B DP_Mode7TransMatrixD                                           ;80B0F8;
-    INC.W UnusedMode7RotationAngle                                       ;80B0FA;
-
-  .return:
-    PLP                                                                  ;80B0FD;
-    RTL                                                                  ;80B0FE;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $B119: Decompression - variable destination ;;;
 Decompression_HardcodedDestination:
 ;; Parameters:
