@@ -6904,7 +6904,7 @@ Load_Beam_Palette_withStackPrepped:
 ;;     Y: Beam type * 2 (without the charge beam bit)
 
 ; Requires DB and PSR to have been pushed
-    LDA.W #$0090                                                         ;90ACCD;
+    LDA.W #BeamPalettePointers>>16                                       ;90ACCD;
     XBA                                                                  ;90ACD0; >.<
     STA.B DP_Temp01                                                      ;90ACD1;
     LDA.W BeamPalettePointers,Y                                          ;90ACD3;
@@ -6950,7 +6950,7 @@ Load_Beam_Palette:
     AND.W #$0FFF                                                         ;90ACFC;
     ASL                                                                  ;90ACFF;
     TAY                                                                  ;90AD00;
-    LDA.W #$0090                                                         ;90AD01;
+    LDA.W #BeamPalettePointers>>16                                       ;90AD01;
     XBA                                                                  ;90AD04; >.<
     STA.B DP_Temp01                                                      ;90AD05;
     LDA.W BeamPalettePointers,Y                                          ;90AD07;
@@ -12177,8 +12177,8 @@ SamusMovementHandler_DiagonalShinespark:
     LDA.W #$0008                                                         ;90D0DD;
     STA.W HurtFlashCounter                                               ;90D0E0;
     LDX.W #$0004                                                         ;90D0E3;
-    LDY.W Unknown_ShinesparkMovementHandler_Unused_90EF20                ;90D0E6;
-    JSR.W UpdateSamusEchoPosition                                        ;90D0E9; >_<
+    LDY.W Unknown_ShinesparkMovementHandler_Unused_90EF20                ;90D0E6; >_<
+    JSR.W UpdateSamusEchoPosition                                        ;90D0E9;
     JSR.W Shinespark_Horizontal_Movement                                 ;90D0EC;
     JSR.W Shinespark_Vertical_Movement                                   ;90D0EF;
     JSR.W EndShinesparkIfCollisionDetectedOrLowEnergy                    ;90D0F2;
