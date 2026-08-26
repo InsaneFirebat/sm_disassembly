@@ -1390,3 +1390,32 @@ MessageTilemaps_NO:
 
 Freespace_Bank85_9643:                                                   ;859643;
 ; $69BD bytes
+
+
+if !DEV_TOOLS
+wait_for_lag_frame_long:
+    JSR Wait_for_Lag_Frame
+    RTL
+
+initialize_ppu_long:
+    PHP : %a16()
+    LDA BackupOfHDMAChannelsDuringMessageBoxes : STA !ram_cgram_cache+$1E
+    PLP
+    JSR Initialise_PPU_for_MessageBoxes
+    RTL
+
+restore_ppu_long:
+    JSR Restore_PPU
+    PHP : %a16()
+    LDA !ram_cgram_cache+$1E : STA BackupOfHDMAChannelsDuringMessageBoxes
+    PLP
+    RTL
+
+play_music_long:
+    JSR Play_2_Lag_Frames_of_Music_and_Sound_Effects
+    RTL
+
+maybe_trigger_pause_long:
+    JSR MaybeTriggerPauseScreen_or_ReturnSaveConfirmationSelection
+    RTL
+endif

@@ -1161,11 +1161,18 @@ endif
     STZ.W SamusTiles_TopHalfFlag                                         ;82895A;
     STZ.W SamusTiles_TopHalfTilesDef                                     ;82895D;
     STZ.W SamusTiles_BottomHalfTilesDef                                  ;828960;
+if !DEV_TOOLS
+    JSL GameStateStart
+    BCS .postGameState
+endif
     LDA.W GameState                                                      ;828963;
     AND.W #$00FF                                                         ;828966;
     ASL                                                                  ;828969;
     TAX                                                                  ;82896A;
     JSR.W (.gamemodes,X)                                                 ;82896B;
+if !DEV_TOOLS
+  .postGameState
+endif
     JSL.L HandleSounds                                                   ;82896E;
     JSL.L Finalise_OAM                                                   ;828972;
 if !DEBUG
