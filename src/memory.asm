@@ -57,7 +57,14 @@ DP_Temp34: skip 2 ; $34
 DP_BlocksToUpdate: skip 3 ; $36
 skip 3 ; $39..3B
 DP_SamusTilesDefinition: skip 1 ; $3C
-skip 7 ; $3E..43
+if !DEV_TOOLS == 0
+skip 7 ; $3D..43
+else
+skip 3
+DP_Temp40: skip 2 ; $40
+DP_Temp42: skip 2 ; $42
+endif
+
 DP_ReturnParam: skip 3 ; $44
 DP_DecompSrc: skip 3 ; $47
 DP_DecompVar: skip 2 ; $4A
@@ -137,7 +144,20 @@ DP_BG3XScroll: skip 2 ; $B9
 DP_BG3YScroll: skip 2 ; $BB
 DP_BG4XScroll: skip 2 ; $BD
 DP_BG4YScroll: skip 2 ; $BF
+if !DEV_TOOLS == 0
 skip 15 ; $C1..CF
+else
+DP_TempC1: skip 1 ; $C1
+DP_TempC2: skip 1 ; $C2
+DP_TempC3: skip 1 ; $C3
+DP_TempC4: skip 1 ; $C4
+DP_TempC5: skip 2 ; $C5
+DP_TempC7: skip 2 ; $C7
+DP_TempC9: skip 2 ; $C9
+DP_TempCB: skip 2 ; $CB
+DP_TempCD: skip 2 ; $CD
+skip 1
+endif
 
 struct VRAMWrite $D0 ; $D0..02CF
   .size: skip 2 ; $D0

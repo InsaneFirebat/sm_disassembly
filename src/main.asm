@@ -24,6 +24,16 @@ else
 print "DEBUG FEATURES REMOVED"
 endif
 
+!DEV_TOOLS ?= 0
+
+if !DEV_TOOLS
+print "DEVELOPER TOOLS ENABLED"
+incsrc dev_tools_macros.asm
+incsrc dev_tools_defines.asm
+else
+print "DEVELOPER TOOLS DISABLED"
+endif
+
 !PAL ?= 0
 
 if !PAL

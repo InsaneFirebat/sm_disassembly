@@ -11,3 +11,11 @@ org $B88000
 
 Freespace_BankB8_8000:
 ; $8000 bytes
+
+
+if !DEV_TOOLS
+table normal.tbl
+incsrc dev_tools.asm
+incsrc dev_tools_menu.asm
+cleartable ; restore default (ASCII)
+endif

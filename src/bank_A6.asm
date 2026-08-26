@@ -3085,7 +3085,9 @@ HandleMiniKraidSpike:
   .keepLeft:
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A69B10;
     JSL.L CheckIfEnemyCenterIsOnScreen                                   ;A69B14;
+if !DEV_TOOLS == 0
     AND.L $00FFFF                                                        ;A69B18; >.<
+endif
     BNE .return                                                          ;A69B1C;
     LDA.W #$003F                                                         ;A69B1E;
     JSL.L QueueSound_Lib2_Max6                                           ;A69B21;
@@ -3178,7 +3180,9 @@ Instruction_MiniKraid_ChooseAction:
 Instruction_MiniKraid_PlayCrySFX:
 ; Another AND instruction typo (see HandleMiniKraidSpike)
     JSL.L CheckIfEnemyCenterIsOnScreen                                   ;A69BB2;
+if !DEV_TOOLS == 0
     AND.L $00FFFF                                                        ;A69BB6; >.<
+endif
     BNE .return                                                          ;A69BBA;
     LDA.W #$0016                                                         ;A69BBC;
     JSL.L QueueSound_Lib2_Max6                                           ;A69BBF;

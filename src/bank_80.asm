@@ -1153,7 +1153,11 @@ Crash_Handler:
 ;     $93:80A0: Initialise (power) bomb
 ;     $93:8163: Initialise shinespark echo or spazer SBA trail projectile
 ;     $93:81A4: Initialise SBA projectile
+if !DEV_TOOLS == 0
     JML Crash_Handler                                                    ;808573; Sit here and think about what you've done
+else
+    JML CrashHandler ; dev_tools_crash.asm
+endif
 
 
 if !FEATURE_KEEP_UNREFERENCED
@@ -9362,8 +9366,25 @@ Freespace_Bank80_CD8E:                                                   ;80CD8E
 ; $2F32 bytes
 
 
+if !DEV_TOOLS
+transfer_cgram_long:
+{
+    PHP
+    %a16() : %i8()
+    LDX #$80 : STX $2100
+    JSR UpdateOAM_CGRAM
+    LDX.b DP_Brightness : STX $2100
+    PLP
+    RTL
+}
+
+incsrc dev_tools_crash.asm
+cleartable ; default (ASCII)
+endif
+
+
 warnpc $80FFC0
-ORG $80FFC0
+org $80FFC0
 ROM_HEADER:
     db "Super Metroid        "                                           ;80FFC0;
 
@@ -9413,10 +9434,18 @@ endif
     dw Crash_Handler                                                     ;80FFE2;
 
 Native_COP:
+if !DEV_TOOLS == 0
     dw Crash_Handler                                                     ;80FFE4;
+else
+    dw COPHandler
+endif
 
 Native_BRK:
+if !DEV_TOOLS == 0
     dw Crash_Handler                                                     ;80FFE6;
+else
+    dw BRKHandler
+endif
 
 Native_ABORT:
     dw Crash_Handler                                                     ;80FFE8;
@@ -9435,10 +9464,18 @@ Native_IRQ:
     dw Crash_Handler                                                     ;80FFF2;
 
 Emulation_COP:
+if !DEV_TOOLS == 0
     dw Crash_Handler                                                     ;80FFF4;
+else
+    dw EmuCOPHandler
+endif
 
 Emulation_BRK:
+if !DEV_TOOLS == 0
     dw Crash_Handler                                                     ;80FFF6;
+else
+    dw EmuBRKHandler
+endif
 
 Emulation_ABORT:
     dw Crash_Handler                                                     ;80FFF8;

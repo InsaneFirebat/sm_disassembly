@@ -134,6 +134,7 @@ incbin "../data/Tiles_NonClosed_ArmCannon_UpwardsDiagonal_2.bin" ; $200 bytes
 ;;; $B200: Standard BG3 tiles ;;;
 Tiles_Standard_BG3:
 incbin "../data/Tiles_Standard_BG3.bin" ; $1000 bytes
+  .end
 
 
 ;;; $C200: Clear BG2 tilemap ;;;
