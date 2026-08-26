@@ -139,7 +139,7 @@ EnemyHeaders:
   .name: skip 2 ; 3Eh: Enemy name (bank $B4)
 
 
-ORG $A10000
+org $A10000
 EnemyPopulations:
   .ID: skip 2 ; 0: Enemy ID
   .XPosition: skip 2 ; 2: X position
