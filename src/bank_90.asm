@@ -6368,7 +6368,7 @@ Update_Minimap:
     STA.B DP_Temp0B                                                      ;90A9C6;
     LDA.L MapData_pointers,X                                             ;90A9C8;
     STA.B DP_Temp09                                                      ;90A9CC;
-    STA.B DP_Temp0F                                                      ;90A9CE;
+    STA.B DP_Temp0E                                                      ;90A9CE;
     PLA                                                                  ;90A9D0;
     CLC                                                                  ;90A9D1;
     ADC.B DP_Temp09                                                      ;90A9D2;
@@ -6667,7 +6667,7 @@ AdjustMapBitsForMapPageSpill:
     AND.W #$00FF                                                         ;90AB7A;
     TAX                                                                  ;90AB7D;
     CLC                                                                  ;90AB7E;
-    ADC.B DP_Temp0F                                                      ;90AB7F;
+    ADC.B DP_Temp0E                                                      ;90AB7F;
     STA.B DP_Temp09                                                      ;90AB81;
     SEP #$20                                                             ;90AB83;
     LDA.W MapTilesExplored,X                                             ;90AB85;
