@@ -3976,7 +3976,7 @@ GrappleBeamFunction_Firing:
     LDA.W #$0006                                                         ;9BC73B;
     JSL.L QueueSound_Lib1_Max6                                           ;9BC73E;
     JSR.W HandleConnectingGrapple                                        ;9BC742;
-    LDA.W #$0008                                                         ;9BC745;
+    LDA.W #$0008                                                         ;9BC745; >.< #$FFF8
     EOR.W #$FFFF                                                         ;9BC748;
     INC                                                                  ;9BC74B;
     STA.W GrappleBeam_LengthDelta                                        ;9BC74C;
@@ -4566,7 +4566,7 @@ Freespace_Bank9B_CBFB:                                                   ;9BCBFB
 
 
 warnpc $9BE000
-ORG $9BE000
+org $9BE000
 
 
 ;;; $E000: Samus top tiles - set 8 - entry 0 ;;;

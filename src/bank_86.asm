@@ -6894,7 +6894,7 @@ UNUSED_InitAI_EnemyProjectile_QuestionMark_86AA3D:
     STA.B VRAMWrite.size,X                                               ;86AA43;
     LDA.W #UNUSED_EnemyProjectile_Graphics_QuestionMark_86A9BD           ;86AA45;
     STA.B VRAMWrite.src,X                                                ;86AA48;
-    LDA.W #$0086                                                         ;86AA4A;
+    LDA.W #UNUSED_EnemyProjectile_Graphics_QuestionMark_86A9BD>>16       ;86AA4A;
     STA.B VRAMWrite.src+2,X                                              ;86AA4D;
     LDA.W #$6E00                                                         ;86AA4F;
     STA.B VRAMWrite.dest,X                                               ;86AA52;

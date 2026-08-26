@@ -7438,7 +7438,7 @@ Freespace_Bank81_EF1A:                                                   ;81EF1A
 ; $FE6 bytes
 
 
-ORG $81FF00
+org $81FF00
 ;;; $FF00: Thanks Genji! ;;;
     db " Special thanks "
     db "       2        "

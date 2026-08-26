@@ -9416,7 +9416,7 @@ ControllerRumbleHandler:
 
 
 warnpc $80FFC0
-ORG $80FFC0
+org $80FFC0
 ROM_HEADER:
     db "Super Metroid        "                                           ;80FFC0;
 

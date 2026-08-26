@@ -4741,7 +4741,7 @@ RinkaDeath:
     LDX.W EnemyIndex                                                     ;A0A44C;
     LDA.W #EnemyHeaders_Respawn                                          ;A0A44F;
     STA.W Enemy.ID,X                                                     ;A0A452;
-    LDA.W #$00A3                                                         ;A0A455;
+    LDA.W #RTL_A3804C>>16                                                ;A0A455;
     STA.W Enemy.bank,X                                                   ;A0A458;
 
   .return:
