@@ -951,7 +951,7 @@ Function_Evir_HandleBodyArms:
     BRA .return                                                          ;A8892D;
 
   .notMaster:
-    JSR.W Call_HandleEvirArms                                            ;A8892F;
+    JSR.W HandleEvirArms                                                 ;A8892F;
 
   .return:
     RTS                                                                  ;A88932;
@@ -1008,13 +1008,6 @@ HandleEvirBody:
     RTS                                                                  ;A88996;
 
 
-;;; $8997: Handle evir arms ;;;
-Call_HandleEvirArms:
-    LDX.W EnemyIndex                                                     ;A88997; >.<
-    JSR.W HandleEvirArms                                                 ;A8899A;
-    RTS                                                                  ;A8899D;
-
-
 ;;; $899E: Main AI - enemy $E67F (evir projectile) ;;;
 MainAI_EvirProjectile:
     LDX.W EnemyIndex                                                     ;A8899E;
@@ -1022,7 +1015,6 @@ MainAI_EvirProjectile:
     BNE .merge                                                           ;A889A4;
     LDA.L Evir.movingFlag,X                                              ;A889A6;
     BEQ .angleInitialized                                                ;A889AA;
-    LDA.W Evir.facingDirection,X                                         ;A889AC; >_<
     LDA.W #InstList_Evir_Projectile_Normal                               ;A889AF;
     STA.L Evir.newInstList,X                                             ;A889B2;
     JSR.W SetEvirInstList                                                ;A889B6;
@@ -2845,8 +2837,7 @@ Function_Coven_Materialize_FadeFromWhite:
     ORA.W Coven.functionTimer,X                                          ;A89BB8;
     BNE .return                                                          ;A89BBB;
     LDA.W Enemy.properties,X                                             ;A89BBD;
-    AND.W #$FBFF                                                         ;A89BC0; >.< #$FAFF
-    AND.W #$FEFF                                                         ;A89BC3;
+    AND.W #$FAFF                                                         ;A89BC0;
     STA.W Enemy.properties,X                                             ;A89BC6;
     LDA.W #Function_Coven_Materialized                                   ;A89BC9;
     STA.W Coven.function,X                                               ;A89BCC;
@@ -2946,7 +2937,6 @@ Function_Coven_Materialized:
     LDA.W Enemy.YPosition,X                                              ;A89C95;
     ADC.L Coven.YVelocity,X                                              ;A89C98;
     STA.W Enemy.YPosition,X                                              ;A89C9C;
-    LDA.W Enemy.YPosition,X                                              ;A89C9F; >_<;
     CMP.L Coven.hoverCenterYPosition,X                                   ;A89CA2;
     BMI .subvelocity                                                     ;A89CA6;
     LDA.L Coven.YSubVelocity,X                                           ;A89CA8;
@@ -3723,7 +3713,6 @@ Function_YappingMaw_Neutral:
     BMI .pointBlank                                                      ;A8A25F;
     CMP.W YappingMaw.proximity,X                                         ;A8A261;
     BPL .return                                                          ;A8A264;
-    LDA.L YappingMaw.targetLength,X                                      ;A8A266; >_<
     CMP.W #$0040                                                         ;A8A26A;
     BMI +                                                                ;A8A26D;
     LDA.W #$0040                                                         ;A8A26F;
@@ -6195,7 +6184,6 @@ InitAI_Beetom:
     LDX.W EnemyIndex                                                     ;A8B776;
     LDA.W #$0000                                                         ;A8B779;
     STA.W Beetom.functionTimer,X                                         ;A8B77C;
-    STA.W Beetom.function,X                                              ;A8B77F; >.<
     STA.L Beetom.fallingFlag,X                                           ;A8B782;
     STA.L Beetom.attachedToSamusFlag,X                                   ;A8B786;
     STA.W Enemy.var0,X                                                   ;A8B78A;
@@ -6828,13 +6816,7 @@ Function_Beetom_LungeLeft:
     JSR.W Function_Beetom_YMovement_Lunge_Falling                        ;A8BC34;
 
 +
-if !PAL == 0
-    LDA.W #$0003                                                         ;A8BC37;
-    EOR.W #$FFFF                                                         ;A8BC3A;
-    INC                                                                  ;A8BC3D; >.<
-else
-    LDA.W #$FFFD
-endif
+    LDA.W #$FFFD                                                         ;A8BC37;
     STA.B DP_Temp14                                                      ;A8BC3E;
     STZ.B DP_Temp12                                                      ;A8BC40;
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A8BC42;
@@ -7091,13 +7073,7 @@ Function_Beetom_Movement_BeingFlung:
     BRA +                                                                ;A8BE09;
 
   .right:
-if !PAL == 0
-    LDA.W #$0002                                                         ;A8BE0B;
-    EOR.W #$FFFF                                                         ;A8BE0E;
-    INC                                                                  ;A8BE11;
-else
-    LDA.W #$FFFE
-endif
+    LDA.W #$FFFE                                                         ;A8BE0B;
 
 +   STA.B DP_Temp14                                                      ;A8BE12;
     STZ.B DP_Temp12                                                      ;A8BE14;
@@ -7645,7 +7621,6 @@ Function_Powamp_Inflated_RiseToTargetHeight:
     LDA.W Powamp.YVelocity,X                                             ;A8C318;
     ADC.W Powamp_YAccel_Rising                                           ;A8C31B;
     STA.W Powamp.YVelocity,X                                             ;A8C31E;
-    LDA.W Powamp.YVelocity,X                                             ;A8C321; >.<
     STA.B DP_Temp14                                                      ;A8C324;
     LDA.W Powamp.YSubVelocity,X                                          ;A8C326;
     STA.B DP_Temp12                                                      ;A8C329;
@@ -7730,7 +7705,6 @@ Function_Powamp_Inflated_FinishWiggle:
     LDA.W Powamp.YVelocity,X                                             ;A8C3C6;
     ADC.W Powamp_YAccel_Rising                                           ;A8C3C9;
     STA.W Powamp.YVelocity,X                                             ;A8C3CC;
-    LDA.W Powamp.YVelocity,X                                             ;A8C3CF; >.<
     STA.B DP_Temp14                                                      ;A8C3D2;
     LDA.W Powamp.YSubVelocity,X                                          ;A8C3D4;
     STA.B DP_Temp12                                                      ;A8C3D7;
@@ -7783,7 +7757,6 @@ Function_Powamp_Grappled_RiseToTargetHeight:
     LDA.W Powamp.YVelocity,X                                             ;A8C428;
     ADC.W Powamp_YAccel_Rising                                           ;A8C42B;
     STA.W Powamp.YVelocity,X                                             ;A8C42E;
-    LDA.W Powamp.YVelocity,X                                             ;A8C431; >.<
     STA.B DP_Temp14                                                      ;A8C434;
     LDA.W Powamp.YSubVelocity,X                                          ;A8C436;
     STA.B DP_Temp12                                                      ;A8C439;
@@ -7864,7 +7837,6 @@ Function_Powamp_Grappled_FinishWiggle:
     LDA.W Powamp.YVelocity,X                                             ;A8C4C1;
     ADC.W Powamp_YAccel_Rising                                           ;A8C4C4;
     STA.W Powamp.YVelocity,X                                             ;A8C4C7;
-    LDA.W Powamp.YVelocity,X                                             ;A8C4CA; >.<
     STA.B DP_Temp14                                                      ;A8C4CD;
     LDA.W Powamp.YSubVelocity,X                                          ;A8C4CF;
     STA.B DP_Temp12                                                      ;A8C4D2;
@@ -7922,7 +7894,6 @@ Function_Powamp_Deflated_Sinking:
     LDA.W Powamp.YVelocity,X                                             ;A8C527;
     ADC.W Powamp_YAccel_Sinking                                          ;A8C52A;
     STA.W Powamp.YVelocity,X                                             ;A8C52D;
-    LDA.W Powamp.YVelocity,X                                             ;A8C530; >.<
     STA.B DP_Temp14                                                      ;A8C533;
     LDA.W Powamp.YSubVelocity,X                                          ;A8C535;
     STA.B DP_Temp12                                                      ;A8C538;
@@ -10270,7 +10241,6 @@ Negate_1E_1C_A8DAF6:
     BRA +                                                                ;A8DB00;
 
   .nonZero:
-    LDA.B DP_Temp1C                                                      ;A8DB02; >.<
     LDA.W #$0000                                                         ;A8DB04;
     SEC                                                                  ;A8DB07;
     SBC.B DP_Temp1C                                                      ;A8DB08;

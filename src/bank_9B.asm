@@ -1458,9 +1458,7 @@ Handle_Death_Animation_Flashing:
     STA.W DeathAnimation_Counter                                         ;9BB458;
     CMP.W #$003C                                                         ;9BB45B;
     BPL .end                                                             ;9BB45E;
-    LDA.W DeathAnimation_Timer                                           ;9BB460;
-    DEC                                                                  ;9BB463; >.<
-    STA.W DeathAnimation_Timer                                           ;9BB464;
+    DEC.W DeathAnimation_Timer                                           ;9BB460;
     BEQ .timerExpired                                                    ;9BB467;
     BPL .returnFlashing                                                  ;9BB469;
 
@@ -3949,31 +3947,26 @@ GrappleBeamFunction_Firing:
     ADC.W GrappleBeam_LengthDelta                                        ;9BC718;
     STA.W GrappleBeam_Length                                             ;9BC71B;
     CMP.W #$0080                                                         ;9BC71E;
-    BMI .enemyCollisionCheck                                             ;9BC721;
-
-  .gotoCancel:
-    BRA .cancel                                                          ;9BC723; >.<
+    BPL .cancel                                                          ;9BC721;
 
   .enemyCollisionCheck:
     JSL.L EnemyGrappleBeamCollisionDetection                             ;9BC725;
     JSR.W ProcessEnemyGrappleBeamCollisionResult                         ;9BC729;
     BCC .blockCollisionCheck                                             ;9BC72C;
     TAY                                                                  ;9BC72E;
-    BNE .gotoCancel                                                      ;9BC72F;
+    BNE .cancel                                                          ;9BC72F;
     BRA .connected                                                       ;9BC731;
 
   .blockCollisionCheck:
     JSL.L GrappleBeamBlockCollisionDetection                             ;9BC733;
     BCC .return                                                          ;9BC737;
-    BVC .gotoCancel                                                      ;9BC739;
+    BVC .cancel                                                          ;9BC739;
 
   .connected:
     LDA.W #$0006                                                         ;9BC73B;
     JSL.L QueueSound_Lib1_Max6                                           ;9BC73E;
     JSR.W HandleConnectingGrapple                                        ;9BC742;
-    LDA.W #$0008                                                         ;9BC745;
-    EOR.W #$FFFF                                                         ;9BC748;
-    INC                                                                  ;9BC74B;
+    LDA.W #$FFF8                                                         ;9BC745;
     STA.W GrappleBeam_LengthDelta                                        ;9BC74C;
     LDA.W GrappleConnectedFlags                                          ;9BC74F;
     ORA.W #$0001                                                         ;9BC752;

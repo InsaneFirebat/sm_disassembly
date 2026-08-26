@@ -707,7 +707,6 @@ Toggle_Save_Confirmation_Selection:
     REP #$20                                                             ;858535;
     LDA.W #$59A0                                                         ;858537;
     STA.B DP_Temp34                                                      ;85853A;
-    LDA.B DP_Temp34                                                      ;85853C; >_<
     STA.W $2116                                                          ;85853E;
     LDA.W #$1801                                                         ;858541;
     STA.W $4310                                                          ;858544;

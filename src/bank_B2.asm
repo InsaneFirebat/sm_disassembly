@@ -9533,15 +9533,12 @@ endif
     CLC                                                                  ;B2F018;
     ADC.W #$0010                                                         ;B2F019;
     STA.W Enemy.XPosition,X                                              ;B2F01C;
-    BRA .return                                                          ;B2F01F;
+    RTL
 
   .lessThanB:
     LDA.W Enemy.XPosition,X                                              ;B2F021;
     AND.W #$FFF8                                                         ;B2F024;
     STA.W Enemy.XPosition,X                                              ;B2F027;
-    BRA .return                                                          ;B2F02A; >.<
-
-  .return:
     RTL                                                                  ;B2F02C;
 
 
@@ -9557,23 +9554,12 @@ Function_PirateWall_ClimbingLeftWall:
     LDX.W EnemyIndex                                                     ;B2F034;
     LDA.W #$0020                                                         ;B2F037;
     JSL.L IsSamusWithingAPixelRowsOfEnemy                                ;B2F03A;
-    BEQ .return                                                          ;B2F03E;
+    BEQ RTS_B2F04F                                                       ;B2F03E;
     LDA.W #InstList_PirateWall_FireLaser_WallJumpRight                   ;B2F040;
     STA.W Enemy.instList,X                                               ;B2F043;
     LDA.W #$0001                                                         ;B2F046;
     STA.W Enemy.instTimer,X                                              ;B2F049;
-    RTS                                                                  ;B2F04C;
 
-  .return:
-    RTS                                                                  ;B2F04D; >.<
-
-
-;;; $F04E: Unused. RTS ;;;
-RTS_B2F04E:
-    RTS                                                                  ;B2F04E;
-
-
-;;; $F04F: RTS ;;;
 RTS_B2F04F:
     RTS                                                                  ;B2F04F;
 
@@ -9647,13 +9633,12 @@ endif
     CLC                                                                  ;B2F0B3;
     ADC.W #$0010                                                         ;B2F0B4;
     STA.W Enemy.XPosition,X                                              ;B2F0B7;
-    BRA .return                                                          ;B2F0BA;
+    RTS
 
   .lessThanB:
     LDA.W Enemy.XPosition,X                                              ;B2F0BC;
     AND.W #$FFF8                                                         ;B2F0BF;
     STA.W Enemy.XPosition,X                                              ;B2F0C2;
-    BRA .return                                                          ;B2F0C5; >.<
 
   .return:
     RTS                                                                  ;B2F0C7;
@@ -9754,13 +9739,12 @@ endif
     CLC                                                                  ;B2F147;
     ADC.W #$0010                                                         ;B2F148;
     STA.W Enemy.XPosition,X                                              ;B2F14B;
-    BRA .return                                                          ;B2F14E;
+    RTS
 
   .lessThanB:
     LDA.W Enemy.XPosition,X                                              ;B2F150;
     AND.W #$FFF8                                                         ;B2F153;
     STA.W Enemy.XPosition,X                                              ;B2F156;
-    BRA .return                                                          ;B2F159; >.<
 
   .return:
     RTS                                                                  ;B2F15B;
@@ -10356,7 +10340,6 @@ InitAI_PirateNinja:
     CLC                                                                  ;B2F624;
     ADC.W PirateNinja.leftPostXPosition,X                                ;B2F625;
     STA.W PirateNinja.postsMidpointXPosition,X                           ;B2F628;
-    LDA.W PirateNinja.postsMidpointXPosition,X                           ;B2F62B; >_<
     STZ.B DP_Temp12                                                      ;B2F62E;
     STZ.B DP_Temp16                                                      ;B2F630;
     LDA.B DP_Temp14                                                      ;B2F632;

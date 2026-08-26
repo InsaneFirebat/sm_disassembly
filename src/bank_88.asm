@@ -150,27 +150,29 @@ LayerBlending_Handler:
     BIT.W LayerBlending_Window2Config                                    ;888010;
     BPL .xrayShowBlocks                                                  ;888013;
     JSR.W Handle_LayerBlending_PowerBomb                                 ;888015;
-    BRA .return                                                          ;888018;
+    PLP
+    RTS
 
   .xrayShowBlocks:
     BIT.W LayerBlending_Window2Config                                    ;88801A;
     BVC .xrayHideBlocks                                                  ;88801D;
     JSR.W Handle_LayerBlending_Xray_CanShowBlocks                        ;88801F;
-    BRA .return                                                          ;888022;
+    PLP
+    RTS
 
   .xrayHideBlocks:
     LDA.W LayerBlending_Window2Config                                    ;888024;
     BIT.B #$20                                                           ;888027;
     BEQ .xrayFirefleaRoom                                                ;888029;
     JSR.W Handle_LayerBlending_Xray_CantShowBlocks                       ;88802B;
-    BRA .return                                                          ;88802E;
+    PLP
+    RTS
 
   .xrayFirefleaRoom:
     LDA.W LayerBlending_Window2Config                                    ;888030;
     BIT.B #$10                                                           ;888033;
     BEQ .return                                                          ;888035;
     JSR.W Handle_LayerBlending_Xray_FirefleaRoom                         ;888037;
-    BRA .return                                                          ;88803A; >_<
 
   .return:
     PLP                                                                  ;88803C;
@@ -5776,7 +5778,6 @@ PreInstruction_LavaAcid_BG3YScroll:
     INC                                                                  ;88B47A;
     AND.W #$03FF                                                         ;88B47B;
     STA.B DP_Temp12                                                      ;88B47E;
-    LDA.B DP_Temp12                                                      ;88B480; >.<
     ASL                                                                  ;88B482;
     CLC                                                                  ;88B483;
     ADC.B DP_Temp12                                                      ;88B484;
@@ -7323,7 +7324,6 @@ PreInstruction_Water_BG3_Xscroll:
     LDA.W FX_BaseYPosition                                               ;88C4B5;
     ADC.W FX_YOffset                                                     ;88C4B8;
     STA.W FX_YPosition                                                   ;88C4BB;
-    LDA.W FX_YPosition                                                   ;88C4BE; >_<;
     BMI .negative                                                        ;88C4C1;
     SEC                                                                  ;88C4C3;
     SBC.W Layer1YPosition                                                ;88C4C4;
@@ -11713,7 +11713,6 @@ Update_MorphBallEyeBeam_HDMATable_ColorMathSubScnBackColor:
     STA.B DP_ColorMathSubScreenBackdropColor1                            ;88E9DB;
     LDA.W HDMAObject_Var1,X                                              ;88E9DD;
     STA.B DP_ColorMathSubScreenBackdropColor2                            ;88E9E0;
-    REP #$20                                                             ;88E9E2; >_<
     PLP                                                                  ;88E9E4;
     RTS                                                                  ;88E9E5;
 
@@ -11891,12 +11890,9 @@ PreInstruction_MorphBallEyeBeamHDMA_DeactivateBeam:
   .blue:
     LDA.W HDMAObject_Var1,X                                              ;88EB49;
     CMP.B #$80                                                           ;88EB4C;
-    BEQ .returnREP20                                                     ;88EB4E;
+    BEQ .return                                                          ;88EB4E;
     DEC                                                                  ;88EB50;
     STA.W HDMAObject_Var1,X                                              ;88EB51;
-
-  .returnREP20:
-    REP #$20                                                             ;88EB54; >.<
 
   .return:
     PLP                                                                  ;88EB56;

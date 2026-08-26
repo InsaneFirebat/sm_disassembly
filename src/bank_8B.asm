@@ -9873,7 +9873,6 @@ PreInstruction_ZebesStars_2_3_4_SlideSceneAway:
 
 ;;; $C942: Initialisation function - cinematic sprite object $CEF7 (Zebes stars 2) ;;;
 InitFunction_CinematicSpriteObject_ZebesStars2:
-    NOP                                                                  ;8BC942; >_<
     LDA.W #$0030                                                         ;8BC943;
     STA.W CinematicSpriteObject_XPositions,Y                             ;8BC946;
     LDA.W #$002F                                                         ;8BC949;
@@ -9885,7 +9884,6 @@ InitFunction_CinematicSpriteObject_ZebesStars2:
 
 ;;; $C956: Initialisation function - cinematic sprite object $CEFD (Zebes stars 3) ;;;
 InitFunction_CinematicSpriteObject_ZebesStars3:
-    NOP                                                                  ;8BC956; >_<
     LDA.W #$00D0                                                         ;8BC957;
     STA.W CinematicSpriteObject_XPositions,Y                             ;8BC95A;
     LDA.W #$002F                                                         ;8BC95D;
@@ -9897,7 +9895,6 @@ InitFunction_CinematicSpriteObject_ZebesStars3:
 
 ;;; $C96A: Initialisation function - cinematic sprite object $CF03 (Zebes stars 4) ;;;
 InitFunction_CinematicSpriteObject_ZebesStars4:
-    NOP                                                                  ;8BC96A; >_<
     LDA.W #$0030                                                         ;8BC96B;
     STA.W CinematicSpriteObject_XPositions,Y                             ;8BC96E;
     LDA.W #$00CF                                                         ;8BC971;
@@ -9909,7 +9906,6 @@ InitFunction_CinematicSpriteObject_ZebesStars4:
 
 ;;; $C97E: Initialisation function - cinematic sprite object $CF09 (Zebes stars 5) ;;;
 InitFunction_CinematicSpriteObject_ZebesStars5:
-    NOP                                                                  ;8BC97E; >_<
     LDA.W #$00D0                                                         ;8BC97F;
     STA.W CinematicSpriteObject_XPositions,Y                             ;8BC982;
     LDA.W #$00CF                                                         ;8BC985;

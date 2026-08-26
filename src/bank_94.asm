@@ -899,7 +899,6 @@ SamusBlockCollisionDetection_Horizontal_Slope_NonSquare:
 +   LDA.W SamusXBaseSubSpeed                                             ;948510;
     SEC                                                                  ;948513;
     SBC.W .speedModifiers,X                                              ;948514;
-    BCS .backToReality                                                   ;948517; >.<
 
   .backToReality:
     SEP #$20                                                             ;948519;
@@ -1201,7 +1200,7 @@ SamusBlockCollisionReaction_Vertical_Slope_NonSquare:
     ASL                                                                  ;94873E;
     STA.W SlopeCollisionDefinitionTableBaseIndex                         ;94873F;
     LDA.L BTS-1,X                                                        ;948742;
-    BPL ..gotoReturnNoCollision                                          ;948746;
+    BPL ..returnNoCollision                                              ;948746;
     ASL                                                                  ;948748;
     BMI ..blockBTS40                                                     ;948749;
     LDA.W SamusXPosition                                                 ;94874B;
@@ -1236,9 +1235,6 @@ SamusBlockCollisionReaction_Vertical_Slope_NonSquare:
   ..returnNoCollision:
     CLC                                                                  ;94877B;
     RTS                                                                  ;94877C;
-
-  ..gotoReturnNoCollision:
-    JMP.W ..returnNoCollision                                            ;94877D; >.<
 
   .down:
     LDA.W CurrentBlockIndex                                              ;948780;
@@ -1817,10 +1813,6 @@ SamusBlockCollisionReaction_SpikeBlock_BTS0_GenericSpike:
     STA.W SamusInvincibilityTimer                                        ;948E9C;
     LDA.W #$000A                                                         ;948E9F;
     STA.W SamusKnockbackTimer                                            ;948EA2;
-    LDA.W PeriodicSubDamage                                              ;948EA5;
-    CLC                                                                  ;948EA8; >.<
-    ADC.W #$0000                                                         ;948EA9;
-    STA.W PeriodicSubDamage                                              ;948EAC;
     LDA.W PeriodicDamage                                                 ;948EAF;
     ADC.W #$003C                                                         ;948EB2;
     STA.W PeriodicDamage                                                 ;948EB5;
@@ -1847,10 +1839,6 @@ SamusBlockCollisionReaction_SpikeBlock_BTS1_KraidsLairSpike:
     STA.W SamusInvincibilityTimer                                        ;948ED7;
     LDA.W #$000A                                                         ;948EDA;
     STA.W SamusKnockbackTimer                                            ;948EDD;
-    LDA.W PeriodicSubDamage                                              ;948EE0;
-    CLC                                                                  ;948EE3; >.<
-    ADC.W #$0000                                                         ;948EE4;
-    STA.W PeriodicSubDamage                                              ;948EE7;
     LDA.W PeriodicDamage                                                 ;948EEA;
     ADC.W #$0010                                                         ;948EED;
     STA.W PeriodicDamage                                                 ;948EF0;
@@ -1879,10 +1867,6 @@ SamusBlockCollisionReact_SpikeBlock_BTS3_DraygonBrokenTurret:
     STA.W SamusInvincibilityTimer                                        ;948F12;
     LDA.W #$000A                                                         ;948F15;
     STA.W SamusKnockbackTimer                                            ;948F18;
-    LDA.W PeriodicSubDamage                                              ;948F1B;
-    CLC                                                                  ;948F1E; >.<
-    ADC.W #$0000                                                         ;948F1F;
-    STA.W PeriodicSubDamage                                              ;948F22;
     LDA.W PeriodicDamage                                                 ;948F25;
     ADC.W #$0010                                                         ;948F28;
     STA.W PeriodicDamage                                                 ;948F2B;
@@ -3471,12 +3455,7 @@ BlockInsideReaction_Slope:
     LDX.W CurrentBlockIndex                                              ;9497BF;
     LDA.L BTS,X                                                          ;9497C2;
     AND.W #$001F                                                         ;9497C6;
-    CMP.W #$0005                                                         ;9497C9;
-    BCS .returnDuplicate                                                 ;9497CC; >.<
     RTS                                                                  ;9497CE;
-
-  .returnDuplicate:
-    RTS                                                                  ;9497CF;
 
 
 ;;; $97D0: Block inside reaction - air/shootable air/unused air/bombable air ;;;
@@ -3496,17 +3475,6 @@ CLCRTS_9497D8:
 ; Looks like this block's effect was NOP'd out, although this block is never used anyway
     CLC                                                                  ;9497D8;
     RTS                                                                  ;9497D9;
-
-    LDA.W PeriodicSubDamage                                              ;9497DA;
-    CLC                                                                  ;9497DD; >.<
-    STA.W PeriodicSubDamage                                              ;9497DE;
-    LDA.W PeriodicDamage                                                 ;9497E1;
-    ADC.W #$0001                                                         ;9497E4;
-    STA.W PeriodicDamage                                                 ;9497E7;
-    STZ.W SamusXExtraRunSpeed                                            ;9497EA;
-    STZ.W SamusXBaseSpeed                                                ;9497ED;
-    CLC                                                                  ;9497F0;
-    RTS                                                                  ;9497F1;
 
 
 if !FEATURE_KEEP_UNREFERENCED
@@ -3544,9 +3512,6 @@ CLCRTS_949812:
 
 ; Damages Samus, kills her jump height, gives her lava X speed physics
     LDY.W #$0000                                                         ;949814;
-    LDA.W PeriodicSubDamage                                              ;949817;
-    CLC                                                                  ;94981A; >.<
-    STA.W PeriodicSubDamage                                              ;94981B;
     LDA.W PeriodicDamage                                                 ;94981E;
     ADC.W #$0001                                                         ;949821;
     STA.W PeriodicDamage                                                 ;949824;
@@ -3599,11 +3564,8 @@ BlockInsideReaction_SpikeAir_BTS2_AirSpike:
     STA.W SamusInvincibilityTimer                                        ;949873;
     LDA.W #$000A                                                         ;949876;
     STA.W SamusKnockbackTimer                                            ;949879;
-    LDA.W PeriodicSubDamage                                              ;94987C;
-    CLC                                                                  ;94987F; >.<
-    ADC.W #$0000                                                         ;949880;
-    STA.W PeriodicSubDamage                                              ;949883;
     LDA.W PeriodicDamage                                                 ;949886;
+    CLC
     ADC.W #$0010                                                         ;949889;
     STA.W PeriodicDamage                                                 ;94988C;
     LDA.W PoseXDirection                                                 ;94988F;
@@ -4559,13 +4521,11 @@ BlockBombShotGrappledReaction_ShootableAir:
     TAX                                                                  ;949E63;
     LDA.W BlockBombShotGrappledReaction_Shootable_PLMTable_noArea,X      ;949E64;
     JSL.L Spawn_PLM_to_CurrentBlockIndex                                 ;949E67;
-    REP #$40                                                             ;949E6B; reset overflow
-    CLC                                                                  ;949E6D; >.<
+    REP #$41                                                             ;949E6B; reset overflow, carry clear
     RTS                                                                  ;949E6E;
 
   .returnDuplicate:
-    REP #$40                                                             ;949E6F; reset overflow
-    CLC                                                                  ;949E71; >.<
+    REP #$41                                                             ;949E6F; reset overflow, carry clear
     RTS                                                                  ;949E72;
 
 
@@ -4792,13 +4752,11 @@ BlockShotBombedGrappledReaction_BombableAir:
     TAX                                                                  ;949FE4;
     LDA.W BlockShotBombedGrappledReaction_Bombable_PLMTable,X            ;949FE5;
     JSL.L Spawn_PLM_to_CurrentBlockIndex                                 ;949FE8;
-    REP #$40                                                             ;949FEC;
-    CLC                                                                  ;949FEE; >.<
+    REP #$41                                                             ;949FEC; reset overflow, carry clear
     RTS                                                                  ;949FEF;
 
   .returnDuplicate:
-    REP #$40                                                             ;949FF0;
-    CLC                                                                  ;949FF2; >.<
+    REP #$41                                                             ;949FF0; reset overflow, carry clear
     RTS                                                                  ;949FF3;
 
 
@@ -6031,7 +5989,7 @@ BlockShotReaction_Horizontal_Slope_Square:
     AND.W #$0008                                                         ;94A69D;
     BNE .bottomHalf                                                      ;94A6A0;
     LDA.W SquareSlopeDefinitions_Bank94-1,X                              ;94A6A2;
-    BMI .gotoReturnCollision                                             ;94A6A5;
+    BMI .returnCollision                                                 ;94A6A5;
 
   .bottomHalf:
     TXA                                                                  ;94A6A7;
@@ -6044,14 +6002,11 @@ BlockShotReaction_Horizontal_Slope_Square:
     AND.W #$0008                                                         ;94A6B4;
     BEQ .returnNoCollision                                               ;94A6B7;
     LDA.W SquareSlopeDefinitions_Bank94-1,X                              ;94A6B9;
-    BMI .gotoReturnCollision                                             ;94A6BC;
+    BMI .returnCollision                                                 ;94A6BC;
 
   .returnNoCollision:
     CLC                                                                  ;94A6BE;
     RTS                                                                  ;94A6BF;
-
-  .gotoReturnCollision:
-    JMP.W .returnCollision                                               ;94A6C0; >.<
 
   .multiBlock:
     LDA.B DP_Temp26                                                      ;94A6C3;
@@ -6063,8 +6018,8 @@ BlockShotReaction_Horizontal_Slope_Square:
     AND.W #$0008                                                         ;94A6CF;
     BNE .checkBothHalves                                                 ;94A6D2;
     LDA.W SquareSlopeDefinitions_Bank94-1,X                              ;94A6D4;
-    BMI .completeWaste                                                   ;94A6D7;
-    BRA .returnNoCollisionDuplicate                                      ;94A6D9;
+    BMI .returnCollision                                                 ;94A6D7;
+    BRA .returnNoCollision                                               ;94A6D9;
 
   .topBlockCheck:
     CMP.B DP_Temp1A                                                      ;94A6DB;
@@ -6077,21 +6032,13 @@ BlockShotReaction_Horizontal_Slope_Square:
 
   .checkBothHalves:
     LDA.W SquareSlopeDefinitions_Bank94-1,X                              ;94A6EB;
-    BMI .completeWaste                                                   ;94A6EE;
+    BMI .returnCollision                                                 ;94A6EE;
 
   .checkBottomHalf:
     TXA                                                                  ;94A6F0;
     EOR.W #$0002                                                         ;94A6F1;
     TAX                                                                  ;94A6F4;
     LDA.W SquareSlopeDefinitions_Bank94-1,X                              ;94A6F5;
-    BMI .completeWaste                                                   ;94A6F8;
-
-  .returnNoCollisionDuplicate:
-    CLC                                                                  ;94A6FA;
-    RTS                                                                  ;94A6FB;
-
-  .completeWaste:
-    JMP.W .returnCollision                                               ;94A6FC;
 
   .returnCollision:
     SEC                                                                  ;94A6FF;
@@ -6107,13 +6054,9 @@ BlockShotReaction_Horizontal_Slope_Square:
     TAX                                                                  ;94A710;
 
 +   LDA.W SquareSlopeDefinitions_Bank94-1,X                              ;94A711;
-    BMI .returnCollisionDuplicate                                        ;94A714;
+    BMI .returnCollision                                                 ;94A714;
     CLC                                                                  ;94A716;
     RTS                                                                  ;94A717;
-
-  .returnCollisionDuplicate:
-    SEC                                                                  ;94A718;
-    RTS                                                                  ;94A719;
 
 
 ;;; $A71A: Block shot reaction - vertical - slope - square ;;;
@@ -6154,7 +6097,8 @@ BlockShotReaction_Vertical_Slope_Square:
     AND.W #$0008                                                         ;94A74C;
     BNE .right                                                           ;94A74F;
     LDA.W SquareSlopeDefinitions_Bank94-1,X                              ;94A751;
-    BMI .gotoReturnCollision                                             ;94A754;
+    SEC
+    RTS
 
   .right:
     TXA                                                                  ;94A756;
@@ -6167,14 +6111,11 @@ BlockShotReaction_Vertical_Slope_Square:
     AND.W #$0008                                                         ;94A763;
     BEQ .returnNoCollision                                               ;94A766;
     LDA.W SquareSlopeDefinitions_Bank94-1,X                              ;94A768;
-    BMI .gotoReturnCollision                                             ;94A76B;
+    BMI .returnCollision                                                 ;94A76B;
 
   .returnNoCollision:
     CLC                                                                  ;94A76D;
     RTS                                                                  ;94A76E;
-
-  .gotoReturnCollision:
-    JMP.W .returnCollision                                               ;94A76F;
 
   .multiBlock:
     LDA.B DP_Temp26                                                      ;94A772;
@@ -6186,8 +6127,9 @@ BlockShotReaction_Vertical_Slope_Square:
     AND.W #$0008                                                         ;94A77E;
     BNE .checkBothHalves                                                 ;94A781;
     LDA.W SquareSlopeDefinitions_Bank94-1,X                              ;94A783;
-    BMI .gotoNowhere                                                     ;94A786;
-    BRA .returnNoCollisionDuplicate                                      ;94A788;
+    BMI .returnCollision                                                 ;94A786;
+    CLC
+    RTS
 
   .leftmostBlockCheck:
     CMP.B DP_Temp1A                                                      ;94A78A;
@@ -6200,21 +6142,13 @@ BlockShotReaction_Vertical_Slope_Square:
 
   .checkBothHalves:
     LDA.W SquareSlopeDefinitions_Bank94-1,X                              ;94A79A;
-    BMI .gotoNowhere                                                     ;94A79D;
+    BMI .returnCollision                                                 ;94A79D;
 
   .checkLeftHalf:
     TXA                                                                  ;94A79F;
     EOR.W #$0001                                                         ;94A7A0;
     TAX                                                                  ;94A7A3;
     LDA.W SquareSlopeDefinitions_Bank94-1,X                              ;94A7A4;
-    BMI .gotoNowhere                                                     ;94A7A7;
-
-  .returnNoCollisionDuplicate:
-    CLC                                                                  ;94A7A9;
-    RTS                                                                  ;94A7AA;
-
-  .gotoNowhere:
-    JMP.W .returnCollision                                               ;94A7AB; >.<
 
   .returnCollision:
     SEC                                                                  ;94A7AE;
@@ -6231,13 +6165,9 @@ BlockShotReaction_Vertical_Slope_Square:
 
   .leftHalf:
     LDA.W SquareSlopeDefinitions_Bank94-1,X                              ;94A7C0;
-    BMI .returnCollisionDuplicate                                        ;94A7C3;
+    BMI .returnCollision                                                 ;94A7C3;
     CLC                                                                  ;94A7C5;
     RTS                                                                  ;94A7C6;
-
-  .returnCollisionDuplicate:
-    SEC                                                                  ;94A7C7;
-    RTS                                                                  ;94A7C8;
 
 
 ;;; $A7C9: Block grapple reaction - air / spike air / special air / unused air ;;;
@@ -6245,8 +6175,7 @@ BlockGrappleReaction_Air_SpikeAir_SpecialAir:
 ;; Returns:
 ;;     Carry: Clear. No collision
 ;;     Overflow: Clear (no effect)
-    REP #$40                                                             ;94A7C9; reset overflow
-    CLC                                                                  ;94A7CB; >.<
+    REP #$41                                                             ;94A7C9; reset overflow, carry clear
     RTS                                                                  ;94A7CC;
 
 
@@ -6277,9 +6206,8 @@ BlockGrappleReaction_GrappleBlock:
     JSL.L Spawn_PLM_to_CurrentBlockIndex                                 ;94A7E9;
     RTS                                                                  ;94A7ED;
 
-+   AND.W #$007F                                                         ;94A7EE; >_<
-    REP #$40                                                             ;94A7F1; reset overflow
-    CLC                                                                  ;94A7F3; >.<
++   AND.W #$007F                                                         ;94A7EE;
+    REP #$41                                                             ;94A7F1; reset overflow, carry clear
     RTS                                                                  ;94A7F4;
 
   .PLMs:
@@ -6308,9 +6236,8 @@ BlockGrappleReaction_SpikeBlock:
     JSL.L Spawn_PLM_to_CurrentBlockIndex                                 ;94A80F;
     RTS                                                                  ;94A813;
 
-+   AND.W #$007F                                                         ;94A814; >_<
-    REP #$40                                                             ;94A817; reset overflow
-    CLC                                                                  ;94A819; >.<
++   AND.W #$007F                                                         ;94A814;
+    REP #$41                                                             ;94A817; reset overflow, carry clear
     RTS                                                                  ;94A81A;
 
   .PLMs:
@@ -6696,48 +6623,6 @@ SECRTS_94AA9C:
     RTS                                                                  ;94AA9D;
 
 
-;;; $AA9E: Grapple swing collision reaction - spike air ;;;
-GrappleSwingCollisionReaction_SpikeAir:
-;; Returns:
-;;     Carry: Clear. No collision
-
-; There's really no reason to have this reaction, the spike air inside reaction does this damage anyway
-; Although you can set grapple swing specific damage here if you want...
-    LDA.W SamusInvincibilityTimer                                        ;94AA9E;
-    BNE .return                                                          ;94AAA1;
-    LDX.W CurrentBlockIndex                                              ;94AAA3;
-    LDA.L BTS,X                                                          ;94AAA6;
-    BMI .return                                                          ;94AAAA;
-    ASL                                                                  ;94AAAC;
-    TAX                                                                  ;94AAAD;
-    LDA.W .zeroes0,X                                                     ;94AAAE;
-    ORA.W .zeroes1,X                                                     ;94AAB1;
-    BEQ .return                                                          ;94AAB4;
-    LDA.W PeriodicSubDamage                                              ;94AAB6;
-    CLC                                                                  ;94AAB9; >.<
-    ADC.W .zeroes0,X                                                     ;94AABA; >.<
-    STA.W PeriodicSubDamage                                              ;94AABD;
-    LDA.W PeriodicDamage                                                 ;94AAC0;
-    ADC.W .zeroes1,X                                                     ;94AAC3;
-    STA.W PeriodicDamage                                                 ;94AAC6;
-    LDA.W #$003C                                                         ;94AAC9;
-    STA.W SamusInvincibilityTimer                                        ;94AACC;
-    LDA.W #$000A                                                         ;94AACF;
-    STA.W SamusKnockbackTimer                                            ;94AAD2;
-
-  .return:
-    CLC                                                                  ;94AAD5;
-    RTS                                                                  ;94AAD6;
-
-  .zeroes0:
-    dw $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;94AAD7;
-    dw $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;94AAE7;
-
-  .zeroes1:
-    dw $0000,$0000,$0010,$0000,$0000,$0000,$0000,$0000                   ;94AAF7;
-    dw $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;94AB07;
-
-
 ;;; $AB17: Grapple swing collision reaction - spike block ;;;
 GrappleSwingCollisionReaction_SpikeBlock:
 ;; Returns:
@@ -6749,13 +6634,8 @@ GrappleSwingCollisionReaction_SpikeBlock:
     BMI .return                                                          ;94AB23;
     ASL                                                                  ;94AB25;
     TAX                                                                  ;94AB26;
-    LDA.W .zeroes,X                                                      ;94AB27;
-    ORA.W .damage,X                                                      ;94AB2A;
+    LDA.W .damage,X                                                      ;94AB2A;
     BEQ .return                                                          ;94AB2D;
-    LDA.W PeriodicSubDamage                                              ;94AB2F;
-    CLC                                                                  ;94AB32; >.<
-    ADC.W .zeroes,X                                                      ;94AB33; >.<
-    STA.W PeriodicSubDamage                                              ;94AB36;
     LDA.W PeriodicDamage                                                 ;94AB39;
     ADC.W .damage,X                                                      ;94AB3C;
     STA.W PeriodicDamage                                                 ;94AB3F;
@@ -6781,7 +6661,7 @@ GrappleSwingCollisionReaction_SpikeBlock:
 GrappleSwingCollisionReaction_Pointers:
     dw CLCRTS_94AA9A                                                     ;94AB90;  0: Air
     dw SECRTS_94AA9C                                                     ;94AB92;  1: Slope
-    dw GrappleSwingCollisionReaction_SpikeAir                            ;94AB94; *2: Spike air
+    dw CLCRTS_94AA9A                                                     ;94AB94; *2: Spike air
     dw CLCRTS_94AA9A                                                     ;94AB96;  3: Special air
     dw CLCRTS_94AA9A                                                     ;94AB98;  4: Shootable air
     dw BlockShotBombedGrappledCollisionInsideReaction_HorizontalExt      ;94AB9A; *5: Horizontal extension
@@ -6862,7 +6742,6 @@ GrappleSwingCollisionDetectionDueToSwinging:
     RTS                                                                  ;94AC0E;
 
   .return:
-    NOP                                                                  ;94AC0F; >_<
     RTS                                                                  ;94AC10;
 
 
@@ -7618,8 +7497,7 @@ DrawGrappleBeamEnd_NotConnected:
     ORA.L MapOfOAMIndex_highXPosBit,X                                    ;94B126;
     STA.B (DP_Temp22)                                                    ;94B12A;
 
-+   LDA.B DP_Temp18                                                      ;94B12C; >_<
-    LDA.W GrappleBeam_EndYPosition                                       ;94B12E;
++   LDA.W GrappleBeam_EndYPosition                                       ;94B12E;
     SEC                                                                  ;94B131;
     SBC.W Layer1YPosition                                                ;94B132;
     SEC                                                                  ;94B135;

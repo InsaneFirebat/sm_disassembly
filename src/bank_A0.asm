@@ -1303,7 +1303,6 @@ LoadEnemyGFXIndices:
     LDA.L EnemySets_ID,X                                                 ;A08C0E;
     CMP.W #$FFFF                                                         ;A08C12;
     BEQ .notFound                                                        ;A08C15;
-    LDA.L EnemySets_ID,X                                                 ;A08C17; >.<
     TAX                                                                  ;A08C1B;
     LDA.W $0000,X                                                        ;A08C1C;
     LSR                                                                  ;A08C1F;
@@ -1662,7 +1661,6 @@ Determine_Which_Enemies_to_Process:
     JMP.W .loopProcessOffscreen                                          ;A08ECF;
 
   .resetIndex:
-    LDX.W #$0000                                                         ;A08ED2; >_<
     LDY.W #$0000                                                         ;A08ED5;
 
   .loop:
@@ -2009,7 +2007,6 @@ endif
     JSL.L EnemyDeath                                                     ;A090EB;
 
   .paralysedEnd:
-    LDX.W EnemyIndex                                                     ;A090EF;
     LDA.W Enemy.properties2,X                                            ;A090F2;
     BIT.W #$0004                                                         ;A090F5;
     BNE +                                                                ;A090F8;
@@ -2017,8 +2014,7 @@ endif
     BEQ +                                                                ;A090FE;
     BRA .drawEnemyEnd                                                    ;A09100;
 
-+   LDX.W EnemyIndex                                                     ;A09102;
-    LDA.W Enemy.properties,X                                             ;A09105;
++   LDA.W Enemy.properties,X                                             ;A09105;
     BIT.W #$0300                                                         ;A09108;
     BNE .drawEnemyEnd                                                    ;A0910B;
     LDA.W DisableDrawingOfEnemies                                        ;A0910D;
@@ -2027,7 +2023,6 @@ endif
     JSR.W AddEnemyToDrawingQueue                                         ;A09115;
 
   .drawEnemyEnd:
-    LDX.W EnemyIndex                                                     ;A09118;
     LDA.W Enemy.flashTimer,X                                             ;A0911B;
     BEQ +                                                                ;A0911E;
     LDA.W TimeIsFrozenFlag                                               ;A09120;
@@ -2433,7 +2428,7 @@ AddEnemyToDrawingQueue:
     CLC                                                                  ;A09433;
     ADC.W EnemyDrawingQueues_Sizes,Y                                     ;A09434;
     TAY                                                                  ;A09437;
-    LDA.W EnemyIndex                                                     ;A09438;
+    TXA
     STA.W $0000,Y                                                        ;A0943B;
     LDX.W Temp_DrawingQueueIndex0E34                                     ;A0943E;
     INC.W EnemyDrawingQueues_Sizes,X                                     ;A09441;
@@ -2452,7 +2447,6 @@ WriteEnemyOAM_IfNotFrozenOrInvincibleFrame:
     PLB                                                                  ;A09452;
     PLB                                                                  ;A09453;
     REP #$30                                                             ;A09454;
-    LDX.W EnemyIndex                                                     ;A09456;
     LDA.W Enemy.XPosition,X                                              ;A09459;
     SEC                                                                  ;A0945C;
     SBC.W Layer1XPosition                                                ;A0945D;
@@ -2680,6 +2674,7 @@ UNUSED_RespawnEnemy_A095F1:
     PLB                                                                  ;A095F6;
     REP #$30                                                             ;A095F7;
     LDA.W EnemyIndex                                                     ;A095F9;
+    TAY
     LSR                                                                  ;A095FC;
     LSR                                                                  ;A095FD;
     STA.B DP_Temp12                                                      ;A095FE;
@@ -2687,7 +2682,6 @@ UNUSED_RespawnEnemy_A095F1:
     CLC                                                                  ;A09603;
     ADC.B DP_Temp12                                                      ;A09604;
     TAX                                                                  ;A09606;
-    LDY.W EnemyIndex                                                     ;A09607;
     LDA.L EnemyPopulations_ID,X                                          ;A0960A;
     STA.W Enemy.ID,Y                                                     ;A0960E;
     LDA.L EnemyPopulations_XPosition,X                                   ;A09611;
@@ -3311,8 +3305,8 @@ HandleEnemyProjectileCollisionWithProjectile:
 EnemySamusCollisionHandling_ExtendedSpritemap:
 ; This routine disables Samus' invincibility if she is using blue suit or screw attack (unless there are no tangible enemies)
     PHB                                                                  ;A09A5A;
-    LDX.W EnemyIndex                                                     ;A09A5B;
-    LDA.W Enemy.bank,X                                                   ;A09A5E;
+    LDY.W EnemyIndex                                                     ;A09A5B;
+    LDA.W Enemy.bank,Y                                                   ;A09A5E;
     STA.W EnemyAIPointer+2                                               ;A09A61;
     XBA                                                                  ;A09A64;
     PHA                                                                  ;A09A65;
@@ -3320,10 +3314,9 @@ EnemySamusCollisionHandling_ExtendedSpritemap:
     PLB                                                                  ;A09A67;
     LDA.W #$0006                                                         ;A09A68;
     STA.L EnemyProcessingStage                                           ;A09A6B;
-    LDY.W EnemyIndex                                                     ;A09A6F;
     LDA.W Enemy.spritemap,Y                                              ;A09A72;
     BEQ .returnUpper                                                     ;A09A75;
-    LDA.W Enemy.ID,X                                                     ;A09A77;
+    LDA.W Enemy.ID,Y                                                     ;A09A77;
     TAX                                                                  ;A09A7A;
     LDA.L EnemyHeaders_enemyTouch,X                                      ;A09A7B;
     CMP.W #RTL_A0804C                                                    ;A09A7F;
@@ -3346,8 +3339,8 @@ EnemySamusCollisionHandling_ExtendedSpritemap:
     BNE .returnUpper                                                     ;A09A98;
 
   .notInvincible:
-    LDX.W EnemyIndex                                                     ;A09A9A;
-    LDA.W Enemy.spritemap,X                                              ;A09A9D;
+    LDY.W EnemyIndex                                                     ;A09A9A;
+    LDA.W Enemy.spritemap,Y                                              ;A09A9D;
     CMP.W #$8000                                                         ;A09AA0;
     BMI .returnUpper                                                     ;A09AA3;
     LDA.W SamusXPosition                                                 ;A09AA5;
@@ -3366,7 +3359,7 @@ EnemySamusCollisionHandling_ExtendedSpritemap:
     SEC                                                                  ;A09AC6;
     SBC.W SamusYRadius                                                   ;A09AC7;
     STA.W SamusTopBoundaryForEnemyVsSamusCollisions                      ;A09ACA;
-    LDA.W Enemy.spritemap,X                                              ;A09ACD;
+    LDA.W Enemy.spritemap,Y                                              ;A09ACD;
     TAX                                                                  ;A09AD0;
     LDA.W $0000,X                                                        ;A09AD1;
     AND.W #$00FF                                                         ;A09AD4;
@@ -3377,7 +3370,6 @@ EnemySamusCollisionHandling_ExtendedSpritemap:
 
   .loopSpritemapEntries:
     LDX.W EnemySpritemapEntryPointerDuringCollision                      ;A09ADF;
-    LDY.W EnemyIndex                                                     ;A09AE2;
     LDA.W Enemy.XPosition,Y                                              ;A09AE5;
     CLC                                                                  ;A09AE8;
     ADC.W $0000,X                                                        ;A09AE9;
@@ -3456,8 +3448,8 @@ EnemySamusCollisionHandling_ExtendedSpritemap:
 ;;; $9B7F: Enemy / projectile collision handling - extended spritemap ;;;
 Enemy_vs_Projectile_CollisionHandling_ExtendedSpritemap:
     PHB                                                                  ;A09B7F;
-    LDX.W EnemyIndex                                                     ;A09B80;
-    LDA.W Enemy.bank,X                                                   ;A09B83;
+    LDY.W EnemyIndex                                                     ;A09B80;
+    LDA.W Enemy.bank,Y                                                   ;A09B83;
     STA.W EnemyAIPointer+2                                               ;A09B86;
     XBA                                                                  ;A09B89;
     PHA                                                                  ;A09B8A;
@@ -3471,7 +3463,6 @@ Enemy_vs_Projectile_CollisionHandling_ExtendedSpritemap:
     RTS                                                                  ;A09B9A;
 
   .nonZeroCounter:
-    LDY.W EnemyIndex                                                     ;A09B9E;
     LDA.W Enemy.spritemap,Y                                              ;A09BA1;
     BEQ .returnUpper                                                     ;A09BA4;
     CMP.W #ExtendedSpritemap_Common_Nothing                              ;A09BA6;
@@ -3517,7 +3508,6 @@ Enemy_vs_Projectile_CollisionHandling_ExtendedSpritemap:
     JMP.W .nextProjectile                                                ;A09BF8;
 
   .validProjectile:
-    LDX.W EnemyIndex                                                     ;A09BFB;
     LDA.W Enemy.spritemap,X                                              ;A09BFE;
     CMP.W #$8000                                                         ;A09C01;
 
@@ -3678,13 +3668,12 @@ Enemy_vs_Bomb_CollisionHandling_ExtendedSpritemap:
     LDY.W EnemyIndex                                                     ;A09D38;
     LDA.W Enemy.spritemap,Y                                              ;A09D3B;
     BEQ .returnUpper                                                     ;A09D3E;
-    LDX.W EnemyIndex                                                     ;A09D40;
     LDA.W Enemy.properties,X                                             ;A09D43;
     BIT.W #$0400                                                         ;A09D46;
     BNE .returnUpper                                                     ;A09D49;
     LDA.W Enemy.invincibilityTimer,X                                     ;A09D4B;
     BNE .returnUpper                                                     ;A09D4E;
-    LDY.W EnemyIndex                                                     ;A09D50;
+    TXY
     LDX.W Enemy.ID,Y                                                     ;A09D53;
     LDA.L EnemyHeaders_enemyShot,X                                       ;A09D56;
     CMP.W #RTL_A0804C                                                    ;A09D5A;
@@ -3996,15 +3985,12 @@ GrappleAI_SwitchEnemyAIToMainAI:
 ;;; $9F7D: Samus latches on with grapple ;;;
 GrappleAI_SamusLatchesOnWithGrapple:
     LDX.W EnemyIndex                                                     ;A09F7D;
-    LDX.W EnemyIndex                                                     ;A09F80; >_<
     LDA.W Enemy.XPosition,X                                              ;A09F83;
     STA.W GrappleBeam_EndXPosition                                       ;A09F86;
     LDA.W Enemy.YPosition,X                                              ;A09F89;
     STA.W GrappleBeam_EndYPosition                                       ;A09F8C;
-    LDX.W EnemyIndex                                                     ;A09F8F;
     LDA.W Enemy.freezeTimer,X                                            ;A09F92;
     BNE .frozen                                                          ;A09F95;
-    LDX.W EnemyIndex                                                     ;A09F97;
     LDA.W Enemy.ID,X                                                     ;A09F9A;
     TAX                                                                  ;A09F9D;
     LDA.L EnemyHeaders_hurtAITime,X                                      ;A09F9E;
@@ -4015,13 +4001,10 @@ GrappleAI_SamusLatchesOnWithGrapple:
   .main:
     LDX.W EnemyIndex                                                     ;A09FAA;
     STA.W Enemy.flashTimer,X                                             ;A09FAD;
-    LDX.W EnemyIndex                                                     ;A09FB0;
-    LDX.W EnemyIndex                                                     ;A09FB3;
     STZ.W Enemy.AI,X                                                     ;A09FB6;
     RTL                                                                  ;A09FB9;
 
   .frozen:
-    LDX.W EnemyIndex                                                     ;A09FBA;
     LDA.W #$0004                                                         ;A09FBD;
     STA.W Enemy.AI,X                                                     ;A09FC0;
     RTL                                                                  ;A09FC3;
@@ -4030,12 +4013,10 @@ GrappleAI_SamusLatchesOnWithGrapple:
 ;;; $9FC4: Enemy grapple death ;;;
 GrappleAI_EnemyGrappleDeath:
     LDX.W EnemyIndex                                                     ;A09FC4;
-    LDX.W EnemyIndex                                                     ;A09FC7;
     LDA.W #$0004                                                         ;A09FCA;
     STA.L EnemyTileData+2,X                                              ;A09FCD;
     LDA.W #$0000                                                         ;A09FD1;
     JSL.L EnemyDeath                                                     ;A09FD4;
-    LDX.W EnemyIndex                                                     ;A09FD8;
     STZ.W Enemy.AI,X                                                     ;A09FDB;
     RTL                                                                  ;A09FDE;
 
@@ -4053,7 +4034,6 @@ GrappleAI_SamusLatchesOnWithGrapple_NoInvincibility:
     LDX.W EnemyIndex                                                     ;A09FE9;
     LDA.W Enemy.freezeTimer,X                                            ;A09FEC;
     BNE .frozen                                                          ;A09FEF;
-    LDX.W EnemyIndex                                                     ;A09FF1;
     LDA.W Enemy.ID,X                                                     ;A09FF4;
     TAX                                                                  ;A09FF7;
     LDA.L EnemyHeaders_mainAI,X                                          ;A09FF8;
@@ -4080,7 +4060,6 @@ GrappleAI_SamusLatchesOnWithGrapple_NoInvincibility:
     JML.W [EnemyAIPointer]                                               ;A0A025;
 
   .frozen:
-    LDX.W EnemyIndex                                                     ;A0A028;
     LDA.W Enemy.XPosition,X                                              ;A0A02B;
     STA.W GrappleBeam_EndXPosition                                       ;A0A02E;
     LDA.W Enemy.YPosition,X                                              ;A0A031;
@@ -4094,7 +4073,6 @@ GrappleAI_SamusLatchesOnWithGrapple_NoInvincibility:
 GrappleAI_SamusLatchesOnWithGrapple_ParalyzeEnemy:
 ; Called by UNUSED_Common_GrappleAI_SamusLatchesOn_ParalyzeEnemy_A08019
     LDX.W EnemyIndex                                                     ;A0A03E;
-    LDX.W EnemyIndex                                                     ;A0A041;
     LDA.W Enemy.ID,X                                                     ;A0A044;
     TAX                                                                  ;A0A047;
     LDA.L EnemyHeaders_hurtAITime,X                                      ;A0A048;
@@ -4104,10 +4082,7 @@ GrappleAI_SamusLatchesOnWithGrapple_ParalyzeEnemy:
 
 +   LDX.W EnemyIndex                                                     ;A0A054;
     STA.W Enemy.flashTimer,X                                             ;A0A057;
-    LDX.W EnemyIndex                                                     ;A0A05A;
-    LDX.W EnemyIndex                                                     ;A0A05D;
     STZ.W Enemy.AI,X                                                     ;A0A060;
-    LDX.W EnemyIndex                                                     ;A0A063;
     LDA.W Enemy.properties2,X                                            ;A0A066;
     ORA.W #$0001                                                         ;A0A069;
     STA.W Enemy.properties2,X                                            ;A0A06C;
@@ -4134,8 +4109,8 @@ Enemy_vs_Samus_CollisionHandling:
     PLB                                                                  ;A0A081;
     LDA.W #$0009                                                         ;A0A082;
     STA.L EnemyProcessingStage                                           ;A0A085;
-    LDY.W EnemyIndex                                                     ;A0A089;
-    LDA.W Enemy.spritemap,Y                                              ;A0A08C;
+    LDX.W EnemyIndex                                                     ;A0A089;
+    LDA.W Enemy.spritemap,X                                              ;A0A08C;
     BEQ .return                                                          ;A0A08F;
     LDA.W ContactDamageIndex                                             ;A0A091;
     BEQ .normalContactDamage                                             ;A0A094;
@@ -4145,7 +4120,6 @@ Enemy_vs_Samus_CollisionHandling:
   .normalContactDamage:
     LDA.W SamusInvincibilityTimer                                        ;A0A09B;
     BEQ .tangible                                                        ;A0A09E;
-    LDX.W EnemyIndex                                                     ;A0A0A0;
     LDA.W Enemy.ID,X                                                     ;A0A0A3;
     CMP.W #EnemyHeaders_Respawn                                          ;A0A0A6;
     BNE .return                                                          ;A0A0A9;
@@ -4159,7 +4133,7 @@ Enemy_vs_Samus_CollisionHandling:
     RTS                                                                  ;A0A0B7;
 
   .tangible:
-    LDX.W EnemyIndex                                                     ;A0A0B8;
+    TXY
     LDY.W Enemy.ID,X                                                     ;A0A0BB;
     LDA.W $0030,Y                                                        ;A0A0BE;
     CMP.W #RTL_A0804C                                                    ;A0A0C1;
@@ -4172,7 +4146,6 @@ Enemy_vs_Samus_CollisionHandling:
     RTS                                                                  ;A0A0CC;
 
   .hasTouchAI:
-    LDX.W EnemyIndex                                                     ;A0A0CD;
     LDA.W SamusXPosition                                                 ;A0A0D0;
     SEC                                                                  ;A0A0D3;
     SBC.W Enemy.XPosition,X                                              ;A0A0D4;
@@ -4204,16 +4177,13 @@ Enemy_vs_Samus_CollisionHandling:
     PLB                                                                  ;A0A100;
     RTS                                                                  ;A0A101;
 
-+   LDX.W EnemyIndex                                                     ;A0A102;
-    LDA.W Enemy.spritemap,X                                              ;A0A105;
++   LDA.W Enemy.spritemap,X                                              ;A0A105;
     ASL                                                                  ;A0A108;
     STA.B DP_Temp14                                                      ;A0A109;
-    LDX.W EnemyIndex                                                     ;A0A10B;
     LDA.W Enemy.ID,X                                                     ;A0A10E;
     CMP.W #EnemyHeaders_Respawn                                          ;A0A111;
     BEQ .gotoExecuteEnemyTouch                                           ;A0A114;
-    LDY.W EnemyIndex                                                     ;A0A116;
-    LDA.W Enemy.freezeTimer,Y                                            ;A0A119;
+    LDA.W Enemy.freezeTimer,X                                            ;A0A119;
     BEQ .gotoExecuteEnemyTouch                                           ;A0A11C;
     PLB                                                                  ;A0A11E;
     RTS                                                                  ;A0A11F;
@@ -4242,8 +4212,8 @@ Enemy_vs_Samus_CollisionHandling:
 ;;; $A143: Enemy / projectile collision handling ;;;
 Enemy_vs_ProjectileCollisionHandling:
     PHB                                                                  ;A0A143;
-    LDX.W EnemyIndex                                                     ;A0A144;
-    LDA.W Enemy.bank,X                                                   ;A0A147;
+    LDY.W EnemyIndex                                                     ;A0A144;
+    LDA.W Enemy.bank,Y                                                   ;A0A147;
     STA.W EnemyAIPointer+2                                               ;A0A14A;
     XBA                                                                  ;A0A14D;
     PHA                                                                  ;A0A14E;
@@ -4259,7 +4229,6 @@ Enemy_vs_ProjectileCollisionHandling:
     RTS                                                                  ;A0A15E;
 
   .nonZeroCounter:
-    LDY.W EnemyIndex                                                     ;A0A15F;
     LDA.W Enemy.spritemap,Y                                              ;A0A162;
     BEQ .returnUpper                                                     ;A0A165;
     CMP.W #Spritemap_Common_Nothing                                      ;A0A167;
@@ -4392,13 +4361,11 @@ Enemy_vs_Bomb_CollisionHandling:
     RTS                                                                  ;A0A251;
 
   .nonZeroCounter:
-    LDY.W EnemyIndex                                                     ;A0A252;
-    LDA.W Enemy.spritemap,Y                                              ;A0A255;
+    LDA.W Enemy.spritemap,X                                              ;A0A255;
     BEQ .returnUpper                                                     ;A0A258;
-    LDY.W EnemyIndex                                                     ;A0A25A;
-    LDA.W Enemy.invincibilityTimer,Y                                     ;A0A25D;
+    LDA.W Enemy.invincibilityTimer,X                                     ;A0A25D;
     BNE .returnUpper                                                     ;A0A260;
-    LDA.W Enemy.ID,Y                                                     ;A0A262;
+    LDA.W Enemy.ID,X                                                     ;A0A262;
     CMP.W #EnemyHeaders_Respawn                                          ;A0A265;
     BEQ .returnUpper                                                     ;A0A268;
     LDA.W #$0005                                                         ;A0A26A;
@@ -4601,6 +4568,7 @@ EnemyDeath:
     PLB                                                                  ;A0A3B5;
     REP #$30                                                             ;A0A3B6;
     PHA                                                                  ;A0A3B8;
+    LDX.W EnemyIndex
     LDA.W Enemy.AI,X                                                     ;A0A3B9;
     CMP.W #$0001                                                         ;A0A3BC; broken check, see note
     BNE .checkA                                                          ;A0A3BF;
@@ -4615,7 +4583,6 @@ EnemyDeath:
 
   .AIsValid:
     STA.W Temp_DeathExplosionType                                        ;A0A3D0;
-    LDX.W EnemyIndex                                                     ;A0A3D3;
     LDY.W #EnemyProjectile_EnemyDeathExplosion                           ;A0A3D6;
     LDA.W Temp_DeathExplosionType                                        ;A0A3D9;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A0A3DC;
@@ -4623,7 +4590,6 @@ EnemyDeath:
     AND.W #$4000                                                         ;A0A3E3;
     STA.B DP_Temp12                                                      ;A0A3E6;
     LDY.W #$003E                                                         ;A0A3E8;
-    LDX.W EnemyIndex                                                     ;A0A3EB;
 
   .loopClearEnemySlot:
     STZ.W Enemy.ID,X                                                     ;A0A3EE;
@@ -4637,7 +4603,7 @@ EnemyDeath:
     LDX.W EnemyIndex                                                     ;A0A3FB;
     LDA.W #EnemyHeaders_Respawn                                          ;A0A3FE;
     STA.W Enemy.ID,X                                                     ;A0A401;
-    LDA.W #$00A3                                                         ;A0A404;
+    LDA.W #EnemyHeaders_Respawn>>16                                      ;A0A404;
     STA.W Enemy.bank,X                                                   ;A0A407;
 
   .incEnemiesKilled:
@@ -4674,7 +4640,6 @@ RinkaDeath:
     AND.W #$4000                                                         ;A0A434;
     STA.B DP_Temp12                                                      ;A0A437;
     LDY.W #$003E                                                         ;A0A439;
-    LDX.W EnemyIndex                                                     ;A0A43C;
 
   .loopClearEnemySlot:
     STZ.W Enemy.ID,X                                                     ;A0A43F;
@@ -4716,9 +4681,10 @@ Suit_Damage_Division:
     RTL                                                                  ;A0A46F;
 
   .quarterDamage:
-    LSR.B DP_Temp12                                                      ;A0A470; >.< LDA $12 : LSR #2 : STA $12
-    LSR.B DP_Temp12                                                      ;A0A472;
-    LDA.B DP_Temp12                                                      ;A0A474;
+    LDA.B DP_Temp12                                                      ;A0A470;
+    LSR
+    LSR
+    STA DP_Temp12
     RTL                                                                  ;A0A476;
 
 
@@ -4735,7 +4701,6 @@ NormalEnemyTouchAI:
     JSL.L EnemyDeath                                                     ;A0A48F;
 
   .return:
-    LDX.W EnemyIndex                                                     ;A0A493;
     RTL                                                                  ;A0A496;
 
 
@@ -4819,7 +4784,6 @@ NormalEnemyTouchAI_NoDeathCheck:
 
   .damage:
     LDX.W EnemyIndex                                                     ;A0A521;
-    LDX.W EnemyIndex                                                     ;A0A524; >_<
     LDA.W Enemy.ID,X                                                     ;A0A527;
     TAX                                                                  ;A0A52A;
     LDA.L EnemyHeaders_hurtAITime,X                                      ;A0A52B;
@@ -4873,9 +4837,7 @@ NormalEnemyTouchAI_NoDeathCheck:
 
 ;;; $A597: Normal enemy power bomb AI ;;;
 NormalEnemyPowerBombAI:
-    LDX.W EnemyIndex                                                     ;A0A597;
     JSR.W NormalEnemyPowerBombAI_NoDeathCheck                            ;A0A59A;
-    LDX.W EnemyIndex                                                     ;A0A59D;
     LDA.W Enemy.health,X                                                 ;A0A5A0;
     BNE .return                                                          ;A0A5A3;
     LDA.W #$0003                                                         ;A0A5A5;
@@ -4884,16 +4846,13 @@ NormalEnemyPowerBombAI:
     JSL.L EnemyDeath                                                     ;A0A5AF;
 
   .return:
-    LDX.W EnemyIndex                                                     ;A0A5B3;
     RTL                                                                  ;A0A5B6;
 
 
 ;;; $A5B7: Normal enemy power bomb AI - no death check (external) ;;;
 NormalEnemyPowerBombAI_NoDeathCheck_External:
 ; Called by rinka, fake Kraid, Kraid, Draygon, Ridley, Mother Brain
-    LDX.W EnemyIndex                                                     ;A0A5B7;
     JSR.W NormalEnemyPowerBombAI_NoDeathCheck                            ;A0A5BA;
-    LDX.W EnemyIndex                                                     ;A0A5BD;
     RTL                                                                  ;A0A5C0;
 
 
@@ -4927,7 +4886,6 @@ NormalEnemyPowerBombAI_NoDeathCheck:
     LDX.W EnemyIndex                                                     ;A0A5FC;
     LDA.W #$0030                                                         ;A0A5FF;
     STA.W Enemy.invincibilityTimer,X                                     ;A0A602;
-    LDX.W EnemyIndex                                                     ;A0A605;
     LDA.W Enemy.ID,X                                                     ;A0A608;
     TAX                                                                  ;A0A60B;
     LDA.L EnemyHeaders_hurtAITime,X                                      ;A0A60C;
@@ -4962,12 +4920,10 @@ NormalEnemyPowerBombAI_NoDeathCheck:
 ;;; $A63D: Normal enemy shot AI ;;;
 NormalEnemyShotAI:
     STZ.W Temp_ShotAIHitFlag                                             ;A0A63D;
-    LDX.W EnemyIndex                                                     ;A0A640;
     JSR.W NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic              ;A0A643;
     LDX.W EnemyIndex                                                     ;A0A646;
     LDA.W Temp_ShotAIHitFlag                                             ;A0A649;
     BEQ .notHit                                                          ;A0A64C;
-    LDX.W EnemyIndex                                                     ;A0A64E;
     LDA.W Enemy.XPosition,X                                              ;A0A651;
     STA.B DP_Temp12                                                      ;A0A654;
     LDA.W Enemy.YPosition,X                                              ;A0A656;
@@ -5203,7 +5159,6 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
   .damage:
     PLX                                                                  ;A0A808;
     LDX.W EnemyIndex                                                     ;A0A809;
-    LDX.W EnemyIndex                                                     ;A0A80C;
     LDA.W Enemy.ID,X                                                     ;A0A80F;
     TAX                                                                  ;A0A812;
     LDA.L EnemyHeaders_hurtAITime,X                                      ;A0A813;
@@ -5234,7 +5189,6 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
     INC.W Temp_ShotAIHitFlag                                             ;A0A849;
 
   .noFlashNoCry:
-    LDX.W EnemyIndex                                                     ;A0A84C;
     LDA.W CollisionIndex                                                 ;A0A84F;
     ASL                                                                  ;A0A852;
     TAY                                                                  ;A0A853;
@@ -5252,9 +5206,6 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
     BCS .return                                                          ;A0A86B;
 
   .checkKill:
-    LDA.W CollisionIndex                                                 ;A0A86D;
-    ASL                                                                  ;A0A870;
-    TAY                                                                  ;A0A871;
     LDA.W SamusProjectile_Types,Y                                        ;A0A872;
     AND.W #$0002                                                         ;A0A875;
     BEQ .enemyHealthZero                                                 ;A0A878;
@@ -6165,7 +6116,6 @@ UNUSED_ProtoInstructionListHandler_A0AE7C:
     TAY                                                                  ;A0AE95;
     LDX.W $0000,Y                                                        ;A0AE96;
     TXY                                                                  ;A0AE99;
-    LDX.W EnemyIndex                                                     ;A0AE9A;
     LDA.W Enemy.instTimer,X                                              ;A0AE9D;
     BEQ +                                                                ;A0AEA0;
     CMP.W #$0001                                                         ;A0AEA2;
@@ -6466,9 +6416,7 @@ UNUSED_SwapLowByteNybbles_A0B01F:
     PLA                                                                  ;A0B026;
     AND.W #$00FF                                                         ;A0B027;
     STA.W Temp_SwapNybblesByte                                           ;A0B02A;
-    SEP #$20                                                             ;A0B02D; >_<
     XBA                                                                  ;A0B02F;
-    REP #$20                                                             ;A0B030;
     ORA.W Temp_SwapNybblesByte                                           ;A0B032;
     LSR                                                                  ;A0B035;
     LSR                                                                  ;A0B036;
@@ -6487,9 +6435,7 @@ UNUSED_SwapHighByteNybbles_A0B040:
     PLA                                                                  ;A0B047;
     AND.W #$FF00                                                         ;A0B048;
     STA.W Temp_SwapNybblesByte                                           ;A0B04B;
-    SEP #$20                                                             ;A0B04E; >_<
     XBA                                                                  ;A0B050;
-    REP #$20                                                             ;A0B051;
     ORA.W Temp_SwapNybblesByte                                           ;A0B053;
     ASL                                                                  ;A0B056;
     ASL                                                                  ;A0B057;
@@ -6498,15 +6444,6 @@ UNUSED_SwapHighByteNybbles_A0B040:
     AND.W #$FF00                                                         ;A0B05A;
     ORA.W Temp_SwapNybbles                                               ;A0B05D;
     RTL                                                                  ;A0B060;
-
-
-;;; $B061: Unused. A = xxyy -> A = yyxx ;;;
-UNUSED_XBA_A0B060:
-; Whoever wrote these three nybble swapping routines must've thought XBA had to be done in 8-bit mode
-    SEP #$20                                                             ;A0B061; >_<
-    XBA                                                                  ;A0B063;
-    REP #$20                                                             ;A0B064;
-    RTL                                                                  ;A0B066;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
@@ -6528,20 +6465,15 @@ NegateA_A0B067:
 GetSignedYMinusX_A0B07D:
     PHX                                                                  ;A0B07D;
     PHY                                                                  ;A0B07E;
-    TXA                                                                  ;A0B07F; >.<
-    STA.W Temp_SamusPosition                                             ;A0B080;
+    STX.W Temp_SamusPosition                                             ;A0B080;
     TYA                                                                  ;A0B083;
     SEC                                                                  ;A0B084;
     SBC.W Temp_SamusPosition                                             ;A0B085;
-    STA.W Temp_AbsoluteDifference                                        ;A0B088;
-    AND.W #$8000                                                         ;A0B08B;
-    BEQ +                                                                ;A0B08E;
-    LDA.W Temp_AbsoluteDifference                                        ;A0B090;
+    BPL +                                                                ;A0B08E;
     EOR.W #$FFFF                                                         ;A0B093;
     INC                                                                  ;A0B096;
-    STA.W Temp_AbsoluteDifference                                        ;A0B097;
 
-+   LDA.W Temp_AbsoluteDifference                                        ;A0B09A;
++   STA.W Temp_AbsoluteDifference                                        ;A0B09A;
     PLY                                                                  ;A0B09D;
     PLX                                                                  ;A0B09E;
     RTL                                                                  ;A0B09F;
@@ -6813,7 +6745,7 @@ Do_Some_Math_With_Sine_Cosine_Terrible_Label_Name:
 ; Where # is the origin and | is the negative y axis
     PHB                                                                  ;A0B643;
     PHX                                                                  ;A0B644;
-    PEA.W UnsignedSineTable>>8&$FF00                                     ;A0B645; $A000
+    PEA.W UnsignedSineTable>>8&$FF00                                     ;A0B645;
     PLB                                                                  ;A0B648;
     PLB                                                                  ;A0B649;
     REP #$30                                                             ;A0B64A;

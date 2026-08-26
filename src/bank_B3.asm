@@ -3093,7 +3093,7 @@ Function_Botwoon_MovingAround:
     BEQ .notGoingThroughHole                                             ;B399AB;
     LDA.W #$0000                                                         ;B399AD;
     STA.L Botwoon.goingThroughHoleFlag,X                                 ;B399B0;
-    JMP.W +                                                              ;B399B4; >.<
+    BRA +                                                                ;B399B4;
 
   .notGoingThroughHole:
     JSR.W (Botwoon.movementFunction,X)                                   ;B399B7;
@@ -3124,7 +3124,7 @@ Function_Botwoon_Spitting:
     BNE .timerNotExpired                                                 ;B399EB;
     LDA.W #$0000                                                         ;B399ED;
     STA.L Botwoon.goingThroughHoleFlag,X                                 ;B399F0;
-    JMP.W +                                                              ;B399F4; >.<
+    BRA +                                                                ;B399F4;
 
   .timerNotExpired:
     LDA.W #$0000                                                         ;B399F7;
@@ -3897,7 +3897,6 @@ EnemyShot_Botwoon:
     LDA.L Botwoon.previousHealth,X                                       ;B3A024;
     CMP.W Enemy.health,X                                                 ;B3A028;
     BEQ .healthUnchanged                                                 ;B3A02B;
-    JSL.L RTL_B3957A                                                     ;B3A02D; >.<
 
   .healthUnchanged:
     LDA.W Enemy.health,X                                                 ;B3A031;

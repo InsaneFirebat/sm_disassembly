@@ -1477,7 +1477,6 @@ InitialisePPURegisters:
     LDA.B #$48                                                           ;8087CC;
     STA.W $2109                                                          ;8087CE; BG3 tilemap base address = $4800, size = 32x32
     STA.B DP_BG3TilemapAddrSize                                          ;8087D1;
-    LDA.B #$48                                                           ;8087D3; >.<
     STZ.W $210A                                                          ;8087D5;
     STZ.B DP_BG4TilemapAddrSize                                          ;8087D8; BG4 tilemap base address = $0000, size = 32x32
     LDA.B #$00                                                           ;8087DA;
@@ -1514,12 +1513,10 @@ InitialisePPURegisters:
     LDA.B #$00                                                           ;808832;
     STA.W $2123                                                          ;808834;
     STA.B DP_WindowMaskBG12                                              ;808837;
-    LDA.B #$00                                                           ;808839;
     STA.W $2124                                                          ;80883B; Disable all window masks
     STA.B DP_WindowMaskBG34                                              ;80883E;
     STZ.W $2125                                                          ;808840;
     STZ.B DP_WindowMaskSprite                                            ;808843;
-    LDA.B #$00                                                           ;808845;
     STA.W $2126                                                          ;808847; Window 1 left position = 0
     STA.B DP_Window1Left                                                 ;80884A;
     LDA.B #$F8                                                           ;80884C;
@@ -1543,7 +1540,6 @@ InitialisePPURegisters:
     STA.B DP_SubScreenLayers                                             ;808878;
     STA.W $212F                                                          ;80887A;
     STA.B DP_WindowAreaSubScreen                                         ;80887D; Disable BG2 in window area subscreen
-    LDA.B #$02                                                           ;80887F;
     STA.W $2130                                                          ;808881; Enable colour math subscreen layers
     STA.B DP_NextGameplayColorMathA                                      ;808884;
     LDA.B #$A1                                                           ;808886;
@@ -1551,7 +1547,6 @@ InitialisePPURegisters:
     STA.B DP_NextGameplayColorMathB                                      ;80888B;
     LDA.B #$E0                                                           ;80888D;
     STA.W $2132                                                          ;80888F;
-    LDA.B #$E0                                                           ;808892; >.<
     STA.W $2132                                                          ;808894;
     LDA.B #$80                                                           ;808897;
     STA.W $2132                                                          ;808899;
@@ -3442,7 +3437,6 @@ if !DEBUG
     BNE .checkToggleHUD                                                  ;809511;
     LDA.B DP_Controller1New                                              ;809513;
     STA.W Debug_InputR                                                   ;809515;
-    LDA.W #$E0F0                                                         ;809518; >_<
     STZ.B DP_Controller1Input                                            ;80951B;
     STZ.B DP_Controller1New                                              ;80951D;
 
@@ -5332,7 +5326,7 @@ ClearBG2Tilemap:
     STA.W $2116                                                          ;80A271;
     LDA.W #$1908                                                         ;80A274;
     STA.W $4310                                                          ;80A277;
-    LDA.W #.addr                                                         ;80A27A; >_<
+    LDA.W #.addr+1                                                       ;80A27A;
     STA.W $4312                                                          ;80A27D;
     LDA.W #$0080                                                         ;80A280;
     STA.W $4314                                                          ;80A283;
@@ -7359,80 +7353,6 @@ DoorTransitionScrolling_Up:
 
 +   CLC                                                                  ;80B030;
     RTS                                                                  ;80B031;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $B032: Unused. Set up rotating mode 7 background ;;;
-UNUSED_SetupRotatingMode7Background_80B032:
-; Uses data from $98 that doesn't exist anymore
-    LDA.W #$0001                                                         ;80B032;
-    STA.W Mode7Flag                                                      ;80B035;
-    LDA.W Mode7Flag                                                      ;80B038; >_<
-    BNE +                                                                ;80B03B;
-    SEC                                                                  ;80B03D; dead code
-    RTL                                                                  ;80B03E;
-
-+   JSL.L SetForceBlankAndWaitForNMI                                     ;80B03F;
-    LDA.W #$0080                                                         ;80B043;
-    STA.W $2115                                                          ;80B046;
-    STZ.W $2116                                                          ;80B049;
-    LDA.W #$1900                                                         ;80B04C;
-    STA.W $4310                                                          ;80B04F;
-    LDA.W #$8000                                                         ;80B052;
-    STA.W $4312                                                          ;80B055;
-    LDA.W #$4000                                                         ;80B058;
-    STA.W $4315                                                          ;80B05B;
-    SEP #$20                                                             ;80B05E;
-    LDA.B #$98                                                           ;80B060;
-    STA.W $4314                                                          ;80B062;
-    LDA.B #$02                                                           ;80B065;
-    STA.W $420B                                                          ;80B067;
-    STZ.W $2115                                                          ;80B06A;
-    STZ.W $2116                                                          ;80B06D;
-    STZ.W $2117                                                          ;80B070;
-    LDX.W #$4000                                                         ;80B073;
-
-  .loopClearLowBytes:
-    STZ.W $2118                                                          ;80B076;
-    DEX                                                                  ;80B079;
-    BNE .loopClearLowBytes                                               ;80B07A;
-    LDY.W #$0000                                                         ;80B07C;
-    TYX                                                                  ;80B07F;
-
-  .loop:
-    STY.W $2116                                                          ;80B080;
-    PHY                                                                  ;80B083;
-    LDY.W #$0020                                                         ;80B084;
-
-  .innerLoop:
-    LDA.L $98C000,X                                                      ;80B087; data doesn't exist in final release?
-    STA.W $2118                                                          ;80B08B;
-    INX                                                                  ;80B08E;
-    DEY                                                                  ;80B08F;
-    BNE .innerLoop                                                       ;80B090;
-    REP #$20                                                             ;80B092;
-    PLA                                                                  ;80B094;
-    CLC                                                                  ;80B095;
-    ADC.W #$0080                                                         ;80B096;
-    TAY                                                                  ;80B099;
-    SEP #$20                                                             ;80B09A;
-    CPX.W #$0400                                                         ;80B09C;
-    BNE .loop                                                            ;80B09F;
-    LDA.B #$07                                                           ;80B0A1;
-    STA.B DP_BGModeSize                                                  ;80B0A3;
-    REP #$20                                                             ;80B0A5;
-    LDA.W #$0100                                                         ;80B0A7;
-    STA.B DP_Mode7TransMatrixA                                           ;80B0AA;
-    STZ.B DP_Mode7TransMatrixB                                           ;80B0AC;
-    STZ.B DP_Mode7TransMatrixC                                           ;80B0AE;
-    STA.B DP_Mode7TransMatrixD                                           ;80B0B0;
-    LDA.W #$0080                                                         ;80B0B2;
-    STA.B DP_Mode7TransOriginX                                           ;80B0B5;
-    STA.B DP_Mode7TransOriginY                                           ;80B0B7;
-    STZ.W UnusedMode7RotationAngle                                       ;80B0B9;
-    JSL.L ClearForceBlankAndWaitForNMI                                   ;80B0BC;
-    SEC                                                                  ;80B0C0;
-    RTL                                                                  ;80B0C1;
 
 
 ;;; $B119: Decompression - variable destination ;;;

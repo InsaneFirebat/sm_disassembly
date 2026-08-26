@@ -2414,7 +2414,6 @@ DrawPLM:
     BEQ .return8E2F                                                      ;848E12;
     BMI .return8E2F                                                      ;848E14;
     LDA.B DP_Temp14                                                      ;848E16;
-    LDA.B DP_Temp14                                                      ;848E18; >_<
     SEC                                                                  ;848E1A;
     SBC.B DP_Temp12                                                      ;848E1B;
     STA.B DP_Temp14                                                      ;848E1D;
@@ -2528,7 +2527,6 @@ DrawPLM:
     AND.W #$FFE0                                                         ;848ECF;
     EOR.W #$0400                                                         ;848ED2;
     STA.B VRAMWrite[1].dest,X                                            ;848ED5;
-    LDA.B VRAMWrite[1].dest,X                                            ;848ED7; >.<
     CLC                                                                  ;848ED9;
     ADC.W #$0020                                                         ;848EDA;
     STA.B VRAMWrite[3].dest,X                                            ;848EDD;
@@ -10938,8 +10936,6 @@ Setup_RightRedGateTrigger:
 Setup_LeftYellowGateTrigger:
 ;; Parameters:
 ;;     Y: PLM index
-
-; Missing RTS, causes dud shot sound effect to be queued twice >_<;
     LDX.W ProjectileIndex                                                ;84C5D3;
     LDA.W SamusProjectile_Types,X                                        ;84C5D6;
     AND.W #$0FFF                                                         ;84C5D9;
@@ -10951,7 +10947,8 @@ Setup_LeftYellowGateTrigger:
     LDA.W #$0057                                                         ;84C5E4;
     JSL.L QueueSound_Lib2_Max6                                           ;84C5E7;
     LDA.W #$0000                                                         ;84C5EB;
-    STA.W PLM_IDs,Y                                                      ;84C5EE; fallthrough to RightYellowGateTrigger
+    STA.W PLM_IDs,Y                                                      ;84C5EE;
+    RTS
 
 
 ;;; $C5F1: Setup - PLM $C822 (shot/bombed/grappled reaction, shootable, BTS 4Dh. Right yellow gate trigger) ;;;
@@ -10977,8 +10974,6 @@ RightYellowGateTrigger:
 Setup_LeftBlueGateTrigger:
 ;; Parameters:
 ;;     Y: PLM index
-
-; (Harmless) missing RTS >_<;
     LDX.W ProjectileIndex                                                ;84C610;
     LDA.W SamusProjectile_Types,X                                        ;84C613;
     AND.W #$0FFF                                                         ;84C616;
@@ -10988,7 +10983,8 @@ Setup_LeftBlueGateTrigger:
 
   .deletePLM:
     LDA.W #$0000                                                         ;84C621;
-    STA.W PLM_IDs,Y                                                      ;84C624; fallthrough to Setup_RightBlueGateTrigger
+    STA.W PLM_IDs,Y                                                      ;84C624;
+    RTS
 
 
 ;;; $C627: Setup - PLM $C81A (shot/bombed/grappled reaction, shootable, BTS 47h. Right blue gate trigger) ;;;
@@ -12532,8 +12528,7 @@ Setup_GenericGrappleBlock_SetOverflow:
 ;; Returns:
 ;;     Carry: Set. Unconditional collision
 ;;     Overflow: Set. Connect grapple beam
-    SEP #$40                                                             ;84CFCD; >.< SEP #$41
-    SEC                                                                  ;84CFCF;
+    SEP #$41                                                             ;84CFCD; carry clear
     RTS                                                                  ;84CFD0;
 
 
@@ -12542,7 +12537,7 @@ Setup_GenericGrappleBlock_ResetOverflow:
 ;; Returns:
 ;;     Carry: Set. Unconditional collision
 ;;     Overflow: Clear. Cancel grapple beam
-    REP #$40                                                             ;84CFD1; >.< SEP #$41
+    REP #$40                                                             ;84CFD1;
     SEC                                                                  ;84CFD3;
     RTS                                                                  ;84CFD4;
 
@@ -12561,8 +12556,7 @@ Setup_DraygonsBrokenTurret:
     LDA.W PeriodicDamage                                                 ;84CFDF;
     ADC.W #$0001                                                         ;84CFE2;
     STA.W PeriodicDamage                                                 ;84CFE5;
-    SEP #$40                                                             ;84CFE8; >.< SEP #$41
-    SEC                                                                  ;84CFEA;
+    SEP #$41                                                             ;84CFE8;
     RTS                                                                  ;84CFEB;
 
 

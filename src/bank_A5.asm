@@ -701,7 +701,6 @@ MainAI_DraygonBody:
 ;;; $871B: Draygon body function - fight intro - initial delay ;;;
 Function_DraygonBody_FightIntro_InitialDelay:
     JSR.W HandleFiringWallTurret                                         ;A5871B;
-    LDX.W EnemyIndex                                                     ;A5871E; >.<
     LDA.W DraygonBody.functionTimer                                      ;A58721;
     CMP.W #$0100*!SPF                                                    ;A58724;
     BPL .done                                                            ;A58727;
@@ -737,10 +736,6 @@ Function_DraygonBody_FightIntro_InitialDelay:
     STA.L DraygonBody.rightSideResetXPosition                            ;A5876A;
     LDA.W Enemy.YPosition                                                ;A5876E;
     STA.L DraygonBody.resetYPosition                                     ;A58771;
-    LDA.L DraygonBody.leftSideResetXPosition                             ;A58775;
-    STA.W Enemy.XPosition                                                ;A58779; >.<
-    LDA.L DraygonBody.resetYPosition                                     ;A5877C;
-    STA.W Enemy.YPosition                                                ;A58780; >.<
     LDA.W #$0018*!SPF                                                    ;A58783;
     STA.L DraygonBody.swoopYAcceleration                                 ;A58786;
     RTS                                                                  ;A5878A;
@@ -749,7 +744,6 @@ Function_DraygonBody_FightIntro_InitialDelay:
 ;;; $878B: Draygon body function - fight intro - dance ;;;
 Function_DraygonBody_FightIntro_Dance:
     JSR.W HandleFiringWallTurret                                         ;A5878B;
-    LDX.W EnemyIndex                                                     ;A5878E; >.<
     LDA.W DraygonBody.functionTimer                                      ;A58791;
     CMP.W #$04D0*!SPF                                                    ;A58794;
     BPL .startFight                                                      ;A58797;
@@ -805,7 +799,6 @@ HandleFiringWallTurret:
 ;;; $87F4: Draygon body function - swoop right - setup ;;;
 Function_DraygonBody_SwoopRight_Setup:
     JSR.W HandleFiringWallTurret                                         ;A587F4;
-    LDX.W EnemyIndex                                                     ;A587F7; >.<
     JSR.W CalculateDraygonSwoopYPositions                                ;A587FA;
     LDA.W #Function_DraygonBody_SwoopRight_Descending                    ;A587FD;
     STA.W DraygonBody.function                                           ;A58800;
@@ -826,7 +819,6 @@ CalculateDraygonSwoopYPositions:
     STZ.W Temp_SwoopYPositionIndex                                       ;A58826;
 
   .loop:
-    LDX.W EnemyIndex                                                     ;A58829; >.<
     LDA.L DraygonBody.swoopYAcceleration                                 ;A5882C;
     CLC                                                                  ;A58830;
     ADC.W Temp_SwoopYSpeed                                               ;A58831;
@@ -949,7 +941,6 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 ;;; $8922: Draygon body function - swoop right - apex ;;;
 Function_DraygonBody_SwoopRight_Apex:
     JSR.W HandleFiringWallTurret                                         ;A58922;
-    LDX.W EnemyIndex                                                     ;A58925; >.<
     LDA.W #$02A0                                                         ;A58928;
     SEC                                                                  ;A5892B;
     SBC.W Enemy.XPosition                                                ;A5892C;
@@ -1021,7 +1012,6 @@ Function_DraygonBody_SwoopLeft_Setup:
 ; Uses Temp_SwoopYPositionIndex(!) which was calculated as part of CalculateDraygonSwoopYPositions
 ; DraygonBody.swoopDuration contains the same value and is part of enemy RAM instead of a random temporary >_<;
     JSR.W HandleFiringWallTurret                                         ;A589B3;
-    LDX.W EnemyIndex                                                     ;A589B6; >.<
     LDA.L DraygonBody.rightSideResetXPosition                            ;A589B9;
     SEC                                                                  ;A589BD;
     SBC.W SamusXPosition                                                 ;A589BE;
@@ -1091,7 +1081,6 @@ Function_DraygonBody_SwoopLeft_Descending:
 ;;; $8A50: Draygon body function - swoop left - apex ;;;
 Function_DraygonBody_SwoopLeft_Apex:
     JSR.W HandleFiringWallTurret                                         ;A58A50;
-    LDX.W EnemyIndex                                                     ;A58A53; >.<
     LDA.L DraygonBody.leftSideResetXPosition                             ;A58A56;
     BMI .leftSideReset                                                   ;A58A5A;
     LDA.W Enemy.XPosition                                                ;A58A5C;
@@ -1936,7 +1925,6 @@ Function_DraygonBody_GrabbedSamus_FlyStraightUp:
 
 ;;; $9185: Draygon body function - death sequence - drift to death spot ;;;
 Function_DraygonBody_DeathSequence_DriftToDeathSpot:
-    LDX.W EnemyIndex                                                     ;A59185; >.<
     LDA.W Enemy.frameCounter,X                                           ;A59188;
     AND.W #$000F                                                         ;A5918B;
     BNE .noFoam                                                          ;A5918E;
@@ -1966,9 +1954,7 @@ Function_DraygonBody_DeathSequence_DriftToDeathSpot:
     LSR                                                                  ;A591BF;
     LSR                                                                  ;A591C0;
     STA.B DP_Temp12                                                      ;A591C1;
-    LDA.W #$0100                                                         ;A591C3;
-    LSR                                                                  ;A591C6; >.<
-    LSR                                                                  ;A591C7;
+    LDA.W #$0040                                                         ;A591C3;
     SEC                                                                  ;A591C8;
     SBC.B DP_Temp12                                                      ;A591C9;
     STA.B DP_Temp12                                                      ;A591CB;
@@ -1976,9 +1962,7 @@ Function_DraygonBody_DeathSequence_DriftToDeathSpot:
     LSR                                                                  ;A591D0;
     LSR                                                                  ;A591D1;
     STA.B DP_Temp14                                                      ;A591D2;
-    LDA.W #$01E0                                                         ;A591D4;
-    LSR                                                                  ;A591D7; >.<
-    LSR                                                                  ;A591D8;
+    LDA.W #$0078                                                         ;A591D4;
     SEC                                                                  ;A591D9;
     SBC.B DP_Temp14                                                      ;A591DA;
     STA.B DP_Temp14                                                      ;A591DC;
@@ -2012,17 +1996,13 @@ Function_DraygonBody_DeathSequence_DriftToDeathSpot:
     SBC.W #$0100                                                         ;A59229;
     JSL.L NegateA_A0B067                                                 ;A5922C;
     CMP.W #$0004                                                         ;A59230;
-    BPL .gotoReturn                                                      ;A59233;
+    BPL .return                                                          ;A59233;
     LDA.W Enemy.YPosition                                                ;A59235;
     SEC                                                                  ;A59238;
     SBC.W #$01E0                                                         ;A59239;
     JSL.L NegateA_A0B067                                                 ;A5923C;
     CMP.W #$0004                                                         ;A59240;
-    BPL .gotoReturn                                                      ;A59243;
-    BRA .done                                                            ;A59245;
-
-  .gotoReturn:
-    JMP.W .return                                                        ;A59247; >.<
+    BPL .return                                                          ;A59243;
 
   .done:
     JSR.W SpawnDeathSequenceEvirSpriteObjects                            ;A5924A;
@@ -2198,7 +2178,7 @@ Debug_DraygonController2InputHandling:
     STY.W Enemy.instList                                                 ;A59391;
     LDA.W #$0001                                                         ;A59394;
     STA.W Enemy.instTimer                                                ;A59397;
-    BRA .return                                                          ;A5939A;
+    RTL
 
   .fireGoopEnd:
     BIT.W #$8000                                                         ;A5939C;
@@ -2212,11 +2192,11 @@ Debug_DraygonController2InputHandling:
     STY.W Enemy[2].instList                                              ;A593AD;
     LDA.W #$0001                                                         ;A593B0;
     STA.W Enemy[2].instTimer                                             ;A593B3;
-    BRA .return                                                          ;A593B6;
+    RTL
 
   .tailWhipEnd:
     BIT.W #$0080                                                         ;A593B8;
-    BEQ .grabEnd                                                         ;A593BB;
+    BEQ .return                                                          ;A593BB;
     LDY.W #Debug_InstList_DraygonArms_FacingLeft_FakeGrab                ;A593BD;
     LDA.L DraygonBody.facingDirection,X                                  ;A593C0;
     BEQ ..keepLeft                                                       ;A593C4;
@@ -2226,11 +2206,6 @@ Debug_DraygonController2InputHandling:
     STY.W Enemy[3].instList                                              ;A593C9;
     LDA.W #$0001                                                         ;A593CC;
     STA.W Enemy[3].instTimer                                             ;A593CF;
-    BRA .return                                                          ;A593D2;
-
-  .grabEnd:
-    BIT.W #$0040                                                         ;A593D4;
-    BEQ .return                                                          ;A593D7; >.<
 
   .return:
     RTL                                                                  ;A593D9;
@@ -2270,7 +2245,7 @@ Debug_MoveDraygonWithDpad_Slow:
     BIT.W #$0800                                                         ;A5941D;
     BEQ .notPressingUp                                                   ;A59420;
     DEC.W Enemy.YPosition                                                ;A59422;
-    BRA .return                                                          ;A59425;
+    RTL
 
   .notPressingUp:
     BIT.W #$0400                                                         ;A59427;
@@ -2543,18 +2518,16 @@ EnemyShot_Draygon:
 
 ;;; $9607: Power bomb reaction - enemy $DE3F (Draygon) ;;;
 PowerBombReaction_Draygon:
-    JSL.L NormalEnemyPowerBombAI_NoDeathCheck_External                   ;A59607;
-    BRA DraygonReaction_Common                                           ;A5960B; >.<
+    JSL.L NormalEnemyPowerBombAI_NoDeathCheck_External                   ;A59607; fallthrough to DraygonReaction_Common
 
 
 ;;; $960D: Draygon reaction ;;;
 DraygonReaction_Common:
-; The calculations for the X/Y speed for drifting to the death point ($965B) are copy+pasted from Spore Spawn code,
-; the results ($7E:8010..17) aren't actually used by Draygon, instead they're recalculated every frame by Function_DraygonBody_DeathSequence_DriftToDeathSpot >_<;
     LDX.W EnemyIndex                                                     ;A5960D;
     LDA.W Enemy.health,X                                                 ;A59610;
     BEQ .dead                                                            ;A59613;
-    JMP.W .notDead                                                       ;A59615;
+    JSR.W DraygonHealthBasedPaletteHandling                              ;A596AB;
+    RTL                                                                  ;A596AE;
 
   .dead:
     LDA.W #GrappleBeamFunction_Dropped                                   ;A59618;
@@ -2582,40 +2555,7 @@ DraygonReaction_Common:
     STA.W DraygonBody.function                                           ;A59651;
     JSL.L ReleaseSamusFromDraygon_external                               ;A59654;
     STZ.W GrappleConnectedFlags                                          ;A59658;
-    LDA.W #$0100                                                         ;A5965B;
-    SEC                                                                  ;A5965E;
-    SBC.W Enemy.XPosition                                                ;A5965F;
-    STA.B DP_Temp12                                                      ;A59662;
-    LDA.W #$01E0                                                         ;A59664;
-    SEC                                                                  ;A59667;
-    SBC.W Enemy.YPosition                                                ;A59668;
-    STA.B DP_Temp14                                                      ;A5966B;
-    JSL.L CalculateAngleOf_12_14_Offset                                  ;A5966D;
-    SEC                                                                  ;A59671;
-    SBC.W #$0040                                                         ;A59672;
-    EOR.W #$FFFF                                                         ;A59675;
-    INC                                                                  ;A59678;
-    AND.W #$00FF                                                         ;A59679;
-    STA.L DraygonBody.angle                                              ;A5967C;
-    LDA.W #$0001                                                         ;A59680;
-    STA.B DP_Temp14                                                      ;A59683;
-    LDA.L DraygonBody.angle                                              ;A59685;
-    AND.W #$00FF                                                         ;A59689;
-    STA.B DP_Temp12                                                      ;A5968C;
-    JSL.L Do_Some_Math_With_Sine_Cosine_Terrible_Label_Name              ;A5968E; ($16.$18, $1A.$1C) = ([$14] * |cos([$12] * pi / 80h)|, [$14] * |sin([$12] * pi / 80h)|)
-    LDA.B DP_Temp16                                                      ;A59692;
-    STA.L ExtraEnemy8000+$10                                             ;A59694;
-    LDA.B DP_Temp18                                                      ;A59698;
-    STA.L ExtraEnemy8000+$12                                             ;A5969A;
-    LDA.B DP_Temp1A                                                      ;A5969E;
-    STA.L ExtraEnemy8000+$14                                             ;A596A0;
-    LDA.B DP_Temp1C                                                      ;A596A4;
-    STA.L ExtraEnemy8000+$16                                             ;A596A6;
     RTL                                                                  ;A596AA;
-
-  .notDead:
-    JSR.W DraygonHealthBasedPaletteHandling                              ;A596AB;
-    RTL                                                                  ;A596AE;
 
 
 ;;; $96AF: Draygon health-based palette table ;;;
@@ -2661,7 +2601,6 @@ DraygonHealthBasedPaletteHandling:
     CMP.L DraygonBody.healthBasedPaletteTableIndex                       ;A59711;
     BEQ .return                                                          ;A59715;
     STA.L DraygonBody.healthBasedPaletteTableIndex                       ;A59717;
-    LDA.L DraygonBody.healthBasedPaletteTableIndex                       ;A5971B; >_<
     ASL                                                                  ;A5971F;
     ASL                                                                  ;A59720;
     TAY                                                                  ;A59721;
@@ -7750,7 +7689,6 @@ Instruction_SporeSpawn_SpawnDyingExplosion:
     PHY                                                                  ;A5E9B1;
     PHX                                                                  ;A5E9B2;
     JSL.L GenerateRandomNumber                                           ;A5E9B3;
-    LDA.W RandomNumberSeed                                               ;A5E9B7; >.<
     AND.W #$007F                                                         ;A5E9BA;
     SEC                                                                  ;A5E9BD;
     SBC.W #$0040                                                         ;A5E9BE;
@@ -8265,16 +8203,11 @@ EnemyTouch_SporeSpawn:
     BRA SporeSpawnReaction_Common                                        ;A5EDF0;
 
 
-;;; $EDF2: RTL. Power bomb reaction - enemy $DF3F (Spore Spawn) ;;;
-PowerBombReaction_SporeSpawn:
-    RTL                                                                  ;A5EDF2; >.<
-
-
 ;;; $EDF3: Spore Spawn reaction ;;;
 SporeSpawnReaction_Common:
     LDX.W EnemyIndex                                                     ;A5EDF3;
     LDA.W Enemy.health,X                                                 ;A5EDF6;
-    BNE .return                                                          ;A5EDF9;
+    BNE PowerBombReaction_SporeSpawn                                     ;A5EDF9;
     LDX.W EnemyIndex                                                     ;A5EDFB;
     LDA.W #$0000                                                         ;A5EDFE;
     STA.L ExtraEnemy7800+$1C                                             ;A5EE01;
@@ -8307,10 +8240,12 @@ SporeSpawnReaction_Common:
 if !PAL != 0
     JSR.W Function_SporeSpawn_SetupDeath
     LDA.W #Function_SporeSpawn_Dying
-    STA.W SporeSpawn.function
+    STA.W SporeSpawn.function                                                    ; fallthrough to PowerBombReaction_SporeSpawn
 endif
 
-  .return:
+
+;;; $EDF2: RTL. Power bomb reaction - enemy $DF3F (Spore Spawn) ;;;
+PowerBombReaction_SporeSpawn:
     RTL                                                                  ;A5EE49;
 
 

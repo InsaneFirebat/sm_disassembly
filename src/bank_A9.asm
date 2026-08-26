@@ -2476,8 +2476,7 @@ DrawMotherBrainNeckSegment:
     STA.B DP_Temp14                                                      ;A993E0;
     LDA.L MotherBrainBody.neckPalleteIndex                               ;A993E2;
     STA.B DP_Temp16                                                      ;A993E6;
-    LDY.W #Spritemaps_MotherBrain_5                                      ;A993E8;
-    JMP.W AddSpritemapToOAM_RoomCoordinates                              ;A993EB; >.<
+    LDY.W #Spritemaps_MotherBrain_5                                      ;A993E8; fallthrough to AddSpritemapToOAM_RoomCoordinates
 
 
 ;;; $93EE: Add spritemap to OAM ;;;
@@ -2676,24 +2675,6 @@ MoveMotherBrainBodyDownByA:
     RTL                                                                  ;A99598;
 
 
-;;; $9599: Mother Brain footstep effect ;;;
-MotherBrainFootstepEffect:
-; Callers are setting A before calling this routine... Oh well
-; The sound effect (that doesn't play) is a crunchy footstep that plays when Mother Brain is being attacked by Shitroid
-    LDA.W #$0001                                                         ;A99599;
-    STA.W EarthquakeType                                                 ;A9959C;
-    LDA.W #$0004                                                         ;A9959F;
-    STA.W EarthquakeTimer                                                ;A995A2;
-    LDA.L MotherBrainBody.form                                           ;A995A5;
-    CMP.W #$0003                                                         ;A995A9;
-    BNE .return                                                          ;A995AC;
-    LDA.W #$0016                                                         ;A995AE;
-    STA.L QueueSound_Lib3_Max6                                           ;A995B1; >_<
-
-  .return:
-    RTS                                                                  ;A995B5;
-
-
 ;;; $95B6: Instruction - move Mother Brain body up by 10px, scroll it left by 4px ;;;
 Instruction_MotherBrainBody_MoveBodyUpBy10_ScrollLeftBy4:
     PHX                                                                  ;A995B6;
@@ -2780,8 +2761,10 @@ Instruction_MotherBrainBody_MoveBodyUpBy1:
 
 ;;; $9622: Instruction - move Mother Brain body up by 1px and right by 3px, do footstep effect ;;;
 Instruction_MotherBrainBody_MoveBodyUpBy1_RightBy3_Footstep:
-    LDA.W #$0022                                                         ;A99622;
-    JSR.W MotherBrainFootstepEffect                                      ;A99625;
+    LDA.W #$0001
+    STA.W EarthquakeType
+    LDA.W #$0004
+    STA.W EarthquakeTimer
     LDA.W Enemy.XPosition                                                ;A99628;
     CLC                                                                  ;A9962B;
     ADC.W #$0003                                                         ;A9962C;
@@ -2822,8 +2805,10 @@ Instruction_MotherBrainBody_MoveBodyUpBy4_LeftBy2:
 
 ;;; $9668: Instruction - move Mother Brain body up by 2px and left by 1px, do footstep effect ;;;
 Instruction_MotherBrainBody_MoveBodyUpBy2_LeftBy1_Footstep:
-    LDA.W #$FFEF                                                         ;A99668;
-    JSR.W MotherBrainFootstepEffect                                      ;A9966B;
+    LDA.W #$0001
+    STA.W EarthquakeType
+    LDA.W #$0004
+    STA.W EarthquakeTimer
     LDA.W Enemy.XPosition                                                ;A9966E;
     CLC                                                                  ;A99671;
     ADC.W #$FFFF                                                         ;A99672;
@@ -2834,8 +2819,10 @@ Instruction_MotherBrainBody_MoveBodyUpBy2_LeftBy1_Footstep:
 
 ;;; $967E: Instruction - move Mother Brain body up by 2px and left by 1px, do footstep effect ;;;
 Instruction_MotherBrainBody_MoveBodyUpBy2_LeftBy1_Footstep_duplicate:
-    LDA.W #$000B                                                         ;A9967E;
-    JSR.W MotherBrainFootstepEffect                                      ;A99681;
+    LDA.W #$0001
+    STA.W EarthquakeType
+    LDA.W #$0004
+    STA.W EarthquakeTimer
     LDA.W Enemy.XPosition                                                ;A99684;
     SEC                                                                  ;A99687;
     SBC.W #$0001                                                         ;A99688;
@@ -2872,8 +2859,10 @@ Instruction_MotherBrainBody_MoveBodyDownBy1_LeftBy3:
 
 ;;; $96BA: Instruction - move Mother Brain body up by 2px and left by 15px, do footstep effect ;;;
 Instruction_MotherBrainBody_MoveBodyUpBy2_LeftBy15_Footstep:
-    LDA.W #$FFDB                                                         ;A996BA;
-    JSR.W MotherBrainFootstepEffect                                      ;A996BD;
+    LDA.W #$0001
+    STA.W EarthquakeType
+    LDA.W #$0004
+    STA.W EarthquakeTimer
     LDA.W Enemy.XPosition                                                ;A996C0;
     SEC                                                                  ;A996C3;
     SBC.W #$000F                                                         ;A996C4;
@@ -5281,14 +5270,14 @@ Function_MBBody_Phase3_DeathSequence_FadeOutBody:
     RTS                                                                  ;A9AFD8;
 
   .fadedToBlack:
-    LDA.W #$02C6                                                         ;A9AFD9;
+    LDA.W #$02C8                                                         ;A9AFD9;
     STA.W EnemyBG2TilemapSize                                            ;A9AFDC;
     TAX                                                                  ;A9AFDF;
     PHB                                                                  ;A9AFE0;
     PEA.W $7E7E                                                          ;A9AFE1;
     PLB                                                                  ;A9AFE4;
     PLB                                                                  ;A9AFE5;
-    LDA.W #$0338                                                         ;A9AFE6; >.< off by one, causing a few black pixels to remain
+    LDA.W #$0338                                                         ;A9AFE6;
 
   .loopTilemap:
     STA.W EnemyBG2Tilemap,X                                              ;A9AFE9;
@@ -5538,7 +5527,7 @@ Function_MBBody_Phase3_DeathSequence_CorpseRotsAway:
     BCC .finishedRotting                                                 ;A9B1DB;
     LDX.W #$0040                                                         ;A9B1DD;
     LDA.L MotherBrainBody.corpseRottingVRAMTransfersPointer,X            ;A9B1E0;
-    TAX                                                                  ;A9B1E4;
+    TAY                                                                  ;A9B1E4;
     JMP.W ProcessCorpseRottingVRAMTransfers                              ;A9B1E5;
 
   .finishedRotting:
@@ -6724,8 +6713,6 @@ Function_MBBody_Phase2_FiringRainbowBeam_StartFiringRainbowBeam:
     RTS                                                                  ;A9B982;
 
   .timerExpired:
-    LDA.W SamusProjectile_PowerBombFlag                                  ;A9B983;
-    BNE .return                                                          ;A9B986; >_<
     STZ.W SamusProjectile_CooldownTimer                                  ;A9B988;
     JSR.W ResetMotherBrainBodyRainbowBeamPaletteAnimationIndex           ;A9B98B;
     LDA.W #InstList_MotherBrainHead_FiringRainbowBeam                    ;A9B98E;
@@ -8043,8 +8030,6 @@ MotherBrainPhase3NeckHandler:
 
 ;;; $C330: Mother Brain neck function - normal ;;;
 Function_MotherBrainNeck_Normal:
-    LDA.W #$0001                                                         ;A9C330;
-    STA.L MotherBrainBody.lowerNeckMovementIndex                         ;A9C333; >_<
     LDA.W #$0080                                                         ;A9C337;
     STA.L MotherBrainBody.neckAngleDelta                                 ;A9C33A;
     LDA.W #$0002                                                         ;A9C33E;
@@ -8444,22 +8429,22 @@ ProcessSpriteTilesTransfers:
     BNE +                                                                ;A9C5C2;
     TXA                                                                  ;A9C5C4;
 
-+   TAX                                                                  ;A9C5C5;
-    LDY.W VRAMWriteStack                                                 ;A9C5C6;
-    LDA.W $0000,X                                                        ;A9C5C9;
++   TAY                                                                  ;A9C5C5;
+    LDX.W VRAMWriteStack                                                 ;A9C5C6;
+    LDA.W $0000,Y                                                        ;A9C5C9;
     BEQ +                                                                ;A9C5CC;
-    STA.W VRAMWrite.size,Y                                               ;A9C5CE; >.<
-    LDA.W $0003,X                                                        ;A9C5D1;
-    STA.W VRAMWrite.src+1,Y                                              ;A9C5D4; >.<
-    LDA.W $0002,X                                                        ;A9C5D7;
-    STA.W VRAMWrite.src,Y                                                ;A9C5DA; >.<
-    LDA.W $0005,X                                                        ;A9C5DD;
-    STA.W VRAMWrite.dest,Y                                               ;A9C5E0; >.<
-    TYA                                                                  ;A9C5E3;
+    STA.B VRAMWrite.size,X                                               ;A9C5CE;
+    LDA.W $0003,Y                                                        ;A9C5D1;
+    STA.B VRAMWrite.src+1,X                                              ;A9C5D4;
+    LDA.W $0002,Y                                                        ;A9C5D7;
+    STA.B VRAMWrite.src,X                                                ;A9C5DA;
+    LDA.W $0005,Y                                                        ;A9C5DD;
+    STA.B VRAMWrite.dest,X                                               ;A9C5E0;
+    TXA                                                                  ;A9C5E3;
     CLC                                                                  ;A9C5E4;
     ADC.W #$0007                                                         ;A9C5E5;
     STA.W VRAMWriteStack                                                 ;A9C5E8;
-    TXA                                                                  ;A9C5EB;
+    TYA                                                                  ;A9C5EB;
     ADC.W #$0007                                                         ;A9C5EC;
     STA.L MotherBrainBody.spriteTilesTransferEntryPointer                ;A9C5EF;
     TAX                                                                  ;A9C5F3;
@@ -8828,7 +8813,6 @@ Function_BabyMetroidCutscene_GetRightUpInMotherBrainsFace:
     RTS                                                                  ;A9C83F;
 
   .timerExpired:
-    STA.W BabyMetroidCutscene.function,X                                 ;A9C840; >.<
     LDA.W #Function_BabyMetroidCutscene_LatchOntoMotherBrain             ;A9C843;
     STA.W BabyMetroidCutscene.function,X                                 ;A9C846;
     LDA.W #$0001                                                         ;A9C849;
@@ -10466,57 +10450,54 @@ ProcessCorpseTorizoRottingVRAMTransfers:
     STA.L MotherBrainBody.form                                           ;A9D4D4;
     LSR                                                                  ;A9D4D8;
     BCS .odd                                                             ;A9D4D9;
-    LDX.W #$0000                                                         ;A9D4DB;
-    LDY.W VRAMWriteStack                                                 ;A9D4DE;
-    LDA.W .size0,X                                                       ;A9D4E1;
+    LDY.W #$0000                                                         ;A9D4DB;
+    LDX.W VRAMWriteStack                                                 ;A9D4DE;
+    LDA.W .size0,Y                                                       ;A9D4E1;
 
   .loopEven:
-    STA.W VRAMWrite.size,Y                                               ;A9D4E4; >.<
-    LDA.W .bank0,X                                                       ;A9D4E7;
-    STA.W VRAMWrite.src+1,Y                                              ;A9D4EA; >.<
-    LDA.W .src0,X                                                        ;A9D4ED;
-    STA.W VRAMWrite.src,Y                                                ;A9D4F0; >.<
-    LDA.W .dest0,X                                                       ;A9D4F3;
-    STA.W VRAMWrite.dest,Y                                               ;A9D4F6; >.<
-    TYA                                                                  ;A9D4F9;
+    STA.B VRAMWrite.size,X                                               ;A9D4E4;
+    LDA.W .bank0,Y                                                       ;A9D4E7;
+    STA.B VRAMWrite.src+1,X                                              ;A9D4EA;
+    LDA.W .src0,Y                                                        ;A9D4ED;
+    STA.B VRAMWrite.src,X                                                ;A9D4F0;
+    LDA.W .dest0,Y                                                       ;A9D4F3;
+    STA.B VRAMWrite.dest,X                                               ;A9D4F6;
+    TXA                                                                  ;A9D4F9;
     CLC                                                                  ;A9D4FA;
     ADC.W #$0007                                                         ;A9D4FB;
-    TAY                                                                  ;A9D4FE;
-    TXA                                                                  ;A9D4FF;
+    STA.W VRAMWriteStack
+    TYA                                                                  ;A9D4FF;
     ADC.W #$0008                                                         ;A9D500;
-    TAX                                                                  ;A9D503;
-    LDA.W .size0,X                                                       ;A9D504;
+    TAY                                                                  ;A9D503;
+    LDA.W .size0,Y                                                       ;A9D504;
     BNE .loopEven                                                        ;A9D507;
     STA.L MotherBrainBody.spriteTilesTransferEntryPointer                ;A9D509;
-    TYA                                                                  ;A9D50D;
-    STA.W VRAMWriteStack                                                 ;A9D50E;
     RTS                                                                  ;A9D511;
 
   .odd:
-    LDX.W #$0000                                                         ;A9D512;
-    LDY.W VRAMWriteStack                                                 ;A9D515;
-    LDA.W .size1,X                                                       ;A9D518;
+    LDY.W #$0000                                                         ;A9D512;
+    LDX.W VRAMWriteStack                                                 ;A9D515;
+    LDA.W .size1,Y                                                       ;A9D518;
 
   .loopOdd:
-    STA.W VRAMWrite.size,Y                                               ;A9D51B; >.<
-    LDA.W .bank1,X                                                       ;A9D51E;
-    STA.W VRAMWrite.src+1,Y                                              ;A9D521; >.<
-    LDA.W .src1,X                                                        ;A9D524;
-    STA.W VRAMWrite.src,Y                                                ;A9D527; >.<
-    LDA.W .dest1,X                                                       ;A9D52A;
-    STA.W VRAMWrite.dest,Y                                               ;A9D52D; >.<
-    TYA                                                                  ;A9D530;
+    STA.B VRAMWrite.size,X                                               ;A9D51B;
+    LDA.W .bank1,Y                                                       ;A9D51E;
+    STA.B VRAMWrite.src+1,X                                              ;A9D521;
+    LDA.W .src1,Y                                                        ;A9D524;
+    STA.B VRAMWrite.src,X                                                ;A9D527;
+    LDA.W .dest1,Y                                                       ;A9D52A;
+    STA.B VRAMWrite.dest,X                                               ;A9D52D;
+    TXA                                                                  ;A9D530;
     CLC                                                                  ;A9D531;
     ADC.W #$0007                                                         ;A9D532;
-    TAY                                                                  ;A9D535;
-    TXA                                                                  ;A9D536;
+    STA.W VRAMWriteStack
+    TYA                                                                  ;A9D536;
     ADC.W #$0008                                                         ;A9D537;
-    TAX                                                                  ;A9D53A;
-    LDA.W .size1,X                                                       ;A9D53B;
+    TAY                                                                  ;A9D53A;
+    LDA.W .size1,Y                                                       ;A9D53B;
     BNE .loopOdd                                                         ;A9D53E;
     STA.L MotherBrainBody.spriteTilesTransferEntryPointer                ;A9D540;
     TYA                                                                  ;A9D544;
-    STA.W VRAMWriteStack                                                 ;A9D545;
     RTS                                                                  ;A9D548;
 
 ; Corpse rotting VRAM transfers
@@ -11205,7 +11186,7 @@ Function_CorpseSidehopper_Rotting:
 
   .process:
     LDA.L Corpse.VRAMTransfersPointer,X                                  ;A9DAC8;
-    TAX                                                                  ;A9DACC;
+    TAY                                                                  ;A9DACC;
     JMP.W ProcessCorpseRottingVRAMTransfers                              ;A9DACD;
 
 
@@ -11219,7 +11200,7 @@ Function_CorpseZoomer_Rotting:
 
   .process:
     LDA.L Corpse.VRAMTransfersPointer,X                                  ;A9DADE;
-    TAX                                                                  ;A9DAE2;
+    TAY                                                                  ;A9DAE2;
     JMP.W ProcessCorpseRottingVRAMTransfers                              ;A9DAE3;
 
 
@@ -11233,7 +11214,7 @@ Function_CorpseRipper_Rotting:
 
   .process:
     LDA.L Corpse.VRAMTransfersPointer,X                                  ;A9DAF4;
-    TAX                                                                  ;A9DAF8;
+    TAY                                                                  ;A9DAF8;
     JMP.W ProcessCorpseRottingVRAMTransfers                              ;A9DAF9;
 
 
@@ -11247,7 +11228,7 @@ Function_CorpseSkree_Rotting:
 
   .process:
     LDA.L Corpse.VRAMTransfersPointer,X                                  ;A9DB0A;
-    TAX                                                                  ;A9DB0E;
+    TAY                                                                  ;A9DB0E;
     JMP.W ProcessCorpseRottingVRAMTransfers                              ;A9DB0F;
 
 
@@ -11547,30 +11528,29 @@ InitializeEnemyCorpseRotting:
 ;;; $DCB9: Process corpse rotting VRAM transfers ;;;
 ProcessCorpseRottingVRAMTransfers:
 ;; Parameters:
-;;     X: Corpse rotting VRAM transfers pointer. Format: size, source bank, source address, VRAM address (all 16 bit)
-    LDY.W VRAMWriteStack                                                 ;A9DCB9;
-    LDA.W $0000,X                                                        ;A9DCBC;
+;;     Y: Corpse rotting VRAM transfers pointer. Format: size, source bank, source address, VRAM address (all 16 bit)
+    LDX.W VRAMWriteStack                                                 ;A9DCB9;
+    LDA.W $0000,Y                                                        ;A9DCBC;
 
   .loop:
-    STA.W VRAMWrite.size,Y                                               ;A9DCBF; >.<
-    LDA.W $0002,X                                                        ;A9DCC2;
-    STA.W VRAMWrite.src+1,Y                                              ;A9DCC5; >.<
-    LDA.W $0004,X                                                        ;A9DCC8;
-    STA.W VRAMWrite.src,Y                                                ;A9DCCB; >.<
-    LDA.W $0006,X                                                        ;A9DCCE;
-    STA.W VRAMWrite.dest,Y                                               ;A9DCD1; >.<
-    TYA                                                                  ;A9DCD4;
+    STA.B VRAMWrite.size,X                                               ;A9DCBF;
+    LDA.W $0002,Y                                                        ;A9DCC2;
+    STA.B VRAMWrite.src+1,X                                              ;A9DCC5;
+    LDA.W $0004,Y                                                        ;A9DCC8;
+    STA.B VRAMWrite.src,X                                                ;A9DCCB;
+    LDA.W $0006,Y                                                        ;A9DCCE;
+    STA.B VRAMWrite.dest,X                                               ;A9DCD1;
+    TXA                                                                  ;A9DCD4;
     CLC                                                                  ;A9DCD5;
     ADC.W #$0007                                                         ;A9DCD6;
-    TAY                                                                  ;A9DCD9;
-    TXA                                                                  ;A9DCDA;
+    STA.W VRAMWriteStack
+    TAX
+    TYA                                                                  ;A9DCDA;
     ADC.W #$0008                                                         ;A9DCDB;
-    TAX                                                                  ;A9DCDE;
-    LDA.W $0000,X                                                        ;A9DCDF;
+    TAY                                                                  ;A9DCDE;
+    LDA.W $0000,Y                                                        ;A9DCDF;
     BNE .loop                                                            ;A9DCE2;
     STA.L MotherBrainBody.spriteTilesTransferEntryPointer                ;A9DCE4;
-    TYA                                                                  ;A9DCE8;
-    STA.W VRAMWriteStack                                                 ;A9DCE9;
     RTS                                                                  ;A9DCEC;
 
 

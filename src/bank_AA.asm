@@ -5959,22 +5959,20 @@ Instruction_Torizo_SpawnBombTorizoExplosiveSwipeWithParamY:
 ;;; $C610: Instruction - queue shot torizo sound effect ;;;
 Instruction_Torizo_PlayShotTorizoSFX:
     LDA.W #$0027                                                         ;AAC610;
-    JSL.L QueueSound_Lib2_Max6                                           ;AAC613;
-    RTL                                                                  ;AAC617;
+    JML QueueSound_Lib2_Max6                                             ;AAC613;
 
 
 ;;; $C618: Instruction - queue torizo footsteps sound effect ;;;
 Instruction_Torizo_PlayTorizoFootstepsSFX:
     LDA.W #$004B                                                         ;AAC618;
-    JSL.L QueueSound_Lib2_Max6                                           ;AAC61B;
-    RTL                                                                  ;AAC61F;
+    JML QueueSound_Lib2_Max6                                             ;AAC61B;
 
 
 ;;; $C620: Handle low-health initial drool ;;;
 HandleLowHealthInitialDrool:
     LDA.W AreaIndex                                                      ;AAC620;
     BEQ .crateria                                                        ;AAC623;
-    JMP.W .returnNotCrateria                                             ;AAC625; >.<
+    RTS
 
   .crateria:
     LDA.W RandomNumberSeed                                               ;AAC628;
@@ -5989,9 +5987,6 @@ HandleLowHealthInitialDrool:
 
   .return:
     RTS                                                                  ;AAC641;
-
-  .returnNotCrateria:
-    RTS                                                                  ;AAC642; >.<
 
 
 ;;; $C643: Handle falling ;;;
@@ -7954,11 +7949,8 @@ ShotReaction_GoldenTorizo_Normal:
     LDA.W Enemy.flashTimer,X                                             ;AAD66A;
     BNE .return                                                          ;AAD66D;
     LDA.L Torizo.animationLockFlag,X                                     ;AAD66F;
-    BEQ .gotoFlashOrAnimLock                                             ;AAD673;
+    BEQ .flashOrAnimLock                                                 ;AAD673;
     JMP.W ShotReaction_GoldenTorizo_Damaged                              ;AAD675;
-
-  .gotoFlashOrAnimLock:
-    JMP.W .flashOrAnimLock                                               ;AAD678; >.<
 
   .return:
     RTL                                                                  ;AAD67B;
@@ -9535,9 +9527,6 @@ Instruction_Chozo_Movement_IndexInY:
 
 +   STA.B DP_Temp13                                                      ;AAE5ED;
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;AAE5EF;
-    BCS .goingNowhere                                                    ;AAE5F3; >_<
-
-  .goingNowhere:
     STZ.B DP_Temp12                                                      ;AAE5F5;
     STZ.B DP_Temp14                                                      ;AAE5F7;
     LDY.W Chozo.movementIndex,X                                          ;AAE5F9;

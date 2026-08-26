@@ -43,7 +43,7 @@ NormalSamusPoseInputHandler:
     dw NormalSamusPoseInputHandler_SpringBall_InAir                      ;918038; 12h: Spring ball - in air
     dw NormalSamusPoseInputHandler_SpringBall_Falling                    ;91803A; 13h: Spring ball - falling
     dw NormalSamusPoseInputHandler_WallJumping                           ;91803C; 14h: Wall jumping
-    dw NormalSamusPoseInputHandler_RanIntoAWall                          ;91803E; 15h: Ran into a wall
+    dw NormalSamusPoseInputHandler_Grappling                             ;91803E; 15h: Ran into a wall
     dw NormalSamusPoseInputHandler_Grappling                             ;918040; 16h: Grappling
     dw NormalSamusPoseInputHandler_TurningAround_Jumping                 ;918042; 17h: Turning around - jumping
     dw NormalSamusPoseInputHandler_TurningAround_Falling                 ;918044; 18h: Turning around - falling
@@ -323,19 +323,9 @@ NormalSamusPoseInputHandler_WallJumping:
 
 ;;; $816F: Normal Samus pose input handler - [Samus movement type] = ran into a wall ;;;
 NormalSamusPoseInputHandler_RanIntoAWall:
-; Note that this routine is not called when time is frozen (CurrentStateHandler = $E713 during reserve tanks, PoseInputHandler = $E918 during x-ray),
-; so the broken call to XraySamusPoseInputHandler is dead code.
     PHP                                                                  ;91816F;
     REP #$30                                                             ;918170;
-    LDA.W TimeIsFrozenFlag                                               ;918172;
-    BNE .timeIsFrozen                                                    ;918175;
     JSR.W DetermineProspectivePoseFromTransitionTable                    ;918177;
-    BRA .return                                                          ;91817A;
-
-  .timeIsFrozen:
-    JSR.W XraySamusPoseInputHandler                                      ;91817C; >_<
-
-  .return:
     PLP                                                                  ;91817F;
     RTS                                                                  ;918180;
 
@@ -12055,7 +12045,6 @@ Deal_A_Damage_to_Samus:
     RTL                                                                  ;91DF7C;
 
   .noDamage:
-    NOP                                                                  ;91DF7D; >.<
     BRA .return                                                          ;91DF7E;
 
 
@@ -13077,7 +13066,6 @@ RTS_91E732:
 ;;; $E733: Update Samus pose due to change of equipment - standing ;;;
 UpdateSamusPoseEquipment_Standing:
     LDA.W Pose                                                           ;91E733;
-    CMP.W #$0000                                                         ;91E736; >.<
     BEQ .facingForward                                                   ;91E739;
     CMP.W #$009B                                                         ;91E73B;
     BEQ .suited                                                          ;91E73E;
@@ -16960,7 +16948,6 @@ PoseChangeCollision_NoCollision:
     ASL                                                                  ;91FF79;
     TAX                                                                  ;91FF7A;
     JMP.W (.pointers,X)                                                  ;91FF7B;
-    RTS                                                                  ;91FF7E; >.<
 
   .pointers:
     dw CLCRTS_91FF87                                                     ;91FF7F;

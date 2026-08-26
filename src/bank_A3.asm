@@ -1505,7 +1505,6 @@ MainAI_Fireflea:
     LDA.W Enemy.YPosition,X                                              ;A38E43;
     ADC.W CommonEnemySpeeds_LinearlyIncreasing,Y                         ;A38E46;
     STA.W Enemy.YPosition,X                                              ;A38E49;
-    LDA.W Enemy.YPosition,X                                              ;A38E4C; >_<;
     CMP.L Fireflea.minimumYPosition,X                                    ;A38E4F;
     BMI +                                                                ;A38E53;
     LDA.W Enemy.YPosition,X                                              ;A38E55;
@@ -3279,9 +3278,6 @@ Function_Tripper_Kamer2_YMovement_Rising:
 ;;; $9DE4: Tripper / suspensor platform Y movement function - index 1: sinking ;;;
 Function_Tripper_Kamer2_YMovement_1_Sinking:
     LDX.W EnemyIndex                                                     ;A39DE4;
-    LDA.W Enemy.YPosition,X                                              ;A39DE7;
-    CMP.W Platform.targetYPosition,X                                     ;A39DEA; >_<
-    JSR.W RTS_A39E46                                                     ;A39DED; >_<
     INC.W Platform.YSpeedTableIndex,X                                    ;A39DF0;
     LDA.W Platform.YSpeedTableIndex,X                                    ;A39DF3;
     CMP.L Platform.maximumYSpeedTableIndex,X                             ;A39DF6;
@@ -4688,7 +4684,7 @@ UNUSED_Function_Mochtroid_2_Shaking_A3A88F:
 
 ;;; $A8C8: Mochtroid function index 1 - touching Samus ;;;
 Function_Mochtroid_1_TouchingSamus:
-    !speed #= $1000*!SPF*$10
+!speed #= $1000*!SPF*$10
 
     LDX.W EnemyIndex                                                     ;A3A8C8;
     LDA.W Enemy.XPosition,X                                              ;A3A8CB;
@@ -9766,10 +9762,8 @@ Function_Yard_Movement_Airborne:
     STA.L Yard.airborneXSubVelocity,X                                    ;A3D1F8;
     LDA.L Yard.airborneXVelocity,X                                       ;A3D1FC;
     ADC.B DP_Temp18                                                      ;A3D200;
-    BEQ .gotoXMovementEnd                                                ;A3D202;
+    BEQ .XMovementEnd                                                    ;A3D202;
     STA.L Yard.airborneXVelocity,X                                       ;A3D204;
-
-  .gotoXMovementEnd:
     BRA .XMovementEnd                                                    ;A3D208;
 
   .hitWall:
@@ -9785,7 +9779,6 @@ Function_Yard_Movement_Airborne:
     STA.L ExtraEnemy8000,X                                               ;A3D225;
     LDA.W #$0070                                                         ;A3D229;
     JSL.L QueueSound_Lib2_Max3                                           ;A3D22C;
-    JMP.W .XMovementEnd                                                  ;A3D230; >_<
 
   .XMovementEnd:
     LDA.L Yard.airborneYSubVelocity,X                                    ;A3D233;
@@ -11629,7 +11622,6 @@ Function_HZoomer_CrawlingVertically:
     INC                                                                  ;A3E10F;
     STA.W Crawler.XVelocity,X                                            ;A3E110;
     LDY.W #InstList_HZoomer_UpsideUp_0                                   ;A3E113;
-    LDY.W #InstList_HZoomer_UpsideUp_0                                   ;A3E116; >.<
     LDA.W Crawler.YVelocity,X                                            ;A3E119;
     BPL ..keepUp                                                         ;A3E11C;
     LDY.W #InstList_HZoomer_UpsideDown_0                                 ;A3E11E;
@@ -12746,7 +12738,6 @@ FrozenAI_Metroid:
 HurtAI_Metroid:
 ; Synch flashing with sprite objects
     LDX.W EnemyIndex                                                     ;A3EB33;
-    LDY.W #$F1FF                                                         ;A3EB36; >.<
     LDA.W Enemy.flashTimer,X                                             ;A3EB39;
     BIT.W #$0002                                                         ;A3EB3C;
     BEQ .flash                                                           ;A3EB3F;

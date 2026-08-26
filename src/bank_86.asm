@@ -1200,7 +1200,12 @@ EnemyProjectile_BlockCollision_HorizontalSlope:
     LDA.L BTS,X                                                          ;8685A0;
     AND.W #$00FF                                                         ;8685A4;
     STA.W CurrentSlopeBTS                                                ;8685A7;
-    JMP.W EnemyProjectile_BlockCollision_HorizontalSlopeNonSquare        ;8685AA;
+    AND.W #$001F                                                         ;868740;
+    ASL                                                                  ;868743;
+    ASL                                                                  ;868744;
+    TAX                                                                  ;868745;
+    CLC                                                                  ;86874A;
+    RTS                                                                  ;86874B;
 
 
 ;;; $85AD: Enemy projectile block collision - vertical - slope ;;;
@@ -1265,7 +1270,7 @@ EnemyProjectile_BlockCollision_HorizontalSlopeSquare:
     AND.W #$0008                                                         ;8685F0;
     BNE +                                                                ;8685F3;
     LDA.L SquareSlopeDefinitions_Bank86_topLeft-1,X                      ;8685F5;
-    BMI .gotoCollision                                                   ;8685F9;
+    BMI .collision                                                       ;8685F9;
 
 +   TXA                                                                  ;8685FB;
     EOR.W #$0002                                                         ;8685FC;
@@ -1277,14 +1282,11 @@ EnemyProjectile_BlockCollision_HorizontalSlopeSquare:
     AND.W #$0008                                                         ;868607;
     BEQ .returnCollision                                                 ;86860A;
     LDA.L SquareSlopeDefinitions_Bank86_topLeft-1,X                      ;86860C;
-    BMI .gotoCollision                                                   ;868610;
+    BMI .collision                                                       ;868610;
 
   .returnCollision:
     CLC                                                                  ;868612;
     RTS                                                                  ;868613;
-
-  .gotoCollision:
-    JMP.W .collision                                                     ;868614;
 
   .multiBlock:
     LDA.B DP_Temp1A                                                      ;868617;
@@ -1296,7 +1298,7 @@ EnemyProjectile_BlockCollision_HorizontalSlopeSquare:
     AND.W #$0008                                                         ;868622;
     BNE .bothHalves                                                      ;868625;
     LDA.L SquareSlopeDefinitions_Bank86_topLeft-1,X                      ;868627;
-    BMI .gotoCollision_duplicate                                         ;86862B;
+    BMI .collision                                                       ;86862B;
     BRA .returnNoCollision                                               ;86862D;
 
 +   CMP.B DP_Temp20                                                      ;86862F;
@@ -1309,21 +1311,18 @@ EnemyProjectile_BlockCollision_HorizontalSlopeSquare:
 
   .bothHalves:
     LDA.L SquareSlopeDefinitions_Bank86_topLeft-1,X                      ;86863E;
-    BMI .gotoCollision_duplicate                                         ;868642;
+    BMI .collision                                                       ;868642;
 
   .checkBottomHalf:
     TXA                                                                  ;868644;
     EOR.W #$0002                                                         ;868645;
     TAX                                                                  ;868648;
     LDA.L SquareSlopeDefinitions_Bank86_topLeft-1,X                      ;868649;
-    BMI .gotoCollision_duplicate                                         ;86864D;
+    BMI .collision                                                       ;86864D;
 
   .returnNoCollision:
     CLC                                                                  ;86864F;
     RTS                                                                  ;868650;
-
-  .gotoCollision_duplicate:
-    JMP.W .collision                                                     ;868651; >.<
 
   .collision:
     LDX.W EnemyProjectile_Index                                          ;868654;
@@ -1388,7 +1387,7 @@ EnemyProjectile_BlockCollision_VerticalSlopeSquare:
     AND.W #$0008                                                         ;8686A0;
     BNE +                                                                ;8686A3;
     LDA.L SquareSlopeDefinitions_Bank86_topLeft-1,X                      ;8686A5;
-    BMI .gotoCollision                                                   ;8686A9;
+    BMI .collision                                                       ;8686A9;
 
 +   TXA                                                                  ;8686AB;
     EOR.W #$0001                                                         ;8686AC;
@@ -1400,14 +1399,11 @@ EnemyProjectile_BlockCollision_VerticalSlopeSquare:
     AND.W #$0008                                                         ;8686B7;
     BEQ .returnNoCollision                                               ;8686BA;
     LDA.L SquareSlopeDefinitions_Bank86_topLeft-1,X                      ;8686BC;
-    BMI .gotoCollision                                                   ;8686C0;
+    BMI .collision                                                       ;8686C0;
 
   .returnNoCollision:
     CLC                                                                  ;8686C2;
     RTS                                                                  ;8686C3;
-
-  .gotoCollision:
-    JMP.W .collision                                                     ;8686C4;
 
   .multiBlock:
     LDY.W EnemyProjectile_Index                                          ;8686C7;
@@ -1420,7 +1416,7 @@ EnemyProjectile_BlockCollision_VerticalSlopeSquare:
     AND.W #$0008                                                         ;8686D5;
     BNE .checkBothHalves                                                 ;8686D8;
     LDA.L SquareSlopeDefinitions_Bank86_topLeft-1,X                      ;8686DA;
-    BMI .gotoCollision_duplicate                                         ;8686DE;
+    BMI .collision                                                       ;8686DE;
     BRA .noCollisionReturn                                               ;8686E0;
 
 +   CMP.B DP_Temp20                                                      ;8686E2;
@@ -1433,21 +1429,18 @@ EnemyProjectile_BlockCollision_VerticalSlopeSquare:
 
   .checkBothHalves:
     LDA.L SquareSlopeDefinitions_Bank86_topLeft-1,X                      ;8686F1;
-    BMI .gotoCollision_duplicate                                         ;8686F5;
+    BMI .collision                                                       ;8686F5;
 
   .checkLeftHalf:
     TXA                                                                  ;8686F7;
     EOR.W #$0001                                                         ;8686F8;
     TAX                                                                  ;8686FB;
     LDA.L SquareSlopeDefinitions_Bank86_topLeft-1,X                      ;8686FC;
-    BMI .gotoCollision_duplicate                                         ;868700;
+    BMI .collision                                                       ;868700;
 
   .noCollisionReturn:
     CLC                                                                  ;868702;
     RTS                                                                  ;868703;
-
-  .gotoCollision_duplicate:
-    JMP.W .collision                                                     ;868704; >.<
 
   .collision:
     LDX.W EnemyProjectile_Index                                          ;868707;
@@ -1492,25 +1485,6 @@ SquareSlopeDefinitions_Bank86:
     db $00,$01,$02,$83 ; 2: Quarter
     db $00,$81,$82,$83 ; 3: Three-quarters
     db $80,$81,$82,$83 ; 4: Whole
-
-
-;;; $873D: Clear carry. Enemy projectile block collision reaction - horizontal - slope - non-square ;;;
-EnemyProjectile_BlockCollision_HorizontalSlopeNonSquare:
-;; Returns:
-;;     Carry: Clear (no collision)
-    LDA.W CurrentSlopeBTS                                                ;86873D;
-    AND.W #$001F                                                         ;868740;
-    ASL                                                                  ;868743;
-    ASL                                                                  ;868744;
-    TAX                                                                  ;868745;
-    LDA.B DP_Temp14                                                      ;868746;
-    BPL .return                                                          ;868748; >.<
-    CLC                                                                  ;86874A;
-    RTS                                                                  ;86874B;
-
-  .return:
-    CLC                                                                  ;86874C;
-    RTS                                                                  ;86874D;
 
 
 ;;; $874E: Enemy projectile block collision reaction - vertical - slope - non-square ;;;
@@ -5477,10 +5451,9 @@ PreInstruction_EnemyProjectile_Pirate_MotherBrain_Laser_Left:
     DEC.W EnemyProjectile_XPositions,X                                   ;86A05C;
     DEC.W EnemyProjectile_XPositions,X                                   ;86A05F;
 if !PAL != 0
-    ; This is supposed to be a subtraction >_<;
     LDA.W EnemyProjectile_XSubPositions,X
-    CLC
-    ADC.W #$20000*!SPF
+    SEC
+    SBC.W #$20000*!SPF
     STA.W EnemyProjectile_XSubPositions,X
     BCC +
     DEC.W EnemyProjectile_XPositions,X
@@ -5492,10 +5465,9 @@ endif
     DEC.W EnemyProjectile_XPositions,X                                   ;86A06A;
     DEC.W EnemyProjectile_XPositions,X                                   ;86A06D;
 if !PAL != 0
-    ; Should be subtraction
     LDA.W EnemyProjectile_XSubPositions,X
-    CLC
-    ADC.W #$20000*!SPF
+    SEC
+    SBC.W #$20000*!SPF
     STA.W EnemyProjectile_XSubPositions,X
     BCC .halfSpeed
     DEC.W EnemyProjectile_XPositions,X
@@ -6895,15 +6867,14 @@ UNUSED_InitAI_EnemyProjectile_QuestionMark_86AA3D:
     STA.B VRAMWrite.size,X                                               ;86AA43;
     LDA.W #UNUSED_EnemyProjectile_Graphics_QuestionMark_86A9BD           ;86AA45;
     STA.B VRAMWrite.src,X                                                ;86AA48;
-    LDA.W #$0086                                                         ;86AA4A;
+    LDA.W #UNUSED_EnemyProjectile_Graphics_QuestionMark_86A9BD>>16       ;86AA4A;
     STA.B VRAMWrite.src+2,X                                              ;86AA4D;
     LDA.W #$6E00                                                         ;86AA4F;
     STA.B VRAMWrite.dest,X                                               ;86AA52;
     TXA                                                                  ;86AA54;
     CLC                                                                  ;86AA55;
     ADC.W #$0007                                                         ;86AA56;
-    STA.W VRAMWriteStack                                                 ;86AA59;
-    LDX.W VRAMWriteStack                                                 ;86AA5C; >.< TAX
+    TAX
     LDA.W #$0040                                                         ;86AA5F;
     STA.B VRAMWrite.size,X                                               ;86AA62;
     LDA.W #UNUSED_EnemyProjectile_Graphics_QuestionMark_86A9BD+$40       ;86AA64;
@@ -6929,21 +6900,18 @@ UNUSED_InitAI_EnemyProjectile_QuestionMark_86AA3D:
 UNUSED_PreInstruction_EnemyProjectile_QuestionMark:
 ;; Parameters:
 ;;     X: Enemy projectile index
-
-; The `BPL + : DEC $14 : +` should really be done *before* the `ASL #3` >_<;
-; Oh well
     STZ.B DP_Temp12                                                      ;86AA8C;
     STZ.B DP_Temp14                                                      ;86AA8E;
     LDA.W SamusXPosition                                                 ;86AA90;
     SEC                                                                  ;86AA93;
     SBC.W EnemyProjectile_XPositions,X                                   ;86AA94;
-    ASL                                                                  ;86AA97;
-    ASL                                                                  ;86AA98;
-    ASL                                                                  ;86AA99;
     BPL +                                                                ;86AA9A;
     DEC.B DP_Temp14                                                      ;86AA9C;
 
-+   STA.B DP_Temp13                                                      ;86AA9E;
++   ASL
+    ASL
+    ASL
+    STA.B DP_Temp13                                                      ;86AA9E;
     LDA.B DP_Temp12                                                      ;86AAA0;
     CLC                                                                  ;86AAA2;
     ADC.W EnemyProjectile_XSubPositions,X                                ;86AAA3;
@@ -7800,7 +7768,7 @@ InitAI_EnemyProjectile_GoldenTorizoEgg:
     STA.B DP_Temp12                                                      ;86B007;
     LDA.W Enemy.YPosition,X                                              ;86B009;
     STA.B DP_Temp14                                                      ;86B00C;
-    LDA.L GenerateRandomNumber                                           ;86B00E; >_<
+    LDA.W RandomNumberSeed                                               ;86B00E;
     AND.W #$001F                                                         ;86B012;
     CLC                                                                  ;86B015;
     ADC.W #$0040                                                         ;86B016;
@@ -13908,25 +13876,13 @@ PreInstruction_EnemyProjectile_NoobTubeCrack_Flickering:
 PreInstruction_EnemyProjectile_NoobTubeCrack_Falling:
 ;; Parameters:
 ;;     X: Enemy projectile index
-
-; >_<;
-; Here's my optimisation:
-;     LDA EnemyProjectile_YSubPositions,x : CLC : ADC #$C000 : STA EnemyProjectile_YSubPositions,x
-;     LDA EnemyProjectile_YPositions,x : ADC #$0000 : STA EnemyProjectile_YPositions,x
-    STZ.B DP_Temp12                                                      ;86D7DE;
-    STZ.B DP_Temp14                                                      ;86D7E0;
-    LDA.W #regional($00C0, $00E4)                                        ;86D7E2;
-    BPL +                                                                ;86D7E5;
-    DEC.B DP_Temp14                                                      ;86D7E7;
-
-+   STA.B DP_Temp13                                                      ;86D7E9;
-    LDA.W EnemyProjectile_YSubPositions,X                                ;86D7EB;
-    CLC                                                                  ;86D7EE;
-    ADC.B DP_Temp12                                                      ;86D7EF;
-    STA.W EnemyProjectile_YSubPositions,X                                ;86D7F1;
-    LDA.W EnemyProjectile_YPositions,X                                   ;86D7F4;
-    ADC.B DP_Temp14                                                      ;86D7F7;
-    STA.W EnemyProjectile_YPositions,X                                   ;86D7F9;
+    LDA.W EnemyProjectile_YSubPositions,X
+    CLC
+    ADC.W #(regional($00C0, $00E4))<<8
+    STA.W EnemyProjectile_YSubPositions,X
+    LDA.W EnemyProjectile_YPositions,X
+    ADC.W #$0000
+    STA.W EnemyProjectile_YPositions,X
     RTS                                                                  ;86D7FC;
 
 
@@ -13970,11 +13926,8 @@ PreInstruction_EnemyProjectile_NoobTubeShard_Flying:
 Instruction_EnemyProjectile_NoobTubeCrack_Falling:
 ;; Parameters:
 ;;     X: Enemy projectile index
-
-; The `ORA #$0080` seems random/pointless. Given that the angle is chosen randomly, it has no real effect
     LDA.W EnemyProjectile_XVelocity,X                                    ;86D83D;
     AND.W #$01FE                                                         ;86D840;
-    ORA.W #$0080                                                         ;86D843; >_<
     TAX                                                                  ;86D846;
     STZ.B DP_Temp12                                                      ;86D847;
     STZ.B DP_Temp14                                                      ;86D849;
@@ -14023,11 +13976,8 @@ Instruction_EnemyProjectile_NoobTubeCrack_Falling:
 PreInstruction_EnemyProj_NoobTubeReleasedAirBubbles_Falling:
 ;; Parameters:
 ;;     X: Enemy projectile index
-
-; The `ORA #$0080` seems random/pointless. Given that the angle is chosen randomly, it has no real effect
     LDA.W EnemyProjectile_XVelocity,X                                    ;86D89F;
     AND.W #$01FE                                                         ;86D8A2;
-    ORA.W #$0080                                                         ;86D8A5; >_<
     TAX                                                                  ;86D8A8;
     STZ.B DP_Temp12                                                      ;86D8A9;
     STZ.B DP_Temp14                                                      ;86D8AB;
@@ -15887,18 +15837,6 @@ EnemyProjectile_MiscDustPLM:                                             ;86E517
     %properties($0000),
     %hitList(0),
     %shotList(InstList_EnemyProjectile_Delete))
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_EnemyProjectile_DustCloudExplosion_86E525:                        ;86E525;
-    %EnemyProjectile(\
-    %initAI(InitAI_EnemyProj_MiscDust),
-    %preInst(InstList_EnemyProjectile_GunshipLiftoffDustClouds_Index0_0), ; >_< this is not a pre-instruction, its an instruction list
-    %instList(InstList_EnemyProj_MiscDust_3_SmallExplosion),
-    %radius(0, 0),
-    %properties($0000),
-    %hitList(0),
-    %shotList(InstList_EnemyProjectile_Delete))
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $E533: Instruction - enemy projectile Y velocity = [[Y]] ;;;
@@ -18136,7 +18074,7 @@ InitAI_EnemyProjectile_FallingSpark:
     STA.W EnemyProjectile_XVelocity,Y                                    ;86F3B9;
     STA.W EnemyProjectile_YVelocity,Y                                    ;86F3BC;
     JSL.L GenerateRandomNumber                                           ;86F3BF;
-    AND.W #$001C                                                         ;86F3C3;
+    AND.W #$001A                                                         ;86F3C3;
     TAX                                                                  ;86F3C6;
     LDA.W .distance,X                                                    ;86F3C7;
     STA.W EnemyProjectile_Var1,Y                                         ;86F3CA;
@@ -18144,7 +18082,6 @@ InitAI_EnemyProjectile_FallingSpark:
     STA.W EnemyProjectile_Var0,Y                                         ;86F3D0;
     RTS                                                                  ;86F3D3;
 
-; This table is one entry too short to be indexed with 1Ch >_<;
   .distance:
     dw $FFFF                                                             ;86F3D4;
   .subdistance:
@@ -18155,6 +18092,7 @@ InitAI_EnemyProjectile_FallingSpark:
     dw $0000,$0100
     dw $0000,$2000
     dw $0000,$4000
+    dw $0000,$4800
 
 
 ;;; $F3F0: Pre-instruction - enemy projectile $F498 (falling spark) ;;;

@@ -3241,20 +3241,14 @@ PuyoMovement:
     STA.W Puyo.airborneFunction,X                                        ;A29BDA;
     LDA.W #$0000                                                         ;A29BDD;
     STA.L Puyo.hoppingAnimationFlag,X                                    ;A29BE0;
-    BRA .gotoReturn                                                      ;A29BE4;
+    RTS
 
   .falling:
     LDA.W #Function_Puyo_Grounded                                        ;A29BE6;
     STA.W Puyo.function,X                                                ;A29BE9;
     LDA.W #$0000                                                         ;A29BEC;
     STA.L Puyo.hoppingAnimationFlag,X                                    ;A29BEF;
-
-  .gotoReturn:
-if !PAL == 0
-    BRA .return                                                          ;A29BF3; >.<
-else
-    JMP.W .return
-endif
+    RTS
 
   .noCollision:
     LDY.W Puyo.hopTableIndex,X                                           ;A29BF5;
@@ -3314,7 +3308,6 @@ endif
     STA.L Puyo.hopType,X                                                 ;A29C64;
     LDA.W #Function_Puyo_Airborne_Dropping                               ;A29C68;
     STA.W Puyo.airborneFunction,X                                        ;A29C6B;
-    BRA .return                                                          ;A29C6E; >.<
 
   .return:
     RTS                                                                  ;A29C70;
@@ -5333,7 +5326,6 @@ Function_Ship_Liftoff_SteadyRise:
     SEC                                                                  ;A2ACDA;
     SBC.W #$0002                                                         ;A2ACDB;
     STA.W SamusYPosition                                                 ;A2ACDE;
-    LDA.W SamusYPosition                                                 ;A2ACE1; >_<;
     SEC                                                                  ;A2ACE4;
     SBC.W #$0011                                                         ;A2ACE5;
     STA.W Enemy.YPosition,X                                              ;A2ACE8;
@@ -5399,7 +5391,6 @@ Function_Ship_Liftoff_Accelerating:
     LDA.W SamusYPosition                                                 ;A2AD5E;
     SBC.B DP_Temp12                                                      ;A2AD61;
     STA.W SamusYPosition                                                 ;A2AD63;
-    LDA.W SamusYPosition                                                 ;A2AD66; >_<;
     SEC                                                                  ;A2AD69;
     SBC.W #$0011                                                         ;A2AD6A;
     STA.W Enemy.YPosition,X                                              ;A2AD6D;
@@ -6442,8 +6433,6 @@ SpawnMotherBrainsRoomRinka:
     CPY.W #$0042                                                         ;A2B6EF;
     BMI .loopOnScreen                                                    ;A2B6F2;
     JMP.W .notFound                                                      ;A2B6F4;
-
-    RTS                                                                  ;A2B6F7; >.<
 
   .found:
     LDA.B DP_Temp12                                                      ;A2B6F8;
@@ -7499,8 +7488,6 @@ Function_Squeept_Flame:
     STA.W Enemy.properties,X                                             ;A2BF0A;
     LDA.W Enemy[-1].YPosition,X                                          ;A2BF0D;
     STA.W Enemy.YPosition,X                                              ;A2BF10;
-    LDA.W Enemy[-1].YPosition,X                                          ;A2BF13; >_<
-    STA.W Enemy.YPosition,X                                              ;A2BF16;
     RTL                                                                  ;A2BF19;
 
 
@@ -7961,8 +7948,6 @@ Function_Geruta_Flames:
     STA.W Enemy.freezeTimer,X                                            ;A2C293;
     BEQ .notFrozen                                                       ;A2C296;
     BRA .frozen                                                          ;A2C298;
-
-    RTL                                                                  ;A2C29A; >_<
 
   .notFrozen:
     LDA.W Enemy.properties,X                                             ;A2C29B;
@@ -10462,7 +10447,6 @@ InitAI_Choot:
     STA.W Choot.fallingPatternYDistance,X                                ;A2DFA8;
     JSR.W CalculateChootJumpHeight                                       ;A2DFAB;
     JSR.W CalculateChootInitialJumpSpeed                                 ;A2DFAE;
-    LDA.B DP_Temp18                                                      ;A2DFB1; >_<
     LDA.L Choot.spawnYPosition,X                                         ;A2DFB3;
     SEC                                                                  ;A2DFB7;
     SBC.B DP_Temp12                                                      ;A2DFB8;
@@ -11550,8 +11534,7 @@ EnemyShot_Dragon:
 
 ;;; $E7D4: Power bomb reaction - enemy $D4BF (dragon) ;;;
 PowerBombReaction_Dragon:
-    JSL.L CommonA2_NormalEnemyPowerBombAI                                ;A2E7D4;
-    BRA ContactReaction_Dragon_Common                                    ;A2E7D8; >.<
+    JSL.L CommonA2_NormalEnemyPowerBombAI                                ;A2E7D4; fallthrough to ContactReaction_Dragon_Common
 
 
 ;;; $E7DA: Dragon reaction ;;;

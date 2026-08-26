@@ -2865,7 +2865,6 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
     LDA.W EnemySetPointer                                                ;B494D5;
     TAX                                                                  ;B494D8;
     STA.W Temp_NumberOfEnemyPartsToSpawn                                 ;B494D9;
-    LDX.W Temp_NumberOfEnemyPartsToSpawn                                 ;B494DC; >.<
     LDA.W #$0038                                                         ;B494DF;
     STA.W Temp_RowYPosition                                              ;B494E2;
 
@@ -4281,7 +4280,6 @@ Add_Debug_Spritemap_to_OAM:
 ;     p = priority (relative to background)
 ;     t = tile number
     PHP                                                                  ;B4A01D;
-    SEP #$20                                                             ;B4A01E; >.<
     PHB                                                                  ;B4A020;
     PHK                                                                  ;B4A021;
     PLB                                                                  ;B4A022;
@@ -4397,9 +4395,7 @@ Add_Debug_Spritemap_to_OAM:
 
   .return:
     STX.W OAMStack                                                       ;B4A0D7;
-    SEP #$20                                                             ;B4A0DA; >.<
     PLB                                                                  ;B4A0DC;
-    REP #$20                                                             ;B4A0DD; >.<
     PLP                                                                  ;B4A0DF;
     RTL                                                                  ;B4A0E0;
 

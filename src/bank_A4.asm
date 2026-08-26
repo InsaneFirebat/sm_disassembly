@@ -2653,34 +2653,34 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $94B6: Crocomire main AI - death sequence index 14h/30h - hop 3/6 - uploading to VRAM ;;;
 MainAI_Crocomire_DeathSequence_14_30_Hop_3_6_UploadingToVRAM:
-    LDX.W CrocomireMelting_TilesLoadingTable                             ;A494B6;
-    LDY.W VRAMWriteStack                                                 ;A494B9;
-    LDA.W MeltingCrocomireTilesLoadingTable_Melting1_0,X                 ;A494BC;
+    LDX.W VRAMWriteStack                                                 ;A494B6;
+    LDY.W CrocomireMelting_TilesLoadingTable                             ;A494B9;
+    LDA.W MeltingCrocomireTilesLoadingTable_Melting1_0,Y                 ;A494BC;
     CMP.W #$FFFF                                                         ;A494BF;
     BEQ .terminator                                                      ;A494C2;
-    STA.W VRAMWrite.size,Y                                               ;A494C4; >.<
-    LDA.W MeltingCrocomireTilesLoadingTable_Melting1_0+6,X               ;A494C7;
-    STA.W VRAMWrite.src,Y                                                ;A494CA; >.<
-    LDA.W MeltingCrocomireTilesLoadingTable_Melting1_0+4,X               ;A494CD;
-    STA.W VRAMWrite.src+2,Y                                              ;A494D0; >.<
-    LDA.W MeltingCrocomireTilesLoadingTable_Melting1_0+2,X               ;A494D3;
-    STA.W VRAMWrite.dest,Y                                               ;A494D6; >.<
-    TYA                                                                  ;A494D9;
+    STA.B VRAMWrite.size,X                                               ;A494C4;
+    LDA.W MeltingCrocomireTilesLoadingTable_Melting1_0+6,Y               ;A494C7;
+    STA.B VRAMWrite.src,X                                                ;A494CA;
+    LDA.W MeltingCrocomireTilesLoadingTable_Melting1_0+4,Y               ;A494CD;
+    STA.B VRAMWrite.src+2,X                                              ;A494D0;
+    LDA.W MeltingCrocomireTilesLoadingTable_Melting1_0+2,Y               ;A494D3;
+    STA.B VRAMWrite.dest,X                                               ;A494D6;
+    TXA                                                                  ;A494D9;
     CLC                                                                  ;A494DA;
     ADC.W #$0007                                                         ;A494DB;
-    TAY                                                                  ;A494DE;
-    TXA                                                                  ;A494DF;
+    STA.W VRAMWriteStack
+    TYA                                                                  ;A494DF;
     CLC                                                                  ;A494E0;
     ADC.W #$0008                                                         ;A494E1;
     STA.W CrocomireMelting_TilesLoadingTable                             ;A494E4;
-    STY.W VRAMWriteStack                                                 ;A494E7;
     RTS                                                                  ;A494EA;
 
   .terminator:
-    STY.W VRAMWriteStack                                                 ;A494EB;
     LDX.W EnemyIndex                                                     ;A494EE;
-    INC.W Crocomire.deathSequenceIndex,X                                 ;A494F1;
-    INC.W Crocomire.deathSequenceIndex,X                                 ;A494F4;
+    LDA.W Crocomire.deathSequenceIndex,X
+    INC
+    INC
+    STA.W Crocomire.deathSequenceIndex,X
     STZ.W CrocomireMelting_TilesLoadingTable                             ;A494F7;
     RTS                                                                  ;A494FA;
 
@@ -3040,22 +3040,22 @@ EraseMeltingCrocomirePixelColumn:
     LDA.W CrocomireMelting_TilesLoadingTableIndex                        ;A49781;
     CLC                                                                  ;A49784;
     ADC.W CrocomireMelting_TilesLoadingTable                             ;A49785;
-    TAX                                                                  ;A49788;
-    LDY.W VRAMWriteStack                                                 ;A49789;
-    LDA.W MeltingCrocomireTilesLoadingTable_Melting1_0,X                 ;A4978C;
+    TAY                                                                  ;A49788;
+    LDX.W VRAMWriteStack                                                 ;A49789;
+    LDA.W MeltingCrocomireTilesLoadingTable_Melting1_0,Y                 ;A4978C;
     CMP.W #$FFFF                                                         ;A4978F;
     BNE +                                                                ;A49792;
     STZ.W CrocomireMelting_TilesLoadingTable                             ;A49794;
     BRA .cycled                                                          ;A49797;
 
-+   STA.W VRAMWrite.size,Y                                               ;A49799; >.<
-    LDA.W MeltingCrocomireTilesLoadingTable_Melting1_0+6,X               ;A4979C;
-    STA.W VRAMWrite.src,Y                                                ;A4979F; >.<
-    LDA.W MeltingCrocomireTilesLoadingTable_Melting1_0+4,X               ;A497A2;
-    STA.W VRAMWrite.src+2,Y                                              ;A497A5; >.<
-    LDA.W MeltingCrocomireTilesLoadingTable_Melting1_0+2,X               ;A497A8;
-    STA.W VRAMWrite.dest,Y                                               ;A497AB; >.<
-    TYA                                                                  ;A497AE;
++   STA.B VRAMWrite.size,X                                               ;A49799;
+    LDA.W MeltingCrocomireTilesLoadingTable_Melting1_0+6,Y               ;A4979C;
+    STA.B VRAMWrite.src,X                                                ;A4979F;
+    LDA.W MeltingCrocomireTilesLoadingTable_Melting1_0+4,Y               ;A497A2;
+    STA.B VRAMWrite.src+2,X                                              ;A497A5;
+    LDA.W MeltingCrocomireTilesLoadingTable_Melting1_0+2,Y               ;A497A8;
+    STA.B VRAMWrite.dest,X                                               ;A497AB;
+    TXA                                                                  ;A497AE;
     CLC                                                                  ;A497AF;
     ADC.W #$0007                                                         ;A497B0;
     STA.W VRAMWriteStack                                                 ;A497B3;
@@ -3583,11 +3583,6 @@ MainAI_Crocomire_DeathSequence_4A_UnlockCamera:
     JMP.W NextCrocomireDeathSequenceIndex                                ;A49B78;
 
 
-;;; $9B7B: Crocomire main AI - death sequence index 4Eh - set index 50h ;;;
-MainAI_Crocomire_DeathSequence_4E_SetIndex50:
-    BRA NextCrocomireDeathSequenceIndex                                  ;A49B7B; >.<
-
-
 ;;; $9B7D: Crocomire main AI - death sequence index 4Ch - set index 4Eh ;;;
 MainAI_Crocomire_DeathSequence_4C_SetIndex4E:
 ; Crocomire instruction list pointer coming into this function is $E1D0 (last set to InstList_CrocomireCorpse_Skeleton_Dead by MainAI_Crocomire_DeathSequence_48_SkeletonFallsApart)
@@ -3615,15 +3610,16 @@ MainAI_Crocomire_DeathSequence_50_MarkEvent_PostDeathMusic:
 
 
 ;;; $9BB3: Crocomire death sequence index += 2 ;;;
-NextCrocomireDeathSequenceIndex:
-    INC.W Crocomire.deathSequenceIndex                                   ;A49BB3;
-    INC.W Crocomire.deathSequenceIndex                                   ;A49BB6;
-    RTS                                                                  ;A49BB9;
-
-
+;;; $9B7B: Crocomire main AI - death sequence index 4Eh - set index 50h ;;;
 ;;; $9BBA: Crocomire main AI - death sequence index 54h - set index 56h ;;;
+NextCrocomireDeathSequenceIndex:
+MainAI_Crocomire_DeathSequence_4E_SetIndex50:
 MainAI_Crocomire_DeathSequence_54_SetIndex56:
-    JMP.W NextCrocomireDeathSequenceIndex                                ;A49BBA; >.<
+    LDA.W Crocomire.deathSequenceIndex                                   ;A49BB3;
+    INC
+    INC
+    STA.W Crocomire.deathSequenceIndex                                   ;A49BB6;
+    RTS                                                                  ;A49BB9;
 
 
 ;;; $9BBD: Tile pixel column bitmasks ;;;

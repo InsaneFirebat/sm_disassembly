@@ -3050,11 +3050,6 @@ MainAI_MiniKraid:
 HandleMiniKraidSpike:
 ;; Parameters:
 ;;     Y: Spike timer index
-
-; Typo at $9B18 >_<;
-; LDA $00FFFF will load the low byte from $80:FFFF (85h) and the high byte from $7E:0000 (garbage)
-; There's no reason to do this `AND` at all, the zero flag is set appropriately by the call to $A0:AD70
-; But because the return value in A is 0 or 1, and because bit 0 of [$80:FFFF] is set, this code happens to work out fine
     PHX                                                                  ;A69ADC;
     TYA                                                                  ;A69ADD;
     STX.B DP_Temp12                                                      ;A69ADE;
@@ -3085,7 +3080,6 @@ HandleMiniKraidSpike:
   .keepLeft:
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A69B10;
     JSL.L CheckIfEnemyCenterIsOnScreen                                   ;A69B14;
-    AND.L $00FFFF                                                        ;A69B18; >.<
     BNE .return                                                          ;A69B1C;
     LDA.W #$003F                                                         ;A69B1E;
     JSL.L QueueSound_Lib2_Max6                                           ;A69B21;
@@ -3178,7 +3172,6 @@ Instruction_MiniKraid_ChooseAction:
 Instruction_MiniKraid_PlayCrySFX:
 ; Another AND instruction typo (see HandleMiniKraidSpike)
     JSL.L CheckIfEnemyCenterIsOnScreen                                   ;A69BB2;
-    AND.L $00FFFF                                                        ;A69BB6; >.<
     BNE .return                                                          ;A69BBA;
     LDA.W #$0016                                                         ;A69BBC;
     JSL.L QueueSound_Lib2_Max6                                           ;A69BBF;
@@ -3262,8 +3255,7 @@ EnemyShot_PowerBombReaction_MiniKraid:
     STA.L EnemyProjectileData_SpecialDeathItemDropXOriginPosition        ;A69C3F;
     LDA.W Enemy.YPosition,X                                              ;A69C43;
     STA.L EnemyProjectileData_SpecialDeathItemDropYOriginPosition        ;A69C46;
-    JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External     ;A69C4A;
-    BRA Reaction_MiniKraid_Common                                        ;A69C4E; >.<
+    JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External     ;A69C4A; fallthrough to Reaction_MiniKraid_Common
 
 
 ;;; $9C50: Fake Kraid reaction ;;;
@@ -3568,7 +3560,6 @@ InitAI_Ridley:
     AND.W #$0001                                                         ;A6A0FC;
     BEQ .notDead                                                         ;A6A0FF;
     LDA.W Enemy.properties                                               ;A6A101;
-    AND.W #$FFFF                                                         ;A6A104; >.<
     ORA.W #$0700                                                         ;A6A107;
     STA.W Enemy.properties                                               ;A6A10A;
     RTL                                                                  ;A6A10D;
@@ -3618,16 +3609,13 @@ InitAI_Ridley:
     STA.W Enemy.XPosition                                                ;A6A173;
     LDA.W #$018A                                                         ;A6A176;
     STA.W Enemy.YPosition                                                ;A6A179;
-    LDA.W #Function_Ridley_Liftoff                                       ;A6A17C; >_<
     LDA.W #Function_Ridley_Initial                                       ;A6A17F;
     STA.W Ridley.function                                                ;A6A182;
     STZ.W Ridley.XVelocity                                               ;A6A185;
     STZ.W Ridley.YVelocity                                               ;A6A188;
     LDA.W #$0005                                                         ;A6A18B;
     STA.W Enemy.layer                                                    ;A6A18E;
-    LDA.W #$0000                                                         ;A6A191;
-    STA.L Ridley.fightMode                                               ;A6A194; >.<
-    INC                                                                  ;A6A198;
+    LDA.W #$0001                                                         ;A6A191;
     STA.L Ridley.movementAnimationEnable                                 ;A6A199;
     LDA.W #$0040                                                         ;A6A19D;
     STA.L Ridley.minYPosition                                            ;A6A1A0;
@@ -3747,7 +3735,6 @@ RandomlyUpdateRidleyTailCurliness:
     LDA.W RandomNumberSeed                                               ;A6A2BD;
     CMP.W #$FF00                                                         ;A6A2C0;
     BCC .return                                                          ;A6A2C3;
-    LDA.W RandomNumberSeed                                               ;A6A2C5; >.<
     AND.W #$000F                                                         ;A6A2C8;
     ADC.W #$0007                                                         ;A6A2CB;
     STA.L Ridley.idealInterSegmentTailAngle                              ;A6A2CE;
@@ -4715,8 +4702,6 @@ HandleCeresRidleyGetawayCutscene:
     SEP #$20                                                             ;A6AB37;
     LDA.B #$09                                                           ;A6AB39;
     STA.B DP_FakeBGModeSize                                              ;A6AB3B;
-    REP #$20                                                             ;A6AB3D; >.<
-    SEP #$20                                                             ;A6AB3F; >.<
     STZ.B DP_Mode7Settings                                               ;A6AB41;
     REP #$20                                                             ;A6AB43;
     STZ.B DP_Mode7TransMatrixA                                           ;A6AB45;
@@ -5365,7 +5350,6 @@ HurtAI_Ridley:
     LDA.W RidleyGrabbedSamusMovementHurtAILagTime                        ;A6B2D9;
 
 +   STA.L Ridley.grabbedSamusMovementLagTimer                            ;A6B2DC;
-    LDA.L Ridley.grabbedSamusMovementLagTimer                            ;A6B2E0; >.<
     CMP.W RidleyGrabbedSamusMovementHurtAILagTime                        ;A6B2E4;
     BMI .return                                                          ;A6B2E7;
 
@@ -5459,10 +5443,10 @@ GetFightActionChoices:
 
   .belowHalf:
     LDY.W #.belowHalfHealth                                              ;A6B37B;
-    LDA.W Enemy.health                                                   ;A6B37E;
-    CMP.W #$2328                                                         ;A6B381; 9000 (>_<;)
-    BPL .notBelowHalf                                                    ;A6B384;
-    LDY.W #.aboveHalfHealth                                              ;A6B386;
+;    LDA.W Enemy.health                                                   ;A6B37E;
+;    CMP.W #$2328                                                         ;A6B381; 9000 (>_<;)
+;    BPL .notBelowHalf                                                    ;A6B384;
+;    LDY.W #.aboveHalfHealth                                              ;A6B386;
 
   .notBelowHalf:
     STY.B DP_Temp12                                                      ;A6B389;
@@ -5481,17 +5465,17 @@ GetFightActionChoices:
     dw Function_Ridley_Action_Swoop                                      ;A6B398;
     dw Function_Ridley_Action_Swoop                                      ;A6B39A;
 
-  .aboveHalfHealth:
-; Unused
-; 4x pogo, 4x swoop
-    dw Function_Ridley_Action_Swoop                                      ;A6B39C;
-    dw Function_Ridley_Action_Swoop                                      ;A6B39E;
-    dw Function_Ridley_Action_Swoop                                      ;A6B3A0;
-    dw Function_Ridley_Action_Swoop                                      ;A6B3A2;
-    dw Function_Ridley_Action_Pogo_FlyToPosition                         ;A6B3A4;
-    dw Function_Ridley_Action_Pogo_FlyToPosition                         ;A6B3A6;
-    dw Function_Ridley_Action_Pogo_FlyToPosition                         ;A6B3A8;
-    dw Function_Ridley_Action_Pogo_FlyToPosition                         ;A6B3AA;
+;  .aboveHalfHealth:
+;; Unused
+;; 4x pogo, 4x swoop
+;    dw Function_Ridley_Action_Swoop                                      ;A6B39C;
+;    dw Function_Ridley_Action_Swoop                                      ;A6B39E;
+;    dw Function_Ridley_Action_Swoop                                      ;A6B3A0;
+;    dw Function_Ridley_Action_Swoop                                      ;A6B3A2;
+;    dw Function_Ridley_Action_Pogo_FlyToPosition                         ;A6B3A4;
+;    dw Function_Ridley_Action_Pogo_FlyToPosition                         ;A6B3A6;
+;    dw Function_Ridley_Action_Pogo_FlyToPosition                         ;A6B3A8;
+;    dw Function_Ridley_Action_Pogo_FlyToPosition                         ;A6B3AA;
 
   .damageBoosting:
 ; Samus is damage boosting and health >= 14400 and Samus is not in pogo zone
@@ -6122,7 +6106,6 @@ CheckForTailCollisionWithFloor:
     TAY                                                                  ;A6B844;
     JSL.L CheckForCollisionWithNonAirBlock                               ;A6B845;
     BCS .return                                                          ;A6B849;
-    NOP                                                                  ;A6B84B; >.<
 
   .return:
     RTS                                                                  ;A6B84C;
@@ -6544,8 +6527,7 @@ Function_Ridley_Action_Lunge:
     STA.W Ridley.YVelocity                                               ;A6BB5D;
     LDA.W Enemy.health                                                   ;A6BB60;
     BEQ .dead                                                            ;A6BB63;
-    LDA.W SamusProjectile_PowerBombFlag                                  ;A6BB65; >.<
-    LDA.W SamusProjectile_PowerBombFlag                                  ;A6BB68;
+    LDA.W SamusProjectile_PowerBombFlag                                  ;A6BB65;
     BEQ Function_Ridley_GrabbedSamus_Setup                               ;A6BB6B;
     JSR.W GrabSamus                                                      ;A6BB6D;
     LDA.W #Function_Ridley_DodgingPowerBomb                              ;A6BB70;
@@ -7390,17 +7372,17 @@ SelfDestructSequenceFunction_C_StartEscapeSequence:
 ;;; $C136: Draw "emergency" text ;;;
 DrawEmergencyText:
 ; VRAM BG1 tilemap (Bh..13h, 6) = [.emergencyTilemap]
-    LDX.W #.tilemapEntry                                                 ;A6C136;
-    LDY.W VRAMWriteStack                                                 ;A6C139;
-    LDA.W $0000,X                                                        ;A6C13C;
-    STA.W VRAMWrite.size,Y                                               ;A6C13F; >.<
-    LDA.W $0003,X                                                        ;A6C142;
-    STA.W VRAMWrite.src+1,Y                                              ;A6C145; >.<
-    LDA.W $0002,X                                                        ;A6C148;
-    STA.W VRAMWrite.src,Y                                                ;A6C14B; >.<
-    LDA.W $0005,X                                                        ;A6C14E;
-    STA.W VRAMWrite.dest,Y                                               ;A6C151; >.<
-    TYA                                                                  ;A6C154;
+    LDY.W #.tilemapEntry                                                 ;A6C136;
+    LDX.W VRAMWriteStack                                                 ;A6C139;
+    LDA.W $0000,Y                                                        ;A6C13C;
+    STA.B VRAMWrite.size,X                                               ;A6C13F;
+    LDA.W $0003,Y                                                        ;A6C142;
+    STA.B VRAMWrite.src+1,X                                              ;A6C145;
+    LDA.W $0002,Y                                                        ;A6C148;
+    STA.B VRAMWrite.src,X                                                ;A6C14B;
+    LDA.W $0005,Y                                                        ;A6C14E;
+    STA.B VRAMWrite.dest,X                                               ;A6C151;
+    TXA                                                                  ;A6C154;
     CLC                                                                  ;A6C155;
     ADC.W #$0007                                                         ;A6C156;
     STA.W VRAMWriteStack                                                 ;A6C159;
@@ -7498,22 +7480,22 @@ SetupZebesEscapeTypewriter:
 ProcessEscapeTimerTileTransfers:
 ;; Returns:
 ;;     Carry: Set if transfers finished, otherwise clear
-    LDX.W RidleyCeres.misc0                                              ;A6C26E;
-    LDY.W VRAMWriteStack                                                 ;A6C271;
-    LDA.W $0000,X                                                        ;A6C274;
+    LDY.W RidleyCeres.misc0                                              ;A6C26E;
+    LDX.W VRAMWriteStack                                                 ;A6C271;
+    LDA.W $0000,Y                                                        ;A6C274;
     BEQ .returnCarrySet                                                  ;A6C277;
-    STA.W VRAMWrite.size,Y                                               ;A6C279; >.<
-    LDA.W $0003,X                                                        ;A6C27C;
-    STA.W VRAMWrite.src+1,Y                                              ;A6C27F; >.<
-    LDA.W $0002,X                                                        ;A6C282;
-    STA.W VRAMWrite.src,Y                                                ;A6C285; >.<
-    LDA.W $0005,X                                                        ;A6C288;
-    STA.W VRAMWrite.dest,Y                                               ;A6C28B; >.<
-    TYA                                                                  ;A6C28E;
+    STA.B VRAMWrite.size,X                                               ;A6C279;
+    LDA.W $0003,Y                                                        ;A6C27C;
+    STA.B VRAMWrite.src+1,X                                              ;A6C27F;
+    LDA.W $0002,Y                                                        ;A6C282;
+    STA.B VRAMWrite.src,X                                                ;A6C285;
+    LDA.W $0005,Y                                                        ;A6C288;
+    STA.B VRAMWrite.dest,X                                               ;A6C28B;
+    TXA                                                                  ;A6C28E;
     CLC                                                                  ;A6C28F;
     ADC.W #$0007                                                         ;A6C290;
     STA.W VRAMWriteStack                                                 ;A6C293;
-    TXA                                                                  ;A6C296;
+    TYA                                                                  ;A6C296;
     ADC.W #$0007                                                         ;A6C297;
     STA.W RidleyCeres.misc0                                              ;A6C29A;
     TAX                                                                  ;A6C29D;
@@ -7608,11 +7590,12 @@ HandleTypewriterText:
     TXA                                                                  ;A6C319;
     INC                                                                  ;A6C31A;
     STA.L TypewriterInstructionListPointer                               ;A6C31B;
-    LDY.W VRAMWriteStack                                                 ;A6C31F;
+    TYX
+    LDX.W VRAMWriteStack                                                 ;A6C31F;
     LDA.W #$0002                                                         ;A6C322;
-    STA.W VRAMWrite.size,Y                                               ;A6C325; >.<
+    STA.B VRAMWrite.size,X                                               ;A6C325;
     LDA.W #TypewriterTileToBeWrittenToTilemap>>8&$FF00                   ;A6C328;
-    STA.W VRAMWrite.src+1,Y                                              ;A6C32B; >.<
+    STA.B VRAMWrite.src+1,X                                              ;A6C32B;
     PLA                                                                  ;A6C32E;
     SEC                                                                  ;A6C32F;
     SBC.W #$0041                                                         ;A6C330;
@@ -7620,12 +7603,12 @@ HandleTypewriterText:
     ADC.B DP_Temp12                                                      ;A6C334;
     STA.L TypewriterTileToBeWrittenToTilemap                             ;A6C336;
     LDA.W #TypewriterTileToBeWrittenToTilemap                            ;A6C33A; $7E
-    STA.W VRAMWrite.src,Y                                                ;A6C33D; >.<
+    STA.B VRAMWrite.src,X                                                ;A6C33D;
     LDA.L TypewriterVRAMTilemapAddr                                      ;A6C340;
-    STA.W VRAMWrite.dest,Y                                               ;A6C344; >.<
+    STA.B VRAMWrite.dest,X                                               ;A6C344;
     INC                                                                  ;A6C347;
     STA.L TypewriterVRAMTilemapAddr                                      ;A6C348;
-    TYA                                                                  ;A6C34C;
+    TXA                                                                  ;A6C34C;
     CLC                                                                  ;A6C34D;
     ADC.W #$0007                                                         ;A6C34E;
     STA.W VRAMWriteStack                                                 ;A6C351;
@@ -7691,18 +7674,19 @@ else
     PLB
 endif
     PLB                                                                  ;A6C388;
-    LDY.W VRAMWriteStack                                                 ;A6C389;
+    TXY
+    LDX.W VRAMWriteStack                                                 ;A6C389;
 
   .loop:
-    LDA.W $0000,X                                                        ;A6C38C;
+    LDA.W $0000,Y                                                        ;A6C38C;
     BEQ .done                                                            ;A6C38F;
-    STA.W VRAMWrite.size,Y                                               ;A6C391; >.<
-    LDA.W $0003,X                                                        ;A6C394;
-    STA.W VRAMWrite.src+1,Y                                              ;A6C397; >.<
-    LDA.W $0002,X                                                        ;A6C39A;
-    STA.W VRAMWrite.src,Y                                                ;A6C39D; >.<
-    LDA.W $0005,X                                                        ;A6C3A0;
-    STA.W VRAMWrite.dest,Y                                               ;A6C3A3; >.<
+    STA.B VRAMWrite.size,X                                               ;A6C391;
+    LDA.W $0003,Y                                                        ;A6C394;
+    STA.B VRAMWrite.src+1,X                                              ;A6C397;
+    LDA.W $0002,Y                                                        ;A6C39A;
+    STA.B VRAMWrite.src,X                                                ;A6C39D;
+    LDA.W $0005,Y                                                        ;A6C3A0;
+    STA.B VRAMWrite.dest,X                                               ;A6C3A3;
     TYA                                                                  ;A6C3A6;
     CLC                                                                  ;A6C3A7;
     ADC.W #$0007                                                         ;A6C3A8;
@@ -7713,7 +7697,8 @@ endif
     BRA .loop                                                            ;A6C3B1;
 
   .done:
-    STY.W VRAMWriteStack                                                 ;A6C3B3;
+    STX.W VRAMWriteStack                                                 ;A6C3B3;
+    TYX
     PLB                                                                  ;A6C3B6;
     RTL                                                                  ;A6C3B7;
 
@@ -8058,23 +8043,11 @@ Function_Ridley_DeathSequence_StartFallingApart:
     LDA.W Enemy.properties                                               ;A6C5B2;
     ORA.W #$0100                                                         ;A6C5B5;
     STA.W Enemy.properties                                               ;A6C5B8;
-    LDA.W #Function_Ridley_DeathSequence_FallingApart                    ;A6C5BB;
+    LDA.W #Function_Ridley_DeathSequence_StillFallingApart               ;A6C5BB;
     STA.W Ridley.function                                                ;A6C5BE;
-    LDA.W #$0020                                                         ;A6C5C1;
+    LDA.W #$0120                                                         ;A6C5C1;
     STA.W Ridley.functionTimer                                           ;A6C5C4;
     RTS                                                                  ;A6C5C7;
-
-
-;;; $C5C8: Ridley function - death sequence - falling apart ;;;
-Function_Ridley_DeathSequence_FallingApart:
-; Useless function. Wait 20h frames before waiting 100h more frames >_<;
-    DEC.W Ridley.functionTimer                                           ;A6C5C8;
-    BPL Function_Ridley_DeathSequence_DeathRoar_return                   ;A6C5CB;
-    LDA.W #Function_Ridley_DeathSequence_StillFallingApart               ;A6C5CD;
-    STA.W Ridley.function                                                ;A6C5D0;
-    LDA.W #$0100                                                         ;A6C5D3;
-    STA.W Ridley.functionTimer                                           ;A6C5D6;
-    RTS                                                                  ;A6C5D9;
 
 
 ;;; $C5DA: Ridley function - death sequence - still falling apart ;;;
@@ -8905,8 +8878,7 @@ Function_RidleyTail_5_Pogo_Descending_StabSetup:
 ;;; $CBD5: Ridley tail function index 8 - unused - neutral with spinny tail whips ;;;
 Function_RidleyTail_8_UnusedNeutralWithSpinnyTailWhips:
     LDA.W #UNUSED_HandleRidleyTailWhipWithExtraSpinning_A6CCC0           ;A6CBD5;
-    STA.B DP_Temp12                                                      ;A6CBD8;
-    BRA UpdateRidleyTailSegmentAngles                                    ;A6CBDA; >.<
+    STA.B DP_Temp12                                                      ;A6CBD8; fallthrough to UpdateRidleyTailSegmentAngles
 
 
 ;;; $CBDC: Update Ridley tail segment angles ;;;
@@ -9135,7 +9107,7 @@ HandleNormalRidleyPogoTail:
     BCS .randomlySkipDistanceCheck                                       ;A6CD35;
     LDA.W SamusXPosition                                                 ;A6CD37;
     SEC                                                                  ;A6CD3A;
-    SBC.L Enemy.XPosition                                                ;A6CD3B; >.<
+    SBC.W Enemy.XPosition                                                ;A6CD3B;
     BPL .SamusOnRight                                                    ;A6CD3F;
     EOR.W #$FFFF                                                         ;A6CD41;
     INC                                                                  ;A6CD44;
@@ -10158,7 +10130,8 @@ DetermineAndSetCeresRidleysColorPalette:
     CMP.W #$0046                                                         ;A6D4C7; 70
     BCC .paletteChosen                                                   ;A6D4CA;
     LDY.W #$0001                                                         ;A6D4CC;
-    CMP.W #$005A                                                         ;A6D4CF; >.< where's the BCC?
+    CMP.W #$005A                                                         ;A6D4CF; 90
+    BCC .paletteChosen
     LDY.W #$0002                                                         ;A6D4D2;
 
   .paletteChosen:
@@ -10862,7 +10835,6 @@ MoveRidley:
     LDA.L Ridley.minYPosition                                            ;A6D8E2;
     STA.W Enemy.YPosition,X                                              ;A6D8E6;
     STZ.W Ridley.YVelocity,X                                             ;A6D8E9;
-    LDA.L Ridley.hitARoomBoundary                                        ;A6D8EC; >_<
     LDA.W #$0004                                                         ;A6D8F0;
     STA.L Ridley.hitARoomBoundary                                        ;A6D8F3;
     RTS                                                                  ;A6D8F7;
@@ -11044,37 +11016,36 @@ HandleRidleyRibsAnimation:
     LDA.L Ridley.ribsAnimationTablePointer                               ;A6DA17;
 
   .restart:
-    TAX                                                                  ;A6DA1B;
-    LDA.W $0000,X                                                        ;A6DA1C;
+    TAY                                                                  ;A6DA1B;
+    LDA.W $0000,Y                                                        ;A6DA1C;
     BPL .timer                                                           ;A6DA1F;
     STA.L Ridley.ribsAnimationTablePointer                               ;A6DA21;
     BRA .restart                                                         ;A6DA25;
 
   .timer:
     STA.L Ridley.ribsAnimationTimer                                      ;A6DA27;
-    LDY.W VRAMWriteStack                                                 ;A6DA2B;
+    LDX.W VRAMWriteStack                                                 ;A6DA2B;
     LDA.W #Tiles_RidleysRibsAndClaws_0>>8&$FF00                          ;A6DA2E;
-    STA.W VRAMWrite.src+1,Y                                              ;A6DA31; >.<
-    STA.W VRAMWrite[1].src+1,Y                                           ;A6DA34; >.<
-    LDA.W $0002,X                                                        ;A6DA37;
-    STA.W VRAMWrite.src,Y                                                ;A6DA3A; >.<
-    LDA.W $0004,X                                                        ;A6DA3D;
-    STA.W VRAMWrite[1].src,Y                                             ;A6DA40; >.<
+    STA.B VRAMWrite.src+1,X                                              ;A6DA31;
+    STA.B VRAMWrite[1].src+1,X                                           ;A6DA34;
+    LDA.W $0002,Y                                                        ;A6DA37;
+    STA.B VRAMWrite.src,X                                                ;A6DA3A;
+    LDA.W $0004,Y                                                        ;A6DA3D;
+    STA.B VRAMWrite[1].src,X                                             ;A6DA40;
     LDA.W #$7220                                                         ;A6DA43;
-    STA.W VRAMWrite.dest,Y                                               ;A6DA46; >.<
+    STA.B VRAMWrite.dest,X                                               ;A6DA46;
     LDA.W #$7320                                                         ;A6DA49;
-    STA.W VRAMWrite[1].dest,Y                                            ;A6DA4C; >.<
+    STA.B VRAMWrite[1].dest,X                                            ;A6DA4C;
     LDA.W #$0040                                                         ;A6DA4F;
-    STA.W VRAMWrite.size,Y                                               ;A6DA52; >.<
-    STA.W VRAMWrite[1].size,Y                                            ;A6DA55; >.<
-    TYA                                                                  ;A6DA58;
+    STA.B VRAMWrite.size,X                                               ;A6DA52;
+    STA.B VRAMWrite[1].size,X                                            ;A6DA55;
+    TXA                                                                  ;A6DA58;
     CLC                                                                  ;A6DA59;
     ADC.W #$000E                                                         ;A6DA5A;
-    TAY                                                                  ;A6DA5D;
-    STY.W VRAMWriteStack                                                 ;A6DA5E;
-    LDA.W #$0000                                                         ;A6DA61;
-    STA.W VRAMWrite.size,Y                                               ;A6DA64;
-    TXA                                                                  ;A6DA67;
+    TAX                                                                  ;A6DA5D;
+    STX.W VRAMWriteStack                                                 ;A6DA5E;
+    STZ.B VRAMWrite.size,X                                               ;A6DA64;
+    TYA                                                                  ;A6DA67;
     CLC                                                                  ;A6DA68;
     ADC.W #$0006                                                         ;A6DA69;
     STA.L Ridley.ribsAnimationTablePointer                               ;A6DA6C;
@@ -11106,33 +11077,32 @@ RidleyRibsAnimationTable:
 DrawRidleysFeet:
 ;; Parameters:
 ;;     Carry: Set if feet are clenched, otherwise clear
-    LDX.W #.unclenched                                                   ;A6DA8B;
+    LDY.W #.unclenched                                                   ;A6DA8B;
     BCC .notHolding                                                      ;A6DA8E;
-    LDX.W #.clenched                                                     ;A6DA90;
+    LDY.W #.clenched                                                     ;A6DA90;
 
   .notHolding:
-    LDY.W VRAMWriteStack                                                 ;A6DA93;
+    LDX.W VRAMWriteStack                                                 ;A6DA93;
     LDA.W #Tiles_RidleysRibsAndClaws_0>>8&$FF00                          ;A6DA96;
-    STA.W VRAMWrite.src+1,Y                                              ;A6DA99; >.<
-    STA.W VRAMWrite[1].src+1,Y                                           ;A6DA9C; >.<
-    LDA.W $0000,X                                                        ;A6DA9F;
-    STA.W VRAMWrite.src,Y                                                ;A6DAA2; >.<
-    LDA.W $0002,X                                                        ;A6DAA5;
-    STA.W VRAMWrite[1].src,Y                                             ;A6DAA8; >.<
+    STA.B VRAMWrite.src+1,X                                              ;A6DA99;
+    STA.B VRAMWrite[1].src+1,X                                           ;A6DA9C;
+    LDA.W $0000,Y                                                        ;A6DA9F;
+    STA.B VRAMWrite.src,X                                                ;A6DAA2;
+    LDA.W $0002,Y                                                        ;A6DAA5;
+    STA.B VRAMWrite[1].src,X                                             ;A6DAA8;
     LDA.W #$7AC0                                                         ;A6DAAB;
-    STA.W VRAMWrite.dest,Y                                               ;A6DAAE; >.<
+    STA.B VRAMWrite.dest,X                                               ;A6DAAE;
     LDA.W #$7BC0                                                         ;A6DAB1;
-    STA.W VRAMWrite[1].dest,Y                                            ;A6DAB4; >.<
+    STA.B VRAMWrite[1].dest,X                                            ;A6DAB4;
     LDA.W #$0080                                                         ;A6DAB7;
-    STA.W VRAMWrite.size,Y                                               ;A6DABA; >.<
-    STA.W VRAMWrite[1].size,Y                                            ;A6DABD; >.<
-    TYA                                                                  ;A6DAC0;
+    STA.B VRAMWrite.size,X                                               ;A6DABA;
+    STA.B VRAMWrite[1].size,X                                            ;A6DABD;
+    TXA                                                                  ;A6DAC0;
     CLC                                                                  ;A6DAC1;
     ADC.W #$000E                                                         ;A6DAC2;
-    TAY                                                                  ;A6DAC5;
-    STY.W VRAMWriteStack                                                 ;A6DAC6;
-    LDA.W #$0000                                                         ;A6DAC9;
-    STA.W VRAMWrite.size,Y                                               ;A6DACC;
+    TAX                                                                  ;A6DAC5;
+    STX.W VRAMWriteStack                                                 ;A6DAC6;
+    STZ.B VRAMWrite.size,X                                               ;A6DACC;
     RTS                                                                  ;A6DACF;
 
   .unclenched:
@@ -11809,15 +11779,14 @@ CheckForSamusCollisionWithRectangle:
 
 ;;; $DF59: Enemy touch - Ridley ;;;
 EnemyTouch_Ridley:
-    JSL.L NormalEnemyTouchAI_NoDeathCheck_External                       ;A6DF59;
-    JMP.W RTL_A6DFB6                                                     ;A6DF5D; >.<
+    JML NormalEnemyTouchAI_NoDeathCheck_External                         ;A6DF59;
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $DF60: Unused. Hurt Samus (external) ;;;
 UNUSED_HurtSamusExternal_A6DF60:
     JSR.W UNUSED_HurtSamus_A6DF66                                        ;A6DF60;
-    JMP.W RTL_A6DFB6                                                     ;A6DF63;
+    RTL                                                                  ;A6DF63;
 
 
 ;;; $DF66: Unused. Hurt Samus ;;;
@@ -11860,21 +11829,15 @@ EnemyShot_Ridley:
     LDA.L RidleyCeres.hitCounter                                         ;A6DFA1;
     INC                                                                  ;A6DFA5;
     STA.L RidleyCeres.hitCounter                                         ;A6DFA6;
-    BRA RTL_A6DFB6                                                       ;A6DFAA;
+    RTL                                                                  ;A6DFAA;
 
   .Norfair:
-    JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External     ;A6DFAC;
-    BRA RTL_A6DFB6                                                       ;A6DFB0;
+    JML NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External       ;A6DFAC;
 
 
 ;;; $DFB2: Power bomb reaction - enemy $E13F/$E17F (Ridley) ;;;
 PowerBombReaction_Ridley:
-    JSL.L NormalEnemyPowerBombAI_NoDeathCheck_External                   ;A6DFB2; fallthrough to RTL_A6DFB6
-
-
-;;; $DFB6: RTL. Ridley reaction ;;;
-RTL_A6DFB6:
-    RTL                                                                  ;A6DFB6;
+    JML NormalEnemyPowerBombAI_NoDeathCheck_External                     ;A6DFB2;
 
 
 ;;; $DFB7: Start Norfair Ridley death sequence ;;;
@@ -13631,8 +13594,7 @@ Instruction_CeresSteam_DecActivationTimer_Decide_GotoYOrY2:
 ;;; $F135: Instruction - show enemy ;;;
 Instruction_CeresSteam_SetToTangibleAndVisible:
     LDA.W Enemy.properties,X                                             ;A6F135;
-    AND.W #$FBFF                                                         ;A6F138; >.< #$FAFF
-    AND.W #$FEFF                                                         ;A6F13B;
+    AND.W #$FAFF                                                         ;A6F138;
     STA.W Enemy.properties,X                                             ;A6F13E;
     RTL                                                                  ;A6F141;
 
@@ -14439,19 +14401,21 @@ LoadRotatingElevatorRoomPreExplosioNDoorOverlayTilesIfNeeded:
     LDA.W Enemy.init0,X                                                  ;A6F739;
     CMP.W #$0002                                                         ;A6F73C;
     BNE .return                                                          ;A6F73F;
-    LDY.W VRAMWriteStack                                                 ;A6F741;
+    TXY
+    LDX.W VRAMWriteStack                                                 ;A6F741;
     LDA.W #$0400                                                         ;A6F744;
-    STA.W VRAMWrite.size,Y                                               ;A6F747; >.<
+    STA.B VRAMWrite.size,X                                               ;A6F747;
     LDA.W #Tiles_CeresElevatorRoomDoor>>8&$FF00                          ;A6F74A;
-    STA.W VRAMWrite.src+1,Y                                              ;A6F74D; >.<
+    STA.B VRAMWrite.src+1,X                                              ;A6F74D;
     LDA.W #Tiles_CeresElevatorRoomDoor                                   ;A6F750;
-    STA.W VRAMWrite.src,Y                                                ;A6F753; >.<
+    STA.B VRAMWrite.src,X                                                ;A6F753;
     LDA.W #$7000                                                         ;A6F756;
-    STA.W VRAMWrite.dest,Y                                               ;A6F759; >.<
+    STA.B VRAMWrite.dest,X                                               ;A6F759;
     TYA                                                                  ;A6F75C;
     CLC                                                                  ;A6F75D;
     ADC.W #$0007                                                         ;A6F75E;
     STA.W VRAMWriteStack                                                 ;A6F761;
+    TYX
 
   .return:
     RTS                                                                  ;A6F764;

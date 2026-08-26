@@ -339,8 +339,6 @@ LoadInitialPalette:
 ; Palette loaded when loading a save or demo.
 ; Nothing is displayed during this time, so it's unclear why this palette is loaded at all
     PHP                                                                  ;8282C5;
-    SEP #$30                                                             ;8282C6;
-    PHP                                                                  ;8282C8; >.<
     REP #$30                                                             ;8282C9;
     LDY.W #$0200                                                         ;8282CB;
     LDX.W #$0000                                                         ;8282CE;
@@ -354,7 +352,6 @@ LoadInitialPalette:
     DEY                                                                  ;8282DC;
     BNE .loop                                                            ;8282DD;
     PLP                                                                  ;8282DF;
-    PLP                                                                  ;8282E0;
     RTS                                                                  ;8282E1;
 
 
@@ -524,7 +521,6 @@ GameState_23_TimeUpBlackOut:
     LDA.B DP_Brightness                                                  ;82843A;
     CMP.B #$80                                                           ;82843C;
     BEQ +                                                                ;82843E;
-    REP #$20                                                             ;828440; >.<
     PLP                                                                  ;828442;
     RTS                                                                  ;828443;
 
@@ -560,13 +556,6 @@ GameState_23_TimeUpBlackOut:
     BCC .notZebesTimebomb                                                ;828495;
     STZ.W GameOptionsMenuIndex                                           ;828497;
     STZ.W PauseMenu_MenuIndex                                            ;82849A;
-    LDX.W #$00FE                                                         ;82849D;
-
-  .loop:
-    STZ.W $1A8D,X                                                        ;8284A0; >.< possibly a pre-release address range for menu RAM
-    DEX                                                                  ;8284A3;
-    DEX                                                                  ;8284A4;
-    BPL .loop                                                            ;8284A5;
     LDA.W #$0019                                                         ;8284A7;
     STA.W GameState                                                      ;8284AA;
     PLP                                                                  ;8284AD;
@@ -5383,10 +5372,8 @@ Handle_PauseScreen_PaletteAnimation:
     REP #$30                                                             ;82A952;
     LDA.W #$002A                                                         ;82A954;
     JSL.L QueueSound_Lib3_Max6                                           ;82A957;
-    SEP #$20                                                             ;82A95B; >.<
-    LDA.B #$00                                                           ;82A95D;
-    XBA                                                                  ;82A95F;
-    LDA.B #$00                                                           ;82A960;
+    LDA.W #$0000                                                         ;82A95D;
+    SEP #$20                                                             ;82A95B;
     BRA .loop                                                            ;82A962;
 
 +   STA.W PauseMenu_PaletteAnimationTimer                                ;82A964;
@@ -10670,7 +10657,6 @@ HandleSamusRunningOutOfEnergy_and_IncrementGameTime:
     STA.W TimeIsFrozenFlag                                               ;82DB83;
     LDA.W #$001B                                                         ;82DB86;
     STA.W GameState                                                      ;82DB89;
-    LDA.W #$001B                                                         ;82DB8C; >.<
     JSL.L Run_Samus_Command                                              ;82DB8F;
     BRA .tickGameTime                                                    ;82DB93;
 
@@ -10876,12 +10862,7 @@ GameState_14_DeathSequence_BlackOutSurroundings:
     STZ.W DeathAnimation_Timer                                           ;82DD17;
     STZ.W ScreenFadeDelay                                                ;82DD1A;
     STZ.W ScreenFadeCounter                                              ;82DD1D;
-    LDX.W #$00FE                                                         ;82DD20;
 
--   STZ.W $1A8D,X                                                        ;82DD23; >.< possibly a pre-release address range for menu RAM
-    DEX                                                                  ;82DD26;
-    DEX                                                                  ;82DD27;
-    BPL -                                                                ;82DD28;
     LDA.W #$0010                                                         ;82DD2A;
     STA.W DeathAnimation_PreFlashingTimer                                ;82DD2D;
     LDA.W #$0003                                                         ;82DD30;
@@ -11190,27 +11171,6 @@ WaitUntilTheEndOfAVBlank_and_Enable_H_V_CounterInterrupts:
     RTS                                                                  ;82DF7F;
 
 
-;;; $DF80: Much ado about nothing ;;;
-Much_ado_about_nothing:
-; This code is painfully redundant.
-; It first checks whether the first byte of the function $80:982A is the same as the first byte of this function.
-; These two bytes are both `PHP`, so the branch is always taken; even if the branch wasn't taken,
-; it's completely pointless to disable h/v-counter interrupts only to enable them straight after.
-; And of course there's a `REP #$20` just before a `PLP`
-    PHP                                                                  ;82DF80;
-    SEP #$20                                                             ;82DF81;
-    LDA.L EnableHVCounterInterrupts                                      ;82DF83; >.<
-    CMP.L Much_ado_about_nothing                                         ;82DF87; >.<
-    BEQ .return                                                          ;82DF8B;
-    JSL.L DisableHVCounterInterrupts                                     ;82DF8D;
-    JSL.L EnableHVCounterInterrupts                                      ;82DF91;
-
-  .return:
-    REP #$20                                                             ;82DF95; >.<
-    PLP                                                                  ;82DF97;
-    RTS                                                                  ;82DF98;
-
-
 ;;; $DF99: Save map explored if elevator ;;;
 Save_Map_Explored_If_Elevator:
 if !DEBUG
@@ -11376,7 +11336,6 @@ Queue_Room_Music_Data:
 
 ;;; $E09B: Update music track index ;;;
 Update_Music_Track_Index:
-; $E0AC..CB can be omitted >_<;
 ; Called only by $80:A07B (start gameplay) to set the music track to play when Samus fanfare finishes
     PHP                                                                  ;82E09B;
     PHB                                                                  ;82E09C;
@@ -11386,19 +11345,6 @@ Update_Music_Track_Index:
     BCS .return                                                          ;82E0A5;
     LDA.W RoomMusicTrackIndex                                            ;82E0A7;
     BEQ .return                                                          ;82E0AA;
-    LDA.W RoomMusicTrackIndex+1                                          ;82E0AC;
-    AND.W #$FF00                                                         ;82E0AF;
-    STA.B DP_Temp12                                                      ;82E0B2;
-    LDA.W RoomMusicTrackIndex                                            ;82E0B4;
-    TSB.B DP_Temp12                                                      ;82E0B7;
-    LDA.W MusicDataIndex-1                                               ;82E0B9;
-    AND.W #$FF00                                                         ;82E0BC;
-    STA.B DP_Temp14                                                      ;82E0BF;
-    LDA.W MusicTrackIndex                                                ;82E0C1;
-    TSB.B DP_Temp14                                                      ;82E0C4;
-    LDA.B DP_Temp12                                                      ;82E0C6;
-    CMP.B DP_Temp14                                                      ;82E0C8;
-    BEQ .return                                                          ;82E0CA;
     LDA.W RoomMusicTrackIndex                                            ;82E0CC;
     STA.W MusicTrackIndex                                                ;82E0CF;
 
@@ -12327,7 +12273,6 @@ DoorTransitionFunction_NudgeSamusIfInterceptingTheDoor:
     LDA.W #$0004                                                         ;82E703;
 
 +   STA.B DP_NextIRQCmd                                                  ;82E706;
-    JSR.W Much_ado_about_nothing                                         ;82E708;
     LDA.W ElevatorProperties                                             ;82E70B;
     BEQ .notElevator                                                     ;82E70E;
     BIT.W ElevatorDirection                                              ;82E710;

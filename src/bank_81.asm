@@ -2847,7 +2847,6 @@ FileSelectMenu_Index8_FileCopy_SelectSource:
     LDA.W #$0037                                                         ;8196FD;
     JSL.L QueueSound_Lib1_Max6                                           ;819700;
     BRA Set_FileCopyMenu_SelectionMissile_Position                       ;819704;
-    REP #$30                                                             ;819706; >_< dead code
 
   .B:
     LDA.W PauseMenu_MenuIndex                                            ;819708;
@@ -4946,7 +4945,7 @@ FileSelectMap_Index6_AreaSelectMap:
     BIT.W #$0A00                                                         ;81A804;
     BEQ +                                                                ;81A807;
 if !DEBUG
-    LDA.W Debug_Enable                                                   ;81A809; <-- clobbers A >_<;
+    LDA.W Debug_Enable                                                   ;81A809;
     BEQ .checkB                                                          ;81A80C;
     JMP.W .debug                                                         ;81A80E;
 endif
@@ -4954,12 +4953,13 @@ endif
 +   BIT.W #$2500                                                         ;81A811;
     BEQ .checkB                                                          ;81A814;
 if !DEBUG
-    LDA.W Debug_Enable                                                   ;81A816; <-- clobbers A >_<;
+    LDA.W Debug_Enable                                                   ;81A816;
     BEQ .checkB                                                          ;81A819;
     JMP.W .debugNext                                                     ;81A81B;
 endif
 
   .checkB:
+    LDA.B DP_Controller1New                                              ;81A802;
     BIT.W #$8000                                                         ;81A81E;
     BEQ +                                                                ;81A821;
     LDA.W #$0016                                                         ;81A823;
@@ -4976,7 +4976,6 @@ endif
 
 if !DEBUG
   .debug:
-    STZ.B DP_Temp18                                                      ;81A83E; >_<
     LDA.B DP_Temp16                                                      ;81A840;
     STA.B DP_Temp18                                                      ;81A842;
     LDA.W FileSelectMapAreaIndex                                         ;81A844;
@@ -6282,7 +6281,6 @@ NewSaveFile:
   .loopClearEvents:
     STA.L SRAMMirror_ChozeBlockDestroyed,X                               ;81B372;
     STA.L SRAMMirror_Items,X                                             ;81B376;
-    STA.L SRAMMirror_Items,X                                             ;81B37A; >.<
     STA.L SRAMMirror_Doors,X                                             ;81B37E;
     STA.L SRAMMirror_MapStations,X                                       ;81B386;
     STA.L SRAMMirror_UsedSaveStationsElevators,X                         ;81B38A;
@@ -6296,7 +6294,6 @@ NewSaveFile:
   .loopClearEventsAgain:
     STA.L SRAMMirror_ChozeBlockDestroyed,X                               ;81B39C;
     STA.L SRAMMirror_Items,X                                             ;81B3A0;
-    STA.L SRAMMirror_Items,X                                             ;81B3A4; >.<
     STA.L SRAMMirror_Doors,X                                             ;81B3A8;
     INX                                                                  ;81B3AC;
     INX                                                                  ;81B3AD;

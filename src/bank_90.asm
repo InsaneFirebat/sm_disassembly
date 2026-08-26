@@ -2780,7 +2780,7 @@ Samus_Jumping_Movement:
 +   STZ.W SamusXAccelerationMode                                         ;908FD0;
     JSR.W MoveSamus_HorizontallyWithZeroBaseXSpeed                       ;908FD3;
     JSR.W MoveSamus_ByExtraYDisplacement                                 ;908FD6;
-    JMP.W .return                                                        ;908FD9; >.<
+    BRA .return                                                          ;908FD9;
 
   .jumping:
     LDA.W SamusYDirection                                                ;908FDC;
@@ -3313,9 +3313,6 @@ UNUSED_MoveSamus_9092D6:
 ;;     $12: Samus Y velocity
     PHP                                                                  ;9092D6;
     REP #$30                                                             ;9092D7;
-    BRA .uselessBranch                                                   ;9092D9; >.<
-
-  .uselessBranch:
     LDA.W SamusYPosition                                                 ;9092DB;
     CLC                                                                  ;9092DE;
     ADC.B DP_Temp12                                                      ;9092DF;
@@ -5541,9 +5538,8 @@ SamusMovement_SpinJumping:
     BEQ .screwAttack                                                     ;90A4CE;
     CMP.W #$0082                                                         ;90A4D0;
     BEQ .screwAttack                                                     ;90A4D3;
-    BRA .liquidPhysics                                                   ;90A4D5; >.<
 
-  .liquidPhysics:
+  .liquidPhysics
     LDA.B DP_Temp12                                                      ;90A4D7;
     BEQ +                                                                ;90A4D9;
     LDX.W SamusAnimationFrame                                            ;90A4DB;
@@ -6046,8 +6042,7 @@ DisableMinimap_MarkBossRoomTilesExplored:
     PLB                                                                  ;90A7E7;
     LDA.W #$0001                                                         ;90A7E8;
     STA.W DisableMinimap                                                 ;90A7EB;
-    LDA.W #$001F                                                         ;90A7EE;
-    ORA.W #$2C00                                                         ;90A7F1; >.<
+    LDA.W #$2C1F                                                         ;90A7EE;
     LDX.W #$0000                                                         ;90A7F4;
 
   .loop:
@@ -6899,8 +6894,7 @@ Load_Beam_Palette_withStackPrepped:
 ;;     Y: Beam type * 2 (without the charge beam bit)
 
 ; Requires DB and PSR to have been pushed
-    LDA.W #$0090                                                         ;90ACCD;
-    XBA                                                                  ;90ACD0; >.<
+    LDA.W #BeamPalettePointers>>8&$FF00                                  ;90ACCD;
     STA.B DP_Temp01                                                      ;90ACD1;
     LDA.W BeamPalettePointers,Y                                          ;90ACD3;
     STA.B DP_Temp00                                                      ;90ACD6;
@@ -6945,8 +6939,7 @@ Load_Beam_Palette:
     AND.W #$0FFF                                                         ;90ACFC;
     ASL                                                                  ;90ACFF;
     TAY                                                                  ;90AD00;
-    LDA.W #$0090                                                         ;90AD01;
-    XBA                                                                  ;90AD04; >.<
+    LDA.W #BeamPalettePointers>>8&$FF00                                  ;90AD01;
     STA.B DP_Temp01                                                      ;90AD05;
     LDA.W BeamPalettePointers,Y                                          ;90AD07;
     STA.B DP_Temp00                                                      ;90AD0A;
@@ -12150,7 +12143,6 @@ SamusMovementHandler_VerticalShinespark:
     LDA.W #$0008                                                         ;90D0B1;
     STA.W HurtFlashCounter                                               ;90D0B4;
     LDX.W #$0004                                                         ;90D0B7;
-    LDY.W Unknown_ShinesparkMovementHandler_Unused_90EF20                ;90D0BA; >_<
     JSR.W UpdateSamusEchoPosition                                        ;90D0BD;
     JSR.W Shinespark_Vertical_Movement                                   ;90D0C0;
     JSR.W EndShinesparkIfCollisionDetectedOrLowEnergy                    ;90D0C3;
@@ -12158,8 +12150,6 @@ SamusMovementHandler_VerticalShinespark:
     CMP.W #$001E                                                         ;90D0C9;
     BMI .return                                                          ;90D0CC;
     DEC.W Energy                                                         ;90D0CE;
-    BPL .return                                                          ;90D0D1;
-    STZ.W Energy                                                         ;90D0D3; >_<
 
   .return:
     RTS                                                                  ;90D0D6;
@@ -12172,8 +12162,7 @@ SamusMovementHandler_DiagonalShinespark:
     LDA.W #$0008                                                         ;90D0DD;
     STA.W HurtFlashCounter                                               ;90D0E0;
     LDX.W #$0004                                                         ;90D0E3;
-    LDY.W Unknown_ShinesparkMovementHandler_Unused_90EF20                ;90D0E6;
-    JSR.W UpdateSamusEchoPosition                                        ;90D0E9; >_<
+    JSR.W UpdateSamusEchoPosition                                        ;90D0E9;
     JSR.W Shinespark_Horizontal_Movement                                 ;90D0EC;
     JSR.W Shinespark_Vertical_Movement                                   ;90D0EF;
     JSR.W EndShinesparkIfCollisionDetectedOrLowEnergy                    ;90D0F2;
@@ -12181,8 +12170,6 @@ SamusMovementHandler_DiagonalShinespark:
     CMP.W #$001E                                                         ;90D0F8;
     BMI .return                                                          ;90D0FB;
     DEC.W Energy                                                         ;90D0FD;
-    BPL .return                                                          ;90D100;
-    STZ.W Energy                                                         ;90D102; >_<
 
   .return:
     RTS                                                                  ;90D105;
@@ -12195,7 +12182,6 @@ SamusMovementHandler_HorizontalShinespark:
     LDA.W #$0008                                                         ;90D10C;
     STA.W HurtFlashCounter                                               ;90D10F;
     LDX.W #$0008                                                         ;90D112;
-    LDY.W Unknown_ShinesparkMovementHandler_Unused_90EF20                ;90D115; >_<
     JSR.W UpdateSamusEchoPosition                                        ;90D118;
     JSR.W Shinespark_Horizontal_Movement                                 ;90D11B;
     JSR.W EndShinesparkIfCollisionDetectedOrLowEnergy                    ;90D11E;
@@ -12203,8 +12189,6 @@ SamusMovementHandler_HorizontalShinespark:
     CMP.W #$001E                                                         ;90D124;
     BMI .return                                                          ;90D127;
     DEC.W Energy                                                         ;90D129;
-    BPL .return                                                          ;90D12C;
-    STZ.W Energy                                                         ;90D12E; >_<
 
   .return:
     RTS                                                                  ;90D131;
@@ -14249,7 +14233,6 @@ SamusMovementHandler_Knockback:
 ;;; $DF50: Crash ;;;
 ZeroIndex_Crash:
     BRA ZeroIndex_Crash                                                  ;90DF50;
-    RTS                                                                  ;90DF52; >.<
 
 
 ;;; $DF53: Knockback movement - up ;;;
@@ -16870,12 +16853,6 @@ UNUSED_PossiblyFootStepGraphicOffsets_90EF1C:
 ; Best guess is footstep graphic offsets from Samus' position
     dw $000C,$0010                                                       ;90EF1C;
 endif ; !FEATURE_KEEP_UNREFERENCED
-
-
-;;; $EF20: Unknown ;;;
-Unknown_ShinesparkMovementHandler_Unused_90EF20:
-; Loaded by shinespark Samus movement handlers and then unused >_<;
-    dw $0010                                                             ;90EF20;
 
 
 ;;; $EF22: Post grapple collision detection ;;;
