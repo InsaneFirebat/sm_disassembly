@@ -4543,7 +4543,7 @@ Freespace_Bank9B_CBFB:                                                   ;9BCBFB
 
 
 warnpc $9BE000
-ORG $9BE000
+org $9BE000
 
 
 ;;; $E000: Samus top tiles - set 8 - entry 0 ;;;

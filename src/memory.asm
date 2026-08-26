@@ -56,7 +56,7 @@ DP_Temp34: skip 2 ; $34
 DP_BlocksToUpdate: skip 3 ; $36
 skip 3 ; $39..3B
 DP_SamusTilesDefinition: skip 1 ; $3C
-skip 7 ; $3E..43
+skip 7 ; $3D..43
 DP_ReturnParam: skip 3 ; $44
 DP_DecompSrc: skip 3 ; $47
 DP_DecompVar: skip 2 ; $4A
@@ -655,7 +655,7 @@ DemoInput_BackupController1New: skip 2 ; $0A92
 
 org $0A88
 SuitPickupIndirectHDMATable: skip 11 ; $0A88..92
-skip 1
+skip 1 ; $0A93
 SamusAnimationFrameTimer: skip 2 ; $0A94
 SamusAnimationFrame: skip 2 ; $0A96
 skip 2 ; $0A98
@@ -855,7 +855,7 @@ GrappleCollision_YPosition: skip 2 ; $0D92
 GrappleCollision_XBlock: skip 2 ; $0D94
 GrappleCollision_YBlock: skip 2 ; $0D96
 GrappleCollision_DistanceFromSamusFeet: skip 2 ; $0D98
-skip 2
+skip 2 ; $0D9A
 GrappleCollision_TotalSwingAngularVelocity: skip 2 ; $0D9C
 
 org $0D82
@@ -951,7 +951,7 @@ DebugDeathAnimationFlag: skip 0 ; $0DEC
 DemoControlFlags: skip 2 ; $0DEC
 ShinesparkYSubAcceleration: skip 0 ; $0DEE
 DraygonEscapePreviousDpadInput: skip 2 ; $0DEE
-skip 4
+skip 4 ; $0DF0..F3
 DebugSpareCPUDisplayFlag: skip 2 ; $0DF4
 DebugSamusTileViewerFlag: skip 2 ; $0DF6
 skip 6 ; $0DF8..FD
@@ -1281,13 +1281,13 @@ Mode7Object_Index: skip 2 ; $19B1
 skip 2 ; $19B3
 
 CinematicBGObject_IndirectInstructionPointers: skip 8 ; $19B5..BC
-skip $10
+skip $10 ; $19BD..CC
 CinematicBGObject_InstListPointers: skip 8 ; $19CD..D4
 CinematicBGObject_PreInstructions: skip 8 ; $19D5..DC
 CinematicBGObject_InstructionTimers: skip 8 ; $19DD..E4
 CinematicBGObject_Timers: skip 8 ; $19E5..EC
 CinematicBGObject_Index: skip 2 ; $19ED
-skip 2
+skip 2 ; $19EF
 CinematicBGObject_Enable: skip 2 ; $19F1
 CinematicBGObject_TilemapUpdateFlag: skip 2 ; $19F3
 CinematicBGObject_VRAMAddr: skip 2 ; $19F5
@@ -1351,11 +1351,11 @@ IntroBabyMetroidYVelocity: skip 0 ; $1A4F
 PostCreditsSamusFadeTimer: skip 2 ; $1A4F
 CinematicFrameCounter: skip 2 ; $1A51
 SkipToTitleScreenIndex: skip 2 ; $1A53
-skip 2
+skip 2 ; $1A55
 IntroSamusDisplayFlag: skip 2 ; $1A57
 
 CinematicSpriteObject_Index: skip 2 ; $1A59
-skip 2
+skip 2 ; $1A5B
 CinematicSpriteObject_SpritemapPointers: skip $20 ; $1A5D..7C
 CinematicSpriteObject_XPositions: skip $20 ; $1A7D..9C
 CinematicSpriteObject_YPositions: skip $20 ; $1A9D..BC
@@ -1373,9 +1373,9 @@ CinematicSpriteObject_IntroSubtitleTimer: skip 2 ; $1BA3
 
 org $1A8F
 GameOptionsMenuObject_Index: skip 2 ; $1A8F
-skip 2
+skip 2 ; $1A91
 GameOptionsMenuObject_InitParam: skip 2 ; $1A93
-skip 8
+skip 8 ; $1A95..9C
 GameOptionsMenuObject_SpritemapPointers: skip $10 ; $1A9D..AC
 GameOptionsMenuObject_XPositions: skip $10 ; $1AAD..BC
 GameOptionsMenuObject_YPositions: skip $10 ; $1ABD..CC
@@ -1439,7 +1439,7 @@ AnimatedTilesObject_SrcAddr: skip 12 ; $1F25..30
 AnimatedTilesObject_Sizes: skip 12 ; $1F31..3C
 AnimatedTilesObject_VRAMAddr: skip 12 ; $1F3D..48
 AnimatedTilesObject_Instruction: skip 2 ; $1F49
-skip 6
+skip 6 ; $1F49..50
 
 CinematicFunction: skip 2 ; $1F51
 
@@ -1814,7 +1814,7 @@ HUDTilemap_Row1AutoReserve: skip 4 ; $7EC618..1B
 HUDTilemap_Row1Missiles: skip 6 ; $7EC61C..21
 skip $1A ; $7EC624..3B
 HUDTilemap_Row1Minimap: skip 10 ; $7EC63C..45
-skip 2; $7EC646
+skip 2 ; $7EC646
 HUDTilemap_Row2: skip 0 ; $7EC648
 skip $10 ; $7EC648..57
 HUDTilemap_Row2AutoReserve: skip 4 ; $7EC658..5B
@@ -1842,9 +1842,9 @@ HUDBG3YPosition: skip 2 ; $7ECADA
 BG3XPosition: skip 2 ; $7ECADC
 BG3YPosition: skip 2 ; $7ECADE
 CrocomireBG2YScrollIndirectHDMATable: skip 8 ; $7ECAE0..E7
-skip 8
+skip 8 ; $7ECAE8..EF
 CrocomireBG2YScrollHDMADataTable: skip $210 ; $7ECAF0..CCEF
-skip $20
+skip $20 ; $7ECCF0..CD1F
 Scrolls: skip $32 ; $7ECD20..51
 
 ExploredMapTiles: skip $800 ; $7ECD52..D551
@@ -1869,7 +1869,7 @@ ProjectileTrail_RightYPosition: skip $24 ; $7ED79C..BF
 
 SRAMMirror_Equipment: skip $60 ; $7ED7C0..D81F
 SRAMMirror_Event: skip 3 ; $7ED820..22
-skip 5
+skip 5 ; $7ED823..27
 SRAMMirror_Boss: skip 0 ; $7ED828
 skip 1 ; $7ED828
   .Brinstar: skip 1 ; $7ED829
@@ -1919,9 +1919,9 @@ EnemyProcessingStage: skip 2 ; $7EF378
 skip 6 ; $7EF37A..7E
 
 EnemyProjectileData_CollisionOptions: skip $24 ; $7EF380..A3
-skip $24
+skip $24 ; $7EF3A4..C7
 EnemyProjectileData_EnemyHeaderPointer: skip $24 ; $7EF3C8..EB
-skip $24
+skip $24 ; $7EF3EC..F40F
 EnemyProjectileData_KilledEnemyIndex: skip $24 ; $7EF410..33
 EnemyProjectileData_SpecialDeathItemDropXOriginPosition: skip 2 ; $7EF434
 EnemyProjectileData_SpecialDeathItemDropYOriginPosition: skip 2 ; $7EF436
