@@ -6503,7 +6503,7 @@ DrawSpriteObjects:
 
 ;;; $BD97: Clear sprite objects ;;;
 ClearSpriteObjects:
-; BUG: Doesn't clear $7E:EF78 due to wrong branch instruction,
+; BUG: Doesn't clear first entry of SpriteObjects_InstListPointers due to wrong branch instruction,
 ; causes a crash during door transition if 32 sprite objects are created
     LDX.W #$03FE                                                         ;B4BD97;
     LDA.W #$0000                                                         ;B4BD9A;
