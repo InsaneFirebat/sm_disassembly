@@ -579,7 +579,7 @@ PreviousMissiles: skip 2 ; $0A08
 PreviousSuperMissiles: skip 2 ; $0A0A
 PreviousPowerBombs: skip 2 ; $0A0C
 PreviousHUDItemIndex: skip 2 ; $0A0E
-neverRead0A10: skip 1 ; $0A10
+skip 1 ; $0A10
 PreviousMovementTypeXray: skip 1 ; $0A11
 PreviousEnergyHurtCheck: skip 2 ; $0A12
 BackupController1InputDemo: skip 2 ; $0A14
