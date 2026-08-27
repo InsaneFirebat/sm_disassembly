@@ -6499,8 +6499,6 @@ DrawSpriteObjects:
 
 ;;; $BD97: Clear sprite objects ;;;
 ClearSpriteObjects:
-; BUG: Doesn't clear $7E:EF78 due to wrong branch instruction,
-; causes a crash during door transition if 32 sprite objects are created
     LDX.W #$03FE                                                         ;B4BD97;
     LDA.W #$0000                                                         ;B4BD9A;
 
@@ -6508,7 +6506,7 @@ ClearSpriteObjects:
     STA.L SpriteObjects_InstListPointers,X                               ;B4BD9D;
     DEX                                                                  ;B4BDA1;
     DEX                                                                  ;B4BDA2;
-    BNE .loop                                                            ;B4BDA3;
+    BPL .loop                                                            ;B4BDA3;
     RTL                                                                  ;B4BDA5;
 
 

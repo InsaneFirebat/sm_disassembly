@@ -2739,11 +2739,12 @@ DrawPLM:
     SEC                                                                  ;84905E;
     SBC.B DP_Temp12                                                      ;84905F;
     STA.B DP_Temp14                                                      ;849061;
-
-  .crash:
     BMI .crash                                                           ;849063;
     BNE +                                                                ;849065;
     RTS                                                                  ;849067;
+
+  .crash:
+    BRK #$FE
 
   .drawBlockGreaterThanScreenBlock:
     LDA.B DP_Temp20                                                      ;849068;
@@ -7719,9 +7720,7 @@ Setup_ScrollBlockTouchPLM:
     DEX                                                                  ;84B3A2;
     DEX                                                                  ;84B3A3;
     BPL .loop                                                            ;84B3A4;
-
-  .crash:
-    BRA .crash                                                           ;84B3A6;
+    BRK #$FB                                                             ;84B3A6;
 
   .found:
     LDA.W PLM_Vars,X                                                     ;84B3A8;

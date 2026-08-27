@@ -5077,8 +5077,6 @@ if !DEBUG
     ASL                                                                  ;81A8E5;
     TAY                                                                  ;81A8E6;
     LDA.B [DP_Temp00],Y                                                  ;81A8E7;
-
-  .crash:
     BEQ .crash                                                           ;81A8E9;
     STA.B DP_Temp00                                                      ;81A8EB;
     LDA.W #$0010                                                         ;81A8ED;
@@ -5119,8 +5117,8 @@ if !DEBUG
     DEC.B DP_Temp14                                                      ;81A925;
     BNE .loopDebugSavePoints                                             ;81A927;
 
-  .crash2:
-    BRA .crash2                                                          ;81A929;
+  .crash:
+    BRK #$FE                                                             ;81A929;
 
   .found:
     STX.W LoadStationIndex                                               ;81A92B;
@@ -5761,8 +5759,6 @@ if !DEBUG
     ADC.W #MapIcon_PositionTablePointers_savePoints                      ;81AE0A;
     TAX                                                                  ;81AE0D;
     LDA.W $0000,X                                                        ;81AE0E;
-
-  .crash:
     BEQ .crash                                                           ;81AE11;
     STA.B DP_Temp00                                                      ;81AE13;
     LDA.W LoadStationIndex                                               ;81AE15;
@@ -5779,6 +5775,9 @@ if !DEBUG
     CMP.W #$0010                                                         ;81AE28;
     BPL .debugSavePoints                                                 ;81AE2B;
     BRA .savesElevators                                                  ;81AE2D;
+
+  .crash:
+    BRK #$FE
 
   .loopSavesElevators:
     LSR.B DP_Temp18                                                      ;81AE2F;

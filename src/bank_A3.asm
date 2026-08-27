@@ -4510,12 +4510,12 @@ MocktroidShakeVelocityTable:
 
 ;;; $A77D: Initialisation AI - enemy $D8FF (mochtroid) ;;;
 InitAI_Mochtroid:
-; Note respawn crash bug in SetMochtroidInstList, can fix by replacing `JSR SetMochtroidInstList` with `JSR $A942`
+; Note respawn crash bug in SetMochtroidInstList, fixed by replacing `JSR SetMochtroidInstList` with `JSR SetMochtroidInstList+6`
     LDX.W EnemyIndex                                                     ;A3A77D;
     LDA.W #$0002                                                         ;A3A780;
     STA.W Enemy.layer,X                                                  ;A3A783;
     LDA.W #InstList_Mochtroid_NotTouchingSamus                           ;A3A786;
-    JSR.W SetMochtroidInstList                                           ;A3A789;
+    JSR.W SetMochtroidInstList+6                                         ;A3A789;
     STZ.W Mochtroid.functionIndex,X                                      ;A3A78C;
     RTL                                                                  ;A3A78F;
 

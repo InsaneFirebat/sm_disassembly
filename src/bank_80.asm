@@ -128,9 +128,7 @@ SendAPUData:
     DEC                                                                  ;808070;
     STA.L APU_RemainingPollAttempts                                      ;808071;
     BNE .retry                                                           ;808075;
-
-  .crash:
-    BRA .crash                                                           ;808077; If exceeded 3000h attempts: crash
+    BRK #$FE                                                             ;808077; If exceeded 3000h attempts: crash
 
   .AABB:
     SEP #$20                                                             ;808079;
@@ -350,7 +348,7 @@ BitIndexToByteIndexAndBitmask:
 ; Called mostly by PLMs
     TAX                                                                  ;80818E;
     BPL .dontCrash                                                       ;80818F;
-    db $00                                                               ;808191; BRK with no operand
+    BRK #$FE
 
   .dontCrash:
     STZ.W Bitmask                                                        ;808192;
@@ -1316,9 +1314,7 @@ NTSC_PAL_SRAM_MappingCheck:
     STA.W $210B                                                          ;808689; BG1 tiles base address = $0000
     LDA.B #$40                                                           ;80868C;
     STA.W $2107                                                          ;80868E; BG1 tilemap base address = $4000
-
-  .gotoCrash:
-    BRA .gotoCrash                                                       ;808691;
+    BRK #$DF                                                             ;808691;
 
   .SRAMCheck:
     REP #$30                                                             ;808693;
@@ -1418,9 +1414,7 @@ NTSC_PAL_SRAM_MappingCheck:
     STA.W $210B                                                          ;808753; BG1 tiles base address = $0000
     LDA.B #$40                                                           ;808756;
     STA.W $2107                                                          ;808758; BG1 tilemap base address = $4000
-
-  .crash:
-    BRA .crash                                                           ;80875B; Crash
+    BRK #$DF                                                             ;80875B; Crash
 
 
 ;;; $875D: Initialise CPU IO registers ;;;
@@ -2324,9 +2318,7 @@ ExecuteVerticalScrollingDMAs:
     STA.W $420B                                                          ;808E7F;
     SEP #$02                                                             ;808E82;
     BEQ .continue                                                        ;808E84;
-
-  .crash:
-    BRA .crash                                                           ;808E86;
+    BRK #$FE                                                             ;808E86;
 
   .continue:
     REP #$20                                                             ;808E88;

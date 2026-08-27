@@ -2515,11 +2515,12 @@ WriteEnemyOAM_IfNotFrozenOrInvincibleFrame:
     PLB                                                                  ;A094F2;
     RTS                                                                  ;A094F3;
 
+  .crash:
+    BRK #$FE
+
   .extendedSpritemap:
     LDA.W Enemy.spritemap,X                                              ;A094F4;
     CMP.W #$8000                                                         ;A094F7;
-
-  .crash:
     BMI .crash                                                           ;A094FA;
     TAY                                                                  ;A094FC;
     LDA.W $0000,Y                                                        ;A094FD;
@@ -2815,14 +2816,15 @@ ProcessExtendedTilemap:
     INY                                                                  ;A0970C;
     INY                                                                  ;A0970D;
     CPX.W #$2800                                                         ;A0970E;
-
-  .crash:
     BPL .crash                                                           ;A09711;
     DEC.W NumberOfExtendedTilemapTiles                                   ;A09713;
     DEC.W NumberOfExtendedTilemapTiles                                   ;A09716;
     LDA.W NumberOfExtendedTilemapTiles                                   ;A09719;
     BNE .unrolled                                                        ;A0971C;
     JMP.W .loop                                                          ;A0971E;
+
+  .crash:
+    BRK #$FE
 
   .return:
     INC.W RequestEnemyBG2TilemapTransferFlag                             ;A09721;
@@ -3507,11 +3509,12 @@ Enemy_vs_Projectile_CollisionHandling_ExtendedSpritemap:
   .gotoNextProjectile:
     JMP.W .nextProjectile                                                ;A09BF8;
 
+  .crash:
+    BRK #$FE
+
   .validProjectile:
     LDA.W Enemy.spritemap,X                                              ;A09BFE;
     CMP.W #$8000                                                         ;A09C01;
-
-  .crash:
     BMI .crash                                                           ;A09C04;
     TAX                                                                  ;A09C06;
     LDA.W $0000,X                                                        ;A09C07;
@@ -3714,11 +3717,12 @@ Enemy_vs_Bomb_CollisionHandling_ExtendedSpritemap:
     BEQ .timerExpired                                                    ;A09D94;
     JMP.W .nextProjectile                                                ;A09D96;
 
+  .crash:
+    BRK #$FE
+
   .timerExpired:
     LDA.W Enemy.spritemap,X                                              ;A09D99;
     CMP.W #$8000                                                         ;A09D9C;
-
-  .crash:
     BMI .crash                                                           ;A09D9F;
     TAX                                                                  ;A09DA1;
     LDA.W $0000,X                                                        ;A09DA2;
@@ -4949,9 +4953,6 @@ NormalEnemyShotAI:
     LDA.W Enemy.ID,X                                                     ;A0A683;
     TAX                                                                  ;A0A686;
     LDA.L EnemyHeaders_deathAnimation,X                                  ;A0A687;
-    BEQ .deathAnimationInY                                               ;A0A68B;
-
-  .deathAnimationInY:
     TAY                                                                  ;A0A68D;
     BRA .enemyDeath                                                      ;A0A68E;
 
@@ -4965,6 +4966,7 @@ NormalEnemyShotAI:
 
   .enemyDeath:
     TYA                                                                  ;A0A69E;
+    LDX.W EnemyIndex
     JSL.L EnemyDeath                                                     ;A0A69F;
 
   .return:

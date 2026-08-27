@@ -841,9 +841,7 @@ CalculateDraygonSwoopYPositions:
     LDA.W Temp_SwoopYPositionIndex                                       ;A5885F;
     CMP.W #$0800                                                         ;A58862;
     BMI .loop                                                            ;A58865;
-
-  .crash:
-    BRA .crash                                                           ;A58867;
+    BRK #$FE                                                             ;A58867;
 
 +   LDA.L DraygonBody.leftSideResetXPosition                             ;A58869;
     BMI .leftSideReset                                                   ;A5886D;

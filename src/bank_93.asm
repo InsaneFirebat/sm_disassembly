@@ -51,7 +51,7 @@ InitializeProjectile:
     LDA.W $0000,Y                                                        ;93803C;
     STA.W SamusProjectile_Damages,X                                      ;93803F;
     BPL .dontCrash                                                       ;938042;
-    JML Crash_Handler                                                    ;938044;
+    JSL Crash_Handler                                                    ;938044;
 
   .dontCrash:
     INY                                                                  ;938048;
@@ -93,7 +93,7 @@ InitializeSuperMissileLink:
     LDA.W $0000,Y                                                        ;938083;
     STA.W SamusProjectile_Damages,X                                      ;938086;
     BPL .dontCrash                                                       ;938089;
-    JML Crash_Handler                                                    ;93808B;
+    JSL Crash_Handler                                                    ;93808B;
 
   .dontCrash:
     INY                                                                  ;93808F;
@@ -123,7 +123,7 @@ InitializeBomb:
     LDA.W $0000,Y                                                        ;9380B2;
     STA.W SamusProjectile_Damages,X                                      ;9380B5;
     BPL .dontCrash                                                       ;9380B8;
-    JML Crash_Handler                                                    ;9380BA;
+    JSL Crash_Handler                                                    ;9380BA;
 
   .dontCrash:
     INY                                                                  ;9380BE;
@@ -240,7 +240,7 @@ Initialize_ShinesparkEcho_or_SpazerSBATrailProjectile:
     LDA.W $0000,Y                                                        ;938182;
     STA.W SamusProjectile_Damages,X                                      ;938185;
     BPL .dontCrash                                                       ;938188;
-    JML Crash_Handler                                                    ;93818A;
+    JSL Crash_Handler                                                    ;93818A;
 
   .dontCrash:
     INY                                                                  ;93818E;
@@ -275,7 +275,7 @@ InitializeSBAProjectile:
     LDA.W $0000,Y                                                        ;9381B6;
     STA.W SamusProjectile_Damages,X                                      ;9381B9;
     BPL .dontCrash                                                       ;9381BC;
-    JML Crash_Handler                                                    ;9381BE;
+    JSL Crash_Handler                                                    ;9381BE;
 
   .dontCrash:
     LDA.W $0002,Y                                                        ;9381C2;

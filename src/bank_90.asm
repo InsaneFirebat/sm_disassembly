@@ -14232,7 +14232,7 @@ SamusMovementHandler_Knockback:
 
 ;;; $DF50: Crash ;;;
 ZeroIndex_Crash:
-    BRA ZeroIndex_Crash                                                  ;90DF50;
+    BRK #$DF                                                             ;90DF50;
 
 
 ;;; $DF53: Knockback movement - up ;;;
@@ -16034,7 +16034,7 @@ HandlePeriodicDamageToSamus:
   .crashIfNegative:
     LDA.W PeriodicDamage                                                 ;90EA11;
     BPL .dontCrash                                                       ;90EA14;
-    JML Crash_Handler                                                    ;90EA16;
+    JSL Crash_Handler                                                    ;90EA16;
 
   .dontCrash:
     LDA.W SubUnitEnergy                                                  ;90EA1A;
