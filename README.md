@@ -1,3 +1,7 @@
+
+# OPTIMIZED
+ This branch is for fun, prioritizing performance.
+
 # sm_disassembly
  A relocatable disassembly of Super Metroid (SNES) based on P.JBoy's bank logs.
 

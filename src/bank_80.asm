@@ -965,7 +965,6 @@ Boot:
     SEP #$20                                                             ;808423;
     LDA.B #$01                                                           ;808425;
     STA.W $420D                                                          ;808427; Enable FastROM
-    STA.B DP_ROMAccessSpeed                                              ;80842A;
     REP #$30                                                             ;80842C;
     LDX.W #$1FFF                                                         ;80842E;
     TXS                                                                  ;808431; Allocate stack memory
@@ -1437,7 +1436,6 @@ Initialise_CPU_IO_Registers:
     STZ.B DP_HDMAEnable                                                  ;808788; Disable all HDMA channels
     LDA.B #$01                                                           ;80878A;
     STA.W $420D                                                          ;80878C; Enable FastROM
-    STA.B DP_ROMAccessSpeed                                              ;80878F;
     RTS                                                                  ;808791;
 
 

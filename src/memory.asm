@@ -18,7 +18,6 @@ DP_Temp0A: skip 1 ; $0A
 DP_Temp0B: skip 1 ; $0B
 DP_Temp0C: skip 2 ; $0C
 DP_Temp0E: skip 2 ; $0E
-skip 2 ; $10
 DP_Temp12: skip 1 ; $12
 DP_Temp13: skip 1 ; $13
 DP_Temp14: skip 1 ; $14
@@ -54,9 +53,7 @@ DP_Temp32: skip 1 ; $32
 DP_Temp33: skip 1 ; $33
 DP_Temp34: skip 2 ; $34
 DP_BlocksToUpdate: skip 3 ; $36
-skip 3 ; $39..3B
 DP_SamusTilesDefinition: skip 1 ; $3C
-skip 7 ; $3D..43
 DP_ReturnParam: skip 3 ; $44
 DP_DecompSrc: skip 3 ; $47
 DP_DecompVar: skip 2 ; $4A
@@ -108,7 +105,6 @@ DP_Mode7TransOriginX: skip 2 ; $80
 DP_Mode7TransOriginY: skip 2 ; $82
 DP_IRQAutoJoy: skip 1 ; $84
 DP_HDMAEnable: skip 1 ; $85
-DP_ROMAccessSpeed: skip 1 ; $86
 
 DP_AutoPressInitialDelay: skip 2 ; $87
 DP_AutoPressSubsequentDelay: skip 2 ; $89
@@ -120,7 +116,6 @@ DP_FakeController1New: skip 2 ; $93
 DP_FakeController2New: skip 2 ; $95
 DP_Controller1Prev: skip 2 ; $97
 DP_Controller2Prev: skip 2 ; $99
-skip 8 ; $9B..A2
 DP_Controller1AutoPressTimer: skip 2 ; $A3
 DP_Controller2AutoPressTimer: skip 2 ; $A5
 DP_NextIRQCmd: skip 2 ; $A7
@@ -136,13 +131,15 @@ DP_BG3XScroll: skip 2 ; $B9
 DP_BG3YScroll: skip 2 ; $BB
 DP_BG4XScroll: skip 2 ; $BD
 DP_BG4YScroll: skip 2 ; $BF
-skip 15 ; $C1..CF
+;print pc, "..CF free DP"
 
-struct VRAMWrite $D0 ; $D0..02CF
+struct VRAMWrite $E4 ; $D0..02CD
   .size: skip 2 ; $D0
   .src: skip 3 ; $D2
   .dest: skip 2 ; $D5
 endstruct
+
+skip 2 ; $02CE
 
 struct Mode7Transfer $02D0
   .control: skip 1 ; $02D0

@@ -2674,7 +2674,6 @@ Initialise_IO_Registers_and_Display_Nintendo_Logo:
     STZ.B DP_HDMAEnable                                                  ;8B9196;
     LDA.B #$01                                                           ;8B9198;
     STA.W $420D                                                          ;8B919A;
-    STA.B DP_ROMAccessSpeed                                              ;8B919D;
     LDA.B #$03                                                           ;8B919F;
     STA.W $2101                                                          ;8B91A1;
     STA.B DP_SpriteSizeAddr                                              ;8B91A4;

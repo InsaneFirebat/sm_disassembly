@@ -232,7 +232,6 @@ InitialiseCPURegistersForGameplay:
     STZ.B DP_HDMAEnable                                                  ;8281D2;
     LDA.B #$01                                                           ;8281D4;
     STA.W $420D                                                          ;8281D6;
-    STA.B DP_ROMAccessSpeed                                              ;8281D9;
     PLP                                                                  ;8281DB;
     RTS                                                                  ;8281DC;
 
