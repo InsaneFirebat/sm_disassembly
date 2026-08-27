@@ -16218,7 +16218,7 @@ ResetMovementAndPoseChangeVariables:
     AND.W #$FF00                                                         ;90EB27;
     STA.W neverRead0DFA                                                  ;90EB2A;
     LDA.W PoseXDirection                                                 ;90EB2D;
-    STA.W neverRead0A10                                                  ;90EB30;
+    STA.W PreviousMovementTypeXray-1                                     ;90EB30;
     PLP                                                                  ;90EB33;
     RTS                                                                  ;90EB34;
 
