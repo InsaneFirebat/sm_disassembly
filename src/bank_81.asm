@@ -1778,7 +1778,7 @@ MapVRAMForMenu:
     STA.B DP_SpriteSizeAddr                                              ;818DC0;
     LDA.B #$51                                                           ;818DC2;
     STA.B DP_BG1TilemapAddrSize                                          ;818DC4;
-    LDA.B #DP_BG1TilemapAddrSize                                         ;818DC6;
+    LDA.B #$58                                                           ;818DC6;
     STA.B DP_BG2TilemapAddrSize                                          ;818DC8;
     LDA.B #$5C                                                           ;818DCA;
     STA.B DP_BG3TilemapAddrSize                                          ;818DCC;
@@ -1821,7 +1821,7 @@ LoadInitialMenuTiles:
     STA.W $420B                                                          ;818E1B;
     LDA.B #$00                                                           ;818E1E;
     STA.W $2116                                                          ;818E20;
-    LDA.B #DP_WindowMaskBG12                                             ;818E23;
+    LDA.B #$60                                                           ;818E23;
     STA.W $2117                                                          ;818E25;
     LDA.B #$80                                                           ;818E28;
     STA.W $2115                                                          ;818E2A;

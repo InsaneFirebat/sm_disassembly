@@ -1886,7 +1886,7 @@ Backup_BG2Tilemap_for_PauseMenu:
     STA.W $4310                                                          ;828D62;
     LDA.B #$39                                                           ;828D65;
     STA.W $4311                                                          ;828D67;
-    LDA.B #DP_BG4TilemapAddrSize                                         ;828D6A;
+    LDA.B #$5C                                                           ;828D6A;
     STA.W $4312                                                          ;828D6C;
     LDA.B #$DF                                                           ;828D6F;
     STA.W $4313                                                          ;828D71;
