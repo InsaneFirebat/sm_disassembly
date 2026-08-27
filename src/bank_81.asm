@@ -3748,7 +3748,7 @@ Draw_FileSelect_Slot_SamusHelmet:
     TAY                                                                  ;819E12;
     LDA.W #$0E00                                                         ;819E13;
     STA.B DP_Temp03                                                      ;819E16;
-    LDA.W .data,Y                                                        ;819E18;
+    LDA.W .menuSpritemapParam,Y                                          ;819E18;
     PHA                                                                  ;819E1B;
     LDA.W Mode7Object_InstructionTimers+2,X                              ;819E1C;
     TAY                                                                  ;819E1F;
@@ -3760,7 +3760,7 @@ Draw_FileSelect_Slot_SamusHelmet:
     PLX                                                                  ;819E2A;
     RTS                                                                  ;819E2B;
 
-  .data:
+  .menuSpritemapParam:
     dw $002C,$002D,$002E,$002F,$0030,$0031,$0032,$0033,$0033             ;819E2C;
 
 

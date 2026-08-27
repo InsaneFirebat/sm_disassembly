@@ -16187,6 +16187,8 @@ ResetMovementAndPoseChangeVariables:
     STZ.W ProjSpeed_SubDistanceSamusMovedDown                            ;90EB1A;
     STZ.W NewPoseSamusAnimationFrame                                     ;90EB1D;
     STZ.W PoseTransitionShotDirection                                    ;90EB20;
+    LDA.W PoseXDirection                                                 ;90EB2D;
+    STA.W PreviousMovementTypeXray-1                                     ;90EB30;
     PLP                                                                  ;90EB33;
     RTS                                                                  ;90EB34;
 
