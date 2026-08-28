@@ -1371,7 +1371,7 @@ CinematicSpriteObject_IntroSubtitleTimer: skip 2 ; $1BA3
 org $1A8F
 GameOptionsMenuObject_Index: skip 2 ; $1A8F
 skip 2 ; $1A91
-GameOptionsMenuObject_InitParam: skip 2 ; $1A93
+skip 2 ; $1A93
 skip 8 ; $1A95..9C
 GameOptionsMenuObject_SpritemapPointers: skip $10 ; $1A9D..AC
 GameOptionsMenuObject_XPositions: skip $10 ; $1AAD..BC

@@ -1571,14 +1571,12 @@ Delete_GameOptionsMenu_Objects:
 ;;; $8BCB: Spawn game options menu object ;;;
 Spawn_GameOptionsMenu_Object:
 ;; Parameters:
-;;     A: Game options menu object initialisation parameter
 ;;     Y: Game options menu object ID
 ;; Returns:
 ;;     Carry: Set if enemy projectile could not be spawned
     PHP                                                                  ;828BCB;
     REP #$30                                                             ;828BCC;
     PHX                                                                  ;828BCE;
-    STA.W GameOptionsMenuObject_InitParam                                ;828BCF; neverRead?
     TYX                                                                  ;828BD2;
     LDY.W #$000E                                                         ;828BD3;
 
