@@ -4,6 +4,7 @@
 org $808000
 
 
+if !DEBUG
 ;;; $8000: Debug constants ;;;
 DebugConst:
   .RegionSRAM:
@@ -16,6 +17,7 @@ DebugConst:
     dw $0000 ; Debug scrolling ($82:8B44: game state 8 - main gameplay)
   .DisableAudio:
     dw $0000 ; Disable audio (UploadToAPU_long)
+endif
 
 
 ;;; $800A: Upload to APU (hardcoded parameter) ;;;
