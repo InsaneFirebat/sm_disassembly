@@ -4942,17 +4942,16 @@ FileSelectMap_Index6_AreaSelectMap:
 ;      This means pressing up/left/down/right/select the same frame as B/A/start negates the B/A/start input
     REP #$30                                                             ;81A800;
     LDA.B DP_Controller1New                                              ;81A802;
-    BIT.W #$0A00                                                         ;81A804;
-    BEQ +                                                                ;81A807;
 if !DEBUG
+    BIT.W #$0A00                                                         ;81A804;
+    BEQ .checkSelectDownRight                                            ;81A807;
     LDA.W Debug_Enable                                                   ;81A809;
     BEQ .checkB                                                          ;81A80C;
     JMP.W .debug                                                         ;81A80E;
-endif
 
-+   BIT.W #$2500                                                         ;81A811;
+  .checkSelectDownRight
+    BIT.W #$2500                                                         ;81A811;
     BEQ .checkB                                                          ;81A814;
-if !DEBUG
     LDA.W Debug_Enable                                                   ;81A816;
     BEQ .checkB                                                          ;81A819;
     JMP.W .debugNext                                                     ;81A81B;
@@ -4961,11 +4960,13 @@ endif
   .checkB:
     LDA.B DP_Controller1New                                              ;81A802;
     BIT.W #$8000                                                         ;81A81E;
-    BEQ +                                                                ;81A821;
+    BEQ .checkStartA                                                     ;81A821;
     LDA.W #$0016                                                         ;81A823;
     STA.W PauseMenu_MenuIndex                                            ;81A826;
     JMP.W DrawAreaSelectMapLabels                                        ;81A829;
-+   BIT.W #$1080                                                         ;81A82C;
+
+  .checkStartA
+    BIT.W #$1080                                                         ;81A82C;
     BEQ .JMP_DrawAreaSelectMapLabels                                     ;81A82F;
     LDA.W #$0038                                                         ;81A831;
     JSL.L QueueSound_Lib1_Max6                                           ;81A834;
@@ -4990,7 +4991,6 @@ if !DEBUG
     JSR.W A_equals_A_Minus_1_Mod_6                                       ;81A85B;
     JSR.W Debug_Check_FileSelectMapArea_CanBeSelected                    ;81A85E;
     BEQ .JMP_DrawAreaSelectMapLabels                                     ;81A861;
-endif
 
   .selected:
     LDA.W #$0037                                                         ;81A863;
@@ -4998,13 +4998,11 @@ endif
     JSR.W Switch_Active_FileSelectMapArea                                ;81A86A;
     JMP.W DrawAreaSelectMapLabels                                        ;81A86D;
 
-if !DEBUG
   .debugNext:
     LDA.W #$0006                                                         ;81A870;
     STA.B DP_Temp16                                                      ;81A873;
     LDA.W FileSelectMapAreaIndex                                         ;81A875;
     STA.B DP_Temp1C                                                      ;81A878;
-endif
 
   .loop:
     LDA.B DP_Temp1C                                                      ;81A87A;
@@ -5020,6 +5018,7 @@ endif
     LDA.W #$0037                                                         ;81A88E;
     JSL.L QueueSound_Lib1_Max6                                           ;81A891;
     JMP.W DrawAreaSelectMapLabels                                        ;81A895;
+endif
 
 
 ;;; $A898: A = ([A] - 1) % 6 ;;;

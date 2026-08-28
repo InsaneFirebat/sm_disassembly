@@ -4607,7 +4607,7 @@ EnemyDeath:
     LDX.W EnemyIndex                                                     ;A0A3FB;
     LDA.W #EnemyHeaders_Respawn                                          ;A0A3FE;
     STA.W Enemy.ID,X                                                     ;A0A401;
-    LDA.W #EnemyHeaders_Respawn>>16                                      ;A0A404;
+    LDA.W #RTL_A3804C>>16                                                ;A0A404;
     STA.W Enemy.bank,X                                                   ;A0A407;
 
   .incEnemiesKilled:

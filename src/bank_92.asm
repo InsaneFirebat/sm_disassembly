@@ -6,7 +6,7 @@ org $928000
 
 ;;; $8000: Set Samus tiles definitions for current animation ;;;
 Set_SamusTilesDefinitions_ForCurrentAnimation:
-; $D94E is a table of pointers to animation definition lists
+; SamusTilesAnimation_AnimationDefinitionPointers is a table of pointers to animation definition lists
 ; The table is indexed by Samus pose, the animation definition list is indexed by Samus animation frame
 ; Animation definitions are 4 bytes
 ; First byte indexes the top half tiles definitions pointer table ($D91E) for a pointer to a list of DMA entries that is indexed by the second byte
@@ -7337,18 +7337,18 @@ SamusTopTiles_Set0_CCB9:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusTopTiles_Set0_92CCC0:
+; Unused
     dl SamusTiles_Top_Set0_Entry1E : dw $0100,$0040                      ;92CCC0;
 
 UNUSED_SamusTopTiles_Set0_92CCC7:
+; Unused
     dl SamusTiles_Top_Set0_Entry1F : dw $0100,$0040                      ;92CCC7;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $CCCE: Samus top tiles - set 1 (general) ;;;
 UNUSED_SamusTopTiles_Set1_92CCCE:
     dl SamusTiles_Top_Set1_Entry0 : dw $00C0,$0080                       ;92CCCE;
 
-if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusTopTiles_Set1_92CCD5:
     dl SamusTiles_Top_Set1_Entry1 : dw $00C0,$0080                       ;92CCD5;
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -7618,6 +7618,7 @@ SamusTopTiles_Set2_CDA7:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusTopTiles_Set2_92CDAE:
+; Unused
     dl SamusTiles_Top_Set2_Entry2 : dw $00C0,$0080                       ;92CDAE;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -7750,15 +7751,19 @@ SamusTopTiles_Set2_CE17:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusTopTiles_Set2_92CE1E:
+; Unused
     dl SamusTiles_Top_Set2_Entry12 : dw $0100,$0040                      ;92CE1E;
 
 UNUSED_SamusTopTiles_Set2_92CE25:
+; Unused
     dl SamusTiles_Top_Set2_Entry13 : dw $0100,$0040                      ;92CE25;
 
 UNUSED_SamusTopTiles_Set2_92CE2C:
+; Unused
     dl SamusTiles_Top_Set2_Entry14 : dw $0100,$0040                      ;92CE2C;
 
 UNUSED_SamusTopTiles_Set2_92CE33:
+; Unused
     dl SamusTiles_Top_Set2_Entry15 : dw $0100,$0040                      ;92CE33;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -8066,6 +8071,7 @@ SamusTopTiles_Set3_CEE9:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusTopTiles_Set3_92CEF0:
+; Unused
     dl SamusTiles_Top_Set3_Entry10 : dw $00C0,$0080                      ;92CEF0;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -8187,6 +8193,7 @@ SamusTopTiles_Set4_CF60:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusTopTiles_Set4_92CF67:
+; Unused
     dl SamusTiles_Top_Set4_Entry10 : dw $0100,$00E0                      ;92CF67;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -8434,6 +8441,7 @@ SamusTopTiles_Set5_CFD7:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusTopTiles_Set5_92CFDE:
+; Unused
     dl SamusTiles_Top_Set5_Entry10 : dw $00C0,$0080                      ;92CFDE;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -8553,6 +8561,7 @@ SamusTopTiles_Set6_D04E:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusTopTiles_Set6_92D055:
+; Unused
     dl SamusTiles_Top_Set6_Entry10 : dw $0100,$00E0                      ;92D055;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -8840,6 +8849,7 @@ SamusTopTiles_Set8_D0E8:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusTopTiles_Set8_92D0EF:
+; Unused
     dl SamusTiles_Top_Set8_Entry1 : dw $0020,$0000                       ;92D0EF;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -9773,6 +9783,7 @@ SamusBottomTiles_Set1_D2E7:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusBottomTiles_Set1_92D2EE:
+; Unused
     dl SamusTiles_Bottom_Set1_Entry10 : dw $0020,$0000                   ;92D2EE;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -9899,6 +9910,7 @@ SamusBottomTiles_Set1_D342:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusBottomTiles_Set1_92D349:
+; Unused
     dl SamusTiles_Bottom_Set1_Entry1D : dw $0080,$0080                   ;92D349;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -10008,6 +10020,7 @@ SamusBottomTiles_Set2_D39D:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusBottomTiles_Set2_92D3A4:
+; Unused
     dl SamusTiles_Bottom_Set2_EntryA : dw $00A0,$0080                    ;92D3A4;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -10121,6 +10134,7 @@ SamusBottomTiles_Set2_D3F8:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusBottomTiles_Set2_92D3FF:
+; Unused
     dl SamusTiles_Bottom_Set2_Entry17 : dw $0080,$0080                   ;92D3FF;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -10218,12 +10232,15 @@ SamusBottomTiles_Set4_D445:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusBottomTiles_Set4_92D44C:
+; Unused
     dl SamusTiles_Bottom_Set4_EntryA : dw $00A0,$0080                    ;92D44C;
 
 UNUSED_SamusBottomTiles_Set4_92D453:
+; Unused
     dl SamusTiles_Bottom_Set4_EntryB : dw $0080,$0080                    ;92D453;
 
 UNUSED_SamusBottomTiles_Set4_92D45A:
+; Unused
     dl SamusTiles_Bottom_Set4_EntryC : dw $0080,$0080                    ;92D45A;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -10316,6 +10333,7 @@ SamusBottomTiles_Set4_D499:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusBottomTiles_Set4_92D4A0:
+; Unused
     dl SamusTiles_Bottom_Set4_Entry16 : dw $0080,$0080                   ;92D4A0;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -10373,6 +10391,7 @@ SamusBottomTiles_Set5_D4E6:
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusBottomTiles_Set5_92D4ED:
+; Unused
     dl SamusTiles_Bottom_Set5_EntryA : dw $00A0,$0080                    ;92D4ED;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
