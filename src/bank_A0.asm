@@ -1223,7 +1223,9 @@ Initialise_Enemies:
     STA.W Enemy.instTimer,Y                                              ;A08B6A;
     LDA.W #$0000                                                         ;A08B6D;
     STA.W Enemy.frameCounter,Y                                           ;A08B70;
+if !DEBUG
     JSL.L Record_EnemySpawnData                                          ;A08B73;
+endif
     PHX                                                                  ;A08B77;
     PHY                                                                  ;A08B78;
     STY.W EnemyIndex                                                     ;A08B79;
@@ -2381,7 +2383,9 @@ SpawnEnemy_AlwaysSucceed:
     STA.W Enemy.instTimer,Y                                              ;A093A1;
     LDA.W #$0000                                                         ;A093A4;
     STA.W Enemy.frameCounter,Y                                           ;A093A7;
+if !DEBUG
     JSL.L Record_EnemySpawnData                                          ;A093AA;
+endif
     PHX                                                                  ;A093AE;
     PHY                                                                  ;A093AF;
     STY.W EnemyIndex                                                     ;A093B0;
