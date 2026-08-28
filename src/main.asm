@@ -16,7 +16,7 @@ else
 print "REMOVE UNREFERENCED ASSEMBLY"
 endif
 
-!DEBUG ?= 1
+!DEBUG ?= 0
 
 if !DEBUG
 print "DEBUG FEATURES ENABLED"
