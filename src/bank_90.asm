@@ -15625,7 +15625,9 @@ SamusNewStateHandler_Normal:
     PHK                                                                  ;90E727;
     PLB                                                                  ;90E728;
     REP #$30                                                             ;90E729;
+if !DEBUG
     JSR.W DebugCommandHandler                                            ;90E72B;
+endif
     STZ.W ContactDamageIndex                                             ;90E72E;
     JSR.W Execute_SamusMovementHandler                                   ;90E731;
     JSL.L Update_Minimap                                                 ;90E734;
@@ -16229,8 +16231,8 @@ HandleSamus_AutoJumpTimer_HurtFlashCounter_PrevInputEnergy:
     LDA.W #$0001                                                         ;90EAE4;
     STA.W HurtFlashCounter                                               ;90EAE7;
 
-if !DEBUG
   .debugInvincibility:
+if !DEBUG
     LDA.W DebugInvincibility                                             ;90EAEA;
     CMP.W #$0007                                                         ;90EAED;
     BMI .setPreviousEnergy                                               ;90EAF0;

@@ -907,7 +907,7 @@ Instruction_DemoInputObject_TimerInY:
     INY                                                                  ;918462;
     RTS                                                                  ;918463;
 
-
+if !DEBUG
 ;;; $8464: Record demo input frame ;;;
 RecordDemoInputFrame:
 ; Controller 2 Y enables recording
@@ -1013,7 +1013,6 @@ Pause_Terminate_Reset_DemoRecorder:
     RTL                                                                  ;91852E;
 
 
-if !DEBUG
 ;;; $852F: Draw recorded demo duration ;;;
 Draw_RecordedDemoDuration:
 ;; Parameters:
@@ -1105,12 +1104,12 @@ UNUSED_InstList_DemoInput_JumpLeft_GiveControlBack_9185CE:               ;9185CE
     dw $0034,$0280,$0000 ;       < A
     dw $001E,$0200,$0000 ;       <
     dw $0049,$0000,$0000
-    dw Instruction_EndDemoInput_GiveControlBackToPlayer
+    dw UNUSED_Inst_EndDemoInput_GiveControlBackToPlayer_9185FC
     dw Instruction_DemoInputObject_Delete
 
 
 ;;; $85FC: Instruction - end demo input and give control back to player ;;;
-Instruction_EndDemoInput_GiveControlBackToPlayer:
+UNUSED_Inst_EndDemoInput_GiveControlBackToPlayer_9185FC:
     LDA.W #SamusCurrentStateHandler_Normal                               ;9185FC;
     STA.W CurrentStateHandler                                            ;9185FF;
     LDA.W #SamusNewStateHandler_Normal                                   ;918602;
