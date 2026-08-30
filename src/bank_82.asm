@@ -714,7 +714,7 @@ GameState_2B_UnloadGameData:
     STZ.B DP_NextIRQCmd                                                  ;8285BB;
     JSL.L Disable_PaletteFXObjects                                       ;8285BD;
     JSL.L Clear_PaletteFXObjects                                         ;8285C1;
-    LDA.W #MessageBoxIndex                                               ;8285C5;
+    LDA.W #MessageBoxIndex                                               ;8285C5; >.<
     DEC                                                                  ;8285C8;
     DEC                                                                  ;8285C9;
     SEC                                                                  ;8285CA;
@@ -1590,7 +1590,7 @@ Spawn_GameOptionsMenu_Object:
 ;;     A: Game options menu object initialisation parameter
 ;;     Y: Game options menu object ID
 ;; Returns:
-;;     Carry: Set if enemy projectile could not be spawned
+;;     Carry: Set if game options menu object could not be spawned
     PHP                                                                  ;828BCB;
     REP #$30                                                             ;828BCC;
     PHX                                                                  ;828BCE;
