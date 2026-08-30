@@ -2800,7 +2800,12 @@ Initialise_IO_Registers_and_Display_Nintendo_Logo:
     INX                                                                  ;8B92D8;
     CPX.W #$0200                                                         ;8B92D9;
     BMI .loop                                                            ;8B92DC;
-    JSL.L EnableNMI                                                      ;8B92DE;
+    SEP #$20
+    LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
+    REP #$20
     LDA.W #$0001                                                         ;8B92E2;
     STA.W ScreenFadeDelay                                                ;8B92E5;
     STA.W ScreenFadeCounter                                              ;8B92E8;
@@ -2863,8 +2868,6 @@ Initialise_IO_Registers_and_Display_Nintendo_Logo:
 
 ;;; $936B: Add Nintendo boot logo spritemap to OAM ;;;
 AddNintendoBootLogoSpritemapToOAM:
-    PHP                                                                  ;8B936B;
-    REP #$30                                                             ;8B936C;
     PHB                                                                  ;8B936E;
     PEA.W TitleSequenceSpritemaps_NintendoBootLogo>>8&$FF00              ;8B936F;
     PLB                                                                  ;8B9372;
@@ -2877,7 +2880,6 @@ AddNintendoBootLogoSpritemapToOAM:
     STA.B DP_Temp12                                                      ;8B9381;
     JSL.L AddSpritemapToOAM                                              ;8B9383;
     PLB                                                                  ;8B9387;
-    PLP                                                                  ;8B9388;
     RTS                                                                  ;8B9389;
 
 
@@ -4493,7 +4495,12 @@ Load_Title_Sequence_Graphics:
     STA.B DP_Mode7TransOriginX                                           ;8B9C83;
     STA.W $2120                                                          ;8B9C85;
     STA.B DP_Mode7TransOriginY                                           ;8B9C88;
-    JSL.L EnableNMI                                                      ;8B9C8A;
+    SEP #$20
+    LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
+    REP #$20
     LDA.W #$0001                                                         ;8B9C8E;
     STA.W ScreenFadeDelay                                                ;8B9C91;
     STA.W ScreenFadeCounter                                              ;8B9C94;
@@ -4888,8 +4895,11 @@ if !DEBUG
 endif
     JSR.W AdvanceSlowScreenFadeOut                                       ;8B9F55;
     BCC .return                                                          ;8B9F58;
-    JSL.L EnableNMI                                                      ;8B9F5A;
-    SEP #$20                                                             ;8B9F5E;
+    SEP #$20
+    LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
     LDA.B #$01                                                           ;8B9F60;
     STA.B DP_BGModeSize                                                  ;8B9F62;
     REP #$20                                                             ;8B9F64;
@@ -4939,8 +4949,11 @@ if !DEBUG
 endif
     JSR.W AdvanceSlowScreenFadeOut                                       ;8B9FB1;
     BCC .return                                                          ;8B9FB4;
-    JSL.L EnableNMI                                                      ;8B9FB6;
-    SEP #$20                                                             ;8B9FBA;
+    SEP #$20
+    LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
     LDA.B #$01                                                           ;8B9FBC;
     STA.B DP_BGModeSize                                                  ;8B9FBE;
     REP #$20                                                             ;8B9FC0;
@@ -5642,7 +5655,12 @@ else
     JSL.L Decompression_HardcodedDestination
     dl IntroSubtitleTilemaps
 endif
-    JSL.L EnableNMI                                                      ;8BA549;
+    SEP #$20
+    LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
+    REP #$20
     LDA.W #$0003                                                         ;8BA54D;
     STA.W ScreenFadeDelay                                                ;8BA550;
     STA.W ScreenFadeCounter                                              ;8BA553;
@@ -7583,7 +7601,10 @@ CinematicFunction_Intro_Finish:
     LDA.B DP_Brightness                                                  ;8BB735;
     CMP.B #$80                                                           ;8BB737;
     BNE .return                                                          ;8BB739;
-    JSL.L EnableNMI                                                      ;8BB73B;
+    LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
     REP #$20                                                             ;8BB73F;
     STZ.W ScreenFadeDelay                                                ;8BB741;
     STZ.W ScreenFadeCounter                                              ;8BB744;
@@ -8409,7 +8430,12 @@ CinematicFunction_FlyToCeres_Initial:
     JSL.L Clear_CinematicBGObjects_CinematicBGTilemap                    ;8BBDB5;
     LDA.W #$5C00                                                         ;8BBDB9;
     STA.W CinematicBGObject_VRAMAddr                                     ;8BBDBC;
-    JSL.L EnableNMI                                                      ;8BBDBF;
+    SEP #$20
+    LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
+    REP #$20
     LDY.W #CinematicSpriteObjectDefinitions_CeresStars                   ;8BBDC3;
     LDA.W #$0000                                                         ;8BBDC6;
     JSR.W Spawn_CinematicSpriteObject_Y                                  ;8BBDC9;
@@ -8828,7 +8854,10 @@ CinematicFunction_FlyToCeres_Finish:
     LDA.B DP_Brightness                                                  ;8BC0CB;
     CMP.B #$80                                                           ;8BC0CD;
     BNE .return                                                          ;8BC0CF;
-    JSL.L EnableNMI                                                      ;8BC0D1;
+    LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
     REP #$20                                                             ;8BC0D5;
     STZ.W ScreenFadeDelay                                                ;8BC0D7;
     STZ.W ScreenFadeCounter                                              ;8BC0DA;
@@ -9026,7 +9055,12 @@ CinematicFunction_CeresGoesBoom_Initial:
     JSR.W Spawn_CinematicSpriteObject_Y                                  ;8BC29B;
     LDY.W #PaletteFXObjects_CutsceneCeresNavigationLights_BGCeres        ;8BC29E;
     JSL.L Spawn_PaletteFXObject                                          ;8BC2A1;
-    JSL.L EnableNMI                                                      ;8BC2A5;
+    SEP #$20
+    LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
+    REP #$20
     LDA.W #$0001                                                         ;8BC2A9;
     STA.W ScreenFadeDelay                                                ;8BC2AC;
     STA.W ScreenFadeCounter                                              ;8BC2AF;
@@ -9481,7 +9515,10 @@ CinematicFunction_CeresGoesBoom_FadeOut:
     LDA.B DP_Brightness                                                  ;8BC62D;
     CMP.B #$80                                                           ;8BC62F;
     BNE .return                                                          ;8BC631;
-    JSL.L EnableNMI                                                      ;8BC633;
+    LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
     REP #$20                                                             ;8BC637;
     STZ.W ScreenFadeDelay                                                ;8BC639;
     STZ.W ScreenFadeCounter                                              ;8BC63C;
@@ -9626,7 +9663,12 @@ CinematicFunction_FlyToZebes_Initial:
     JSL.L Spawn_PaletteFXObject                                          ;8BC784;
     LDA.W #CinematicFunction_FlyToZebes_FadingIn                         ;8BC788;
     STA.W CinematicFunction                                              ;8BC78B;
-    JSL.L EnableNMI                                                      ;8BC78E;
+    SEP #$20
+    LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
+    REP #$20
     LDA.W #$0001                                                         ;8BC792;
     STA.W ScreenFadeDelay                                                ;8BC795;
     STA.W ScreenFadeCounter                                              ;8BC798;
@@ -11643,9 +11685,12 @@ CinematicFunction_Ending_Setup:
     STZ.W Layer1YPosition                                                ;8BD665;
     JSL.L Clear_PaletteFXObjects                                         ;8BD668;
     JSL.L Enable_PaletteFXObjects                                        ;8BD66C;
-    JSL.L EnableNMI                                                      ;8BD670;
     STZ.W CreditsObject_ShootingStarsEnable                              ;8BD674;
     SEP #$20                                                             ;8BD677;
+    LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
     LDA.B #$11                                                           ;8BD679;
     STA.B DP_MainScreenLayers                                            ;8BD67B;
     LDA.B #$01                                                           ;8BD67D;
@@ -12533,7 +12578,12 @@ CinematicFunction_Ending_SpaceView_GunshipEmergence_Credits:
     STA.W ScreenFadeCounter                                              ;8BDE67;
     JSR.W AdvanceFastScreenFadeOut                                       ;8BDE6A;
     BCC .return                                                          ;8BDE6D;
-    JSL.L EnableNMI                                                      ;8BDE6F;
+    SEP #$20
+    LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
+    REP #$20
     STZ.W ScreenFadeDelay                                                ;8BDE73;
     STZ.W ScreenFadeCounter                                              ;8BDE76;
     LDA.W #CinematicFunction_Credits_Setup                               ;8BDE79;
@@ -12747,8 +12797,11 @@ CinematicFunction_Credits_Setup:
     STZ.W Mode7TransformationAngle                                       ;8BE08D;
     LDA.W #$0900                                                         ;8BE090;
     STA.W Mode7TransformationZoomLevel                                   ;8BE093;
-    JSL.L EnableNMI                                                      ;8BE096;
     SEP #$20                                                             ;8BE09A;
+    LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
     LDA.B #$0F                                                           ;8BE09C;
     STA.B DP_Brightness                                                  ;8BE09E;
     REP #$20                                                             ;8BE0A0;
@@ -13777,10 +13830,27 @@ CinematicFunction_PostCredits_ScrollItemPercentageDown:
     JSR.W Spawn_CinematicBGObject                                        ;8BE7AC;
     LDA.W #RTS_8BE7BA                                                    ;8BE7AF;
     STA.W CinematicFunction                                              ;8BE7B2;
-    JSL.L Write_supermetroid_ToSRAM                                      ;8BE7B5;
+    JSR.W Write_supermetroid_ToSRAM                                      ;8BE7B5;
 
   .return:
     RTS                                                                  ;8BE7B9;
+
+
+;;; $824F: Write 'supermetroid' to SRAM  ;;;
+Write_supermetroid_ToSRAM:
+; Called by:
+;     $8B:E797: Cinematic function - post-credits - scroll item percentage down
+
+; $70:1FE0..1FEB = 'supermetroid' (game completed)
+    LDX.W #$000A                                                         ;808250;
+
+  .loop:
+    LDA.L Text_supermetroid,X                                            ;808253;
+    STA.L SRAM_GameCompletionFlag,X                                      ;808257;
+    DEX                                                                  ;80825B;
+    DEX                                                                  ;80825C;
+    BPL .loop                                                            ;80825D;
+    RTS
 
 
 ;;; $E7BA: RTS ;;;

@@ -69,7 +69,12 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
     LDA.W #$0001                                                         ;828083;
     STA.W ScreenFadeDelay                                                ;828086;
     STA.W ScreenFadeCounter                                              ;828089;
-    JSL.L EnableNMI                                                      ;82808C;
+    SEP #$20
+    LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
+    REP #$20
     JSL.L Enable_Enemy_Projectiles                                       ;828090;
     JSL.L Enable_PLMs                                                    ;828094;
     JSL.L Enable_PaletteFXObjects                                        ;828098;
@@ -450,7 +455,10 @@ GameState_21_BlackoutFromCeres:
     PLP                                                                  ;8283A5;
     RTS                                                                  ;8283A6;
 
-+   JSL.L EnableNMI                                                      ;8283A7;
++   LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
     REP #$20                                                             ;8283AB;
     JSL.L Wait_End_VBlank_Clear_HDMA                                     ;8283AD;
     JSL.L DisableHVCounterInterrupts                                     ;8283B1;
@@ -523,7 +531,10 @@ GameState_23_TimeUpBlackOut:
     PLP                                                                  ;828442;
     RTS                                                                  ;828443;
 
-+   JSL.L EnableNMI                                                      ;828444;
++   LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
     REP #$20                                                             ;828448;
     JSL.L Wait_End_VBlank_Clear_HDMA                                     ;82844A;
     JSL.L DisableHVCounterInterrupts                                     ;82844E;
@@ -584,7 +595,10 @@ GameState_26_SamusEscapesFromZebes:
     RTS                                                                  ;8284D2;
 
 
-+   JSL.L EnableNMI                                                      ;8284D3;
++   LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
     REP #$20                                                             ;8284D7;
     JSL.L Wait_End_VBlank_Clear_HDMA                                     ;8284D9;
     JSL.L DisableHVCounterInterrupts                                     ;8284DD;
@@ -691,7 +705,12 @@ GameState_2B_UnloadGameData:
     BEQ +                                                                ;82859C;
     JSR.W CheckForNextDemo                                               ;82859E;
 
-+   JSL.L EnableNMI                                                      ;8285A1;
++   SEP #$20
+    LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
+    REP #$20
     INC.W GameState                                                      ;8285A5;
     STZ.W ScreenFadeDelay                                                ;8285A8;
     STZ.W ScreenFadeCounter                                              ;8285AB;
@@ -702,12 +721,7 @@ GameState_2B_UnloadGameData:
     STZ.B DP_NextIRQCmd                                                  ;8285BB;
     JSL.L Disable_PaletteFXObjects                                       ;8285BD;
     JSL.L Clear_PaletteFXObjects                                         ;8285C1;
-    LDA.W #MessageBoxIndex                                               ;8285C5;
-    DEC                                                                  ;8285C8;
-    DEC                                                                  ;8285C9;
-    SEC                                                                  ;8285CA;
-    SBC.W #TitleMenu_SelectionMissileAnimTimer                           ;8285CB;
-    TAX                                                                  ;8285CE;
+    LDX.W #MessageBoxIndex-2-TitleMenu_SelectionMissileAnimTimer
 
   .clearNonGameplayRAM:
     STZ.W TitleMenu_SelectionMissileAnimTimer,X                          ;8285CF;
@@ -1139,7 +1153,6 @@ endif
     CLI                                                                  ;828947;
 
   .loop:
-    PHP                                                                  ;828948;
     REP #$30                                                             ;828949;
     JSL.L HDMAObjectHandler_HandleMusicQueue                             ;82894B;
     JSL.L GenerateRandomNumber                                           ;82894F;
@@ -1159,7 +1172,6 @@ if !DEBUG
     JSL.L ShowSpareCPUDebug_UpdatePrevCtrl1Input                         ;828976;
 endif
     JSL.L WaitForNMI                                                     ;82897A;
-    PLP                                                                  ;82897E;
     BRA .loop                                                            ;82897F;
 
   .gamemodes:
@@ -1811,7 +1823,12 @@ GameState_C_Pausing_NormalGameplayDarkening:
     LDA.B DP_Brightness                                                  ;828CD9;
     AND.W #$000F                                                         ;828CDB;
     BNE .return                                                          ;828CDE;
-    JSL.L EnableNMI                                                      ;828CE0;
+    SEP #$20
+    LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
+    REP #$20
     STZ.W ScreenFadeDelay                                                ;828CE4;
     STZ.W ScreenFadeCounter                                              ;828CE7;
     INC.W GameState                                                      ;828CEA;
@@ -2435,7 +2452,10 @@ PauseMenu_2_MapScreenToEquipmentScreen_FadingOut:
     LDA.B DP_Brightness                                                  ;829170;
     CMP.B #$80                                                           ;829172;
     BNE .return                                                          ;829174;
-    JSL.L EnableNMI                                                      ;829176;
+    LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
     REP #$20                                                             ;82917A;
     STZ.W ScreenFadeDelay                                                ;82917C;
     STZ.W ScreenFadeCounter                                              ;82917F;
@@ -2455,7 +2475,10 @@ PauseMenu_5_EquipmentScreenToMapScreen_FadingOut:
     LDA.B DP_Brightness                                                  ;829195;
     CMP.B #$80                                                           ;829197;
     BNE .return                                                          ;829199;
-    JSL.L EnableNMI                                                      ;82919B;
+    LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
     REP #$20                                                             ;82919F;
     STZ.W ScreenFadeDelay                                                ;8291A1;
     STZ.W ScreenFadeCounter                                              ;8291A4;
@@ -2673,7 +2696,10 @@ GameState_10_Unpausing_LoadingNormalGameplay:
     LDA.B DP_Brightness                                                  ;829334;
     CMP.B #$80                                                           ;829336;
     BNE .return                                                          ;829338;
-    JSL.L EnableNMI                                                      ;82933A;
+    LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
     REP #$20                                                             ;82933E;
     STZ.W ScreenFadeDelay                                                ;829340;
     STZ.W ScreenFadeCounter                                              ;829343;
@@ -10962,7 +10988,10 @@ GameState_19_DeathSequence_BlackOut:
     LDA.B DP_Brightness                                                  ;82DDD0;
     CMP.B #$80                                                           ;82DDD2;
     BNE .return                                                          ;82DDD4;
-    JSL.L EnableNMI                                                      ;82DDD6;
+    LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
     REP #$20                                                             ;82DDDA;
     STZ.W ScreenFadeDelay                                                ;82DDDC;
     STZ.W ScreenFadeCounter                                              ;82DDDF;
@@ -13074,7 +13103,10 @@ GameOptionsMenu_0_FinishFadingOut:
     LDA.B DP_Brightness                                                  ;82EBE1;
     CMP.B #$80                                                           ;82EBE3;
     BNE +                                                                ;82EBE5;
-    JSL.L EnableNMI                                                      ;82EBE7;
+    LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
     REP #$20                                                             ;82EBEB;
     STZ.W ScreenFadeDelay                                                ;82EBED;
     STZ.W ScreenFadeCounter                                              ;82EBF0;
@@ -13435,7 +13467,10 @@ GameOptionsMenu_B_TransitionBackToFileSelect:
     LDA.B DP_Brightness                                                  ;82EE70;
     CMP.B #$80                                                           ;82EE72;
     BNE .return                                                          ;82EE74;
-    JSL.L EnableNMI                                                      ;82EE76;
+    LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
     REP #$20                                                             ;82EE7A;
     STZ.W ScreenFadeDelay                                                ;82EE7C;
     STZ.W ScreenFadeCounter                                              ;82EE7F;
@@ -13457,7 +13492,10 @@ GameOptionsMenu_C_FadingOutOptionsMenuToStartGame:
     LDA.B DP_Brightness                                                  ;82EE98;
     CMP.B #$80                                                           ;82EE9A;
     BNE .return                                                          ;82EE9C;
-    JSL.L EnableNMI                                                      ;82EE9E;
+    LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
     REP #$20                                                             ;82EEA2;
     STZ.W ScreenFadeDelay                                                ;82EEA4;
     STZ.W ScreenFadeCounter                                              ;82EEA7;
@@ -13544,7 +13582,10 @@ GameOptionsMenu_5_DissolveOutScreen:
     RTS                                                                  ;82EF31;
 
   .finishedFadingOut:
-    JSL.L EnableNMI                                                      ;82EF32;
+    LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
     REP #$20                                                             ;82EF36;
     STZ.W ScreenFadeDelay                                                ;82EF38;
     STZ.W ScreenFadeCounter                                              ;82EF3B;

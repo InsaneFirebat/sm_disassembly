@@ -270,7 +270,7 @@ GenerateRandomNumber:
     NOP                                                                  ;80811E; A = [random number low] * 5
     REP #$20                                                             ;80811F;
     LDA.W $4216                                                          ;808121; A += ([random number high] * 5 + 1) * 100h
-    PHA                                                                  ;808124;
+    STA.B DP_Temp34
     SEP #$20                                                             ;808125;
     LDA.W RandomNumberSeed+1                                             ;808127;
     STA.W $4202                                                          ;80812A;
@@ -280,10 +280,10 @@ GenerateRandomNumber:
     NOP                                                                  ;808133;
     LDA.W $4216                                                          ;808134; A += ([random number high] * 5 + 1) * 100h
     SEC                                                                  ;808137;
-    ADC.B $02,S                                                          ;808138;
-    STA.B $02,S                                                          ;80813A;
+    ADC.B DP_Temp34+1                                                    ;808138;
+    STA.B DP_Temp34+1                                                    ;80813A;
     REP #$20                                                             ;80813C;
-    PLA                                                                  ;80813E;
+    LDA.B DP_Temp34                                                      ;80813E;
     ADC.W #$0011                                                         ;80813F;
     STA.W RandomNumberSeed                                               ;808142; Random number = [A] + 11h
     RTL                                                                  ;808145;
@@ -523,48 +523,24 @@ CheckIfEvent_inA_HasHappened:
 ; Note that Tourian entrance statue FX routine $88:DCCB assumes this routine returns A = 0 when carry clear is returned
     PHX                                                                  ;808233;
     PHY                                                                  ;808234;
-    PHP                                                                  ;808235;
-    REP #$30                                                             ;808236;
     JSL.L BitIndexToByteIndexAndBitmask                                  ;808238;
     LDA.L SRAMMirror_Event,X                                             ;80823C;
     AND.W Bitmask                                                        ;808240;
     BNE .marked                                                          ;808243;
-    PLP                                                                  ;808245;
     PLY                                                                  ;808246;
     PLX                                                                  ;808247;
     CLC                                                                  ;808248;
     RTL                                                                  ;808249;
 
   .marked:
-    PLP                                                                  ;80824A;
     PLY                                                                  ;80824B;
     PLX                                                                  ;80824C;
     SEC                                                                  ;80824D;
     RTL                                                                  ;80824E;
 
 
-;;; $824F: Write 'supermetroid' to SRAM  ;;;
-Write_supermetroid_ToSRAM:
-; Called by:
-;     $8B:E797: Cinematic function - post-credits - scroll item percentage down
-
-; $70:1FE0..1FEB = 'supermetroid' (game completed)
-    PHX                                                                  ;80824F;
-    LDX.W #$000A                                                         ;808250;
-
-  .loop:
-    LDA.L Text_supermetroid,X                                            ;808253;
-    STA.L SRAM_GameCompletionFlag,X                                      ;808257;
-    DEX                                                                  ;80825B;
-    DEX                                                                  ;80825C;
-    BPL .loop                                                            ;80825D;
-    PLX                                                                  ;80825F;
-    RTL                                                                  ;808260;
-
-
 ;;; $8261: Determine number of demo sets ;;;
 DetermineNumberOfDemoSets:
-    PHX                                                                  ;808261;
     LDA.W #$0003                                                         ;808262;
     STA.W NumberOfDemoSets                                               ;808265; Number of demo sets = 3
     LDA.W #$0000                                                         ;808268;
@@ -584,8 +560,7 @@ DetermineNumberOfDemoSets:
     DEX                                                                  ;80828E;
     DEX                                                                  ;80828F;
     BPL .corruptLoop                                                     ;808290;
-    PLX                                                                  ;808292;
-    RTL                                                                  ;808293; Return
+    RTS
 
   .nonCorrupt:
     LDX.W #$000A                                                         ;808294;
@@ -601,8 +576,7 @@ DetermineNumberOfDemoSets:
     STA.W NumberOfDemoSets                                               ;8082A8; Number of demo sets = 4
 
   .return:
-    PLX                                                                  ;8082AB;
-    RTL                                                                  ;8082AC;
+    RTS                                                                  ;8082AC;
 
 
 Text_madadameyohn:
@@ -716,38 +690,6 @@ WaitForNMI:
     PLB                                                                  ;808348;
     PLP                                                                  ;808349;
     RTL                                                                  ;80834A;
-
-
-;;; $834B: Enable NMI ;;;
-EnableNMI:
-    PHP                                                                  ;80834B;
-    PHB                                                                  ;80834C;
-    PHK                                                                  ;80834D;
-    PLB                                                                  ;80834E;
-    SEP #$20                                                             ;80834F;
-    LDA.B DP_IRQAutoJoy                                                  ;808351;
-    ORA.B #$80                                                           ;808353;
-    STA.W $4200                                                          ;808355;
-    STA.B DP_IRQAutoJoy                                                  ;808358;
-    PLB                                                                  ;80835A;
-    PLP                                                                  ;80835B;
-    RTL                                                                  ;80835C;
-
-
-;;; $835D: Disable NMI ;;;
-DisableNMI:
-    PHP                                                                  ;80835D;
-    PHB                                                                  ;80835E;
-    PHK                                                                  ;80835F;
-    PLB                                                                  ;808360;
-    SEP #$20                                                             ;808361;
-    LDA.B DP_IRQAutoJoy                                                  ;808363;
-    AND.B #$7F                                                           ;808365;
-    STA.W $4200                                                          ;808367;
-    STA.B DP_IRQAutoJoy                                                  ;80836A;
-    PLB                                                                  ;80836C;
-    PLP                                                                  ;80836D;
-    RTL                                                                  ;80836E;
 
 
 ;;; $836F: Set force blank and wait for NMI ;;;
@@ -975,17 +917,10 @@ Boot:
     PHK                                                                  ;808436;
     PLB                                                                  ;808437; DB = $80
     SEP #$30                                                             ;808438;
-    LDX.B #$04                                                           ;80843A;
 
-  .wait3Frames:
+  .wait:
     LDA.W $4212                                                          ;80843C;
-    BPL .wait3Frames                                                     ;80843F; Wait the remainder of this frame and 3 more frames (???)
-
-  ..wait:
-    LDA.W $4212                                                          ;808441;
-    BMI ..wait                                                           ;808444;
-    DEX                                                                  ;808446;
-    BNE .wait3Frames                                                     ;808447;
+    BPL .wait                                                            ;80843F; Wait the remainder of this frame
     REP #$30                                                             ;808449;
     LDX.W #$1FFE                                                         ;80844B;
 
@@ -1020,17 +955,11 @@ SoftReset:
     PHK                                                                  ;80846F;
     PLB                                                                  ;808470; DB = $80
     SEP #$30                                                             ;808471;
-    LDX.B #$04                                                           ;808473;
+
 
   .wait:
     LDA.W $4212                                                          ;808475;
     BPL .wait                                                            ;808478;
-
-  .wait3Frames:
-    LDA.W $4212                                                          ;80847A;
-    BMI .wait3Frames                                                     ;80847D; Wait the remainder of this frame and 3 more frames (???)
-    DEX                                                                  ;80847F;
-    BNE .wait                                                            ;808480;
 
 
 ;;; $8482: Common boot section ;;;
@@ -1039,6 +968,7 @@ CommonBootSection:
 ; It might be giving the SPC engine a chance to run its initialisation after sending zero bytes to the APU IO registers
     SEP #$20                                                             ;808482;
     LDA.B #$8F                                                           ;808484;
+    STA.B DP_Brightness
     STA.W $2100                                                          ;808486; Enable forced blank
     REP #$30                                                             ;808489;
     PEA.W $7E00                                                          ;80848B;
@@ -1063,11 +993,8 @@ CommonBootSection:
     SEP #$30                                                             ;8084B1;
     STZ.W $4200                                                          ;8084B3;
     STZ.B DP_IRQAutoJoy                                                  ;8084B6; Disable NMI and auto-joypad read
-    LDA.B #$8F                                                           ;8084B8;
-    STA.B DP_Brightness                                                  ;8084BA; Set forced blank
     JSR.W Initialise_CPU_IO_Registers                                    ;8084BC; Initialise CPU IO registers
     JSR.W InitialisePPURegisters                                         ;8084BF; Initialise PPU registers
-    JSR.W WriteALoadOf_1C2F                                              ;8084C2; Write a load of 1C2Fh
     SEP #$20                                                             ;8084C5;
     STZ.W APU_SoundQueueStartIndexLib1                                   ;8084C7;
     STZ.W APU_SoundQueueStartIndexLib2                                   ;8084CA;
@@ -1095,22 +1022,17 @@ CommonBootSection:
     STZ.W SamusTiles_TopHalfFlag                                         ;80850C; Clear Samus tiles transfer flags
     STZ.W SamusTiles_TopHalfTilesDef                                     ;80850F; Samus top half tiles definition = 0
     STZ.W SamusTiles_BottomHalfTilesDef                                  ;808512; Samus bottom half tiles definition = 0
-    JSL.L EnableNMI                                                      ;808515; Enable NMI
-    REP #$30                                                             ;808519;
     STZ.W $2140                                                          ;80851B;
     STZ.W $2142                                                          ;80851E; Clear APU IO registers (harmless 16-bit write bug)
     SEP #$30                                                             ;808521;
-    LDX.B #$04                                                           ;808523;
+    LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
 
   .wait:
     LDA.W $4212                                                          ;808525;
     BPL .wait                                                            ;808528;
-
-  .wait3Frames:
-    LDA.W $4212                                                          ;80852A;
-    BMI .wait3Frames                                                     ;80852D; Wait the remainder of this frame and 3 more frames (???)
-    DEX                                                                  ;80852F;
-    BNE .wait                                                            ;808530;
     REP #$30                                                             ;808532;
     LDA.W #$0061                                                         ;808534;
     STA.W RandomNumberSeed                                               ;808537; Seed random number with 61h
@@ -1128,9 +1050,8 @@ if !DEBUG
     LDA.L DebugConst_DebugMode                                           ;808558;
     STA.W Debug_Enable                                                   ;80855C; Mirror debug byte to RAM
 endif
-    JSR.W NTSC_PAL_SRAM_MappingCheck                                     ;80855F; NTSC/PAL and SRAM mapping check
     REP #$30                                                             ;808562;
-    JSL.L DetermineNumberOfDemoSets                                      ;808564; Check for non-corrupt SRAM
+    JSR.W DetermineNumberOfDemoSets                                      ;808564; Check for non-corrupt SRAM
     STZ.W DisableSounds                                                  ;808568; Enable sounds
     STZ.W APU_SoundHandlerDowntime                                       ;80856B; Sound handler downtime = 0
     JML MainGameLoop                                                     ;80856E; Go to main game loop
@@ -1246,178 +1167,6 @@ MirrorCurrentAreasMapExplored:
     RTL                                                                  ;8085F5;
 
 
-;;; $85F6: NTSC/PAL and SRAM mapping check ;;;
-NTSC_PAL_SRAM_MappingCheck:
-; Checks that the SNES PPU's region matches up with the game header's region
-; and that the SRAM regions $70:0000..1FFF and $70:2000..3FFF are mirrors
-    PHP                                                                  ;8085F6;
-    SEP #$30                                                             ;8085F7;
-    LDA.L DebugConst_RegionSRAM                                          ;8085F9;
-    BEQ .region                                                          ;8085FD; If [$80:8000] != 0:
-    JMP.W .return                                                        ;8085FF; Return
-
-  .region:
-    LDA.L ROM_HEADER_country&$00FFFF                                     ;808602;
-    CMP.B #$00                                                           ;808606; If country code != Japan:
-    BEQ .Japan                                                           ;808608;
-    LDA.W $213F                                                          ;80860A;
-    BIT.B #$10                                                           ;80860D; If PPU set to PAL:
-    BEQ .failedRegion                                                    ;80860F;
-    JMP.W .SRAMCheck                                                     ;808611;
-
-  .Japan:
-    LDA.W $213F                                                          ;808614;
-    BIT.B #$10                                                           ;808617; If PPU set to NTSC: go to .SRAMCheck
-    BEQ .SRAMCheck                                                       ;808619;
-
-  .failedRegion:
-    LDA.B #$8F                                                           ;80861B;
-    STA.W $2100                                                          ;80861D; Enable forced blank
-    STZ.W $4200                                                          ;808620; Disable all interrupts
-    LDA.B #$00                                                           ;808623;
-    STA.W $2116                                                          ;808625;
-    LDA.B #$00                                                           ;808628;
-    STA.W $2117                                                          ;80862A;
-    LDA.B #$80                                                           ;80862D;
-    STA.W $2115                                                          ;80862F; VRAM $0000..1FFF = [$8E:8000..BFFF] (BG1 tiles)
-    JSL.L SetupHDMATransfer                                              ;808632; Set up a (H)DMA transfer
-    db $01,$01,$18                                                       ;808636;
-    dl Tiles_Menu_BG1_BG2                                                ;808639;
-    dw $4000                                                             ;80863C;
-    LDA.B #$02                                                           ;80863E;
-    STA.W $420B                                                          ;808640;
-    LDA.B #$00                                                           ;808643;
-    STA.W $2116                                                          ;808645;
-    LDA.B #$40                                                           ;808648;
-    STA.W $2117                                                          ;80864A;
-    LDA.B #$80                                                           ;80864D;
-    STA.W $2115                                                          ;80864F; VRAM $4000..47FF = [$80:B437..C436] (BG1 tilemap)
-    JSL.L SetupHDMATransfer                                              ;808652; Set up a (H)DMA transfer
-    db $01,$01,$18                                                       ;808656;
-    dl Tilemap_FailedRegionCheck                                         ;808659;
-    dw $1000                                                             ;80865C;
-    LDA.B #$02                                                           ;80865E;
-    STA.W $420B                                                          ;808660;
-    STZ.W $2121                                                          ;808663;
-    JSL.L SetupHDMATransfer                                              ;808666; Set up a (H)DMA transfer
-    db $01,$00,$22                                                       ;80866A; CGRAM = [$8E:E400..E5FF] (menu palettes)
-    dl Menu_Palettes                                                     ;80866D;
-    dw $0200                                                             ;808670;
-    LDA.B #$02                                                           ;808672;
-    STA.W $420B                                                          ;808674;
-    STZ.W $2131                                                          ;808677; Disable colour math
-    STZ.W $212D                                                          ;80867A; Disable subscreen
-    LDA.B #$01                                                           ;80867D;
-    STA.W $212C                                                          ;80867F; Main screen layers = BG1
-    LDA.B #$0F                                                           ;808682;
-    STA.W $2100                                                          ;808684; Disable forced blank
-    LDA.B #$00                                                           ;808687;
-    STA.W $210B                                                          ;808689; BG1 tiles base address = $0000
-    LDA.B #$40                                                           ;80868C;
-    STA.W $2107                                                          ;80868E; BG1 tilemap base address = $4000
-    BRK #$DF                                                             ;808691;
-
-  .SRAMCheck:
-    REP #$30                                                             ;808693;
-    LDX.W #$1FFE                                                         ;808695;
-
-  .backupSRAM:
-    LDA.L SRAM_Start,X                                                   ;808698;
-    STA.L BackupSRAM,X                                                   ;80869C; $7F:0000..1FFF = [$70:0000..1FFF]
-    DEX                                                                  ;8086A0;
-    DEX                                                                  ;8086A1;
-    BPL .backupSRAM                                                      ;8086A2;
-    LDA.W #$0000                                                         ;8086A4;
-    LDX.W #$1FFE                                                         ;8086A7;
-
-  .clearSRAM:
-    STA.L SRAM_Start,X                                                   ;8086AA; Clear $70:0000..1FFF
-    DEX                                                                  ;8086AE;
-    DEX                                                                  ;8086AF;
-    BPL .clearSRAM                                                       ;8086B0;
-    LDA.W #$0000                                                         ;8086B2;
-    LDX.W #$1FFE                                                         ;8086B5;
-
-  .writeSRAM:
-    STA.L $702000,X                                                      ;8086B8;
-    INC                                                                  ;8086BC; $70:2000..3FFF = 0..FFFh
-    DEX                                                                  ;8086BD;
-    DEX                                                                  ;8086BE;
-    BPL .writeSRAM                                                       ;8086BF;
-    LDA.W #$0000                                                         ;8086C1;
-    LDX.W #$1FFE                                                         ;8086C4;
-
-  .loop:
-    CMP.L SRAM_Start,X                                                   ;8086C7;
-    BNE .failedSRAMCheck                                                 ;8086CB; If [$70:0000..1FFF] != 0..FFFh: go to .failedSRAMCheck
-    INC                                                                  ;8086CD;
-    DEX                                                                  ;8086CE;
-    DEX                                                                  ;8086CF;
-
-  .verifySRAM:
-    BPL .loop                                                            ;8086D0;
-    LDX.W #$1FFE                                                         ;8086D2;
-
-  .restoreSRAM:
-    LDA.L BackupSRAM,X                                                   ;8086D5;
-    STA.L SRAM_Start,X                                                   ;8086D9; $70:0000..1FFF = [$7F:0000..1FFF]
-    DEX                                                                  ;8086DD;
-    DEX                                                                  ;8086DE;
-    BPL .restoreSRAM                                                     ;8086DF;
-
-  .return:
-    PLP                                                                  ;8086E1;
-    RTS                                                                  ;8086E2; return
-
-  .failedSRAMCheck:
-    SEP #$20                                                             ;8086E3;
-    LDA.B #$8F                                                           ;8086E5;
-    STA.W $2100                                                          ;8086E7; Enable forced blank
-    STZ.W $4200                                                          ;8086EA; Disable all interrupts
-    LDA.B #$00                                                           ;8086ED;
-    STA.W $2116                                                          ;8086EF;
-    LDA.B #$00                                                           ;8086F2;
-    STA.W $2117                                                          ;8086F4;
-    LDA.B #$80                                                           ;8086F7;
-    STA.W $2115                                                          ;8086F9; VRAM $0000..1FFF = [$8E:8000..BFFF] (BG1 tiles)
-    JSL.L SetupHDMATransfer                                              ;8086FC; Set up a (H)DMA transfer
-    db $01,$01,$18                                                       ;808700;
-    dl Tiles_Menu_BG1_BG2                                                ;808703;
-    dw $4000                                                             ;808706;
-    LDA.B #$02                                                           ;808708;
-    STA.W $420B                                                          ;80870A;
-    LDA.B #$00                                                           ;80870D;
-    STA.W $2116                                                          ;80870F;
-    LDA.B #$40                                                           ;808712;
-    STA.W $2117                                                          ;808714;
-    LDA.B #$80                                                           ;808717;
-    STA.W $2115                                                          ;808719; VRAM $4000..47FF = [$80:BC37..C436] (BG1 tilemap)
-    JSL.L SetupHDMATransfer                                              ;80871C; Set up a (H)DMA transfer
-    db $01,$01,$18                                                       ;808720;
-    dl Tilemap_FailedSRAMMappingCheck                                    ;808723;
-    dw $1000                                                             ;808726;
-    LDA.B #$02                                                           ;808728;
-    STA.W $420B                                                          ;80872A;
-    STZ.W $2121                                                          ;80872D;
-    JSL.L SetupHDMATransfer                                              ;808730; Set up a (H)DMA transfer
-    db $01,$00,$22                                                       ;808734; CGRAM = [$8E:E400..E5FF] (menu palettes)
-    dl Menu_Palettes                                                     ;808737;
-    dw $0200                                                             ;80873A;
-    LDA.B #$02                                                           ;80873C;
-    STA.W $420B                                                          ;80873E;
-    STZ.W $2131                                                          ;808741; Disable colour math
-    STZ.W $212D                                                          ;808744; Disable subscreen
-    LDA.B #$01                                                           ;808747;
-    STA.W $212C                                                          ;808749; Main screen layers = BG1
-    LDA.B #$0F                                                           ;80874C;
-    STA.W $2100                                                          ;80874E; Disable forced blank
-    LDA.B #$00                                                           ;808751;
-    STA.W $210B                                                          ;808753; BG1 tiles base address = $0000
-    LDA.B #$40                                                           ;808756;
-    STA.W $2107                                                          ;808758; BG1 tilemap base address = $4000
-    BRK #$DF                                                             ;80875B; Crash
-
-
 ;;; $875D: Initialise CPU IO registers ;;;
 Initialise_CPU_IO_Registers:
     LDA.B #$01                                                           ;80875D;
@@ -1444,9 +1193,6 @@ Initialise_CPU_IO_Registers:
 ;;; $8792: Initialise PPU registers ;;;
 InitialisePPURegisters:
 ; These BG/sprites addresses aren't used, Setup_PPU_TitleSequence overwrites them
-    LDA.B #$8F                                                           ;808792;
-    STA.W $2100                                                          ;808794; Enable forced blank
-    STA.B DP_Brightness                                                  ;808797;
     LDA.B #$03                                                           ;808799;
     STA.W $2101                                                          ;80879B; Sprite tiles base address = $6000, sprite sizes = 8x8 / 16x16
     STA.B DP_SpriteSizeAddr                                              ;80879E;
@@ -1572,26 +1318,6 @@ UNUSED_ClearHighRAM_8088B4:
     SEP #$30                                                             ;8088CE;
     RTS                                                                  ;8088D0;
 endif ; !FEATURE_KEEP_UNREFERENCED
-
-
-;;; $88D1: Write a load of 1C2Fh ;;;
-WriteALoadOf_1C2F:
-; Called by:
-;     $8482: Common boot section
-
-; These assignments have no effect. Before the first read to any of these RAM regions:
-;     $7E:3000..37FF is set to 0 by $8B:8000 (set up PPU for title sequence), which also has no effect, then to either 0 by $82:81DD (set up PPU for gameplay) or Zebes and stars tilemap by $81:9E93 (file select menu - index 1: title sequence to main - load BG2)
-;     $7E:4000..47FF is set to 006Fh by $82:81DD (set up PPU for gameplay)
-;     $7E:6000..67FF is clobbered by a decompression in $82:E3C0 (door transition function - place Samus, load tiles)
-    REP #$30                                                             ;8088D1;
-    LDA.W #$1C2F                                                         ;8088D3;
-    JSL.L Write_800h_Bytes_Of_A_To_7E3000                                ;8088D6; $7E:3000..37FF = 1C2Fh
-    LDA.W #$1C2F                                                         ;8088DA;
-    JSL.L Write_800h_Bytes_Of_A_To_7E4000                                ;8088DD; $7E:4000..47FF = 1C2Fh
-    LDA.W #$1C2F                                                         ;8088E1;
-    JSL.L Write_800h_Bytes_Of_A_To_7E6000                                ;8088E4; $7E:6000..67FF = 1C2Fh
-    SEP #$30                                                             ;8088E8;
-    RTS                                                                  ;8088EA;
 
 
 ;;; $88EB: Write 800h bytes of [A] to $7E:3000 ;;;
@@ -1725,8 +1451,6 @@ Finalise_OAM:
 ; Uses one hell of an unrolled loop
 
 ; Sprites must be 10h px or less. For large sprites, see $8B:8ED9
-    PHP                                                                  ;80896E;
-    REP #$30                                                             ;80896F;
     LDA.W OAMStack                                                       ;808971;
     CMP.W #$0200                                                         ;808974;
     BPL .clearOAMStackPointer                                            ;808977;
@@ -1743,7 +1467,6 @@ Finalise_OAM:
 
   .clearOAMStackPointer:
     STZ.W OAMStack                                                       ;80898D;
-    PLP                                                                  ;808990;
     RTL                                                                  ;808991;
 
   .spriteY00F0:
@@ -1875,16 +1598,13 @@ Finalise_OAM:
     STA.W OAMLow+$1F5                                                    ;808B09;
     STA.W OAMLow+$1F9                                                    ;808B0C;
     STA.W OAMLow+$1FD                                                    ;808B0F;
+    REP #$30
     STZ.W OAMStack                                                       ;808B12;
-    STZ.W OAMStack+1                                                     ;808B15;
-    PLP                                                                  ;808B18;
     RTL                                                                  ;808B19;
 
 
 ;;; $8B1A: Clear high OAM ;;;
 ClearHighOAM:
-    PHP                                                                  ;808B1A;
-    REP #$30                                                             ;808B1B;
     STZ.W OAMHigh+0                                                      ;808B1D;
     STZ.W OAMHigh+2                                                      ;808B20;
     STZ.W OAMHigh+4                                                      ;808B23;
@@ -1901,7 +1621,6 @@ ClearHighOAM:
     STZ.W OAMHigh+$1A                                                    ;808B44;
     STZ.W OAMHigh+$1C                                                    ;808B47;
     STZ.W OAMHigh+$1E                                                    ;808B4A;
-    PLP                                                                  ;808B4D;
     RTL                                                                  ;808B4E;
 
 
@@ -5074,7 +4793,12 @@ StartGameplay:
     JSL.L ResetSoundQueues                                               ;80A091;
     LDA.W #$FFFF                                                         ;80A095;
     STA.W DisableSounds                                                  ;80A098;
-    JSL.L DisableNMI                                                     ;80A09B;
+    SEP #$20
+    LDA.B DP_IRQAutoJoy
+    AND.B #$7F
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
+    REP #$20
     JSL.L DisableHVCounterInterrupts                                     ;80A09F;
     JSL.L Load_Destination_Room                                          ;80A0A3;
     JSR.W HandleMusicQueueFor20Frames                                    ;80A0A7;
@@ -5103,7 +4827,12 @@ StartGameplay:
     STA.W BG2YOffset                                                     ;80A0FC;
     JSR.W CalculateBGScrolls                                             ;80A0FF;
     JSL.L DisplayViewablePartOfRoom                                      ;80A102;
-    JSL.L EnableNMI                                                      ;80A106;
+    SEP #$20
+    LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
+    REP #$20
     LDA.B DP_RoomLoadIRQCmd                                              ;80A10A;
     BNE .setNextInterrupt                                                ;80A10C;
     LDA.W #$0004                                                         ;80A10E;
@@ -5128,7 +4857,11 @@ HandleMusicQueueFor20Frames:
 ;     StartGameplay
     PHP                                                                  ;80A12B;
     SEP #$30                                                             ;80A12C;
-    JSL.L EnableNMI                                                      ;80A12E;
+    LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
+    REP #$20
     LDX.B #$14                                                           ;80A132;
 
   .loop:
@@ -5140,7 +4873,11 @@ HandleMusicQueueFor20Frames:
     PLX                                                                  ;80A13F;
     DEX                                                                  ;80A140;
     BNE .loop                                                            ;80A141;
-    JSL.L DisableNMI                                                     ;80A143;
+    LDA.B DP_IRQAutoJoy
+    AND #$007F
+    TAX
+    STX.W $4200
+    STX.B DP_IRQAutoJoy
     PLP                                                                  ;80A147;
     RTS                                                                  ;80A148;
 
@@ -5156,13 +4893,23 @@ ResumeGameplay:
     REP #$30                                                             ;80A14D;
     SEI                                                                  ;80A14F;
     STZ.W $420B                                                          ;80A150;
-    JSL.L DisableNMI                                                     ;80A153;
+    SEP #$20
+    LDA.B DP_IRQAutoJoy
+    AND.B #$7F
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
+    REP #$20
     JSL.L DisableHVCounterInterrupts                                     ;80A157;
     JSL.L Load_CRETiles_TilesetTiles_and_TilesetPalette_DB_8F            ;80A15B;
     JSL.L LoadLibraryBackground_LoadingPausing                           ;80A15F;
     JSL.L DisplayViewablePartOfRoom                                      ;80A163;
     JSL.L Load_Room_PLM_Graphics                                         ;80A167;
-    JSL.L EnableNMI                                                      ;80A16B;
+    SEP #$20
+    LDA.B DP_IRQAutoJoy
+    ORA.B #$80
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
+    REP #$20
     JSL.L EnableHVCounterInterrupts                                      ;80A16F;
     PLB                                                                  ;80A173;
     PLP                                                                  ;80A174;
