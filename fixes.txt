@@ -1,0 +1,5 @@
+
+Player observable bug fixes:
+- fixed crash when entering a door while 32 sprite objects exist ($B4BD97)
+- fixed leftover tile after clearing Mother Brain's body tilemap ($A9AFE6)
+- fixed randomness on Golden Torizo egg hatch timers ($86B00E)
