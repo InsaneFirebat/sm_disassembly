@@ -5025,7 +5025,7 @@ NormalEnemyShotAI:
     LDA.W Enemy.ID,X                                                     ;A0A683;
     TAX                                                                  ;A0A686;
     LDA.L EnemyHeaders_deathAnimation,X                                  ;A0A687;
-    BEQ .deathAnimationInY                                               ;A0A68B;
+    BEQ .deathAnimationInY                                               ;A0A68B; >.<
 
   .deathAnimationInY:
     TAY                                                                  ;A0A68D;
