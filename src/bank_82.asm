@@ -1585,7 +1585,7 @@ Spawn_GameOptionsMenu_Object:
 ;; Parameters:
 ;;     Y: Game options menu object ID
 ;; Returns:
-;;     Carry: Set if enemy projectile could not be spawned
+;;     Carry: Set if game options menu object could not be spawned
     PHP                                                                  ;828BCB;
     REP #$30                                                             ;828BCC;
     PHX                                                                  ;828BCE;
