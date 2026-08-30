@@ -522,7 +522,7 @@ CheckIfEvent_inA_HasHappened:
 ;; Returns:
 ;;     Carry: Set if the event is marked
 
-; Note that Tourian entrance statue FX routine $88:DCCB assumes this routine returns A = 0 when carry clear is returned
+; Note that Tourian entrance statue FX routine Instruction_GotoY_ifEntranceToTourianUnlocked assumes this routine returns A = 0 when carry clear is returned
     PHX                                                                  ;808233;
     PHY                                                                  ;808234;
     PHP                                                                  ;808235;
@@ -1927,8 +1927,8 @@ QueueMode7Transfers:
 ;     $8B:9537: Process mode 7 object instruction list (used only by baby metroid in title sequence)
 ;     $8B:BDF9: Cinematic function - fly to Ceres - flying into camera with DB:X = $8B:BE74 (back of gunship going to Ceres)
 ;     $8B:C345: Cinematic function - Ceres goes boom - Ceres explosions with DB:X = $8B:C3E6 (front of gunship leaving Ceres) / $8B:C3F0/C3FA (clear Ceres tilemap)
-;     $A6:ACBC (Ceres Ridley)
-;     $A6:AD27 (Ceres Ridley)
+;     $A6:ACBC: Animate Ceres Ridley mode 7 baby metroid with DB:X = $A6:ACE2/ACF5/AD08
+;     $A6:AD27: Animate Ceres Ridley mode 7 wings with DB:X = $A6:AD49/AD80
 ;     $A6:F8F1: Animate Ceres elevator platform with DB:X = $A6:F904/F90E (light/dark)
 
 ; CGRAM transfers are supported, but no mode 7 transfers data actually define any CGRAM transfers, so $8B62..8B8A is dead code
@@ -3293,7 +3293,7 @@ TransferSamusTilesToVRAM:
 ;;; $9416: Process animated tiles object VRAM transfers ;;;
 ProcessAnimatedTilesObjectVRAMTransfers:
     PHB                                                                  ;809416;
-    LDX.B #$87                                                           ;809417;
+    LDX.B #Process_AnimatedTilesObject>>16                               ;809417;
     PHX                                                                  ;809419;
     PLB                                                                  ;80941A;
     LDA.W AnimatedTilesObject_Enable                                     ;80941B;
