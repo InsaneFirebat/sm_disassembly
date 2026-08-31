@@ -4464,6 +4464,7 @@ FileSelectMap_Index1_GameOptionsToAreaSelectMap_FadeOut:
     SEP #$20                                                             ;81A3CA;
     LDA.B #$02                                                           ;81A3CC;
     STA.B DP_MainScreenLayers                                            ;81A3CE;
+    REP #$30
 
   .return:
     RTS                                                                  ;81A3D0;
@@ -4865,6 +4866,7 @@ FileSelectMap_Index5_GameOptionsToAreaSelectMap_ExpSqrTrans:
     CLC                                                                  ;81A76E;
     ADC.W ExpandingSquareTransitionSpeed                                 ;81A76F;
     STA.L ExpandingSquare_RightPosition                                  ;81A772;
+    REP #$30
     RTS                                                                  ;81A776;
 
 +   INC.W PauseMenu_MenuIndex                                            ;81A777;

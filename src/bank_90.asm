@@ -3618,11 +3618,9 @@ Main_Scrolling_Routine:
 ; Called by:
 ;     $82:8B44: Game state 8 (main gameplay)
 ;     $82:E675 (unused door transition routine)
-    PHP                                                                  ;9094EC;
     PHB                                                                  ;9094ED;
     PHK                                                                  ;9094EE;
     PLB                                                                  ;9094EF;
-    REP #$30                                                             ;9094F0;
     LDA.W GrappleBeam_SlowScrollingFlag                                  ;9094F2;
     BEQ .normalScrolling                                                 ;9094F5;
     LDA.W SamusXPosition                                                 ;9094F7;
@@ -3696,7 +3694,6 @@ Main_Scrolling_Routine:
     LDA.W SamusYSubPosition                                              ;909580;
     STA.W SamusPreviousYSubPosition                                      ;909583;
     PLB                                                                  ;909586;
-    PLP                                                                  ;909587;
     RTL                                                                  ;909588;
 
 
@@ -15466,11 +15463,9 @@ SamusCurrentStateHandler:
 
 ;;; $E695: Samus current state handler - normal ;;;
 SamusCurrentStateHandler_Normal:
-    PHP                                                                  ;90E695;
     PHB                                                                  ;90E696;
     PHK                                                                  ;90E697;
     PLB                                                                  ;90E698;
-    REP #$30                                                             ;90E699;
     LDA.W #$FFFF                                                         ;90E69B;
     STA.W ProspectivePose                                                ;90E69E;
     STA.W SpecialProspectivePose                                         ;90E6A1;
@@ -15486,17 +15481,14 @@ SamusCurrentStateHandler_Normal:
     JSR.W HandleHUDSpecificBehaviorAndProjectiles                        ;90E6C0;
     JSR.W ResetMovementAndPoseChangeVariables                            ;90E6C3;
     PLB                                                                  ;90E6C6;
-    PLP                                                                  ;90E6C7;
     RTL                                                                  ;90E6C8;
 
 
 ;;; $E6C9: Samus current state handler - demo ;;;
 SamusCurrentStateHandler_Demo:
-    PHP                                                                  ;90E6C9;
     PHB                                                                  ;90E6CA;
     PHK                                                                  ;90E6CB;
     PLB                                                                  ;90E6CC;
-    REP #$30                                                             ;90E6CD;
     LDA.W #$FFFF                                                         ;90E6CF;
     STA.W ProspectivePose                                                ;90E6D2;
     STA.W SpecialProspectivePose                                         ;90E6D5;
@@ -15520,21 +15512,17 @@ SamusCurrentStateHandler_Demo:
     JSR.W HandleHUDSpecificBehaviorAndProjectiles                        ;90E70A;
     JSR.W ResetMovementAndPoseChangeVariables                            ;90E70D;
     PLB                                                                  ;90E710;
-    PLP                                                                  ;90E711;
     RTL                                                                  ;90E712;
 
 
 ;;; $E713: Samus current state handler - Samus is locked ;;;
 SamusCurrentStateHandler_SamusIsLocked:
-    PHP                                                                  ;90E713;
     PHB                                                                  ;90E714;
     PHK                                                                  ;90E715;
     PLB                                                                  ;90E716;
-    REP #$30                                                             ;90E717;
     JSR.W Handle_Projectiles                                             ;90E719;
     JSR.W ResetMovementAndPoseChangeVariables                            ;90E71C;
     PLB                                                                  ;90E71F;
-    PLP                                                                  ;90E720;
     RTL                                                                  ;90E721;
 
 
@@ -15547,11 +15535,9 @@ SamusNewStateHandler:
 SamusNewStateHandler_Normal:
 ; The return at $E756 was added to make the demo recorder handling inaccessible.
 ; On the PAL version the return was removed, exposing the demo recorder in debug mode
-    PHP                                                                  ;90E725;
     PHB                                                                  ;90E726;
     PHK                                                                  ;90E727;
     PLB                                                                  ;90E728;
-    REP #$30                                                             ;90E729;
 if !DEBUG
     JSR.W DebugCommandHandler                                            ;90E72B;
 endif
@@ -15567,11 +15553,8 @@ endif
     JSR.W HandlePeriodicDamageToSamus                                    ;90E74D;
     JSR.W PauseCheck                                                     ;90E750;
     JSR.W LowEnergyCheck                                                 ;90E753;
-if !PAL == 0
     PLB                                                                  ;90E756;
-    PLP                                                                  ;90E757;
     RTL                                                                  ;90E758;
-endif
 
 if !DEBUG
 ; Handle demo recorder
@@ -15665,11 +15648,9 @@ endif
 
 ;;; $E7F5: Samus new state handler - title demo ;;;
 SamusNewStateHandler_TitleDemo:
-    PHP                                                                  ;90E7F5;
     PHB                                                                  ;90E7F6;
     PHK                                                                  ;90E7F7;
     PLB                                                                  ;90E7F8;
-    REP #$30                                                             ;90E7F9;
     STZ.W ContactDamageIndex                                             ;90E7FB;
     JSR.W Execute_SamusMovementHandler                                   ;90E7FE;
     JSL.L Update_Minimap                                                 ;90E801;
@@ -15690,17 +15671,14 @@ endif
     LDA.W DemoInput_BackupController1New                                 ;90E82A;
     STA.W PreviousController1NewDrawing                                  ;90E82D;
     PLB                                                                  ;90E830;
-    PLP                                                                  ;90E831;
     RTL                                                                  ;90E832;
 
 
 ;;; $E833: Samus new state handler - intro demo ;;;
 SamusNewStateHandler_IntroDemo:
-    PHP                                                                  ;90E833;
     PHB                                                                  ;90E834;
     PHK                                                                  ;90E835;
     PLB                                                                  ;90E836;
-    REP #$30                                                             ;90E837;
     STZ.W ContactDamageIndex                                             ;90E839;
     JSR.W Execute_SamusMovementHandler                                   ;90E83C;
     JSR.W AnimateSamus                                                   ;90E83F;
@@ -15717,18 +15695,15 @@ SamusNewStateHandler_IntroDemo:
     LDA.W DemoInput_BackupController1New                                 ;90E861;
     STA.W PreviousController1NewDrawing                                  ;90E864;
     PLB                                                                  ;90E867;
-    PLP                                                                  ;90E868;
     RTL                                                                  ;90E869;
 
 
 ;;; $E86A: Samus new state handler - Samus appearance ;;;
 SamusNewStateHandler_SamusAppearance:
 ; The code here for disabling debug invincibility has no effect, as debug invincibility is disabled by Samus initialisation ($91:E156)
-    PHP                                                                  ;90E86A;
     PHB                                                                  ;90E86B;
     PHK                                                                  ;90E86C;
     PLB                                                                  ;90E86D;
-    REP #$30                                                             ;90E86E;
     JSR.W SetSamusRadius                                                 ;90E870;
     JSL.L Update_Minimap                                                 ;90E873;
     JSR.W AnimateSamus                                                   ;90E877;
@@ -15757,7 +15732,6 @@ endif
 
   .return:
     PLB                                                                  ;90E8A7;
-    PLP                                                                  ;90E8A8;
     RTL                                                                  ;90E8A9;
 
 
@@ -15765,11 +15739,9 @@ endif
 SamusNewStateHandler_Ceres:
 ; The setting of the game state to 23h here *should* be unnecessary,
 ; it's already handled by the generic timer code SamusTimerHackHandler_HandleTimer and edge case code Handle_UnspinSFX_CancellingEchoSound_SettingTimeUpGameState
-    PHP                                                                  ;90E8AA;
     PHB                                                                  ;90E8AB;
     PHK                                                                  ;90E8AC;
     PLB                                                                  ;90E8AD;
-    REP #$30                                                             ;90E8AE;
     JSL.L SamusNewStateHandler_Normal                                    ;90E8B0;
     LDA.W HackHandler                                                    ;90E8B4;
     CMP.W #SamusTimerHackHandler_DrawTimer                               ;90E8B7;
@@ -15782,59 +15754,39 @@ SamusNewStateHandler_Ceres:
 
   .return:
     PLB                                                                  ;90E8CA;
-    PLP                                                                  ;90E8CB;
     RTL                                                                  ;90E8CC;
 
 
 ;;; $E8CD: RTL ;;;
 RTL_90E8CD:
-    PHP                                                                  ;90E8CD;
-    PHB                                                                  ;90E8CE;
-    PHK                                                                  ;90E8CF;
-    PLB                                                                  ;90E8D0;
-    REP #$30                                                             ;90E8D1;
-    PLB                                                                  ;90E8D3;
-    PLP                                                                  ;90E8D4;
     RTL                                                                  ;90E8D5;
 
 
 ;;; $E8D6: RTL. Samus new state handler - Samus is locked into station ;;;
 RTL_90E8D6:
-    JMP.W RTL_90E8CD                                                     ;90E8D6;
+    RTL
 
 
 ;;; $E8D9: RTL. Samus new state handler - Samus is being drained ;;;
 RTL_90E8D9:
-    JMP.W RTL_90E8CD                                                     ;90E8D9;
+    RTL
 
 
 ;;; $E8DC: Samus new state handler - Samus is locked ;;;
 SamusNewStateHandler_SamusIsLocked:
-    PHP                                                                  ;90E8DC;
-    PHB                                                                  ;90E8DD;
-    PHK                                                                  ;90E8DE;
-    PLB                                                                  ;90E8DF;
-    REP #$30                                                             ;90E8E0;
-    STZ.W ContactDamageIndex                                             ;90E8E2;
-    JSL.L Update_Minimap                                                 ;90E8E5;
-    PLB                                                                  ;90E8E9;
-    PLP                                                                  ;90E8EA;
-    RTL                                                                  ;90E8EB;
+    JML Update_Minimap                                                   ;90E8E5;
 
 
 ;;; $E8EC: Samus new state handler - riding elevator ;;;
 SamusNewStateHandler_RidingElevator:
-    PHP                                                                  ;90E8EC;
     PHB                                                                  ;90E8ED;
     PHK                                                                  ;90E8EE;
     PLB                                                                  ;90E8EF;
-    REP #$30                                                             ;90E8F0;
     STZ.W ContactDamageIndex                                             ;90E8F2;
     JSR.W Execute_SamusMovementHandler                                   ;90E8F5;
     JSL.L Update_Minimap                                                 ;90E8F8;
     JSR.W AnimateSamus                                                   ;90E8FC;
     PLB                                                                  ;90E8FF;
-    PLP                                                                  ;90E900;
     RTL                                                                  ;90E901;
 
 
@@ -15887,8 +15839,7 @@ SamusPoseInputHandler_Demo:
 
 ;;; $E926: Samus pose input handler - auto-jump hack ;;;
 SamusPoseInputHandler_AutoJumpHack:
-    LDA.B DP_Controller1New                                              ;90E926;
-    PHA                                                                  ;90E928;
+    PEI.B (DP_Controller1New)                                            ;90E926;
     LDA.W AutoJumpTimer                                                  ;90E929;
     BEQ .not1Through9                                                    ;90E92C;
     CMP.W #$0009                                                         ;90E92E;
@@ -15996,8 +15947,6 @@ HandlePeriodicDamageToSamus:
 ;     Brinstar floor/ceiling plant inside reaction
 
 ; Notably not used for metroid damage (or beetom, rainbow beam, shinespark)
-    PHP                                                                  ;90E9CE;
-    REP #$30                                                             ;90E9CF;
     LDA.W TimeIsFrozenFlag                                               ;90E9D1;
     BEQ .timeIsNotFrozen                                                 ;90E9D4;
     JMP.W .timeIsFrozen                                                  ;90E9D6;
@@ -16051,20 +16000,16 @@ HandlePeriodicDamageToSamus:
     STZ.W Energy                                                         ;90EA32;
     STZ.W PeriodicSubDamage                                              ;90EA35;
     STZ.W PeriodicDamage                                                 ;90EA38;
-    PLP                                                                  ;90EA3B;
     RTS                                                                  ;90EA3C;
 
   .timeIsFrozen:
     STZ.W PeriodicSubDamage                                              ;90EA3D;
     STZ.W PeriodicDamage                                                 ;90EA40;
-    PLP                                                                  ;90EA43;
     RTS                                                                  ;90EA44;
 
 
 ;;; $EA45: Pause check ;;;
 PauseCheck:
-    PHP                                                                  ;90EA45;
-    REP #$30                                                             ;90EA46;
     LDA.W SamusProjectile_PowerBombFlag                                  ;90EA48;
     BNE .return                                                          ;90EA4B;
     LDA.W TimeIsFrozenFlag                                               ;90EA4D;
@@ -16087,7 +16032,6 @@ PauseCheck:
     STA.W GameState                                                      ;90EA7A;
 
   .return:
-    PLP                                                                  ;90EA7D;
     RTS                                                                  ;90EA7E;
 
 
@@ -16120,17 +16064,12 @@ LowEnergyCheck:
 
 ;;; $EAAB: Low health check (external) ;;;
 Low_Health_Check_external:
-    PHP                                                                  ;90EAAB;
-    REP #$30                                                             ;90EAAC;
     JSR.W LowEnergyCheck                                                 ;90EAAE;
-    PLP                                                                  ;90EAB1;
     RTL                                                                  ;90EAB2;
 
 
 ;;; $EAB3: Handle auto-jump timer and Samus hurt flash counter, update previous input and Samus health ;;;
 HandleSamus_AutoJumpTimer_HurtFlashCounter_PrevInputEnergy:
-    PHP                                                                  ;90EAB3;
-    REP #$30                                                             ;90EAB4;
     LDA.B DP_Controller1Input                                            ;90EAB6;
     BIT.W JumpBinding                                                    ;90EAB8;
     BEQ .noJump                                                          ;90EABB;
@@ -16171,14 +16110,11 @@ endif
     STA.W PreviousEnergyHurtCheck                                        ;90EAFD;
 
   .return:
-    PLP                                                                  ;90EB00;
     RTS                                                                  ;90EB01;
 
 
 ;;; $EB02: Reset movement and pose change variables ;;;
 ResetMovementAndPoseChangeVariables:
-    PHP                                                                  ;90EB02;
-    REP #$30                                                             ;90EB03;
     STZ.W ProjSpeed_DistanceSamusMovedLeft                               ;90EB05;
     STZ.W ProjSpeed_SubDistanceSamusMovedLeft                            ;90EB08;
     STZ.W ProjSpeed_DistanceSamusMovedRight                              ;90EB0B;
@@ -16191,23 +16127,19 @@ ResetMovementAndPoseChangeVariables:
     STZ.W PoseTransitionShotDirection                                    ;90EB20;
     LDA.W PoseXDirection                                                 ;90EB2D;
     STA.W PreviousMovementTypeXray-1                                     ;90EB30;
-    PLP                                                                  ;90EB33;
     RTS                                                                  ;90EB34;
 
 
 ;;; $EB35: Draw Samus and projectiles ;;;
 DrawSamusAndProjectiles:
-    PHP                                                                  ;90EB35;
     PHB                                                                  ;90EB36;
     PHK                                                                  ;90EB37;
     PLB                                                                  ;90EB38;
-    REP #$30                                                             ;90EB39;
     JSR.W DrawSamusSprites                                               ;90EB3B;
     JSL.L DrawProjectiles                                                ;90EB3E;
     JSR.W HandleSamus_AutoJumpTimer_HurtFlashCounter_PrevInputEnergy     ;90EB42;
     JSR.W Handle_UnspinSFX_CancellingEchoSound_SettingTimeUpGameState    ;90EB45;
     PLB                                                                  ;90EB48;
-    PLP                                                                  ;90EB49;
     RTL                                                                  ;90EB4A;
 
 
@@ -16367,8 +16299,6 @@ SamusDisplayHandler_InanimateSamus:
 
 ;;; $EC22: Set Samus radius ;;;
 SetSamusRadius:
-    PHP                                                                  ;90EC22;
-    REP #$30                                                             ;90EC23;
     LDA.W Pose                                                           ;90EC25;
     ASL                                                                  ;90EC28;
     ASL                                                                  ;90EC29;
@@ -16379,7 +16309,6 @@ SetSamusRadius:
     STA.W SamusYRadius                                                   ;90EC33;
     LDA.W #$0005                                                         ;90EC36;
     STA.W SamusXRadius                                                   ;90EC39;
-    PLP                                                                  ;90EC3C;
     RTS                                                                  ;90EC3D;
 
 
@@ -16387,8 +16316,6 @@ SetSamusRadius:
 Get_Samus_Bottom_Boundary:
 ;; Returns:
 ;;     $12: Samus bottom boundary (Samus Y position + pose Y radius - 1)
-    PHP                                                                  ;90EC3E;
-    REP #$30                                                             ;90EC3F;
     LDA.W Pose                                                           ;90EC41;
     ASL                                                                  ;90EC44;
     ASL                                                                  ;90EC45;
@@ -16400,7 +16327,6 @@ Get_Samus_Bottom_Boundary:
     ADC.W SamusYPosition                                                 ;90EC50;
     DEC                                                                  ;90EC53;
     STA.B DP_Temp12                                                      ;90EC54;
-    PLP                                                                  ;90EC56;
     RTL                                                                  ;90EC57;
 
 
@@ -16409,8 +16335,6 @@ Get_Samus_BottomTop_Boundary:
 ;; Returns:
 ;;     $12: Samus bottom boundary (Samus Y position + pose Y radius - 1)
 ;;     $14: Samus top boundary (Samus Y position - pose Y radius)
-    PHP                                                                  ;90EC58;
-    REP #$30                                                             ;90EC59;
     LDA.W Pose                                                           ;90EC5B;
     ASL                                                                  ;90EC5E;
     ASL                                                                  ;90EC5F;
@@ -16429,15 +16353,12 @@ Get_Samus_BottomTop_Boundary:
     SEC                                                                  ;90EC77;
     SBC.B DP_Temp14                                                      ;90EC78;
     STA.B DP_Temp14                                                      ;90EC7A;
-    PLP                                                                  ;90EC7C;
     RTL                                                                  ;90EC7D;
 
 
 ;;; $EC7E: Align Samus bottom position with old pose ;;;
 AlignSamusBottomPositionWithPreviousPose:
 ; Move Samus to align Samus bottom position to be the same as with old pose
-    PHP                                                                  ;90EC7E;
-    REP #$30                                                             ;90EC7F;
     LDA.W Pose                                                           ;90EC81;
     ASL                                                                  ;90EC84;
     ASL                                                                  ;90EC85;
@@ -16463,7 +16384,6 @@ AlignSamusBottomPositionWithPreviousPose:
     CLC                                                                  ;90ECAD;
     ADC.W SamusPreviousYPosition                                         ;90ECAE;
     STA.W SamusPreviousYPosition                                         ;90ECB1;
-    PLP                                                                  ;90ECB4;
     RTL                                                                  ;90ECB5;
 
 
@@ -16490,8 +16410,6 @@ Determine_SamusSuitPalette_Index:
 
 ;;; $ECD5: Demo recorder - move Samus with control pad ;;;
 DemoRecorder_MoveSamusWithControlPad:
-    PHP                                                                  ;90ECD5;
-    REP #$30                                                             ;90ECD6;
     LDA.B DP_Controller1Input                                            ;90ECD8;
     BIT.W #$0800                                                         ;90ECDA;
     BEQ .checkDown                                                       ;90ECDD;
@@ -16528,7 +16446,6 @@ DemoRecorder_MoveSamusWithControlPad:
     JSR.W MoveSamus_Right                                                ;90ED19;
 
   .return:
-    PLP                                                                  ;90ED1C;
     RTS                                                                  ;90ED1D;
 
 
@@ -16549,6 +16466,7 @@ UNUSED_WasteTime_90ED1F:
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
+if !DEBUG
 ;;; $ED26: Demo recorder - display Samus position as ammo if morphed ;;;
 DemoRecorder_DisplaySamusPositionAsAmmoIfMorphed:
     LDA.W MovementType                                                   ;90ED26;
@@ -16620,6 +16538,7 @@ UNUSED_DisplayGameTimeAsAmmo_90ED6C:
     STA.W MaxPowerBombs                                                  ;90ED84;
     RTS                                                                  ;90ED87;
 endif ; !FEATURE_KEEP_UNREFERENCED
+endif ;!DEBUG
 
 
 ;;; $ED88: Footstep graphics ;;;

@@ -86,7 +86,6 @@ Spawn_AnimatedTilesObject:
 
 ;;; $8064: Animated tiles objects handler ;;;
 AnimatedTilesObject_Handler:
-    PHP                                                                  ;878064;
     PHB                                                                  ;878065;
     PHK                                                                  ;878066;
     PLB                                                                  ;878067;
@@ -108,7 +107,6 @@ AnimatedTilesObject_Handler:
 
   .return:
     PLB                                                                  ;878082;
-    PLP                                                                  ;878083;
     RTL                                                                  ;878084;
 
 

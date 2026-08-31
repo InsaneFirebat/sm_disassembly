@@ -683,11 +683,9 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $85B4: PLM handler ;;;
 PLM_Handler:
-    PHP                                                                  ;8485B4;
     PHB                                                                  ;8485B5;
     PHK                                                                  ;8485B6;
     PLB                                                                  ;8485B7;
-    REP #$30                                                             ;8485B8;
     BIT.W PLM_Flag                                                       ;8485BA;
     BPL .return                                                          ;8485BD;
     STZ.W PLM_DrawTilemapIndex                                           ;8485BF;
@@ -707,7 +705,6 @@ PLM_Handler:
 
   .return:
     PLB                                                                  ;8485D7;
-    PLP                                                                  ;8485D8;
     RTL                                                                  ;8485D9;
 
 

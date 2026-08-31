@@ -1514,8 +1514,6 @@ UNUSED_GameState_1C_828B3F:
 
 ;;; $8B44: Game state 8 (main gameplay) ;;;
 GameState_8_MainGameplay:
-    PHP                                                                  ;828B44;
-    REP #$30                                                             ;828B45;
     JSL.L Determine_Which_Enemies_to_Process                             ;828B47;
 if !DEBUG
     JSL.L DebugHandler                                                   ;828B4B;
@@ -1560,7 +1558,6 @@ endif
     JSR.W HandleSamusRunningOutOfEnergy_and_IncrementGameTime            ;828BAC;
     JSL.L Handle_Room_Shaking                                            ;828BAF;
     JSL.L DecrementSamusHurtTimers_ClearActiveEnemyIndicesLists          ;828BB3;
-    PLP                                                                  ;828BB7;
     RTS                                                                  ;828BB8;
 
 
@@ -10664,8 +10661,6 @@ Advance_GradualColorChange_ofPaletteX_DividedBy_20:
 ;;; $DB69: Handle Samus running out of health and increment game time ;;;
 HandleSamusRunningOutOfEnergy_and_IncrementGameTime:
 ; The check at .noAutoReserve is the cause of Samus not dying when spamming pause
-    PHP                                                                  ;82DB69;
-    REP #$30                                                             ;82DB6A;
     LDA.W Energy                                                         ;82DB6C;
     BEQ .zeroEnergy                                                      ;82DB6F;
     BPL .tickGameTime                                                    ;82DB71;
@@ -10687,7 +10682,6 @@ HandleSamusRunningOutOfEnergy_and_IncrementGameTime:
     LDA.W GameState                                                      ;82DB95;
     CMP.W #$0008                                                         ;82DB98;
     BEQ .normalGameplay                                                  ;82DB9B;
-    PLP                                                                  ;82DB9D;
     RTS                                                                  ;82DB9E;
 
   .normalGameplay:
@@ -10729,7 +10723,6 @@ HandleSamusRunningOutOfEnergy_and_IncrementGameTime:
     LDA.W IGTHours                                                       ;82DBF2;
     CMP.W #$0064                                                         ;82DBF5;
     BPL .capGameTime                                                     ;82DBF8;
-    PLP                                                                  ;82DBFA;
     RTS                                                                  ;82DBFB;
 
   .capGameTime:
@@ -10739,7 +10732,6 @@ HandleSamusRunningOutOfEnergy_and_IncrementGameTime:
     STA.W IGTMinutes                                                     ;82DC05;
     LDA.W #$0063                                                         ;82DC08;
     STA.W IGTHours                                                       ;82DC0B;
-    PLP                                                                  ;82DC0E;
     RTS                                                                  ;82DC0F;
 
 

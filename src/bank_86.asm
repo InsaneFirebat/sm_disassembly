@@ -184,7 +184,6 @@ SpawnEnemyProjectileY_ParameterA_RoomGraphics:
 
 ;;; $8104: Enemy projectile handler ;;;
 Enemy_Projectile_Handler:
-    PHP                                                                  ;868104;
     PHB                                                                  ;868105;
     PHK                                                                  ;868106;
     PLB                                                                  ;868107;
@@ -206,7 +205,6 @@ Enemy_Projectile_Handler:
 
   .return:
     PLB                                                                  ;868122;
-    PLP                                                                  ;868123;
     RTL                                                                  ;868124;
 
 

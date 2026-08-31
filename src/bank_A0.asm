@@ -709,7 +709,6 @@ Handle_Room_Shaking:
     PEA.W BGShakeDisplacements>>8&$FF00                                  ;A08688;
     PLB                                                                  ;A0868B;
     PLB                                                                  ;A0868C;
-    REP #$30                                                             ;A0868D;
     LDA.W EarthquakeTimer                                                ;A0868F;
     BEQ .return                                                          ;A08692;
     LDA.W TimeIsFrozenFlag                                               ;A08694;
@@ -836,7 +835,6 @@ Draw_Samus_Projectiles_Enemies_and_Enemy_Projectiles:
     PEA.W AddressesForEnemyDrawingQueues>>8&$FF00                        ;A0884E;
     PLB                                                                  ;A08851;
     PLB                                                                  ;A08852;
-    REP #$30                                                             ;A08853;
     JSL.L DrawSpriteObjects                                              ;A08855;
     JSL.L DrawBombsAndProjectileExplosions                               ;A08859;
     JSL.L Draw_HighPriority_EnemyProjectile                              ;A0885D;
@@ -1654,7 +1652,6 @@ Determine_Which_Enemies_to_Process:
     PEA.W Determine_Which_Enemies_to_Process>>8&$FF00                    ;A08EB7;
     PLB                                                                  ;A08EBA;
     PLB                                                                  ;A08EBB;
-    REP #$30                                                             ;A08EBC;
     STZ.W EnemyIndex                                                     ;A08EC1;
     STZ.W ActiveEnemyIndicesStackPointer                                 ;A08EC4;
     STZ.W InteractiveEnemyIndicesStackPointer                            ;A08EC7;
@@ -1867,7 +1864,6 @@ Main_Enemy_Routine:
     PEA.W EnemyHeaders>>8&$FF00                                          ;A08FD5;
     PLB                                                                  ;A08FD8;
     PLB                                                                  ;A08FD9;
-    REP #$30                                                             ;A08FDA;
     LDA.W FirstFreeEnemyIndex                                            ;A08FDC;
     BNE .processEnemies                                                  ;A08FDF;
     JMP.W .return                                                        ;A08FE1;
@@ -2905,7 +2901,6 @@ Samus_Projectiles_Interaction_Handling:
     PEA.W Samus_Projectiles_Interaction_Handling>>8&$FF00                ;A09786;
     PLB                                                                  ;A09789;
     PLB                                                                  ;A0978A;
-    REP #$30                                                             ;A0978B;
     LDA.W #$000A                                                         ;A0978D;
     STA.L EnemyProcessingStage                                           ;A09790;
     LDA.W DisableSamusVsProjectileInteraction                            ;A09794;
@@ -3056,18 +3051,15 @@ Samus_Projectiles_Interaction_Handling:
 
 ;;; $9894: Enemy projectile / Samus collision handling ;;;
 EnemyProjectile_Samus_Collision_Handling:
-    PHP                                                                  ;A09894;
     PHB                                                                  ;A09895;
     PEA.W EnemyProjectile_Samus_Collision_Handling>>8&$FF00              ;A09896;
     PLB                                                                  ;A09899;
     PLB                                                                  ;A0989A;
-    REP #$30                                                             ;A0989B;
     LDA.W #$000B                                                         ;A0989D;
     STA.L EnemyProcessingStage                                           ;A098A0;
     LDA.W SamusInvincibilityTimer                                        ;A098A4;
     BEQ .notInvincible                                                   ;A098A7;
     PLB                                                                  ;A098A9;
-    PLP                                                                  ;A098AA;
     RTL                                                                  ;A098AB;
 
   .notInvincible:
@@ -3133,7 +3125,6 @@ EnemyProjectile_Samus_Collision_Handling:
 
   .return:
     PLB                                                                  ;A09920;
-    PLP                                                                  ;A09921;
     RTL                                                                  ;A09922;
 
 
@@ -3178,18 +3169,15 @@ HandleEnemyProjectileCollisionWithSamus:
 
 ;;; $996C: Enemy projectile / projectile collision handling ;;;
 Projectile_vs_Projectile_Collision_Handling:
-    PHP                                                                  ;A0996C;
     PHB                                                                  ;A0996D;
     PEA.W Projectile_vs_Projectile_Collision_Handling>>8&$FF00           ;A0996E;
     PLB                                                                  ;A09971;
     PLB                                                                  ;A09972;
-    REP #$30                                                             ;A09973;
     LDA.W #$000C                                                         ;A09975;
     STA.L EnemyProcessingStage                                           ;A09978;
     LDA.W SamusProjectile_ProjectileCounter                              ;A0997C;
     BNE .setIndex                                                        ;A0997F;
     PLB                                                                  ;A09981;
-    PLP                                                                  ;A09982;
     RTL                                                                  ;A09983;
 
   .setIndex:
@@ -3248,7 +3236,6 @@ Projectile_vs_Projectile_Collision_Handling:
 
   .return:
     PLB                                                                  ;A099F6;
-    PLP                                                                  ;A099F7;
     RTL                                                                  ;A099F8;
 
 

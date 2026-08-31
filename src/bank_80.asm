@@ -4061,7 +4061,6 @@ InitialiseHUD_GameLoading:
 
 ;;; $9B44: Handle HUD tilemap (HUD routine when game is paused/running) ;;;
 HandleHUDTilemap_PausedAndRunning:
-    PHP                                                                  ;809B44;
     PHB                                                                  ;809B45;
     PHK                                                                  ;809B46;
     PLB                                                                  ;809B47;
@@ -4251,7 +4250,6 @@ endif
     INX                                                                  ;809CC7;
     STX.W VRAMWriteStack                                                 ;809CC8;
     PLB                                                                  ;809CCB;
-    PLP                                                                  ;809CCC;
     RTL                                                                  ;809CCD;
 
   .etankIconOffsets:
@@ -5275,11 +5273,9 @@ CalculateBGScrolls_UpdateBGGraphics_WhenScrolling:
 ;     $AEC2: Door transition scrolling - left
 ;     $AF02: Door transition scrolling - down
 ;     $AF89: Door transition scrolling - up
-    PHP                                                                  ;80A3A0;
     PHB                                                                  ;80A3A1;
     PHK                                                                  ;80A3A2;
     PLB                                                                  ;80A3A3;
-    REP #$30                                                             ;80A3A4;
     JSR.W CalculateBGScrolls                                             ;80A3A6;
     BRA UpdateBGGraphics_WhenScrolling                                   ;80A3A9;
 
@@ -5295,11 +5291,9 @@ Calc_Layer2Position_BGScrolls_UpdateBGGraphics_WhenScrolling:
     RTL                                                                  ;80A3B0;
 
   .continue:
-    PHP                                                                  ;80A3B1;
     PHB                                                                  ;80A3B2;
     PHK                                                                  ;80A3B3;
     PLB                                                                  ;80A3B4;
-    REP #$30                                                             ;80A3B5;
     LDA.W Layer1XPosition                                                ;80A3B7;
     CLC                                                                  ;80A3BA;
     ADC.W Layer2ScrollY+1                                                ;80A3BB;
@@ -5330,7 +5324,6 @@ UpdateBGGraphics_WhenScrolling:
 
 ; Calculates new BG and layer positions, calls the update level/background data row/column functions and updates the previous layer 1/2 X/Y block values
 ; Expects a pushed DB and PSR
-    REP #$20                                                             ;80A3DF;
     JSR.W Calculate_BGScroll_LayerPositionBlocks                         ;80A3E1;
     LDX.W #$0000                                                         ;80A3E4;
     LDA.W Layer1XBlock                                                   ;80A3E7;
@@ -5434,7 +5427,6 @@ UpdateBGGraphics_WhenScrolling:
 
   .return:
     PLB                                                                  ;80A4B8;
-    PLP                                                                  ;80A4B9;
     RTL                                                                  ;80A4BA;
 
 

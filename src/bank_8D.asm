@@ -6486,11 +6486,9 @@ RTS_8DC526:
 
 ;;; $C527: Palette FX object handler ;;;
 PaletteFXObject_Handler:
-    PHP                                                                  ;8DC527;
     PHB                                                                  ;8DC528;
     PHK                                                                  ;8DC529;
     PLB                                                                  ;8DC52A;
-    REP #$30                                                             ;8DC52B;
     BIT.W PaletteFXObject_Enable                                         ;8DC52D;
     BPL .return                                                          ;8DC530;
     LDX.W #$000E                                                         ;8DC532;
@@ -6509,7 +6507,6 @@ PaletteFXObject_Handler:
 
   .return:
     PLB                                                                  ;8DC547;
-    PLP                                                                  ;8DC548;
     RTL                                                                  ;8DC549;
 
 
