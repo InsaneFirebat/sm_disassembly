@@ -51,7 +51,6 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
   .gameplay:
     JSL.L StartGameplay                                                  ;82805F;
     JSL.L InitialiseHUD_GameLoading                                      ;828063;
-    JSL.L RTL_A09784                                                     ;828067;
     PHP                                                                  ;82806B;
     REP #$30                                                             ;82806C;
     LDY.W #$0020                                                         ;82806E;
@@ -11403,14 +11402,6 @@ Load_New_Music_Track_If_Changed:
     PLB                                                                  ;82E110;
     PLP                                                                  ;82E111;
     RTL                                                                  ;82E112;
-
-
-;;; $E113: RTL ;;;
-RTL_82E113:
-    PHP                                                                  ;82E113;
-    REP #$20                                                             ;82E114;
-    PLP                                                                  ;82E116;
-    RTL                                                                  ;82E117;
 
 
 ;;; $E118: Play room music track after [A] frames ;;;

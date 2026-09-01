@@ -2023,29 +2023,6 @@ CancelGrappleBeamIfInIncompatiblePose:
     db $01 ; *1Bh: Shinespark / crystal flash / drained by metroid / damaged by MB's attacks
 
 
-;;; $B8D4: RTS ;;;
-RTS_9BB8D4:
-; Looks like RTS'd out code
-    RTS                                                                  ;9BB8D4;
-
-; Load direction grapple is fired from pose definitions
-    LDA.W Pose                                                           ;9BB8D5;
-    ASL                                                                  ;9BB8D8;
-    ASL                                                                  ;9BB8D9;
-    ASL                                                                  ;9BB8DA;
-    TAX                                                                  ;9BB8DB;
-    LDA.L PoseDefinitions_directionShotsFired,X                          ;9BB8DC;
-    AND.W #$00FF                                                         ;9BB8E0;
-    BIT.W #$00F0                                                         ;9BB8E3;
-    BNE .return                                                          ;9BB8E6;
-    CMP.W GrappleBeam_DirectionFired                                     ;9BB8E8;
-    BEQ .return                                                          ;9BB8EB;
-    STA.W GrappleBeam_DirectionFired                                     ;9BB8ED;
-
-  .return:
-    RTS                                                                  ;9BB8F0;
-
-
 ;;; $B8F1: Check if grapple is connected to block ;;;
 CheckIfGrappleIsConnectedToBlock:
 ;; Returns:
@@ -3256,7 +3233,6 @@ HandleGrappleBeamFlare:
     BRA .return                                                          ;9BC0D0;
 
 +   LDA.B DP_Temp16                                                      ;9BC0D2;
-    JSL.L RTL_818AB7                                                     ;9BC0D4;
 
   .return:
     PLB                                                                  ;9BC0D8;
@@ -3941,7 +3917,6 @@ GrappleBeamFunction_Firing:
     RTS                                                                  ;9BC710;
 
   .firing:
-    JSR.W RTS_9BB8D4                                                     ;9BC711;
     LDA.W GrappleBeam_Length                                             ;9BC714;
     CLC                                                                  ;9BC717;
     ADC.W GrappleBeam_LengthDelta                                        ;9BC718;
@@ -3988,7 +3963,6 @@ UNUSED_GrappleBeamFunction_Unfiring_9BC759:
     RTS                                                                  ;9BC766;
 
   .firing:
-    JSR.W RTS_9BB8D4                                                     ;9BC767;
     LDA.W GrappleBeam_Length                                             ;9BC76A;
     SEC                                                                  ;9BC76D;
     SBC.W GrappleBeam_LengthDelta                                        ;9BC76E;

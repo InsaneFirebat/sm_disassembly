@@ -1258,11 +1258,6 @@ AddSpritemapToOAM_Common:
     RTL                                                                  ;818AB6;
 
 
-;;; $8AB7: RTL ;;;
-RTL_818AB7:
-    RTL                                                                  ;818AB7;
-
-
 ;;; $8AB8: Add spritemap to OAM with base tile number - no off-screen handling ;;;
 AddSpritemapToOAM_WithBaseTileNumber_8AB8:
 ;; Parameters:

@@ -462,7 +462,6 @@ DrawProjectiles:
 
 +   LDA.W SamusProjectile_SpritemapPointers,X                            ;9382DD;
     BPL .loadIndex                                                       ;9382E0;
-    JSL.L RTL_818AB7                                                     ;9382E2;
 
   .loadIndex:
     LDX.W ProjectileIndex                                                ;9382E6;
@@ -514,7 +513,6 @@ UNUSED_PartialDrawProjectiles_9982FD:
 
 +   LDA.W SamusProjectile_SpritemapPointers,X                            ;938331;
     BPL .getIndex                                                        ;938334;
-    JSL.L RTL_818AB7                                                     ;938336;
 
   .getIndex:
     LDX.W ProjectileIndex                                                ;93833A;
@@ -584,7 +582,6 @@ DrawBombsAndProjectileExplosions:
 
   .offScreen:
     LDA.W SamusProjectile_SpritemapPointers,X                            ;9383AC;
-    JSL.L RTL_818AB7                                                     ;9383AF;
     LDX.W ProjectileIndex                                                ;9383B3;
 
   .next:

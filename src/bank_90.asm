@@ -3323,69 +3323,6 @@ UNUSED_MoveSamus_9092D6:
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
-;;; $92E9: RTS ;;;
-RTS_9092E9:
-; Looks like an old routine that was RTS'd out
-; Called by $A75F: Samus movement - ran into a wall
-    RTS                                                                  ;9092E9;
-
-    PHP                                                                  ;9092EA;
-    REP #$30                                                             ;9092EB;
-    LDA.W #$0001                                                         ;9092ED;
-    STA.B DP_Temp12                                                      ;9092F0;
-    STZ.B DP_Temp14                                                      ;9092F2;
-    LDA.W PoseXDirection                                                 ;9092F4;
-    AND.W #$00FF                                                         ;9092F7;
-    CMP.W #$0004                                                         ;9092FA;
-    BEQ .facingLeft                                                      ;9092FD;
-    LDA.B DP_Controller1Input                                            ;9092FF;
-    BIT.W #$0100                                                         ;909301;
-    BNE .rightwards                                                      ;909304;
-    BRA .return                                                          ;909306;
-
-  .facingLeft:
-    LDA.B DP_Controller1Input                                            ;909308;
-    BIT.W #$0200                                                         ;90930A;
-    BNE .leftwards                                                       ;90930D;
-    BRA .return                                                          ;90930F;
-
-  .rightwards:
-    JSR.W CalculateSamusXDisplacement_ForMovingRight                     ;909311;
-    BRA .merge                                                           ;909314;
-
-  .leftwards:
-    JSR.W CalculateSamusXDisplacement_ForMovingLeft                      ;909316;
-
-  .merge:
-    LDA.B DP_Temp12                                                      ;909319;
-    BMI .moveLeft                                                        ;90931B;
-    JSR.W MoveSamus_Right                                                ;90931D;
-    BRA +                                                                ;909320;
-
-  .moveLeft:
-    JSR.W MoveSamus_Left                                                 ;909322;
-
-+   LDA.W SamusSolidCollisionFlag                                        ;909325;
-    BNE .return                                                          ;909328;
-    LDA.W PoseXDirection                                                 ;90932A;
-    AND.W #$00FF                                                         ;90932D;
-    CMP.W #$0004                                                         ;909330;
-    BEQ .leftFacing                                                      ;909333;
-    LDA.W #$0009                                                         ;909335;
-    STA.W ProspectivePose                                                ;909338;
-    BRA +                                                                ;90933B;
-
-  .leftFacing:
-    LDA.W #$000A                                                         ;90933D;
-    STA.W ProspectivePose                                                ;909340;
-
-+   STZ.W SamusSolidVerticalCollisionResult                              ;909343;
-
-  .return:
-    PLP                                                                  ;909346;
-    RTS                                                                  ;909347;
-
-
 ;;; $9348: Move Samus horizontally with zero base X speed ;;;
 MoveSamus_HorizontallyWithZeroBaseXSpeed:
     STZ.B DP_Temp12                                                      ;909348;
@@ -5949,7 +5886,6 @@ SamusMovement_RanIntoAWall:
     STZ.W SamusXBaseSpeed                                                ;90A772;
     STZ.W SamusXBaseSubSpeed                                             ;90A775;
     STZ.W SamusXAccelerationMode                                         ;90A778;
-    JSR.W RTS_9092E9                                                     ;90A77B;
     PLP                                                                  ;90A77E;
     RTS                                                                  ;90A77F;
 
@@ -9339,7 +9275,6 @@ DrawFlareAnimationComponent:
 
   .greaterThanEqualTo100:
     LDA.B DP_Temp16                                                      ;90BCA5;
-    JSL.L RTL_818AB7                                                     ;90BCA7;
 
 +   LDA.W CeresStatus                                                    ;90BCAB;
     BPL .returnLower                                                     ;90BCAE;

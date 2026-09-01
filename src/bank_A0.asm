@@ -2872,11 +2872,6 @@ EnemyCollisionHandling:
     RTS                                                                  ;A09783;
 
 
-;;; $9784: RTL ;;;
-RTL_A09784:
-    RTL                                                                  ;A09784;
-
-
 ;;; $9785: Samus / projectile interaction handling ;;;
 Samus_Projectiles_Interaction_Handling:
 ; Handles bomb jumps and damage due to reflected projectiles

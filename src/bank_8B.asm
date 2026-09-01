@@ -5472,8 +5472,6 @@ RTS_8BA390:
 
 ;;; $A391: Cinematic function - nothing ;;;
 CinematicFunction_Nothing:
-; RTS_BackgroundFLickeringEffect has an RTS'd out background flickering effect
-    JSR.W RTS_BackgroundFLickeringEffect                                 ;8BA391;
     RTS                                                                  ;8BA394;
 
 
@@ -7139,7 +7137,6 @@ endif
 
 ;;; $B1DA: Cinematic function - intro - wait for input and clear text ;;;
 CinematicFunction_Intro_WaitForInput_ClearText:
-    JSR.W RTS_BackgroundFLickeringEffect                                 ;8BB1DA;
     LDA.W CinematicSpriteObject_IntroSubtitleTimer                       ;8BB1DD;
     BEQ .timerExpired                                                    ;8BB1E0;
     DEC                                                                  ;8BB1E2;
@@ -7569,29 +7566,6 @@ endif
 if !PAL == 0 ; moved to later
 incsrc "bank_8B_a.asm"
 endif
-
-
-;;; $B710: RTS. Unused background flickering effect ;;;
-RTS_BackgroundFLickeringEffect:
-    RTS                                                                  ;8BB710;
-
-    LDA.W NMI_FrameCounter                                               ;8BB711;
-    BIT.W #$0001                                                         ;8BB714;
-    BEQ .enableBG2                                                       ;8BB717;
-    SEP #$20                                                             ;8BB719;
-    LDA.B DP_MainScreenLayers                                            ;8BB71B;
-    AND.B #$FD                                                           ;8BB71D;
-    STA.B DP_MainScreenLayers                                            ;8BB71F;
-    REP #$20                                                             ;8BB721;
-    RTS                                                                  ;8BB723;
-
-  .enableBG2:
-    SEP #$20                                                             ;8BB724;
-    LDA.B DP_MainScreenLayers                                            ;8BB726;
-    ORA.B #$02                                                           ;8BB728;
-    STA.B DP_MainScreenLayers                                            ;8BB72A;
-    REP #$20                                                             ;8BB72C;
-    RTS                                                                  ;8BB72E;
 
 
 ;;; $B72F: Cinematic function - intro - finish ;;;

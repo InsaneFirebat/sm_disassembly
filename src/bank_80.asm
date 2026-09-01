@@ -4812,7 +4812,6 @@ StartGameplay:
     JSL.L Queue_Room_Music_Data                                          ;80A0CE;
     JSR.W HandleMusicQueueFor20Frames                                    ;80A0D2;
     JSL.L Update_Music_Track_Index                                       ;80A0D5;
-    JSL.L RTL_82E113                                                     ;80A0D9;
     JSL.L ClearBG2Tilemap                                                ;80A0DD;
     JSL.L LoadLevelData_CRE_TileTable_ScrollData_PLMs_DoorASM_RoomASM    ;80A0E1;
     JSL.L Load_FX_Header                                                 ;80A0E5;

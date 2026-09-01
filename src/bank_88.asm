@@ -1653,16 +1653,10 @@ HandleXrayScope_State0_NoBeam:
     LDA.W Xray_State                                                     ;888747;
     INC                                                                  ;88874A;
     STA.W Xray_State                                                     ;88874B;
-    JSR.W RTS_888753                                                     ;88874E;
 
   .return:
     PLP                                                                  ;888751;
     RTS                                                                  ;888752;
-
-
-;;; $8753: RTS ;;;
-RTS_888753:
-    RTS                                                                  ;888753;
 
 
 ;;; $8754: Handle x-ray scope - x-ray state = 1 (beam is widening) ;;;
@@ -1676,8 +1670,7 @@ HandleXrayScope_State1_BeamIsWidening:
     STA.W Xray_State                                                     ;888761;
     BRA .return                                                          ;888764;
 
-+   JSR.W RTS_888753                                                     ;888766;
-    REP #$20                                                             ;888769;
++   REP #$20                                                             ;888769;
     LDA.W Xray_AngularSubWidthDelta                                      ;88876B;
     CLC                                                                  ;88876E;
     ADC.W #$0800                                                         ;88876F;
@@ -1718,7 +1711,6 @@ HandleXrayScope_State2_FullBeam:
     BEQ .state3                                                          ;8887B3;
     JSR.W HandleMovingXray_UpDown                                        ;8887B5;
     JSR.W Calculate_Xray_HDMADataTable                                   ;8887B8;
-    JSR.W RTS_888753                                                     ;8887BB;
     PLP                                                                  ;8887BE;
     RTS                                                                  ;8887BF;
 

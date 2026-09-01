@@ -8493,35 +8493,6 @@ InstList_Shaktool_Head_AimingDownLeft:
     dw InstList_Shaktool_Head_AimingDownLeft                             ;AADAE2;
 
 
-;;; $DAE4: RTS. Maybe make Shaktool attack ;;;
-RTS_AADAE4:
-; RTS'd out
-    RTS                                                                  ;AADAE4;
-
-    JSL.L GenerateRandomNumber                                           ;AADAE5; dead code
-    BIT.W #$8431                                                         ;AADAE9;
-    BNE .return                                                          ;AADAEC;
-    LDY.W #$000C                                                         ;AADAEE;
-
-  .loop:
-    LDA.W #RTS_AADCAA                                                    ;AADAF1;
-    STA.W Shaktool.function,X                                            ;AADAF4;
-    LDA.W ShaktoolPieceData_unusedAttackInstListPointer,Y                ;AADAF7;
-    STA.W Enemy.instList,X                                               ;AADAFA;
-    LDA.W #$0001                                                         ;AADAFD;
-    STA.W Enemy.instTimer,X                                              ;AADB00;
-    TXA                                                                  ;AADB03;
-    SEC                                                                  ;AADB04;
-    SBC.W #$0040                                                         ;AADB05;
-    TAX                                                                  ;AADB08;
-    DEY                                                                  ;AADB09;
-    DEY                                                                  ;AADB0A;
-    BPL .loop                                                            ;AADB0B;
-
-  .return:
-    RTS                                                                  ;AADB0D;
-
-
 ;;; $DB0E: Shaktool pieces movement options = [A] ;;;
 ShaktoolPiecesMovementOptionsInA:
     LDY.W Shaktool.primaryPieceEnemyIndex,X                              ;AADB0E;
@@ -8873,7 +8844,6 @@ Function_Shaktool_FinalPiece:
     JSR.W ShaktoolPiecesMovementOptionsInA                               ;AADDBD;
 
   .return:
-    JSR.W RTS_AADAE4                                                     ;AADDC0;
     RTS                                                                  ;AADDC3;
 
   .collision:
