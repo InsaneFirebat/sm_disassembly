@@ -6312,6 +6312,10 @@ InitAI_Rinka:
   .propertiesSet:
     LDA.W #$0400                                                         ;A2B636;
     STA.W Enemy.palette,X                                                ;A2B639;
+    LDA.W Enemy.XPosition,X
+    STA.L EnemySpawnData.XPosition,X
+    LDA.W Enemy.YPosition,X
+    STA.L EnemySpawnData.YPosition,X
     BRA ResetRinka                                                       ;A2B63C;
 
 
