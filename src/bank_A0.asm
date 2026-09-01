@@ -2044,9 +2044,9 @@ DecrementSamusHurtTimers_ClearActiveEnemyIndicesLists:
     BEQ +                                                                ;A09174;
     DEC.W SamusKnockbackTimer                                            ;A09176;
 
-+   LDA.W ProjectileInvincibilityTImer                                   ;A09179;
++   LDA.W ProjectileInvincibilityTimer                                   ;A09179;
     BEQ +                                                                ;A0917C;
-    DEC.W ProjectileInvincibilityTImer                                   ;A0917E;
+    DEC.W ProjectileInvincibilityTimer                                   ;A0917E;
 
 +   LDA.W #$FFFF                                                         ;A09181;
     STA.W InteractiveEnemyIndices                                        ;A09184;
@@ -2852,7 +2852,7 @@ endif
     STA.W EnemySpritemapEntryYPositionDuringCollision                    ;A097AE;
 
   .projectileIsActive:
-    LDA.W ProjectileInvincibilityTImer                                   ;A097B1;
+    LDA.W ProjectileInvincibilityTimer                                   ;A097B1;
     BEQ .checkContactDamage                                              ;A097B4;
     PLB                                                                  ;A097B6;
     RTL                                                                  ;A097B7;
