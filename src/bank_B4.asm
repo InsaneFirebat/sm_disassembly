@@ -6443,14 +6443,10 @@ Instruction_SpriteObject_GotoParameter:
 
 ;;; $BD32: Draw sprite objects ;;;
 DrawSpriteObjects:
-    PHX                                                                  ;B4BD32;
-    PHY                                                                  ;B4BD33;
-    PHP                                                                  ;B4BD34;
     PHB                                                                  ;B4BD35;
     PEA.W SpriteObjectInstLists>>8                                       ;B4BD36;
     PLB                                                                  ;B4BD39;
     PLB                                                                  ;B4BD3A;
-    REP #$30                                                             ;B4BD3B;
     LDX.W #$003E                                                         ;B4BD3D;
 
   .loop:
@@ -6491,9 +6487,6 @@ DrawSpriteObjects:
     DEX                                                                  ;B4BD8F;
     BPL .loop                                                            ;B4BD90;
     PLB                                                                  ;B4BD92;
-    PLP                                                                  ;B4BD93;
-    PLY                                                                  ;B4BD94;
-    PLX                                                                  ;B4BD95;
     RTL                                                                  ;B4BD96;
 
 

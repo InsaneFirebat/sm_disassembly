@@ -6619,7 +6619,7 @@ DeleteAndRespawnRinka:
     LDA.L MotherBrainBody.deleteTurretsRinkasFlag                        ;A2B86D;
     BEQ .notMBRoom                                                       ;A2B871;
     JSR.W DecrementRinkaCounter                                          ;A2B873;
-    JML DeleteEnemyAndAnyConnectedEnemies                                ;A2B876;
+    STZ.W Enemy.ID,X
 
   .notMBRoom:
     JSR.W DecrementRinkaCounter                                          ;A2B87A;
@@ -6671,11 +6671,10 @@ MarkRinkaSpawnPointAvailable:
     BEQ .return                                                          ;A2B8BE;
     LDA.W Rinka.spawnPointAvailabilityTableIndex,X                       ;A2B8C0;
     BEQ .return                                                          ;A2B8C3;
-    PHX                                                                  ;A2B8C5;
     TAX                                                                  ;A2B8C6;
     LDA.W #$0000                                                         ;A2B8C7;
     STA.L ExtraEnemy8800-2,X                                             ;A2B8CA;
-    PLX                                                                  ;A2B8CE;
+    LDX.W EnemyIndex
     STA.W Rinka.spawnPointAvailabilityTableIndex,X                       ;A2B8CF;
 
   .return:

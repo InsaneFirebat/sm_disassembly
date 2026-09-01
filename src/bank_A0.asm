@@ -767,8 +767,6 @@ Handle_Room_Shaking:
 
 ;;; $8712: Set all active enemies to shake horizontally for two frames ;;;
 SetAllActiveEnemiesToShakeHorizontallyFor2Frames:
-    PHY                                                                  ;A08712;
-    PHX                                                                  ;A08713;
     LDY.W #$0000                                                         ;A08714;
 
   .loop:
@@ -783,8 +781,6 @@ SetAllActiveEnemiesToShakeHorizontallyFor2Frames:
     BRA .loop                                                            ;A08728;
 
   .return:
-    PLX                                                                  ;A0872A;
-    PLY                                                                  ;A0872B;
     RTS                                                                  ;A0872C;
 
 
@@ -1633,10 +1629,6 @@ ProcessEnemySet_LoadPalettesAndEnemyLoadingData:
 
 ;;; $8EB6: Determine which enemies to process ;;;
 Determine_Which_Enemies_to_Process:
-    PHB                                                                  ;A08EB6;
-    PEA.W Determine_Which_Enemies_to_Process>>8&$FF00                    ;A08EB7;
-    PLB                                                                  ;A08EBA;
-    PLB                                                                  ;A08EBB;
     LDA #$0000
     STA.W EnemyIndex
     TAX
@@ -1722,7 +1714,6 @@ Determine_Which_Enemies_to_Process:
     STA.W ActiveEnemyIndices,Y                                           ;A08F6C;
     LDY.W InteractiveEnemyIndicesStackPointer                            ;A08F6F;
     STA.W InteractiveEnemyIndices,Y                                      ;A08F72;
-    PLB                                                                  ;A08F75;
     RTL                                                                  ;A08F76;
 
   .loopProcessOffscreen:
@@ -1766,7 +1757,6 @@ Determine_Which_Enemies_to_Process:
     STA.W ActiveEnemyIndices,Y                                           ;A08FC9;
     LDY.W InteractiveEnemyIndicesStackPointer                            ;A08FCC;
     STA.W InteractiveEnemyIndices,Y                                      ;A08FCF;
-    PLB                                                                  ;A08FD2;
     RTL                                                                  ;A08FD3;
 
 
@@ -2125,51 +2115,16 @@ Spawn_Enemy_Drops:
 ;;     $14: Y position
 
 ; Used for boss deaths and enemy projectiles, but not normal enemy death
-    PHP                                                                  ;A0920E;
     PHB                                                                  ;A0920F;
-    PHX                                                                  ;A09210;
-    PHY                                                                  ;A09211;
     STA.W Temp_EnemyHeaderPointer                                        ;A09212;
     PEA.W Spawn_Enemy_Drops>>8&$FF00                                     ;A09215;
     PLB                                                                  ;A09218;
     PLB                                                                  ;A09219;
-    REP #$30                                                             ;A0921A;
     LDY.W #EnemyProjectile_EnemyDeathPickup                              ;A0921C;
     LDA.W Temp_EnemyProjectileInitParam                                  ;A0921F;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A09222;
-    PLX                                                                  ;A09226;
-    PLY                                                                  ;A09227;
     PLB                                                                  ;A09228;
-    PLP                                                                  ;A09229;
     RTL                                                                  ;A0922A;
-
-
-;;; $922B: Delete enemy and any connected enemies ;;;
-DeleteEnemyAndAnyConnectedEnemies:
-; This is called only by rinkas in Mother Brain's room when deleted due to Mother Brain first form defeat
-; Rinka has 1 part >_>;
-    PHB                                                                  ;A0922B;
-    LDX.W EnemyIndex                                                     ;A0922C;
-    PHX                                                                  ;A0922F;
-    LDA.W Enemy.ID,X                                                     ;A09230;
-    TAX                                                                  ;A09233;
-    LDA.L EnemyHeaders_numberOfParts,X                                   ;A09234;
-    BNE +                                                                ;A09238;
-    INC                                                                  ;A0923A;
-
-+   TAY                                                                  ;A0923B;
-    PLX                                                                  ;A0923C;
-
-  .loop:
-    STZ.W Enemy.ID,X                                                     ;A0923D;
-    TXA                                                                  ;A09240;
-    CLC                                                                  ;A09241;
-    ADC.W #$0040                                                         ;A09242;
-    TAX                                                                  ;A09245;
-    DEY                                                                  ;A09246;
-    BNE .loop                                                            ;A09247;
-    PLB                                                                  ;A09249;
-    RTL                                                                  ;A0924A;
 
 
 if !DEBUG
@@ -2409,9 +2364,6 @@ endif
 
 ;;; $9423: Add enemy to drawing queue ;;;
 AddEnemyToDrawingQueue:
-    PHX                                                                  ;A09423;
-    PHY                                                                  ;A09424;
-    LDX.W EnemyIndex                                                     ;A09425;
     LDA.W Enemy.layer,X                                                  ;A09428;
     ASL                                                                  ;A0942B;
     STA.W Temp_DrawingQueueIndex0E34                                     ;A0942C;
@@ -2425,8 +2377,7 @@ AddEnemyToDrawingQueue:
     LDX.W Temp_DrawingQueueIndex0E34                                     ;A0943E;
     INC.W EnemyDrawingQueues_Sizes,X                                     ;A09441;
     INC.W EnemyDrawingQueues_Sizes,X                                     ;A09444;
-    PLY                                                                  ;A09447;
-    PLX                                                                  ;A09448;
+    LDX.W EnemyIndex
     RTS                                                                  ;A09449;
 
 

@@ -533,8 +533,6 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $834D: Draw bombs and projectile explosions ;;;
 DrawBombsAndProjectileExplosions:
-    PHP                                                                  ;93834D;
-    REP #$30                                                             ;93834E;
     LDX.W #$0012                                                         ;938350;
     STX.W ProjectileIndex                                                ;938353;
 
@@ -582,14 +580,12 @@ DrawBombsAndProjectileExplosions:
 
   .offScreen:
     LDA.W SamusProjectile_SpritemapPointers,X                            ;9383AC;
-    LDX.W ProjectileIndex                                                ;9383B3;
 
   .next:
     DEX                                                                  ;9383B6;
     DEX                                                                  ;9383B7;
     STX.W ProjectileIndex                                                ;9383B8;
     BPL .loop                                                            ;9383BB;
-    PLP                                                                  ;9383BD;
     RTL                                                                  ;9383BE;
 
 
