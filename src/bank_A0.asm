@@ -1717,6 +1717,7 @@ Determine_Which_Enemies_to_Process:
     RTL                                                                  ;A08F76;
 
   .loopProcessOffscreen:
+    LDX.W EnemyIndex                                                     ;A08F77;
     LDA.W Enemy.ID,X                                                     ;A08F7A;
     BEQ .nextProcessOffscreen                                            ;A08F7D;
     CMP.W #EnemyHeaders_Respawn                                          ;A08F7F;
