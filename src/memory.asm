@@ -1216,7 +1216,7 @@ SamusYRadiusMirror: skip 2 ; $18A4
 CollisionIndex: skip 2 ; $18A6
 SamusInvincibilityTimer: skip 2 ; $18A8
 SamusKnockbackTimer: skip 2 ; $18AA
-ProjectileInvincibilityTImer: skip 2 ; $18AC
+ProjectileInvincibilityTimer: skip 2 ; $18AC
 DisableSamusVsProjectileInteraction: skip 2 ; $18AE
 
 HDMAObject_Enable: skip 2 ; $18B0
