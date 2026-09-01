@@ -8811,7 +8811,7 @@ Fire_Uncharge_Beam:
     JSR.W InitializeProjectilePositionDirection                          ;90B8BD;
     BCS .cannotFire                                                      ;90B8C0;
     LDA.W #$000A                                                         ;90B8C2;
-    STA.W ProjectileInvincibilityTImer                                   ;90B8C5;
+    STA.W ProjectileInvincibilityTimer                                   ;90B8C5;
     LDX.B DP_Temp14                                                      ;90B8C8;
     LDA.W #$0004                                                         ;90B8CA;
     STA.W SamusProjectile_TrailTimers,X                                  ;90B8CD;
@@ -8940,7 +8940,7 @@ FireChargeBeam:
     JSR.W InitializeProjectilePositionDirection                          ;90B9B4;
     BCS .cannotFire                                                      ;90B9B7;
     LDA.W #$000A                                                         ;90B9B9;
-    STA.W ProjectileInvincibilityTImer                                   ;90B9BC;
+    STA.W ProjectileInvincibilityTimer                                   ;90B9BC;
     LDX.B DP_Temp14                                                      ;90B9BF;
     LDA.W #$0004                                                         ;90B9C1;
     STA.W SamusProjectile_TrailTimers,X                                  ;90B9C4;
@@ -9404,7 +9404,7 @@ FireHyperBeam:
     JSR.W InitializeProjectilePositionDirection                          ;90BCEB;
     BCS .return                                                          ;90BCEE;
     LDA.W #$000A                                                         ;90BCF0;
-    STA.W ProjectileInvincibilityTImer                                   ;90BCF3;
+    STA.W ProjectileInvincibilityTimer                                   ;90BCF3;
     LDX.B DP_Temp14                                                      ;90BCF6;
     PHX                                                                  ;90BCF8;
     LDA.W #$9018                                                         ;90BCF9; Projectile type = live charged plasma beam | 1000h
@@ -9686,7 +9686,7 @@ HUDSelectionHandler_Missiles_SuperMissiles:
     JMP.W .returnUpper                                                   ;90BEAE;
 
 +   LDA.W #$0014                                                         ;90BEB1;
-    STA.W ProjectileInvincibilityTImer                                   ;90BEB4;
+    STA.W ProjectileInvincibilityTimer                                   ;90BEB4;
     LDA.W SelectedHUDItem                                                ;90BEB7;
     CMP.W #$0002                                                         ;90BEBA;
     BEQ .decSuperCount                                                   ;90BEBD;
