@@ -55,99 +55,84 @@ org $A08000
 ;;; $8000: Grapple AI - no interaction. Also unfreezes enemies(!) ;;;
 Common_GrappleAI_NoInteraction:
 ; Used by skultera, Draygon body, fire arc, Phantoon, etecoon, dachora and WS ghost
-    JSL.L GrappleAI_SwitchEnemyAIToMainAI                                ;A08000;
-    RTL                                                                  ;A08004;
+    JML GrappleAI_SwitchEnemyAIToMainAI                                  ;A08000;
 
 
 ;;; $8005: Grapple AI - Samus latches on ;;;
 Common_GrappleAI_SamusLatchesOn:
 ; Used by gripper and Crocomire
-    JSL.L GrappleAI_SamusLatchesOnWithGrapple                            ;A08005;
-    RTL                                                                  ;A08009;
+    JML GrappleAI_SamusLatchesOnWithGrapple                              ;A08005;
 
 
 ;;; $800A: Grapple AI - kill enemy ;;;
 Common_GrappleAI_KillEnemy:
 ; Common
-    JSL.L GrappleAI_EnemyGrappleDeath                                    ;A0800A;
-    RTL                                                                  ;A0800E;
+    JML GrappleAI_EnemyGrappleDeath                                      ;A0800A;
 
 
 ;;; $800F: Grapple AI - cancel grapple beam ;;;
 Common_GrappleAI_CancelGrappleBeam:
 ; Common
-    JSL.L GrappleAI_SwitchToFrozenAI                                     ;A0800F;
-    RTL                                                                  ;A08013;
+    JML GrappleAI_SwitchToFrozenAI                                       ;A0800F;
 
 
 ;;; $8014: Grapple AI - Samus latches on - no invincibility ;;;
 Common_GrappleAI_SamusLatchesOn_NoInvincibility:
 ; Used by powamp
-    JSL.L GrappleAI_SamusLatchesOnWithGrapple_NoInvincibility            ;A08014;
-    RTL                                                                  ;A08018;
+    JML GrappleAI_SamusLatchesOnWithGrapple_NoInvincibility              ;A08014;
 
 
 ;;; $8019: Unused. Grapple AI - Samus latches on - paralyse enemy ;;;
 UNUSED_Common_GrappleAI_SamusLatchesOn_ParalyzeEnemy_A08019:
-    JSL.L GrappleAI_SamusLatchesOnWithGrapple_ParalyzeEnemy              ;A08019;
-    RTL                                                                  ;A0801D;
+    JML GrappleAI_SamusLatchesOnWithGrapple_ParalyzeEnemy                ;A08019;
 
 
 ;;; $801E: Grapple AI - hurt Samus ;;;
 Common_GrappleAI_HurtSamus:
 ; Used by WS spark
 ; Hurt reaction happens in $9B:B932
-    JSL.L GrappleAI_SwitchToFrozenAI_duplicate                           ;A0801E;
-    RTL                                                                  ;A08022;
+    JML GrappleAI_SwitchToFrozenAI                                       ;A0801E;
 
 
 ;;; $8023: Normal enemy touch AI ;;;
 Common_NormalEnemyTouchAI:
-    JSL.L NormalEnemyTouchAI                                             ;A08023;
-    RTL                                                                  ;A08027;
+    JML NormalEnemyTouchAI                                               ;A08023;
 
 
 ;;; $8028: Normal touch AI - no death check ;;;
 Common_NormalTouchAI_NoDeathCheck:
-    JSL.L NormalEnemyTouchAI_NoDeathCheck_External                       ;A08028;
-    RTL                                                                  ;A0802C;
+    JML NormalEnemyTouchAI_NoDeathCheck_External                         ;A08028;
 
 
 ;;; $802D: Normal enemy shot AI ;;;
 Common_NormalEnemyShotAI:
-    JSL.L NormalEnemyShotAI                                              ;A0802D;
-    RTL                                                                  ;A08031;
+    JML NormalEnemyShotAI                                                ;A0802D;
 
 
 ;;; $8032: Normal enemy shot AI - no death check, no enemy shot graphic ;;;
 Common_NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
-    JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External     ;A08032;
-    RTL                                                                  ;A08036;
+    JML NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External       ;A08032;
 
 
 ;;; $8037: Normal enemy power bomb AI ;;;
 Common_NormalEnemyPowerBombAI:
-    JSL.L NormalEnemyPowerBombAI                                         ;A08037;
-    RTL                                                                  ;A0803B;
+    JML NormalEnemyPowerBombAI                                           ;A08037;
 
 
 ;;; $803C: Normal enemy power bomb AI - no death check ;;;
 Common_NormalEnemyPowerBombAI_NoDeathCheck:
 ; Kraid's power bomb AI
-    JSL.L NormalEnemyPowerBombAI_NoDeathCheck_External                   ;A0803C;
-    RTL                                                                  ;A08040;
+    JML NormalEnemyPowerBombAI_NoDeathCheck_External                     ;A0803C;
 
 
 ;;; $8041: Normal enemy frozen AI ;;;
 Common_NormalEnemyFrozenAI:
-    JSL.L NormalEnemyFrozenAI                                            ;A08041;
-    RTL                                                                  ;A08045;
+    JML NormalEnemyFrozenAI                                              ;A08041;
 
 
 ;;; $8046: Creates a dud shot ;;;
 Common_CreateADudShot:
-    JSL.L CreateADudShot                                                 ;A08046;
-    RTL                                                                  ;A0804A;
+    JML CreateADudShot                                                   ;A08046;
 
 
 ;;; $804B: RTS ;;;
@@ -3471,9 +3456,7 @@ endif
     LDX.W Enemy.ID,Y                                                     ;A09BAB;
     LDA.L EnemyHeaders_enemyShot,X                                       ;A09BAE;
     CMP.W #RTL_A0804C                                                    ;A09BB2;
-    BEQ .returnUpper                                                     ;A09BB5;
-    CMP.W #RTS_A0804B                                                    ;A09BB7; >.<
-    BNE +                                                                ;A09BBA;
+    BNE +                                                                ;A09BB5;
 
   .returnUpper:
     PLB                                                                  ;A09BBC;
@@ -4094,15 +4077,6 @@ GrappleAI_SamusLatchesOnWithGrapple_ParalyzeEnemy:
     RTL                                                                  ;A0A06F;
 
 
-;;; $A070: Switch to frozen AI ;;;
-GrappleAI_SwitchToFrozenAI_duplicate:
-; Clone of GrappleAI_SwitchToFrozenAI
-    LDX.W EnemyIndex                                                     ;A0A070;
-    LDA.W #$0004                                                         ;A0A073;
-    STA.W Enemy.AI,X                                                     ;A0A076;
-    RTL                                                                  ;A0A079;
-
-
 ;;; $A07A: Enemy / Samus collision handling ;;;
 Enemy_vs_Samus_CollisionHandling:
 ; $A091 is the cause of screw attack cancelling invincibility (need to check $9A8B too)
@@ -4115,7 +4089,6 @@ if !DEBUG
     LDA.W #$0009                                                         ;A0A082;
     STA.L EnemyProcessingStage                                           ;A0A085;
 endif
-    LDX.W EnemyIndex                                                     ;A0A089;
     LDA.W Enemy.spritemap,X                                              ;A0A08C;
     BEQ .return                                                          ;A0A08F;
     LDA.W ContactDamageIndex                                             ;A0A091;
@@ -4143,9 +4116,7 @@ endif
     LDY.W Enemy.ID,X                                                     ;A0A0BB;
     LDA.W $0030,Y                                                        ;A0A0BE;
     CMP.W #RTL_A0804C                                                    ;A0A0C1;
-    BEQ ..return                                                         ;A0A0C4;
-    CMP.W #RTS_A0804B                                                    ;A0A0C6;
-    BNE .hasTouchAI                                                      ;A0A0C9;
+    BNE .hasTouchAI                                                      ;A0A0C4;
 
   ..return:
     PLB                                                                  ;A0A0CB;
