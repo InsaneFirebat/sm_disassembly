@@ -1108,18 +1108,10 @@ Function_Metaree_Burrowing:
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A38A87;
 
   .timerNot8:
-    LDX.W EnemyIndex                                                     ;A38A8B;
     INC.W Enemy.YPosition,X                                              ;A38A8E;
     RTL                                                                  ;A38A91;
 
   .delete:
-    LDX.W EnemyIndex                                                     ;A38A92;
-    LDA.W Enemy.palette,X                                                ;A38A95;
-    ORA.W Enemy.GFXOffset,X                                              ;A38A98;
-    STA.L EnemySpawnData.VRAMTilesIndex,X                                ;A38A9B;
-    LDA.W #$0A00                                                         ;A38A9F;
-    STA.W Enemy.palette,X                                                ;A38AA2;
-    STZ.W Enemy.GFXOffset,X                                              ;A38AA5;
     LDA.W Enemy.properties,X                                             ;A38AA8;
     ORA.W #$0200                                                         ;A38AAB;
     STA.W Enemy.properties,X                                             ;A38AAE;
@@ -1187,13 +1179,11 @@ EnemyShot_Metaree:
     LDX.W EnemyIndex                                                     ;A38B22;
     LDA.W Enemy.health,X                                                 ;A38B25;
     BNE .return                                                          ;A38B28;
-    LDX.W EnemyIndex                                                     ;A38B2A;
     LDA.W Temp_MetareeParticleVRAMTilesIndex                             ;A38B2D;
     STA.W Enemy.GFXOffset,X                                              ;A38B30;
     LDA.W Temp_MetareeParticlePaletteIndex                               ;A38B33;
     STA.W Enemy.palette,X                                                ;A38B36;
     LDA.W Metaree.burrowTimer,X                                          ;A38B39;
-    LDX.W EnemyIndex                                                     ;A38B3C;
     LDY.W #EnemyProjectile_MetalSkreeParticles_DownRight                 ;A38B3F;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A38B42;
     LDY.W #EnemyProjectile_MetalSkreeParticles_UpRight                   ;A38B46;
@@ -13189,10 +13179,6 @@ EnemyTouch_Metroid:
 
 ;;; $EECE: Deal metroid contact damage to Samus ;;;
 DealMetroidContactDamageToSamus:
-    LDA.W SamusYPosition                                                 ;A3EECE;
-    SEC                                                                  ;A3EED1;
-    SBC.W #$0008                                                         ;A3EED2;
-    STA.W Temp_TargetYPosition                                           ;A3EED5;
     LDA.W EquippedItems                                                  ;A3EED8;
     BIT.W #$0020                                                         ;A3EEDB;
     BNE .gravitySuit                                                     ;A3EEDE;
@@ -13224,10 +13210,6 @@ DealMetroidContactDamageToSamus:
 
 ;;; $EF07: Enemy shot - enemy $DD7F (metroid) ;;;
 EnemyShot_Metroid:
-    LDA.W SamusYPosition                                                 ;A3EF07;
-    SEC                                                                  ;A3EF0A;
-    SBC.W #$0008                                                         ;A3EF0B;
-    STA.W Temp_TargetYPosition                                           ;A3EF0E;
     LDA.W CollisionIndex                                                 ;A3EF11;
     ASL                                                                  ;A3EF14;
     TAY                                                                  ;A3EF15;
