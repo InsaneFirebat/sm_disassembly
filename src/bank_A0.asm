@@ -90,7 +90,7 @@ UNUSED_Common_GrappleAI_SamusLatchesOn_ParalyzeEnemy_A08019:
 ;;; $801E: Grapple AI - hurt Samus ;;;
 Common_GrappleAI_HurtSamus:
 ; Used by WS spark
-; Hurt reaction happens in $9B:B932
+; Hurt reaction happens in ProcessEnemyGrappleBeamCollisionResult_HurtSamus
     JML GrappleAI_SwitchToFrozenAI                                       ;A0801E;
 
 
