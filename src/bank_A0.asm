@@ -1934,10 +1934,10 @@ Main_Enemy_Routine:
     LDY.W ActiveEnemyIndicesIndex                                        ;A08FFF;
     LDA.W ActiveEnemyIndices,Y                                           ;A09002;
     CMP.W #$FFFF                                                         ;A09005;
-    BNE ..notFFFF                                                        ;A09008;
+    BNE ..notDone                                                        ;A09008;
     JMP.W .return                                                        ;A0900A;
 
-  ..notFFFF:
+  ..notDone:
     STA.W EnemyIndex                                                     ;A0900D;
     TAX                                                                  ;A09010;
     CLC                                                                  ;A09011;
@@ -1957,9 +1957,11 @@ Main_Enemy_Routine:
 if !DEBUG
     LDA.W DebugDisableSpriteInteractions                                 ;A09031;
     BNE .interactEnd                                                     ;A09034;
-endif
     LDA.W TimeIsFrozenFlag                                               ;A09036;
     ORA.W DebugTimeIsFrozenForEnemies                                    ;A09039;
+else
+    LDA.W TimeIsFrozenFlag                                               ;A09036;
+endif
     BNE .checkParalyzed                                                  ;A0903C;
     JSR.W EnemyCollisionHandling                                         ;A0903E;
     LDX.W EnemyIndex                                                     ;A09041;
@@ -1976,7 +1978,9 @@ endif
   .interactEnd:
     STZ.W DisableDrawingOfEnemies                                        ;A09057;
     LDA.W TimeIsFrozenFlag                                               ;A0905A;
+if !DEBUG
     ORA.W DebugTimeIsFrozenForEnemies                                    ;A0905D;
+endif
     BEQ .timeNotFrozen                                                   ;A09060;
     LDA.W Enemy.ID,X                                                     ;A09062;
     TAY                                                                  ;A09065;
@@ -2031,8 +2035,10 @@ endif
     LDA.W Enemy.properties,X                                             ;A090B4;
     BIT.W #$2000                                                         ;A090B7;
     BEQ .processAIEnd                                                    ;A090BA;
+if !DEBUG
     LDA.W #$0002                                                         ;A090BC;
     STA.L EnemyProcessingStage                                           ;A090BF;
+endif
     JSR.W ProcessEnemyInstructions                                       ;A090C3;
 
   .processAIEnd:
@@ -2570,8 +2576,10 @@ WriteEnemyOAM_IfNotFrozenOrInvincibleFrame:
     STA.L neverReadF37A                                                  ;A094D9;
     LDA.W EnemyIndex                                                     ;A094DD;
     STA.L neverReadF37C                                                  ;A094E0;
+if !DEBUG
     LDA.W #$0001                                                         ;A094E4;
     STA.L EnemyProcessingStage                                           ;A094E7;
+endif
     LDY.W Enemy.spritemap,X                                              ;A094EB;
     JSL.L AddSpritemapToOAM_WithBaseTileNumber_8AB8                      ;A094EE;
     PLB                                                                  ;A094F2;
@@ -2941,7 +2949,7 @@ EnemyCollisionHandling:
     RTS                                                                  ;A09777;
 
   .notExtendedSpritemap:
-    JSR.W Enemy_vs_ProjectileCollisionHandling                           ;A09778;
+    JSR.W Enemy_vs_Projectile_CollisionHandling                          ;A09778;
     JSR.W Enemy_vs_Bomb_CollisionHandling                                ;A0977B;
     JSR.W Enemy_vs_Samus_CollisionHandling                               ;A0977E;
     PLB                                                                  ;A09781;
@@ -2962,8 +2970,10 @@ Samus_Projectiles_Interaction_Handling:
     PLB                                                                  ;A09789;
     PLB                                                                  ;A0978A;
     REP #$30                                                             ;A0978B;
+if !DEBUG
     LDA.W #$000A                                                         ;A0978D;
     STA.L EnemyProcessingStage                                           ;A09790;
+endif
     LDA.W DisableSamusVsProjectileInteraction                            ;A09794;
     BNE .returnUpper                                                     ;A09797;
     LDA.W #$0005                                                         ;A09799;
@@ -3118,8 +3128,10 @@ EnemyProjectile_Samus_Collision_Handling:
     PLB                                                                  ;A09899;
     PLB                                                                  ;A0989A;
     REP #$30                                                             ;A0989B;
+if !DEBUG
     LDA.W #$000B                                                         ;A0989D;
     STA.L EnemyProcessingStage                                           ;A098A0;
+endif
     LDA.W SamusInvincibilityTimer                                        ;A098A4;
     BEQ .notInvincible                                                   ;A098A7;
     PLB                                                                  ;A098A9;
@@ -3240,8 +3252,10 @@ Projectile_vs_Projectile_Collision_Handling:
     PLB                                                                  ;A09971;
     PLB                                                                  ;A09972;
     REP #$30                                                             ;A09973;
+if !DEBUG
     LDA.W #$000C                                                         ;A09975;
     STA.L EnemyProcessingStage                                           ;A09978;
+endif
     LDA.W SamusProjectile_ProjectileCounter                              ;A0997C;
     BNE .setIndex                                                        ;A0997F;
     PLB                                                                  ;A09981;
@@ -3374,8 +3388,10 @@ EnemySamusCollisionHandling_ExtendedSpritemap:
     PHA                                                                  ;A09A65;
     PLB                                                                  ;A09A66;
     PLB                                                                  ;A09A67;
+if !DEBUG
     LDA.W #$0006                                                         ;A09A68;
     STA.L EnemyProcessingStage                                           ;A09A6B;
+endif
     LDY.W EnemyIndex                                                     ;A09A6F;
     LDA.W Enemy.spritemap,Y                                              ;A09A72;
     BEQ .returnUpper                                                     ;A09A75;
@@ -3519,8 +3535,10 @@ Enemy_vs_Projectile_CollisionHandling_ExtendedSpritemap:
     PHA                                                                  ;A09B8A;
     PLB                                                                  ;A09B8B;
     PLB                                                                  ;A09B8C;
+if !DEBUG
     LDA.W #$0003                                                         ;A09B8D;
     STA.L EnemyProcessingStage                                           ;A09B90;
+endif
     LDA.W SamusProjectile_ProjectileCounter                              ;A09B94;
     BNE .nonZeroCounter                                                  ;A09B97;
     PLB                                                                  ;A09B99;
@@ -3537,7 +3555,7 @@ Enemy_vs_Projectile_CollisionHandling_ExtendedSpritemap:
     LDA.L EnemyHeaders_enemyShot,X                                       ;A09BAE;
     CMP.W #RTL_A0804C                                                    ;A09BB2;
     BEQ .returnUpper                                                     ;A09BB5;
-    CMP.W #RTS_A0804B                                                    ;A09BB7;
+    CMP.W #RTS_A0804B                                                    ;A09BB7; >.<
     BNE +                                                                ;A09BBA;
 
   .returnUpper:
@@ -3730,8 +3748,10 @@ Enemy_vs_Bomb_CollisionHandling_ExtendedSpritemap:
     PHA                                                                  ;A09D2E;
     PLB                                                                  ;A09D2F;
     PLB                                                                  ;A09D30;
+if !DEBUG
     LDA.W #$0004                                                         ;A09D31;
     STA.L EnemyProcessingStage                                           ;A09D34;
+endif
     LDY.W EnemyIndex                                                     ;A09D38;
     LDA.W Enemy.spritemap,Y                                              ;A09D3B;
     BEQ .returnUpper                                                     ;A09D3E;
@@ -4189,8 +4209,10 @@ Enemy_vs_Samus_CollisionHandling:
     PEA.W EnemyHeaders>>8&$FF00                                          ;A0A07D;
     PLB                                                                  ;A0A080;
     PLB                                                                  ;A0A081;
+if !DEBUG
     LDA.W #$0009                                                         ;A0A082;
     STA.L EnemyProcessingStage                                           ;A0A085;
+endif
     LDY.W EnemyIndex                                                     ;A0A089;
     LDA.W Enemy.spritemap,Y                                              ;A0A08C;
     BEQ .return                                                          ;A0A08F;
@@ -4297,7 +4319,7 @@ Enemy_vs_Samus_CollisionHandling:
 
 
 ;;; $A143: Enemy / projectile collision handling ;;;
-Enemy_vs_ProjectileCollisionHandling:
+Enemy_vs_Projectile_CollisionHandling:
     PHB                                                                  ;A0A143;
     LDX.W EnemyIndex                                                     ;A0A144;
     LDA.W Enemy.bank,X                                                   ;A0A147;
@@ -4306,8 +4328,10 @@ Enemy_vs_ProjectileCollisionHandling:
     PHA                                                                  ;A0A14E;
     PLB                                                                  ;A0A14F;
     PLB                                                                  ;A0A150;
+if !DEBUG
     LDA.W #$0007                                                         ;A0A151;
     STA.L EnemyProcessingStage                                           ;A0A154;
+endif
     LDA.W SamusProjectile_ProjectileCounter                              ;A0A158;
     BNE .nonZeroCounter                                                  ;A0A15B;
 
@@ -4439,8 +4463,10 @@ Enemy_vs_Bomb_CollisionHandling:
     PHA                                                                  ;A0A241;
     PLB                                                                  ;A0A242;
     PLB                                                                  ;A0A243;
+if !DEBUG
     LDA.W #$0008                                                         ;A0A244;
     STA.L EnemyProcessingStage                                           ;A0A247;
+endif
     LDA.W SamusProjectile_BombCounter                                    ;A0A24B;
     BNE .nonZeroCounter                                                  ;A0A24E;
 
@@ -4550,8 +4576,10 @@ Process_Enemy_PowerBomb_Interaction:
 ; For respawning enemies, $12 = 4000h in their enemy death, making power bombs effectively infinite wide for the remaining enemies that frame
 ; For non-respawning enemies, $12 = 0 in their enemy death, making power bombs effectively zero sized for the remaining enemies that frame
     PHB                                                                  ;A0A306;
+if !DEBUG
     LDA.W #$0005                                                         ;A0A307;
     STA.L EnemyProcessingStage                                           ;A0A30A;
+endif
     LDA.W SamusProjectile_PowerBombExplosionRadius+1                     ;A0A30E;
     AND.W #$00FF                                                         ;A0A311;
     STA.B DP_Temp12                                                      ;A0A314;
