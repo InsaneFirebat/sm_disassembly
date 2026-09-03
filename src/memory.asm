@@ -257,8 +257,7 @@ EarthquakeSFX_Timer: skip 2 ; $0609
 RemainingEnemySpritemapEntries: skip 0 ; $060B
 LoopCounterEnemyDeath: skip 0 ; $060B
 BotwoonSpitAngleParam: skip 0 ; $060B
-NumberOfDrops: skip 0 ; $060B
-Temp_Minimap: skip 2 ; $060B
+NumberOfDrops: skip 2 ; $060B
 RemainingEnemyHitboxEntries: skip 0 ; $060D
 NumberOfExtendedTilemapTiles: skip 0 ; $060D
 BotwoonSpitLoopCounter: skip 2 ; $060D

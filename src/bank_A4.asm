@@ -3965,7 +3965,6 @@ EnemyShot_Crocomire_OpenMouth:
 
   .damage:
     TXA                                                                  ;A4BA53;
-    CMP.W #$0000                                                         ;A4BA54;
     BEQ .flash                                                           ;A4BA57;
     CLC                                                                  ;A4BA59;
     ADC.W Crocomire.stepCounter                                          ;A4BA5A;

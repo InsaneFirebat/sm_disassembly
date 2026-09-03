@@ -4377,7 +4377,6 @@ PreInstruction_FXType_22_BG3XScroll:
 
   .lessThan10:
     TYA                                                                  ;88A759;
-    CMP.W #$0000                                                         ;88A75A;
     BEQ +                                                                ;88A75D;
     CLC                                                                  ;88A75F;
     ADC.W #$0080                                                         ;88A760;

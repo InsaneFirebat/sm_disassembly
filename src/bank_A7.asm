@@ -9878,7 +9878,6 @@ CalculateTheAthTransitionalColorComponentFromXToY:
 ;;         A = [X] + ([Y] - [X]) / ([Phantoon palette change denominator] + 1 - [A])
 
 ; Same as CalculateTheAth_TransitionalColorComponent_fromXtoY, except palette change denominator is Phantoon.paletteChangeDenominator instead of PaletteChangeDenominator
-    CMP.W #$0000                                                         ;A7DCF1;
     BNE .notZero                                                         ;A7DCF4;
     TXA                                                                  ;A7DCF6;
     RTS                                                                  ;A7DCF7;

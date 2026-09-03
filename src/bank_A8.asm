@@ -4011,7 +4011,6 @@ Function_YappingMaw_Attacking:
     STA.W Enemy.YPosition,X                                              ;A8A5A8;
     JSR.W UpdateYappingMawAngularSpeed                                   ;A8A5AB;
     LDA.W YappingMaw.angle,X                                             ;A8A5AE;
-    CMP.W #$0000                                                         ;A8A5B1;
     BMI .cooldown                                                        ;A8A5B4;
     CMP.W #$0080                                                         ;A8A5B6;
     BMI .gotoMoveSamus                                                   ;A8A5B9;

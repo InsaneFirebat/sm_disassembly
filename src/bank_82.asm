@@ -6056,7 +6056,6 @@ EquipmentScreen_Main_Weapons_MoveResponse:
     BNE .top                                                             ;82AFED;
     LDX.W #$0004                                                         ;82AFEF;
     JSR.W EquipmentScreen_MoveLowerOnSuitsMisc                           ;82AFF2;
-    CMP.W #$0000                                                         ;82AFF5;
     BEQ .return                                                          ;82AFF8;
     LDX.W #$0000                                                         ;82AFFA;
     JSR.W EquipmentScreen_MoveLowerOnBoots                               ;82AFFD;
@@ -6090,7 +6089,6 @@ EquipmentScreen_Main_Weapons_MoveResponse:
   .moveToReserve:
     LDX.W #$0000                                                         ;82B034;
     JSR.W EquipmentScreen_MoveToReserveTanks                             ;82B037;
-    CMP.W #$0000                                                         ;82B03A;
     BNE .return                                                          ;82B03D;
     LDA.B DP_Temp12                                                      ;82B03F;
     STA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82B041;
@@ -6191,7 +6189,6 @@ EquipmentScreen_SuitsMisc_MoveResponse:
     BNE .topOfBeams                                                      ;82B0E4;
     LDX.W #$0000                                                         ;82B0E6;
     JSR.W EquipmentScreen_MoveToReserveTanks                             ;82B0E9;
-    CMP.W #$0000                                                         ;82B0EC;
     BNE .return                                                          ;82B0EF;
     LDA.B DP_Temp12                                                      ;82B0F1;
     STA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B0F3;
@@ -6277,7 +6274,6 @@ EquipmentScreen_Main_Boots_MoveResponse:
   .moveToReserve:
     LDX.W #$0000                                                         ;82B17F;
     JSR.W EquipmentScreen_MoveToReserveTanks                             ;82B182;
-    CMP.W #$0000                                                         ;82B185;
     BNE .return                                                          ;82B188;
     LDA.B DP_Temp12                                                      ;82B18A;
     STA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B18C;
@@ -6685,8 +6681,6 @@ EquipmentScreen_Main_DisplayReserves_PaletteSetup:
 EquipmentScreen_MoveToReserveTanks:
 ;; Returns:
 ;;     A: 1 if moved cursor, 0 otherwise
-    PHP                                                                  ;82B43F;
-    REP #$30                                                             ;82B440;
     LDA.W MaxReserveEnergy                                               ;82B442;
     BEQ .return                                                          ;82B445;
     STZ.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B447;
@@ -6695,7 +6689,6 @@ EquipmentScreen_MoveToReserveTanks:
     LDA.W #$0001                                                         ;82B451;
 
   .return:
-    PLP                                                                  ;82B454;
     RTS                                                                  ;82B455;
 
 
@@ -6784,17 +6777,13 @@ EquipmentScreen_MoveLowerOnSuitsMisc:
 ;;     A: 0 if moved cursor, FFFFh otherwise
 
 ; Bug: $B4C4 should be CPX #$000C. Can't access Screw Attack without Spring Ball or Boots
-    PHP                                                                  ;82B4B7;
-    REP #$30                                                             ;82B4B8;
-
-  .loop:
     LDA.W CollectedItems                                                 ;82B4BA;
     BIT.W EquipmentScreenData_EquipmentBitmasks_suitsMisc,X              ;82B4BD;
     BNE +                                                                ;82B4C0;
     INX                                                                  ;82B4C2;
     INX                                                                  ;82B4C3;
-    CPX.W #$000A                                                         ;82B4C4; Bug: $B4C4 should be CPX #$000C. Can't access Screw Attack without Spring Ball or Boots
-    BMI .loop                                                            ;82B4C7;
+    CPX.W #$000A                                                         ;82B4C4; >_<
+    BMI EquipmentScreen_MoveLowerOnSuitsMisc                             ;82B4C7;
     LDA.W #$FFFF                                                         ;82B4C9;
     BRA .return                                                          ;82B4CC;
 
@@ -6809,7 +6798,6 @@ EquipmentScreen_MoveLowerOnSuitsMisc:
     LDA.W #$0000                                                         ;82B4E1;
 
   .return:
-    PLP                                                                  ;82B4E4;
     RTS                                                                  ;82B4E5;
 
 
@@ -10476,7 +10464,6 @@ CalculateTheAth_TransitionalColorComponent_fromXtoY:
 ; Solving this recurrence relation actually gives you:
 ;     c_t = c_0 + t (c_{d+1} - c_0) / (d + 1)
 ; which is linear interpolation
-    CMP.W #$0000                                                         ;82DAA6;
     BNE .AisNonZero                                                      ;82DAA9;
     TXA                                                                  ;82DAAB;
     RTS                                                                  ;82DAAC;

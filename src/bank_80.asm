@@ -4588,7 +4588,7 @@ DecrementTimer:
     STZ.W TimerMinutes                                                   ;809EDD;
 
   .checkExpired:
-    REP #$39                                                             ;809EE0; decimal + carry set
+    REP #$39                                                             ;809EE0; decimal + carry cleared
     LDA.W TimerCentiseconds                                              ;809EE2;
     ORA.W TimerSeconds                                                   ;809EE5;
     BNE .return                                                          ;809EE8;

@@ -426,7 +426,6 @@ AnimateSamus_SubmergedInLavaAcid:
 
   .fullySubmerged:
     LDA.W Pose                                                           ;9082C3;
-    CMP.W #$0000                                                         ;9082C6;
     BEQ .zeroBuffer                                                      ;9082C9;
     CMP.W #$009B                                                         ;9082CB;
     BEQ .zeroBuffer                                                      ;9082CE;
@@ -1232,7 +1231,6 @@ DetermineIf_SamusBottomHalf_IsDrawn_Standing:
 
 ; If Samus is facing forward without varia/suit, spawns an extra sprite to cover the left part of her chest
     LDA.W Pose                                                           ;90868D;
-    CMP.W #$0000                                                         ;908690;
     BEQ .facingForward                                                   ;908693;
 
   .return:
@@ -2270,7 +2268,6 @@ CalculateSamusSpritemapPosition_Standing:
     PLB                                                                  ;908CC5;
     TYA                                                                  ;908CC6;
     LSR                                                                  ;908CC7;
-    CMP.W #$0000                                                         ;908CC8;
     BEQ .facingForward                                                   ;908CCB;
     CMP.W #$009B                                                         ;908CCD;
     BEQ .facingForward                                                   ;908CD0;
@@ -6169,6 +6166,8 @@ Initialise_Minimap_broken:
 
 ;;; $A91B: Update mini-map ;;;
 Update_Minimap:
+;;; $E8DC: Samus new state handler - Samus is locked ;;;
+SamusNewStateHandler_SamusIsLocked:
 ; Direct page usage:
 ;     $09: Mini-map origin map data pointer ($82:0000 + [$0F] + [$32/$30])
 ;     $0F: Area map data pointer ([$82:9717 + [area index] * 2])
@@ -6198,11 +6197,8 @@ Update_Minimap:
 ;         each byte is 8 map tiles where the most significant bit is the leftmost tile.
 ;     The first row is padding and skipped during index calculation,
 ;     that is, room (0, 0) maps to MapTilesExplored+4 rather than MapTilesExplored.
-    PHP                                                                  ;90A91B;
-    REP #$30                                                             ;90A91C;
     LDA.W DisableMinimap                                                 ;90A91E;
     BEQ +                                                                ;90A921;
-    PLP                                                                  ;90A923;
     RTL                                                                  ;90A924;
 
 +   LDA.W SamusXPosition                                                 ;90A925;
@@ -6212,7 +6208,6 @@ Update_Minimap:
     LSR                                                                  ;90A92B;
     CMP.W RoomWidthBlocks                                                ;90A92C;
     BCC +                                                                ;90A92F;
-    PLP                                                                  ;90A931;
     RTL                                                                  ;90A932;
 
 +   LDA.W SamusYPosition                                                 ;90A933;
@@ -6222,7 +6217,6 @@ Update_Minimap:
     LSR                                                                  ;90A939;
     CMP.W RoomHeightBlocks                                               ;90A93A;
     BCC +                                                                ;90A93D;
-    PLP                                                                  ;90A93F;
     RTL                                                                  ;90A940;
 
 +   STZ.B DP_Temp2E                                                      ;90A941;
@@ -6231,10 +6225,10 @@ Update_Minimap:
     XBA                                                                  ;90A949;
     CLC                                                                  ;90A94A;
     ADC.W RoomMapX                                                       ;90A94B;
-    PHA                                                                  ;90A94E;
+    TAY
     AND.W #$0020                                                         ;90A94F;
     STA.B DP_Temp22                                                      ;90A952;
-    PLA                                                                  ;90A954;
+    TYA
     AND.W #$001F                                                         ;90A955;
     STA.B DP_Temp12                                                      ;90A958;
     AND.W #$0007                                                         ;90A95A;
@@ -6293,7 +6287,7 @@ Update_Minimap:
     XBA                                                                  ;90A9B7;
     AND.W Bitmasks_6bit_90AC0C,Y                                         ;90A9B8;
     STA.B DP_Temp1C                                                      ;90A9BB;
-    PHX                                                                  ;90A9BD;
+    TXY
     LDA.W AreaIndex                                                      ;90A9BE;
     ASL                                                                  ;90A9C1;
     TAX                                                                  ;90A9C2;
@@ -6302,7 +6296,7 @@ Update_Minimap:
     LDA.L MapData_pointers,X                                             ;90A9C8;
     STA.B DP_Temp09                                                      ;90A9CC;
     STA.B DP_Temp0E                                                      ;90A9CE;
-    PLA                                                                  ;90A9D0;
+    TYA
     CLC                                                                  ;90A9D1;
     ADC.B DP_Temp09                                                      ;90A9D2;
     STA.B DP_Temp09                                                      ;90A9D4;
@@ -6377,7 +6371,6 @@ Update_Minimap:
   .singlePage:
     LDA.B DP_Temp34                                                      ;90AA2C;
     LSR                                                                  ;90AA2E;
-    CMP.W #$0000                                                         ;90AA2F;
 
   .loop:
     BEQ Update_HUD_Minimap_Tilemap                                       ;90AA32;
@@ -6412,20 +6405,20 @@ Update_HUD_Minimap_Tilemap:
     LSR                                                                  ;90AA4B;
     CLC                                                                  ;90AA4C;
     ADC.B DP_Temp12                                                      ;90AA4D;
-    STA.W Temp_Minimap                                                   ;90AA4F;
+    STA.B DP_Temp06
     LDA.B DP_Temp22                                                      ;90AA52;
     BEQ .notLeftMapPage                                                  ;90AA54;
-    LDA.W Temp_Minimap                                                   ;90AA56;
+    LDA.B DP_Temp06
     AND.W #$001F                                                         ;90AA59;
     CMP.W #$0002                                                         ;90AA5C;
     BPL .notLeftMapPage                                                  ;90AA5F;
-    LDA.W Temp_Minimap                                                   ;90AA61;
+    LDA.B DP_Temp06
     SEC                                                                  ;90AA64;
     SBC.W #$0402                                                         ;90AA65;
     BRA +                                                                ;90AA68;
 
   .notLeftMapPage:
-    LDA.W Temp_Minimap                                                   ;90AA6A;
+    LDA.B DP_Temp06
     SEC                                                                  ;90AA6D;
     SBC.W #$0022                                                         ;90AA6E;
 
@@ -6509,7 +6502,6 @@ Update_HUD_Minimap_Tilemap:
     BCC .row2BlankTile                                                   ;90AB0A;
     LDA.B [DP_Temp06],Y                                                  ;90AB0C;
     PLP                                                                  ;90AB0E;
-    PHP                                                                  ;90AB0F;
     BNE .row2NotBlank                                                    ;90AB10;
 
   .row2BlankTile:
@@ -6533,7 +6525,6 @@ Update_HUD_Minimap_Tilemap:
     INY                                                                  ;90AB32;
     TYA                                                                  ;90AB33;
     AND.W #$003F                                                         ;90AB34;
-    CMP.W #$0000                                                         ;90AB37;
     BNE +                                                                ;90AB3A;
     TYA                                                                  ;90AB3C;
     CLC                                                                  ;90AB3D;
@@ -6547,7 +6538,6 @@ Update_HUD_Minimap_Tilemap:
   .handleFlashing:
 ; Note that the 8-bit frame counter used here is set to 0 by door transition,
 ; which usually causes the flash cycle to reset
-    PLP                                                                  ;90AB49;
     LDA.W NMI_8bitFrameCounter                                           ;90AB4A;
     AND.W #$0008                                                         ;90AB4D;
     BNE .return                                                          ;90AB50;
@@ -6556,7 +6546,6 @@ Update_HUD_Minimap_Tilemap:
     STA.L HUDTilemap_SamusMinimapPosition                                ;90AB59;
 
   .return:
-    PLP                                                                  ;90AB5D;
     RTL                                                                  ;90AB5E;
 
 
@@ -15705,11 +15694,6 @@ RTL_90E8D6:
 ;;; $E8D9: RTL. Samus new state handler - Samus is being drained ;;;
 RTL_90E8D9:
     RTL
-
-
-;;; $E8DC: Samus new state handler - Samus is locked ;;;
-SamusNewStateHandler_SamusIsLocked:
-    JML Update_Minimap                                                   ;90E8E5;
 
 
 ;;; $E8EC: Samus new state handler - riding elevator ;;;

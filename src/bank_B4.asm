@@ -3314,7 +3314,6 @@ DebugHandler_3_SpriteTilesViewer_SecondHalf:
     BIT.W #$0080                                                         ;B4986D;
     BEQ .noChange                                                        ;B49870;
     LDA.W DebugHandler185A                                               ;B49872;
-    CMP.W #$0000                                                         ;B49875;
     BNE +                                                                ;B49878;
     LDA.W #$0200                                                         ;B4987A;
     STA.W DebugHandler185A                                               ;B4987D;
