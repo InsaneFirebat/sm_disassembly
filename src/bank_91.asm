@@ -11802,8 +11802,6 @@ Load20BytesOfSamusTargetPaletteInX:
 ;;     X: Pointer to Samus palette
 
 ; Used only by LoadSamusSuitTargetPalette
-    PHP                                                                  ;91DDD7;
-    REP #$30                                                             ;91DDD8;
     PHB                                                                  ;91DDDA;
     PEA.W SamusPalettes_PowerSuit>>8&$FF00                               ;91DDDB;
     PLB                                                                  ;91DDDE;
@@ -11841,16 +11839,12 @@ Load20BytesOfSamusTargetPaletteInX:
     LDA.W $001E,X                                                        ;91DE49;
     STA.L TargetPalettes_SpriteP4+$1E                                    ;91DE4C;
     PLB                                                                  ;91DE50;
-    PLP                                                                  ;91DE51;
     RTS                                                                  ;91DE52;
 
 
 ;;; $DE53: Cancel speed boosting ;;;
 Cancel_SpeedBoosting:
     PHP                                                                  ;91DE53;
-    PHB                                                                  ;91DE54;
-    PHK                                                                  ;91DE55;
-    PLB                                                                  ;91DE56;
     REP #$30                                                             ;91DE57;
     LDA.W SamusRunningMomentumFlag                                       ;91DE59;
     BEQ .merge                                                           ;91DE5C;
@@ -11896,7 +11890,6 @@ Cancel_SpeedBoosting:
     STA.W SpeedEcho_XSpeed1                                              ;91DEB4;
 
   .return:
-    PLB                                                                  ;91DEB7;
     PLP                                                                  ;91DEB8;
     RTL                                                                  ;91DEB9;
 
@@ -11904,9 +11897,6 @@ Cancel_SpeedBoosting:
 ;;; $DEBA: Load Samus suit palette ;;;
 LoadSamusSuitPalette:
     PHP                                                                  ;91DEBA;
-    PHB                                                                  ;91DEBB;
-    PHK                                                                  ;91DEBC;
-    PLB                                                                  ;91DEBD;
     REP #$30                                                             ;91DEBE;
     LDA.W EquippedItems                                                  ;91DEC0;
     BIT.W #$0020                                                         ;91DEC3;
@@ -11927,7 +11917,6 @@ LoadSamusSuitPalette:
     JSR.W Load20BytesOfSamusPaletteInX                                   ;91DEE0;
 
   .return:
-    PLB                                                                  ;91DEE3;
     PLP                                                                  ;91DEE4;
     RTL                                                                  ;91DEE5;
 
@@ -11935,9 +11924,6 @@ LoadSamusSuitPalette:
 ;;; $DEE6: Load Samus suit target palette ;;;
 LoadSamusSuitTargetPalette:
     PHP                                                                  ;91DEE6;
-    PHB                                                                  ;91DEE7;
-    PHK                                                                  ;91DEE8;
-    PLB                                                                  ;91DEE9;
     REP #$30                                                             ;91DEEA;
     LDA.W EquippedItems                                                  ;91DEEC;
     BIT.W #$0020                                                         ;91DEEF;
@@ -11958,7 +11944,6 @@ LoadSamusSuitTargetPalette:
     JSR.W Load20BytesOfSamusTargetPaletteInX                             ;91DF0C;
 
   .return:
-    PLB                                                                  ;91DF0F;
     PLP                                                                  ;91DF10;
     RTL                                                                  ;91DF11;
 
@@ -11967,11 +11952,6 @@ LoadSamusSuitTargetPalette:
 Restore_A_Energy_ToSamus:
 ;; Parameters:
 ;;     A: Health
-    PHP                                                                  ;91DF12;
-    PHB                                                                  ;91DF13;
-    PHK                                                                  ;91DF14;
-    PLB                                                                  ;91DF15;
-    REP #$30                                                             ;91DF16;
     STA.B DP_Temp12                                                      ;91DF18;
     LDA.W Energy                                                         ;91DF1A;
     CLC                                                                  ;91DF1D;
@@ -12000,34 +11980,16 @@ Restore_A_Energy_ToSamus:
     STA.W Energy                                                         ;91DF4B;
 
   .return:
-    PLB                                                                  ;91DF4E;
-    PLP                                                                  ;91DF4F;
     RTL                                                                  ;91DF50;
 
 
 ;;; $DF51: Deal [A] damage to Samus ;;;
 Deal_A_Damage_to_Samus:
 ;; Parameters:
-;;     A: Damage. 300 is treated like 0. Negative = crash
+;;     A: Damage
 
-; Ignores suits, call $A0:A45E for suit-adjusted damage
-; There are no enemies or enemy projectiles that do 300 damage,
-; there are some projectiles - which if reflected - could do 300 damage,
-; in any case it's unclear what the 300 damage check is for
-    PHP                                                                  ;91DF51;
-    PHB                                                                  ;91DF52;
-    PHK                                                                  ;91DF53;
-    PLB                                                                  ;91DF54;
-    REP #$30                                                             ;91DF55;
-    PHX                                                                  ;91DF57;
+; Ignores suits, call Suit_Damage_Division
     STA.B DP_Temp12                                                      ;91DF58;
-    TAX                                                                  ;91DF5A;
-    BPL .noCrash                                                         ;91DF5B;
-    JSL Crash_Handler                                                    ;91DF5D;
-
-  .noCrash:
-    CMP.W #$012C                                                         ;91DF61;
-    BEQ .noDamage                                                        ;91DF64;
     LDA.W TimeIsFrozenFlag                                               ;91DF66;
     BNE .return                                                          ;91DF69;
     LDA.W Energy                                                         ;91DF6B;
@@ -12038,13 +12000,7 @@ Deal_A_Damage_to_Samus:
     STZ.W Energy                                                         ;91DF76;
 
   .return:
-    PLX                                                                  ;91DF79;
-    PLB                                                                  ;91DF7A;
-    PLP                                                                  ;91DF7B;
     RTL                                                                  ;91DF7C;
-
-  .noDamage:
-    BRA .return                                                          ;91DF7E;
 
 
 ;;; $DF80: Restore [A] missiles to Samus ;;;
@@ -12056,49 +12012,15 @@ Restore_A_Missiles_ToSamus:
 ; Samus missiles = min([Samus missiles] + [A], [Samus max missiles])
 
 ; This is the only routine that uses Samus reserve missiles (other than RAM clearing routines)
-    PHP                                                                  ;91DF80;
-    PHB                                                                  ;91DF81;
-    PHK                                                                  ;91DF82;
-    PLB                                                                  ;91DF83;
-    REP #$30                                                             ;91DF84;
     CLC                                                                  ;91DF86;
     ADC.W Missiles                                                       ;91DF87;
     STA.W Missiles                                                       ;91DF8A;
     CMP.W MaxMissiles                                                    ;91DF8D;
     BMI .return                                                          ;91DF90;
-    SEC                                                                  ;91DF92;
-    SBC.W MaxMissiles                                                    ;91DF93;
-    STA.B DP_Temp12                                                      ;91DF96;
-    LDA.W MaxMissiles                                                    ;91DF98;
-    CMP.W #$0063                                                         ;91DF9B;
-    BMI .lessThan99                                                      ;91DF9E;
-    LDA.B DP_Temp12                                                      ;91DFA0;
-    CLC                                                                  ;91DFA2;
-    ADC.W ReserveMissiles                                                ;91DFA3;
-    STA.W ReserveMissiles                                                ;91DFA6;
-    CMP.W #$0063                                                         ;91DFA9;
-    BMI .maxMissiles                                                     ;91DFAC;
-    LDA.W #$0063                                                         ;91DFAE;
-    STA.W ReserveMissiles                                                ;91DFB1;
-    BRA .maxMissiles                                                     ;91DFB4;
-
-  .lessThan99:
-    LDA.B DP_Temp12                                                      ;91DFB6;
-    CLC                                                                  ;91DFB8;
-    ADC.W ReserveMissiles                                                ;91DFB9;
-    STA.W ReserveMissiles                                                ;91DFBC;
-    CMP.W MaxMissiles                                                    ;91DFBF;
-    BMI .maxMissiles                                                     ;91DFC2;
-    LDA.W MaxMissiles                                                    ;91DFC4;
-    STA.W ReserveMissiles                                                ;91DFC7;
-
-  .maxMissiles:
     LDA.W MaxMissiles                                                    ;91DFCA;
     STA.W Missiles                                                       ;91DFCD;
 
   .return:
-    PLB                                                                  ;91DFD0;
-    PLP                                                                  ;91DFD1;
     RTL                                                                  ;91DFD2;
 
 
@@ -12106,23 +12028,15 @@ Restore_A_Missiles_ToSamus:
 Restore_A_SuperMissiles_ToSamus:
 ;; Parameters:
 ;;     A: Super missiles
-    PHP                                                                  ;91DFD3;
-    PHB                                                                  ;91DFD4;
-    PHK                                                                  ;91DFD5;
-    PLB                                                                  ;91DFD6;
-    REP #$30                                                             ;91DFD7;
     CLC                                                                  ;91DFD9;
     ADC.W SuperMissiles                                                  ;91DFDA;
     STA.W SuperMissiles                                                  ;91DFDD;
     CMP.W MaxSuperMissiles                                               ;91DFE0;
     BMI .return                                                          ;91DFE3;
-    BEQ .return                                                          ;91DFE5;
     LDA.W MaxSuperMissiles                                               ;91DFE7;
     STA.W SuperMissiles                                                  ;91DFEA;
 
   .return:
-    PLB                                                                  ;91DFED;
-    PLP                                                                  ;91DFEE;
     RTL                                                                  ;91DFEF;
 
 
@@ -12130,23 +12044,15 @@ Restore_A_SuperMissiles_ToSamus:
 Restore_A_PowerBombs_ToSamus:
 ;; Parameters:
 ;;     A: Power bombs
-    PHP                                                                  ;91DFF0;
-    PHB                                                                  ;91DFF1;
-    PHK                                                                  ;91DFF2;
-    PLB                                                                  ;91DFF3;
-    REP #$30                                                             ;91DFF4;
     CLC                                                                  ;91DFF6;
     ADC.W PowerBombs                                                     ;91DFF7;
     STA.W PowerBombs                                                     ;91DFFA;
     CMP.W MaxPowerBombs                                                  ;91DFFD;
     BMI .return                                                          ;91E000;
-    BEQ .return                                                          ;91E002;
     LDA.W MaxPowerBombs                                                  ;91E004;
     STA.W PowerBombs                                                     ;91E007;
 
   .return:
-    PLB                                                                  ;91E00A;
-    PLP                                                                  ;91E00B;
     RTL                                                                  ;91E00C;
 
 
@@ -12406,10 +12312,11 @@ XraySetup:
     DEX                                                                  ;91E22D;
     DEX                                                                  ;91E22E;
     BPL .loop                                                            ;91E22F;
-    JSL.L Disable_Enemy_Projectiles                                      ;91E231;
-    JSL.L Disable_PLMs                                                   ;91E235;
-    JSL.L Disable_AnimatedTilesObjects                                   ;91E239;
-    JSL.L Disable_PaletteFXObjects                                       ;91E23D;
+    LDA.W #$8000
+    TRB.W EnemyProjectile_Enable
+    TRB.W PLM_Flag
+    TRB.W AnimatedTilesObject_Enable
+    TRB.W PaletteFXObject_Enable
     LDA.W #$0001                                                         ;91E241;
     STA.W Xray_IndirectHDMATable                                         ;91E244;
     LDA.W #XrayWindow2HDMADataTable                                      ;91E247;
@@ -12549,10 +12456,11 @@ Set_NonXray_SamusPose:
     STA.W SamusPreviousYPosition                                         ;91E340;
 
   .unfreezeEnvironment:
-    JSL.L Enable_Enemy_Projectiles                                       ;91E343;
-    JSL.L Enable_PLMs                                                    ;91E347;
-    JSL.L Enable_AnimatedTilesObjects                                    ;91E34B;
-    JSL.L Enable_PaletteFXObjects                                        ;91E34F;
+    LDA.W #$8000
+    TSB.W EnemyProjectile_Enable
+    TSB.W PLM_Flag
+    TSB.W AnimatedTilesObject_Enable
+    TSB.W PaletteFXObject_Enable
     PLP                                                                  ;91E353;
     RTL                                                                  ;91E354;
 

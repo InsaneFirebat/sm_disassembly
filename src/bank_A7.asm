@@ -6322,7 +6322,6 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $C1FB: Unpause hook - Kraid is dead ;;;
 UnpauseHook_KraidIsDead:
-    PHP                                                                  ;A7C1FB;
     SEP #$20                                                             ;A7C1FC;
     JSL.L SetForceBlankAndWaitForNMI                                     ;A7C1FE;
     LDA.B #$00                                                           ;A7C202;
@@ -6362,7 +6361,6 @@ UnpauseHook_KraidIsDead:
 ;;; $C24E: Unpause hook - Kraid is alive ;;;
 UnpauseHook_KraidIsAlive:
 ; DP_BGTilesAddr isn't being masked, so this code only works because BG1 tiles base address = $0000
-    PHP                                                                  ;A7C24E;
     SEP #$20                                                             ;A7C24F;
     JSL.L SetForceBlankAndWaitForNMI                                     ;A7C251;
     LDA.B #$00                                                           ;A7C255;
@@ -6397,7 +6395,7 @@ TransferKraidTopHalfTilemapToVRAM:
     LDA.B #$02                                                           ;A7C295;
     STA.W $420B                                                          ;A7C297;
     JSL.L ClearForceBlankAndWaitForNMI                                   ;A7C29A;
-    PLP                                                                  ;A7C29E;
+    REP #$30
     RTL                                                                  ;A7C29F;
 
 
@@ -6408,7 +6406,6 @@ UnpauseHook_KraidIsSinking:
 ; the forced blank isn't even being used to transfer the tilemap on demand... and only one transfer is being queued per frame...
 ; Also note that VRAMWriteStack is being loaded for no reason (guaranteed to be 0), in fact, if it wasn't guaranteed to be 0,
 ; this loading procedure would end up repeating every transfer that was requested before this routine was started.
-    PHP                                                                  ;A7C2A0;
     SEP #$20                                                             ;A7C2A1;
     JSL.L SetForceBlankAndWaitForNMI                                     ;A7C2A3;
     LDA.B #$00                                                           ;A7C2A7;
@@ -6469,15 +6466,12 @@ UnpauseHook_KraidIsSinking:
   .return:
     PLB                                                                  ;A7C31E;
     JSL.L SetForceBlankAndWaitForNMI                                     ;A7C31F;
-    PLP                                                                  ;A7C323;
     RTL                                                                  ;A7C324;
 
 
 ;;; $C325: Pause hook - Kraid ;;;
 PauseHook_Kraid:
 ; DP_BGTilesAddr is being masked as if its a tilemap register (completely wrong), so this code only works because BG1/2 tiles base address = $0000
-    PHP                                                                  ;A7C325;
-    REP #$30                                                             ;A7C326;
     LDX.W VRAMReadStack                                                  ;A7C328;
     LDA.B DP_BGTilesAddr                                                 ;A7C32B;
     AND.W #$00FC                                                         ;A7C32D;
@@ -6499,7 +6493,6 @@ PauseHook_Kraid:
     CLC                                                                  ;A7C357;
     ADC.W #$0009                                                         ;A7C358;
     STA.W VRAMReadStack                                                  ;A7C35B;
-    PLP                                                                  ;A7C35E;
     RTL                                                                  ;A7C35F;
 
 

@@ -2129,9 +2129,9 @@ ProcessEnemyGrappleBeamCollisionResult_HurtSamus:
     BRA .damageSamus                                                     ;9BB949;
 
   .gravitySuit:
-    LSR.B DP_Temp12                                                      ;9BB94B;
-    LSR.B DP_Temp12                                                      ;9BB94D;
     LDA.B DP_Temp12                                                      ;9BB94F;
+    LSR
+    LSR
 
   .damageSamus:
     JSL.L Deal_A_Damage_to_Samus                                         ;9BB951;

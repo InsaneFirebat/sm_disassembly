@@ -4,43 +4,6 @@
 org $878000
 
 
-;;; $8000: Enable animated tiles objects ;;;
-Enable_AnimatedTilesObjects:
-    PHP                                                                  ;878000;
-    REP #$20                                                             ;878001;
-    LDA.W #$8000                                                         ;878003;
-    TSB.W AnimatedTilesObject_Enable                                     ;878006;
-    PLP                                                                  ;878009;
-    RTL                                                                  ;87800A;
-
-
-;;; $800B: Disable animated tiles objects ;;;
-Disable_AnimatedTilesObjects:
-    PHP                                                                  ;87800B;
-    REP #$20                                                             ;87800C;
-    LDA.W #$8000                                                         ;87800E;
-    TRB.W AnimatedTilesObject_Enable                                     ;878011;
-    PLP                                                                  ;878014;
-    RTL                                                                  ;878015;
-
-
-;;; $8016: Clear animated tiles objects ;;;
-Clear_AnimatedTilesObjects:
-    PHP                                                                  ;878016;
-    REP #$30                                                             ;878017;
-    PHX                                                                  ;878019;
-    LDX.W #$000A                                                         ;87801A;
-
-  .loop:
-    STZ.W AnimatedTilesObject_IDs,X                                      ;87801D;
-    DEX                                                                  ;878020;
-    DEX                                                                  ;878021;
-    BPL .loop                                                            ;878022;
-    PLX                                                                  ;878024;
-    PLP                                                                  ;878025;
-    RTL                                                                  ;878026;
-
-
 ;;; $8027: Spawn animated tiles object ;;;
 Spawn_AnimatedTilesObject:
 ;; Parameter:

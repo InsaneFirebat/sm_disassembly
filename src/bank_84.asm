@@ -341,44 +341,6 @@ Load_Item_and_Room_Special_Xray_Blocks:
     dw DrawInst_PowerBombTank_0                                          ;8483AB;
 
 
-;;; $83AD: Enable PLMs ;;;
-Enable_PLMs:
-    PHP                                                                  ;8483AD;
-    REP #$20                                                             ;8483AE;
-    LDA.W #$8000                                                         ;8483B0;
-    TSB.W PLM_Flag                                                       ;8483B3;
-    PLP                                                                  ;8483B6;
-    RTL                                                                  ;8483B7;
-
-
-;;; $83B8: Disable PLMs ;;;
-Disable_PLMs:
-    PHP                                                                  ;8483B8;
-    REP #$20                                                             ;8483B9;
-    LDA.W #$8000                                                         ;8483BB;
-    TRB.W PLM_Flag                                                       ;8483BE;
-    PLP                                                                  ;8483C1;
-    RTL                                                                  ;8483C2;
-
-
-;;; $83C3: Clear PLMs ;;;
-Clear_PLMs:
-    PHP                                                                  ;8483C3;
-    REP #$30                                                             ;8483C4;
-    PHX                                                                  ;8483C6;
-    LDX.W #$004E                                                         ;8483C7;
-
-  .loop:
-    STZ.W PLM_IDs,X                                                      ;8483CA;
-    DEX                                                                  ;8483CD;
-    DEX                                                                  ;8483CE;
-    BPL .loop                                                            ;8483CF;
-    STZ.W PLM_ItemGFXIndex                                               ;8483D1;
-    PLX                                                                  ;8483D4;
-    PLP                                                                  ;8483D5;
-    RTL                                                                  ;8483D6;
-
-
 ;;; $83D7: Spawn hard-coded PLM ;;;
 Spawn_Hardcoded_PLM:
 ;; Parameters:

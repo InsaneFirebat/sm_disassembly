@@ -1683,7 +1683,8 @@ Debug_GameOverMenu_Index0_FadeOut_ConfigureGraphicsForMenu:
 +   JSL.L SetForceBlankAndWaitForNMI                                     ;818D1D;
     LDA.W #$0001                                                         ;818D21;
     JSL.L QueueSound_Lib3_Max6                                           ;818D24;
-    JSL.L Disable_HDMAObjects                                            ;818D28;
+    LDA.W #$8000
+    TRB.W HDMAObject_Enable
     JSL.L Wait_End_VBlank_Clear_HDMA                                     ;818D2C;
     LDX.W #$0000                                                         ;818D30;
 
@@ -2150,7 +2151,8 @@ GameOverMenu_Index7_FadeOutIntoGameMapView:
 
 ;;; $9116: Game over menu - index 6: load game map view ;;;
 GameOverMenu_Index6_LoadGameMapView:
-    JSL.L Disable_HDMAObjects                                            ;819116;
+    LDA.W #$8000
+    TRB.W HDMAObject_Enable
     JSL.L Wait_End_VBlank_Clear_HDMA                                     ;81911A;
     LDA.W #$0005                                                         ;81911E;
     STA.W GameState                                                      ;819121;
@@ -2280,9 +2282,10 @@ GameOverMenu_Index1_Initialise:
     LDA.B DP_ColorMathA                                                  ;81923D;
     AND.W #$FF00                                                         ;81923F;
     STA.B DP_ColorMathA                                                  ;819242;
-    JSL.L Disable_HDMAObjects                                            ;819244;
-    JSL.L Wait_End_VBlank_Clear_HDMA                                     ;819248;
-    JSL.L Enable_HDMAObjects                                             ;81924C;
+    LDA.W #$8000
+    TRB.W HDMAObject_Enable
+    JSL.L Wait_End_VBlank_Clear_HDMA                                     ;819248; expecting A preserved
+    TSB.W HDMAObject_Enable
     JSL.L Spawn_HDMAObject                                               ;819250;
     db $00,$32                                                           ;819254;
     dw HDMAObjInstList_ColorMathSubscnBackdrop_GameOverMenuGradient      ;819256;
@@ -2480,7 +2483,8 @@ FileSelectMenu_Index0_TitleSequenceToMain_FadeOutConfigGfx:
 +   JSL.L SetForceBlankAndWaitForNMI                                     ;81945C;
     LDA.W #$0001                                                         ;819460;
     JSL.L QueueSound_Lib3_Max6                                           ;819463;
-    JSL.L Disable_HDMAObjects                                            ;819467;
+    LDA.W #$8000
+    TRB.W HDMAObject_Enable
     JSL.L Wait_End_VBlank_Clear_HDMA                                     ;81946B;
     INC.W PauseMenu_MenuIndex                                            ;81946F;
     JSR.W MapVRAMForMenu                                                 ;819472;
@@ -5635,7 +5639,8 @@ FileSelectMap_Index9_AreaSelectMapToRoomSelectMap_Init:
     JSL.L LoadMirrorOfCurrentAreasMapExplored                            ;81AD19;
     JSL.L DrawRoomSelectMap                                              ;81AD1D;
     JSL.L LoadFromLoadStation                                            ;81AD21;
-    JSL.L Disable_HDMAObjects                                            ;81AD25;
+    LDA.W #$8000
+    TRB.W HDMAObject_Enable
     JSL.L Wait_End_VBlank_Clear_HDMA                                     ;81AD29;
     PHB                                                                  ;81AD2D;
     SEP #$20                                                             ;81AD2E;

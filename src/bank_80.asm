@@ -4800,11 +4800,30 @@ StartGameplay:
     JSL.L DisableHVCounterInterrupts                                     ;80A09F;
     JSL.L Load_Destination_Room                                          ;80A0A3;
     JSR.W HandleMusicQueueFor20Frames                                    ;80A0A7;
-    JSL.L Clear_AnimatedTilesObjects                                     ;80A0AA;
+    LDX.W #$000A
+
+  .loopAnimatedTilesObjects:
+    STZ.W AnimatedTilesObject_IDs,X
+    DEX
+    DEX
+    BPL .loopAnimatedTilesObjects
     JSL.L Wait_End_VBlank_Clear_HDMA                                     ;80A0AE;
     JSL.L Initialise_Special_Effects_for_New_Room                        ;80A0B2;
-    JSL.L Clear_PLMs                                                     ;80A0B6;
-    JSL.L Clear_Enemy_Projectiles                                        ;80A0BA;
+    LDX.W #$004E
+
+  .loopPLMs:
+    STZ.W PLM_IDs,X
+    DEX
+    DEX
+    BPL .loopPLMs
+    STZ.W PLM_ItemGFXIndex
+    LDX.W #$0022
+
+  .loopEnemyProjectiles:
+    STZ.W EnemyProjectile_ID,X
+    DEX
+    DEX
+    BPL .loopEnemyProjectiles
     JSL.L Clear_PaletteFXObjects                                         ;80A0BE;
     JSL.L Update_Beam_Tiles_and_Palette                                  ;80A0C2;
     JSL.L Load_Target_Colors_for_Common_SpritesBeamsFlashingEnemies      ;80A0C6;
@@ -4836,7 +4855,13 @@ StartGameplay:
 
   .setNextInterrupt:
     STA.B DP_NextIRQCmd                                                  ;80A111;
-    JSL.L EnableHVCounterInterrupts                                      ;80A113;
+    LDA.W #$0000
+    STA.W $4209
+    LDA.W #$0098
+    STA.W $4207
+    LDA.W #$0030
+    TSB.B DP_IRQAutoJoy
+    CLI
     JSR.W HandleMusicQueueFor20Frames                                    ;80A117;
     JSL.L Spawn_Hardcoded_PLM                                            ;80A11A;
     db $08,$08                                                           ;80A11E;
@@ -4907,7 +4932,13 @@ ResumeGameplay:
     STA.W $4200
     STA.B DP_IRQAutoJoy
     REP #$20
-    JSL.L EnableHVCounterInterrupts                                      ;80A16F;
+    LDA.W #$0000
+    STA.W $4209
+    LDA.W #$0098
+    STA.W $4207
+    LDA.W #$0030
+    TSB.B DP_IRQAutoJoy
+    CLI
     PLB                                                                  ;80A173;
     PLP                                                                  ;80A174;
     RTL                                                                  ;80A175;

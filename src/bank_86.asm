@@ -4,43 +4,6 @@
 org $868000
 
 
-;;; $8000: Enable enemy projectiles ;;;
-Enable_Enemy_Projectiles:
-    PHP                                                                  ;868000;
-    REP #$20                                                             ;868001;
-    LDA.W #$8000                                                         ;868003;
-    TSB.W EnemyProjectile_Enable                                         ;868006;
-    PLP                                                                  ;868009;
-    RTL                                                                  ;86800A;
-
-
-;;; $800B: Disable enemy projectiles ;;;
-Disable_Enemy_Projectiles:
-    PHP                                                                  ;86800B;
-    REP #$20                                                             ;86800C;
-    LDA.W #$8000                                                         ;86800E;
-    TRB.W EnemyProjectile_Enable                                         ;868011;
-    PLP                                                                  ;868014;
-    RTL                                                                  ;868015;
-
-
-;;; $8016: Clear enemy projectiles ;;;
-Clear_Enemy_Projectiles:
-    PHP                                                                  ;868016;
-    REP #$30                                                             ;868017;
-    PHX                                                                  ;868019;
-    LDX.W #$0022                                                         ;86801A;
-
-  .loop:
-    STZ.W EnemyProjectile_ID,X                                           ;86801D;
-    DEX                                                                  ;868020;
-    DEX                                                                  ;868021;
-    BPL .loop                                                            ;868022;
-    PLX                                                                  ;868024;
-    PLP                                                                  ;868025;
-    RTL                                                                  ;868026;
-
-
 ;;; $8027: Spawn enemy projectile [Y] with parameter [A] using enemy [X] graphics ;;;
 SpawnEnemyProjectileY_ParameterA_XGraphics:
 ;; Parameters:

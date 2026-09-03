@@ -6394,26 +6394,6 @@ EnemyProjSpritemaps_Sparks_2:
     %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 0, $10D)
 
 
-;;; $C4C2: Enable palette FX objects ;;;
-Enable_PaletteFXObjects:
-    PHP                                                                  ;8DC4C2;
-    REP #$20                                                             ;8DC4C3;
-    LDA.W #$8000                                                         ;8DC4C5;
-    TSB.W PaletteFXObject_Enable                                         ;8DC4C8;
-    PLP                                                                  ;8DC4CB;
-    RTL                                                                  ;8DC4CC;
-
-
-;;; $C4CD: Disable palette FX objects ;;;
-Disable_PaletteFXObjects:
-    PHP                                                                  ;8DC4CD;
-    REP #$20                                                             ;8DC4CE;
-    LDA.W #$8000                                                         ;8DC4D0;
-    TRB.W PaletteFXObject_Enable                                         ;8DC4D3;
-    PLP                                                                  ;8DC4D6;
-    RTL                                                                  ;8DC4D7;
-
-
 ;;; $C4D8: Clear palette FX objects ;;;
 Clear_PaletteFXObjects:
     PHP                                                                  ;8DC4D8;

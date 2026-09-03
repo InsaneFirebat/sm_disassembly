@@ -694,44 +694,14 @@ Handle_LayerBlending_PowerBomb_6:
     RTS                                                                  ;888287;
 
 
-;;; $8288: Enable HDMA objects ;;;
-Enable_HDMAObjects:
-    PHP                                                                  ;888288;
-    REP #$20                                                             ;888289;
-    LDA.W #$8000                                                         ;88828B;
-    TSB.W HDMAObject_Enable                                              ;88828E;
-    PLP                                                                  ;888291;
-    RTL                                                                  ;888292;
-
-
-;;; $8293: Disable HDMA objects ;;;
-Disable_HDMAObjects:
-; Power bombs still work
-    PHP                                                                  ;888293;
-    REP #$20                                                             ;888294;
-    LDA.W #$8000                                                         ;888296;
-    TRB.W HDMAObject_Enable                                              ;888299;
-    PLP                                                                  ;88829C;
-    RTL                                                                  ;88829D;
-
-
 ;;; $829E: Wait until the end of a v-blank and clear (H)DMA enable flags ;;;
 Wait_End_VBlank_Clear_HDMA:
-    PHP                                                                  ;88829E;
     SEP #$20                                                             ;88829F;
     JSL.L WaitUntilTheEndOfAVBlank                                       ;8882A1;
     STZ.W $420B                                                          ;8882A5;
     STZ.W $420C                                                          ;8882A8;
-    PLP                                                                  ;8882AB; fallthrough to Delete_HDMA_Objects
-
-
-;;; $82AC: Delete HDMA objects ;;;
-Delete_HDMAObjects:
-    PHP                                                                  ;8882AC;
-    SEP #$20                                                             ;8882AD;
     STZ.B DP_HDMAEnable                                                  ;8882AF;
     REP #$30                                                             ;8882B1;
-    PHX                                                                  ;8882B3;
     LDX.W #$000A                                                         ;8882B4;
 
   .loop:
@@ -739,8 +709,6 @@ Delete_HDMAObjects:
     DEX                                                                  ;8882BA;
     DEX                                                                  ;8882BB;
     BPL .loop                                                            ;8882BC;
-    PLX                                                                  ;8882BE;
-    PLP                                                                  ;8882BF;
     RTL                                                                  ;8882C0;
 
 

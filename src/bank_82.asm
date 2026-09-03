@@ -6,8 +6,6 @@ org $828000
 
 ;;; $8000: Game state 6/1Fh/28h (loading game data / set up new game / load demo game data) ;;;
 GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
-    PHP                                                                  ;828000;
-    REP #$30                                                             ;828001;
     LDA.W GameState                                                      ;828003;
     CMP.W #$0028                                                         ;828006;
     BNE .notDemo                                                         ;828009;
@@ -51,8 +49,6 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
   .gameplay:
     JSL.L StartGameplay                                                  ;82805F;
     JSL.L InitialiseHUD_GameLoading                                      ;828063;
-    PHP                                                                  ;82806B;
-    REP #$30                                                             ;82806C;
     LDY.W #$0020                                                         ;82806E;
     LDX.W #$0000                                                         ;828071;
 
@@ -64,7 +60,6 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
     DEY                                                                  ;82807E;
     DEY                                                                  ;82807F;
     BNE .loopTargetSamusPalette                                          ;828080;
-    PLP                                                                  ;828082;
     LDA.W #$0001                                                         ;828083;
     STA.W ScreenFadeDelay                                                ;828086;
     STA.W ScreenFadeCounter                                              ;828089;
@@ -74,11 +69,12 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
     STA.W $4200
     STA.B DP_IRQAutoJoy
     REP #$20
-    JSL.L Enable_Enemy_Projectiles                                       ;828090;
-    JSL.L Enable_PLMs                                                    ;828094;
-    JSL.L Enable_PaletteFXObjects                                        ;828098;
-    JSL.L Enable_HDMAObjects                                             ;82809C;
-    JSL.L Enable_AnimatedTilesObjects                                    ;8280A0;
+    LDA.W #$8000
+    TSB.W EnemyProjectile_Enable
+    TSB.W PLM_Flag
+    TSB.W PaletteFXObject_Enable
+    TSB.W HDMAObject_Enable
+    TSB.W AnimatedTilesObject_Enable
     JSL.L SetLiquidPhysicsType                                           ;8280A4;
     LDA.W GameState                                                      ;8280A8;
     CMP.W #$0028                                                         ;8280AB;
@@ -99,8 +95,6 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
     DEC.W EnemyTilesTransferLoopCounter                                  ;8280D1;
     BPL .loopAlpha                                                       ;8280D4;
     INC.W GameState                                                      ;8280D6;
-    PHP                                                                  ;8280D9;
-    REP #$30                                                             ;8280DA;
     LDY.W #$0200                                                         ;8280DC;
     LDX.W #$0000                                                         ;8280DF;
 
@@ -112,8 +106,6 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
     DEY                                                                  ;8280EC;
     DEY                                                                  ;8280ED;
     BNE .loopAlphaPalettes                                               ;8280EE;
-    PLP                                                                  ;8280F0;
-    PLP                                                                  ;8280F1;
     RTS                                                                  ;8280F2;
 
   .notZebesLanding:
@@ -127,8 +119,6 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
     BPL .loopBeta                                                        ;828104;
     LDA.W #$0007                                                         ;828106;
     STA.W GameState                                                      ;828109;
-    PHP                                                                  ;82810C;
-    REP #$30                                                             ;82810D;
     LDY.W #$0200                                                         ;82810F;
     LDX.W #$0000                                                         ;828112;
 
@@ -140,7 +130,6 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
     DEY                                                                  ;82811F;
     DEY                                                                  ;828120;
     BNE .loopBetaPalettes                                                ;828121;
-    PLP                                                                  ;828123;
     LDA.L SRAMMirror_LoadingGameState                                    ;828124;
     CMP.W #$001F                                                         ;828128;
     BNE .runSamusCmd                                                     ;82812B;
@@ -148,13 +137,11 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
     STA.L Palettes_SpriteP5+$1E                                          ;828130;
     LDA.W #$0008                                                         ;828134;
     JSL.L Run_Samus_Command                                              ;828137;
-    PLP                                                                  ;82813B;
     RTS                                                                  ;82813C;
 
   .runSamusCmd:
     LDA.W #$0009                                                         ;82813D;
     JSL.L Run_Samus_Command                                              ;828140;
-    PLP                                                                  ;828144;
     RTS                                                                  ;828145;
 
   .demo:
@@ -187,8 +174,6 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
     LDX.W #$0000                                                         ;828178;
     JSR.W (DP_Temp12,X)                                                  ;82817B;
     INC.W GameState                                                      ;82817E;
-    PHP                                                                  ;828181;
-    REP #$30                                                             ;828182;
     LDY.W #$0200                                                         ;828184;
     LDX.W #$0000                                                         ;828187;
 
@@ -200,8 +185,6 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
     DEY                                                                  ;828194;
     DEY                                                                  ;828195;
     BNE .loopDemoPalettes                                                ;828196;
-    PLP                                                                  ;828198;
-    PLP                                                                  ;828199;
     RTS                                                                  ;82819A;
 
 
@@ -438,8 +421,6 @@ GameState_20_MadeItToCeresElevator:
 
 ;;; $8388: Game state 21h (blackout from Ceres) ;;;
 GameState_21_BlackoutFromCeres:
-    PHP                                                                  ;828388;
-    REP #$30                                                             ;828389;
     LDA.W TimerStatus                                                    ;82838B;
     BEQ +                                                                ;82838E;
     JSL.L DrawTimer                                                      ;828390;
@@ -451,7 +432,6 @@ GameState_21_BlackoutFromCeres:
     CMP.B #$80                                                           ;82839F;
     BEQ +                                                                ;8283A1;
     REP #$20                                                             ;8283A3;
-    PLP                                                                  ;8283A5;
     RTS                                                                  ;8283A6;
 
 +   LDA.B DP_IRQAutoJoy
@@ -493,7 +473,6 @@ GameState_21_BlackoutFromCeres:
     JSL.L QueueSound_Lib2_Max15                                          ;828404;
     LDA.W #$0001                                                         ;828408;
     JSL.L QueueSound_Lib3_Max15                                          ;82840B;
-    PLP                                                                  ;82840F;
     RTS                                                                  ;828410;
 
 
@@ -520,14 +499,12 @@ GameState_23_TimeUpWhiteOut:
 ;;; $8431: Game state 24h (time up - black out) ;;;
 GameState_23_TimeUpBlackOut:
 ; Used for Ceres and Zebes
-    PHP                                                                  ;828431;
-    REP #$30                                                             ;828432;
     JSL.L HandleFadingOut                                                ;828434;
     SEP #$20                                                             ;828438;
     LDA.B DP_Brightness                                                  ;82843A;
     CMP.B #$80                                                           ;82843C;
     BEQ +                                                                ;82843E;
-    PLP                                                                  ;828442;
+    REP #$30
     RTS                                                                  ;828443;
 
 +   LDA.B DP_IRQAutoJoy
@@ -567,7 +544,6 @@ GameState_23_TimeUpBlackOut:
     STZ.W PauseMenu_MenuIndex                                            ;82849A;
     LDA.W #$0019                                                         ;8284A7;
     STA.W GameState                                                      ;8284AA;
-    PLP                                                                  ;8284AD;
     RTS                                                                  ;8284AE;
 
   .notZebesTimebomb:
@@ -575,14 +551,11 @@ GameState_23_TimeUpBlackOut:
     STA.W GameState                                                      ;8284B2;
     LDA.W #CinematicFunction_CeresGoesBoom_Initial                       ;8284B5;
     STA.W CinematicFunction                                              ;8284B8;
-    PLP                                                                  ;8284BB;
     RTS                                                                  ;8284BC;
 
 
 ;;; $84BD: Game state 26h (Samus escapes from Zebes) ;;;
 GameState_26_SamusEscapesFromZebes:
-    PHP                                                                  ;8284BD;
-    REP #$30                                                             ;8284BE;
     JSR.W GameState_8_MainGameplay                                       ;8284C0;
     JSL.L HandleFadingOut                                                ;8284C3;
     SEP #$20                                                             ;8284C7;
@@ -590,7 +563,6 @@ GameState_26_SamusEscapesFromZebes:
     CMP.B #$80                                                           ;8284CB;
     BEQ +                                                                ;8284CD;
     REP #$20                                                             ;8284CF;
-    PLP                                                                  ;8284D1;
     RTS                                                                  ;8284D2;
 
 
@@ -628,14 +600,11 @@ GameState_26_SamusEscapesFromZebes:
     JSL.L QueueSound_Lib2_Max15                                          ;828520;
     LDA.W #$0001                                                         ;828524;
     JSL.L QueueSound_Lib3_Max15                                          ;828527;
-    PLP                                                                  ;82852B;
     RTS                                                                  ;82852C;
 
 
 ;;; $852D: Game state 29h (transition to demo) ;;;
 GameState_29_TransitionToDemo:
-    PHP                                                                  ;82852D;
-    REP #$30                                                             ;82852E;
     JSR.W GameState_8_MainGameplay                                       ;828530;
     JSL.L WaitForNMI                                                     ;828533;
     JSL.L HDMAObjectHandler_HandleMusicQueue                             ;828537;
@@ -644,14 +613,11 @@ GameState_29_TransitionToDemo:
     LDA.B #$0F                                                           ;828540;
     STA.B DP_Brightness                                                  ;828542;
     REP #$20                                                             ;828544;
-    PLP                                                                  ;828546;
     RTS                                                                  ;828547;
 
 
 ;;; $8548: Game state 2Ah (playing demo) ;;;
 GameState_2A_PlayingDemo:
-    PHP                                                                  ;828548;
-    REP #$30                                                             ;828549;
     JSR.W GameState_8_MainGameplay                                       ;82854B;
     LDA.B DP_Controller1New                                              ;82854E;
     BEQ .decDemoTimer                                                    ;828550;
@@ -691,14 +657,11 @@ GameState_2A_PlayingDemo:
     STA.W ScreenFadeCounter                                              ;82858E;
 
   .return:
-    PLP                                                                  ;828591;
     RTS                                                                  ;828592;
 
 
 ;;; $8593: Game state 2Bh (unload game data) ;;;
 GameState_2B_UnloadGameData:
-    PHP                                                                  ;828593;
-    REP #$30                                                             ;828594;
     LDA.W DemoControlFlags                                               ;828596;
     CMP.W #$0001                                                         ;828599;
     BEQ +                                                                ;82859C;
@@ -718,7 +681,8 @@ GameState_2B_UnloadGameData:
     STZ.W LayerBlending_DefaultConfig                                    ;8285B6;
     STZ.B DP_IRQCmd                                                      ;8285B9;
     STZ.B DP_NextIRQCmd                                                  ;8285BB;
-    JSL.L Disable_PaletteFXObjects                                       ;8285BD;
+    LDA.W #$8000
+    TRB.W PaletteFXObject_Enable
     JSL.L Clear_PaletteFXObjects                                         ;8285C1;
     LDX.W #MessageBoxIndex-2-TitleMenu_SelectionMissileAnimTimer
 
@@ -748,14 +712,11 @@ GameState_2B_UnloadGameData:
     STZ.B DP_WindowAreaMainScreen                                        ;8285F3;
     STZ.B DP_WindowAreaSubScreen                                         ;8285F5;
     REP #$20                                                             ;8285F7;
-    PLP                                                                  ;8285F9;
     RTS                                                                  ;8285FA;
 
 
 ;;; $85FB: Game state 2Ch (transition from demo) ;;;
 GameState_2C_TransitionFromDemo:
-    PHP                                                                  ;8285FB;
-    REP #$30                                                             ;8285FC;
     LDA.W #$0001                                                         ;8285FE;
     STA.W GameState                                                      ;828601;
     LDA.W DemoControlFlags                                               ;828604;
@@ -766,7 +727,6 @@ GameState_2C_TransitionFromDemo:
     STZ.W DisableSounds                                                  ;828612;
     LDA.W #CinematicFunction_LoadTitleSequence                           ;828615;
     STA.W CinematicFunction                                              ;828618;
-    PLP                                                                  ;82861B;
     RTS                                                                  ;82861C;
 
   .titleSequence:
@@ -775,13 +735,11 @@ GameState_2C_TransitionFromDemo:
     STA.W SkipToTitleScreenIndex                                         ;828624;
     LDA.W #RTS_8B9A47                                                    ;828627;
     STA.W CinematicFunction                                              ;82862A;
-    PLP                                                                  ;82862D;
     RTS                                                                  ;82862E;
 
   .nextDemoScene:
     LDA.W #$0028                                                         ;82862F;
     STA.W GameState                                                      ;828632;
-    PLP                                                                  ;828635;
     RTS                                                                  ;828636;
 
 
@@ -1394,8 +1352,7 @@ ResetSoundQueues:
     STZ.W APU_SoundQueueStartIndexLib3                                   ;828AA0;
     STZ.W APU_SoundQueueNextIndexLib2                                    ;828AA3;
     STZ.W APU_SoundStateLib1                                             ;828AA6;
-    SEP #$20                                                             ;828AA9;
-    STZ.W APU_SoundStateLib3                                             ;828AAB;
+    STZ.W APU_SoundStateLib3-1
     PLP                                                                  ;828AAE;
     RTL                                                                  ;828AAF;
 
@@ -1487,8 +1444,6 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $8B20: Game state 7 (main gameplay fading in) ;;;
 GameState_7_MainGameplayFadingIn:
-    PHP                                                                  ;828B20;
-    REP #$30                                                             ;828B21;
     JSR.W GameState_8_MainGameplay                                       ;828B23;
     JSL.L HandleFadingIn                                                 ;828B26;
     SEP #$20                                                             ;828B2A;
@@ -1501,7 +1456,7 @@ GameState_7_MainGameplayFadingIn:
     INC.W GameState                                                      ;828B3A;
 
   .return:
-    PLP                                                                  ;828B3D;
+    REP #$30
     RTS                                                                  ;828B3E;
 
 
@@ -1812,8 +1767,6 @@ Draw_GameOptionsMenu_Spritemaps:
 
 ;;; $8CCF: Game state Ch (pausing, normal gameplay but darkening) ;;;
 GameState_C_Pausing_NormalGameplayDarkening:
-    PHP                                                                  ;828CCF;
-    REP #$30                                                             ;828CD0;
     JSR.W GameState_8_MainGameplay                                       ;828CD2;
     JSL.L HandleFadingOut                                                ;828CD5;
     LDA.B DP_Brightness                                                  ;828CD9;
@@ -1830,34 +1783,24 @@ GameState_C_Pausing_NormalGameplayDarkening:
     INC.W GameState                                                      ;828CEA;
 
   .return:
-    PLP                                                                  ;828CED;
     RTS                                                                  ;828CEE;
 
 
 ;;; $8CEF: Game state Dh (pausing, loading pause menu) ;;;
 GameState_D_Pausing_LoadingPauseScreen:
-    PHP                                                                  ;828CEF;
-    REP #$30                                                             ;828CF0;
-    PHB                                                                  ;828CF2;
-    PHK                                                                  ;828CF3;
-    PLB                                                                  ;828CF4;
-    JSL.L Disable_HDMAObjects                                            ;828CF5;
+    LDA.W #$8000
+    TRB.W HDMAObject_Enable
+    TRB.W AnimatedTilesObject_Enable
     SEP #$20                                                             ;828CF9;
-    LDA.B #$00                                                           ;828CFB;
     STA.B DP_HDMAEnable                                                  ;828CFD;
     STA.W $420C                                                          ;828CFF;
     REP #$20                                                             ;828D02;
-    JSL.L Disable_AnimatedTilesObjects                                   ;828D04;
     JSR.W Backup_BG2Tilemap_for_PauseMenu                                ;828D08;
-    PHP                                                                  ;828D0B;
-    PHB                                                                  ;828D0C;
     PHK                                                                  ;828D0D;
     PEA.W .returnPEA-1                                                   ;828D0E;
     JML.W [PauseHook_Pause]                                              ;828D11;
 
   .returnPEA:
-    PLB                                                                  ;828D14;
-    PLP                                                                  ;828D15;
     JSL.L Cancel_Sound_Effects                                           ;828D16;
     JSR.W Backup_SomeGraphicsState_for_PauseScreen                       ;828D1A;
     JSL.L LoadPauseMenuTiles_ClearBG2Tilemap                             ;828D1D;
@@ -1875,8 +1818,6 @@ GameState_D_Pausing_LoadingPauseScreen:
     STZ.W MapScrolling_SpeedIndex                                        ;828D44;
     JSL.L QueueClearingOfFXTilemap                                       ;828D47;
     INC.W GameState                                                      ;828D4B;
-    PLB                                                                  ;828D4E;
-    PLP                                                                  ;828D4F;
     RTS                                                                  ;828D50;
 
 
@@ -2350,8 +2291,6 @@ Setup_MapScrolling_for_FileSelectMap:
 
 ;;; $90C8: Game state Eh (paused, loading pause menu) ;;;
 GameState_E_Paused_LoadingPauseScreen:
-    PHP                                                                  ;8290C8;
-    REP #$30                                                             ;8290C9;
     JSL.L Draw_PauseMenu_during_FadeIn                                   ;8290CB;
     JSL.L HandleFadingIn                                                 ;8290CF;
     SEP #$20                                                             ;8290D3;
@@ -2364,21 +2303,17 @@ GameState_E_Paused_LoadingPauseScreen:
     INC.W GameState                                                      ;8290E3;
 
   .return:
-    PLP                                                                  ;8290E6;
+    REP #$30
     RTS                                                                  ;8290E7;
 
 
 ;;; $90E8: Game state Fh (paused, map and item screens) ;;;
 GameState_F_Paused_MapAndItemScreens:
-    PHB                                                                  ;8290E8;
-    PHK                                                                  ;8290E9;
-    PLB                                                                  ;8290EA;
     LDA.W #$0003                                                         ;8290EB;
     JSL.L UpdateHeldInput                                                ;8290EE;
     JSL.L MainPauseRoutine                                               ;8290F2;
     JSL.L HandleHUDTilemap_PausedAndRunning                              ;8290F6;
     JSR.W Handle_PauseScreen_PaletteAnimation                            ;8290FA;
-    PLB                                                                  ;8290FD;
     RTS                                                                  ;8290FE;
 
 
@@ -2683,8 +2618,6 @@ MapScrolling_SpeedTable:
 
 ;;; $9324: Game state 10h (unpausing, loading normal gameplay) ;;;
 GameState_10_Unpausing_LoadingNormalGameplay:
-    PHP                                                                  ;829324;
-    REP #$30                                                             ;829325;
     JSL.L Handle_PauseMenu_StartPressedHighlight                         ;829327;
     JSR.W Draw_PauseMenu_During_FadeOut                                  ;82932B;
     JSL.L HandleFadingOut                                                ;82932E;
@@ -2702,7 +2635,7 @@ GameState_10_Unpausing_LoadingNormalGameplay:
     INC.W GameState                                                      ;829346;
 
   .return:
-    PLP                                                                  ;829349;
+    REP #$20
     RTS                                                                  ;82934A;
 
 
@@ -2723,29 +2656,23 @@ Draw_PauseMenu_During_FadeOut:
 
 ;;; $9367: Game state 11h (unpausing, loading normal gameplay) ;;;
 GameState_11_Unpausing_LoadingNormalGameplay:
-    PHP                                                                  ;829367;
-    REP #$30                                                             ;829368;
     JSR.W Clear_Samus_Beam_Tiles                                         ;82936A;
     JSR.W ContinueInitialising_GameplayResume                            ;82936D;
     JSL.L ResumeGameplay                                                 ;829370;
     JSR.W Restore_SomeGraphicsState_from_PauseScreen                     ;829374;
     JSR.W Restore_BG2Tilemap_from_PauseMenu                              ;829377;
-    REP #$30                                                             ;82937A;
     LDA.W #$0001                                                         ;82937C;
     STA.W ScreenFadeDelay                                                ;82937F;
     STA.W ScreenFadeCounter                                              ;829382;
-    PHP                                                                  ;829385;
-    PHB                                                                  ;829386;
     PHK                                                                  ;829387;
     PEA.W .returnPEA-1                                                   ;829388;
     JML.W [PauseHook_Unpause]                                            ;82938B; Execute unpause hook
 
   .returnPEA:
-    JSL.L Enable_HDMAObjects                                             ;82938E;
-    JSL.L Enable_AnimatedTilesObjects                                    ;829392;
+    LDA.W #$8000
+    TSB.W HDMAObject_Enable
+    TSB.W AnimatedTilesObject_Enable
     JSL.L Queue_Samus_Movement_SoundEffects                              ;829396;
-    PLB                                                                  ;82939A;
-    PLP                                                                  ;82939B;
     INC.W GameState                                                      ;82939C;
     PLP                                                                  ;82939F;
     RTS                                                                  ;8293A0;
@@ -2753,8 +2680,6 @@ GameState_11_Unpausing_LoadingNormalGameplay:
 
 ;;; $93A1: Game state 12h (unpausing, normal gameplay but brightening) ;;;
 GameState_12_Unpausing_NormalGameplayBrightening:
-    PHP                                                                  ;8293A1;
-    REP #$30                                                             ;8293A2;
     JSR.W GameState_8_MainGameplay                                       ;8293A4;
     JSL.L HandleFadingIn                                                 ;8293A7;
     SEP #$20                                                             ;8293AB;
@@ -2768,7 +2693,6 @@ GameState_12_Unpausing_NormalGameplayBrightening:
     STA.W GameState                                                      ;8293BE;
 
   .return:
-    PLP                                                                  ;8293C1;
     RTS                                                                  ;8293C2;
 
 
@@ -10723,8 +10647,6 @@ HandleSamusRunningOutOfEnergy_and_IncrementGameTime:
 
 ;;; $DC10: Game state 1Bh (reserve tank auto) ;;;
 GameState_1B_ReserveTankAuto:
-    PHP                                                                  ;82DC10;
-    REP #$30                                                             ;82DC11;
     JSR.W Reserve_Tank_Auto_Refill                                       ;82DC13;
     BCC +                                                                ;82DC16;
     STZ.W TimeIsFrozenFlag                                               ;82DC18;
@@ -10735,7 +10657,6 @@ GameState_1B_ReserveTankAuto:
 
 +   JSR.W GameState_8_MainGameplay                                       ;82DC28;
     JSL.L Low_Health_Check_external                                      ;82DC2B;
-    PLP                                                                  ;82DC2F;
     RTS                                                                  ;82DC30;
 
 
@@ -10788,8 +10709,6 @@ Reserve_Tank_Auto_Refill:
 
 ;;; $DC80: Game state 13h (death sequence, start) ;;;
 GameState_13_DeathSequence_Start:
-    PHP                                                                  ;82DC80;
-    REP #$30                                                             ;82DC81;
     JSR.W GameState_8_MainGameplay                                       ;82DC83;
     LDX.W #$01FE                                                         ;82DC86;
 
@@ -10829,20 +10748,16 @@ GameState_13_DeathSequence_Start:
     STZ.W SamusInvincibilityTimer                                        ;82DCD5;
     STZ.W SamusKnockbackTimer                                            ;82DCD8;
     INC.W GameState                                                      ;82DCDB;
-    PLP                                                                  ;82DCDE;
     RTS                                                                  ;82DCDF;
 
 
 ;;; $DCE0: Game state 14h (death sequence, black out surroundings) ;;;
 GameState_14_DeathSequence_BlackOutSurroundings:
-    PHP                                                                  ;82DCE0;
-    REP #$30                                                             ;82DCE1;
     JSR.W GameState_8_MainGameplay                                       ;82DCE3;
     LDA.W #$0006                                                         ;82DCE6;
     STA.L PaletteChangeDenominator                                       ;82DCE9;
     JSR.W Advance_GradualColorChange_ofAllPalettes                       ;82DCED;
     BCS +                                                                ;82DCF0;
-    PLP                                                                  ;82DCF2;
     RTS                                                                  ;82DCF3;
 
 +   JSL.L Wait_End_VBlank_Clear_HDMA                                     ;82DCF4;
@@ -10885,14 +10800,11 @@ GameState_14_DeathSequence_BlackOutSurroundings:
     LDA.W #$0005                                                         ;82DD65;
     LDY.W #$000E                                                         ;82DD68;
     JSL.L QueueMusicDataOrTrack_YFrameDelay                              ;82DD6B;
-    PLP                                                                  ;82DD6F;
     RTS                                                                  ;82DD70;
 
 
 ;;; $DD71: Game state 15h (death sequence, wait for music) ;;;
 GameState_15_DeathSequence_WaitForMusic:
-    PHP                                                                  ;82DD71;
-    REP #$30                                                             ;82DD72;
     JSL.L Draw_Inanimate_Samus                                           ;82DD74;
     JSL.L CheckIfMusicIsQueued                                           ;82DD78;
     BCS .reutrn                                                          ;82DD7C;
@@ -10900,15 +10812,12 @@ GameState_15_DeathSequence_WaitForMusic:
     INC.W GameState                                                      ;82DD82;
 
   .reutrn:
-    PLP                                                                  ;82DD85;
     RTS                                                                  ;82DD86;
 
 
 ;;; $DD87: Game state 16h (death sequence, pre-flashing) ;;;
 GameState_16_DeathSequence_PreFlashing:
 ; Death animation pre-flashing timer is initialised to 10h by GameState_14_DeathSequence_BlackOutSurroundings
-    PHP                                                                  ;82DD87;
-    REP #$30                                                             ;82DD88;
     JSL.L Draw_Samus_Starting_Death_Animation_JSL                        ;82DD8A;
     DEC.W DeathAnimation_PreFlashingTimer                                ;82DD8E;
     BEQ +                                                                ;82DD91;
@@ -10917,14 +10826,11 @@ GameState_16_DeathSequence_PreFlashing:
 +   INC.W GameState                                                      ;82DD95;
 
   .return:
-    PLP                                                                  ;82DD98;
     RTS                                                                  ;82DD99;
 
 
 ;;; $DD9A: Game state 17h (death sequence, flashing) ;;;
 GameState_17_DeathSequence_Flashing:
-    PHP                                                                  ;82DD9A;
-    REP #$30                                                             ;82DD9B;
     JSL.L Handle_Death_Animation_Flashing                                ;82DD9D;
     TAX                                                                  ;82DDA1;
     BEQ .flashingEnded                                                   ;82DDA2;
@@ -10935,14 +10841,11 @@ GameState_17_DeathSequence_Flashing:
     JSL.L Draw_Samus_During_Death_Animation                              ;82DDA9;
 
   .return:
-    PLP                                                                  ;82DDAD;
     RTS                                                                  ;82DDAE;
 
 
 ;;; $DDAF: Game state 18h (death sequence, explosion white out) ;;;
 GameState_18_DeathSequence_ExplosionWhiteOut:
-    PHP                                                                  ;82DDAF;
-    REP #$30                                                             ;82DDB0;
     JSL.L Handle_DeathSequence_SuitExplosionWhiteOut                     ;82DDB2;
     TAX                                                                  ;82DDB6;
     BEQ .return                                                          ;82DDB7;
@@ -10952,15 +10855,12 @@ GameState_18_DeathSequence_ExplosionWhiteOut:
     INC.W GameState                                                      ;82DDC2;
 
   .return:
-    PLP                                                                  ;82DDC5;
     RTS                                                                  ;82DDC6;
 
 
 ;;; $DDC7: Game state 19h (death sequence, black out) ;;;
 GameState_19_DeathSequence_BlackOut:
 ; Also cut to by timeup death
-    PHP                                                                  ;82DDC7;
-    REP #$30                                                             ;82DDC8;
     JSL.L HandleFadingOut                                                ;82DDCA;
     SEP #$20                                                             ;82DDCE;
     LDA.B DP_Brightness                                                  ;82DDD0;
@@ -10976,7 +10876,6 @@ GameState_19_DeathSequence_BlackOut:
     INC.W GameState                                                      ;82DDE2;
     STZ.W PauseMenu_MenuIndex                                            ;82DDE5;
     STZ.W DisableSounds                                                  ;82DDE8;
-    PLP                                                                  ;82DDEB;
     RTS                                                                  ;82DDEC;
 
   .return:
@@ -11449,14 +11348,11 @@ Load_Target_Colors_for_Common_SpritesBeamsFlashingEnemies:
 
 ;;; $E169: Game state 9 (hit a door block) ;;;
 GameState_9_HitADoorBlock:
-    PHP                                                                  ;82E169;
-    REP #$30                                                             ;82E16A;
     PEA.W .manualReturn-1                                                ;82E16C;
     JMP.W (DoorTransitionFunction)                                       ;82E16F;
 
   .manualReturn:
     BCS .gameStateA                                                      ;82E172;
-    PLP                                                                  ;82E174;
     RTS                                                                  ;82E175;
 
   .gameStateA:
@@ -11506,9 +11402,7 @@ DoorTransitionFunction_Wait48FramesForDownElevator:
 
 ;;; $E1B7: Game state Ah (loading next room) ;;;
 GameState_A_LoadingNextRoom:
-    PHP                                                                  ;82E1B7;
     PHB                                                                  ;82E1B8;
-    REP #$30                                                             ;82E1B9;
     LDA.W #$0001                                                         ;82E1BB;
     STA.W DoorTransitionFlagEnemiesPause                                 ;82E1BE;
     STA.W DoorTransitionFlagElevatorsZebetites                           ;82E1C1;
@@ -11582,15 +11476,11 @@ GameState_A_LoadingNextRoom:
     STA.W DoorTransitionFunction                                         ;82E27F;
     INC.W GameState                                                      ;82E282;
     PLB                                                                  ;82E285;
-    PLP                                                                  ;82E286;
     RTS                                                                  ;82E287;
 
 
 ;;; $E288: Game state Bh (loading next room) ;;;
 GameState_B_LoadingNextRoom:
-    PHP                                                                  ;82E288;
-    PHB                                                                  ;82E289;
-    REP #$30                                                             ;82E28A;
     PEA.W .manualReturn-1                                                ;82E28C;
     JMP.W (DoorTransitionFunction)                                       ;82E28F;
 
@@ -11600,8 +11490,6 @@ GameState_B_LoadingNextRoom:
     JSL.L DrawTimer                                                      ;82E297;
 
   .return:
-    PLB                                                                  ;82E29B;
-    PLP                                                                  ;82E29C;
     RTS                                                                  ;82E29D;
 
 
@@ -11655,7 +11543,16 @@ DoorTransitionFunction_FadeOutTheScreen:
 ;;; $E2F7: Door transition function - load door header, delete HDMA objects, and set interrupt command ;;;
 DoorTransitionFunction_LoadDoorHeader_DeleteHDMAObjects_IRQ:
     JSR.W Load_Door_Header                                               ;82E2F7;
-    JSL.L Delete_HDMAObjects                                             ;82E2FA;
+    SEP #$20
+    STZ.B DP_HDMAEnable
+    REP #$30
+    LDX.W #$000A
+
+  .loop:
+    STZ.W HDMAObject_ChannelBitflags,X
+    DEX
+    DEX
+    BPL .loop
     LDA.W #$8000                                                         ;82E2FE;
     TRB.W HDMAObject_Enable                                              ;82E301;
     LDA.W #$0008                                                         ;82E304;
@@ -11871,10 +11768,29 @@ DoorTransitionFunction_LoadSpritesBGPLMsAudio_RunDoorRoomASM:
     PHP                                                                  ;82E4A9;
     JSR.W Load_EnemyGFX_to_VRAM                                          ;82E4AA;
     JSL.L Queue_Room_Music_Data                                          ;82E4AD;
-    JSL.L Clear_Enemy_Projectiles                                        ;82E4B1;
-    JSL.L Clear_AnimatedTilesObjects                                     ;82E4B5;
+    LDX.W #$0022
+
+  .loopEnemyProjectiles:
+    STZ.W EnemyProjectile_ID,X
+    DEX
+    DEX
+    BPL .loopEnemyProjectiles
+    LDX.W #$000A
+
+  .loopAnimatedTilesObjects:
+    STZ.W AnimatedTilesObject_IDs,X
+    DEX
+    DEX
+    BPL .loopAnimatedTilesObjects
     JSL.L Clear_PaletteFXObjects                                         ;82E4B9;
-    JSL.L Clear_PLMs                                                     ;82E4BD;
+    LDX.W #$004E
+
+  .loopPLMs:
+    STZ.W PLM_IDs,X
+    DEX
+    DEX
+    BPL .loop
+    STZ.W PLM_ItemGFXIndex
     JSL.L CreatePLMs_ExecuteDoorASM_RoomSetupASM_SetElevatorStatus       ;82E4C1;
     JSL.L Load_FX_Header                                                 ;82E4C5;
     JSR.W Spawn_Door_Closing_PLM                                         ;82E4C9;
@@ -13029,11 +12945,6 @@ CreatePLMs_ExecuteDoorASM_RoomSetupASM_SetElevatorStatus:
 
 ;;; $EB9F: Game state 2 (game options menu) ;;;
 GameState_2_GameOptionsMenu:
-    PHP                                                                  ;82EB9F;
-    PHB                                                                  ;82EBA0;
-    PHK                                                                  ;82EBA1;
-    PLB                                                                  ;82EBA2;
-    REP #$30                                                             ;82EBA3;
     LDA.W GameOptionsMenuIndex                                           ;82EBA5;
     ASL                                                                  ;82EBA8;
     TAX                                                                  ;82EBA9;
@@ -13046,8 +12957,6 @@ GameState_2_GameOptionsMenu:
     JSR.W Draw_GameOptionsMenu_BG1                                       ;82EBBB;
 
   .return:
-    PLB                                                                  ;82EBBE;
-    PLP                                                                  ;82EBBF;
     RTS                                                                  ;82EBC0;
 
   .pointers:

@@ -3291,7 +3291,13 @@ endif
     DEX                                                                  ;A499A5;
     DEX                                                                  ;A499A6;
     BPL .loopSpritePalette                                               ;A499A7;
-    JSL.L Clear_Enemy_Projectiles                                        ;A499A9;
+    LDX.W #$0022
+
+  .loopEnemyProjectiles:
+    STZ.W EnemyProjectile_ID,X
+    DEX
+    DEX
+    BPL .loopEnemyProjectiles
     LDA.W #$0008                                                         ;A499AD;
     STA.B DP_Temp12                                                      ;A499B0;
 

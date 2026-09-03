@@ -4600,10 +4600,9 @@ Suit_Damage_Division:
     RTL                                                                  ;A0A46F;
 
   .quarterDamage:
-    LDA.B DP_Temp12                                                      ;A0A470;
+    LDA DP_Temp12
     LSR
     LSR
-    STA DP_Temp12
     RTL                                                                  ;A0A476;
 
 

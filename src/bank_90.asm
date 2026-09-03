@@ -9993,7 +9993,8 @@ HandlePowerBomb:
     PHY                                                                  ;90C186;
     PHP                                                                  ;90C187;
     PHB                                                                  ;90C188;
-    JSL.L Enable_HDMAObjects                                             ;90C189;
+    LDA.W #$8000
+    TSB.W HDMAObject_Enable
     JSL.L Spawn_PowerBombExplosion                                       ;90C18D;
     PLB                                                                  ;90C191;
     PLP                                                                  ;90C192;
@@ -12828,7 +12829,8 @@ SamusMovementHandler_CrystalFlash_RaiseSamus_GenerateBubble:
     PHY                                                                  ;90D6BE;
     PHP                                                                  ;90D6BF;
     PHB                                                                  ;90D6C0;
-    JSL.L Enable_HDMAObjects                                             ;90D6C1;
+    LDA.W #$8000
+    TSB.W HDMAObject_Enable
     JSL.L Spawn_CrystalFlash_HDMAObjects                                 ;90D6C5;
     PLB                                                                  ;90D6C9;
     PLP                                                                  ;90D6CA;
@@ -14458,7 +14460,8 @@ SamusTimerHackHandler_HandleTimer:
     BPL .loop                                                            ;90E0FE;
     LDA.W #SamusTimerHackHandler_DrawTimer                               ;90E100;
     STA.W HackHandler                                                    ;90E103;
-    JSL.L Disable_PaletteFXObjects                                       ;90E106;
+    LDA.W #$8000
+    TRB.W PaletteFXObject_Enable
 
   .timerNotExpired:
     LDA.W TimerStatus                                                    ;90E10A;
@@ -15533,7 +15536,8 @@ HandleSamusPlacementModeToggles:
     LDA.B DP_Controller2New                                              ;90E7B3;
     BIT.W #$0080                                                         ;90E7B5;
     BEQ .return                                                          ;90E7B8;
-    JSL.L Disable_Enemy_Projectiles                                      ;90E7BA;
+    LDA.W #$8000
+    TRB.W EnemyProjectile_Enable
     LDA.W #$0001                                                         ;90E7BE;
     STA.W TimeIsFrozenFlag                                               ;90E7C1;
     LDA.W #RTL_90E8CD                                                    ;90E7C4;
@@ -15560,7 +15564,8 @@ SamusNewStateHandler_Debug:
     STA.W CurrentStateHandler                                            ;90E7E2;
     LDA.W #SamusNewStateHandler_Normal                                   ;90E7E5;
     STA.W NewStateHandler                                                ;90E7E8;
-    JSL.L Enable_Enemy_Projectiles                                       ;90E7EB;
+    LDA.W #$8000
+    TSB.W EnemyProjectile_Enable
     STZ.W TimeIsFrozenFlag                                               ;90E7EF;
 
   .return:
@@ -17390,7 +17395,8 @@ SamusCommand_11_SetupSamusForDeathSequence:
 
 ; Called by:
 ;     $82:DB69: Handle Samus running out of health and increment game time
-    JSL.L Disable_PaletteFXObjects                                       ;90F2F8; fallthrough to LockSamus_SetInanimateSamusDrawingHandler
+    LDA.W #$8000
+    TRB.W PaletteFXObject_Enable                                         ; fallthrough to LockSamus_SetInanimateSamusDrawingHandler
 
 
 ;;; $F2FC: Lock Samus and set inanimate Samus drawing handler ;;;

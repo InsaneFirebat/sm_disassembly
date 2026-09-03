@@ -4504,8 +4504,9 @@ Load_Title_Sequence_Graphics:
     LDA.W #$0001                                                         ;8B9C8E;
     STA.W ScreenFadeDelay                                                ;8B9C91;
     STA.W ScreenFadeCounter                                              ;8B9C94;
-    JSL.L Enable_HDMAObjects                                             ;8B9C97;
-    JSL.L Enable_PaletteFXObjects                                        ;8B9C9B;
+    LDA.W #$8000
+    TSB.W HDMAObject_Enable
+    TSB.W PaletteFXObject_Enable
     LDA.W #$0000                                                         ;8B9C9F;
     STA.W LayerBlending_DefaultConfig                                    ;8B9CA2;
     LDY.W #PaletteFXObjects_TitleScreenBabyMetroidTubeLight              ;8B9CA5;
@@ -4912,7 +4913,8 @@ endif
     STZ.W Mode7TransformationAngle                                       ;8B9F74;
     LDA.W #CinematicFunction_LoadTitleSequence                           ;8B9F77;
     STA.W CinematicFunction                                              ;8B9F7A;
-    JSL.L Disable_PaletteFXObjects                                       ;8B9F7D;
+    LDA.W #$8000
+    TRB.W PaletteFXObject_Enable
     JSL.L Clear_PaletteFXObjects                                         ;8B9F81;
     LDA.W #MessageBoxIndex                                               ;8B9F85;
     DEC                                                                  ;8B9F88;
@@ -4966,7 +4968,8 @@ endif
     STZ.W Mode7TransformationAngle                                       ;8B9FD0;
     LDA.W #CinematicFunction_LoadTitleSequence                           ;8B9FD3;
     STA.W CinematicFunction                                              ;8B9FD6;
-    JSL.L Disable_PaletteFXObjects                                       ;8B9FD9;
+    LDA.W #$8000
+    TRB.W PaletteFXObject_Enable
     JSL.L Clear_PaletteFXObjects                                         ;8B9FDD;
     LDA.W #MessageBoxIndex                                               ;8B9FE1;
     DEC                                                                  ;8B9FE4;
@@ -5662,9 +5665,10 @@ endif
     LDA.W #$0003                                                         ;8BA54D;
     STA.W ScreenFadeDelay                                                ;8BA550;
     STA.W ScreenFadeCounter                                              ;8BA553;
-    JSL.L Enable_HDMAObjects                                             ;8BA556;
+    LDA.W #$8000
+    TSB.W HDMAObject_Enable
+    TSB.W PaletteFXObject_Enable
     JSL.L Clear_PaletteFXObjects                                         ;8BA55A;
-    JSL.L Enable_PaletteFXObjects                                        ;8BA55E;
     STZ.W DoorPointer                                                    ;8BA562;
     STZ.W Layer1XPosition                                                ;8BA565;
     STZ.W Layer1YPosition                                                ;8BA568;
@@ -8399,7 +8403,8 @@ CinematicFunction_FlyToCeres_Initial:
     LDA.W #$0200                                                         ;8BBDA4;
     STA.W Mode7TransformationZoomLevel                                   ;8BBDA7;
     JSL.L Clear_PaletteFXObjects                                         ;8BBDAA;
-    JSL.L Enable_PaletteFXObjects                                        ;8BBDAE;
+    LDA.W #$8000
+    TSB.W PaletteFXObject_Enable
     LDA.W #$0000                                                         ;8BBDB2;
     JSL.L Clear_CinematicBGObjects_CinematicBGTilemap                    ;8BBDB5;
     LDA.W #$5C00                                                         ;8BBDB9;
@@ -9007,10 +9012,12 @@ CinematicFunction_CeresGoesBoom_Initial:
     STZ.W Mode7TransformationAngle                                       ;8BC256;
     LDA.W #$0100                                                         ;8BC259;
     STA.W Mode7TransformationZoomLevel                                   ;8BC25C;
-    JSL.L Disable_HDMAObjects                                            ;8BC25F;
+    LDA.W #$8000
+    TRB.W HDMAObject_Enable
     JSL.L Wait_End_VBlank_Clear_HDMA                                     ;8BC263;
     JSL.L Clear_PaletteFXObjects                                         ;8BC267;
-    JSL.L Enable_PaletteFXObjects                                        ;8BC26B;
+    LDA.W #$8000
+    TSB.W PaletteFXObject_Enable
     LDA.W #$002F                                                         ;8BC26F;
     JSL.L Clear_CinematicBGObjects_CinematicBGTilemap                    ;8BC272;
     LDA.W #$0000                                                         ;8BC276;
@@ -9148,7 +9155,8 @@ CinematicFunction_CeresGoesBoom_CeresExplosions:
     PHY                                                                  ;8BC396;
     PHP                                                                  ;8BC397;
     PHB                                                                  ;8BC398;
-    JSL.L Enable_HDMAObjects                                             ;8BC399;
+    LDA.W #$8000
+    TSB.W HDMAObject_Enable
     JSL.L Spawn_PowerBombExplosion                                       ;8BC39D;
     PLB                                                                  ;8BC3A1;
     PLP                                                                  ;8BC3A2;
@@ -9625,10 +9633,11 @@ CinematicFunction_FlyToZebes_Initial:
     STZ.W Mode7TransformationAngle                                       ;8BC760;
     LDA.W #$0100                                                         ;8BC763;
     STA.W Mode7TransformationZoomLevel                                   ;8BC766;
-    JSL.L Disable_HDMAObjects                                            ;8BC769;
-    JSL.L Wait_End_VBlank_Clear_HDMA                                     ;8BC76D;
+    LDA.W #$8000
+    TRB.W HDMAObject_Enable
+    TSB.W PaletteFXObject_Enable
     JSL.L Clear_PaletteFXObjects                                         ;8BC771;
-    JSL.L Enable_PaletteFXObjects                                        ;8BC775;
+    JSL.L Wait_End_VBlank_Clear_HDMA                                     ;8BC76D;
     SEP #$20                                                             ;8BC779;
     LDA.B #$81                                                           ;8BC77B;
     STA.B DP_Mosaic                                                      ;8BC77D;
@@ -11658,7 +11667,8 @@ CinematicFunction_Ending_Setup:
     STZ.W Layer1XPosition                                                ;8BD662;
     STZ.W Layer1YPosition                                                ;8BD665;
     JSL.L Clear_PaletteFXObjects                                         ;8BD668;
-    JSL.L Enable_PaletteFXObjects                                        ;8BD66C;
+    LDA.W #$8000
+    TSB.W PaletteFXObject_Enable
     STZ.W CreditsObject_ShootingStarsEnable                              ;8BD674;
     SEP #$20                                                             ;8BD677;
     LDA.B DP_IRQAutoJoy
@@ -12781,7 +12791,8 @@ CinematicFunction_Credits_Setup:
     REP #$20                                                             ;8BE0A0;
     STZ.W Layer1XPosition                                                ;8BE0A2;
     STZ.W Layer1YPosition                                                ;8BE0A5;
-    JSL.L Enable_HDMAObjects                                             ;8BE0A8;
+    LDA.W #$8000
+    TSB.W HDMAObject_Enable
     LDX.W #$01FE                                                         ;8BE0AC;
     LDA.W #$0000                                                         ;8BE0AF;
 
