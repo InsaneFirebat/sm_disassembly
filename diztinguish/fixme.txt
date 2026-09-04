@@ -1,1 +1,2 @@
 $8FE87F should be 16bit data
+$82BA25 both tables 16bit data

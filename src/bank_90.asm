@@ -6305,7 +6305,7 @@ Update_Minimap:
 +   STZ.B DP_Temp2E                                                      ;90A941;
     LDA.W SamusXPosition                                                 ;90A943;
     AND.W #$FF00                                                         ;90A946;
-    XBA                                                                  ;90A949;
+    XBA                                                                  ;90A949; >.<
     CLC                                                                  ;90A94A;
     ADC.W RoomMapX                                                       ;90A94B;
     PHA                                                                  ;90A94E;
@@ -6323,7 +6323,7 @@ Update_Minimap:
     STA.B DP_Temp14                                                      ;90A963;
     LDA.W SamusYPosition                                                 ;90A965;
     AND.W #$FF00                                                         ;90A968;
-    XBA                                                                  ;90A96B;
+    XBA                                                                  ;90A96B; >.<
     CLC                                                                  ;90A96C;
     ADC.W RoomMapY                                                       ;90A96D;
     INC                                                                  ;90A970;
@@ -6374,7 +6374,7 @@ Update_Minimap:
     LDA.W AreaIndex                                                      ;90A9BE;
     ASL                                                                  ;90A9C1;
     TAX                                                                  ;90A9C2;
-    LDA.W #$0082                                                         ;90A9C3;
+    LDA.W #MapData_pointers>>16                                          ;90A9C3;
     STA.B DP_Temp0B                                                      ;90A9C6;
     LDA.L MapData_pointers,X                                             ;90A9C8;
     STA.B DP_Temp09                                                      ;90A9CC;
@@ -6454,7 +6454,7 @@ Update_Minimap:
   .singlePage:
     LDA.B DP_Temp34                                                      ;90AA2C;
     LSR                                                                  ;90AA2E;
-    CMP.W #$0000                                                         ;90AA2F;
+    CMP.W #$0000                                                         ;90AA2F; >.<
 
   .loop:
     BEQ Update_HUD_Minimap_Tilemap                                       ;90AA32;
