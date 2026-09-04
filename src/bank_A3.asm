@@ -10026,7 +10026,7 @@ EnemyTouch_Yard:
     LDA.L Yard.idleCrawlingSpeedTableIndex,X                             ;A3D405;
     STA.W Yard.crawlingSpeedTableIndex,X                                 ;A3D409;
     LDA.L Yard.behavior,X                                                ;A3D40C;
-    CMP.W #$0000                                                         ;A3D410;
+    CMP.W #$0000                                                         ;A3D410; >.<
     BEQ .setIdleCrawling                                                 ;A3D413;
     JSL.L TurnYardAround                                                 ;A3D415;
 

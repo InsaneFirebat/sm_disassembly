@@ -98,6 +98,10 @@ org $8F0000
 RoomDoors:
 
 
+org $8F0000
+LibraryBGs:
+
+
 org $900000
 BeamTrailInstLists:
   .timer: skip 2 ; 0: Timer
