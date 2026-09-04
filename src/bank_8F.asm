@@ -8217,11 +8217,10 @@ DoorASM_Scroll_6_Green:
 ; Room $96BA, door 0. Old Tourian escape shaft
 ; Room $98E2, door 0. Pre Crateria map station hall
 ; Room $9A44, door 1. Crateria bomb block hall
-    PHP                                                                  ;8FB981;
     SEP #$20                                                             ;8FB982;
     LDA.B #$02                                                           ;8FB984;
     STA.L Scrolls+6                                                      ;8FB986;
-    PLP                                                                  ;8FB98A;
+    REP #$30
     RTS                                                                  ;8FB98B;
 
 
@@ -8229,11 +8228,10 @@ DoorASM_Scroll_6_Green:
 DoorASM_Scroll_0_Blue:
 ; Door destination: Crateria mainstreet
 ; Room $990D, door list index 1: Door
-    PHP                                                                  ;8FB98C;
     SEP #$20                                                             ;8FB98D;
     LDA.B #$01                                                           ;8FB98F;
     STA.L Scrolls                                                        ;8FB991;
-    PLP                                                                  ;8FB995;
+    REP #$30
     RTS                                                                  ;8FB996;
 
 
@@ -8241,11 +8239,10 @@ DoorASM_Scroll_0_Blue:
 DoorASM_Scroll_13_Blue:
 ; Door destination: Landing site
 ; Room $92B3, door list index 0: Door
-    PHP                                                                  ;8FB997;
     SEP #$20                                                             ;8FB998;
     LDA.B #$01                                                           ;8FB99A;
     STA.L Scrolls+$13                                                    ;8FB99C;
-    PLP                                                                  ;8FB9A0;
+    REP #$30
     RTS                                                                  ;8FB9A1;
 
 
@@ -8253,13 +8250,12 @@ DoorASM_Scroll_13_Blue:
 DoorASM_Scroll_4_Red_8_Green:
 ; Door destination: Wrecked Ship chozo room
 ; Room $9879, door list index 0: Door
-    PHP                                                                  ;8FB9A2;
     SEP #$20                                                             ;8FB9A3;
     LDA.B #$00                                                           ;8FB9A5;
     STA.L Scrolls+4                                                      ;8FB9A7;
     LDA.B #$02                                                           ;8FB9AB;
     STA.L Scrolls+8                                                      ;8FB9AD;
-    PLP                                                                  ;8FB9B1;
+    REP #$30
     RTS                                                                  ;8FB9B2;
 
 
@@ -8267,14 +8263,13 @@ DoorASM_Scroll_4_Red_8_Green:
 DoorASM_Scroll_8_9_A_B_Red:
 ; Door destination: Wrecked Ship chozo room
 ; Room $93FE, door list index 4: Door
-    PHP                                                                  ;8FB9B3;
     SEP #$20                                                             ;8FB9B4;
     LDA.B #$00                                                           ;8FB9B6;
     STA.L Scrolls+8                                                      ;8FB9B8;
     STA.L Scrolls+9                                                      ;8FB9BC;
     STA.L Scrolls+$A                                                     ;8FB9C0;
     STA.L Scrolls+$B                                                     ;8FB9C4;
-    PLP                                                                  ;8FB9C8;
+    REP #$30
     RTS                                                                  ;8FB9C9;
 
 
@@ -8282,7 +8277,6 @@ DoorASM_Scroll_8_9_A_B_Red:
 DoorASM_Scroll_2_3_4_5_B_C_D_11_Red:
 ; Door destination: Wrecked Ship chozo room
 ; Room $968F, door list index 1: Door
-    PHP                                                                  ;8FB9CA;
     SEP #$20                                                             ;8FB9CB;
     LDA.B #$00                                                           ;8FB9CD;
     STA.L Scrolls+2                                                      ;8FB9CF;
@@ -8293,74 +8287,68 @@ DoorASM_Scroll_2_3_4_5_B_C_D_11_Red:
     STA.L Scrolls+$C                                                     ;8FB9E3;
     STA.L Scrolls+$D                                                     ;8FB9E7;
     STA.L Scrolls+$11                                                    ;8FB9EB;
-    PLP                                                                  ;8FB9EF;
+    REP #$30
     RTS                                                                  ;8FB9F0;
 
 
 ;;; $B9F1: Door ASM: scroll 1,4 = green ;;;
 DoorASM_Scroll_1_4_Green:
 ; Room $962A, door list index 0: Door
-    PHP                                                                  ;8FB9F1;
     SEP #$20                                                             ;8FB9F2;
     LDA.B #$02                                                           ;8FB9F4;
     STA.L Scrolls+1                                                      ;8FB9F6;
     STA.L Scrolls+4                                                      ;8FB9FA;
-    PLP                                                                  ;8FB9FE;
+    REP #$30
     RTS                                                                  ;8FB9FF;
 
 
 ;;; $BA00: Door ASM: scroll 2 = blue ;;;
 DoorASM_Scroll_2_Blue:
 ; Room $99F9, door list index 0: Door
-    PHP                                                                  ;8FBA00;
     SEP #$20                                                             ;8FBA01;
     LDA.B #$01                                                           ;8FBA03;
     STA.L Scrolls+2                                                      ;8FBA05;
-    PLP                                                                  ;8FBA09;
+    REP #$30
     RTS                                                                  ;8FBA0A;
 
 
 ;;; $BA0B: Door ASM: scroll 17h = blue ;;;
 DoorASM_Scroll_17_Blue:
 ; Room $99F9, door list index 1: Door
-    PHP                                                                  ;8FBA0B;
     SEP #$20                                                             ;8FBA0C;
     LDA.B #$01                                                           ;8FBA0E;
     STA.L Scrolls+$17                                                    ;8FBA10;
-    PLP                                                                  ;8FBA14;
+    REP #$30
     RTS                                                                  ;8FBA15;
 
 
 ;;; $BA16: Door ASM: scroll 4 = blue ;;;
 DoorASM_Scroll_4_Blue:
 ; Room $99BD, door list index 3: Door
-    PHP                                                                  ;8FBA16;
     SEP #$20                                                             ;8FBA17;
     LDA.B #$01                                                           ;8FBA19;
     STA.L Scrolls+4                                                      ;8FBA1B;
-    PLP                                                                  ;8FBA1F;
+    REP #$30
     RTS                                                                  ;8FBA20;
 
 
 ;;; $BA21: Door ASM: scroll 6 = green ;;;
 DoorASM_Scroll_6_Green_duplicate:
 ; Room $962A, door list index 1: Door
-    PHP                                                                  ;8FBA21;
     SEP #$20                                                             ;8FBA22;
     LDA.B #$02                                                           ;8FBA24;
     STA.L Scrolls+6                                                      ;8FBA26;
-    PLP                                                                  ;8FBA2A;
+    REP #$30
     RTS                                                                  ;8FBA2B;
 
 
 ;;; $BA2C: Door ASM: scroll 3 = green ;;;
 DoorASM_Scroll_3_Green:
 ; Room $965B, door list index 1: Door
-    PHP                                                                  ;8FBA2C;
     SEP #$20                                                             ;8FBA2D;
     LDA.B #$02                                                           ;8FBA2F;
     STA.L Scrolls+3                                                      ;8FBA31;
-    PLP                                                                  ;8FBA35;
+    REP #$30
     RTS                                                                  ;8FBA36;
 
 
@@ -8541,12 +8529,11 @@ LibBG_Brinstar_7_BlueGridBlocks:                                         ;8FBCEC
 DoorASM_Scroll_18_1C_Green:
 ; Room $9AD9, door list index 8: Door
 ; Room $9FE5, door list index 0: Door
-    PHP                                                                  ;8FBD07;
     SEP #$20                                                             ;8FBD08;
     LDA.B #$02                                                           ;8FBD0A;
     STA.L Scrolls+$18                                                    ;8FBD0C;
     STA.L Scrolls+$1C                                                    ;8FBD10;
-    PLP                                                                  ;8FBD14;
+    REP #$30
     RTS                                                                  ;8FBD15;
 
 
@@ -8554,12 +8541,11 @@ DoorASM_Scroll_18_1C_Green:
 DoorASM_Scroll_5_6_Blue:
 ; Room $9AD9, door list index 7: Door
 ; Room $A22A, door list index 0: Door
-    PHP                                                                  ;8FBD16;
     SEP #$20                                                             ;8FBD17;
     LDA.B #$01                                                           ;8FBD19;
     STA.L Scrolls+5                                                      ;8FBD1B;
     STA.L Scrolls+6                                                      ;8FBD1F;
-    PLP                                                                  ;8FBD23;
+    REP #$30
     RTS                                                                  ;8FBD24;
 
 
@@ -8568,106 +8554,97 @@ DoorASM_Scroll_1D_Blue:
 ; Room $9938, door list index 1: Door
 ; Room $9AD9, door list index 6: Door
 ; Room $A011, door list index 2: Door
-    PHP                                                                  ;8FBD25;
     SEP #$20                                                             ;8FBD26;
     LDA.B #$01                                                           ;8FBD28;
     STA.L Scrolls+$1D                                                    ;8FBD2A;
-    PLP                                                                  ;8FBD2E;
+    REP #$30
     RTS                                                                  ;8FBD2F;
 
 
 ;;; $BD30: Door ASM: scroll 2..3 = green ;;;
 DoorASM_Scroll_2_3_Green:
 ; Room $9D19, door list index 2: Door
-    PHP                                                                  ;8FBD30;
     SEP #$20                                                             ;8FBD31;
     LDA.B #$02                                                           ;8FBD33;
     STA.L Scrolls+2                                                      ;8FBD35;
     STA.L Scrolls+3                                                      ;8FBD39;
-    PLP                                                                  ;8FBD3D;
+    REP #$30
     RTS                                                                  ;8FBD3E;
 
 
 ;;; $BD3F: Door ASM: scroll 0 = red, 1 = green ;;;
 DoorASM_Scroll_0_Red_1_Green:
 ; Room $A471, door list index 0: Door
-    PHP                                                                  ;8FBD3F;
     SEP #$20                                                             ;8FBD40;
     LDA.B #$00                                                           ;8FBD42;
     STA.L Scrolls                                                        ;8FBD44;
     LDA.B #$02                                                           ;8FBD48;
     STA.L Scrolls+1                                                      ;8FBD4A;
-    PLP                                                                  ;8FBD4E;
+    REP #$30
     RTS                                                                  ;8FBD4F;
 
 
 ;;; $BD50: Door ASM: scroll Bh = green ;;;
 DoorASM_Scroll_B_Green:
 ; Room $A07B, door list index 0: Door
-    PHP                                                                  ;8FBD50;
     SEP #$20                                                             ;8FBD51;
     LDA.B #$02                                                           ;8FBD53;
     STA.L Scrolls+$B                                                     ;8FBD55;
-    PLP                                                                  ;8FBD59;
+    REP #$30
     RTS                                                                  ;8FBD5A;
 
 
 ;;; $BD5B: Door ASM: scroll 1Ch = red, 1Dh = blue ;;;
 DoorASM_Scroll_Scroll_1C_Red_1D_Blue:
 ; Room $A0A4, door list index 1: Door
-    PHP                                                                  ;8FBD5B;
     SEP #$20                                                             ;8FBD5C;
     LDA.B #$00                                                           ;8FBD5E;
     STA.L Scrolls+$1C                                                    ;8FBD60;
     LDA.B #$01                                                           ;8FBD64;
     STA.L Scrolls+$1D                                                    ;8FBD66;
-    PLP                                                                  ;8FBD6A;
+    REP #$30
     RTS                                                                  ;8FBD6B;
 
 
 ;;; $BD6C: Door ASM: scroll 4 = red ;;;
 DoorASM_Scroll_4_Red:
 ; Room $9AD9, door list index 5: Door
-    PHP                                                                  ;8FBD6C;
     SEP #$20                                                             ;8FBD6D;
     LDA.B #$00                                                           ;8FBD6F;
     STA.L Scrolls+4                                                      ;8FBD71;
-    PLP                                                                  ;8FBD75;
+    REP #$30
     RTS                                                                  ;8FBD76;
 
 
 ;;; $BD77: Door ASM: scroll 20h,24h..25h = green ;;;
 DoorASM_Scroll_20_24_25_Green:
 ; Room $A0D2, door list index 0: Door
-    PHP                                                                  ;8FBD77;
     SEP #$20                                                             ;8FBD78;
     LDA.B #$02                                                           ;8FBD7A;
     STA.L Scrolls+$20                                                    ;8FBD7C;
     STA.L Scrolls+$24                                                    ;8FBD80;
     STA.L Scrolls+$25                                                    ;8FBD84;
-    PLP                                                                  ;8FBD88;
+    REP #$30
     RTS                                                                  ;8FBD89;
 
 
 ;;; $BD8A: Door ASM: scroll 2 = blue ;;;
 DoorASM_Scroll_2_Blue_duplicate:
 ; Room $A1AD, door list index 0: Door
-    PHP                                                                  ;8FBD8A;
     SEP #$20                                                             ;8FBD8B;
     LDA.B #$01                                                           ;8FBD8D;
     STA.L Scrolls+2                                                      ;8FBD8F;
-    PLP                                                                  ;8FBD93;
+    REP #$30
     RTS                                                                  ;8FBD94;
 
 
 ;;; $BD95: Door ASM: scroll 0 = green ;;;
 DoorASM_Scroll_0_Green:
 ; Room $A641, door list index 0: Door
-    PHP                                                                  ;8FBD95;
     SEP #$20                                                             ;8FBD96;
     LDA.B #$02                                                           ;8FBD98;
     STA.L Scrolls                                                        ;8FBD9A;
-    PLP                                                                  ;8FBD9E;
+    REP #$30
     RTS                                                                  ;8FBD9F;
 
 
@@ -8675,122 +8652,112 @@ DoorASM_Scroll_0_Green:
 DoorASM_Scroll_6_7_Green:
 ; Room $A3DD, door list index 0: Door
 ; Room $A618, door list index 0: Door
-    PHP                                                                  ;8FBDA0;
     SEP #$20                                                             ;8FBDA1;
     LDA.B #$02                                                           ;8FBDA3;
     STA.L Scrolls+6                                                      ;8FBDA5;
     STA.L Scrolls+7                                                      ;8FBDA9;
-    PLP                                                                  ;8FBDAD;
+    REP #$30
     RTS                                                                  ;8FBDAE;
 
 
 ;;; $BDAF: Door ASM: scroll 1 = blue, 2 = red ;;;
 DoorASM_Scroll_1_Blue_2_Red:
 ; Room $A322, door list index 4: Door
-    PHP                                                                  ;8FBDAF;
     SEP #$20                                                             ;8FBDB0;
     LDA.B #$01                                                           ;8FBDB2;
     STA.L Scrolls+1                                                      ;8FBDB4;
     LDA.B #$00                                                           ;8FBDB8;
     STA.L Scrolls+2                                                      ;8FBDBA;
-    PLP                                                                  ;8FBDBE;
+    REP #$30
     RTS                                                                  ;8FBDBF;
 
 
 ;;; $BDC0: Door ASM: scroll 1 = blue, 3 = red ;;;
 DoorASM_Scroll_1_Blue_3_Red:
 ; Room $9DC7, door list index 0: Door
-    PHP                                                                  ;8FBDC0;
     SEP #$20                                                             ;8FBDC1;
     LDA.B #$01                                                           ;8FBDC3;
     STA.L Scrolls+1                                                      ;8FBDC5;
     LDA.B #$00                                                           ;8FBDC9;
     STA.L Scrolls+3                                                      ;8FBDCB;
-    PLP                                                                  ;8FBDCF;
+    REP #$30
     RTS                                                                  ;8FBDD0;
 
 
 ;;; $BDD1: Door ASM: scroll 0 = red, 4 = blue ;;;
 DoorASM_Scroll_0_Red_4_Blue:
 ; Room $A6A1, door list index 0: Door
-    PHP                                                                  ;8FBDD1;
     SEP #$20                                                             ;8FBDD2;
     LDA.B #$00                                                           ;8FBDD4;
     STA.L Scrolls                                                        ;8FBDD6;
     LDA.B #$01                                                           ;8FBDDA;
     STA.L Scrolls+4                                                      ;8FBDDC;
-    PLP                                                                  ;8FBDE0;
+    REP #$30
     RTS                                                                  ;8FBDE1;
 
 
 ;;; $BDE2: Door ASM: scroll 2..3 = blue ;;;
 DoorASM_Scroll_2_3_Blue:
 ; Room $A70B, door list index 0: Door
-    PHP                                                                  ;8FBDE2;
     SEP #$20                                                             ;8FBDE3;
     LDA.B #$01                                                           ;8FBDE5;
     STA.L Scrolls+2                                                      ;8FBDE7;
     STA.L Scrolls+3                                                      ;8FBDEB;
-    PLP                                                                  ;8FBDEF;
+    REP #$30
     RTS                                                                  ;8FBDF0;
 
 
 ;;; $BDF1: Door ASM: scroll 0..1 = green ;;;
 DoorASM_Scroll_0_1_Green:
 ; Room $A447, door list index 0: Door
-    PHP                                                                  ;8FBDF1;
     SEP #$20                                                             ;8FBDF2;
     LDA.B #$02                                                           ;8FBDF4;
     STA.L Scrolls                                                        ;8FBDF6;
     STA.L Scrolls+1                                                      ;8FBDFA;
-    PLP                                                                  ;8FBDFE;
+    REP #$30
     RTS                                                                  ;8FBDFF;
 
 
 ;;; $BE00: Door ASM: scroll 1 = green ;;;
 DoorASM_Scroll_1_Green:
 ; Room $A184, door list index 0: Door
-    PHP                                                                  ;8FBE00;
     SEP #$20                                                             ;8FBE01;
     LDA.B #$02                                                           ;8FBE03;
     STA.L Scrolls+1                                                      ;8FBE05;
-    PLP                                                                  ;8FBE09;
+    REP #$30
     RTS                                                                  ;8FBE0A;
 
 
 ;;; $BE0B: Door ASM: scroll Fh,12h = green ;;;
 DoorASM_Scroll_F_12_Green:
 ; Room $A3AE, door list index 0: Door
-    PHP                                                                  ;8FBE0B;
     SEP #$20                                                             ;8FBE0C;
     LDA.B #$02                                                           ;8FBE0E;
     STA.L Scrolls+$F                                                     ;8FBE10;
     STA.L Scrolls+$12                                                    ;8FBE14;
-    PLP                                                                  ;8FBE18;
+    REP #$30
     RTS                                                                  ;8FBE19;
 
 
 ;;; $BE1A: Door ASM: scroll 6 = green ;;;
 DoorASM_Scroll_6_Green_duplicate_again:
 ; Room $A2F7, door list index 1: Door
-    PHP                                                                  ;8FBE1A;
     SEP #$20                                                             ;8FBE1B;
     LDA.B #$02                                                           ;8FBE1D;
     STA.L Scrolls+6                                                      ;8FBE1F;
-    PLP                                                                  ;8FBE23;
+    REP #$30
     RTS                                                                  ;8FBE24;
 
 
 ;;; $BE25: Door ASM: scroll 0 = green, 1 = blue ;;;
 DoorASM_Scroll_0_Green_1_Blue:
 ; Room $A107, door list index 0: Door
-    PHP                                                                  ;8FBE25;
     SEP #$20                                                             ;8FBE26;
     LDA.B #$02                                                           ;8FBE28;
     STA.L Scrolls                                                        ;8FBE2A;
     LDA.B #$01                                                           ;8FBE2E;
     STA.L Scrolls+1                                                      ;8FBE30;
-    PLP                                                                  ;8FBE34;
+    REP #$30
     RTS                                                                  ;8FBE35;
 
 
@@ -8942,7 +8909,6 @@ LibBG_Norfair_9_Bubbles:                                                 ;8FBF83
 ;;; $BF9E: Door ASM: scroll 3..4 = red, 6..8 = blue ;;;
 DoorASM_Scroll_3_4_Red_6_7_8_Blue:
 ; Room $B283, door list index 0: Door
-    PHP                                                                  ;8FBF9E;
     SEP #$20                                                             ;8FBF9F;
     LDA.B #$00                                                           ;8FBFA1;
     STA.L Scrolls+3                                                      ;8FBFA3;
@@ -8951,14 +8917,13 @@ DoorASM_Scroll_3_4_Red_6_7_8_Blue:
     STA.L Scrolls+6                                                      ;8FBFAD;
     STA.L Scrolls+7                                                      ;8FBFB1;
     STA.L Scrolls+8                                                      ;8FBFB5;
-    PLP                                                                  ;8FBFB9;
+    REP #$30
     RTS                                                                  ;8FBFBA;
 
 
 ;;; $BFBB: Door ASM: scroll 1..3 = blue, 4 = green, 6 = red ;;;
 DoorASM_Scroll_1_2_3_Blue_4_Green_6_Red:
 ; Room $B55A, door list index 1: Door
-    PHP                                                                  ;8FBFBB;
     SEP #$20                                                             ;8FBFBC;
     LDA.B #$01                                                           ;8FBFBE;
     STA.L Scrolls+1                                                      ;8FBFC0;
@@ -8968,56 +8933,52 @@ DoorASM_Scroll_1_2_3_Blue_4_Green_6_Red:
     STA.L Scrolls+4                                                      ;8FBFCE;
     LDA.B #$00                                                           ;8FBFD2;
     STA.L Scrolls+6                                                      ;8FBFD4;
-    PLP                                                                  ;8FBFD8;
+    REP #$30
     RTS                                                                  ;8FBFD9;
 
 
 ;;; $BFDA: Door ASM: scroll 0..1 = blue ;;;
 DoorASM_Scroll_0_1_Blue:
 ; Room $AA82, door list index 0: Door
-    PHP                                                                  ;8FBFDA;
     SEP #$20                                                             ;8FBFDB;
     LDA.B #$01                                                           ;8FBFDD;
     STA.L Scrolls                                                        ;8FBFDF;
     STA.L Scrolls+1                                                      ;8FBFE3;
-    PLP                                                                  ;8FBFE7;
+    REP #$30
     RTS                                                                  ;8FBFE8;
 
 
 ;;; $BFE9: Door ASM: scroll 0 = blue, 1 = red ;;;
 DoorASM_Scroll_0_Blue_1_Red:
 ; Room $ACF0, door list index 0: Door
-    PHP                                                                  ;8FBFE9;
     SEP #$20                                                             ;8FBFEA;
     LDA.B #$00                                                           ;8FBFEC;
     STA.L Scrolls+1                                                      ;8FBFEE;
     LDA.B #$01                                                           ;8FBFF2;
     STA.L Scrolls                                                        ;8FBFF4;
-    PLP                                                                  ;8FBFF8;
+    REP #$30
     RTS                                                                  ;8FBFF9;
 
 
 ;;; $BFFA: Door ASM: scroll Ah = green ;;;
 DoorASM_Scroll_A_Green:
 ; Room $A865, door list index 1: Door
-    PHP                                                                  ;8FBFFA;
     SEP #$20                                                             ;8FBFFB;
     LDA.B #$02                                                           ;8FBFFD;
     STA.L Scrolls+$A                                                     ;8FBFFF;
-    PLP                                                                  ;8FC003;
+    REP #$30
     RTS                                                                  ;8FC004;
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $C005: Unused. Door ASM: scroll 0 = blue, 2 = red ;;;
 UNUSED_DoorASM_Scroll_0_Blue_2_Red_8FC005:
-    PHP                                                                  ;8FC005;
     SEP #$20                                                             ;8FC006;
     LDA.B #$01                                                           ;8FC008;
     STA.L Scrolls                                                        ;8FC00A;
     LDA.B #$00                                                           ;8FC00E;
     STA.L Scrolls+2                                                      ;8FC010;
-    PLP                                                                  ;8FC014;
+    REP #$30
     RTS                                                                  ;8FC015;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -9025,50 +8986,46 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 ;;; $C016: Door ASM: scroll 0,2 = green ;;;
 DoorASM_Scroll_0_2_Green:
 ; Room $A9E5, door list index 0: Door
-    PHP                                                                  ;8FC016;
     SEP #$20                                                             ;8FC017;
     LDA.B #$02                                                           ;8FC019;
     STA.L Scrolls                                                        ;8FC01B;
     STA.L Scrolls+2                                                      ;8FC01F;
-    PLP                                                                  ;8FC023;
+    REP #$30
     RTS                                                                  ;8FC024;
 
 
 ;;; $C025: Door ASM: scroll 6..7 = blue, 8 = red ;;;
 DoorASM_Scroll_6_7_Blue_8_Red:
 ; Room $AE74, door list index 1: Door
-    PHP                                                                  ;8FC025;
     SEP #$20                                                             ;8FC026;
     LDA.B #$01                                                           ;8FC028;
     STA.L Scrolls+6                                                      ;8FC02A;
     STA.L Scrolls+7                                                      ;8FC02E;
     LDA.B #$00                                                           ;8FC032;
     STA.L Scrolls+8                                                      ;8FC034;
-    PLP                                                                  ;8FC038;
+    REP #$30
     RTS                                                                  ;8FC039;
 
 
 ;;; $C03A: Door ASM: scroll 2 = red, 3 = blue ;;;
 DoorASM_Scroll_2_Red_3_Blue:
 ; Room $A890, door list index 0: Door
-    PHP                                                                  ;8FC03A;
     SEP #$20                                                             ;8FC03B;
     LDA.B #$00                                                           ;8FC03D;
     STA.L Scrolls+2                                                      ;8FC03F;
     LDA.B #$01                                                           ;8FC043;
     STA.L Scrolls+3                                                      ;8FC045;
-    PLP                                                                  ;8FC049;
+    REP #$30
     RTS                                                                  ;8FC04A;
 
 
 ;;; $C04B: Door ASM: scroll 7 = green ;;;
 DoorASM_Scroll_7_Green:
 ; Room $B62B, door list index 1: Door
-    PHP                                                                  ;8FC04B;
     SEP #$20                                                             ;8FC04C;
     LDA.B #$02                                                           ;8FC04E;
     STA.L Scrolls+7                                                      ;8FC050;
-    PLP                                                                  ;8FC054;
+    REP #$30
     RTS                                                                  ;8FC055;
 
 
@@ -9076,46 +9033,42 @@ DoorASM_Scroll_7_Green:
 DoorASM_Scroll_1_Red_2_Blue:
 ; Room $B2DA, door list index 1: Door
 ; Room $B457, door list index 0: Door
-    PHP                                                                  ;8FC056;
     SEP #$20                                                             ;8FC057;
     LDA.B #$00                                                           ;8FC059;
     STA.L Scrolls+1                                                      ;8FC05B;
     LDA.B #$01                                                           ;8FC05F;
     STA.L Scrolls+2                                                      ;8FC061;
-    PLP                                                                  ;8FC065;
+    REP #$30
     RTS                                                                  ;8FC066;
 
 
 ;;; $C067: Door ASM: scroll 0 = blue, 3 = red ;;;
 DoorASM_Scroll_0_Blue_3_Red:
 ; Room $B4E5, door list index 1: Door
-    PHP                                                                  ;8FC067;
     SEP #$20                                                             ;8FC068;
     LDA.B #$00                                                           ;8FC06A;
     STA.L Scrolls+3                                                      ;8FC06C;
     LDA.B #$01                                                           ;8FC070;
     STA.L Scrolls                                                        ;8FC072;
-    PLP                                                                  ;8FC076;
+    REP #$30
     RTS                                                                  ;8FC077;
 
 
 ;;; $C078: Door ASM: scroll 1 = blue, 4 = red ;;;
 DoorASM_Scroll_1_Blue_4_Red:
 ; Room $B55A, door list index 0: Door
-    PHP                                                                  ;8FC078;
     SEP #$20                                                             ;8FC079;
     LDA.B #$01                                                           ;8FC07B;
     STA.L Scrolls+1                                                      ;8FC07D;
     LDA.B #$00                                                           ;8FC081;
     STA.L Scrolls+4                                                      ;8FC083;
-    PLP                                                                  ;8FC087;
+    REP #$30
     RTS                                                                  ;8FC088;
 
 
 ;;; $C089: Door ASM: scroll 0 = blue, 1..3 = red ;;;
 DoorASM_Scroll_0_Blue_1_2_3_Red:
 ; Room $B1E5, door list index 0: Door
-    PHP                                                                  ;8FC089;
     SEP #$20                                                             ;8FC08A;
     LDA.B #$01                                                           ;8FC08C;
     STA.L Scrolls                                                        ;8FC08E;
@@ -9123,104 +9076,96 @@ DoorASM_Scroll_0_Blue_1_2_3_Red:
     STA.L Scrolls+1                                                      ;8FC094;
     STA.L Scrolls+2                                                      ;8FC098;
     STA.L Scrolls+3                                                      ;8FC09C;
-    PLP                                                                  ;8FC0A0;
+    REP #$30
     RTS                                                                  ;8FC0A1;
 
 
 ;;; $C0A2: Door ASM: scroll 0 = green ;;;
 DoorASM_Scroll_0_Green_duplicate:
 ; Room $B40A, door list index 1: Door
-    PHP                                                                  ;8FC0A2;
     SEP #$20                                                             ;8FC0A3;
     LDA.B #$02                                                           ;8FC0A5;
     STA.L Scrolls                                                        ;8FC0A7;
-    PLP                                                                  ;8FC0AB;
+    REP #$30
     RTS                                                                  ;8FC0AC;
 
 
 ;;; $C0AD: Door ASM: scroll 0..1 = blue, 4 = red ;;;
 DoorASM_Scroll_0_1_Blue_4_Red:
 ; Room $B510, door list index 1: Door
-    PHP                                                                  ;8FC0AD;
     SEP #$20                                                             ;8FC0AE;
     LDA.B #$01                                                           ;8FC0B0;
     STA.L Scrolls                                                        ;8FC0B2;
     STA.L Scrolls+1                                                      ;8FC0B6;
     LDA.B #$00                                                           ;8FC0BA;
     STA.L Scrolls+4                                                      ;8FC0BC;
-    PLP                                                                  ;8FC0C0;
+    REP #$30
     RTS                                                                  ;8FC0C1;
 
 
 ;;; $C0C2: Door ASM: scroll 0 = blue, 3 = red ;;;
 DoorASM_Scroll_0_Blue_3_Red_duplicate:
 ; Room $B6EE, door list index 2: Door
-    PHP                                                                  ;8FC0C2;
     SEP #$20                                                             ;8FC0C3;
     LDA.B #$01                                                           ;8FC0C5;
     STA.L Scrolls                                                        ;8FC0C7;
     LDA.B #$00                                                           ;8FC0CB;
     STA.L Scrolls+3                                                      ;8FC0CD;
-    PLP                                                                  ;8FC0D1;
+    REP #$30
     RTS                                                                  ;8FC0D2;
 
 
 ;;; $C0D3: Door ASM: scroll 0 = blue ;;;
 DoorASM_Scroll_0_Blue_duplicate:
 ; Room $AC5A, door list index 0: Door
-    PHP                                                                  ;8FC0D3;
     SEP #$20                                                             ;8FC0D4;
     LDA.B #$01                                                           ;8FC0D6;
     STA.L Scrolls                                                        ;8FC0D8;
-    PLP                                                                  ;8FC0DC;
+    REP #$30
     RTS                                                                  ;8FC0DD;
 
 
 ;;; $C0DE: Door ASM: scroll 0 = blue, 1 = red ;;;
 DoorASM_Scroll_0_Blue_1_Red_duplicate:
 ; Room $ACB3, door list index 3: Door
-    PHP                                                                  ;8FC0DE;
     SEP #$20                                                             ;8FC0DF;
     LDA.B #$01                                                           ;8FC0E1;
     STA.L Scrolls                                                        ;8FC0E3;
     LDA.B #$00                                                           ;8FC0E7;
     STA.L Scrolls+1                                                      ;8FC0E9;
-    PLP                                                                  ;8FC0ED;
+    REP #$30
     RTS                                                                  ;8FC0EE;
 
 
 ;;; $C0EF: Door ASM: scroll 18h = blue ;;;
 DoorASM_Scroll_18_Blue:
 ; Room $A8F8, door list index 0: Door
-    PHP                                                                  ;8FC0EF;
     SEP #$20                                                             ;8FC0F0;
     LDA.B #$01                                                           ;8FC0F2;
     STA.L Scrolls+$18                                                    ;8FC0F4;
-    PLP                                                                  ;8FC0F8;
+    REP #$30
     RTS                                                                  ;8FC0F9;
 
 
 ;;; $C0FA: Door ASM: scroll 2 = blue, 3 = red ;;;
 DoorASM_Scroll_2_Blue_3_Red:
 ; Room $AFFB, door list index 1: Door
-    PHP                                                                  ;8FC0FA;
     SEP #$20                                                             ;8FC0FB;
     LDA.B #$00                                                           ;8FC0FD;
     STA.L Scrolls+3                                                      ;8FC0FF;
     LDA.B #$01                                                           ;8FC103;
     STA.L Scrolls+2                                                      ;8FC105;
-    PLP                                                                  ;8FC109;
+    REP #$30
     RTS                                                                  ;8FC10A;
 
 
 ;;; $C10B: Door ASM: scroll Eh = red ;;;
 DoorASM_Scroll_E_Red:
 ; Room $B4AD, door list index 0: Door
-    PHP                                                                  ;8FC10B;
     SEP #$20                                                             ;8FC10C;
     LDA.B #$00                                                           ;8FC10E;
     STA.L Scrolls+$E                                                     ;8FC110;
-    PLP                                                                  ;8FC114;
+    REP #$30
     RTS                                                                  ;8FC115;
 
 
@@ -9255,11 +9200,8 @@ MainASM_SetScreenShaking_GenerateRandomExplosions:
 ; Room $96BA, state $9705. Old Tourian escape shaft, Zebes timebomb set
 ; Room $9804, state $984F. Bomb Torizo's room, Zebes timebomb set
 ; Room $9879, state $98C4. Pre Bomb Torizo room, Zebes timebomb set
-    JSR.W GenerateRandomExplosionOnEvenFramesOnRandomNonBlankTile        ;8FC124;
-    LDA.W EarthquakeTimer                                                ;8FC127;
-    ORA.W #$8000                                                         ;8FC12A;
-    STA.W EarthquakeTimer                                                ;8FC12D;
-    RTS                                                                  ;8FC130;
+    LDA.W #$8000
+    TSB.W EarthquakeTimer                                                ; fallthrough to GenerateRandomExplosionOnEvenFramesOnRandomNonBlankTile
 
 
 ;;; $C131: Generate random explosion on even frames on random non-blank tile ;;;
@@ -9270,13 +9212,11 @@ GenerateRandomExplosionOnEvenFramesOnRandomNonBlankTile:
     AND.W #$0001                                                         ;8FC139;
     BNE .return                                                          ;8FC13C;
     JSL.L GenerateRandomNumber                                           ;8FC13E;
-    PHA                                                                  ;8FC142;
     AND.W #$00FF                                                         ;8FC143;
     CLC                                                                  ;8FC146;
     ADC.W Layer1XPosition                                                ;8FC147;
     STA.B DP_Temp12                                                      ;8FC14A;
-    PLA                                                                  ;8FC14C;
-    XBA                                                                  ;8FC14D;
+    LDA.W RandomNumberSeed+1
     AND.W #$00FF                                                         ;8FC14E;
     CLC                                                                  ;8FC151;
     ADC.W Layer1YPosition                                                ;8FC152;
@@ -9285,13 +9225,11 @@ GenerateRandomExplosionOnEvenFramesOnRandomNonBlankTile:
     LSR                                                                  ;8FC158;
     LSR                                                                  ;8FC159;
     LSR                                                                  ;8FC15A;
-    SEP #$20                                                             ;8FC15B;
-    PHA                                                                  ;8FC15D;
-    LDA.W RoomWidthBlocks                                                ;8FC15E;
-    STA.W $4202                                                          ;8FC161;
-    PLA                                                                  ;8FC164;
+    SEP #$30                                                             ;8FC15B;
+    LDX.W RoomWidthBlocks                                                ;8FC15E;
+    STX.W $4202                                                          ;8FC161;
     STA.W $4203                                                          ;8FC165;
-    REP #$20                                                             ;8FC168;
+    REP #$30                                                             ;8FC168;
     LDA.B DP_Temp12                                                      ;8FC16A;
     LSR                                                                  ;8FC16C;
     LSR                                                                  ;8FC16D;
@@ -9318,13 +9256,11 @@ GenerateRandomExplosionOnEveryFourthFrame:
     AND.W #$0003                                                         ;8FC18B;
     BNE GenerateRandomExplosionAt_12_14_return                           ;8FC18E;
     JSL.L GenerateRandomNumber                                           ;8FC190;
-    PHA                                                                  ;8FC194;
     AND.W #$00FF                                                         ;8FC195;
     CLC                                                                  ;8FC198;
     ADC.W Layer1XPosition                                                ;8FC199;
     STA.B DP_Temp12                                                      ;8FC19C;
-    PLA                                                                  ;8FC19E;
-    XBA                                                                  ;8FC19F;
+    LDA.W RandomNumberSeed+1
     AND.W #$00FF                                                         ;8FC1A0;
     CLC                                                                  ;8FC1A3;
     ADC.W Layer1YPosition                                                ;8FC1A4;
@@ -10125,7 +10061,6 @@ UnpauseHook_Draygon:
 ;;; $C90A: Setup ASM: set collected map ;;;
 SetupASM_SetCollectedMap:
 ; Room $DAAE. Tourian -> Crateria
-    REP #$30                                                             ;8FC90A;
     LDX.W AreaIndex                                                      ;8FC90C;
     LDA.L SRAMMirror_MapStations,X                                       ;8FC90F;
     ORA.W #$0001                                                         ;8FC913;
@@ -10225,11 +10160,10 @@ SetupASM_SpawnCeresHaze:
 ;;; $C97B: Setup ASM: Set BG1/2 tiles base address and spawn Ceres haze ;;;
 SetupASM_SetBG1_2_TilesBaseAddress_SpawnCeresHaze:
 ; Room $E0B5. Ceres Ridley's room
-    PHP                                                                  ;8FC97B;
     SEP #$20                                                             ;8FC97C;
     LDA.B #$66                                                           ;8FC97E;
     STA.B DP_BGTilesAddr                                                 ;8FC980;
-    PLP                                                                  ;8FC982;
+    REP #$20
     JSL.L FXType_2C_CeresHaze                                            ;8FC983;
     LDA.W #$0009                                                         ;8FC987;
     STA.W CeresMode7HDMATables                                           ;8FC98A;
@@ -14359,65 +14293,59 @@ DoorASM_StartWreckedShipTreadmillEastEntrance:
 ;;; $E1E8: Door ASM: scroll 1 = blue ;;;
 DoorASM_Scroll_1_Blue:
 ; Room $CB8B, door list index 0: Door
-    PHP                                                                  ;8FE1E8;
     SEP #$20                                                             ;8FE1E9;
     LDA.B #$01                                                           ;8FE1EB;
     STA.L Scrolls+1                                                      ;8FE1ED;
-    PLP                                                                  ;8FE1F1;
+    REP #$20
     RTS                                                                  ;8FE1F2;
 
 
 ;;; $E1F3: Door ASM: scroll 0 = green ;;;
 DoorASM_Scroll_0_Green_duplicate_again:
 ; Room $CC27, door list index 0: Door
-    PHP                                                                  ;8FE1F3;
     SEP #$20                                                             ;8FE1F4;
     LDA.B #$02                                                           ;8FE1F6;
     STA.L Scrolls                                                        ;8FE1F8;
-    PLP                                                                  ;8FE1FC;
+    REP #$20
     RTS                                                                  ;8FE1FD;
 
 
 ;;; $E1FE: Door ASM: scroll 3 = red, 4 = blue ;;;
 DoorASM_Scroll_3_Red_4_Blue:
 ; Room $CD13, door list index 0: Door
-    PHP                                                                  ;8FE1FE;
     SEP #$20                                                             ;8FE1FF;
     LDA.B #$00                                                           ;8FE201;
     STA.L Scrolls+3                                                      ;8FE203;
     LDA.B #$01                                                           ;8FE207;
     STA.L Scrolls+4                                                      ;8FE209;
-    PLP                                                                  ;8FE20D;
+    REP #$20
     RTS                                                                  ;8FE20E;
 
 
 ;;; $E20F: Door ASM: scroll 29h = blue ;;;
 DoorASM_Scroll_29_Blue:
 ; Room $CDF1, door list index 0: Door
-    PHP                                                                  ;8FE20F;
     SEP #$20                                                             ;8FE210;
     LDA.B #$01                                                           ;8FE212;
     STA.L Scrolls+$29                                                    ;8FE214;
-    PLP                                                                  ;8FE218;
+    REP #$20
     RTS                                                                  ;8FE219;
 
 
 ;;; $E21A: Door ASM: scroll 28h,2E = green ;;;
 DoorASM_Scroll_28_2E_Green:
 ; Room $CC6F, door list index 0: Door
-    PHP                                                                  ;8FE21A;
     SEP #$20                                                             ;8FE21B;
     LDA.B #$02                                                           ;8FE21D;
     STA.L Scrolls+$28                                                    ;8FE21F;
     STA.L Scrolls+$2E                                                    ;8FE223;
-    PLP                                                                  ;8FE227;
+    REP #$20
     RTS                                                                  ;8FE228;
 
 
 ;;; $E229: Door ASM: scroll 6..Bh = red ;;;
 DoorASM_Scroll_6_7_8_9_A_B_Red:
 ; Room $CE40, door list index 1: Door
-    PHP                                                                  ;8FE229;
     SEP #$20                                                             ;8FE22A;
     LDA.B #$00                                                           ;8FE22C;
     STA.L Scrolls+6                                                      ;8FE22E;
@@ -14426,7 +14354,7 @@ DoorASM_Scroll_6_7_8_9_A_B_Red:
     STA.L Scrolls+9                                                      ;8FE23A;
     STA.L Scrolls+$A                                                     ;8FE23E;
     STA.L Scrolls+$B                                                     ;8FE242;
-    PLP                                                                  ;8FE246;
+    REP #$20
     RTS                                                                  ;8FE247;
 
 
@@ -14542,36 +14470,33 @@ DoorASM_ResetElevatubeOnSouthExit:
 ;;; $E318: Door ASM: scroll Ah = red, Bh = blue ;;;
 DoorASM_Scroll_A_Red_B_Blue:
 ; Room $D845, door list index 0: Door
-    PHP                                                                  ;8FE318;
     SEP #$20                                                             ;8FE319;
     LDA.B #$00                                                           ;8FE31B;
     STA.L Scrolls+$A                                                     ;8FE31D;
     LDA.B #$01                                                           ;8FE321;
     STA.L Scrolls+$B                                                     ;8FE323;
-    PLP                                                                  ;8FE327;
+    REP #$20
     RTS                                                                  ;8FE328;
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $E329: Unused. Door ASM: scroll 10h = blue, 11h = red ;;;
 UNUSED_DoorASM_Scroll_4_Green_8FE329:
-    PHP                                                                  ;8FE329;
     SEP #$20                                                             ;8FE32A;
     LDA.B #$00                                                           ;8FE32C;
     STA.L Scrolls+$11                                                    ;8FE32E;
     LDA.B #$01                                                           ;8FE332;
     STA.L Scrolls+$10                                                    ;8FE334;
-    PLP                                                                  ;8FE338;
+    REP #$20
     RTS                                                                  ;8FE339;
 
 
 ;;; $E33A: Unused. Door ASM: scroll 4 = green ;;;
 UNUSED_DoorASM_Scroll_4_Green_8FE33A:
-    PHP                                                                  ;8FE33A;
     SEP #$20                                                             ;8FE33B;
     LDA.B #$02                                                           ;8FE33D;
     STA.L Scrolls+4                                                      ;8FE33F;
-    PLP                                                                  ;8FE343;
+    REP #$20
     RTS                                                                  ;8FE344;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -14579,13 +14504,12 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 ;;; $E345: Door ASM: scroll 0 = red, 4 = blue ;;;
 DoorASM_Scroll_0_Red_4_Blue_duplicate:
 ; Room $CEFB, door list index 2: Door
-    PHP                                                                  ;8FE345;
     SEP #$20                                                             ;8FE346;
     LDA.B #$00                                                           ;8FE348;
     STA.L Scrolls                                                        ;8FE34A;
     LDA.B #$01                                                           ;8FE34E;
     STA.L Scrolls+4                                                      ;8FE350;
-    PLP                                                                  ;8FE354;
+    REP #$20
     RTS                                                                  ;8FE355;
 
 
@@ -14593,26 +14517,24 @@ DoorASM_Scroll_0_Red_4_Blue_duplicate:
 DoorASM_Scroll_0_Red_1_Blue:
 ; Room $CF80, door list index 2: Door
 ; Room $D3B6, door list index 0: Door
-    PHP                                                                  ;8FE356;
     SEP #$20                                                             ;8FE357;
     LDA.B #$00                                                           ;8FE359;
     STA.L Scrolls                                                        ;8FE35B;
     LDA.B #$01                                                           ;8FE35F;
     STA.L Scrolls+1                                                      ;8FE361;
-    PLP                                                                  ;8FE365;
+    REP #$20
     RTS                                                                  ;8FE366;
 
 
 ;;; $E367: Door ASM: scroll 9 = red, Ah = blue ;;;
 DoorASM_Scroll_9_Red_A_Blue:
 ; Room $D104, door list index 1: Door
-    PHP                                                                  ;8FE367;
     SEP #$20                                                             ;8FE368;
     LDA.B #$00                                                           ;8FE36A;
     STA.L Scrolls+9                                                      ;8FE36C;
     LDA.B #$01                                                           ;8FE370;
     STA.L Scrolls+$A                                                     ;8FE372;
-    PLP                                                                  ;8FE376;
+    REP #$20
     RTS                                                                  ;8FE377;
 
 
@@ -14620,36 +14542,33 @@ DoorASM_Scroll_9_Red_A_Blue:
 DoorASM_Scroll_0_2_Red_1_Blue:
 ; Room $CF54, door list index 0: Door
 ; Room $CF80, door list index 0: Door
-    PHP                                                                  ;8FE378;
     SEP #$20                                                             ;8FE379;
     LDA.B #$00                                                           ;8FE37B;
     STA.L Scrolls                                                        ;8FE37D;
     STA.L Scrolls+2                                                      ;8FE381;
     LDA.B #$01                                                           ;8FE385;
     STA.L Scrolls+1                                                      ;8FE387;
-    PLP                                                                  ;8FE38B;
+    REP #$20
     RTS                                                                  ;8FE38C;
 
 
 ;;; $E38D: Door ASM: scroll 1 = blue ;;;
 DoorASM_Scroll_1_Blue_duplicate:
 ; Room $D7E4, door list index 0: Door
-    PHP                                                                  ;8FE38D;
     SEP #$20                                                             ;8FE38E;
     LDA.B #$01                                                           ;8FE390;
     STA.L Scrolls+1                                                      ;8FE392;
-    PLP                                                                  ;8FE396;
+    REP #$20
     RTS                                                                  ;8FE397;
 
 
 ;;; $E398: Door ASM: scroll 6 = blue ;;;
 DoorASM_Scroll_6_Blue:
 ; Room $D5A7, door list index 0: Door
-    PHP                                                                  ;8FE398;
     SEP #$20                                                             ;8FE399;
     LDA.B #$01                                                           ;8FE39B;
     STA.L Scrolls+6                                                      ;8FE39D;
-    PLP                                                                  ;8FE3A1;
+    REP #$20
     RTS                                                                  ;8FE3A2;
 
 
@@ -14657,22 +14576,20 @@ DoorASM_Scroll_6_Blue:
 DoorASM_Scroll_4_Red_duplicate:
 ; Room $D4C2, door list index 1: Door
 ; Room $D69A, door list index 0: Door
-    PHP                                                                  ;8FE3A3;
     SEP #$20                                                             ;8FE3A4;
     LDA.B #$00                                                           ;8FE3A6;
     STA.L Scrolls+4                                                      ;8FE3A8;
-    PLP                                                                  ;8FE3AC;
+    REP #$20
     RTS                                                                  ;8FE3AD;
 
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $E3AE: Unused. Door ASM: scroll 1 = red ;;;
 UNUSED_DoorASM_Scroll_1_Red_8FE3AE:
-    PHP                                                                  ;8FE3AE;
     SEP #$20                                                             ;8FE3AF;
     LDA.B #$00                                                           ;8FE3B1;
     STA.L Scrolls+1                                                      ;8FE3B3;
-    PLP                                                                  ;8FE3B7;
+    REP #$20
     RTS                                                                  ;8FE3B8;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -14680,37 +14597,34 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 ;;; $E3B9: Door ASM: scroll 4,7 = red ;;;
 DoorASM_Scroll_4_7_Red:
 ; Room $D646, door list index 3: Door
-    PHP                                                                  ;8FE3B9;
     SEP #$20                                                             ;8FE3BA;
     LDA.B #$00                                                           ;8FE3BC;
     STA.L Scrolls+4                                                      ;8FE3BE;
     STA.L Scrolls+7                                                      ;8FE3C2;
-    PLP                                                                  ;8FE3C6;
+    REP #$20
     RTS                                                                  ;8FE3C7;
 
 
 ;;; $E3C8: Door ASM: scroll 1 = blue, 2 = red ;;;
 DoorASM_Scroll_1_Blue_2_Red_duplicate:
 ; Room $D8C5, door list index 0: Door
-    PHP                                                                  ;8FE3C8;
     SEP #$20                                                             ;8FE3C9;
     LDA.B #$00                                                           ;8FE3CB;
     STA.L Scrolls+2                                                      ;8FE3CD;
     LDA.B #$01                                                           ;8FE3D1;
     STA.L Scrolls+1                                                      ;8FE3D3;
-    PLP                                                                  ;8FE3D7;
+    REP #$20
     RTS                                                                  ;8FE3D8;
 
 
 ;;; $E3D9: Door ASM: scroll 0,2 = green ;;;
 DoorASM_Scroll_0_2_Green_duplicate:
 ; Room $DA60, door list index 0: Door
-    PHP                                                                  ;8FE3D9;
     SEP #$20                                                             ;8FE3DA;
     LDA.B #$02                                                           ;8FE3DC;
     STA.L Scrolls                                                        ;8FE3DE;
     STA.L Scrolls+2                                                      ;8FE3E2;
-    PLP                                                                  ;8FE3E6;
+    REP #$20
     RTS                                                                  ;8FE3E7;
 
 
@@ -14798,25 +14712,23 @@ LibBG_Tourian_D_E_StatueHall:                                            ;8FE4A5
 ;;; $E4C0: Door ASM: scroll 0..1 = green ;;;
 DoorASM_Scroll_0_1_Green_duplicate:
 ; Room $DAAE, door list index 1: Door
-    PHP                                                                  ;8FE4C0;
     SEP #$20                                                             ;8FE4C1;
     LDA.B #$02                                                           ;8FE4C3;
     STA.L Scrolls                                                        ;8FE4C5;
     STA.L Scrolls+1                                                      ;8FE4C9;
-    PLP                                                                  ;8FE4CD;
+    REP #$20
     RTS                                                                  ;8FE4CE;
 
 
 ;;; $E4CF: Door ASM: scroll 8 = blue, 9 = red ;;;
 DoorASM_Scroll_8_Blue_9_Red:
 ; Room $DEDE, door list index 1: Door
-    PHP                                                                  ;8FE4CF;
     SEP #$20                                                             ;8FE4D0;
     LDA.B #$01                                                           ;8FE4D2;
     STA.L Scrolls+$18                                                    ;8FE4D4;
     LDA.B #$00                                                           ;8FE4D8;
     STA.L Scrolls+$19                                                    ;8FE4DA;
-    PLP                                                                  ;8FE4DE;
+    REP #$20
     RTS                                                                  ;8FE4DF;
 
 
@@ -14939,8 +14851,7 @@ MainASM_ShakeScreenSwitchingBetweenLightHorizAndMediumDiag:
 MainASM_GenerateRandomExplosionOnEveryFourthFrame:
 ; Room $DE4D. Escape room 1
 ; Room $DEA7. Escape room 3
-    JSR.W GenerateRandomExplosionOnEveryFourthFrame                      ;8FE5A0;
-    RTS                                                                  ;8FE5A3;
+    JMP.W GenerateRandomExplosionOnEveryFourthFrame                      ;8FE5A0;
 
 
 ;;; $E5A4: Main ASM: shake screen switching between medium horizontal and strong diagonal ;;;
@@ -15451,39 +15362,25 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $E88F: Execute setup ASM ;;;
 Execute_Room_Setup_ASM:
-    PHP                                                                  ;8FE88F;
-    PHB                                                                  ;8FE890;
-    REP #$30                                                             ;8FE891;
     LDX.W RoomStatePointer                                               ;8FE893;
     LDA.W $0018,X                                                        ;8FE896;
     BEQ .return                                                          ;8FE899;
-    PHK                                                                  ;8FE89B;
-    PLB                                                                  ;8FE89C;
     JSR.W ($0018,X)                                                      ;8FE89D;
 
   .return:
-    PLB                                                                  ;8FE8A0;
-    PLP                                                                  ;8FE8A1;
     RTL                                                                  ;8FE8A2;
 
 
 ;;; $E8A3: Execute door ASM ;;;
 Execute_Door_ASM:
-    PHP                                                                  ;8FE8A3;
-    PHB                                                                  ;8FE8A4;
-    REP #$30                                                             ;8FE8A5;
     LDX.W DoorPointer                                                    ;8FE8A7;
     LDA.L DoorHeaders_doorASM,X                                          ;8FE8AA;
     BEQ .return                                                          ;8FE8AE;
     STA.B DP_Temp12                                                      ;8FE8B0;
-    PHK                                                                  ;8FE8B2;
-    PLB                                                                  ;8FE8B3;
     PEA.W .return-1                                                      ;8FE8B4;
     JMP.W (DP_Temp12)                                                    ;8FE8B7;
 
   .return:
-    PLB                                                                  ;8FE8BA;
-    PLP                                                                  ;8FE8BB;
     RTL                                                                  ;8FE8BC;
 
 
@@ -15491,12 +15388,8 @@ Execute_Door_ASM:
 Execute_Room_Main_ASM:
     LDX.W RoomMainASMPointer                                             ;8FE8BD;
     BEQ .return                                                          ;8FE8C0;
-    PHB                                                                  ;8FE8C2;
-    PHK                                                                  ;8FE8C3;
-    PLB                                                                  ;8FE8C4;
     LDX.W #$0000                                                         ;8FE8C5;
     JSR.W (RoomMainASMPointer,X)                                         ;8FE8C8;
-    PLB                                                                  ;8FE8CB;
 
   .return:
     RTL                                                                  ;8FE8CC;
