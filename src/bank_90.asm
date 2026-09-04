@@ -246,7 +246,7 @@ Spawn_AirBubbles:
 
   .noBubbles:
     LDA.W Pose                                                           ;90818B;
-    CMP.W #$0000                                                         ;90818E;
+    CMP.W #$0000                                                         ;90818E; >.<
     BEQ .zeroFrameBuffer                                                 ;908191;
     CMP.W #$009B                                                         ;908193;
     BEQ .zeroFrameBuffer                                                 ;908196;
@@ -426,7 +426,7 @@ AnimateSamus_SubmergedInLavaAcid:
 
   .fullySubmerged:
     LDA.W Pose                                                           ;9082C3;
-    CMP.W #$0000                                                         ;9082C6;
+    CMP.W #$0000                                                         ;9082C6; >.<
     BEQ .zeroBuffer                                                      ;9082C9;
     CMP.W #$009B                                                         ;9082CB;
     BEQ .zeroBuffer                                                      ;9082CE;
@@ -1232,7 +1232,7 @@ DetermineIf_SamusBottomHalf_IsDrawn_Standing:
 
 ; If Samus is facing forward without varia/suit, spawns an extra sprite to cover the left part of her chest
     LDA.W Pose                                                           ;90868D;
-    CMP.W #$0000                                                         ;908690;
+    CMP.W #$0000                                                         ;908690; >.<
     BEQ .facingForward                                                   ;908693;
 
   .return:
@@ -6610,7 +6610,7 @@ Update_HUD_Minimap_Tilemap:
     INY                                                                  ;90AB32;
     TYA                                                                  ;90AB33;
     AND.W #$003F                                                         ;90AB34;
-    CMP.W #$0000                                                         ;90AB37;
+    CMP.W #$0000                                                         ;90AB37; >.<
     BNE +                                                                ;90AB3A;
     TYA                                                                  ;90AB3C;
     CLC                                                                  ;90AB3D;

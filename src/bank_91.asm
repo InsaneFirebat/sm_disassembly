@@ -9321,7 +9321,7 @@ LoadRevealedBlock:
     JSR.W LoadRevealedBlockCommand                                       ;91CDC0;
     CMP.W #$FFFF                                                         ;91CDC3;
     BEQ LoadRevealedBlock_Done                                           ;91CDC6;
-    JMP.W (DP_Temp00)                                                        ;91CDC8;
+    JMP.W (DP_Temp00)                                                    ;91CDC8;
 
 
 ;;; $CDCB: Load revealed block - done ;;;
@@ -10735,7 +10735,7 @@ HandleSamusPalette:
     PHK                                                                  ;91D6F9;
     PLB                                                                  ;91D6FA;
     REP #$30                                                             ;91D6FB;
-    LDA.W SuperSpecialPaletteFlags                                                          ;91D6FD;
+    LDA.W SuperSpecialPaletteFlags                                       ;91D6FD;
     BPL .notHyper                                                        ;91D700;
     JSR.W HandleMiscSamusPalette                                         ;91D702;
     PLB                                                                  ;91D705;
@@ -10745,14 +10745,14 @@ HandleSamusPalette:
   .notHyper:
     JSR.W HandleBeamChargePalettes                                       ;91D708;
     BCS .glowEnded                                                       ;91D70B;
-    LDA.W SpecialSamusPaletteType                                                          ;91D70D;
+    LDA.W SpecialSamusPaletteType                                        ;91D70D;
     ASL                                                                  ;91D710;
     TAX                                                                  ;91D711;
     JSR.W (.special,X)                                                   ;91D712;
     BCS .return                                                          ;91D715;
 
   .glowEnded:
-    LDX.W SuitPaletteIndex                                                          ;91D717;
+    LDX.W SuitPaletteIndex                                               ;91D717;
     LDA.W .suits,X                                                       ;91D71A;
     TAX                                                                  ;91D71D;
     JSR.W Load20BytesOfSamusPaletteInX                                   ;91D71E;
