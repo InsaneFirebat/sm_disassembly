@@ -2103,7 +2103,7 @@ GameOverMenu:
     dw GameOverMenu_Index4_Main                                          ;8190C5;
     dw GameOverMenu_Index5_FadeOutIntoGameMapView                        ;8190C7;
     dw GameOverMenu_Index6_LoadGameMapView                               ;8190C9;
-    dw GameOverMenu_Index7_FadeOutIntoGameMapView                        ;8190CB;
+    dw GameOverMenu_Index7_FadeOutIntoSoftReset                          ;8190CB;
 
 
 ;;; $90CD: Game over menu - index 3: fade in ;;;
@@ -2136,7 +2136,7 @@ GameOverMenu_Index5_FadeOutIntoGameMapView:
 
 
 ;;; $90FE: Game over menu - index 7: fade out into soft reset ;;;
-GameOverMenu_Index7_FadeOutIntoGameMapView:
+GameOverMenu_Index7_FadeOutIntoSoftReset:
     JSL.L Draw_Menu_Selection_Missile                                    ;8190FE;
     JSL.L Handle_GameOver_BabyMetroid                                    ;819102;
     JSL.L HandleFadingOut                                                ;819106;
@@ -5644,7 +5644,7 @@ FileSelectMap_Index9_AreaSelectMapToRoomSelectMap_Init:
     JSL.L Wait_End_VBlank_Clear_HDMA                                     ;81AD29;
     PHB                                                                  ;81AD2D;
     SEP #$20                                                             ;81AD2E;
-    LDA.B #$8F                                                           ;81AD30;
+    LDA.B #RoomHeaders>>16                                               ;81AD30;
     PHA                                                                  ;81AD32;
     PLB                                                                  ;81AD33;
     LDX.W RoomPointer                                                    ;81AD34;

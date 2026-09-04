@@ -4191,7 +4191,7 @@ DrawThreeHUDDigits:
     STA.L HUDTilemap,X                                                   ;809D8F;
     INX                                                                  ;809D93;
     INX                                                                  ;809D94;
-    LDA.W $4216                                                          ;809D95;
+    LDA.W $4216                                                          ;809D95; fallthrough to DrawTwoHUDDigits
 
 
 ;;; $9D98: Draw two HUD digits ;;;
@@ -6129,7 +6129,7 @@ UpdateLevelBackgroundDataColumn:
     STA.W BG1Col_wrappedTilemapVRAMUpdateRightHalvesSrc,X                ;80AA8C;
     STY.W VRAMTilemapSourceDataIndex                                     ;80AA8F;
     SEP #$20                                                             ;80AA92;
-    LDA.B #$7E                                                           ;80AA94;
+    LDA.B #TileTable>>16                                                 ;80AA94;
     PHA                                                                  ;80AA96;
     PLB                                                                  ;80AA97;
     REP #$20                                                             ;80AA98;
@@ -6348,7 +6348,7 @@ UpdateBackgroundLevelDataRow:
     STA.W BG1Row_wrappedTilemapVRAMUpdateRightHalvesSrc,X                ;80AC3F;
     STY.W VRAMTilemapSourceDataIndex                                     ;80AC42;
     SEP #$20                                                             ;80AC45;
-    LDA.B #$7E                                                           ;80AC47;
+    LDA.B #TileTable>>16                                                 ;80AC47;
     PHA                                                                  ;80AC49;
     PLB                                                                  ;80AC4A;
     REP #$20                                                             ;80AC4B;
@@ -7980,7 +7980,7 @@ LoadFromLoadStation:
     STZ.B DP_BG1XScroll                                                  ;80C49C;
     STZ.B DP_BG1YScroll                                                  ;80C49E;
     SEP #$20                                                             ;80C4A0;
-    LDA.B #$8F                                                           ;80C4A2;
+    LDA.B #RoomHeaders>>16                                               ;80C4A2;
     PHA                                                                  ;80C4A4;
     PLB                                                                  ;80C4A5;
     LDX.W RoomPointer                                                    ;80C4A6;

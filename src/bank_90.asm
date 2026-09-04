@@ -6255,7 +6255,7 @@ SamusNewStateHandler_SamusIsLocked:
     LDA.W AreaIndex                                                      ;90A9BE;
     ASL                                                                  ;90A9C1;
     TAX                                                                  ;90A9C2;
-    LDA.W #$0082                                                         ;90A9C3;
+    LDA.W #MapData_pointers>>16                                          ;90A9C3;
     STA.B DP_Temp0B                                                      ;90A9C6;
     LDA.L MapData_pointers,X                                             ;90A9C8;
     STA.B DP_Temp09                                                      ;90A9CC;
