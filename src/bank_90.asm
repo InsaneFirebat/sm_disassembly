@@ -5965,9 +5965,7 @@ SamusMovement_Shinespark_CF_Drained_DamagedByMotherBrain:
 
 ;;; $A7E2: Disable mini-map and mark boss room map tiles as explored ;;;
 DisableMinimap_MarkBossRoomTilesExplored:
-    PHP                                                                  ;90A7E2;
     PHB                                                                  ;90A7E3;
-    REP #$30                                                             ;90A7E4;
     PHK                                                                  ;90A7E6;
     PLB                                                                  ;90A7E7;
     LDA.W #$0001                                                         ;90A7E8;
@@ -5995,7 +5993,6 @@ DisableMinimap_MarkBossRoomTilesExplored:
     DEX                                                                  ;90A818;
     BPL .loopBossID                                                      ;90A819;
     PLB                                                                  ;90A81B;
-    PLP                                                                  ;90A81C;
     RTL                                                                  ;90A81D;
 
 +   LDA.W .pointer,X                                                     ;90A81E;
@@ -6016,7 +6013,6 @@ DisableMinimap_MarkBossRoomTilesExplored:
 
   .return:
     PLB                                                                  ;90A837;
-    PLP                                                                  ;90A838;
     RTL                                                                  ;90A839;
 
 ;        ________ Boss ID
@@ -6087,9 +6083,7 @@ MarkMapTilesExplored:
 ;     y = [room Y co-ordinate] + [$18] / 100h
 ; Then
 ;     MapTilesExplored+4 + (y + (x & 20h)) * 4 + (x & 1Fh) / 8 |= 80h >> (x & 7)
-    PHP                                                                  ;90A8A6;
     PHX                                                                  ;90A8A7;
-    PHY                                                                  ;90A8A8;
     LDA.B DP_Temp12                                                      ;90A8A9;
     AND.W #$FF00                                                         ;90A8AB;
     XBA                                                                  ;90A8AE;
@@ -6126,42 +6120,9 @@ MarkMapTilesExplored:
     LDA.W MapTilesExplored,X                                             ;90A8E2;
     ORA.W Bitmasks_1bit_90AC04,Y                                         ;90A8E5;
     STA.W MapTilesExplored,X                                             ;90A8E8;
-    PLY                                                                  ;90A8EB;
+    REP #$20
     PLX                                                                  ;90A8EC;
-    PLP                                                                  ;90A8ED;
     RTS                                                                  ;90A8EE;
-
-
-;;; $A8EF: Initialise mini-map (broken) ;;;
-Initialise_Minimap_broken:
-; Called by:
-;     $9A79: Initialise HUD
-
-; This function isn't setting the variables needed for the call to $AA43 and otherwise is unnecessary
-    PHP                                                                  ;90A8EF;
-    REP #$30                                                             ;90A8F0;
-    LDA.W SamusXPosition                                                 ;90A8F2;
-    AND.W #$FF00                                                         ;90A8F5;
-    XBA                                                                  ;90A8F8;
-    CLC                                                                  ;90A8F9;
-    ADC.W RoomMapX                                                       ;90A8FA;
-    TAX                                                                  ;90A8FD;
-    STA.B DP_Temp12                                                      ;90A8FE;
-    AND.W #$0007                                                         ;90A900;
-    TAY                                                                  ;90A903;
-    TXA                                                                  ;90A904;
-    LSR                                                                  ;90A905;
-    LSR                                                                  ;90A906;
-    LSR                                                                  ;90A907;
-    STA.B DP_Temp14                                                      ;90A908;
-    LDA.W SamusYPosition                                                 ;90A90A;
-    AND.W #$FF00                                                         ;90A90D;
-    XBA                                                                  ;90A910;
-    CLC                                                                  ;90A911;
-    ADC.W RoomMapY                                                       ;90A912;
-    INC                                                                  ;90A915;
-    STA.B DP_Temp16                                                      ;90A916;
-    JMP.W Update_HUD_Minimap_Tilemap                                     ;90A918;
 
 
 ;;; $A91B: Update mini-map ;;;
@@ -6220,9 +6181,8 @@ SamusNewStateHandler_SamusIsLocked:
     RTL                                                                  ;90A940;
 
 +   STZ.B DP_Temp2E                                                      ;90A941;
-    LDA.W SamusXPosition                                                 ;90A943;
-    AND.W #$FF00                                                         ;90A946;
-    XBA                                                                  ;90A949;
+    LDA.W SamusXPosition+1
+    AND.W #$00FF
     CLC                                                                  ;90A94A;
     ADC.W RoomMapX                                                       ;90A94B;
     TAY
@@ -6238,9 +6198,8 @@ SamusNewStateHandler_SamusIsLocked:
     LSR                                                                  ;90A961;
     LSR                                                                  ;90A962;
     STA.B DP_Temp14                                                      ;90A963;
-    LDA.W SamusYPosition                                                 ;90A965;
-    AND.W #$FF00                                                         ;90A968;
-    XBA                                                                  ;90A96B;
+    LDA.W SamusYPosition+1
+    AND.W #$00FF
     CLC                                                                  ;90A96C;
     ADC.W RoomMapY                                                       ;90A96D;
     INC                                                                  ;90A970;
@@ -6253,6 +6212,11 @@ SamusNewStateHandler_SamusIsLocked:
     ADC.B DP_Temp14                                                      ;90A979;
     TAX                                                                  ;90A97B;
     SEP #$20                                                             ;90A97C;
+    PHB
+    LDA.B #Update_Minimap>>16
+    PHA
+    PLB
+
     LDA.W MapTilesExplored,X                                             ;90A97E;
     ORA.W Bitmasks_1bit_90AC04,Y                                         ;90A981;
     STA.W MapTilesExplored,X                                             ;90A984;
@@ -6371,9 +6335,9 @@ SamusNewStateHandler_SamusIsLocked:
   .singlePage:
     LDA.B DP_Temp34                                                      ;90AA2C;
     LSR                                                                  ;90AA2E;
+    BEQ Update_HUD_Minimap_Tilemap                                       ;90AA32;
 
   .loop:
-    BEQ Update_HUD_Minimap_Tilemap                                       ;90AA32;
     ASL.B DP_Temp18                                                      ;90AA34;
     ASL.B DP_Temp26                                                      ;90AA36;
     ASL.B DP_Temp1A                                                      ;90AA38;
@@ -6381,7 +6345,7 @@ SamusNewStateHandler_SamusIsLocked:
     ASL.B DP_Temp1C                                                      ;90AA3C;
     ASL.B DP_Temp2A                                                      ;90AA3E;
     DEC                                                                  ;90AA40;
-    BRA .loop                                                            ;90AA41;
+    BNE .loop                                                                   ; fallthrough to Update_HUD_Minimap_Tilemap
 
 
 ;;; $AA43: Update HUD mini-map tilemap ;;;
@@ -6426,14 +6390,13 @@ Update_HUD_Minimap_Tilemap:
     TAY                                                                  ;90AA72;
     LDA.W AreaIndex                                                      ;90AA73;
     ASL                                                                  ;90AA76;
-    CLC                                                                  ;90AA77;
-    ADC.W AreaIndex                                                      ;90AA78;
+    ASL
     TAX                                                                  ;90AA7B;
-    LDA.L AreaMapPointers+2,X                                            ;90AA7C;
+    LDA.W AreaMapPointersDD+2,X                                          ;90AA7C;
     STA.B DP_Temp02                                                      ;90AA80;
     STA.B DP_Temp05                                                      ;90AA82;
     STA.B DP_Temp08                                                      ;90AA84;
-    LDA.L AreaMapPointers,X                                              ;90AA86;
+    LDA.W AreaMapPointersDD,X                                            ;90AA86;
     STA.B DP_Temp00                                                      ;90AA8A;
     CLC                                                                  ;90AA8C;
     ADC.W #$0040                                                         ;90AA8D;
@@ -6496,18 +6459,31 @@ Update_HUD_Minimap_Tilemap:
     AND.W #$01FF                                                         ;90AAFD;
     CMP.W #$0028                                                         ;90AB00;
     BNE +                                                                ;90AB03;
-    JSR.W MarkMapTileAboveSamusExplored                                  ;90AB05;
+    STX.B DP_Temp14
+    LDX.B DP_Temp1E
+    STY.B DP_Temp16
+    LDY.B DP_Temp20
+    SEP #$20
+    LDA.W MusicDataIndex,X
+    ORA.W Bitmasks_1bit_90AC04,Y
+    STA.W MusicDataIndex,X
+    REP #$20
+    LDX.B DP_Temp14
+    LDY.B DP_Temp16
 
 +   ASL.B DP_Temp2A                                                      ;90AB08;
     BCC .row2BlankTile                                                   ;90AB0A;
     LDA.B [DP_Temp06],Y                                                  ;90AB0C;
     PLP                                                                  ;90AB0E;
+    PHP                                                                  ;90AB0F;
     BNE .row2NotBlank                                                    ;90AB10;
 
   .row2BlankTile:
+    REP #$20
     LDA.W #$001F                                                         ;90AB12;
 
   .row2NotBlank:
+    REP #$20
     AND.W #$E3FF                                                         ;90AB15;
     ORA.W #$2C00                                                         ;90AB18;
     STA.L HUDTilemap_Row3Minimap,X                                       ;90AB1B;
@@ -6538,6 +6514,7 @@ Update_HUD_Minimap_Tilemap:
   .handleFlashing:
 ; Note that the 8-bit frame counter used here is set to 0 by door transition,
 ; which usually causes the flash cycle to reset
+    PLP
     LDA.W NMI_8bitFrameCounter                                           ;90AB4A;
     AND.W #$0008                                                         ;90AB4D;
     BNE .return                                                          ;90AB50;
@@ -6546,26 +6523,19 @@ Update_HUD_Minimap_Tilemap:
     STA.L HUDTilemap_SamusMinimapPosition                                ;90AB59;
 
   .return:
+    PLB
     RTL                                                                  ;90AB5E;
 
 
-;;; $AB5F: Mark map tile above Samus as explored ;;;
-MarkMapTileAboveSamusExplored:
-;; Parameters:
-;;     $1E: Byte index of Samus map co-ordinate (([$16] + [$22]) * 4 + [$14])
-;;     $20: Bit subindex of column of Samus map position ([room X co-ordinate] + [Samus X position] / 100h & 7)
-    PHX                                                                  ;90AB5F;
-    PHY                                                                  ;90AB60;
-    LDX.B DP_Temp1E                                                      ;90AB61;
-    SEP #$20                                                             ;90AB63;
-    LDY.B DP_Temp20                                                      ;90AB65;
-    LDA.W MusicDataIndex,X                                               ;90AB67;
-    ORA.W Bitmasks_1bit_90AC04,Y                                         ;90AB6A;
-    STA.W MusicDataIndex,X                                               ;90AB6D;
-    REP #$20                                                             ;90AB70;
-    PLY                                                                  ;90AB72;
-    PLX                                                                  ;90AB73;
-    RTS                                                                  ;90AB74;
+;;; $964A: Pointers to area maps ;;;
+AreaMapPointersDD:
+    dd MapTilemaps_crateria
+    dd MapTilemaps_brinstar
+    dd MapTilemaps_norfair
+    dd MapTilemaps_wreckedShip
+    dd MapTilemaps_maridia
+    dd MapTilemaps_tourian
+    dd UNUSED_MapTilemaps_ceres_B5E000
 
 
 ;;; $AB75: Adjust map bits for map page spill ;;;

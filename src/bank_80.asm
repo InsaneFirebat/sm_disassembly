@@ -4021,7 +4021,6 @@ InitialiseHUD_GameLoading:
     STZ.W PreviousSuperMissiles                                          ;809AEA;
     STZ.W PreviousPowerBombs                                             ;809AED;
     STZ.W PreviousHUDItemIndex                                           ;809AF0;
-    JSL.L Initialise_Minimap_broken                                      ;809AF3;
     LDA.W #Tilemap_HUDDigits_ammo                                        ;809AF7;
     STA.B DP_Temp00                                                      ;809AFA;
     LDA.W #Tilemap_HUDDigits_ammo>>16                                    ;809AFC;
