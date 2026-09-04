@@ -139,7 +139,7 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
     PLP                                                                  ;828123;
     LDA.L SRAMMirror_LoadingGameState                                    ;828124;
     CMP.W #$001F                                                         ;828128;
-    BNE .runSamusCmd                                                     ;82812B;
+    BNE .setupSamusOnZebes                                               ;82812B;
     LDA.W #$0000                                                         ;82812D;
     STA.L Palettes_SpriteP5+$1E                                          ;828130;
     LDA.W #$0008                                                         ;828134;
@@ -147,7 +147,7 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
     PLP                                                                  ;82813B;
     RTS                                                                  ;82813C;
 
-  .runSamusCmd:
+  .setupSamusOnZebes:
     LDA.W #$0009                                                         ;82813D;
     JSL.L Run_Samus_Command                                              ;828140;
     PLP                                                                  ;828144;
@@ -590,13 +590,13 @@ GameState_26_SamusEscapesFromZebes:
     SEP #$20                                                             ;8284C7;
     LDA.B DP_Brightness                                                  ;8284C9;
     CMP.B #$80                                                           ;8284CB;
-    BEQ +                                                                ;8284CD;
+    BEQ .fadedOut                                                        ;8284CD;
     REP #$20                                                             ;8284CF;
     PLP                                                                  ;8284D1;
     RTS                                                                  ;8284D2;
 
-
-+   JSL.L EnableNMI                                                      ;8284D3;
+  .fadedOut
+    JSL.L EnableNMI                                                      ;8284D3;
     REP #$20                                                             ;8284D7;
     JSL.L Wait_End_VBlank_Clear_HDMA                                     ;8284D9;
     JSL.L DisableHVCounterInterrupts                                     ;8284DD;
@@ -2728,7 +2728,7 @@ GameState_11_Unpausing_LoadingNormalGameplay:
     JSL.L ResumeGameplay                                                 ;829370;
     JSR.W Restore_SomeGraphicsState_from_PauseScreen                     ;829374;
     JSR.W Restore_BG2Tilemap_from_PauseMenu                              ;829377;
-    REP #$30                                                             ;82937A;
+    REP #$30                                                             ;82937A; >.<
     LDA.W #$0001                                                         ;82937C;
     STA.W ScreenFadeDelay                                                ;82937F;
     STA.W ScreenFadeCounter                                              ;829382;
@@ -8096,17 +8096,19 @@ Queue_Samus_Movement_SoundEffects:
     LDA.W SamusBoostCounter-1                                            ;82BE31;
     AND.W #$FF00                                                         ;82BE34;
     CMP.W #$0400                                                         ;82BE37;
-    BNE +                                                                ;82BE3A;
+    BNE .checkCharging                                                   ;82BE3A;
     LDA.W #$002B                                                         ;82BE3C;
     JSL.L QueueSound_Lib3_Max6                                           ;82BE3F;
 
-+   LDA.W SamusProjectile_FlareCounter                                   ;82BE43;
+  .checkCharging
+    LDA.W SamusProjectile_FlareCounter                                   ;82BE43;
     CMP.W #$0010                                                         ;82BE46;
-    BMI +                                                                ;82BE49;
+    BMI .resumeSFX                                                       ;82BE49;
     LDA.W #$0041                                                         ;82BE4B;
     JSL.L QueueSound_Lib1_Max6                                           ;82BE4E;
 
-+   LDA.W #$0014                                                         ;82BE52;
+  .resumeSFX
+    LDA.W #$0014                                                         ;82BE52;
     JSL.L Run_Samus_Command                                              ;82BE55;
     RTL                                                                  ;82BE59;
 
@@ -11001,7 +11003,7 @@ GameState_19_DeathSequence_BlackOut:
     RTS                                                                  ;82DDEC;
 
   .return:
-    REP #$20                                                             ;82DDED;
+    REP #$20                                                             ;82DDED; >.<
     PLP                                                                  ;82DDEF;
     RTS                                                                  ;82DDF0;
 
@@ -11949,7 +11951,7 @@ DoorTransitionFunction_LoadSpritesBGPLMsAudio_RunDoorRoomASM:
     JSL.L Reset_Projectile_Data                                          ;82E4DC;
     JSL.L LoadSamusSuitTargetPalette                                     ;82E4E0;
     PLP                                                                  ;82E4E4;
-    PEA.W $8F00                                                          ;82E4E5;
+    PEA.W LibraryBGs>>8                                                  ;82E4E5;
     PLB                                                                  ;82E4E8;
     PLB                                                                  ;82E4E9;
     JSR.W Clear_FX_Tilemap                                               ;82E4EA;

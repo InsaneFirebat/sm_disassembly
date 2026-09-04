@@ -3351,7 +3351,7 @@ FileSelectMenu_IndexE_FileCopy_CopyCompleted:
     JSL.L QueueSound_Lib1_Max6                                           ;819B05;
     INC.W PauseMenu_MenuIndex                                            ;819B09;
     LDA.L SRAM_SaveSlotSelected                                          ;819B0C;
-    CMP.W #$0000                                                         ;819B10;
+    CMP.W #$0000                                                         ;819B10; >.<
     BMI .zero                                                            ;819B13;
     CMP.W #$0003                                                         ;819B15;
     BPL .zero                                                            ;819B18;
@@ -3949,7 +3949,7 @@ FileSelectMenu_Index10_1C_ReloadMain:
     LSR                                                                  ;819FBC;
     LSR                                                                  ;819FBD;
     STA.W NonEmptySaveSlots                                              ;819FBE;
-    CMP.W #$0000                                                         ;819FC1;
+    CMP.W #$0000                                                         ;819FC1; >.<
     BEQ .loadTilemap                                                     ;819FC4;
     LDY.W #Tilemap_FileSelect_dataCopy                                   ;819FC6;
     LDX.W #($4<<1)|($14<<6)                                              ;819FC9; $0508
