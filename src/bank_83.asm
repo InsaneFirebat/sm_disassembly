@@ -56,7 +56,7 @@ FXHeader_Climb_State2:                                                   ;838020
     %velocity(regional($FF98, $FF70)),
     %timer(regional($28, $1E)),
     %FXType(4),
-    %layerBlendConfig(2, $1e),
+    %layerBlendConfig(2, $1E),
     %liquidOptions(1),
     %paletteFX($38),
     %animTiles(0),

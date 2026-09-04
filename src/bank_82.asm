@@ -5366,7 +5366,7 @@ Handle_PauseScreen_PaletteAnimation:
 ; Map arrows, status selection box, etc.
     PHP                                                                  ;82A92B;
     SEP #$20                                                             ;82A92C;
-    LDA.B #$00                                                           ;82A92E;
+    LDA.B #$00                                                           ;82A92E; >.<
     XBA                                                                  ;82A930;
     LDA.B #$00                                                           ;82A931;
     LDA.W PauseMenu_PaletteAnimationTimer                                ;82A933;
@@ -7687,10 +7687,10 @@ Update_Samus_Position_Indicator_Animation:
     RTS                                                                  ;82BA24;
 
   .delays:
-    db $08,$00,$04,$00,$08,$00,$04,$00                                   ;82BA25;
+    dw $0008, $0004, $0008, $0004                                        ;82BA25;
 
   .spritemapIDs:
-    db $5F,$00,$60,$00,$61,$00,$60,$00                                   ;82BA2D; (into $82:C569 table)
+    dw $005F, $0060, $0061, $0060                                        ;82BA2D; (into MenuSpritemap_Pointers table)
 
 
 ;;; $BA35: Draw border around SAMUS DATA ;;;
@@ -11805,7 +11805,7 @@ DoorTransitionFunction_LoadRoomHeader_SetupMap_Decompress:
 
 ;;; $E38E: Door transition function - set up scrolling ;;;
 DoorTransitionFunction_SetupScrolling:
-    PEA.W $8F00                                                          ;82E38E;
+    PEA.W RoomHeaders>>16<<8                                             ;82E38E; >.<
     PLB                                                                  ;82E391;
     PLB                                                                  ;82E392;
     STZ.B DP_BG2XScroll                                                  ;82E393;
@@ -11831,7 +11831,7 @@ DoorTransitionFunction_SetupScrolling:
 
 ;;; $E3C0: Door transition function - place Samus, load tiles ;;;
 DoorTransitionFunction_PlaceSamus_LoadTiles:
-    PEA.W $8F00                                                          ;82E3C0;
+    PEA.W $RoomHeaders>>16<<8                                            ;82E3C0; >.<
     PLB                                                                  ;82E3C3;
     PLB                                                                  ;82E3C4;
     LDA.W SamusXPosition                                                 ;82E3C5;
@@ -12400,7 +12400,7 @@ Load_CRETiles_TilesetTiles_and_TilesetPalette_DB_8F:
     PHP                                                                  ;82E783;
     PHB                                                                  ;82E784;
     REP #$30                                                             ;82E785;
-    PEA.W $8F00                                                          ;82E787;
+    PEA.W RoomHeaders>>16<<8                                             ;82E787; >.<
     PLB                                                                  ;82E78A;
     PLB                                                                  ;82E78B;
 
@@ -12455,7 +12455,7 @@ LoadLevelData_CRE_TileTable_ScrollData_PLMs_DoorASM_RoomASM:
     PHP                                                                  ;82E7D3;
     PHB                                                                  ;82E7D4;
     REP #$30                                                             ;82E7D5;
-    PEA.W $8F00                                                          ;82E7D7;
+    PEA.W RoomHeaders>>16<<8                                             ;82E7D7; >.<
     PLB                                                                  ;82E7DA;
     PLB                                                                  ;82E7DB;
     LDX.W #$63FE                                                         ;82E7DC;
