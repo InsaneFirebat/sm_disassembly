@@ -17529,7 +17529,7 @@ Setup_EnergyTankShotBlock:
 ;; Parameters:
 ;;     Y: PLM index
     LDA.W #$0008                                                         ;84EE77;
-    BRA SetPLMItemGFXINdex_DoAbilityShotBlockSetup                       ;84EE7A;
+    BRA SetPLMItemGFXIndex_DoAbilityShotBlockSetup                       ;84EE7A;
 
 
 ;;; $EE7C: Setup - PLM $EF83 (missile tank shot block) ;;;
@@ -17537,7 +17537,7 @@ SetupMissileTankShotBlock:
 ;; Parameters:
 ;;     Y: PLM index
     LDA.W #$000A                                                         ;84EE7C;
-    BRA SetPLMItemGFXINdex_DoAbilityShotBlockSetup                       ;84EE7F;
+    BRA SetPLMItemGFXIndex_DoAbilityShotBlockSetup                       ;84EE7F;
 
 
 ;;; $EE81: Setup - PLM $EF87 (super missile tank shot block) ;;;
@@ -17545,18 +17545,18 @@ Setup_SuperMissileTankShotBlock:
 ;; Parameters:
 ;;     Y: PLM index
     LDA.W #$000C                                                         ;84EE81;
-    BRA SetPLMItemGFXINdex_DoAbilityShotBlockSetup                       ;84EE84;
+    BRA SetPLMItemGFXIndex_DoAbilityShotBlockSetup                       ;84EE84;
 
 
 ;;; $EE86: Setup - PLM $EF8B (power bomb tank shot block) ;;;
 Setup_PowerBombTankShotBlock:
 ;; Parameters:
 ;;     Y: PLM index
-    LDA.W #$000E                                                         ;84EE86; fallthrough to SetPLMItemGFXINdex_DoAbilityShotBlockSetup
+    LDA.W #$000E                                                         ;84EE86; fallthrough to SetPLMItemGFXIndex_DoAbilityShotBlockSetup
 
 
 ;;; $EE89: Set PLM item GFX index and do ability shot block setup ;;;
-SetPLMItemGFXINdex_DoAbilityShotBlockSetup:
+SetPLMItemGFXIndex_DoAbilityShotBlockSetup:
 ;; Parameters:
 ;;     A: Item GFX index
 ;;     Y: PLM index
