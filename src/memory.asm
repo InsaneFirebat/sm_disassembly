@@ -112,8 +112,6 @@ DP_Controller1Input: skip 2 ; $8B
 DP_Controller2Input: skip 2 ; $8D
 DP_Controller1New: skip 2 ; $8F
 DP_Controller2New: skip 2 ; $91
-DP_FakeController1New: skip 2 ; $93
-DP_FakeController2New: skip 2 ; $95
 DP_Controller1Prev: skip 2 ; $97
 DP_Controller2Prev: skip 2 ; $99
 DP_Controller1AutoPressTimer: skip 2 ; $A3

@@ -58,15 +58,13 @@ if !DEBUG
 endif
 
   .upload:
-    PHP                                                                  ;80802F;
     PHB                                                                  ;808030;
     REP #$30                                                             ;808031;
     LDA.W #$FFFF                                                         ;808033;
     STA.L APU_UploadingFlag                                              ;808036; Set uploading to APU flag
     SEP #$20                                                             ;80803A;
-    REP #$10                                                             ;80803C;
     LDA.B #$FF                                                           ;80803E;
-    STA.L $002140                                                        ;808040; APU IO 0 = FFh (request APU upload)
+    STA.W $2140                                                          ;808040; APU IO 0 = FFh (request APU upload)
     LDY.B DP_Temp00                                                      ;808044; Y = parameter short address
     LDA.B DP_Temp02                                                      ;808046;
     PHA                                                                  ;808048;
@@ -76,7 +74,6 @@ endif
     LDA.W #$0000                                                         ;80804F;
     STA.L APU_UploadingFlag                                              ;808052; Clear uploading to APU flag
     PLB                                                                  ;808056;
-    PLP                                                                  ;808057;
     RTS                                                                  ;808058;
 
 
@@ -117,8 +114,6 @@ SendAPUData:
 ; APU IO 1 = 0
 ; APU IO 0 = kick
 ; (Optionally wait until APU echoes kick back through APU IO 0)
-    PHP                                                                  ;808059;
-    REP #$30                                                             ;80805A;
     LDA.W #$3000                                                         ;80805C;
     STA.L APU_RemainingPollAttempts                                      ;80805F;
 
@@ -197,20 +192,12 @@ SendAPUData:
     BNE .wait3                                                           ;8080E0;
     PLX                                                                  ;8080E2;
     BVS .uploadDataBlock                                                 ;8080E3; If block size != 0: go to .uploadDataBlock
-    SEP #$20                                                             ;8080E5;
-    STZ.W $2141                                                          ;8080E7;
-    STZ.W $2142                                                          ;8080EA; These stores have no effect (because DB is set to some hirom bank), but there's also no reason to do these stores anyway
-    STZ.W $2143                                                          ;8080ED;
-    PLP                                                                  ;8080F0;
+    REP #$30
     RTS                                                                  ;8080F1; Return
 
   .return:
-    SEP #$20                                                             ;8080F2;
-    STZ.W $2141                                                          ;8080F4;
-    STZ.W $2142                                                          ;8080F7;
-    STZ.W $2143                                                          ;8080FA;
+    REP #$30
     PLX                                                                  ;8080FD;
-    PLP                                                                  ;8080FE;
     RTS                                                                  ;8080FF;
 
 
@@ -289,56 +276,6 @@ GenerateRandomNumber:
     RTL                                                                  ;808145;
 
 
-;;; $8146: Update held input ;;;
-UpdateHeldInput:
-;; Parameter:
-;;     A: Timed held input timer reset value ("timed held input" is input held for [A] + 1 frames)
-
-; Called by:
-;     GameState_F_Paused_MapAndItemScreens with A = 3
-
-; Held input is [$8B] & ![$8F]: the input pressed, but not newly
-    PHP                                                                  ;808146;
-    PHB                                                                  ;808147;
-    REP #$30                                                             ;808148;
-    PHX                                                                  ;80814A;
-    PHK                                                                  ;80814B;
-    PLB                                                                  ;80814C;
-    STA.W Input_TimedHeldReset                                           ;80814D; Timed held input timer reset value = [A]
-    LDA.B DP_Controller1Input                                            ;808150;
-    STA.B DP_Temp12                                                      ;808152;
-    LDA.B DP_Controller1New                                              ;808154;
-    TRB.B DP_Temp12                                                      ;808156;
-    LDA.B DP_Temp12                                                      ;808158; If held input != [previous held input]: go to .unheld
-    CMP.W Input_HeldPrev                                                 ;80815A;
-    STA.W Input_HeldPrev                                                 ;80815D; Previous held input = held input
-    BNE .unheld                                                          ;808160;
-    DEC.W Input_TimedHeldTimer                                           ;808162; Decrement timed held input timer
-    BPL .positive                                                        ;808165; If [timed held input timer] >= 0: go to .positive
-    STZ.W Input_TimedHeldTimer                                           ;808167; Timed held input timer = 0
-    LDX.W Input_TimedHeldInput                                           ;80816A;
-    STX.W Input_TimedHeldPrev                                            ;80816D; Previous timed held input = [timed held input]
-    STA.W Input_TimedHeldInput                                           ;808170; Timed held input = [held input]
-    BRA .return                                                          ;808173; Go to .return
-
-  .unheld:
-    LDA.W Input_TimedHeldReset                                           ;808175;
-    STA.W Input_TimedHeldTimer                                           ;808178; Timed held input timer = [timed held input timer reset value]
-
-  .positive:
-    STZ.W Input_TimedHeldInput                                           ;80817B; Timed held input = 0
-
-  .return:
-    LDA.W Input_TimedHeldInput                                           ;80817E;
-    EOR.W Input_TimedHeldPrev                                            ;808181;
-    AND.W Input_TimedHeldInput                                           ;808184; Newly held down timed held input = newly held down timed held input
-    STA.W Input_TimedHeldNew                                             ;808187;
-    PLX                                                                  ;80818A;
-    PLB                                                                  ;80818B;
-    PLP                                                                  ;80818C;
-    RTL                                                                  ;80818D;
-
-
 ;;; $818E: Change bit index to byte index and bitmask ;;;
 BitIndexToByteIndexAndBitmask:
 ;; Parameter:
@@ -378,16 +315,13 @@ SetBossBitsInAForCurrentArea:
 ;;         2: Area mini-boss (Spore Spawn, Botwoon, Crocomire, Mother Brain)
 ;;         4: Area torizo (Bomb Torizo, Golden Torizo)
     PHX                                                                  ;8081A6;
-    PHY                                                                  ;8081A7;
-    PHP                                                                  ;8081A8;
     SEP #$20                                                             ;8081A9;
     STA.W Bitmask                                                        ;8081AB;
     LDX.W AreaIndex                                                      ;8081AE;
     LDA.L SRAMMirror_Boss,X                                              ;8081B1;
     ORA.W Bitmask                                                        ;8081B5;
     STA.L SRAMMirror_Boss,X                                              ;8081B8;
-    PLP                                                                  ;8081BC;
-    PLY                                                                  ;8081BD;
+    REP #$20
     PLX                                                                  ;8081BE;
     RTL                                                                  ;8081BF;
 
@@ -426,26 +360,21 @@ CheckIfBossBitsForCurrentAreaMatchAnyBitsInA:
 ;;         4: Area torizo (Bomb Torizo, Golden Torizo)
 ;; Returns:
 ;;     A/carry: Set if there's a match
-    PHX                                                                  ;8081DC;
-    PHY                                                                  ;8081DD;
-    PHP                                                                  ;8081DE;
+    PHX
     SEP #$20                                                             ;8081DF;
     STA.W Bitmask                                                        ;8081E1;
     LDX.W AreaIndex                                                      ;8081E4;
     LDA.L SRAMMirror_Boss,X                                              ;8081E7;
     AND.W Bitmask                                                        ;8081EB;
     BNE .match                                                           ;8081EE;
-    PLP                                                                  ;8081F0;
-    PLY                                                                  ;8081F1;
-    PLX                                                                  ;8081F2;
-    CLC                                                                  ;8081F3;
+    REP #$31                                                                    ; carry clear
+    PLX
     RTL                                                                  ;8081F4;
 
   .match:
-    PLP                                                                  ;8081F5;
-    PLY                                                                  ;8081F6;
-    PLX                                                                  ;8081F7;
+    REP #$30
     SEC                                                                  ;8081F8;
+    PLX
     RTL                                                                  ;8081F9;
 
 
@@ -476,15 +405,10 @@ MarkEvent_inA:
 ;;         14h: Unused
 ;;         15h: Outran speed booster lavaquake
     PHX                                                                  ;8081FA;
-    PHY                                                                  ;8081FB;
-    PHP                                                                  ;8081FC;
-    REP #$30                                                             ;8081FD;
     JSL.L BitIndexToByteIndexAndBitmask                                  ;8081FF;
     LDA.L SRAMMirror_Event,X                                             ;808203;
     ORA.W Bitmask                                                        ;808207;
     STA.L SRAMMirror_Event,X                                             ;80820A;
-    PLP                                                                  ;80820E;
-    PLY                                                                  ;80820F;
     PLX                                                                  ;808210;
     RTL                                                                  ;808211;
 
@@ -497,9 +421,6 @@ UnmarkEvent_inA:
 ; Called by:
 ;     $A6:FCCB: Mark/unmark zebetite destroyed counter event
     PHX                                                                  ;808212;
-    PHY                                                                  ;808213;
-    PHP                                                                  ;808214;
-    REP #$30                                                             ;808215;
     JSL.L BitIndexToByteIndexAndBitmask                                  ;808217;
     LDA.W Bitmask                                                        ;80821B;
     EOR.W #$FFFF                                                         ;80821E;
@@ -507,8 +428,6 @@ UnmarkEvent_inA:
     LDA.L SRAMMirror_Event,X                                             ;808224;
     AND.W Bitmask                                                        ;808228;
     STA.L SRAMMirror_Event,X                                             ;80822B;
-    PLP                                                                  ;80822F;
-    PLY                                                                  ;808230;
     PLX                                                                  ;808231;
     RTL                                                                  ;808232;
 
@@ -522,18 +441,15 @@ CheckIfEvent_inA_HasHappened:
 
 ; Note that Tourian entrance statue FX routine Instruction_GotoY_ifEntranceToTourianUnlocked assumes this routine returns A = 0 when carry clear is returned
     PHX                                                                  ;808233;
-    PHY                                                                  ;808234;
     JSL.L BitIndexToByteIndexAndBitmask                                  ;808238;
     LDA.L SRAMMirror_Event,X                                             ;80823C;
     AND.W Bitmask                                                        ;808240;
     BNE .marked                                                          ;808243;
-    PLY                                                                  ;808246;
     PLX                                                                  ;808247;
     CLC                                                                  ;808248;
     RTL                                                                  ;808249;
 
   .marked:
-    PLY                                                                  ;80824B;
     PLX                                                                  ;80824C;
     SEC                                                                  ;80824D;
     RTL                                                                  ;80824E;
@@ -588,7 +504,6 @@ Text_supermetroid:
 
 ;;; $82C5: Wait until the end of a v-blank ;;;
 WaitUntilTheEndOfAVBlank:
-    PHA                                                                  ;8082C5;
     PHP                                                                  ;8082C6;
     SEP #$20                                                             ;8082C7;
 
@@ -600,7 +515,6 @@ WaitUntilTheEndOfAVBlank:
     LDA.W $4212                                                          ;8082CE;
     BMI .waitVBlankEnd                                                   ;8082D1; Wait until v-blank has finished
     PLP                                                                  ;8082D3;
-    PLA                                                                  ;8082D4;
     RTL                                                                  ;8082D5;
 
 
@@ -706,17 +620,12 @@ SetForceBlankAndWaitForNMI:
 
 ; Note that setting force blank allows PPU writes even if NMI execution spills into the next frame's drawing period,
 ; so you can set up large VRAM transfers before calling this
-    PHP                                                                  ;80836F;
-    PHB                                                                  ;808370;
-    PHK                                                                  ;808371;
-    PLB                                                                  ;808372;
     SEP #$20                                                             ;808373;
     LDA.B DP_Brightness                                                  ;808375;
     ORA.B #$80                                                           ;808377;
     STA.B DP_Brightness                                                  ;808379;
     JSL.L WaitForNMI                                                     ;80837B;
-    PLB                                                                  ;80837F;
-    PLP                                                                  ;808380;
+    REP #$20
     RTL                                                                  ;808381;
 
 
@@ -728,17 +637,12 @@ ClearForceBlankAndWaitForNMI:
 ;     $81:91A4: Game over menu - index 1: initialise
 ;     $81:9ED6: File select menu - index 2: title sequence to main - initialise
 ;     $A7:C24E: Unpause hook - Kraid is alive
-    PHP                                                                  ;808382;
-    PHB                                                                  ;808383;
-    PHK                                                                  ;808384;
-    PLB                                                                  ;808385;
     SEP #$20                                                             ;808386;
     LDA.B DP_Brightness                                                  ;808388;
     AND.B #$7F                                                           ;80838A;
     STA.B DP_Brightness                                                  ;80838C;
     JSL.L WaitForNMI                                                     ;80838E;
-    PLB                                                                  ;808392;
-    PLP                                                                  ;808393;
+    REP #$20
     RTL                                                                  ;808394;
 
 
@@ -851,21 +755,12 @@ WriteYBytesOfATo_7E0000_X_16bit:
 ;     $82:81DD: Set up PPU for gameplay
 ;     $8B:8000: Set up PPU for title sequence
 ;     $8B:80DA: Set up PPU for intro
-    PHP                                                                  ;8083F6;
-    PHB                                                                  ;8083F7;
-    PHK                                                                  ;8083F8;
-    PLB                                                                  ;8083F9;
-    REP #$30                                                             ;8083FA;
-
-  .loop:
     STA.L $7E0000,X                                                      ;8083FC;
     INX                                                                  ;808400;
     INX                                                                  ;808401;
     DEY                                                                  ;808402;
     DEY                                                                  ;808403;
-    BNE .loop                                                            ;808404;
-    PLB                                                                  ;808406;
-    PLP                                                                  ;808407;
+    BNE WriteYBytesOfATo_7E0000_X_16bit                                  ;808404;
     RTL                                                                  ;808408;
 
 
@@ -878,28 +773,17 @@ WriteYBytesOfATo_7F0000_X_16bit:
 
 ; Called by
 ;     $88B4: Unused. Clear high RAM
-    PHP                                                                  ;808409;
-    PHB                                                                  ;80840A;
-    PHK                                                                  ;80840B;
-    PLB                                                                  ;80840C;
-    REP #$30                                                             ;80840D;
-
-  .loop:
     STA.L HighRAM,X                                                      ;80840F;
     INX                                                                  ;808413;
     INX                                                                  ;808414;
     DEY                                                                  ;808415;
     DEY                                                                  ;808416;
-    BNE .loop                                                            ;808417;
-    PLB                                                                  ;808419;
-    PLP                                                                  ;80841A;
+    BNE WriteYBytesOfATo_7F0000_X_16bit                                  ;808417;
     RTL                                                                  ;80841B;
 
 
 ;;; $841C: Boot ;;;
 Boot:
-; Most SNES games don't randomly wait 3 frames before running initialisation
-; Best wild guess is that they might have had some kind of dev hardware thingy attached somewhere that boot-up had to wait for
     SEI                                                                  ;80841C; Disable IRQ
     CLC                                                                  ;80841D;
     XCE                                                                  ;80841E; Enable native mode
@@ -943,7 +827,7 @@ SoftReset:
 ;     $81:90FE: Game over menu - index 7: fade out into soft reset
 ;     $81:94D5: File select menu - index 21h: fade out to title sequence
 
-; Compared to boot ($841C), doesn't display Nintendo logo or upload SPC engine, but still waits 3 frames (see $841C)
+; Compared to boot ($841C), doesn't display Nintendo logo or upload SPC engine
     SEI                                                                  ;808462; Disable IRQ
     CLC                                                                  ;808463;
     XCE                                                                  ;808464; Enable native mode
@@ -993,8 +877,131 @@ CommonBootSection:
     SEP #$30                                                             ;8084B1;
     STZ.W $4200                                                          ;8084B3;
     STZ.B DP_IRQAutoJoy                                                  ;8084B6; Disable NMI and auto-joypad read
-    JSR.W Initialise_CPU_IO_Registers                                    ;8084BC; Initialise CPU IO registers
-    JSR.W InitialisePPURegisters                                         ;8084BF; Initialise PPU registers
+    LDA.B #$01
+    STA.W $4200
+    STA.B DP_IRQAutoJoy
+    STZ.W $4201
+    STZ.W $4202
+    STZ.W $4203
+    STZ.W $4204
+    STZ.W $4205
+    STZ.W $4206
+    STZ.W $4207
+    STZ.W $4208
+    STZ.W $4209
+    STZ.W $420A
+    STZ.W $420B
+    STZ.W $420C
+    STZ.B DP_HDMAEnable
+    LDA.B #$01
+    STA.W $420D
+    LDA.B #$03
+    STA.W $2101
+    STA.B DP_SpriteSizeAddr
+    STZ.W $2102
+    STZ.B DP_OAMAddrPrio
+    LDA.B #$80
+    STA.W $2103
+    STA.B DP_OAMAddrPrio+1
+    STZ.W $2104
+    STZ.W $2104
+    LDA.B #$09
+    STA.W $2105
+    STA.B DP_BGModeSize
+    STZ.W $2106
+    STZ.B DP_Mosaic
+    LDA.B #$40
+    STA.W $2107
+    STA.B DP_BG1TilemapAddrSize
+    LDA.B #$44
+    STA.W $2108
+    STA.B DP_BG2TilemapAddrSize
+    LDA.B #$48
+    STA.W $2109
+    STA.B DP_BG3TilemapAddrSize
+    STZ.W $210A
+    STZ.B DP_BG4TilemapAddrSize
+    LDA.B #$00
+    STA.W $210B
+    STA.B DP_BGTilesAddr
+    LDA.B #$05
+    STA.W $210C
+    STA.B DP_BGTilesAddr+1
+    STZ.W $210D
+    STZ.W $210D
+    STZ.W $210E
+    STZ.W $210E
+    STZ.W $210F
+    STZ.W $210F
+    STZ.W $2110
+    STZ.W $2110
+    STZ.W $2111
+    STZ.W $2111
+    STZ.W $2112
+    STZ.W $2112
+    STZ.W $2113
+    STZ.W $2113
+    STZ.W $2114
+    STZ.W $2114
+    STZ.W $2115
+    STZ.W $211A
+    STZ.B DP_Mode7Settings
+    STZ.W $211B
+    STZ.W $211C
+    STZ.W $211D
+    STZ.W $211E
+    STZ.W $211F
+    STZ.W $2120
+    LDA.B #$00
+    STA.W $2123
+    STA.B DP_WindowMaskBG12
+    STA.W $2124
+    STA.B DP_WindowMaskBG34
+    STZ.W $2125
+    STZ.B DP_WindowMaskSprite
+    STA.W $2126
+    STA.B DP_Window1Left
+    LDA.B #$F8
+    STA.W $2127
+    STA.B DP_Window1Right
+    STZ.W $2128
+    STZ.B DP_Window2Left
+    STZ.W $2129
+    STZ.B DP_Window2Right
+    STZ.W $212A
+    STZ.B DP_Window12BGMaskLogic
+    STZ.W $212B
+    STZ.B DP_Window12SpriteMaskLogic
+    LDA.B #$11
+    STA.W $212C
+    STA.B DP_MainScreenLayers
+    STA.W $212E
+    STA.B DP_WindowAreaMainScreen
+    LDA.B #$02
+    STA.W $212D
+    STA.B DP_SubScreenLayers
+    STA.W $212F
+    STA.B DP_WindowAreaSubScreen
+    STA.W $2130
+    STA.B DP_NextGameplayColorMathA
+    LDA.B #$A1
+    STA.W $2131
+    STA.B DP_NextGameplayColorMathB
+    LDA.B #$E0
+    STA.W $2132
+    STA.W $2132
+    LDA.B #$80
+    STA.W $2132
+    STA.B DP_ColorMathSubScreenBackdropColor0
+    LDA.B #$40
+    STA.W $2132
+    STA.B DP_ColorMathSubScreenBackdropColor1
+    LDA.B #$20
+    STA.W $2132
+    STA.B DP_ColorMathSubScreenBackdropColor2
+    LDA.B #$00
+    STA.W $2133
+    STA.B DP_DisplayResolution
     SEP #$20                                                             ;8084C5;
     STZ.W APU_SoundQueueStartIndexLib1                                   ;8084C7;
     STZ.W APU_SoundQueueStartIndexLib2                                   ;8084CA;
@@ -1104,8 +1111,6 @@ LoadMirrorOfCurrentAreasMapExplored:
 ;     $81:AD17: File select map - index 9: area select map to room select map - initialise
 ;     $82:8000: Game state 6/1Fh/28h (loading game data / set up new game / load demo game data)
 ;     $82:DFB6: Load map explored if elevator
-    PHP                                                                  ;80858C;
-    REP #$30                                                             ;80858D;
     LDA.W AreaIndex                                                      ;80858F;
     XBA                                                                  ;808592;
     TAX                                                                  ;808593;
@@ -1124,7 +1129,6 @@ LoadMirrorOfCurrentAreasMapExplored:
     LDA.L SRAMMirror_MapStations,X                                       ;8085AA;
     AND.W #$00FF                                                         ;8085AE;
     STA.W CurrentAreaMapCollectedFlag                                    ;8085B1;
-    PLP                                                                  ;8085B4;
     RTL                                                                  ;8085B5;
 
 
@@ -1133,174 +1137,6 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Generic_Bitmasks:
     dw $0001,$0002,$0004,$0008,$0010,$0020,$0040,$0080                   ;8085B6;
 endif ; !FEATURE_KEEP_UNREFERENCED
-
-
-;;; $85C6: Save map explored ;;;
-MirrorCurrentAreasMapExplored:
-; Called by:
-;     $82:DF99: Save map explored if elevator
-    PHP                                                                  ;8085C6;
-    REP #$30                                                             ;8085C7;
-    LDA.W AreaIndex                                                      ;8085C9;
-    XBA                                                                  ;8085CC;
-    TAX                                                                  ;8085CD;
-    LDY.W #$0000                                                         ;8085CE;
-
-  .loop:
-    LDA.W MapTilesExplored,Y                                             ;8085D1;
-    STA.L ExploredMapTiles,X                                             ;8085D4;
-    INX                                                                  ;8085D8;
-    INX                                                                  ;8085D9;
-    INY                                                                  ;8085DA;
-    INY                                                                  ;8085DB;
-    CPY.W #$0100                                                         ;8085DC;
-    BMI .loop                                                            ;8085DF;
-    LDA.W CurrentAreaMapCollectedFlag                                    ;8085E1;
-    BEQ .return                                                          ;8085E4;
-    LDX.W AreaIndex                                                      ;8085E6;
-    LDA.L SRAMMirror_MapStations,X                                       ;8085E9;
-    ORA.W #$00FF                                                         ;8085ED;
-    STA.L SRAMMirror_MapStations,X                                       ;8085F0;
-
-  .return:
-    PLP                                                                  ;8085F4;
-    RTL                                                                  ;8085F5;
-
-
-;;; $875D: Initialise CPU IO registers ;;;
-Initialise_CPU_IO_Registers:
-    LDA.B #$01                                                           ;80875D;
-    STA.W $4200                                                          ;80875F; Enable auto-joypad read
-    STA.B DP_IRQAutoJoy                                                  ;808762;
-    STZ.W $4201                                                          ;808764; Joypad programmable IO port = 0
-    STZ.W $4202                                                          ;808767;
-    STZ.W $4203                                                          ;80876A; Multiplication operands = 0
-    STZ.W $4204                                                          ;80876D;
-    STZ.W $4205                                                          ;808770; Division operands = 0 (causes harmless division by zero)
-    STZ.W $4206                                                          ;808773;
-    STZ.W $4207                                                          ;808776;
-    STZ.W $4208                                                          ;808779; IRQ h-counter target = 0
-    STZ.W $4209                                                          ;80877C;
-    STZ.W $420A                                                          ;80877F; IRQ v-counter target = 0
-    STZ.W $420B                                                          ;808782; Disable all DMA channels
-    STZ.W $420C                                                          ;808785;
-    STZ.B DP_HDMAEnable                                                  ;808788; Disable all HDMA channels
-    LDA.B #$01                                                           ;80878A;
-    STA.W $420D                                                          ;80878C; Enable FastROM
-    RTS                                                                  ;808791;
-
-
-;;; $8792: Initialise PPU registers ;;;
-InitialisePPURegisters:
-; These BG/sprites addresses aren't used, Setup_PPU_TitleSequence overwrites them
-    LDA.B #$03                                                           ;808799;
-    STA.W $2101                                                          ;80879B; Sprite tiles base address = $6000, sprite sizes = 8x8 / 16x16
-    STA.B DP_SpriteSizeAddr                                              ;80879E;
-    STZ.W $2102                                                          ;8087A0;
-    STZ.B DP_OAMAddrPrio                                                 ;8087A3;
-    LDA.B #$80                                                           ;8087A5; OAM address = $0000, priority sprite index = 0
-    STA.W $2103                                                          ;8087A7;
-    STA.B DP_OAMAddrPrio+1                                               ;8087AA;
-    STZ.W $2104                                                          ;8087AC;
-    STZ.W $2104                                                          ;8087AF; OAM $0000 = 0
-    LDA.B #$09                                                           ;8087B2;
-    STA.W $2105                                                          ;8087B4; BG mode = 1 with BG3 priority, BG tile sizes = 8x8
-    STA.B DP_BGModeSize                                                  ;8087B7;
-    STZ.W $2106                                                          ;8087B9;
-    STZ.B DP_Mosaic                                                      ;8087BC; Disable mosaic
-    LDA.B #$40                                                           ;8087BE;
-    STA.W $2107                                                          ;8087C0; BG1 tilemap base address = $4000, size = 32x32
-    STA.B DP_BG1TilemapAddrSize                                          ;8087C3;
-    LDA.B #$44                                                           ;8087C5;
-    STA.W $2108                                                          ;8087C7; BG2 tilemap base address = $4400, size = 32x32
-    STA.B DP_BG2TilemapAddrSize                                          ;8087CA;
-    LDA.B #$48                                                           ;8087CC;
-    STA.W $2109                                                          ;8087CE; BG3 tilemap base address = $4800, size = 32x32
-    STA.B DP_BG3TilemapAddrSize                                          ;8087D1;
-    STZ.W $210A                                                          ;8087D5;
-    STZ.B DP_BG4TilemapAddrSize                                          ;8087D8; BG4 tilemap base address = $0000, size = 32x32
-    LDA.B #$00                                                           ;8087DA;
-    STA.W $210B                                                          ;8087DC;
-    STA.B DP_BGTilesAddr                                                 ;8087DF; BG1/2/4 tiles base address = $0000
-    LDA.B #$05                                                           ;8087E1; BG3 tiles base address = $5000
-    STA.W $210C                                                          ;8087E3;
-    STA.B DP_BGTilesAddr+1                                               ;8087E6;
-    STZ.W $210D                                                          ;8087E8;
-    STZ.W $210D                                                          ;8087EB; BG1 X scroll = 0
-    STZ.W $210E                                                          ;8087EE;
-    STZ.W $210E                                                          ;8087F1; BG1 Y scroll = 0
-    STZ.W $210F                                                          ;8087F4;
-    STZ.W $210F                                                          ;8087F7; BG2 X scroll = 0
-    STZ.W $2110                                                          ;8087FA;
-    STZ.W $2110                                                          ;8087FD; BG2 Y scroll = 0
-    STZ.W $2111                                                          ;808800;
-    STZ.W $2111                                                          ;808803; BG3 X scroll = 0
-    STZ.W $2112                                                          ;808806;
-    STZ.W $2112                                                          ;808809; BG3 Y scroll = 0
-    STZ.W $2113                                                          ;80880C;
-    STZ.W $2113                                                          ;80880F; BG4 X scroll = 0
-    STZ.W $2114                                                          ;808812;
-    STZ.W $2114                                                          ;808815; BG4 Y scroll = 0
-    STZ.W $2115                                                          ;808818; VRAM address increment mode = 8-bit
-    STZ.W $211A                                                          ;80881B;
-    STZ.B DP_Mode7Settings                                               ;80881E; Mode 7 settings = 0
-    STZ.W $211B                                                          ;808820;
-    STZ.W $211C                                                          ;808823;
-    STZ.W $211D                                                          ;808826; Mode 7 transformation matrix = {{0, 0}, {0, 0}}
-    STZ.W $211E                                                          ;808829;
-    STZ.W $211F                                                          ;80882C; Mode 7 transformation origin co-ordinate X = 0
-    STZ.W $2120                                                          ;80882F; Mode 7 transformation origin co-ordinate Y = 0
-    LDA.B #$00                                                           ;808832;
-    STA.W $2123                                                          ;808834;
-    STA.B DP_WindowMaskBG12                                              ;808837;
-    STA.W $2124                                                          ;80883B; Disable all window masks
-    STA.B DP_WindowMaskBG34                                              ;80883E;
-    STZ.W $2125                                                          ;808840;
-    STZ.B DP_WindowMaskSprite                                            ;808843;
-    STA.W $2126                                                          ;808847; Window 1 left position = 0
-    STA.B DP_Window1Left                                                 ;80884A;
-    LDA.B #$F8                                                           ;80884C;
-    STA.W $2127                                                          ;80884E; Window 1 right position = F8h
-    STA.B DP_Window1Right                                                ;808851;
-    STZ.W $2128                                                          ;808853;
-    STZ.B DP_Window2Left                                                 ;808856; Window 2 left position = 0
-    STZ.W $2129                                                          ;808858;
-    STZ.B DP_Window2Right                                                ;80885B; Window 2 right position = 0
-    STZ.W $212A                                                          ;80885D;
-    STZ.B DP_Window12BGMaskLogic                                         ;808860;
-    STZ.W $212B                                                          ;808862; Window 1/2 mask logic = OR
-    STZ.B DP_Window12SpriteMaskLogic                                     ;808865;
-    LDA.B #$11                                                           ;808867;
-    STA.W $212C                                                          ;808869; Main screen layers = BG1/sprites
-    STA.B DP_MainScreenLayers                                            ;80886C;
-    STA.W $212E                                                          ;80886E;
-    STA.B DP_WindowAreaMainScreen                                        ;808871; Disable BG1/sprites in window area main screen
-    LDA.B #$02                                                           ;808873;
-    STA.W $212D                                                          ;808875; Subscreen layers = BG2
-    STA.B DP_SubScreenLayers                                             ;808878;
-    STA.W $212F                                                          ;80887A;
-    STA.B DP_WindowAreaSubScreen                                         ;80887D; Disable BG2 in window area subscreen
-    STA.W $2130                                                          ;808881; Enable colour math subscreen layers
-    STA.B DP_NextGameplayColorMathA                                      ;808884;
-    LDA.B #$A1                                                           ;808886;
-    STA.W $2131                                                          ;808888; Enable subtractive colour math on BG1/backdrop
-    STA.B DP_NextGameplayColorMathB                                      ;80888B;
-    LDA.B #$E0                                                           ;80888D;
-    STA.W $2132                                                          ;80888F;
-    STA.W $2132                                                          ;808894;
-    LDA.B #$80                                                           ;808897;
-    STA.W $2132                                                          ;808899;
-    STA.B DP_ColorMathSubScreenBackdropColor0                            ;80889C;
-    LDA.B #$40                                                           ;80889E;
-    STA.W $2132                                                          ;8088A0; Colour math subscreen backdrop colour = (0, 0, 0)
-    STA.B DP_ColorMathSubScreenBackdropColor1                            ;8088A3;
-    LDA.B #$20                                                           ;8088A5;
-    STA.W $2132                                                          ;8088A7;
-    STA.B DP_ColorMathSubScreenBackdropColor2                            ;8088AA;
-    LDA.B #$00                                                           ;8088AC;
-    STA.W $2133                                                          ;8088AE; Use standard NTSC resolution
-    STA.B DP_DisplayResolution                                           ;8088B1;
-    RTS                                                                  ;8088B3;
 
 
 if !FEATURE_KEEP_UNREFERENCED
@@ -1320,74 +1156,12 @@ UNUSED_ClearHighRAM_8088B4:
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
-;;; $88EB: Write 800h bytes of [A] to $7E:3000 ;;;
-Write_800h_Bytes_Of_A_To_7E3000:
-;; Parameters:
-;;     A: Fill value
-
-; Called by:
-;     $88D1: Write a load of 1C2Fh
-    PHP                                                                  ;8088EB;
-    PHB                                                                  ;8088EC;
-    PHK                                                                  ;8088ED;
-    PLB                                                                  ;8088EE;
-    REP #$30                                                             ;8088EF;
-    LDX.W #$3000                                                         ;8088F1;
-    LDY.W #$0800                                                         ;8088F4;
-    JSL.L WriteYBytesOfATo_7E0000_X_16bit                                ;8088F7;
-    PLB                                                                  ;8088FB;
-    PLP                                                                  ;8088FC;
-    RTL                                                                  ;8088FD;
-
-
-;;; $88FE: Write 800h bytes of [A] to $7E:4000 ;;;
-Write_800h_Bytes_Of_A_To_7E4000:
-;; Parameters:
-;;     A: Fill value
-
-; Called by:
-;     $88D1: Write a load of 1C2Fh
-    PHP                                                                  ;8088FE;
-    PHB                                                                  ;8088FF;
-    PHK                                                                  ;808900;
-    PLB                                                                  ;808901;
-    REP #$30                                                             ;808902;
-    LDX.W #$4000                                                         ;808904;
-    LDY.W #$0800                                                         ;808907;
-    JSL.L WriteYBytesOfATo_7E0000_X_16bit                                ;80890A;
-    PLB                                                                  ;80890E;
-    PLP                                                                  ;80890F;
-    RTL                                                                  ;808910;
-
-
-;;; $8911: Write 800h bytes of [A] to $7E:6000 ;;;
-Write_800h_Bytes_Of_A_To_7E6000:
-;; Parameters:
-;;     A: Fill value
-
-; Called by:
-;     $88D1: Write a load of 1C2Fh
-    PHP                                                                  ;808911;
-    PHB                                                                  ;808912;
-    PHK                                                                  ;808913;
-    PLB                                                                  ;808914;
-    REP #$30                                                             ;808915;
-    LDX.W #$6000                                                         ;808917;
-    LDY.W #$0800                                                         ;80891A;
-    JSL.L WriteYBytesOfATo_7E0000_X_16bit                                ;80891D;
-    PLB                                                                  ;808921;
-    PLP                                                                  ;808922;
-    RTL                                                                  ;808923;
-
-
 ;;; $8924: Handle fading out ;;;
 HandleFadingOut:
 ; When the screen has finished fading out, [$51] = 80h.
 ; Easiest way to check is:
 ;     LDA $51 : BMI BRANCH_FINISHED ; If PSR.M = 1
 ;     LDA $50 : BMI BRANCH_FINISHED ; If PSR.M = 0
-    PHP                                                                  ;808924;
-    REP #$20                                                             ;808925;
     LDA.W ScreenFadeCounter                                              ;808927;
     DEC                                                                  ;80892A; If [screen fade counter] != 0:
     BMI .fadeOut                                                         ;80892B;
@@ -1411,7 +1185,7 @@ HandleFadingOut:
     STA.B DP_Brightness                                                  ;808949; Decrement brightness (disable forced blank)
 
   .return:
-    PLP                                                                  ;80894B;
+    REP #$30
     RTL                                                                  ;80894C;
 
 
@@ -1422,8 +1196,6 @@ HandleFadingIn:
 ;     LDA $51 : CMP #$0F : BEQ BRANCH_FINISHED         ; If PSR.M = 1
 ;     LDA $50 : ASL : CMP #$1E00 : BCS BRANCH_FINISHED ; If PSR.M = 0
 ;     LDA $50 : CMP #$0F00 : BCS BRANCH_FINISHED       ; If PSR.M = 0 and forced blank is known to be disabled (force blank is enabled by fade out)
-    PHP                                                                  ;80894D;
-    REP #$20                                                             ;80894E;
     LDA.W ScreenFadeCounter                                              ;808950;
     DEC                                                                  ;808953; If [screen fade counter] != 0:
     BMI .fadeIn                                                          ;808954;
@@ -1441,7 +1213,7 @@ HandleFadingIn:
     STA.B DP_Brightness                                                  ;80896A; Increment brightness (disable forced blank)
 
   .return:
-    PLP                                                                  ;80896C;
+    REP #$30
     RTL                                                                  ;80896D;
 
 
@@ -1661,31 +1433,10 @@ QueueMode7Transfers:
   .loop:
     BIT.W $0000,X                                                        ;808B55;
     BMI .VRAM                                                            ;808B58;
-    BVS .CGRAM                                                           ;808B5A;
     STY.W Mode7Stack                                                     ;808B5C;
     PLY                                                                  ;808B5F;
     PLX                                                                  ;808B60;
     RTL                                                                  ;808B61;
-
-  .CGRAM:
-    LDA.W $0001,X                                                        ;808B62;
-    STA.W Mode7Transfer.control,Y                                        ;808B65;
-    LDA.W $0003,X                                                        ;808B68;
-    STA.W Mode7Transfer.src+1,Y                                          ;808B6B;
-    LDA.W $0005,X                                                        ;808B6E;
-    STA.W Mode7Transfer.size,Y                                           ;808B71;
-    LDA.W $0007,X                                                        ;808B74;
-    AND.W #$00FF                                                         ;808B77;
-    STA.W Mode7Transfer.dest,Y                                           ;808B7A;
-    TXA                                                                  ;808B7D;
-    CLC                                                                  ;808B7E;
-    ADC.W #$0007                                                         ;808B7F;
-    TAX                                                                  ;808B82;
-    TYA                                                                  ;808B83;
-    CLC                                                                  ;808B84;
-    ADC.W #$0007                                                         ;808B85;
-    TAY                                                                  ;808B88;
-    BRA .loop                                                            ;808B89;
 
   .VRAM:
     LDA.W $0001,X                                                        ;808B8B;
@@ -1710,117 +1461,8 @@ QueueMode7Transfers:
     BRA .loop                                                            ;808BB8;
 
 
-;;; $8BBA: Handle mode 7 transfers ;;;
-HandleMode7Transfers:
-    PHP                                                                  ;808BBA;
-    REP #$10                                                             ;808BBB;
-    LDX.W Mode7Stack                                                     ;808BBD;
-    BEQ .return                                                          ;808BC0;
-    LDX.W #Mode7Transfer.control                                         ;808BC2;
-    JSL.L ProcessMode7Transfers                                          ;808BC5;
-    REP #$20                                                             ;808BC9;
-    STZ.W Mode7Transfer.control                                          ;808BCB;
-    STZ.W Mode7Stack                                                     ;808BCE;
-
-  .return:
-    PLP                                                                  ;808BD1;
-    RTL                                                                  ;808BD2;
-
-
-;;; $8BD3: Process mode 7 transfers ;;;
-ProcessMode7Transfers:
-;; Parameter:
-;;     X: Pointer to mode 7 transfers data
-
-; CGRAM transfers are never queued, so $8BE0..8C10 is dead code
-    PHP                                                                  ;808BD3;
-
-  .loop:
-    SEP #$20                                                             ;808BD4;
-    LDA.W $0000,X                                                        ;808BD6;
-    BMI .VRAM                                                            ;808BD9;
-    ASL                                                                  ;808BDB;
-    BMI .CGRAM                                                           ;808BDC;
-    PLP                                                                  ;808BDE;
-    RTL                                                                  ;808BDF;
-
-  .CGRAM:
-    LSR                                                                  ;808BE0;
-    AND.B #$1F                                                           ;808BE1;
-    STA.W $4310                                                          ;808BE3;
-    LDY.W $0001,X                                                        ;808BE6;
-    STY.W $4312                                                          ;808BE9;
-    LDA.W $0003,X                                                        ;808BEC;
-    STA.W $4314                                                          ;808BEF;
-    LDY.W $0004,X                                                        ;808BF2;
-    STY.W $4315                                                          ;808BF5;
-    LDA.B #$22                                                           ;808BF8;
-    STA.W $4311                                                          ;808BFA;
-    LDA.W $0006,X                                                        ;808BFD;
-    STA.W $2121                                                          ;808C00;
-    LDA.B #$02                                                           ;808C03;
-    STA.W $420B                                                          ;808C05;
-    REP #$21                                                             ;808C08; carry clear
-    TXA                                                                  ;808C0A;
-    ADC.W #$0007                                                         ;808C0B;
-    TAX                                                                  ;808C0E;
-    BRA .loop                                                            ;808C0F;
-
-  .VRAM:
-    ASL                                                                  ;808C11;
-    BMI .VRAMTiles                                                       ;808C12;
-    LSR                                                                  ;808C14;
-    AND.B #$1F                                                           ;808C15;
-    STA.W $4310                                                          ;808C17;
-    LDY.W $0001,X                                                        ;808C1A;
-    STY.W $4312                                                          ;808C1D;
-    LDA.W $0003,X                                                        ;808C20;
-    STA.W $4314                                                          ;808C23;
-    LDY.W $0004,X                                                        ;808C26;
-    STY.W $4315                                                          ;808C29;
-    LDA.B #$18                                                           ;808C2C;
-    STA.W $4311                                                          ;808C2E;
-    LDY.W $0006,X                                                        ;808C31;
-    STY.W $2116                                                          ;808C34;
-    LDA.W $0008,X                                                        ;808C37;
-    STA.W $2115                                                          ;808C3A;
-    LDA.B #$02                                                           ;808C3D;
-    STA.W $420B                                                          ;808C3F;
-    REP #$21                                                             ;808C42;
-    TXA                                                                  ;808C44;
-    ADC.W #$0009                                                         ;808C45;
-    TAX                                                                  ;808C48;
-    BRA .loop                                                            ;808C49;
-
-  .VRAMTiles:
-    LSR                                                                  ;808C4B;
-    AND.B #$1F                                                           ;808C4C;
-    STA.W $4310                                                          ;808C4E;
-    LDY.W $0001,X                                                        ;808C51;
-    STY.W $4312                                                          ;808C54;
-    LDA.W $0003,X                                                        ;808C57;
-    STA.W $4314                                                          ;808C5A;
-    LDY.W $0004,X                                                        ;808C5D;
-    STY.W $4315                                                          ;808C60;
-    LDA.B #$19                                                           ;808C63;
-    STA.W $4311                                                          ;808C65;
-    LDY.W $0006,X                                                        ;808C68;
-    STY.W $2116                                                          ;808C6B;
-    LDA.W $0008,X                                                        ;808C6E;
-    STA.W $2115                                                          ;808C71;
-    LDA.B #$02                                                           ;808C74;
-    STA.W $420B                                                          ;808C76;
-    REP #$21                                                             ;808C79; clear carry
-    TXA                                                                  ;808C7B;
-    ADC.W #$0009                                                         ;808C7C;
-    TAX                                                                  ;808C7F;
-    JMP.W .loop                                                          ;808C80;
-
-
 ;;; $8C83: Handle VRAM write table and scrolling DMAs ;;;
 HandleVRAMWriteTable_ScrollingDMAs:
-    PHP                                                                  ;808C83;
-    REP #$30                                                             ;808C84;
     LDX.W VRAMWriteStack                                                 ;808C86;
     BEQ .done                                                            ;808C89;
     STZ.B VRAMWrite.size,X                                               ;808C8B;
@@ -1858,18 +1500,10 @@ HandleVRAMWriteTable_ScrollingDMAs:
     STZ.W VRAMWriteStack                                                 ;808CC9;
     SEP #$20                                                             ;808CCC;
     REP #$10                                                             ;808CCE;
-    JSR.W ExecuteHorizontalScrollingDMAs                                 ;808CD0;
-    JSR.W ExecuteVerticalScrollingDMAs                                   ;808CD3;
-    PLP                                                                  ;808CD6;
-    RTL                                                                  ;808CD7;
-
-
-;;; $8CD8: Execute horizontal scrolling DMAs ;;;
-ExecuteHorizontalScrollingDMAs:
     LDA.B #$81                                                           ;808CD8;
     STA.W $2115                                                          ;808CDA;
     LDA.W BG1Col_updateVRAMTilemapFlag                                   ;808CDD;
-    BEQ .BG2                                                             ;808CE0;
+    BEQ .horizontalBG2
     STZ.W BG1Col_updateVRAMTilemapFlag                                   ;808CE2;
     LDY.W BG1Col_unwrappedTilemapVRAMUpdateDest                          ;808CE5;
     STY.W $2116                                                          ;808CE8;
@@ -1893,7 +1527,7 @@ ExecuteHorizontalScrollingDMAs:
     LDX.W BG1Col_wrappedTilemapVRAMUpdateLeftHalvesSrc                   ;808D19;
     STX.W $4312                                                          ;808D1C;
     LDX.W BG1Col_wrappedTilemapVRAMUpdateSize                            ;808D1F;
-    BEQ .BG2                                                             ;808D22;
+    BEQ .horizontalBG2
     STX.W $4315                                                          ;808D24;
     LDY.W BG1Col_wrappedTilemapVRAMUpdateDest                            ;808D27;
     STY.W $2116                                                          ;808D2A;
@@ -1907,9 +1541,9 @@ ExecuteHorizontalScrollingDMAs:
     LDA.B #$02                                                           ;808D3F;
     STA.W $420B                                                          ;808D41;
 
-  .BG2:
+  .horizontalBG2:
     LDA.W BG2Col_updateVRAMTilemapFlag                                   ;808D44;
-    BEQ .return                                                          ;808D47;
+    BEQ .verticalScrollingDMAs
     STZ.W BG2Col_updateVRAMTilemapFlag                                   ;808D49;
     LDY.W BG2Col_unwrappedTilemapVRAMUpdateDest                          ;808D4C;
     STY.W $2116                                                          ;808D4F;
@@ -1933,7 +1567,7 @@ ExecuteHorizontalScrollingDMAs:
     LDX.W BG2Col_wrappedTilemapVRAMUpdateLeftHalvesSrc                   ;808D80;
     STX.W $4312                                                          ;808D83;
     LDX.W BG2Col_wrappedTilemapVRAMUpdateSize                            ;808D86;
-    BEQ .return                                                          ;808D89;
+    BEQ .verticalScrollingDMAs
     STX.W $4315                                                          ;808D8B;
     LDY.W BG2Col_wrappedTilemapVRAMUpdateDest                            ;808D8E;
     STY.W $2116                                                          ;808D91;
@@ -1947,16 +1581,11 @@ ExecuteHorizontalScrollingDMAs:
     LDA.B #$02                                                           ;808DA6;
     STA.W $420B                                                          ;808DA8;
 
-  .return:
-    RTS                                                                  ;808DAB;
-
-
-;;; $8DAC: Execute vertical scrolling DMAs ;;;
-ExecuteVerticalScrollingDMAs:
+  .verticalScrollingDMAs:
     LDA.B #$80                                                           ;808DAC;
     STA.W $2115                                                          ;808DAE;
     LDA.W BG1Row_updateVRAMTilemapFlag                                   ;808DB1;
-    BEQ .BG2                                                             ;808DB4;
+    BEQ .verticalBG2
     STZ.W BG1Row_updateVRAMTilemapFlag                                   ;808DB6;
     LDY.W BG1Row_unwrappedTilemapVRAMUpdateDest                          ;808DB9;
     STY.W $2116                                                          ;808DBC;
@@ -1983,7 +1612,7 @@ ExecuteVerticalScrollingDMAs:
     LDX.W BG1Row_wrappedTilemapVRAMUpdateLeftHalvesSrc                   ;808DF4;
     STX.W $4312                                                          ;808DF7;
     LDX.W BG1Row_wrappedTilemapVRAMUpdateSize                            ;808DFA;
-    BEQ .BG2                                                             ;808DFD;
+    BEQ .verticalBG2
     STX.W $4315                                                          ;808DFF;
     LDY.W BG1Row_wrappedTilemapVRAMUpdateDest                            ;808E02;
     STY.W $2116                                                          ;808E05;
@@ -2000,7 +1629,7 @@ ExecuteVerticalScrollingDMAs:
     LDA.B #$02                                                           ;808E21;
     STA.W $420B                                                          ;808E23;
 
-  .BG2:
+  .verticalBG2:
     LDA.W BG2Row_updateVRAMTilemapFlag                                   ;808E26;
     BEQ .return                                                          ;808E29;
     STZ.W BG2Row_updateVRAMTilemapFlag                                   ;808E2B;
@@ -2052,55 +1681,8 @@ ExecuteVerticalScrollingDMAs:
     STA.W $420B                                                          ;808E9E;
 
   .return:
-    RTS                                                                  ;808EA1;
-
-
-;;; $8EA2: Handle VRAM read table ;;;
-HandleVRAMReadTable:
-; Buggy? This routine stores a 1-byte zero-terminator but checks for a 2-byte zero terminator as the loop condition.
-; I think this only works because only one entry is ever set up in any given frame
-    PHP                                                                  ;808EA2;
-    SEP #$30                                                             ;808EA3;
-    LDX.W VRAMReadStack                                                  ;808EA5;
-    BNE .readTable                                                       ;808EA8;
-    PLP                                                                  ;808EAA;
-    RTL                                                                  ;808EAB;
-
-  .readTable:
-    STZ.W VRAMRead.src,X                                                 ;808EAC;
-    LDX.B #$00                                                           ;808EAF;
-    LDA.B #$80                                                           ;808EB1;
-    STA.W $2115                                                          ;808EB3;
-
-  .loop:
-    REP #$20                                                             ;808EB6;
-    LDA.W VRAMRead.src,X                                                 ;808EB8;
-    BEQ .done                                                            ;808EBB;
-    STA.W $2116                                                          ;808EBD;
-    LDA.W $2139                                                          ;808EC0;
-    LDA.W VRAMRead.control,X                                             ;808EC3;
-    STA.W $4310                                                          ;808EC6;
-    LDA.W VRAMRead.dest,X                                                ;808EC9;
-    STA.W $4312                                                          ;808ECC;
-    LDA.W VRAMRead.dest+1,X                                              ;808ECF;
-    STA.W $4313                                                          ;808ED2;
-    LDA.W VRAMRead.size,X                                                ;808ED5;
-    STA.W $4315                                                          ;808ED8;
-    STZ.W $4317                                                          ;808EDB;
-    STZ.W $4319                                                          ;808EDE;
-    SEP #$20                                                             ;808EE1;
-    LDA.B #$02                                                           ;808EE3;
-    STA.W $420B                                                          ;808EE5;
-    TXA                                                                  ;808EE8;
-    CLC                                                                  ;808EE9;
-    ADC.B #$09                                                           ;808EEA;
-    TAX                                                                  ;808EEC;
-    BRA .loop                                                            ;808EED;
-
-  .done:
-    STZ.W VRAMReadStack                                                  ;808EEF;
-    PLP                                                                  ;808EF2;
-    RTL                                                                  ;808EF3;
+    REP #$30
+    RTL
 
 
 ;;; $8EF4: Check if music is queued ;;;
@@ -2742,303 +2324,10 @@ SetupHDMATransfer:
     db $00,$10,$20,$30,$40,$50,$60,$70                                   ;8091E6;
 
 
-;;; $91EE: Update IO registers ;;;
-Update_IO_Registers:
-    LDX.B DP_IRQAutoJoy                                                  ;8091EE;
-    STX.W $4200                                                          ;8091F0;
-    LDX.B DP_Brightness                                                  ;8091F3;
-    STX.W $2100                                                          ;8091F5;
-    LDX.B DP_SpriteSizeAddr                                              ;8091F8;
-    STX.W $2101                                                          ;8091FA;
-    LDX.B DP_BGModeSize                                                  ;8091FD;
-    STX.W $2105                                                          ;8091FF;
-    LDX.B DP_Mosaic                                                      ;809202;
-    STX.W $2106                                                          ;809204;
-    LDX.B DP_BG1TilemapAddrSize                                          ;809207;
-    STX.W $2107                                                          ;809209;
-    LDX.B DP_BG2TilemapAddrSize                                          ;80920C;
-    STX.W $2108                                                          ;80920E;
-    LDX.B DP_BG3TilemapAddrSize                                          ;809211;
-    STX.W $2109                                                          ;809213;
-    LDX.B DP_BG4TilemapAddrSize                                          ;809216;
-    STX.W $210A                                                          ;809218;
-    LDX.B DP_BGTilesAddr                                                 ;80921B;
-    STX.W $210B                                                          ;80921D;
-    LDX.B DP_BGTilesAddr+1                                               ;809220;
-    STX.W $210C                                                          ;809222;
-    LDX.B DP_Mode7Settings                                               ;809225;
-    STX.W $211A                                                          ;809227;
-    LDX.B DP_WindowMaskBG12                                              ;80922A;
-    STX.W $2123                                                          ;80922C;
-    LDX.B DP_WindowMaskBG34                                              ;80922F;
-    STX.W $2124                                                          ;809231;
-    LDX.B DP_WindowMaskSprite                                            ;809234;
-    STX.W $2125                                                          ;809236;
-    LDX.B DP_Window1Left                                                 ;809239;
-    STX.W $2126                                                          ;80923B;
-    LDX.B DP_Window1Right                                                ;80923E;
-    STX.W $2127                                                          ;809240;
-    LDX.B DP_Window2Left                                                 ;809243;
-    STX.W $2128                                                          ;809245;
-    LDX.B DP_Window2Right                                                ;809248;
-    STX.W $2129                                                          ;80924A;
-    LDX.B DP_Window12BGMaskLogic                                         ;80924D;
-    STX.W $212A                                                          ;80924F;
-    LDX.B DP_Window12SpriteMaskLogic                                     ;809252;
-    STX.W $212B                                                          ;809254;
-    LDX.B DP_MainScreenLayers                                            ;809257;
-    STX.B DP_GameplayMainScreenLayers                                    ;809259;
-    STX.W $212C                                                          ;80925B;
-    LDX.B DP_WindowAreaMainScreen                                        ;80925E;
-    STX.W $212E                                                          ;809260;
-    LDX.B DP_SubScreenLayers                                             ;809263;
-    STX.W $212D                                                          ;809265;
-    LDX.B DP_WindowAreaSubScreen                                         ;809268;
-    STX.W $212F                                                          ;80926A;
-    LDX.B DP_ColorMathA                                                  ;80926D;
-    STX.W $2130                                                          ;80926F;
-    LDX.B DP_ColorMathB                                                  ;809272;
-    STX.W $2131                                                          ;809274;
-    LDX.B DP_NextGameplayColorMathA                                      ;809277;
-    STX.B DP_GameplayColorMathA                                          ;809279;
-    LDX.B DP_NextGameplayColorMathB                                      ;80927B;
-    STX.B DP_GameplayColorMathB                                          ;80927D;
-    LDX.B DP_ColorMathSubScreenBackdropColor0                            ;80927F;
-    STX.W $2132                                                          ;809281;
-    LDX.B DP_ColorMathSubScreenBackdropColor1                            ;809284;
-    STX.W $2132                                                          ;809286;
-    LDX.B DP_ColorMathSubScreenBackdropColor2                            ;809289;
-    STX.W $2132                                                          ;80928B;
-    LDX.B DP_DisplayResolution                                           ;80928E;
-    STX.W $2133                                                          ;809290;
-    LDX.B DP_BG1XScroll                                                  ;809293;
-    STX.W $210D                                                          ;809295;
-    LDX.B DP_BG1XScroll+1                                                ;809298;
-    STX.W $210D                                                          ;80929A;
-    LDX.B DP_BG1YScroll                                                  ;80929D;
-    STX.W $210E                                                          ;80929F;
-    LDX.B DP_BG1YScroll+1                                                ;8092A2;
-    STX.W $210E                                                          ;8092A4;
-    LDX.B DP_BG2XScroll                                                  ;8092A7;
-    STX.W $210F                                                          ;8092A9;
-    LDX.B DP_BG2XScroll+1                                                ;8092AC;
-    STX.W $210F                                                          ;8092AE;
-    LDX.B DP_BG2YScroll                                                  ;8092B1;
-    STX.W $2110                                                          ;8092B3;
-    LDX.B DP_BG2YScroll+1                                                ;8092B6;
-    STX.W $2110                                                          ;8092B8;
-    LDX.B DP_BG3XScroll                                                  ;8092BB;
-    STX.W $2111                                                          ;8092BD;
-    LDX.B DP_BG3XScroll+1                                                ;8092C0;
-    STX.W $2111                                                          ;8092C2;
-    LDX.B DP_BG3YScroll                                                  ;8092C5;
-    STX.W $2112                                                          ;8092C7;
-    LDX.B DP_BG3YScroll+1                                                ;8092CA;
-    STX.W $2112                                                          ;8092CC;
-    LDX.B DP_BG4XScroll                                                  ;8092CF;
-    STX.W $2113                                                          ;8092D1;
-    LDX.B DP_BG4XScroll+1                                                ;8092D4;
-    STX.W $2113                                                          ;8092D6;
-    LDX.B DP_BG4YScroll                                                  ;8092D9;
-    STX.W $2114                                                          ;8092DB;
-    LDX.B DP_BG4YScroll+1                                                ;8092DE;
-    STX.W $2114                                                          ;8092E0;
-    LDX.B DP_FakeBGModeSize                                              ;8092E3;
-    STX.W $07EC                                                          ;8092E5;
-    LDA.B DP_BGModeSize                                                  ;8092E8;
-    AND.W #$0007                                                         ;8092EA;
-    CMP.W #$0007                                                         ;8092ED;
-    BEQ .mode7                                                           ;8092F0;
-    LDA.B DP_FakeBGModeSize                                              ;8092F2;
-    AND.W #$0007                                                         ;8092F4;
-    CMP.W #$0007                                                         ;8092F7;
-    BEQ .mode7                                                           ;8092FA;
-    RTS                                                                  ;8092FC;
-
-  .mode7:
-    LDX.B DP_Mode7TransMatrixA                                           ;8092FD;
-    STX.W $211B                                                          ;8092FF;
-    LDX.B DP_Mode7TransMatrixA+1                                         ;809302;
-    STX.W $211B                                                          ;809304;
-    LDX.B DP_Mode7TransMatrixB                                           ;809307;
-    STX.W $211C                                                          ;809309;
-    LDX.B DP_Mode7TransMatrixB+1                                         ;80930C;
-    STX.W $211C                                                          ;80930E;
-    LDX.B DP_Mode7TransMatrixC                                           ;809311;
-    STX.W $211D                                                          ;809313;
-    LDX.B DP_Mode7TransMatrixC+1                                         ;809316;
-    STX.W $211D                                                          ;809318;
-    LDX.B DP_Mode7TransMatrixD                                           ;80931B;
-    STX.W $211E                                                          ;80931D;
-    LDX.B DP_Mode7TransMatrixD+1                                         ;809320;
-    STX.W $211E                                                          ;809322;
-    LDX.B DP_Mode7TransOriginX                                           ;809325;
-    STX.W $211F                                                          ;809327;
-    LDX.B DP_Mode7TransOriginX+1                                         ;80932A;
-    STX.W $211F                                                          ;80932C;
-    LDX.B DP_Mode7TransOriginY                                           ;80932F;
-    STX.W $2120                                                          ;809331;
-    LDX.B DP_Mode7TransOriginY+1                                         ;809334;
-    STX.W $2120                                                          ;809336;
-    RTS                                                                  ;809339;
-
-
-;;; $933A: Update OAM & CGRAM ;;;
-UpdateOAM_CGRAM:
-    LDA.W #$0400                                                         ;80933A;
-    STA.W $4300                                                          ;80933D;
-    LDA.W #OAMLow                                                        ;809340;
-    STA.W $4302                                                          ;809343;
-    LDX.B #$00                                                           ;809346;
-    STX.W $4304                                                          ;809348;
-    LDA.W #$0220                                                         ;80934B;
-    STA.W $4305                                                          ;80934E;
-    STZ.W $2102                                                          ;809351;
-    LDA.W #$2200                                                         ;809354;
-    STA.W $4310                                                          ;809357;
-    LDA.W #Palettes                                                      ;80935A;
-    STA.W $4312                                                          ;80935D;
-    LDX.B #Palettes>>16                                                  ;809360;
-    STX.W $4314                                                          ;809362;
-    LDA.W #$0200                                                         ;809365;
-    STA.W $4315                                                          ;809368;
-    LDX.B #$00                                                           ;80936B;
-    STX.W $2121                                                          ;80936D;
-    LDX.B #$03                                                           ;809370;
-    STX.W $420B                                                          ;809372;
-    RTS                                                                  ;809375;
-
-
-;;; $9376: Transfer Samus tiles to VRAM ;;;
-TransferSamusTilesToVRAM:
-; Samus tiles definition format:
-;     aaaaaa nnnn NNNN
-; where:
-;     a: Source address
-;     n: Part 1 size, n = 0 means 10000h bytes are transferred
-;     N: Part 2 size, N = 0 means no bytes are transferred
-    PHB                                                                  ;809376;
-    LDX.B #$92                                                           ;809377;
-    PHX                                                                  ;809379;
-    PLB                                                                  ;80937A;
-    LDX.B #$02                                                           ;80937B;
-    LDY.B #$80                                                           ;80937D;
-    STY.W $2115                                                          ;80937F;
-    LDY.W SamusTiles_TopHalfFlag                                         ;809382;
-    BEQ .bottom                                                          ;809385;
-    LDY.B #$02                                                           ;809387;
-    LDA.W SamusTiles_TopHalfTilesDef                                     ;809389;
-    STA.B DP_SamusTilesDefinition                                        ;80938C;
-    LDA.W #$6000                                                         ;80938E;
-    STA.W $2116                                                          ;809391;
-    LDA.W #$1801                                                         ;809394;
-    STA.W $4310                                                          ;809397;
-    LDA.B (DP_SamusTilesDefinition)                                      ;80939A;
-    STA.W $4312                                                          ;80939C;
-    STA.B DP_Temp14                                                      ;80939F;
-    LDA.B (DP_SamusTilesDefinition),Y                                    ;8093A1;
-    STA.W $4314                                                          ;8093A3;
-    INY                                                                  ;8093A6;
-    LDA.B (DP_SamusTilesDefinition),Y                                    ;8093A7;
-    STA.W $4315                                                          ;8093A9;
-    CLC                                                                  ;8093AC;
-    ADC.B DP_Temp14                                                      ;8093AD;
-    STA.B DP_Temp14                                                      ;8093AF;
-    INY                                                                  ;8093B1;
-    INY                                                                  ;8093B2;
-    STX.W $420B                                                          ;8093B3;
-    LDA.W #$6100                                                         ;8093B6;
-    STA.W $2116                                                          ;8093B9;
-    LDA.B DP_Temp14                                                      ;8093BC;
-    STA.W $4312                                                          ;8093BE;
-    LDA.B (DP_SamusTilesDefinition),Y                                    ;8093C1;
-    BEQ .bottom                                                          ;8093C3;
-    STA.W $4315                                                          ;8093C5;
-    STX.W $420B                                                          ;8093C8;
-
-  .bottom:
-    LDY.W SamusTiles_BottomHalfFlag                                      ;8093CB;
-    BEQ .return                                                          ;8093CE;
-    LDY.B #$02                                                           ;8093D0;
-    LDA.W SamusTiles_BottomHalfTilesDef                                  ;8093D2;
-    STA.B DP_SamusTilesDefinition                                        ;8093D5;
-    LDA.W #$6080                                                         ;8093D7;
-    STA.W $2116                                                          ;8093DA;
-    LDA.W #$1801                                                         ;8093DD;
-    STA.W $4310                                                          ;8093E0;
-    LDA.B (DP_SamusTilesDefinition)                                      ;8093E3;
-    STA.W $4312                                                          ;8093E5;
-    STA.B DP_Temp14                                                      ;8093E8;
-    LDA.B (DP_SamusTilesDefinition),Y                                    ;8093EA;
-    STA.W $4314                                                          ;8093EC;
-    INY                                                                  ;8093EF;
-    LDA.B (DP_SamusTilesDefinition),Y                                    ;8093F0;
-    STA.W $4315                                                          ;8093F2;
-    CLC                                                                  ;8093F5;
-    ADC.B DP_Temp14                                                      ;8093F6;
-    STA.B DP_Temp14                                                      ;8093F8;
-    INY                                                                  ;8093FA;
-    INY                                                                  ;8093FB;
-    STX.W $420B                                                          ;8093FC;
-    LDA.W #$6180                                                         ;8093FF;
-    STA.W $2116                                                          ;809402;
-    LDA.B DP_Temp14                                                      ;809405;
-    STA.W $4312                                                          ;809407;
-    LDA.B (DP_SamusTilesDefinition),Y                                    ;80940A;
-    BEQ .return                                                          ;80940C;
-    STA.W $4315                                                          ;80940E;
-    STX.W $420B                                                          ;809411;
-
-  .return:
-    PLB                                                                  ;809414;
-    RTS                                                                  ;809415;
-
-
-;;; $9416: Process animated tiles object VRAM transfers ;;;
-ProcessAnimatedTilesObjectVRAMTransfers:
-    PHB                                                                  ;809416;
-    LDX.B #Process_AnimatedTilesObject>>16                               ;809417;
-    PHX                                                                  ;809419;
-    PLB                                                                  ;80941A;
-    LDA.W AnimatedTilesObject_Enable                                     ;80941B;
-    BPL .return                                                          ;80941E;
-    LDX.B #$0A                                                           ;809420;
-
-  .loop:
-    LDA.W AnimatedTilesObject_IDs,X                                      ;809422;
-    BEQ .next                                                            ;809425;
-    LDA.W AnimatedTilesObject_SrcAddr,X                                  ;809427;
-    BEQ .next                                                            ;80942A;
-    STA.W $4302                                                          ;80942C;
-    LDY.B #$87                                                           ;80942F;
-    STY.W $4304                                                          ;809431;
-    LDA.W #$1801                                                         ;809434;
-    STA.W $4300                                                          ;809437;
-    LDA.W AnimatedTilesObject_Sizes,X                                    ;80943A;
-    STA.W $4305                                                          ;80943D;
-    LDA.W AnimatedTilesObject_VRAMAddr,X                                 ;809440;
-    STA.W $2116                                                          ;809443;
-    LDY.B #$80                                                           ;809446;
-    STY.W $2115                                                          ;809448;
-    LDY.B #$01                                                           ;80944B;
-    STY.W $420B                                                          ;80944D;
-    STZ.W AnimatedTilesObject_SrcAddr,X                                  ;809450;
-
-  .next:
-    DEX                                                                  ;809453;
-    DEX                                                                  ;809454;
-    BPL .loop                                                            ;809455;
-
-  .return:
-    PLB                                                                  ;809457;
-    RTS                                                                  ;809458;
-
-
 ;;; $9459: Read controller input. Also a debug branch ;;;
 ReadControllerInput:
 ; This is executed at the end of NMI because auto-joypad read is only guaranteed to be executed at some point in the middle of the first scanline of v-blank,
 ; and then we need to wait ~3 scanlines for the joypad to finish reading
-    PHP                                                                  ;809459;
     SEP #$20                                                             ;80945A;
 
   .wait:
@@ -3051,7 +2340,6 @@ ReadControllerInput:
     EOR.B DP_Controller1Prev                                             ;80946A;
     AND.B DP_Controller1Input                                            ;80946C;
     STA.B DP_Controller1New                                              ;80946E;
-    STA.B DP_FakeController1New                                          ;809470;
     LDA.B DP_Controller1Input                                            ;809472;
     BEQ .unheld                                                          ;809474;
     CMP.B DP_Controller1Prev                                             ;809476;
@@ -3059,7 +2347,6 @@ ReadControllerInput:
     DEC.B DP_Controller1AutoPressTimer                                   ;80947A;
     BNE .heldEnd                                                         ;80947C;
     LDA.B DP_Controller1Input                                            ;80947E;
-    STA.B DP_FakeController1New                                          ;809480;
     LDA.B DP_AutoPressSubsequentDelay                                    ;809482;
     STA.B DP_Controller1AutoPressTimer                                   ;809484;
     BRA .heldEnd                                                         ;809486;
@@ -3075,7 +2362,6 @@ if !DEBUG
     LDA.W Debug_Enable                                                   ;809490;
     BNE .debug                                                           ;809493;
 endif
-    PLP                                                                  ;809495;
     RTL                                                                  ;809496;
 
 if !DEBUG
@@ -3085,7 +2371,6 @@ if !DEBUG
     EOR.B DP_Controller2Prev                                             ;80949C;
     AND.B DP_Controller2Input                                            ;80949E;
     STA.B DP_Controller2New                                              ;8094A0;
-    STA.B DP_FakeController2New                                          ;8094A2;
     LDA.B DP_Controller2Input                                            ;8094A4;
     BEQ .unheld2                                                         ;8094A6;
     CMP.B DP_Controller2Prev                                             ;8094A8;
@@ -3093,7 +2378,6 @@ if !DEBUG
     DEC.B DP_Controller2AutoPressTimer                                   ;8094AC;
     BNE .held2End                                                        ;8094AE;
     LDA.B DP_Controller2Input                                            ;8094B0;
-    STA.B DP_FakeController2New                                          ;8094B2;
     LDA.B DP_AutoPressSubsequentDelay                                    ;8094B4;
     STA.B DP_Controller2AutoPressTimer                                   ;8094B6;
     BRA .held2End                                                        ;8094B8;
@@ -3121,7 +2405,6 @@ if !DEBUG
     LDA.W #$FFEF                                                         ;8094DF;
     TRB.B DP_Controller2Input                                            ;8094E2;
     TRB.B DP_Controller2New                                              ;8094E4;
-    PLP                                                                  ;8094E6;
     RTL                                                                  ;8094E7;
 
   .debugEnabled:
@@ -3195,7 +2478,6 @@ if !DEBUG
     STA.W Debug_Options                                                  ;80957E;
 
   .return:
-    PLP                                                                  ;809581;
     RTL                                                                  ;809582;
 endif
 
@@ -3218,11 +2500,279 @@ NMI:
     SEP #$10                                                             ;809594;
     LDX.W $4210                                                          ;809596;
     LDX.W NMI_Request                                                    ;809599;
-    BEQ .lag                                                             ;80959C;
-    JSR.W UpdateOAM_CGRAM                                                ;80959E;
-    JSR.W TransferSamusTilesToVRAM                                       ;8095A1;
-    JSR.W ProcessAnimatedTilesObjectVRAMTransfers                        ;8095A4;
-    JSR.W Update_IO_Registers                                            ;8095A7;
+    BNE .update
+    JMP.W .lag
+
+  .update
+; Update OAM & CGRAM
+    LDA.W #$0400
+    STA.W $4300
+    LDA.W #OAMLow
+    STA.W $4302
+    LDX.B #$00
+    STX.W $4304
+    LDA.W #$0220
+    STA.W $4305
+    STZ.W $2102
+    LDA.W #$2200
+    STA.W $4310
+    LDA.W #Palettes
+    STA.W $4312
+    LDX.B #Palettes>>16
+    STX.W $4314
+    LDA.W #$0200
+    STA.W $4315
+    LDX.B #$00
+    STX.W $2121
+    LDX.B #$03
+    STX.W $420B
+; Transfer Samus tiles to VRAM
+    PHB
+    LDX.B #$92
+    PHX
+    PLB
+    LDX.B #$02
+    LDY.B #$80
+    STY.W $2115
+    LDY.W SamusTiles_TopHalfFlag
+    BEQ .bottomTiles
+    LDY.B #$02
+    LDA.W SamusTiles_TopHalfTilesDef
+    STA.B DP_SamusTilesDefinition
+    LDA.W #$6000
+    STA.W $2116
+    LDA.W #$1801
+    STA.W $4310
+    LDA.B (DP_SamusTilesDefinition)
+    STA.W $4312
+    STA.B DP_Temp14
+    LDA.B (DP_SamusTilesDefinition),Y
+    STA.W $4314
+    INY
+    LDA.B (DP_SamusTilesDefinition),Y
+    STA.W $4315
+    CLC
+    ADC.B DP_Temp14
+    STA.B DP_Temp14
+    INY
+    INY
+    STX.W $420B
+    LDA.W #$6100
+    STA.W $2116
+    LDA.B DP_Temp14
+    STA.W $4312
+    LDA.B (DP_SamusTilesDefinition),Y
+    BEQ .bottomTiles
+    STA.W $4315
+    STX.W $420B
+
+  .bottomTiles:
+    LDY.W SamusTiles_BottomHalfFlag
+    BEQ .doneSamusTiles
+    LDY.B #$02
+    LDA.W SamusTiles_BottomHalfTilesDef
+    STA.B DP_SamusTilesDefinition
+    LDA.W #$6080
+    STA.W $2116
+    LDA.W #$1801
+    STA.W $4310
+    LDA.B (DP_SamusTilesDefinition)
+    STA.W $4312
+    STA.B DP_Temp14
+    LDA.B (DP_SamusTilesDefinition),Y
+    STA.W $4314
+    INY
+    LDA.B (DP_SamusTilesDefinition),Y
+    STA.W $4315
+    CLC
+    ADC.B DP_Temp14
+    STA.B DP_Temp14
+    INY
+    INY
+    STX.W $420B
+    LDA.W #$6180
+    STA.W $2116
+    LDA.B DP_Temp14
+    STA.W $4312
+    LDA.B (DP_SamusTilesDefinition),Y
+    BEQ .doneSamusTiles
+    STA.W $4315
+    STX.W $420B
+
+  .doneSamusTiles:
+; Process animated tiles object VRAM transfers
+    LDA.W AnimatedTilesObject_Enable
+    BPL .doneAnimatedTiles
+    LDX.B #.doneSamusTiles>>16
+    PHX
+    PLB
+    LDX.B #$0A
+
+  .loopAnimatedTiles:
+    LDA.W AnimatedTilesObject_IDs,X
+    BEQ .nextAnimatedTiles
+    LDA.W AnimatedTilesObject_SrcAddr,X
+    BEQ .nextAnimatedTiles
+    STA.W $4302
+    LDY.B #$87
+    STY.W $4304
+    LDA.W #$1801
+    STA.W $4300
+    LDA.W AnimatedTilesObject_Sizes,X
+    STA.W $4305
+    LDA.W AnimatedTilesObject_VRAMAddr,X
+    STA.W $2116
+    LDY.B #$80
+    STY.W $2115
+    LDY.B #$01
+    STY.W $420B
+    STZ.W AnimatedTilesObject_SrcAddr,X
+
+  .nextAnimatedTiles:
+    DEX
+    DEX
+    BPL .loopAnimatedTiles
+
+  .doneAnimatedTiles:
+    PLB
+; Update IO registers
+    LDX.B DP_IRQAutoJoy
+    STX.W $4200
+    LDX.B DP_Brightness
+    STX.W $2100
+    LDX.B DP_SpriteSizeAddr
+    STX.W $2101
+    LDX.B DP_BGModeSize
+    STX.W $2105
+    LDX.B DP_Mosaic
+    STX.W $2106
+    LDX.B DP_BG1TilemapAddrSize
+    STX.W $2107
+    LDX.B DP_BG2TilemapAddrSize
+    STX.W $2108
+    LDX.B DP_BG3TilemapAddrSize
+    STX.W $2109
+    LDX.B DP_BG4TilemapAddrSize
+    STX.W $210A
+    LDX.B DP_BGTilesAddr
+    STX.W $210B
+    LDX.B DP_BGTilesAddr+1
+    STX.W $210C
+    LDX.B DP_Mode7Settings
+    STX.W $211A
+    LDX.B DP_WindowMaskBG12
+    STX.W $2123
+    LDX.B DP_WindowMaskBG34
+    STX.W $2124
+    LDX.B DP_WindowMaskSprite
+    STX.W $2125
+    LDX.B DP_Window1Left
+    STX.W $2126
+    LDX.B DP_Window1Right
+    STX.W $2127
+    LDX.B DP_Window2Left
+    STX.W $2128
+    LDX.B DP_Window2Right
+    STX.W $2129
+    LDX.B DP_Window12BGMaskLogic
+    STX.W $212A
+    LDX.B DP_Window12SpriteMaskLogic
+    STX.W $212B
+    LDX.B DP_MainScreenLayers
+    STX.B DP_GameplayMainScreenLayers
+    STX.W $212C
+    LDX.B DP_WindowAreaMainScreen
+    STX.W $212E
+    LDX.B DP_SubScreenLayers
+    STX.W $212D
+    LDX.B DP_WindowAreaSubScreen
+    STX.W $212F
+    LDX.B DP_ColorMathA
+    STX.W $2130
+    LDX.B DP_ColorMathB
+    STX.W $2131
+    LDX.B DP_NextGameplayColorMathA
+    STX.B DP_GameplayColorMathA
+    LDX.B DP_NextGameplayColorMathB
+    STX.B DP_GameplayColorMathB
+    LDX.B DP_ColorMathSubScreenBackdropColor0
+    STX.W $2132
+    LDX.B DP_ColorMathSubScreenBackdropColor1
+    STX.W $2132
+    LDX.B DP_ColorMathSubScreenBackdropColor2
+    STX.W $2132
+    LDX.B DP_DisplayResolution
+    STX.W $2133
+    LDX.B DP_BG1XScroll
+    STX.W $210D
+    LDX.B DP_BG1XScroll+1
+    STX.W $210D
+    LDX.B DP_BG1YScroll
+    STX.W $210E
+    LDX.B DP_BG1YScroll+1
+    STX.W $210E
+    LDX.B DP_BG2XScroll
+    STX.W $210F
+    LDX.B DP_BG2XScroll+1
+    STX.W $210F
+    LDX.B DP_BG2YScroll
+    STX.W $2110
+    LDX.B DP_BG2YScroll+1
+    STX.W $2110
+    LDX.B DP_BG3XScroll
+    STX.W $2111
+    LDX.B DP_BG3XScroll+1
+    STX.W $2111
+    LDX.B DP_BG3YScroll
+    STX.W $2112
+    LDX.B DP_BG3YScroll+1
+    STX.W $2112
+    LDX.B DP_BG4XScroll
+    STX.W $2113
+    LDX.B DP_BG4XScroll+1
+    STX.W $2113
+    LDX.B DP_BG4YScroll
+    STX.W $2114
+    LDX.B DP_BG4YScroll+1
+    STX.W $2114
+    LDX.B DP_FakeBGModeSize
+    STX.W $07EC
+    LDA.B DP_BGModeSize
+    AND.W #$0007
+    CMP.W #$0007
+    BEQ .mode7Registers
+    LDA.B DP_FakeBGModeSize
+    AND.W #$0007
+    CMP.W #$0007
+    BNE .doneMode7Registers
+
+  .mode7Registers:
+    LDX.B DP_Mode7TransMatrixA
+    STX.W $211B
+    LDX.B DP_Mode7TransMatrixA+1
+    STX.W $211B
+    LDX.B DP_Mode7TransMatrixB
+    STX.W $211C
+    LDX.B DP_Mode7TransMatrixB+1
+    STX.W $211C
+    LDX.B DP_Mode7TransMatrixC
+    STX.W $211D
+    LDX.B DP_Mode7TransMatrixC+1
+    STX.W $211D
+    LDX.B DP_Mode7TransMatrixD
+    STX.W $211E
+    LDX.B DP_Mode7TransMatrixD+1
+    STX.W $211E
+    LDX.B DP_Mode7TransOriginX
+    STX.W $211F
+    LDX.B DP_Mode7TransOriginX+1
+    STX.W $211F
+    LDX.B DP_Mode7TransOriginY
+    STX.W $2120
+    LDX.B DP_Mode7TransOriginY+1
+    STX.W $2120
+
+  .doneMode7Registers:
     LDX.B #$00                                                           ;8095AA;
 
   .handleHDMAQueue:
@@ -3242,26 +2792,362 @@ NMI:
     BEQ .mode7Enabled                                                    ;8095C4;
     LDX.B DP_FakeBGModeSize                                              ;8095C6;
     CPX.B #$07                                                           ;8095C8;
-    BNE .mode7Disabled                                                   ;8095CA;
+    BEQ .mode7Enabled
 
   .mode7Enabled:
-    JSL.L HandleMode7Transfers                                           ;8095CC;
+    REP #$10
+    LDX.W Mode7Stack
+    BNE .mode7Transfers
+    JMP.W .mode7Disabled
+
+  .mode7Transfers
+    LDX.W #Mode7Transfer.control
+
+  .loopMode7Transfers:
+; Process mode 7 transfers
+    SEP #$20
+    LDA.W $0000,X
+    BPL .doneMode7Transfers
+
+  .VRAM:
+    ASL
+    BMI .VRAMTiles
+    LSR
+    AND.B #$1F
+    STA.W $4310
+    LDY.W $0001,X
+    STY.W $4312
+    LDA.W $0003,X
+    STA.W $4314
+    LDY.W $0004,X
+    STY.W $4315
+    LDA.B #$18
+    STA.W $4311
+    LDY.W $0006,X
+    STY.W $2116
+    LDA.W $0008,X
+    STA.W $2115
+    LDA.B #$02
+    STA.W $420B
+    REP #$21                                                             ; carry clear
+    TXA
+    ADC.W #$0009
+    TAX
+    BRA .loopMode7Transfers
+
+  .VRAMTiles:
+    LSR
+    AND.B #$1F
+    STA.W $4310
+    LDY.W $0001,X
+    STY.W $4312
+    LDA.W $0003,X
+    STA.W $4314
+    LDY.W $0004,X
+    STY.W $4315
+    LDA.B #$19
+    STA.W $4311
+    LDY.W $0006,X
+    STY.W $2116
+    LDA.W $0008,X
+    STA.W $2115
+    LDA.B #$02
+    STA.W $420B
+    REP #$21                                                             ; clear carry
+    TXA
+    ADC.W #$0009
+    TAX
+    BRA .loopMode7Transfers
+
+  .doneMode7Transfers
+    REP #$20
+    STZ.W Mode7Transfer.control
+    STZ.W Mode7Stack
 
   .mode7Disabled:
-    JSL.L HandleVRAMWriteTable_ScrollingDMAs                             ;8095D0;
-    JSL.L HandleVRAMReadTable                                            ;8095D4;
-    SEP #$10                                                             ;8095D8;
-    REP #$20                                                             ;8095DA;
+; Handle VRAM write table and scrolling DMAs
+    LDX.W VRAMWriteStack
+    BEQ .doneVRAMWriteUpper
+    STZ.B VRAMWrite.size,X
+    LDA.W #$1801
+    STA.W $4310
+    LDY.W #$0000
+
+  .loopVRAMWrite:
+    LDA.W VRAMWrite.size,Y
+    BEQ .doneVRAMWriteUpper
+    STA.W $4315
+    LDA.W VRAMWrite.src,Y
+    STA.W $4312
+    LDA.W VRAMWrite.src+1,Y
+    STA.W $4313
+    LDA.W #$0080
+    LDX.B VRAMWrite.dest,Y
+    BPL .skipVRAMWrite
+    INC
+
+  .skipVRAMWrite:
+    STA.W $2115
+    STX.W $2116
+    SEP #$20
+    LDA.B #$02
+    STA.W $420B
+    REP #$20
+    TYA
+    CLC
+    ADC.W #$0007
+    TAY
+    BRA .loopVRAMWrite
+
+  .doneVRAMWriteUpper:
+    STZ.W VRAMWriteStack
+    SEP #$20
+    REP #$10
+; Execute horizontal scrolling DMAs
+    LDA.B #$81
+    STA.W $2115
+    LDA.W BG1Col_updateVRAMTilemapFlag
+    BEQ .horizontalBG2
+    STZ.W BG1Col_updateVRAMTilemapFlag
+    LDY.W BG1Col_unwrappedTilemapVRAMUpdateDest
+    STY.W $2116
+    LDX.W #$1801
+    STX.W $4310
+    LDX.W #BG1ColumnUpdateTilemapLeftHalves
+    STX.W $4312
+    LDA.B #$7E
+    STA.W $4314
+    LDX.W BG1Col_unwrappedTilemapVRAMUpdateSize
+    STX.W $4315
+    LDA.B #$02
+    STA.W $420B
+    INY
+    STY.W $2116
+    STX.W $4315
+    LDX.W #BG1ColumnUpdateTilemapRightHalves
+    STX.W $4312
+    LDA.B #$02
+    STA.W $420B
+    LDX.W BG1Col_wrappedTilemapVRAMUpdateLeftHalvesSrc
+    STX.W $4312
+    LDX.W BG1Col_wrappedTilemapVRAMUpdateSize
+    BEQ .horizontalBG2
+    STX.W $4315
+    LDY.W BG1Col_wrappedTilemapVRAMUpdateDest
+    STY.W $2116
+    LDA.B #$02
+    STA.W $420B
+    INY
+    STY.W $2116
+    STX.W $4315
+    LDX.W BG1Col_wrappedTilemapVRAMUpdateRightHalvesSrc
+    STX.W $4312
+    LDA.B #$02
+    STA.W $420B
+
+  .horizontalBG2:
+    LDA.W BG2Col_updateVRAMTilemapFlag
+    BEQ .verticalScrollingDMAs
+    STZ.W BG2Col_updateVRAMTilemapFlag
+    LDY.W BG2Col_unwrappedTilemapVRAMUpdateDest
+    STY.W $2116
+    LDX.W #$1801
+    STX.W $4310
+    LDX.W #BG2ColumnUpdateTilemapLeftHalves
+    STX.W $4312
+    LDA.B #$7E
+    STA.W $4314
+    LDX.W BG2Col_unwrappedTilemapVRAMUpdateSize
+    STX.W $4315
+    LDA.B #$02
+    STA.W $420B
+    INY
+    STY.W $2116
+    STX.W $4315
+    LDX.W #BG2ColumnUpdateTilemapRightHalves
+    STX.W $4312
+    LDA.B #$02
+    STA.W $420B
+    LDX.W BG2Col_wrappedTilemapVRAMUpdateLeftHalvesSrc
+    STX.W $4312
+    LDX.W BG2Col_wrappedTilemapVRAMUpdateSize
+    BEQ .verticalScrollingDMAs
+    STX.W $4315
+    LDY.W BG2Col_wrappedTilemapVRAMUpdateDest
+    STY.W $2116
+    LDA.B #$02
+    STA.W $420B
+    INY
+    STY.W $2116
+    STX.W $4315
+    LDX.W BG2Col_wrappedTilemapVRAMUpdateRightHalvesSrc
+    STX.W $4312
+    LDA.B #$02
+    STA.W $420B
+
+  .verticalScrollingDMAs:
+; Execute vertical scrolling DMAs
+    LDA.B #$80
+    STA.W $2115
+    LDA.W BG1Row_updateVRAMTilemapFlag
+    BEQ .verticalBG2
+    STZ.W BG1Row_updateVRAMTilemapFlag
+    LDY.W BG1Row_unwrappedTilemapVRAMUpdateDest
+    STY.W $2116
+    LDX.W #$1801
+    STX.W $4310
+    LDX.W #BG1RowUpdateTilemapTopHalves
+    STX.W $4312
+    LDA.B #$7E
+    STA.W $4314
+    LDX.W BG1Row_unwrappedTilemapVRAMUpdateSize
+    STX.W $4315
+    LDA.B #$02
+    STA.W $420B
+    REP #$20
+    TYA
+    ORA.W #$0020
+    STA.W $2116
+    SEP #$20
+    STX.W $4315
+    LDX.W #BG1RowUpdateTilemapBottomHalves
+    STX.W $4312
+    LDA.B #$02
+    STA.W $420B
+    LDX.W BG1Row_wrappedTilemapVRAMUpdateLeftHalvesSrc
+    STX.W $4312
+    LDX.W BG1Row_wrappedTilemapVRAMUpdateSize
+    BEQ .verticalBG2
+    STX.W $4315
+    LDY.W BG1Row_wrappedTilemapVRAMUpdateDest
+    STY.W $2116
+    LDA.B #$02
+    STA.W $420B
+    REP #$20
+    TYA
+    ORA.W #$0020
+    STA.W $2116
+    SEP #$20
+    STX.W $4315
+    LDX.W BG1Row_wrappedTilemapVRAMUpdateRightHalvesSrc
+    STX.W $4312
+    LDA.B #$02
+    STA.W $420B
+
+  .verticalBG2:
+    LDA.W BG2Row_updateVRAMTilemapFlag
+    BEQ .doneVRAMWrite
+    STZ.W BG2Row_updateVRAMTilemapFlag
+    LDY.W BG2Row_unwrappedTilemapVRAMUpdateDest
+    STY.W $2116
+    LDX.W #$1801
+    STX.W $4310
+    LDX.W #BG2RowUpdateTilemapTopHalves
+    STX.W $4312
+    LDA.B #$7E
+    STA.W $4314
+    LDX.W BG2Row_unwrappedTilemapVRAMUpdateSize
+    STX.W $4315
+    LDA.B #$02
+    STA.W $420B
+    REP #$20
+    TYA
+    ORA.W #$0020
+    STA.W $2116
+    SEP #$20
+    STX.W $4315
+    LDX.W #BG2RowUpdateTilemapBottomHalves
+    STX.W $4312
+    LDA.B #$02
+    STA.W $420B
+    LDX.W BG2Row_wrappedTilemapVRAMUpdateLeftHalvesSrc
+    STX.W $4312
+    LDX.W BG2Row_wrappedTilemapVRAMUpdateSize
+    BEQ .doneVRAMWrite
+    STX.W $4315
+    LDY.W BG2Row_wrappedTilemapVRAMUpdateDest
+    STY.W $2116
+    LDA.B #$02
+    STA.W $420B
+    REP #$20
+    TYA
+    ORA.W #$0020
+    STA.W $2116
+    SEP #$20
+    STX.W $4315
+    LDX.W BG2Row_wrappedTilemapVRAMUpdateRighttHalvesSrc
+    STX.W $4312
+    LDA.B #$02
+    STA.W $420B
+
+  .doneVRAMWrite:
+; Handle VRAM read table
+    SEP #$10
+    REP #$20
+    LDX.B #$00
+    LDA.W VRAMRead.src,X
+    BEQ .doneVRAM
+    LDX.B #$00
+    STA.W $2116
+    LDA.W $2139
+    LDA.W VRAMRead.control,X
+    STA.W $4310
+    LDA.W VRAMRead.dest,X
+    STA.W $4312
+    LDA.W VRAMRead.dest+1,X
+    STA.W $4313
+    LDA.W VRAMRead.size,X
+    STA.W $4315
+    STZ.W $4317
+    STZ.W $4319
+    LDX.B #$80
+    STX.W $2115
+    LDX.B #$02
+    STX.W $420B
+    STZ.W VRAMReadStack
+
+  .doneVRAM
     LDX.B DP_HDMAEnable                                                  ;8095DC;
     STX.W $420C                                                          ;8095DE;
-    JSL.L ReadControllerInput                                            ;8095E1;
-    LDX.B #$00                                                           ;8095E5;
-    STX.W NMI_Request                                                    ;8095E7;
-    STX.W NMI_LagCounter                                                 ;8095EA;
+    SEP #$30
+    STZ.W NMI_Request                                                    ;8095E7;
+    STZ.W NMI_LagCounter                                                 ;8095EA;
     LDX.W NMI_8bitFrameCounter                                           ;8095ED;
     INX                                                                  ;8095F0;
     STX.W NMI_8bitFrameCounter                                           ;8095F1;
     INC.W NMI_FrameCounter                                               ;8095F4;
+
+  .waitAutoJoy:
+; Read controller input
+; This is executed at the end of NMI because auto-joypad read is only guaranteed to be executed at some point in the middle of the first scanline of v-blank,
+; and then we need to wait ~3 scanlines for the joypad to finish reading
+    LDA.W $4212
+    AND.B #$01
+    BNE .waitAutoJoy
+    REP #$20
+    LDA.W $4218
+    STA.B DP_Controller1Input
+    EOR.B DP_Controller1Prev
+    AND.B DP_Controller1Input
+    STA.B DP_Controller1New
+    LDA.B DP_Controller1Input
+    BEQ .unheld
+    CMP.B DP_Controller1Prev
+    BNE .unheld
+    DEC.B DP_Controller1AutoPressTimer
+    BNE .heldEnd
+    LDA.B DP_Controller1Input
+    LDA.B DP_AutoPressSubsequentDelay
+    STA.B DP_Controller1AutoPressTimer
+    BRA .heldEnd
+
+  .unheld:
+    LDA.B DP_AutoPressInitialDelay
+    STA.B DP_Controller1AutoPressTimer
+
+  .heldEnd:
+    LDA.B DP_Controller1Input
+    STA.B DP_Controller1Prev
 
   .return:
     REP #$30                                                             ;8095F7;
@@ -3281,7 +3167,14 @@ NMI:
     CPX.W NMI_MaximumLag                                                 ;80960C;
     BCC .return                                                          ;80960F;
     STX.W NMI_MaximumLag                                                 ;809611;
-    BRA .return                                                          ;809614;
+    REP #$30
+    INC.W NMI_Counter
+    PLY
+    PLX
+    PLA
+    PLD
+    PLB
+    RTI
 
 
 ;;; $9616: Interrupt command pointers ;;;
@@ -3375,11 +3268,10 @@ Interrupt_Cmd4_MainGameplay_BeginHUDDrawing:
     SEP #$20                                                             ;80968B;
     LDA.B #$5A                                                           ;80968D;
     STA.W $2109                                                          ;80968F;
-    STZ.W $2130                                                          ;809692;
-    STZ.W $2131                                                          ;809695;
     LDA.B #$04                                                           ;809698;
     STA.W $212C                                                          ;80969A;
     REP #$20                                                             ;80969D;
+    STZ.W $2130
     LDA.W #$0006                                                         ;80969F;
     LDY.W #$001F                                                         ;8096A2;
     LDX.W #$0098                                                         ;8096A5;
@@ -3392,11 +3284,9 @@ Interrupt_Cmd6_MainGameplay_EndHUDDrawing:
 ;;     A: Interrupt command
 ;;     X: IRQ h-counter target
 ;;     Y: IRQ v-counter target
-    SEP #$20                                                             ;8096A9;
     LDA.B DP_GameplayColorMathA                                          ;8096AB;
     STA.W $2130                                                          ;8096AD;
-    LDA.B DP_GameplayColorMathB                                          ;8096B0;
-    STA.W $2131                                                          ;8096B2;
+    SEP #$20
     LDA.B DP_GameplayBG1TilemapAddrSize                                  ;8096B5;
     STA.W $2109                                                          ;8096B7;
     LDA.B DP_GameplayMainScreenLayers                                    ;8096BA;
@@ -3411,6 +3301,7 @@ Interrupt_Cmd6_MainGameplay_EndHUDDrawing:
     LDA.W #$0004                                                         ;8096C9;
 
   .return:
+    REP #$20                                                             ;8096BF;
     LDY.W #$0000                                                         ;8096CC;
     LDX.W #$0098                                                         ;8096CF;
     RTS                                                                  ;8096D2;
@@ -3427,9 +3318,8 @@ Interrupt_Cmd8_StartDoorTransition_BeginHUDDrawing:
     STA.W $2109                                                          ;8096D7;
     LDA.B #$04                                                           ;8096DA;
     STA.W $212C                                                          ;8096DC;
-    STZ.W $2130                                                          ;8096DF;
-    STZ.W $2131                                                          ;8096E2;
-    REP #$20                                                             ;8096E5;
+    REP #$20
+    STZ.W $2130
     LDA.W #$000A                                                         ;8096E7;
     LDY.W #$001F                                                         ;8096EA;
     LDX.W #$0098                                                         ;8096ED;
@@ -3455,7 +3345,7 @@ Interrupt_CmdA_StartDoorTransition_EndHUDDrawing:
 
   .sprites:
     STA.W $212C                                                          ;809703;
-    REP #$20                                                             ;809706;
+    REP #$20
     LDA.B DP_NextIRQCmd                                                  ;809708;
     BEQ .command8                                                        ;80970A;
     STZ.B DP_NextIRQCmd                                                  ;80970C;
@@ -3481,9 +3371,8 @@ Interrupt_CmdC_Draygon_BeginHUDDrawing:
     SEP #$20                                                             ;80971A;
     LDA.B #$04                                                           ;80971C;
     STA.W $212C                                                          ;80971E;
-    STZ.W $2130                                                          ;809721;
-    STZ.W $2131                                                          ;809724;
-    REP #$20                                                             ;809727;
+    REP #$20
+    STZ.W $2130
     LDA.W #$000E                                                         ;809729;
     LDY.W #$001F                                                         ;80972C;
     LDX.W #$0098                                                         ;80972F;
@@ -3501,20 +3390,18 @@ Interrupt_CmdE_Draygon_EndHUDDrawing:
     SEP #$20                                                             ;809733;
     LDA.B DP_GameplayBG1TilemapAddrSize                                  ;809735;
     STA.W $2109                                                          ;809737;
-    LDA.B DP_GameplayColorMathA                                          ;80973A;
-    STA.W $2130                                                          ;80973C;
-    LDA.B DP_GameplayColorMathB                                          ;80973F;
-    STA.W $2131                                                          ;809741;
-    REP #$20                                                             ;809744;
+    REP #$20
     LDA.B DP_NextIRQCmd                                                  ;809746;
     BEQ .commandC                                                        ;809748;
     STZ.B DP_NextIRQCmd                                                  ;80974A;
     BRA .return                                                          ;80974C;
 
   .commandC:
-    LDA.W #$000C                                                         ;80974E;
+    LDA.W #$000C                                                           ;80974E;
 
   .return:
+    LDA.B DP_GameplayColorMathA
+    STA.W $2130
     LDY.W #$0000                                                         ;809751;
     LDX.W #$0098                                                         ;809754;
     RTS                                                                  ;809757;
@@ -3529,10 +3416,9 @@ Interrupt_Cmd10_VerticalDoorTransition_BeginHUDDrawing:
     SEP #$20                                                             ;809758;
     LDA.B #$04                                                           ;80975A;
     STA.W $212C                                                          ;80975C;
-    STZ.W $2130                                                          ;80975F;
-    STZ.W $2131                                                          ;809762;
-    REP #$20                                                             ;809765;
-    LDA.W #$0012                                                         ;809767;
+    REP #$20
+    LDA.W #$0012
+    STZ.W $2130
     LDY.W #$001F                                                         ;80976A;
     LDX.W #$0098                                                         ;80976D;
     RTS                                                                  ;809770;
@@ -3567,9 +3453,8 @@ Interrupt_Cmd12_VerticalDoorTransition_EndHUDDrawing:
 
   .sprites:
     STA.W $212C                                                          ;809783;
-    STZ.W $2130                                                          ;809786;
-    STZ.W $2131                                                          ;809789;
-    REP #$20                                                             ;80978C;
+    REP #$20
+    STZ.W $2130
     LDX.W DoorTransitionVRAM_Flag                                        ;80978E;
     BPL .scrolling                                                       ;809791;
     JSR.W ExecuteDoorTransitionVRAMUpdate                                ;809793;
@@ -3603,8 +3488,7 @@ Interrupt_Cmd14_VerticalDoorTransition_EndDrawing:
   .return:
     LDY.W #$0000                                                         ;8097B4;
     LDX.W #$0098                                                         ;8097B7;
-    STZ.W NMI_Request                                                    ;8097BA;
-    INC.W NMI_Request                                                    ;8097BD;
+    STA.W NMI_Request
     RTS                                                                  ;8097C0;
 
 
@@ -3617,10 +3501,9 @@ Interrupt_Cmd16_HorizontalDoorTransition_BeginHUDDrawing:
     SEP #$20                                                             ;8097C1;
     LDA.B #$04                                                           ;8097C3;
     STA.W $212C                                                          ;8097C5;
-    STZ.W $2130                                                          ;8097C8;
-    STZ.W $2131                                                          ;8097CB;
-    REP #$20                                                             ;8097CE;
-    LDA.W #$0018                                                         ;8097D0;
+    REP #$20
+    LDA.W #$0018
+    STZ.W $2130
     LDY.W #$001F                                                         ;8097D3;
     LDX.W #$0098                                                         ;8097D6;
     RTS                                                                  ;8097D9;
@@ -3655,9 +3538,8 @@ Interrupt_Cmd18_HorizontalDoorTransition_EndHUDDrawing:
 
   .sprites:
     STA.W $212C                                                          ;8097EC;
-    STZ.W $2130                                                          ;8097EF;
-    STZ.W $2131                                                          ;8097F2;
     REP #$20                                                             ;8097F5;
+    STZ.W $2130
     LDA.W DoorTransitionFinishScrolling                                  ;8097F7;
     BMI .return                                                          ;8097FA;
     JSL.L DoorTransitionScrolling                                        ;8097FC;
@@ -3691,61 +3573,13 @@ Interrupt_Cmd1A_HorizontalDoorTransition_EndDrawing:
   .return:
     LDY.W #$0000                                                         ;80981D;
     LDX.W #$0098                                                         ;809820;
-    STZ.W NMI_Request                                                    ;809823;
-    INC.W NMI_Request                                                    ;809826;
+    STA.W NMI_Request
     RTS                                                                  ;809829;
-
-
-;;; $982A: Enable h/v-counter interrupts ;;;
-EnableHVCounterInterrupts:
-; Used to enable HUD drawing when starting/resuming gameplay
-    PHP                                                                  ;80982A;
-    REP #$30                                                             ;80982B;
-    LDA.W #$0000                                                         ;80982D;
-    STA.W $4209                                                          ;809830;
-    LDA.W #$0098                                                         ;809833;
-    STA.W $4207                                                          ;809836;
-    LDA.W #$0030                                                         ;809839;
-    TSB.B DP_IRQAutoJoy                                                  ;80983C;
-    PLP                                                                  ;80983E;
-    CLI                                                                  ;80983F;
-    RTL                                                                  ;809840;
-
-
-;;; $9841: Enable h/v-counter interrupts now ;;;
-EnableHVCounterInterruptsNow:
-; Used to enable HUD drawing and door transition scrolling in door transition code
-    PHP                                                                  ;809841;
-    REP #$30                                                             ;809842;
-    LDA.W #$0000                                                         ;809844;
-    STA.W $4209                                                          ;809847;
-    LDA.W #$0098                                                         ;80984A;
-    STA.W $4207                                                          ;80984D;
-    LDA.W #$0030                                                         ;809850;
-    TSB.B DP_IRQAutoJoy                                                  ;809853;
-    SEP #$20                                                             ;809855;
-    LDA.B DP_IRQAutoJoy                                                  ;809857;
-    STA.W $4200                                                          ;809859;
-    PLP                                                                  ;80985C;
-    CLI                                                                  ;80985D;
-    RTL                                                                  ;80985E;
-
-
-;;; $985F: Disable h/v-counter interrupts ;;;
-DisableHVCounterInterrupts:
-; Used to disable HUD drawing when ending gameplay
-    PHP                                                                  ;80985F;
-    REP #$30                                                             ;809860;
-    LDA.W #$0030                                                         ;809862;
-    TRB.B DP_IRQAutoJoy                                                  ;809865;
-    PLP                                                                  ;809867;
-    SEI                                                                  ;809868;
-    RTL                                                                  ;809869;
 
 
 ;;; $986A: IRQ ;;;
 IRQ:
-; The first instruction of the routine called by the JSR (e.g. $966E) is executed 79 dots later than the IRQ h-counter target
+; The first instruction of the routine called by the JSR (e.g. Interrupt_Cmd0) is executed 79 dots later than the IRQ h-counter target
 ; All of the (non-trivial) interrupt commands set IRQ h-counter = 98h, so that's 98h + 79 = 231 dots into the drawing period of the current scanline
 ; Also note that the IRQ timing is a bit loose. For the h-counter target 98h,
 ; I've seen the IRQ fire at all different points in the range 95h..A3h on different frames (according to Mesen-S event viewer)
@@ -4776,7 +4610,6 @@ Spritemap_Timer_TIME:
 StartGameplay:
 ; Called by:
 ;     $82:8000: Game state 6/1Fh/28h (loading game data / set up new game / load demo game data)
-    PHP                                                                  ;80A07B;
     PHB                                                                  ;80A07C;
     PHK                                                                  ;80A07D;
     PLB                                                                  ;80A07E;
@@ -4796,7 +4629,9 @@ StartGameplay:
     STA.W $4200
     STA.B DP_IRQAutoJoy
     REP #$20
-    JSL.L DisableHVCounterInterrupts                                     ;80A09F;
+    LDA.W #$0030
+    TRB.B DP_IRQAutoJoy
+    SEI
     JSL.L Load_Destination_Room                                          ;80A0A3;
     JSR.W HandleMusicQueueFor20Frames                                    ;80A0A7;
     LDX.W #$000A
@@ -4868,7 +4703,6 @@ StartGameplay:
     LDA.W #DoorTransitionFunction_FadeInTheScreen_and_RunEnemies_Finish  ;80A122;
     STA.W DoorTransitionFunction                                         ;80A125;
     PLB                                                                  ;80A128;
-    PLP                                                                  ;80A129;
     RTL                                                                  ;80A12A;
 
 
@@ -4920,7 +4754,9 @@ ResumeGameplay:
     STA.W $4200
     STA.B DP_IRQAutoJoy
     REP #$20
-    JSL.L DisableHVCounterInterrupts                                     ;80A157;
+    LDA.W #$0030
+    TRB.B DP_IRQAutoJoy
+    SEI
     JSL.L Load_CRETiles_TilesetTiles_and_TilesetPalette_DB_8F            ;80A15B;
     JSL.L LoadLibraryBackground_LoadingPausing                           ;80A15F;
     JSL.L DisplayViewablePartOfRoom                                      ;80A163;
@@ -5565,20 +5401,12 @@ HandleScrollZones_HorizontalAutoscrolling:
 ;     If ProposedScrolledLayer1Position  >= PositionOfScrollBoundary and layer 1 position + 1/2 scroll down's scroll = red:
 ;         Layer 1 X position = ProposedScrolledLayer1Position  rounded to right scroll boundary
 ; }
-    PHP                                                                  ;80A528;
-    PHB                                                                  ;80A529;
-    SEP #$20                                                             ;80A52A;
     LDA.W TimeIsFrozenFlag                                               ;80A52C;
     ORA.W TimeIsFrozenFlag+1                                             ;80A52F;
     BEQ +                                                                ;80A532;
     JMP.W .return                                                        ;80A534;
 
-
-+   LDA.B #$8F                                                           ;80A537;
-    PHA                                                                  ;80A539;
-    PLB                                                                  ;80A53A;
-    REP #$30                                                             ;80A53B;
-    LDA.W Layer1XPosition                                                ;80A53D;
++   LDA.W Layer1XPosition                                                ;80A53D;
     STA.W ProposedScrolledLayer1Position                                 ;80A540;
     BPL +                                                                ;80A543;
     STZ.W Layer1XPosition                                                ;80A545;
@@ -5697,8 +5525,6 @@ HandleScrollZones_HorizontalAutoscrolling:
 +   STA.W Layer1XPosition                                                ;80A63B;
 
   .return:
-    PLB                                                                  ;80A63E;
-    PLP                                                                  ;80A63F;
     RTL                                                                  ;80A640;
 
 
@@ -5706,13 +5532,6 @@ HandleScrollZones_HorizontalAutoscrolling:
 HandleScrollZones_ScrollingRight:
 ; Called by:
 ;     $90:95A0: Handle horizontal scrolling
-    PHP                                                                  ;80A641;
-    PHB                                                                  ;80A642;
-    SEP #$20                                                             ;80A643;
-    LDA.B #$8F                                                           ;80A645;
-    PHA                                                                  ;80A647;
-    PLB                                                                  ;80A648;
-    REP #$30                                                             ;80A649;
     LDA.W Layer1XPosition                                                ;80A64B;
     STA.W ProposedScrolledLayer1Position                                 ;80A64E;
     LDA.W IdealLayer1XPosition                                           ;80A651;
@@ -5761,8 +5580,6 @@ HandleScrollZones_ScrollingRight:
 +   STA.W Layer1XPosition                                                ;80A6B5;
 
   .return:
-    PLB                                                                  ;80A6B8;
-    PLP                                                                  ;80A6B9;
     RTL                                                                  ;80A6BA;
 
 
@@ -5770,13 +5587,6 @@ HandleScrollZones_ScrollingRight:
 HandleScrollZones_ScrollingLeft:
 ; Called by:
 ;     $90:95A0: Handle horizontal scrolling
-    PHP                                                                  ;80A6BB;
-    PHB                                                                  ;80A6BC;
-    SEP #$20                                                             ;80A6BD;
-    LDA.B #$8F                                                           ;80A6BF;
-    PHA                                                                  ;80A6C1;
-    PLB                                                                  ;80A6C2;
-    REP #$30                                                             ;80A6C3;
     LDA.W Layer1XPosition                                                ;80A6C5;
     STA.W ProposedScrolledLayer1Position                                 ;80A6C8;
     CMP.W IdealLayer1XPosition                                           ;80A6CB;
@@ -5823,8 +5633,6 @@ HandleScrollZones_ScrollingLeft:
 +   STA.W Layer1XPosition                                                ;80A72B;
 
   .return:
-    PLB                                                                  ;80A72E;
-    PLP                                                                  ;80A72F;
     RTL                                                                  ;80A730;
 
 
@@ -5863,19 +5671,12 @@ HandleScrollZones_VerticalAutoscrolling:
 ;             Layer 1 Y position = ProposedScrolledLayer1Position  rounded to right bottom boundary
 ;     }
 ; }
-    PHP                                                                  ;80A731;
-    PHB                                                                  ;80A732;
-    SEP #$20                                                             ;80A733;
     LDA.W TimeIsFrozenFlag                                               ;80A735;
     ORA.W TimeIsFrozenFlag+1                                             ;80A738;
     BEQ +                                                                ;80A73B;
     JMP.W .return                                                        ;80A73D;
 
-+   LDA.B #$8F                                                           ;80A740;
-    PHA                                                                  ;80A742;
-    PLB                                                                  ;80A743;
-    REP #$30                                                             ;80A744;
-    LDY.W #$0000                                                         ;80A746;
++   LDY.W #$0000                                                         ;80A746;
     SEP #$20                                                             ;80A749;
     LDA.W Layer1YPosition+1                                              ;80A74B;
     STA.W $4202                                                          ;80A74E;
@@ -6026,8 +5827,6 @@ HandleScrollZones_VerticalAutoscrolling:
     STA.W Layer1YPosition                                                ;80A88D;
 
   .return:
-    PLB                                                                  ;80A890;
-    PLP                                                                  ;80A891;
     RTL                                                                  ;80A892;
 
 
@@ -6035,13 +5834,6 @@ HandleScrollZones_VerticalAutoscrolling:
 HandleScrollZones_ScrollingDown:
 ; Called by:
 ;     $90:964F: Handle vertical scrolling
-    PHP                                                                  ;80A893;
-    PHB                                                                  ;80A894;
-    SEP #$20                                                             ;80A895;
-    LDA.B #$8F                                                           ;80A897;
-    PHA                                                                  ;80A899;
-    PLB                                                                  ;80A89A;
-    REP #$30                                                             ;80A89B;
     LDA.W Layer1YPosition                                                ;80A89D;
     STA.W ProposedScrolledLayer1Position                                 ;80A8A0;
     LDY.W #$0000                                                         ;80A8A3;
@@ -6109,8 +5901,6 @@ HandleScrollZones_ScrollingDown:
 +   STA.W Layer1YPosition                                                ;80A930;
 
   .return:
-    PLB                                                                  ;80A933;
-    PLP                                                                  ;80A934;
     RTL                                                                  ;80A935;
 
 
@@ -6118,13 +5908,6 @@ HandleScrollZones_ScrollingDown:
 HandleScrollZones_ScrollingUp:
 ; Called by:
 ;     $90:964F: Handle vertical scrolling
-    PHP                                                                  ;80A936;
-    PHB                                                                  ;80A937;
-    SEP #$20                                                             ;80A938;
-    LDA.B #$8F                                                           ;80A93A;
-    PHA                                                                  ;80A93C;
-    PLB                                                                  ;80A93D;
-    REP #$30                                                             ;80A93E;
     LDA.W Layer1YPosition                                                ;80A940;
     STA.W ProposedScrolledLayer1Position                                 ;80A943;
     CMP.W IdealLayer1YPosition                                           ;80A946;
@@ -6171,8 +5954,6 @@ HandleScrollZones_ScrollingUp:
 +   STA.W Layer1YPosition                                                ;80A9A6;
 
   .return:
-    PLB                                                                  ;80A9A9;
-    PLP                                                                  ;80A9AA;
     RTL                                                                  ;80A9AB;
 
 

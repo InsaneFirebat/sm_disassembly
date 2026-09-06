@@ -440,7 +440,9 @@ GameState_21_BlackoutFromCeres:
     STA.B DP_IRQAutoJoy
     REP #$20                                                             ;8283AB;
     JSL.L Wait_End_VBlank_Clear_HDMA                                     ;8283AD;
-    JSL.L DisableHVCounterInterrupts                                     ;8283B1;
+    LDA.W #$0030
+    TRB.B DP_IRQAutoJoy
+    SEI
     STZ.W LayerBlending_DefaultConfig                                    ;8283B5;
     STZ.B DP_IRQCmd                                                      ;8283B8;
     SEP #$20                                                             ;8283BA;
@@ -513,7 +515,9 @@ GameState_23_TimeUpBlackOut:
     STA.B DP_IRQAutoJoy
     REP #$20                                                             ;828448;
     JSL.L Wait_End_VBlank_Clear_HDMA                                     ;82844A;
-    JSL.L DisableHVCounterInterrupts                                     ;82844E;
+    LDA.W #$0030
+    TRB.B DP_IRQAutoJoy
+    SEI
     STZ.W LayerBlending_DefaultConfig                                    ;828452;
     STZ.B DP_IRQCmd                                                      ;828455;
     SEP #$20                                                             ;828457;
@@ -572,7 +576,9 @@ GameState_26_SamusEscapesFromZebes:
     STA.B DP_IRQAutoJoy
     REP #$20                                                             ;8284D7;
     JSL.L Wait_End_VBlank_Clear_HDMA                                     ;8284D9;
-    JSL.L DisableHVCounterInterrupts                                     ;8284DD;
+    LDA.W #$0030
+    TRB.B DP_IRQAutoJoy
+    SEI
     STZ.W LayerBlending_DefaultConfig                                    ;8284E1;
     SEP #$20                                                             ;8284E4;
     STZ.B DP_NextGameplayColorMathA                                      ;8284E6;
@@ -677,7 +683,9 @@ GameState_2B_UnloadGameData:
     STZ.W ScreenFadeDelay                                                ;8285A8;
     STZ.W ScreenFadeCounter                                              ;8285AB;
     JSL.L Wait_End_VBlank_Clear_HDMA                                     ;8285AE;
-    JSL.L DisableHVCounterInterrupts                                     ;8285B2;
+    LDA.W #$0030
+    TRB.B DP_IRQAutoJoy
+    SEI
     STZ.W LayerBlending_DefaultConfig                                    ;8285B6;
     STZ.B DP_IRQCmd                                                      ;8285B9;
     STZ.B DP_NextIRQCmd                                                  ;8285BB;
@@ -2310,27 +2318,60 @@ GameState_E_Paused_LoadingPauseScreen:
 ;;; $90E8: Game state Fh (paused, map and item screens) ;;;
 GameState_F_Paused_MapAndItemScreens:
     LDA.W #$0003                                                         ;8290EB;
-    JSL.L UpdateHeldInput                                                ;8290EE;
-    JSL.L MainPauseRoutine                                               ;8290F2;
+    JSR.W UpdateHeldInput                                                ;8290EE;
+    JSR.W MainPauseRoutine                                               ;8290F2;
     JSL.L HandleHUDTilemap_PausedAndRunning                              ;8290F6;
     JSR.W Handle_PauseScreen_PaletteAnimation                            ;8290FA;
     RTS                                                                  ;8290FE;
 
 
+;;; $8146: Update held input ;;;
+UpdateHeldInput:
+;; Parameter:
+;;     A: Timed held input timer reset value ("timed held input" is input held for [A] + 1 frames)
+
+; Called by:
+;     GameState_F_Paused_MapAndItemScreens with A = 3
+
+; Held input is [$8B] & ![$8F]: the input pressed, but not newly
+    STA.W Input_TimedHeldReset                                                  ; Timed held input timer reset value = [A]
+    LDA.B DP_Controller1Input
+    STA.B DP_Temp12
+    LDA.B DP_Controller1New
+    TRB.B DP_Temp12
+    LDA.B DP_Temp12                                                             ; If held input != [previous held input]: go to .unheld
+    CMP.W Input_HeldPrev
+    STA.W Input_HeldPrev                                                        ; Previous held input = held input
+    BNE .unheld
+    DEC.W Input_TimedHeldTimer                                                  ; Decrement timed held input timer
+    BPL .positive                                                               ; If [timed held input timer] >= 0: go to .positive
+    STZ.W Input_TimedHeldTimer                                                  ; Timed held input timer = 0
+    LDX.W Input_TimedHeldInput
+    STX.W Input_TimedHeldPrev                                                   ; Previous timed held input = [timed held input]
+    STA.W Input_TimedHeldInput                                                  ; Timed held input = [held input]
+    BRA .return                                                                 ; Go to .return
+
+  .unheld:
+    LDA.W Input_TimedHeldReset
+    STA.W Input_TimedHeldTimer                                                  ; Timed held input timer = [timed held input timer reset value]
+
+  .positive:
+    STZ.W Input_TimedHeldInput                                                  ; Timed held input = 0
+
+  .return:
+    LDA.W Input_TimedHeldInput
+    EOR.W Input_TimedHeldPrev
+    AND.W Input_TimedHeldInput                                                  ; Newly held down timed held input = newly held down timed held input
+    STA.W Input_TimedHeldNew
+    RTS
+
+
 ;;; $90FF: Main pause routine ;;;
 MainPauseRoutine:
-    PHP                                                                  ;8290FF;
-    PHB                                                                  ;829100;
-    PHK                                                                  ;829101;
-    PLB                                                                  ;829102;
-    REP #$30                                                             ;829103;
     LDA.W PauseMenu_MenuIndex                                            ;829105;
     ASL                                                                  ;829108;
     TAX                                                                  ;829109;
-    JSR.W (.pointers,X)                                                  ;82910A;
-    PLB                                                                  ;82910D;
-    PLP                                                                  ;82910E;
-    RTL                                                                  ;82910F;
+    JMP.W (.pointers,X)                                                  ;82910A;
 
   .pointers:
     dw PauseMenu_0_MapScreen                                             ;829110;
@@ -2674,7 +2715,6 @@ GameState_11_Unpausing_LoadingNormalGameplay:
     TSB.W AnimatedTilesObject_Enable
     JSL.L Queue_Samus_Movement_SoundEffects                              ;829396;
     INC.W GameState                                                      ;82939C;
-    PLP                                                                  ;82939F;
     RTS                                                                  ;8293A0;
 
 
@@ -2693,6 +2733,7 @@ GameState_12_Unpausing_NormalGameplayBrightening:
     STA.W GameState                                                      ;8293BE;
 
   .return:
+    REP #$30
     RTS                                                                  ;8293C2;
 
 
@@ -10761,7 +10802,9 @@ GameState_14_DeathSequence_BlackOutSurroundings:
     RTS                                                                  ;82DCF3;
 
 +   JSL.L Wait_End_VBlank_Clear_HDMA                                     ;82DCF4;
-    JSL.L DisableHVCounterInterrupts                                     ;82DCF8;
+    LDA.W #$0030
+    TRB.B DP_IRQAutoJoy
+    SEI
     STZ.W LayerBlending_DefaultConfig                                    ;82DCFC;
     STZ.B DP_IRQCmd                                                      ;82DCFF;
     SEP #$20                                                             ;82DD01;
@@ -10880,7 +10923,6 @@ GameState_19_DeathSequence_BlackOut:
 
   .return:
     REP #$20                                                             ;82DDED;
-    PLP                                                                  ;82DDEF;
     RTS                                                                  ;82DDF0;
 
 
@@ -11059,18 +11101,25 @@ Load_State_Header:
 
 ;;; $DF69: Wait until the end of a v-blank and enable h/v-counter interrupts ;;;
 WaitUntilTheEndOfAVBlank_and_Enable_H_V_CounterInterrupts:
-    PHP                                                                  ;82DF69;
     SEP #$20                                                             ;82DF6A;
     JSL.L WaitUntilTheEndOfAVBlank                                       ;82DF6C;
     LDA.B DP_IRQAutoJoy                                                  ;82DF70;
     AND.B #$30                                                           ;82DF72;
     CMP.B #$30                                                           ;82DF74;
     BEQ .return                                                          ;82DF76;
-    JSL.L EnableHVCounterInterruptsNow                                   ;82DF78;
+    REP #$30
+    STZ.W $4209
+    LDA.W #$0098
+    STA.W $4207
+    LDA.W #$0030
+    TSB.B DP_IRQAutoJoy
+    SEP #$20
+    LDA.B DP_IRQAutoJoy
+    STA.W $4200
+    CLI
 
   .return:
     REP #$20                                                             ;82DF7C;
-    PLP                                                                  ;82DF7E;
     RTS                                                                  ;82DF7F;
 
 
@@ -11087,7 +11136,26 @@ endif
     LDA.L DoorHeaders_elevatorProperties,X                               ;82DFA8;
     BIT.W #$0040                                                         ;82DFAC;
     BEQ .return                                                          ;82DFAF;
-    JSL.L MirrorCurrentAreasMapExplored                                  ;82DFB1;
+    LDA.W AreaIndex
+    XBA
+    TAX
+    LDY.W #$0000
+
+  .loop:
+    LDA.W MapTilesExplored,Y
+    STA.L ExploredMapTiles,X
+    INX
+    INX
+    INY
+    INY
+    CPY.W #$0100
+    BMI .loop
+    LDA.W CurrentAreaMapCollectedFlag
+    BEQ .return
+    LDX.W AreaIndex
+    LDA.L SRAMMirror_MapStations,X
+    ORA.W #$00FF
+    STA.L SRAMMirror_MapStations,X
 
   .return:
     RTS                                                                  ;82DFB5;
@@ -11357,7 +11425,6 @@ GameState_9_HitADoorBlock:
 
   .gameStateA:
     INC.W GameState                                                      ;82E176;
-    PLP                                                                  ;82E179;
     JMP.W GameState_A_LoadingNextRoom                                    ;82E17A;
 
 
@@ -11481,6 +11548,7 @@ GameState_A_LoadingNextRoom:
 
 ;;; $E288: Game state Bh (loading next room) ;;;
 GameState_B_LoadingNextRoom:
+    PHB                                                                  ;82E289;
     PEA.W .manualReturn-1                                                ;82E28C;
     JMP.W (DoorTransitionFunction)                                       ;82E28F;
 
@@ -11490,6 +11558,7 @@ GameState_B_LoadingNextRoom:
     JSL.L DrawTimer                                                      ;82E297;
 
   .return:
+    PLB                                                                  ;82E29B;
     RTS                                                                  ;82E29D;
 
 
@@ -11542,6 +11611,7 @@ DoorTransitionFunction_FadeOutTheScreen:
 
 ;;; $E2F7: Door transition function - load door header, delete HDMA objects, and set interrupt command ;;;
 DoorTransitionFunction_LoadDoorHeader_DeleteHDMAObjects_IRQ:
+    PHB
     JSR.W Load_Door_Header                                               ;82E2F7;
     SEP #$20
     STZ.B DP_HDMAEnable
@@ -11559,6 +11629,7 @@ DoorTransitionFunction_LoadDoorHeader_DeleteHDMAObjects_IRQ:
     STA.B DP_NextIRQCmd                                                  ;82E307;
     LDA.W #DoorTransitionFunction_ScrollScreenToAlignment                ;82E309;
     STA.W DoorTransitionFunction                                         ;82E30C;
+    PLB
     RTS                                                                  ;82E30F;
 
 
@@ -11789,7 +11860,7 @@ DoorTransitionFunction_LoadSpritesBGPLMsAudio_RunDoorRoomASM:
     STZ.W PLM_IDs,X
     DEX
     DEX
-    BPL .loop
+    BPL .loopPLMs
     STZ.W PLM_ItemGFXIndex
     JSL.L CreatePLMs_ExecuteDoorASM_RoomSetupASM_SetElevatorStatus       ;82E4C1;
     JSL.L Load_FX_Header                                                 ;82E4C5;

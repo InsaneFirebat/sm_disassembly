@@ -715,8 +715,6 @@ Wait_End_VBlank_Clear_HDMA:
 ;;; $82C1: Initialise special effects for new room ;;;
 Initialise_Special_Effects_for_New_Room:
 ; This initial bit regarding earthquake sound effects is strictly for rising acid/lava rooms
-    PHP                                                                  ;8882C1;
-    REP #$20                                                             ;8882C2;
     STZ.W EarthquakeSFX_Index                                            ;8882C4;
     STZ.W EarthquakeSFX_Timer                                            ;8882C7;
     LDA.W RoomPointer                                                    ;8882CA;
@@ -832,7 +830,7 @@ Initialise_Special_Effects_for_New_Room:
     LDA.B #$5A                                                           ;8883DA;
     STA.B DP_BG3TilemapAddrSize                                          ;8883DC;
     STA.B DP_GameplayBG1TilemapAddrSize                                  ;8883DE;
-    PLP                                                                  ;8883E0;
+    REP #$30
 
 .return:
     RTL                                                                  ;8883E1;

@@ -4296,9 +4296,6 @@ Instruction_Torizo_SetBossBit_QueueElevatorMusic_SpawnDrops:
     JSL.L SetBossBitsInAForCurrentArea                                   ;AAB250;
     LDA.W TorizoMusicTracks_elevator                                     ;AAB254;
     JSL.L QueueMusicDataOrTrack_8FrameDelay                              ;AAB257;
-    PHY                                                                  ;AAB25B;
-    PHX                                                                  ;AAB25C;
-    PHP                                                                  ;AAB25D;
     LDA.W AreaIndex                                                      ;AAB25E;
     BNE .notCrateria                                                     ;AAB261;
     JSL.L BombTorizoDeathItemDropRoutine                                 ;AAB263;
@@ -4308,9 +4305,6 @@ Instruction_Torizo_SetBossBit_QueueElevatorMusic_SpawnDrops:
     JSL.L GoldenTorizoDeathItemDropRoutine                               ;AAB269;
 
   .return:
-    PLP                                                                  ;AAB26D;
-    PLX                                                                  ;AAB26E;
-    PLY                                                                  ;AAB26F;
     RTL                                                                  ;AAB270;
 
 

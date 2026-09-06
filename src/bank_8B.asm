@@ -9519,7 +9519,9 @@ CinematicFunction_CeresGoesBoom_FadeOut:
     STZ.W SamusInvincibilityTimer                                        ;8BC65B;
     STZ.W SamusKnockbackTimer                                            ;8BC65E;
     JSL.L Wait_End_VBlank_Clear_HDMA                                     ;8BC661;
-    JSL.L DisableHVCounterInterrupts                                     ;8BC665;
+    LDA.W #$0030
+    TRB.B DP_IRQAutoJoy
+    SEI
     STZ.W LayerBlending_DefaultConfig                                    ;8BC669;
     SEP #$20                                                             ;8BC66C;
     STZ.B DP_NextGameplayColorMathA                                      ;8BC66E;

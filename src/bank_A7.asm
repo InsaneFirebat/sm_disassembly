@@ -6322,8 +6322,8 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $C1FB: Unpause hook - Kraid is dead ;;;
 UnpauseHook_KraidIsDead:
-    SEP #$20                                                             ;A7C1FC;
     JSL.L SetForceBlankAndWaitForNMI                                     ;A7C1FE;
+    SEP #$20
     LDA.B #$00                                                           ;A7C202;
     STA.W $2116                                                          ;A7C204;
     LDA.B DP_BGTilesAddr                                                 ;A7C207;
@@ -6361,8 +6361,8 @@ UnpauseHook_KraidIsDead:
 ;;; $C24E: Unpause hook - Kraid is alive ;;;
 UnpauseHook_KraidIsAlive:
 ; DP_BGTilesAddr isn't being masked, so this code only works because BG1 tiles base address = $0000
-    SEP #$20                                                             ;A7C24F;
     JSL.L SetForceBlankAndWaitForNMI                                     ;A7C251;
+    SEP #$20
     LDA.B #$00                                                           ;A7C255;
     STA.W $2116                                                          ;A7C257;
     LDA.B DP_BGTilesAddr                                                 ;A7C25A;
@@ -6395,7 +6395,6 @@ TransferKraidTopHalfTilemapToVRAM:
     LDA.B #$02                                                           ;A7C295;
     STA.W $420B                                                          ;A7C297;
     JSL.L ClearForceBlankAndWaitForNMI                                   ;A7C29A;
-    REP #$30
     RTL                                                                  ;A7C29F;
 
 
@@ -6406,8 +6405,8 @@ UnpauseHook_KraidIsSinking:
 ; the forced blank isn't even being used to transfer the tilemap on demand... and only one transfer is being queued per frame...
 ; Also note that VRAMWriteStack is being loaded for no reason (guaranteed to be 0), in fact, if it wasn't guaranteed to be 0,
 ; this loading procedure would end up repeating every transfer that was requested before this routine was started.
-    SEP #$20                                                             ;A7C2A1;
     JSL.L SetForceBlankAndWaitForNMI                                     ;A7C2A3;
+    SEP #$20
     LDA.B #$00                                                           ;A7C2A7;
     STA.W $2116                                                          ;A7C2A9;
     LDA.B DP_BGTilesAddr                                                 ;A7C2AC;

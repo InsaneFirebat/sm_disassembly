@@ -649,8 +649,8 @@ Handle_MessageBox_Interaction:
     PLX                                                                  ;8584CA;
     DEX                                                                  ;8584CB;
     BNE .waitLoop                                                        ;8584CC;
+    REP #$30
     JSL.L ReadControllerInput                                            ;8584CE;
-    REP #$30                                                             ;8584D2;
     LDA.B DP_Controller1New                                              ;8584D4;
     BEQ .saveInput                                                       ;8584D6;
     BIT.W #$0080                                                         ;8584D8;
@@ -660,10 +660,8 @@ Handle_MessageBox_Interaction:
     BIT.W #$2300                                                         ;8584E2;
     BEQ .saveInput                                                       ;8584E5;
     JSR.W Toggle_Save_Confirmation_Selection                             ;8584E7;
-    REP #$30                                                             ;8584EA;
     LDA.W #$0037                                                         ;8584EC;
     JSL.L QueueSound_Lib1_Max6                                           ;8584EF;
-    REP #$30                                                             ;8584F3;
     BRA .saveInput                                                       ;8584F5;
 
   .return:
@@ -672,12 +670,12 @@ Handle_MessageBox_Interaction:
   .inputA:
     LDA.W SaveConfirmationSelection                                      ;8584F8;
     BNE .return                                                          ;8584FB;
-    BRA .return                                                          ;8584FD;
+    RTS
 
   .inputB:
     LDA.W #$0002                                                         ;8584FF;
     STA.W SaveConfirmationSelection                                      ;858502;
-    BRA .return                                                          ;858505;
+    RTS
 
 
 ;;; $8507: Toggle save confirmation selection ;;;
@@ -723,6 +721,7 @@ Toggle_Save_Confirmation_Selection:
     STA.W $2115                                                          ;858563;
     LDA.B #$02                                                           ;858566;
     STA.W $420B                                                          ;858568;
+    REP #$20
     JSL.L HandleMusicQueue                                               ;85856B;
     JSL.L HandleSounds                                                   ;85856F;
     RTS                                                                  ;858573;
