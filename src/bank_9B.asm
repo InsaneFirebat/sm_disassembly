@@ -3992,7 +3992,7 @@ GrappleBeamFunction_Connected_LockedInPlace:
     BCC .cancel                                                          ;9BC796;
 
   .returnCarryClear:
-    JSL.L CLCRTL_94AF0B                                                  ;9BC798;
+    CLC
     RTS                                                                  ;9BC79C;
 
 
@@ -4035,7 +4035,7 @@ GrappleBeamFunction_Connected_Swinging:
     BPL .enemyCollision                                                  ;9BC7E4;
     JSR.W HandleSpecialGrappleBeamAngles                                 ;9BC7E6;
     BCC .enemyCollision                                                  ;9BC7E9;
-    JSL.L CLCRTL_94AF0B                                                  ;9BC7EB;
+    CLC
     RTS                                                                  ;9BC7EF;
 
   .enemyCollision:
@@ -4052,8 +4052,8 @@ GrappleBeamFunction_Connected_Swinging:
     BCC .cancel                                                          ;9BC805;
 
 +   JSL.L UpdateGrappleBeamStartPositionDuringGrappleSwinging            ;9BC807;
-    JSL.L CLCRTL_94AF0B                                                  ;9BC80B;
     JSL.L SetSamusAnimationFrameAndPositionDuringGrappleSwinging         ;9BC80F;
+    CLC
     RTS                                                                  ;9BC813;
 
 
@@ -4073,7 +4073,7 @@ GrappleBeamFunction_WallGrab:
   .firing:
     JSR.W CheckIfGrappleIsConnectedToBlock                               ;9BC828;
     BCC .cancel                                                          ;9BC82B;
-    JSL.L CLCRTL_94AF0B                                                  ;9BC82D;
+    CLC
     RTS                                                                  ;9BC831;
 
 

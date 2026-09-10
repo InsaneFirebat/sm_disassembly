@@ -5648,14 +5648,9 @@ FileSelectMap_Index9_AreaSelectMapToRoomSelectMap_Init:
     PHA                                                                  ;81AD32;
     PLB                                                                  ;81AD33;
     LDX.W RoomPointer                                                    ;81AD34;
-    LDA.W $0001,X                                                        ;81AD37;
-    AND.B #$FF                                                           ;81AD3A;
-    STA.W AreaIndex                                                      ;81AD3C;
     LDA.W $0002,X                                                        ;81AD3F;
-    AND.B #$FF                                                           ;81AD42;
     STA.W RoomMapX                                                       ;81AD44;
     LDA.W $0003,X                                                        ;81AD47;
-    AND.B #$FF                                                           ;81AD4A;
     STA.W RoomMapY                                                       ;81AD4C;
     PLB                                                                  ;81AD4F;
     REP #$20                                                             ;81AD50;

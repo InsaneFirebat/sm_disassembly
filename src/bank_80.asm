@@ -3077,21 +3077,21 @@ NMI:
 
   .doneVRAMWrite:
 ; Handle VRAM read table
-    SEP #$10
     REP #$20
-    LDX.B #$00
-    LDA.W VRAMRead.src,X
+    LDA.W VRAMRead.src
     BEQ .doneVRAM
+    SEP #$10
     LDX.B #$00
     STA.W $2116
+    STZ.W VRAMRead.src
     LDA.W $2139
-    LDA.W VRAMRead.control,X
+    LDA.W VRAMRead.control
     STA.W $4310
-    LDA.W VRAMRead.dest,X
+    LDA.W VRAMRead.dest
     STA.W $4312
-    LDA.W VRAMRead.dest+1,X
+    LDA.W VRAMRead.dest+1
     STA.W $4313
-    LDA.W VRAMRead.size,X
+    LDA.W VRAMRead.size
     STA.W $4315
     STZ.W $4317
     STZ.W $4319
@@ -4174,11 +4174,9 @@ DrawThreeHUDDigits:
     SEP #$20                                                             ;809D7B;
     LDA.B #$64                                                           ;809D7D;
     STA.W $4206                                                          ;809D7F;
-    PHA                                                                  ;809D82;
-    PLA                                                                  ;809D83;
-    PHA                                                                  ;809D84;
-    PLA                                                                  ;809D85;
     REP #$20                                                             ;809D86;
+    PEA.W Tilemap_HUDDigits&$0000
+    PLA
     LDA.W $4214                                                          ;809D88;
     ASL                                                                  ;809D8B;
     TAY                                                                  ;809D8C;
@@ -4199,11 +4197,9 @@ DrawTwoHUDDigits:
     SEP #$20                                                             ;809D9B;
     LDA.B #$0A                                                           ;809D9D;
     STA.W $4206                                                          ;809D9F;
-    PHA                                                                  ;809DA2;
-    PLA                                                                  ;809DA3;
-    PHA                                                                  ;809DA4;
-    PLA                                                                  ;809DA5;
     REP #$20                                                             ;809DA6;
+    PEA.W Tilemap_HUDDigits&$0000
+    PLA
     LDA.W $4214                                                          ;809DA8;
     ASL                                                                  ;809DAB;
     TAY                                                                  ;809DAC;
@@ -4239,15 +4235,11 @@ ProcessTimer:
     PHB                                                                  ;809DE7;
     PHK                                                                  ;809DE8;
     PLB                                                                  ;809DE9;
-    PHX                                                                  ;809DEA;
-    PHY                                                                  ;809DEB;
     LDA.W TimerStatus                                                    ;809DEC;
     AND.W #$00FF                                                         ;809DEF;
     ASL                                                                  ;809DF2;
     TAX                                                                  ;809DF3;
     JSR.W (.pointers,X)                                                  ;809DF4;
-    PLY                                                                  ;809DF7;
-    PLX                                                                  ;809DF8;
     PLB                                                                  ;809DF9;
     RTL                                                                  ;809DFA;
 
@@ -4305,7 +4297,7 @@ ProcessTimer_InitialDelay:
     INC.W TimerStatus                                                    ;809E3B;
 
   .return:
-    REP #$21                                                             ;809E3E;
+    REP #$21                                                             ;809E3E; carry clear
     RTS                                                                  ;809E40;
 
 
@@ -4323,8 +4315,7 @@ ProcessTimer_RunningMovementDelayed:
     INC.W TimerStatus                                                    ;809E50;
 
   .return:
-    REP #$20                                                             ;809E53;
-    JMP.W DecrementTimer                                                 ;809E55;
+    BRA DecrementTimer                                                   ;809E55;
 
 
 ;;; $9E58: Process timer - timer running, moving into place ;;;
@@ -4361,7 +4352,7 @@ ProcessTimer_RunningMovingIntoPlace:
 ProcessTimer_RunningMovingIntoPlace_return:
 ;; Returns:
 ;;     Carry: Set if timer has reached zero, otherwise clear
-    JMP.W DecrementTimer                                                 ;809E89;
+    BRA DecrementTimer                                                   ;809E89;
 
 
 ;;; $9E8C: Timer = [A high] minutes, [A low] seconds ;;;
@@ -4608,7 +4599,6 @@ StartGameplay:
     PHB                                                                  ;80A07C;
     PHK                                                                  ;80A07D;
     PLB                                                                  ;80A07E;
-    REP #$30                                                             ;80A07F;
     SEI                                                                  ;80A081;
     STZ.W $420B                                                          ;80A082;
     STZ.W ScrollingSkyFinishedHook                                       ;80A085;
@@ -4671,7 +4661,7 @@ StartGameplay:
     LDA.W Layer2YPosition                                                ;80A0F9;
     STA.W BG2YOffset                                                     ;80A0FC;
     JSR.W CalculateBGScrolls                                             ;80A0FF;
-    JSL.L DisplayViewablePartOfRoom                                      ;80A102;
+    JSR.W DisplayViewablePartOfRoom                                      ;80A102;
     SEP #$20
     LDA.B DP_IRQAutoJoy
     ORA.B #$80
@@ -4736,11 +4726,9 @@ HandleMusicQueueFor20Frames:
 ResumeGameplay:
 ; Called by:
 ;     $82:9367: Game state 11h (unpausing, loading normal gameplay)
-    PHP                                                                  ;80A149;
     PHB                                                                  ;80A14A;
     PHK                                                                  ;80A14B;
     PLB                                                                  ;80A14C;
-    REP #$30                                                             ;80A14D;
     SEI                                                                  ;80A14F;
     STZ.W $420B                                                          ;80A150;
     SEP #$20
@@ -4754,7 +4742,7 @@ ResumeGameplay:
     SEI
     JSL.L Load_CRETiles_TilesetTiles_and_TilesetPalette_DB_8F            ;80A15B;
     JSL.L LoadLibraryBackground_LoadingPausing                           ;80A15F;
-    JSL.L DisplayViewablePartOfRoom                                      ;80A163;
+    JSR.W DisplayViewablePartOfRoom                                      ;80A163;
     JSL.L Load_Room_PLM_Graphics                                         ;80A167;
     SEP #$20
     LDA.B DP_IRQAutoJoy
@@ -4770,7 +4758,6 @@ ResumeGameplay:
     TSB.B DP_IRQAutoJoy
     CLI
     PLB                                                                  ;80A173;
-    PLP                                                                  ;80A174;
     RTL                                                                  ;80A175;
 
 
@@ -4787,7 +4774,6 @@ DisplayViewablePartOfRoom:
 ;     ([BG2 X position], [BG2 Y position]) for BG2 VRAM position
 
 ; Expects force blank to be enabled!
-    PHP                                                                  ;80A176;
     SEP #$20                                                             ;80A177;
     LDA.B DP_BG1TilemapAddrSize                                          ;80A179;
     SEC                                                                  ;80A17B;
@@ -4833,8 +4819,7 @@ DisplayViewablePartOfRoom:
     INX                                                                  ;80A1DB;
     CPX.W #$0011                                                         ;80A1DC;
     BNE .loop                                                            ;80A1DF;
-    PLP                                                                  ;80A1E1;
-    RTL                                                                  ;80A1E2;
+    RTS                                                                  ;80A1E2;
 
 
 if !FEATURE_KEEP_UNREFERENCED
@@ -4901,8 +4886,6 @@ ClearBG2Tilemap:
 ;     $82:EA5E: Load library background - command Ch: clear Kraid's layer 2
 
 ; Looks like $A27A is supposed to be LDA #$A29B
-    PHP                                                                  ;80A23F;
-    REP #$20                                                             ;80A240;
     LDA.W #$4800                                                         ;80A242;
     STA.W $2116                                                          ;80A245;
     LDA.W #$1808                                                         ;80A248;
@@ -4914,8 +4897,7 @@ ClearBG2Tilemap:
     LDA.W #$0800                                                         ;80A25A;
     STA.W $4315                                                          ;80A25D;
     SEP #$20                                                             ;80A260;
-    LDA.B #$00                                                           ;80A262;
-    STA.W $2115                                                          ;80A264;
+    STZ.W $2115                                                          ;80A264;
     LDA.B #$02                                                           ;80A267;
     STA.W $420B                                                          ;80A269;
     REP #$20                                                             ;80A26C;
@@ -4934,7 +4916,7 @@ ClearBG2Tilemap:
     STA.W $2115                                                          ;80A290;
     LDA.B #$02                                                           ;80A293;
     STA.W $420B                                                          ;80A295;
-    PLP                                                                  ;80A298;
+    REP #$20
     RTL                                                                  ;80A299;
 
   .addr:
@@ -4946,8 +4928,6 @@ ClearFXTilemap:
 ; Called by:
 ;     $82:E97C: Load library background
 ;     $82:EA4E: Load library background - command 6: clear FX tilemap
-    PHP                                                                  ;80A29C;
-    REP #$20                                                             ;80A29D;
     LDA.W #$5880                                                         ;80A29F;
     STA.W $2116                                                          ;80A2A2;
     LDA.W #$1808                                                         ;80A2A5;
@@ -4959,8 +4939,7 @@ ClearFXTilemap:
     LDA.W #$0780                                                         ;80A2B7;
     STA.W $4315                                                          ;80A2BA;
     SEP #$20                                                             ;80A2BD;
-    LDA.B #$00                                                           ;80A2BF;
-    STA.W $2115                                                          ;80A2C1;
+    STZ.W $2115                                                          ;80A2C1;
     LDA.B #$02                                                           ;80A2C4;
     STA.W $420B                                                          ;80A2C6;
     REP #$20                                                             ;80A2C9;
@@ -4979,7 +4958,7 @@ ClearFXTilemap:
     STA.W $2115                                                          ;80A2ED;
     LDA.B #$02                                                           ;80A2F0;
     STA.W $420B                                                          ;80A2F2;
-    PLP                                                                  ;80A2F5;
+    REP #$20
     RTL                                                                  ;80A2F6;
 
   .addr:
@@ -5006,7 +4985,6 @@ CalculateLayer2XPosition:
 ;     Carry is set (layer 2 X position unchanged)
 ; Else:
 ;     Layer 2 X position = [layer 1 X position] * ([layer 2 scroll X] >> 1) / 80h
-    PHP                                                                  ;80A2F9;
     LDY.W Layer1XPosition                                                ;80A2FA;
     SEP #$20                                                             ;80A2FD;
     LDA.W Layer2ScrollX                                                  ;80A2FF;
@@ -5034,12 +5012,11 @@ CalculateLayer2XPosition:
     REP #$20                                                             ;80A32E;
     TYA                                                                  ;80A330;
     STA.W Layer2XPosition                                                ;80A331;
-    PLP                                                                  ;80A334;
     CLC                                                                  ;80A335;
     RTS                                                                  ;80A336;
 
   .return:
-    PLP                                                                  ;80A337;
+    REP #$20
     SEC                                                                  ;80A338;
     RTS                                                                  ;80A339;
 
@@ -5064,7 +5041,6 @@ CalculateLayer2YPosition:
 ;     Carry is set (layer 2 Y position unchanged)
 ; Else:
 ;     Layer 2 Y position = [layer 1 Y position] * ([layer 2 scroll Y] >> 1) / 80h
-    PHP                                                                  ;80A33A;
     LDY.W Layer1YPosition                                                ;80A33B;
     SEP #$20                                                             ;80A33E;
     LDA.W Layer2ScrollY                                                  ;80A340;
@@ -5092,12 +5068,11 @@ CalculateLayer2YPosition:
     REP #$20                                                             ;80A36F;
     TYA                                                                  ;80A371;
     STA.W Layer2YPosition                                                ;80A372;
-    PLP                                                                  ;80A375;
     CLC                                                                  ;80A376;
     RTS                                                                  ;80A377;
 
   .return:
-    PLP                                                                  ;80A378;
+    REP #$20
     SEC                                                                  ;80A379;
     RTS                                                                  ;80A37A;
 
@@ -6045,8 +6020,7 @@ UpdateLevelBackgroundDataColumn:
     BEQ +                                                                ;80A9E1;
     RTS                                                                  ;80A9E3;
 
-+   PHP                                                                  ;80A9E4;
-    SEP #$20                                                             ;80A9E5;
++   SEP #$20                                                             ;80A9E5;
     LDA.W RoomWidthBlocks                                                ;80A9E7;
     STA.W $4202                                                          ;80A9EA;
     LDA.W BlocksToUpdateYBlock                                           ;80A9ED;
@@ -6154,7 +6128,7 @@ UpdateLevelBackgroundDataColumn:
     STA.W BG1ColumnUpdateTilemapLeftHalves+2,Y                           ;80AACB;
     LDA.W TileTable_bottomRight,X                                        ;80AACE;
     STA.W BG1ColumnUpdateTilemapRightHalves+2,Y                          ;80AAD1;
-    JMP.W .next                                                          ;80AAD4;
+    BRA .next                                                            ;80AAD4;
 
 +   CMP.W #$0400                                                         ;80AAD7;
     BNE +                                                                ;80AADA;
@@ -6220,7 +6194,6 @@ UpdateLevelBackgroundDataColumn:
     PLX                                                                  ;80AB69;
     INC.W BG1Col_updateVRAMTilemapFlag,X                                 ;80AB6A;
     PLB                                                                  ;80AB6D;
-    PLP                                                                  ;80AB6E;
     RTS                                                                  ;80AB6F;
 
 
@@ -6251,8 +6224,7 @@ UpdateBackgroundLevelDataRow:
     BEQ +                                                                ;80AB7B;
     RTS                                                                  ;80AB7D;
 
-+   PHP                                                                  ;80AB7E;
-    SEP #$20                                                             ;80AB7F;
++   SEP #$20                                                             ;80AB7F;
     LDA.W RoomWidthBlocks                                                ;80AB81;
     STA.W $4202                                                          ;80AB84;
     LDA.W BlocksToUpdateYBlock                                           ;80AB87;
@@ -6373,7 +6345,7 @@ UpdateBackgroundLevelDataRow:
     STA.W BG1RowUpdateTilemapBottomHalves,Y                              ;80AC7E;
     LDA.W TileTable_bottomRight,X                                        ;80AC81;
     STA.W BG1RowUpdateTilemapBottomHalves+2,Y                            ;80AC84;
-    JMP.W .next                                                          ;80AC87;
+    BRA .next                                                            ;80AC87;
 
 +   CMP.W #$0400                                                         ;80AC8A;
     BNE +                                                                ;80AC8D;
@@ -6437,7 +6409,6 @@ UpdateBackgroundLevelDataRow:
     PLX                                                                  ;80AD16;
     INC.W BG1Row_updateVRAMTilemapFlag,X                                 ;80AD17;
     PLB                                                                  ;80AD1A;
-    PLP                                                                  ;80AD1B;
     RTS                                                                  ;80AD1C;
 
 
@@ -7928,11 +7899,9 @@ endif
 
 ;;; $C437: Load from load station ;;;
 LoadFromLoadStation:
-    PHP                                                                  ;80C437;
     PHB                                                                  ;80C438;
     PHK                                                                  ;80C439;
     PLB                                                                  ;80C43A;
-    REP #$30                                                             ;80C43B;
     LDA.W #$0001                                                         ;80C43D;
     STA.W SaveStationLockoutFlag                                         ;80C440;
     LDA.W AreaIndex                                                      ;80C443;
@@ -7983,7 +7952,7 @@ LoadFromLoadStation:
     STA.W AreaIndex                                                      ;80C4AC;
     STZ.W DisableMinimap                                                 ;80C4AF;
     PLB                                                                  ;80C4B2;
-    PLP                                                                  ;80C4B3;
+    REP #$30
     RTL                                                                  ;80C4B4;
 
 

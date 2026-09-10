@@ -11,7 +11,6 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
     BNE .notDemo                                                         ;828009;
     JSR.W InialiseIORegistersForGameplay                                 ;82800B;
     JSR.W Load_StandardBG3Tiles_SpriteTiles_ClearTilemaps                ;82800E;
-    JSR.W LoadInitialPalette                                             ;828011;
     JSL.L InitializeSamus                                                ;828014;
     JSR.W LoadDemoRoomData                                               ;828018;
     BRA .gameplay                                                        ;82801B;
@@ -43,7 +42,6 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
     JSR.W InialiseIORegistersForGameplay                                 ;82804E;
     JSR.W Load_StandardBG3Tiles_SpriteTiles_ClearTilemaps                ;828051;
     JSR.W LoadInitialPalette                                             ;828054;
-    JSL.L InitializeSamus                                                ;828057;
     JSL.L LoadFromLoadStation                                            ;82805B;
 
   .gameplay:
@@ -190,16 +188,13 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
 
 ;;; $819B: Initialise IO registers for gameplay ;;;
 InialiseIORegistersForGameplay:
-    PHP                                                                  ;82819B;
     JSR.W InitialiseCPURegistersForGameplay                              ;82819C;
     JSR.W SetupPPUForGameplay                                            ;82819F;
-    PLP                                                                  ;8281A2;
     RTS                                                                  ;8281A3;
 
 
 ;;; $81A4: Initialise CPU registers for gameplay ;;;
 InitialiseCPURegistersForGameplay:
-    PHP                                                                  ;8281A4;
     SEP #$30                                                             ;8281A5;
     LDA.B #$01                                                           ;8281A7;
     STA.W $4200                                                          ;8281A9;
@@ -219,13 +214,12 @@ InitialiseCPURegistersForGameplay:
     STZ.B DP_HDMAEnable                                                  ;8281D2;
     LDA.B #$01                                                           ;8281D4;
     STA.W $420D                                                          ;8281D6;
-    PLP                                                                  ;8281DB;
+    REP #$30
     RTS                                                                  ;8281DC;
 
 
 ;;; $81DD: Set up PPU for gameplay ;;;
 SetupPPUForGameplay:
-    PHP                                                                  ;8281DD;
     SEP #$30                                                             ;8281DE;
     LDA.B #$80                                                           ;8281E0;
     STA.W $2100                                                          ;8281E2;
@@ -316,34 +310,11 @@ SetupPPUForGameplay:
     LDX.W #$4000                                                         ;8282B9;
     LDY.W #$00FE                                                         ;8282BC;
     JSL.L WriteYBytesOfATo_7E0000_X_16bit                                ;8282BF;
-    PLP                                                                  ;8282C3;
     RTS                                                                  ;8282C4;
-
-
-;;; $82C5: Load initial palette ;;;
-LoadInitialPalette:
-; Palette loaded when loading a save or demo.
-; Nothing is displayed during this time, so it's unclear why this palette is loaded at all
-    PHP                                                                  ;8282C5;
-    REP #$30                                                             ;8282C9;
-    LDY.W #$0200                                                         ;8282CB;
-    LDX.W #$0000                                                         ;8282CE;
-
-  .loop:
-    LDA.L Initial_Palette_BGPalette0,X                                   ;8282D1;
-    STA.L Palettes,X                                                     ;8282D5;
-    INX                                                                  ;8282D9;
-    INX                                                                  ;8282DA;
-    DEY                                                                  ;8282DB;
-    DEY                                                                  ;8282DC;
-    BNE .loop                                                            ;8282DD;
-    PLP                                                                  ;8282DF;
-    RTS                                                                  ;8282E1;
 
 
 ;;; $82E2: Load standard BG3 tiles and sprite tiles, clear tilemaps ;;;
 Load_StandardBG3Tiles_SpriteTiles_ClearTilemaps:
-    PHP                                                                  ;8282E2;
     SEP #$30                                                             ;8282E3;
     LDA.B #$00                                                           ;8282E5;
     STA.W $2116                                                          ;8282E7;
@@ -393,14 +364,12 @@ Load_StandardBG3Tiles_SpriteTiles_ClearTilemaps:
     dw $0800                                                             ;82835E;
     LDA.B #$02                                                           ;828360;
     STA.W $420B                                                          ;828362;
-    PLP                                                                  ;828365;
+    REP #$30
     RTS                                                                  ;828366;
 
 
 ;;; $8367: Game state 20h (made it to Ceres elevator) ;;;
 GameState_20_MadeItToCeresElevator:
-    PHP                                                                  ;828367;
-    REP #$30                                                             ;828368;
     LDA.W TimerStatus                                                    ;82836A;
     BEQ +                                                                ;82836D;
     JSL.L DrawTimer                                                      ;82836F;
@@ -415,7 +384,6 @@ GameState_20_MadeItToCeresElevator:
     STZ.W ScreenFadeCounter                                              ;828383;
 
   .return:
-    PLP                                                                  ;828386;
     RTS                                                                  ;828387;
 
 
@@ -481,8 +449,6 @@ GameState_21_BlackoutFromCeres:
 ;;; $8411: Game state 23h (time up - white out) ;;;
 GameState_23_TimeUpWhiteOut:
 ; Used for Ceres and Zebes
-    PHP                                                                  ;828411;
-    REP #$30                                                             ;828412;
     JSR.W GameState_8_MainGameplay                                       ;828414;
     LDA.W #$0008                                                         ;828417;
     STA.L PaletteChangeDenominator                                       ;82841A;
@@ -494,7 +460,6 @@ GameState_23_TimeUpWhiteOut:
     STZ.W ScreenFadeCounter                                              ;82842C;
 
   .return:
-    PLP                                                                  ;82842F;
     RTS                                                                  ;828430;
 
 
@@ -1736,25 +1701,13 @@ Instruction_GameOptionsMenu_TimerInY:
     RTS                                                                  ;828C9D;
 
 
-;;; $8C9E: RTS ;;;
-REP30RTS_828C9E:
-    REP #$30                                                             ;828C9E;
-    RTS                                                                  ;828CA0;
-
-
 ;;; $8CA1: Draw game options menu spritemaps ;;;
 Draw_GameOptionsMenu_Spritemaps:
-    PHP                                                                  ;828CA1;
-    REP #$30                                                             ;828CA2;
-    PHB                                                                  ;828CA4;
     LDX.W #$000E                                                         ;828CA5;
 
   .loop:
     LDA.W GameOptionsMenuObject_SpritemapPointers,X                      ;828CA8;
     BEQ .next                                                            ;828CAB;
-    PEA.W $8200                                                          ;828CAD;
-    PLB                                                                  ;828CB0;
-    PLB                                                                  ;828CB1;
     LDY.W GameOptionsMenuObject_SpritemapPointers,X                      ;828CB2;
     LDA.W GameOptionsMenuObject_PaletteIndices,X                         ;828CB5;
     STA.B DP_Temp16                                                      ;828CB8;
@@ -1768,8 +1721,6 @@ Draw_GameOptionsMenu_Spritemaps:
     DEX                                                                  ;828CC8;
     DEX                                                                  ;828CC9;
     BPL .loop                                                            ;828CCA;
-    PLB                                                                  ;828CCC;
-    PLP                                                                  ;828CCD;
     RTS                                                                  ;828CCE;
 
 
@@ -5331,11 +5282,7 @@ Draw_PauseScreen_SpriteAnimation:
 ;;; $A92B: Handle pause menu palette animation ;;;
 Handle_PauseScreen_PaletteAnimation:
 ; Map arrows, status selection box, etc.
-    PHP                                                                  ;82A92B;
     SEP #$20                                                             ;82A92C;
-    LDA.B #$00                                                           ;82A92E;
-    XBA                                                                  ;82A930;
-    LDA.B #$00                                                           ;82A931;
     LDA.W PauseMenu_PaletteAnimationTimer                                ;82A933;
     BEQ .return                                                          ;82A936;
     DEC                                                                  ;82A938;
@@ -5382,7 +5329,7 @@ Handle_PauseScreen_PaletteAnimation:
     BPL .loopAnimationTimer                                              ;82A983;
 
   .return:
-    PLP                                                                  ;82A985;
+    REP #$30
     RTS                                                                  ;82A986;
 
   .paletteData:
@@ -11635,9 +11582,6 @@ DoorTransitionFunction_LoadDoorHeader_DeleteHDMAObjects_IRQ:
 
 ;;; $E310: Door transition function - scroll screen to alignment ;;;
 DoorTransitionFunction_ScrollScreenToAlignment:
-    PEA.W $8F00                                                          ;82E310;
-    PLB                                                                  ;82E313;
-    PLB                                                                  ;82E314;
     LDA.W DoorDirection                                                  ;82E315;
     BIT.W #$0002                                                         ;82E318;
     BNE .vertical                                                        ;82E31B;
@@ -11675,9 +11619,6 @@ DoorTransitionFunction_ScrollScreenToAlignment:
 ;;; $E353: Door transition function - fix doors moving up ;;;
 DoorTransitionFunction_FixDoorsMovingUp:
 ; See DoorTransitionScrolling_Up
-    PEA.W $8F00                                                          ;82E353;
-    PLB                                                                  ;82E356;
-    PLB                                                                  ;82E357;
     LDA.W DoorDirection                                                  ;82E358;
     AND.W #$0003                                                         ;82E35B;
     CMP.W #$0003                                                         ;82E35E;
@@ -11733,9 +11674,6 @@ DoorTransitionFunction_SetupScrolling:
 
 ;;; $E3C0: Door transition function - place Samus, load tiles ;;;
 DoorTransitionFunction_PlaceSamus_LoadTiles:
-    PEA.W RoomHeaders>>16<<8                                             ;82E3C0; >.<
-    PLB                                                                  ;82E3C3;
-    PLB                                                                  ;82E3C4;
     LDA.W SamusXPosition                                                 ;82E3C5;
     AND.W #$00FF                                                         ;82E3C8;
     CLC                                                                  ;82E3CB;
