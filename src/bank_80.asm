@@ -2484,19 +2484,22 @@ NMI:
 
   .bank80:
     PHB                                                                  ;809589;
-    PHD                                                                  ;80958A;
     PHA                                                                  ;80958B;
     PHX                                                                  ;80958C;
     PHY                                                                  ;80958D;
     PHK                                                                  ;80958E;
     PLB                                                                  ;80958F;
-    LDA.W #$0000                                                         ;809590;
-    TCD                                                                  ;809593;
     SEP #$10                                                             ;809594;
     LDX.W $4210                                                          ;809596;
     LDX.W NMI_Request                                                    ;809599;
     BNE .update
-    JMP.W .lag
+    REP #$30
+    INC.W NMI_Counter
+    PLY
+    PLX
+    PLA
+    PLB
+    RTI
 
   .update
 ; Update OAM & CGRAM
@@ -2523,7 +2526,7 @@ NMI:
     STX.W $420B
 ; Transfer Samus tiles to VRAM
     PHB
-    LDX.B #$92
+    LDX.B #SamusTopTiles_Set0_CBEE>>16
     PHX
     PLB
     LDX.B #$02
@@ -2788,79 +2791,82 @@ NMI:
     LDX.B DP_FakeBGModeSize                                              ;8095C6;
     CPX.B #$07                                                           ;8095C8;
     BEQ .mode7Enabled
+    JMP.W .mode7Disabled
 
   .mode7Enabled:
-    REP #$10
     LDX.W Mode7Stack
     BNE .mode7Transfers
     JMP.W .mode7Disabled
 
   .mode7Transfers
-    LDX.W #Mode7Transfer.control
+    REP #$10
 
   .loopMode7Transfers:
 ; Process mode 7 transfers
     SEP #$20
-    LDA.W $0000,X
-    BPL .doneMode7Transfers
-
-  .VRAM:
+    LDA.W Mode7Transfer.control,X
+    BPL .nextMode7Transfer
     ASL
     BMI .VRAMTiles
     LSR
     AND.B #$1F
     STA.W $4310
-    LDY.W $0001,X
+    LDY.W Mode7Transfer.src,X
     STY.W $4312
-    LDA.W $0003,X
+    LDA.W Mode7Transfer.src+2,X
     STA.W $4314
-    LDY.W $0004,X
+    LDY.W Mode7Transfer.size,X
     STY.W $4315
     LDA.B #$18
     STA.W $4311
-    LDY.W $0006,X
+    LDY.W Mode7Transfer.dest,X
     STY.W $2116
-    LDA.W $0008,X
+    LDA.W Mode7Transfer.inc,X
     STA.W $2115
     LDA.B #$02
     STA.W $420B
-    REP #$21                                                             ; carry clear
+
+  .nextMode7Transfer
+    REP #$20
     TXA
-    ADC.W #$0009
+    SEC
+    SBC.W #$0009
     TAX
-    BRA .loopMode7Transfers
+    BPL .loopMode7Transfers
+    BRA .doneMode7Transfers
 
   .VRAMTiles:
     LSR
     AND.B #$1F
     STA.W $4310
-    LDY.W $0001,X
+    LDY.W Mode7Transfer.src,X
     STY.W $4312
-    LDA.W $0003,X
+    LDA.W Mode7Transfer.src+2,X
     STA.W $4314
-    LDY.W $0004,X
+    LDY.W Mode7Transfer.size,X
     STY.W $4315
     LDA.B #$19
     STA.W $4311
-    LDY.W $0006,X
+    LDY.W Mode7Transfer.dest,X
     STY.W $2116
-    LDA.W $0008,X
+    LDA.W Mode7Transfer.inc,X
     STA.W $2115
     LDA.B #$02
     STA.W $420B
-    REP #$21                                                             ; clear carry
+    REP #$20
     TXA
-    ADC.W #$0009
+    SEC
+    SBC.W #$0009
     TAX
-    BRA .loopMode7Transfers
+    BPL .loopMode7Transfers
 
   .doneMode7Transfers
-    REP #$20
     STZ.W Mode7Transfer.control
     STZ.W Mode7Stack
 
   .mode7Disabled:
 ; Handle VRAM write table and scrolling DMAs
+    REP #$30
     LDX.W VRAMWriteStack
     BEQ .doneVRAMWriteUpper
     STZ.B VRAMWrite.size,X
@@ -2897,7 +2903,6 @@ NMI:
   .doneVRAMWriteUpper:
     STZ.W VRAMWriteStack
     SEP #$20
-    REP #$10
 ; Execute horizontal scrolling DMAs
     LDA.B #$81
     STA.W $2115
@@ -3022,10 +3027,10 @@ NMI:
     TYA
     ORA.W #$0020
     STA.W $2116
-    SEP #$20
     STX.W $4315
     LDX.W BG1Row_wrappedTilemapVRAMUpdateRightHalvesSrc
     STX.W $4312
+    SEP #$20
     LDA.B #$02
     STA.W $420B
 
@@ -3049,10 +3054,10 @@ NMI:
     TYA
     ORA.W #$0020
     STA.W $2116
-    SEP #$20
     STX.W $4315
     LDX.W #BG2RowUpdateTilemapBottomHalves
     STX.W $4312
+    SEP #$20
     LDA.B #$02
     STA.W $420B
     LDX.W BG2Row_wrappedTilemapVRAMUpdateLeftHalvesSrc
@@ -3068,10 +3073,10 @@ NMI:
     TYA
     ORA.W #$0020
     STA.W $2116
-    SEP #$20
     STX.W $4315
     LDX.W BG2Row_wrappedTilemapVRAMUpdateRighttHalvesSrc
     STX.W $4312
+    SEP #$20
     LDA.B #$02
     STA.W $420B
 
@@ -3079,8 +3084,8 @@ NMI:
 ; Handle VRAM read table
     REP #$20
     LDA.W VRAMRead.src
-    BEQ .doneVRAM
     SEP #$10
+    BEQ .doneVRAM
     LDX.B #$00
     STA.W $2116
     STZ.W VRAMRead.src
@@ -3102,11 +3107,9 @@ NMI:
     STZ.W VRAMReadStack
 
   .doneVRAM
-    SEP #$30
     LDX.B DP_HDMAEnable                                                  ;8095DC;
     STX.W $420C                                                          ;8095DE;
     STZ.W NMI_Request                                                    ;8095E7;
-    STZ.W NMI_LagCounter                                                 ;8095EA;
     LDX.W NMI_8bitFrameCounter                                           ;8095ED;
     INX                                                                  ;8095F0;
     STX.W NMI_8bitFrameCounter                                           ;8095F1;
@@ -3116,6 +3119,7 @@ NMI:
 ; Read controller input
 ; This is executed at the end of NMI because auto-joypad read is only guaranteed to be executed at some point in the middle of the first scanline of v-blank,
 ; and then we need to wait ~3 scanlines for the joypad to finish reading
+    SEP #$20
     LDA.W $4212
     AND.B #$01
     BNE .waitAutoJoy
@@ -3150,26 +3154,8 @@ NMI:
     PLY                                                                  ;8095FC;
     PLX                                                                  ;8095FD;
     PLA                                                                  ;8095FE;
-    PLD                                                                  ;8095FF;
     PLB                                                                  ;809600;
     RTI                                                                  ;809601;
-
-  .lag:
-    LDX.W NMI_LagCounter                                                 ;809602;
-    INX                                                                  ;809605;
-    STX.W NMI_LagCounter                                                 ;809606;
-    LDX.W NMI_LagCounter                                                 ;809609;
-    CPX.W NMI_MaximumLag                                                 ;80960C;
-    BCC .return                                                          ;80960F;
-    STX.W NMI_MaximumLag                                                 ;809611;
-    REP #$30
-    INC.W NMI_Counter
-    PLY
-    PLX
-    PLA
-    PLD
-    PLB
-    RTI
 
 
 ;;; $9616: Interrupt command pointers ;;;

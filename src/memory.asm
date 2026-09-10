@@ -206,8 +206,7 @@ NMI_Request: skip 1 ; $05B4
 NMI_8bitFrameCounter: skip 1 ; $05B5
 NMI_FrameCounter: skip 2 ; $05B6
 NMI_Counter: skip 2 ; $05B8
-NMI_LagCounter: skip 1 ; $05BA
-NMI_MaximumLag: skip 1 ; $05BB
+skip 2 ; $05BA
 
 DoorTransitionVRAM_Flag: skip 2 ; $05BC
 DoorTransitionVRAM_Dest: skip 2 ; $05BE
