@@ -618,7 +618,7 @@ endif
 ;;; $8687: Initialisation AI - enemy $EC7F (Mother Brain body) ;;;
 InitAI_MotherBrainBody:
     PHB                                                                  ;A98687;
-    PEA.W $7E7E                                                          ;A98688;
+    PEA.W EnemyBG2Tilemap>>16<<8|EnemyBG2Tilemap>>16                     ;A98688;
     PLB                                                                  ;A9868B;
     PLB                                                                  ;A9868C;
     LDA.W #$0338                                                         ;A9868D;
@@ -5259,7 +5259,7 @@ Function_MBBody_Phase3_DeathSequence_FadeOutBody:
     STA.W EnemyBG2TilemapSize                                            ;A9AFDC;
     TAX                                                                  ;A9AFDF;
     PHB                                                                  ;A9AFE0;
-    PEA.W $7E7E                                                          ;A9AFE1;
+    PEA.W EnemyBG2Tilemap>>16<<8|EnemyBG2Tilemap>>16                     ;A9AFE1;
     PLB                                                                  ;A9AFE4;
     PLB                                                                  ;A9AFE5;
     LDA.W #$0338                                                         ;A9AFE6;
@@ -10174,7 +10174,7 @@ WriteAColorsFromYToTargetColorIndexX:
 ;;; $D308: Initialisation AI - enemy $ED3F (torizo corpse) ;;;
 InitAI_CorpseTorizo:
     PHB                                                                  ;A9D308;
-    PEA.W $7E7E                                                          ;A9D309;
+    PEA.W EnemyBG2Tilemap>>16<<8|EnemyBG2Tilemap>>16                     ;A9D309;
     PLB                                                                  ;A9D30C;
     PLB                                                                  ;A9D30D;
     LDA.W #$0000                                                         ;A9D30E;
@@ -10574,7 +10574,7 @@ CopyLineOfSandHeapTileData:
     LDA.W .srcOffsets,X                                                  ;A9D5F2;
     TAX                                                                  ;A9D5F5;
     PHB                                                                  ;A9D5F6;
-    PEA.W $7E7E                                                          ;A9D5F7;
+    PEA.W TorizoCorpseRottingGFX>>16<<8|TorizoCorpseRottingGFX>>16       ;A9D5F7;
     PLB                                                                  ;A9D5FA;
     PLB                                                                  ;A9D5FB;
     LDA.L Tiles_CorpseTorizo,X                                           ;A9D5FC;
@@ -11271,7 +11271,7 @@ ProcessCorpseRotting:
 ;
 ; Return carry set
     PHB                                                                  ;A9DB12;
-    PEA.W $7E7E                                                          ;A9DB13;
+    PEA.W Corpse.spriteHeight>>16<<8|Corpse.spriteHeight>>16             ;A9DB13;
     PLB                                                                  ;A9DB16;
     PLB                                                                  ;A9DB17;
     LDA.W Corpse.spriteHeight,X                                          ;A9DB18;
@@ -11346,7 +11346,7 @@ ProcessCorpseRotting:
     JMP.W (DP_Temp12)                                                    ;A9DBB5;
 
   .manualReturn:
-    PEA.W $7E7E                                                          ;A9DBB8;
+    PEA.W Corpse.spriteHeight>>16<<8|Corpse.spriteHeight>>16             ;A9DBB8;
     PLB                                                                  ;A9DBBB;
     PLB                                                                  ;A9DBBC;
     LDA.B $01,S                                                          ;A9DBBD;
@@ -14177,7 +14177,7 @@ InitAI_BabyMetroid:
 ; which sits comfortably in the 64 frame duration of horizontal door transition scrolling
 ; If door transition time were shortened and/or room loading time increased, this check could stop working correctly
     PHB                                                                  ;A9EF37;
-    PEA.W $7E7E                                                          ;A9EF38;
+    PEA.W CorpseRottingGFX_Sidehopper0>>16<<8|CorpseRottingGFX_Sidehopper0>>16 ;A9EF38;
     PLB                                                                  ;A9EF3B;
     PLB                                                                  ;A9EF3C;
     LDA.W #$0000                                                         ;A9EF3D;

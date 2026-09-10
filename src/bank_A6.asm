@@ -3551,7 +3551,7 @@ InitAI_Ridley:
 
   .notDead:
     PHB                                                                  ;A6A10E;
-    PEA.W $7E7E                                                          ;A6A10F;
+    PEA.W RidleyTail.active>>16<<8|RidleyTail.active>>16                 ;A6A10F;
     PLB                                                                  ;A6A112;
     PLB                                                                  ;A6A113;
     LDA.W #$0000                                                         ;A6A114;
@@ -8739,7 +8739,7 @@ HandleRidleyTail:
     TAX                                                                  ;A6CAFD;
     JSR.W (.pointers,X)                                                  ;A6CAFE;
     PHB                                                                  ;A6CB01;
-    PEA.W $7E7E                                                          ;A6CB02;
+    PEA.W RidleyTail.active>>16<<8|RidleyTail.active>>16                 ;A6CB02;
     PLB                                                                  ;A6CB05;
     PLB                                                                  ;A6CB06;
     JSR.W CalculateRidleyTailSegmentPositions                            ;A6CB07;
@@ -8873,7 +8873,7 @@ UpdateRidleyTailSegmentAngles:
 
 ; Also recalculates the X/Y offsets from previous tail segments
     PHB                                                                  ;A6CBDC;
-    PEA.W $7E7E                                                          ;A6CBDD;
+    PEA.W RidleyTail.active>>16<<8|RidleyTail.active>>16                 ;A6CBDD;
     PLB                                                                  ;A6CBE0;
     PLB                                                                  ;A6CBE1;
     PEA.W .manualReturn-1                                                ;A6CBE2;

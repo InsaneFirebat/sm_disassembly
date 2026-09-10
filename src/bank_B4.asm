@@ -2843,7 +2843,7 @@ DebugHandler_8_EnemyDebugger_RespawnEnemy:
 ; Uses part of the enemy spawn data (recorded by $A0:88D0) as enemy population data for one enemy
 ; As the following RAM is garbage (the debug enemy name), respawning a multi-part enemy will crash
     PHB                                                                  ;B494B8;
-    PEA.W $7E7E                                                          ;B494B9;
+    PEA.W EnemySpawnData.ID>>16<<8|EnemySpawnData.ID>>16                 ;B494B9;
     PLB                                                                  ;B494BC;
     PLB                                                                  ;B494BD;
     LDA.W #EnemySpawnData.ID                                             ;B494BE;
@@ -3004,7 +3004,7 @@ DebugHandler_9_EnemyDebugger_EnemySpawner:
     LDA.W Enemy.YPosition,Y                                              ;B49610;
     STA.W DebugEnemySpawnYPosition                                       ;B49613;
     PHB                                                                  ;B49616;
-    PEA.W $B4B4                                                          ;B49617;
+    PEA.W DebugHandler>>16<<8|DebugHandler>>16                           ;B49617;
     PLB                                                                  ;B4961A;
     PLB                                                                  ;B4961B;
     LDY.W DebugEnemyIndex                                                ;B4961C;

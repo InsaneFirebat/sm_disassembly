@@ -722,20 +722,15 @@ UNUSED_WriteYBytesOfATo_7E0000_X_8bit_8083E3:
 ;;     A: Fill value
 ;;     X: Destination address
 ;;     Y: Size
-    PHP                                                                  ;8083E3;
-    PHB                                                                  ;8083E4;
-    PHK                                                                  ;8083E5;
-    PLB                                                                  ;8083E6;
     SEP #$20                                                             ;8083E7;
     REP #$10                                                             ;8083E9;
 
   .loop:
-    STA.L $7E0000,X                                                      ;8083EB;
+    STA.L LowRAM,X                                                       ;8083EB;
     INX                                                                  ;8083EF;
     DEY                                                                  ;8083F0;
     BNE .loop                                                            ;8083F1;
-    PLB                                                                  ;8083F3;
-    PLP                                                                  ;8083F4;
+    REP #$30
     RTL                                                                  ;8083F5;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -755,7 +750,7 @@ WriteYBytesOfATo_7E0000_X_16bit:
 ;     $82:81DD: Set up PPU for gameplay
 ;     $8B:8000: Set up PPU for title sequence
 ;     $8B:80DA: Set up PPU for intro
-    STA.L $7E0000,X                                                      ;8083FC;
+    STA.L LowRAM,X                                                       ;8083FC;
     INX                                                                  ;808400;
     INX                                                                  ;808401;
     DEY                                                                  ;808402;
@@ -855,7 +850,7 @@ CommonBootSection:
     STA.B DP_Brightness
     STA.W $2100                                                          ;808486; Enable forced blank
     REP #$30                                                             ;808489;
-    PEA.W $7E00                                                          ;80848B;
+    PEA.W LowRAM>>8                                                      ;80848B;
     PLB                                                                  ;80848E;
     PLB                                                                  ;80848F;
     LDX.W #$1FFE                                                         ;808490;
@@ -2736,7 +2731,7 @@ NMI:
     LDX.B DP_BG4YScroll+1
     STX.W $2114
     LDX.B DP_FakeBGModeSize
-    STX.W $07EC
+    STX.W CeresMode7HDMATables+1
     LDA.B DP_BGModeSize
     AND.W #$0007
     CMP.W #$0007
@@ -3898,7 +3893,7 @@ HandleHUDTilemap_PausedAndRunning:
     PHK                                                                  ;809B46;
     PLB                                                                  ;809B47;
     SEP #$20                                                             ;809B48;
-    STZ.B $02                                                            ;809B4A;
+    STZ.B DP_Temp02                                                      ;809B4A;
     REP #$30                                                             ;809B4C;
     LDA.W ReserveTankMode                                                ;809B4E;
     CMP.W #$0001                                                         ;809B51;

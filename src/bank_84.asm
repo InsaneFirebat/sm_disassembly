@@ -1787,7 +1787,7 @@ Instruction_PLM_ProcessAirScrollUpdate:
     PHY                                                                  ;848B57;
     STZ.W PLM_Vars,X                                                     ;848B58;
     LDY.W PLM_RoomArgs,X                                                 ;848B5B;
-    PEA.W $8F00                                                          ;848B5E;
+    PEA.W RoomHeaders>>8                                                 ;848B5E;
     PLB                                                                  ;848B61;
     PLB                                                                  ;848B62;
     LDA.W #$0000                                                         ;848B63;
@@ -1828,7 +1828,7 @@ Instruction_PLM_ProcessSolidScrollUpdate:
     PHY                                                                  ;848B95;
     STZ.W PLM_Vars,X                                                     ;848B96;
     LDY.W PLM_RoomArgs,X                                                 ;848B99;
-    PEA.W $8F00                                                          ;848B9C;
+    PEA.W RoomHeaders>>8                                                 ;848B9C;
     PLB                                                                  ;848B9F;
     PLB                                                                  ;848BA0;
     LDA.W #$0000                                                         ;848BA1;
@@ -14599,7 +14599,7 @@ Instruction_PLM_DamageDraygonTurret:
     LDA.W PLM_Vars,X                                                     ;84DB8F;
     TAX                                                                  ;84DB92;
     LDA.W #$0001                                                         ;84DB93;
-    STA.L $7E0000,X                                                      ;84DB96;
+    STA.L LowRAM,X                                                       ;84DB96;
     PLX                                                                  ;84DB9A;
     LDA.W PLM_BlockIndices,X                                             ;84DB9B;
     TAX                                                                  ;84DB9E;
@@ -14624,7 +14624,7 @@ Instruction_PLM_DamageDraygonTurretFacingDownRight:
     LDA.W PLM_Vars,X                                                     ;84DBB9;
     TAX                                                                  ;84DBBC;
     LDA.W #$0001                                                         ;84DBBD;
-    STA.L $7E0000,X                                                      ;84DBC0;
+    STA.L LowRAM,X                                                       ;84DBC0;
     PLX                                                                  ;84DBC4;
     LDA.W PLM_BlockIndices,X                                             ;84DBC5;
     TAX                                                                  ;84DBC8;
@@ -14658,7 +14658,7 @@ Instruction_PLM_DamageDraygonTurretFacingUpRight:
     LDA.W PLM_Vars,X                                                     ;84DBF8;
     TAX                                                                  ;84DBFB;
     LDA.W #$0001                                                         ;84DBFC;
-    STA.L $7E0000,X                                                      ;84DBFF;
+    STA.L LowRAM,X                                                       ;84DBFF;
     PLX                                                                  ;84DC03;
     LDA.W PLM_BlockIndices,X                                             ;84DC04;
     TAX                                                                  ;84DC07;
@@ -14694,7 +14694,7 @@ Instruction_PLM_DamageDraygonTurret_duplicate:
     LDA.W PLM_Vars,X                                                     ;84DC37;
     TAX                                                                  ;84DC3A;
     LDA.W #$0001                                                         ;84DC3B;
-    STA.L $7E0000,X                                                      ;84DC3E;
+    STA.L LowRAM,X                                                       ;84DC3E;
     PLX                                                                  ;84DC42;
     LDA.W PLM_BlockIndices,X                                             ;84DC43;
     TAX                                                                  ;84DC46;
@@ -14719,7 +14719,7 @@ Instruction_PLM_DamageDraygonTurretFacingDownLeft:
     LDA.W PLM_Vars,X                                                     ;84DC61;
     TAX                                                                  ;84DC64;
     LDA.W #$0001                                                         ;84DC65;
-    STA.L $7E0000,X                                                      ;84DC68;
+    STA.L LowRAM,X                                                       ;84DC68;
     PLX                                                                  ;84DC6C;
     LDA.W PLM_BlockIndices,X                                             ;84DC6D;
     TAX                                                                  ;84DC70;
@@ -14753,7 +14753,7 @@ Instruction_PLM_DamageDraygonTurretFacingUpLeft:
     LDA.W PLM_Vars,X                                                     ;84DCA0;
     TAX                                                                  ;84DCA3;
     LDA.W #$0001                                                         ;84DCA4;
-    STA.L $7E0000,X                                                      ;84DCA7;
+    STA.L LowRAM,X                                                       ;84DCA7;
     PLX                                                                  ;84DCAB;
     LDA.W PLM_BlockIndices,X                                             ;84DCAC;
     TAX                                                                  ;84DCAF;

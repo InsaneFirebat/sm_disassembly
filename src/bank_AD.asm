@@ -352,7 +352,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedRight:
 
 ; Recall that SM gradients are dx/dy
     PHB                                                                  ;ADDECE;
-    PEA.W $7E7E                                                          ;ADDECF;
+    PEA.W MotherBrainRainbowBeamWindow1HDMADataTable>>16<<8|MotherBrainRainbowBeamWindow1HDMADataTable>>16 ;ADDECF;
     PLB                                                                  ;ADDED2;
     PLB                                                                  ;ADDED3;
     LDA.W #$00FF                                                         ;ADDED4;
@@ -534,7 +534,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedUpRight:
 
 ; Recall that SM gradients are dx/dy
     PHB                                                                  ;ADE02C;
-    PEA.W $7E7E                                                          ;ADE02D;
+    PEA.W MotherBrainRainbowBeamWindow1HDMADataTable>>16<<8|MotherBrainRainbowBeamWindow1HDMADataTable>>16 ;ADE02D;
     PLB                                                                  ;ADE030;
     PLB                                                                  ;ADE031;
     LDA.W #$00FF                                                         ;ADE032;
@@ -607,7 +607,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedUp:
 
 ; Recall that SM gradients are dx/dy
     PHB                                                                  ;ADE0A6;
-    PEA.W $7E7E                                                          ;ADE0A7;
+    PEA.W MotherBrainRainbowBeamWindow1HDMADataTable>>16<<8|MotherBrainRainbowBeamWindow1HDMADataTable>>16 ;ADE0A7;
     PLB                                                                  ;ADE0AA;
     PLB                                                                  ;ADE0AB;
     LDA.W #$00FF                                                         ;ADE0AC;
@@ -682,7 +682,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedUpLeft:
 
 ; Recall that SM gradients are dx/dy
     PHB                                                                  ;ADE124;
-    PEA.W $7E7E                                                          ;ADE125;
+    PEA.W MotherBrainRainbowBeamWindow1HDMADataTable>>16<<8|MotherBrainRainbowBeamWindow1HDMADataTable>>16 ;ADE125;
     PLB                                                                  ;ADE128;
     PLB                                                                  ;ADE129;
     LDA.W #$00FF                                                         ;ADE12A;
@@ -805,7 +805,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedDownRight:
 
 ; Recall that SM gradients are dx/dy
     PHB                                                                  ;ADE216;
-    PEA.W $7E7E                                                          ;ADE217;
+    PEA.W MotherBrainRainbowBeamWindow1HDMADataTable>>16<<8|MotherBrainRainbowBeamWindow1HDMADataTable>>16 ;ADE217;
     PLB                                                                  ;ADE21A;
     PLB                                                                  ;ADE21B;
     LDA.W #$00FF                                                         ;ADE21C;
@@ -881,7 +881,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedDown:
 
 ; Recall that SM gradients are dx/dy
     PHB                                                                  ;ADE293;
-    PEA.W $7E7E                                                          ;ADE294;
+    PEA.W MotherBrainRainbowBeamWindow1HDMADataTable>>16<<8|MotherBrainRainbowBeamWindow1HDMADataTable>>16 ;ADE294;
     PLB                                                                  ;ADE297;
     PLB                                                                  ;ADE298;
     LDA.W #$00FF                                                         ;ADE299;
@@ -959,7 +959,7 @@ CalculateMotherBrainRainbowBeamHDMADataTable_AimedDownLeft:
 
 ; Recall that SM gradients are dx/dy
     PHB                                                                  ;ADE314;
-    PEA.W $7E7E                                                          ;ADE315;
+    PEA.W MotherBrainRainbowBeamWindow1HDMADataTable>>16<<8|MotherBrainRainbowBeamWindow1HDMADataTable>>16 ;ADE315;
     PLB                                                                  ;ADE318;
     PLB                                                                  ;ADE319;
     LDA.W #$00FF                                                         ;ADE31A;

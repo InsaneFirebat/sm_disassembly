@@ -4843,7 +4843,7 @@ Handle_PauseMenu_StartPressedHighlight:
     DEC                                                                  ;82A5FC;
     STA.W PauseMenu_ButtonPressedHighlightTimer                          ;82A5FD;
     LDA.W #$0000                                                         ;82A600;
-    STA.B $03                                                            ;82A603;
+    STA.B DP_Temp03                                                      ;82A603;
     LDX.W #$0090                                                         ;82A605;
     LDY.W #$00D0                                                         ;82A608;
     LDA.W #$002B                                                         ;82A60B;
@@ -7879,13 +7879,13 @@ Draw_GameOver_BabyMetroid:
     BMI .loop                                                            ;82BBB4;
     PLX                                                                  ;82BBB6;
     LDA.W #$0800                                                         ;82BBB7;
-    STA.B $03                                                            ;82BBBA;
+    STA.B DP_Temp03                                                      ;82BBBA;
     LDA.W $0002,X                                                        ;82BBBC;
     LDX.W #$007C                                                         ;82BBBF;
     LDY.W #$0050                                                         ;82BBC2;
     JSL.L AddSpritemapFrom_82C569_TableToOAM                             ;82BBC5;
     LDA.W #$0A00                                                         ;82BBC9;
-    STA.B $03                                                            ;82BBCC;
+    STA.B DP_Temp03                                                      ;82BBCC;
     LDA.W #$0064                                                         ;82BBCE;
     LDX.W #$007C                                                         ;82BBD1;
     LDY.W #$0050                                                         ;82BBD4;
@@ -10210,7 +10210,7 @@ Advance_GradualColorChange_ofBGPalette6:
 
   .advance:
     PHB                                                                  ;82D985;
-    PEA.W $7E7E                                                          ;82D986;
+    PEA.W Palettes>>16<<8|Palettes>>16                                   ;82D986; >.<
     PLB                                                                  ;82D989;
     PLB                                                                  ;82D98A;
     LDX.W #$00C0                                                         ;82D98B;
@@ -10254,7 +10254,7 @@ Advance_GradualColorChange_ofPaletteRAM:
   .advance:
     STY.B DP_Temp22                                                      ;82D9D0;
     PHB                                                                  ;82D9D2;
-    PEA.W $7E7E                                                          ;82D9D3;
+    PEA.W Palettes>>16<<8|Palettes>>16                                   ;82D9D3; >.<
     PLB                                                                  ;82D9D6;
     PLB                                                                  ;82D9D7;
 
@@ -10297,7 +10297,7 @@ Advance_GradualColorChange_ofAllPalettes:
 
   .advance:
     PHB                                                                  ;82DA18;
-    PEA.W $7E7E                                                          ;82DA19;
+    PEA.W Palettes>>16<<8|Palettes>>16                                   ;82DA19;
     PLB                                                                  ;82DA1C;
     PLB                                                                  ;82DA1D;
     LDX.W #$0000                                                         ;82DA1E;
@@ -10509,7 +10509,7 @@ Advance_GradualColorChange_ofPalettesInA_Denominator_C:
     PHX                                                                  ;82DAF7;
     PHY                                                                  ;82DAF8;
     PHB                                                                  ;82DAF9;
-    PEA.W $7E7E                                                          ;82DAFA;
+    PEA.W Palettes>>16<<8|Palettes>>16                                   ;82DAFA;
     PLB                                                                  ;82DAFD;
     PLB                                                                  ;82DAFE;
     LDX.W #$000C                                                         ;82DAFF;
@@ -11691,7 +11691,7 @@ DoorTransitionFunction_FixDoorsMovingUp:
 
 ;;; $E36E: Door transition function - load room header; set up map; decompress level, scroll, and CRE data ;;;
 DoorTransitionFunction_LoadRoomHeader_SetupMap_Decompress:
-    PEA.W $8F00                                                          ;82E36E;
+    PEA.W RoomHeaders>>8                                                 ;82E36E;
     PLB                                                                  ;82E371;
     PLB                                                                  ;82E372;
     JSR.W Save_Map_Explored_If_Elevator                                  ;82E373;
@@ -11707,7 +11707,7 @@ DoorTransitionFunction_LoadRoomHeader_SetupMap_Decompress:
 
 ;;; $E38E: Door transition function - set up scrolling ;;;
 DoorTransitionFunction_SetupScrolling:
-    PEA.W RoomHeaders>>16<<8                                             ;82E38E; >.<
+    PEA.W RoomHeaders>>8                                                 ;82E38E; >.<
     PLB                                                                  ;82E391;
     PLB                                                                  ;82E392;
     STZ.B DP_BG2XScroll                                                  ;82E393;
@@ -11733,7 +11733,7 @@ DoorTransitionFunction_SetupScrolling:
 
 ;;; $E3C0: Door transition function - place Samus, load tiles ;;;
 DoorTransitionFunction_PlaceSamus_LoadTiles:
-    PEA.W $RoomHeaders>>16<<8                                            ;82E3C0; >.<
+    PEA.W RoomHeaders>>16<<8                                             ;82E3C0; >.<
     PLB                                                                  ;82E3C3;
     PLB                                                                  ;82E3C4;
     LDA.W SamusXPosition                                                 ;82E3C5;
@@ -12239,7 +12239,7 @@ DoorTransitionFunction_NudgeSamusIfInterceptingTheDoor:
     CMP.W #$00E0                                                         ;82E6E8;
 
 +   PHB                                                                  ;82E6EB;
-    PEA.W $7E00                                                          ;82E6EC;
+    PEA.W ExpandingContractingEffectBG2YScrollIndirectHDMATable>>16<<8   ;82E6EC;
     PLB                                                                  ;82E6EF;
     PLB                                                                  ;82E6F0;
     LDX.W #$01FE                                                         ;82E6F1;
@@ -12320,7 +12320,7 @@ Load_CRETiles_TilesetTiles_and_TilesetPalette_DB_8F:
     PHP                                                                  ;82E783;
     PHB                                                                  ;82E784;
     REP #$30                                                             ;82E785;
-    PEA.W RoomHeaders>>16<<8                                             ;82E787; >.<
+    PEA.W RoomHeaders>>8                                                 ;82E787; >.<
     PLB                                                                  ;82E78A;
     PLB                                                                  ;82E78B;
 
@@ -12375,7 +12375,7 @@ LoadLevelData_CRE_TileTable_ScrollData_PLMs_DoorASM_RoomASM:
     PHP                                                                  ;82E7D3;
     PHB                                                                  ;82E7D4;
     REP #$30                                                             ;82E7D5;
-    PEA.W RoomHeaders>>16<<8                                             ;82E7D7; >.<
+    PEA.W RoomHeaders>>8                                                 ;82E7D7; >.<
     PLB                                                                  ;82E7DA;
     PLB                                                                  ;82E7DB;
     LDX.W #$63FE                                                         ;82E7DC;
@@ -12541,7 +12541,7 @@ Spawn_Door_Closing_PLM:
     PHP                                                                  ;82E8EB;
     PHB                                                                  ;82E8EC;
     REP #$30                                                             ;82E8ED;
-    PEA.W $8F00                                                          ;82E8EF;
+    PEA.W Door_Closing_PLMs>>16<<8                                       ;82E8EF;
     PLB                                                                  ;82E8F2;
     PLB                                                                  ;82E8F3;
     JSR.W CheckIfColoredDoorcapWasSpawned_SwitchDoorPLMInstruction       ;82E8F4;
@@ -12553,10 +12553,10 @@ Spawn_Door_Closing_PLM:
     TAX                                                                  ;82E901;
     LDA.W $0000,X                                                        ;82E902;
     BEQ .return                                                          ;82E905;
-    STA.B $12                                                            ;82E907;
+    STA.B DP_Temp12                                                      ;82E907;
     LDX.W DoorPointer                                                    ;82E909;
     LDA.L DoorHeaders_doorcapXBlocks,X                                   ;82E90C;
-    STA.B $14                                                            ;82E910;
+    STA.B DP_Temp14                                                      ;82E910;
     LDX.W #$0012                                                         ;82E912;
     JSL.L Spawn_Room_PLM                                                 ;82E915;
 
@@ -12656,7 +12656,7 @@ LoadLibraryBackground_LoadingPausing:
     TAY                                                                  ;82E9B7;
     CLC                                                                  ;82E9B8;
 
-+   PEA.W $8F00                                                          ;82E9B9;
++   PEA.W LibraryBGs>>8                                                  ;82E9B9;
     PLB                                                                  ;82E9BC;
     PLB                                                                  ;82E9BD;
     REP #$20                                                             ;82E9BE;
@@ -12869,18 +12869,18 @@ Load_Level_Scroll_and_CRE_Data:
     JSL.L Decompression_HardcodedDestination                             ;82EA9C;
     dl SizeOfLevelData                                                   ;82EAA0;
     PHB                                                                  ;82EAA3;
-    PEA.W $7F00                                                          ;82EAA4;
+    PEA.W SizeOfLevelData>>16<<8                                         ;82EAA4;
     PLB                                                                  ;82EAA7;
     PLB                                                                  ;82EAA8;
-    LDA.W $0000                                                          ;82EAA9;
+    LDA.W SizeOfLevelData                                                ;82EAA9;
     TAX                                                                  ;82EAAC;
     LSR                                                                  ;82EAAD;
-    ADC.W $0000                                                          ;82EAAE;
-    ADC.W $0000                                                          ;82EAB1;
+    ADC.W SizeOfLevelData                                                ;82EAAE;
+    ADC.W SizeOfLevelData                                                ;82EAB1;
     TAY                                                                  ;82EAB4;
     BRA +                                                                ;82EAB5;
 
--   LDA.W $0002,Y                                                        ;82EAB7;
+-   LDA.W LevelData,Y                                                    ;82EAB7;
     STA.W CustomBackground,X                                             ;82EABA;
 
 +   DEY                                                                  ;82EABD;
@@ -12888,14 +12888,14 @@ Load_Level_Scroll_and_CRE_Data:
     DEX                                                                  ;82EABF;
     DEX                                                                  ;82EAC0;
     BPL -                                                                ;82EAC1;
-    LDA.W $0000                                                          ;82EAC3;
+    LDA.W SizeOfLevelData                                                ;82EAC3;
     LSR                                                                  ;82EAC6;
     TAX                                                                  ;82EAC7;
-    ADC.W $0000                                                          ;82EAC8;
+    ADC.W SizeOfLevelData                                                ;82EAC8;
     TAY                                                                  ;82EACB;
     BRA +                                                                ;82EACC;
 
--   LDA.W $0002,Y                                                        ;82EACE;
+-   LDA.W LevelData,Y                                                    ;82EACE;
     STA.W BTS,X                                                          ;82EAD1;
 
 +   DEY                                                                  ;82EAD4;
