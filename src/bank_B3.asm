@@ -3569,7 +3569,7 @@ SetBotwoonInstListTableIndices:
     STA.B DP_Temp18                                                      ;B39D7B;
 
   .notZero:
-    LDA.W $1A4D,Y                                                        ;B39D7D; ?
+    LDA.W EnemyProjectile_XPositions+2,Y                                 ;B39D7D;
     SEC                                                                  ;B39D80;
     SBC.W EnemyProjectile_XPositions,Y                                   ;B39D81;
     STA.B DP_Temp12                                                      ;B39D84;

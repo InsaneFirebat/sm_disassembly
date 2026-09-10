@@ -1969,7 +1969,6 @@ BTS: skip $3200 ; $7F6402..9601
 CustomBackground: skip $6400 ; $7F9602..FA01
 
 org $7F0000 ; non-gameplay
-HighRAM: ; $7F0000..FFFF
 BackupSRAM: ; $7F0000..1FFF
 CreditsTilemap: ; $7F0000..1FFF
 SamusWaitingForCreditsToEndTiles: ; $7F0000..??

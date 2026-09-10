@@ -8487,7 +8487,7 @@ Spawn_ProjectileTrail:
 
 +   ASL                                                                  ;90B672;
     TAX                                                                  ;90B673;
-    PEA.W $7E7E                                                          ;90B674;
+    PEA.W ProjectileTrail_LeftInstructionTimer>>16<<8|ProjectileTrail_LeftInstructionTimer>>16 ;90B674;
     PLB                                                                  ;90B677;
     PLB                                                                  ;90B678;
     LDY.W #$0022                                                         ;90B679;
@@ -8522,7 +8522,7 @@ Spawn_ProjectileTrail:
 ;;; $B6A9: Handle projectile trails ;;;
 HandleProjectileTrails:
     PHB                                                                  ;90B6A9;
-    PEA.W $7E7E                                                          ;90B6AA;
+    PEA.W ProjectileTrail_LeftInstructionTimer>>16<<8|ProjectileTrail_LeftInstructionTimer>>16 ;90B6AA;
     PLB                                                                  ;90B6AD;
     PLB                                                                  ;90B6AE;
     LDA.W TimeIsFrozenFlag                                               ;90B6AF;
