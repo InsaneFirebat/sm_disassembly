@@ -1943,7 +1943,7 @@ LoadIntroSubtitleTiles:
     ADC.B DP_Temp16                                                      ;8B8D3A;
     TAY                                                                  ;8B8D3C;
     PHB                                                                  ;8B8D3D;
-    PEA.W $7F00                                                          ;8B8D3E;
+    PEA.W IntroFont2Tiles>>16<<8                                         ;8B8D3E;
     PLB                                                                  ;8B8D41;
     PLB                                                                  ;8B8D42;
     LDA.W $0000,Y                                                        ;8B8D43;
@@ -1962,7 +1962,7 @@ LoadIntroSubtitleTiles:
     STA.L IntroBG3SubtitleTiles+$C,X                                     ;8B8D70;
     LDA.W $000E,Y                                                        ;8B8D74;
     STA.L IntroBG3SubtitleTiles+$E,X                                     ;8B8D77;
-    PLB                                                                  ;8B8D7B;
+    PLB                                                                  ;8B8D7B; >.<
     PLY                                                                  ;8B8D7C;
     LDA.W $0006,Y                                                        ;8B8D7D;
     STA.B DP_Temp16                                                      ;8B8D80;
@@ -1976,7 +1976,7 @@ LoadIntroSubtitleTiles:
     ADC.B DP_Temp16                                                      ;8B8D8D;
     TAY                                                                  ;8B8D8F;
     PHB                                                                  ;8B8D90;
-    PEA.W $7F00                                                          ;8B8D91;
+    PEA.W IntroFont2Tiles>>16<<8                                         ;8B8D91;
     PLB                                                                  ;8B8D94;
     PLB                                                                  ;8B8D95;
     LDA.W $0000,Y                                                        ;8B8D96;
@@ -3798,7 +3798,7 @@ Draw_CinematicSpriteObjects_EndingCredits:
   .loop:
     LDA.W CinematicSpriteObject_SpritemapPointers,X                      ;8B97A0;
     BEQ .next                                                            ;8B97A3;
-    PEA.W $8C00                                                          ;8B97A5;
+    PEA.W EndingSequenceSpritemaps_0>>16<<8                              ;8B97A5;
     PLB                                                                  ;8B97A8;
     PLB                                                                  ;8B97A9;
     LDY.W CinematicSpriteObject_SpritemapPointers,X                      ;8B97AA;
