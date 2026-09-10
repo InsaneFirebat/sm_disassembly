@@ -1,4 +1,12 @@
 
+org $7E0000
+LowRAM: ; $7E0000..FFFF
+
+
+org $7F0000
+HighRAM: ; $7F0000..FFFF
+
+
 org $830000
 DoorHeaders:
   .destRoomHeader: skip 2 ; 0: Destination room header pointer (bank $8F)
@@ -21,6 +29,7 @@ PLMEntries:
   .setup: skip 2 ; 0: Setup pointer
   .instList: skip 2 ; 2: Instruction list pointer
   .instList2: skip 2 ; 4: Instruction list pointer 2
+
 
 org $860000
 EnemyProjectiles:

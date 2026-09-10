@@ -4211,7 +4211,7 @@ DetermineProjectile_Prototype:
     PHP                                                                  ;949C73;
     PHB                                                                  ;949C74;
     PHX                                                                  ;949C75;
-    PEA.W $9000                                                          ;949C76;
+    PEA.W ProtoWeaponConstants>>16<<8                                    ;949C76;
     PLB                                                                  ;949C79;
     PLB                                                                  ;949C7A;
     LDA.W SamusProjectile_Types+1,X                                      ;949C7B;

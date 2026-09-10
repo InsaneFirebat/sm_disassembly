@@ -886,7 +886,7 @@ UNUSED_WriteYBytesOfATo_7E0000_X_8bit_8083E3:
     REP #$10                                                             ;8083E9;
 
   .loop:
-    STA.L $7E0000,X                                                      ;8083EB;
+    STA.L LowRAM,X                                                       ;8083EB;
     INX                                                                  ;8083EF;
     DEY                                                                  ;8083F0;
     BNE .loop                                                            ;8083F1;
@@ -918,7 +918,7 @@ WriteYBytesOfATo_7E0000_X_16bit:
     REP #$30                                                             ;8083FA;
 
   .loop:
-    STA.L $7E0000,X                                                      ;8083FC;
+    STA.L LowRAM,X                                                       ;8083FC;
     INX                                                                  ;808400;
     INX                                                                  ;808401;
     DEY                                                                  ;808402;
@@ -1044,7 +1044,7 @@ CommonBootSection:
     LDA.B #$8F                                                           ;808484;
     STA.W $2100                                                          ;808486; Enable forced blank
     REP #$30                                                             ;808489;
-    PEA.W $7E00                                                          ;80848B;
+    PEA.W LowRAM>>8                                                      ;80848B;
     PLB                                                                  ;80848E;
     PLB                                                                  ;80848F;
     LDX.W #$1FFE                                                         ;808490;
@@ -3140,7 +3140,7 @@ Update_IO_Registers:
     LDX.B DP_BG4YScroll+1                                                ;8092DE;
     STX.W $2114                                                          ;8092E0;
     LDX.B DP_FakeBGModeSize                                              ;8092E3;
-    STX.W $07EC                                                          ;8092E5;
+    STX.W CeresMode7HDMATables+1                                         ;8092E5;
     LDA.B DP_BGModeSize                                                  ;8092E8;
     AND.W #$0007                                                         ;8092EA;
     CMP.W #$0007                                                         ;8092ED;
@@ -4364,7 +4364,7 @@ HandleHUDTilemap_PausedAndRunning:
     PHK                                                                  ;809B46;
     PLB                                                                  ;809B47;
     SEP #$20                                                             ;809B48;
-    STZ.B $02                                                            ;809B4A;
+    STZ.B DP_Temp02                                                      ;809B4A;
     REP #$30                                                             ;809B4C;
     LDA.W ReserveTankMode                                                ;809B4E;
     CMP.W #$0001                                                         ;809B51;
