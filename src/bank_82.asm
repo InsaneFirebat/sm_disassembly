@@ -41,7 +41,6 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
   .onZebes:
     JSR.W InialiseIORegistersForGameplay                                 ;82804E;
     JSR.W Load_StandardBG3Tiles_SpriteTiles_ClearTilemaps                ;828051;
-    JSR.W LoadInitialPalette                                             ;828054;
     JSL.L LoadFromLoadStation                                            ;82805B;
 
   .gameplay:
