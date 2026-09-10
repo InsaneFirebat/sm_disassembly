@@ -3102,9 +3102,9 @@ NMI:
     STZ.W VRAMReadStack
 
   .doneVRAM
+    SEP #$30
     LDX.B DP_HDMAEnable                                                  ;8095DC;
     STX.W $420C                                                          ;8095DE;
-    SEP #$30
     STZ.W NMI_Request                                                    ;8095E7;
     STZ.W NMI_LagCounter                                                 ;8095EA;
     LDX.W NMI_8bitFrameCounter                                           ;8095ED;
