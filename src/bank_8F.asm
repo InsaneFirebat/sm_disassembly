@@ -14804,7 +14804,7 @@ MainASM_SpawnCeresPreElevatorHallFallingDebris:
     AND.W #$000F                                                         ;8FE544;
     ASL                                                                  ;8FE547;
     TAX                                                                  ;8FE548;
-    LDA.W .debrisXpos,X                                                  ;8FE549;
+    LDA.L .debrisXpos,X
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics                  ;8FE54C;
     RTS                                                                  ;8FE550;
 
@@ -15481,19 +15481,19 @@ MainASM_RidleysRoomShaking:
     ASL                                                                  ;8FE959;
     TAX                                                                  ;8FE95A;
     LDA.B DP_BG1XScroll                                                  ;8FE95B;
-    ADC.W .Xspeeds,X                                                     ;8FE95D;
+    ADC.L .Xspeeds,X
     STA.B DP_BG1XScroll                                                  ;8FE960;
     LDA.B DP_BG2XScroll                                                  ;8FE962;
     CLC                                                                  ;8FE964;
-    ADC.W .Xspeeds,X                                                     ;8FE965;
+    ADC.L .Xspeeds,X
     STA.B DP_BG2XScroll                                                  ;8FE968;
     LDA.B DP_BG1YScroll                                                  ;8FE96A;
     CLC                                                                  ;8FE96C;
-    ADC.W .Yspeeds,X                                                     ;8FE96D;
+    ADC.L .Yspeeds,X
     STA.B DP_BG1YScroll                                                  ;8FE970;
     LDA.B DP_BG2YScroll                                                  ;8FE972;
     CLC                                                                  ;8FE974;
-    ADC.W .Yspeeds,X                                                     ;8FE975;
+    ADC.L .Yspeeds,X
     STA.B DP_BG2YScroll                                                  ;8FE978;
 
   .return:
