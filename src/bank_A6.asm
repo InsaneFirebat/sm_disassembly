@@ -2325,9 +2325,9 @@ InitAI_Puromi:
     STA.L Puromi.bodyIndex,X                                             ;A69591;
 
   .loopEnemyProjectiles:
-    LDX.W EnemyIndex                                                     ;A69595;
     LDY.W #EnemyProjectile_Puromi                                        ;A69598;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A6959B;
+    LDX.W EnemyIndex
     LDA.L Puromi.bodyIndex,X                                             ;A6959F;
     SEC                                                                  ;A695A3;
     SBC.W #$0002                                                         ;A695A4;
@@ -3179,7 +3179,6 @@ FireMiniKraidSpit_Common:
 ;;     Y: Spit velocity table index
     LDX.W EnemyIndex                                                     ;A69BCB;
     PHY                                                                  ;A69BCE;
-    PHX                                                                  ;A69BCF;
     STA.L MiniKraid.spitXOffset,X                                        ;A69BD0;
     LDA.W MiniKraidSpitVelocityTable_leftward_X1,Y                       ;A69BD4;
     STA.L MiniKraid.spitXVelocity,X                                      ;A69BD7;
@@ -3187,8 +3186,8 @@ FireMiniKraidSpit_Common:
     STA.L MiniKraid.spitYVelocity,X                                      ;A69BDE;
     LDY.W #EnemyProjectile_MiniKraidSpit                                 ;A69BE2;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A69BE5;
-    PLX                                                                  ;A69BE9;
     PLY                                                                  ;A69BEA;
+    LDX.W EnemyIndex
     LDA.W MiniKraidSpitVelocityTable_leftward_X2,Y                       ;A69BEB;
     STA.L MiniKraid.spitXVelocity,X                                      ;A69BEE;
     LDA.W MiniKraidSpitVelocityTable_leftward_Y2,Y                       ;A69BF2;

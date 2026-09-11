@@ -6246,6 +6246,7 @@ Function_Polyp_ShootRock:
     LDA.W PolypData_projectileInitialYSpeedTableIndex,Y                  ;A2B5CB;
     LDY.W #EnemyProjectile_LavaquakeRocks                                ;A2B5CE;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A2B5D1;
+    LDX.W EnemyIndex
     LDA.W #Function_Polyp_Cooldown                                       ;A2B5D5;
     STA.W Polyp.function,X                                               ;A2B5D8;
     JSL.L GenerateRandomNumber                                           ;A2B5DB;
@@ -11409,6 +11410,7 @@ Function_Dragon_Attacking:
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A2E70B;
     LDA.W #$0061                                                         ;A2E70F;
     JSL.L QueueSound_Lib2_Max6                                           ;A2E712;
+    LDX.W EnemyIndex
     DEC.W Dragon.attackCounter,X                                         ;A2E716;
     BNE .return                                                          ;A2E719;
     LDA.L Dragon.newInstListIndex,X                                      ;A2E71B;

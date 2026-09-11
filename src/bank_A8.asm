@@ -13133,6 +13133,7 @@ FireAcidSpit:
     JSL.L QueueSound_Lib2_Max6                                           ;A8F6DF;
     LDX.W EnemyIndex                                                     ;A8F6E3;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A8F6E6;
+    LDX.W EnemyIndex
     LDA.W #$0018                                                         ;A8F6EA;
     STA.L Kihunter.thinkingTimer,X                                       ;A8F6ED;
     PLY                                                                  ;A8F6F1;

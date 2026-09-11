@@ -3754,6 +3754,7 @@ Function_Botwoon_Head_Spitting_Spawn5SpitProjectiles:
     STA.W BotwoonSpitAngleParam                                          ;B39F1E;
     DEC.W BotwoonSpitLoopCounter                                         ;B39F21;
     BNE .loop                                                            ;B39F24;
+    LDX.W EnemyIndex
     LDA.W #$0000                                                         ;B39F26;
     STA.L Botwoon.spittingFlag,X                                         ;B39F29;
     LDA.W #Function_Botwoon_Head_Spitting_Cooldown                       ;B39F2D;
@@ -3788,6 +3789,7 @@ Function_Botwoon_Head_Spitting_Spawn3SpitProjectiles:
     STA.W BotwoonSpitAngleParam                                          ;B39F6B;
     DEC.W BotwoonSpitLoopCounter                                         ;B39F6E;
     BNE .loop                                                            ;B39F71;
+    LDX.W EnemyIndex
     LDA.W #Function_Botwoon_Head_Spitting_Cooldown                       ;B39F73;
     STA.W Botwoon.headFunction,X                                         ;B39F76;
     RTS                                                                  ;B39F79;

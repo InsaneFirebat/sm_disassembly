@@ -5578,9 +5578,10 @@ Function_KraidMainLoop_AttackingWithMouthOpen:
     AND.W #$000E                                                         ;A7BC10;
     TAX                                                                  ;A7BC13;
     LDA.W .rockSpitXVelocities,X                                         ;A7BC14;
+    LDX.W EnemyIndex
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A7BC17;
     LDA.W #$001E                                                         ;A7BC1B;
-    JSL.L QueueSound_Lib3_Max6                                           ;A7BC1E;
+    JML QueueSound_Lib3_Max6
 
   .return:
     RTL                                                                  ;A7BC22;
@@ -8697,6 +8698,7 @@ Function_Phantoon_FightIntro_SpawnCircleOfFlames:
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A7D4B6;
     LDA.W #$001D                                                         ;A7D4BA;
     JSL.L QueueSound_Lib3_Max6                                           ;A7D4BD;
+    LDX.W EnemyIndex
     LDA.W #$001E                                                         ;A7D4C1;
     STA.W Phantoon.functionTimer,X                                       ;A7D4C4;
     LDA.W Phantoon.flameCounter                                          ;A7D4C7;

@@ -4505,6 +4505,7 @@ EnemyDeath:
     LDY.W #EnemyProjectile_EnemyDeathExplosion                           ;A0A3D6;
     LDA.W Temp_DeathExplosionType                                        ;A0A3D9;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A0A3DC;
+    LDX.W EnemyIndex
     LDA.W Enemy.properties,X                                             ;A0A3E0;
     AND.W #$4000                                                         ;A0A3E3;
     STA.B DP_Temp12                                                      ;A0A3E6;
@@ -4555,6 +4556,7 @@ RinkaDeath:
     LDY.W #EnemyProjectile_EnemyDeathExplosion                           ;A0A427;
     LDA.W Temp_DeathExplosionType                                        ;A0A42A;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A0A42D;
+    LDX.W EnemyIndex
     LDA.W Enemy.properties,X                                             ;A0A431;
     AND.W #$4000                                                         ;A0A434;
     STA.B DP_Temp12                                                      ;A0A437;

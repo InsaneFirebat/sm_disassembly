@@ -13,13 +13,10 @@ SpawnEnemyProjectileY_ParameterA_XGraphics:
 ;; Returns:
 ;;     Carry: Set if enemy projectile could not be spawned
 ;;     A: Enemy projectile index if spawned
-    PHP                                                                  ;868027;
     PHB                                                                  ;868028;
-    PHX                                                                  ;868029;
-    PHY                                                                  ;86802A;
-    STA.W EnemyProjectile_InitParam0                                     ;86802B;
     PHK                                                                  ;86802E;
     PLB                                                                  ;86802F;
+    STA.W EnemyProjectile_InitParam0
     LDA.W Enemy.palette,X                                                ;868030;
     ORA.W Enemy.GFXOffset,X                                              ;868033;
     PHA                                                                  ;868036;
@@ -33,10 +30,7 @@ SpawnEnemyProjectileY_ParameterA_XGraphics:
     DEY                                                                  ;868041;
     BPL .loop                                                            ;868042;
     PLA                                                                  ;868044;
-    PLY                                                                  ;868045;
-    PLX                                                                  ;868046;
     PLB                                                                  ;868047;
-    PLP                                                                  ;868048;
     SEC                                                                  ;868049;
     RTL                                                                  ;86804A;
 
@@ -67,10 +61,7 @@ SpawnEnemyProjectileY_ParameterA_XGraphics:
     PHY                                                                  ;86808C;
     JSR.W ($0000,X)                                                      ;86808D;
     PLA                                                                  ;868090;
-    PLY                                                                  ;868091;
-    PLX                                                                  ;868092;
     PLB                                                                  ;868093;
-    PLP                                                                  ;868094;
     CLC                                                                  ;868095;
     RTL                                                                  ;868096;
 
@@ -86,13 +77,11 @@ SpawnEnemyProjectileY_ParameterA_RoomGraphics:
 
 ; (0 used for palette and graphics index)
 ; Used by some enemies, also gate PLMs
-    PHP                                                                  ;868097;
     PHB                                                                  ;868098;
-    PHX                                                                  ;868099;
-    PHY                                                                  ;86809A;
-    STA.W EnemyProjectile_InitParam0                                     ;86809B;
     PHK                                                                  ;86809E;
     PLB                                                                  ;86809F;
+    PHX
+    STA.W EnemyProjectile_InitParam0
     TYX                                                                  ;8680A0;
     LDY.W #$0022                                                         ;8680A1;
 
@@ -102,10 +91,8 @@ SpawnEnemyProjectileY_ParameterA_RoomGraphics:
     DEY                                                                  ;8680A9;
     DEY                                                                  ;8680AA;
     BPL .loop                                                            ;8680AB;
-    PLY                                                                  ;8680AD;
     PLX                                                                  ;8680AE;
     PLB                                                                  ;8680AF;
-    PLP                                                                  ;8680B0;
     SEC                                                                  ;8680B1;
     RTL                                                                  ;8680B2;
 
@@ -137,10 +124,8 @@ SpawnEnemyProjectileY_ParameterA_RoomGraphics:
     PHY                                                                  ;8680F9;
     JSR.W ($0000,X)                                                      ;8680FA;
     PLA                                                                  ;8680FD;
-    PLY                                                                  ;8680FE;
     PLX                                                                  ;8680FF;
     PLB                                                                  ;868100;
-    PLP                                                                  ;868101;
     CLC                                                                  ;868102;
     RTL                                                                  ;868103;
 

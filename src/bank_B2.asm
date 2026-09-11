@@ -10209,7 +10209,6 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $F564: Instruction - spawn space pirate claw enemy projectile with throw direction [[Y]] and spawn offset ([[Y] + 2], [[Y] + 4]) ;;;
 Instruction_PirateNinja_SpawnClawProjWithThrowDirSpawnOffset:
-    PHX                                                                  ;B2F564;
     PHY                                                                  ;B2F565;
     LDX.W EnemyIndex                                                     ;B2F566;
     LDA.W $0002,Y                                                        ;B2F569;
@@ -10223,14 +10222,11 @@ Instruction_PirateNinja_SpawnClawProjWithThrowDirSpawnOffset:
     LDA.W $0000,Y                                                        ;B2F57D;
     LDY.W #EnemyProjectile_PirateClaw                                    ;B2F580;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;B2F583;
-    PLY                                                                  ;B2F587;
-    PLX                                                                  ;B2F588;
-    INY                                                                  ;B2F589;
-    INY                                                                  ;B2F58A;
-    INY                                                                  ;B2F58B;
-    INY                                                                  ;B2F58C;
-    INY                                                                  ;B2F58D;
-    INY                                                                  ;B2F58E;
+    LDX.W EnemyIndex
+    PLA
+    CLC
+    ADC.W #$0006
+    TAY
     RTL                                                                  ;B2F58F;
 
 
