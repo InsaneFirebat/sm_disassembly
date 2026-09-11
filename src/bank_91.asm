@@ -7,60 +7,59 @@ org $918000
 ;;; $8000: Normal Samus pose input handler ;;;
 NormalSamusPoseInputHandler:
 ; Called by Samus pose input handlers other than x-ray (which uses XraySamusPoseInputHandler instead)
-    PHP                                                                  ;918000;
     PHB                                                                  ;918001;
     PHK                                                                  ;918002;
     PLB                                                                  ;918003;
-    REP #$30                                                             ;918004;
     LDA.W MovementType                                                   ;918006;
     AND.W #$00FF                                                         ;918009;
     ASL                                                                  ;91800C;
     TAX                                                                  ;91800D;
     JSR.W (.pointers,X)                                                  ;91800E;
     PLB                                                                  ;918011;
-    PLP                                                                  ;918012;
     RTL                                                                  ;918013;
 
   .pointers:
     dw NormalSamusPoseInputHandler_Standing                              ;918014; 0: Standing
-    dw NormalSamusPoseInputHandler_1_Running                             ;918016; 1: Running
-    dw NormalSamusPoseInputHandler_NormalJumping                         ;918018; 2: Normal jumping
-    dw NormalSamusPoseInputHandler_SpinJumping                           ;91801A; 3: Spin jumping
-    dw NormalSamusPoseInputHandler_MorphBall_OnGround                    ;91801C; 4: Morph ball - on ground
+    dw DetermineProspectivePoseFromTransitionTable                       ;918016; 1: Running
+    dw DetermineProspectivePoseFromTransitionTable                       ;918018; 2: Normal jumping
+    dw DetermineProspectivePoseFromTransitionTable                       ;91801A; 3: Spin jumping
+    dw DetermineProspectivePoseFromTransitionTable                       ;91801C; 4: Morph ball - on ground
     dw NormalSamusPoseInputHandler_Crouching                             ;91801E; 5: Crouching
-    dw NormalSamusPoseInputHandler_Falling                               ;918020; 6: Falling
-    dw RTS_918086                                                        ;918022; 7: Unused
-    dw NormalSamusPoseInputHandler_MorphBall_Falling                     ;918024; 8: Morph ball - falling
-    dw RTS_918112                                                        ;918026; 9: Unused
+    dw DetermineProspectivePoseFromTransitionTable                       ;918020; 6: Falling
+    dw RTS_91804C                                                        ;918022; 7: Unused
+    dw DetermineProspectivePoseFromTransitionTable                       ;918024; 8: Morph ball - falling
+    dw RTS_91804C                                                        ;918026; 9: Unused
     dw NormalSamusPoseInputHandler_Knockback_CrystalFlashEnding          ;918028; Ah: Knockback / crystal flash ending
-    dw RTS_91812D                                                        ;91802A; Bh: Unused
-    dw NormalSamusPoseInputHandler_C_DetermineProspectivePose            ;91802C; Ch: Unused
-    dw NormalSamusPoseInputHandler_D_DetermineProspectivePose            ;91802E; Dh: Unused
-    dw NormalSamusPoseInputHandler_TurningAround_OnGround                ;918030; Eh: Turning around - on ground
-    dw RTS_918146                                                        ;918032; Fh: Crouching/standing/morphing/unmorphing transition
-    dw NormalSamusPoseInputHandler_Moonwalking                           ;918034; 10h: Moonwalking
-    dw NormalSamusPoseInputHandler_SpringBall_OnGround                   ;918036; 11h: Spring ball - on ground
-    dw NormalSamusPoseInputHandler_SpringBall_InAir                      ;918038; 12h: Spring ball - in air
-    dw NormalSamusPoseInputHandler_SpringBall_Falling                    ;91803A; 13h: Spring ball - falling
-    dw NormalSamusPoseInputHandler_WallJumping                           ;91803C; 14h: Wall jumping
-    dw NormalSamusPoseInputHandler_Grappling                             ;91803E; 15h: Ran into a wall
-    dw NormalSamusPoseInputHandler_Grappling                             ;918040; 16h: Grappling
-    dw NormalSamusPoseInputHandler_TurningAround_Jumping                 ;918042; 17h: Turning around - jumping
-    dw NormalSamusPoseInputHandler_TurningAround_Falling                 ;918044; 18h: Turning around - falling
-    dw NormalSamusPoseInputHandler_DamageBoost                           ;918046; 19h: Damage boost
-    dw NormalSamusPoseInputHandler_GrabbedByDraygon                      ;918048; 1Ah: Grabbed by Draygon
-    dw NormalSamusPoseInputHandler_Shinespark_CF_Drained_DamagedMB       ;91804A; 1Bh: Shinespark / crystal flash / drained by metroid / damaged by MB's attacks
+    dw RTS_91804C                                                        ;91802A; Bh: Unused
+    dw DetermineProspectivePoseFromTransitionTable                       ;91802C; Ch: Unused
+    dw DetermineProspectivePoseFromTransitionTable                       ;91802E; Dh: Unused
+    dw DetermineProspectivePoseFromTransitionTable                       ;918030; Eh: Turning around - on ground
+    dw RTS_91804C                                                        ;918032; Fh: Crouching/standing/morphing/unmorphing transition
+    dw DetermineProspectivePoseFromTransitionTable                       ;918034; 10h: Moonwalking
+    dw DetermineProspectivePoseFromTransitionTable                       ;918036; 11h: Spring ball - on ground
+    dw DetermineProspectivePoseFromTransitionTable                       ;918038; 12h: Spring ball - in air
+    dw DetermineProspectivePoseFromTransitionTable                       ;91803A; 13h: Spring ball - falling
+    dw DetermineProspectivePoseFromTransitionTable                       ;91803C; 14h: Wall jumping
+    dw DetermineProspectivePoseFromTransitionTable                       ;91803E; 15h: Ran into a wall
+    dw DetermineProspectivePoseFromTransitionTable                       ;918040; 16h: Grappling
+    dw DetermineProspectivePoseFromTransitionTable                       ;918042; 17h: Turning around - jumping
+    dw DetermineProspectivePoseFromTransitionTable                       ;918044; 18h: Turning around - falling
+    dw DetermineProspectivePoseFromTransitionTable                       ;918046; 19h: Damage boost
+    dw DetermineProspectivePoseFromTransitionTable                       ;918048; 1Ah: Grabbed by Draygon
+    dw DetermineProspectivePoseFromTransitionTable                       ;91804A; 1Bh: Shinespark / crystal flash / drained by metroid / damaged by MB's attacks
 
 
+;;; $8146: RTS. Normal Samus pose input handler - [Samus movement type] = crouching/standing/morphing/unmorphing transition ;;;
 ;;; $804C: RTS ;;;
+;;; $8086: RTS. Normal Samus pose input handler - [Samus movement type] = 7 ;;;
+;;; $8112: RTS. Normal Samus pose input handler - [Samus movement type] = 9 ;;;
+;;; $812D: RTS. Normal Samus pose input handler - [Samus movement type] = Bh ;;;
 RTS_91804C:
     RTS                                                                  ;91804C;
 
 
 ;;; $804D: Normal Samus pose input handler - [Samus movement type] = standing ;;;
 NormalSamusPoseInputHandler_Standing:
-    PHP                                                                  ;91804D;
-    REP #$30                                                             ;91804E;
     LDA.W Pose                                                           ;918050;
     BEQ .facingForward                                                   ;918053;
     CMP.W #$009B                                                         ;918055;
@@ -72,63 +71,15 @@ NormalSamusPoseInputHandler_Standing:
     BNE .return                                                          ;91805F;
 
   .notFacingForward:
-    JSR.W DetermineProspectivePoseFromTransitionTable                    ;918061;
+    JMP.W DetermineProspectivePoseFromTransitionTable                    ;918061;
 
   .return:
-    PLP                                                                  ;918064;
     RTS                                                                  ;918065;
-
-
-;;; $8066: Normal Samus pose input handler - [Samus movement type] = running ;;;
-NormalSamusPoseInputHandler_1_Running:
-    PHP                                                                  ;918066;
-    REP #$30                                                             ;918067;
-    JSR.W DetermineProspectivePoseFromTransitionTable                    ;918069;
-    PLP                                                                  ;91806C;
-    RTS                                                                  ;91806D;
-
-
-;;; $806E: Normal Samus pose input handler - [Samus movement type] = normal jumping ;;;
-NormalSamusPoseInputHandler_NormalJumping:
-    PHP                                                                  ;91806E;
-    REP #$30                                                             ;91806F;
-    JSR.W DetermineProspectivePoseFromTransitionTable                    ;918071;
-    PLP                                                                  ;918074;
-    RTS                                                                  ;918075;
-
-
-;;; $8076: Normal Samus pose input handler - [Samus movement type] = spin jumping ;;;
-NormalSamusPoseInputHandler_SpinJumping:
-    PHP                                                                  ;918076;
-    REP #$30                                                             ;918077;
-    JSR.W DetermineProspectivePoseFromTransitionTable                    ;918079;
-    PLP                                                                  ;91807C;
-    RTS                                                                  ;91807D;
-
-
-;;; $807E: Normal Samus pose input handler - [Samus movement type] = morph ball - on ground ;;;
-NormalSamusPoseInputHandler_MorphBall_OnGround:
-    PHP                                                                  ;91807E;
-    REP #$30                                                             ;91807F;
-    JSR.W DetermineProspectivePoseFromTransitionTable                    ;918081;
-    PLP                                                                  ;918084;
-    RTS                                                                  ;918085;
-
-
-;;; $8086: RTS. Normal Samus pose input handler - [Samus movement type] = 7 ;;;
-RTS_918086:
-    RTS                                                                  ;918086;
 
 
 ;;; $8087: Normal Samus pose input handler - [Samus movement type] = crouching ;;;
 NormalSamusPoseInputHandler_Crouching:
-; Note that this routine is not called when time is frozen (CurrentStateHandler = $E713 during reserve tanks, PoseInputHandler = $E918 during x-ray),
-; so the call to XraySamusPoseInputHandler is dead code
 ; I also don't think there's any way to transition directly from crouching to standing, so the Y position adjustment is dead code too
-    PHP                                                                  ;918087;
-    REP #$30                                                             ;918088;
-    LDA.W TimeIsFrozenFlag                                               ;91808A;
-    BNE .timeIsFrozen                                                    ;91808D;
     JSR.W DetermineProspectivePoseFromTransitionTable                    ;91808F;
     LDA.W MovementType                                                   ;918092;
     AND.W #$00FF                                                         ;918095;
@@ -141,91 +92,15 @@ NormalSamusPoseInputHandler_Crouching:
     SEC                                                                  ;9180A7;
     SBC.W #$0005                                                         ;9180A8;
     STA.W SamusPreviousYPosition                                         ;9180AB;
-    BRA .return                                                          ;9180AE;
-
-  .timeIsFrozen:
-    JSL.L XraySamusPoseInputHandler                                      ;9180B0;
 
   .return:
-    PLP                                                                  ;9180B4;
     RTS                                                                  ;9180B5;
-
-
-;;; $80B6: Normal Samus pose input handler - [Samus movement type] = falling ;;;
-NormalSamusPoseInputHandler_Falling:
-    PHP                                                                  ;9180B6;
-    REP #$30                                                             ;9180B7;
-    JSR.W DetermineProspectivePoseFromTransitionTable                    ;9180B9;
-    PLP                                                                  ;9180BC;
-    RTS                                                                  ;9180BD;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $80BE: Unused ;;;
-UNUSED_AutoJumpFromCrouchFall_9180BE:
-; Tries to make Samus jump if pressing jump and she's falling straight down but has zero Y speed and she wasn't crouching before she fell...?
-; Perhaps an earlier attempt at auto-jump
-    LDA.W Pose                                                           ;9180BE;
-    CMP.W #$0029                                                         ;9180C1;
-    BEQ .fallingNotAiming                                                ;9180C4;
-    CMP.W #$002A                                                         ;9180C6;
-    BNE .return                                                          ;9180C9;
-
-  .fallingNotAiming:
-    LDA.W LastDifferentPoseMovementType                                  ;9180CB;
-    AND.W #$00FF                                                         ;9180CE;
-    CMP.W #$0005                                                         ;9180D1;
-    BEQ .return                                                          ;9180D4;
-    LDA.B DP_Controller1Input                                            ;9180D6;
-    BIT.W #$0300                                                         ;9180D8;
-    BNE .return                                                          ;9180DB;
-    LDA.W SamusYSpeed                                                    ;9180DD;
-    BNE .return                                                          ;9180E0;
-    LDA.B DP_Controller1New                                              ;9180E2;
-    BIT.W JumpBinding                                                    ;9180E4;
-    BEQ .return                                                          ;9180E7;
-    LDA.W PoseXDirection                                                 ;9180E9;
-    AND.W #$00FF                                                         ;9180EC;
-    CMP.W #$0004                                                         ;9180EF;
-    BEQ .facingLeft                                                      ;9180F2;
-    LDA.W #$004D                                                         ;9180F4;
-    STA.W SpecialProspectivePose                                         ;9180F7;
-    BRA .command4                                                        ;9180FA;
-
-  .facingLeft:
-    LDA.W #$004E                                                         ;9180FC;
-    STA.W SpecialProspectivePose                                         ;9180FF;
-
-  .command4:
-    LDA.W #$0004                                                         ;918102;
-    STA.W SpecialProspectivePoseChangeCommand                            ;918105;
-
-  .return:
-    PLP                                                                  ;918108;
-    RTS                                                                  ;918109;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
-;;; $810A: Normal Samus pose input handler - [Samus movement type] = morph ball - falling ;;;
-NormalSamusPoseInputHandler_MorphBall_Falling:
-    PHP                                                                  ;91810A;
-    REP #$30                                                             ;91810B;
-    JSR.W DetermineProspectivePoseFromTransitionTable                    ;91810D;
-    PLP                                                                  ;918110;
-    RTS                                                                  ;918111;
-
-
-;;; $8112: RTS. Normal Samus pose input handler - [Samus movement type] = 9 ;;;
-RTS_918112:
-    RTS                                                                  ;918112;
 
 
 ;;; $8113: Normal Samus pose input handler - [Samus movement type] = knockback / crystal flash ending ;;;
 NormalSamusPoseInputHandler_Knockback_CrystalFlashEnding:
 ; Only processes knockback in practice as PoseInputHandler = RTS during crystal flash, so this function never gets called.
 ; Samus movement type cannot be changed via DetermineProspectivePoseFromTransitionTable... but if it did then Samus would jump(?!).
-    PHP                                                                  ;918113;
-    REP #$30                                                             ;918114;
     JSR.W DetermineProspectivePoseFromTransitionTable                    ;918116;
     LDA.W MovementType                                                   ;918119;
     AND.W #$00FF                                                         ;91811C;
@@ -235,150 +110,32 @@ NormalSamusPoseInputHandler_Knockback_CrystalFlashEnding:
     STZ.W SamusKnockbackTimer                                            ;918128;
 
   .return:
-    PLP                                                                  ;91812B;
     RTS                                                                  ;91812C;
 
 
-;;; $812D: RTS. Normal Samus pose input handler - [Samus movement type] = Bh ;;;
-RTS_91812D:
-    PHP                                                                  ;91812D;
-    REP #$30                                                             ;91812E;
-    PLP                                                                  ;918130;
-    RTS                                                                  ;918131;
-
-
-;;; $8132: Normal Samus pose input handler - [Samus movement type] = Ch ;;;
-NormalSamusPoseInputHandler_C_DetermineProspectivePose:
-    PHP                                                                  ;918132;
-    REP #$30                                                             ;918133;
-    JSR.W DetermineProspectivePoseFromTransitionTable                    ;918135;
-    PLP                                                                  ;918138;
-    RTS                                                                  ;918139;
-
-
-;;; $813A: Normal Samus pose input handler - [Samus movement type] = Dh ;;;
-NormalSamusPoseInputHandler_D_DetermineProspectivePose:
-    PHP                                                                  ;91813A;
-    REP #$30                                                             ;91813B;
-    JSR.W DetermineProspectivePoseFromTransitionTable                    ;91813D;
-    PLP                                                                  ;918140;
-    RTS                                                                  ;918141;
-
-
-;;; $8142: Normal Samus pose input handler - [Samus movement type] = turning around - on ground ;;;
-NormalSamusPoseInputHandler_TurningAround_OnGround:
-    JSR.W DetermineProspectivePoseFromTransitionTable                    ;918142;
-    RTS                                                                  ;918145;
-
-
-;;; $8146: RTS. Normal Samus pose input handler - [Samus movement type] = crouching/standing/morphing/unmorphing transition ;;;
-RTS_918146:
-    RTS                                                                  ;918146;
-
-
-;;; $8147: Normal Samus pose input handler - [Samus movement type] = moonwalking ;;;
-NormalSamusPoseInputHandler_Moonwalking:
-    PHP                                                                  ;918147;
-    REP #$30                                                             ;918148;
-    JSR.W DetermineProspectivePoseFromTransitionTable                    ;91814A;
-    PLP                                                                  ;91814D;
-    RTS                                                                  ;91814E;
-
-
-;;; $814F: Normal Samus pose input handler - [Samus movement type] = spring ball - on ground ;;;
-NormalSamusPoseInputHandler_SpringBall_OnGround:
-    PHP                                                                  ;91814F;
-    REP #$30                                                             ;918150;
-    JSR.W DetermineProspectivePoseFromTransitionTable                    ;918152;
-    PLP                                                                  ;918155;
-    RTS                                                                  ;918156;
-
-
-;;; $8157: Normal Samus pose input handler - [Samus movement type] = spring ball - in air ;;;
-NormalSamusPoseInputHandler_SpringBall_InAir:
-    PHP                                                                  ;918157;
-    REP #$30                                                             ;918158;
-    JSR.W DetermineProspectivePoseFromTransitionTable                    ;91815A;
-    PLP                                                                  ;91815D;
-    RTS                                                                  ;91815E;
-
-
-;;; $815F: Normal Samus pose input handler - [Samus movement type] = spring ball - falling ;;;
-NormalSamusPoseInputHandler_SpringBall_Falling:
-    PHP                                                                  ;91815F;
-    REP #$30                                                             ;918160;
-    JSR.W DetermineProspectivePoseFromTransitionTable                    ;918162;
-    PLP                                                                  ;918165;
-    RTS                                                                  ;918166;
-
-
-;;; $8167: Normal Samus pose input handler - [Samus movement type] = wall jumping ;;;
-NormalSamusPoseInputHandler_WallJumping:
-    PHP                                                                  ;918167;
-    REP #$30                                                             ;918168;
-    JSR.W DetermineProspectivePoseFromTransitionTable                    ;91816A;
-    PLP                                                                  ;91816D;
-    RTS                                                                  ;91816E;
-
-
-;;; $816F: Normal Samus pose input handler - [Samus movement type] = ran into a wall ;;;
-NormalSamusPoseInputHandler_RanIntoAWall:
-    PHP                                                                  ;91816F;
-    REP #$30                                                             ;918170;
-    JSR.W DetermineProspectivePoseFromTransitionTable                    ;918177;
-    PLP                                                                  ;91817F;
-    RTS                                                                  ;918180;
-
-
-;;; $8181: Normal Samus pose input handler - [Samus movement type] = grappling ;;;
-NormalSamusPoseInputHandler_Grappling:
-    PHP                                                                  ;918181;
-    REP #$30                                                             ;918182;
-    JSR.W DetermineProspectivePoseFromTransitionTable                    ;918184;
-    PLP                                                                  ;918187;
-    RTS                                                                  ;918188;
-
-
-;;; $8189: Normal Samus pose input handler - [Samus movement type] = turning around - jumping ;;;
-NormalSamusPoseInputHandler_TurningAround_Jumping:
-    JSR.W DetermineProspectivePoseFromTransitionTable                    ;918189;
-    RTS                                                                  ;91818C;
-
-
-;;; $818D: Normal Samus pose input handler - [Samus movement type] = turning around - falling ;;;
-NormalSamusPoseInputHandler_TurningAround_Falling:
-    JSR.W DetermineProspectivePoseFromTransitionTable                    ;91818D;
-    RTS                                                                  ;918190;
-
-
-;;; $8191: Normal Samus pose input handler - [Samus movement type] = damage boost ;;;
-NormalSamusPoseInputHandler_DamageBoost:
-    PHP                                                                  ;918191;
-    REP #$30                                                             ;918192;
-    JSR.W DetermineProspectivePoseFromTransitionTable                    ;918194;
-    PLP                                                                  ;918197;
-    RTS                                                                  ;918198;
-
-
-;;; $8199: Normal Samus pose input handler - [Samus movement type] = grabbed by Draygon ;;;
-NormalSamusPoseInputHandler_GrabbedByDraygon:
-    PHP                                                                  ;918199;
-    REP #$30                                                             ;91819A;
-    JSR.W DetermineProspectivePoseFromTransitionTable                    ;91819C;
-    PLP                                                                  ;91819F;
-    RTS                                                                  ;9181A0;
-
-
-;;; $81A1: Normal Samus pose input handler - [Samus movement type] = shinespark / crystal flash / drained by metroid / damaged by MB's attacks ;;;
-NormalSamusPoseInputHandler_Shinespark_CF_Drained_DamagedMB:
-    PHP                                                                  ;9181A1;
-    REP #$30                                                             ;9181A2;
-    JSR.W DetermineProspectivePoseFromTransitionTable                    ;9181A4;
-    PLP                                                                  ;9181A7;
-    RTS                                                                  ;9181A8;
-
-
 ;;; $81A9: Determine prospective pose from transition table ;;;
+; Replaces the following:
+;;; $8066: Normal Samus pose input handler - [Samus movement type] = running ;;;
+;;; $806E: Normal Samus pose input handler - [Samus movement type] = normal jumping ;;;
+;;; $8076: Normal Samus pose input handler - [Samus movement type] = spin jumping ;;;
+;;; $807E: Normal Samus pose input handler - [Samus movement type] = morph ball - on ground ;;;
+;;; $80B6: Normal Samus pose input handler - [Samus movement type] = falling ;;;
+;;; $810A: Normal Samus pose input handler - [Samus movement type] = morph ball - falling ;;;
+;;; $8132: Normal Samus pose input handler - [Samus movement type] = Ch ;;;
+;;; $813A: Normal Samus pose input handler - [Samus movement type] = Dh ;;;
+;;; $8142: Normal Samus pose input handler - [Samus movement type] = turning around - on ground ;;;
+;;; $8147: Normal Samus pose input handler - [Samus movement type] = moonwalking ;;;
+;;; $814F: Normal Samus pose input handler - [Samus movement type] = spring ball - on ground ;;;
+;;; $8157: Normal Samus pose input handler - [Samus movement type] = spring ball - in air ;;;
+;;; $815F: Normal Samus pose input handler - [Samus movement type] = spring ball - falling ;;;
+;;; $8167: Normal Samus pose input handler - [Samus movement type] = wall jumping ;;;
+;;; $816F: Normal Samus pose input handler - [Samus movement type] = ran into a wall ;;;
+;;; $8181: Normal Samus pose input handler - [Samus movement type] = grappling ;;;
+;;; $8189: Normal Samus pose input handler - [Samus movement type] = turning around - jumping ;;;
+;;; $818D: Normal Samus pose input handler - [Samus movement type] = turning around - falling ;;;
+;;; $8191: Normal Samus pose input handler - [Samus movement type] = damage boost ;;;
+;;; $8199: Normal Samus pose input handler - [Samus movement type] = grabbed by Draygon ;;;
+;;; $81A1: Normal Samus pose input handler - [Samus movement type] = shinespark / crystal flash / drained by metroid / damaged by MB's attacks ;;;
 DetermineProspectivePoseFromTransitionTable:
 ;; Returns:
 ;;     Carry: Set if pose was found, clear otherwise
@@ -592,11 +349,9 @@ TranslateCustomControllerBindingsToDefaultBindings:
 ;;; $82D9: Handle transition table lookup failure ;;;
 HandleTransitionTableLookupFailure:
 ; Also called when grapple beam is disconnected
-    PHP                                                                  ;9182D9;
     PHB                                                                  ;9182DA;
     PHK                                                                  ;9182DB;
     PLB                                                                  ;9182DC;
-    REP #$30                                                             ;9182DD;
     JSR.W Set_ProspectivePoseChangeCommand                               ;9182DF;
     BCC .consultPoseDefinition                                           ;9182E2;
 
@@ -619,7 +374,6 @@ HandleTransitionTableLookupFailure:
 
   .return:
     PLB                                                                  ;918301;
-    PLP                                                                  ;918302;
     RTL                                                                  ;918303;
 
 
@@ -688,34 +442,6 @@ Set_ProspectivePoseChangeCommand:
 
 ;;; $834E: Enable demo input ;;;
 Enable_DemoInput:
-    PHP                                                                  ;91834E;
-    REP #$30                                                             ;91834F;
-    LDA.W #SamusPoseInputHandler_Demo                                    ;918351;
-    STA.W PoseInputHandler                                               ;918354;
-    LDA.W #$8000                                                         ;918357;
-    TSB.W DemoInput_Enable                                               ;91835A;
-    PLP                                                                  ;91835D;
-    RTL                                                                  ;91835E;
-
-
-;;; $835F: Disable demo input ;;;
-Disable_DemoInput:
-    PHP                                                                  ;91835F;
-    REP #$30                                                             ;918360;
-    LDA.W #SamusPoseInputHandler_Normal                                  ;918362;
-    STA.W PoseInputHandler                                               ;918365;
-    LDA.W #$8000                                                         ;918368;
-    TRB.W DemoInput_Enable                                               ;91836B;
-    PLP                                                                  ;91836E;
-    RTL                                                                  ;91836F;
-
-
-;;; $8370: Clear demo input RAM ;;;
-Clear_DemoInput_RAM:
-; Called before calling Enable_DemoInput
-    PHP                                                                  ;918370;
-    REP #$30                                                             ;918371;
-    PHX                                                                  ;918373;
     STZ.W DemoInput_PreInstruction                                       ;918374;
     STZ.W DemoInput_InstructionTimer                                     ;918377;
     STZ.W DemoInput_InstListPointer                                      ;91837A;
@@ -726,9 +452,20 @@ Clear_DemoInput_RAM:
     STZ.W DemoInput_PreviousInput                                        ;918389;
     STZ.W DemoInput_PreviousNew                                          ;91838C;
     STZ.W DemoInput_Enable                                               ;91838F;
-    PLX                                                                  ;918392;
-    PLP                                                                  ;918393;
-    RTL                                                                  ;918394;
+    LDA.W #SamusPoseInputHandler_Demo                                    ;918351;
+    STA.W PoseInputHandler                                               ;918354;
+    LDA.W #$8000                                                         ;918357;
+    TSB.W DemoInput_Enable                                               ;91835A;
+    RTL                                                                  ;91835E;
+
+
+;;; $835F: Disable demo input ;;;
+Disable_DemoInput:
+    LDA.W #SamusPoseInputHandler_Normal                                  ;918362;
+    STA.W PoseInputHandler                                               ;918365;
+    LDA.W #$8000                                                         ;918368;
+    TRB.W DemoInput_Enable                                               ;91836B;
+    RTL                                                                  ;91836F;
 
 
 ;;; $8395: Load demo input object ;;;
@@ -1339,7 +1076,6 @@ LoadDemoData:
     STA.W EquippedBeams                                                  ;9187DB;
     STZ.W ReserveEnergy                                                  ;9187DE;
     PHX                                                                  ;9187E1;
-    JSL.L Clear_DemoInput_RAM                                            ;9187E2;
     JSL.L Enable_DemoInput                                               ;9187E6;
     PLX                                                                  ;9187EA;
     LDA.W $000E,X                                                        ;9187EB;
@@ -5285,17 +5021,17 @@ UNUSED_AnimationDelays_3A_91B4DD:
 AnimationDelays_3B:
 ; 3Bh: Facing right - standing transition
     db regional($03, $02), $FD,$01                                       ;91B4E0;
-                                                                         
-AnimationDelays_3C:                                                      
-; 3Ch: Facing left-   standing transition                                
+
+AnimationDelays_3C:
+; 3Ch: Facing left-   standing transition
     db regional($03, $02), $FD,$02                                       ;91B4E3;
-                                                                         
-AnimationDelays_3D:                                                      
-; 3Dh: Facing right - unmorphing transition                              
+
+AnimationDelays_3D:
+; 3Dh: Facing right - unmorphing transition
     db regional($03, $02),regional($03, $02), $FD,$27                    ;91B4E6;
-                                                                         
-AnimationDelays_3E:                                                      
-; 3Eh: Facing left-   unmorphing transition                              
+
+AnimationDelays_3E:
+; 3Eh: Facing left-   unmorphing transition
     db regional($03, $02),regional($03, $02), $FD,$28                    ;91B4EA;
 
 UNUSED_AnimationDelays_3F_91B4EE:                                        ;91B4EE;
@@ -5312,56 +5048,56 @@ UNUSED_AnimationDelays_DC_91B504:                                        ;91B504
 
 UNUSED_AnimationDelays_DD_91B50E:
     db regional($03, $02),regional($03, $02),regional($03, $02), $FD,$01 ;91B50E;
-                                                                         
-UNUSED_AnimationDelays_DE_91B513:                                        
+
+UNUSED_AnimationDelays_DE_91B513:
     db regional($03, $02),regional($03, $02),regional($03, $02), $FD,$BA ;91B513;
-                                                                         
-AnimationDelays_F1:                                                      
-; F1h: Facing right - crouching transition - aiming up                   
+
+AnimationDelays_F1:
+; F1h: Facing right - crouching transition - aiming up
     db regional($03, $02), $FD,$85                                       ;91B518;
-                                                                         
-AnimationDelays_F2:                                                      
-; F2h: Facing left-   crouching transition - aiming up                   
+
+AnimationDelays_F2:
+; F2h: Facing left-   crouching transition - aiming up
     db regional($03, $02), $FD,$86                                       ;91B51B;
-                                                                         
-AnimationDelays_F3:                                                      
-; F3h: Facing right - crouching transition - aiming up-right             
+
+AnimationDelays_F3:
+; F3h: Facing right - crouching transition - aiming up-right
     db regional($03, $02), $FD,$71                                       ;91B51E;
-                                                                         
-AnimationDelays_F4:                                                      
-; F4h: Facing left-   crouching transition - aiming up-left              
+
+AnimationDelays_F4:
+; F4h: Facing left-   crouching transition - aiming up-left
     db regional($03, $02), $FD,$72                                       ;91B521;
-                                                                         
-AnimationDelays_F5:                                                      
-; F5h: Facing right - crouching transition - aiming down-right           
+
+AnimationDelays_F5:
+; F5h: Facing right - crouching transition - aiming down-right
     db regional($03, $02), $FD,$73                                       ;91B524;
-                                                                         
-AnimationDelays_F6:                                                      
-; F6h: Facing left-   crouching transition - aiming down-left            
+
+AnimationDelays_F6:
+; F6h: Facing left-   crouching transition - aiming down-left
     db regional($03, $02), $FD,$74                                       ;91B527;
-                                                                         
-AnimationDelays_F7:                                                      
-; F7h: Facing right - standing transition - aiming up                    
+
+AnimationDelays_F7:
+; F7h: Facing right - standing transition - aiming up
     db regional($03, $02), $FD,$03                                       ;91B52A;
-                                                                         
-AnimationDelays_F8:                                                      
-; F8h: Facing left-   standing transition - aiming up                    
+
+AnimationDelays_F8:
+; F8h: Facing left-   standing transition - aiming up
     db regional($03, $02), $FD,$04                                       ;91B52D;
-                                                                         
-AnimationDelays_F9:                                                      
-; F9h: Facing right - standing transition - aiming up-right              
+
+AnimationDelays_F9:
+; F9h: Facing right - standing transition - aiming up-right
     db regional($03, $02), $FD,$05                                       ;91B530;
-                                                                         
-AnimationDelays_FA:                                                      
-; FAh: Facing left-   standing transition - aiming up-left               
+
+AnimationDelays_FA:
+; FAh: Facing left-   standing transition - aiming up-left
     db regional($03, $02), $FD,$06                                       ;91B533;
-                                                                         
-AnimationDelays_FB:                                                      
-; FBh: Facing right - standing transition - aiming down-right            
+
+AnimationDelays_FB:
+; FBh: Facing right - standing transition - aiming down-right
     db regional($03, $02), $FD,$07                                       ;91B536;
-                                                                         
-AnimationDelays_FC:                                                      
-; FCh: Facing left-   standing transition - aiming down-left             
+
+AnimationDelays_FC:
+; FCh: Facing left-   standing transition - aiming down-left
     db regional($03, $02), $FD,$08                                       ;91B539;
 
 AnimationDelays_BE_F0:
@@ -8267,8 +8003,6 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards_UpRight:
 
 ; Current left line co-ordinates = ([$22], [Y] / 2)
 ; Current right line co-ordinates = ([$24], [Y] / 2)
-    PHP                                                                  ;91C71C;
-    REP #$30                                                             ;91C71D;
     PHY                                                                  ;91C71F;
 
   .loopLeftOnScreen:
@@ -8306,17 +8040,15 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards_UpRight:
     CLC                                                                  ;91C74A;
     ADC.B DP_Temp20                                                      ;91C74B;
     STA.B DP_Temp24                                                      ;91C74D;
-    BCS +                                                                ;91C74F;
-    SEP #$20                                                             ;91C751;
+    SEP #$20
+    BCS .loopRight
     LDA.B DP_Temp25                                                      ;91C753;
     STA.B [DP_Temp00],Y                                                  ;91C755;
     REP #$20                                                             ;91C757;
     DEY                                                                  ;91C759;
     DEY                                                                  ;91C75A;
     BPL .loopRightOnScreen                                               ;91C75B;
-    BRA .return                                                          ;91C75D;
-
-+   SEP #$20                                                             ;91C75F;
+    RTS
 
   .loopRight:
     LDA.B #$FF                                                           ;91C761;
@@ -8339,7 +8071,6 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards_UpRight:
     BPL .loopEnd                                                         ;91C77B;
 
   .return:
-    PLP                                                                  ;91C77D;
     RTS                                                                  ;91C77E;
 
 
@@ -8357,8 +8088,6 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards_Up:
 ; Current right line co-ordinates = ([$24], [Y] / 2)
 
 ; This routine is never called, because x-ray is not allowed to be aimed upwards and morph ball eye isn't positioned to allow it.
-    PHP                                                                  ;91C77F;
-    REP #$30                                                             ;91C780;
     PHY                                                                  ;91C782;
 
   .loopLeftOnScreen:
@@ -8366,8 +8095,8 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards_Up:
     SEC                                                                  ;91C785;
     SBC.B DP_Temp1E                                                      ;91C786;
     STA.B DP_Temp22                                                      ;91C788;
-    BCC +                                                                ;91C78A;
-    SEP #$20                                                             ;91C78C;
+    SEP #$20
+    BCC .loopLeft
     LDA.B DP_Temp23                                                      ;91C78E;
     STA.B [DP_Temp00],Y                                                  ;91C790;
     REP #$20                                                             ;91C792;
@@ -8375,8 +8104,6 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards_Up:
     DEY                                                                  ;91C795;
     BPL .loopLeftOnScreen                                                ;91C796;
     BRA .leftEdgeEnd                                                     ;91C798;
-
-+   SEP #$20                                                             ;91C79A;
 
   .loopLeft:
     LDA.B #$00                                                           ;91C79C;
@@ -8395,17 +8122,15 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards_Up:
     CLC                                                                  ;91C7AA;
     ADC.B DP_Temp20                                                      ;91C7AB;
     STA.B DP_Temp24                                                      ;91C7AD;
-    BCS +                                                                ;91C7AF;
-    SEP #$20                                                             ;91C7B1;
+    SEP #$20
+    BCS .loopRight
     LDA.B DP_Temp25                                                      ;91C7B3;
     STA.B [DP_Temp00],Y                                                  ;91C7B5;
     REP #$20                                                             ;91C7B7;
     DEY                                                                  ;91C7B9;
     DEY                                                                  ;91C7BA;
     BPL .loopRightOnScreen                                               ;91C7BB;
-    BRA .return                                                          ;91C7BD;
-
-+   SEP #$20                                                             ;91C7BF;
+    RTS
 
   .loopRight:
     LDA.B #$FF                                                           ;91C7C1;
@@ -8415,7 +8140,6 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards_Up:
     BPL .loopRight                                                       ;91C7C7;
 
   .return:
-    PLP                                                                  ;91C7C9;
     RTS                                                                  ;91C7CA;
 
 
@@ -8431,8 +8155,6 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards_UpLeft:
 
 ; Current left line co-ordinates = ([$22], [Y] / 2)
 ; Current right line co-ordinates = ([$24], [Y] / 2)
-    PHP                                                                  ;91C7CB;
-    REP #$30                                                             ;91C7CC;
     PHY                                                                  ;91C7CE;
 
   .loopLeftOnScreen:
@@ -8440,8 +8162,8 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards_UpLeft:
     SEC                                                                  ;91C7D1;
     SBC.B DP_Temp1E                                                      ;91C7D2;
     STA.B DP_Temp22                                                      ;91C7D4;
-    BCC +                                                                ;91C7D6;
-    SEP #$20                                                             ;91C7D8;
+    SEP #$20
+    BCC +
     LDA.B DP_Temp23                                                      ;91C7DA;
     STA.B [DP_Temp00],Y                                                  ;91C7DC;
     REP #$20                                                             ;91C7DE;
@@ -8450,8 +8172,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards_UpLeft:
     BPL .loopLeftOnScreen                                                ;91C7E2;
     BRA .leftEdgeEnd                                                     ;91C7E4;
 
-+   SEP #$20                                                             ;91C7E6;
-    LDA.B #$00                                                           ;91C7E8;
++   LDA.B #$00                                                           ;91C7E8;
 
   .loopLeft:
     STA.B [DP_Temp00],Y                                                  ;91C7EA;
@@ -8469,18 +8190,17 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards_UpLeft:
     SEC                                                                  ;91C7F6;
     SBC.B DP_Temp20                                                      ;91C7F7;
     STA.B DP_Temp24                                                      ;91C7F9;
-    BCC +                                                                ;91C7FB;
-    SEP #$20                                                             ;91C7FD;
+    SEP #$20
+    BCC +
     LDA.B DP_Temp25                                                      ;91C7FF;
     STA.B [DP_Temp00],Y                                                  ;91C801;
     REP #$20                                                             ;91C803;
     DEY                                                                  ;91C805;
     DEY                                                                  ;91C806;
     BPL .loopRightOnScreen                                               ;91C807;
-    BRA .return                                                          ;91C809;
+    RTS
 
-+   SEP #$20                                                             ;91C80B;
-    PHY                                                                  ;91C80D;
++   PHY                                                                  ;91C80D;
     LDA.B #$00                                                           ;91C80E;
 
   .loopRight:
@@ -8499,7 +8219,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards_UpLeft:
     BPL .loopEnd                                                         ;91C81E;
 
   .return:
-    PLP                                                                  ;91C820;
+    REP #$30
     RTS                                                                  ;91C821;
 
 
@@ -8513,8 +8233,6 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards:
 ;;     $1C: Beam right edge angle
 ;;     $1E: Beam left edge gradient * 100h (dx/dy)
 ;;     $20: Beam right edge gradient * 100h (dx/dy)
-    PHP                                                                  ;91C822;
-    REP #$30                                                             ;91C823;
     LDA.B DP_Temp18                                                      ;91C825;
     DEC                                                                  ;91C827;
     ASL                                                                  ;91C828;
@@ -8563,7 +8281,6 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards:
     BPL .loop                                                            ;91C870;
 
   .return:
-    PLP                                                                  ;91C872;
     RTS                                                                  ;91C873;
 
   .pointers:
@@ -8584,8 +8301,6 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards_DownRight:
 
 ; Current left line co-ordinates = ([$22], [Y] / 2)
 ; Current right line co-ordinates = ([$24], [Y] / 2)
-    PHP                                                                  ;91C87A;
-    REP #$30                                                             ;91C87B;
     PHY                                                                  ;91C87D;
 
   .loopRightOnScreen:
@@ -8621,8 +8336,8 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards_DownRight:
     CLC                                                                  ;91C8A7;
     ADC.B DP_Temp1E                                                      ;91C8A8;
     STA.B DP_Temp22                                                      ;91C8AA;
-    BCS +                                                                ;91C8AC;
-    SEP #$20                                                             ;91C8AE;
+    SEP #$20
+    BCS .loopLeft
     LDA.B DP_Temp23                                                      ;91C8B0;
     STA.B [DP_Temp00],Y                                                  ;91C8B2;
     REP #$20                                                             ;91C8B4;
@@ -8630,9 +8345,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards_DownRight:
     INY                                                                  ;91C8B7;
     CPY.W #$01CC                                                         ;91C8B8;
     BMI .loopLeftOnScreen                                                ;91C8BB;
-    BRA .return                                                          ;91C8BD;
-
-+   SEP #$20                                                             ;91C8BF;
+    RTS
 
   .loopLeft:
     LDA.B #$FF                                                           ;91C8C1;
@@ -8658,7 +8371,6 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards_DownRight:
     BMI .loopEnd                                                         ;91C8E4;
 
   .return:
-    PLP                                                                  ;91C8E6;
     RTS                                                                  ;91C8E7;
 
 
@@ -8674,8 +8386,6 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards_Down:
 
 ; Current left line co-ordinates = ([$22], [Y] / 2)
 ; Current right line co-ordinates = ([$24], [Y] / 2)
-    PHP                                                                  ;91C8E8;
-    REP #$30                                                             ;91C8E9;
     PHY                                                                  ;91C8EB;
 
   .loopRightOnScreen:
@@ -8709,8 +8419,8 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards_Down:
     CLC                                                                  ;91C912;
     ADC.B DP_Temp1E                                                      ;91C913;
     STA.B DP_Temp22                                                      ;91C915;
-    BCS +                                                                ;91C917;
-    SEP #$20                                                             ;91C919;
+    SEP #$20
+    BCS .loopLeft
     LDA.B DP_Temp23                                                      ;91C91B;
     STA.B [DP_Temp00],Y                                                  ;91C91D;
     REP #$20                                                             ;91C91F;
@@ -8718,9 +8428,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards_Down:
     INY                                                                  ;91C922;
     CPY.W #$01CC                                                         ;91C923;
     BMI .loopLeftOnScreen                                                ;91C926;
-    BRA .return                                                          ;91C928;
-
-+   SEP #$20                                                             ;91C92A;
+    RTS
 
   .loopLeft:
     LDA.B #$FF                                                           ;91C92C;
@@ -8731,7 +8439,6 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards_Down:
     BMI .loopLeft                                                        ;91C935;
 
   .return:
-    PLP                                                                  ;91C937;
     RTS                                                                  ;91C938;
 
 
@@ -8747,8 +8454,6 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards_DownLeft:
 
 ; Current left line co-ordinates = ([$22], [Y] / 2)
 ; Current right line co-ordinates = ([$24], [Y] / 2)
-    PHP                                                                  ;91C939;
-    REP #$30                                                             ;91C93A;
     PHY                                                                  ;91C93C;
 
   .loopRightOnScreen:
@@ -8782,8 +8487,8 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards_DownLeft:
     SEC                                                                  ;91C963;
     SBC.B DP_Temp1E                                                      ;91C964;
     STA.B DP_Temp22                                                      ;91C966;
-    BCC +                                                                ;91C968;
-    SEP #$20                                                             ;91C96A;
+    SEP #$20
+    BCC +
     LDA.B DP_Temp23                                                      ;91C96C;
     STA.B [DP_Temp00],Y                                                  ;91C96E;
     REP #$20                                                             ;91C970;
@@ -8793,8 +8498,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards_DownLeft:
     BMI .loopLeftOnScreen                                                ;91C977;
     BRA .return                                                          ;91C979;
 
-+   SEP #$20                                                             ;91C97B;
-    PHY                                                                  ;91C97D;
++   PHY                                                                  ;91C97D;
     LDA.B #$00                                                           ;91C97E;
 
   .loopLeft:
@@ -8815,7 +8519,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards_DownLeft:
     BMI .loopEnd                                                         ;91C994;
 
   .return:
-    PLP                                                                  ;91C996;
+    REP #$30
     RTS                                                                  ;91C997;
 
 
@@ -8826,8 +8530,6 @@ Calc_Xray_HDMADataTable_OnScreen_HorizontalLine:
 ;;     $12: Beam angle
 ;;     $16: Beam origin X position * 100h
 ;;     $18: Beam origin Y position
-    PHP                                                                  ;91C998;
-    REP #$30                                                             ;91C999;
     LDA.B DP_Temp18                                                      ;91C99B;
     DEC                                                                  ;91C99D;
     ASL                                                                  ;91C99E;
@@ -8865,7 +8567,6 @@ Calc_Xray_HDMADataTable_OnScreen_HorizontalLine:
     INY                                                                  ;91C9CC;
     CPY.W #$01CC                                                         ;91C9CD;
     BMI .loopLower                                                       ;91C9D0;
-    PLP                                                                  ;91C9D2;
     RTS                                                                  ;91C9D3;
 
 
@@ -8895,11 +8596,9 @@ AbsoluteTangentTable:
 
 ;;; $CAD6: X-ray handler ;;;
 XrayHandler:
-    PHP                                                                  ;91CAD6;
     PHB                                                                  ;91CAD7;
     PHK                                                                  ;91CAD8;
     PLB                                                                  ;91CAD9;
-    REP #$30                                                             ;91CADA;
     LDA.W TimeIsFrozenFlag                                               ;91CADC;
     BNE .return                                                          ;91CADF;
     LDA.B DP_Controller1Input                                            ;91CAE1;
@@ -8913,13 +8612,11 @@ XrayHandler:
 
   .return:
     PLB                                                                  ;91CAF6;
-    PLP                                                                  ;91CAF7;
     RTL                                                                  ;91CAF8;
 
 
 ;;; $CAF9: X-ray setup stage 1 - freeze time and backup BG2 registers ;;;
 XraySetup_1_FreezeTime_BackupBG2Registers:
-    PHP                                                                  ;91CAF9;
     SEP #$30                                                             ;91CAFA;
     LDA.B #$01                                                           ;91CAFC;
     STA.W TimeIsFrozenFlag                                               ;91CAFE;
@@ -8933,15 +8630,13 @@ XraySetup_1_FreezeTime_BackupBG2Registers:
     STA.W HDMAObject_Var1+1,X                                            ;91CB12;
     LDA.B DP_BG2TilemapAddrSize                                          ;91CB15;
     STA.W HDMAObject_Var2,X                                              ;91CB17;
-    PLP                                                                  ;91CB1A;
+    REP #$30
     RTL                                                                  ;91CB1B;
 
 
 ;;; $CB1C: X-ray setup stage 2 - read BG1 tilemap - 2nd screen ;;;
 XraySetup_2_ReadBG1Tilemap_2ndScreen:
 ; Queue transfer of 800h bytes from VRAM BG1 tilemap base + 400h to $7E:6800
-    PHP                                                                  ;91CB1C;
-    REP #$30                                                             ;91CB1D;
     LDX.B VRAMReadStack                                                  ;91CB1F;
     LDA.B DP_BG1TilemapAddrSize                                          ;91CB22;
     AND.W #$00FC                                                         ;91CB24;
@@ -8963,15 +8658,12 @@ XraySetup_2_ReadBG1Tilemap_2ndScreen:
     CLC                                                                  ;91CB4E;
     ADC.W #$0009                                                         ;91CB4F;
     STA.B VRAMReadStack                                                  ;91CB52;
-    PLP                                                                  ;91CB55;
     RTL                                                                  ;91CB56;
 
 
 ;;; $CB57: X-ray setup stage 3 - read BG1 tilemap - 1st screen ;;;
 XraySetup_3_ReadBG1Tilemap_1stScreen:
 ; Queue transfer of 800h bytes from VRAM BG1 tilemap base to $7E:6000
-    PHP                                                                  ;91CB57;
-    REP #$30                                                             ;91CB58;
     LDX.B VRAMReadStack                                                  ;91CB5A;
     LDA.B DP_BG1TilemapAddrSize                                          ;91CB5D;
     AND.W #$00FC                                                         ;91CB5F;
@@ -8991,15 +8683,12 @@ XraySetup_3_ReadBG1Tilemap_1stScreen:
     CLC                                                                  ;91CB85;
     ADC.W #$0009                                                         ;91CB86;
     STA.B VRAMReadStack                                                  ;91CB89;
-    PLP                                                                  ;91CB8C;
     RTL                                                                  ;91CB8D;
 
 
 ;;; $CB8E: X-ray setup stage 4 - build x-ray BG2 tilemap, read BG2 tilemap - 1st screen ;;;
 XraySetup_4_BuildBG2Tilemap_ReadBG2Tilemap_1stScreen:
 ; Calls Load_Item_and_Room_Special_Xray_Blocks to load item x-ray blocks
-    PHP                                                                  ;91CB8E;
-    REP #$30                                                             ;91CB8F;
     LDA.W BG1YOffset                                                     ;91CB91;
     CLC                                                                  ;91CB94;
     ADC.W Layer1YPosition                                                ;91CB95;
@@ -9061,22 +8750,21 @@ XraySetup_4_BuildBG2Tilemap_ReadBG2Tilemap_1stScreen:
     ADC.B DP_Temp1C                                                      ;91CBFD;
     ADC.B DP_Temp1E                                                      ;91CBFF;
     ASL                                                                  ;91CC01;
-    TAX                                                                  ;91CC02;
-    LDA.L XrayTilemaps_BackupBG1,X                                       ;91CC03;
-    PHA                                                                  ;91CC07;
-    LDA.L XrayTilemaps_BackupBG1+2,X                                     ;91CC08;
-    PHA                                                                  ;91CC0C;
-    LDA.L XrayTilemaps_BackupBG1+$40,X                                   ;91CC0D;
-    PHA                                                                  ;91CC11;
-    LDA.L XrayTilemaps_BackupBG1+$42,X                                   ;91CC12;
-    LDX.B DP_Temp16                                                      ;91CC16;
-    STA.L XrayTilemaps_BG2+$42,X                                         ;91CC18;
-    PLA                                                                  ;91CC1C;
-    STA.L XrayTilemaps_BG2+$40,X                                         ;91CC1D;
-    PLA                                                                  ;91CC21;
-    STA.L XrayTilemaps_BG2+2,X                                           ;91CC22;
-    PLA                                                                  ;91CC26;
-    STA.L XrayTilemaps_BG2,X                                             ;91CC27;
+    TAY
+    LDX.B DP_Temp16
+    PHB
+    PEA.W XrayTilemaps_BackupBG1>>8
+    PLB
+    PLB
+    LDA.W XrayTilemaps_BackupBG1,Y
+    STA.W XrayTilemaps_BG2,X
+    LDA.W XrayTilemaps_BackupBG1+2,Y
+    STA.W XrayTilemaps_BG2+2,X
+    LDA.W XrayTilemaps_BackupBG1+$40,Y
+    STA.W XrayTilemaps_BG2+$40,X
+    LDA.W XrayTilemaps_BackupBG1+$42,Y
+    STA.W XrayTilemaps_BG2+$42,X
+    PLB
     LDA.B DP_Temp16                                                      ;91CC2B;
     CLC                                                                  ;91CC2D;
     ADC.W #$0004                                                         ;91CC2E;
@@ -9172,7 +8860,6 @@ XraySetup_4_BuildBG2Tilemap_ReadBG2Tilemap_1stScreen:
     CLC                                                                  ;91CCE8;
     ADC.W #$0009                                                         ;91CCE9;
     STA.B VRAMReadStack                                                  ;91CCEC;
-    PLP                                                                  ;91CCEF;
     RTL                                                                  ;91CCF0;
 
 
@@ -9203,26 +8890,23 @@ CopyLastBG1BlockOfRowToXrayBG2Tilemap:
     ADC.B DP_Temp20                                                      ;91CD0E;
     ASL                                                                  ;91CD10;
     TAX                                                                  ;91CD11;
-    LDA.L XrayTilemaps_BackupBG1,X                                       ;91CD12;
-    PHA                                                                  ;91CD16;
-    LDA.L XrayTilemaps_BackupBG1+2,X                                     ;91CD17;
-    PHA                                                                  ;91CD1B;
-    LDA.L XrayTilemaps_BackupBG1+$40,X                                   ;91CD1C;
-    PHA                                                                  ;91CD20;
-    LDA.L XrayTilemaps_BackupBG1+$42,X                                   ;91CD21;
-    PHA                                                                  ;91CD25;
-    LDA.B DP_Temp16                                                      ;91CD26;
-    CLC                                                                  ;91CD28;
-    ADC.W #$07C0                                                         ;91CD29;
-    TAX                                                                  ;91CD2C;
-    PLA                                                                  ;91CD2D;
-    STA.L XrayTilemaps_BG2+$42,X                                         ;91CD2E;
-    PLA                                                                  ;91CD32;
-    STA.L XrayTilemaps_BG2+$40,X                                         ;91CD33;
-    PLA                                                                  ;91CD37;
-    STA.L XrayTilemaps_BG2+2,X                                           ;91CD38;
-    PLA                                                                  ;91CD3C;
-    STA.L XrayTilemaps_BG2,X                                             ;91CD3D;
+    LDA.B DP_Temp16
+    CLC
+    ADC.W #$07C0
+    TAY
+    PHB
+    PEA.W XrayTilemaps_BackupBG1>>8
+    PLB
+    PLB
+    LDA.W XrayTilemaps_BackupBG1,Y
+    STA.W XrayTilemaps_BG2,X
+    LDA.W XrayTilemaps_BackupBG1+2,Y
+    STA.W XrayTilemaps_BG2+2,X
+    LDA.W XrayTilemaps_BackupBG1+$40,Y
+    STA.W XrayTilemaps_BG2+$40,X
+    LDA.W XrayTilemaps_BackupBG1+$42,Y
+    STA.W XrayTilemaps_BG2+$42,X
+    PLB
     RTS                                                                  ;91CD41;
 
 
@@ -9231,6 +8915,10 @@ LoadRightHalfOfRevealed2xNBlock:
 ;; Parameters:
 ;;     $16: X-ray BG2 tilemap index
 ;;     $22: Block index
+    PHB
+    PEA.W TileTable>>8
+    PLB
+    PLB
     LDX.B DP_Temp22                                                      ;91CD42;
     DEX                                                                  ;91CD44;
     JSR.W LoadRevealedBlockCommand                                       ;91CD45;
@@ -9238,10 +8926,10 @@ LoadRightHalfOfRevealed2xNBlock:
     BEQ .2x1                                                             ;91CD4B;
     CMP.W #RevealedBlockCommand_Copy2x2BlockToXrayBG2Tilemap             ;91CD4D;
     BEQ .2x2                                                             ;91CD50;
+    PLB
     RTS                                                                  ;91CD52;
 
   .2x2:
-    PHY                                                                  ;91CD53;
     TYA                                                                  ;91CD54;
     CLC                                                                  ;91CD55;
     ADC.W #$0008                                                         ;91CD56;
@@ -9250,23 +8938,16 @@ LoadRightHalfOfRevealed2xNBlock:
     ASL                                                                  ;91CD5C;
     ASL                                                                  ;91CD5D;
     ASL                                                                  ;91CD5E;
-    TAX                                                                  ;91CD5F;
-    LDA.L TileTable_topLeft,X                                            ;91CD60;
-    PHA                                                                  ;91CD64;
-    LDA.L TileTable_topRight,X                                           ;91CD65;
-    PHA                                                                  ;91CD69;
-    LDA.L TileTable_bottomLeft,X                                         ;91CD6A;
-    PHA                                                                  ;91CD6E;
-    LDA.L TileTable_bottomRight,X                                        ;91CD6F;
-    LDX.B DP_Temp16                                                      ;91CD73;
-    STA.L XrayTilemaps_BG2+$C2,X                                         ;91CD75;
-    PLA                                                                  ;91CD79;
-    STA.L XrayTilemaps_BG2+$C0,X                                         ;91CD7A;
-    PLA                                                                  ;91CD7E;
-    STA.L XrayTilemaps_BG2+$82,X                                         ;91CD7F;
-    PLA                                                                  ;91CD83;
-    STA.L XrayTilemaps_BG2+$80,X                                         ;91CD84;
-    PLY                                                                  ;91CD88;
+    TAY
+    LDX.B DP_Temp16
+    LDA.W TileTable_topLeft,Y
+    STA.W XrayTilemaps_BG2+$80,X
+    LDA.W TileTable_topRight,Y
+    STA.W XrayTilemaps_BG2+$82,X
+    LDA.W TileTable_bottomLeft,Y
+    STA.W XrayTilemaps_BG2+$C0,X
+    LDA.W TileTable_bottomRight,Y
+    STA.W XrayTilemaps_BG2+$C2,X
 
   .2x1:
     TYA                                                                  ;91CD89;
@@ -9277,22 +8958,16 @@ LoadRightHalfOfRevealed2xNBlock:
     ASL                                                                  ;91CD91;
     ASL                                                                  ;91CD92;
     ASL                                                                  ;91CD93;
-    TAX                                                                  ;91CD94;
-    LDA.L TileTable_topLeft,X                                            ;91CD95;
-    PHA                                                                  ;91CD99;
-    LDA.L TileTable_topRight,X                                           ;91CD9A;
-    PHA                                                                  ;91CD9E;
-    LDA.L TileTable_bottomLeft,X                                         ;91CD9F;
-    PHA                                                                  ;91CDA3;
-    LDA.L TileTable_bottomRight,X                                        ;91CDA4;
-    LDX.B DP_Temp16                                                      ;91CDA8;
-    STA.L XrayTilemaps_BG2+$42,X                                         ;91CDAA;
-    PLA                                                                  ;91CDAE;
-    STA.L XrayTilemaps_BG2+$40,X                                         ;91CDAF;
-    PLA                                                                  ;91CDB3;
-    STA.L XrayTilemaps_BG2+2,X                                           ;91CDB4;
-    PLA                                                                  ;91CDB8;
-    STA.L XrayTilemaps_BG2,X                                             ;91CDB9;
+    TAY
+    LDA.W TileTable_topLeft,Y
+    STA.W XrayTilemaps_BG2,X
+    LDA.W TileTable_topRight,Y
+    STA.W XrayTilemaps_BG2+2,X
+    LDA.W TileTable_bottomLeft,Y
+    STA.W XrayTilemaps_BG2+$40,X
+    LDA.W TileTable_bottomRight,Y
+    STA.W XrayTilemaps_BG2+$42,X
+    PLB
     RTS                                                                  ;91CDBD;
 
 
@@ -9306,7 +8981,7 @@ LoadRevealedBlock:
     JSR.W LoadRevealedBlockCommand                                       ;91CDC0;
     CMP.W #$FFFF                                                         ;91CDC3;
     BEQ LoadRevealedBlock_Done                                           ;91CDC6;
-    JMP.W (DP_Temp00)                                                        ;91CDC8;
+    JMP.W (DP_Temp00)                                                    ;91CDC8;
 
 
 ;;; $CDCB: Load revealed block - done ;;;
@@ -9689,22 +9364,21 @@ RevealedBlockCommand_Copy2x2BlockToXrayBG2Tilemap:
     ASL                                                                  ;91CF90;
     ASL                                                                  ;91CF91;
     ASL                                                                  ;91CF92;
-    TAX                                                                  ;91CF93;
-    LDA.L TileTable_topLeft,X                                            ;91CF94;
-    PHA                                                                  ;91CF98;
-    LDA.L TileTable_topRight,X                                           ;91CF99;
-    PHA                                                                  ;91CF9D;
-    LDA.L TileTable_bottomLeft,X                                         ;91CF9E;
-    PHA                                                                  ;91CFA2;
-    LDA.L TileTable_bottomRight,X                                        ;91CFA3;
-    LDX.B DP_Temp16                                                      ;91CFA7;
-    STA.L XrayTilemaps_BG2+$C6,X                                         ;91CFA9;
-    PLA                                                                  ;91CFAD;
-    STA.L XrayTilemaps_BG2+$C4,X                                         ;91CFAE;
-    PLA                                                                  ;91CFB2;
-    STA.L XrayTilemaps_BG2+$86,X                                         ;91CFB3;
-    PLA                                                                  ;91CFB7;
-    STA.L XrayTilemaps_BG2+$84,X                                         ;91CFB8;
+    TAY
+    LDX.B DP_Temp16
+    PHB
+    PEA.W TileTable>>8
+    PLB
+    PLB
+    LDA.W TileTable_topLeft,Y
+    STA.W XrayTilemaps_BG2+$84,X
+    LDA.W TileTable_topRight,Y
+    STA.W XrayTilemaps_BG2+$86,X
+    LDA.W TileTable_bottomLeft,Y
+    STA.W XrayTilemaps_BG2+$C4,X
+    LDA.W TileTable_bottomRight,Y
+    STA.W XrayTilemaps_BG2+$C6,X
+    PLB
 
   .gotoDone:
     JMP.W LoadRevealedBlock_Done                                         ;91CFBC;
@@ -9724,25 +9398,26 @@ CopyBlockToXrayBG2Tilemap:
 ;; Parameters:
 ;;     A: Tile table index
 ;;     $16: X-ray BG2 tilemap index
+    PHY
     ASL                                                                  ;91CFC1;
     ASL                                                                  ;91CFC2;
     ASL                                                                  ;91CFC3;
-    TAX                                                                  ;91CFC4;
-    LDA.L TileTable_topLeft,X                                            ;91CFC5;
-    PHA                                                                  ;91CFC9;
-    LDA.L TileTable_topRight,X                                           ;91CFCA;
-    PHA                                                                  ;91CFCE;
-    LDA.L TileTable_bottomLeft,X                                         ;91CFCF;
-    PHA                                                                  ;91CFD3;
-    LDA.L TileTable_bottomRight,X                                        ;91CFD4;
-    LDX.B DP_Temp16                                                      ;91CFD8;
-    STA.L XrayTilemaps_BG2+$42,X                                         ;91CFDA;
-    PLA                                                                  ;91CFDE;
-    STA.L XrayTilemaps_BG2+$40,X                                         ;91CFDF;
-    PLA                                                                  ;91CFE3;
-    STA.L XrayTilemaps_BG2+2,X                                           ;91CFE4;
-    PLA                                                                  ;91CFE8;
-    STA.L XrayTilemaps_BG2,X                                             ;91CFE9;
+    TAY
+    LDX.B DP_Temp16
+    PHB
+    PEA.W TileTable>>8
+    PLB
+    PLB
+    LDA.W TileTable_topLeft,Y
+    STA.W XrayTilemaps_BG2,X
+    LDA.W TileTable_topRight,Y
+    STA.W XrayTilemaps_BG2+2,X
+    LDA.W TileTable_bottomLeft,Y
+    STA.W XrayTilemaps_BG2+$40,X
+    LDA.W TileTable_bottomRight,Y
+    STA.W XrayTilemaps_BG2+$42,X
+    PLB
+    PLY
     RTS                                                                  ;91CFED;
 
 
@@ -9752,26 +9427,27 @@ CopyRevealedBlockCommandArgumentToXrayBG2Tilemap_1BlockRight:
 ;;     Y: Revealed block command argument offset
 ;;     $03: Revealed block command pointer
 ;;     $16: X-ray BG2 tilemap index
+    PHY
     LDA.B (DP_Temp03),Y                                                  ;91CFEE;
     ASL                                                                  ;91CFF0;
     ASL                                                                  ;91CFF1;
     ASL                                                                  ;91CFF2;
-    TAX                                                                  ;91CFF3;
-    LDA.L TileTable_topLeft,X                                            ;91CFF4;
-    PHA                                                                  ;91CFF8;
-    LDA.L TileTable_topRight,X                                           ;91CFF9;
-    PHA                                                                  ;91CFFD;
-    LDA.L TileTable_bottomLeft,X                                         ;91CFFE;
-    PHA                                                                  ;91D002;
-    LDA.L TileTable_bottomRight,X                                        ;91D003;
-    LDX.B DP_Temp16                                                      ;91D007;
-    STA.L XrayTilemaps_BG2+$46,X                                         ;91D009;
-    PLA                                                                  ;91D00D;
-    STA.L XrayTilemaps_BG2+$44,X                                         ;91D00E;
-    PLA                                                                  ;91D012;
-    STA.L XrayTilemaps_BG2+6,X                                           ;91D013;
-    PLA                                                                  ;91D017;
-    STA.L XrayTilemaps_BG2+4,X                                           ;91D018;
+    TAY
+    LDX.B DP_Temp16
+    PHB
+    PEA.W TileTable>>8
+    PLB
+    PLB
+    LDA.W TileTable_topLeft,Y
+    STA.W XrayTilemaps_BG2+4,X
+    LDA.W TileTable_topRight,Y
+    STA.W XrayTilemaps_BG2+6,X
+    LDA.W TileTable_bottomLeft,Y
+    STA.W XrayTilemaps_BG2+$44,X
+    LDA.W TileTable_bottomRight,Y
+    STA.W XrayTilemaps_BG2+$46,X
+    PLB
+    PLY
     RTS                                                                  ;91D01C;
 
 
@@ -9781,26 +9457,27 @@ CopyRevealedBlockCommandArgumentToXrayBG2Tilemap_1BlockDown:
 ;;     Y: Revealed block command argument offset
 ;;     $03: Revealed block command pointer
 ;;     $16: X-ray BG2 tilemap index
+    PHY
     LDA.B (DP_Temp03),Y                                                  ;91D01D;
     ASL                                                                  ;91D01F;
     ASL                                                                  ;91D020;
     ASL                                                                  ;91D021;
-    TAX                                                                  ;91D022;
-    LDA.L TileTable_topLeft,X                                            ;91D023;
-    PHA                                                                  ;91D027;
-    LDA.L TileTable_topRight,X                                           ;91D028;
-    PHA                                                                  ;91D02C;
-    LDA.L TileTable_bottomLeft,X                                         ;91D02D;
-    PHA                                                                  ;91D031;
-    LDA.L TileTable_bottomRight,X                                        ;91D032;
-    LDX.B DP_Temp16                                                      ;91D036;
-    STA.L XrayTilemaps_BG2+$C2,X                                         ;91D038;
-    PLA                                                                  ;91D03C;
-    STA.L XrayTilemaps_BG2+$C0,X                                         ;91D03D;
-    PLA                                                                  ;91D041;
-    STA.L XrayTilemaps_BG2+$82,X                                         ;91D042;
-    PLA                                                                  ;91D046;
-    STA.L XrayTilemaps_BG2+$80,X                                         ;91D047;
+    TAY
+    PHB
+    PEA.W TileTable>>8
+    PLB
+    PLB
+    LDX.B DP_Temp16
+    LDA.W TileTable_topLeft,Y
+    STA.W XrayTilemaps_BG2+$80,X
+    LDA.W TileTable_topRight,Y
+    STA.W XrayTilemaps_BG2+$82,X
+    LDA.W TileTable_bottomLeft,Y
+    STA.W XrayTilemaps_BG2+$C0,X
+    LDA.W TileTable_bottomRight,Y
+    STA.W XrayTilemaps_BG2+$C2,X
+    PLB
+    PLY
     RTS                                                                  ;91D04B;
 
 
@@ -9878,25 +9555,26 @@ CopyYFlippedBlockToXrayBG2Tilemap:
 ;; Parameters:
 ;;     A: Tile table index
 ;;     $16: X-ray BG2 tilemap index
+    PHY
     ASL                                                                  ;91D0A6;
     ASL                                                                  ;91D0A7;
     ASL                                                                  ;91D0A8;
-    TAX                                                                  ;91D0A9;
-    LDA.L TileTable_topLeft,X                                            ;91D0AA;
-    PHA                                                                  ;91D0AE;
-    LDA.L TileTable_topRight,X                                           ;91D0AF;
-    PHA                                                                  ;91D0B3;
-    LDA.L TileTable_bottomLeft,X                                         ;91D0B4;
-    PHA                                                                  ;91D0B8;
-    LDA.L TileTable_bottomRight,X                                        ;91D0B9;
-    LDX.B DP_Temp16                                                      ;91D0BD;
-    STA.L XrayTilemaps_BG2+2,X                                           ;91D0BF;
-    PLA                                                                  ;91D0C3;
-    STA.L XrayTilemaps_BG2,X                                             ;91D0C4;
-    PLA                                                                  ;91D0C8;
-    STA.L XrayTilemaps_BG2+$42,X                                         ;91D0C9;
-    PLA                                                                  ;91D0CD;
-    STA.L XrayTilemaps_BG2+$40,X                                         ;91D0CE;
+    TAY
+    LDX.B DP_Temp16
+    PHB
+    PEA.W TileTable>>8
+    PLB
+    PLB
+    LDA.W TileTable_topLeft,Y
+    STA.W XrayTilemaps_BG2+$40,X
+    LDA.W TileTable_topRight,Y
+    STA.W XrayTilemaps_BG2+$42,X
+    LDA.W TileTable_bottomLeft,Y
+    STA.W XrayTilemaps_BG2,X
+    LDA.W TileTable_bottomRight,Y
+    STA.W XrayTilemaps_BG2+2,X
+    PLB
+    PLY
     RTS                                                                  ;91D0D2;
 
 
@@ -10151,25 +9829,13 @@ PreInstruction_HDMAObject_XraySetup:
 ;;; $D2BC: X-ray setup stage 8 - backdrop colour = (3, 3, 3) ;;;
 XraySetup_8_BackdropColor:
     PHP                                                                  ;91D2BC;
-    PHX                                                                  ;91D2BD;
-    PHY                                                                  ;91D2BE;
     SEP #$20                                                             ;91D2BF;
     LDA.B #$63                                                           ;91D2C1;
     STA.L Palettes_MainBackdrop                                          ;91D2C3;
     LDA.B #$0C                                                           ;91D2C7;
     STA.L Palettes_MainBackdrop+1                                        ;91D2C9;
-    PLY                                                                  ;91D2CD;
-    PLX                                                                  ;91D2CE;
     PLP                                                                  ;91D2CF;
     RTL                                                                  ;91D2D0;
-
-
-;;; $D2D1: Unused. RTS ;;;
-RTS_91D2D1:
-    PHP                                                                  ;91D2D1;
-    REP #$30                                                             ;91D2D2;
-    PLP                                                                  ;91D2D4;
-    RTS                                                                  ;91D2D5;
 
 
 ;;; $D2D6: Revealed block table pointers ;;;
@@ -10449,18 +10115,6 @@ UNUSED_GameState1C_91D4DA:
     PHP                                                                  ;91D4DA;
     REP #$30                                                             ;91D4DB;
     JMP.W (CrystalFlash_AmmoDecrementingIndex)                           ;91D4DD;
-
-
-;;; $D4E0: Unused. PLP : RTL ;;;
-PLPRTL_91D4E0:
-    PLP                                                                  ;91D4E0;
-    RTL                                                                  ;91D4E1;
-
-
-;;; $D4E2: Unused. PLP : RTL ;;;
-PLPRTL_91D4E2:
-    PLP                                                                  ;91D4E2;
-    RTL                                                                  ;91D4E3;
 
 
 ;;; $D4E4: Varia suit pick up ;;;

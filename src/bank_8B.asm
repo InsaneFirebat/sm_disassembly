@@ -6729,7 +6729,6 @@ CinematicFunction_Intro_WaitForInput_SetupMotherBrainFight:
     STA.W CurrentStateHandler                                            ;8BAF4A;
     LDA.W #SamusNewStateHandler_IntroDemo                                ;8BAF4D;
     STA.W NewStateHandler                                                ;8BAF50;
-    JSL.L Clear_DemoInput_RAM                                            ;8BAF53;
     JSL.L Enable_DemoInput                                               ;8BAF57;
     LDY.W #DemoInputObjects_Intro_OldMotherBrainFight                    ;8BAF5B;
     JSL.L Load_DemoInputObject                                           ;8BAF5E;
@@ -6802,7 +6801,6 @@ CinematicFunc_Intro_WaitForInput_SetupBabyMetroidDiscovery:
     STA.W CurrentStateHandler                                            ;8BAFF7;
     LDA.W #SamusNewStateHandler_IntroDemo                                ;8BAFFA;
     STA.W NewStateHandler                                                ;8BAFFD;
-    JSL.L Clear_DemoInput_RAM                                            ;8BB000;
     JSL.L Enable_DemoInput                                               ;8BB004;
     LDY.W #DemoInputObjects_Intro_BabyMetroidDiscovery                   ;8BB008;
     JSL.L Load_DemoInputObject                                           ;8BB00B;
