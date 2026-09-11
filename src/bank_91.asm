@@ -8942,7 +8942,7 @@ XraySetup_2_ReadBG1Tilemap_2ndScreen:
 ; Queue transfer of 800h bytes from VRAM BG1 tilemap base + 400h to $7E:6800
     PHP                                                                  ;91CB1C;
     REP #$30                                                             ;91CB1D;
-    LDX.W VRAMReadStack                                                  ;91CB1F;
+    LDX.B VRAMReadStack                                                  ;91CB1F;
     LDA.B DP_BG1TilemapAddrSize                                          ;91CB22;
     AND.W #$00FC                                                         ;91CB24;
     XBA                                                                  ;91CB27;
@@ -8962,7 +8962,7 @@ XraySetup_2_ReadBG1Tilemap_2ndScreen:
     TXA                                                                  ;91CB4D;
     CLC                                                                  ;91CB4E;
     ADC.W #$0009                                                         ;91CB4F;
-    STA.W VRAMReadStack                                                  ;91CB52;
+    STA.B VRAMReadStack                                                  ;91CB52;
     PLP                                                                  ;91CB55;
     RTL                                                                  ;91CB56;
 
@@ -8972,7 +8972,7 @@ XraySetup_3_ReadBG1Tilemap_1stScreen:
 ; Queue transfer of 800h bytes from VRAM BG1 tilemap base to $7E:6000
     PHP                                                                  ;91CB57;
     REP #$30                                                             ;91CB58;
-    LDX.W VRAMReadStack                                                  ;91CB5A;
+    LDX.B VRAMReadStack                                                  ;91CB5A;
     LDA.B DP_BG1TilemapAddrSize                                          ;91CB5D;
     AND.W #$00FC                                                         ;91CB5F;
     XBA                                                                  ;91CB62;
@@ -8990,7 +8990,7 @@ XraySetup_3_ReadBG1Tilemap_1stScreen:
     TXA                                                                  ;91CB84;
     CLC                                                                  ;91CB85;
     ADC.W #$0009                                                         ;91CB86;
-    STA.W VRAMReadStack                                                  ;91CB89;
+    STA.B VRAMReadStack                                                  ;91CB89;
     PLP                                                                  ;91CB8C;
     RTL                                                                  ;91CB8D;
 
@@ -9153,7 +9153,7 @@ XraySetup_4_BuildBG2Tilemap_ReadBG2Tilemap_1stScreen:
     DEC.B DP_Temp14                                                      ;91CCB5;
     BNE .loopRevealedRow                                                 ;91CCB7;
     JSL.L Load_Item_and_Room_Special_Xray_Blocks                         ;91CCB9;
-    LDX.W VRAMReadStack                                                  ;91CCBD;
+    LDX.B VRAMReadStack                                                  ;91CCBD;
     LDA.B DP_BG2TilemapAddrSize                                          ;91CCC0;
     AND.W #$00FC                                                         ;91CCC2;
     XBA                                                                  ;91CCC5;
@@ -9171,7 +9171,7 @@ XraySetup_4_BuildBG2Tilemap_ReadBG2Tilemap_1stScreen:
     TXA                                                                  ;91CCE7;
     CLC                                                                  ;91CCE8;
     ADC.W #$0009                                                         ;91CCE9;
-    STA.W VRAMReadStack                                                  ;91CCEC;
+    STA.B VRAMReadStack                                                  ;91CCEC;
     PLP                                                                  ;91CCEF;
     RTL                                                                  ;91CCF0;
 
@@ -9929,7 +9929,7 @@ XraySetup_5_ReadBG2Tilemap_2ndScreen:
     REP #$20                                                             ;91D107;
 
   .noReveal:
-    LDX.W VRAMReadStack                                                  ;91D109;
+    LDX.B VRAMReadStack                                                  ;91D109;
     LDA.B DP_BG2TilemapAddrSize                                          ;91D10C;
     AND.W #$00FC                                                         ;91D10E;
     XBA                                                                  ;91D111;
@@ -9949,7 +9949,7 @@ XraySetup_5_ReadBG2Tilemap_2ndScreen:
     TXA                                                                  ;91D137;
     CLC                                                                  ;91D138;
     ADC.W #$0009                                                         ;91D139;
-    STA.W VRAMReadStack                                                  ;91D13C;
+    STA.B VRAMReadStack                                                  ;91D13C;
     PLP                                                                  ;91D13F;
     RTL                                                                  ;91D140;
 
@@ -9991,7 +9991,7 @@ XraySetup_6_TransferXrayTilemap_1stScreen:
     REP #$30                                                             ;91D174;
     JSL.L CheckIfXrayShouldShowAnyBlocks                                 ;91D176;
     BEQ .return                                                          ;91D17A;
-    LDX.W VRAMWriteStack                                                 ;91D17C;
+    LDX.B VRAMWriteStack                                                 ;91D17C;
     LDA.W #$0800                                                         ;91D17F;
     STA.B VRAMWrite.size,X                                               ;91D182;
     LDA.W #XrayTilemaps_BG2                                              ;91D184;
@@ -10005,7 +10005,7 @@ XraySetup_6_TransferXrayTilemap_1stScreen:
     TXA                                                                  ;91D196;
     CLC                                                                  ;91D197;
     ADC.W #$0007                                                         ;91D198;
-    STA.W VRAMWriteStack                                                 ;91D19B;
+    STA.B VRAMWriteStack                                                 ;91D19B;
 
   .return:
     PLP                                                                  ;91D19E;
@@ -10018,7 +10018,7 @@ XraySetup_7_InitializeXray_TransferXrayTilemap_2ndScreen:
     REP #$30                                                             ;91D1A1;
     JSL.L CheckIfXrayShouldShowAnyBlocks                                 ;91D1A3;
     BEQ .dontShowBlocks                                                  ;91D1A7;
-    LDX.W VRAMWriteStack                                                 ;91D1A9;
+    LDX.B VRAMWriteStack                                                 ;91D1A9;
     LDA.W #$0800                                                         ;91D1AC;
     STA.B VRAMWrite.size,X                                               ;91D1AF;
     LDA.W #XrayTilemaps_BG2+$800                                         ;91D1B1;
@@ -10034,7 +10034,7 @@ XraySetup_7_InitializeXray_TransferXrayTilemap_2ndScreen:
     TXA                                                                  ;91D1C7;
     CLC                                                                  ;91D1C8;
     ADC.W #$0007                                                         ;91D1C9;
-    STA.W VRAMWriteStack                                                 ;91D1CC;
+    STA.B VRAMWriteStack                                                 ;91D1CC;
 
   .dontShowBlocks:
     LDA.W #$00E4                                                         ;91D1CF;
@@ -10671,16 +10671,13 @@ InitializeSuitPickupHDMA:
     SEP #$30                                                             ;91D696;
     LDA.B #$13                                                           ;91D698;
     STA.B DP_MainScreenLayers                                            ;91D69A;
-    LDA.B #$13                                                           ;91D69C;
     STA.B DP_WindowAreaMainScreen                                        ;91D69E;
     LDA.B #$04                                                           ;91D6A0;
     STA.B DP_SubScreenLayers                                             ;91D6A2;
-    LDA.B #$04                                                           ;91D6A4;
     STA.B DP_WindowAreaSubScreen                                         ;91D6A6;
     LDA.B #$10                                                           ;91D6A8;
     STA.B DP_NextGameplayColorMathA                                      ;91D6AA;
-    LDA.B #$00                                                           ;91D6AC;
-    STA.B DP_WindowMaskBG12                                              ;91D6AE;
+    STZ.B DP_WindowMaskBG12                                              ;91D6AE;
     LDA.B #$02                                                           ;91D6B0;
     STA.B DP_WindowMaskBG34                                              ;91D6B2;
     LDA.B #$20                                                           ;91D6B4;

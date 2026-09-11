@@ -1067,7 +1067,7 @@ Instruction_PLM_LoadItemPLMGFX:
     STA.B DP_Temp16                                                      ;848781;
     TYA                                                                  ;848783;
     STA.W PLM_ItemGFXPointers,X                                          ;848784;
-    LDX.W VRAMWriteStack                                                 ;848787;
+    LDX.B VRAMWriteStack                                                 ;848787;
     LDA.W #$0100                                                         ;84878A;
     STA.B VRAMWrite.size,X                                               ;84878D;
     LDA.W $0000,Y                                                        ;84878F;
@@ -1079,7 +1079,7 @@ Instruction_PLM_LoadItemPLMGFX:
     TXA                                                                  ;84879D;
     CLC                                                                  ;84879E;
     ADC.W #$0007                                                         ;84879F;
-    STA.W VRAMWriteStack                                                 ;8487A2;
+    STA.B VRAMWriteStack                                                 ;8487A2;
     INY                                                                  ;8487A5;
     INY                                                                  ;8487A6;
     LDX.B DP_Temp14                                                      ;8487A7;
@@ -1120,7 +1120,7 @@ Instruction_PLM_TransferBytesToVRAM:
 ;;     Y: Pointer to instruction arguments
 ;; Returns:
 ;;     Y: Pointer to next instruction
-    LDX.W VRAMWriteStack                                                 ;8487E5;
+    LDX.B VRAMWriteStack                                                 ;8487E5;
     LDA.W $0000,Y                                                        ;8487E8;
     STA.B VRAMWrite.size,X                                               ;8487EB;
     LDA.W $0002,Y                                                        ;8487ED;
@@ -1132,7 +1132,7 @@ Instruction_PLM_TransferBytesToVRAM:
     TXA                                                                  ;8487FC;
     CLC                                                                  ;8487FD;
     ADC.W #$0007                                                         ;8487FE;
-    STA.W VRAMWriteStack                                                 ;848801;
+    STA.B VRAMWriteStack                                                 ;848801;
     TYA                                                                  ;848804;
     CLC                                                                  ;848805;
     ADC.W #$0007                                                         ;848806;
@@ -2404,7 +2404,7 @@ DrawPLM:
     BEQ .return8E2F                                                      ;848E44;
 
 +   PHX                                                                  ;848E46;
-    LDX.W VRAMWriteStack                                                 ;848E47;
+    LDX.B VRAMWriteStack                                                 ;848E47;
     CPX.W #$01E0                                                         ;848E4A;
     BMI +                                                                ;848E4D;
 
@@ -2528,7 +2528,7 @@ DrawPLM:
     TXA                                                                  ;848F22;
     CLC                                                                  ;848F23;
     ADC.W #$001C                                                         ;848F24;
-    STA.W VRAMWriteStack                                                 ;848F27;
+    STA.B VRAMWriteStack                                                 ;848F27;
     BRA .horizAddToVRAMWriteTableEnd                                     ;848F2A;
 
   .return8F2C:
@@ -2546,7 +2546,7 @@ DrawPLM:
     TXA                                                                  ;848F3B;
     CLC                                                                  ;848F3C;
     ADC.W #$000E                                                         ;848F3D;
-    STA.W VRAMWriteStack                                                 ;848F40;
+    STA.B VRAMWriteStack                                                 ;848F40;
 
   .horizAddToVRAMWriteTableEnd:
     LDA.B DP_Temp12                                                      ;848F43;
@@ -2724,7 +2724,7 @@ DrawPLM:
     BMI .return908C                                                      ;849081;
 
 +   PHX                                                                  ;849083;
-    LDX.W VRAMWriteStack                                                 ;849084;
+    LDX.B VRAMWriteStack                                                 ;849084;
     CPX.W #$00F0                                                         ;849087;
     BMI +                                                                ;84908A;
 
@@ -2749,7 +2749,7 @@ DrawPLM:
     TXA                                                                  ;8490A9;
     CLC                                                                  ;8490AA;
     ADC.W #$000E                                                         ;8490AB;
-    STA.W VRAMWriteStack                                                 ;8490AE;
+    STA.B VRAMWriteStack                                                 ;8490AE;
     LDA.B DP_Temp12                                                      ;8490B1;
     ASL                                                                  ;8490B3;
     STA.B DP_Temp12                                                      ;8490B4;

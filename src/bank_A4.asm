@@ -346,7 +346,7 @@ Instruction_CommonA4_WaitYFrames:
 ;;; $814B: Instruction - transfer [[Y]] bytes from [[Y] + 2] to VRAM [[Y] + 5] ;;;
 Instruction_CommonA4_TransferYBytesInYToVRAM:
     PHX                                                                  ;A4814B;
-    LDX.W VRAMWriteStack                                                 ;A4814C;
+    LDX.B VRAMWriteStack                                                 ;A4814C;
     LDA.W $0000,Y                                                        ;A4814F;
     STA.B VRAMWrite.size,X                                               ;A48152;
     LDA.W $0002,Y                                                        ;A48154;
@@ -358,7 +358,7 @@ Instruction_CommonA4_TransferYBytesInYToVRAM:
     TXA                                                                  ;A48163;
     CLC                                                                  ;A48164;
     ADC.W #$0007                                                         ;A48165;
-    STA.W VRAMWriteStack                                                 ;A48168;
+    STA.B VRAMWriteStack                                                 ;A48168;
     TYA                                                                  ;A4816B;
     CLC                                                                  ;A4816C;
     ADC.W #$0007                                                         ;A4816D;
@@ -1341,7 +1341,7 @@ InitAI_Crocomire:
     STA.W Enemy.YHitboxRadius                                            ;A48B2F;
     LDA.W #$0028                                                         ;A48B32;
     STA.W Enemy.XHitboxRadius                                            ;A48B35;
-    LDX.W VRAMWriteStack                                                 ;A48B38;
+    LDX.B VRAMWriteStack                                                 ;A48B38;
     LDA.W #$0800                                                         ;A48B3B;
     STA.B VRAMWrite.size,X                                               ;A48B3E;
     LDA.W #EnemyBG2Tilemap                                               ;A48B40;
@@ -1355,7 +1355,7 @@ InitAI_Crocomire:
     TXA                                                                  ;A48B52;
     CLC                                                                  ;A48B53;
     ADC.W #$0007                                                         ;A48B54;
-    STA.W VRAMWriteStack                                                 ;A48B57;
+    STA.B VRAMWriteStack                                                 ;A48B57;
     RTL                                                                  ;A48B5A;
 
 
@@ -2482,7 +2482,7 @@ WriteCrocomireBG2Tilemap:
 ;; Parameters:
 ;;     X: BG2 tilemap size. 600h (little excessive...)
     TXY                                                                  ;A493BE;
-    LDX.W VRAMWriteStack                                                 ;A493BF;
+    LDX.B VRAMWriteStack                                                 ;A493BF;
     STY.B VRAMWrite.size,X                                               ;A493C2;
     LDA.W #EnemyBG2Tilemap                                               ;A493C4;
     STA.B VRAMWrite.src,X                                                ;A493C7;
@@ -2495,7 +2495,7 @@ WriteCrocomireBG2Tilemap:
     TXA                                                                  ;A493D6;
     CLC                                                                  ;A493D7;
     ADC.W #$0007                                                         ;A493D8;
-    STA.W VRAMWriteStack                                                 ;A493DB;
+    STA.B VRAMWriteStack                                                 ;A493DB;
     RTS                                                                  ;A493DE;
 
 
@@ -2638,7 +2638,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $94B6: Crocomire main AI - death sequence index 14h/30h - hop 3/6 - uploading to VRAM ;;;
 MainAI_Crocomire_DeathSequence_14_30_Hop_3_6_UploadingToVRAM:
-    LDX.W VRAMWriteStack                                                 ;A494B6;
+    LDX.B VRAMWriteStack                                                 ;A494B6;
     LDY.W CrocomireMelting_TilesLoadingTable                             ;A494B9;
     LDA.W MeltingCrocomireTilesLoadingTable_Melting1_0,Y                 ;A494BC;
     CMP.W #$FFFF                                                         ;A494BF;
@@ -2653,7 +2653,7 @@ MainAI_Crocomire_DeathSequence_14_30_Hop_3_6_UploadingToVRAM:
     TXA                                                                  ;A494D9;
     CLC                                                                  ;A494DA;
     ADC.W #$0007                                                         ;A494DB;
-    STA.W VRAMWriteStack
+    STA.B VRAMWriteStack
     TYA                                                                  ;A494DF;
     CLC                                                                  ;A494E0;
     ADC.W #$0008                                                         ;A494E1;
@@ -2882,7 +2882,7 @@ MainAI_Crocomire_DeathSequence_1C_3A_Hop_3_6_ClearTilemap:
     DEX                                                                  ;A4966E;
     DEX                                                                  ;A4966F;
     BPL .loop                                                            ;A49670;
-    LDX.W VRAMWriteStack                                                 ;A49672;
+    LDX.B VRAMWriteStack                                                 ;A49672;
     LDA.W #$0800                                                         ;A49675;
     STA.B VRAMWrite.size,X                                               ;A49678;
     LDA.W #EnemyBG2Tilemap                                               ;A4967A;
@@ -2896,7 +2896,7 @@ MainAI_Crocomire_DeathSequence_1C_3A_Hop_3_6_ClearTilemap:
     TXA                                                                  ;A4968C;
     CLC                                                                  ;A4968D;
     ADC.W #$0007                                                         ;A4968E;
-    STA.W VRAMWriteStack                                                 ;A49691;
+    STA.B VRAMWriteStack                                                 ;A49691;
     JMP.W NextCrocomireDeathSequenceIndex                                ;A49694;
 
 
@@ -3026,7 +3026,7 @@ EraseMeltingCrocomirePixelColumn:
     CLC                                                                  ;A49784;
     ADC.W CrocomireMelting_TilesLoadingTable                             ;A49785;
     TAY                                                                  ;A49788;
-    LDX.W VRAMWriteStack                                                 ;A49789;
+    LDX.B VRAMWriteStack                                                 ;A49789;
     LDA.W MeltingCrocomireTilesLoadingTable_Melting1_0,Y                 ;A4978C;
     CMP.W #$FFFF                                                         ;A4978F;
     BNE +                                                                ;A49792;
@@ -3043,7 +3043,7 @@ EraseMeltingCrocomirePixelColumn:
     TXA                                                                  ;A497AE;
     CLC                                                                  ;A497AF;
     ADC.W #$0007                                                         ;A497B0;
-    STA.W VRAMWriteStack                                                 ;A497B3;
+    STA.B VRAMWriteStack                                                 ;A497B3;
     LDA.W CrocomireMelting_TilesLoadingTable                             ;A497B6;
     CLC                                                                  ;A497B9;
     ADC.W #$0008                                                         ;A497BA;
@@ -3226,7 +3226,7 @@ MainAI_Crocomire_DeathSequence_42_BehindWall_NoMoreRumbling:
     BNE +                                                                ;A4991C;
     RTS                                                                  ;A4991E;
 
-+   LDX.W VRAMWriteStack                                                 ;A4991F;
++   LDX.B VRAMWriteStack                                                 ;A4991F;
     LDA.W #$0200                                                         ;A49922;
     STA.B VRAMWrite.size,X                                               ;A49925;
     LDA.W .skeletonSpriteTilesSourceAddress,Y                            ;A49927;
@@ -3248,7 +3248,7 @@ MainAI_Crocomire_DeathSequence_42_BehindWall_NoMoreRumbling:
     TXA                                                                  ;A49944;
     CLC                                                                  ;A49945;
     ADC.W #$0007                                                         ;A49946;
-    STA.W VRAMWriteStack                                                 ;A49949;
+    STA.B VRAMWriteStack                                                 ;A49949;
     INY                                                                  ;A4994C;
     INY                                                                  ;A4994D;
     STY.W CrocomireMelting_SkeletonLoadingIndex                          ;A4994E;

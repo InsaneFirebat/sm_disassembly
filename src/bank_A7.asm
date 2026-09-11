@@ -346,7 +346,7 @@ Instruction_CommonA7_WaitYFrames:
 ;;; $814B: Instruction - transfer [[Y]] bytes from [[Y] + 2] to VRAM [[Y] + 5] ;;;
 Instruction_CommonA7_TransferYBytesInYToVRAM:
     PHX                                                                  ;A7814B;
-    LDX.W VRAMWriteStack                                                 ;A7814C;
+    LDX.B VRAMWriteStack                                                 ;A7814C;
     LDA.W $0000,Y                                                        ;A7814F;
     STA.B VRAMWrite.size,X                                               ;A78152;
     LDA.W $0002,Y                                                        ;A78154;
@@ -358,7 +358,7 @@ Instruction_CommonA7_TransferYBytesInYToVRAM:
     TXA                                                                  ;A78163;
     CLC                                                                  ;A78164;
     ADC.W #$0007                                                         ;A78165;
-    STA.W VRAMWriteStack                                                 ;A78168;
+    STA.B VRAMWriteStack                                                 ;A78168;
     TYA                                                                  ;A7816B;
     CLC                                                                  ;A7816C;
     ADC.W #$0007                                                         ;A7816D;
@@ -3266,7 +3266,7 @@ InitAI_Kraid:
     BPL .loopBG2Tilemap                                                  ;A7A99D;
     LDA.W #$0000                                                         ;A7A99F;
     STA.L ExtraEnemy7800+4                                               ;A7A9A2;
-    LDX.W VRAMWriteStack                                                 ;A7A9A6;
+    LDX.B VRAMWriteStack                                                 ;A7A9A6;
     LDA.W #$0200                                                         ;A7A9A9;
     STA.B VRAMWrite.size,X                                               ;A7A9AC;
     LDA.W #Tiles_KraidRoomBackground                                     ;A7A9AE;
@@ -3284,7 +3284,7 @@ InitAI_Kraid:
     TXA                                                                  ;A7A9C7;
     CLC                                                                  ;A7A9C8;
     ADC.W #$0007                                                         ;A7A9C9;
-    STA.W VRAMWriteStack                                                 ;A7A9CC;
+    STA.B VRAMWriteStack                                                 ;A7A9CC;
     JSR.W SpawnPLMToClearTheCeiling                                      ;A7A9CF;
     JSR.W SpawnPLMToClearTheSpikes                                       ;A7A9D2;
     LDA.W #Function_Kraid_FadeInRegularBG_ClearBG2TilemapTopHalf         ;A7A9D5;
@@ -3570,7 +3570,7 @@ MainAI_Kraid:
 
 ;;; $AC4D: Kraid function - Kraid gets big - break ceiling into platforms ;;;
 Function_Kraid_KraidGetsBig_BreakCeilingIntoPlatforms:
-    LDA.W NMI_FrameCounter                                               ;A7AC4D;
+    LDA.B NMI_FrameCounter                                               ;A7AC4D;
     AND.W #$0007                                                         ;A7AC50;
     BNE .nonZeroCounter                                                  ;A7AC53;
     JSR.W SpawnRandomEarthquakeProjectile                                ;A7AC55;
@@ -3756,7 +3756,7 @@ DrawKraidsRoomBackground:
     BMI .loop                                                            ;A7ADAE;
     LDA.W #$0000                                                         ;A7ADB0;
     STA.L PaletteChangeNumerator                                         ;A7ADB3;
-    LDX.W VRAMWriteStack                                                 ;A7ADB7;
+    LDX.B VRAMWriteStack                                                 ;A7ADB7;
     LDA.W #$0200                                                         ;A7ADBA;
     STA.B VRAMWrite.size,X                                               ;A7ADBD;
     LDA.W #Tiles_KraidRoomBackground                                     ;A7ADBF;
@@ -3774,7 +3774,7 @@ DrawKraidsRoomBackground:
     TXA                                                                  ;A7ADD8;
     CLC                                                                  ;A7ADD9;
     ADC.W #$0007                                                         ;A7ADDA;
-    STA.W VRAMWriteStack                                                 ;A7ADDD;
+    STA.B VRAMWriteStack                                                 ;A7ADDD;
     RTL                                                                  ;A7ADE0;
 
 
@@ -3983,7 +3983,7 @@ ProcessKraidInstList:
     LDA.W $0002,X                                                        ;A7AF55;
     TAY                                                                  ;A7AF58;
     PHX                                                                  ;A7AF59;
-    LDX.W VRAMWriteStack                                                 ;A7AF5A;
+    LDX.B VRAMWriteStack                                                 ;A7AF5A;
     LDA.W #$02C0                                                         ;A7AF5D;
     STA.B VRAMWrite.size,X                                               ;A7AF60;
     INX                                                                  ;A7AF62;
@@ -4002,7 +4002,7 @@ ProcessKraidInstList:
     STA.B VRAMWrite.size,X                                               ;A7AF77;
     INX                                                                  ;A7AF79;
     INX                                                                  ;A7AF7A;
-    STX.W VRAMWriteStack                                                 ;A7AF7B;
+    STX.B VRAMWriteStack                                                 ;A7AF7B;
     PLX                                                                  ;A7AF7E;
     LDA.W #$0001                                                         ;A7AF7F;
 
@@ -6429,7 +6429,7 @@ UnpauseHook_KraidIsSinking:
     CMP.W ShrinkingKraidTable_KraidYPosition                             ;A7C2D2;
     BMI .return                                                          ;A7C2D5;
     LDY.W #$0000                                                         ;A7C2D7;
-    LDX.W VRAMWriteStack                                                 ;A7C2DA;
+    LDX.B VRAMWriteStack                                                 ;A7C2DA;
 
   .loop:
     REP #$30                                                             ;A7C2DD;
@@ -6454,7 +6454,7 @@ UnpauseHook_KraidIsSinking:
     TXA                                                                  ;A7C30A;
     CLC                                                                  ;A7C30B;
     ADC.W #$0007                                                         ;A7C30C;
-    STA.W VRAMWriteStack                                                 ;A7C30F;
+    STA.B VRAMWriteStack                                                 ;A7C30F;
     JSL.L WaitForNMI                                                     ;A7C312;
     TYA                                                                  ;A7C316;
     CLC                                                                  ;A7C317;
@@ -6471,7 +6471,7 @@ UnpauseHook_KraidIsSinking:
 ;;; $C325: Pause hook - Kraid ;;;
 PauseHook_Kraid:
 ; DP_BGTilesAddr is being masked as if its a tilemap register (completely wrong), so this code only works because BG1/2 tiles base address = $0000
-    LDX.W VRAMReadStack                                                  ;A7C328;
+    LDX.B VRAMReadStack                                                  ;A7C328;
     LDA.B DP_BGTilesAddr                                                 ;A7C32B;
     AND.W #$00FC                                                         ;A7C32D;
     XBA                                                                  ;A7C330;
@@ -6491,7 +6491,7 @@ PauseHook_Kraid:
     TXA                                                                  ;A7C356;
     CLC                                                                  ;A7C357;
     ADC.W #$0009                                                         ;A7C358;
-    STA.W VRAMReadStack                                                  ;A7C35B;
+    STA.B VRAMReadStack                                                  ;A7C35B;
     RTL                                                                  ;A7C35F;
 
 
@@ -6585,7 +6585,7 @@ KraidDeath_FadeOutBackground:
     INX                                                                  ;A7C427;
     CPX.W #$0200                                                         ;A7C428;
     BMI .loopClearRoomBackground                                         ;A7C42B;
-    LDX.W VRAMWriteStack                                                 ;A7C42D;
+    LDX.B VRAMWriteStack                                                 ;A7C42D;
     LDA.W #$0200                                                         ;A7C430;
     STA.B VRAMWrite.size,X                                               ;A7C433;
     LDA.W #BG2Tilemap                                                    ;A7C435;
@@ -6603,7 +6603,7 @@ KraidDeath_FadeOutBackground:
     TXA                                                                  ;A7C44E;
     CLC                                                                  ;A7C44F;
     ADC.W #$0007                                                         ;A7C450;
-    STA.W VRAMWriteStack                                                 ;A7C453;
+    STA.B VRAMWriteStack                                                 ;A7C453;
 
   .return:
     RTL                                                                  ;A7C456;
@@ -6631,7 +6631,7 @@ UNUSED_ProcessKraidInstruction_WithNoASMInstructions_A7C457:
     STA.W Kraid.instListPointer                                          ;A7C478;
     LDA.W $0002,X                                                        ;A7C47B;
     TAY                                                                  ;A7C47E;
-    LDX.W VRAMWriteStack                                                 ;A7C47F;
+    LDX.B VRAMWriteStack                                                 ;A7C47F;
     LDA.W #$02C0                                                         ;A7C482;
     STA.B VRAMWrite.size,X                                               ;A7C485;
     INX                                                                  ;A7C487;
@@ -6650,7 +6650,7 @@ UNUSED_ProcessKraidInstruction_WithNoASMInstructions_A7C457:
     STA.B VRAMWrite.size,X                                               ;A7C49C;
     INX                                                                  ;A7C49E;
     INX                                                                  ;A7C49F;
-    STX.W VRAMWriteStack                                                 ;A7C4A0;
+    STX.B VRAMWriteStack                                                 ;A7C4A0;
 
   .return:
     RTS                                                                  ;A7C4A3;
@@ -6777,7 +6777,7 @@ HandleKraidSinking:
   .found:
     LDA.W ShrinkingKraidTable_VRAMBG2TilemapOffset,Y                     ;A7C5B4;
     BMI .executeFunction                                                 ;A7C5B7;
-    LDX.W VRAMWriteStack                                                 ;A7C5B9;
+    LDX.B VRAMWriteStack                                                 ;A7C5B9;
     LDA.W #$0040                                                         ;A7C5BC;
     STA.B VRAMWrite.size,X                                               ;A7C5BF;
     LDA.W #EnemyBG2Tilemap+$FC0                                          ;A7C5C1;
@@ -6795,7 +6795,7 @@ HandleKraidSinking:
     TXA                                                                  ;A7C5DA;
     CLC                                                                  ;A7C5DB;
     ADC.W #$0007                                                         ;A7C5DC;
-    STA.W VRAMWriteStack                                                 ;A7C5DF;
+    STA.B VRAMWriteStack                                                 ;A7C5DF;
 
   .executeFunction:
     TYX                                                                  ;A7C5E2;
@@ -6962,7 +6962,7 @@ Function_Kraid_FadeInRegularBG_ClearBG2TilemapTopHalf:
     DEX                                                                  ;A7C727;
     DEX                                                                  ;A7C728;
     BPL .loop                                                            ;A7C729;
-    LDX.W VRAMWriteStack                                                 ;A7C72B;
+    LDX.B VRAMWriteStack                                                 ;A7C72B;
     LDA.W #$0400                                                         ;A7C72E;
     STA.B VRAMWrite.size,X                                               ;A7C731;
     LDA.W #EnemyBG2Tilemap                                               ;A7C733;
@@ -6974,7 +6974,7 @@ Function_Kraid_FadeInRegularBG_ClearBG2TilemapTopHalf:
     TXA                                                                  ;A7C742;
     CLC                                                                  ;A7C743;
     ADC.W #$0007                                                         ;A7C744;
-    STA.W VRAMWriteStack                                                 ;A7C747;
+    STA.B VRAMWriteStack                                                 ;A7C747;
     LDA.W #Function_Kraid_FadeInRegularBG_ClearBG2TilemapBottomHalf      ;A7C74A;
     STA.W Kraid.function                                                 ;A7C74D;
     RTL                                                                  ;A7C750;
@@ -6982,7 +6982,7 @@ Function_Kraid_FadeInRegularBG_ClearBG2TilemapTopHalf:
 
 ;;; $C751: Kraid function - fade in regular background - clear BG2 tilemap bottom half ;;;
 Function_Kraid_FadeInRegularBG_ClearBG2TilemapBottomHalf:
-    LDX.W VRAMWriteStack                                                 ;A7C751;
+    LDX.B VRAMWriteStack                                                 ;A7C751;
     LDA.W #$0400                                                         ;A7C754;
     STA.B VRAMWrite.size,X                                               ;A7C757;
     LDA.W #EnemyBG2Tilemap                                               ;A7C759;
@@ -6994,7 +6994,7 @@ Function_Kraid_FadeInRegularBG_ClearBG2TilemapBottomHalf:
     TXA                                                                  ;A7C768;
     CLC                                                                  ;A7C769;
     ADC.W #$0007                                                         ;A7C76A;
-    STA.W VRAMWriteStack                                                 ;A7C76D;
+    STA.B VRAMWriteStack                                                 ;A7C76D;
     LDA.W #Function_Kraid_FadeInRegularBG_LoadStandardBG3Tiles_0         ;A7C770;
     STA.W Kraid.function                                                 ;A7C773;
     RTL                                                                  ;A7C776;
@@ -7006,7 +7006,7 @@ Function_Kraid_FadeInRegularBG_LoadStandardBG3Tiles_0:
     STA.W PauseHook_Unpause                                              ;A7C77A;
     LDA.W #Function_Kraid_FadeInRegularBG_LoadStandardBG3Tiles_1         ;A7C77D;
     STA.W Kraid.function                                                 ;A7C780;
-    LDX.W VRAMWriteStack                                                 ;A7C783;
+    LDX.B VRAMWriteStack                                                 ;A7C783;
     LDA.W #$0400                                                         ;A7C786;
     STA.B VRAMWrite.size,X                                               ;A7C789;
     LDA.W #Tiles_Standard_BG3                                            ;A7C78B;
@@ -7018,7 +7018,7 @@ Function_Kraid_FadeInRegularBG_LoadStandardBG3Tiles_0:
     TXA                                                                  ;A7C79A;
     CLC                                                                  ;A7C79B;
     ADC.W #$0007                                                         ;A7C79C;
-    STA.W VRAMWriteStack                                                 ;A7C79F;
+    STA.B VRAMWriteStack                                                 ;A7C79F;
     RTL                                                                  ;A7C7A2;
 
 
@@ -7026,7 +7026,7 @@ Function_Kraid_FadeInRegularBG_LoadStandardBG3Tiles_0:
 Function_Kraid_FadeInRegularBG_LoadStandardBG3Tiles_1:
     LDA.W #Function_Kraid_FadeInRegularBG_LoadStandardBG3Tiles_2         ;A7C7A3;
     STA.W Kraid.function                                                 ;A7C7A6;
-    LDX.W VRAMWriteStack                                                 ;A7C7A9;
+    LDX.B VRAMWriteStack                                                 ;A7C7A9;
     LDA.W #$0400                                                         ;A7C7AC;
     STA.B VRAMWrite.size,X                                               ;A7C7AF;
     LDA.W #Tiles_Standard_BG3+$400                                       ;A7C7B1;
@@ -7038,7 +7038,7 @@ Function_Kraid_FadeInRegularBG_LoadStandardBG3Tiles_1:
     TXA                                                                  ;A7C7C0;
     CLC                                                                  ;A7C7C1;
     ADC.W #$0007                                                         ;A7C7C2;
-    STA.W VRAMWriteStack                                                 ;A7C7C5;
+    STA.B VRAMWriteStack                                                 ;A7C7C5;
     RTL                                                                  ;A7C7C8;
 
 
@@ -7046,7 +7046,7 @@ Function_Kraid_FadeInRegularBG_LoadStandardBG3Tiles_1:
 Function_Kraid_FadeInRegularBG_LoadStandardBG3Tiles_2:
     LDA.W #Function_Kraid_FadeInRegularBG_LoadStandardBG3Tiles_3         ;A7C7C9;
     STA.W Kraid.function                                                 ;A7C7CC;
-    LDX.W VRAMWriteStack                                                 ;A7C7CF;
+    LDX.B VRAMWriteStack                                                 ;A7C7CF;
     LDA.W #$0400                                                         ;A7C7D2;
     STA.B VRAMWrite.size,X                                               ;A7C7D5;
     LDA.W #Tiles_Standard_BG3+$800                                       ;A7C7D7;
@@ -7058,7 +7058,7 @@ Function_Kraid_FadeInRegularBG_LoadStandardBG3Tiles_2:
     TXA                                                                  ;A7C7E6;
     CLC                                                                  ;A7C7E7;
     ADC.W #$0007                                                         ;A7C7E8;
-    STA.W VRAMWriteStack                                                 ;A7C7EB;
+    STA.B VRAMWriteStack                                                 ;A7C7EB;
     RTL                                                                  ;A7C7EE;
 
 
@@ -7066,7 +7066,7 @@ Function_Kraid_FadeInRegularBG_LoadStandardBG3Tiles_2:
 Function_Kraid_FadeInRegularBG_LoadStandardBG3Tiles_3:
     LDA.W #Function_Kraid_FadeInRegularBG_FadeInBGPalette6               ;A7C7EF;
     STA.W Kraid.function                                                 ;A7C7F2;
-    LDX.W VRAMWriteStack                                                 ;A7C7F5;
+    LDX.B VRAMWriteStack                                                 ;A7C7F5;
     LDA.W #$0400                                                         ;A7C7F8;
     STA.B VRAMWrite.size,X                                               ;A7C7FB;
     LDA.W #Tiles_Standard_BG3+$C00                                       ;A7C7FD;
@@ -7078,7 +7078,7 @@ Function_Kraid_FadeInRegularBG_LoadStandardBG3Tiles_3:
     TXA                                                                  ;A7C80C;
     CLC                                                                  ;A7C80D;
     ADC.W #$0007                                                         ;A7C80E;
-    STA.W VRAMWriteStack                                                 ;A7C811;
+    STA.B VRAMWriteStack                                                 ;A7C811;
     RTL                                                                  ;A7C814;
 
 
@@ -7153,7 +7153,7 @@ Function_Kraid_RaiseThruFloor_LoadTilemapTopHalf:
 
 ;;; $C874: Update BG2 tilemap top half ;;;
 UpdateBG2TilemapTopHalf:
-    LDX.W VRAMWriteStack                                                 ;A7C874;
+    LDX.B VRAMWriteStack                                                 ;A7C874;
     LDA.W #$0800                                                         ;A7C877;
     STA.B VRAMWrite.size,X                                               ;A7C87A;
     LDA.W #EnemyBG2Tilemap                                               ;A7C87C;
@@ -7169,7 +7169,7 @@ UpdateBG2TilemapTopHalf:
     TXA                                                                  ;A7C891;
     CLC                                                                  ;A7C892;
     ADC.W #$0007                                                         ;A7C893;
-    STA.W VRAMWriteStack                                                 ;A7C896;
+    STA.B VRAMWriteStack                                                 ;A7C896;
     RTL                                                                  ;A7C899;
 
 
@@ -7188,7 +7188,7 @@ Function_Kraid_RaiseThruFloor_LoadTilemapBottomHalf_ShakeScn:
 
 ;;; $C8B6: Update BG2 tilemap bottom half ;;;
 UpdateBG2TilemapBottomHalf:
-    LDX.W VRAMWriteStack                                                 ;A7C8B6;
+    LDX.B VRAMWriteStack                                                 ;A7C8B6;
     LDA.W #$0800                                                         ;A7C8B9;
     STA.B VRAMWrite.size,X                                               ;A7C8BC;
     LDA.W #EnemyBG2Tilemap+$800                                          ;A7C8BE;
@@ -7206,7 +7206,7 @@ UpdateBG2TilemapBottomHalf:
     TXA                                                                  ;A7C8D7;
     CLC                                                                  ;A7C8D8;
     ADC.W #$0007                                                         ;A7C8D9;
-    STA.W VRAMWriteStack                                                 ;A7C8DC;
+    STA.B VRAMWriteStack                                                 ;A7C8DC;
     RTL                                                                  ;A7C8DF;
 
 
@@ -7309,7 +7309,7 @@ SpawnRandomEarthquakeProjectile:
 ; CLC : ADC $0F7A : STA $12
 ; This generates a random number from:
 ; 3F, 3E, -3E, -3D, 3B, 3A, -3A, -39, 37, 36, -36, -35, 33, 32, -32, -31, 2F, 2E, -2E, -2D, 2B, 2A, -2A, -29, 27, 26, -26, -25, 23, 22, -22, -21, 1F, 1E, -1E, -1D, 1B, 1A, -1A, -19, 17, 16, -16, -15, 13, 12, -12, -11, 0F, 0E, -0E, -0D, 0B, 0A, -0A, -09, 07, 06, -06, -05, 03, 02, -02, -01
-    LDA.W NMI_8bitFrameCounter                                           ;A7C995;
+    LDA.B NMI_8bitFrameCounter                                           ;A7C995;
     BIT.W #$0002                                                         ;A7C998;
     LDA.W RandomNumberSeed                                               ;A7C99B;
     AND.W #$003F                                                         ;A7C99E;
@@ -8101,7 +8101,7 @@ PickNewPhantoonPattern:
     TAY                                                                  ;A7D084;
     LDA.W Phantoon_EyeClosedTimers,Y                                     ;A7D085;
     STA.W Enemy[1].var0                                                  ;A7D088;
-    LDA.W NMI_FrameCounter                                               ;A7D08B;
+    LDA.B NMI_FrameCounter                                               ;A7D08B;
     BIT.W #$0001                                                         ;A7D08E;
     BNE .reversed                                                        ;A7D091;
     LDA.W Phantoon.reversedMovementFlag                                  ;A7D093;
@@ -8640,7 +8640,7 @@ AdvancePhantoonFadeOut_DenominatorInA:
 ;;     A: Palette change denominator
     PHX                                                                  ;A7D464;
     STA.B DP_Temp12                                                      ;A7D465;
-    LDA.W NMI_FrameCounter                                               ;A7D467;
+    LDA.B NMI_FrameCounter                                               ;A7D467;
     BIT.W #$0001                                                         ;A7D46A;
     BNE .return                                                          ;A7D46D;
     LDA.W Phantoon.fadeCompleteFlag                                      ;A7D46F;
@@ -8663,7 +8663,7 @@ AdvancePhantoonFadeIn_DenominatorInA:
 ;;     A: Palette change denominator
     PHX                                                                  ;A7D486;
     STA.B DP_Temp12                                                      ;A7D487;
-    LDA.W NMI_FrameCounter                                               ;A7D489;
+    LDA.B NMI_FrameCounter                                               ;A7D489;
     BIT.W #$0001                                                         ;A7D48C;
     BNE .return                                                          ;A7D48F;
     LDA.W Phantoon.fadeCompleteFlag                                      ;A7D491;
@@ -8825,7 +8825,7 @@ Function_Phantoon_FightIntro_PickFirstPattern:
     STZ.W Phantoon.wavyPhantoonMode                                      ;A7D59D;
     LDA.W #Function_Phantoon_Figure8_Moving                              ;A7D5A0;
     STA.W Phantoon.function,X                                            ;A7D5A3;
-    LDA.W NMI_FrameCounter                                               ;A7D5A6;
+    LDA.B NMI_FrameCounter                                               ;A7D5A6;
     LSR                                                                  ;A7D5A9;
     AND.W #$0003                                                         ;A7D5AA;
     ASL                                                                  ;A7D5AD;
@@ -9502,7 +9502,7 @@ Function_Phantoon_DeathSequence_WavyMosaicPhantoon:
     LDA.W Phantoon.mosaicOptions                                         ;A7DA93;
     CMP.W #$FFFF                                                         ;A7DA96;
     BEQ .doneMosaic                                                      ;A7DA99;
-    LDA.W NMI_FrameCounter                                               ;A7DA9B;
+    LDA.B NMI_FrameCounter                                               ;A7DA9B;
     BIT.W #$000F                                                         ;A7DA9E;
     BNE .return                                                          ;A7DAA1;
     SEP #$20                                                             ;A7DAA3;
@@ -9563,7 +9563,7 @@ Function_Phantoon_DeathSequence_ClearGraphics:
     DEX                                                                  ;A7DB14;
     DEX                                                                  ;A7DB15;
     BPL .loop                                                            ;A7DB16;
-    LDX.W VRAMWriteStack                                                 ;A7DB18;
+    LDX.B VRAMWriteStack                                                 ;A7DB18;
     LDA.W #$0400                                                         ;A7DB1B;
     STA.B VRAMWrite.size,X                                               ;A7DB1E;
     INX                                                                  ;A7DB20;
@@ -9581,7 +9581,7 @@ Function_Phantoon_DeathSequence_ClearGraphics:
     STA.B VRAMWrite.size,X                                               ;A7DB35;
     INX                                                                  ;A7DB37;
     INX                                                                  ;A7DB38;
-    STX.W VRAMWriteStack                                                 ;A7DB39;
+    STX.B VRAMWriteStack                                                 ;A7DB39;
     RTS                                                                  ;A7DB3C;
 
 
@@ -9595,7 +9595,7 @@ Function_Phantoon_DeathSequence_ActivateWreckedShip:
     RTS                                                                  ;A7DB47;
 
   .timerExpired:
-    LDA.W NMI_FrameCounter                                               ;A7DB48;
+    LDA.B NMI_FrameCounter                                               ;A7DB48;
     BIT.W #$0003                                                         ;A7DB4B;
     BNE .return                                                          ;A7DB4E;
     LDA.W #$000C                                                         ;A7DB50;
@@ -12697,12 +12697,12 @@ Function_Dachora_Echo:
     TXA                                                                  ;A7F995;
     BIT.W #$0040                                                         ;A7F996;
     BEQ +                                                                ;A7F999;
-    LDA.W NMI_FrameCounter                                               ;A7F99B;
+    LDA.B NMI_FrameCounter                                               ;A7F99B;
     BIT.W #$0001                                                         ;A7F99E;
     BNE .visible                                                         ;A7F9A1;
     BRA .invisible                                                       ;A7F9A3;
 
-+   LDA.W NMI_FrameCounter                                               ;A7F9A5;
++   LDA.B NMI_FrameCounter                                               ;A7F9A5;
     BIT.W #$0001                                                         ;A7F9A8;
     BEQ .visible                                                         ;A7F9AB;
 

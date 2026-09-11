@@ -346,7 +346,7 @@ Instruction_CommonB2_WaitYFrames:
 ;;; $814B: Instruction - transfer [[Y]] bytes from [[Y] + 2] to VRAM [[Y] + 5] ;;;
 Instruction_CommonB2_TransferYBytesInYToVRAM:
     PHX                                                                  ;B2814B;
-    LDX.W VRAMWriteStack                                                 ;B2814C;
+    LDX.B VRAMWriteStack                                                 ;B2814C;
     LDA.W $0000,Y                                                        ;B2814F;
     STA.B VRAMWrite.size,X                                               ;B28152;
     LDA.W $0002,Y                                                        ;B28154;
@@ -358,7 +358,7 @@ Instruction_CommonB2_TransferYBytesInYToVRAM:
     TXA                                                                  ;B28163;
     CLC                                                                  ;B28164;
     ADC.W #$0007                                                         ;B28165;
-    STA.W VRAMWriteStack                                                 ;B28168;
+    STA.B VRAMWriteStack                                                 ;B28168;
     TYA                                                                  ;B2816B;
     CLC                                                                  ;B2816C;
     ADC.W #$0007                                                         ;B2816D;

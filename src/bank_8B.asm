@@ -843,17 +843,15 @@ Activate_TileSequence_BlueLight:
 
 ;;; $8682: Deactivate title sequence blue light ;;;
 Deactivate_TileSequence_BlueLight:
-    PHP                                                                  ;8B8682;
-    SEP #$20                                                             ;8B8683;
     STZ.B DP_ColorMathA                                                  ;8B8685;
-    STZ.B DP_ColorMathB                                                  ;8B8687;
+    SEP #$20
     LDA.B #$20                                                           ;8B8689;
     STA.B DP_ColorMathSubScreenBackdropColor0                            ;8B868B;
     LDA.B #$40                                                           ;8B868D;
     STA.B DP_ColorMathSubScreenBackdropColor1                            ;8B868F;
     LDA.B #$80                                                           ;8B8691;
     STA.B DP_ColorMathSubScreenBackdropColor2                            ;8B8693;
-    PLP                                                                  ;8B8695;
+    REP #$20
     RTS                                                                  ;8B8696;
 
 
@@ -1001,7 +999,7 @@ CinematicBGObjects_Update32x30CinematicBGTilemap:
     AND.W #$00FF                                                         ;8B87A5;
     CMP.W #$0007                                                         ;8B87A8;
     BEQ .return                                                          ;8B87AB;
-    LDX.W VRAMWriteStack                                                 ;8B87AD;
+    LDX.B VRAMWriteStack                                                 ;8B87AD;
     LDA.W #$0780                                                         ;8B87B0;
     STA.B VRAMWrite.size,X                                               ;8B87B3;
     INX                                                                  ;8B87B5;
@@ -1019,7 +1017,7 @@ CinematicBGObjects_Update32x30CinematicBGTilemap:
     STA.B VRAMWrite.size,X                                               ;8B87CA;
     INX                                                                  ;8B87CC;
     INX                                                                  ;8B87CD;
-    STX.W VRAMWriteStack                                                 ;8B87CE;
+    STX.B VRAMWriteStack                                                 ;8B87CE;
 
   .return:
     PLP                                                                  ;8B87D1;
@@ -1036,7 +1034,7 @@ CinematicBGObjects_UpdateSamusEyesTilemap:
     AND.W #$00FF                                                         ;8B87D8;
     CMP.W #$0007                                                         ;8B87DB;
     BEQ .return                                                          ;8B87DE;
-    LDX.W VRAMWriteStack                                                 ;8B87E0;
+    LDX.B VRAMWriteStack                                                 ;8B87E0;
     LDA.W #$0080                                                         ;8B87E3;
     STA.B VRAMWrite.size,X                                               ;8B87E6;
     INX                                                                  ;8B87E8;
@@ -1054,7 +1052,7 @@ CinematicBGObjects_UpdateSamusEyesTilemap:
     STA.B VRAMWrite.size,X                                               ;8B87FD;
     INX                                                                  ;8B87FF;
     INX                                                                  ;8B8800;
-    STX.W VRAMWriteStack                                                 ;8B8801;
+    STX.B VRAMWriteStack                                                 ;8B8801;
 
   .return:
     PLP                                                                  ;8B8804;
@@ -1071,7 +1069,7 @@ CinematicBGObjects_Update32x32CinematicBGTilemap:
     AND.W #$00FF                                                         ;8B880B;
     CMP.W #$0007                                                         ;8B880E;
     BEQ .return                                                          ;8B8811;
-    LDX.W VRAMWriteStack                                                 ;8B8813;
+    LDX.B VRAMWriteStack                                                 ;8B8813;
     LDA.W #$0800                                                         ;8B8816;
     STA.B VRAMWrite.size,X                                               ;8B8819;
     INX                                                                  ;8B881B;
@@ -1089,7 +1087,7 @@ CinematicBGObjects_Update32x32CinematicBGTilemap:
     STA.B VRAMWrite.size,X                                               ;8B8830;
     INX                                                                  ;8B8832;
     INX                                                                  ;8B8833;
-    STX.W VRAMWriteStack                                                 ;8B8834;
+    STX.B VRAMWriteStack                                                 ;8B8834;
 
   .return:
     PLP                                                                  ;8B8837;
@@ -1328,7 +1326,7 @@ UNUSED_CinematicBGObjects_IndirectInstructionFunction_8B896B:
     CLC                                                                  ;8B8981;
     ADC.W #$0004                                                         ;8B8982;
     TAY                                                                  ;8B8985;
-    LDX.W Mode7Stack                                                     ;8B8986;
+    LDX.B Mode7Stack                                                     ;8B8986;
 
   .loop:
     LDA.W #$0080                                                         ;8B8989;
@@ -1360,7 +1358,7 @@ UNUSED_CinematicBGObjects_IndirectInstructionFunction_8B896B:
     BRA .loop                                                            ;8B89C6;
 
   .return:
-    STX.W Mode7Stack                                                     ;8B89C8;
+    STX.B Mode7Stack                                                     ;8B89C8;
     PLY                                                                  ;8B89CB;
     PLX                                                                  ;8B89CC;
     PLP                                                                  ;8B89CD;
@@ -1385,7 +1383,7 @@ UNUSED_CinematicBGObjects_IndirectInstructionFunction_8B89CF:
     CLC                                                                  ;8B89E5;
     ADC.W #$0004                                                         ;8B89E6;
     TAY                                                                  ;8B89E9;
-    LDX.W Mode7Stack                                                     ;8B89EA;
+    LDX.B Mode7Stack                                                     ;8B89EA;
 
   .loop:
     LDA.W #$0080                                                         ;8B89ED;
@@ -1414,7 +1412,7 @@ UNUSED_CinematicBGObjects_IndirectInstructionFunction_8B89CF:
     BRA .loop                                                            ;8B8A23;
 
   .return:
-    STX.W Mode7Stack                                                     ;8B8A25;
+    STX.B Mode7Stack                                                     ;8B8A25;
     PLY                                                                  ;8B8A28;
     PLX                                                                  ;8B8A29;
     PLP                                                                  ;8B8A2A;
@@ -2019,7 +2017,7 @@ LoadIntroSubtitleTiles:
 TransferSubtitleTilesToVRAM:
 ; Queue transfer of $7E:4000..45FF to VRAM $4180..447F
     PHX                                                                  ;8B8DE6;
-    LDX.W VRAMWriteStack                                                 ;8B8DE7;
+    LDX.B VRAMWriteStack                                                 ;8B8DE7;
     LDA.W #$0600                                                         ;8B8DEA;
     STA.B VRAMWrite.size,X                                               ;8B8DED;
     INX                                                                  ;8B8DEF;
@@ -2037,7 +2035,7 @@ TransferSubtitleTilesToVRAM:
     STA.B VRAMWrite.size,X                                               ;8B8E04;
     INX                                                                  ;8B8E06;
     INX                                                                  ;8B8E07;
-    STX.W VRAMWriteStack                                                 ;8B8E08;
+    STX.B VRAMWriteStack                                                 ;8B8E08;
     PLX                                                                  ;8B8E0B;
     RTS                                                                  ;8B8E0C;
 else
@@ -2126,7 +2124,7 @@ TransferIntroSubtitleTilemapToVRAM:
     PHP
     REP #$30
     PHX
-    LDX.W VRAMWriteStack
+    LDX.B VRAMWriteStack
     LDA.W #CinematicBGTilemap_subtitles_end-CinematicBGTilemap_subtitles
     STA.B VRAMWrite.size,X
     INX
@@ -2144,7 +2142,7 @@ TransferIntroSubtitleTilemapToVRAM:
     STA.B VRAMWrite.size,X ; Actually dest
     INX
     INX
-    STX.W VRAMWriteStack
+    STX.B VRAMWriteStack
     PLX
     PLP
     RTS
@@ -4760,7 +4758,7 @@ Instruction_TriggerTitleSequenceScene3:
 
 ;;; $9E8B: Cinematic function - title sequence - scene 3 - zooming out ;;;
 CinematicFunction_TitleSequenceScene3_ZoomingOut:
-    LDA.W NMI_FrameCounter                                               ;8B9E8B;
+    LDA.B NMI_FrameCounter                                               ;8B9E8B;
     BIT.W #$0001                                                         ;8B9E8E;
     BNE .return                                                          ;8B9E91;
     LDA.W Mode7TransformationZoomLevel                                   ;8B9E93;
@@ -5743,7 +5741,7 @@ if !PAL == 0
     LDA.W AltText                                                        ;8BA5CE;
     BEQ .return                                                          ;8BA5D1;
 endif
-    LDX.W VRAMWriteStack                                                 ;8BA5D3;
+    LDX.B VRAMWriteStack                                                 ;8BA5D3;
     LDA.W #$0100                                                         ;8BA5D6;
     STA.B VRAMWrite.size,X                                               ;8BA5D9;
     INX                                                                  ;8BA5DB;
@@ -5761,7 +5759,7 @@ endif
     STA.B VRAMWrite.size,X                                               ;8BA5F0;
     INX                                                                  ;8BA5F2;
     INX                                                                  ;8BA5F3;
-    STX.W VRAMWriteStack                                                 ;8BA5F4;
+    STX.B VRAMWriteStack                                                 ;8BA5F4;
 
   .return:
     RTS                                                                  ;8BA5F7;
@@ -5829,7 +5827,7 @@ CinematicFunction_Intro_WaitForMusicQueue_WaitFor240Frames:
 if !PAL != 0
     LDA.W AltText  
     BNE .return
-    LDX.W VRAMWriteStack
+    LDX.B VRAMWriteStack
     LDA.W #$0100
     STA.B VRAMWrite.size,X
     INX
@@ -5847,7 +5845,7 @@ if !PAL != 0
     STA.B VRAMWrite.size,X
     INX
     INX
-    STX.W VRAMWriteStack
+    STX.B VRAMWriteStack
 endif
 
   .return:
@@ -7472,9 +7470,8 @@ CinematicFunction_Intro_CrossFadeFromSamusGameplay:
     LDA.B #$16                                                           ;8BB445;
     STA.B DP_MainScreenLayers                                            ;8BB447;
     STZ.B DP_SubScreenLayers                                             ;8BB449;
+    REP #$20
     STZ.B DP_ColorMathA                                                  ;8BB44B;
-    STZ.B DP_ColorMathB                                                  ;8BB44D;
-    REP #$20                                                             ;8BB44F;
     LDA.W #CinematicFunction_Nothing                                     ;8BB451;
     STA.W CinematicFunction                                              ;8BB454;
 
@@ -7511,9 +7508,8 @@ CinematicFunction_Intro_CrossFadeFromScientistCutscene:
     LDA.B #$16                                                           ;8BB497;
     STA.B DP_MainScreenLayers                                            ;8BB499;
     STZ.B DP_SubScreenLayers                                             ;8BB49B;
+    REP #$20
     STZ.B DP_ColorMathA                                                  ;8BB49D;
-    STZ.B DP_ColorMathB                                                  ;8BB49F;
-    REP #$20                                                             ;8BB4A1;
     LDX.W #$0000                                                         ;8BB4A3;
 
   .loopPalettes:
@@ -9162,12 +9158,8 @@ CinematicFunction_CeresGoesBoom_CeresExplosions:
     PLP                                                                  ;8BC3A2;
     PLY                                                                  ;8BC3A3;
     PLX                                                                  ;8BC3A4;
-    SEP #$20                                                             ;8BC3A5;
-    LDA.B #$10                                                           ;8BC3A7;
+    LDA.B #$3710
     STA.B DP_ColorMathA                                                  ;8BC3A9;
-    LDA.B #$37                                                           ;8BC3AB;
-    STA.B DP_ColorMathB                                                  ;8BC3AD;
-    REP #$20                                                             ;8BC3AF;
     LDA.W #$0300                                                         ;8BC3B1;
     STA.W Mode7TransformationZoomLevel                                   ;8BC3B4;
     LDA.W #$0000                                                         ;8BC3B7;
@@ -9439,12 +9431,8 @@ InitFunction_CinematicSpriteObject_CeresFinalExplosion:
 ;;; $C5CA: Cinematic function - Ceres goes boom - gunship flying away ;;;
 CinematicFunction_CeresGoesBoom_GunshipFlyingAway:
 ; This cinematic function is used even if Samus doesn't get away, just with the gunship tilemap unloaded ^_^;
-    SEP #$20                                                             ;8BC5CA;
-    LDA.B #$10                                                           ;8BC5CC;
+    LDA.B #$3710                                                         ;8BC5CC;
     STA.B DP_ColorMathA                                                  ;8BC5CE;
-    LDA.B #$37                                                           ;8BC5D0;
-    STA.B DP_ColorMathB                                                  ;8BC5D2;
-    REP #$20                                                             ;8BC5D4;
     LDA.W CinematicBG1_XSubPosition                                      ;8BC5D6;
     CLC                                                                  ;8BC5D9;
     ADC.W #regional($0000, $8000)                                        ;8BC5DA;
@@ -9523,9 +9511,8 @@ CinematicFunction_CeresGoesBoom_FadeOut:
     TRB.B DP_IRQAutoJoy
     SEI
     STZ.W LayerBlending_DefaultConfig                                    ;8BC669;
-    SEP #$20                                                             ;8BC66C;
     STZ.B DP_NextGameplayColorMathA                                      ;8BC66E;
-    STZ.B DP_NextGameplayColorMathB                                      ;8BC670;
+    SEP #$20
     LDA.B #$10                                                           ;8BC672;
     STA.B DP_MainScreenLayers                                            ;8BC674;
     STZ.B DP_SubScreenLayers                                             ;8BC676;
@@ -11681,11 +11668,9 @@ CinematicFunction_Ending_Setup:
     STA.B DP_MainScreenLayers                                            ;8BD67B;
     LDA.B #$01                                                           ;8BD67D;
     STA.B DP_SubScreenLayers                                             ;8BD67F;
-    LDA.B #$02                                                           ;8BD681;
+    REP #$20
+    LDA.B #$1102                                                         ;8BD681;
     STA.B DP_ColorMathA                                                  ;8BD683;
-    LDA.B #$11                                                           ;8BD685;
-    STA.B DP_ColorMathB                                                  ;8BD687;
-    REP #$20                                                             ;8BD689;
     LDA.W #$0000                                                         ;8BD68B;
     LDY.W #CinematicSpriteObjectDefinitions_Right                        ;8BD68E;
     JSR.W Spawn_CinematicSpriteObject_Y                                  ;8BD691;
@@ -12040,11 +12025,9 @@ CinematicFunc_Ending_ZebesDestruction2_CrossFade_Setup:
     STA.B DP_MainScreenLayers                                            ;8BD9CA;
     LDA.B #$10                                                           ;8BD9CC;
     STA.B DP_SubScreenLayers                                             ;8BD9CE;
-    LDA.B #$02                                                           ;8BD9D0;
+    REP #$20
+    LDA.B #$2102                                                         ;8BD9D0;
     STA.B DP_ColorMathA                                                  ;8BD9D2;
-    LDA.B #$21                                                           ;8BD9D4;
-    STA.B DP_ColorMathB                                                  ;8BD9D6;
-    REP #$20                                                             ;8BD9D8;
     JSR.W PaletteCrossFading_CopyCurrentPalettesToFadingPalettes         ;8BD9DA;
     JSR.W PaletteCrossFading_DecomposePaletteDataForFading               ;8BD9DD;
     LDX.W #$01A0                                                         ;8BD9E0;
@@ -12127,10 +12110,6 @@ CinematicFunction_Ending_ZebesDestruction2_CrossFade:
     STZ.B DP_SubScreenLayers                                             ;8BDA7E;
     STZ.B DP_WindowAreaMainScreen                                        ;8BDA80;
     STZ.B DP_WindowAreaSubScreen                                         ;8BDA82;
-    STZ.B DP_NextGameplayColorMathA                                      ;8BDA84;
-    STZ.B DP_NextGameplayColorMathB                                      ;8BDA86;
-    STZ.B DP_ColorMathA                                                  ;8BDA88;
-    STZ.B DP_ColorMathB                                                  ;8BDA8A;
     LDA.B #$E0                                                           ;8BDA8C;
     STA.W $2132                                                          ;8BDA8E;
     LDA.B #$20                                                           ;8BDA91;
@@ -12141,6 +12120,8 @@ CinematicFunction_Ending_ZebesDestruction2_CrossFade:
     STA.B DP_ColorMathSubScreenBackdropColor2                            ;8BDA9B;
     STZ.B DP_Mosaic                                                      ;8BDA9D;
     REP #$20                                                             ;8BDA9F;
+    STZ.B DP_NextGameplayColorMathA
+    STZ.B DP_ColorMathA
     STZ.W CinematicBG1_XSubPosition                                      ;8BDAA1;
     STZ.W CinematicBG1_XPosition                                         ;8BDAA4;
     STZ.W CinematicBG1_YSubPosition                                      ;8BDAA7;
@@ -12170,7 +12151,7 @@ CinematicFunc_Ending_SpaceView_LoadGunshipBG:
     BPL .timerGreaterThan7                                               ;8BDAD9;
     ASL                                                                  ;8BDADB;
     TAX                                                                  ;8BDADC;
-    LDY.W Mode7Stack                                                     ;8BDADD;
+    LDY.B Mode7Stack                                                     ;8BDADD;
     LDA.W #$00C0                                                         ;8BDAE0;
     STA.W Mode7Transfer.control,Y                                        ;8BDAE3;
     LDA.W .sourceAddresses,X                                             ;8BDAE6;
@@ -12186,13 +12167,13 @@ CinematicFunc_Ending_SpaceView_LoadGunshipBG:
     TYA                                                                  ;8BDB04;
     CLC                                                                  ;8BDB05;
     ADC.W #$0009                                                         ;8BDB06;
-    STA.W Mode7Stack                                                     ;8BDB09;
+    STA.B Mode7Stack                                                     ;8BDB09;
     BRA +                                                                ;8BDB0C;
 
   .timerGreaterThan7:
     ASL                                                                  ;8BDB0E;
     TAX                                                                  ;8BDB0F;
-    LDY.W Mode7Stack                                                     ;8BDB10;
+    LDY.B Mode7Stack                                                     ;8BDB10;
     LDA.W #$0080                                                         ;8BDB13;
     STA.W Mode7Transfer.control,Y                                        ;8BDB16;
     LDA.W .sourceAddresses,X                                             ;8BDB19;
@@ -12208,7 +12189,7 @@ CinematicFunc_Ending_SpaceView_LoadGunshipBG:
     TYA                                                                  ;8BDB37;
     CLC                                                                  ;8BDB38;
     ADC.W #$0009                                                         ;8BDB39;
-    STA.W Mode7Stack                                                     ;8BDB3C;
+    STA.B Mode7Stack                                                     ;8BDB3C;
 
 +   LDA.W CinematicFunctionTimer                                         ;8BDB3F;
     INC                                                                  ;8BDB42;
@@ -12861,11 +12842,9 @@ CinematicFunction_PostCredits_FadeInShootingStars:
     STA.B DP_MainScreenLayers                                            ;8BE123;
     LDA.B #$10                                                           ;8BE125;
     STA.B DP_SubScreenLayers                                             ;8BE127;
-    LDA.B #$02                                                           ;8BE129;
+    REP #$20
+    LDA.B #$2202                                                         ;8BE129;
     STA.B DP_ColorMathA                                                  ;8BE12B;
-    LDA.B #$22                                                           ;8BE12D;
-    STA.B DP_ColorMathB                                                  ;8BE12F;
-    REP #$20                                                             ;8BE131;
     STZ.W ScreenFadeDelay                                                ;8BE133;
     STZ.W ScreenFadeCounter                                              ;8BE136;
     JSR.W PaletteCrossFading_CopyCurrentPalettesToFadingPalettes         ;8BE139;
@@ -12897,11 +12876,9 @@ CinematicFunction_PostCredits_FadeInSamus:
     STA.B DP_MainScreenLayers                                            ;8BE16F;
     LDA.B #$04                                                           ;8BE171;
     STA.B DP_SubScreenLayers                                             ;8BE173;
-    LDA.B #$02                                                           ;8BE175;
+    REP #$20
+    LDA.B #$0202
     STA.B DP_ColorMathA                                                  ;8BE177;
-    LDA.B #$02                                                           ;8BE179;
-    STA.B DP_ColorMathB                                                  ;8BE17B;
-    REP #$20                                                             ;8BE17D;
     LDA.W #regional($00B4, $0084)                                        ;8BE17F;
     STA.W CinematicFunctionTimer                                         ;8BE182;
     LDA.W #CinematicFunction_PostCredits_WavySamus                       ;8BE185;
@@ -12937,9 +12914,8 @@ CinematicFunction_PostCredits_WavySamus:
     LDA.B #$01                                                           ;8BE1B6;
     STA.B DP_MainScreenLayers                                            ;8BE1B8;
     STZ.B DP_SubScreenLayers                                             ;8BE1BA;
+    REP #$20
     STZ.B DP_ColorMathA                                                  ;8BE1BC;
-    STZ.B DP_ColorMathB                                                  ;8BE1BE;
-    REP #$20                                                             ;8BE1C0;
     LDA.W #regional($00B4, $0084)                                        ;8BE1C2;
     STA.W CinematicFunctionTimer                                         ;8BE1C5;
     LDA.W #CinematicFunction_PostCredits_DeerForce                       ;8BE1C8;
@@ -12974,9 +12950,8 @@ CinematicFunction_PostCredits_DeerForce:
     LDA.B #$10                                                           ;8BE201;
     STA.B DP_MainScreenLayers                                            ;8BE203;
     STZ.B DP_SubScreenLayers                                             ;8BE205;
+    REP #$20
     STZ.B DP_ColorMathA                                                  ;8BE207;
-    STZ.B DP_ColorMathB                                                  ;8BE209;
-    REP #$20                                                             ;8BE20B;
     BRA .return                                                          ;8BE20D;
 
   .mediocreEnding:
@@ -13009,11 +12984,9 @@ CinematicFunction_PostCredits_DeerForce:
     STA.B DP_MainScreenLayers                                            ;8BE24E;
     LDA.B #$10                                                           ;8BE250;
     STA.B DP_SubScreenLayers                                             ;8BE252;
-    LDA.B #$02                                                           ;8BE254;
+    REP #$20
+    LDA.B #$2202
     STA.B DP_ColorMathA                                                  ;8BE256;
-    LDA.B #$22                                                           ;8BE258;
-    STA.B DP_ColorMathB                                                  ;8BE25A;
-    REP #$20                                                             ;8BE25C;
     LDA.W #CinematicFunc_PostCredits_IdleSamus_1_CrossFadeOutSamusSuit   ;8BE25E;
     STA.W CinematicFunction                                              ;8BE261;
 
@@ -13072,9 +13045,8 @@ CinematicFunction_PostCredits_IdleSamus1:
     LDA.B #$01                                                           ;8BE2C4;
     STA.B DP_MainScreenLayers                                            ;8BE2C6;
     STZ.B DP_SubScreenLayers                                             ;8BE2C8;
+    REP #$20
     STZ.B DP_ColorMathA                                                  ;8BE2CA;
-    STZ.B DP_ColorMathB                                                  ;8BE2CC;
-    REP #$20                                                             ;8BE2CE;
     LDA.W #regional($00B4, $0084)                                        ;8BE2D0;
     STA.W PostCreditsCinematicFunctionTimer                              ;8BE2D3;
     LDA.W #CinematicFunction_PostCredits_1994Nintendo                    ;8BE2D6;
@@ -13106,11 +13078,9 @@ CinematicFunction_PostCredits_1994Nintendo:
     STA.B DP_MainScreenLayers                                            ;8BE2FD;
     LDA.B #$10                                                           ;8BE2FF;
     STA.B DP_SubScreenLayers                                             ;8BE301;
-    LDA.B #$02                                                           ;8BE303;
+    REP #$20
+    LDA.B #$2202
     STA.B DP_ColorMathA                                                  ;8BE305;
-    LDA.B #$22                                                           ;8BE307;
-    STA.B DP_ColorMathB                                                  ;8BE309;
-    REP #$20                                                             ;8BE30B;
     LDA.W #CinematicFunc_PostCredits_IdleSamus2_CrossFadeOutSamusSuit    ;8BE30D;
     STA.W CinematicFunction                                              ;8BE310;
 
@@ -13148,8 +13118,6 @@ CinematicFunction_PostCredits_IdleSamus2:
     LDA.B #$10                                                           ;8BE349;
     STA.B DP_MainScreenLayers                                            ;8BE34B;
     STZ.B DP_SubScreenLayers                                             ;8BE34D;
-    STZ.B DP_ColorMathA                                                  ;8BE34F;
-    STZ.B DP_ColorMathB                                                  ;8BE351;
     LDA.B #$07                                                           ;8BE353;
     STA.B DP_BGModeSize                                                  ;8BE355;
     LDA.B #$80                                                           ;8BE357;
@@ -13158,6 +13126,7 @@ CinematicFunction_PostCredits_IdleSamus2:
     STA.B DP_BG1TilemapAddrSize                                          ;8BE35D;
     STZ.B DP_BGTilesAddr                                                 ;8BE35F;
     REP #$20                                                             ;8BE361;
+    STZ.B DP_ColorMathA
     LDA.W #RTS_8BDB9D                                                    ;8BE363;
     STA.W CinematicFunction                                              ;8BE366;
     STZ.W PostCreditsSMIconVRAMTransferIndex                             ;8BE369;
@@ -13271,7 +13240,7 @@ TransferPostCreditsSuperMetroidIconToVRAM:
     ASL                                                                  ;8BE42E;
     ASL                                                                  ;8BE42F;
     TAY                                                                  ;8BE430;
-    LDX.W VRAMWriteStack                                                 ;8BE431;
+    LDX.B VRAMWriteStack                                                 ;8BE431;
     LDA.W .size,Y                                                        ;8BE434;
     STA.B VRAMWrite.size,X                                               ;8BE437;
     INX                                                                  ;8BE439;
@@ -13289,7 +13258,7 @@ TransferPostCreditsSuperMetroidIconToVRAM:
     STA.B VRAMWrite.size,X                                               ;8BE44F;
     INX                                                                  ;8BE451;
     INX                                                                  ;8BE452;
-    STX.W VRAMWriteStack                                                 ;8BE453;
+    STX.B VRAMWriteStack                                                 ;8BE453;
     INC.W PostCreditsSMIconVRAMTransferIndex                             ;8BE456;
     RTS                                                                  ;8BE459;
 
@@ -15935,7 +15904,7 @@ TransferPostCreditsSamusBeamToVRAM:
     BPL .return                                                          ;8BF68A;
     ASL                                                                  ;8BF68C;
     TAY                                                                  ;8BF68D;
-    LDX.W VRAMWriteStack                                                 ;8BF68E;
+    LDX.B VRAMWriteStack                                                 ;8BF68E;
     LDA.W #$0800                                                         ;8BF691;
     STA.B VRAMWrite.size,X                                               ;8BF694;
     INX                                                                  ;8BF696;
@@ -15953,7 +15922,7 @@ TransferPostCreditsSamusBeamToVRAM:
     STA.B VRAMWrite.size,X                                               ;8BF6AB;
     INX                                                                  ;8BF6AD;
     INX                                                                  ;8BF6AE;
-    STX.W VRAMWriteStack                                                 ;8BF6AF;
+    STX.B VRAMWriteStack                                                 ;8BF6AF;
     INC.W PostCreditsSMIconVRAMTransferIndex                             ;8BF6B2;
 
   .return:

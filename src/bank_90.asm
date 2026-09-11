@@ -215,7 +215,7 @@ Spawn_AirBubbles:
     SBC.W #$0018                                                         ;908141;
     CMP.W FX_YPosition                                                   ;908144;
     BMI .noBubbles                                                       ;908147;
-    LDA.W NMI_FrameCounter                                               ;908149;
+    LDA.B NMI_FrameCounter                                               ;908149;
     BIT.W #$007F                                                         ;90814C;
     BNE .noBubbles                                                       ;90814F;
     LDA.W AtmosphericGraphicsAnimFramesGraphicsTypes+4                   ;908151;
@@ -1112,7 +1112,7 @@ Draw_Samus:
     BEQ +                                                                ;9085F4;
     LDA.W SpecialPaletteTimer                                            ;9085F6;
     BNE +                                                                ;9085F9;
-    LDA.W NMI_FrameCounter                                               ;9085FB;
+    LDA.B NMI_FrameCounter                                               ;9085FB;
     BIT.W #$0001                                                         ;9085FE;
     BEQ +                                                                ;908601;
     JMP.W .invisible                                                     ;908603;
@@ -1623,7 +1623,7 @@ DrawShinesparkCrashEchoCircle:
     PLB                                                                  ;9088C1;
     REP #$30                                                             ;9088C2;
     TXY                                                                  ;9088C4;
-    LDA.W NMI_FrameCounter                                               ;9088C5;
+    LDA.B NMI_FrameCounter                                               ;9088C5;
     BIT.W #$0001                                                         ;9088C8;
     BNE +                                                                ;9088CB;
     JMP.W .return                                                        ;9088CD;
@@ -1709,7 +1709,7 @@ DrawShinesparkCrashEchoProjectiles:
 ; Draws the echoes that fire away from Samus after shinespark crash
     PHP                                                                  ;908953;
     REP #$30                                                             ;908954;
-    LDA.W NMI_FrameCounter                                               ;908956;
+    LDA.B NMI_FrameCounter                                               ;908956;
     BIT.W #$0001                                                         ;908959;
     BEQ .return                                                          ;90895C;
     LDA.W SpeedEcho_DrawFlag3                                            ;90895E;
@@ -6515,7 +6515,7 @@ Update_HUD_Minimap_Tilemap:
 ; Note that the 8-bit frame counter used here is set to 0 by door transition,
 ; which usually causes the flash cycle to reset
     PLP
-    LDA.W NMI_8bitFrameCounter                                           ;90AB4A;
+    LDA.B NMI_8bitFrameCounter                                           ;90AB4A;
     AND.W #$0008                                                         ;90AB4D;
     BNE .return                                                          ;90AB50;
     LDA.L HUDTilemap_SamusMinimapPosition                                ;90AB52;
@@ -6742,7 +6742,7 @@ Update_Beam_Tiles_and_Palette:
     AND.W #$0FFF                                                         ;90AC96;
     ASL                                                                  ;90AC99;
     TAY                                                                  ;90AC9A;
-    LDX.W VRAMWriteStack                                                 ;90AC9B;
+    LDX.B VRAMWriteStack                                                 ;90AC9B;
     LDA.W #$0100                                                         ;90AC9E;
     STA.B VRAMWrite.size,X                                               ;90ACA1;
     INX                                                                  ;90ACA3;
@@ -6760,7 +6760,7 @@ Update_Beam_Tiles_and_Palette:
     STA.B VRAMWrite.size,X                                               ;90ACB8;
     INX                                                                  ;90ACBA;
     INX                                                                  ;90ACBB;
-    STX.W VRAMWriteStack                                                 ;90ACBC;
+    STX.B VRAMWriteStack                                                 ;90ACBC;
     JMP.W Load_Beam_Palette_withStackPrepped                             ;90ACBF;
 
 
@@ -10621,7 +10621,7 @@ DrawArmCannon:
     BEQ .return                                                          ;90C669;
     LDA.W SamusInvincibilityTimer                                        ;90C66B;
     BEQ .draw                                                            ;90C66E;
-    LDA.W NMI_FrameCounter                                               ;90C670;
+    LDA.B NMI_FrameCounter                                               ;90C670;
     AND.W #$0001                                                         ;90C673;
     BEQ .draw                                                            ;90C676;
 
@@ -10757,7 +10757,7 @@ DrawArmCannon:
     CLC                                                                  ;90C767;
     ADC.B DP_Temp16                                                      ;90C768;
     TAY                                                                  ;90C76A;
-    LDX.W VRAMWriteStack                                                 ;90C76B;
+    LDX.B VRAMWriteStack                                                 ;90C76B;
     LDA.W #$0020                                                         ;90C76E;
     STA.B VRAMWrite.size,X                                               ;90C771;
     INX                                                                  ;90C773;
@@ -10775,7 +10775,7 @@ DrawArmCannon:
     STA.B VRAMWrite.size,X                                               ;90C788;
     INX                                                                  ;90C78A;
     INX                                                                  ;90C78B;
-    STX.W VRAMWriteStack                                                 ;90C78C;
+    STX.B VRAMWriteStack                                                 ;90C78C;
     PLP                                                                  ;90C78F;
     RTS                                                                  ;90C790;
 
@@ -12829,7 +12829,7 @@ SamusMovementHandler_CrystalFlash_DecrementAmmo:
 
 ;;; $D6E3: Crystal flash - decrement missiles ;;;
 CrystalFlash_DecrementMissiles:
-    LDA.W NMI_FrameCounter                                               ;90D6E3;
+    LDA.B NMI_FrameCounter                                               ;90D6E3;
     BIT.W #$0007                                                         ;90D6E6;
     BNE .return                                                          ;90D6E9;
     DEC.W Missiles                                                       ;90D6EB;
@@ -12850,7 +12850,7 @@ CrystalFlash_DecrementMissiles:
 
 ;;; $D706: Crystal flash - decrement super missiles ;;;
 CrystalFlash_DecrementSuperMissiles:
-    LDA.W NMI_FrameCounter                                               ;90D706;
+    LDA.B NMI_FrameCounter                                               ;90D706;
     BIT.W #$0007                                                         ;90D709;
     BNE .return                                                          ;90D70C;
     DEC.W SuperMissiles                                                  ;90D70E;
@@ -12871,7 +12871,7 @@ CrystalFlash_DecrementSuperMissiles:
 
 ;;; $D729: Crystal flash - decrement power bombs ;;;
 CrystalFlash_DecrementPowerBombs:
-    LDA.W NMI_FrameCounter                                               ;90D729;
+    LDA.B NMI_FrameCounter                                               ;90D729;
     BIT.W #$0007                                                         ;90D72C;
     BNE .return                                                          ;90D72F;
     DEC.W PowerBombs                                                     ;90D731;
@@ -16179,7 +16179,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $EC14: Samus display handler - using elevator ;;;
 SamusDisplayHandler_UsingElevator:
-    LDA.W NMI_FrameCounter                                               ;90EC14;
+    LDA.B NMI_FrameCounter                                               ;90EC14;
     BIT.W #$0001                                                         ;90EC17;
     BEQ SamusDisplayHandler_InanimateSamus                               ;90EC1A;
     RTS                                                                  ;90EC1C;

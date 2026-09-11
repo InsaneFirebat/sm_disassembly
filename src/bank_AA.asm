@@ -346,7 +346,7 @@ Instruction_CommonAA_WaitYFrames:
 ;;; $814B: Instruction - transfer [[Y]] bytes from [[Y] + 2] to VRAM [[Y] + 5] ;;;
 Instruction_CommonAA_TransferYBytesInYToVRAM:
     PHX                                                                  ;AA814B;
-    LDX.W VRAMWriteStack                                                 ;AA814C;
+    LDX.B VRAMWriteStack                                                 ;AA814C;
     LDA.W $0000,Y                                                        ;AA814F;
     STA.B VRAMWrite.size,X                                               ;AA8152;
     LDA.W $0002,Y                                                        ;AA8154;
@@ -358,7 +358,7 @@ Instruction_CommonAA_TransferYBytesInYToVRAM:
     TXA                                                                  ;AA8163;
     CLC                                                                  ;AA8164;
     ADC.W #$0007                                                         ;AA8165;
-    STA.W VRAMWriteStack                                                 ;AA8168;
+    STA.B VRAMWriteStack                                                 ;AA8168;
     TYA                                                                  ;AA816B;
     CLC                                                                  ;AA816C;
     ADC.W #$0007                                                         ;AA816D;
@@ -5870,7 +5870,7 @@ Instruction_Torizo_CallY_OrY2_ForBombTorizoAttack:
     BCC .spewOrbs                                                        ;AAC5B3;
     LDA.W SamusXPosition                                                 ;AAC5B5;
     LSR                                                                  ;AAC5B8;
-    ADC.W NMI_FrameCounter                                               ;AAC5B9;
+    ADC.B NMI_FrameCounter                                               ;AAC5B9;
     BIT.W #$0008                                                         ;AAC5BC;
     BEQ .sonicBooms                                                      ;AAC5BF;
 
@@ -7748,7 +7748,7 @@ Instruction_GoldenTorizo_CallY_OrY2_ForAttack:
     BCC .spewOrbs                                                        ;AAD535;
     LDA.W SamusXPosition                                                 ;AAD537;
     LSR                                                                  ;AAD53A;
-    ADC.W NMI_FrameCounter                                               ;AAD53B;
+    ADC.B NMI_FrameCounter                                               ;AAD53B;
     AND.W #$0008                                                         ;AAD53E;
     BEQ .sonicBooms                                                      ;AAD541;
 

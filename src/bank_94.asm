@@ -3311,7 +3311,7 @@ BlockCollisionDetectionDueToChangeOfPose_SingleBlock:
     ORA.W #$000F                                                         ;9496EC;
     STA.W CollisionMovementDirection                                     ;9496EF;
     STZ.W SamusInQuicksand                                               ;9496F2;
-    LDA.W NMI_FrameCounter                                               ;9496F5;
+    LDA.B NMI_FrameCounter                                               ;9496F5;
     LSR                                                                  ;9496F8;
     BCS .nonZeroFrameCounter                                             ;9496F9;
     JSR.W SamusBlockCollisionDetection_Vertical_LeftToRight              ;9496FB;
@@ -3403,7 +3403,7 @@ MoveSamusDown_NoSolidEnemyCollision:
     BEQ .noCollision                                                     ;94976D;
     STZ.W SamusPositionAdjustedBySlopeFlag                               ;94976F;
     STZ.W SamusInQuicksand                                               ;949772;
-    LDA.W NMI_FrameCounter                                               ;949775;
+    LDA.B NMI_FrameCounter                                               ;949775;
     LSR                                                                  ;949778;
     BCS .nonZeroFrameCounter                                             ;949779;
     JSR.W SamusBlockCollisionDetection_Vertical_LeftToRight              ;94977B;

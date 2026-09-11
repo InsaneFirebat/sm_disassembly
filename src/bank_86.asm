@@ -4402,7 +4402,7 @@ PreInst_EnemyProj_PhantoonDestroyableFlame_Casual_HitGround:
     LDA.W #-$0300*!SPF                                                   ;8699E2;
     STA.W EnemyProjectile_YVelocity,X                                    ;8699E5;
     STZ.W EnemyProjectile_Var0,X                                         ;8699E8;
-    LDA.W NMI_FrameCounter                                               ;8699EB;
+    LDA.B NMI_FrameCounter                                               ;8699EB;
     BIT.W #$0001                                                         ;8699EE;
     BNE .negative                                                        ;8699F1;
     LDA.W #$0080*!SPF                                                    ;8699F3;
@@ -4612,7 +4612,7 @@ PreInst_EnemyProjectile_PhantoonStartingFlames_Activated:
     BRA +                                                                ;869B4A;
 
   .timerExpired:
-    LDA.W NMI_FrameCounter                                               ;869B4C;
+    LDA.B NMI_FrameCounter                                               ;869B4C;
     BIT.W #$0001                                                         ;869B4F;
     BEQ +                                                                ;869B52;
     LDA.W EnemyProjectile_YVelocity,X                                    ;869B54;
@@ -6823,7 +6823,7 @@ incbin "../data/Tiles_EnemyProj_QuestionMark.bin" ; $80 bytes
 UNUSED_InitAI_EnemyProjectile_QuestionMark_86AA3D:
 ;; Parameters:
 ;;     Y: Enemy projectile index
-    LDX.W VRAMWriteStack                                                 ;86AA3D;
+    LDX.B VRAMWriteStack                                                 ;86AA3D;
     LDA.W #$0040                                                         ;86AA40;
     STA.B VRAMWrite.size,X                                               ;86AA43;
     LDA.W #UNUSED_EnemyProjectile_Graphics_QuestionMark_86A9BD           ;86AA45;
@@ -6847,7 +6847,7 @@ UNUSED_InitAI_EnemyProjectile_QuestionMark_86AA3D:
     TXA                                                                  ;86AA73;
     CLC                                                                  ;86AA74;
     ADC.W #$0007                                                         ;86AA75;
-    STA.W VRAMWriteStack                                                 ;86AA78;
+    STA.B VRAMWriteStack                                                 ;86AA78;
     LDA.W SamusXPosition                                                 ;86AA7B;
     STA.W EnemyProjectile_XPositions,Y                                   ;86AA7E;
     LDA.W SamusYPosition                                                 ;86AA81;
@@ -13591,7 +13591,7 @@ Instruction_EnemyProj_FlickerNoobTubeShardLeftRightSpritemap:
 ;;     Y: Pointer to instruction arguments
 ;; Returns:
 ;;     Y: Pointer to next instruction
-    LDA.W NMI_FrameCounter                                               ;86D5F2;
+    LDA.B NMI_FrameCounter                                               ;86D5F2;
     LSR                                                                  ;86D5F5;
     BCC .right                                                           ;86D5F6;
     LDA.W EnemyProjectile_Var1,X                                         ;86D5F8;
@@ -13630,7 +13630,7 @@ Instruction_EnemyProjectile_NoobTubeShard_FlickerSpritemap:
 ;;     Y: Pointer to instruction arguments
 ;; Returns:
 ;;     Y: Pointer to next instruction
-    LDA.W NMI_FrameCounter                                               ;86D62A;
+    LDA.B NMI_FrameCounter                                               ;86D62A;
     LSR                                                                  ;86D62D;
     BCC .zero                                                            ;86D62E;
     LDA.W EnemyProjectile_Var1,X                                         ;86D630;
@@ -13821,7 +13821,7 @@ PreInstruction_EnemyProjectile_NoobTubeCrack_Flickering:
     BEQ +                                                                ;86D7C5;
     STA.W EnemyProjectile_Var0,X                                         ;86D7C7;
 
-+   LDA.W NMI_FrameCounter                                               ;86D7CA;
++   LDA.B NMI_FrameCounter                                               ;86D7CA;
     LSR                                                                  ;86D7CD;
     BCC +                                                                ;86D7CE;
     LDA.W #$EE00                                                         ;86D7D0;
@@ -18089,7 +18089,7 @@ PreInstruction_EnemyProjectile_FallingSpark:
     LDA.W EnemyProjectile_XPositions,X                                   ;86F42F;
     ADC.W EnemyProjectile_Var1,X                                         ;86F432;
     STA.W EnemyProjectile_XPositions,X                                   ;86F435;
-    LDA.W NMI_8bitFrameCounter                                           ;86F438;
+    LDA.B NMI_8bitFrameCounter                                           ;86F438;
     BIT.W #$0003                                                         ;86F43B;
     BNE .return                                                          ;86F43E;
     LDA.W EnemyProjectile_XPositions,X                                   ;86F440;

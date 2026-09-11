@@ -346,7 +346,7 @@ Instruction_CommonA5_WaitYFrames:
 ;;; $814B: Instruction - transfer [[Y]] bytes from [[Y] + 2] to VRAM [[Y] + 5] ;;;
 Instruction_CommonA5_TransferYBytesInYToVRAM:
     PHX                                                                  ;A5814B;
-    LDX.W VRAMWriteStack                                                 ;A5814C;
+    LDX.B VRAMWriteStack                                                 ;A5814C;
     LDA.W $0000,Y                                                        ;A5814F;
     STA.B VRAMWrite.size,X                                               ;A58152;
     LDA.W $0002,Y                                                        ;A58154;
@@ -358,7 +358,7 @@ Instruction_CommonA5_TransferYBytesInYToVRAM:
     TXA                                                                  ;A58163;
     CLC                                                                  ;A58164;
     ADC.W #$0007                                                         ;A58165;
-    STA.W VRAMWriteStack                                                 ;A58168;
+    STA.B VRAMWriteStack                                                 ;A58168;
     TYA                                                                  ;A5816B;
     CLC                                                                  ;A5816C;
     ADC.W #$0007                                                         ;A5816D;
@@ -691,7 +691,7 @@ Function_DraygonBody_FightIntro_InitialDelay:
     BPL .done                                                            ;A58727;
     LDA.W DraygonBody.functionTimer                                      ;A58729;
     BNE .incFunctionTimer                                                ;A5872C;
-    LDX.W VRAMWriteStack                                                 ;A5872E;
+    LDX.B VRAMWriteStack                                                 ;A5872E;
     LDA.W #$0600                                                         ;A58731;
     STA.B VRAMWrite.size,X                                               ;A58734;
     LDA.W #Tiles_Evir                                                    ;A58736;
@@ -700,10 +700,10 @@ Function_DraygonBody_FightIntro_InitialDelay:
     STA.B VRAMWrite.src+2,X                                              ;A5873E;
     LDA.W #$6D00                                                         ;A58740;
     STA.B VRAMWrite.dest,X                                               ;A58743;
-    LDA.W VRAMWriteStack                                                 ;A58745;
+    LDA.B VRAMWriteStack                                                 ;A58745;
     CLC                                                                  ;A58748;
     ADC.W #$0007                                                         ;A58749;
-    STA.W VRAMWriteStack                                                 ;A5874C;
+    STA.B VRAMWriteStack                                                 ;A5874C;
     JSR.W SpawnFightIntroEvirSpriteObjects                               ;A5874F;
 
   .incFunctionTimer:
@@ -745,7 +745,7 @@ Function_DraygonBody_FightIntro_Dance:
 
 ;;; $87AA: Handle firing wall turret ;;;
 HandleFiringWallTurret:
-    LDA.W NMI_FrameCounter                                               ;A587AA;
+    LDA.B NMI_FrameCounter                                               ;A587AA;
     AND.W #$003F                                                         ;A587AD;
     BNE .return                                                          ;A587B0;
     JSL.L GenerateRandomNumber                                           ;A587B2;
@@ -902,7 +902,7 @@ if !FEATURE_KEEP_UNREFERENCED
 ;;; $8901: Unused.  ;;;
 UNUSED_Draygon_FireGoop_A58901:
 ; Fire goop?
-    LDA.W NMI_FrameCounter                                               ;A58901;
+    LDA.B NMI_FrameCounter                                               ;A58901;
     AND.W #$000F                                                         ;A58904;
     BNE .return                                                          ;A58907;
     LDA.W #InstList_DraygonBody_FacingLeft_FireGoop                      ;A58909;
@@ -2067,7 +2067,7 @@ Function_DraygonBody_DeathSequence_BuriedByEvirs:
 HandleDyingDraygonSmoke:
     PHY                                                                  ;A592EA;
     PHX                                                                  ;A592EB;
-    LDA.W NMI_FrameCounter                                               ;A592EC;
+    LDA.B NMI_FrameCounter                                               ;A592EC;
     AND.W #$0007                                                         ;A592EF;
     BNE .return                                                          ;A592F2;
     JSL.L GenerateRandomNumber                                           ;A592F4;
@@ -7705,7 +7705,7 @@ Instruction_SporeSpawn_SpawnDyingExplosion:
 SpawnSporeSpawnCeilingDustCloud:
     PHY                                                                  ;A5E9F5;
     PHX                                                                  ;A5E9F6;
-    LDA.W NMI_FrameCounter                                               ;A5E9F7;
+    LDA.B NMI_FrameCounter                                               ;A5E9F7;
     AND.W #$000F                                                         ;A5E9FA;
     BNE .return                                                          ;A5E9FD;
     JSL.L GenerateRandomNumber                                           ;A5E9FF;

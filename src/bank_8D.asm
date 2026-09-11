@@ -8225,7 +8225,7 @@ PreInstruction_PaletteFXObject_SamusInHeat:
     LDA.W PeriodicDamage                                                 ;8DE38B;
     ADC.W #$0000                                                         ;8DE38E;
     STA.W PeriodicDamage                                                 ;8DE391;
-    LDA.W NMI_FrameCounter                                               ;8DE394;
+    LDA.B NMI_FrameCounter                                               ;8DE394;
     BIT.W #$0007                                                         ;8DE397;
     BNE +                                                                ;8DE39A;
     LDA.W #$0046                                                         ;8DE39C;

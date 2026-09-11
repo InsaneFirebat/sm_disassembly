@@ -9208,7 +9208,7 @@ MainASM_SetScreenShaking_GenerateRandomExplosions:
 GenerateRandomExplosionOnEvenFramesOnRandomNonBlankTile:
     LDA.W TimeIsFrozenFlag                                               ;8FC131;
     BNE .return                                                          ;8FC134;
-    LDA.W NMI_FrameCounter                                               ;8FC136;
+    LDA.B NMI_FrameCounter                                               ;8FC136;
     AND.W #$0001                                                         ;8FC139;
     BNE .return                                                          ;8FC13C;
     JSL.L GenerateRandomNumber                                           ;8FC13E;
@@ -9252,7 +9252,7 @@ GenerateRandomExplosionOnEvenFramesOnRandomNonBlankTile:
 GenerateRandomExplosionOnEveryFourthFrame:
     LDA.W TimeIsFrozenFlag                                               ;8FC183;
     BNE GenerateRandomExplosionAt_12_14_return                           ;8FC186;
-    LDA.W NMI_FrameCounter                                               ;8FC188;
+    LDA.B NMI_FrameCounter                                               ;8FC188;
     AND.W #$0003                                                         ;8FC18B;
     BNE GenerateRandomExplosionAt_12_14_return                           ;8FC18E;
     JSL.L GenerateRandomNumber                                           ;8FC190;

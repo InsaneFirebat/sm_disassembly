@@ -87,11 +87,11 @@ DP_GameplayMainScreenLayers: skip 1 ; $6A
 DP_SubScreenLayers: skip 1 ; $6B
 DP_WindowAreaMainScreen: skip 1 ; $6C
 DP_WindowAreaSubScreen: skip 1 ; $6D
-DP_NextGameplayColorMathA: skip 1 ; $6E
 DP_ColorMathA: skip 1 ; $6F
-DP_GameplayColorMathA: skip 1 ; $70
-DP_NextGameplayColorMathB: skip 1 ; $71
 DP_ColorMathB: skip 1 ; $72
+DP_NextGameplayColorMathA: skip 1 ; $6E
+DP_NextGameplayColorMathB: skip 1 ; $71
+DP_GameplayColorMathA: skip 1 ; $70
 DP_GameplayColorMathB: skip 1 ; $73
 DP_ColorMathSubScreenBackdropColor0: skip 1 ; $74
 DP_ColorMathSubScreenBackdropColor1: skip 1 ; $75
@@ -129,7 +129,21 @@ DP_BG3XScroll: skip 2 ; $B9
 DP_BG3YScroll: skip 2 ; $BB
 DP_BG4XScroll: skip 2 ; $BD
 DP_BG4YScroll: skip 2 ; $BF
-;print pc, "..CF free DP"
+
+; moved to DP
+NMI_Request: skip 1 ; $05B4
+NMI_8bitFrameCounter: skip 1 ; $05B5
+NMI_FrameCounter: skip 2 ; $05B6
+NMI_Counter: skip 2 ; $05B8
+VRAMWriteStack: skip 2 ; $0330
+Mode7Stack: skip 2 ; $0334
+VRAMReadStack: skip 2 ; $0360
+warnpc $C1
+
+print pc, "..CF free DP"
+
+org $D0
+warnpc $E4
 
 struct VRAMWrite $E4 ; $D0..02CD
   .size: skip 2 ; $D0
@@ -149,10 +163,7 @@ struct Mode7Transfer $02D0
 endstruct
 
 org $0330
-VRAMWriteStack: skip 2 ; $0330
-skip 2 ; $0332
-Mode7Stack: skip 2 ; $0334
-skip 10 ; $0336..3F
+skip $10 ; $0330..3F
 
 struct VRAMRead $0340
   .src: skip 2 ; $0340
@@ -163,8 +174,7 @@ struct VRAMRead $0340
 endstruct
 
 org $0360
-VRAMReadStack: skip 2 ; $0360
-skip 14 ; $0362..6F
+skip $10 ; $0360..6F
 
 OAMLow: skip $200 ; $0370
 OAMHigh: skip $20 ; $0570
@@ -202,11 +212,7 @@ MapScroll_MaxX: skip 2 ; $05AE
 MapScroll_MinY: skip 2 ; $05B0
 MapScroll_MaxY: skip 2 ; $05B2
 
-NMI_Request: skip 1 ; $05B4
-NMI_8bitFrameCounter: skip 1 ; $05B5
-NMI_FrameCounter: skip 2 ; $05B6
-NMI_Counter: skip 2 ; $05B8
-skip 2 ; $05BA
+skip 8 ; $05B4..BB
 
 DoorTransitionVRAM_Flag: skip 2 ; $05BC
 DoorTransitionVRAM_Dest: skip 2 ; $05BE

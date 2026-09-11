@@ -389,7 +389,7 @@ Instruction_Common_WaitYFrames:
 ;;; $814B: Instruction - transfer [[Y]] bytes from [[Y] + 2] to VRAM [[Y] + 5] ;;;
 Instruction_Common_TransferYBytesInYToVRAM:
     PHX                                                                  ;A0814B;
-    LDX.W VRAMWriteStack                                                 ;A0814C;
+    LDX.B VRAMWriteStack                                                 ;A0814C;
     LDA.W $0000,Y                                                        ;A0814F;
     STA.B VRAMWrite.size,X                                               ;A08152;
     LDA.W $0002,Y                                                        ;A08154;
@@ -401,7 +401,7 @@ Instruction_Common_TransferYBytesInYToVRAM:
     TXA                                                                  ;A08163;
     CLC                                                                  ;A08164;
     ADC.W #$0007                                                         ;A08165;
-    STA.W VRAMWriteStack                                                 ;A08168;
+    STA.B VRAMWriteStack                                                 ;A08168;
     TYA                                                                  ;A0816B;
     CLC                                                                  ;A0816C;
     ADC.W #$0007                                                         ;A0816D;
@@ -1420,7 +1420,7 @@ TransferEnemyTilesToVRAM_InitialiseEnemies:
   .notFFFE:
     CMP.W #$9800                                                         ;A08D00;
     BEQ .finish                                                          ;A08D03;
-    LDX.W VRAMWriteStack                                                 ;A08D05;
+    LDX.B VRAMWriteStack                                                 ;A08D05;
     LDA.W #$0800                                                         ;A08D08;
     STA.B VRAMWrite.size,X                                               ;A08D0B;
     LDA.W EnemyTileData_SrcAddr                                          ;A08D0D;
@@ -1438,7 +1438,7 @@ TransferEnemyTilesToVRAM_InitialiseEnemies:
     TXA                                                                  ;A08D2A;
     CLC                                                                  ;A08D2B;
     ADC.W #$0007                                                         ;A08D2C;
-    STA.W VRAMWriteStack                                                 ;A08D2F;
+    STA.B VRAMWriteStack                                                 ;A08D2F;
     RTL                                                                  ;A08D32;
 
   .finish:
@@ -2788,7 +2788,7 @@ if !DEBUG
     ORA.W DebugTimeIsFrozenForEnemies                                    ;A0972E;
 endif
     BNE .clearTransferFlag                                               ;A09731;
-    LDX.W VRAMWriteStack                                                 ;A09733;
+    LDX.B VRAMWriteStack                                                 ;A09733;
     LDA.W EnemyBG2TilemapSize                                            ;A09736;
     STA.B VRAMWrite.size,X                                               ;A09739;
     LDA.W #EnemyBG2Tilemap                                               ;A0973B;
@@ -2797,10 +2797,10 @@ endif
     STA.B VRAMWrite.src+2,X                                              ;A09743;
     LDA.W #$4800                                                         ;A09745;
     STA.B VRAMWrite.dest,X                                               ;A09748;
-    LDA.W VRAMWriteStack                                                 ;A0974A;
+    LDA.B VRAMWriteStack                                                 ;A0974A;
     CLC                                                                  ;A0974D;
     ADC.W #$0007                                                         ;A0974E;
-    STA.W VRAMWriteStack                                                 ;A09751;
+    STA.B VRAMWriteStack                                                 ;A09751;
 
   .clearTransferFlag:
     STZ.W RequestEnemyBG2TilemapTransferFlag                             ;A09754;

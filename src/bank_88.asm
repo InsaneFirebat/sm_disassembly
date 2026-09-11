@@ -485,20 +485,17 @@ LayerBlending_34:
 
 ;;; $8156: Layer blending configuration 24h - Mother Brain rainbow beam (BG3 disabled, colour math disabled outside window 1) ;;;
 LayerBlending_24_MotherBrain:
-    LDA.B #$00                                                           ;888156;
-    STA.B DP_WindowMaskBG12                                              ;888158;
+    STZ.B DP_WindowMaskBG12                                              ;888158;
     LDA.B #$02                                                           ;88815A;
     STA.B DP_WindowMaskBG34                                              ;88815C;
     LDA.B #$20                                                           ;88815E;
     STA.B DP_WindowMaskSprite                                            ;888160;
     LDA.B #$13                                                           ;888162;
     STA.B DP_MainScreenLayers                                            ;888164;
+    STA.B DP_WindowAreaMainScreen
     LDA.B #$04                                                           ;888166;
     STA.B DP_SubScreenLayers                                             ;888168;
-    LDA.B #$13                                                           ;88816A;
-    STA.B DP_WindowAreaMainScreen                                        ;88816C;
-    LDA.B #$04                                                           ;88816E;
-    STA.B DP_WindowAreaSubScreen                                         ;888170;
+    STA.B DP_WindowAreaSubScreen
     LDA.B #$10                                                           ;888172;
     STA.B DP_NextGameplayColorMathA                                      ;888174;
     LDA.B #$33                                                           ;888176;
@@ -522,10 +519,9 @@ Handle_LayerBlending_Xray_CanShowBlocks:
     STA.B DP_MainScreenLayers                                            ;888189;
     LDA.B #$04                                                           ;88818B;
     STA.B DP_SubScreenLayers                                             ;88818D;
+    STA.B DP_WindowAreaSubScreen
     LDA.B #$03                                                           ;88818F;
     STA.B DP_WindowAreaMainScreen                                        ;888191;
-    LDA.B #$04                                                           ;888193;
-    STA.B DP_WindowAreaSubScreen                                         ;888195;
     LDA.B #$22                                                           ;888197;
     STA.B DP_NextGameplayColorMathA                                      ;888199;
     LDA.B DP_NextGameplayColorMathB                                      ;88819B;
@@ -549,10 +545,9 @@ Handle_LayerBlending_Xray_CantShowBlocks:
     STA.B DP_MainScreenLayers                                            ;8881B0;
     LDA.B #$04                                                           ;8881B2;
     STA.B DP_SubScreenLayers                                             ;8881B4;
+    STA.B DP_WindowAreaSubScreen
     LDA.B #$03                                                           ;8881B6;
     STA.B DP_WindowAreaMainScreen                                        ;8881B8;
-    LDA.B #$04                                                           ;8881BA;
-    STA.B DP_WindowAreaSubScreen                                         ;8881BC;
     LDA.B #$22                                                           ;8881BE;
     STA.B DP_NextGameplayColorMathA                                      ;8881C0;
     LDA.B DP_NextGameplayColorMathB                                      ;8881C2;
@@ -583,11 +578,10 @@ Handle_LayerBlending_Xray_FirefleaRoom:
     LDA.B #$13                                                           ;8881E5;
     STA.B DP_MainScreenLayers                                            ;8881E7;
     LDA.B #$04                                                           ;8881E9;
+    STA.B DP_WindowAreaSubScreen
     STZ.B DP_SubScreenLayers                                             ;8881EB;
     LDA.B #$03                                                           ;8881ED;
     STA.B DP_WindowAreaMainScreen                                        ;8881EF;
-    LDA.B #$04                                                           ;8881F1;
-    STA.B DP_WindowAreaSubScreen                                         ;8881F3;
     LDA.B #$20                                                           ;8881F5;
     STA.B DP_NextGameplayColorMathA                                      ;8881F7;
     LDA.B #$B3                                                           ;8881F9;
@@ -620,8 +614,7 @@ Handle_LayerBlending_PowerBomb:
 
 ;;; $8219: Handle layer blending power bomb configuration 0/2 - normal ;;;
 Handle_LayerBlending_PowerBomb_0_2:
-    LDA.B #$00                                                           ;888219;
-    STA.B DP_WindowMaskBG12                                              ;88821B;
+    STZ.B DP_WindowMaskBG12                                              ;88821B;
     LDA.B #$08                                                           ;88821D;
     STA.B DP_WindowMaskBG34                                              ;88821F;
     LDA.B #$80                                                           ;888221;
@@ -630,14 +623,12 @@ Handle_LayerBlending_PowerBomb_0_2:
     STA.B DP_NextGameplayColorMathA                                      ;888227;
     LDA.B #$37                                                           ;888229;
     STA.B DP_NextGameplayColorMathB                                      ;88822B;
-    LDA.B #$00                                                           ;88822D;
-    STA.B DP_WindowAreaMainScreen                                        ;88822F;
+    STZ.B DP_WindowAreaMainScreen                                        ;88822F;
     LDA.B #$04                                                           ;888231;
     STA.B DP_WindowAreaSubScreen                                         ;888233;
+    STA.B DP_SubScreenLayers
     LDA.B #$13                                                           ;888235;
     STA.B DP_MainScreenLayers                                            ;888237;
-    LDA.B #$04                                                           ;888239;
-    STA.B DP_SubScreenLayers                                             ;88823B;
     RTS                                                                  ;88823D;
 
 
@@ -648,22 +639,19 @@ Handle_LayerBlending_PowerBomb_4:
 ;    Layer blending configuration 1Ah - Phantoon - semi-transparent
     LDA.B #$80                                                           ;88823E;
     STA.B DP_WindowMaskBG12                                              ;888240;
+    STA.B DP_WindowMaskSprite
     LDA.B #$08                                                           ;888242;
     STA.B DP_WindowMaskBG34                                              ;888244;
-    LDA.B #$80                                                           ;888246;
-    STA.B DP_WindowMaskSprite                                            ;888248;
     LDA.B #$02                                                           ;88824A;
     STA.B DP_NextGameplayColorMathA                                      ;88824C;
     LDA.B #$37                                                           ;88824E;
     STA.B DP_NextGameplayColorMathB                                      ;888250;
-    LDA.B #$00                                                           ;888252;
-    STA.B DP_WindowAreaMainScreen                                        ;888254;
+    STZ.B DP_WindowAreaMainScreen                                        ;888254;
     LDA.B #$06                                                           ;888256;
     STA.B DP_WindowAreaSubScreen                                         ;888258;
+    STA.B DP_SubScreenLayers
     LDA.B #$11                                                           ;88825A;
     STA.B DP_MainScreenLayers                                            ;88825C;
-    LDA.B #$06                                                           ;88825E;
-    STA.B DP_SubScreenLayers                                             ;888260;
     RTS                                                                  ;888262;
 
 
@@ -673,8 +661,7 @@ Handle_LayerBlending_PowerBomb_6:
 ;     Layer blending configuration 34h - Mother Brain phase 2
 
 ; Compared with config 0/2, this one disables colour math on BG2/BG3
-    LDA.B #$00                                                           ;888263;
-    STA.B DP_WindowMaskBG12                                              ;888265;
+    STZ.B DP_WindowMaskBG12                                              ;888265;
     LDA.B #$08                                                           ;888267;
     STA.B DP_WindowMaskBG34                                              ;888269;
     LDA.B #$80                                                           ;88826B;
@@ -683,14 +670,12 @@ Handle_LayerBlending_PowerBomb_6:
     STA.B DP_NextGameplayColorMathA                                      ;888271;
     LDA.B #$31                                                           ;888273;
     STA.B DP_NextGameplayColorMathB                                      ;888275;
-    LDA.B #$00                                                           ;888277;
-    STA.B DP_WindowAreaMainScreen                                        ;888279;
+    STZ.B DP_WindowAreaMainScreen                                        ;888279;
     LDA.B #$04                                                           ;88827B;
     STA.B DP_WindowAreaSubScreen                                         ;88827D;
+    STA.B DP_SubScreenLayers
     LDA.B #$13                                                           ;88827F;
     STA.B DP_MainScreenLayers                                            ;888281;
-    LDA.B #$04                                                           ;888283;
-    STA.B DP_SubScreenLayers                                             ;888285;
     RTS                                                                  ;888287;
 
 
@@ -1938,7 +1923,7 @@ HandleXrayScope_State3_DeactivateBeam_RestoreBG2_FirstHalf:
     LDA.W HDMAObject_Var2,X                                              ;888987;
     STA.B DP_BG2TilemapAddrSize                                          ;88898A;
     REP #$20                                                             ;88898C;
-    LDX.W VRAMWriteStack                                                 ;88898E;
+    LDX.B VRAMWriteStack                                                 ;88898E;
     CPX.W #$00F0                                                         ;888991;
     BPL .return                                                          ;888994;
     LDA.W #$0800                                                         ;888996;
@@ -1954,7 +1939,7 @@ HandleXrayScope_State3_DeactivateBeam_RestoreBG2_FirstHalf:
     TXA                                                                  ;8889AD;
     CLC                                                                  ;8889AE;
     ADC.W #$0007                                                         ;8889AF;
-    STA.W VRAMWriteStack                                                 ;8889B2;
+    STA.B VRAMWriteStack                                                 ;8889B2;
     INC.W Xray_State                                                     ;8889B5;
 
   .return:
@@ -1977,7 +1962,7 @@ HandleXrayScope_State4_DeactivateBeam_RestoreBG2_SecondHalf:
 
 +   TXA                                                                  ;8889D4;
     TSB.W LayerBlending_Config                                           ;8889D5;
-    LDX.W VRAMWriteStack                                                 ;8889D8;
+    LDX.B VRAMWriteStack                                                 ;8889D8;
     CPX.W #$00F0                                                         ;8889DB;
     BPL .return                                                          ;8889DE;
     LDA.W #$0800                                                         ;8889E0;
@@ -1995,7 +1980,7 @@ HandleXrayScope_State4_DeactivateBeam_RestoreBG2_SecondHalf:
     TXA                                                                  ;8889FB;
     CLC                                                                  ;8889FC;
     ADC.W #$0007                                                         ;8889FD;
-    STA.W VRAMWriteStack                                                 ;888A00;
+    STA.B VRAMWriteStack                                                 ;888A00;
     INC.W Xray_State                                                     ;888A03;
 
   .return:
@@ -4236,7 +4221,7 @@ PreInstruction_FXType_22_BG3XScroll:
     LDA.W Layer1YPosition                                                ;88A679;
     CMP.W #$0400                                                         ;88A67C;
     BPL .wavy                                                            ;88A67F;
-    LDA.W NMI_8bitFrameCounter                                           ;88A681;
+    LDA.B NMI_8bitFrameCounter                                           ;88A681;
     AND.W #$0001                                                         ;88A684;
     BNE +                                                                ;88A687;
     LDA.W BG3XScrollHDMADataTableSize                                    ;88A689;
@@ -5027,7 +5012,7 @@ RoomMainASM_ScrollingSky:
     REP #$30                                                             ;88AFB0;
     LDA.W Layer1YPosition                                                ;88AFB2;
     STA.B DP_BG2YScroll                                                  ;88AFB5;
-    LDX.W VRAMWriteStack                                                 ;88AFB7;
+    LDX.B VRAMWriteStack                                                 ;88AFB7;
     LDA.W #$0040                                                         ;88AFBA;
     STA.B VRAMWrite.size,X                                               ;88AFBD;
     STA.B VRAMWrite[1].size,X                                            ;88AFBF;
@@ -5111,7 +5096,7 @@ RoomMainASM_ScrollingSky:
     TXA                                                                  ;88B04F;
     CLC                                                                  ;88B050;
     ADC.W #$001C                                                         ;88B051;
-    STA.W VRAMWriteStack                                                 ;88B054;
+    STA.B VRAMWriteStack                                                 ;88B054;
     RTL                                                                  ;88B057;
 
 

@@ -1876,7 +1876,7 @@ LoadDebugGameOverMenuTilemap:
     INX                                                                  ;818E8A;
     CPX.W #$0800                                                         ;818E8B;
     BMI .loopClear                                                       ;818E8E;
-    LDX.W VRAMWriteStack                                                 ;818E90;
+    LDX.B VRAMWriteStack                                                 ;818E90;
     LDA.W #$0800                                                         ;818E93;
     STA.B VRAMWrite.size,X                                               ;818E96;
     LDA.W #$3800                                                         ;818E98;
@@ -1890,8 +1890,8 @@ LoadDebugGameOverMenuTilemap:
     TXA                                                                  ;818EAA;
     CLC                                                                  ;818EAB;
     ADC.W #$0007                                                         ;818EAC;
-    STA.W VRAMWriteStack                                                 ;818EAF;
-    LDX.W VRAMWriteStack                                                 ;818EB2;
+    STA.B VRAMWriteStack                                                 ;818EAF;
+    LDX.B VRAMWriteStack                                                 ;818EB2;
     LDY.W #$0000                                                         ;818EB5;
 
   .loop:
@@ -1920,7 +1920,7 @@ LoadDebugGameOverMenuTilemap:
     BRA .loop                                                            ;818EDB;
 
   .return:
-    STX.W VRAMWriteStack                                                 ;818EDD;
+    STX.B VRAMWriteStack                                                 ;818EDD;
     RTL                                                                  ;818EE0;
 
 
@@ -2245,7 +2245,7 @@ GameOverMenu_Index1_Initialise:
     INX                                                                  ;8191DB;
     CPX.W #$0800                                                         ;8191DC;
     BMI .loop                                                            ;8191DF;
-    LDX.W VRAMWriteStack                                                 ;8191E1;
+    LDX.B VRAMWriteStack                                                 ;8191E1;
     LDA.W #$0800                                                         ;8191E4;
     STA.B VRAMWrite.size,X                                               ;8191E7;
     LDA.W #$3600                                                         ;8191E9;
@@ -2259,7 +2259,7 @@ GameOverMenu_Index1_Initialise:
     TXA                                                                  ;8191FB;
     CLC                                                                  ;8191FC;
     ADC.W #$0007                                                         ;8191FD;
-    STA.W VRAMWriteStack                                                 ;819200;
+    STA.B VRAMWriteStack                                                 ;819200;
     STZ.W Enemy.palette                                                  ;819203;
     LDY.W #Tilemap_GameOver_gameOver                                     ;819206;
     LDX.W #($B<<1)|($5<<6)                                               ;819209; $0156
@@ -2796,7 +2796,7 @@ Draw_FileCopyClear_SaveSlotCInfo:
 
 ;;; $969F: Queue transfer of menu tilemap to VRAM BG1 ;;;
 QueueTransfer_MenuTilemap_ToVRAMBG1:
-    LDX.W VRAMWriteStack                                                 ;81969F;
+    LDX.B VRAMWriteStack                                                 ;81969F;
     LDA.W #$0800                                                         ;8196A2;
     STA.B VRAMWrite.size,X                                               ;8196A5;
     LDA.W #$3600                                                         ;8196A7;
@@ -2810,7 +2810,7 @@ QueueTransfer_MenuTilemap_ToVRAMBG1:
     TXA                                                                  ;8196B9;
     CLC                                                                  ;8196BA;
     ADC.W #$0007                                                         ;8196BB;
-    STA.W VRAMWriteStack                                                 ;8196BE;
+    STA.B VRAMWriteStack                                                 ;8196BE;
     RTS                                                                  ;8196C1;
 
 
@@ -3828,7 +3828,7 @@ FileSelectMenu_Index1_TitleSequenceToMain_LoadBG2:
     DEX                                                                  ;819EA3;
     DEX                                                                  ;819EA4;
     BPL .loop                                                            ;819EA5;
-    LDX.W VRAMWriteStack                                                 ;819EA7;
+    LDX.B VRAMWriteStack                                                 ;819EA7;
     LDA.W #$0800                                                         ;819EAA;
     STA.B VRAMWrite.size,X                                               ;819EAD;
     LDA.W #$3600                                                         ;819EAF;
@@ -3842,7 +3842,7 @@ FileSelectMenu_Index1_TitleSequenceToMain_LoadBG2:
     TXA                                                                  ;819EC1;
     CLC                                                                  ;819EC2;
     ADC.W #$0007                                                         ;819EC3;
-    STA.W VRAMWriteStack                                                 ;819EC6;
+    STA.B VRAMWriteStack                                                 ;819EC6;
     INC.W PauseMenu_MenuIndex                                            ;819EC9;
     LDA.W #$0001                                                         ;819ECC;
     STA.W EnemyProjectile_Enable                                         ;819ECF;
@@ -4381,7 +4381,7 @@ FileSelectMenu_SelectionMissile_Coordinates:
 FileSelectMap_Index0_GameOptionsToAreaSelectMap_ClearBG2:
     REP #$30                                                             ;81A32A;
     JSR.W ClearMenuTilemap                                               ;81A32C;
-    LDX.W VRAMWriteStack                                                 ;81A32F;
+    LDX.B VRAMWriteStack                                                 ;81A32F;
     LDA.W #$0800                                                         ;81A332;
     STA.B VRAMWrite.size,X                                               ;81A335;
     LDA.W #MenuTilemap                                                   ;81A337;
@@ -4395,7 +4395,7 @@ FileSelectMap_Index0_GameOptionsToAreaSelectMap_ClearBG2:
     TXA                                                                  ;81A349;
     CLC                                                                  ;81A34A;
     ADC.W #$0007                                                         ;81A34B;
-    STA.W VRAMWriteStack                                                 ;81A34E;
+    STA.B VRAMWriteStack                                                 ;81A34E;
     LDA.W #$0000                                                         ;81A351;
     STA.L PaletteChangeNumerator                                         ;81A354;
     JSR.W LoadFileSelectPalettes                                         ;81A358;
@@ -4613,7 +4613,7 @@ AreaSelectMap_ForegroundPaletteTable:
 ;;; $A546: File select map - index 2/11h: load area select foreground tilemap ;;;
 FileSelectMap_Index2_11_Load_AreaSelect_ForegroundTilemap:
     REP #$30                                                             ;81A546;
-    LDX.W VRAMWriteStack                                                 ;81A548;
+    LDX.B VRAMWriteStack                                                 ;81A548;
     LDA.W #$0800                                                         ;81A54B;
     STA.B VRAMWrite.size,X                                               ;81A54E;
     LDA.W #Tilemap_AreaSelect_Foreground                                 ;81A550;
@@ -4627,7 +4627,7 @@ FileSelectMap_Index2_11_Load_AreaSelect_ForegroundTilemap:
     TXA                                                                  ;81A562;
     CLC                                                                  ;81A563;
     ADC.W #$0007                                                         ;81A564;
-    STA.W VRAMWriteStack                                                 ;81A567;
+    STA.B VRAMWriteStack                                                 ;81A567;
     LDA.B DP_Brightness                                                  ;81A56A;
     AND.W #$FF00                                                         ;81A56C;
     ORA.W #$000F                                                         ;81A56F;
@@ -4655,7 +4655,7 @@ FileSelectMap_Index3_GameOptionsToAreaSelectMap:
 Load_AreaSelect_BackgroundTilemap:
 ;; Parameters:
 ;;     Y: Area index
-    LDX.W VRAMWriteStack                                                 ;81A58A;
+    LDX.B VRAMWriteStack                                                 ;81A58A;
     LDA.W #$0800                                                         ;81A58D;
     STA.B VRAMWrite.size,X                                               ;81A590;
     TYA                                                                  ;81A592;
@@ -4675,7 +4675,7 @@ Load_AreaSelect_BackgroundTilemap:
     TXA                                                                  ;81A5AA;
     CLC                                                                  ;81A5AB;
     ADC.W #$0007                                                         ;81A5AC;
-    STA.W VRAMWriteStack                                                 ;81A5AF;
+    STA.B VRAMWriteStack                                                 ;81A5AF;
     RTS                                                                  ;81A5B2;
 
 
@@ -4916,7 +4916,7 @@ FileSelectMap_Index5_GameOptionsToAreaSelectMap_ExpSqrTrans:
     DEY                                                                  ;81A7D9;
     DEY                                                                  ;81A7DA;
     BNE .loopMapControls                                                 ;81A7DB;
-    LDX.W VRAMWriteStack                                                 ;81A7DD;
+    LDX.B VRAMWriteStack                                                 ;81A7DD;
     LDA.W #$0800                                                         ;81A7E0;
     STA.B VRAMWrite.size,X                                               ;81A7E3;
     LDA.W #$4000                                                         ;81A7E5;
@@ -4930,7 +4930,7 @@ FileSelectMap_Index5_GameOptionsToAreaSelectMap_ExpSqrTrans:
     TXA                                                                  ;81A7F7;
     CLC                                                                  ;81A7F8;
     ADC.W #$0007                                                         ;81A7F9;
-    STA.W VRAMWriteStack                                                 ;81A7FC;
+    STA.B VRAMWriteStack                                                 ;81A7FC;
     RTS                                                                  ;81A7FF;
 
 
@@ -5378,7 +5378,7 @@ FileSelectMap_Index7_AreaSelectMapToRoomSelectMap:
     LDA.W #$007E                                                         ;81AAEF;
     STA.B DP_Temp02                                                      ;81AAF2;
     JSL.L DrawRoomSelectMap_AreaLabel                                    ;81AAF4;
-    LDX.W VRAMWriteStack                                                 ;81AAF8;
+    LDX.B VRAMWriteStack                                                 ;81AAF8;
     LDA.W #$0200                                                         ;81AAFB;
     STA.B VRAMWrite.size,X                                               ;81AAFE;
     LDA.W #BG2Tilemap                                                    ;81AB00;
@@ -5392,7 +5392,7 @@ FileSelectMap_Index7_AreaSelectMapToRoomSelectMap:
     TXA                                                                  ;81AB12;
     CLC                                                                  ;81AB13;
     ADC.W #$0007                                                         ;81AB14;
-    STA.W VRAMWriteStack                                                 ;81AB17;
+    STA.B VRAMWriteStack                                                 ;81AB17;
     LDA.W AreaIndex                                                      ;81AB1A;
     ASL                                                                  ;81AB1D;
     TAX                                                                  ;81AB1E;
@@ -6009,7 +6009,7 @@ FileSelectMap_IndexF_RoomSelectMapToAreaSelectMap_ClearBG1:
     DEX                                                                  ;81AFA9;
     DEX                                                                  ;81AFAA;
     BPL .loop                                                            ;81AFAB;
-    LDX.W VRAMWriteStack                                                 ;81AFAD;
+    LDX.B VRAMWriteStack                                                 ;81AFAD;
     LDA.W #$0800                                                         ;81AFB0;
     STA.B VRAMWrite.size,X                                               ;81AFB3;
     LDA.W #GameOptionsMenuTilemap                                        ;81AFB5;
@@ -6023,7 +6023,7 @@ FileSelectMap_IndexF_RoomSelectMapToAreaSelectMap_ClearBG1:
     TXA                                                                  ;81AFC7;
     CLC                                                                  ;81AFC8;
     ADC.W #$0007                                                         ;81AFC9;
-    STA.W VRAMWriteStack                                                 ;81AFCC;
+    STA.B VRAMWriteStack                                                 ;81AFCC;
     INC.W PauseMenu_MenuIndex                                            ;81AFCF;
     RTS                                                                  ;81AFD2;
 

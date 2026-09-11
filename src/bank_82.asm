@@ -413,9 +413,8 @@ GameState_21_BlackoutFromCeres:
     SEI
     STZ.W LayerBlending_DefaultConfig                                    ;8283B5;
     STZ.B DP_IRQCmd                                                      ;8283B8;
-    SEP #$20                                                             ;8283BA;
     STZ.B DP_NextGameplayColorMathA                                      ;8283BC;
-    STZ.B DP_NextGameplayColorMathB                                      ;8283BE;
+    SEP #$20
     LDA.B #$10                                                           ;8283C0;
     STA.B DP_MainScreenLayers                                            ;8283C2;
     STZ.B DP_SubScreenLayers                                             ;8283C4;
@@ -485,9 +484,8 @@ GameState_23_TimeUpBlackOut:
     SEI
     STZ.W LayerBlending_DefaultConfig                                    ;828452;
     STZ.B DP_IRQCmd                                                      ;828455;
-    SEP #$20                                                             ;828457;
     STZ.B DP_NextGameplayColorMathA                                      ;828459;
-    STZ.B DP_NextGameplayColorMathB                                      ;82845B;
+    SEP #$20
     LDA.B #$10                                                           ;82845D;
     STA.B DP_MainScreenLayers                                            ;82845F;
     STZ.B DP_SubScreenLayers                                             ;828461;
@@ -545,9 +543,8 @@ GameState_26_SamusEscapesFromZebes:
     TRB.B DP_IRQAutoJoy
     SEI
     STZ.W LayerBlending_DefaultConfig                                    ;8284E1;
-    SEP #$20                                                             ;8284E4;
     STZ.B DP_NextGameplayColorMathA                                      ;8284E6;
-    STZ.B DP_NextGameplayColorMathB                                      ;8284E8;
+    SEP #$20
     LDA.B #$10                                                           ;8284EA;
     STA.B DP_MainScreenLayers                                            ;8284EC;
     STZ.B DP_SubScreenLayers                                             ;8284EE;
@@ -676,9 +673,8 @@ GameState_2B_UnloadGameData:
     DEX                                                                  ;8285E3;
     DEX                                                                  ;8285E4;
     BPL .clearGameplayRAM                                                ;8285E5;
-    SEP #$20                                                             ;8285E7;
     STZ.B DP_NextGameplayColorMathA                                      ;8285E9;
-    STZ.B DP_NextGameplayColorMathB                                      ;8285EB;
+    SEP #$20
     LDA.B #$10                                                           ;8285ED;
     STA.B DP_MainScreenLayers                                            ;8285EF;
     STZ.B DP_SubScreenLayers                                             ;8285F1;
@@ -3006,7 +3002,7 @@ DrawRoomSelectMap:
 
   .return:
     REP #$30                                                             ;829603;
-    LDX.W VRAMWriteStack                                                 ;829605;
+    LDX.B VRAMWriteStack                                                 ;829605;
     LDA.W #$1000                                                         ;829608;
     STA.B VRAMWrite.size,X                                               ;82960B;
     LDA.W #PauseMenuMapTilemap                                           ;82960D;
@@ -3020,7 +3016,7 @@ DrawRoomSelectMap:
     TXA                                                                  ;82961F;
     CLC                                                                  ;829620;
     ADC.W #$0007                                                         ;829621;
-    STA.W VRAMWriteStack                                                 ;829624;
+    STA.B VRAMWriteStack                                                 ;829624;
     RTL                                                                  ;829627;
 
 
@@ -5134,7 +5130,7 @@ Set_PauseScreen_ButtonLabelPalettes_MapScreen:
 Update_PauseMenu_L_R_Start_VRAMTilemap:
     PHP                                                                  ;82A84D;
     REP #$30                                                             ;82A84E;
-    LDX.W VRAMWriteStack                                                 ;82A850;
+    LDX.B VRAMWriteStack                                                 ;82A850;
     LDA.W #$0080                                                         ;82A853;
     STA.B VRAMWrite.size,X                                               ;82A856;
     INX                                                                  ;82A858;
@@ -5156,7 +5152,7 @@ Update_PauseMenu_L_R_Start_VRAMTilemap:
     STA.B VRAMWrite.size,X                                               ;82A874;
     INX                                                                  ;82A876;
     INX                                                                  ;82A877;
-    STX.W VRAMWriteStack                                                 ;82A878;
+    STX.B VRAMWriteStack                                                 ;82A878;
     PLP                                                                  ;82A87B;
     RTS                                                                  ;82A87C;
 
@@ -5641,7 +5637,7 @@ EquipmentScreen_GlowingArrow_Animated:
     LDA.W ReserveTankMode                                                ;82AD29;
     CMP.W #$0001                                                         ;82AD2C;
     BNE .disableGlow                                                     ;82AD2F;
-    LDA.W NMI_8bitFrameCounter                                           ;82AD31;
+    LDA.B NMI_8bitFrameCounter                                           ;82AD31;
     AND.W #$001F                                                         ;82AD34;
     ASL                                                                  ;82AD37;
     TAX                                                                  ;82AD38;
@@ -6240,7 +6236,7 @@ EquipmentScreen_WriteSamusWireframeTilemap_and_BG1ToVRAM:
     PHP                                                                  ;82B1E0;
     REP #$30                                                             ;82B1E1;
     JSR.W EquipmentScreen_WriteSamusWireframeTilemap                     ;82B1E3;
-    LDX.W VRAMWriteStack                                                 ;82B1E6;
+    LDX.B VRAMWriteStack                                                 ;82B1E6;
     LDA.W #$0500                                                         ;82B1E9;
     STA.B VRAMWrite.size,X                                               ;82B1EC;
     INX                                                                  ;82B1EE;
@@ -6258,7 +6254,7 @@ EquipmentScreen_WriteSamusWireframeTilemap_and_BG1ToVRAM:
     STA.B VRAMWrite.size,X                                               ;82B203;
     INX                                                                  ;82B205;
     INX                                                                  ;82B206;
-    STX.W VRAMWriteStack                                                 ;82B207;
+    STX.B VRAMWriteStack                                                 ;82B207;
     PLP                                                                  ;82B20A;
     RTS                                                                  ;82B20B;
 
@@ -6457,7 +6453,7 @@ EquipmentScreen_DisplayReserveTankAmount:
     BPL +                                                                ;82B335;
     LDA.W $4216                                                          ;82B337;
     BEQ +                                                                ;82B33A;
-    LDA.W NMI_8bitFrameCounter                                           ;82B33C;
+    LDA.B NMI_8bitFrameCounter                                           ;82B33C;
     BIT.W #$0004                                                         ;82B33F;
     BNE +                                                                ;82B342;
     INX                                                                  ;82B344;
@@ -10654,7 +10650,7 @@ Reserve_Tank_Auto_Refill:
 ;;     Carry: Set if finished refill (i.e. reserve health has been depleted)
     LDA.W ReserveEnergy                                                  ;82DC31;
     BEQ .return                                                          ;82DC34;
-    LDA.W NMI_FrameCounter                                               ;82DC36;
+    LDA.B NMI_FrameCounter                                               ;82DC36;
     BIT.W #$0007                                                         ;82DC39;
     BNE +                                                                ;82DC3C;
     LDA.W #$002D                                                         ;82DC3E;
@@ -10754,9 +10750,8 @@ GameState_14_DeathSequence_BlackOutSurroundings:
     SEI
     STZ.W LayerBlending_DefaultConfig                                    ;82DCFC;
     STZ.B DP_IRQCmd                                                      ;82DCFF;
-    SEP #$20                                                             ;82DD01;
     STZ.B DP_NextGameplayColorMathA                                      ;82DD03;
-    STZ.B DP_NextGameplayColorMathB                                      ;82DD05;
+    SEP #$20
     LDA.B #$10                                                           ;82DD07;
     STA.B DP_MainScreenLayers                                            ;82DD09;
     STZ.B DP_SubScreenLayers                                             ;82DD0B;
@@ -13023,8 +13018,7 @@ GameOptionsMenu_1_LoadingOptionsMenu:
 ; Assumes forced blank
     PHP                                                                  ;82EC11;
     SEP #$30                                                             ;82EC12;
-    LDA.B #$00                                                           ;82EC14;
-    STA.B DP_BGTilesAddr                                                 ;82EC16;
+    STZ.B DP_BGTilesAddr                                                 ;82EC16;
     LDA.B #$13                                                           ;82EC18;
     STA.B DP_MainScreenLayers                                            ;82EC1A;
     STZ.B DP_SubScreenLayers                                             ;82EC1C;
@@ -13133,7 +13127,7 @@ Draw_GameOptionsMenu_BG1:
 ; Queue transfer of $7E:3000..37FF to VRAM $5000..53FF
     PHP                                                                  ;82ECFF;
     REP #$30                                                             ;82ED00;
-    LDX.W VRAMWriteStack                                                 ;82ED02;
+    LDX.B VRAMWriteStack                                                 ;82ED02;
     LDA.W #$0800                                                         ;82ED05;
     STA.B VRAMWrite.size,X                                               ;82ED08;
     INX                                                                  ;82ED0A;
@@ -13151,7 +13145,7 @@ Draw_GameOptionsMenu_BG1:
     STA.B VRAMWrite.size,X                                               ;82ED1F;
     INX                                                                  ;82ED21;
     INX                                                                  ;82ED22;
-    STX.W VRAMWriteStack                                                 ;82ED23;
+    STX.B VRAMWriteStack                                                 ;82ED23;
     PLP                                                                  ;82ED26;
     RTS                                                                  ;82ED27;
 

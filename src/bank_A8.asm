@@ -346,7 +346,7 @@ Instruction_CommonA8_WaitYFrames:
 ;;; $814B: Instruction - transfer [[Y]] bytes from [[Y] + 2] to VRAM [[Y] + 5] ;;;
 Instruction_CommonA8_TransferYBytesInYToVRAM:
     PHX                                                                  ;A8814B;
-    LDX.W VRAMWriteStack                                                 ;A8814C;
+    LDX.B VRAMWriteStack                                                 ;A8814C;
     LDA.W $0000,Y                                                        ;A8814F;
     STA.B VRAMWrite.size,X                                               ;A88152;
     LDA.W $0002,Y                                                        ;A88154;
@@ -358,7 +358,7 @@ Instruction_CommonA8_TransferYBytesInYToVRAM:
     TXA                                                                  ;A88163;
     CLC                                                                  ;A88164;
     ADC.W #$0007                                                         ;A88165;
-    STA.W VRAMWriteStack                                                 ;A88168;
+    STA.B VRAMWriteStack                                                 ;A88168;
     TYA                                                                  ;A8816B;
     CLC                                                                  ;A8816C;
     ADC.W #$0007                                                         ;A8816D;

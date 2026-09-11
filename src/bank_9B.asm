@@ -1710,7 +1710,7 @@ QueueTransferOfSegmentOfSamusDeathSequenceToVRAM:
 ;;     Y: Samus death sequence segment index
     PHP                                                                  ;9BB6D8;
     REP #$30                                                             ;9BB6D9;
-    LDX.W VRAMWriteStack                                                 ;9BB6DB;
+    LDX.B VRAMWriteStack                                                 ;9BB6DB;
     LDA.W #$0400                                                         ;9BB6DE;
     STA.B VRAMWrite.size,X                                               ;9BB6E1;
     INX                                                                  ;9BB6E3;
@@ -1728,7 +1728,7 @@ QueueTransferOfSegmentOfSamusDeathSequenceToVRAM:
     STA.B VRAMWrite.size,X                                               ;9BB6F8;
     INX                                                                  ;9BB6FA;
     INX                                                                  ;9BB6FB;
-    STX.W VRAMWriteStack                                                 ;9BB6FC;
+    STX.B VRAMWriteStack                                                 ;9BB6FC;
     PLP                                                                  ;9BB6FF;
     RTS                                                                  ;9BB700;
 
@@ -3102,7 +3102,7 @@ UpdateGrappleBeamTiles:
     STA.W GrappleBeam_StartAnimationTilePointer                          ;9BBFDE;
 
   .timerNotExpired:
-    LDX.W VRAMWriteStack                                                 ;9BBFE1;
+    LDX.B VRAMWriteStack                                                 ;9BBFE1;
     LDA.W #$0020                                                         ;9BBFE4;
     STA.B VRAMWrite.size,X                                               ;9BBFE7;
     INX                                                                  ;9BBFE9;
@@ -3120,14 +3120,14 @@ UpdateGrappleBeamTiles:
     STA.B VRAMWrite.size,X                                               ;9BBFFE;
     INX                                                                  ;9BC000;
     INX                                                                  ;9BC001;
-    STX.W VRAMWriteStack                                                 ;9BC002;
+    STX.B VRAMWriteStack                                                 ;9BC002;
     LDA.W GrappleBeam_EndAngle                                           ;9BC005;
     AND.W #$FF00                                                         ;9BC008;
     XBA                                                                  ;9BC00B;
     LSR                                                                  ;9BC00C;
     AND.W #$00FE                                                         ;9BC00D;
     TAY                                                                  ;9BC010;
-    LDX.W VRAMWriteStack                                                 ;9BC011;
+    LDX.B VRAMWriteStack                                                 ;9BC011;
     LDA.W #$0080                                                         ;9BC014;
     STA.B VRAMWrite.size,X                                               ;9BC017;
     INX                                                                  ;9BC019;
@@ -3145,7 +3145,7 @@ UpdateGrappleBeamTiles:
     STA.B VRAMWrite.size,X                                               ;9BC02E;
     INX                                                                  ;9BC030;
     INX                                                                  ;9BC031;
-    STX.W VRAMWriteStack                                                 ;9BC032;
+    STX.B VRAMWriteStack                                                 ;9BC032;
     RTS                                                                  ;9BC035;
 
 

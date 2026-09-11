@@ -346,7 +346,7 @@ Instruction_CommonA6_WaitYFrames:
 ;;; $814B: Instruction - transfer [[Y]] bytes from [[Y] + 2] to VRAM [[Y] + 5] ;;;
 Instruction_CommonA6_TransferYBytesInYToVRAM:
     PHX                                                                  ;A6814B;
-    LDX.W VRAMWriteStack                                                 ;A6814C;
+    LDX.B VRAMWriteStack                                                 ;A6814C;
     LDA.W $0000,Y                                                        ;A6814F;
     STA.B VRAMWrite.size,X                                               ;A68152;
     LDA.W $0002,Y                                                        ;A68154;
@@ -358,7 +358,7 @@ Instruction_CommonA6_TransferYBytesInYToVRAM:
     TXA                                                                  ;A68163;
     CLC                                                                  ;A68164;
     ADC.W #$0007                                                         ;A68165;
-    STA.W VRAMWriteStack                                                 ;A68168;
+    STA.B VRAMWriteStack                                                 ;A68168;
     TYA                                                                  ;A6816B;
     CLC                                                                  ;A6816C;
     ADC.W #$0007                                                         ;A6816D;
@@ -4936,7 +4936,7 @@ Mode7Math_16bitUnsignedMultiplication:
 
 ;;; $ACBC: Animate Ceres Ridley mode 7 baby metroid ;;;
 AnimateCeresRidleyMode7BabyMetroidCapsule:
-    LDA.W NMI_FrameCounter                                               ;A6ACBC;
+    LDA.B NMI_FrameCounter                                               ;A6ACBC;
     AND.W #$0003                                                         ;A6ACBF;
     BNE .return                                                          ;A6ACC2;
     LDA.L RidleyCeres.mode7BabyMetroidAnimationFrame                     ;A6ACC4;
@@ -5012,7 +5012,7 @@ AnimateCeresRidleyMode7BabyMetroidCapsule:
 
 ;;; $AD27: Animate Ceres Ridley mode 7 wings ;;;
 AnimateCeresRidleyMode7Wings:
-    LDA.W NMI_FrameCounter                                               ;A6AD27;
+    LDA.B NMI_FrameCounter                                               ;A6AD27;
     AND.W #$0007                                                         ;A6AD2A;
     BNE .return                                                          ;A6AD2D;
     LDA.L RidleyCeres.mode7WingsAnimationFrame                           ;A6AD2F;
@@ -7358,7 +7358,7 @@ SelfDestructSequenceFunction_C_StartEscapeSequence:
 DrawEmergencyText:
 ; VRAM BG1 tilemap (Bh..13h, 6) = [.emergencyTilemap]
     LDY.W #.tilemapEntry                                                 ;A6C136;
-    LDX.W VRAMWriteStack                                                 ;A6C139;
+    LDX.B VRAMWriteStack                                                 ;A6C139;
     LDA.W $0000,Y                                                        ;A6C13C;
     STA.B VRAMWrite.size,X                                               ;A6C13F;
     LDA.W $0003,Y                                                        ;A6C142;
@@ -7370,7 +7370,7 @@ DrawEmergencyText:
     TXA                                                                  ;A6C154;
     CLC                                                                  ;A6C155;
     ADC.W #$0007                                                         ;A6C156;
-    STA.W VRAMWriteStack                                                 ;A6C159;
+    STA.B VRAMWriteStack                                                 ;A6C159;
     RTS                                                                  ;A6C15C;
 
   .tilemapEntry:
@@ -7392,7 +7392,7 @@ CeresEscapeSequenceEmergencyTextGlow:
   .return:
     RTS                                                                  ;A6C1A5;
 
-+   LDA.W NMI_FrameCounter                                               ;A6C1A6;
++   LDA.B NMI_FrameCounter                                               ;A6C1A6;
     AND.W #$0003                                                         ;A6C1A9;
     BNE .return                                                          ;A6C1AC;
     LDA.L RidleyCeres.emergencyTextGlowAnimationFrame                    ;A6C1AE;
@@ -7466,7 +7466,7 @@ ProcessEscapeTimerTileTransfers:
 ;; Returns:
 ;;     Carry: Set if transfers finished, otherwise clear
     LDY.W RidleyCeres.misc0                                              ;A6C26E;
-    LDX.W VRAMWriteStack                                                 ;A6C271;
+    LDX.B VRAMWriteStack                                                 ;A6C271;
     LDA.W $0000,Y                                                        ;A6C274;
     BEQ .returnCarrySet                                                  ;A6C277;
     STA.B VRAMWrite.size,X                                               ;A6C279;
@@ -7479,7 +7479,7 @@ ProcessEscapeTimerTileTransfers:
     TXA                                                                  ;A6C28E;
     CLC                                                                  ;A6C28F;
     ADC.W #$0007                                                         ;A6C290;
-    STA.W VRAMWriteStack                                                 ;A6C293;
+    STA.B VRAMWriteStack                                                 ;A6C293;
     TYA                                                                  ;A6C296;
     ADC.W #$0007                                                         ;A6C297;
     STA.W RidleyCeres.misc0                                              ;A6C29A;
@@ -7576,7 +7576,7 @@ HandleTypewriterText:
     INC                                                                  ;A6C31A;
     STA.L TypewriterInstructionListPointer                               ;A6C31B;
     TYX
-    LDX.W VRAMWriteStack                                                 ;A6C31F;
+    LDX.B VRAMWriteStack                                                 ;A6C31F;
     LDA.W #$0002                                                         ;A6C322;
     STA.B VRAMWrite.size,X                                               ;A6C325;
     LDA.W #TypewriterTileToBeWrittenToTilemap>>8&$FF00                   ;A6C328;
@@ -7596,7 +7596,7 @@ HandleTypewriterText:
     TXA                                                                  ;A6C34C;
     CLC                                                                  ;A6C34D;
     ADC.W #$0007                                                         ;A6C34E;
-    STA.W VRAMWriteStack                                                 ;A6C351;
+    STA.B VRAMWriteStack                                                 ;A6C351;
     LDA.L TypewriterStrokeTimer                                          ;A6C354;
     INC                                                                  ;A6C358;
     STA.L TypewriterStrokeTimer                                          ;A6C359;
@@ -7660,7 +7660,7 @@ else
 endif
     PLB                                                                  ;A6C388;
     TXY
-    LDX.W VRAMWriteStack                                                 ;A6C389;
+    LDX.B VRAMWriteStack                                                 ;A6C389;
 
   .loop:
     LDA.W $0000,Y                                                        ;A6C38C;
@@ -7682,7 +7682,7 @@ endif
     BRA .loop                                                            ;A6C3B1;
 
   .done:
-    STX.W VRAMWriteStack                                                 ;A6C3B3;
+    STX.B VRAMWriteStack                                                 ;A6C3B3;
     TYX
     PLB                                                                  ;A6C3B6;
     RTL                                                                  ;A6C3B7;
@@ -11009,7 +11009,7 @@ HandleRidleyRibsAnimation:
 
   .timer:
     STA.L Ridley.ribsAnimationTimer                                      ;A6DA27;
-    LDX.W VRAMWriteStack                                                 ;A6DA2B;
+    LDX.B VRAMWriteStack                                                 ;A6DA2B;
     LDA.W #Tiles_RidleysRibsAndClaws_0>>8&$FF00                          ;A6DA2E;
     STA.B VRAMWrite.src+1,X                                              ;A6DA31;
     STA.B VRAMWrite[1].src+1,X                                           ;A6DA34;
@@ -11028,7 +11028,7 @@ HandleRidleyRibsAnimation:
     CLC                                                                  ;A6DA59;
     ADC.W #$000E                                                         ;A6DA5A;
     TAX                                                                  ;A6DA5D;
-    STX.W VRAMWriteStack                                                 ;A6DA5E;
+    STX.B VRAMWriteStack                                                 ;A6DA5E;
     STZ.B VRAMWrite.size,X                                               ;A6DA64;
     TYA                                                                  ;A6DA67;
     CLC                                                                  ;A6DA68;
@@ -11067,7 +11067,7 @@ DrawRidleysFeet:
     LDY.W #.clenched                                                     ;A6DA90;
 
   .notHolding:
-    LDX.W VRAMWriteStack                                                 ;A6DA93;
+    LDX.B VRAMWriteStack                                                 ;A6DA93;
     LDA.W #Tiles_RidleysRibsAndClaws_0>>8&$FF00                          ;A6DA96;
     STA.B VRAMWrite.src+1,X                                              ;A6DA99;
     STA.B VRAMWrite[1].src+1,X                                           ;A6DA9C;
@@ -11086,7 +11086,7 @@ DrawRidleysFeet:
     CLC                                                                  ;A6DAC1;
     ADC.W #$000E                                                         ;A6DAC2;
     TAX                                                                  ;A6DAC5;
-    STX.W VRAMWriteStack                                                 ;A6DAC6;
+    STX.B VRAMWriteStack                                                 ;A6DAC6;
     STZ.B VRAMWrite.size,X                                               ;A6DACC;
     RTS                                                                  ;A6DACF;
 
@@ -14387,7 +14387,7 @@ LoadRotatingElevatorRoomPreExplosioNDoorOverlayTilesIfNeeded:
     CMP.W #$0002                                                         ;A6F73C;
     BNE .return                                                          ;A6F73F;
     TXY
-    LDX.W VRAMWriteStack                                                 ;A6F741;
+    LDX.B VRAMWriteStack                                                 ;A6F741;
     LDA.W #$0400                                                         ;A6F744;
     STA.B VRAMWrite.size,X                                               ;A6F747;
     LDA.W #Tiles_CeresElevatorRoomDoor>>8&$FF00                          ;A6F74A;
@@ -14399,7 +14399,7 @@ LoadRotatingElevatorRoomPreExplosioNDoorOverlayTilesIfNeeded:
     TYA                                                                  ;A6F75C;
     CLC                                                                  ;A6F75D;
     ADC.W #$0007                                                         ;A6F75E;
-    STA.W VRAMWriteStack                                                 ;A6F761;
+    STA.B VRAMWriteStack                                                 ;A6F761;
     TYX
 
   .return:
@@ -14552,7 +14552,7 @@ Function_CeresDoor_RotatingElevatorRoom_ElevatorAnimations:
     JSR.W AnimateCeresElevatorPlatform                                   ;A6F851;
     LDA.L PaletteChangeNumerator                                         ;A6F854;
     BNE .return                                                          ;A6F858;
-    LDA.W NMI_FrameCounter                                               ;A6F85A;
+    LDA.B NMI_FrameCounter                                               ;A6F85A;
     AND.W #$0038                                                         ;A6F85D;
     ASL                                                                  ;A6F860;
     ADC.W #.paletteAnimation                                             ;A6F861;
@@ -14579,7 +14579,7 @@ Function_CeresDoor_RotatingElevatorRoom_ElevatorAnimations:
 
 ;;; $F8F1: Animate Ceres elevator platform ;;;
 AnimateCeresElevatorPlatform:
-    LDA.W NMI_FrameCounter                                               ;A6F8F1;
+    LDA.B NMI_FrameCounter                                               ;A6F8F1;
     AND.W #$0002                                                         ;A6F8F4;
     TAY                                                                  ;A6F8F7;
     LDX.W .mode7TransferPointers,Y                                       ;A6F8F8;

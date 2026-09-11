@@ -596,10 +596,10 @@ WaitForNMI:
     PLB                                                                  ;80833B;
     SEP #$30                                                             ;80833C;
     LDA.B #$01                                                           ;80833E;
-    STA.W NMI_Request                                                    ;808340; Set NMI request flag
+    STA.B NMI_Request                                                    ;808340; Set NMI request flag
 
   .wait:
-    LDA.W NMI_Request                                                    ;808343;
+    LDA.B NMI_Request                                                    ;808343;
     BNE .wait                                                            ;808346; Wait until NMI request acknowledged
     PLB                                                                  ;808348;
     PLP                                                                  ;808349;
@@ -1422,13 +1422,13 @@ QueueMode7Transfers:
 ; }
     PHX                                                                  ;808B4F;
     PHY                                                                  ;808B50;
-    LDY.W Mode7Stack                                                     ;808B51;
+    LDY.B Mode7Stack                                                     ;808B51;
     DEX                                                                  ;808B54;
 
   .loop:
     BIT.W $0000,X                                                        ;808B55;
     BMI .VRAM                                                            ;808B58;
-    STY.W Mode7Stack                                                     ;808B5C;
+    STY.B Mode7Stack                                                     ;808B5C;
     PLY                                                                  ;808B5F;
     PLX                                                                  ;808B60;
     RTL                                                                  ;808B61;
@@ -1458,7 +1458,7 @@ QueueMode7Transfers:
 
 ;;; $8C83: Handle VRAM write table and scrolling DMAs ;;;
 HandleVRAMWriteTable_ScrollingDMAs:
-    LDX.W VRAMWriteStack                                                 ;808C86;
+    LDX.B VRAMWriteStack                                                 ;808C86;
     BEQ .done                                                            ;808C89;
     STZ.B VRAMWrite.size,X                                               ;808C8B;
     LDA.W #$1801                                                         ;808C8D;
@@ -1492,7 +1492,7 @@ HandleVRAMWriteTable_ScrollingDMAs:
     BRA .loop                                                            ;808CC7;
 
   .done:
-    STZ.W VRAMWriteStack                                                 ;808CC9;
+    STZ.B VRAMWriteStack                                                 ;808CC9;
     SEP #$20                                                             ;808CCC;
     REP #$10                                                             ;808CCE;
     LDA.B #$81                                                           ;808CD8;
@@ -2491,10 +2491,10 @@ NMI:
     PLB                                                                  ;80958F;
     SEP #$10                                                             ;809594;
     LDX.W $4210                                                          ;809596;
-    LDX.W NMI_Request                                                    ;809599;
+    LDX.B NMI_Request                                                    ;809599;
     BNE .update
     REP #$30
-    INC.W NMI_Counter
+    INC.B NMI_Counter
     PLY
     PLX
     PLA
@@ -2686,13 +2686,9 @@ NMI:
     LDX.B DP_WindowAreaSubScreen
     STX.W $212F
     LDX.B DP_ColorMathA
-    STX.W $2130
-    LDX.B DP_ColorMathB
-    STX.W $2131
-    LDX.B DP_NextGameplayColorMathA
-    STX.B DP_GameplayColorMathA
-    LDX.B DP_NextGameplayColorMathB
-    STX.B DP_GameplayColorMathB
+    STA.W $2130
+    LDA.B DP_NextGameplayColorMathA
+    STA.B DP_GameplayColorMathA
     LDX.B DP_ColorMathSubScreenBackdropColor0
     STX.W $2132
     LDX.B DP_ColorMathSubScreenBackdropColor1
@@ -2794,7 +2790,7 @@ NMI:
     JMP.W .mode7Disabled
 
   .mode7Enabled:
-    LDX.W Mode7Stack
+    LDX.B Mode7Stack
     BNE .mode7Transfers
     JMP.W .mode7Disabled
 
@@ -2862,12 +2858,12 @@ NMI:
 
   .doneMode7Transfers
     STZ.W Mode7Transfer.control
-    STZ.W Mode7Stack
+    STZ.B Mode7Stack
 
   .mode7Disabled:
 ; Handle VRAM write table and scrolling DMAs
     REP #$30
-    LDX.W VRAMWriteStack
+    LDX.B VRAMWriteStack
     BEQ .doneVRAMWriteUpper
     STZ.B VRAMWrite.size,X
     LDA.W #$1801
@@ -2901,7 +2897,7 @@ NMI:
     BRA .loopVRAMWrite
 
   .doneVRAMWriteUpper:
-    STZ.W VRAMWriteStack
+    STZ.B VRAMWriteStack
     SEP #$20
 ; Execute horizontal scrolling DMAs
     LDA.B #$81
@@ -3104,16 +3100,16 @@ NMI:
     STX.W $2115
     LDX.B #$02
     STX.W $420B
-    STZ.W VRAMReadStack
+    STZ.B VRAMReadStack
 
   .doneVRAM
     LDX.B DP_HDMAEnable                                                  ;8095DC;
     STX.W $420C                                                          ;8095DE;
-    STZ.W NMI_Request                                                    ;8095E7;
-    LDX.W NMI_8bitFrameCounter                                           ;8095ED;
+    STZ.B NMI_Request                                                    ;8095E7;
+    LDX.B NMI_8bitFrameCounter                                           ;8095ED;
     INX                                                                  ;8095F0;
-    STX.W NMI_8bitFrameCounter                                           ;8095F1;
-    INC.W NMI_FrameCounter                                               ;8095F4;
+    STX.B NMI_8bitFrameCounter                                           ;8095F1;
+    INC.B NMI_FrameCounter                                               ;8095F4;
 
   .waitAutoJoy:
 ; Read controller input
@@ -3150,7 +3146,7 @@ NMI:
 
   .return:
     REP #$30                                                             ;8095F7;
-    INC.W NMI_Counter                                                    ;8095F9;
+    INC.B NMI_Counter                                                    ;8095F9;
     PLY                                                                  ;8095FC;
     PLX                                                                  ;8095FD;
     PLA                                                                  ;8095FE;
@@ -3469,7 +3465,7 @@ Interrupt_Cmd14_VerticalDoorTransition_EndDrawing:
   .return:
     LDY.W #$0000                                                         ;8097B4;
     LDX.W #$0098                                                         ;8097B7;
-    STA.W NMI_Request
+    STA.B NMI_Request
     RTS                                                                  ;8097C0;
 
 
@@ -3554,7 +3550,7 @@ Interrupt_Cmd1A_HorizontalDoorTransition_EndDrawing:
   .return:
     LDY.W #$0000                                                         ;80981D;
     LDX.W #$0098                                                         ;809820;
-    STA.W NMI_Request
+    STA.B NMI_Request
     RTS                                                                  ;809829;
 
 
@@ -4038,7 +4034,7 @@ endif
 ; Note that the 8-bit frame counter used here is set to 0 by door transition,
 ; which usually causes the flash cycle to reset
     LDX.W #$1400                                                         ;809C96;
-    LDA.W NMI_8bitFrameCounter                                           ;809C99;
+    LDA.B NMI_8bitFrameCounter                                           ;809C99;
     BIT.W #$0010                                                         ;809C9C;
     BEQ .highlight                                                       ;809C9F;
     LDX.W #$1000                                                         ;809CA1;
@@ -4046,7 +4042,7 @@ endif
   .highlight:
     LDA.W AutoCancelHUDItemIndex                                         ;809CA4;
     JSR.W ToggleHUDItemHighlight                                         ;809CA7;
-    LDX.W VRAMWriteStack                                                 ;809CAA;
+    LDX.B VRAMWriteStack                                                 ;809CAA;
     LDA.W #$00C0                                                         ;809CAD;
     STA.B VRAMWrite.size,X                                               ;809CB0;
     INX                                                                  ;809CB2;
@@ -4062,7 +4058,7 @@ endif
     STA.B VRAMWrite.size,X                                               ;809CC4;
     INX                                                                  ;809CC6;
     INX                                                                  ;809CC7;
-    STX.W VRAMWriteStack                                                 ;809CC8;
+    STX.B VRAMWriteStack                                                 ;809CC8;
     PLB                                                                  ;809CCB;
     RTL                                                                  ;809CCD;
 
@@ -4368,7 +4364,7 @@ DecrementTimer:
 ;; Returns:
 ;;     Carry: Set if timer has reached zero, otherwise clear
     SEP #$39                                                             ;809EA9; Set carry and decimal
-    LDA.W NMI_FrameCounter                                               ;809EAB;
+    LDA.B NMI_FrameCounter                                               ;809EAB;
     AND.B #$7F                                                           ;809EAE;
     TAX                                                                  ;809EB0;
     LDA.W TimerCentiseconds                                              ;809EB1;
@@ -4819,7 +4815,7 @@ UNUSED_QueueClearingOfBG2Tilemap_80A1E3:
     DEX                                                                  ;80A1ED;
     DEX                                                                  ;80A1EE;
     BPL .loop                                                            ;80A1EF;
-    LDX.W VRAMWriteStack                                                 ;80A1F1;
+    LDX.B VRAMWriteStack                                                 ;80A1F1;
     LDA.W #$1000                                                         ;80A1F4;
     STA.B VRAMWrite.size,X                                               ;80A1F7;
     LDA.W #BG2Tilemap                                                    ;80A1F9;
@@ -4831,7 +4827,7 @@ UNUSED_QueueClearingOfBG2Tilemap_80A1E3:
     TXA                                                                  ;80A208;
     CLC                                                                  ;80A209;
     ADC.W #$0007                                                         ;80A20A;
-    STA.W VRAMWriteStack                                                 ;80A20D;
+    STA.B VRAMWriteStack                                                 ;80A20D;
     RTL                                                                  ;80A210;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
@@ -4848,7 +4844,7 @@ QueueClearingOfFXTilemap:
     DEX                                                                  ;80A21B;
     DEX                                                                  ;80A21C;
     BPL .loop                                                            ;80A21D;
-    LDX.W VRAMWriteStack                                                 ;80A21F;
+    LDX.B VRAMWriteStack                                                 ;80A21F;
     LDA.W #$0F00                                                         ;80A222;
     STA.B VRAMWrite.size,X                                               ;80A225;
     LDA.W #ClearingFXTilemap                                             ;80A227;
@@ -4860,7 +4856,7 @@ QueueClearingOfFXTilemap:
     TXA                                                                  ;80A236;
     CLC                                                                  ;80A237;
     ADC.W #$0007                                                         ;80A238;
-    STA.W VRAMWriteStack                                                 ;80A23B;
+    STA.B VRAMWriteStack                                                 ;80A23B;
     RTL                                                                  ;80A23E;
 
 

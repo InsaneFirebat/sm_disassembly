@@ -345,7 +345,7 @@ Instruction_CommonA2_WaitYFrames:
 ;;; $814B: Instruction - transfer [[Y]] bytes from [[Y] + 2] to VRAM [[Y] + 5] ;;;
 Instruction_CommonA2_TransferYBytesInYToVRAM:
     PHX                                                                  ;A2814B;
-    LDX.W VRAMWriteStack                                                 ;A2814C;
+    LDX.B VRAMWriteStack                                                 ;A2814C;
     LDA.W $0000,Y                                                        ;A2814F;
     STA.B VRAMWrite.size,X                                               ;A28152;
     LDA.W $0002,Y                                                        ;A28154;
@@ -357,7 +357,7 @@ Instruction_CommonA2_TransferYBytesInYToVRAM:
     TXA                                                                  ;A28163;
     CLC                                                                  ;A28164;
     ADC.W #$0007                                                         ;A28165;
-    STA.W VRAMWriteStack                                                 ;A28168;
+    STA.B VRAMWriteStack                                                 ;A28168;
     TYA                                                                  ;A2816B;
     CLC                                                                  ;A2816C;
     ADC.W #$0007                                                         ;A2816D;
@@ -1712,7 +1712,7 @@ SleepingMamaTurtleShellShape:
 Function_MamaTurtle_LeaveShell:
 ; I don't understand these small position adjustments
     JSR.W MamaTurtle_vs_Samus_CollisionDetection                         ;A28EE0;
-    LDA.W NMI_8bitFrameCounter                                           ;A28EE3;
+    LDA.B NMI_8bitFrameCounter                                           ;A28EE3;
     AND.W #$0001                                                         ;A28EE6;
     BNE .return                                                          ;A28EE9;
     PHX                                                                  ;A28EEB;
@@ -5175,7 +5175,7 @@ Function_Ship_SamusExiting_WaitForEntrancePadToClose:
 Function_Ship_Liftoff_LoadDustCloudTiles:
     LDY.W EndingClearTime_HoursTens                                      ;A2ABC7;
     PHX                                                                  ;A2ABCA;
-    LDX.W VRAMWriteStack                                                 ;A2ABCB;
+    LDX.B VRAMWriteStack                                                 ;A2ABCB;
     LDA.W #$0400                                                         ;A2ABCE;
     STA.B VRAMWrite.size,X                                               ;A2ABD1;
     INX                                                                  ;A2ABD3;
@@ -5193,7 +5193,7 @@ Function_Ship_Liftoff_LoadDustCloudTiles:
     STA.B VRAMWrite.size,X                                               ;A2ABE8;
     INX                                                                  ;A2ABEA;
     INX                                                                  ;A2ABEB;
-    STX.W VRAMWriteStack                                                 ;A2ABEC;
+    STX.B VRAMWriteStack                                                 ;A2ABEC;
     PLX                                                                  ;A2ABEF;
     LDA.W EndingClearTime_HoursTens                                      ;A2ABF0;
     INC                                                                  ;A2ABF3;

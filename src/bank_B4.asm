@@ -4097,7 +4097,7 @@ DebugHandler_F_EnemyDebugger_RAMViewer_5:
 Debug_MoveEnemyWithDpad_QuarterPixelPerFrame:
 ;; Parameters:
 ;;     X: Debug enemy index
-    LDA.W NMI_FrameCounter                                               ;B49F05;
+    LDA.B NMI_FrameCounter                                               ;B49F05;
     AND.W #$0003                                                         ;B49F08;
     BNE .return                                                          ;B49F0B;
     LDA.B DP_Controller2Input                                            ;B49F0D;

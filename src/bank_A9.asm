@@ -346,7 +346,7 @@ Instruction_CommonA9_WaitYFrames:
 ;;; $814B: Instruction - transfer [[Y]] bytes from [[Y] + 2] to VRAM [[Y] + 5] ;;;
 Instruction_CommonA9_TransferYBytesInYToVRAM:
     PHX                                                                  ;A9814B;
-    LDX.W VRAMWriteStack                                                 ;A9814C;
+    LDX.B VRAMWriteStack                                                 ;A9814C;
     LDA.W $0000,Y                                                        ;A9814F;
     STA.B VRAMWrite.size,X                                               ;A98152;
     LDA.W $0002,Y                                                        ;A98154;
@@ -358,7 +358,7 @@ Instruction_CommonA9_TransferYBytesInYToVRAM:
     TXA                                                                  ;A98163;
     CLC                                                                  ;A98164;
     ADC.W #$0007                                                         ;A98165;
-    STA.W VRAMWriteStack                                                 ;A98168;
+    STA.B VRAMWriteStack                                                 ;A98168;
     TYA                                                                  ;A9816B;
     CLC                                                                  ;A9816C;
     ADC.W #$0007                                                         ;A9816D;
@@ -1714,7 +1714,7 @@ Function_MotherBrainBody_FakeDeath_Ascent_StartMusic_Quake:
 
 ;;; $8E4D: Mother Brain body function - fake death - ascent - raise Mother Brain ;;;
 Function_MotherBrainBody_FakeDeath_Ascent_RaiseMotherBrain:
-    LDA.W NMI_FrameCounter                                               ;A98E4D;
+    LDA.B NMI_FrameCounter                                               ;A98E4D;
     AND.W #$0003                                                         ;A98E50;
     BNE Function_MBBody_FakeDeath_Ascent_WaitForMBUncrouch_return        ;A98E53;
     JSR.W SpawnDustCloudsForMotherBrainsAscent                           ;A98E55;
@@ -5561,7 +5561,7 @@ endif
 
 if !PAL != 0
 UnpauseHook_ZebesEscapeTimer:
-    LDY.W VRAMWriteStack
+    LDY.B VRAMWriteStack
     LDA.W #Tiles_EscapeTimerText_end-Tiles_EscapeTimerText
     STA.W VRAMWrite.size,Y
     LDA.W #Tiles_EscapeTimerText>>$10<<8
@@ -5573,7 +5573,7 @@ UnpauseHook_ZebesEscapeTimer:
     TYA
     CLC
     ADC.W #$0007
-    STA.W VRAMWriteStack
+    STA.B VRAMWriteStack
     RTL
 endif
 
@@ -8415,7 +8415,7 @@ ProcessSpriteTilesTransfers:
     TXA                                                                  ;A9C5C4;
 
 +   TAY                                                                  ;A9C5C5;
-    LDX.W VRAMWriteStack                                                 ;A9C5C6;
+    LDX.B VRAMWriteStack                                                 ;A9C5C6;
     LDA.W $0000,Y                                                        ;A9C5C9;
     BEQ +                                                                ;A9C5CC;
     STA.B VRAMWrite.size,X                                               ;A9C5CE;
@@ -8428,7 +8428,7 @@ ProcessSpriteTilesTransfers:
     TXA                                                                  ;A9C5E3;
     CLC                                                                  ;A9C5E4;
     ADC.W #$0007                                                         ;A9C5E5;
-    STA.W VRAMWriteStack                                                 ;A9C5E8;
+    STA.B VRAMWriteStack                                                 ;A9C5E8;
     TYA                                                                  ;A9C5EB;
     ADC.W #$0007                                                         ;A9C5EC;
     STA.L MotherBrainBody.spriteTilesTransferEntryPointer                ;A9C5EF;
@@ -10436,7 +10436,7 @@ ProcessCorpseTorizoRottingVRAMTransfers:
     LSR                                                                  ;A9D4D8;
     BCS .odd                                                             ;A9D4D9;
     LDY.W #$0000                                                         ;A9D4DB;
-    LDX.W VRAMWriteStack                                                 ;A9D4DE;
+    LDX.B VRAMWriteStack                                                 ;A9D4DE;
     LDA.W .size0,Y                                                       ;A9D4E1;
 
   .loopEven:
@@ -10450,7 +10450,7 @@ ProcessCorpseTorizoRottingVRAMTransfers:
     TXA                                                                  ;A9D4F9;
     CLC                                                                  ;A9D4FA;
     ADC.W #$0007                                                         ;A9D4FB;
-    STA.W VRAMWriteStack
+    STA.B VRAMWriteStack
     TYA                                                                  ;A9D4FF;
     ADC.W #$0008                                                         ;A9D500;
     TAY                                                                  ;A9D503;
@@ -10461,7 +10461,7 @@ ProcessCorpseTorizoRottingVRAMTransfers:
 
   .odd:
     LDY.W #$0000                                                         ;A9D512;
-    LDX.W VRAMWriteStack                                                 ;A9D515;
+    LDX.B VRAMWriteStack                                                 ;A9D515;
     LDA.W .size1,Y                                                       ;A9D518;
 
   .loopOdd:
@@ -10475,7 +10475,7 @@ ProcessCorpseTorizoRottingVRAMTransfers:
     TXA                                                                  ;A9D530;
     CLC                                                                  ;A9D531;
     ADC.W #$0007                                                         ;A9D532;
-    STA.W VRAMWriteStack
+    STA.B VRAMWriteStack
     TYA                                                                  ;A9D536;
     ADC.W #$0008                                                         ;A9D537;
     TAY                                                                  ;A9D53A;
@@ -11514,7 +11514,7 @@ InitializeEnemyCorpseRotting:
 ProcessCorpseRottingVRAMTransfers:
 ;; Parameters:
 ;;     Y: Corpse rotting VRAM transfers pointer. Format: size, source bank, source address, VRAM address (all 16 bit)
-    LDX.W VRAMWriteStack                                                 ;A9DCB9;
+    LDX.B VRAMWriteStack                                                 ;A9DCB9;
     LDA.W $0000,Y                                                        ;A9DCBC;
 
   .loop:
@@ -11528,7 +11528,7 @@ ProcessCorpseRottingVRAMTransfers:
     TXA                                                                  ;A9DCD4;
     CLC                                                                  ;A9DCD5;
     ADC.W #$0007                                                         ;A9DCD6;
-    STA.W VRAMWriteStack
+    STA.B VRAMWriteStack
     TAX
     TYA                                                                  ;A9DCDA;
     ADC.W #$0008                                                         ;A9DCDB;

@@ -406,12 +406,12 @@ DrawProjectiles:
     TXA                                                                  ;938272;
     BIT.W #$0002                                                         ;938273;
     BNE +                                                                ;938276;
-    LDA.W NMI_FrameCounter                                               ;938278;
+    LDA.B NMI_FrameCounter                                               ;938278;
     BIT.W #$0001                                                         ;93827B;
     BNE .draw                                                            ;93827E;
     BRA .next                                                            ;938280;
 
-+   LDA.W NMI_FrameCounter                                               ;938282;
++   LDA.B NMI_FrameCounter                                               ;938282;
     BIT.W #$0001                                                         ;938285;
     BNE .next                                                            ;938288;
     BRA .draw                                                            ;93828A;
@@ -420,12 +420,12 @@ DrawProjectiles:
     TXA                                                                  ;93828C;
     BIT.W #$0002                                                         ;93828D;
     BNE +                                                                ;938290;
-    LDA.W NMI_FrameCounter                                               ;938292;
+    LDA.B NMI_FrameCounter                                               ;938292;
     BIT.W #$0002                                                         ;938295;
     BNE .next                                                            ;938298;
     BRA .draw                                                            ;93829A;
 
-+   LDA.W NMI_FrameCounter                                               ;93829C;
++   LDA.B NMI_FrameCounter                                               ;93829C;
     BIT.W #$0002                                                         ;93829F;
     BEQ .next                                                            ;9382A2;
     BRA .draw                                                            ;9382A4;
@@ -9587,7 +9587,7 @@ UNUSED_DrawShinesparkWindupEffectSprite_93F5E2:
     BNE .return                                                          ;93F5F3;
 
   .verticalShinesparkWindup:
-    LDA.W NMI_FrameCounter                                               ;93F5F5;
+    LDA.B NMI_FrameCounter                                               ;93F5F5;
     BIT.W #$0001                                                         ;93F5F8;
     BNE .return                                                          ;93F5FB;
     LDA.W SamusXPosition                                                 ;93F5FD;
