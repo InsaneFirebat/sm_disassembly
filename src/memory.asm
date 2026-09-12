@@ -131,7 +131,7 @@ DP_BG4XScroll: skip 2 ; $BD
 DP_BG4YScroll: skip 2 ; $BF
 
 ; moved to DP
-NMI_Request: skip 1 ; $05B4
+NMI_Request: skip 2 ; $05B4
 NMI_8bitFrameCounter: skip 1 ; $05B5
 NMI_FrameCounter: skip 2 ; $05B6
 NMI_Counter: skip 2 ; $05B8
