@@ -11477,7 +11477,7 @@ InitAI_Spark:
   .PhantoonAlive:
     LDX.W EnemyIndex                                                     ;A8E675;
     LDA.W Enemy.properties,X                                             ;A8E678;
-    ORA.W $0100                                                          ;A8E67B; >_<
+    ORA.W #$0100                                                         ;A8E67B;
     STA.W Enemy.properties,X                                             ;A8E67E;
     RTL                                                                  ;A8E681;
 

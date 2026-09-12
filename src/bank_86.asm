@@ -13192,7 +13192,6 @@ InitAI_EnemyProjectile_WreckedShipRobotLaser_Common:
 ;;     Y: Enemy projectile index
 
 ; Expects a pushed PSR and X
-; BUG: Missing `CMP Layer1YPosition` at $D3B4 causes laser sound effect to only play if the robot is in the top row of scrolls
     LDA.W Enemy.YPosition,X                                              ;86D35B;
     SEC                                                                  ;86D35E;
     SBC.W #$0010                                                         ;86D35F;
@@ -13234,6 +13233,7 @@ InitAI_EnemyProjectile_WreckedShipRobotLaser_Common:
     SBC.W Enemy.YHitboxRadius,X                                          ;86D3AD;
     SEC                                                                  ;86D3B0;
     SBC.W #$00E0                                                         ;86D3B1;
+    CMP.W Layer1YPosition
     BPL .return                                                          ;86D3B4;
     LDA.W #$0067                                                         ;86D3B6;
     JSL.L QueueSound_Lib2_Max6                                           ;86D3B9;

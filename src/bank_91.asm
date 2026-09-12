@@ -8428,6 +8428,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards_Down:
     INY                                                                  ;91C922;
     CPY.W #$01CC                                                         ;91C923;
     BMI .loopLeftOnScreen                                                ;91C926;
+    REP #$30
     RTS
 
   .loopLeft:
@@ -8439,6 +8440,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedDownwards_Down:
     BMI .loopLeft                                                        ;91C935;
 
   .return:
+    REP #$30
     RTS                                                                  ;91C938;
 
 

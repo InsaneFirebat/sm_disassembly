@@ -6122,6 +6122,7 @@ FileSelectMap_Index14_PrepContractSquareTransToAreaSelect:
     STA.B DP_BG1YScroll+1                                                ;81B0B4;
     STA.B DP_BG1XScroll                                                  ;81B0B6;
     STA.B DP_BG1XScroll+1                                                ;81B0B8;
+    REP #$30
     RTS                                                                  ;81B0BA;
 
 

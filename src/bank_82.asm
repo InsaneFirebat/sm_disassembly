@@ -11805,7 +11805,7 @@ DoorTransitionFunction_LoadSpritesBGPLMsAudio_RunDoorRoomASM:
     JSL.L Reset_Projectile_Data                                          ;82E4DC;
     JSL.L LoadSamusSuitTargetPalette                                     ;82E4E0;
     PLP                                                                  ;82E4E4;
-    PEA.W $8F00                                                          ;82E4E5;
+    PEA.W LibraryBGs>>8                                                  ;82E4E5;
     PLB                                                                  ;82E4E8;
     PLB                                                                  ;82E4E9;
     JSR.W Clear_FX_Tilemap                                               ;82E4EA;
