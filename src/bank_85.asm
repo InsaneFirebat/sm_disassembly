@@ -158,10 +158,10 @@ Play_Saving_Sound_Effect:
 Wait_for_Lag_Frame:
     PHP                                                                  ;858136;
     SEP #$20                                                             ;858137;
-    LDA.B NMI_FrameCounter                                                    ;858139;
+    LDA.B NMI_Counter                                                    ;858139;
 
   .wait:
-    CMP.B NMI_FrameCounter                                                    ;85813C;
+    CMP.B NMI_Counter                                                    ;85813C;
     BEQ .wait                                                            ;85813F;
     PLP                                                                  ;858141;
     RTS                                                                  ;858142;
