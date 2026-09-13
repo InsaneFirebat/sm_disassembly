@@ -9216,7 +9216,7 @@ GenerateRandomExplosionOnEvenFramesOnRandomNonBlankTile:
     CLC                                                                  ;8FC146;
     ADC.W Layer1XPosition                                                ;8FC147;
     STA.B DP_Temp12                                                      ;8FC14A;
-    LDA.W RandomNumberSeed+1
+    LDA.B RandomNumberSeed+1
     AND.W #$00FF                                                         ;8FC14E;
     CLC                                                                  ;8FC151;
     ADC.W Layer1YPosition                                                ;8FC152;
@@ -9260,7 +9260,7 @@ GenerateRandomExplosionOnEveryFourthFrame:
     CLC                                                                  ;8FC198;
     ADC.W Layer1XPosition                                                ;8FC199;
     STA.B DP_Temp12                                                      ;8FC19C;
-    LDA.W RandomNumberSeed+1
+    LDA.B RandomNumberSeed+1
     AND.W #$00FF                                                         ;8FC1A0;
     CLC                                                                  ;8FC1A3;
     ADC.W Layer1YPosition                                                ;8FC1A4;
@@ -14795,12 +14795,12 @@ MainASM_SpawnCeresPreElevatorHallFallingDebris:
     LDA.W #$0008                                                         ;8FE52F;
     STA.W RoomMainASMVar1                                                ;8FE532;
     LDY.W #EnemyProjectile_CeresFallingTile_Light                        ;8FE535;
-    LDA.W RandomNumberSeed                                               ;8FE538;
+    LDA.B RandomNumberSeed                                               ;8FE538;
     ASL                                                                  ;8FE53B;
     BCC +                                                                ;8FE53C;
     LDY.W #EnemyProjectile_CeresFallingTile_Dark                         ;8FE53E;
 
-+   LDA.W RandomNumberSeed                                               ;8FE541;
++   LDA.B RandomNumberSeed                                               ;8FE541;
     AND.W #$000F                                                         ;8FE544;
     ASL                                                                  ;8FE547;
     TAX                                                                  ;8FE548;

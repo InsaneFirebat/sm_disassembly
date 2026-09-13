@@ -18,7 +18,8 @@ DP_Temp0A: skip 1 ; $0A
 DP_Temp0B: skip 1 ; $0B
 DP_Temp0C: skip 2 ; $0C
 DP_Temp0E: skip 2 ; $0E
-DP_Temp12: skip 1 ; $12
+RandomNumberSeed: skip 2 ; $05E5 
+DP_Temp12: skip 1 ; $12 must be here, because X is garbage from $82E912
 DP_Temp13: skip 1 ; $13
 DP_Temp14: skip 1 ; $14
 DP_Temp15: skip 1 ; $15
@@ -138,6 +139,7 @@ NMI_Counter: skip 2 ; $05B8
 VRAMWriteStack: skip 2 ; $0330
 Mode7Stack: skip 2 ; $0334
 VRAMReadStack: skip 2 ; $0360
+EnemyIndex: skip 2 ; $0E54
 warnpc $C1
 
 print pc, "..CF free DP"
@@ -237,7 +239,7 @@ Input_TimedHeldInput: skip 2 ; $05DF
 Input_TimedHeldNew: skip 2 ; $05E1
 Input_TimedHeldPrev: skip 2 ; $05E3
 
-RandomNumberSeed: skip 2 ; $05E5
+skip 2 ; $05E5
 Bitmask: skip 2 ; $05E7
 Multiplier16bitA: skip 2 ; $05E9
 Multiplier16bitB: skip 2 ; $05EB
@@ -1058,7 +1060,7 @@ FirstFreeEnemyIndex: skip 2 ; $0E4C
 skip 2 ; $0E4E
 NumberOfEnemiesKilled: skip 2 ; $0E50
 NumberOfEnemiesRequiredToKill: skip 2 ; $0E52
-EnemyIndex: skip 2 ; $0E54
+skip 2 ; $0E54
 BackupEnemyIndex: skip 2 ; $0E56
 EnemyDataPointer: skip 2 ; $0E58
 

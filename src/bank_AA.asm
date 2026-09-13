@@ -5954,7 +5954,7 @@ HandleLowHealthInitialDrool:
     RTS
 
   .crateria:
-    LDA.W RandomNumberSeed                                               ;AAC628;
+    LDA.B RandomNumberSeed                                               ;AAC628;
     AND.W #$8142                                                         ;AAC62B; If [random number] & 8142h = 0: (1/16 chance)
     BNE .return                                                          ;AAC62E;
     LDA.W Enemy.health,X                                                 ;AAC630;
@@ -6003,7 +6003,7 @@ HandleFalling:
 
 ;;; $C67E: Hurt AI - enemy $EEFF/$EF3F (Bomb Torizo) ;;;
 HurtAI_BombTorizo:
-    LDX.W EnemyIndex                                                     ;AAC67E;
+    LDX.B EnemyIndex                                                     ;AAC67E;
     JSR.W HandleLowHealthInitialDrool                                    ;AAC681;
     LDA.W Enemy.flashTimer,X                                             ;AAC684;
     LSR                                                                  ;AAC687;
@@ -6030,7 +6030,7 @@ HurtAI_BombTorizo:
 
 ;;; $C6A4: Main AI - enemy $EEFF/$EF3F (Bomb Torizo) ;;;
 MainAI_BombTorizo:
-    LDX.W EnemyIndex                                                     ;AAC6A4;
+    LDX.B EnemyIndex                                                     ;AAC6A4;
     JSR.W (Torizo.function,X)                                            ;AAC6A7;
     RTL                                                                  ;AAC6AA;
 
@@ -6308,7 +6308,7 @@ InitAI_Torizo:
     LDA.W #$0004                                                         ;AAC87F;
     JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA                   ;AAC882;
     BCC .notDead                                                         ;AAC886;
-    LDX.W EnemyIndex                                                     ;AAC888;
+    LDX.B EnemyIndex                                                     ;AAC888;
     LDA.W Enemy.properties,X                                             ;AAC88B;
     ORA.W #$0200                                                         ;AAC88E;
     STA.W Enemy.properties,X                                             ;AAC891;
@@ -6316,7 +6316,7 @@ InitAI_Torizo:
 
   .notDead:
     LDY.W AreaIndex                                                      ;AAC895;
-    LDX.W EnemyIndex                                                     ;AAC898;
+    LDX.B EnemyIndex                                                     ;AAC898;
     LDA.W Enemy.properties,X                                             ;AAC89B;
     ORA.W TorizoInitial_properties,Y                                     ;AAC89E;
     STA.W Enemy.properties,X                                             ;AAC8A1;
@@ -6433,12 +6433,12 @@ EnemyShot_Torizo_Normal:
     JMP.W ShotReaction_GoldenTorizo_Normal                               ;AAC981;
 
   .crateria:
-    LDX.W EnemyIndex                                                     ;AAC984;
+    LDX.B EnemyIndex                                                     ;AAC984;
     LDA.W Enemy.flashTimer,X                                             ;AAC987;
     ORA.L Torizo.animationLockFlag,X                                     ;AAC98A;
     BNE .return                                                          ;AAC98E;
     JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External     ;AAC990;
-    LDX.W EnemyIndex                                                     ;AAC994;
+    LDX.B EnemyIndex                                                     ;AAC994;
     LDA.W Enemy.health,X                                                 ;AAC997;
     BNE .return                                                          ;AAC99A;
     LDA.W #RTS_AAC6AB                                                    ;AAC99C;
@@ -7445,7 +7445,7 @@ InstList_GoldenTorizo_WalkingRight_RightLegMoving:
 
 ;;; $D369: Main AI - enemy $EF7F/$EFBF (Gold Torizo) ;;;
 MainAI_GoldenTorizo:
-    LDX.W EnemyIndex                                                     ;AAD369;
+    LDX.B EnemyIndex                                                     ;AAD369;
     LDA.W Pose                                                           ;AAD36C;
     CMP.W #$001B                                                         ;AAD36F;
     BEQ .spaceJump                                                       ;AAD372;
@@ -7508,7 +7508,7 @@ Goto_GoldenTorizoHealthBasedPaletteHandling:
 
 ;;; $D3BA: Hurt AI - enemy $EF7F/$EFBF (Golden Torizo) ;;;
 HurtAI_GoldenTorizo:
-    LDX.W EnemyIndex                                                     ;AAD3BA;
+    LDX.B EnemyIndex                                                     ;AAD3BA;
     JSR.W HandleLowHealthInitialDrool                                    ;AAD3BD;
     LDA.W Enemy.flashTimer,X                                             ;AAD3C0;
     LSR                                                                  ;AAD3C3;
@@ -7912,7 +7912,7 @@ Function_GoldenTorizo_Movement_Walking:
 
 ;;; $D658: Golden Torizo shot reaction - stand up / sit down ;;;
 ShotReaction_GoldenTorizo_StandUp_SitDown:
-    LDX.W EnemyIndex                                                     ;AAD658;
+    LDX.B EnemyIndex                                                     ;AAD658;
     LDA.W Enemy.flashTimer,X                                             ;AAD65B;
     BNE .return                                                          ;AAD65E;
     LDA.L Torizo.animationLockFlag,X                                     ;AAD660;
@@ -7924,7 +7924,7 @@ ShotReaction_GoldenTorizo_StandUp_SitDown:
 
 ;;; $D667: Golden Torizo shot reaction - normal ;;;
 ShotReaction_GoldenTorizo_Normal:
-    LDX.W EnemyIndex                                                     ;AAD667;
+    LDX.B EnemyIndex                                                     ;AAD667;
     LDA.W Enemy.flashTimer,X                                             ;AAD66A;
     BNE .return                                                          ;AAD66D;
     LDA.L Torizo.animationLockFlag,X                                     ;AAD66F;
@@ -7958,7 +7958,7 @@ ShotReaction_GoldenTorizo_Normal:
 ;;; $D6A6: Golden Torizo shot reaction - damaged ;;;
 ShotReaction_GoldenTorizo_Damaged:
     JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External     ;AAD6A6;
-    LDX.W EnemyIndex                                                     ;AAD6AA;
+    LDX.B EnemyIndex                                                     ;AAD6AA;
     LDA.W Enemy.health,X                                                 ;AAD6AD;
     BNE .return                                                          ;AAD6B0;
     LDA.W #InstList_Torizo_DeathSequence_0                               ;AAD6B2;
@@ -8097,7 +8097,7 @@ InitAI_TourianStatue:
 ; All the instruction lists this enemy use lead with a delete instruction
 ; I would have to guess that this statue was originally implemented with enemies and then later moved to enemy projectiles
 ; The remnant instruction lists and spritemaps are leftover, see $86:B85A / $8D:916D for the real deal
-    LDX.W EnemyIndex                                                     ;AAD7C8;
+    LDX.B EnemyIndex                                                     ;AAD7C8;
     STZ.W Enemy.palette,X                                                ;AAD7CB;
     LDA.W #$0001                                                         ;AAD7CE;
     STA.W Enemy.instTimer,X                                              ;AAD7D1;
@@ -8679,7 +8679,7 @@ SetShaktoolPiecesNeighborAngleAndAngleDeltaForCurling:
 
 ;;; $DCA3: Main AI / hurt AI - enemy $F07F (Shaktool) ;;;
 MainAI_HurtAI_Shaktool:
-    LDX.W EnemyIndex                                                     ;AADCA3;
+    LDX.B EnemyIndex                                                     ;AADCA3;
     JSR.W (Shaktool.function,X)                                          ;AADCA6;
     RTL                                                                  ;AADCA9;
 
@@ -8862,7 +8862,7 @@ Function_Shaktool_FinalPiece:
     PLA                                                                  ;AADDE4;
     STA.W Enemy.YPosition,X                                              ;AADDE5;
     JSR.W FlipShaktool                                                   ;AADDE8;
-    LDX.W EnemyIndex                                                     ;AADDEB;
+    LDX.B EnemyIndex                                                     ;AADDEB;
     LDA.W Shaktool.movementOptions,X                                     ;AADDEE;
     ORA.W #$2000                                                         ;AADDF1;
     JSR.W ShaktoolPiecesMovementOptionsInA                               ;AADDF4;
@@ -8910,7 +8910,7 @@ Function_Shaktool_FinalPiece:
 InitAI_Shaktool:
 ; Parameter 2 is used for piece index (multiple of 2). Range 0..Ch
 ; Index identifies pieces starting from the initial rightmost piece and increasing to the initial leftmost piece
-    LDX.W EnemyIndex                                                     ;AADE43;
+    LDX.B EnemyIndex                                                     ;AADE43;
     LDA.W #$0001                                                         ;AADE46;
     STA.W Enemy.instTimer,X                                              ;AADE49;
     STZ.W Enemy.loopCounter,X                                            ;AADE4C;
@@ -9036,7 +9036,7 @@ EnemyShot_Shaktool:
 ; Bug: when an enemy dies and goes through its death animation, its enemy RAM is cleared,
 ; so the LDY always loads 0, meaning this only works out if Shaktool is the first enemy in the room
     JSL.L NormalEnemyShotAI                                              ;AADF34;
-    LDX.W EnemyIndex                                                     ;AADF38;
+    LDX.B EnemyIndex                                                     ;AADF38;
     LDA.W Enemy.health,X                                                 ;AADF3B;
     BNE .return                                                          ;AADF3E;
     LDY.W Shaktool.primaryPieceEnemyIndex,X                              ;AADF40;
@@ -9560,7 +9560,7 @@ InitAI_NoobTubeCrack:
 
 ;;; $E725: Initialisation AI - enemy $F0FF (chozo statue) ;;;
 InitAI_Chozo:
-    LDX.W EnemyIndex                                                     ;AAE725;
+    LDX.B EnemyIndex                                                     ;AAE725;
     LDA.W Enemy.properties,X                                             ;AAE728;
     ORA.W #$A800                                                         ;AAE72B;
     STA.W Enemy.properties,X                                             ;AAE72E;
@@ -9627,7 +9627,7 @@ RTS_AAE7A6:
 
 ;;; $E7A7: Main AI - enemy $F0FF (chozo statue) ;;;
 MainAI_Chozo:
-    LDX.W EnemyIndex                                                     ;AAE7A7;
+    LDX.B EnemyIndex                                                     ;AAE7A7;
     JSR.W (Chozo.function,X)                                             ;AAE7AA;
     RTL                                                                  ;AAE7AD;
 

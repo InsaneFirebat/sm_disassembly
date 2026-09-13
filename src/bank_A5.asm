@@ -636,7 +636,7 @@ InitAI_DraygonBody:
     DEX                                                                  ;A5869F;
     DEX                                                                  ;A586A0;
     BPL .loopBG2Tilemap                                                  ;A586A1;
-    LDX.W EnemyIndex                                                     ;A586A3;
+    LDX.B EnemyIndex                                                     ;A586A3;
     LDA.W #$0700                                                         ;A586A6;
     ASL                                                                  ;A586A9;
     STA.W Enemy.palette,X                                                ;A586AA;
@@ -670,7 +670,7 @@ InitAI_DraygonBody:
 
 ;;; $86FC: Main AI - enemy $DE3F (Draygon body) ;;;
 MainAI_DraygonBody:
-    LDX.W EnemyIndex                                                     ;A586FC;
+    LDX.B EnemyIndex                                                     ;A586FC;
     JSR.W (DraygonBody.function,X)                                       ;A586FF;
     LDA.W Enemy.XPosition                                                ;A58702;
     STA.W Enemy[1].XPosition                                             ;A58705;
@@ -865,7 +865,7 @@ CalculateDraygonSwoopYPositions:
 Function_DraygonBody_SwoopRight_Descending:
     JSR.W HandleFiringWallTurret                                         ;A588B1;
     JSR.W HandleShortDraygonBreathBubbles                                ;A588B4;
-    LDY.W EnemyIndex                                                     ;A588B7;
+    LDY.B EnemyIndex                                                     ;A588B7;
     LDX.W DraygonBody.swoopYPositionIndex                                ;A588BA;
     CPX.W #$0068                                                         ;A588BD;
     BNE .notIndex68                                                      ;A588C0;
@@ -948,7 +948,7 @@ Function_DraygonBody_SwoopRight_Apex:
 Function_DraygonBody_SwoopRight_Ascending:
 ; [random number] % 2: 0 = goop, 1 = swoop
     JSR.W HandleFiringWallTurret                                         ;A58951;
-    LDY.W EnemyIndex                                                     ;A58954;
+    LDY.B EnemyIndex                                                     ;A58954;
     LDX.W DraygonBody.swoopYPositionIndex                                ;A58957;
     CPX.W #$0068                                                         ;A5895A;
     BNE .notIndex68                                                      ;A5895D;
@@ -977,7 +977,7 @@ Function_DraygonBody_SwoopRight_Ascending:
     RTS                                                                  ;A58999;
 
 +   STZ.W DraygonBody.swoopYPositionIndex                                ;A5899A;
-    LDA.W RandomNumberSeed                                               ;A5899D;
+    LDA.B RandomNumberSeed                                               ;A5899D;
     AND.W #$0001                                                         ;A589A0;
     BEQ .goopLeft                                                        ;A589A3;
     LDA.W #Function_DraygonBody_SwoopLeft_Setup                          ;A589A5;
@@ -1028,7 +1028,7 @@ Function_DraygonBody_SwoopLeft_Setup:
 Function_DraygonBody_SwoopLeft_Descending:
     JSR.W HandleFiringWallTurret                                         ;A58A00;
     JSR.W HandleShortDraygonBreathBubbles                                ;A58A03;
-    LDY.W EnemyIndex                                                     ;A58A06;
+    LDY.B EnemyIndex                                                     ;A58A06;
     LDX.W DraygonBody.swoopYPositionIndex                                ;A58A09;
     CPX.W #$0068                                                         ;A58A0C;
     BNE .notIndex68                                                      ;A58A0F;
@@ -1099,7 +1099,7 @@ Function_DraygonBody_SwoopLeft_Ascending:
 ; [random number] % 2: 0 = goop, 1 = swoop
     JSR.W HandleFiringWallTurret                                         ;A58A90;
     JSR.W HandleShortDraygonBreathBubbles                                ;A58A93;
-    LDY.W EnemyIndex                                                     ;A58A96;
+    LDY.B EnemyIndex                                                     ;A58A96;
     LDX.W DraygonBody.swoopYPositionIndex                                ;A58A99;
     CPX.W #$0068                                                         ;A58A9C;
     BNE +                                                                ;A58A9F;
@@ -1127,7 +1127,7 @@ Function_DraygonBody_SwoopLeft_Ascending:
     RTS                                                                  ;A58ADB;
 
   .chooseAttack:
-    LDA.W RandomNumberSeed                                               ;A58ADC;
+    LDA.B RandomNumberSeed                                               ;A58ADC;
     AND.W #$0001                                                         ;A58ADF;
     BEQ .goop                                                            ;A58AE2;
     LDA.W #Function_DraygonBody_SwoopRight_Setup                         ;A58AE4;
@@ -1219,7 +1219,7 @@ Function_DraygonBody_GoopRight_FiringGoops:
     JSR.W HandleFiringWallTurret                                         ;A58BAE;
     LDA.W XSpeedDivisor                                                  ;A58BB1;
     BNE .SamusGooped                                                     ;A58BB4;
-    LDA.W RandomNumberSeed                                               ;A58BB6;
+    LDA.B RandomNumberSeed                                               ;A58BB6;
     AND.W #$000F                                                         ;A58BB9;
     BNE .noGoop                                                          ;A58BBC;
     LDA.L DraygonBody.goopCounter                                        ;A58BBE;
@@ -1388,7 +1388,7 @@ Function_DraygonBody_GoopLeft_MoveUntilSamusInRange:
 Function_DraygonBody_GoopLeft_FiringGoops:
     LDA.W XSpeedDivisor                                                  ;A58D30;
     BNE .SamusGooped                                                     ;A58D33;
-    LDA.W RandomNumberSeed                                               ;A58D35;
+    LDA.B RandomNumberSeed                                               ;A58D35;
     AND.W #$000F                                                         ;A58D38;
     BNE .noGoop                                                          ;A58D3B;
     LDA.L DraygonBody.goopCounter                                        ;A58D3D;
@@ -1720,7 +1720,7 @@ Function_DraygonBody_GrabbedSamus_RisingSpiralMovement:
     RTS                                                                  ;A58FFA;
 
   .notGrappled:
-    LDA.W RandomNumberSeed                                               ;A58FFB;
+    LDA.B RandomNumberSeed                                               ;A58FFB;
     AND.W #$00FF                                                         ;A58FFE;
     BNE .noSpank                                                         ;A59001;
     LDA.W #$0040                                                         ;A59003;
@@ -2075,7 +2075,7 @@ HandleDyingDraygonSmoke:
     CLC                                                                  ;A592FB;
     ADC.W #$00C0                                                         ;A592FC;
     STA.B DP_Temp12                                                      ;A592FF;
-    LDA.W RandomNumberSeed                                               ;A59301;
+    LDA.B RandomNumberSeed                                               ;A59301;
     AND.W #$3F00                                                         ;A59304;
     XBA                                                                  ;A59307;
     CLC                                                                  ;A59308;
@@ -2398,7 +2398,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 ;;; $954D: Hurt AI - enemy $DE3F (Draygon) ;;;
 HurtAI_Draygon:
     LDY.W #Palette_Draygon_BG12_5                                        ;A5954D;
-    LDX.W EnemyIndex                                                     ;A59550;
+    LDX.B EnemyIndex                                                     ;A59550;
     LDA.W Enemy.flashTimer,X                                             ;A59553;
     BIT.W #$0002                                                         ;A59556;
     BEQ .noFlash                                                         ;A59559;
@@ -2418,7 +2418,7 @@ HurtAI_Draygon:
     INY                                                                  ;A59571;
     DEC.W LoopCounterEnemyDeath                                          ;A59572;
     BNE .loopBG12Palette5                                                ;A59575;
-    LDX.W EnemyIndex                                                     ;A59577;
+    LDX.B EnemyIndex                                                     ;A59577;
     LDA.W Enemy.flashTimer,X                                             ;A5957A;
     BIT.W #$0002                                                         ;A5957D;
     BNE .flashing                                                        ;A59580;
@@ -2440,7 +2440,7 @@ HurtAI_Draygon:
 
   .flashing:
     LDY.W #Palette_Draygon_Sprite7                                       ;A5959C;
-    LDX.W EnemyIndex                                                     ;A5959F;
+    LDX.B EnemyIndex                                                     ;A5959F;
     LDA.W Enemy.flashTimer,X                                             ;A595A2;
     BIT.W #$0002                                                         ;A595A5;
     BEQ ..noFlash                                                        ;A595A8;
@@ -2506,7 +2506,7 @@ PowerBombReaction_Draygon:
 
 ;;; $960D: Draygon reaction ;;;
 DraygonReaction_Common:
-    LDX.W EnemyIndex                                                     ;A5960D;
+    LDX.B EnemyIndex                                                     ;A5960D;
     LDA.W Enemy.health,X                                                 ;A59610;
     BEQ .dead                                                            ;A59613;
     JSR.W DraygonHealthBasedPaletteHandling                              ;A596AB;
@@ -2671,7 +2671,7 @@ Inst_Draygon_SpawnDyingDraygonSpriteObject_BreathBubbles:
 ;;; $978B: Generate random dying Draygon sprite object position ;;;
 GenerateRandomDyingDraygonSpriteObjectPosition:
     JSL.L GenerateRandomNumber                                           ;A5978B;
-    LDA.W RandomNumberSeed                                               ;A5978F;
+    LDA.B RandomNumberSeed                                               ;A5978F;
     AND.W #$007F                                                         ;A59792;
     SEC                                                                  ;A59795;
     SBC.W #$0040                                                         ;A59796;
@@ -2680,7 +2680,7 @@ GenerateRandomDyingDraygonSpriteObjectPosition:
     CLC                                                                  ;A5979E;
     ADC.B DP_Temp12                                                      ;A5979F;
     STA.B DP_Temp12                                                      ;A597A1;
-    LDA.W RandomNumberSeed                                               ;A597A3;
+    LDA.B RandomNumberSeed                                               ;A597A3;
     AND.W #$7F00                                                         ;A597A6;
     XBA                                                                  ;A597A9;
     SEC                                                                  ;A597AA;
@@ -2876,7 +2876,7 @@ InstList_Draygon_Delete:
 ;;; $98EF: Instruction - set Draygon body as intangible ;;;
 Instruction_DraygonBody_SetAsIntangible:
     PHX                                                                  ;A598EF;
-    LDX.W EnemyIndex                                                     ;A598F0;
+    LDX.B EnemyIndex                                                     ;A598F0;
     LDA.W Enemy.properties                                               ;A598F3;
     ORA.W #$0400                                                         ;A598F6;
     STA.W Enemy.properties                                               ;A598F9;
@@ -3563,7 +3563,7 @@ Instruction_Draygon_SpawnGoop_Leftwards:
 ; Doesn't set enemy projectile initialisation parameter 0 (speed) :/
     PHX                                                                  ;A59F7C;
     PHY                                                                  ;A59F7D;
-    LDX.W EnemyIndex                                                     ;A59F7E;
+    LDX.B EnemyIndex                                                     ;A59F7E;
     LDA.W Enemy.XPosition                                                ;A59F81;
     CLC                                                                  ;A59F84;
     ADC.W #$FFE4                                                         ;A59F85;
@@ -3590,7 +3590,7 @@ Instruction_Draygon_SpawnGoop_Rightwards:
 ; Doesn't set enemy projectile initialisation parameter 0 (speed) :/
     PHX                                                                  ;A59FAE;
     PHY                                                                  ;A59FAF;
-    LDX.W EnemyIndex                                                     ;A59FB0;
+    LDX.B EnemyIndex                                                     ;A59FB0;
     LDA.W Enemy.XPosition                                                ;A59FB3;
     CLC                                                                  ;A59FB6;
     ADC.W #$0018                                                         ;A59FB7;
@@ -6395,7 +6395,7 @@ Spritemap_Draygon_5D:
 
 ;;; $C46B: Initialisation AI - enemy $DE7F (Draygon eye) ;;;
 InitAI_DraygonEye:
-    LDX.W EnemyIndex                                                     ;A5C46B;
+    LDX.B EnemyIndex                                                     ;A5C46B;
     LDA.W #InstList_DraygonEye_FacingLeft_Idle                           ;A5C46E;
     STA.W Enemy.instList,X                                               ;A5C471;
     LDA.W #RTS_A5804B                                                    ;A5C474;
@@ -6416,7 +6416,7 @@ Instruction_Draygon_EyeFunctionInY:
 
 ;;; $C486: Main AI - enemy $DE7F (Draygon eye) ;;;
 MainAI_DraygonEye:
-    LDX.W EnemyIndex                                                     ;A5C486;
+    LDX.B EnemyIndex                                                     ;A5C486;
     JSR.W (DraygonBody.function,X)                                       ;A5C489;
     RTL                                                                  ;A5C48C;
 
@@ -6439,7 +6439,7 @@ Function_DraygonEye_FacingLeft:
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics                  ;A5C4AD;
 
   .nonZeroCounter:
-    LDX.W EnemyIndex                                                     ;A5C4B1;
+    LDX.B EnemyIndex                                                     ;A5C4B1;
     LDA.W Enemy.XPosition                                                ;A5C4B4;
     SEC                                                                  ;A5C4B7;
     SBC.W #$0018                                                         ;A5C4B8;
@@ -6503,7 +6503,7 @@ Function_DraygonEye_FacingRight:
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics                  ;A5C533;
 
   .nonZeroCounter:
-    LDX.W EnemyIndex                                                     ;A5C537;
+    LDX.B EnemyIndex                                                     ;A5C537;
     LDA.W Enemy.XPosition                                                ;A5C53A;
     CLC                                                                  ;A5C53D;
     ADC.W #$0018                                                         ;A5C53E;
@@ -6551,7 +6551,7 @@ Function_DraygonEye_FacingRight:
 
 ;;; $C599: Initialisation AI - enemy $DEBF (Draygon tail) ;;;
 InitAI_DraygonTail:
-    LDX.W EnemyIndex                                                     ;A5C599;
+    LDX.B EnemyIndex                                                     ;A5C599;
     LDA.W #InstList_DraygonTail_FacingLeft_FakeTailWhip                  ;A5C59C;
     STA.W Enemy.instList,X                                               ;A5C59F;
     LDA.W #$0700                                                         ;A5C5A2;
@@ -6577,7 +6577,7 @@ RTL_A5C5AC:
 
 ;;; $C5AD: Initialisation AI - enemy $DEFF (Draygon arms) ;;;
 InitAI_DraygonArms:
-    LDX.W EnemyIndex                                                     ;A5C5AD;
+    LDX.B EnemyIndex                                                     ;A5C5AD;
     LDA.W #InstList_DraygonArms_FacingLeft_Idle_0                        ;A5C5B0;
     STA.W Enemy.instList,X                                               ;A5C5B3;
     LDA.W #$0700                                                         ;A5C5B6;
@@ -7516,7 +7516,7 @@ Instruction_SporeSpawn_CallSporeSpawnDeathItemDropRoutine:
 Instruction_SporeSpawn_FunctionInY:
     PHY                                                                  ;A5E8BA;
     PHX                                                                  ;A5E8BB;
-    LDX.W EnemyIndex                                                     ;A5E8BC;
+    LDX.B EnemyIndex                                                     ;A5E8BC;
     LDA.W $0000,Y                                                        ;A5E8BF;
     STA.W SporeSpawn.function,X                                          ;A5E8C2;
     PLX                                                                  ;A5E8C5;
@@ -7638,7 +7638,7 @@ Instruction_SporeSpawn_SpawnHardeningDustCloud:
     PHY                                                                  ;A5E96E;
     PHX                                                                  ;A5E96F;
     JSL.L GenerateRandomNumber                                           ;A5E970;
-    LDA.W RandomNumberSeed                                               ;A5E974;
+    LDA.B RandomNumberSeed                                               ;A5E974;
     AND.W #$007F                                                         ;A5E977;
     SEC                                                                  ;A5E97A;
     SBC.W #$0040                                                         ;A5E97B;
@@ -7647,7 +7647,7 @@ Instruction_SporeSpawn_SpawnHardeningDustCloud:
     CLC                                                                  ;A5E983;
     ADC.B DP_Temp12                                                      ;A5E984;
     STA.B DP_Temp12                                                      ;A5E986;
-    LDA.W RandomNumberSeed                                               ;A5E988;
+    LDA.B RandomNumberSeed                                               ;A5E988;
     AND.W #$7F00                                                         ;A5E98B;
     XBA                                                                  ;A5E98E;
     SEC                                                                  ;A5E98F;
@@ -7680,7 +7680,7 @@ Instruction_SporeSpawn_SpawnDyingExplosion:
     CLC                                                                  ;A5E9C6;
     ADC.B DP_Temp12                                                      ;A5E9C7;
     STA.B DP_Temp12                                                      ;A5E9C9;
-    LDA.W RandomNumberSeed                                               ;A5E9CB;
+    LDA.B RandomNumberSeed                                               ;A5E9CB;
     AND.W #$3F00                                                         ;A5E9CE;
     XBA                                                                  ;A5E9D1;
     SEC                                                                  ;A5E9D2;
@@ -7709,12 +7709,12 @@ SpawnSporeSpawnCeilingDustCloud:
     AND.W #$000F                                                         ;A5E9FA;
     BNE .return                                                          ;A5E9FD;
     JSL.L GenerateRandomNumber                                           ;A5E9FF;
-    LDA.W RandomNumberSeed                                               ;A5EA03;
+    LDA.B RandomNumberSeed                                               ;A5EA03;
     AND.W #$003F                                                         ;A5EA06;
     CLC                                                                  ;A5EA09;
     ADC.W #$0060                                                         ;A5EA0A;
     STA.B DP_Temp12                                                      ;A5EA0D;
-    LDA.W RandomNumberSeed                                               ;A5EA0F;
+    LDA.B RandomNumberSeed                                               ;A5EA0F;
     AND.W #$0F00                                                         ;A5EA12;
     XBA                                                                  ;A5EA15;
     CLC                                                                  ;A5EA16;
@@ -7745,7 +7745,7 @@ InitAI_SporeSpawn:
     INX                                                                  ;A5EA3A;
     CPX.W #$0020                                                         ;A5EA3B;
     BNE .loopSpritePalette7                                              ;A5EA3E;
-    LDX.W EnemyIndex                                                     ;A5EA40;
+    LDX.B EnemyIndex                                                     ;A5EA40;
     LDA.W #$0000                                                         ;A5EA43;
     LDY.W #EnemyProjectile_SporeSpawnStalk                               ;A5EA46;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A5EA49;
@@ -7758,7 +7758,7 @@ InitAI_SporeSpawn:
     LDA.W #$0003                                                         ;A5EA61;
     LDY.W #EnemyProjectile_SporeSpawnStalk                               ;A5EA64;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A5EA67;
-    LDX.W EnemyIndex                                                     ;A5EA6B;
+    LDX.B EnemyIndex                                                     ;A5EA6B;
     LDA.W Enemy.XPosition,X                                              ;A5EA6E;
     STA.L SporeSpawn.stalkXOrigin,X                                      ;A5EA71;
     LDA.W Enemy.YPosition,X                                              ;A5EA75;
@@ -7789,12 +7789,12 @@ InitAI_SporeSpawn:
     RTL                                                                  ;A5EABE;
 
   .alive:
-    LDX.W EnemyIndex                                                     ;A5EABF;
+    LDX.B EnemyIndex                                                     ;A5EABF;
     LDA.W #InstList_SporeSpawn_Initial_Alive                             ;A5EAC2;
     STA.W Enemy.instList                                                 ;A5EAC5;
     LDA.W #$FFFF                                                         ;A5EAC8;
     STA.W GlobalOffScreenEnemyProcessingFlag                             ;A5EACB;
-    LDX.W EnemyIndex                                                     ;A5EACE;
+    LDX.B EnemyIndex                                                     ;A5EACE;
     LDA.W #RTS_A5EB1A                                                    ;A5EAD1;
     STA.W SporeSpawn.function,X                                          ;A5EAD4;
     LDA.W #ScrollingFinishedHook_SporeSpawnFight                         ;A5EAD7;
@@ -7821,7 +7821,7 @@ InitAI_SporeSpawn:
 
 ;;; $EB13: Main AI - enemy $DF3F/$DF7F (Spore Spawn) ;;;
 MainAI_SporeSpawn:
-    LDX.W EnemyIndex                                                     ;A5EB13;
+    LDX.B EnemyIndex                                                     ;A5EB13;
     JSR.W (SporeSpawn.function,X)                                        ;A5EB16;
     RTL                                                                  ;A5EB19;
 
@@ -7834,7 +7834,7 @@ RTS_A5EB1A:
 ;;; $EB1B: Spore Spawn function - descent ;;;
 Function_SporeSpawn_Descent:
     JSR.W UpdateSporeSpawnStalkSegmentPositions                          ;A5EB1B;
-    LDX.W EnemyIndex                                                     ;A5EB1E;
+    LDX.B EnemyIndex                                                     ;A5EB1E;
     LDA.W Enemy.YPosition,X                                              ;A5EB21;
     CLC                                                                  ;A5EB24;
     ADC.W #$0001                                                         ;A5EB25;
@@ -7911,7 +7911,7 @@ endif
 
 ;;; $EB9B: Spore Spawn function - set up death ;;;
 Function_SporeSpawn_SetupDeath:
-    LDX.W EnemyIndex                                                     ;A5EB9B;
+    LDX.B EnemyIndex                                                     ;A5EB9B;
     LDA.W #$0080                                                         ;A5EB9E;
     SEC                                                                  ;A5EBA1;
     SBC.W Enemy.XPosition                                                ;A5EBA2;
@@ -7946,7 +7946,7 @@ Function_SporeSpawn_SetupDeath:
 
 ;;; $EBEE: Spore Spawn function - dying ;;;
 Function_SporeSpawn_Dying:
-    LDX.W EnemyIndex                                                     ;A5EBEE;
+    LDX.B EnemyIndex                                                     ;A5EBEE;
     LDA.L SporeSpawn.deathDriftXSpeed,X                                  ;A5EBF1;
     STA.W Temp_XSpeed                                                    ;A5EBF5;
     LDA.L SporeSpawn.deathDriftXSubSpeed,X                               ;A5EBF8;
@@ -8188,10 +8188,10 @@ EnemyTouch_SporeSpawn:
 
 ;;; $EDF3: Spore Spawn reaction ;;;
 SporeSpawnReaction_Common:
-    LDX.W EnemyIndex                                                     ;A5EDF3;
+    LDX.B EnemyIndex                                                     ;A5EDF3;
     LDA.W Enemy.health,X                                                 ;A5EDF6;
     BNE PowerBombReaction_SporeSpawn                                     ;A5EDF9;
-    LDX.W EnemyIndex                                                     ;A5EDFB;
+    LDX.B EnemyIndex                                                     ;A5EDFB;
     LDA.W #$0000                                                         ;A5EDFE;
     STA.L ExtraEnemy7800+$1C                                             ;A5EE01;
     STZ.W Enemy.invincibilityTimer,X                                     ;A5EE05;

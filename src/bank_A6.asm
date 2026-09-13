@@ -657,7 +657,7 @@ BounceSpeedTableIndices:
 
 ;;; $86F5: Initialisation AI - enemy $DFBF (boulder) ;;;
 InitAI_Boulder:
-    LDX.W EnemyIndex                                                     ;A686F5;
+    LDX.B EnemyIndex                                                     ;A686F5;
     STZ.W Boulder.YSpeedTableIndex,X                                     ;A686F8;
     LDA.W #$0000                                                         ;A686FB;
     STA.W Boulder.XSpeedTableIndex,X                                     ;A686FE;
@@ -720,14 +720,14 @@ InitAI_Boulder:
 
 ;;; $8793: Main AI - enemy $DFBF (boulder) ;;;
 MainAI_Boulder:
-    LDX.W EnemyIndex                                                     ;A68793;
+    LDX.B EnemyIndex                                                     ;A68793;
     JSR.W (Boulder.function,X)                                           ;A68796;
     RTL                                                                  ;A68799;
 
 
 ;;; $879A: Boulder function - wait for Samus to get near ;;;
 Function_Boulder_WaitForSamusToGetNear:
-    LDX.W EnemyIndex                                                     ;A6879A;
+    LDX.B EnemyIndex                                                     ;A6879A;
     JSL.L Get_SamusY_minus_EnemyY                                        ;A6879D;
     BMI .return                                                          ;A687A1;
     CMP.L Boulder.YProximity,X                                           ;A687A3;
@@ -765,7 +765,7 @@ Function_Boulder_WaitForSamusToGetNear:
 
 ;;; $87ED: Boulder function - falling ;;;
 Function_Boulder_Falling:
-    LDX.W EnemyIndex                                                     ;A687ED;
+    LDX.B EnemyIndex                                                     ;A687ED;
     LDA.W Boulder.YSpeedTableIndex,X                                     ;A687F0;
     AND.W #$FF00                                                         ;A687F3;
     XBA                                                                  ;A687F6;
@@ -801,7 +801,7 @@ Function_Boulder_Falling:
 
 ;;; $8832: Boulder function - bounce - rising ;;;
 Function_Boulder_Bounce_Rising:
-    LDX.W EnemyIndex                                                     ;A68832;
+    LDX.B EnemyIndex                                                     ;A68832;
     LDA.W Boulder.YSpeedTableIndex,X                                     ;A68835;
     AND.W #$FF00                                                         ;A68838;
     XBA                                                                  ;A6883B;
@@ -856,7 +856,7 @@ Function_Boulder_Bounce_Rising:
 
 ;;; $888B: Boulder function - bounce - falling ;;;
 Function_Boulder_Bounce_Falling:
-    LDX.W EnemyIndex                                                     ;A6888B;
+    LDX.B EnemyIndex                                                     ;A6888B;
     LDA.W Boulder.YSpeedTableIndex,X                                     ;A6888E;
     AND.W #$FF00                                                         ;A68891;
     XBA                                                                  ;A68894;
@@ -944,7 +944,7 @@ Function_Boulder_Bounce_Falling:
 
 ;;; $8942: Boulder function - rolling ;;;
 Function_Boulder_Rolling:
-    LDX.W EnemyIndex                                                     ;A68942;
+    LDX.B EnemyIndex                                                     ;A68942;
     LDA.W Boulder.XSpeedTableIndex,X                                     ;A68945;
     AND.W #$FF00                                                         ;A68948;
     XBA                                                                  ;A6894B;
@@ -1027,7 +1027,7 @@ Function_Boulder_Rolling:
 
 ;;; $89FC: RTS ;;;
 Function_Boulder_LoadEnemyIndex:
-    LDX.W EnemyIndex                                                     ;A689FC;
+    LDX.B EnemyIndex                                                     ;A689FC;
     RTS                                                                  ;A689FF;
 
 
@@ -1035,7 +1035,7 @@ Function_Boulder_LoadEnemyIndex:
 MoveBoulderHorizontally:
 ;; Parameters:
 ;;     Y: Quadratic speed table index
-    LDX.W EnemyIndex                                                     ;A68A00;
+    LDX.B EnemyIndex                                                     ;A68A00;
     LDA.W Enemy.XSubPosition,X                                           ;A68A03;
     CLC                                                                  ;A68A06;
     ADC.W CommonEnemySpeeds_QuadraticallyIncreasing,Y                    ;A68A07;
@@ -1055,7 +1055,7 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_MoveBoulderHorizontallyWithLinearSpeedTable_A68A1D:
 ;; Parameters:
 ;;     Y: Linear speed table index
-    LDX.W EnemyIndex                                                     ;A68A1D;
+    LDX.B EnemyIndex                                                     ;A68A1D;
     LDA.W Enemy.XSubPosition,X                                           ;A68A20;
     CLC                                                                  ;A68A23;
     ADC.W CommonEnemySpeeds_LinearlyIncreasing+2,Y                       ;A68A24;
@@ -1075,7 +1075,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 MoveBoulderVertically:
 ;; Parameters:
 ;;     Y: Quadratic speed table index
-    LDX.W EnemyIndex                                                     ;A68A3A;
+    LDX.B EnemyIndex                                                     ;A68A3A;
     LDA.W Enemy.YSubPosition,X                                           ;A68A3D;
     CLC                                                                  ;A68A40;
     ADC.W CommonEnemySpeeds_QuadraticallyIncreasing,Y                    ;A68A41;
@@ -1172,7 +1172,7 @@ InstList_Kzan:
 
 ;;; $8B2F: Initialisation AI - enemy $DFFF (spike platform top) ;;;
 InitAI_KzanTop:
-    LDX.W EnemyIndex                                                     ;A68B2F;
+    LDX.B EnemyIndex                                                     ;A68B2F;
     LDA.W #InstList_Kzan                                                 ;A68B32;
     STA.W Enemy.instList,X                                               ;A68B35;
     LDA.W #Function_Kzan_WaitingToFall                                   ;A68B38;
@@ -1188,7 +1188,7 @@ InitAI_KzanTop:
     STA.B DP_Temp12                                                      ;A68B4F;
     LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,X                       ;A68B51;
     STA.B DP_Temp14                                                      ;A68B54;
-    LDX.W EnemyIndex                                                     ;A68B56;
+    LDX.B EnemyIndex                                                     ;A68B56;
     LDA.B DP_Temp14                                                      ;A68B59;
     STA.W Kzan.initialFallingYSubSpeed,X                                 ;A68B5B;
     LDA.B DP_Temp12                                                      ;A68B5E;
@@ -1210,7 +1210,7 @@ InitAI_KzanTop:
 
 ;;; $8B85: Initialisation AI - enemy $E03F (spike platform bottom) ;;;
 InitAI_KzanBottom:
-    LDX.W EnemyIndex                                                     ;A68B85;
+    LDX.B EnemyIndex                                                     ;A68B85;
     LDA.W Enemy[-1].XPosition,X                                          ;A68B88;
     STA.W Enemy.XPosition,X                                              ;A68B8B;
     LDA.W Enemy[-1].YPosition,X                                          ;A68B8E;
@@ -1222,7 +1222,7 @@ InitAI_KzanBottom:
 
 ;;; $8B99: Main AI - enemy $E03F (spike platform bottom) ;;;
 MainAI_KzanBottom:
-    LDX.W EnemyIndex                                                     ;A68B99; Same as init AI
+    LDX.B EnemyIndex                                                     ;A68B99; Same as init AI
     LDA.W Enemy[-1].XPosition,X                                          ;A68B9C;
     STA.W Enemy.XPosition,X                                              ;A68B9F;
     LDA.W Enemy[-1].YPosition,X                                          ;A68BA2;
@@ -1234,7 +1234,7 @@ MainAI_KzanBottom:
 
 ;;; $8BAD: Main AI - enemy $DFFF (spike platform top) ;;;
 MainAI_KzanTop:
-    LDX.W EnemyIndex                                                     ;A68BAD;
+    LDX.B EnemyIndex                                                     ;A68BAD;
     JSR.W (Kzan.function,X)                                              ;A68BB0;
     RTL                                                                  ;A68BB3;
 
@@ -1242,7 +1242,7 @@ MainAI_KzanTop:
 ;;; $8BB4: Spike platform function - waiting to fall ;;;
 Function_Kzan_WaitingToFall:
     PHX                                                                  ;A68BB4;
-    LDX.W EnemyIndex                                                     ;A68BB5;
+    LDX.B EnemyIndex                                                     ;A68BB5;
     DEC.W Kzan.fallWaitTimer,X                                           ;A68BB8;
     LDA.W Kzan.fallWaitTimer,X                                           ;A68BBB;
     BNE .return                                                          ;A68BBE;
@@ -1265,7 +1265,7 @@ Function_Kzan_WaitingToFall:
 ;;; $8BDC: Spike platform function - falling ;;;
 Function_Kzan_Falling:
     PHX                                                                  ;A68BDC;
-    LDX.W EnemyIndex                                                     ;A68BDD;
+    LDX.B EnemyIndex                                                     ;A68BDD;
     LDA.W Enemy.YPosition,X                                              ;A68BE0;
     STA.L Kzan.previousYPosition,X                                       ;A68BE3;
     LDA.L Kzan.fallingYSpeedTableIndex,X                                 ;A68BE7;
@@ -1274,7 +1274,7 @@ Function_Kzan_Falling:
     STA.B DP_Temp14                                                      ;A68BEF;
     LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,X                       ;A68BF1;
     STA.B DP_Temp12                                                      ;A68BF4;
-    LDX.W EnemyIndex                                                     ;A68BF6;
+    LDX.B EnemyIndex                                                     ;A68BF6;
     JSL.L MoveEnemyY_plus_12_14                                          ;A68BF9;
     LDA.W Enemy.YPosition,X                                              ;A68BFD;
     CMP.W Kzan.fallingTargetYPosition,X                                  ;A68C00;
@@ -1328,7 +1328,7 @@ Function_Kzan_WaitingToRise:
 ;;; $8C5D: Spike platform function - rising ;;;
 Function_Kzan_Rising:
     PHX                                                                  ;A68C5D;
-    LDX.W EnemyIndex                                                     ;A68C5E;
+    LDX.B EnemyIndex                                                     ;A68C5E;
     LDA.W Enemy.YPosition,X                                              ;A68C61;
     STA.L Kzan.previousYPosition,X                                       ;A68C64;
     LDA.W #regional($8000, $A000)                                        ;A68C68;
@@ -1595,7 +1595,7 @@ Hibashi_XOffset_15:
 
 ;;; $8E13: Instruction - activity frame 0 ;;;
 Instruction_Hibashi_ActivityFrame0:
-    LDX.W EnemyIndex                                                     ;A68E13;
+    LDX.B EnemyIndex                                                     ;A68E13;
     LDA.W Hibashi.spawnYPosition,X                                       ;A68E16;
     SEC                                                                  ;A68E19;
     SBC.W Hibashi_YOffset_0                                              ;A68E1A;
@@ -1609,7 +1609,7 @@ Instruction_Hibashi_ActivityFrame0:
 
 ;;; $8E2D: Instruction - activity frame 1 ;;;
 Instruction_Hibashi_ActivityFrame1:
-    LDX.W EnemyIndex                                                     ;A68E2D;
+    LDX.B EnemyIndex                                                     ;A68E2D;
     LDA.W Hibashi.spawnYPosition,X                                       ;A68E30;
     SEC                                                                  ;A68E33;
     SBC.W Hibashi_YOffset_1                                              ;A68E34;
@@ -1621,7 +1621,7 @@ Instruction_Hibashi_ActivityFrame1:
 
 ;;; $8E41: Instruction - activity frame 2 ;;;
 Instruction_Hibashi_ActivityFrame2:
-    LDX.W EnemyIndex                                                     ;A68E41;
+    LDX.B EnemyIndex                                                     ;A68E41;
     LDA.W Hibashi.spawnYPosition,X                                       ;A68E44;
     SEC                                                                  ;A68E47;
     SBC.W Hibashi_YOffset_2                                              ;A68E48;
@@ -1633,7 +1633,7 @@ Instruction_Hibashi_ActivityFrame2:
 
 ;;; $8E55: Instruction - activity frame 3 ;;;
 Instruction_Hibashi_ActivityFrame3:
-    LDX.W EnemyIndex                                                     ;A68E55;
+    LDX.B EnemyIndex                                                     ;A68E55;
     LDA.W Hibashi.spawnYPosition,X                                       ;A68E58;
     SEC                                                                  ;A68E5B;
     SBC.W Hibashi_YOffset_3                                              ;A68E5C;
@@ -1645,7 +1645,7 @@ Instruction_Hibashi_ActivityFrame3:
 
 ;;; $8E69: Instruction - activity frame 4 ;;;
 Instruction_Hibashi_ActivityFrame4:
-    LDX.W EnemyIndex                                                     ;A68E69;
+    LDX.B EnemyIndex                                                     ;A68E69;
     LDA.W Hibashi.spawnYPosition,X                                       ;A68E6C;
     SEC                                                                  ;A68E6F;
     SBC.W Hibashi_YOffset_4                                              ;A68E70;
@@ -1657,7 +1657,7 @@ Instruction_Hibashi_ActivityFrame4:
 
 ;;; $8E7D: Instruction - activity frame 5 ;;;
 Instruction_Hibashi_ActivityFrame5:
-    LDX.W EnemyIndex                                                     ;A68E7D;
+    LDX.B EnemyIndex                                                     ;A68E7D;
     LDA.W Hibashi.spawnYPosition,X                                       ;A68E80;
     SEC                                                                  ;A68E83;
     SBC.W Hibashi_YOffset_5                                              ;A68E84;
@@ -1669,7 +1669,7 @@ Instruction_Hibashi_ActivityFrame5:
 
 ;;; $8E91: Instruction - activity frame 6 ;;;
 Instruction_Hibashi_ActivityFrame6:
-    LDX.W EnemyIndex                                                     ;A68E91;
+    LDX.B EnemyIndex                                                     ;A68E91;
     LDA.W Hibashi.spawnYPosition,X                                       ;A68E94;
     SEC                                                                  ;A68E97;
     SBC.W Hibashi_YOffset_6                                              ;A68E98;
@@ -1681,7 +1681,7 @@ Instruction_Hibashi_ActivityFrame6:
 
 ;;; $8EA5: Instruction - activity frame 7 ;;;
 Instruction_Hibashi_ActivityFrame7:
-    LDX.W EnemyIndex                                                     ;A68EA5;
+    LDX.B EnemyIndex                                                     ;A68EA5;
     LDA.W Hibashi.spawnYPosition,X                                       ;A68EA8;
     SEC                                                                  ;A68EAB;
     SBC.W Hibashi_YOffset_7                                              ;A68EAC;
@@ -1693,7 +1693,7 @@ Instruction_Hibashi_ActivityFrame7:
 
 ;;; $8EB9: Instruction - activity frame 8 ;;;
 Instruction_Hibashi_ActivityFrame8:
-    LDX.W EnemyIndex                                                     ;A68EB9;
+    LDX.B EnemyIndex                                                     ;A68EB9;
     LDA.W Hibashi.spawnYPosition,X                                       ;A68EBC;
     SEC                                                                  ;A68EBF;
     SBC.W Hibashi_YOffset_8                                              ;A68EC0;
@@ -1705,7 +1705,7 @@ Instruction_Hibashi_ActivityFrame8:
 
 ;;; $8ECD: Instruction - activity frame 9 ;;;
 Instruction_Hibashi_ActivityFrame9:
-    LDX.W EnemyIndex                                                     ;A68ECD;
+    LDX.B EnemyIndex                                                     ;A68ECD;
     LDA.W Hibashi.spawnYPosition,X                                       ;A68ED0;
     SEC                                                                  ;A68ED3;
     SBC.W Hibashi_YOffset_9                                              ;A68ED4;
@@ -1717,7 +1717,7 @@ Instruction_Hibashi_ActivityFrame9:
 
 ;;; $8EE1: Instruction - activity frame Ah ;;;
 Instruction_Hibashi_ActivityFrameA:
-    LDX.W EnemyIndex                                                     ;A68EE1;
+    LDX.B EnemyIndex                                                     ;A68EE1;
     LDA.W Hibashi.spawnYPosition,X                                       ;A68EE4;
     SEC                                                                  ;A68EE7;
     SBC.W Hibashi_YOffset_A                                              ;A68EE8;
@@ -1729,7 +1729,7 @@ Instruction_Hibashi_ActivityFrameA:
 
 ;;; $8EF5: Instruction - activity frame Bh ;;;
 Instruction_Hibashi_ActivityFrameB:
-    LDX.W EnemyIndex                                                     ;A68EF5;
+    LDX.B EnemyIndex                                                     ;A68EF5;
     LDA.W Hibashi.spawnYPosition,X                                       ;A68EF8;
     SEC                                                                  ;A68EFB;
     SBC.W Hibashi_YOffset_B                                              ;A68EFC;
@@ -1741,7 +1741,7 @@ Instruction_Hibashi_ActivityFrameB:
 
 ;;; $8F09: Instruction - activity frame Ch ;;;
 Instruction_Hibashi_ActivityFrameC:
-    LDX.W EnemyIndex                                                     ;A68F09;
+    LDX.B EnemyIndex                                                     ;A68F09;
     LDA.W Hibashi.spawnYPosition,X                                       ;A68F0C;
     SEC                                                                  ;A68F0F;
     SBC.W Hibashi_YOffset_C                                              ;A68F10;
@@ -1753,7 +1753,7 @@ Instruction_Hibashi_ActivityFrameC:
 
 ;;; $8F1D: Instruction - activity frame Dh ;;;
 Instruction_Hibashi_ActivityFrameD:
-    LDX.W EnemyIndex                                                     ;A68F1D;
+    LDX.B EnemyIndex                                                     ;A68F1D;
     LDA.W Hibashi.spawnYPosition,X                                       ;A68F20;
     SEC                                                                  ;A68F23;
     SBC.W Hibashi_YOffset_D                                              ;A68F24;
@@ -1765,7 +1765,7 @@ Instruction_Hibashi_ActivityFrameD:
 
 ;;; $8F31: Instruction - activity frame Eh ;;;
 Instruction_Hibashi_ActivityFrameE:
-    LDX.W EnemyIndex                                                     ;A68F31;
+    LDX.B EnemyIndex                                                     ;A68F31;
     LDA.W Hibashi.spawnYPosition,X                                       ;A68F34;
     SEC                                                                  ;A68F37;
     SBC.W Hibashi_YOffset_E                                              ;A68F38;
@@ -1777,7 +1777,7 @@ Instruction_Hibashi_ActivityFrameE:
 
 ;;; $8F45: Instruction - activity frame Fh ;;;
 Instruction_Hibashi_ActivityFrameF:
-    LDX.W EnemyIndex                                                     ;A68F45;
+    LDX.B EnemyIndex                                                     ;A68F45;
     LDA.W Hibashi.spawnYPosition,X                                       ;A68F48;
     SEC                                                                  ;A68F4B;
     SBC.W Hibashi_YOffset_F                                              ;A68F4C;
@@ -1789,7 +1789,7 @@ Instruction_Hibashi_ActivityFrameF:
 
 ;;; $8F59: Instruction - activity frame 10h ;;;
 Instruction_Hibashi_ActivityFrame10:
-    LDX.W EnemyIndex                                                     ;A68F59;
+    LDX.B EnemyIndex                                                     ;A68F59;
     LDA.W Hibashi.spawnYPosition,X                                       ;A68F5C;
     SEC                                                                  ;A68F5F;
     SBC.W Hibashi_YOffset_10                                             ;A68F60;
@@ -1801,7 +1801,7 @@ Instruction_Hibashi_ActivityFrame10:
 
 ;;; $8F6D: Instruction - activity frame 11h ;;;
 Instruction_Hibashi_ActivityFrame11:
-    LDX.W EnemyIndex                                                     ;A68F6D;
+    LDX.B EnemyIndex                                                     ;A68F6D;
     LDA.W Hibashi.spawnYPosition,X                                       ;A68F70;
     SEC                                                                  ;A68F73;
     SBC.W Hibashi_YOffset_11                                             ;A68F74;
@@ -1813,7 +1813,7 @@ Instruction_Hibashi_ActivityFrame11:
 
 ;;; $8F81: Instruction - activity frame 12h ;;;
 Instruction_Hibashi_ActivityFrame12:
-    LDX.W EnemyIndex                                                     ;A68F81;
+    LDX.B EnemyIndex                                                     ;A68F81;
     LDA.W Hibashi.spawnYPosition,X                                       ;A68F84;
     SEC                                                                  ;A68F87;
     SBC.W Hibashi_YOffset_12                                             ;A68F88;
@@ -1825,7 +1825,7 @@ Instruction_Hibashi_ActivityFrame12:
 
 ;;; $8F95: Instruction - activity frame 13h ;;;
 Instruction_Hibashi_ActivityFrame13:
-    LDX.W EnemyIndex                                                     ;A68F95;
+    LDX.B EnemyIndex                                                     ;A68F95;
     LDA.W Hibashi.spawnYPosition,X                                       ;A68F98;
     SEC                                                                  ;A68F9B;
     SBC.W Hibashi_YOffset_13                                             ;A68F9C;
@@ -1837,7 +1837,7 @@ Instruction_Hibashi_ActivityFrame13:
 
 ;;; $8FA9: Instruction - activity frame 14h ;;;
 Instruction_Hibashi_ActivityFrame14:
-    LDX.W EnemyIndex                                                     ;A68FA9;
+    LDX.B EnemyIndex                                                     ;A68FA9;
     LDA.W Hibashi.spawnYPosition,X                                       ;A68FAC;
     SEC                                                                  ;A68FAF;
     SBC.W Hibashi_YOffset_14                                             ;A68FB0;
@@ -1849,7 +1849,7 @@ Instruction_Hibashi_ActivityFrame14:
 
 ;;; $8FBD: Instruction - activity frame 15h ;;;
 Instruction_Hibashi_ActivityFrame15:
-    LDX.W EnemyIndex                                                     ;A68FBD;
+    LDX.B EnemyIndex                                                     ;A68FBD;
     LDA.W Hibashi.spawnYPosition,X                                       ;A68FC0;
     SEC                                                                  ;A68FC3;
     SBC.W Hibashi_YOffset_15                                             ;A68FC4;
@@ -1861,7 +1861,7 @@ Instruction_Hibashi_ActivityFrame15:
 
 ;;; $8FD1: Instruction - finish activity ;;;
 Instruction_Hibashi_FinishActivity:
-    LDX.W EnemyIndex                                                     ;A68FD1;
+    LDX.B EnemyIndex                                                     ;A68FD1;
     LDA.W #$0001                                                         ;A68FD4;
     STA.W Hibashi.finishedActivityFlag,X                                 ;A68FD7;
     LDA.W #$0000                                                         ;A68FDA;
@@ -1880,7 +1880,7 @@ Instruction_Hibashi_FinishActivity:
 
 ;;; $8FFC: Initialisation AI - enemy $E07F (fire pillar) ;;;
 InitAI_Hibashi:
-    LDX.W EnemyIndex                                                     ;A68FFC;
+    LDX.B EnemyIndex                                                     ;A68FFC;
     LDA.W #InstList_Hibashi_HitboxPart                                   ;A68FFF;
     STA.W Enemy.instList,X                                               ;A69002;
     LDA.W Hibashi.part,X                                                 ;A69005;
@@ -1900,7 +1900,7 @@ InitAI_Hibashi:
 
 ;;; $9023: Main AI - enemy $E07F (fire pillar) ;;;
 MainAI_Hibashi:
-    LDX.W EnemyIndex                                                     ;A69023;
+    LDX.B EnemyIndex                                                     ;A69023;
     LDA.W Hibashi.part,X                                                 ;A69026;
     BNE .return                                                          ;A69029;
     JSR.W (Hibashi.function,X)                                           ;A6902B;
@@ -1911,7 +1911,7 @@ MainAI_Hibashi:
 
 ;;; $902F: Fire pillar function - inactive ;;;
 Function_Hibashi_Inactive:
-    LDX.W EnemyIndex                                                     ;A6902F;
+    LDX.B EnemyIndex                                                     ;A6902F;
     DEC.W Hibashi.inactiveTimer,X                                        ;A69032;
     BPL .return                                                          ;A69035;
     LDA.W #Function_Hibashi_Active                                       ;A69037;
@@ -1935,7 +1935,7 @@ Function_Hibashi_Inactive:
 
 ;;; $9062: Fire pillar function - active ;;;
 Function_Hibashi_Active:
-    LDX.W EnemyIndex                                                     ;A69062;
+    LDX.B EnemyIndex                                                     ;A69062;
     LDA.W Hibashi.finishedActivityFlag,X                                 ;A69065;
     BEQ .return                                                          ;A69068;
     LDA.W Hibashi.inactiveTimerResetValue,X                              ;A6906A;
@@ -2249,7 +2249,7 @@ InstList_Puromi:
 
 ;;; $94C4: Initialisation AI - enemy $E0BF (fire arc) ;;;
 InitAI_Puromi:
-    LDX.W EnemyIndex                                                     ;A694C4;
+    LDX.B EnemyIndex                                                     ;A694C4;
     LDA.W #InstList_Puromi                                               ;A694C7;
     STA.W Enemy.instList,X                                               ;A694CA;
     LDA.W Enemy.init0,X                                                  ;A694CD;
@@ -2327,7 +2327,7 @@ InitAI_Puromi:
   .loopEnemyProjectiles:
     LDY.W #EnemyProjectile_Puromi                                        ;A69598;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A6959B;
-    LDX.W EnemyIndex
+    LDX.B EnemyIndex
     LDA.L Puromi.bodyIndex,X                                             ;A6959F;
     SEC                                                                  ;A695A3;
     SBC.W #$0002                                                         ;A695A4;
@@ -2337,7 +2337,7 @@ InitAI_Puromi:
     STA.L Puromi.bodyIndex,X                                             ;A695B0;
 
   .loopSpirteObjects:
-    LDX.W EnemyIndex                                                     ;A695B4;
+    LDX.B EnemyIndex                                                     ;A695B4;
     LDA.W Enemy.XPosition,X                                              ;A695B7;
     STA.B DP_Temp12                                                      ;A695BA;
     LDA.W Enemy.YPosition,X                                              ;A695BC;
@@ -2352,7 +2352,7 @@ InitAI_Puromi:
     PHX                                                                  ;A695D6;
     LDA.L Puromi.bodyIndex,X                                             ;A695D7;
     CLC                                                                  ;A695DB;
-    ADC.W EnemyIndex                                                     ;A695DC;
+    ADC.B EnemyIndex                                                     ;A695DC;
     TAX                                                                  ;A695DF;
     LDA.B DP_Temp12                                                      ;A695E0;
     STA.L Puromi.spriteObjectIndex0,X                                    ;A695E2;
@@ -2397,14 +2397,14 @@ InitAI_Puromi:
 
 ;;; $960E: Main AI - enemy $E0BF (fire arc) ;;;
 MainAI_Puromi:
-    LDX.W EnemyIndex                                                     ;A6960E;
+    LDX.B EnemyIndex                                                     ;A6960E;
     JSR.W (Puromi.function,X)                                            ;A69611;
     RTL                                                                  ;A69614;
 
 
 ;;; $9615: Fire arc function - inactive ;;;
 Function_Puromi_Inactive:
-    LDX.W EnemyIndex                                                     ;A69615;
+    LDX.B EnemyIndex                                                     ;A69615;
     DEC.W Puromi.inactiveTimer,X                                         ;A69618;
     BPL .return                                                          ;A6961B;
     LDA.W Puromi.inactiveTimerResetValue,X                               ;A6961D;
@@ -2441,7 +2441,7 @@ Function_Puromi_Inactive:
 
 ;;; $9682: Fire arc function - active ;;;
 Function_Puromi_Active:
-    LDX.W EnemyIndex                                                     ;A69682;
+    LDX.B EnemyIndex                                                     ;A69682;
     LDA.W Puromi.arcRadius,X                                             ;A69685;
     STA.W Temp_Radius                                                    ;A69688;
     LDA.L Puromi.angle,X                                                 ;A6968B;
@@ -2450,7 +2450,7 @@ Function_Puromi_Active:
     PHA                                                                  ;A69694;
     CMP.L Puromi.headExplosionReason,X                                   ;A69695;
     BEQ .matchingExplosionReason                                         ;A69699;
-    LDX.W EnemyIndex                                                     ;A6969B;
+    LDX.B EnemyIndex                                                     ;A6969B;
     LDA.W Enemy.XPosition,X                                              ;A6969E;
     STA.B DP_Temp12                                                      ;A696A1;
     LDA.W Enemy.YPosition,X                                              ;A696A3;
@@ -2502,7 +2502,7 @@ Function_Puromi_Active:
 
 ;;; $9721: Handle fire arc enemy projectiles ;;;
 HandlePuromiProjectiles:
-    LDX.W EnemyIndex                                                     ;A69721;
+    LDX.B EnemyIndex                                                     ;A69721;
     LDA.W #$0008                                                         ;A69724;
     STA.L Puromi.bodyIndex,X                                             ;A69727;
     LDA.L Puromi.angle,X                                                 ;A6972B;
@@ -2511,7 +2511,7 @@ HandlePuromiProjectiles:
     STA.B DP_Temp24                                                      ;A69734;
 
   .loop:
-    LDX.W EnemyIndex                                                     ;A69736;
+    LDX.B EnemyIndex                                                     ;A69736;
     LDA.B DP_Temp24                                                      ;A69739;
     SEC                                                                  ;A6973B;
     SBC.L Puromi.angleBetweenBodyPartsTimes2,X                           ;A6973C;
@@ -2519,7 +2519,7 @@ HandlePuromiProjectiles:
     PHX                                                                  ;A69742;
     LDA.L Puromi.bodyIndex,X                                             ;A69743;
     CLC                                                                  ;A69747;
-    ADC.W EnemyIndex                                                     ;A69748;
+    ADC.B EnemyIndex                                                     ;A69748;
     TAX                                                                  ;A6974B;
     LDA.L Puromi.projectileIndex0,X                                      ;A6974C;
     TAY                                                                  ;A69750;
@@ -2530,7 +2530,7 @@ HandlePuromiProjectiles:
     CMP.L Puromi.projectile0ExplosionReason,X                            ;A69759;
     BEQ .matchingExplosionReason                                         ;A6975D;
     PHX                                                                  ;A6975F;
-    LDX.W EnemyIndex                                                     ;A69760;
+    LDX.B EnemyIndex                                                     ;A69760;
     LDA.W EnemyProjectile_XPositions,Y                                   ;A69763;
     STA.B DP_Temp12                                                      ;A69766;
     LDA.W EnemyProjectile_YPositions,Y                                   ;A69768;
@@ -2591,14 +2591,14 @@ HandlePuromiProjectiles:
 
 ;;; $97E9: Handle fire arc sprite objects ;;;
 HandlePuromiSpriteObjects:
-    LDX.W EnemyIndex                                                     ;A697E9;
+    LDX.B EnemyIndex                                                     ;A697E9;
     LDA.W #$0006                                                         ;A697EC;
     STA.L Puromi.bodyIndex,X                                             ;A697EF;
     LDA.L Puromi.angle,X                                                 ;A697F3;
     STA.B DP_Temp24                                                      ;A697F7;
 
   .loop:
-    LDX.W EnemyIndex                                                     ;A697F9;
+    LDX.B EnemyIndex                                                     ;A697F9;
     LDA.B DP_Temp24                                                      ;A697FC;
     SEC                                                                  ;A697FE;
     SBC.L Puromi.angleBetweenBodyPartsTimes2,X                           ;A697FF;
@@ -2606,7 +2606,7 @@ HandlePuromiSpriteObjects:
     PHX                                                                  ;A69805;
     LDA.L Puromi.bodyIndex,X                                             ;A69806;
     CLC                                                                  ;A6980A;
-    ADC.W EnemyIndex                                                     ;A6980B;
+    ADC.B EnemyIndex                                                     ;A6980B;
     TAX                                                                  ;A6980E;
     LDA.L Puromi.spriteObjectIndex0,X                                    ;A6980F;
     TAY                                                                  ;A69813;
@@ -2617,7 +2617,7 @@ HandlePuromiSpriteObjects:
     CMP.L Puromi.spriteObject0ExplosionReason,X                          ;A6981C;
     BEQ .matchingExplosionReason                                         ;A69820;
     PHX                                                                  ;A69822;
-    LDX.W EnemyIndex                                                     ;A69823;
+    LDX.B EnemyIndex                                                     ;A69823;
     LDA.L Puromi.graphicsIndices,X                                       ;A69826;
     STA.B DP_Temp26                                                      ;A6982A;
     TYX                                                                  ;A6982C;
@@ -2687,7 +2687,7 @@ ClampAngle_CheckInactivityCondition:
 ;;     $1C: Inactivity flag. Matters only for the last body enemy projectile. 0 = activity, 1 = inactivity
     PHX                                                                  ;A698AD;
     PHA                                                                  ;A698AE;
-    LDX.W EnemyIndex                                                     ;A698AF;
+    LDX.B EnemyIndex                                                     ;A698AF;
     STZ.B DP_Temp1C                                                      ;A698B2;
     LDA.W Puromi.direction,X                                             ;A698B4;
     BNE .notClockwise                                                    ;A698B7;
@@ -2729,7 +2729,7 @@ CheckExplosionCondition:
 ;;     $1A: If returning [A] != 0, explosion side. 0 = right, 1 = left
     PHX                                                                  ;A698E7;
     PHA                                                                  ;A698E8;
-    LDX.W EnemyIndex                                                     ;A698E9;
+    LDX.B EnemyIndex                                                     ;A698E9;
     LDA.W Puromi.direction,X                                             ;A698EC;
     BNE .notClockwise                                                    ;A698EF;
     PLA                                                                  ;A698F1;
@@ -2972,8 +2972,8 @@ MiniKraidSpitVelocityTable_rightward_Y2:
 
 ;;; $9A58: Initialisation AI - enemy $E0FF (fake Kraid) ;;;
 InitAI_MiniKraid:
-    LDX.W EnemyIndex                                                     ;A69A58;
-    LDA.W RandomNumberSeed                                               ;A69A5B;
+    LDX.B EnemyIndex                                                     ;A69A58;
+    LDA.B RandomNumberSeed                                               ;A69A5B;
     AND.W #$0003                                                         ;A69A5E;
     CLC                                                                  ;A69A61;
     ADC.W #$0002                                                         ;A69A62;
@@ -3017,7 +3017,7 @@ InitAI_MiniKraid:
 
 ;;; $9AC2: Main AI - enemy $E0FF (fake Kraid) ;;;
 MainAI_MiniKraid:
-    LDX.W EnemyIndex                                                     ;A69AC2;
+    LDX.B EnemyIndex                                                     ;A69AC2;
     LDA.L MiniKraid.spikeTimerIndex,X                                    ;A69AC5;
     TAY                                                                  ;A69AC9;
     INC                                                                  ;A69ACA;
@@ -3049,7 +3049,7 @@ HandleMiniKraidSpike:
     RTS                                                                  ;A69AF0;
 
   .timerExpired:
-    LDA.W RandomNumberSeed                                               ;A69AF1;
+    LDA.B RandomNumberSeed                                               ;A69AF1;
     AND.W #$003F                                                         ;A69AF4;
     CLC                                                                  ;A69AF7;
     ADC.W #$0010                                                         ;A69AF8;
@@ -3076,14 +3076,14 @@ HandleMiniKraidSpike:
 ;;; $9B26: Instruction - move ;;;
 Instruction_MiniKraid_Move:
     PHY                                                                  ;A69B26;
-    LDX.W EnemyIndex                                                     ;A69B27;
+    LDX.B EnemyIndex                                                     ;A69B27;
     LDA.W MiniKraid.spitTimer,X                                          ;A69B2A;
     BEQ +                                                                ;A69B2D;
     DEC.W MiniKraid.spitTimer,X                                          ;A69B2F;
 
 +   DEC.W MiniKraid.stepCounter,X                                        ;A69B32;
     BNE .nonZeroCounter                                                  ;A69B35;
-    LDA.W RandomNumberSeed                                               ;A69B37;
+    LDA.B RandomNumberSeed                                               ;A69B37;
     AND.W #$0003                                                         ;A69B3A;
     CLC                                                                  ;A69B3D;
     ADC.W #$0007                                                         ;A69B3E;
@@ -3120,10 +3120,10 @@ Instruction_MiniKraid_Move:
 
 ;;; $9B74: Instruction - choose action ;;;
 Instruction_MiniKraid_ChooseAction:
-    LDX.W EnemyIndex                                                     ;A69B74;
+    LDX.B EnemyIndex                                                     ;A69B74;
     LDA.W MiniKraid.spitTimer,X                                          ;A69B77;
     BNE .step                                                            ;A69B7A;
-    LDA.W RandomNumberSeed                                               ;A69B7C;
+    LDA.B RandomNumberSeed                                               ;A69B7C;
     AND.W #$0003                                                         ;A69B7F;
     CLC                                                                  ;A69B82;
     ADC.W #$0003                                                         ;A69B83;
@@ -3177,7 +3177,7 @@ FireMiniKraidSpit_Common:
 ;; Parameters:
 ;;     A: Spit X offset
 ;;     Y: Spit velocity table index
-    LDX.W EnemyIndex                                                     ;A69BCB;
+    LDX.B EnemyIndex                                                     ;A69BCB;
     PHY                                                                  ;A69BCE;
     STA.L MiniKraid.spitXOffset,X                                        ;A69BD0;
     LDA.W MiniKraidSpitVelocityTable_leftward_X1,Y                       ;A69BD4;
@@ -3187,7 +3187,7 @@ FireMiniKraidSpit_Common:
     LDY.W #EnemyProjectile_MiniKraidSpit                                 ;A69BE2;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A69BE5;
     PLY                                                                  ;A69BEA;
-    LDX.W EnemyIndex
+    LDX.B EnemyIndex
     LDA.W MiniKraidSpitVelocityTable_leftward_X2,Y                       ;A69BEB;
     STA.L MiniKraid.spitXVelocity,X                                      ;A69BEE;
     LDA.W MiniKraidSpitVelocityTable_leftward_Y2,Y                       ;A69BF2;
@@ -3209,7 +3209,7 @@ Instruction_MiniKraid_FireSpitRight:
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $9C0B: Unused. Fake Kraid power bomb reaction ;;;
 UNUSED_PowerBombReaction_MiniKraid_A69C0B:
-    LDX.W EnemyIndex                                                     ;A69C0B;
+    LDX.B EnemyIndex                                                     ;A69C0B;
     LDA.W Enemy.XPosition,X                                              ;A69C0E;
     STA.L EnemyProjectileData_SpecialDeathItemDropXOriginPosition        ;A69C11;
     LDA.W Enemy.YPosition,X                                              ;A69C15;
@@ -3221,7 +3221,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $9C22: Enemy touch - enemy $E0FF (fake Kraid) ;;;
 EnemyTouch_MiniKraid:
-    LDX.W EnemyIndex                                                     ;A69C22;
+    LDX.B EnemyIndex                                                     ;A69C22;
     LDA.W Enemy.XPosition,X                                              ;A69C25;
     STA.L EnemyProjectileData_SpecialDeathItemDropXOriginPosition        ;A69C28;
     LDA.W Enemy.YPosition,X                                              ;A69C2C;
@@ -3234,7 +3234,7 @@ EnemyTouch_MiniKraid:
 EnemyShot_PowerBombReaction_MiniKraid:
 ; Bug: the power bomb reaction should be pointing to UNUSED_PowerBombReaction_MiniKraid_A69C0B
 ; When this routine is called for power bomb reaction, $A0:A6A7 is called with garbage for the projectile index (CollisionIndex)
-    LDX.W EnemyIndex                                                     ;A69C39;
+    LDX.B EnemyIndex                                                     ;A69C39;
     LDA.W Enemy.XPosition,X                                              ;A69C3C;
     STA.L EnemyProjectileData_SpecialDeathItemDropXOriginPosition        ;A69C3F;
     LDA.W Enemy.YPosition,X                                              ;A69C43;
@@ -3244,7 +3244,7 @@ EnemyShot_PowerBombReaction_MiniKraid:
 
 ;;; $9C50: Fake Kraid reaction ;;;
 Reaction_MiniKraid_Common:
-    LDX.W EnemyIndex                                                     ;A69C50;
+    LDX.B EnemyIndex                                                     ;A69C50;
     LDA.W Enemy.health,X                                                 ;A69C53;
     BNE .return                                                          ;A69C56;
     LDA.W #$0003                                                         ;A69C58;
@@ -3716,7 +3716,7 @@ MainAI_RidleyCeres:
 ;;; $A2BD: Randomly update Ridley tail curliness ;;;
 RandomlyUpdateRidleyTailCurliness:
 ; 1/100 chance of setting 7E:201E to 8-17 (all hex numbers)
-    LDA.W RandomNumberSeed                                               ;A6A2BD;
+    LDA.B RandomNumberSeed                                               ;A6A2BD;
     CMP.W #$FF00                                                         ;A6A2C0;
     BCC .return                                                          ;A6A2C3;
     AND.W #$000F                                                         ;A6A2C8;
@@ -4171,7 +4171,7 @@ Function_RidleyCeres_Hovering:
     NOP                                                                  ;A6A72C;
 
   .notReachedTarget:
-    LDA.W RandomNumberSeed                                               ;A6A72D;
+    LDA.B RandomNumberSeed                                               ;A6A72D;
     AND.W #$000F                                                         ;A6A730;
     ASL                                                                  ;A6A733;
     TAX                                                                  ;A6A734;
@@ -4282,9 +4282,9 @@ Function_RidleyCeres_ShootFireballs_MoveToPosition:
 
 ;;; $A7F9: Ridley function - shoot fireballs - shooting ;;;
 Function_RidleyCeres_ShootFireballs_Shooting:
-    LDA.W RandomNumberSeed                                               ;A6A7F9;
+    LDA.B RandomNumberSeed                                               ;A6A7F9;
     AND.W #$0007                                                         ;A6A7FC;
-    BIT.W RandomNumberSeed                                               ;A6A7FF;
+    BIT.B RandomNumberSeed                                               ;A6A7FF;
     BPL +                                                                ;A6A802;
     EOR.W #$FFFF                                                         ;A6A804;
     INC                                                                  ;A6A807;
@@ -5775,7 +5775,7 @@ Function_Ridley_Action_Hover:
     STA.L Ridley.tailExtensionSpeed                                      ;A6B5CE;
     LDA.W #Function_Ridley_Hover_MoveToWallBehindRidley                  ;A6B5D2;
     STA.W Ridley.function                                                ;A6B5D5;
-    LDA.W RandomNumberSeed                                               ;A6B5D8;
+    LDA.B RandomNumberSeed                                               ;A6B5D8;
     AND.W #$001F                                                         ;A6B5DB;
     CLC                                                                  ;A6B5DE;
     ADC.W #$0020                                                         ;A6B5DF;
@@ -5860,7 +5860,7 @@ RidleyHoverMovement:
     AND.W #$00FF                                                         ;A6B661;
     CMP.W #$0003                                                         ;A6B664;
     BNE .returnNotSamusSpinJumping                                       ;A6B667;
-    LDA.W RandomNumberSeed                                               ;A6B669;
+    LDA.B RandomNumberSeed                                               ;A6B669;
     AND.W #$00FF                                                         ;A6B66C;
     CMP.W #$0080                                                         ;A6B66F;
     BCC .returnSamusSpinJumping                                          ;A6B672;
@@ -5938,7 +5938,7 @@ Function_Ridley_Pogo_WaitAtPosition:
     JSR.W SetRidleyPogoSpeeds                                            ;A6B6F8;
     LDA.W #Function_Ridley_Pogo_Descending                               ;A6B6FB;
     STA.W Ridley.function                                                ;A6B6FE;
-    LDA.W RandomNumberSeed                                               ;A6B701;
+    LDA.B RandomNumberSeed                                               ;A6B701;
     AND.W #$003F                                                         ;A6B704;
     ADC.W #$0080                                                         ;A6B707;
     STA.W Ridley.functionTimer                                           ;A6B70A;
@@ -6183,7 +6183,7 @@ SetRidleyPogoXMovementDirection:
     BMI .moveRightwards                                                  ;A6B8D0;
     CMP.L Ridley.maxXPosition                                            ;A6B8D2;
     BPL .moveLeftwards                                                   ;A6B8D6;
-    LDA.W RandomNumberSeed                                               ;A6B8D8;
+    LDA.B RandomNumberSeed                                               ;A6B8D8;
     CMP.W #$0555                                                         ;A6B8DB;
     BCC .return                                                          ;A6B8DE;
 
@@ -6202,7 +6202,7 @@ SetRidleyPogoXMovementDirection:
     BMI .moveRightwards                                                  ;A6B8F2;
     CMP.L Ridley.maxXPosition                                            ;A6B8F4;
     BPL .moveLeftwards                                                   ;A6B8F8;
-    LDA.W RandomNumberSeed                                               ;A6B8FA;
+    LDA.B RandomNumberSeed                                               ;A6B8FA;
     CMP.W #$0555                                                         ;A6B8FD;
     BCC .negateVelocity                                                  ;A6B900;
     RTS                                                                  ;A6B902;
@@ -6221,7 +6221,7 @@ SetRidleyPogoXMovementDirection:
 ;;; $B90F: Set Ridley pogo speeds ;;;
 SetRidleyPogoSpeeds:
 ; Called for initial downwards movement, then called for each subsequent upwards movement
-    LDA.W RandomNumberSeed                                               ;A6B90F;
+    LDA.B RandomNumberSeed                                               ;A6B90F;
     AND.W #$0003                                                         ;A6B912;
     ASL                                                                  ;A6B915;
     TAY                                                                  ;A6B916;
@@ -7144,7 +7144,7 @@ Instruction_BabyMetroidCutscene_GotoX50PercentIfNotMoving:
 ;;     X: Pointer to next instruction
     LDA.L RidleyCeres.BabyMetroidCrySFXFlag                              ;A6BFC9;
     BNE .playSFX                                                         ;A6BFCD;
-    LDA.W RandomNumberSeed                                               ;A6BFCF;
+    LDA.B RandomNumberSeed                                               ;A6BFCF;
     AND.W #$0001                                                         ;A6BFD2;
     BNE Instruction_BabyMetroidCutscene_GotoX                            ;A6BFD5;
 
@@ -8118,7 +8118,7 @@ SpawnSmallExplosionNearRidley:
 
 ;;; $C696: Initialisation AI - enemy $E1BF (Ridley explosion) ;;;
 InitAI_RidleyExplosion:
-    LDX.W EnemyIndex                                                     ;A6C696;
+    LDX.B EnemyIndex                                                     ;A6C696;
     LDA.W #$0001                                                         ;A6C699;
     STA.W Enemy.instTimer,X                                              ;A6C69C;
     STZ.W Enemy.loopCounter,X                                            ;A6C69F;
@@ -8130,7 +8130,7 @@ InitAI_RidleyExplosion:
     STA.W RidleyExplosion.lifeTimer,X                                    ;A6C6B1;
     JSL.L GenerateRandomNumber                                           ;A6C6B4;
     AND.W #$0130                                                         ;A6C6B8;
-    BIT.W RandomNumberSeed                                               ;A6C6BB;
+    BIT.B RandomNumberSeed                                               ;A6C6BB;
     BPL +                                                                ;A6C6BE;
     EOR.W #$FFFF                                                         ;A6C6C0;
     INC                                                                  ;A6C6C3;
@@ -8163,7 +8163,7 @@ InitAI_RidleyExplosion:
 
 ;;; $C6FE: Ridley explosion initialisation - index = 0 ;;;
 RidleyExplosionInitialization_0:
-    LDX.W EnemyIndex                                                     ;A6C6FE;
+    LDX.B EnemyIndex                                                     ;A6C6FE;
     LDA.L RidleyTail.XPosition                                           ;A6C701;
     STA.W Enemy.XPosition,X                                              ;A6C705;
     LDA.L RidleyTail.YPosition                                           ;A6C708;
@@ -8175,7 +8175,7 @@ RidleyExplosionInitialization_0:
 
 ;;; $C716: Ridley explosion initialisation - index = 2 ;;;
 RidleyExplosionInitialization_2:
-    LDX.W EnemyIndex                                                     ;A6C716;
+    LDX.B EnemyIndex                                                     ;A6C716;
     LDA.L RidleyTail[1].XPosition                                        ;A6C719;
     STA.W Enemy.XPosition,X                                              ;A6C71D;
     LDA.L RidleyTail[1].YPosition                                        ;A6C720;
@@ -8187,7 +8187,7 @@ RidleyExplosionInitialization_2:
 
 ;;; $C72E: Ridley explosion initialisation - index = 4 ;;;
 RidleyExplosionInitialization_4:
-    LDX.W EnemyIndex                                                     ;A6C72E;
+    LDX.B EnemyIndex                                                     ;A6C72E;
     LDA.L RidleyTail[2].XPosition                                        ;A6C731;
     STA.W Enemy.XPosition,X                                              ;A6C735;
     LDA.L RidleyTail[2].YPosition                                        ;A6C738;
@@ -8199,7 +8199,7 @@ RidleyExplosionInitialization_4:
 
 ;;; $C746: Ridley explosion initialisation - index = 6 ;;;
 RidleyExplosionInitialization_6:
-    LDX.W EnemyIndex                                                     ;A6C746;
+    LDX.B EnemyIndex                                                     ;A6C746;
     LDA.L RidleyTail[3].XPosition                                        ;A6C749;
     STA.W Enemy.XPosition,X                                              ;A6C74D;
     LDA.L RidleyTail[3].YPosition                                        ;A6C750;
@@ -8211,7 +8211,7 @@ RidleyExplosionInitialization_6:
 
 ;;; $C75E: Ridley explosion initialisation - index = 8 ;;;
 RidleyExplosionInitialization_8:
-    LDX.W EnemyIndex                                                     ;A6C75E;
+    LDX.B EnemyIndex                                                     ;A6C75E;
     LDA.L RidleyTail[4].XPosition                                        ;A6C761;
     STA.W Enemy.XPosition,X                                              ;A6C765;
     LDA.L RidleyTail[4].YPosition                                        ;A6C768;
@@ -8223,7 +8223,7 @@ RidleyExplosionInitialization_8:
 
 ;;; $C776: Ridley explosion initialisation - index = Ah ;;;
 RidleyExplosionInitialization_A:
-    LDX.W EnemyIndex                                                     ;A6C776;
+    LDX.B EnemyIndex                                                     ;A6C776;
     LDA.L RidleyTail[5].XPosition                                        ;A6C779;
     STA.W Enemy.XPosition,X                                              ;A6C77D;
     LDA.L RidleyTail[5].YPosition                                        ;A6C780;
@@ -8235,7 +8235,7 @@ RidleyExplosionInitialization_A:
 
 ;;; $C78E: Ridley explosion initialisation - index = Ch ;;;
 RidleyExplosionInitialization_C:
-    LDX.W EnemyIndex                                                     ;A6C78E;
+    LDX.B EnemyIndex                                                     ;A6C78E;
     LDA.L RidleyTail[6].XPosition                                        ;A6C791;
     STA.W Enemy.XPosition,X                                              ;A6C795;
     LDA.L RidleyTail[6].YPosition                                        ;A6C798;
@@ -8281,7 +8281,7 @@ RidleyExplosionInitialization_E:
     LDY.W #$0002                                                         ;A6C7E3;
 
   .right:
-    LDX.W EnemyIndex                                                     ;A6C7E6;
+    LDX.B EnemyIndex                                                     ;A6C7E6;
     LDA.W .XOffsetFromRidleyXPosition,Y                                  ;A6C7E9;
     CLC                                                                  ;A6C7EC;
     ADC.W Enemy.XPosition                                                ;A6C7ED;
@@ -8310,7 +8310,7 @@ RidleyExplosionInitialization_10:
     LDY.W #$0002                                                         ;A6C815;
 
   .right:
-    LDX.W EnemyIndex                                                     ;A6C818;
+    LDX.B EnemyIndex                                                     ;A6C818;
     LDA.W .XOffsetFromRidleyXPosition,Y                                  ;A6C81B;
     CLC                                                                  ;A6C81E;
     ADC.W Enemy.XPosition                                                ;A6C81F;
@@ -8339,7 +8339,7 @@ RidleyExplosionInitialization_12:
     LDY.W #$0002                                                         ;A6C847;
 
   .right:
-    LDX.W EnemyIndex                                                     ;A6C84A;
+    LDX.B EnemyIndex                                                     ;A6C84A;
     LDA.W .XOffsetFromRidleyXPosition,Y                                  ;A6C84D;
     CLC                                                                  ;A6C850;
     ADC.W Enemy.XPosition                                                ;A6C851;
@@ -8368,7 +8368,7 @@ RidleyExplosionInitialization_14:
     LDY.W #$0002                                                         ;A6C879;
 
   .right:
-    LDX.W EnemyIndex                                                     ;A6C87C;
+    LDX.B EnemyIndex                                                     ;A6C87C;
     LDA.W .XOffsetFromRidleyXPosition,Y                                  ;A6C87F;
     CLC                                                                  ;A6C882;
     ADC.W Enemy.XPosition                                                ;A6C883;
@@ -8397,7 +8397,7 @@ RidleyExplosionInitialization_16:
     LDY.W #$0002                                                         ;A6C8AB;
 
   .right:
-    LDX.W EnemyIndex                                                     ;A6C8AE;
+    LDX.B EnemyIndex                                                     ;A6C8AE;
     LDA.W .XOffsetFromRidleyXPosition,Y                                  ;A6C8B1;
     CLC                                                                  ;A6C8B4;
     ADC.W Enemy.XPosition                                                ;A6C8B5;
@@ -8420,7 +8420,7 @@ RidleyExplosionInitialization_16:
 
 ;;; $C8D4: Main AI - enemy $E1BF (Ridley explosion) ;;;
 MainAI_RidleyExplosion:
-    LDX.W EnemyIndex                                                     ;A6C8D4;
+    LDX.B EnemyIndex                                                     ;A6C8D4;
     JSR.W HandleFlickering                                               ;A6C8D7;
     LDA.W RidleyExplosion.XVelocity,X                                    ;A6C8DA;
     BPL +                                                                ;A6C8DD;
@@ -8994,7 +8994,7 @@ HandleRidleyTailFlingTrigger:
   .notFlingingTail:
     LDA.W Ridley.idleTailWhipEnable                                      ;A6CC8A;
     BEQ .return                                                          ;A6CC8D;
-    LDA.W RandomNumberSeed                                               ;A6CC8F;
+    LDA.B RandomNumberSeed                                               ;A6CC8F;
     AND.W #$00FF                                                         ;A6CC92;
     CMP.W #$00F0                                                         ;A6CC95;
     BCS .aimTailWhip                                                     ;A6CC98;
@@ -9085,7 +9085,7 @@ HandleNormalRidleyPogoTail:
     JSR.W SetRidleyTailAngleExtrema                                      ;A6CD24;
     JSR.W CheckIfAllRidleyTailSegmentsAreActive                          ;A6CD27;
     BCC .normal                                                          ;A6CD2A;
-    LDA.W RandomNumberSeed                                               ;A6CD2C;
+    LDA.B RandomNumberSeed                                               ;A6CD2C;
     AND.W #$00FF                                                         ;A6CD2F;
     CMP.W #$00F0                                                         ;A6CD32;
     BCS .randomlySkipDistanceCheck                                       ;A6CD35;
@@ -9155,7 +9155,7 @@ HandleRidleyPogoTailStab:
     JSR.W SetRidleyTailAngleExtrema                                      ;A6CDAA;
     JSR.W CheckIfAllRidleyTailSegmentsAreActive                          ;A6CDAD;
     BCC .normal                                                          ;A6CDB0;
-    LDA.W RandomNumberSeed                                               ;A6CDB2;
+    LDA.B RandomNumberSeed                                               ;A6CDB2;
     AND.W #$00FF                                                         ;A6CDB5;
     CMP.W #$00F0                                                         ;A6CDB8;
     BCS .randomlySkipDistanceCheck                                       ;A6CDBB;
@@ -10036,7 +10036,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 ;;; $D453: Deal suit-adjusted enemy damage to Samus ;;;
 DealSuitAdjustedEnemyDamageToSamus:
 ; Only called by Mother Brain and UNUSED_HurtSamus_A6DF66
-    LDX.W EnemyIndex                                                     ;A6D453;
+    LDX.B EnemyIndex                                                     ;A6D453;
     LDA.W Enemy.ID,X                                                     ;A6D456;
     TAX                                                                  ;A6D459;
     LDA.L EnemyHeaders_damage,X                                          ;A6D45A;
@@ -10765,7 +10765,7 @@ MoveRidley:
 ; Makes a vain attempt to use enemy index
     LDA.W #$0000                                                         ;A6D86B;
     STA.L Ridley.hitARoomBoundary                                        ;A6D86E;
-    LDX.W EnemyIndex                                                     ;A6D872;
+    LDX.B EnemyIndex                                                     ;A6D872;
     LDA.W Ridley.XVelocity,X                                             ;A6D875;
     SEP #$20                                                             ;A6D878;
     CLC                                                                  ;A6D87A;
@@ -11783,7 +11783,7 @@ UNUSED_HurtSamus_A6DF66:
     LDA.W #$0005                                                         ;A6DF70;
     STA.W SamusKnockbackTimer                                            ;A6DF73;
     LDY.W #$0000                                                         ;A6DF76;
-    LDX.W EnemyIndex                                                     ;A6DF79;
+    LDX.B EnemyIndex                                                     ;A6DF79;
     LDA.W SamusXPosition                                                 ;A6DF7C;
     SEC                                                                  ;A6DF7F;
     SBC.W Enemy.XPosition,X                                              ;A6DF80;
@@ -11879,7 +11879,7 @@ if !FEATURE_KEEP_UNREFERENCED
 ;;; $E01B: Unused. Slow down Ridley based on projectile damage ;;;
 UNUSED_SlowDownRidleyBasedOnProjectileDamage_A6E01B:
 ; Similar to EnemyShot_BabyMetroid
-    LDX.W EnemyIndex                                                     ;A6E01B;
+    LDX.B EnemyIndex                                                     ;A6E01B;
     LDA.W SamusProjectile_XPositions                                     ;A6E01E;
     SEC                                                                  ;A6E021;
     SBC.W Enemy.XPosition,X                                              ;A6E022;
@@ -11910,7 +11910,7 @@ UNUSED_SlowDownRidleyBasedOnProjectileDamage_A6E01B:
 +   PHA                                                                  ;A6E057;
     JSL.L CalculateXVelocityFromSpeedAndAngle                            ;A6E058;
     STA.B DP_Temp12                                                      ;A6E05C;
-    LDX.W EnemyIndex                                                     ;A6E05E;
+    LDX.B EnemyIndex                                                     ;A6E05E;
     EOR.W Ridley.XVelocity,X                                             ;A6E061;
     BPL +                                                                ;A6E064;
     LDA.B DP_Temp12                                                      ;A6E066;
@@ -11921,7 +11921,7 @@ UNUSED_SlowDownRidleyBasedOnProjectileDamage_A6E01B:
 +   PLA                                                                  ;A6E06F;
     JSL.L CalculateYVelocityFromSpeedAndAngle                            ;A6E070;
     STA.B DP_Temp12                                                      ;A6E074;
-    LDX.W EnemyIndex                                                     ;A6E076;
+    LDX.B EnemyIndex                                                     ;A6E076;
     EOR.W Ridley.YVelocity,X                                             ;A6E079;
     BPL .return                                                          ;A6E07C;
     LDA.B DP_Temp12                                                      ;A6E07E;
@@ -13371,7 +13371,7 @@ Spritemap_Ridley_FacingRight_Torso:
 
 ;;; $EFB1: Initialisation AI - enemy $E1FF (Ceres steam) ;;;
 InitAI_CeresSteam:
-    LDX.W EnemyIndex                                                     ;A6EFB1;
+    LDX.B EnemyIndex                                                     ;A6EFB1;
     STZ.W Enemy.GFXOffset,X                                              ;A6EFB4;
     LDA.W Enemy.properties,X                                             ;A6EFB7;
     ORA.W #$2000                                                         ;A6EFBA;
@@ -13420,7 +13420,7 @@ InitAI_CeresSteam_initialFunctionPointers:
 
 ;;; $F00D: Main AI - enemy $E1FF (Ceres steam) ;;;
 MainAI_CeresSteam:
-    LDX.W EnemyIndex                                                     ;A6F00D;
+    LDX.B EnemyIndex                                                     ;A6F00D;
     LDA.W #$7FFF                                                         ;A6F010;
     STA.W Enemy.health,X                                                 ;A6F013;
     JMP.W (Steam.function,X)                                             ;A6F016;
@@ -13433,7 +13433,7 @@ Func_CeresSteam_CalculateGraphicalOffsetInRotatingElevRoom:
     LDA.W Enemy.YPosition,X                                              ;A6F01E;
     STA.B DP_Temp14                                                      ;A6F021;
     JSL.L Calculate_CeresSteamPosition_InRotatingElevatorRoom            ;A6F023;
-    LDX.W EnemyIndex                                                     ;A6F027;
+    LDX.B EnemyIndex                                                     ;A6F027;
     LDA.B DP_Temp12                                                      ;A6F02A;
     SEC                                                                  ;A6F02C;
     SBC.W Enemy.XPosition,X                                              ;A6F02D;
@@ -13447,7 +13447,7 @@ Func_CeresSteam_CalculateGraphicalOffsetInRotatingElevRoom:
 
 ;;; $F03F: Enemy touch - enemy $E1FF (Ceres steam) ;;;
 EnemyTouch_CeresSteam:
-    LDX.W EnemyIndex                                                     ;A6F03F;
+    LDX.B EnemyIndex                                                     ;A6F03F;
     LDA.W #$7FFF                                                         ;A6F042;
     STA.W Enemy.health,X                                                 ;A6F045;
     JSL.L NormalEnemyTouchAI                                             ;A6F048;
@@ -14325,7 +14325,7 @@ Instruction_CeresDoor_QueueOpeningSFX:
 
 ;;; $F6C5: Initialisation AI - enemy $E23F (Ceres door) ;;;
 InitAI_CeresDoor:
-    LDX.W EnemyIndex                                                     ;A6F6C5;
+    LDX.B EnemyIndex                                                     ;A6F6C5;
     LDA.W #Spritemap_CeresDoor_Placeholder                               ;A6F6C8;
     STA.W Enemy.spritemap,X                                              ;A6F6CB;
     LDA.W #$0001                                                         ;A6F6CE;
@@ -14407,7 +14407,7 @@ LoadRotatingElevatorRoomPreExplosioNDoorOverlayTilesIfNeeded:
 
 ;;; $F765: Main AI - enemy $E23F (Ceres door) ;;;
 MainAI_CeresDoor:
-    LDX.W EnemyIndex                                                     ;A6F765;
+    LDX.B EnemyIndex                                                     ;A6F765;
     JMP.W (CeresDoor.function,X)                                         ;A6F768;
 
 
@@ -14431,7 +14431,7 @@ HandleEarthquakeDuringEscape:
     BCC .return                                                          ;A6F779;
     LDA.W EarthquakeTimer                                                ;A6F77B;
     BNE .return                                                          ;A6F77E;
-    LDA.W RandomNumberSeed                                               ;A6F780;
+    LDA.B RandomNumberSeed                                               ;A6F780;
     AND.W #$0FFF                                                         ;A6F783;
     CMP.W #$0080                                                         ;A6F786;
     BCC .random                                                          ;A6F789;
@@ -14455,7 +14455,7 @@ HandleEarthquakeDuringEscape:
 
 ;;; $F7A5: Ceres door function - Ridley escape mode 7 wall ;;;
 Function_CeresDoor_RidleyEscapeMode7Wall:
-    LDX.W EnemyIndex                                                     ;A6F7A5;
+    LDX.B EnemyIndex                                                     ;A6F7A5;
     JSL.L Instruction_CeresDoor_SetAsInvisible                           ;A6F7A8;
     LDA.W CeresStatus                                                    ;A6F7AC;
     LSR                                                                  ;A6F7AF;
@@ -14776,7 +14776,7 @@ Spritemap_CeresDoor_RidleyEscapeMode7RightWall:
 
 ;;; $FB72: Initialisation AI - enemy $E27F (zebetites) ;;;
 InitAI_Zebetite:
-    LDX.W EnemyIndex                                                     ;A6FB72;
+    LDX.B EnemyIndex                                                     ;A6FB72;
     LDA.W Enemy.properties,X                                             ;A6FB75;
     ORA.W #$A000                                                         ;A6FB78;
     STA.W Enemy.properties,X                                             ;A6FB7B;
@@ -14865,7 +14865,7 @@ InitAI_Zebetite:
 
 ;;; $FC33: Main AI - enemy $E27F (zebetites) ;;;
 MainAI_Zebetite:
-    LDX.W EnemyIndex                                                     ;A6FC33;
+    LDX.B EnemyIndex                                                     ;A6FC33;
     LDA.W EarthquakeTimer                                                ;A6FC36;
     BNE .function                                                        ;A6FC39;
     STZ.W Enemy.shakeTimer,X                                             ;A6FC3B;
@@ -14879,7 +14879,7 @@ Function_Zebetite_SpawnBottomZebetiteIfNeeded:
     LDA.W Zebetite.multiPartFlag,X                                       ;A6FC41;
     BPL .notNeeded                                                       ;A6FC44;
     JSR.W SpawnBottomZebetite                                            ;A6FC46;
-    LDA.W EnemyIndex                                                     ;A6FC49;
+    LDA.B EnemyIndex                                                     ;A6FC49;
     STA.W Zebetite.otherPartEnemyIndex,X                                 ;A6FC4C;
     TAY                                                                  ;A6FC4F;
     TXA                                                                  ;A6FC50;
@@ -14906,7 +14906,7 @@ Function_Zebetite_WaitForDoorTransitionToFinish:
 Function_Zebetite_Active:
     JSR.W HandleZebetitePaletteAnimation                                 ;A6FC67;
     JSR.W SetZebetiteInstList                                            ;A6FC6A;
-    LDX.W EnemyIndex                                                     ;A6FC6D;
+    LDX.B EnemyIndex                                                     ;A6FC6D;
     LDA.W Enemy.health,X                                                 ;A6FC70;
     BEQ .destroyed                                                       ;A6FC73;
     CLC                                                                  ;A6FC75;
@@ -14928,7 +14928,7 @@ Function_Zebetite_Active:
 
   .singlePart:
     JSR.W MarkZebetiteDestroyedEvent                                     ;A6FC91;
-    LDX.W EnemyIndex                                                     ;A6FC94;
+    LDX.B EnemyIndex                                                     ;A6FC94;
     LDA.W Zebetite.destroyedCounter,X                                    ;A6FC97;
     CMP.W #$0004                                                         ;A6FC9A;
     BPL .noMore                                                          ;A6FC9D;
@@ -14942,7 +14942,7 @@ Function_Zebetite_Active:
 MarkZebetiteDestroyedEvent:
 ; Increment destroyed counter and painstakingly convert this to mark/unmark event routine calls,
 ; which are a long-winded way of writing `$7E:D820 = [$7E:D820] & ~(7 << 3) | Zebetite.destroyedCounter << 3`
-    LDX.W EnemyIndex                                                     ;A6FCAA;
+    LDX.B EnemyIndex                                                     ;A6FCAA;
     LDA.W Zebetite.destroyedCounter,X                                    ;A6FCAD;
     INC                                                                  ;A6FCB0;
     STA.W Zebetite.destroyedCounter,X                                    ;A6FCB1;
@@ -15017,7 +15017,7 @@ SpawnBottomZebetite:
 
 ;;; $FD09: Set zebetite instruction list ;;;
 SetZebetiteInstList:
-    LDX.W EnemyIndex                                                     ;A6FD09;
+    LDX.B EnemyIndex                                                     ;A6FD09;
     LDY.W #$0000                                                         ;A6FD0C;
     LDA.W Enemy.health,X                                                 ;A6FD0F;
     CMP.W #$0320                                                         ;A6FD12;
@@ -15068,7 +15068,7 @@ HandleZebetitePaletteAnimation:
 ; so it's fine, but zebetites initialisation does use `Enemy.var2,X`, so one of two routines has to be wrong
     LDA.L PaletteChangeNumerator                                         ;A6FD5E;
     BNE .return                                                          ;A6FD62;
-    LDX.W EnemyIndex                                                     ;A6FD64;
+    LDX.B EnemyIndex                                                     ;A6FD64;
     LDA.W Enemy.init0,X                                                  ;A6FD67;
     BNE .return                                                          ;A6FD6A;
     LDA.W Enemy.var2                                                     ;A6FD6C;
@@ -15111,7 +15111,7 @@ EnemyShot_Zebetite:
     JSL.L QueueSound_Lib3_Max6                                           ;A6FDB0;
     PLA                                                                  ;A6FDB4;
     JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External     ;A6FDB5;
-    LDX.W EnemyIndex                                                     ;A6FDB9;
+    LDX.B EnemyIndex                                                     ;A6FDB9;
     LDY.W Zebetite.otherPartEnemyIndex,X                                 ;A6FDBC;
     LDA.W Enemy.health,X                                                 ;A6FDBF;
     STA.W Enemy.health,Y                                                 ;A6FDC2;

@@ -5373,7 +5373,7 @@ Handle_Earthquake_SoundEffect:
 
   .quake:
     JSL.L QueueSound_Lib2_Max6                                           ;88B23B;
-    LDA.W RandomNumberSeed                                               ;88B23F;
+    LDA.B RandomNumberSeed                                               ;88B23F;
     AND.W #$0003                                                         ;88B242;
     ADC.W .baseTimer,X                                                   ;88B245;
     STA.W EarthquakeSFX_Timer                                            ;88B248;
@@ -5685,16 +5685,16 @@ PreInstruction_LavaAcid_BG3YScroll:
     BNE +                                                                ;88B431;
     LDA.W #$0070                                                         ;88B433;
     STA.W HDMAObject_Var2,X                                              ;88B436;
-    LDA.W RandomNumberSeed                                               ;88B439;
+    LDA.B RandomNumberSeed                                               ;88B439;
     AND.W #$0007                                                         ;88B43C;
     TAY                                                                  ;88B43F;
     LDA.W Lava_SoundEffects,Y                                            ;88B440;
     AND.W #$00FF                                                         ;88B443;
     JSL.L QueueSound_Lib2_Max6                                           ;88B446;
 
-+   LDA.W RandomNumberSeed                                               ;88B44A;
++   LDA.B RandomNumberSeed                                               ;88B44A;
     XBA                                                                  ;88B44D;
-    STA.W RandomNumberSeed                                               ;88B44E;
+    STA.B RandomNumberSeed                                               ;88B44E;
     LDX.W HDMAObject_Index                                               ;88B451;
     LDA.W HDMAObject_ChannelIndicesBanks,X                               ;88B454;
     AND.W #$00FF                                                         ;88B457;
@@ -9287,7 +9287,7 @@ Instruction_HDMAObjectBG3XVelocity:
 ;; Parameters:
 ;;     X: HDMA object index
     PHX                                                                  ;88D981;
-    LDA.W RandomNumberSeed                                               ;88D982;
+    LDA.B RandomNumberSeed                                               ;88D982;
     LSR                                                                  ;88D985;
     AND.W #$0006                                                         ;88D986;
     TAX                                                                  ;88D989;

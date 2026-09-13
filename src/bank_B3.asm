@@ -666,7 +666,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $86FB: Initialisation AI - enemy $F153 (unused spinning turtle eye) ;;;
 UNUSED_InitAI_SpinningTurtleEye_B386FB:
-    LDX.W EnemyIndex                                                     ;B386FB;
+    LDX.B EnemyIndex                                                     ;B386FB;
     LDA.W Enemy.properties,X                                             ;B386FE;
     ORA.W #$2000                                                         ;B38701;
     STA.W Enemy.properties,X                                             ;B38704;
@@ -677,7 +677,7 @@ UNUSED_InitAI_SpinningTurtleEye_B386FB:
 
 ;;; $870E: Main AI - enemy $F153 (unused spinning turtle eye) ;;;
 UNUSED_MainAI_SpinningTurtleEye_B3870E:
-    LDX.W EnemyIndex                                                     ;B3870E;
+    LDX.B EnemyIndex                                                     ;B3870E;
     RTL                                                                  ;B38711;
 
 
@@ -839,7 +839,7 @@ InstListPointers_Zebbo:
 
 ;;; $883B: Initialisation AI - enemy $F193/$F1D3 (zeb / zebbo) ;;;
 InitAI_Zeb_Zebbo:
-    LDX.W EnemyIndex                                                     ;B3883B;
+    LDX.B EnemyIndex                                                     ;B3883B;
     LDA.W Enemy.XPosition,X                                              ;B3883E;
     STA.W Zeb.spawnXPosition,X                                           ;B38841;
     LDA.W Enemy.YPosition,X                                              ;B38844;
@@ -867,13 +867,13 @@ InitAI_Zeb_Zebbo:
 
 ;;; $887A: Main AI - enemy $F193/$F1D3 (zeb / zebbo) ;;;
 MainAI_Zeb_Zebbo:
-    LDX.W EnemyIndex                                                     ;B3887A;
+    LDX.B EnemyIndex                                                     ;B3887A;
     JMP.W (Zeb.function,X)                                               ;B3887D;
 
 
 ;;; $8880: Zeb/zebbo function - wait until on screen ;;;
 Function_Zeb_Zebbo_WaitUntilOnScreen:
-    LDX.W EnemyIndex                                                     ;B38880;
+    LDX.B EnemyIndex                                                     ;B38880;
     JSL.L CheckIfEnemyCenterIsOnScreen                                   ;B38883;
     BNE .return                                                          ;B38887;
     LDA.W #Function_Zeb_Zebbo_WaitForSamusToGetNear                      ;B38889;
@@ -1017,7 +1017,7 @@ Function_Zeb_Zebbo_SpawnDelay:
 
 ;;; $898B: Set zeb/zebbo instruction list ;;;
 Set_Zeb_Zebbo_InstList:
-    LDX.W EnemyIndex                                                     ;B3898B;
+    LDX.B EnemyIndex                                                     ;B3898B;
     LDA.W Zeb.instListTableIndex,X                                       ;B3898E;
     CMP.L Zeb.previousInstListTableIndex,X                               ;B38991;
     BEQ .return                                                          ;B38995;
@@ -1239,7 +1239,7 @@ InstList_Gamet_FacingRight_Shooting:
 
 ;;; $8B61: Initialisation AI - enemy $F213 (gamet) ;;;
 InitAI_Gamet:
-    LDX.W EnemyIndex                                                     ;B38B61;
+    LDX.B EnemyIndex                                                     ;B38B61;
     LDA.W Enemy.XPosition,X                                              ;B38B64;
     STA.W Gamet.spawnXPosition,X                                         ;B38B67;
     LDA.W Enemy.YPosition,X                                              ;B38B6A;
@@ -1266,7 +1266,7 @@ InitAI_Gamet:
 
 ;;; $8B9E: Main AI - enemy $F213 (gamet) ;;;
 MainAI_Gamet:
-    LDX.W EnemyIndex                                                     ;B38B9E;
+    LDX.B EnemyIndex                                                     ;B38B9E;
     JSR.W (Gamet.function,X)                                             ;B38BA1;
     JSR.W ResetEnemyIfOffScreen                                          ;B38BA4;
     RTL                                                                  ;B38BA7;
@@ -1274,7 +1274,7 @@ MainAI_Gamet:
 
 ;;; $8BA8: Reset enemy if off-screen ;;;
 ResetEnemyIfOffScreen:
-    LDX.W EnemyIndex                                                     ;B38BA8;
+    LDX.B EnemyIndex                                                     ;B38BA8;
     JSL.L CheckIfEnemyCenterIsOnScreen                                   ;B38BAB;
     BEQ .return                                                          ;B38BAF;
     LDA.W Enemy.properties,X                                             ;B38BB1;
@@ -1293,7 +1293,7 @@ ResetEnemyIfOffScreen:
 
 ;;; $8BCD: Gamet function - wait until everyone's ready ;;;
 Function_Gamet_WaitUntilAllReady:
-    LDX.W EnemyIndex                                                     ;B38BCD;
+    LDX.B EnemyIndex                                                     ;B38BCD;
     LDA.W Enemy.init1,X                                                  ;B38BD0;
     AND.W #$00FF                                                         ;B38BD3;
     BEQ .return                                                          ;B38BD6;
@@ -1318,7 +1318,7 @@ Function_Gamet_WaitUntilAllReady:
 
 ;;; $8BFF: Gamet function - wait for Samus to get near ;;;
 Function_Gamet_WaitForSamusToGetNear:
-    LDX.W EnemyIndex                                                     ;B38BFF;
+    LDX.B EnemyIndex                                                     ;B38BFF;
     LDA.W Enemy.init1,X                                                  ;B38C02;
     AND.W #$00FF                                                         ;B38C05;
     JSL.L IsSamusWithinAPixelColumnsOfEnemy                              ;B38C08;
@@ -1388,7 +1388,7 @@ SetupGametFormation:
 
 ;;; $8CA6: Gamet function - rising ;;;
 Function_Gamet_Rising:
-    LDX.W EnemyIndex                                                     ;B38CA6;
+    LDX.B EnemyIndex                                                     ;B38CA6;
     LDA.W Enemy.properties,X                                             ;B38CA9;
     AND.W #$FEFF                                                         ;B38CAC;
     STA.W Enemy.properties,X                                             ;B38CAF;
@@ -1430,7 +1430,7 @@ Function_Gamet_Rising:
 
 ;;; $8CFF: Gamet function - move to formation - center ;;;
 Function_Gamet_MoveToFormation_Center:
-    LDX.W EnemyIndex                                                     ;B38CFF;
+    LDX.B EnemyIndex                                                     ;B38CFF;
     INC.W Gamet.shootDelayTimer,X                                        ;B38D02;
     LDA.W #Function_Gamet_ShootDelay                                     ;B38D05;
     STA.W Gamet.function,X                                               ;B38D08;
@@ -1439,7 +1439,7 @@ Function_Gamet_MoveToFormation_Center:
 
 ;;; $8D0C: Gamet function - move to formation - upper middle ;;;
 Function_Gamet_MoveToFormation_UpperMiddle:
-    LDX.W EnemyIndex                                                     ;B38D0C;
+    LDX.B EnemyIndex                                                     ;B38D0C;
     INC.W Gamet.shootDelayTimer,X                                        ;B38D0F;
     LDA.W #regional($0080, $00A0)                                        ;B38D12;
     TAY                                                                  ;B38D15;
@@ -1472,7 +1472,7 @@ Function_Gamet_MoveToFormation_UpperMiddle:
 
 ;;; $8D4E: Gamet function - move to formation - top ;;;
 Function_Gamet_MoveToFormation_Top:
-    LDX.W EnemyIndex                                                     ;B38D4E;
+    LDX.B EnemyIndex                                                     ;B38D4E;
     INC.W Gamet.shootDelayTimer,X                                        ;B38D51;
     LDA.W #regional($0080, $00A0)                                        ;B38D54;
     TAY                                                                  ;B38D57;
@@ -1505,7 +1505,7 @@ Function_Gamet_MoveToFormation_Top:
 
 ;;; $8D90: Gamet function - move to formation - lower middle ;;;
 Function_Gamet_MoveToFormation_LowerMiddle:
-    LDX.W EnemyIndex                                                     ;B38D90;
+    LDX.B EnemyIndex                                                     ;B38D90;
     INC.W Gamet.shootDelayTimer,X                                        ;B38D93;
     LDA.W #regional($0080, $00A0)                                        ;B38D96;
     TAY                                                                  ;B38D99;
@@ -1538,7 +1538,7 @@ Function_Gamet_MoveToFormation_LowerMiddle:
 
 ;;; $8DD2: Gamet function - move to formation - bottom ;;;
 Function_Gamet_MoveToFormation_Bottom:
-    LDX.W EnemyIndex                                                     ;B38DD2;
+    LDX.B EnemyIndex                                                     ;B38DD2;
     INC.W Gamet.shootDelayTimer,X                                        ;B38DD5;
     LDA.W #regional($0080, $00A0)                                        ;B38DD8;
     TAY                                                                  ;B38DDB;
@@ -1571,7 +1571,7 @@ Function_Gamet_MoveToFormation_Bottom:
 
 ;;; $8E14: Gamet function - shooting left ;;;
 Function_Gamet_ShootingLeft:
-    LDX.W EnemyIndex                                                     ;B38E14;
+    LDX.B EnemyIndex                                                     ;B38E14;
     LDA.W Gamet.XSpeedTableIndex,X                                       ;B38E17;
     TAY                                                                  ;B38E1A;
     LDA.W Enemy.XSubPosition,X                                           ;B38E1B;
@@ -1590,7 +1590,7 @@ Function_Gamet_ShootingLeft:
 
 ;;; $8E35: Gamet function - shooting right ;;;
 Function_Gamet_ShootingRight:
-    LDX.W EnemyIndex                                                     ;B38E35;
+    LDX.B EnemyIndex                                                     ;B38E35;
     LDA.W Gamet.XSpeedTableIndex,X                                       ;B38E38;
     TAY                                                                  ;B38E3B;
     LDA.W Enemy.XSubPosition,X                                           ;B38E3C;
@@ -1610,14 +1610,14 @@ Function_Gamet_ShootingRight:
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $8E56: Unused. RTS ;;;
 UNUSED_LoadEnemyIndex_B38E56:
-    LDX.W EnemyIndex                                                     ;B38E56;
+    LDX.B EnemyIndex                                                     ;B38E56;
     RTS                                                                  ;B38E59;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $8E5A: Gamet function - shoot delay ;;;
 Function_Gamet_ShootDelay:
-    LDX.W EnemyIndex                                                     ;B38E5A;
+    LDX.B EnemyIndex                                                     ;B38E5A;
     INC.W Gamet.shootDelayTimer,X                                        ;B38E5D;
     LDA.W Gamet.shootDelayTimer,X                                        ;B38E60;
     CMP.L Gamet.shootDelay,X                                             ;B38E63;
@@ -1741,7 +1741,7 @@ InstList_Geega_FacingRight_Shooting:
 
 ;;; $8F4C: Initialisation AI - enemy $F253 (geega) ;;;
 InitAI_Geega:
-    LDX.W EnemyIndex                                                     ;B38F4C;
+    LDX.B EnemyIndex                                                     ;B38F4C;
     LDA.W Enemy.XPosition,X                                              ;B38F4F;
     STA.L Geega.spawnXPosition,X                                         ;B38F52;
     LDA.W Enemy.YPosition,X                                              ;B38F56;
@@ -1780,14 +1780,14 @@ InitAI_Geega:
 
 ;;; $8FAE: Main AI - enemy $F253 (geega) ;;;
 MainAI_Geega:
-    LDX.W EnemyIndex                                                     ;B38FAE;
+    LDX.B EnemyIndex                                                     ;B38FAE;
     JSR.W (Geega.function,X)                                             ;B38FB1;
     RTL                                                                  ;B38FB4;
 
 
 ;;; $8FB5: Geega function - wait for Samus to get near ;;;
 Function_Geega_WaitForSamusToGetNear:
-    LDX.W EnemyIndex                                                     ;B38FB5;
+    LDX.B EnemyIndex                                                     ;B38FB5;
     LDA.W Enemy.init0,X                                                  ;B38FB8;
     BNE .leftwards                                                       ;B38FBB;
     JSL.L Get_SamusX_minus_EnemyX                                        ;B38FBD;
@@ -1846,7 +1846,7 @@ Function_Geega_ShootDelay:
 
 ;;; $9028: Geega function - shooting left ;;;
 Function_Geega_ShootingLeft:
-    LDX.W EnemyIndex                                                     ;B39028;
+    LDX.B EnemyIndex                                                     ;B39028;
     JSR.W MoveGeegaLeft                                                  ;B3902B;
     JSL.L CheckIfEnemyCenterIsOnScreen                                   ;B3902E;
     BEQ .onScreen                                                        ;B39032;
@@ -1911,7 +1911,7 @@ MoveGeegaLeft:
 
 ;;; $90BD: Geega function - shooting right ;;;
 Function_Geega_ShootingRight:
-    LDX.W EnemyIndex                                                     ;B390BD;
+    LDX.B EnemyIndex                                                     ;B390BD;
     JSR.W MoveGeegaRight                                                 ;B390C0;
     JSL.L CheckIfEnemyCenterIsOnScreen                                   ;B390C3;
     BEQ .onScreen                                                        ;B390C7;
@@ -1980,7 +1980,7 @@ MoveGeegaRight:
 
 ;;; $915A: Geega function - dipping left ;;;
 Function_Geega_DippingLeft:
-    LDX.W EnemyIndex                                                     ;B3915A;
+    LDX.B EnemyIndex                                                     ;B3915A;
     JSL.L CheckIfEnemyCenterIsOnScreen                                   ;B3915D;
     BEQ .onScreen                                                        ;B39161;
     LDA.L Geega.spawnXPosition,X                                         ;B39163;
@@ -2032,7 +2032,7 @@ Function_Geega_DippingLeft:
 
 ;;; $91D8: Geega function - dipping right ;;;
 Function_Geega_DippingRight:
-    LDX.W EnemyIndex                                                     ;B391D8;
+    LDX.B EnemyIndex                                                     ;B391D8;
     JSL.L CheckIfEnemyCenterIsOnScreen                                   ;B391DB;
     BEQ .onScreen                                                        ;B391DF;
     LDA.L Geega.spawnXPosition,X                                         ;B391E1;
@@ -2536,7 +2536,7 @@ endif
 
 ;;; $94C7: Instruction - enemy radius = 8 x 10h ;;;
 Instruction_Botwoon_EnemyRadius_8x10:
-    LDX.W EnemyIndex                                                     ;B394C7;
+    LDX.B EnemyIndex                                                     ;B394C7;
     LDA.W #$0008                                                         ;B394CA;
     STA.W Enemy.XHitboxRadius,X                                          ;B394CD;
     LDA.W #$0010                                                         ;B394D0;
@@ -2546,7 +2546,7 @@ Instruction_Botwoon_EnemyRadius_8x10:
 
 ;;; $94D7: Instruction - enemy radius = Ch x Ch ;;;
 Instruction_Botwoon_EnemyRadius_CxC:
-    LDX.W EnemyIndex                                                     ;B394D7;
+    LDX.B EnemyIndex                                                     ;B394D7;
     LDA.W #$000C                                                         ;B394DA;
     STA.W Enemy.XHitboxRadius,X                                          ;B394DD;
     LDA.W #$000C                                                         ;B394E0;
@@ -2556,7 +2556,7 @@ Instruction_Botwoon_EnemyRadius_CxC:
 
 ;;; $94E7: Instruction - enemy radius = 10h x 8 ;;;
 Instruction_Botwoon_EnemyRadius_10x8:
-    LDX.W EnemyIndex                                                     ;B394E7;
+    LDX.B EnemyIndex                                                     ;B394E7;
     LDA.W #$0010                                                         ;B394EA;
     STA.W Enemy.XHitboxRadius,X                                          ;B394ED;
     LDA.W #$0008                                                         ;B394F0;
@@ -2566,7 +2566,7 @@ Instruction_Botwoon_EnemyRadius_10x8:
 
 ;;; $94F7: Instruction - enemy radius = Ch x Ch ;;;
 Instruction_Botwoon_EnemyRadius_CxC_duplicate:
-    LDX.W EnemyIndex                                                     ;B394F7;
+    LDX.B EnemyIndex                                                     ;B394F7;
     LDA.W #$000C                                                         ;B394FA;
     STA.W Enemy.XHitboxRadius,X                                          ;B394FD;
     LDA.W #$000C                                                         ;B39500;
@@ -2576,7 +2576,7 @@ Instruction_Botwoon_EnemyRadius_CxC_duplicate:
 
 ;;; $9507: Instruction - enemy radius = 8 x 10h ;;;
 Instruction_Botwoon_EnemyRadius_8x10_duplicate:
-    LDX.W EnemyIndex                                                     ;B39507;
+    LDX.B EnemyIndex                                                     ;B39507;
     LDA.W #$0008                                                         ;B3950A;
     STA.W Enemy.XHitboxRadius,X                                          ;B3950D;
     LDA.W #$0010                                                         ;B39510;
@@ -2586,7 +2586,7 @@ Instruction_Botwoon_EnemyRadius_8x10_duplicate:
 
 ;;; $9517: Instruction - enemy radius = 8 x 10h ;;;
 Instruction_Botwoon_EnemyRadius_8x10_duplicate_again:
-    LDX.W EnemyIndex                                                     ;B39517;
+    LDX.B EnemyIndex                                                     ;B39517;
     LDA.W #$0008                                                         ;B3951A;
     STA.W Enemy.XHitboxRadius,X                                          ;B3951D;
     LDA.W #$0010                                                         ;B39520;
@@ -2596,7 +2596,7 @@ Instruction_Botwoon_EnemyRadius_8x10_duplicate_again:
 
 ;;; $9527: Instruction - enemy radius = Ch x Ch ;;;
 Instruction_Botwoon_EnemyRadius_CxC_duplicate_again:
-    LDX.W EnemyIndex                                                     ;B39527;
+    LDX.B EnemyIndex                                                     ;B39527;
     LDA.W #$000C                                                         ;B3952A;
     STA.W Enemy.XHitboxRadius,X                                          ;B3952D;
     LDA.W #$000C                                                         ;B39530;
@@ -2606,7 +2606,7 @@ Instruction_Botwoon_EnemyRadius_CxC_duplicate_again:
 
 ;;; $9537: Instruction - enemy radius = 10h x 8 ;;;
 Instruction_Botwoon_EnemyRadius_10x8_duplicate:
-    LDX.W EnemyIndex                                                     ;B39537;
+    LDX.B EnemyIndex                                                     ;B39537;
     LDA.W #$0010                                                         ;B3953A;
     STA.W Enemy.XHitboxRadius,X                                          ;B3953D;
     LDA.W #$0008                                                         ;B39540;
@@ -2616,7 +2616,7 @@ Instruction_Botwoon_EnemyRadius_10x8_duplicate:
 
 ;;; $9547: Instruction - enemy radius = Ch x Ch ;;;
 Instruction_Botwoon_EnemyRadius_CxC_duplicate_again2:
-    LDX.W EnemyIndex                                                     ;B39547;
+    LDX.B EnemyIndex                                                     ;B39547;
     LDA.W #$000C                                                         ;B3954A;
     STA.W Enemy.XHitboxRadius,X                                          ;B3954D;
     LDA.W #$000C                                                         ;B39550;
@@ -2626,7 +2626,7 @@ Instruction_Botwoon_EnemyRadius_CxC_duplicate_again2:
 
 ;;; $9557: Instruction - enemy radius = 8 x 10h ;;;
 Instruction_Botwoon_EnemyRadius_8x10_duplicate_again2:
-    LDX.W EnemyIndex                                                     ;B39557;
+    LDX.B EnemyIndex                                                     ;B39557;
     LDA.W #$0008                                                         ;B3955A;
     STA.W Enemy.XHitboxRadius,X                                          ;B3955D;
     LDA.W #$0010                                                         ;B39560;
@@ -2636,7 +2636,7 @@ Instruction_Botwoon_EnemyRadius_8x10_duplicate_again2:
 
 ;;; $9567: Instruction - set Botwoon spitting flag ;;;
 Instruction_Botwoon_SetSpittingFlag:
-    LDX.W EnemyIndex                                                     ;B39567;
+    LDX.B EnemyIndex                                                     ;B39567;
     LDA.W #$0001                                                         ;B3956A;
     STA.L Botwoon.spittingFlag,X                                         ;B3956D;
     RTL                                                                  ;B39571;
@@ -2666,7 +2666,7 @@ InitAI_Botwoon:
     LDA.L SRAMMirror_Boss_Maridia                                        ;B39583;
     AND.W #$0002                                                         ;B39587;
     BEQ .notDead                                                         ;B3958A;
-    LDX.W EnemyIndex                                                     ;B3958C;
+    LDX.B EnemyIndex                                                     ;B3958C;
     JSL.L Spawn_Hardcoded_PLM                                            ;B3958F;
     db $0F,$04                                                           ;B39593;
     dw PLMEntries_clearBotwoonWall                                       ;B39595;
@@ -2680,14 +2680,14 @@ InitAI_Botwoon:
     JMP.W .return                                                        ;B395AD;
 
   .notDead:
-    LDX.W EnemyIndex                                                     ;B395B0;
+    LDX.B EnemyIndex                                                     ;B395B0;
     LDA.W #$0018                                                         ;B395B3;
     STA.W Botwoon.bodyProjectileIndex,X                                  ;B395B6;
 
   .loop:
     LDY.W #EnemyProjectile_BotwoonsBody                                  ;B395B9;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;B395BC;
-    LDX.W EnemyIndex                                                     ;B395C0;
+    LDX.B EnemyIndex                                                     ;B395C0;
     DEC.W Botwoon.bodyProjectileIndex,X                                  ;B395C3;
     DEC.W Botwoon.bodyProjectileIndex,X                                  ;B395C6;
     BPL .loop                                                            ;B395C9;
@@ -2748,7 +2748,7 @@ InitAI_Botwoon:
 
 ;;; $9668: Main AI - enemy $F293 (Botwoon) ;;;
 MainAI_Botwoon:
-    LDX.W EnemyIndex                                                     ;B39668;
+    LDX.B EnemyIndex                                                     ;B39668;
     JSR.W BotwoonDeathCheck                                              ;B3966B;
     JSR.W (Botwoon.function,X)                                           ;B3966E;
     JSR.W BotwoonHealthBasedPaletteHandling                              ;B39671;
@@ -2780,7 +2780,7 @@ UNUSED_SpeedTable_Random_B3967B:
 
 ;;; $9696: Unused ;;;
 UNUSED_Botwoon_MaybeSpitting_B39396:
-    LDX.W EnemyIndex                                                     ;B39696;
+    LDX.B EnemyIndex                                                     ;B39696;
     LDA.L Botwoon.deathFlag,X                                            ;B39699;
     BNE +                                                                ;B3969D;
     LDA.L ExtraEnemy8000+$1C,X                                           ;B3969F;
@@ -2802,7 +2802,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $96C6: Botwoon death check ;;;
 BotwoonDeathCheck:
-    LDX.W EnemyIndex                                                     ;B396C6;
+    LDX.B EnemyIndex                                                     ;B396C6;
     LDA.L Botwoon.deathFlag,X                                            ;B396C9;
     BEQ .return                                                          ;B396CD;
     LDA.L Botwoon.tailShowingFlag,X                                      ;B396CF;
@@ -2877,7 +2877,7 @@ BotwoonHealthThresholdsForPaletteChange:
 
 ;;; $982B: Botwoon health-based palette handling ;;;
 BotwoonHealthBasedPaletteHandling:
-    LDX.W EnemyIndex                                                     ;B3982B;
+    LDX.B EnemyIndex                                                     ;B3982B;
     LDA.L Botwoon.healthBasedPaletteIndex,X                              ;B3982E;
     CMP.W #$0010                                                         ;B39832;
     BEQ .return                                                          ;B39835;
@@ -2906,7 +2906,7 @@ BotwoonHealthBasedPaletteHandling:
     LDA.B DP_Temp14                                                      ;B39863;
     CMP.W #$0200                                                         ;B39865;
     BNE .loop                                                            ;B39868;
-    LDX.W EnemyIndex                                                     ;B3986A;
+    LDX.B EnemyIndex                                                     ;B3986A;
     LDA.L Botwoon.healthBasedPaletteIndex,X                              ;B3986D;
     INC                                                                  ;B39871;
     INC                                                                  ;B39872;
@@ -2918,7 +2918,7 @@ BotwoonHealthBasedPaletteHandling:
 
 ;;; $9878: Botwoon function - initial ;;;
 Function_Botwoon_Initial:
-    LDX.W EnemyIndex                                                     ;B39878;
+    LDX.B EnemyIndex                                                     ;B39878;
     LDA.L Botwoon.initTimer,X                                            ;B3987B;
     DEC                                                                  ;B3987F;
     STA.L Botwoon.initTimer,X                                            ;B39880;
@@ -2944,7 +2944,7 @@ BotwoonLeaveHoleAction_JumpTable:
 
 ;;; $989D: Botwoon function - go through hole ;;;
 Function_Botwoon_GoThroughHole:
-    LDX.W EnemyIndex                                                     ;B3989D;
+    LDX.B EnemyIndex                                                     ;B3989D;
     LDA.L Botwoon.goingThroughHoleFlag,X                                 ;B398A0;
     BEQ .moveAround                                                      ;B398A4;
     LDA.W #$0000                                                         ;B398A6;
@@ -2979,7 +2979,7 @@ Function_Botwoon_GoThroughHole:
 
 ;;; $98EC: Set up Botwoon moving around ;;;
 SetupBotwoonMovingAround:
-    LDX.W EnemyIndex                                                     ;B398EC;
+    LDX.B EnemyIndex                                                     ;B398EC;
     LDA.W #Function_Botwoon_MovingAround                                 ;B398EF;
     STA.W Botwoon.function,X                                             ;B398F2;
     LDA.W #Function_Botwoon_Movement_StartMovingAccordingToMovementData  ;B398F5;
@@ -2996,7 +2996,7 @@ SetupBotwoonMovingAround:
 
 ;;; $9913: Set up Botwoon spitting ;;;
 SetupBotwoonSpitting:
-    LDX.W EnemyIndex                                                     ;B39913;
+    LDX.B EnemyIndex                                                     ;B39913;
     LDA.W #Function_Botwoon_Spitting                                     ;B39916;
     STA.W Botwoon.function,X                                             ;B39919;
     LDA.W #Function_Botwoon_Head_Spitting_SetAngleAndShow                ;B3991C;
@@ -3073,7 +3073,7 @@ SetBotwoonSpeed:
 
 ;;; $99A4: Botwoon function - moving around ;;;
 Function_Botwoon_MovingAround:
-    LDX.W EnemyIndex                                                     ;B399A4;
+    LDX.B EnemyIndex                                                     ;B399A4;
     LDA.L Botwoon.goingThroughHoleFlag,X                                 ;B399A7;
     BEQ .notGoingThroughHole                                             ;B399AB;
     LDA.W #$0000                                                         ;B399AD;
@@ -3104,7 +3104,7 @@ Function_Botwoon_MovingAround:
 
 ;;; $99E4: Botwoon function - spitting ;;;
 Function_Botwoon_Spitting:
-    LDX.W EnemyIndex                                                     ;B399E4;
+    LDX.B EnemyIndex                                                     ;B399E4;
     LDA.L Botwoon.spitTimer,X                                            ;B399E7;
     BNE .timerNotExpired                                                 ;B399EB;
     LDA.W #$0000                                                         ;B399ED;
@@ -3147,7 +3147,7 @@ Function_Botwoon_Spitting:
 
 ;;; $9A46: Botwoon function - death sequence - pre-death delay ;;;
 Function_Botwoon_DeathSequence_PreDeathDelay:
-    LDX.W EnemyIndex                                                     ;B39A46;
+    LDX.B EnemyIndex                                                     ;B39A46;
     LDA.L Botwoon.preDeathCounter,X                                      ;B39A49;
     INC                                                                  ;B39A4D;
     STA.L Botwoon.preDeathCounter,X                                      ;B39A4E;
@@ -3162,7 +3162,7 @@ Function_Botwoon_DeathSequence_PreDeathDelay:
 
 ;;; $9A5E: Botwoon function - death sequence - falling to ground ;;;
 Function_Botwoon_DeathSequence_FallingToGround:
-    LDX.W EnemyIndex                                                     ;B39A5E;
+    LDX.B EnemyIndex                                                     ;B39A5E;
     LDA.L Botwoon.fallingYSpeedTableIndex,X                              ;B39A61;
     AND.W #$FF00                                                         ;B39A65;
     XBA                                                                  ;B39A68;
@@ -3213,7 +3213,7 @@ Function_Botwoon_DeathSequence_FallingToGround:
 
 ;;; $9ACA: Botwoon function - death sequence - wait for body to fall to ground ;;;
 Function_Botwoon_DeathSequence_WaitForBodyToFallToGround:
-    LDX.W EnemyIndex                                                     ;B39ACA;
+    LDX.B EnemyIndex                                                     ;B39ACA;
     LDA.L Botwoon.bodyDeathFlag2,X                                       ;B39ACD;
     BEQ .return                                                          ;B39AD1;
     LDA.W #Function_Botwoon_DeathSequence_CrumblingWall                  ;B39AD3;
@@ -3322,7 +3322,7 @@ Function_Botwoon_DeathSequence_CrumblingWall:
 
 ;;; $9BB7: Botwoon movement function - move directly toward target hole ;;;
 Function_Botwoon_Movement_DirectlyTowardTargetHole:
-    LDX.W EnemyIndex                                                     ;B39BB7;
+    LDX.B EnemyIndex                                                     ;B39BB7;
     JSR.W CalculateXYOffsetsToTargetHole                                 ;B39BBA;
     JSL.L CalculateAngleOf_12_14_Offset                                  ;B39BBD;
     STA.L ExtraEnemy8000+$32,X                                           ;B39BC1;
@@ -3406,7 +3406,7 @@ CalculateXYOffsetsToTargetHole:
 
 ;;; $9C48: Move Botwoon according to speed and angle to target hole ;;;
 MoveBotwoonAccordingToSpeedAndAngleToTargetHole:
-    LDX.W EnemyIndex                                                     ;B39C48;
+    LDX.B EnemyIndex                                                     ;B39C48;
     LDA.L Botwoon.targetHoleAngle,X                                      ;B39C4B;
     STA.B DP_Temp12                                                      ;B39C4F;
     LDA.L Botwoon.speed,X                                                ;B39C51;
@@ -3428,7 +3428,7 @@ MoveBotwoonAccordingToSpeedAndAngleToTargetHole:
 
 ;;; $9C7B: Update Botwoon position history ;;;
 UpdateBotwoonPositionHistory:
-    LDY.W EnemyIndex                                                     ;B39C7B;
+    LDY.B EnemyIndex                                                     ;B39C7B;
     LDX.W Botwoon.positionHistoryIndex,Y                                 ;B39C7E;
     LDA.W Enemy.XPosition,Y                                              ;B39C81;
     STA.L BotwoonPositionHistory,X                                       ;B39C84;
@@ -3439,7 +3439,7 @@ UpdateBotwoonPositionHistory:
 
 ;;; $9C90: Update Botwoon body projectile positions ;;;
 UpdateBotwonBodyProjectilePositions:
-    LDX.W EnemyIndex                                                     ;B39C90;
+    LDX.B EnemyIndex                                                     ;B39C90;
     LDA.W Botwoon.positionHistoryIndex,X                                 ;B39C93;
     SEC                                                                  ;B39C96;
     SBC.W Botwoon.bodyTravelTime,X                                       ;B39C97;
@@ -3452,7 +3452,7 @@ UpdateBotwonBodyProjectilePositions:
     LDX.B DP_Temp14                                                      ;B39CA4;
     LDA.L Botwoon.projectileIndices,X                                    ;B39CA6;
     TAY                                                                  ;B39CAA;
-    LDX.W EnemyIndex                                                     ;B39CAB;
+    LDX.B EnemyIndex                                                     ;B39CAB;
     LDA.L Botwoon.targetPositionHistoryIndex,X                           ;B39CAE;
     CMP.B DP_Temp12                                                      ;B39CB2;
     BNE .toggleVisibilityEnd                                             ;B39CB4;
@@ -3483,7 +3483,7 @@ UpdateBotwonBodyProjectilePositions:
 
 +   CPX.W #$0000                                                         ;B39CED;
     BNE .toggleVisibilityEnd                                             ;B39CF0;
-    LDX.W EnemyIndex                                                     ;B39CF2;
+    LDX.B EnemyIndex                                                     ;B39CF2;
     LDA.W #$0000                                                         ;B39CF5;
     STA.L Botwoon.holeCollisionDisabledFlag,X                            ;B39CF8;
     STA.L Botwoon.tailShowingFlag,X                                      ;B39CFC;
@@ -3500,7 +3500,7 @@ UpdateBotwonBodyProjectilePositions:
     STA.W EnemyProjectile_XPositions,Y                                   ;B39D1A;
     LDA.L BotwoonPositionHistory+2,X                                     ;B39D1D;
     STA.W EnemyProjectile_YPositions,Y                                   ;B39D21;
-    LDX.W EnemyIndex                                                     ;B39D24;
+    LDX.B EnemyIndex                                                     ;B39D24;
     LDA.B DP_Temp12                                                      ;B39D27;
     SEC                                                                  ;B39D29;
     SBC.W Botwoon.bodyTravelTime,X                                       ;B39D2A;
@@ -3517,7 +3517,7 @@ UpdateBotwonBodyProjectilePositions:
 
 ;;; $9D3C: Update Botwoon position history index ;;;
 UpdateBotwoonPositionHistoryIndex:
-    LDX.W EnemyIndex                                                     ;B39D3C;
+    LDX.B EnemyIndex                                                     ;B39D3C;
     LDA.W Botwoon.positionHistoryIndex,X                                 ;B39D3F;
     CLC                                                                  ;B39D42;
     ADC.W #$0004                                                         ;B39D43;
@@ -3528,7 +3528,7 @@ UpdateBotwoonPositionHistoryIndex:
 
 ;;; $9D4D: Set Botwoon body instruction list table indices ;;;
 SetBotwoonInstListTableIndices:
-    LDX.W EnemyIndex                                                     ;B39D4D;
+    LDX.B EnemyIndex                                                     ;B39D4D;
     LDA.W #$0018                                                         ;B39D50;
     STA.B DP_Temp16                                                      ;B39D53;
 
@@ -3565,7 +3565,7 @@ SetBotwoonInstListTableIndices:
     BRA .merge                                                           ;B39D8F;
 
   .first:
-    LDX.W EnemyIndex                                                     ;B39D91;
+    LDX.B EnemyIndex                                                     ;B39D91;
     LDA.W Enemy.XPosition,X                                              ;B39D94;
     SEC                                                                  ;B39D97;
     SBC.W EnemyProjectile_XPositions,Y                                   ;B39D98;
@@ -3597,7 +3597,7 @@ SetBotwoonInstListTableIndices:
 
 ;;; $9DC0: Botwoon head function - moving around ;;;
 Function_Botwoon_Head_MovingAround:
-    LDX.W EnemyIndex                                                     ;B39DC0;
+    LDX.B EnemyIndex                                                     ;B39DC0;
     LDA.W Enemy.XPosition,X                                              ;B39DC3;
     SEC                                                                  ;B39DC6;
     SBC.L Botwoon.XPosition4FramesAgo,X                                  ;B39DC7;
@@ -3679,7 +3679,7 @@ BotwoonSpitSpeeds:
 
 ;;; $9E7D: Botwoon head function - spitting - set angle and show ;;;
 Function_Botwoon_Head_Spitting_SetAngleAndShow:
-    LDX.W EnemyIndex                                                     ;B39E7D;
+    LDX.B EnemyIndex                                                     ;B39E7D;
     LDA.W #$0002                                                         ;B39E80;
     STA.W Enemy.layer,X                                                  ;B39E83;
     JSL.L CalculateAngleOfSamusFromEnemy                                 ;B39E86;
@@ -3724,7 +3724,7 @@ Function_Botwoon_Head_Spitting_SetAngleAndShow:
 
 ;;; $9EE0: Botwoon head function - spitting - spawn 5 spit projectiles ;;;
 Function_Botwoon_Head_Spitting_Spawn5SpitProjectiles:
-    LDX.W EnemyIndex                                                     ;B39EE0;
+    LDX.B EnemyIndex                                                     ;B39EE0;
     LDA.L Botwoon.spittingFlag,X                                         ;B39EE3;
     BNE .spitting                                                        ;B39EE7;
     RTS                                                                  ;B39EE9;
@@ -3754,7 +3754,7 @@ Function_Botwoon_Head_Spitting_Spawn5SpitProjectiles:
     STA.W BotwoonSpitAngleParam                                          ;B39F1E;
     DEC.W BotwoonSpitLoopCounter                                         ;B39F21;
     BNE .loop                                                            ;B39F24;
-    LDX.W EnemyIndex
+    LDX.B EnemyIndex
     LDA.W #$0000                                                         ;B39F26;
     STA.L Botwoon.spittingFlag,X                                         ;B39F29;
     LDA.W #Function_Botwoon_Head_Spitting_Cooldown                       ;B39F2D;
@@ -3764,7 +3764,7 @@ Function_Botwoon_Head_Spitting_Spawn5SpitProjectiles:
 
 ;;; $9F34: Botwoon head function - spitting - spawn 3 spit projectiles ;;;
 Function_Botwoon_Head_Spitting_Spawn3SpitProjectiles:
-    LDX.W EnemyIndex                                                     ;B39F34;
+    LDX.B EnemyIndex                                                     ;B39F34;
     LDA.L Botwoon.spitAngle,X                                            ;B39F37;
     SEC                                                                  ;B39F3B;
     SBC.W #$0010                                                         ;B39F3C;
@@ -3789,7 +3789,7 @@ Function_Botwoon_Head_Spitting_Spawn3SpitProjectiles:
     STA.W BotwoonSpitAngleParam                                          ;B39F6B;
     DEC.W BotwoonSpitLoopCounter                                         ;B39F6E;
     BNE .loop                                                            ;B39F71;
-    LDX.W EnemyIndex
+    LDX.B EnemyIndex
     LDA.W #Function_Botwoon_Head_Spitting_Cooldown                       ;B39F73;
     STA.W Botwoon.headFunction,X                                         ;B39F76;
     RTS                                                                  ;B39F79;
@@ -3822,7 +3822,7 @@ Botwoon_vs_Hole_CollisionDetection:
 
   .loop:
     LDY.B DP_Temp12                                                      ;B39FA1;
-    LDX.W EnemyIndex                                                     ;B39FA3;
+    LDX.B EnemyIndex                                                     ;B39FA3;
     LDA.W Enemy.XPosition,X                                              ;B39FA6;
     CMP.W BotwoonHoleHitboxes_leftBoundary,Y                             ;B39FA9;
     BMI .notInHole                                                       ;B39FAC;
@@ -3864,7 +3864,7 @@ Botwoon_vs_Hole_CollisionDetection:
 ;;; $9FFF: Enemy touch - enemy $F293 (Botwoon) ;;;
 EnemyTouch_Botwoon:
     JSL.L CommonB3_NormalTouchAI_NoDeathCheck                            ;B39FFF;
-    LDX.W EnemyIndex                                                     ;B3A003;
+    LDX.B EnemyIndex                                                     ;B3A003;
     LDA.W Enemy.health,X                                                 ;B3A006;
     BNE .return                                                          ;B3A009;
     LDA.W #$0001                                                         ;B3A00B;
@@ -3877,7 +3877,7 @@ EnemyTouch_Botwoon:
 
 ;;; $A016: Enemy shot - enemy $F293 (Botwoon) ;;;
 EnemyShot_Botwoon:
-    LDX.W EnemyIndex                                                     ;B3A016;
+    LDX.B EnemyIndex                                                     ;B3A016;
     LDA.W Enemy.health,X                                                 ;B3A019;
     STA.L Botwoon.previousHealth,X                                       ;B3A01C;
     JSL.L CommonB3_NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic     ;B3A020;
@@ -3899,7 +3899,7 @@ EnemyShot_Botwoon:
 ;;; $A041: Power bomb reaction - enemy $F293 (Botwoon) ;;;
 PowerBombReaction_Botwoon:
     JSL.L CommonB3_NormalEnemyPowerBombAI_NoDeathCheck                   ;B3A041;
-    LDX.W EnemyIndex                                                     ;B3A045;
+    LDX.B EnemyIndex                                                     ;B3A045;
     LDA.W Enemy.health,X                                                 ;B3A048;
     BNE .return                                                          ;B3A04B;
     LDA.W #$0001                                                         ;B3A04D;
@@ -5098,7 +5098,7 @@ BotwoonMovementTable:
 ;;; $E250: Botwoon movement function - start moving Botwoon according to movement data ;;;
 Function_Botwoon_Movement_StartMovingAccordingToMovementData:
 ; Note the fixed point negation operation at $E2EB is off by 1.0 when the low word is zero
-    LDX.W EnemyIndex                                                     ;B3E250;
+    LDX.B EnemyIndex                                                     ;B3E250;
     LDA.W #Function_Botwoon_Movement_MoveAccordingToMovementData         ;B3E253;
     STA.W Botwoon.movementFunction,X                                     ;B3E256;
     LDA.W #$0000                                                         ;B3E259;
@@ -5122,7 +5122,7 @@ Function_Botwoon_Movement_StartMovingAccordingToMovementData:
 
 ;;; $E28C: Botwoon movement function - move Botwoon according to movement data ;;;
 Function_Botwoon_Movement_MoveAccordingToMovementData:
-    LDX.W EnemyIndex                                                     ;B3E28C;
+    LDX.B EnemyIndex                                                     ;B3E28C;
     STZ.B DP_Temp12                                                      ;B3E28F;
     STZ.B DP_Temp14                                                      ;B3E291;
     LDA.L Botwoon.speed,X                                                ;B3E293;
@@ -5568,7 +5568,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $E655: Main AI - enemy $F2D3 (escape etecoon) ;;;
 MainAI_EtecoonEscape:
-    LDX.W EnemyIndex                                                     ;B3E655;
+    LDX.B EnemyIndex                                                     ;B3E655;
     JSR.W (EtecoonEscape.function,X)                                     ;B3E658;
     RTL                                                                  ;B3E65B;
 
@@ -5638,7 +5638,7 @@ Function_EtecoonEscape_RunningAroundAimlessly:
 
 ;;; $E6CB: Initialisation AI - enemy $F2D3 (escape etecoon) ;;;
 InitAI_EtecoonEscape:
-    LDX.W EnemyIndex                                                     ;B3E6CB;
+    LDX.B EnemyIndex                                                     ;B3E6CB;
     LDA.W #$000F                                                         ;B3E6CE;
     JSL.L CheckIfEvent_inA_HasHappened                                   ;B3E6D1;
     BCC .notEscaped                                                      ;B3E6D5;
@@ -6026,7 +6026,7 @@ InstList_DachoraEscape_GotoY_IfCrittersEscaped:
 
 ;;; $EAC9: Instruction - enemy X position -= 6 ;;;
 Instruction_DachoraEscape_XPositionMinus6:
-    LDX.W EnemyIndex                                                     ;B3EAC9;
+    LDX.B EnemyIndex                                                     ;B3EAC9;
     LDA.W Enemy.XPosition,X                                              ;B3EACC;
     SEC                                                                  ;B3EACF;
     SBC.W #$0006                                                         ;B3EAD0;
@@ -6036,7 +6036,7 @@ Instruction_DachoraEscape_XPositionMinus6:
 
 ;;; $EAD7: Instruction - enemy X position += 6 ;;;
 Instruction_DachoraEscape_XPositionPlus6:
-    LDX.W EnemyIndex                                                     ;B3EAD7;
+    LDX.B EnemyIndex                                                     ;B3EAD7;
     LDA.W Enemy.XPosition,X                                              ;B3EADA;
     CLC                                                                  ;B3EADD;
     ADC.W #$0006                                                         ;B3EADE;
@@ -6046,7 +6046,7 @@ Instruction_DachoraEscape_XPositionPlus6:
 
 ;;; $EAE5: Initialisation AI - enemy $F313 (escape dachora) ;;;
 InitAI_DachoraEscape:
-    LDX.W EnemyIndex                                                     ;B3EAE5;
+    LDX.B EnemyIndex                                                     ;B3EAE5;
     LDA.W #$000F                                                         ;B3EAE8;
     JSL.L CheckIfEvent_inA_HasHappened                                   ;B3EAEB;
     BCC .notEscaped                                                      ;B3EAEF;

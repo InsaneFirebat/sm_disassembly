@@ -3217,7 +3217,7 @@ CheckIfKraidHasDied:
 SetEnemyPropertiesToDead:
 ; Set enemy as intangible, flagged for deletion, invisible,
 ; not processed off-screen, not processing instructions and non-solid hitbox
-    LDX.W EnemyIndex                                                     ;A7A943;
+    LDX.B EnemyIndex                                                     ;A7A943;
     LDA.W Enemy.properties,X                                             ;A7A946;
     ORA.W #$0700                                                         ;A7A949;
     AND.W #$57FF                                                         ;A7A94C;
@@ -3321,7 +3321,7 @@ InitAI_Kraid:
     BMI .loopKraidHealth                                                 ;A7AA16;
     LDA.W #$DFFF                                                         ;A7AA18;
     STA.B DP_Temp12                                                      ;A7AA1B;
-    LDX.W EnemyIndex                                                     ;A7AA1D;
+    LDX.B EnemyIndex                                                     ;A7AA1D;
     JSR.W SetupKraidGFXWithTheTilePriorityCleared                        ;A7AA20;
     LDA.W Enemy.health                                                   ;A7AA23;
     LSR                                                                  ;A7AA26;
@@ -3553,7 +3553,7 @@ MainAI_Kraid:
     JSR.W KraidPaletteHandling                                           ;A7AC24;
     JSR.W KraidBody_vs_Projectile_CollisionHandling                      ;A7AC27;
     JSR.W KraidBody_vs_Samus_CollisionHandling                           ;A7AC2A;
-    LDX.W EnemyIndex                                                     ;A7AC2D;
+    LDX.B EnemyIndex                                                     ;A7AC2D;
     LDA.B DP_BG1XScroll                                                  ;A7AC30;
     SEC                                                                  ;A7AC32;
     SBC.W BG1XOffset                                                     ;A7AC33;
@@ -3596,7 +3596,7 @@ Function_Kraid_KraidGetsBig_BreakCeilingIntoPlatforms:
     BPL .done                                                            ;A7AC82;
     LDA.W .XPositions,X                                                  ;A7AC84;
     LDY.W #EnemyProjectile_KraidCeilingRocks                             ;A7AC87;
-    LDX.W EnemyIndex                                                     ;A7AC8A;
+    LDX.B EnemyIndex                                                     ;A7AC8A;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A7AC8D;
     LDX.W Kraid.functionTimer                                            ;A7AC91;
     LDA.W .functionPointers,X                                            ;A7AC94;
@@ -3805,7 +3805,7 @@ SetLintYPositionsAndRandomThinkingTimer:
     CLC                                                                  ;A7AE06;
     ADC.W #$0070                                                         ;A7AE07;
     STA.W Enemy[4].YPosition                                             ;A7AE0A;
-    LDA.W RandomNumberSeed                                               ;A7AE0D;
+    LDA.B RandomNumberSeed                                               ;A7AE0D;
     AND.W #$0007                                                         ;A7AE10;
     BNE .multiplyBy40                                                    ;A7AE13;
     LDA.W #$0002                                                         ;A7AE15;
@@ -4427,7 +4427,7 @@ UNUSED_HandleProjectileDamageAndSound:
     PHX                                                                  ;A7B269;
     PHY                                                                  ;A7B26A;
     TXY                                                                  ;A7B26B;
-    LDX.W EnemyIndex                                                     ;A7B26C;
+    LDX.B EnemyIndex                                                     ;A7B26C;
     LDA.W SamusProjectile_Damages,Y                                      ;A7B26F;
     STA.W EnemySpritemapEntryXPositionDuringCollision                    ;A7B272;
     LDA.W SamusProjectile_Types,Y                                        ;A7B275;
@@ -5229,7 +5229,7 @@ Function_Kraid_HandleFunctionTimer:
 
 ;;; $B93F: Kraid foot function - start retreat ;;;
 Function_KraidFoot_StartRetreat:
-    LDX.W EnemyIndex                                                     ;A7B93F;
+    LDX.B EnemyIndex                                                     ;A7B93F;
     LDA.W Kraid.functionTimer,X                                          ;A7B942;
     BEQ .return                                                          ;A7B945;
     DEC.W Kraid.functionTimer,X                                          ;A7B947;
@@ -5354,7 +5354,7 @@ MainAI_KraidFoot:
     ORA.W #$0100                                                         ;A7BA21;
 
 +   STA.W Enemy[5].properties                                            ;A7BA24;
-    LDX.W EnemyIndex                                                     ;A7BA27;
+    LDX.B EnemyIndex                                                     ;A7BA27;
     JMP.W (Enemy[5].var0)                                                ;A7BA2A;
 
 
@@ -5383,7 +5383,7 @@ Function_KraidFoot_Phase2_Thinking:
     BMI .loopXPositions                                                  ;A7BA4B;
     LDX.W #$0004                                                         ;A7BA4D;
 
-+   LDA.W RandomNumberSeed                                               ;A7BA50;
++   LDA.B RandomNumberSeed                                               ;A7BA50;
     AND.W #$001C                                                         ;A7BA53;
     CMP.W #$0010                                                         ;A7BA56;
     BMI +                                                                ;A7BA59;
@@ -5574,11 +5574,11 @@ Function_KraidMainLoop_AttackingWithMouthOpen:
     AND.W #$000F                                                         ;A7BC05;
     BNE .return                                                          ;A7BC08;
     LDY.W #EnemyProjectile_KraidRockSpit                                 ;A7BC0A;
-    LDA.W RandomNumberSeed                                               ;A7BC0D;
+    LDA.B RandomNumberSeed                                               ;A7BC0D;
     AND.W #$000E                                                         ;A7BC10;
     TAX                                                                  ;A7BC13;
     LDA.W .rockSpitXVelocities,X                                         ;A7BC14;
-    LDX.W EnemyIndex
+    LDX.B EnemyIndex
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A7BC17;
     LDA.W #$001E                                                         ;A7BC1B;
     JML QueueSound_Lib3_Max6
@@ -5670,18 +5670,18 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 ;;; $BCCF: Enemy touch - enemy $E43F (Kraid good fingernail) ;;;
 EnemyTouch_KraidNail:
     JSL.L NormalEnemyTouchAI                                             ;A7BCCF;
-    LDX.W EnemyIndex                                                     ;A7BCD3;
+    LDX.B EnemyIndex                                                     ;A7BCD3;
     JSL.L EnemyDeath                                                     ;A7BCD6;
-    LDX.W EnemyIndex                                                     ;A7BCDA;
+    LDX.B EnemyIndex                                                     ;A7BCDA;
     RTL                                                                  ;A7BCDD;
 
 
 ;;; $BCDE: Enemy touch - enemy $E47F (Kraid bad fingernail) ;;;
 EnemyTouch_KraidNailBad:
     JSL.L NormalEnemyTouchAI                                             ;A7BCDE;
-    LDX.W EnemyIndex                                                     ;A7BCE2;
+    LDX.B EnemyIndex                                                     ;A7BCE2;
     JSL.L EnemyDeath                                                     ;A7BCE5;
-    LDX.W EnemyIndex                                                     ;A7BCE9;
+    LDX.B EnemyIndex                                                     ;A7BCE9;
     RTL                                                                  ;A7BCEC;
 
 
@@ -5697,7 +5697,7 @@ RTL_A7BCEE:
 
 ;;; $BCEF: Initialisation AI - enemy $E43F (Kraid good fingernail) ;;;
 InitAI_KraidNail:
-    LDX.W EnemyIndex                                                     ;A7BCEF; fallthrough to InitAI_KraidNail_WithoutLoadingEnemyIndex
+    LDX.B EnemyIndex                                                     ;A7BCEF; fallthrough to InitAI_KraidNail_WithoutLoadingEnemyIndex
 
 
 ;;; $BCF2: Kraid's fingernails initialisation AI ;;;
@@ -5726,7 +5726,7 @@ InitAI_KraidNail_Common:
 
 ;;; $BD2D: Initialisation AI - enemy $E47F (Kraid bad fingernail) ;;;
 InitAI_KraidNailBad:
-    LDX.W EnemyIndex                                                     ;A7BD2D;
+    LDX.B EnemyIndex                                                     ;A7BD2D;
     BRA InitAI_KraidNail_Common                                          ;A7BD30;
 
 
@@ -5762,11 +5762,11 @@ MainAI_KraidNailBad:
 
 ;;; $BD60: Kraid fingernail function - initialise fingernail ;;;
 Function_KraidNail_Initialize:
-    LDA.W RandomNumberSeed                                               ;A7BD60;
+    LDA.B RandomNumberSeed                                               ;A7BD60;
     AND.W #$0006                                                         ;A7BD63;
     TAY                                                                  ;A7BD66;
     LDA.W Enemy[6].var4                                                  ;A7BD67;
-    LDX.W EnemyIndex                                                     ;A7BD6A;
+    LDX.B EnemyIndex                                                     ;A7BD6A;
     CPX.W #$0180                                                         ;A7BD6D;
     BNE +                                                                ;A7BD70;
     LDA.W Enemy[7].var4                                                  ;A7BD72;
@@ -5799,7 +5799,7 @@ Function_KraidNail_Initialize:
     STA.W Enemy.instList,X                                               ;A7BDB6;
     LDA.W #Function_KraidNail_Fire                                       ;A7BDB9;
     STA.W Kraid.function,X                                               ;A7BDBC;
-    LDA.W RandomNumberSeed                                               ;A7BDBF;
+    LDA.B RandomNumberSeed                                               ;A7BDBF;
     BIT.W #$0001                                                         ;A7BDC2;
     BNE .horizontal                                                      ;A7BDC5;
 
@@ -6530,31 +6530,31 @@ KraidDeath_Initialize:
     STA.W Kraid.instListPointer                                          ;A7C39B;
     LDA.W InstList_Kraid_Dying_0                                         ;A7C39E;
     STA.W Kraid.instructionTimer                                         ;A7C3A1;
-    LDX.W EnemyIndex                                                     ;A7C3A4;
+    LDX.B EnemyIndex                                                     ;A7C3A4;
     PHX                                                                  ;A7C3A7;
     LDA.W Enemy[6].properties                                            ;A7C3A8;
     AND.W #$BFFF                                                         ;A7C3AB;
     STA.W Enemy[6].properties                                            ;A7C3AE;
     LDA.W #$0180                                                         ;A7C3B1;
-    STA.W EnemyIndex                                                     ;A7C3B4;
+    STA.B EnemyIndex                                                     ;A7C3B4;
     JSL.L EnemyDeath                                                     ;A7C3B7;
     LDA.W Enemy[7].properties                                            ;A7C3BB;
     AND.W #$BFFF                                                         ;A7C3BE;
     STA.W Enemy[7].properties                                            ;A7C3C1;
     LDA.W #$01C0                                                         ;A7C3C4;
-    STA.W EnemyIndex                                                     ;A7C3C7;
+    STA.B EnemyIndex                                                     ;A7C3C7;
     JSL.L EnemyDeath                                                     ;A7C3CA;
     LDA.W #$0080                                                         ;A7C3CE;
-    STA.W EnemyIndex                                                     ;A7C3D1;
+    STA.B EnemyIndex                                                     ;A7C3D1;
     JSL.L EnemyDeath                                                     ;A7C3D4;
     LDA.W #$00C0                                                         ;A7C3D8;
-    STA.W EnemyIndex                                                     ;A7C3DB;
+    STA.B EnemyIndex                                                     ;A7C3DB;
     JSL.L EnemyDeath                                                     ;A7C3DE;
     LDA.W #$0100                                                         ;A7C3E2;
-    STA.W EnemyIndex                                                     ;A7C3E5;
+    STA.B EnemyIndex                                                     ;A7C3E5;
     JSL.L EnemyDeath                                                     ;A7C3E8;
     PLA                                                                  ;A7C3EC;
-    STA.W EnemyIndex                                                     ;A7C3ED;
+    STA.B EnemyIndex                                                     ;A7C3ED;
     JSL.L Spawn_Hardcoded_PLM                                            ;A7C3F0;
     db $05,$1B                                                           ;A7C3F4;
     dw PLMEntries_crumbleKraidSpikeBlocks                                ;A7C3F6;
@@ -6736,7 +6736,7 @@ KraidDeath_SinkThroughFloor:
     STA.W Enemy.properties                                               ;A7C551;
     LDA.W #$0002                                                         ;A7C554;
     STA.W EnemyBG2TilemapSize                                            ;A7C557;
-    LDY.W EnemyIndex                                                     ;A7C55A;
+    LDY.B EnemyIndex                                                     ;A7C55A;
     LDX.W Enemy.ID,Y                                                     ;A7C55D;
     LDA.W #RTL_A7804C                                                    ;A7C560;
     STA.L EnemyHeaders_enemyShot,X                                       ;A7C563;
@@ -6879,7 +6879,7 @@ ShrinkingKraidTable:
 CrumbleLeftPlatform_Left:
     LDA.W #$0070                                                         ;A7C691;
     LDY.W #EnemyProjectile_KraidCeilingRocks                             ;A7C694;
-    LDX.W EnemyIndex                                                     ;A7C697;
+    LDX.B EnemyIndex                                                     ;A7C697;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A7C69A;
     JSL.L Spawn_Hardcoded_PLM                                            ;A7C69E; fallthrough to RTS_A7C6A6
     db $07,$12                                                           ;A7C6A2;
@@ -6893,7 +6893,7 @@ RTS_A7C6A6:
 CrumbleRightPlatform_Middle:
     LDA.W #$00F0                                                         ;A7C6A7;
     LDY.W #EnemyProjectile_KraidCeilingRocks                             ;A7C6AA;
-    LDX.W EnemyIndex                                                     ;A7C6AD;
+    LDX.B EnemyIndex                                                     ;A7C6AD;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A7C6B0;
     JSL.L Spawn_Hardcoded_PLM                                            ;A7C6B4;
     db $0F,$12                                                           ;A7C6B8;
@@ -6905,7 +6905,7 @@ CrumbleRightPlatform_Middle:
 CrumbleRightPlatform_Left:
     LDA.W #$00E0                                                         ;A7C6BD;
     LDY.W #EnemyProjectile_KraidCeilingRocks                             ;A7C6C0;
-    LDX.W EnemyIndex                                                     ;A7C6C3;
+    LDX.B EnemyIndex                                                     ;A7C6C3;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A7C6C6;
     JSL.L Spawn_Hardcoded_PLM                                            ;A7C6CA;
     db $0E,$12                                                           ;A7C6CE;
@@ -6917,7 +6917,7 @@ CrumbleRightPlatform_Left:
 CrumbleLeftPlatform_Right:
     LDA.W #$0090                                                         ;A7C6D3;
     LDY.W #EnemyProjectile_KraidCeilingRocks                             ;A7C6D6;
-    LDX.W EnemyIndex                                                     ;A7C6D9;
+    LDX.B EnemyIndex                                                     ;A7C6D9;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A7C6DC;
     JSL.L Spawn_Hardcoded_PLM                                            ;A7C6E0;
     db $09,$12                                                           ;A7C6E4;
@@ -6929,7 +6929,7 @@ CrumbleLeftPlatform_Right:
 CrumbleLeftPlatform_Middle:
     LDA.W #$0080                                                         ;A7C6E9;
     LDY.W #EnemyProjectile_KraidCeilingRocks                             ;A7C6EC;
-    LDX.W EnemyIndex                                                     ;A7C6EF;
+    LDX.B EnemyIndex                                                     ;A7C6EF;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A7C6F2;
     JSL.L Spawn_Hardcoded_PLM                                            ;A7C6F6;
     db $08,$12                                                           ;A7C6FA;
@@ -6941,7 +6941,7 @@ CrumbleLeftPlatform_Middle:
 CrumbleRightPlatform_Right:
     LDA.W #$0100                                                         ;A7C6FF;
     LDY.W #EnemyProjectile_KraidCeilingRocks                             ;A7C702;
-    LDX.W EnemyIndex                                                     ;A7C705;
+    LDX.B EnemyIndex                                                     ;A7C705;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A7C708;
     JSL.L Spawn_Hardcoded_PLM                                            ;A7C70C;
     db $10,$12                                                           ;A7C710;
@@ -7312,10 +7312,10 @@ SpawnRandomEarthquakeProjectile:
 ; 3F, 3E, -3E, -3D, 3B, 3A, -3A, -39, 37, 36, -36, -35, 33, 32, -32, -31, 2F, 2E, -2E, -2D, 2B, 2A, -2A, -29, 27, 26, -26, -25, 23, 22, -22, -21, 1F, 1E, -1E, -1D, 1B, 1A, -1A, -19, 17, 16, -16, -15, 13, 12, -12, -11, 0F, 0E, -0E, -0D, 0B, 0A, -0A, -09, 07, 06, -06, -05, 03, 02, -02, -01
     LDA.B NMI_8bitFrameCounter                                           ;A7C995;
     BIT.W #$0002                                                         ;A7C998;
-    LDA.W RandomNumberSeed                                               ;A7C99B;
+    LDA.B RandomNumberSeed                                               ;A7C99B;
     AND.W #$003F                                                         ;A7C99E;
     TAX                                                                  ;A7C9A1;
-    LDA.W RandomNumberSeed                                               ;A7C9A2;
+    LDA.B RandomNumberSeed                                               ;A7C9A2;
     BIT.W #$0002                                                         ;A7C9A5;
     BNE +                                                                ;A7C9A8;
     TXA                                                                  ;A7C9AA;
@@ -7326,7 +7326,7 @@ SpawnRandomEarthquakeProjectile:
     CLC                                                                  ;A7C9B0;
     ADC.W Enemy.XPosition                                                ;A7C9B1;
     STA.B DP_Temp12                                                      ;A7C9B4;
-    LDA.W RandomNumberSeed                                               ;A7C9B6;
+    LDA.B RandomNumberSeed                                               ;A7C9B6;
     AND.W #$3F00                                                         ;A7C9B9;
     XBA                                                                  ;A7C9BC;
     STA.B DP_Temp14                                                      ;A7C9BD;
@@ -7339,14 +7339,14 @@ SpawnRandomEarthquakeProjectile:
     STZ.B DP_Temp18                                                      ;A7C9CC;
     JSL.L Create_Sprite_Object                                           ;A7C9CE;
     LDY.W #EnemyProjectile_KraidFloorRocks_Left                          ;A7C9D2;
-    LDA.W RandomNumberSeed                                               ;A7C9D5;
+    LDA.B RandomNumberSeed                                               ;A7C9D5;
     BIT.W #$0010                                                         ;A7C9D8;
     BEQ .keepLeft                                                        ;A7C9DB;
     LDY.W #EnemyProjectile_KraidFloorRocks_Right                         ;A7C9DD;
 
   .keepLeft:
-    LDX.W EnemyIndex                                                     ;A7C9E0;
-    LDA.W RandomNumberSeed                                               ;A7C9E3;
+    LDX.B EnemyIndex                                                     ;A7C9E0;
+    LDA.B RandomNumberSeed                                               ;A7C9E3;
     AND.W #$03F0                                                         ;A7C9E6;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A7C9E9;
     RTS                                                                  ;A7C9ED;
@@ -7765,7 +7765,7 @@ InitAI_PhantoonBody:
     LDA.W #$0360                                                         ;A7CE1D;
     STA.W EnemyBG2TilemapSize                                            ;A7CE20;
     JSL.L DisableMinimap_MarkBossRoomTilesExplored                       ;A7CE24;
-    LDX.W EnemyIndex                                                     ;A7CE28;
+    LDX.B EnemyIndex                                                     ;A7CE28;
     LDA.W #regional($0078, $0060)                                        ;A7CE2B;
     STA.W Phantoon.functionTimer,X                                       ;A7CE2E;
     STZ.W Phantoon.flameCounter,X                                        ;A7CE31;
@@ -7785,7 +7785,7 @@ InitAI_PhantoonBody:
 ;;; $CE55: Initialisation AI - enemy $E4FF/$E53F/$E57F (Phantoon eye / tentacles / mouth) ;;;
 InitAI_Phantoon_Eye_Tentacles_Mouth:
 ; Phantoon body also executes this as part of initialisation AI, so all Phantoon parts are doing this
-    LDX.W EnemyIndex                                                     ;A7CE55;
+    LDX.B EnemyIndex                                                     ;A7CE55;
     LDA.W #Spritemap_Common_Nothing                                      ;A7CE58;
     STA.W Enemy.spritemap,X                                              ;A7CE5B;
     LDA.W #$0001                                                         ;A7CE5E;
@@ -7826,7 +7826,7 @@ HDMAObjectInstList_Phantoon_SemiTransparency:
 
 ;;; $CEA6: Main AI - enemy $E4BF (Phantoon) ;;;
 MainAI_Phantoon:
-    LDX.W EnemyIndex                                                     ;A7CEA6;
+    LDX.B EnemyIndex                                                     ;A7CEA6;
     PEA.W .manualReturn-1                                                ;A7CEAC;
     JMP.W (Phantoon.function,X)                                          ;A7CEAF;
 
@@ -8698,7 +8698,7 @@ Function_Phantoon_FightIntro_SpawnCircleOfFlames:
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A7D4B6;
     LDA.W #$001D                                                         ;A7D4BA;
     JSL.L QueueSound_Lib3_Max6                                           ;A7D4BD;
-    LDX.W EnemyIndex
+    LDX.B EnemyIndex
     LDA.W #$001E                                                         ;A7D4C1;
     STA.W Phantoon.functionTimer,X                                       ;A7D4C4;
     LDA.W Phantoon.flameCounter                                          ;A7D4C7;
@@ -9711,7 +9711,7 @@ GetPhantoonHealthBasedPaletteColor:
 ;; Returns:
 ;;     Y: [Palette_Phantoon_HealthBased_0 + clamp(([enemy health] - 1) / 312, 0, 7) * 20h + [X]]
     STX.B DP_Temp18                                                      ;A7DC0F;
-    LDX.W EnemyIndex                                                     ;A7DC11;
+    LDX.B EnemyIndex                                                     ;A7DC11;
     LDA.W #$0138                                                         ;A7DC14;
     STA.B DP_Temp12                                                      ;A7DC1A;
     STA.B DP_Temp14                                                      ;A7DC1C;
@@ -9994,7 +9994,7 @@ EnemyShot_Phantoon:
     RTL                                                                  ;A7DDA5;
 
   .notDead:
-    LDX.W EnemyIndex                                                     ;A7DDA6;
+    LDX.B EnemyIndex                                                     ;A7DDA6;
     LDA.W Enemy.health,X                                                 ;A7DDA9;
     PHA                                                                  ;A7DDAC;
     JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External     ;A7DDAD;
@@ -10772,7 +10772,7 @@ EtecoonConstants:
 
 ;;; $E912: Initialisation AI - enemy $E5BF (etecoon) ;;;
 InitAI_Etecoon:
-    LDX.W EnemyIndex                                                     ;A7E912;
+    LDX.B EnemyIndex                                                     ;A7E912;
     LDA.W Enemy.properties,X                                             ;A7E915;
     ORA.W #$2000                                                         ;A7E918;
     STA.W Enemy.properties,X                                             ;A7E91B;
@@ -10792,7 +10792,7 @@ InitAI_Etecoon:
 
 ;;; $E940: Main AI - enemy $E5BF (etecoon) ;;;
 MainAI_Etecoon:
-    LDX.W EnemyIndex                                                     ;A7E940;
+    LDX.B EnemyIndex                                                     ;A7E940;
     LDA.W Etecoon.ID,X                                                   ;A7E943;
     BIT.W #$FF00                                                         ;A7E946;
     BEQ .executeFunction                                                 ;A7E949;
@@ -12069,7 +12069,7 @@ endif
 
 ;;; $F4DD: Initialisation AI - enemy $E5FF (dachora) ;;;
 InitAI_Dachora:
-    LDX.W EnemyIndex                                                     ;A7F4DD;
+    LDX.B EnemyIndex                                                     ;A7F4DD;
     LDA.W Enemy.properties,X                                             ;A7F4E0;
     ORA.W #$2000                                                         ;A7F4E3;
     STA.W Enemy.properties,X                                             ;A7F4E6;
@@ -12111,7 +12111,7 @@ InitAI_Dachora:
 
 ;;; $F52E: Main AI - enemy $E5FF (dachora) ;;;
 MainAI_Dachora:
-    LDX.W EnemyIndex                                                     ;A7F52E;
+    LDX.B EnemyIndex                                                     ;A7F52E;
     JMP.W (Dachora.function,X)                                           ;A7F531;
 
 

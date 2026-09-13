@@ -668,7 +668,7 @@ PowerBombReaction_Ninja_Walking_GreyWall:
 
 ;;; $876C: Enemy touch - enemy $F353/$F393/$F3D3/$F413/$F453/$F493/$F4D3/$F513/$F553/$F593/$F5D3/$F613/$F653/$F693/$F6D3/$F713/$F753/$F793 (space pirates) ;;;
 EnemyTouch_SpacePirate:
-    LDX.W EnemyIndex                                                     ;B2876C;
+    LDX.B EnemyIndex                                                     ;B2876C;
     LDA.W Enemy.freezeTimer,X                                            ;B2876F;
     BNE .return                                                          ;B28772;
     JSL.L NormalEnemyTouchAI                                             ;B28774;
@@ -679,7 +679,7 @@ EnemyTouch_SpacePirate:
 
 ;;; $8779: Enemy shot - space pirate - normal ;;;
 EnemyShot_SpacePirate_Normal:
-    LDX.W EnemyIndex                                                     ;B28779;
+    LDX.B EnemyIndex                                                     ;B28779;
     LDA.W Enemy.ID,X                                                     ;B2877C;
     CMP.W #EnemyHeaders_PirateGoldNinja                                  ;B2877F;
     BEQ NormalPirateShot                                                 ;B28782;
@@ -689,7 +689,7 @@ EnemyShot_SpacePirate_Normal:
 
 ;;; $8789: Normal pirate shot ;;;
 NormalPirateShot:
-    LDX.W EnemyIndex                                                     ;B28789;
+    LDX.B EnemyIndex                                                     ;B28789;
     LDA.W Enemy.XPosition,X                                              ;B2878C;
     STA.L EnemyProjectileData_SpecialDeathItemDropXOriginPosition        ;B2878F;
     LDA.W Enemy.YPosition,X                                              ;B28793;
@@ -697,7 +697,7 @@ NormalPirateShot:
     JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External     ;B2879A;
     LDA.W Enemy.health,X                                                 ;B2879E;
     BNE .return                                                          ;B287A1;
-    LDX.W EnemyIndex                                                     ;B287A3;
+    LDX.B EnemyIndex                                                     ;B287A3;
     LDA.W Enemy.ID,X                                                     ;B287A6;
     CMP.W #EnemyHeaders_PirateGoldNinja                                  ;B287A9;
     BNE .notGold                                                         ;B287AC;
@@ -719,7 +719,7 @@ NormalPirateShot:
 ;;; $87C8: Enemy shot - space pirate - gold ninja space pirate is vulnerable ;;;
 EnemyShot_SpacePirate_GoldNinjaIsVulnerable:
 ; Note how the vulnerability check here doesn't take beam charge into account
-    LDX.W EnemyIndex                                                     ;B287C8;
+    LDX.B EnemyIndex                                                     ;B287C8;
     LDA.W Enemy.ID,X                                                     ;B287CB;
     CMP.W #EnemyHeaders_PirateGoldNinja                                  ;B287CE;
     BEQ .goldNinja                                                       ;B287D1;
@@ -737,7 +737,7 @@ EnemyShot_SpacePirate_GoldNinjaIsVulnerable:
     RTL                                                                  ;B287E8;
 
   .beamMissileSuper:
-    LDX.W EnemyIndex                                                     ;B287E9;
+    LDX.B EnemyIndex                                                     ;B287E9;
     LDA.W Enemy.ID,X                                                     ;B287EC;
     TAX                                                                  ;B287EF;
     LDA.L EnemyHeaders_vulnerabilities,X                                 ;B287F0;
@@ -785,14 +785,14 @@ EnemyShot_SpacePirate_GoldNinjaIsVulnerable:
 
 ;;; $883E: Enemy shot - space pirate - gold ninja space pirate is invincible ;;;
 EnemyShot_SpacePirate_GoldNinjaIsInvincible:
-    LDX.W EnemyIndex                                                     ;B2883E;
+    LDX.B EnemyIndex                                                     ;B2883E;
     LDA.W Enemy.ID,X                                                     ;B28841;
     CMP.W #EnemyHeaders_PirateGoldNinja                                  ;B28844;
     BEQ .gold                                                            ;B28847;
     JMP.W NormalPirateShot                                               ;B28849;
 
   .gold:
-    LDX.W EnemyIndex                                                     ;B2884C;
+    LDX.B EnemyIndex                                                     ;B2884C;
     LDA.W CollisionIndex                                                 ;B2884F;
     ASL                                                                  ;B28852;
     TAY                                                                  ;B28853;
@@ -9240,7 +9240,7 @@ InstList_PirateWall_MovingUpRightWall_1:
 ;;; $EE40: Instruction - move [[Y]] pixels down and change direction on collision - left wall ;;;
 Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Left:
     PHX                                                                  ;B2EE40;
-    LDX.W EnemyIndex                                                     ;B2EE41;
+    LDX.B EnemyIndex                                                     ;B2EE41;
     LDA.W #$0000                                                         ;B2EE44;
     STA.B DP_Temp12                                                      ;B2EE47;
     LDA.W $0000,Y                                                        ;B2EE49;
@@ -9273,7 +9273,7 @@ Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Left:
 ;;; $EE72: Instruction - move enemy [[Y]] pixels down and change direction on collision - right wall ;;;
 Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Right:
     PHX                                                                  ;B2EE72;
-    LDX.W EnemyIndex                                                     ;B2EE73;
+    LDX.B EnemyIndex                                                     ;B2EE73;
     LDA.W #$0000                                                         ;B2EE76;
     STA.B DP_Temp12                                                      ;B2EE79;
     LDA.W $0000,Y                                                        ;B2EE7B;
@@ -9307,7 +9307,7 @@ Inst_PirateWall_MoveYPixelsDown_ChangeDirOnCollision_Right:
 Instruction_PirateWall_RandomlyChooseADirection_LeftWall:
     PHX                                                                  ;B2EEA4;
     LDY.W #InstList_PirateWall_MovingDownLeftWall_0                      ;B2EEA5;
-    LDX.W EnemyIndex                                                     ;B2EEA8;
+    LDX.B EnemyIndex                                                     ;B2EEA8;
     JSL.L GenerateRandomNumber                                           ;B2EEAB;
     AND.W #$0001                                                         ;B2EEAF;
     STA.W PirateWall.direction,X                                         ;B2EEB2;
@@ -9323,7 +9323,7 @@ Instruction_PirateWall_RandomlyChooseADirection_LeftWall:
 Instruction_PirateWall_RandomlyChooseADirection_RightWall:
     PHX                                                                  ;B2EEBC;
     LDY.W #InstList_PirateWall_MovingDownRightWall_0                     ;B2EEBD;
-    LDX.W EnemyIndex                                                     ;B2EEC0;
+    LDX.B EnemyIndex                                                     ;B2EEC0;
     JSL.L GenerateRandomNumber                                           ;B2EEC3;
     AND.W #$0001                                                         ;B2EEC7;
     STA.W PirateWall.direction,X                                         ;B2EECA;
@@ -9339,7 +9339,7 @@ Instruction_PirateWall_RandomlyChooseADirection_RightWall:
 Instruction_PirateWall_PrepareWallJumpToRight:
     PHX                                                                  ;B2EED4;
     PHY                                                                  ;B2EED5;
-    LDX.W EnemyIndex                                                     ;B2EED6;
+    LDX.B EnemyIndex                                                     ;B2EED6;
     LDA.W Enemy.init1,X                                                  ;B2EED9;
     CLC                                                                  ;B2EEDC;
     ADC.W Enemy.XPosition,X                                              ;B2EEDD;
@@ -9362,7 +9362,7 @@ Instruction_PirateWall_PrepareWallJumpToRight:
 Instruction_PirateWall_PrepareWallJumpToLeft:
     PHX                                                                  ;B2EEFD;
     PHY                                                                  ;B2EEFE;
-    LDX.W EnemyIndex                                                     ;B2EEFF;
+    LDX.B EnemyIndex                                                     ;B2EEFF;
     LDA.W Enemy.XPosition,X                                              ;B2EF02;
     SEC                                                                  ;B2EF05;
     SBC.W Enemy.init1,X                                                  ;B2EF06;
@@ -9387,11 +9387,11 @@ Instruction_PirateWall_PrepareWallJumpToLeft:
 Instruction_PirateWall_FireLaserLeft:
     PHX                                                                  ;B2EF2A;
     PHY                                                                  ;B2EF2B;
-    LDY.W EnemyIndex                                                     ;B2EF2C;
+    LDY.B EnemyIndex                                                     ;B2EF2C;
     LDX.W Enemy.ID,Y                                                     ;B2EF2F;
     LDA.L EnemyHeaders_damage,X                                          ;B2EF32;
     STA.W EnemyProjectile_InitParam0                                     ;B2EF36;
-    LDX.W EnemyIndex                                                     ;B2EF39;
+    LDX.B EnemyIndex                                                     ;B2EF39;
     LDA.W Enemy.XPosition,X                                              ;B2EF3C;
     SEC                                                                  ;B2EF3F;
     SBC.W #$0018                                                         ;B2EF40;
@@ -9413,7 +9413,7 @@ Instruction_PirateWall_FireLaserLeft:
 Instruction_PirateWall_FireLaserRight:
     PHX                                                                  ;B2EF5D;
     PHY                                                                  ;B2EF5E;
-    LDX.W EnemyIndex                                                     ;B2EF5F;
+    LDX.B EnemyIndex                                                     ;B2EF5F;
     LDA.W Enemy.XPosition,X                                              ;B2EF62;
     CLC                                                                  ;B2EF65;
     ADC.W #$0018                                                         ;B2EF66;
@@ -9435,7 +9435,7 @@ Instruction_PirateWall_FireLaserRight:
 Instruction_PirateWall_FunctionInY:
     PHY                                                                  ;B2EF83;
     PHX                                                                  ;B2EF84;
-    LDX.W EnemyIndex                                                     ;B2EF85;
+    LDX.B EnemyIndex                                                     ;B2EF85;
     LDA.W $0000,Y                                                        ;B2EF88;
     STA.W PirateWall.function,X                                          ;B2EF8B;
     PLX                                                                  ;B2EF8E;
@@ -9458,7 +9458,7 @@ Instruction_PirateWall_QueueSpacePirateAttackSFX:
 
 ;;; $EF9F: Initialisation AI - enemy $F353/$F393/$F3D3/$F413/$F453/$F493 (wall space pirates) ;;;
 InitAI_PirateWall:
-    LDX.W EnemyIndex                                                     ;B2EF9F;
+    LDX.B EnemyIndex                                                     ;B2EF9F;
     LDY.W #InstList_PirateWall_MovingDownLeftWall_0                      ;B2EFA2;
     LDA.W Enemy.init0,X                                                  ;B2EFA5;
     BIT.W #$0001                                                         ;B2EFA8;
@@ -9529,14 +9529,14 @@ endif
 
 ;;; $F02D: Main AI - enemy $F353/$F393/$F3D3/$F413/$F453/$F493 (wall space pirates) ;;;
 MainAI_PirateWall:
-    LDX.W EnemyIndex                                                     ;B2F02D;
+    LDX.B EnemyIndex                                                     ;B2F02D;
     JSR.W (PirateWall.function,X)                                        ;B2F030;
     RTL                                                                  ;B2F033;
 
 
 ;;; $F034: Wall space pirate function - climbing left wall ;;;
 Function_PirateWall_ClimbingLeftWall:
-    LDX.W EnemyIndex                                                     ;B2F034;
+    LDX.B EnemyIndex                                                     ;B2F034;
     LDA.W #$0020                                                         ;B2F037;
     JSL.L IsSamusWithingAPixelRowsOfEnemy                                ;B2F03A;
     BEQ RTS_B2F04F                                                       ;B2F03E;
@@ -9551,7 +9551,7 @@ RTS_B2F04F:
 
 ;;; $F050: Wall space pirate function - wall-jumping right ;;;
 Function_PirateWall_WallJumpingRight:
-    LDX.W EnemyIndex                                                     ;B2F050;
+    LDX.B EnemyIndex                                                     ;B2F050;
     LDA.W Enemy.init1,X                                                  ;B2F053;
     LSR                                                                  ;B2F056;
     STA.W Temp_Radius                                                    ;B2F057;
@@ -9631,7 +9631,7 @@ endif
 
 ;;; $F0C8: Wall space pirate function - climbing right wall ;;;
 Function_PirateWall_ClimbingRightWall:
-    LDX.W EnemyIndex                                                     ;B2F0C8;
+    LDX.B EnemyIndex                                                     ;B2F0C8;
     LDA.W #$0020                                                         ;B2F0CB;
     JSL.L IsSamusWithingAPixelRowsOfEnemy                                ;B2F0CE;
     BEQ .return                                                          ;B2F0D2;
@@ -9657,7 +9657,7 @@ RTS_B2F0E3:
 
 ;;; $F0E4: Wall space pirate function - wall-jumping left ;;;
 Function_PirateWall_WallJumpingLeft:
-    LDX.W EnemyIndex                                                     ;B2F0E4;
+    LDX.B EnemyIndex                                                     ;B2F0E4;
     LDA.W Enemy.init1,X                                                  ;B2F0E7;
     LSR                                                                  ;B2F0EA;
     STA.W Temp_Radius                                                    ;B2F0EB;
@@ -10170,7 +10170,7 @@ InstList_PirateNinja_StandingKick_FacingRight:
 Instruction_PirateNinja_PaletteIndexInY:
     PHX                                                                  ;B2F536;
     PHY                                                                  ;B2F537;
-    LDX.W EnemyIndex                                                     ;B2F538;
+    LDX.B EnemyIndex                                                     ;B2F538;
     LDA.W $0000,Y                                                        ;B2F53B;
     STA.W Enemy.palette,X                                                ;B2F53E;
     PLY                                                                  ;B2F541;
@@ -10197,7 +10197,7 @@ if !FEATURE_KEEP_UNREFERENCED
 ;;; $F554: Unused. Instruction - go to Enemy.var2 ;;;
 UNUSED_Instruction_PirateNinja_GotoFunction0FAC_B2F554:
     PHX                                                                  ;B2F554;
-    LDX.W EnemyIndex                                                     ;B2F555;
+    LDX.B EnemyIndex                                                     ;B2F555;
     LDA.W #$0001                                                         ;B2F558;
     STA.W Enemy.instTimer,X                                              ;B2F55B;
     LDA.W Enemy.var2,X                                                   ;B2F55E;
@@ -10210,7 +10210,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 ;;; $F564: Instruction - spawn space pirate claw enemy projectile with throw direction [[Y]] and spawn offset ([[Y] + 2], [[Y] + 4]) ;;;
 Instruction_PirateNinja_SpawnClawProjWithThrowDirSpawnOffset:
     PHY                                                                  ;B2F565;
-    LDX.W EnemyIndex                                                     ;B2F566;
+    LDX.B EnemyIndex                                                     ;B2F566;
     LDA.W $0002,Y                                                        ;B2F569;
     STA.B DP_Temp16                                                      ;B2F56C;
     LDA.W $0004,Y                                                        ;B2F56E;
@@ -10222,7 +10222,7 @@ Instruction_PirateNinja_SpawnClawProjWithThrowDirSpawnOffset:
     LDA.W $0000,Y                                                        ;B2F57D;
     LDY.W #EnemyProjectile_PirateClaw                                    ;B2F580;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;B2F583;
-    LDX.W EnemyIndex
+    LDX.B EnemyIndex
     PLA
     CLC
     ADC.W #$0006
@@ -10233,7 +10233,7 @@ Instruction_PirateNinja_SpawnClawProjWithThrowDirSpawnOffset:
 ;;; $F590: Instruction - set Enemy.var2 - active ;;;
 Instruction_PirateNinja_SetFunction0FAC_Active:
     PHX                                                                  ;B2F590;
-    LDX.W EnemyIndex                                                     ;B2F591;
+    LDX.B EnemyIndex                                                     ;B2F591;
     LDA.W Enemy.XPosition,X                                              ;B2F594;
     SEC                                                                  ;B2F597;
     SBC.W SamusXPosition                                                 ;B2F598;
@@ -10256,7 +10256,7 @@ if !FEATURE_KEEP_UNREFERENCED
 ;;; $F5B3: Unused. Instruction - set Enemy.var2 - standing kick ;;;
 UNUSED_Instruction_PirateNinja_Set0FAC_StandingKick_B2F5B3:
     PHX                                                                  ;B2F5B3;
-    LDX.W EnemyIndex                                                     ;B2F5B4;
+    LDX.B EnemyIndex                                                     ;B2F5B4;
     LDA.W Enemy.XPosition,X                                              ;B2F5B7;
     SEC                                                                  ;B2F5BA;
     SBC.W SamusXPosition                                                 ;B2F5BB;
@@ -10285,7 +10285,7 @@ Instruction_PirateNinja_ResetSpeed:
 
 ;;; $F5DE: Initialisation AI - enemy $F4D3/$F513/$F553/$F593/$F5D3/$F613 (ninja space pirates) ;;;
 InitAI_PirateNinja:
-    LDX.W EnemyIndex                                                     ;B2F5DE;
+    LDX.B EnemyIndex                                                     ;B2F5DE;
     LDY.W #InstList_PirateNinja_Initial_FacingLeft_0                     ;B2F5E1;
     LDA.W Enemy.init0,X                                                  ;B2F5E4;
     BIT.W #$0001                                                         ;B2F5E7;
@@ -10383,14 +10383,14 @@ InitAI_PirateNinja:
 
 ;;; $F6A2: Main AI - enemy $F4D3/$F513/$F553/$F593/$F5D3/$F613 (ninja space pirates) ;;;
 MainAI_PirateNinja:
-    LDX.W EnemyIndex                                                     ;B2F6A2;
+    LDX.B EnemyIndex                                                     ;B2F6A2;
     JSR.W (PirateNinja.function,X)                                       ;B2F6A5;
     RTL                                                                  ;B2F6A8;
 
 
 ;;; $F6A9: Ninja space pirate function - initial ;;;
 Function_PirateNinja_Initial:
-    LDX.W EnemyIndex                                                     ;B2F6A9;
+    LDX.B EnemyIndex                                                     ;B2F6A9;
     LDA.W Enemy.XPosition,X                                              ;B2F6AC;
     SEC                                                                  ;B2F6AF;
     SBC.W SamusXPosition                                                 ;B2F6B0;
@@ -10474,7 +10474,7 @@ PirateNinja_FlinchTrigger:
 ;; Returns:
 ;;     A: 1 if flinch triggered, 0 otherwise
     PHX                                                                  ;B2F72E;
-    LDX.W EnemyIndex                                                     ;B2F72F;
+    LDX.B EnemyIndex                                                     ;B2F72F;
     LDY.W #$0008                                                         ;B2F732;
 
   .loop:
@@ -10535,7 +10535,7 @@ PirateNinja_SpinJumpTrigger:
 ;; Returns:
 ;;     A: 1 if spin jump triggered, 0 otherwise
     PHX                                                                  ;B2F78D;
-    LDX.W EnemyIndex                                                     ;B2F78E;
+    LDX.B EnemyIndex                                                     ;B2F78E;
     LDA.W PirateNinja.postsMidpointXPosition,X                           ;B2F791;
     SEC                                                                  ;B2F794;
     SBC.W SamusXPosition                                                 ;B2F795;
@@ -10572,7 +10572,7 @@ PirateNinja_StandingKickTrigger:
 ;; Returns:
 ;;     A: 1 if kick triggered, 0 otherwise
     PHX                                                                  ;B2F7C6;
-    LDX.W EnemyIndex                                                     ;B2F7C7;
+    LDX.B EnemyIndex                                                     ;B2F7C7;
     LDA.W SamusXPosition                                                 ;B2F7CA;
     SEC                                                                  ;B2F7CD;
     SBC.W Enemy.XPosition,X                                              ;B2F7CE;
@@ -10749,7 +10749,7 @@ Function_PirateNinja_ReadingToDivekick:
 
 ;;; $F917: Ninja space pirate divekick trigger ;;;
 PirateNinja_DivekickTrigger:
-    LDX.W EnemyIndex                                                     ;B2F917;
+    LDX.B EnemyIndex                                                     ;B2F917;
     LDA.W PirateNinja.postsMidpointXPosition,X                           ;B2F91A;
     SEC                                                                  ;B2F91D;
     SBC.W SamusXPosition                                                 ;B2F91E;
@@ -11164,7 +11164,7 @@ InstList_PirateWalking_LookingAround_FacingRight:
 Instruction_PirateWalking_FireLaserLeftWithYOffsetInY:
     PHX                                                                  ;B2FC68;
     PHY                                                                  ;B2FC69;
-    LDX.W EnemyIndex                                                     ;B2FC6A;
+    LDX.B EnemyIndex                                                     ;B2FC6A;
     LDA.W Enemy.XPosition,X                                              ;B2FC6D;
     SEC                                                                  ;B2FC70;
     SBC.W #$0018                                                         ;B2FC71;
@@ -11188,7 +11188,7 @@ Instruction_PirateWalking_FireLaserLeftWithYOffsetInY:
 Instruction_PirateWalking_FireLaserRightWithYOffsetInY:
     PHX                                                                  ;B2FC90;
     PHY                                                                  ;B2FC91;
-    LDX.W EnemyIndex                                                     ;B2FC92;
+    LDX.B EnemyIndex                                                     ;B2FC92;
     LDA.W Enemy.XPosition,X                                              ;B2FC95;
     CLC                                                                  ;B2FC98;
     ADC.W #$0018                                                         ;B2FC99;
@@ -11212,7 +11212,7 @@ Instruction_PirateWalking_FireLaserRightWithYOffsetInY:
 Instruction_PirateWalking_FunctionInY:
     PHY                                                                  ;B2FCB8;
     PHX                                                                  ;B2FCB9;
-    LDX.W EnemyIndex                                                     ;B2FCBA;
+    LDX.B EnemyIndex                                                     ;B2FCBA;
     LDA.W $0000,Y                                                        ;B2FCBD;
     STA.W PirateWalking.function,X                                       ;B2FCC0;
     PLX                                                                  ;B2FCC3;
@@ -11225,14 +11225,14 @@ Instruction_PirateWalking_FunctionInY:
 ;;; $FCC8: Instruction - choose a movement ;;;
 Instruction_PirateWalking_ChooseAMovement:
     PHX                                                                  ;B2FCC8;
-    LDX.W EnemyIndex                                                     ;B2FCC9;
+    LDX.B EnemyIndex                                                     ;B2FCC9;
     LDA.W #$0010                                                         ;B2FCCC;
     PHY                                                                  ;B2FCCF;
     JSL.L IsSamusWithingAPixelRowsOfEnemy                                ;B2FCD0;
     PLY                                                                  ;B2FCD4;
     AND.W #$FFFF                                                         ;B2FCD5;
     BNE .verticalClose                                                   ;B2FCD8;
-    LDX.W EnemyIndex                                                     ;B2FCDA;
+    LDX.B EnemyIndex                                                     ;B2FCDA;
     LDY.W #InstList_PirateWalking_WalkingRight_0                         ;B2FCDD;
     LDA.W SamusXPosition                                                 ;B2FCE0;
     SEC                                                                  ;B2FCE3;
@@ -11245,7 +11245,7 @@ Instruction_PirateWalking_ChooseAMovement:
     RTL                                                                  ;B2FCED;
 
   .verticalClose:
-    LDX.W EnemyIndex                                                     ;B2FCEE;
+    LDX.B EnemyIndex                                                     ;B2FCEE;
     LDY.W #InstList_PirateWalking_FireLasersLeft                         ;B2FCF1;
     LDA.W SamusXPosition                                                 ;B2FCF4;
     SEC                                                                  ;B2FCF7;
@@ -11260,7 +11260,7 @@ Instruction_PirateWalking_ChooseAMovement:
 
 ;;; $FD02: Initialisation AI - enemy $F653/$F693/$F6D3/$F713/$F753/$F793 (walking space pirates) ;;;
 InitAI_PirateWalking:
-    LDX.W EnemyIndex                                                     ;B2FD02;
+    LDX.B EnemyIndex                                                     ;B2FD02;
     LDY.W #InstList_PirateWalking_WalkingLeft_0                          ;B2FD05;
     LDA.W Enemy.init0,X                                                  ;B2FD08;
     BIT.W #$0001                                                         ;B2FD0B;
@@ -11285,7 +11285,7 @@ InitAI_PirateWalking:
 
 ;;; $FD32: Main AI - enemy $F653/$F693/$F6D3/$F713/$F753/$F793 (walking space pirates) ;;;
 MainAI_PirateWalking:
-    LDX.W EnemyIndex                                                     ;B2FD32;
+    LDX.B EnemyIndex                                                     ;B2FD32;
     JSR.W (PirateWalking.function,X)                                     ;B2FD35;
     LDA.W Enemy.init0,X                                                  ;B2FD38;
     BIT.W #$8000                                                         ;B2FD3B;
@@ -11298,7 +11298,7 @@ MainAI_PirateWalking:
 
 ;;; $FD44: Walking space pirate function - walking left ;;;
 Function_PirateWalking_WalkingLeft:
-    LDX.W EnemyIndex                                                     ;B2FD44;
+    LDX.B EnemyIndex                                                     ;B2FD44;
     LDA.W #$0010                                                         ;B2FD47;
     JSL.L IsSamusWithingAPixelRowsOfEnemy                                ;B2FD4A;
     BEQ .walk                                                            ;B2FD4E;
@@ -11363,7 +11363,7 @@ Function_PirateWalking_WalkingLeft:
 
 ;;; $FDCE: Walking space pirate function - walking right ;;;
 Function_PirateWalking_WalkingRight:
-    LDX.W EnemyIndex                                                     ;B2FDCE;
+    LDX.B EnemyIndex                                                     ;B2FDCE;
     LDA.W #$0010                                                         ;B2FDD1;
     JSL.L IsSamusWithingAPixelRowsOfEnemy                                ;B2FDD4;
     BEQ .walk                                                            ;B2FDD8;
@@ -11430,7 +11430,7 @@ RTS_B2FE4A:
 PirateWalking_FlinchTrigger:
 ; Return value is ignored by caller. Probably left over from PirateNinja_FlinchTrigger copy+paste
     PHX                                                                  ;B2FE4B;
-    LDX.W EnemyIndex                                                     ;B2FE4C;
+    LDX.B EnemyIndex                                                     ;B2FE4C;
     LDY.W #$0008                                                         ;B2FE4F;
 
   .loopProjectiles:

@@ -250,7 +250,7 @@ GenerateRandomNumber:
 
 ; r(t+1) = r(t) * 5 + 111h (roughly; if the adding of x * 100h causes overflow, then a further 1 is added)
     SEP #$20                                                             ;808111;
-    LDA.W RandomNumberSeed                                               ;808113;
+    LDA.B RandomNumberSeed                                               ;808113;
     STA.W $4202                                                          ;808116;
     LDA.B #$05                                                           ;808119;
     STA.W $4203                                                          ;80811B;
@@ -259,7 +259,7 @@ GenerateRandomNumber:
     LDA.W $4216                                                          ;808121; A += ([random number high] * 5 + 1) * 100h
     STA.B DP_Temp34
     SEP #$20                                                             ;808125;
-    LDA.W RandomNumberSeed+1                                             ;808127;
+    LDA.B RandomNumberSeed+1                                             ;808127;
     STA.W $4202                                                          ;80812A;
     LDA.B #$05                                                           ;80812D;
     STA.W $4203                                                          ;80812F;
@@ -272,7 +272,7 @@ GenerateRandomNumber:
     REP #$20                                                             ;80813C;
     LDA.B DP_Temp34                                                      ;80813E;
     ADC.W #$0011                                                         ;80813F;
-    STA.W RandomNumberSeed                                               ;808142; Random number = [A] + 11h
+    STA.B RandomNumberSeed                                               ;808142; Random number = [A] + 11h
     RTL                                                                  ;808145;
 
 
@@ -1037,7 +1037,7 @@ CommonBootSection:
     BPL .wait                                                            ;808528;
     REP #$30                                                             ;808532;
     LDA.W #$0061                                                         ;808534;
-    STA.W RandomNumberSeed                                               ;808537; Seed random number with 61h
+    STA.B RandomNumberSeed                                               ;808537; Seed random number with 61h
     LDA.W #$0000                                                         ;80853A;
     STA.W APU_MusicTimer                                                 ;80853D;
     STA.W APU_MusicQueueTimers                                           ;808540;

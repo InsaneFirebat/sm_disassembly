@@ -1940,7 +1940,7 @@ UNUSED_EnemyProjectile_868A39:
 ;; Parameters:
 ;;     Y: Enemy projectile index
     JSL.L GenerateRandomNumber                                           ;868A39;
-    LDX.W EnemyIndex                                                     ;868A3D;
+    LDX.B EnemyIndex                                                     ;868A3D;
     LDA.W Enemy.YPosition,X                                              ;868A40;
     CLC                                                                  ;868A43;
     ADC.W #$000C                                                         ;868A44;
@@ -1949,7 +1949,7 @@ UNUSED_EnemyProjectile_868A39:
     STA.W EnemyProjectile_Timers,Y                                       ;868A4D;
     LDA.W Enemy.var3,X                                                   ;868A50;
     STA.W EnemyProjectile_YVelocity,Y                                    ;868A53;
-    LDA.W RandomNumberSeed                                               ;868A56;
+    LDA.B RandomNumberSeed                                               ;868A56;
     AND.W #$001F                                                         ;868A59;
     SEC                                                                  ;868A5C;
     SBC.W #$0010                                                         ;868A5D;
@@ -2039,7 +2039,7 @@ InstList_MetalSkreeParticle:
 InitAI_EnemyProjectile_MetalSkreeParticle_DownRight:
 ;; Parameters:
 ;;     Y: Enemy projectile index
-    LDX.W EnemyIndex                                                     ;868ACD;
+    LDX.B EnemyIndex                                                     ;868ACD;
     LDA.W Enemy.YPosition,X                                              ;868AD0;
     SEC                                                                  ;868AD3;
     SBC.W #$0000                                                         ;868AD4;
@@ -2059,7 +2059,7 @@ InitAI_EnemyProjectile_MetalSkreeParticle_DownRight:
 InitAI_EnemyProjectile_MetalSkreeParticle_UpRight:
 ;; Parameters:
 ;;     Y: Enemy projectile index
-    LDX.W EnemyIndex                                                     ;868AF1;
+    LDX.B EnemyIndex                                                     ;868AF1;
     LDA.W Enemy.YPosition,X                                              ;868AF4;
     SEC                                                                  ;868AF7;
     SBC.W #$0000                                                         ;868AF8;
@@ -2079,7 +2079,7 @@ InitAI_EnemyProjectile_MetalSkreeParticle_UpRight:
 InitAI_EnemyProjectile_MetalSkreeParticle_DownLeft:
 ;; Parameters:
 ;;     Y: Enemy projectile index
-    LDX.W EnemyIndex                                                     ;868B15;
+    LDX.B EnemyIndex                                                     ;868B15;
     LDA.W Enemy.YPosition,X                                              ;868B18;
     SEC                                                                  ;868B1B;
     SBC.W #$0000                                                         ;868B1C;
@@ -2099,7 +2099,7 @@ InitAI_EnemyProjectile_MetalSkreeParticle_DownLeft:
 InitAI_EnemyProjectile_MetalSkreeParticle_UpLeft:
 ;; Parameters:
 ;;     Y: Enemy projectile index
-    LDX.W EnemyIndex                                                     ;868B39;
+    LDX.B EnemyIndex                                                     ;868B39;
     LDA.W Enemy.YPosition,X                                              ;868B3C;
     SEC                                                                  ;868B3F;
     SBC.W #$0000                                                         ;868B40;
@@ -2883,7 +2883,7 @@ InstList_EnemyProjectile_Shot_CrocomiresProjectile:
 InitAI_EnemyProjectile_CrocomiresProjectile:
 ;; Parameters:
 ;;     Y: Enemy projectile index
-    LDX.W EnemyIndex                                                     ;869023;
+    LDX.B EnemyIndex                                                     ;869023;
     LDA.W #-$0200*!SPF                                                   ;869026;
     STA.W EnemyProjectile_XVelocity,Y                                    ;869029;
     LDA.W #$0001                                                         ;86902C;
@@ -3178,7 +3178,7 @@ InitAI_EnemyProjectile_CrocomireBridgeCrumbling:
 ;;     Y: Enemy projectile index
 ;;     EnemyProjectile_InitParam0: X position
     PHX                                                                  ;869286;
-    LDX.W EnemyIndex                                                     ;869287;
+    LDX.B EnemyIndex                                                     ;869287;
     LDA.W EnemyProjectile_InitParam0                                     ;86928A;
     STA.W EnemyProjectile_XPositions,Y                                   ;86928D;
     LDA.W #$00BB                                                         ;869290;
@@ -3188,7 +3188,7 @@ InitAI_EnemyProjectile_CrocomireBridgeCrumbling:
     STA.W EnemyProjectile_XSubPositions,Y                                ;86929C;
     LDA.W #$0000                                                         ;86929F;
     STA.W EnemyProjectile_XVelocity,Y                                    ;8692A2;
-    LDA.W RandomNumberSeed                                               ;8692A5;
+    LDA.B RandomNumberSeed                                               ;8692A5;
     AND.W #$003F                                                         ;8692A8;
     CLC                                                                  ;8692AB;
     ADC.W #$0040*!SPF                                                    ;8692AC;
@@ -4828,7 +4828,7 @@ InitAI_EnemyProjectile_KraidRockSpit:
 ;;     Y: Enemy projectile index
 ;;     EnemyProjectile_InitParam0: X velocity
     PHX                                                                  ;869CA3;
-    LDX.W EnemyIndex                                                     ;869CA4;
+    LDX.B EnemyIndex                                                     ;869CA4;
     LDA.W Enemy.XPosition,X                                              ;869CA7;
     CLC                                                                  ;869CAA;
     ADC.W #$0010                                                         ;869CAB;
@@ -4856,7 +4856,7 @@ Instruction_EnemyProjectile_KraidCeilingRocks:
 ;;     Y: Enemy projectile index
 ;;     EnemyProjectile_InitParam0: X position
     PHX                                                                  ;869CD8;
-    LDX.W EnemyIndex                                                     ;869CD9;
+    LDX.B EnemyIndex                                                     ;869CD9;
     LDA.W EnemyProjectile_InitParam0                                     ;869CDC;
     STA.W EnemyProjectile_XPositions,Y                                   ;869CDF;
     LDA.W #$0138                                                         ;869CE2;
@@ -4866,7 +4866,7 @@ Instruction_EnemyProjectile_KraidCeilingRocks:
     STA.W EnemyProjectile_XSubPositions,Y                                ;869CEE;
     LDA.W #$0000                                                         ;869CF1;
     STA.W EnemyProjectile_XVelocity,Y                                    ;869CF4;
-    LDA.W RandomNumberSeed                                               ;869CF7;
+    LDA.B RandomNumberSeed                                               ;869CF7;
     AND.W #$003F                                                         ;869CFA;
     CLC                                                                  ;869CFD;
     ADC.W #$0040*!SPF                                                    ;869CFE;
@@ -4883,10 +4883,10 @@ Instruction_EnemyProjectile_KraidRisingRocks:
 ;;     Y: Enemy projectile index
 ;;     EnemyProjectile_InitParam0: X velocity
     PHX                                                                  ;869D0C;
-    LDA.W RandomNumberSeed                                               ;869D0D;
+    LDA.B RandomNumberSeed                                               ;869D0D;
     AND.W #$003F                                                         ;869D10;
     TAX                                                                  ;869D13;
-    LDA.W RandomNumberSeed                                               ;869D14;
+    LDA.B RandomNumberSeed                                               ;869D14;
     BIT.W #$0001                                                         ;869D17;
     BNE +                                                                ;869D1A;
     TXA                                                                  ;869D1C;
@@ -4894,7 +4894,7 @@ Instruction_EnemyProjectile_KraidRisingRocks:
     TAX                                                                  ;869D20;
 
 +   TXA                                                                  ;869D21;
-    LDX.W EnemyIndex                                                     ;869D22;
+    LDX.B EnemyIndex                                                     ;869D22;
     CLC                                                                  ;869D25;
     ADC.W Enemy.XPosition,X                                              ;869D26;
     STA.W EnemyProjectile_XPositions,Y                                   ;869D29;
@@ -5036,7 +5036,7 @@ InitAI_EnemyProjectile_MiniKraidSpit:
 ;; Parameters:
 ;;     Y: Enemy projectile index
     PHX                                                                  ;869DEC;
-    LDX.W EnemyIndex                                                     ;869DED;
+    LDX.B EnemyIndex                                                     ;869DED;
     LDA.W Enemy.XPosition,X                                              ;869DF0;
     CLC                                                                  ;869DF3;
     ADC.L MiniKraid.spitXOffset,X                                                      ;869DF4;
@@ -5105,12 +5105,12 @@ InitAI_EnemyProjectile_MiniKraidSpikes_Common:
 ;; Parameters:
 ;;     Y: Enemy projectile index
     STA.W EnemyProjectile_XVelocity,Y                                    ;869E4E;
-    LDX.W EnemyIndex                                                     ;869E51;
+    LDX.B EnemyIndex                                                     ;869E51;
     LDA.L MiniKraid.spikeIndex,X                                         ;869E54;
     TAX                                                                  ;869E58;
     LDA.W .data,X                                                        ;869E59;
     STA.B DP_Temp12                                                      ;869E5C;
-    LDX.W EnemyIndex                                                     ;869E5E;
+    LDX.B EnemyIndex                                                     ;869E5E;
     LDA.W Enemy.XPosition,X                                              ;869E61;
     STA.W EnemyProjectile_XPositions,Y                                   ;869E64;
     LDA.W Enemy.YPosition,X                                              ;869E67;
@@ -5170,7 +5170,7 @@ InitAI_EnemyProjectile_AlcoonFireball:
 ;;     Y: Enemy projectile index
 ;;     EnemyProjectile_InitParam0: Y velocity index
     PHX                                                                  ;869EB2;
-    LDX.W EnemyIndex                                                     ;869EB3;
+    LDX.B EnemyIndex                                                     ;869EB3;
     LDA.W Enemy.YPosition,X                                              ;869EB6;
     SEC                                                                  ;869EB9;
     SBC.W #$000C                                                         ;869EBA;
@@ -5351,13 +5351,13 @@ InitAI_EnemyProjectile_Pirate_MotherBrain_Laser:
     STA.W EnemyProjectile_XPositions,Y                                   ;86A024;
     LDA.B DP_Temp14                                                      ;86A027;
     STA.W EnemyProjectile_YPositions,Y                                   ;86A029;
-    LDX.W EnemyIndex                                                     ;86A02C;
+    LDX.B EnemyIndex                                                     ;86A02C;
     LDA.W Enemy.ID,X                                                     ;86A02F;
     TAX                                                                  ;86A032;
     LDA.L EnemyHeaders_damage,X                                          ;86A033;
     ORA.W #$1000                                                         ;86A037;
     STA.W EnemyProjectile_Properties,Y                                   ;86A03A;
-    LDX.W EnemyIndex                                                     ;86A03D;
+    LDX.B EnemyIndex                                                     ;86A03D;
     LDA.W Enemy.init0,X                                                  ;86A040;
     STA.W EnemyProjectile_Var0,Y                                         ;86A043;
     LDA.W #$0067                                                         ;86A046;
@@ -6267,14 +6267,14 @@ InitAI_EnemyProjectile_BombTorizoContinuousDrool:
     LDA.W .InstListPointers,X                                            ;86A5E2;
     STA.W EnemyProjectile_InstListPointers,Y                             ;86A5E5;
     JSL.L GenerateRandomNumber                                           ;86A5E8;
-    LDX.W EnemyIndex                                                     ;86A5EC;
+    LDX.B EnemyIndex                                                     ;86A5EC;
     LDA.W Enemy.YPosition,X                                              ;86A5EF;
     CLC                                                                  ;86A5F2;
     ADC.W #$FFFB                                                         ;86A5F3;
     STA.W EnemyProjectile_YPositions,Y                                   ;86A5F6;
     BIT.W Enemy.init0,X                                                  ;86A5F9;
     BVC .checkLeft                                                       ;86A5FC;
-    LDA.W RandomNumberSeed                                               ;86A5FE;
+    LDA.B RandomNumberSeed                                               ;86A5FE;
     AND.W #$01FE                                                         ;86A601;
     BRA .angleDetermined                                                 ;86A604;
 
@@ -6288,7 +6288,7 @@ InitAI_EnemyProjectile_BombTorizoContinuousDrool:
 
   .facingRight:
     STA.B DP_Temp12                                                      ;86A610;
-    LDA.W RandomNumberSeed                                               ;86A612;
+    LDA.B RandomNumberSeed                                               ;86A612;
     AND.W #$000F                                                         ;86A615;
     SEC                                                                  ;86A618;
     SBC.W #$0008                                                         ;86A619;
@@ -6302,7 +6302,7 @@ InitAI_EnemyProjectile_BombTorizoContinuousDrool:
     STA.W EnemyProjectile_XVelocity,Y                                    ;86A625;
     LDA.L SineCosineTables_NegativeCosine_SignExtended,X                 ;86A628;
     STA.W EnemyProjectile_YVelocity,Y                                    ;86A62C;
-    LDX.W EnemyIndex                                                     ;86A62F;
+    LDX.B EnemyIndex                                                     ;86A62F;
     BIT.W Enemy.init0,X                                                  ;86A632;
     BMI .move                                                            ;86A635;
     LDA.W Enemy.XPosition,X                                              ;86A637;
@@ -6336,19 +6336,19 @@ InitAI_EnemyProjectile_BombTorizoInitialDrool:
     LDA.W #$0000                                                         ;86A65D;
     STA.W EnemyProjectile_GraphicsIndices,Y                              ;86A660;
     JSL.L GenerateRandomNumber                                           ;86A663;
-    LDX.W EnemyIndex                                                     ;86A667;
-    LDA.W RandomNumberSeed                                               ;86A66A;
+    LDX.B EnemyIndex                                                     ;86A667;
+    LDA.B RandomNumberSeed                                               ;86A66A;
     AND.W #$0003                                                         ;86A66D;
     CLC                                                                  ;86A670;
     ADC.W Enemy.YPosition,X                                              ;86A671;
     ADC.W #$FFFB                                                         ;86A674;
     STA.W EnemyProjectile_YPositions,Y                                   ;86A677;
-    LDA.W RandomNumberSeed                                               ;86A67A;
+    LDA.B RandomNumberSeed                                               ;86A67A;
     AND.W #$001F                                                         ;86A67D;
     ADC.W #$0030                                                         ;86A680;
     STA.W EnemyProjectile_YVelocity,Y                                    ;86A683;
     JSL.L GenerateRandomNumber                                           ;86A686;
-    LDA.W RandomNumberSeed                                               ;86A68A;
+    LDA.B RandomNumberSeed                                               ;86A68A;
     AND.W #$0003                                                         ;86A68D;
     BIT.W Enemy.init0,X                                                  ;86A690;
     BVC .notTurning                                                      ;86A693;
@@ -6414,7 +6414,7 @@ InitAI_EnemyProjectile_BombTorizoExplosiveSwipe:
 ;; Parameters:
 ;;     Y: Enemy projectile index
 ;;     EnemyProjectile_InitParam0: Index. Multiple of 2, range 0..14h
-    LDX.W EnemyIndex                                                     ;86A6F6;
+    LDX.B EnemyIndex                                                     ;86A6F6;
     LDA.W Enemy.XPosition,X                                              ;86A6F9;
     STA.B DP_Temp12                                                      ;86A6FC;
     LDA.W Enemy.YPosition,X                                              ;86A6FE;
@@ -6532,7 +6532,7 @@ InitAI_EnemyProjectile_BombTorizoLowHealthExplosion:
 ;; Parameters:
 ;;     Y: Enemy projectile index
 ;;     EnemyProjectile_InitParam0: Index. 0 (BT's gut) or 6 (BT's face)
-    LDX.W EnemyIndex                                                     ;86A81B;
+    LDX.B EnemyIndex                                                     ;86A81B;
     LDA.W Enemy.XPosition,X                                              ;86A81E;
     STA.W EnemyProjectile_XPositions,Y                                   ;86A821;
     LDA.W Enemy.YPosition,X                                              ;86A824;
@@ -6574,7 +6574,7 @@ InitAI_EnemyProjectile_BombTorizoLowHealthExplosion:
 InitAI_EnemyProjectile_TorizoDeathExplosion:
 ;; Parameters:
 ;;     Y: Enemy projectile index
-    LDX.W EnemyIndex                                                     ;86A871;
+    LDX.B EnemyIndex                                                     ;86A871;
     LDA.W Enemy.XPosition,X                                              ;86A874;
     STA.W EnemyProjectile_XPositions,Y                                   ;86A877;
     STA.W EnemyProjectile_Var0,Y                                         ;86A87A;
@@ -7051,7 +7051,7 @@ InitAI_EnemyProjectile_TorizoChozoOrbs_Egg_EyeBeam_Common:
 InitAI_EnemyProjectile_BombTorizoChozoOrbs:
 ;; Parameters:
 ;;     Y: Enemy projectile index
-    LDX.W EnemyIndex                                                     ;86ABEB;
+    LDX.B EnemyIndex                                                     ;86ABEB;
     LDA.W Enemy.XPosition,X                                              ;86ABEE;
     STA.B DP_Temp12                                                      ;86ABF1;
     LDA.W Enemy.YPosition,X                                              ;86ABF3;
@@ -7087,10 +7087,10 @@ UNUSED_InitializeTorizoChozoOrbToTargetSamus:
 ;; Parameters:
 ;;     Y: Enemy projectile index
     JSL.L GenerateRandomNumber                                           ;86AC1C;
-    LDX.W EnemyIndex                                                     ;86AC20;
+    LDX.B EnemyIndex                                                     ;86AC20;
     JSL.L CalculateAngleOfSamusFromEnemy                                 ;86AC23;
     STA.B DP_Temp12                                                      ;86AC27;
-    LDA.W RandomNumberSeed                                               ;86AC29;
+    LDA.B RandomNumberSeed                                               ;86AC29;
     AND.W #$000F                                                         ;86AC2C;
     SEC                                                                  ;86AC2F;
     SBC.W #$0008                                                         ;86AC30;
@@ -7104,7 +7104,7 @@ UNUSED_InitializeTorizoChozoOrbToTargetSamus:
     LDA.L SineCosineTables_NegativeCosine_SignExtended,X                 ;86AC40;
     ASL                                                                  ;86AC44;
     STA.W EnemyProjectile_YVelocity,Y                                    ;86AC45;
-    LDX.W EnemyIndex                                                     ;86AC48;
+    LDX.B EnemyIndex                                                     ;86AC48;
     LDA.W Enemy.YPosition,X                                              ;86AC4B;
     CLC                                                                  ;86AC4E;
     ADC.W #$FFD8                                                         ;86AC4F;
@@ -7134,7 +7134,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 InitAI_EnemyProjectile_GoldenTorizosChozoOrbs:
 ;; Parameters:
 ;;     Y: Enemy projectile index
-    LDX.W EnemyIndex                                                     ;86AC7C;
+    LDX.B EnemyIndex                                                     ;86AC7C;
     LDA.W Enemy.XPosition,X                                              ;86AC7F;
     STA.B DP_Temp12                                                      ;86AC82;
     LDA.W Enemy.YPosition,X                                              ;86AC84;
@@ -7400,8 +7400,8 @@ InitAI_EnemyProjectile_TorizoSonicBoom:
 ;; Parameters:
 ;;     Y: Enemy projectile index
     JSL.L GenerateRandomNumber                                           ;86AE15;
-    LDX.W EnemyIndex                                                     ;86AE19;
-    LDA.W RandomNumberSeed                                               ;86AE1C;
+    LDX.B EnemyIndex                                                     ;86AE19;
+    LDA.B RandomNumberSeed                                               ;86AE1C;
     AND.W #$0001                                                         ;86AE1F;
     BEQ .A14                                                             ;86AE22;
     LDA.W #$FFF4                                                         ;86AE24;
@@ -7529,7 +7529,7 @@ InitAI_EnemyProj_WreckedShipChozoSpikeClearingFootsteps:
 ;; Parameters:
 ;;     Y: Enemy projectile index
 ;;     EnemyProjectile_InitParam0: X offset
-    LDX.W EnemyIndex                                                     ;86AEFC;
+    LDX.B EnemyIndex                                                     ;86AEFC;
     LDA.W Enemy.XPosition,X                                              ;86AEFF;
     CLC                                                                  ;86AF02;
     ADC.W EnemyProjectile_InitParam0                                     ;86AF03;
@@ -7586,7 +7586,7 @@ InitAI_EnemyProjectile_TourianStatueDustClouds:
 InitAI_EnemyProjectile_TorizoLandingDustCloud_RightFoot:
 ;; Parameters:
 ;;     Y: Enemy projectile index
-    LDX.W EnemyIndex                                                     ;86AF50;
+    LDX.B EnemyIndex                                                     ;86AF50;
     LDA.W Enemy.YPosition,X                                              ;86AF53;
     CLC                                                                  ;86AF56;
     ADC.W #$0030                                                         ;86AF57;
@@ -7671,7 +7671,7 @@ InstList_EnemyProjectile_TorizoLandingDustCloud_LeftFoot:
 InitAI_EnemyProjectile_TorizoLandingDustCloud_LeftFoot:
 ;; Parameters:
 ;;     Y: Enemy projectile index
-    LDX.W EnemyIndex                                                     ;86AFCD;
+    LDX.B EnemyIndex                                                     ;86AFCD;
     LDA.W Enemy.YPosition,X                                              ;86AFD0;
     CLC                                                                  ;86AFD3;
     ADC.W #$0030                                                         ;86AFD4;
@@ -7709,12 +7709,12 @@ EnemyProjectile_TorizoLandingDustCloud_LeftFoot:                         ;86AFF3
 InitAI_EnemyProjectile_GoldenTorizoEgg:
 ;; Parameters:
 ;;     Y: Enemy projectile index
-    LDX.W EnemyIndex                                                     ;86B001;
+    LDX.B EnemyIndex                                                     ;86B001;
     LDA.W Enemy.XPosition,X                                              ;86B004;
     STA.B DP_Temp12                                                      ;86B007;
     LDA.W Enemy.YPosition,X                                              ;86B009;
     STA.B DP_Temp14                                                      ;86B00C;
-    LDA.W RandomNumberSeed                                               ;86B00E;
+    LDA.B RandomNumberSeed                                               ;86B00E;
     AND.W #$001F                                                         ;86B012;
     CLC                                                                  ;86B015;
     ADC.W #$0040                                                         ;86B016;
@@ -8013,7 +8013,7 @@ EnemyProjectile_GoldenTorizoEgg:                                         ;86B1C0
 InitAI_EnemyProjectile_GoldenTorizoSuperMissile:
 ;; Parameters:
 ;;     Y: Enemy projectile index
-    LDA.W EnemyIndex                                                     ;86B1CE;
+    LDA.B EnemyIndex                                                     ;86B1CE;
     STA.W EnemyProjectile_Var0,Y                                         ;86B1D1;
     TAX                                                                  ;86B1D4;
     LDA.W Enemy.XPosition,X                                              ;86B1D5;
@@ -8219,7 +8219,7 @@ EnemyProjectile_GoldenTorizoSuperMissile:                                ;86B31A
 InitAI_EnemyProjectile_GoldenTorizoEyeBeam:
 ;; Parameters:
 ;;     Y: Enemy projectile index
-    LDX.W EnemyIndex                                                     ;86B328;
+    LDX.B EnemyIndex                                                     ;86B328;
     LDA.W Enemy.XPosition,X                                              ;86B32B;
     STA.B DP_Temp12                                                      ;86B32E;
     LDA.W Enemy.YPosition,X                                              ;86B330;
@@ -8239,7 +8239,7 @@ InitAI_EnemyProjectile_GoldenTorizoEyeBeam:
     SBC.W #$0010                                                         ;86B34D;
     CLC                                                                  ;86B350;
     ADC.W #$00C0                                                         ;86B351;
-    LDX.W EnemyIndex                                                     ;86B354;
+    LDX.B EnemyIndex                                                     ;86B354;
     BIT.W Enemy.init0,X                                                  ;86B357;
     BMI .facingRight2                                                    ;86B35A;
     CLC                                                                  ;86B35C;
@@ -8530,7 +8530,7 @@ InstList_EnemyProjectile_DragonFireball_Falling_Right:
 InitAI_EnemyProjectile_DragonFireball:
 ;; Parameters:
 ;;     Y: Enemy projectile index
-    LDX.W EnemyIndex                                                     ;86B4EF;
+    LDX.B EnemyIndex                                                     ;86B4EF;
     LDA.W Enemy.YPosition,X                                              ;86B4F2;
     SEC                                                                  ;86B4F5;
     SBC.W #$001C                                                         ;86B4F6;
@@ -9497,7 +9497,7 @@ UNUSED_InitAI_EnemyProjectile_86BB30:
 
 ; Ceres Ridley is the only enemy that uses both $7E:8022 and $7E:8024, but it uses them as flags
 ; So there's no way of knowing what enemy was supposed to spawn this projectile (if any)
-    LDX.W EnemyIndex                                                     ;86BB30;
+    LDX.B EnemyIndex                                                     ;86BB30;
     LDA.L $7E8022,X                                                      ;86BB33; ?
     STA.W EnemyProjectile_XPositions,Y                                   ;86BB37;
     LDA.L $7E8024,X                                                      ;86BB3A; ?
@@ -9554,7 +9554,7 @@ InstList_EnemyProjectile_PuromiBody:
 InitAI_EnemyProjectile_PuromiBody:
 ;; Parameters:
 ;;     Y: Enemy projectile index
-    LDX.W EnemyIndex                                                     ;86BB92;
+    LDX.B EnemyIndex                                                     ;86BB92;
     LDA.W Enemy.XPosition,X                                              ;86BB95;
     STA.W EnemyProjectile_XPositions,Y                                   ;86BB98;
     LDA.W Enemy.XSubPosition,X                                           ;86BB9B;
@@ -9566,7 +9566,7 @@ InitAI_EnemyProjectile_PuromiBody:
     PHX                                                                  ;86BBAD;
     LDA.L Puromi.bodyIndex,X                                             ;86BBAE;
     CLC                                                                  ;86BBB2;
-    ADC.W EnemyIndex                                                     ;86BBB3;
+    ADC.B EnemyIndex                                                     ;86BBB3;
     TAX                                                                  ;86BBB6;
     TYA                                                                  ;86BBB7;
     STA.L Puromi.projectileIndex0,X                                      ;86BBB8;
@@ -9614,7 +9614,7 @@ InitAI_EnemyProjectile_NorfairLavaquakeRocks:
     STA.W EnemyProjectile_YVelocity,Y                                    ;86BBEA;
     LDA.W EnemyProjectile_InitParam1                                     ;86BBED;
     STA.W EnemyProjectile_XVelocity,Y                                    ;86BBF0;
-    LDX.W EnemyIndex                                                     ;86BBF3;
+    LDX.B EnemyIndex                                                     ;86BBF3;
     LDA.W Enemy.XPosition,X                                              ;86BBF6;
     STA.W EnemyProjectile_XPositions,Y                                   ;86BBF9;
     LDA.W Enemy.XSubPosition,X                                           ;86BBFC;
@@ -9901,7 +9901,7 @@ InitAI_EnemyProjectile_ShaktoolsAttack_Middle_Back:
 InitAI_EnemyProjectile_ShaktoolsAttack_Front:
 ;; Parameters:
 ;;     Y: Enemy projectile index
-    LDX.W EnemyIndex                                                     ;86BDA2;
+    LDX.B EnemyIndex                                                     ;86BDA2;
     LDA.W Enemy.XPosition,X                                              ;86BDA5;
     STA.W EnemyProjectile_XPositions,Y                                   ;86BDA8;
     LDA.W Enemy.YPosition,X                                              ;86BDAB;
@@ -11311,7 +11311,7 @@ InitAI_EnemyProjectile_MotherBrainRedBeam_Fired:
     JSL.L CalculateXVelocityFromSpeedAndAngle                            ;86C6E7;
     PLX                                                                  ;86C6EB;
     STA.W EnemyProjectile_XVelocity,X                                    ;86C6EC;
-    LDA.W RandomNumberSeed                                               ;86C6EF;
+    LDA.B RandomNumberSeed                                               ;86C6EF;
     AND.W #$0700                                                         ;86C6F2;
     PHX                                                                  ;86C6F5;
     JSL.L CalculateYVelocityFromSpeedAndAngle                            ;86C6F6;
@@ -12521,7 +12521,7 @@ InitAI_EnemyProjectile_KiHunterAcidSpit_Left:
 ;; Parameters:
 ;;     Y: Enemy projectile index
     PHX                                                                  ;86CF90;
-    LDX.W EnemyIndex                                                     ;86CF91;
+    LDX.B EnemyIndex                                                     ;86CF91;
     LDA.W #-$0300*!SPF                                                   ;86CF94;
     STA.W EnemyProjectile_XVelocity,Y                                    ;86CF97;
     LDA.W Enemy.XPosition,X                                              ;86CF9A;
@@ -12536,7 +12536,7 @@ InitAI_EnemyProjectile_KiHunterAcidSpit_Right:
 ;; Parameters:
 ;;     Y: Enemy projectile index
     PHX                                                                  ;86CFA6;
-    LDX.W EnemyIndex                                                     ;86CFA7;
+    LDX.B EnemyIndex                                                     ;86CFA7;
     LDA.W #$0300*!SPF                                                    ;86CFAA;
     STA.W EnemyProjectile_XVelocity,Y                                    ;86CFAD;
     LDA.W Enemy.XPosition,X                                              ;86CFB0;
@@ -12701,14 +12701,14 @@ KagoBug_Constants:
 InitAI_EnemyProjectile_KagoBug:
 ;; Parameters:
 ;;     Y: Enemy projectile index
-    LDA.W EnemyIndex                                                     ;86D088;
+    LDA.B EnemyIndex                                                     ;86D088;
     STA.W EnemyProjectile_Var1,Y                                         ;86D08B;
     TAX                                                                  ;86D08E;
     LDA.W Enemy.XPosition,X                                              ;86D08F;
     STA.W EnemyProjectile_XPositions,Y                                   ;86D092;
     LDA.W Enemy.YPosition,X                                              ;86D095;
     STA.W EnemyProjectile_YPositions,Y                                   ;86D098;
-    LDA.W RandomNumberSeed                                               ;86D09B;
+    LDA.B RandomNumberSeed                                               ;86D09B;
     AND.W #$0007                                                         ;86D09E;
     INC                                                                  ;86D0A1;
     STA.W EnemyProjectile_CollidedProjectileType,Y                       ;86D0A2;
@@ -12836,7 +12836,7 @@ Instruction_EnemyProjectile_KagoBug_StartJumping:
 ; If the kago is killed, its X position will be 0, which will cause the bugs to (usually) jump left
     JSR.W Handle_KagoBug_SoundEffect                                     ;86D15C;
     JSR.W Enable_KagoBug_Collision_with_SamusProj_IfFarEnoughFromKago    ;86D15F;
-    LDA.W RandomNumberSeed                                               ;86D162;
+    LDA.B RandomNumberSeed                                               ;86D162;
     AND.W #$0300                                                         ;86D165;
     CLC                                                                  ;86D168;
     ADC.W #$0800                                                         ;86D169;
@@ -12892,7 +12892,7 @@ Instruction_EnemyProjectile_KagoBug_StartJumping:
 Instruction_EnemyProjectile_KagoBug_StartIdling:
 ;; Parameters:
 ;;     X: Enemy projectile index
-    LDA.W RandomNumberSeed                                               ;86D1B6;
+    LDA.B RandomNumberSeed                                               ;86D1B6;
     AND.W #$001F                                                         ;86D1B9;
     INC                                                                  ;86D1BC;
     STA.W EnemyProjectile_CollidedProjectileType,X                       ;86D1BD;
@@ -13007,7 +13007,7 @@ InitAI_EnemyProjectile_PowampSpike:
     STA.W EnemyProjectile_YSubPositions,Y                                ;86D243;
     STA.W EnemyProjectile_XVelocity,Y                                    ;86D246;
     STA.W EnemyProjectile_YVelocity,Y                                    ;86D249;
-    LDX.W EnemyIndex                                                     ;86D24C;
+    LDX.B EnemyIndex                                                     ;86D24C;
     LDA.W Enemy.XPosition,X                                              ;86D24F;
     STA.W EnemyProjectile_XPositions,Y                                   ;86D252;
     LDA.W Enemy.YPosition,X                                              ;86D255;
@@ -13135,7 +13135,7 @@ InitAI_EnemyProjectile_WreckedShipRobotLaser_DownLeft_Right:
 ;; Parameters:
 ;;     Y: Enemy projectile index
     PHX                                                                  ;86D30C;
-    LDX.W EnemyIndex                                                     ;86D30D;
+    LDX.B EnemyIndex                                                     ;86D30D;
     LDA.W Robot.laserXVelocity,X                                         ;86D310;
     PHP                                                                  ;86D313;
     STA.W EnemyProjectile_XVelocity,Y                                    ;86D314;
@@ -13157,7 +13157,7 @@ InitAI_EnemyProjectile_WreckedShipRobotLaser_Horizontal:
 ;; Parameters:
 ;;     Y: Enemy projectile index
     PHX                                                                  ;86D32E;
-    LDX.W EnemyIndex                                                     ;86D32F;
+    LDX.B EnemyIndex                                                     ;86D32F;
     LDA.W Robot.laserXVelocity,X                                         ;86D332;
     PHP                                                                  ;86D335;
     STA.W EnemyProjectile_XVelocity,Y                                    ;86D336;
@@ -13171,7 +13171,7 @@ InitAI_EnemyProjectile_WreckedShipRobotLaser_UpLeft_Right:
 ;; Parameters:
 ;;     Y: Enemy projectile index
     PHX                                                                  ;86D341;
-    LDX.W EnemyIndex                                                     ;86D342;
+    LDX.B EnemyIndex                                                     ;86D342;
     LDA.W Robot.laserXVelocity,X                                         ;86D345;
     PHP                                                                  ;86D348;
     STA.W EnemyProjectile_XVelocity,Y                                    ;86D349;
@@ -13562,7 +13562,8 @@ Instruction_EnemyProjectile_AssignNoobTubeShardFallingAngle:
 ;       need to check if that's actually true (due to the n00b tube event check?)
 ;       Related: Inststruction_EnemyProjectile_NoobTubeReleasedAirBubbles
     JSL.L GenerateRandomNumber                                           ;86D5E1;
-    LDA.W RandomNumberSeed+1                                             ;86D5E5;
+    LDA.B RandomNumberSeed+1                                             ;86D5E5;
+    AND.W #$00FF
     STA.W EnemyProjectile_XVelocity,X                                    ;86D5E8;
     LDA.W #regional($00C0, $00E4)                                        ;86D5EB;
     STA.W EnemyProjectile_YVelocity,X                                    ;86D5EE;
@@ -13668,7 +13669,8 @@ Inststruction_EnemyProjectile_NoobTubeReleasedAirBubbles:
 ;; Parameters:
 ;;     X: Enemy projectile index
     JSL.L GenerateRandomNumber                                           ;86D69A;
-    LDA.W RandomNumberSeed+1                                             ;86D69E;
+    LDA.B RandomNumberSeed+1                                             ;86D69E;
+    AND.W #$00FF
     STA.W EnemyProjectile_XVelocity,X                                    ;86D6A1;
     RTS                                                                  ;86D6A4;
 
@@ -14115,7 +14117,7 @@ InitAI_EnemyProjectile_CacatacSpike:
     TAX                                                                  ;86D998;
     LDA.W CacatacSpike_InstListPointers,X                                ;86D999;
     STA.W EnemyProjectile_InstListPointers,Y                             ;86D99C;
-    LDX.W EnemyIndex                                                     ;86D99F;
+    LDX.B EnemyIndex                                                     ;86D99F;
     LDA.W Enemy.XPosition,X                                              ;86D9A2;
     STA.W EnemyProjectile_XPositions,Y                                   ;86D9A5;
     LDA.W Enemy.XSubPosition,X                                           ;86D9A8;
@@ -14401,7 +14403,7 @@ UNUSED_InitAI_EnemyProjectile_StokeProjectile_86DB18:
 ;; Parameters:
 ;;     Y: Enemy projectile index
 ;;     EnemyProjectile_InitParam0: Direction. 0 = left, otherwise = right
-    LDX.W EnemyIndex                                                     ;86DB18;
+    LDX.B EnemyIndex                                                     ;86DB18;
     LDA.W #UNUSED_InstList_EnemyProjectile_StokeProjectile_86DB0B        ;86DB1B;
     STA.W EnemyProjectile_InstListPointers,Y                             ;86DB1E;
     LDA.W #UNUSED_EnemyProjectile_StokeProjectile_MoveLeft_86DB62        ;86DB21;
@@ -14884,7 +14886,7 @@ InitAI_EnemyProjectile_NamiFuneFireball:
 ;; Parameters:
 ;;     Y: Enemy projectile index
 ;;     EnemyProjectile_InitParam0: Direction. 0 = left, otherwise = right
-    LDX.W EnemyIndex                                                     ;86DED6;
+    LDX.B EnemyIndex                                                     ;86DED6;
     LDA.W #InstList_EnemyProjectile_NamiFuneFireball_Left                ;86DED9;
     STA.W EnemyProjectile_InstListPointers,Y                             ;86DEDC;
     LDA.W #Function_EnemyProjectile_NamiFuneFireball_Left                ;86DEDF;
@@ -14923,7 +14925,7 @@ InitAI_EnemyProjectile_NamiFuneFireball:
     STA.W EnemyProjectile_YVelocity,Y                                    ;86DF2C;
     LDA.W NamiFuneFireball_XVelocityTable_right,X                        ;86DF2F;
     STA.W EnemyProjectile_XVelocity,Y                                    ;86DF32;
-    LDX.W EnemyIndex                                                     ;86DF35;
+    LDX.B EnemyIndex                                                     ;86DF35;
     RTS                                                                  ;86DF38;
 
 
@@ -15088,7 +15090,7 @@ InitAI_EnemyProjectile_MagdolliteFlame:
 ;; Parameters:
 ;;     Y: Enemy projectile index
 ;;     EnemyProjectile_InitParam0: Direction. 0 = left, otherwise = right
-    LDX.W EnemyIndex                                                     ;86E000;
+    LDX.B EnemyIndex                                                     ;86E000;
     LDA.W #InstList_EnemyProjectile_MagdolliteFlame_Left                 ;86E003;
     STA.W EnemyProjectile_InstListPointers,Y                             ;86E006;
     LDA.W #Function_EnemyProjectile_MagdolliteFlame_Left                 ;86E009;
@@ -15708,12 +15710,13 @@ InitAI_EnemyProj_MiscDustPLM:
     ASL                                                                  ;86E4BB;
     ASL                                                                  ;86E4BC;
     TAX                                                                  ;86E4BD;
-    LDA.W RandomNumberSeed                                               ;86E4BE;
+    LDA.B RandomNumberSeed                                               ;86E4BE;
     AND.W PLM_MiscDust_XYOffsetTable_randomX,X                           ;86E4C1;
     CLC                                                                  ;86E4C4;
     ADC.W PLM_MiscDust_XYOffsetTable_minX,X                              ;86E4C5;
     STA.B DP_Temp12                                                      ;86E4C8;
-    LDA.W RandomNumberSeed+1                                             ;86E4CA;
+    LDA.B RandomNumberSeed+1                                             ;86E4CA;
+    AND.W #$00FF
     AND.W PLM_MiscDust_XYOffsetTable_randomY,X                           ;86E4CD;
     CLC                                                                  ;86E4D0;
     ADC.W PLM_MiscDust_XYOffsetTable_minY,X                              ;86E4D1;
@@ -16840,7 +16843,7 @@ InitAI_EnemyProjectile_BotwoonsSpit:
 ;;     EnemyProjectile_InitParam0: Speed
 ;;     BotwoonSpitAngleParam: Angle
     PHX                                                                  ;86EBC6;
-    LDX.W EnemyIndex                                                     ;86EBC7;
+    LDX.B EnemyIndex                                                     ;86EBC7;
     LDA.W Enemy.XPosition,X                                              ;86EBCA;
     STA.W EnemyProjectile_XPositions,Y                                   ;86EBCD;
     LDA.W Enemy.YPosition,X                                              ;86EBD0;
@@ -16950,7 +16953,7 @@ InstList_EnemyProjectile_YappingMawsBody_FacingUp:
 InitAI_EnemyProjectile_YappingMawsBody:
 ;; Parameters:
 ;;     Y: Enemy projectile index
-    LDX.W EnemyIndex                                                     ;86EC62;
+    LDX.B EnemyIndex                                                     ;86EC62;
     LDA.W Enemy.XPosition,X                                              ;86EC65;
     STA.W EnemyProjectile_XPositions,Y                                   ;86EC68;
     LDA.W Enemy.YPosition,X                                              ;86EC6B;
@@ -16967,7 +16970,7 @@ InitAI_EnemyProjectile_YappingMawsBody:
     LDA.L YappingMaw.bodySegmentIndex,X                                  ;86EC83;
     ASL                                                                  ;86EC87;
     CLC                                                                  ;86EC88;
-    ADC.W EnemyIndex                                                     ;86EC89;
+    ADC.B EnemyIndex                                                     ;86EC89;
     TAX                                                                  ;86EC8C;
     TYA                                                                  ;86EC8D;
     STA.L YappingMaw.bodySegment0ProjectileIndex,X                       ;86EC8E;
@@ -17046,7 +17049,7 @@ Instruction_EnemyProj_EnemyDeathExpl_SpawnSpriteObjectInY_20:
     CLC                                                                  ;86ECF0;
     ADC.W EnemyProjectile_XPositions,X                                   ;86ECF1;
     STA.B DP_Temp12                                                      ;86ECF4;
-    LDA.W RandomNumberSeed                                               ;86ECF6;
+    LDA.B RandomNumberSeed                                               ;86ECF6;
     AND.W #$3F00                                                         ;86ECF9;
     XBA                                                                  ;86ECFC;
     SEC                                                                  ;86ECFD;
@@ -17081,7 +17084,7 @@ Instruction_EnemyProj_EnemyDeathExpl_SpawnSpriteObjectInY_10:
     CLC                                                                  ;86ED24;
     ADC.W EnemyProjectile_XPositions,X                                   ;86ED25;
     STA.B DP_Temp12                                                      ;86ED28;
-    LDA.W RandomNumberSeed                                               ;86ED2A;
+    LDA.B RandomNumberSeed                                               ;86ED2A;
     AND.W #$1F00                                                         ;86ED2D;
     XBA                                                                  ;86ED30;
     SEC                                                                  ;86ED31;
@@ -17430,17 +17433,17 @@ InitAI_EnemyProjectile_EnemyDeathExplosion:
     PHX                                                                  ;86EF89;
     PHY                                                                  ;86EF8A;
     TYX                                                                  ;86EF8B;
-    LDY.W EnemyIndex                                                     ;86EF8C;
+    LDY.B EnemyIndex                                                     ;86EF8C;
     LDA.W Enemy.XPosition,Y                                              ;86EF8F;
     STA.W EnemyProjectile_XPositions,X                                   ;86EF92;
     LDA.W Enemy.YPosition,Y                                              ;86EF95;
     STA.W EnemyProjectile_YPositions,X                                   ;86EF98;
-    LDA.W EnemyIndex                                                     ;86EF9B;
+    LDA.B EnemyIndex                                                     ;86EF9B;
     STA.L EnemyProjectileData_KilledEnemyIndex,X                         ;86EF9E;
     LDA.W Enemy.properties,Y                                             ;86EFA2;
     BIT.W #$4000                                                         ;86EFA5;
     BEQ .noRespawn                                                       ;86EFA8;
-    LDA.W EnemyIndex                                                     ;86EFAA;
+    LDA.B EnemyIndex                                                     ;86EFAA;
     ORA.W #$8000                                                         ;86EFAD;
     STA.L EnemyProjectileData_KilledEnemyIndex,X                         ;86EFB0;
 
@@ -17874,13 +17877,13 @@ Respawn_Enemy:
     PLB                                                                  ;86F26A;
     PLB                                                                  ;86F26B;
     REP #$30                                                             ;86F26C;
-    STA.W EnemyIndex                                                     ;86F26E;
+    STA.B EnemyIndex                                                     ;86F26E;
     LSR                                                                  ;86F271;
     LSR                                                                  ;86F272;
     CLC                                                                  ;86F273;
     ADC.W EnemyPopulationPointer                                         ;86F274;
     TAX                                                                  ;86F277;
-    LDY.W EnemyIndex                                                     ;86F278;
+    LDY.B EnemyIndex                                                     ;86F278;
     LDA.L EnemyPopulations_ID,X                                          ;86F27B;
     STA.W Enemy.ID,Y                                                     ;86F27F;
     LDA.L EnemyPopulations_XPosition,X                                   ;86F282;
@@ -17918,7 +17921,7 @@ Respawn_Enemy:
     STA.W Enemy.var5,Y                                                   ;86F2E5;
     LDA.W #$0001                                                         ;86F2E8;
     STA.W Enemy.instTimer,Y                                              ;86F2EB;
-    LDX.W EnemyIndex                                                     ;86F2EE;
+    LDX.B EnemyIndex                                                     ;86F2EE;
     LDA.W Enemy.ID,X                                                     ;86F2F1;
     TAX                                                                  ;86F2F4;
     LDA.W $0012,X                                                        ;86F2F5;
@@ -17942,7 +17945,7 @@ Respawn_Enemy:
     RTS                                                                  ;86F326;
 
   .executeEnemyInitAI:
-    LDX.W EnemyIndex                                                     ;86F327;
+    LDX.B EnemyIndex                                                     ;86F327;
     LDA.W Enemy.bank,X                                                   ;86F32A;
     STA.W EnemyAIPointer+2                                               ;86F32D;
     XBA                                                                  ;86F330;
@@ -18003,7 +18006,7 @@ InstList_EnemyProjectile_FallingSpark_HitFloor:
 InitAI_EnemyProjectile_FallingSpark:
 ;; Parameters:
 ;;     Y: Enemy projectile index
-    LDX.W EnemyIndex                                                     ;86F391;
+    LDX.B EnemyIndex                                                     ;86F391;
     LDA.W #InstList_EnemyProjectile_FallingSpark_Falling                 ;86F394;
     STA.W EnemyProjectile_InstListPointers,Y                             ;86F397;
     LDA.W Enemy.XPosition,X                                              ;86F39A;

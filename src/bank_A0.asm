@@ -854,7 +854,7 @@ Draw_Samus_Projectiles_Enemies_and_Enemy_Projectiles:
     TAX                                                                  ;A088A0;
     LDA.W $0000,X                                                        ;A088A1;
     STZ.W $0000,X                                                        ;A088A4;
-    STA.W EnemyIndex                                                     ;A088A7;
+    STA.B EnemyIndex                                                     ;A088A7;
     JSR.W WriteEnemyOAM_IfNotFrozenOrInvincibleFrame                     ;A088AA;
     LDA.W Temp_DrawingQueueIndex0E38                                     ;A088AD;
     INC                                                                  ;A088B0;
@@ -1199,7 +1199,7 @@ if !DEBUG
 endif
     PHX                                                                  ;A08B77;
     PHY                                                                  ;A08B78;
-    STY.W EnemyIndex                                                     ;A08B79;
+    STY.B EnemyIndex                                                     ;A08B79;
     LDX.W Enemy.ID,Y                                                     ;A08B7C;
     LDA.W $0012,X                                                        ;A08B7F;
     STA.W EnemyAIPointer                                                 ;A08B82;
@@ -1630,7 +1630,7 @@ ProcessEnemySet_LoadPalettesAndEnemyLoadingData:
 ;;; $8EB6: Determine which enemies to process ;;;
 Determine_Which_Enemies_to_Process:
     LDA #$0000
-    STA.W EnemyIndex
+    STA.B EnemyIndex
     TAX
     STZ.W ActiveEnemyIndicesStackPointer                                 ;A08EC4;
     STZ.W InteractiveEnemyIndicesStackPointer                            ;A08EC7;
@@ -1702,7 +1702,7 @@ Determine_Which_Enemies_to_Process:
     TXA
     CLC                                                                  ;A08F57;
     ADC.W #$0040                                                         ;A08F58;
-    STA.W EnemyIndex                                                     ;A08F5B;
+    STA.B EnemyIndex                                                     ;A08F5B;
     TAX
     CMP.W #$0800                                                         ;A08F5E;
     BPL .done                                                            ;A08F61;
@@ -1717,7 +1717,7 @@ Determine_Which_Enemies_to_Process:
     RTL                                                                  ;A08F76;
 
   .loopProcessOffscreen:
-    LDX.W EnemyIndex                                                     ;A08F77;
+    LDX.B EnemyIndex                                                     ;A08F77;
     LDA.W Enemy.ID,X                                                     ;A08F7A;
     BEQ .nextProcessOffscreen                                            ;A08F7D;
     CMP.W #EnemyHeaders_Respawn                                          ;A08F7F;
@@ -1747,10 +1747,10 @@ Determine_Which_Enemies_to_Process:
     STY.W InteractiveEnemyIndicesStackPointer                            ;A08FB1;
 
   .nextProcessOffscreen:
-    LDA.W EnemyIndex                                                     ;A08FB4;
+    LDA.B EnemyIndex                                                     ;A08FB4;
     CLC                                                                  ;A08FB7;
     ADC.W #$0040                                                         ;A08FB8;
-    STA.W EnemyIndex                                                     ;A08FBB;
+    STA.B EnemyIndex                                                     ;A08FBB;
     CMP.W #$0800                                                         ;A08FBE;
     BMI .loopProcessOffscreen                                            ;A08FC1;
     LDA.W #$FFFF                                                         ;A08FC3;
@@ -1867,7 +1867,7 @@ Main_Enemy_Routine:
     JMP.W .return                                                        ;A0900A;
 
   ..notDone:
-    STA.W EnemyIndex                                                     ;A0900D;
+    STA.B EnemyIndex                                                     ;A0900D;
     TAX                                                                  ;A09010;
     CLC                                                                  ;A09011;
     ADC.W #Enemy.ID                                                      ;A09012;
@@ -1893,13 +1893,13 @@ else
 endif
     BNE .checkParalyzed                                                  ;A0903C;
     JSR.W EnemyCollisionHandling                                         ;A0903E;
-    LDX.W EnemyIndex                                                     ;A09041;
+    LDX.B EnemyIndex                                                     ;A09041;
     LDA.W Enemy.ID,X                                                     ;A09044;
     BNE .checkParalyzed                                                  ;A09047;
     JMP.W .drawEnemyEnd                                                  ;A09049;
 
   .checkParalyzed:
-    LDX.W EnemyIndex                                                     ;A0904C;
+    LDX.B EnemyIndex                                                     ;A0904C;
     LDA.W Enemy.properties2,X                                            ;A0904F;
     BIT.W #$0001                                                         ;A09052;
     BNE .processAIEnd                                                    ;A09055;
@@ -1920,7 +1920,7 @@ endif
 
   .timeNotFrozen:
     LDX.W #$0000                                                         ;A09070;
-    LDY.W EnemyIndex                                                     ;A09073;
+    LDY.B EnemyIndex                                                     ;A09073;
     LDA.W Enemy.AI,Y                                                     ;A09076;
     BEQ +                                                                ;A09079;
 
@@ -1945,7 +1945,7 @@ endif
     BRA +                                                                ;A09094;
 
   .executeAI:
-    LDX.W EnemyIndex                                                     ;A09096;
+    LDX.B EnemyIndex                                                     ;A09096;
     LDA.W Enemy.bank,X                                                   ;A09099;
     STA.W EnemyAIPointer+2                                               ;A0909C;
     XBA                                                                  ;A0909F;
@@ -1959,7 +1959,7 @@ if !DEBUG
     ORA.W DebugTimeIsFrozenForEnemies                                    ;A090A9;
 endif
     BNE .processAIEnd                                                    ;A090AC;
-    LDX.W EnemyIndex                                                     ;A090AE;
+    LDX.B EnemyIndex                                                     ;A090AE;
     INC.W Enemy.frameCounter,X                                           ;A090B1;
     LDA.W Enemy.properties,X                                             ;A090B4;
     BIT.W #$2000                                                         ;A090B7;
@@ -1971,7 +1971,7 @@ endif
     JSR.W ProcessEnemyInstructions                                       ;A090C3;
 
   .processAIEnd:
-    LDX.W EnemyIndex                                                     ;A090C6;
+    LDX.B EnemyIndex                                                     ;A090C6;
     LDA.W Enemy.properties2,X                                            ;A090C9;
     BIT.W #$0001                                                         ;A090CC;
     BEQ .paralysedEnd                                                    ;A090CF;
@@ -2137,7 +2137,7 @@ Debug_SpawnEnemy_ToEnemyIndex_inY:
     PHB                                                                  ;A0924B;
     STX.W Temp_PopulationDataPointer                                     ;A0924C;
     STY.W NewEnemyIndex                                                  ;A0924F;
-    LDA.W EnemyIndex                                                     ;A09252;
+    LDA.B EnemyIndex                                                     ;A09252;
     STA.W BackupEnemyIndex                                               ;A09255;
     LDA.W EnemyAIPointer                                                 ;A09258;
     STA.W BackupEnemyAIPointer                                           ;A0925B;
@@ -2168,7 +2168,7 @@ SpawnEnemy:
 ; the loop will try to find one fewer consecutive slots
     PHB                                                                  ;A09275;
     STX.W Temp_PopulationDataPointer                                     ;A09276;
-    LDA.W EnemyIndex                                                     ;A09279;
+    LDA.B EnemyIndex                                                     ;A09279;
     STA.W BackupEnemyIndex                                               ;A0927C;
     LDA.W EnemyAIPointer                                                 ;A0927F;
     STA.W BackupEnemyAIPointer                                           ;A09282;
@@ -2306,7 +2306,7 @@ if !DEBUG
 endif
     PHX                                                                  ;A093AE;
     PHY                                                                  ;A093AF;
-    STY.W EnemyIndex                                                     ;A093B0;
+    STY.B EnemyIndex                                                     ;A093B0;
     LDX.W Enemy.ID,Y                                                     ;A093B3;
     LDA.L EnemyHeaders_initAI,X                                          ;A093B6;
     CMP.W #$8000                                                         ;A093BA;
@@ -2348,7 +2348,7 @@ endif
     LDA.W BackupEnemyAIPointer+2                                         ;A09406;
     STA.W EnemyAIPointer+2                                               ;A09409;
     LDA.W BackupEnemyIndex                                               ;A0940C;
-    STA.W EnemyIndex                                                     ;A0940F;
+    STA.B EnemyIndex                                                     ;A0940F;
     LDX.W NewEnemyIndex                                                  ;A09412;
     LDA.W #$0000                                                         ;A09415;
     PLB                                                                  ;A09418;
@@ -2378,14 +2378,14 @@ AddEnemyToDrawingQueue:
     LDX.W Temp_DrawingQueueIndex0E34                                     ;A0943E;
     INC.W EnemyDrawingQueues_Sizes,X                                     ;A09441;
     INC.W EnemyDrawingQueues_Sizes,X                                     ;A09444;
-    LDX.W EnemyIndex
+    LDX.B EnemyIndex
     RTS                                                                  ;A09449;
 
 
 ;;; $944A: Write enemy OAM (if not on frozen or invincible frame) ;;;
 WriteEnemyOAM_IfNotFrozenOrInvincibleFrame:
     PHB                                                                  ;A0944A;
-    LDX.W EnemyIndex                                                     ;A0944B;
+    LDX.B EnemyIndex                                                     ;A0944B;
     LDA.W Enemy.bank-1,X                                                 ;A0944E;
     PHA                                                                  ;A09451;
     PLB                                                                  ;A09452;
@@ -2490,7 +2490,7 @@ endif
     CLC                                                                  ;A09522;
     ADC.W Temp_YPositionOnScreen                                         ;A09523;
     STA.B DP_Temp12                                                      ;A09526;
-    LDX.W EnemyIndex                                                     ;A09528;
+    LDX.B EnemyIndex                                                     ;A09528;
     LDA.W Enemy.properties2,X                                            ;A0952B;
     AND.W #$8000                                                         ;A0952E;
     BEQ .next                                                            ;A09531;
@@ -2542,7 +2542,7 @@ endif
 NormalEnemyFrozenAI:
     PHX                                                                  ;A0957E;
     PHY                                                                  ;A0957F;
-    LDX.W EnemyIndex                                                     ;A09580;
+    LDX.B EnemyIndex                                                     ;A09580;
     STZ.W Enemy.flashTimer,X                                             ;A09583;
     LDA.W Enemy.freezeTimer,X                                            ;A09586;
     BEQ .unsetFrozenAI                                                   ;A09589;
@@ -2576,7 +2576,7 @@ UNUSED_ExecuteEnemyAI_A095AD:
     PLB                                                                  ;A095B3;
     REP #$30                                                             ;A095B4;
     LDX.W #$0000                                                         ;A095B6;
-    LDY.W EnemyIndex                                                     ;A095B9;
+    LDY.B EnemyIndex                                                     ;A095B9;
     LDA.W Enemy.AI,Y                                                     ;A095BC;
     BEQ +                                                                ;A095BF;
 
@@ -2602,7 +2602,7 @@ UNUSED_ExecuteEnemyAI_A095AD:
 
   .executeAI:
 ; Execute enemy AI pointer
-    LDX.W EnemyIndex                                                    ;A095E1;
+    LDX.B EnemyIndex                                                    ;A095E1;
     LDA.W Enemy.bank,X                                                  ;A095E4;
     STA.W EnemyAIPointer+2                                              ;A095E7;
     XBA                                                                 ;A095EA;
@@ -2620,7 +2620,7 @@ UNUSED_RespawnEnemy_A095F1:
     PLB                                                                  ;A095F5;
     PLB                                                                  ;A095F6;
     REP #$30                                                             ;A095F7;
-    LDA.W EnemyIndex                                                     ;A095F9;
+    LDA.B EnemyIndex                                                     ;A095F9;
     TAY
     LSR                                                                  ;A095FC;
     LSR                                                                  ;A095FD;
@@ -2668,7 +2668,7 @@ UNUSED_RespawnEnemy_A095F1:
     STA.W Enemy.var5,Y                                                   ;A0967A;
     LDA.W #$0001                                                         ;A0967D;
     STA.W Enemy.instTimer,Y                                              ;A09680;
-    LDX.W EnemyIndex                                                     ;A09683;
+    LDX.B EnemyIndex                                                     ;A09683;
     LDA.W Enemy.ID,X                                                     ;A09686;
     TAX                                                                  ;A09689;
     LDA.W $0012,X                                                        ;A0968A;
@@ -2690,7 +2690,7 @@ UNUSED_RespawnEnemy_A095F1:
     RTL                                                                  ;A096B9;
 
   .executeAI:
-    LDX.W EnemyIndex                                                     ;A096BA;
+    LDX.B EnemyIndex                                                     ;A096BA;
     LDA.W Enemy.bank,X                                                   ;A096BD;
     STA.W EnemyAIPointer+2                                               ;A096C0;
     XBA                                                                  ;A096C3;
@@ -3234,7 +3234,7 @@ HandleEnemyProjectileCollisionWithProjectile:
 EnemySamusCollisionHandling_ExtendedSpritemap:
 ; This routine disables Samus' invincibility if she is using blue suit or screw attack (unless there are no tangible enemies)
     PHB                                                                  ;A09A5A;
-    LDY.W EnemyIndex                                                     ;A09A5B;
+    LDY.B EnemyIndex                                                     ;A09A5B;
     LDA.W Enemy.bank,Y                                                   ;A09A5E;
     STA.W EnemyAIPointer+2                                               ;A09A61;
     XBA                                                                  ;A09A64;
@@ -3270,7 +3270,7 @@ endif
     BNE .returnUpper                                                     ;A09A98;
 
   .notInvincible:
-    LDY.W EnemyIndex                                                     ;A09A9A;
+    LDY.B EnemyIndex                                                     ;A09A9A;
     LDA.W Enemy.spritemap,Y                                              ;A09A9D;
     CMP.W #$8000                                                         ;A09AA0;
     BMI .returnUpper                                                     ;A09AA3;
@@ -3409,7 +3409,7 @@ endif
     PLB                                                                  ;A09BBC;
     RTS                                                                  ;A09BBD;
 
-+   LDX.W EnemyIndex                                                     ;A09BBE;
++   LDX.B EnemyIndex                                                     ;A09BBE;
     LDA.W Enemy.properties,X                                             ;A09BC1;
     BIT.W #$0400                                                         ;A09BC4;
     BNE .returnUpper                                                     ;A09BC7;
@@ -3421,7 +3421,7 @@ endif
     STZ.W CollisionIndex                                                 ;A09BD6;
 
   .loopProjectiles:
-    LDX.W EnemyIndex                                                     ;A09BD9;
+    LDX.B EnemyIndex                                                     ;A09BD9;
     LDA.W CollisionIndex                                                 ;A09BDC;
     ASL                                                                  ;A09BDF;
     TAY                                                                  ;A09BE0;
@@ -3455,7 +3455,7 @@ endif
 
   .loopSpritemapEntries:
     LDX.W EnemySpritemapEntryPointerDuringCollision                      ;A09C15;
-    LDY.W EnemyIndex                                                     ;A09C18;
+    LDY.B EnemyIndex                                                     ;A09C18;
     LDA.W Enemy.XPosition,Y                                              ;A09C1B;
     CLC                                                                  ;A09C1E;
     ADC.W $0000,X                                                        ;A09C1F;
@@ -3529,7 +3529,7 @@ endif
     STA.W EarthquakeType                                                 ;A09CBA;
 
   .notSuperMissile:
-    LDX.W EnemyIndex                                                     ;A09CBD;
+    LDX.B EnemyIndex                                                     ;A09CBD;
     LDA.W Enemy.properties,X                                             ;A09CC0;
     BIT.W #$1000                                                         ;A09CC3;
     BNE .delete                                                          ;A09CC6;
@@ -3588,7 +3588,7 @@ endif
 Enemy_vs_Bomb_CollisionHandling_ExtendedSpritemap:
 ; I don't really see any reason why this routine should be separate from $9B7F
     PHB                                                                  ;A09D23;
-    LDX.W EnemyIndex                                                     ;A09D24;
+    LDX.B EnemyIndex                                                     ;A09D24;
     LDA.W Enemy.bank,X                                                   ;A09D27;
     STA.W EnemyAIPointer+2                                               ;A09D2A;
     XBA                                                                  ;A09D2D;
@@ -3599,7 +3599,7 @@ if !DEBUG
     LDA.W #$0004                                                         ;A09D31;
     STA.L EnemyProcessingStage                                           ;A09D34;
 endif
-    LDY.W EnemyIndex                                                     ;A09D38;
+    LDY.B EnemyIndex                                                     ;A09D38;
     LDA.W Enemy.spritemap,Y                                              ;A09D3B;
     BEQ .returnUpper                                                     ;A09D3E;
     LDA.W Enemy.properties,X                                             ;A09D43;
@@ -3625,7 +3625,7 @@ endif
     STA.W CollisionIndex                                                 ;A09D6E;
 
   .loopProjectiles:
-    LDX.W EnemyIndex                                                     ;A09D71;
+    LDX.B EnemyIndex                                                     ;A09D71;
     LDA.W CollisionIndex                                                 ;A09D74;
     ASL                                                                  ;A09D77;
     TAY                                                                  ;A09D78;
@@ -3665,7 +3665,7 @@ endif
 
   .loopSpritemapEntries:
     LDX.W EnemySpritemapEntryPointerDuringCollision                      ;A09DB0;
-    LDY.W EnemyIndex                                                     ;A09DB3;
+    LDY.B EnemyIndex                                                     ;A09DB3;
     LDA.W Enemy.XPosition,Y                                              ;A09DB6;
     CLC                                                                  ;A09DB9;
     ADC.W $0000,X                                                        ;A09DBA;
@@ -3805,7 +3805,7 @@ EnemyGrappleBeamCollisionDetection:
   .loop:
     LDY.W InteractiveEnemyIndicesIndex                                   ;A09EAF;
     LDA.W InteractiveEnemyIndices,Y                                      ;A09EB2;
-    STA.W EnemyIndex                                                     ;A09EB5;
+    STA.B EnemyIndex                                                     ;A09EB5;
     CMP.W #$FFFF                                                         ;A09EB8;
     BNE .notFFFF                                                         ;A09EBB;
     STZ.B DP_Temp12                                                      ;A09EBD;
@@ -3898,7 +3898,7 @@ EnemyGrappleBeamCollisionDetection:
 
   .attachGrapple:
     PHA                                                                  ;A09F5A;
-    LDX.W EnemyIndex                                                     ;A09F5B;
+    LDX.B EnemyIndex                                                     ;A09F5B;
     LDA.W Enemy.XPosition,X                                              ;A09F5E;
     STA.W GrappleBeam_EndXPosition                                       ;A09F61;
     LDA.W Enemy.YPosition,X                                              ;A09F64;
@@ -3909,7 +3909,7 @@ EnemyGrappleBeamCollisionDetection:
 
 ;;; $9F6D: Switch enemy AI to main AI ;;;
 GrappleAI_SwitchEnemyAIToMainAI:
-    LDX.W EnemyIndex                                                     ;A09F6D;
+    LDX.B EnemyIndex                                                     ;A09F6D;
     STZ.W Enemy.AI,X                                                     ;A09F70;
     STZ.W Enemy.invincibilityTimer,X                                     ;A09F73;
     STZ.W Enemy.freezeTimer,X                                            ;A09F76;
@@ -3919,7 +3919,7 @@ GrappleAI_SwitchEnemyAIToMainAI:
 
 ;;; $9F7D: Samus latches on with grapple ;;;
 GrappleAI_SamusLatchesOnWithGrapple:
-    LDX.W EnemyIndex                                                     ;A09F7D;
+    LDX.B EnemyIndex                                                     ;A09F7D;
     LDA.W Enemy.XPosition,X                                              ;A09F83;
     STA.W GrappleBeam_EndXPosition                                       ;A09F86;
     LDA.W Enemy.YPosition,X                                              ;A09F89;
@@ -3934,7 +3934,7 @@ GrappleAI_SamusLatchesOnWithGrapple:
     LDA.W #$0004                                                         ;A09FA7;
 
   .main:
-    LDX.W EnemyIndex                                                     ;A09FAA;
+    LDX.B EnemyIndex                                                     ;A09FAA;
     STA.W Enemy.flashTimer,X                                             ;A09FAD;
     STZ.W Enemy.AI,X                                                     ;A09FB6;
     RTL                                                                  ;A09FB9;
@@ -3947,7 +3947,7 @@ GrappleAI_SamusLatchesOnWithGrapple:
 
 ;;; $9FC4: Enemy grapple death ;;;
 GrappleAI_EnemyGrappleDeath:
-    LDX.W EnemyIndex                                                     ;A09FC4;
+    LDX.B EnemyIndex                                                     ;A09FC4;
     LDA.W #$0004                                                         ;A09FCA;
     STA.L EnemyTileData+2,X                                              ;A09FCD;
     LDA.W #$0000                                                         ;A09FD1;
@@ -3958,7 +3958,7 @@ GrappleAI_EnemyGrappleDeath:
 
 ;;; $9FDF: Switch to frozen AI ;;;
 GrappleAI_SwitchToFrozenAI:
-    LDX.W EnemyIndex                                                     ;A09FDF;
+    LDX.B EnemyIndex                                                     ;A09FDF;
     LDA.W #$0004                                                         ;A09FE2;
     STA.W Enemy.AI,X                                                     ;A09FE5;
     RTL                                                                  ;A09FE8;
@@ -3966,7 +3966,7 @@ GrappleAI_SwitchToFrozenAI:
 
 ;;; $9FE9: Samus latches on with grapple - no invincibility ;;;
 GrappleAI_SamusLatchesOnWithGrapple_NoInvincibility:
-    LDX.W EnemyIndex                                                     ;A09FE9;
+    LDX.B EnemyIndex                                                     ;A09FE9;
     LDA.W Enemy.freezeTimer,X                                            ;A09FEC;
     BNE .frozen                                                          ;A09FEF;
     LDA.W Enemy.ID,X                                                     ;A09FF4;
@@ -3976,7 +3976,7 @@ GrappleAI_SamusLatchesOnWithGrapple_NoInvincibility:
     PHB                                                                  ;A09FFF;
     JSL.L .executeAI                                                     ;A0A000;
     PLB                                                                  ;A0A004;
-    LDX.W EnemyIndex                                                     ;A0A005;
+    LDX.B EnemyIndex                                                     ;A0A005;
     LDA.W Enemy.XPosition,X                                              ;A0A008;
     STA.W GrappleBeam_EndXPosition                                       ;A0A00B;
     LDA.W Enemy.YPosition,X                                              ;A0A00E;
@@ -3985,7 +3985,7 @@ GrappleAI_SamusLatchesOnWithGrapple_NoInvincibility:
     RTL                                                                  ;A0A017;
 
   .executeAI:
-    LDX.W EnemyIndex                                                     ;A0A018;
+    LDX.B EnemyIndex                                                     ;A0A018;
     LDA.W Enemy.bank,X                                                   ;A0A01B;
     STA.W EnemyAIPointer+2                                               ;A0A01E;
     XBA                                                                  ;A0A021;
@@ -4007,7 +4007,7 @@ GrappleAI_SamusLatchesOnWithGrapple_NoInvincibility:
 ;;; $A03E: Unused. Samus latches on with grapple - paralyse enemy ;;;
 GrappleAI_SamusLatchesOnWithGrapple_ParalyzeEnemy:
 ; Called by UNUSED_Common_GrappleAI_SamusLatchesOn_ParalyzeEnemy_A08019
-    LDX.W EnemyIndex                                                     ;A0A03E;
+    LDX.B EnemyIndex                                                     ;A0A03E;
     LDA.W Enemy.ID,X                                                     ;A0A044;
     TAX                                                                  ;A0A047;
     LDA.L EnemyHeaders_hurtAITime,X                                      ;A0A048;
@@ -4015,7 +4015,7 @@ GrappleAI_SamusLatchesOnWithGrapple_ParalyzeEnemy:
     BNE +                                                                ;A0A04F;
     LDA.W #$0004                                                         ;A0A051;
 
-+   LDX.W EnemyIndex                                                     ;A0A054;
++   LDX.B EnemyIndex                                                     ;A0A054;
     STA.W Enemy.flashTimer,X                                             ;A0A057;
     STZ.W Enemy.AI,X                                                     ;A0A060;
     LDA.W Enemy.properties2,X                                            ;A0A066;
@@ -4254,7 +4254,7 @@ endif
 
   .executeEnemyShot:
 ; Execute enemy shot
-    LDY.W EnemyIndex                                                     ;A0A226;
+    LDY.B EnemyIndex                                                     ;A0A226;
     LDX.W Enemy.ID,Y                                                     ;A0A229;
     LDA.L EnemyHeaders_enemyShot,X                                       ;A0A22C;
     STA.W EnemyAIPointer                                                 ;A0A230;
@@ -4363,7 +4363,7 @@ endif
 
   .executeEnemyShot:
 ; Execute enemy shot
-    LDY.W EnemyIndex                                                     ;A0A2F6;
+    LDY.B EnemyIndex                                                     ;A0A2F6;
     LDX.W Enemy.ID,Y                                                     ;A0A2F9;
     LDA.L EnemyHeaders_enemyShot,X                                       ;A0A2FC;
     STA.W EnemyAIPointer                                                 ;A0A300;
@@ -4394,10 +4394,10 @@ endif
     LSR                                                                  ;A0A31D;
     STA.B DP_Temp14                                                      ;A0A31E;
     LDA.W #$07C0                                                         ;A0A320;
-    STA.W EnemyIndex                                                     ;A0A323;
+    STA.B EnemyIndex                                                     ;A0A323;
 
   .loop:
-    LDX.W EnemyIndex                                                     ;A0A326;
+    LDX.B EnemyIndex                                                     ;A0A326;
     LDA.W Enemy.invincibilityTimer,X                                     ;A0A329;
     BNE .next                                                            ;A0A32C;
     LDA.W Enemy.ID,X                                                     ;A0A32E;
@@ -4413,7 +4413,7 @@ endif
     LDA.L EnemyVulnerabilities_powerBomb,X                               ;A0A343;
     AND.W #$007F                                                         ;A0A347;
     BEQ .next                                                            ;A0A34A;
-    LDX.W EnemyIndex                                                     ;A0A34C;
+    LDX.B EnemyIndex                                                     ;A0A34C;
     LDA.W SamusProjectile_PowerBombExplosionXPosition                    ;A0A34F;
     SEC                                                                  ;A0A352;
     SBC.W Enemy.XPosition,X                                              ;A0A353;
@@ -4441,23 +4441,23 @@ endif
   .enemyAI:
     STA.W EnemyAIPointer                                                 ;A0A37E;
     JSL.L .executeEnemyAI                                                ;A0A381;
-    LDX.W EnemyIndex                                                     ;A0A385;
+    LDX.B EnemyIndex                                                     ;A0A385;
     LDA.W Enemy.properties,X                                             ;A0A388;
     ORA.W #$0800                                                         ;A0A38B;
     STA.W Enemy.properties,X                                             ;A0A38E;
 
   .next:
-    LDA.W EnemyIndex                                                     ;A0A391;
+    LDA.B EnemyIndex                                                     ;A0A391;
     SEC                                                                  ;A0A394;
     SBC.W #$0040                                                         ;A0A395;
-    STA.W EnemyIndex                                                     ;A0A398;
+    STA.B EnemyIndex                                                     ;A0A398;
     BPL .loop                                                            ;A0A39B;
     PLB                                                                  ;A0A39D;
     RTL                                                                  ;A0A39E;
 
   .executeEnemyAI:
 ; Execute enemy AI
-    LDX.W EnemyIndex                                                     ;A0A39F;
+    LDX.B EnemyIndex                                                     ;A0A39F;
     LDA.W Enemy.bank,X                                                   ;A0A3A2;
     STA.W EnemyAIPointer+2                                               ;A0A3A5;
     XBA                                                                  ;A0A3A8;
@@ -4487,7 +4487,7 @@ EnemyDeath:
     PLB                                                                  ;A0A3B5;
     REP #$30                                                             ;A0A3B6;
     PHA                                                                  ;A0A3B8;
-    LDX.W EnemyIndex
+    LDX.B EnemyIndex
     LDA.W Enemy.AI,X                                                     ;A0A3B9;
     CMP.W #$0001                                                         ;A0A3BC; broken check, see note
     BNE .checkA                                                          ;A0A3BF;
@@ -4505,7 +4505,7 @@ EnemyDeath:
     LDY.W #EnemyProjectile_EnemyDeathExplosion                           ;A0A3D6;
     LDA.W Temp_DeathExplosionType                                        ;A0A3D9;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A0A3DC;
-    LDX.W EnemyIndex
+    LDX.B EnemyIndex
     LDA.W Enemy.properties,X                                             ;A0A3E0;
     AND.W #$4000                                                         ;A0A3E3;
     STA.B DP_Temp12                                                      ;A0A3E6;
@@ -4520,7 +4520,7 @@ EnemyDeath:
     BPL .loopClearEnemySlot                                              ;A0A3F5;
     LDA.B DP_Temp12                                                      ;A0A3F7;
     BEQ .incEnemiesKilled                                                ;A0A3F9;
-    LDX.W EnemyIndex                                                     ;A0A3FB;
+    LDX.B EnemyIndex                                                     ;A0A3FB;
     LDA.W #EnemyHeaders_Respawn                                          ;A0A3FE;
     STA.W Enemy.ID,X                                                     ;A0A401;
     LDA.W #RTL_A3804C>>16                                                ;A0A404;
@@ -4552,11 +4552,11 @@ RinkaDeath:
 
   .AIsValid:
     STA.W Temp_DeathExplosionType                                        ;A0A421;
-    LDX.W EnemyIndex                                                     ;A0A424;
+    LDX.B EnemyIndex                                                     ;A0A424;
     LDY.W #EnemyProjectile_EnemyDeathExplosion                           ;A0A427;
     LDA.W Temp_DeathExplosionType                                        ;A0A42A;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A0A42D;
-    LDX.W EnemyIndex
+    LDX.B EnemyIndex
     LDA.W Enemy.properties,X                                             ;A0A431;
     AND.W #$4000                                                         ;A0A434;
     STA.B DP_Temp12                                                      ;A0A437;
@@ -4571,7 +4571,7 @@ RinkaDeath:
     BPL .loopClearEnemySlot                                              ;A0A446;
     LDA.B DP_Temp12                                                      ;A0A448;
     BEQ .return                                                          ;A0A44A;
-    LDX.W EnemyIndex                                                     ;A0A44C;
+    LDX.B EnemyIndex                                                     ;A0A44C;
     LDA.W #EnemyHeaders_Respawn                                          ;A0A44F;
     STA.W Enemy.ID,X                                                     ;A0A452;
     LDA.W #RTL_A3804C>>16                                                ;A0A455;
@@ -4610,9 +4610,9 @@ Suit_Damage_Division:
 
 ;;; $A477: Normal enemy touch AI ;;;
 NormalEnemyTouchAI:
-    LDX.W EnemyIndex                                                     ;A0A477;
+    LDX.B EnemyIndex                                                     ;A0A477;
     JSR.W NormalEnemyTouchAI_NoDeathCheck                                ;A0A47A;
-    LDX.W EnemyIndex                                                     ;A0A47D;
+    LDX.B EnemyIndex                                                     ;A0A47D;
     LDA.W Enemy.health,X                                                 ;A0A480;
     BNE .return                                                          ;A0A483;
     LDA.W #$0006                                                         ;A0A485;
@@ -4626,9 +4626,9 @@ NormalEnemyTouchAI:
 
 ;;; $A497: Normal enemy touch AI - no death check (external) ;;;
 NormalEnemyTouchAI_NoDeathCheck_External:
-    LDX.W EnemyIndex                                                     ;A0A497;
+    LDX.B EnemyIndex                                                     ;A0A497;
     JSR.W NormalEnemyTouchAI_NoDeathCheck                                ;A0A49A;
-    LDX.W EnemyIndex                                                     ;A0A49D;
+    LDX.B EnemyIndex                                                     ;A0A49D;
     RTL                                                                  ;A0A4A0;
 
 
@@ -4670,7 +4670,7 @@ NormalEnemyTouchAI_NoDeathCheck:
 
   .damageCalculated:
     STY.B DP_Temp16                                                      ;A0A4E0;
-    LDX.W EnemyIndex                                                     ;A0A4E2;
+    LDX.B EnemyIndex                                                     ;A0A4E2;
     LDA.W Enemy.ID,X                                                     ;A0A4E5;
     TAX                                                                  ;A0A4E8;
     LDA.L EnemyHeaders_vulnerabilities,X                                 ;A0A4E9;
@@ -4703,7 +4703,7 @@ NormalEnemyTouchAI_NoDeathCheck:
     RTS                                                                  ;A0A520;
 
   .damage:
-    LDX.W EnemyIndex                                                     ;A0A521;
+    LDX.B EnemyIndex                                                     ;A0A521;
     LDA.W Enemy.ID,X                                                     ;A0A527;
     TAX                                                                  ;A0A52A;
     LDA.L EnemyHeaders_hurtAITime,X                                      ;A0A52B;
@@ -4712,7 +4712,7 @@ NormalEnemyTouchAI_NoDeathCheck:
     LDA.W #$0004                                                         ;A0A534;
 
   .hurtTimerNotExpired:
-    LDX.W EnemyIndex                                                     ;A0A537;
+    LDX.B EnemyIndex                                                     ;A0A537;
     STA.W Enemy.flashTimer,X                                             ;A0A53A;
     LDA.W Enemy.AI,X                                                     ;A0A53D;
     ORA.W #$0002                                                         ;A0A540;
@@ -4732,7 +4732,7 @@ NormalEnemyTouchAI_NoDeathCheck:
     RTS                                                                  ;A0A561;
 
   .normalSamus:
-    LDX.W EnemyIndex                                                     ;A0A562;
+    LDX.B EnemyIndex                                                     ;A0A562;
     LDA.W Enemy.ID,X                                                     ;A0A565;
     TAX                                                                  ;A0A568;
     LDA.L EnemyHeaders_damage,X                                          ;A0A569;
@@ -4743,7 +4743,7 @@ NormalEnemyTouchAI_NoDeathCheck:
     LDA.W #$0005                                                         ;A0A57B;
     STA.W SamusKnockbackTimer                                            ;A0A57E;
     LDY.W #$0000                                                         ;A0A581;
-    LDX.W EnemyIndex                                                     ;A0A584;
+    LDX.B EnemyIndex                                                     ;A0A584;
     LDA.W SamusXPosition                                                 ;A0A587;
     SEC                                                                  ;A0A58A;
     SBC.W Enemy.XPosition,X                                              ;A0A58B;
@@ -4778,7 +4778,7 @@ NormalEnemyPowerBombAI_NoDeathCheck_External:
 
 ;;; $A5C1: Normal enemy power bomb AI - no death check ;;;
 NormalEnemyPowerBombAI_NoDeathCheck:
-    LDX.W EnemyIndex                                                     ;A0A5C1;
+    LDX.B EnemyIndex                                                     ;A0A5C1;
     LDA.W Enemy.ID,X                                                     ;A0A5C4;
     TAX                                                                  ;A0A5C7;
     LDA.L EnemyHeaders_vulnerabilities,X                                 ;A0A5C8;
@@ -4803,7 +4803,7 @@ NormalEnemyPowerBombAI_NoDeathCheck:
     LDA.B DP_Temp2A                                                      ;A0A5F5;
     STA.W EnemySpritemapEntryXPositionDuringCollision                    ;A0A5F7;
     BEQ .return                                                          ;A0A5FA;
-    LDX.W EnemyIndex                                                     ;A0A5FC;
+    LDX.B EnemyIndex                                                     ;A0A5FC;
     LDA.W #$0030                                                         ;A0A5FF;
     STA.W Enemy.invincibilityTimer,X                                     ;A0A602;
     LDA.W Enemy.ID,X                                                     ;A0A608;
@@ -4816,7 +4816,7 @@ NormalEnemyPowerBombAI_NoDeathCheck:
   .ANonZero:
     CLC                                                                  ;A0A618;
     ADC.W #$0008                                                         ;A0A619;
-    LDX.W EnemyIndex                                                     ;A0A61C;
+    LDX.B EnemyIndex                                                     ;A0A61C;
     STA.W Enemy.flashTimer,X                                             ;A0A61F;
     LDA.W Enemy.AI,X                                                     ;A0A622;
     ORA.W #$0002                                                         ;A0A625;
@@ -4841,7 +4841,7 @@ NormalEnemyPowerBombAI_NoDeathCheck:
 NormalEnemyShotAI:
     STZ.W Temp_ShotAIHitFlag                                             ;A0A63D;
     JSR.W NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic              ;A0A643;
-    LDX.W EnemyIndex                                                     ;A0A646;
+    LDX.B EnemyIndex                                                     ;A0A646;
     LDA.W Temp_ShotAIHitFlag                                             ;A0A649;
     BEQ .notHit                                                          ;A0A64C;
     LDA.W Enemy.XPosition,X                                              ;A0A651;
@@ -4882,20 +4882,20 @@ NormalEnemyShotAI:
 
   .enemyDeath:
     TYA                                                                  ;A0A69E;
-    LDX.W EnemyIndex
+    LDX.B EnemyIndex
     JSL.L EnemyDeath                                                     ;A0A69F;
 
   .return:
-    LDX.W EnemyIndex                                                     ;A0A6A3;
+    LDX.B EnemyIndex                                                     ;A0A6A3;
     RTL                                                                  ;A0A6A6;
 
 
 ;;; $A6A7: Normal enemy shot AI - no death check, no enemy shot graphic (external) ;;;
 NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External:
     STZ.W Temp_ShotAIHitFlag                                             ;A0A6A7;
-    LDX.W EnemyIndex                                                     ;A0A6AA;
+    LDX.B EnemyIndex                                                     ;A0A6AA;
     JSR.W NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic              ;A0A6AD;
-    LDX.W EnemyIndex                                                     ;A0A6B0;
+    LDX.B EnemyIndex                                                     ;A0A6B0;
     RTL                                                                  ;A0A6B3;
 
 
@@ -4904,11 +4904,11 @@ NormalEnemyShotAI_NoDeathCheck:
 ; Used by Spore Spawn
 ; Shame it's not used by NormalEnemyShotAI
     STZ.W Temp_ShotAIHitFlag                                             ;A0A6B4;
-    LDX.W EnemyIndex                                                     ;A0A6B7;
+    LDX.B EnemyIndex                                                     ;A0A6B7;
     JSR.W NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic              ;A0A6BA;
     LDA.W Temp_ShotAIHitFlag                                             ;A0A6BD;
     BEQ .return                                                          ;A0A6C0;
-    LDX.W EnemyIndex                                                     ;A0A6C2;
+    LDX.B EnemyIndex                                                     ;A0A6C2;
     LDA.W Enemy.XPosition,X                                              ;A0A6C5;
     STA.B DP_Temp12                                                      ;A0A6C8;
     LDA.W Enemy.YPosition,X                                              ;A0A6CA;
@@ -4919,7 +4919,7 @@ NormalEnemyShotAI_NoDeathCheck:
     JSL.L Create_Sprite_Object                                           ;A0A6D6;
 
   .return:
-    LDX.W EnemyIndex                                                     ;A0A6DA;
+    LDX.B EnemyIndex                                                     ;A0A6DA;
     RTL                                                                  ;A0A6DD;
 
 
@@ -4941,7 +4941,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
     LDA.W SamusProjectile_Types,X                                        ;A0A6EA;
     STA.B DP_Temp12                                                      ;A0A6ED;
     PHX                                                                  ;A0A6EF;
-    LDX.W EnemyIndex                                                     ;A0A6F0;
+    LDX.B EnemyIndex                                                     ;A0A6F0;
     LDA.W Enemy.ID,X                                                     ;A0A6F3;
     TAX                                                                  ;A0A6F6;
     LDA.L EnemyHeaders_vulnerabilities,X                                 ;A0A6F7;
@@ -5049,7 +5049,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
     RTS                                                                  ;A0A7D4;
 
   .freeze:
-    LDX.W EnemyIndex                                                     ;A0A7D5;
+    LDX.B EnemyIndex                                                     ;A0A7D5;
     LDA.W Enemy.freezeTimer,X                                            ;A0A7D8;
     BNE .timerNotExpired                                                 ;A0A7DB;
     LDA.W #$000A                                                         ;A0A7DD;
@@ -5076,7 +5076,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
 
   .damage:
     PLX                                                                  ;A0A808;
-    LDX.W EnemyIndex                                                     ;A0A809;
+    LDX.B EnemyIndex                                                     ;A0A809;
     LDA.W Enemy.ID,X                                                     ;A0A80F;
     TAX                                                                  ;A0A812;
     LDA.L EnemyHeaders_hurtAITime,X                                      ;A0A813;
@@ -5086,7 +5086,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
 
 +   CLC                                                                  ;A0A81F;
     ADC.W #$0008                                                         ;A0A820;
-    LDX.W EnemyIndex                                                     ;A0A823;
+    LDX.B EnemyIndex                                                     ;A0A823;
     STA.W Enemy.flashTimer,X                                             ;A0A826;
     LDA.W Enemy.AI,X                                                     ;A0A829;
     ORA.W #$0002                                                         ;A0A82C;
@@ -5836,7 +5836,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 CheckIfEnemyCenterIsOnScreen:
 ;; Returns:
 ;;     A/zero: 0/set if enemy center is on screen, 1/clear otherwise
-    LDX.W EnemyIndex                                                     ;A0AD70;
+    LDX.B EnemyIndex                                                     ;A0AD70;
     LDA.W Enemy.XPosition,X                                              ;A0AD73;
     CMP.W Layer1XPosition                                                ;A0AD76;
     BMI .offScreen                                                       ;A0AD79;
@@ -5871,7 +5871,7 @@ CheckIfEnemyCenterIsOverAPixelsOffScreen:
 ; Called by evir only
     PHX                                                                  ;A0ADA3;
     STA.B DP_Temp12                                                      ;A0ADA4;
-    LDX.W EnemyIndex                                                     ;A0ADA6;
+    LDX.B EnemyIndex                                                     ;A0ADA6;
     LDA.W Enemy.XPosition,X                                              ;A0ADA9;
     CLC                                                                  ;A0ADAC;
     ADC.B DP_Temp12                                                      ;A0ADAD;
@@ -5911,7 +5911,7 @@ CheckIfEnemyIsOnScreen:
 ;; Returns:
 ;;     A/zero: 0/set if enemy center is on screen, 1/clear otherwise
     PHX                                                                  ;A0ADE7;
-    LDX.W EnemyIndex                                                     ;A0ADE8;
+    LDX.B EnemyIndex                                                     ;A0ADE8;
     LDA.W Enemy.XPosition,X                                              ;A0ADEB;
     CLC                                                                  ;A0ADEE;
     ADC.W Enemy.XHitboxRadius,X                                          ;A0ADEF;
@@ -5970,7 +5970,7 @@ DetermineDirectionOfSamusFromEnemy:
 ; 6666 4444 3333
 
 ; Note that 5 and 9 cannot be returned, but otherwise these values match up with the projectile directions (SamusProjectile_Directions)
-    LDX.W EnemyIndex                                                     ;A0AE29;
+    LDX.B EnemyIndex                                                     ;A0AE29;
     LDA.W #$0020                                                         ;A0AE2C;
     JSL.L IsSamusWithingAPixelRowsOfEnemy                                ;A0AE2F;
     BEQ .notLeftNorRight                                                 ;A0AE33;
@@ -6021,12 +6021,12 @@ UNUSED_ProtoInstructionListHandler_A0AE7C:
 ; Uses $A0:002A(!) as pointer to instruction list pointer table, indexed by Enemy.instList * 2
 ; Enemy Enemy.loopCounter is the instruction list pointer, and these instruction lists terminate with FFFFh and loop with FFFEh
 ; No support for ASM commands
-    LDX.W EnemyIndex                                                     ;A0AE7C;
+    LDX.B EnemyIndex                                                     ;A0AE7C;
     LDA.W Enemy.ID,X                                                     ;A0AE7F;
     TAX                                                                  ;A0AE82;
     LDA.L EnemyHeaders_sidehopperVariantIndex,X                          ;A0AE83;
     STA.W Temp_InstListIndex                                             ;A0AE87;
-    LDX.W EnemyIndex                                                     ;A0AE8A;
+    LDX.B EnemyIndex                                                     ;A0AE8A;
     LDA.W Enemy.instList,X                                               ;A0AE8D;
     ASL                                                                  ;A0AE90;
     CLC                                                                  ;A0AE91;
@@ -6096,7 +6096,7 @@ IsSamusWithingAPixelRowsOfEnemy:
     LDA.W Enemy.YPosition,X                                              ;A0AEF3;
     TAX                                                                  ;A0AEF6;
     JSL.L GetSignedYMinusX_A0B07D                                        ;A0AEF7;
-    LDX.W EnemyIndex                                                     ;A0AEFB;
+    LDX.B EnemyIndex                                                     ;A0AEFB;
     CMP.W Temp_Threshold                                                 ;A0AEFE;
     BPL .returnZero                                                      ;A0AF01;
     LDA.W #$0001                                                         ;A0AF03;
@@ -6114,7 +6114,7 @@ IsSamusWithinAPixelColumnsOfEnemy:
     LDA.W Enemy.XPosition,X                                              ;A0AF11;
     TAX                                                                  ;A0AF14;
     JSL.L GetSignedYMinusX_A0B07D                                        ;A0AF15;
-    LDX.W EnemyIndex                                                     ;A0AF19;
+    LDX.B EnemyIndex                                                     ;A0AF19;
     CMP.W Temp_Threshold                                                 ;A0AF1C;
     BPL .returnZero                                                      ;A0AF1F;
     LDA.W #$0001                                                         ;A0AF21;
@@ -6718,7 +6718,7 @@ MoveEnemyAccordingToAngleAndXYSpeeds:
 ;
 ; Where # is the origin and | is the negative y axis
     PHX                                                                  ;A0B691;
-    LDX.W EnemyIndex                                                     ;A0B692;
+    LDX.B EnemyIndex                                                     ;A0B692;
     LDA.W Temp_AngleToMove                                               ;A0B695;
     CLC                                                                  ;A0B698;
     ADC.W #$0040                                                         ;A0B699;
@@ -6979,7 +6979,7 @@ MiniKraidDeathItemDropRoutine:
     CLC                                                                  ;A0B902;
     ADC.L EnemyProjectileData_SpecialDeathItemDropXOriginPosition        ;A0B903;
     STA.B DP_Temp12                                                      ;A0B907;
-    LDA.W RandomNumberSeed                                               ;A0B909;
+    LDA.B RandomNumberSeed                                               ;A0B909;
     AND.W #$1F00                                                         ;A0B90C;
     XBA                                                                  ;A0B90F;
     SEC                                                                  ;A0B910;
@@ -7013,7 +7013,7 @@ MetalNinjaPirateDeathItemDropRoutine:
     CLC                                                                  ;A0B93F;
     ADC.L EnemyProjectileData_SpecialDeathItemDropXOriginPosition        ;A0B940;
     STA.B DP_Temp12                                                      ;A0B944;
-    LDA.W RandomNumberSeed                                               ;A0B946;
+    LDA.B RandomNumberSeed                                               ;A0B946;
     AND.W #$1F00                                                         ;A0B949;
     XBA                                                                  ;A0B94C;
     SEC                                                                  ;A0B94D;
@@ -7047,7 +7047,7 @@ MetroidDeathItemDropRoutine:
     CLC                                                                  ;A0B97C;
     ADC.L EnemyProjectileData_SpecialDeathItemDropXOriginPosition                                                        ;A0B97D;
     STA.B DP_Temp12                                                      ;A0B981;
-    LDA.W RandomNumberSeed                                               ;A0B983;
+    LDA.B RandomNumberSeed                                               ;A0B983;
     AND.W #$1F00                                                         ;A0B986;
     XBA                                                                  ;A0B989;
     SEC                                                                  ;A0B98A;
@@ -7079,7 +7079,7 @@ RidleyDeathItemDropRoutine:
     CLC                                                                  ;A0B9B5;
     ADC.W #$0040                                                         ;A0B9B6;
     STA.B DP_Temp12                                                      ;A0B9B9;
-    LDA.W RandomNumberSeed                                               ;A0B9BB;
+    LDA.B RandomNumberSeed                                               ;A0B9BB;
     AND.W #$3F00                                                         ;A0B9BE;
     XBA                                                                  ;A0B9C1;
     CLC                                                                  ;A0B9C2;
@@ -7109,7 +7109,7 @@ CrocomireDeathItemDropRoutine:
     CLC                                                                  ;A0B9E8;
     ADC.W #$0240                                                         ;A0B9E9;
     STA.B DP_Temp12                                                      ;A0B9EC;
-    LDA.W RandomNumberSeed                                               ;A0B9EE;
+    LDA.B RandomNumberSeed                                               ;A0B9EE;
     AND.W #$3F00                                                         ;A0B9F1;
     XBA                                                                  ;A0B9F4;
     CLC                                                                  ;A0B9F5;
@@ -7139,7 +7139,7 @@ PhantoonDeathItemDropRoutine:
     CLC                                                                  ;A0BA1B;
     ADC.W #$0040                                                         ;A0BA1C;
     STA.B DP_Temp12                                                      ;A0BA1F;
-    LDA.W RandomNumberSeed                                               ;A0BA21;
+    LDA.B RandomNumberSeed                                               ;A0BA21;
     AND.W #$3F00                                                         ;A0BA24;
     XBA                                                                  ;A0BA27;
     CLC                                                                  ;A0BA28;
@@ -7169,7 +7169,7 @@ BotwoonDeathItemDropRoutine:
     CLC                                                                  ;A0BA4E;
     ADC.W #$0040                                                         ;A0BA4F;
     STA.B DP_Temp12                                                      ;A0BA52;
-    LDA.W RandomNumberSeed                                               ;A0BA54;
+    LDA.B RandomNumberSeed                                               ;A0BA54;
     AND.W #$3F00                                                         ;A0BA57;
     XBA                                                                  ;A0BA5A;
     CLC                                                                  ;A0BA5B;
@@ -7199,7 +7199,7 @@ KraidDeathItemDropRoutine:
     CLC                                                                  ;A0BA81;
     ADC.W #$0080                                                         ;A0BA82;
     STA.B DP_Temp12                                                      ;A0BA85;
-    LDA.W RandomNumberSeed                                               ;A0BA87;
+    LDA.B RandomNumberSeed                                               ;A0BA87;
     AND.W #$3F00                                                         ;A0BA8A;
     XBA                                                                  ;A0BA8D;
     CLC                                                                  ;A0BA8E;
@@ -7229,7 +7229,7 @@ BombTorizoDeathItemDropRoutine:
     CLC                                                                  ;A0BAB4;
     ADC.W #$0040                                                         ;A0BAB5;
     STA.B DP_Temp12                                                      ;A0BAB8;
-    LDA.W RandomNumberSeed                                               ;A0BABA;
+    LDA.B RandomNumberSeed                                               ;A0BABA;
     AND.W #$3F00                                                         ;A0BABD;
     XBA                                                                  ;A0BAC0;
     CLC                                                                  ;A0BAC1;
@@ -7259,7 +7259,7 @@ GoldenTorizoDeathItemDropRoutine:
     CLC                                                                  ;A0BAE7;
     ADC.W #$0080                                                         ;A0BAE8;
     STA.B DP_Temp12                                                      ;A0BAEB;
-    LDA.W RandomNumberSeed                                               ;A0BAED;
+    LDA.B RandomNumberSeed                                               ;A0BAED;
     AND.W #$3F00                                                         ;A0BAF0;
     XBA                                                                  ;A0BAF3;
     CLC                                                                  ;A0BAF4;
@@ -7289,7 +7289,7 @@ SporeSpawnDeathItemDropRoutine:
     CLC                                                                  ;A0BB1A;
     ADC.W #$0040                                                         ;A0BB1B;
     STA.B DP_Temp12                                                      ;A0BB1E;
-    LDA.W RandomNumberSeed                                               ;A0BB20;
+    LDA.B RandomNumberSeed                                               ;A0BB20;
     AND.W #$3F00                                                         ;A0BB23;
     XBA                                                                  ;A0BB26;
     CLC                                                                  ;A0BB27;
@@ -7319,7 +7319,7 @@ DraygonDeathItemDropRoutine:
     CLC                                                                  ;A0BB4D;
     ADC.W #$0080                                                         ;A0BB4E;
     STA.B DP_Temp12                                                      ;A0BB51;
-    LDA.W RandomNumberSeed                                               ;A0BB53;
+    LDA.B RandomNumberSeed                                               ;A0BB53;
     AND.W #$3F00                                                         ;A0BB56;
     XBA                                                                  ;A0BB59;
     CLC                                                                  ;A0BB5A;
@@ -8659,7 +8659,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 ;;; $C26A: Process enemy instructions ;;;
 ProcessEnemyInstructions:
     PHB                                                                  ;A0C26A;
-    LDX.W EnemyIndex                                                     ;A0C26B;
+    LDX.B EnemyIndex                                                     ;A0C26B;
     LDA.W Enemy.AI,X                                                     ;A0C26E;
     AND.W #$0004                                                         ;A0C271;
     BNE .return                                                          ;A0C274;
@@ -8833,7 +8833,7 @@ EnemyBlockCollisionReaction_Horizontal_Slope_Square:
     EOR.W SlopeCollisionFlipFlags                                        ;A0C348;
     ADC.W SolidSlopeDefinitionTableBaseIndex                             ;A0C34B;
     TAX                                                                  ;A0C34E;
-    LDY.W EnemyIndex                                                     ;A0C34F;
+    LDY.B EnemyIndex                                                     ;A0C34F;
     LDA.B DP_Temp1C                                                      ;A0C352;
     BNE .topBlockCheck                                                   ;A0C354;
     LDA.W Enemy.YPosition,Y                                              ;A0C356;
@@ -8923,7 +8923,7 @@ EnemyBlockCollisionReaction_Vertical_Slope_Square:
     EOR.W SlopeCollisionFlipFlags                                        ;A0C3CB;
     ADC.W SolidSlopeDefinitionTableBaseIndex                             ;A0C3CE;
     TAX                                                                  ;A0C3D1;
-    LDY.W EnemyIndex                                                     ;A0C3D2;
+    LDY.B EnemyIndex                                                     ;A0C3D2;
     LDA.B DP_Temp1C                                                      ;A0C3D5;
     BNE .leftmostBlockCheck                                              ;A0C3D7;
     LDA.W Enemy.XPosition,Y                                              ;A0C3D9;
@@ -9112,7 +9112,7 @@ EnemyBlockCollisionReaction_Vertical_Slope_NonSquare:
 ;;     $18: Target Y position
 ;; Returns:
 ;;     Carry: Set if collision, clear otherwise
-    LDY.W EnemyIndex                                                     ;A0C51F;
+    LDY.B EnemyIndex                                                     ;A0C51F;
     LDA.B DP_Temp14                                                      ;A0C522;
     BPL +                                                                ;A0C524;
     JMP.W .up                                                            ;A0C526;
