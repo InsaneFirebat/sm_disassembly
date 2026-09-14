@@ -2063,30 +2063,27 @@ ProcessEnemyGrappleBeamCollisionResult:
   .pointers:
     dw CLCRTS_9BB91A                                                     ;9BB90C;
     dw ReturnZero_SECRTS_9BB91C                                          ;9BB90E;
-    dw CLCRTS_9BB921                                                     ;9BB910;
+    dw CLCRTS_9BB91A                                                     ;9BB910;
     dw ReturnOne_SECRTS_9BB923                                           ;9BB912;
-    dw ReturnZero_SECRTS_9BB928                                          ;9BB914;
-    dw ReturnZero_SECRTS_9BB92D                                          ;9BB916;
+    dw ReturnZero_SECRTS_9BB91C                                          ;9BB914;
+    dw ReturnZero_SECRTS_9BB91C                                          ;9BB916;
     dw ProcessEnemyGrappleBeamCollisionResult_HurtSamus                  ;9BB918;
 
 
 ;;; $B91A: Process enemy / grapple beam collision result - grapple reaction index = 0 (default) - clear carry ;;;
+;;; $B921: Process enemy / grapple beam collision result - grapple reaction index = 2 (kill enemy) - clear carry ;;;
 CLCRTS_9BB91A:
     CLC                                                                  ;9BB91A;
     RTS                                                                  ;9BB91B;
 
 
 ;;; $B91C: Process enemy / grapple beam collision result - grapple reaction index = 1 (Samus latches on) - set carry, A = 0 ;;;
+;;; $B928: Process enemy / grapple beam collision result - grapple reaction index = 4 (Samus latches on - no invincibility) - set carry, A = 0 ;;;
+;;; $B92D: Process enemy / grapple beam collision result - grapple reaction index = 5 (Samus latches on - paralyse enemy) - set carry, A = 0 ;;;
 ReturnZero_SECRTS_9BB91C:
     LDA.W #$0000                                                         ;9BB91C;
     SEC                                                                  ;9BB91F;
     RTS                                                                  ;9BB920;
-
-
-;;; $B921: Process enemy / grapple beam collision result - grapple reaction index = 2 (kill enemy) - clear carry ;;;
-CLCRTS_9BB921:
-    CLC                                                                  ;9BB921;
-    RTS                                                                  ;9BB922;
 
 
 ;;; $B923: Process enemy / grapple beam collision result - grapple reaction index = 3 (cancel grapple beam) - set carry, A = 1 ;;;
@@ -2094,20 +2091,6 @@ ReturnOne_SECRTS_9BB923:
     LDA.W #$0001                                                         ;9BB923;
     SEC                                                                  ;9BB926;
     RTS                                                                  ;9BB927;
-
-
-;;; $B928: Process enemy / grapple beam collision result - grapple reaction index = 4 (Samus latches on - no invincibility) - set carry, A = 0 ;;;
-ReturnZero_SECRTS_9BB928:
-    LDA.W #$0000                                                         ;9BB928;
-    SEC                                                                  ;9BB92B;
-    RTS                                                                  ;9BB92C;
-
-
-;;; $B92D: Process enemy / grapple beam collision result - grapple reaction index = 5 (Samus latches on - paralyse enemy) - set carry, A = 0 ;;;
-ReturnZero_SECRTS_9BB92D:
-    LDA.W #$0000                                                         ;9BB92D;
-    SEC                                                                  ;9BB930;
-    RTS                                                                  ;9BB931;
 
 
 ;;; $B932: Process enemy / grapple beam collision result - grapple reaction index = 6 (hurt Samus) - hurt Samus, set carry, A = 1 ;;;
@@ -3893,14 +3876,6 @@ GetDirectionGrappleIsFiredWhenHeldByDraygon:
     LDA.W #$0006                                                         ;9BC6FC;
     SEC                                                                  ;9BC6FF;
     RTS                                                                  ;9BC700;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_CLCRTS_9B7C01:
-; Nothing points here
-    CLC                                                                  ;9BC701;
-    RTS                                                                  ;9BC702;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $C703: Grapple beam function - firing ;;;

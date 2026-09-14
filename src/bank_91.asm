@@ -13672,11 +13672,11 @@ SpecialProspectivePoseCmd_1_StartKnockback:
     dw DetermineKnockbackDirection_Morphed                               ;91ED7A; *8: Morph ball - falling
     dw DetermineKnockbackDirection_Morphed                               ;91ED7C; *9: Unused
     dw CLCRTS_91EDA2                                                     ;91ED7E;  Ah: Knockback / crystal flash ending
-    dw CLCRTS_91EDA4                                                     ;91ED80;  Bh: Unused
-    dw CLCRTS_91EDA4                                                     ;91ED82;  Ch: Unused
+    dw CLCRTS_91EDA2                                                     ;91ED80;  Bh: Unused
+    dw CLCRTS_91EDA2                                                     ;91ED82;  Ch: Unused
     dw DetermineKnockbackDirection_Normal                                ;91ED84; *Dh: Unused
-    dw CLCRTS_91EDA4                                                     ;91ED86;  Eh: Turning around - on ground
-    dw CLCRTS_91EDA4                                                     ;91ED88;  Fh: Crouching/standing/morphing/unmorphing transition
+    dw CLCRTS_91EDA2                                                     ;91ED86;  Eh: Turning around - on ground
+    dw CLCRTS_91EDA2                                                     ;91ED88;  Fh: Crouching/standing/morphing/unmorphing transition
     dw DetermineKnockbackDirection_Normal                                ;91ED8A; *10h: Moonwalking
     dw DetermineKnockbackDirection_Morphed                               ;91ED8C; *11h: Spring ball - on ground
     dw DetermineKnockbackDirection_Morphed                               ;91ED8E; *12h: Spring ball - in air
@@ -13684,23 +13684,20 @@ SpecialProspectivePoseCmd_1_StartKnockback:
     dw DetermineKnockbackDirection_Normal                                ;91ED92; *14h: Wall jumping
     dw DetermineKnockbackDirection_Normal                                ;91ED94; *15h: Ran into a wall
     dw CLCRTS_91EDA2                                                     ;91ED96;  16h: Grappling
-    dw CLCRTS_91EDA4                                                     ;91ED98;  17h: Turning around - jumping
-    dw CLCRTS_91EDA4                                                     ;91ED9A;  18h: Turning around - falling
-    dw CLCRTS_91EDA4                                                     ;91ED9C;  19h: Damage boost
-    dw CLCRTS_91EDA4                                                     ;91ED9E;  1Ah: Grabbed by Draygon
-    dw CLCRTS_91EDA4                                                     ;91EDA0;  1Bh: Shinespark / crystal flash / drained by metroid / damaged by MB's attacks
+    dw CLCRTS_91EDA2                                                     ;91ED98;  17h: Turning around - jumping
+    dw CLCRTS_91EDA2                                                     ;91ED9A;  18h: Turning around - falling
+    dw CLCRTS_91EDA2                                                     ;91ED9C;  19h: Damage boost
+    dw CLCRTS_91EDA2                                                     ;91ED9E;  1Ah: Grabbed by Draygon
+    dw CLCRTS_91EDA2                                                     ;91EDA0;  1Bh: Shinespark / crystal flash / drained by metroid / damaged by MB's attacks
 
 
 ;;; $EDA2: Clear carry ;;;
+;;; $FF87: Clear carry. Handle block collision to pose change - no collision - no solid enemy collision ;;;
+;;; $FE9A: Clear carry. Handle solid enemy collision due to pose change - no collision ;;;
+;;; $FE9C: Clear carry. Handle solid enemy collision due to pose change - collision from both sides ;;;
 CLCRTS_91EDA2:
     CLC                                                                  ;91EDA2;
     RTS                                                                  ;91EDA3;
-
-
-;;; $EDA4: Clear carry ;;;
-CLCRTS_91EDA4:
-    CLC                                                                  ;91EDA4;
-    RTS                                                                  ;91EDA5;
 
 
 ;;; $EDA6: Determine knockback direction - falling ;;;
@@ -14826,13 +14823,13 @@ InitializeSamusPose_2:
     dw InitializeSamusPose_MorphBall                                     ;91F4AA; *4: Morph ball - on ground
     dw InitializeSamusPose_Crouching                                     ;91F4AC; *5: Crouching
     dw InitializeSamusPose_Falling                                       ;91F4AE; *6: Falling
-    dw CLCRTS_91F4DA                                                     ;91F4B0;  7: Unused
+    dw CLCRTS_91EDA2                                                     ;91F4B0;  7: Unused
     dw InitializeSamusPose_MorphBall                                     ;91F4B2; *8: Morph ball - falling
-    dw CLCRTS_91F4DA                                                     ;91F4B4;  9: Unused
-    dw CLCRTS_91F4DA                                                     ;91F4B6;  Ah: Knockback / crystal flash ending
-    dw CLCRTS_91F4DA                                                     ;91F4B8;  Bh: Unused
-    dw CLCRTS_91F4DA                                                     ;91F4BA;  Ch: Unused
-    dw CLCRTS_91F4DA                                                     ;91F4BC;  Dh: Unused
+    dw CLCRTS_91EDA2                                                     ;91F4B4;  9: Unused
+    dw CLCRTS_91EDA2                                                     ;91F4B6;  Ah: Knockback / crystal flash ending
+    dw CLCRTS_91EDA2                                                     ;91F4B8;  Bh: Unused
+    dw CLCRTS_91EDA2                                                     ;91F4BA;  Ch: Unused
+    dw CLCRTS_91EDA2                                                     ;91F4BC;  Dh: Unused
     dw InitializeSamusPose_TurningAround_OnGround                        ;91F4BE; *Eh: Turning around - on ground
     dw InitializeSamusPose_TransitionPoses                               ;91F4C0; *Fh: Crouching/standing/morphing/unmorphing transition
     dw InitializeSamusPose_Moonwalking                                   ;91F4C2; *10h: Moonwalking
@@ -14840,19 +14837,13 @@ InitializeSamusPose_2:
     dw InitializeSamusPose_SpringBall                                    ;91F4C6; *12h: Spring ball - in air
     dw InitializeSamusPose_SpringBall                                    ;91F4C8; *13h: Spring ball - falling
     dw InitializeSamusPose_WallJumping                                   ;91F4CA; *14h: Wall jumping
-    dw CLCRTS_91F4DA                                                     ;91F4CC;  15h: Ran into a wall
-    dw CLCRTS_91F4DA                                                     ;91F4CE;  16h: Grappling
+    dw CLCRTS_91EDA2                                                     ;91F4CC;  15h: Ran into a wall
+    dw CLCRTS_91EDA2                                                     ;91F4CE;  16h: Grappling
     dw InitializeSamusPose_TurningAround_Jumping                         ;91F4D0; *17h: Turning around - jumping
     dw InitializeSamusPose_TurningAround_Falling                         ;91F4D2; *18h: Turning around - falling
     dw InitializeSamusPose_DamageBoost                                   ;91F4D4; *19h: Damage boost
-    dw CLCRTS_91F4DA                                                     ;91F4D6;  1Ah: Grabbed by Draygon
+    dw CLCRTS_91EDA2                                                     ;91F4D6;  1Ah: Grabbed by Draygon
     dw InitializeSamusPose_Shinespark_CF_Drained_DamagedMB               ;91F4D8; *1Bh: Shinespark / crystal flash / drained by metroid / damaged by MB's attacks
-
-
-;;; $F4DA: Clear carry ;;;
-CLCRTS_91F4DA:
-    CLC                                                                  ;91F4DA;
-    RTS                                                                  ;91F4DB;
 
 
 ;;; $F4DC: Initialise Samus pose - standing ;;;
@@ -15263,19 +15254,19 @@ InitializeSamusPose_TransitionPoses:
     dw InitializeSamusPose_MorphingTransition                            ;91F796; 38h: Facing left-   morphing transition
     dw UNUSED_InitializeSamusPose_UnusedPose39_91F7F4                    ;91F798; 39h: Unused
     dw UNUSED_InitializeSamusPose_UnusedPose3A_91F840                    ;91F79A; 3Ah: Unused
-    dw CLCRTS_91F7CC                                                     ;91F79C; 3Bh: Facing right - standing transition
-    dw CLCRTS_91F7CC                                                     ;91F79E; 3Ch: Facing left-   standing transition
-    dw CLCRTS_91F7CC                                                     ;91F7A0; 3Dh: Facing right - unmorphing transition
-    dw CLCRTS_91F7CC                                                     ;91F7A2; 3Eh: Facing left-   unmorphing transition
-    dw CLCRTS_91F7CC                                                     ;91F7A4; 3Fh: Unused
-    dw CLCRTS_91F7CC                                                     ;91F7A6; 40h: Unused
+    dw CLCRTS_91EDA2                                                     ;91F79C; 3Bh: Facing right - standing transition
+    dw CLCRTS_91EDA2                                                     ;91F79E; 3Ch: Facing left-   standing transition
+    dw CLCRTS_91EDA2                                                     ;91F7A0; 3Dh: Facing right - unmorphing transition
+    dw CLCRTS_91EDA2                                                     ;91F7A2; 3Eh: Facing left-   unmorphing transition
+    dw CLCRTS_91EDA2                                                     ;91F7A4; 3Fh: Unused
+    dw CLCRTS_91EDA2                                                     ;91F7A6; 40h: Unused
 
   .unusedPointers:
 ; Unused poses DBh..DEh
     dw InitializeSamusPose_MorphingTransition                            ;91F7A8;
     dw InitializeSamusPose_MorphingTransition                            ;91F7AA;
-    dw CLCRTS_91F7CC                                                     ;91F7AC;
-    dw CLCRTS_91F7CC                                                     ;91F7AE;
+    dw CLCRTS_91EDA2                                                     ;91F7AC;
+    dw CLCRTS_91EDA2                                                     ;91F7AE;
 
 
 ;;; $F7B0: Initialise Samus pose - crouching transition ;;;
@@ -15297,12 +15288,6 @@ InitializeSamusPose_CrouchingTransition:
   .returnCarryClear:
     CLC                                                                  ;91F7CA;
     RTS                                                                  ;91F7CB;
-
-
-;;; $F7CC: Clear carry ;;;
-CLCRTS_91F7CC:
-    CLC                                                                  ;91F7CC;
-    RTS                                                                  ;91F7CD;
 
 
 ;;; $F7CE: Initialise Samus pose - morphing transition ;;;
@@ -16338,28 +16323,16 @@ HandlePoseChangeCollision:
     RTS                                                                  ;91FE89;
 
   .solidEnemyPointers:
-    dw CLCRTS_91FE9A                                                     ;91FE8A;
+    dw CLCRTS_91EDA2                                                     ;91FE8A;
     dw PoseChangeCollision_SolidEnemy_FromAbove                          ;91FE8C;
     dw PoseChangeCollision_SolidEnemy_FromBelow                          ;91FE8E;
-    dw CLCRTS_91FE9C                                                     ;91FE90;
+    dw CLCRTS_91EDA2                                                     ;91FE90;
 
   .blockPointers:
     dw PoseChangeCollision_NoCollision                                   ;91FE92;
     dw PoseChangeCollision_Block_FromAbove                               ;91FE94;
     dw PoseChangeCollision_Block_FromBelow                               ;91FE96;
     dw HandleCollisionFromBothSidesDueToPoseChange                       ;91FE98;
-
-
-;;; $FE9A: Clear carry. Handle solid enemy collision due to pose change - no collision ;;;
-CLCRTS_91FE9A:
-    CLC                                                                  ;91FE9A;
-    RTS                                                                  ;91FE9B;
-
-
-;;; $FE9C: Clear carry. Handle solid enemy collision due to pose change - collision from both sides ;;;
-CLCRTS_91FE9C:
-    CLC                                                                  ;91FE9C;
-    RTS                                                                  ;91FE9D;
 
 
 ;;; $FE9E: Handle solid enemy collision due to pose change - collision from above ;;;
@@ -16510,16 +16483,10 @@ PoseChangeCollision_NoCollision:
     JMP.W (.pointers,X)                                                  ;91FF7B;
 
   .pointers:
-    dw CLCRTS_91FF87                                                     ;91FF7F;
+    dw CLCRTS_91EDA2                                                     ;91FF7F;
     dw HandleBlockCollisionToPoseChange_NoCollision_Enemy_FromAbove      ;91FF81;
     dw HandleBlockCollisionToPoseChange_NoCollision_Enemy_FromBelow      ;91FF83;
     dw HandleCollisionFromBothSidesDueToPoseChange                       ;91FF85;
-
-
-;;; $FF87: Clear carry. Handle block collision to pose change - no collision - no solid enemy collision ;;;
-CLCRTS_91FF87:
-    CLC                                                                  ;91FF87;
-    RTS                                                                  ;91FF88;
 
 
 ;;; $FF89: Handle block collision to pose change - no collision - solid enemy collision from above ;;;

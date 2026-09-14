@@ -446,6 +446,8 @@ PostGrappleCollisionDetection_Vertical_Slope_Square:
 
 
 ;;; $82A7: Clear carry ;;;
+;;; $97D8: Clear carry. Block inside reaction - spike air - BTS 0 (unused) ;;;
+;;; $9812: Clear carry. Block inside reaction - spike air - BTS 1 (unused) ;;;
 CLCRTS_9482A7:
     CLC                                                                  ;9482A7;
     RTS                                                                  ;9482A8;
@@ -1779,24 +1781,6 @@ UNUSED_DetermineSamusSuitPaletteIndex_948E68:
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
-;;; $8E7D: Unused. Clear carry ;;;
-CLCRTS_948E7D:
-    CLC                                                                  ;948E7D;
-    RTS                                                                  ;948E7E;
-
-
-;;; $8E7F: Unused. Clear carry ;;;
-CLCRTS_948E7F:
-    CLC                                                                  ;948E7F;
-    RTS                                                                  ;948E80;
-
-
-;;; $8E81: Clear carry ;;;
-CLCRTS_948E81:
-    CLC                                                                  ;948E81;
-    RTS                                                                  ;948E82;
-
-
 ;;; $8E83: Samus block collision reaction - spike block - BTS 0 (generic spike) ;;;
 SamusBlockCollisionReaction_SpikeBlock_BTS0_GenericSpike:
     LDA.W AreaIndex                                                      ;948E83;
@@ -1889,12 +1873,6 @@ SamusBlockCollisionReact_SpikeBlock_BTS3_DraygonBrokenTurret:
 SECRTS_948F45:
     SEC                                                                  ;948F45;
     RTS                                                                  ;948F46;
-
-
-;;; $8F47: Clear carry ;;;
-CLCRTS_948F47:
-    CLC                                                                  ;948F47;
-    RTS                                                                  ;948F48;
 
 
 ;;; $8F49: Samus block collision reaction - horizontal - solid/shootable/grapple block ;;;
@@ -2036,29 +2014,23 @@ SamusBlockCollisionReaction_Vertical_Slope:
 ;;; $8FF6: Samus block collision reaction - vertical - spike air - jump table ;;;
 SamusBlockCollisionReaction_Vertical_SpikeAir_JumpTable:
 ; Yeah, great table
-    dw CLCRTS_948E81                                                     ;948FF6;
-    dw CLCRTS_948E81                                                     ;948FF8;
-    dw CLCRTS_948E81                                                     ;948FFA;
-    dw CLCRTS_948E81                                                     ;948FFC;
-    dw CLCRTS_948E81                                                     ;948FFE;
-    dw CLCRTS_948E81                                                     ;949000;
-    dw CLCRTS_948E81                                                     ;949002;
-    dw CLCRTS_948E81                                                     ;949004;
-    dw CLCRTS_948E81                                                     ;949006;
-    dw CLCRTS_948E81                                                     ;949008;
-    dw CLCRTS_948E81                                                     ;94900A;
-    dw CLCRTS_948E81                                                     ;94900C;
-    dw CLCRTS_948E81                                                     ;94900E;
-    dw CLCRTS_948E81                                                     ;949010;
-    dw CLCRTS_948E81                                                     ;949012;
-    dw CLCRTS_948E81                                                     ;949014;
-    dw CLCRTS_948E81                                                     ;949016;
-
-
-;;; $9018: Clear carry ;;;
-CLCRTS_949018:
-    CLC                                                                  ;949018;
-    RTS                                                                  ;949019;
+    dw CLCRTS_9482A7                                                     ;948FF6;
+    dw CLCRTS_9482A7                                                     ;948FF8;
+    dw CLCRTS_9482A7                                                     ;948FFA;
+    dw CLCRTS_9482A7                                                     ;948FFC;
+    dw CLCRTS_9482A7                                                     ;948FFE;
+    dw CLCRTS_9482A7                                                     ;949000;
+    dw CLCRTS_9482A7                                                     ;949002;
+    dw CLCRTS_9482A7                                                     ;949004;
+    dw CLCRTS_9482A7                                                     ;949006;
+    dw CLCRTS_9482A7                                                     ;949008;
+    dw CLCRTS_9482A7                                                     ;94900A;
+    dw CLCRTS_9482A7                                                     ;94900C;
+    dw CLCRTS_9482A7                                                     ;94900E;
+    dw CLCRTS_9482A7                                                     ;949010;
+    dw CLCRTS_9482A7                                                     ;949012;
+    dw CLCRTS_9482A7                                                     ;949014;
+    dw CLCRTS_9482A7                                                     ;949016;
 
 
 ;;; $901A: Samus block collision reaction - vertical - spike air ;;;
@@ -2875,13 +2847,13 @@ CalculateSamusXBlockSpan:
 
 ;;; $94D5: Samus block collision reaction pointers - horizontal ;;;
 SamusBlockCollisionReactionPointers_Horizontal:
-    dw CLCRTS_948F47                                                     ;9494D5; *0: Air
+    dw CLCRTS_9482A7                                                     ;9494D5; *0: Air
     dw SamusBlockCollisionReaction_Horizontal_Slope                      ;9494D7;  1: Slope
-    dw CLCRTS_949018                                                     ;9494D9; *2: Spike air
+    dw CLCRTS_9482A7                                                     ;9494D9; *2: Spike air
     dw SamusBlockCollisionReaction_Horizontal_SpecialAir                 ;9494DB;  3: Special air
-    dw CLCRTS_948F47                                                     ;9494DD; *4: Shootable air
+    dw CLCRTS_9482A7                                                     ;9494DD; *4: Shootable air
     dw BlockShotBombedGrappledCollisionInsideReaction_HorizontalExt      ;9494DF;  5: Horizontal extension
-    dw CLCRTS_948F47                                                     ;9494E1; *6: Unused air
+    dw CLCRTS_9482A7                                                     ;9494E1; *6: Unused air
     dw SamusBlockCollisionReaction_Horizontal_BombableAir                ;9494E3;  7: Bombable air
     dw SamusBlockCollisionReaction_Horizontal_SolidShootableGrapple      ;9494E5;  8: Solid block
     dw SamusBlockCollisionReaction_Horizontal_Door                       ;9494E7;  9: Door block
@@ -2895,13 +2867,13 @@ SamusBlockCollisionReactionPointers_Horizontal:
 
 ;;; $94F5: Samus block collision reaction pointers - vertical ;;;
 SamusBlockCollisionReactionPointers_Vertical:
-    dw CLCRTS_948F47                                                     ;9494F5; 0: Air
+    dw CLCRTS_9482A7                                                     ;9494F5; 0: Air
     dw SamusBlockCollisionReaction_Vertical_Slope                        ;9494F7; 1: Slope
     dw SamusBlockCollisionReaction_Vertical_SpikeAir                     ;9494F9; 2: Spike air
     dw SamusBlockCollisionReaction_Vertical_SpecialAir                   ;9494FB; 3: Special air
-    dw CLCRTS_948F47                                                     ;9494FD; 4: Shootable air
+    dw CLCRTS_9482A7                                                     ;9494FD; 4: Shootable air
     dw BlockShotBombedGrappledCollisionInsideReaction_HorizontalExt      ;9494FF; 5: Horizontal extension
-    dw CLCRTS_948F47                                                     ;949501; 6: Unused air
+    dw CLCRTS_9482A7                                                     ;949501; 6: Unused air
     dw SamusBlockCollisionReaction_Vertical_BombableAir                  ;949503; 7: Bombable air
     dw SamusBlockCollisionReaction_Vertical_SolidShootableGrapple        ;949505; 8: Solid block
     dw SamusBlockCollisionReaction_Vertical_Door                         ;949507; 9: Door block
@@ -3470,46 +3442,6 @@ RTS_9497D7:
     RTS                                                                  ;9497D7;
 
 
-;;; $97D8: Clear carry. Block inside reaction - spike air - BTS 0 (unused) ;;;
-CLCRTS_9497D8:
-; Looks like this block's effect was NOP'd out, although this block is never used anyway
-    CLC                                                                  ;9497D8;
-    RTS                                                                  ;9497D9;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $97F2: Unused. Some kind of upwards boost ;;;
-UNUSED_SomeKindOfUpwardsBoost_9497F2:
-    LDA.W SamusYDirection                                                ;9497F2;
-    CMP.W #$0001                                                         ;9497F5;
-    BNE .down                                                            ;9497F8;
-    LDA.W #$0000                                                         ;9497FA;
-    STA.W SamusYSubAcceleration                                          ;9497FD;
-    LDA.W #$0002                                                         ;949800;
-    STA.W SamusYAcceleration                                             ;949803;
-    CLC                                                                  ;949806;
-    RTS                                                                  ;949807;
-
-  .down:
-    STZ.W SamusYSpeed                                                    ;949808;
-    STZ.W SamusYSubSpeed                                                 ;94980B;
-    CLC                                                                  ;94980E;
-    RTS                                                                  ;94980F;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
-;;; $9810: Unused. Clear carry ;;;
-CLCRTS_949810:
-    CLC                                                                  ;949810;
-    RTS                                                                  ;949811;
-
-
-;;; $9812: Clear carry. Block inside reaction - spike air - BTS 1 (unused) ;;;
-CLCRTS_949812:
-; Looks like this block's effect was NOP'd out, although this block is never used anyway
-    CLC                                                                  ;949812;
-    RTS                                                                  ;949813;
-
 ; Damages Samus, kills her jump height, gives her lava X speed physics
     LDY.W #$0000                                                         ;949814;
     LDA.W PeriodicDamage                                                 ;94981E;
@@ -3587,8 +3519,8 @@ BlockInsideReaction_SpikeAir_BTS2_AirSpike:
 
 ;;; $98AC: Block inside reaction - spike air - jump table ;;;
 BlockInsideReaction_SpikeAir_JumpTable:
-    dw CLCRTS_9497D8                                                     ;9498AC;
-    dw CLCRTS_949812                                                     ;9498AE;
+    dw CLCRTS_9482A7                                                     ;9498AC;
+    dw CLCRTS_9482A7                                                     ;9498AE;
     dw BlockInsideReaction_SpikeAir_BTS2_AirSpike                        ;9498B0;
     dw RTS_9497D7                                                        ;9498B2;
     dw RTS_9497D7                                                        ;9498B4;
@@ -4332,18 +4264,6 @@ MoveBlockIndexX_OneRowDown_OneColumRight_duplicate:
     RTS                                                                  ;949D58;
 
 
-;;; $9D59: Clear carry ;;;
-CLCRTS_949D59:
-    CLC                                                                  ;949D59;
-    RTS                                                                  ;949D5A;
-
-
-;;; $9D5B: Set carry ;;;
-SECRTS_949D5B:
-    SEC                                                                  ;949D5B;
-    RTS                                                                  ;949D5C;
-
-
 ;;; $9D5D: Spread bomb block reaction - slope ;;;
 BombSpreadBlockReaction_Slope:
 ;; Returns:
@@ -4806,21 +4726,21 @@ BlockShotBombedGrappledReaction_Bombable_PLMTable:
 
 ;;; $A032: Block bombed reaction pointers ;;;
 BlockBombedReactionPointers:
-    dw CLCRTS_949D59                                                     ;94A032;  0: Air
-    dw CLCRTS_949D59                                                     ;94A034;  1: Slope
-    dw CLCRTS_949D59                                                     ;94A036;  2: Spike air
-    dw CLCRTS_949D59                                                     ;94A038;  3: Special air
+    dw CLCRTS_9482A7                                                     ;94A032;  0: Air
+    dw CLCRTS_9482A7                                                     ;94A034;  1: Slope
+    dw CLCRTS_9482A7                                                     ;94A036;  2: Spike air
+    dw CLCRTS_9482A7                                                     ;94A038;  3: Special air
     dw BlockBombShotGrappledReaction_ShootableAir                        ;94A03A; *4: Shootable air
     dw BlockShotBombedGrappledCollisionInsideReaction_HorizontalExt      ;94A03C; *5: Horizontal extension
-    dw CLCRTS_949D59                                                     ;94A03E;  6: Unused air
+    dw CLCRTS_9482A7                                                     ;94A03E;  6: Unused air
     dw BlockShotBombedGrappledReaction_BombableAir                       ;94A040; *7: Bombable air
-    dw SECRTS_949D5B                                                     ;94A042;  8: Solid block
-    dw SECRTS_949D5B                                                     ;94A044;  9: Door block
-    dw SECRTS_949D5B                                                     ;94A046;  Ah: Spike block
+    dw SECRTS_948F45                                                     ;94A042;  8: Solid block
+    dw SECRTS_948F45                                                     ;94A044;  9: Door block
+    dw SECRTS_948F45                                                     ;94A046;  Ah: Spike block
     dw BlockBombedReaction_SpecialBlock                                  ;94A048; *Bh: Special block
     dw BlockBombShotGrappledReaction_ShootableBlock                      ;94A04A; *Ch: Shootable block
     dw BlockShotBombedGrappledCollisionInsideReaction_VerticalExt        ;94A04C; *Dh: Vertical extension
-    dw SECRTS_949D5B                                                     ;94A04E;  Eh: Grapple block
+    dw SECRTS_948F45                                                     ;94A04E;  Eh: Grapple block
     dw BlockShotBombedGrappledReaction_BombableBlock                     ;94A050; *Fh: Bombable block
 
 
@@ -5026,12 +4946,6 @@ BlockShotReaction_Horizontal_Slope:
     JMP.W BlockShotReaction_Horizontal_Slope_Square                      ;94A159;
 
 
-;;; $A15C: Unused. Set carry ;;;
-SECRTS_94A15C:
-    SEC                                                                  ;94A15C;
-    RTS                                                                  ;94A15D;
-
-
 ;;; $A15E: Block shot reaction - vertical - slope ;;;
 BlockShotReaction_Vertical_Slope:
 ;; Parameters:
@@ -5055,50 +4969,44 @@ BlockShotReaction_Vertical_Slope:
     JMP.W BlockShotReaction_Vertical_Slope_Square                        ;94A170;
 
 
-;;; $A173: Unused. Set carry ;;;
-SECRTS_94A173:
-    SEC                                                                  ;94A173;
-    RTS                                                                  ;94A174;
-
-
 ;;; $A175: Block shot reaction pointers - horizontal ;;;
 BlockShotReactionPointers_Horizontal:
-    dw CLCRTS_949D59                                                     ;94A175;  0: Air
+    dw CLCRTS_9482A7                                                     ;94A175;  0: Air
     dw BlockShotReaction_Horizontal_Slope                                ;94A177; *1: Slope
-    dw CLCRTS_949D59                                                     ;94A179;  2: Spike air
-    dw CLCRTS_949D59                                                     ;94A17B;  3: Special air
+    dw CLCRTS_9482A7                                                     ;94A179;  2: Spike air
+    dw CLCRTS_9482A7                                                     ;94A17B;  3: Special air
     dw BlockBombShotGrappledReaction_ShootableAir                        ;94A17D; *4: Shootable air
     dw BlockShotBombedGrappledCollisionInsideReaction_HorizontalExt      ;94A17F; *5: Horizontal extension
-    dw CLCRTS_949D59                                                     ;94A181;  6: Unused air
+    dw CLCRTS_9482A7                                                     ;94A181;  6: Unused air
     dw BlockShotBombedGrappledReaction_BombableAir                       ;94A183; *7: Bombable air
-    dw SECRTS_949D5B                                                     ;94A185;  8: Solid block
-    dw SECRTS_949D5B                                                     ;94A187;  9: Door block
-    dw SECRTS_949D5B                                                     ;94A189;  Ah: Spike block
-    dw SECRTS_949D5B                                                     ;94A18B;  Bh: Special block
+    dw SECRTS_948F45                                                     ;94A185;  8: Solid block
+    dw SECRTS_948F45                                                     ;94A187;  9: Door block
+    dw SECRTS_948F45                                                     ;94A189;  Ah: Spike block
+    dw SECRTS_948F45                                                     ;94A18B;  Bh: Special block
     dw BlockBombShotGrappledReaction_ShootableBlock                      ;94A18D; *Ch: Shootable block
     dw BlockShotBombedGrappledCollisionInsideReaction_VerticalExt        ;94A18F; *Dh: Vertical extension
-    dw SECRTS_949D5B                                                     ;94A191;  Eh: Grapple block
+    dw SECRTS_948F45                                                     ;94A191;  Eh: Grapple block
     dw BlockShotBombedGrappledReaction_BombableBlock                     ;94A193; *Fh: Bombable block
 
 
 ;;; $A195: Block shot reaction pointers - vertical ;;;
 BlockShotReactionPointers_Vertical:
 ; Same as horizontal pointers except for slope
-    dw CLCRTS_949D59                                                     ;94A195;  0: Air
+    dw CLCRTS_9482A7                                                     ;94A195;  0: Air
     dw BlockShotReaction_Vertical_Slope                                  ;94A197; *1: Slope
-    dw CLCRTS_949D59                                                     ;94A199;  2: Spike air
-    dw CLCRTS_949D59                                                     ;94A19B;  3: Special air
+    dw CLCRTS_9482A7                                                     ;94A199;  2: Spike air
+    dw CLCRTS_9482A7                                                     ;94A19B;  3: Special air
     dw BlockBombShotGrappledReaction_ShootableAir                        ;94A19D; *4: Shootable air
     dw BlockShotBombedGrappledCollisionInsideReaction_HorizontalExt      ;94A19F; *5: Horizontal extension
-    dw CLCRTS_949D59                                                     ;94A1A1;  6: Unused air
+    dw CLCRTS_9482A7                                                     ;94A1A1;  6: Unused air
     dw BlockShotBombedGrappledReaction_BombableAir                       ;94A1A3; *7: Bombable air
-    dw SECRTS_949D5B                                                     ;94A1A5;  8: Solid block
-    dw SECRTS_949D5B                                                     ;94A1A7;  9: Door block
-    dw SECRTS_949D5B                                                     ;94A1A9;  Ah: Spike block
-    dw SECRTS_949D5B                                                     ;94A1AB;  Bh: Special block
+    dw SECRTS_948F45                                                     ;94A1A5;  8: Solid block
+    dw SECRTS_948F45                                                     ;94A1A7;  9: Door block
+    dw SECRTS_948F45                                                     ;94A1A9;  Ah: Spike block
+    dw SECRTS_948F45                                                     ;94A1AB;  Bh: Special block
     dw BlockBombShotGrappledReaction_ShootableBlock                      ;94A1AD; *Ch: Shootable block
     dw BlockShotBombedGrappledCollisionInsideReaction_VerticalExt        ;94A1AF; *Dh: Vertical extension
-    dw SECRTS_949D5B                                                     ;94A1B1;  Eh: Grapple block
+    dw SECRTS_948F45                                                     ;94A1B1;  Eh: Grapple block
     dw BlockShotBombedGrappledReaction_BombableBlock                     ;94A1B3; *Fh: Bombable block
 
 
@@ -5877,22 +5785,22 @@ BlockShotReaction_Slope_NonSquare:
 
 ;;; $A601: Spread bomb block reaction pointers ;;;
 BombSpreadBlockReaction_Pointers:
-    dw CLCRTS_949D59                                                     ;94A601;  0: Air
+    dw CLCRTS_9482A7                                                     ;94A601;  0: Air
     dw BombSpreadBlockReaction_Slope                                     ;94A603; *1: Slope
-    dw CLCRTS_949D59                                                     ;94A605;  2: Spike air
-    dw CLCRTS_949D59                                                     ;94A607;  3: Special air
-    dw SECRTS_949D5B                                                     ;94A609;  4: Shootable air
+    dw CLCRTS_9482A7                                                     ;94A605;  2: Spike air
+    dw CLCRTS_9482A7                                                     ;94A607;  3: Special air
+    dw SECRTS_948F45                                                     ;94A609;  4: Shootable air
     dw BlockShotBombedGrappledCollisionInsideReaction_HorizontalExt      ;94A60B; *5: Horizontal extension
-    dw CLCRTS_949D59                                                     ;94A60D;  6: Unused air
-    dw CLCRTS_949D59                                                     ;94A60F;  7: Bombable air
-    dw SECRTS_949D5B                                                     ;94A611;  8: Solid block
-    dw SECRTS_949D5B                                                     ;94A613;  9: Door block
-    dw SECRTS_949D5B                                                     ;94A615;  Ah: Spike block
-    dw SECRTS_949D5B                                                     ;94A617;  Bh: Special block
-    dw SECRTS_949D5B                                                     ;94A619;  Ch: Shootable block
+    dw CLCRTS_9482A7                                                     ;94A60D;  6: Unused air
+    dw CLCRTS_9482A7                                                     ;94A60F;  7: Bombable air
+    dw SECRTS_948F45                                                     ;94A611;  8: Solid block
+    dw SECRTS_948F45                                                     ;94A613;  9: Door block
+    dw SECRTS_948F45                                                     ;94A615;  Ah: Spike block
+    dw SECRTS_948F45                                                     ;94A617;  Bh: Special block
+    dw SECRTS_948F45                                                     ;94A619;  Ch: Shootable block
     dw BlockShotBombedGrappledCollisionInsideReaction_VerticalExt        ;94A61B; *Dh: Vertical extension
-    dw SECRTS_949D5B                                                     ;94A61D;  Eh: Grapple block
-    dw SECRTS_949D5B                                                     ;94A61F;  Fh: Bombable block
+    dw SECRTS_948F45                                                     ;94A61D;  Eh: Grapple block
+    dw SECRTS_948F45                                                     ;94A61F;  Fh: Bombable block
 
 
 ;;; $A621: Spread bomb block collision detection ;;;
@@ -6611,18 +6519,6 @@ GrappleSwingCollisionReaction:
     RTS                                                                  ;94AA99;
 
 
-;;; $AA9A: Clear carry ;;;
-CLCRTS_94AA9A:
-    CLC                                                                  ;94AA9A;
-    RTS                                                                  ;94AA9B;
-
-
-;;; $AA9C: Set carry ;;;
-SECRTS_94AA9C:
-    SEC                                                                  ;94AA9C;
-    RTS                                                                  ;94AA9D;
-
-
 ;;; $AB17: Grapple swing collision reaction - spike block ;;;
 GrappleSwingCollisionReaction_SpikeBlock:
 ;; Returns:
@@ -6659,22 +6555,22 @@ GrappleSwingCollisionReaction_SpikeBlock:
 
 ;;; $AB90: Grapple swing collision reaction pointers ;;;
 GrappleSwingCollisionReaction_Pointers:
-    dw CLCRTS_94AA9A                                                     ;94AB90;  0: Air
-    dw SECRTS_94AA9C                                                     ;94AB92;  1: Slope
-    dw CLCRTS_94AA9A                                                     ;94AB94; *2: Spike air
-    dw CLCRTS_94AA9A                                                     ;94AB96;  3: Special air
-    dw CLCRTS_94AA9A                                                     ;94AB98;  4: Shootable air
+    dw CLCRTS_9482A7                                                     ;94AB90;  0: Air
+    dw SECRTS_948F45                                                     ;94AB92;  1: Slope
+    dw CLCRTS_9482A7                                                     ;94AB94; *2: Spike air
+    dw CLCRTS_9482A7                                                     ;94AB96;  3: Special air
+    dw CLCRTS_9482A7                                                     ;94AB98;  4: Shootable air
     dw BlockShotBombedGrappledCollisionInsideReaction_HorizontalExt      ;94AB9A; *5: Horizontal extension
-    dw CLCRTS_94AA9A                                                     ;94AB9C;  6: Unused air
-    dw CLCRTS_94AA9A                                                     ;94AB9E;  7: Bombable air
-    dw SECRTS_94AA9C                                                     ;94ABA0;  8: Solid block
-    dw SECRTS_94AA9C                                                     ;94ABA2;  9: Door block
+    dw CLCRTS_9482A7                                                     ;94AB9C;  6: Unused air
+    dw CLCRTS_9482A7                                                     ;94AB9E;  7: Bombable air
+    dw SECRTS_948F45                                                     ;94ABA0;  8: Solid block
+    dw SECRTS_948F45                                                     ;94ABA2;  9: Door block
     dw GrappleSwingCollisionReaction_SpikeBlock                          ;94ABA4; *Ah: Spike block
-    dw SECRTS_94AA9C                                                     ;94ABA6;  Bh: Special block
-    dw SECRTS_94AA9C                                                     ;94ABA8;  Ch: Shootable block
+    dw SECRTS_948F45                                                     ;94ABA6;  Bh: Special block
+    dw SECRTS_948F45                                                     ;94ABA8;  Ch: Shootable block
     dw BlockShotBombedGrappledCollisionInsideReaction_VerticalExt        ;94ABAA; *Dh: Vertical extension
-    dw SECRTS_94AA9C                                                     ;94ABAC;  Eh: Grapple block
-    dw SECRTS_94AA9C                                                     ;94ABAE;  Fh: Bombable block
+    dw SECRTS_948F45                                                     ;94ABAC;  Eh: Grapple block
+    dw SECRTS_948F45                                                     ;94ABAE;  Fh: Bombable block
 
 
 ;;; $ABB0: Grapple swing collision reaction ;;;

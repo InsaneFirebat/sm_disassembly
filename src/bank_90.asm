@@ -502,6 +502,7 @@ Handle_Samus_AnimationDelay:
 
 
 ;;; $8344: Clear carry. Animation delay instruction 0..5 ;;;
+;;; $CD18: Clear carry. Disabled SBA beam combinations ;;;
 CLCRTS_908344:
 ;; Returns:
 ;;     Carry: Clear. Samus animation frame is unchanged
@@ -9301,7 +9302,7 @@ FireHyperBeam:
     STX.W ProjectileIndex                                                ;90BD19;
     JSR.W InitialWaveBeamBlockCollision                                  ;90BD1C;
     LDX.W ProjectileIndex                                                ;90BD1F;
-    LDA.L HyperBeamDamageValue                                           ;90BD22;
+    LDA.W #$03E8                                                                ; HyperBeamDamageValue
     STA.W SamusProjectile_Damages,X                                      ;90BD26;
     LDA.W #ProjectilePreInstruction_HyperBeam                            ;90BD29;
     STA.W SamusProjectile_PreInstructions,X                              ;90BD2C;
@@ -11559,18 +11560,18 @@ FireSBA:
     RTS                                                                  ;90CCEF;
 
   .pointers:
-    dw CLCRTS_90CD18                                                     ;90CCF0; 0: Power
+    dw CLCRTS_908344                                                     ;90CCF0; 0: Power
     dw FireWaveSBA                                                       ;90CCF2; 1: Wave
     dw FireIceSBA                                                        ;90CCF4; 2: Ice
-    dw CLCRTS_90CD18                                                     ;90CCF6; 3: Ice + wave
+    dw CLCRTS_908344                                                     ;90CCF6; 3: Ice + wave
     dw FireSpazerSBA                                                     ;90CCF8; 4: Spazer
-    dw CLCRTS_90CD18                                                     ;90CCFA; 5: Spazer + wave
-    dw CLCRTS_90CD18                                                     ;90CCFC; 6: Spazer + ice
-    dw CLCRTS_90CD18                                                     ;90CCFE; 7: Spazer + ice + wave
+    dw CLCRTS_908344                                                     ;90CCFA; 5: Spazer + wave
+    dw CLCRTS_908344                                                     ;90CCFC; 6: Spazer + ice
+    dw CLCRTS_908344                                                     ;90CCFE; 7: Spazer + ice + wave
     dw FirePlasmaSBA                                                     ;90CD00; 8: Plasma
-    dw CLCRTS_90CD18                                                     ;90CD02; 9: Plasma + wave
-    dw CLCRTS_90CD18                                                     ;90CD04; Ah: Plasma + ice
-    dw CLCRTS_90CD18                                                     ;90CD06; Bh: Plasma + ice + wave
+    dw CLCRTS_908344                                                     ;90CD02; 9: Plasma + wave
+    dw CLCRTS_908344                                                     ;90CD04; Ah: Plasma + ice
+    dw CLCRTS_908344                                                     ;90CD06; Bh: Plasma + ice + wave
 
 
 ;;; $CD08: Ice/plasma SBA projectile origin angles ;;;
@@ -11584,12 +11585,6 @@ IcePlasmaSBAProjectileOriginAngles:                                      ;90CD08
     dw $0060 ; Unused
     dw $00A0 ; Unused
     dw $00E0 ; Unused
-
-
-;;; $CD18: Clear carry. Disabled SBA beam combinations ;;;
-CLCRTS_90CD18:
-    CLC                                                                  ;90CD18;
-    RTS                                                                  ;90CD19;
 
 
 ;;; $CD1A: Fire wave SBA ;;;
@@ -16962,12 +16957,6 @@ Update_Samus_PreviousPose:
     LDA.W PoseXDirection                                                 ;90F100;
     STA.W PreviousPoseXDirection                                         ;90F103;
     RTS                                                                  ;90F106;
-
-
-;;; $F107: Unused. Clear carry ;;;
-CLCRTS_90F107:
-    CLC                                                                  ;90F107;
-    RTS                                                                  ;90F108;
 
 
 ;;; $F109: Samus command 0: lock Samus ;;;
