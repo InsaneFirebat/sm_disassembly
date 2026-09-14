@@ -561,11 +561,10 @@ SetProjectileTrailPosition:
 ;; Parameters:
 ;;     X: Projectile index
 ;;     Y: Projectile trail index
-    PHP                                                                  ;9BA3CC;
     PHB                                                                  ;9BA3CD;
     PHK                                                                  ;9BA3CE;
     PLB                                                                  ;9BA3CF;
-    REP #$30                                                             ;9BA3D0;
+    PHY
     JSL.L Get_ProjectileTrailFrame                                       ;9BA3D2;
     LDA.W CeresStatus                                                    ;9BA3D6;
     BPL .notRotatingRoom                                                 ;9BA3D9;
@@ -588,8 +587,7 @@ SetProjectileTrailPosition:
     LDA.W SamusProjectile_YPositions,X                                   ;9BA3F8;
     STA.B DP_Temp14                                                      ;9BA3FB;
 
-+   PHY                                                                  ;9BA3FD;
-    LDA.W SamusProjectile_Types,X                                        ;9BA3FE;
++   LDA.W SamusProjectile_Types,X                                        ;9BA3FE;
     BIT.W #$0020                                                         ;9BA401;
     BNE .SBATrail                                                        ;9BA404;
     BIT.W #$0010                                                         ;9BA406;

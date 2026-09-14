@@ -10,11 +10,9 @@ InitializeProjectile:
 ;;     X: Projectile index
 
 ; Used for beam (uncharged / charged / hyper), (super) missile, ice SBA
-    PHP                                                                  ;938000;
     PHB                                                                  ;938001;
     PHK                                                                  ;938002;
     PLB                                                                  ;938003;
-    REP #$30                                                             ;938004;
     LDA.W SamusProjectile_Directions,X                                   ;938006;
     AND.W #$000F                                                         ;938009;
     ASL                                                                  ;93800C;
@@ -50,14 +48,8 @@ InitializeProjectile:
   .merge:
     LDA.W $0000,Y                                                        ;93803C;
     STA.W SamusProjectile_Damages,X                                      ;93803F;
-    BPL .dontCrash                                                       ;938042;
-    JSL Crash_Handler                                                    ;938044;
-
-  .dontCrash:
-    INY                                                                  ;938048;
-    INY                                                                  ;938049;
     TYA                                                                  ;93804A;
-    CLC                                                                  ;93804B;
+    ADC.W #$0002                                                                ; carry is clear from ASLs
     ADC.B DP_Temp12                                                      ;93804C;
     TAY                                                                  ;93804E;
     LDA.W $0000,Y                                                        ;93804F;
@@ -72,18 +64,15 @@ InitializeProjectile:
     LDA.W #$0001                                                         ;938068;
     STA.W SamusProjectile_InstructionTimers,X                            ;93806B;
     PLB                                                                  ;93806E;
-    PLP                                                                  ;93806F;
     RTL                                                                  ;938070;
 
 
 ;;; $8071: Initialise super missile link ;;;
 InitializeSuperMissileLink:
 ; Instruction list is InstList_SamusProjectile_SuperMissileLink (loop of single instruction with 8x8 radius and dummy empty spritemap)
-    PHP                                                                  ;938071;
     PHB                                                                  ;938072;
     PHK                                                                  ;938073;
     PLB                                                                  ;938074;
-    REP #$30                                                             ;938075;
     LDA.W SamusProjectile_Types+1,X                                      ;938077;
     AND.W #$000F                                                         ;93807A;
     ASL                                                                  ;93807D;
@@ -92,10 +81,6 @@ InitializeSuperMissileLink:
     TAY                                                                  ;938082;
     LDA.W $0000,Y                                                        ;938083;
     STA.W SamusProjectile_Damages,X                                      ;938086;
-    BPL .dontCrash                                                       ;938089;
-    JSL Crash_Handler                                                    ;93808B;
-
-  .dontCrash:
     INY                                                                  ;93808F;
     INY                                                                  ;938090;
     LDA.W $0000,Y                                                        ;938091;
@@ -103,17 +88,14 @@ InitializeSuperMissileLink:
     LDA.W #$0001                                                         ;938097;
     STA.W SamusProjectile_InstructionTimers,X                            ;93809A;
     PLB                                                                  ;93809D;
-    PLP                                                                  ;93809E;
     RTL                                                                  ;93809F;
 
 
 ;;; $80A0: Initialise (power) bomb ;;;
 InitializeBomb:
-    PHP                                                                  ;9380A0;
     PHB                                                                  ;9380A1;
     PHK                                                                  ;9380A2;
     PLB                                                                  ;9380A3;
-    REP #$30                                                             ;9380A4;
     LDA.W SamusProjectile_Types+1,X                                      ;9380A6;
     AND.W #$000F                                                         ;9380A9;
     ASL                                                                  ;9380AC;
@@ -122,10 +104,6 @@ InitializeBomb:
     TAY                                                                  ;9380B1;
     LDA.W $0000,Y                                                        ;9380B2;
     STA.W SamusProjectile_Damages,X                                      ;9380B5;
-    BPL .dontCrash                                                       ;9380B8;
-    JSL Crash_Handler                                                    ;9380BA;
-
-  .dontCrash:
     INY                                                                  ;9380BE;
     INY                                                                  ;9380BF;
     LDA.W $0000,Y                                                        ;9380C0;
@@ -133,7 +111,6 @@ InitializeBomb:
     LDA.W #$0001                                                         ;9380C6;
     STA.W SamusProjectile_InstructionTimers,X                            ;9380C9;
     PLB                                                                  ;9380CC;
-    PLP                                                                  ;9380CD;
     RTL                                                                  ;9380CE;
 
 
@@ -198,33 +175,27 @@ PartOfKillProjectile_QueueSFX_SetInstruction:
     LDA.W #$0008                                                         ;938145;
     STA.W SamusProjectile_Damages,X                                      ;938148;
     PLB                                                                  ;93814B;
-    PLP                                                                  ;93814C;
     RTL                                                                  ;93814D;
 
 
 ;;; $814E: Initialise bomb explosion ;;;
 Initialize_Bomb_Explosion:
-    PHP                                                                  ;93814E;
     PHB                                                                  ;93814F;
     PHK                                                                  ;938150;
     PLB                                                                  ;938151;
-    REP #$30                                                             ;938152;
     LDA.W ProjectileDataTable_NonBeam_BombExplosion_pointer              ;938154;
     STA.W SamusProjectile_InstructionPointers,X                          ;938157;
     LDA.W #$0001                                                         ;93815A;
     STA.W SamusProjectile_InstructionTimers,X                            ;93815D;
     PLB                                                                  ;938160;
-    PLP                                                                  ;938161;
     RTL                                                                  ;938162;
 
 
 ;;; $8163: Initialise shinespark echo or spazer SBA trail projectile ;;;
 Initialize_ShinesparkEcho_or_SpazerSBATrailProjectile:
-    PHP                                                                  ;938163;
     PHB                                                                  ;938164;
     PHK                                                                  ;938165;
     PLB                                                                  ;938166;
-    REP #$30                                                             ;938167;
     LDA.W SamusProjectile_Directions,X                                   ;938169;
     AND.W #$000F                                                         ;93816C;
     ASL                                                                  ;93816F;
@@ -239,14 +210,8 @@ Initialize_ShinesparkEcho_or_SpazerSBATrailProjectile:
     TAY                                                                  ;938181;
     LDA.W $0000,Y                                                        ;938182;
     STA.W SamusProjectile_Damages,X                                      ;938185;
-    BPL .dontCrash                                                       ;938188;
-    JSL Crash_Handler                                                    ;93818A;
-
-  .dontCrash:
-    INY                                                                  ;93818E;
-    INY                                                                  ;93818F;
     TYA                                                                  ;938190;
-    CLC                                                                  ;938191;
+    ADC.W #$0002
     ADC.B DP_Temp12                                                      ;938192;
     TAY                                                                  ;938194;
     LDA.W $0000,Y                                                        ;938195;
@@ -254,18 +219,15 @@ Initialize_ShinesparkEcho_or_SpazerSBATrailProjectile:
     LDA.W #$0001                                                         ;93819B;
     STA.W SamusProjectile_InstructionTimers,X                            ;93819E;
     PLB                                                                  ;9381A1;
-    PLP                                                                  ;9381A2;
     RTL                                                                  ;9381A3;
 
 
 ;;; $81A4: Initialise SBA projectile ;;;
 InitializeSBAProjectile:
 ; Excluding ice SBA, which is run as a regular projectile
-    PHP                                                                  ;9381A4;
     PHB                                                                  ;9381A5;
     PHK                                                                  ;9381A6;
     PLB                                                                  ;9381A7;
-    REP #$30                                                             ;9381A8;
     LDA.W SamusProjectile_Types,X                                        ;9381AA;
     AND.W #$000F                                                         ;9381AD;
     ASL                                                                  ;9381B0;
@@ -274,47 +236,35 @@ InitializeSBAProjectile:
     TAY                                                                  ;9381B5;
     LDA.W $0000,Y                                                        ;9381B6;
     STA.W SamusProjectile_Damages,X                                      ;9381B9;
-    BPL .dontCrash                                                       ;9381BC;
-    JSL Crash_Handler                                                    ;9381BE;
-
-  .dontCrash:
     LDA.W $0002,Y                                                        ;9381C2;
     STA.W SamusProjectile_InstructionPointers,X                          ;9381C5;
     LDA.W #$0001                                                         ;9381C8;
     STA.W SamusProjectile_InstructionTimers,X                            ;9381CB;
     PLB                                                                  ;9381CE;
-    PLP                                                                  ;9381CF;
     RTL                                                                  ;9381D0;
 
 
 ;;; $81D1: $16 = projectile trail frame ;;;
 Get_ProjectileTrailFrame:
-    PHP                                                                  ;9381D1;
     PHB                                                                  ;9381D2;
     PHK                                                                  ;9381D3;
     PLB                                                                  ;9381D4;
-    REP #$30                                                             ;9381D5;
-    PHY                                                                  ;9381D7;
     LDA.W SamusProjectile_InstructionPointers,X                          ;9381D8;
     SEC                                                                  ;9381DB;
     SBC.W #$0008                                                         ;9381DC;
     TAY                                                                  ;9381DF;
     LDA.W $0006,Y                                                        ;9381E0;
     STA.B DP_Temp16                                                      ;9381E3;
-    PLY                                                                  ;9381E5;
     PLB                                                                  ;9381E6;
-    PLP                                                                  ;9381E7;
     RTL                                                                  ;9381E8;
 
 
 ;;; $81E9: Projectile instruction handler ;;;
 ProjectileInstructionHandler:
 ; Called by Handle_Projectiles
-    PHP                                                                  ;9381E9;
     PHB                                                                  ;9381EA;
     PHK                                                                  ;9381EB;
     PLB                                                                  ;9381EC;
-    REP #$30                                                             ;9381ED;
     LDX.W ProjectileIndex                                                ;9381EF;
     DEC.W SamusProjectile_InstructionTimers,X                            ;9381F2;
     BNE .return                                                          ;9381F5;
@@ -346,13 +296,11 @@ ProjectileInstructionHandler:
 
   .return:
     PLB                                                                  ;93822C;
-    PLP                                                                  ;93822D;
     RTL                                                                  ;93822E;
 
 
 ;;; $822F: Instruction - delete ;;;
 Instruction_SamusProjectile_Delete:
-    REP #$30                                                             ;93822F;
     JSL.L Clear_Projectile                                               ;938231;
     PLA                                                                  ;938235;
     PLB                                                                  ;938236;
@@ -362,7 +310,6 @@ Instruction_SamusProjectile_Delete:
 
 ;;; $8239: Instruction - go to [[Y]] ;;;
 Instruction_SamusProjectile_GotoY:
-    REP #$30                                                             ;938239;
     LDA.W $0000,Y                                                        ;93823B;
     TAY                                                                  ;93823E;
     RTS                                                                  ;93823F;
@@ -388,8 +335,6 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $8254: Draw projectiles ;;;
 DrawProjectiles:
-    PHP                                                                  ;938254;
-    REP #$30                                                             ;938255;
     LDX.W #$0008                                                         ;938257;
     STX.W ProjectileIndex                                                ;93825A;
 
@@ -476,7 +421,6 @@ DrawProjectiles:
   .echoes:
     JSL.L DrawShinesparkCrashEchoProjectiles                             ;9382F3;
     JSL.L HandleProjectileTrails                                         ;9382F7;
-    PLP                                                                  ;9382FB;
     RTL                                                                  ;9382FC;
 
 
@@ -587,11 +531,6 @@ DrawBombsAndProjectileExplosions:
     STX.W ProjectileIndex                                                ;9383B8;
     BPL .loop                                                            ;9383BB;
     RTL                                                                  ;9383BE;
-
-
-;;; $83BF: Hyper beam damage value ;;;
-HyperBeamDamageValue:
-    dw $03E8                                                             ;9383BF;
 
 
 ;;; $83C1: Projectile damage and instruction list table pointers ;;;
