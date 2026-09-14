@@ -8,7 +8,7 @@ math pri on
 
 ; Defaults will build vanilla NTSC Super Metroid
 
-!FEATURE_KEEP_UNREFERENCED ?= 1
+!FEATURE_KEEP_UNREFERENCED ?= 0
 
 if !FEATURE_KEEP_UNREFERENCED
 print "KEEP UNREFERENCED ASSEMBLY"
