@@ -7335,7 +7335,6 @@ SamusTopTiles_Set0_CCB9:
 ; E8h: Facing right - Samus drained - crouching/falling - frames 3..7
     dl SamusTiles_Top_Set0_Entry1D : dw $0100,$00C0                      ;92CCB9;
 
-if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusTopTiles_Set0_92CCC0:
 ; Unused
     dl SamusTiles_Top_Set0_Entry1E : dw $0100,$0040                      ;92CCC0;
@@ -7351,7 +7350,6 @@ UNUSED_SamusTopTiles_Set1_92CCCE:
 
 UNUSED_SamusTopTiles_Set1_92CCD5:
     dl SamusTiles_Top_Set1_Entry1 : dw $00C0,$0080                       ;92CCD5;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusTopTiles_Set1_CCDC:
 ; 8Bh: Facing right - turning - standing - aiming up - frame 1
@@ -7534,13 +7532,11 @@ SamusTopTiles_Set1_CD61:
 ; CEh: Facing left-   shinespark - diagonal - frame 0
     dl SamusTiles_Top_Set1_Entry15 : dw $0100,$00C0                      ;92CD61;
 
-if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusTopTiles_Set1_92CD68:
     dl SamusTiles_Top_Set1_Entry16 : dw $0020,$0000                      ;92CD68;
 
 UNUSED_SamusTopTiles_Set1_92CD6F:
     dl SamusTiles_Top_Set1_Entry17 : dw $0020,$0000                      ;92CD6F;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusTopTiles_Set1_CD76:
 ; 8Dh: Facing right - turning - standing - aiming down-right - frame 2
@@ -7616,11 +7612,9 @@ SamusTopTiles_Set2_CDA7:
 ; A7h: Facing left-   landing from spin jump - frame 1
     dl SamusTiles_Top_Set2_Entry1 : dw $0080,$0080                       ;92CDA7;
 
-if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusTopTiles_Set2_92CDAE:
 ; Unused
     dl SamusTiles_Top_Set2_Entry2 : dw $00C0,$0080                       ;92CDAE;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusTopTiles_Set2_CDB5:
 ; E9h: Facing left-   Samus drained - crouching/falling - frame 10h
@@ -7749,7 +7743,6 @@ SamusTopTiles_Set2_CE17:
 ; 75h: Facing left-   moonwalk - aiming up-left - frames 4..5
     dl SamusTiles_Top_Set2_Entry11 : dw $00E0,$0040                      ;92CE17;
 
-if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusTopTiles_Set2_92CE1E:
 ; Unused
     dl SamusTiles_Top_Set2_Entry12 : dw $0100,$0040                      ;92CE1E;
@@ -7765,7 +7758,6 @@ UNUSED_SamusTopTiles_Set2_92CE2C:
 UNUSED_SamusTopTiles_Set2_92CE33:
 ; Unused
     dl SamusTiles_Top_Set2_Entry15 : dw $0100,$0040                      ;92CE33;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusTopTiles_Set2_CE3A:
 ; Fh: Moving right - aiming up-right - frame 3
@@ -8069,11 +8061,9 @@ SamusTopTiles_Set3_CEE9:
 ; B2h: Facing clockwise   -   grapple - in air - frame 29h
     dl SamusTiles_Top_Set3_EntryF : dw $00C0,$0080                       ;92CEE9;
 
-if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusTopTiles_Set3_92CEF0:
 ; Unused
     dl SamusTiles_Top_Set3_Entry10 : dw $00C0,$0080                      ;92CEF0;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $CEF7: Samus top tiles - set 4 (facing anticlockwise - grappling - in air - upside up) ;;;
@@ -8191,11 +8181,9 @@ SamusTopTiles_Set4_CF60:
 ; B3h: Facing anticlockwise - grapple - in air - frame 37h
     dl SamusTiles_Top_Set4_EntryF : dw $0100,$00E0                       ;92CF60;
 
-if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusTopTiles_Set4_92CF67:
 ; Unused
     dl SamusTiles_Top_Set4_Entry10 : dw $0100,$00E0                      ;92CF67;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $CF6E: Samus top tiles - set 5 (facing clockwise - grappling - in air - upside down) ;;;
@@ -8439,11 +8427,9 @@ SamusTopTiles_Set5_CFD7:
 ; B2h: Facing clockwise   -   grapple - in air - frame 39h
     dl SamusTiles_Top_Set5_EntryF : dw $00C0,$0080                       ;92CFD7;
 
-if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusTopTiles_Set5_92CFDE:
 ; Unused
     dl SamusTiles_Top_Set5_Entry10 : dw $00C0,$0080                      ;92CFDE;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $CFE5: Samus top tiles - set 6 (facing anticlockwise - grappling - in air - upside down) ;;;
@@ -8559,11 +8545,9 @@ SamusTopTiles_Set6_D04E:
 ; B3h: Facing anticlockwise - grapple - in air - frame 27h
     dl SamusTiles_Top_Set6_EntryF : dw $0100,$00E0                       ;92D04E;
 
-if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusTopTiles_Set6_92D055:
 ; Unused
     dl SamusTiles_Top_Set6_Entry10 : dw $0100,$00E0                      ;92D055;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $D05C: Samus top tiles - set 7 (standing, crouching, drained) ;;;
@@ -8847,11 +8831,9 @@ SamusTopTiles_Set8_D0E8:
 ; 9Bh: Facing forward - varia/gravity suit - frame 5Fh
     dl SamusTiles_Top_Set8_Entry0 : dw $0020,$0000                       ;92D0E8;
 
-if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusTopTiles_Set8_92D0EF:
 ; Unused
     dl SamusTiles_Top_Set8_Entry1 : dw $0020,$0000                       ;92D0EF;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusTopTiles_Set8_D0F6:
 ; 0: Facing forward - power suit - frame 2
@@ -9781,11 +9763,9 @@ SamusBottomTiles_Set1_D2E7:
 ; C8h: Facing left-   vertical shinespark windup - frame 1
     dl SamusTiles_Bottom_Set1_EntryF : dw $00C0,$0040                    ;92D2E7;
 
-if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusBottomTiles_Set1_92D2EE:
 ; Unused
     dl SamusTiles_Bottom_Set1_Entry10 : dw $0020,$0000                   ;92D2EE;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusBottomTiles_Set1_D2F5:
 ; 17h: Facing right - normal jump - aiming down - frame 1
@@ -10405,12 +10385,10 @@ SamusBottomTiles_Set5_D4FB:
 ; B3h: Facing anticlockwise - grapple - in air - frame 41h
     dl SamusTiles_Bottom_Set5_EntryC : dw $0080,$0080                    ;92D4FB;
 
-if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusBottomTiles_Set5_92D502:
 ; 62h: Unused - frames 27h..29h
 ; B3h: Facing anticlockwise - grapple - in air - frames 27h..29h
     dl SamusTiles_Bottom_Set5_EntryD : dw $0080,$0080                    ;92D502;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusBottomTiles_Set5_D509:
 ; 62h: Unused - frames 2Ah..2Bh
@@ -10457,10 +10435,8 @@ SamusBottomTiles_Set5_D541:
 ; B3h: Facing anticlockwise - grapple - in air - frames 35h..36h
     dl SamusTiles_Bottom_Set5_Entry16 : dw $0080,$0080                   ;92D541;
 
-if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusBottomTiles_Set5_92D548:
     dl SamusTiles_Bottom_Set5_Entry17 : dw $0080,$0080                   ;92D548;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $D54F: Samus bottom tiles - set 6 (facing anticlockwise - grappling - in air - upside down) ;;;
@@ -10514,7 +10490,6 @@ SamusBottomTiles_Set6_D58E:
 ; B3h: Facing anticlockwise - grapple - in air - frames 5..6
     dl SamusTiles_Bottom_Set6_Entry9 : dw $00C0,$0040                    ;92D58E;
 
-if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusBottomTiles_Set6_92D595:
     dl SamusTiles_Bottom_Set6_EntryA : dw $00A0,$0080                    ;92D595;
 
@@ -10523,7 +10498,6 @@ UNUSED_SamusBottomTiles_Set6_92D59C:
 
 UNUSED_SamusBottomTiles_Set6_92D5A3:
     dl SamusTiles_Bottom_Set6_EntryC : dw $0080,$0080                    ;92D5A3;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusBottomTiles_Set6_D5AA:
 ; 62h: Unused - frames 37h..39h
@@ -10585,10 +10559,8 @@ SamusBottomTiles_Set8_D5F7:
 ; 9Bh: Facing forward - varia/gravity suit - frames 2..5Fh
     dl SamusTiles_Bottom_Set8_Entry1 : dw $0100,$0100                    ;92D5F7;
 
-if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusBottomTiles_Set8_92D5FE:
     dl SamusTiles_Bottom_Set8_Entry2 : dw $0020,$0000                    ;92D5FE;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $D605: Samus bottom tiles - set Ah (general) ;;;
@@ -11021,10 +10993,8 @@ SamusTopTiles_SetB_D6AD:
 ; DFh: Unused. Related to Draygon - frame 9
     dl SamusTiles_Top_SetB_Entry1 : dw $0060,$0040                       ;92D6AD;
 
-if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusTopTiles_SetB_92D6B4:
     dl SamusTiles_Top_SetB_Entry2 : dw $0060,$0040                       ;92D6B4;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusTopTiles_SetB_D6BB:
 ; 38h: Facing left-   morphing transition - frame 1
@@ -11075,7 +11045,6 @@ SamusTopTiles_SetB_D6D0:
 UNUSED_SamusBottomTiles_Set3_92D6D7:
     dl UNUSED_SamusTiles_Bottom_Set3_Entry0_9EE9C0 : dw $0040,$0040      ;92D6D7;
 
-if !FEATURE_KEEP_UNREFERENCED
 UNUSED_SamusBottomTiles_Set3_92D6DE:
     dl UNUSED_SamusTiles_Bottom_Set3_Entry1_9EEA40 : dw $0080,$0080      ;92D6DE;
 
@@ -11123,7 +11092,6 @@ UNUSED_SamusBottomTiles_Set3_92D740:
 
 UNUSED_SamusBottomTiles_Set3_92D747:
     dl UNUSED_SamusTiles_Bottom_Set3_Entry10_9EF5C0 : dw $0080,$0080     ;92D747;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $D74E: Samus top tiles - set Ch (crystal flash, vertical shinespark) ;;;
