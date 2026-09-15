@@ -156,7 +156,7 @@ Calculate_PLM_Block_Coordinates:
     LSR                                                                  ;848293;
     STA.W $4204                                                          ;848294;
     SEP #$20                                                             ;848297;
-    LDA.W RoomWidthBlocks                                                ;848299;
+    LDA.B RoomWidthBlocks                                                ;848299;
     STA.W $4206                                                          ;84829C;
     REP #$20                                                             ;84829F;
     NOP                                                                  ;8482A1;
@@ -383,7 +383,7 @@ Spawn_Hardcoded_PLM:
     LDY.W #$0002                                                         ;8483FC;
     LDA.B ($06,S),Y                                                      ;8483FF;
     STA.W $4202                                                          ;848401;
-    LDA.W RoomWidthBlocks                                                ;848404;
+    LDA.B RoomWidthBlocks                                                ;848404;
     STA.W $4203                                                          ;848407;
     LDY.W #$0001                                                         ;84840A;
     LDA.B ($06,S),Y                                                      ;84840D;
@@ -419,9 +419,9 @@ Spawn_Hardcoded_PLM:
     LDA.W #InstList_PLM_DefaultPLMDrawInstruction                        ;848450;
     STA.L PLMExtra_DrawInstructionPointers,X                             ;848453;
     STZ.W PLM_Timers,X                                                   ;848457;
-    STX.W PLM_Index                                                      ;84845A;
+    STX.B PLM_Index                                                      ;84845A;
     TYX                                                                  ;84845D;
-    LDY.W PLM_Index                                                      ;84845E;
+    LDY.B PLM_Index                                                      ;84845E;
     JSR.W ($0000,X)                                                      ;848461;
     PLX                                                                  ;848464;
     PLY                                                                  ;848465;
@@ -470,7 +470,7 @@ Spawn_Room_PLM:
     SEP #$20                                                             ;848482;
     LDA.L PLMPopulations_Y,X                                             ;848484;
     STA.W $4202                                                          ;848488;
-    LDA.W RoomWidthBlocks                                                ;84848B;
+    LDA.B RoomWidthBlocks                                                ;84848B;
     STA.W $4203                                                          ;84848E;
     LDA.L PLMPopulations_X,X                                             ;848491;
     REP #$20                                                             ;848495;
@@ -496,9 +496,9 @@ Spawn_Room_PLM:
     LDA.W #InstList_PLM_DefaultPLMDrawInstruction                        ;8484CC;
     STA.L PLMExtra_DrawInstructionPointers,X                             ;8484CF;
     STZ.W PLM_Timers,X                                                   ;8484D3;
-    STX.W PLM_Index                                                      ;8484D6;
+    STX.B PLM_Index                                                      ;8484D6;
     TYX                                                                  ;8484D9;
-    LDY.W PLM_Index                                                      ;8484DA;
+    LDY.B PLM_Index                                                      ;8484DA;
     JSR.W ($0000,X)                                                      ;8484DD;
     PLX                                                                  ;8484E0;
     PLY                                                                  ;8484E1;
@@ -554,9 +554,9 @@ Spawn_PLM_to_CurrentBlockIndex:
     STA.W PLM_Timers,X                                                   ;848525;
     STA.W PLM_RoomArgs,X                                                 ;848528;
     STA.L PLMExtra_Vars,X                                                ;84852B;
-    STX.W PLM_Index                                                      ;84852F;
+    STX.B PLM_Index                                                      ;84852F;
     TYX                                                                  ;848532;
-    LDY.W PLM_Index                                                      ;848533;
+    LDY.B PLM_Index                                                      ;848533;
     JSR.W ($0000,X)                                                      ;848536;
     PLX                                                                  ;848539;
     PLY                                                                  ;84853A;
@@ -602,7 +602,7 @@ UNUSED_Spawn_Enemy_PLM_84853E:
     LSR                                                                  ;84855C;
     SEP #$20                                                             ;84855D;
     STA.W $4202                                                          ;84855F;
-    LDA.W RoomWidthBlocks                                                ;848562;
+    LDA.B RoomWidthBlocks                                                ;848562;
     STA.W $4203                                                          ;848565;
     REP #$20                                                             ;848568;
     LDA.W Enemy.XPosition,Y                                              ;84856A;
@@ -629,9 +629,9 @@ UNUSED_Spawn_Enemy_PLM_84853E:
     STA.W PLM_Timers,X                                                   ;84859B;
     STA.W PLM_RoomArgs,X                                                 ;84859E;
     STA.L PLMExtra_Vars,X                                                ;8485A1;
-    STX.W PLM_Index                                                      ;8485A5;
+    STX.B PLM_Index                                                      ;8485A5;
     TYX                                                                  ;8485A8;
-    LDY.W PLM_Index                                                      ;8485A9;
+    LDY.B PLM_Index                                                      ;8485A9;
     JSR.W ($0000,X)                                                      ;8485AC;
     PLX                                                                  ;8485AF;
     PLY                                                                  ;8485B0;
@@ -654,11 +654,11 @@ PLM_Handler:
     LDX.W #$004E                                                         ;8485C2;
 
   .loop:
-    STX.W PLM_Index                                                      ;8485C5;
+    STX.B PLM_Index                                                      ;8485C5;
     LDA.W PLM_IDs,X                                                      ;8485C8;
     BEQ .next                                                            ;8485CB;
     JSR.W Process_PLM                                                    ;8485CD;
-    LDX.W PLM_Index                                                      ;8485D0;
+    LDX.B PLM_Index                                                      ;8485D0;
 
   .next:
     DEX                                                                  ;8485D3;
@@ -678,7 +678,7 @@ Process_PLM:
 ; Some instructions (e.g. sleep) pop the return address pushed to the stack by $85F7 to return out of *this* routine
 ; (marked "terminate processing PLM")
     JSR.W (PLM_PreInstructions,X)                                        ;8485DA;
-    LDX.W PLM_Index                                                      ;8485DD;
+    LDX.B PLM_Index                                                      ;8485DD;
     LDA.L PLMExtra_InstructionTimers,X                                   ;8485E0;
     DEC                                                                  ;8485E4;
     STA.L PLMExtra_InstructionTimers,X                                   ;8485E5;
@@ -703,7 +703,7 @@ Process_PLM:
     ADC.W #$0004                                                         ;84860A;
     STA.W PLM_InstListPointers,X                                         ;84860D;
     JSR.W Process_PLM_Draw_Instruction                                   ;848610;
-    LDX.W PLM_Index                                                      ;848613;
+    LDX.B PLM_Index                                                      ;848613;
     JSL.L Calculate_PLM_Block_Coordinates                                ;848616;
     JSR.W DrawPLM_HardCoded                                              ;84861A;
 
@@ -753,8 +753,8 @@ Process_PLM_Draw_Instruction:
     INY                                                                  ;848656;
     TXA                                                                  ;848657;
     CLC                                                                  ;848658;
-    ADC.W RoomWidthBlocks                                                ;848659;
-    ADC.W RoomWidthBlocks                                                ;84865C;
+    ADC.B RoomWidthBlocks                                                ;848659;
+    ADC.B RoomWidthBlocks                                                ;84865C;
     TAX                                                                  ;84865F;
     DEC.B DP_Temp16                                                      ;848660;
     BNE .loopColumn                                                      ;848662;
@@ -788,7 +788,7 @@ Process_PLM_Draw_Instruction:
     LDA.W #$0000                                                         ;84868D;
 
 -   SEC                                                                  ;848690;
-    SBC.W RoomWidthBlocks                                                ;848691;
+    SBC.B RoomWidthBlocks                                                ;848691;
     DEX                                                                  ;848694;
     BNE -                                                                ;848695;
     BRA .setX                                                            ;848697;
@@ -799,7 +799,7 @@ Process_PLM_Draw_Instruction:
     LDA.W #$0000                                                         ;84869F;
 
 -   CLC                                                                  ;8486A2;
-    ADC.W RoomWidthBlocks                                                ;8486A3;
+    ADC.B RoomWidthBlocks                                                ;8486A3;
     DEX                                                                  ;8486A6;
     BNE -                                                                ;8486A7;
 
@@ -875,7 +875,7 @@ UNUSED_Instruction_PLM_CallFuctionInY_8486D1:
     PHY                                                                  ;8486DB;
     JSL.L .externalFunction                                              ;8486DC;
     PLY                                                                  ;8486E0;
-    LDX.W PLM_Index                                                      ;8486E1;
+    LDX.B PLM_Index                                                      ;8486E1;
     INY                                                                  ;8486E4;
     INY                                                                  ;8486E5;
     INY                                                                  ;8486E6;
@@ -899,7 +899,7 @@ UNUSED_Instruction_PLM_CallFuctionInY_withA_8486EB:
     PHY                                                                  ;8486F8;
     JSL.L .externalFunction                                              ;8486F9;
     PLY                                                                  ;8486FD;
-    LDX.W PLM_Index                                                      ;8486FE;
+    LDX.B PLM_Index                                                      ;8486FE;
     TYA                                                                  ;848701;
     CLC                                                                  ;848702;
     ADC.W #$0005                                                         ;848703;
@@ -1103,7 +1103,7 @@ Instruction_PLM_LoadItemPLMGFX:
     INX                                                                  ;8487C4;
     CPX.B DP_Temp18                                                      ;8487C5;
     BNE .loop                                                            ;8487C7;
-    LDX.W PLM_Index                                                      ;8487C9;
+    LDX.B PLM_Index                                                      ;8487C9;
     RTS                                                                  ;8487CC;
 
   .VRAMAddresses:
@@ -1137,7 +1137,7 @@ Instruction_PLM_TransferBytesToVRAM:
     CLC                                                                  ;848805;
     ADC.W #$0007                                                         ;848806;
     TAY                                                                  ;848809;
-    LDX.W PLM_Index                                                      ;84880A;
+    LDX.B PLM_Index                                                      ;84880A;
     RTS                                                                  ;84880D;
 
 
@@ -1771,7 +1771,7 @@ Instruction_PLM_DrawPLMBlock_Common:
     TYA                                                                  ;848B42;
     STA.W PLM_InstListPointers,X                                         ;848B43;
     JSR.W Process_PLM_Draw_Instruction                                   ;848B46;
-    LDX.W PLM_Index                                                      ;848B49;
+    LDX.B PLM_Index                                                      ;848B49;
     JSL.L Calculate_PLM_Block_Coordinates                                ;848B4C;
     JSR.W DrawPLM_HardCoded                                              ;848B50;
     PLA                                                                  ;848B53;
@@ -2167,7 +2167,7 @@ Instruction_PLM_GotoY_or_ActivateSaveStation:
     JSL.L MessageBox_Routine                                             ;848CF6;
     CMP.W #$0002                                                         ;848CFA;
     BEQ .gotoY                                                           ;848CFD;
-    LDX.W PLM_Index                                                      ;848CFF;
+    LDX.B PLM_Index                                                      ;848CFF;
     LDY.W #EnemyProjectile_SaveStationElectricity                        ;848D02;
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics                  ;848D05;
     LDA.W PLM_RoomArgs,X                                                 ;848D09;
@@ -2213,7 +2213,7 @@ Instruction_PLM_GotoY_ifSamusIsWithin_YColumnsRowsOfPLM:
 ;; Returns:
 ;;     Y: Pointer to next instruction
     JSL.L Calculate_PLM_Block_Coordinates                                ;848D41;
-    LDA.W SamusXPosition                                                 ;848D45;
+    LDA.B SamusXPosition                                                 ;848D45;
     LSR                                                                  ;848D48;
     LSR                                                                  ;848D49;
     LSR                                                                  ;848D4A;
@@ -2230,7 +2230,7 @@ Instruction_PLM_GotoY_ifSamusIsWithin_YColumnsRowsOfPLM:
     BEQ +                                                                ;848D5D;
     BCS .tooFar                                                          ;848D5F;
 
-+   LDA.W SamusYPosition                                                 ;848D61;
++   LDA.B SamusYPosition                                                 ;848D61;
     LSR                                                                  ;848D64;
     LSR                                                                  ;848D65;
     LSR                                                                  ;848D66;
@@ -2267,8 +2267,8 @@ UNUSED_Instruction_PLM_MovePLMDown1Block_848D89:
 ;;     X: PLM index
     LDA.W PLM_BlockIndices,X                                             ;848D89;
     CLC                                                                  ;848D8C;
-    ADC.W RoomWidthBlocks                                                ;848D8D;
-    ADC.W RoomWidthBlocks                                                ;848D90;
+    ADC.B RoomWidthBlocks                                                ;848D8D;
+    ADC.B RoomWidthBlocks                                                ;848D90;
     STA.W PLM_BlockIndices,X                                             ;848D93;
     RTS                                                                  ;848D96;
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -2325,7 +2325,7 @@ DrawPLM:
     STA.B DP_Temp20                                                      ;848DC3;
 
   .loopDrawEntry:
-    LDA.W Layer1YPosition                                                ;848DC5;
+    LDA.B Layer1YPosition                                                ;848DC5;
     LSR                                                                  ;848DC8;
     LSR                                                                  ;848DC9;
     LSR                                                                  ;848DCA;
@@ -2352,7 +2352,7 @@ DrawPLM:
     STZ.B DP_Temp12                                                      ;848DEE;
     LDA.B DP_Temp1E                                                      ;848DF0;
     STA.B DP_Temp18                                                      ;848DF2;
-    LDA.W Layer1XPosition                                                ;848DF4;
+    LDA.B Layer1XPosition                                                ;848DF4;
     CLC                                                                  ;848DF7;
     ADC.W #$000F                                                         ;848DF8;
     LSR                                                                  ;848DFB;
@@ -2659,7 +2659,7 @@ DrawPLM:
   .vertical:
     AND.W #$7FFF                                                         ;84901F;
     STA.B DP_Temp14                                                      ;849022;
-    LDA.W Layer1XPosition                                                ;849024;
+    LDA.B Layer1XPosition                                                ;849024;
     LSR                                                                  ;849027;
     LSR                                                                  ;849028;
     LSR                                                                  ;849029;
@@ -6159,7 +6159,7 @@ Instruction_PLM_MovePLMDown1Block_84AB00:
 ;;     X: PLM index
 
 ; Clone of UNUSED_Instruction_PLM_MovePLMDown1Block_848D89
-    LDA.W RoomWidthBlocks                                                ;84AB00;
+    LDA.B RoomWidthBlocks                                                ;84AB00;
     ASL                                                                  ;84AB03;
     CLC                                                                  ;84AB04;
     ADC.W PLM_BlockIndices,X                                             ;84AB05;
@@ -6234,8 +6234,8 @@ Instruction_PLM_MovePLMDown1Block:
 ; Clone of UNUSED_Instruction_PLM_MovePLMDown1Block_848D89
     LDA.W PLM_BlockIndices,X                                             ;84AB59;
     CLC                                                                  ;84AB5C;
-    ADC.W RoomWidthBlocks                                                ;84AB5D;
-    ADC.W RoomWidthBlocks                                                ;84AB60;
+    ADC.B RoomWidthBlocks                                                ;84AB5D;
+    ADC.B RoomWidthBlocks                                                ;84AB60;
     STA.W PLM_BlockIndices,X                                             ;84AB63;
     RTS                                                                  ;84AB66;
 
@@ -6505,9 +6505,9 @@ PreInst_PLM_PositionSamus_GiveAtLeast10FramesOfInvincibility:
 
 ; Used for Brinstar plants
     LDA.W PLM_Vars,X                                                     ;84AC89;
-    STA.W SamusXPosition                                                 ;84AC8C;
+    STA.B SamusXPosition                                                 ;84AC8C;
     LDA.L PLMExtra_Vars,X                                                ;84AC8F;
-    STA.W SamusYPosition                                                 ;84AC93;
+    STA.B SamusYPosition                                                 ;84AC93;
     LDA.W #$0010                                                         ;84AC96;
     TSB.W SamusInvincibilityTimer                                        ;84AC99;
     RTS                                                                  ;84AC9C;
@@ -7041,11 +7041,11 @@ InstList_PLM_SaveStation_2:
 
 ;;; $B00E: Instruction - place Samus on save station ;;;
 Instruction_PLM_PlaceSamusOnSaveStation:
-    LDA.W SamusXPosition                                                 ;84B00E;
+    LDA.B SamusXPosition                                                 ;84B00E;
     CLC                                                                  ;84B011;
     ADC.W #$0008                                                         ;84B012;
     AND.W #$FFF0                                                         ;84B015;
-    STA.W SamusXPosition                                                 ;84B018;
+    STA.B SamusXPosition                                                 ;84B018;
     PHX                                                                  ;84B01B;
     PHY                                                                  ;84B01C;
     JSL.L MakeSamusFaceForward                                           ;84B01D;
@@ -7148,9 +7148,9 @@ UNUSED_LoadFXEntry_CompletelyBroken_84B05D:
 
 ;;; $B08B: Unused. Load FX entry 0 if PLM is in leftmost screen column ;;;
 UNUSED_LoadFXEntry0IfPLMIsInLeftmostScreenColumn_84B08B:
-    LDX.W PLM_Index                                                      ;84B08B;
+    LDX.B PLM_Index                                                      ;84B08B;
     JSL.L Calculate_PLM_Block_Coordinates                                ;84B08E;
-    LDA.W SamusXPosition                                                 ;84B092;
+    LDA.B SamusXPosition                                                 ;84B092;
     LSR                                                                  ;84B095;
     LSR                                                                  ;84B096;
     LSR                                                                  ;84B097;
@@ -7167,9 +7167,9 @@ UNUSED_LoadFXEntry0IfPLMIsInLeftmostScreenColumn_84B08B:
 
 ;;; $B0A6: Unused. Load FX entry 1 if PLM is in leftmost screen column ;;;
 UNUSED_LoadFXEntry1IfPLMIsInLeftmostScreenColumn_84B0A6:
-    LDX.W PLM_Index                                                      ;84B0A6;
+    LDX.B PLM_Index                                                      ;84B0A6;
     JSL.L Calculate_PLM_Block_Coordinates                                ;84B0A9;
-    LDA.W SamusXPosition                                                 ;84B0AD;
+    LDA.B SamusXPosition                                                 ;84B0AD;
     LSR                                                                  ;84B0B0;
     LSR                                                                  ;84B0B1;
     LSR                                                                  ;84B0B2;
@@ -7186,9 +7186,9 @@ UNUSED_LoadFXEntry1IfPLMIsInLeftmostScreenColumn_84B0A6:
 
 ;;; $B0C1: Unused. Load FX entry 2 if PLM is in leftmost screen column ;;;
 UNUSED_LoadFXEntry2IfPLMIsInLeftmostScreenColumn_84B0C1:
-    LDX.W PLM_Index                                                      ;84B0C1;
+    LDX.B PLM_Index                                                      ;84B0C1;
     JSL.L Calculate_PLM_Block_Coordinates                                ;84B0C4;
-    LDA.W SamusXPosition                                                 ;84B0C8;
+    LDA.B SamusXPosition                                                 ;84B0C8;
     LSR                                                                  ;84B0CB;
     LSR                                                                  ;84B0CC;
     LSR                                                                  ;84B0CD;
@@ -7208,7 +7208,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 Setup_BrinstarFloorPlant:
 ;; Parameters:
 ;;     Y: PLM index
-    LDA.W SamusYPosition                                                 ;84B0DC;
+    LDA.B SamusYPosition                                                 ;84B0DC;
     CLC                                                                  ;84B0DF;
     ADC.W SamusYRadius                                                   ;84B0E0;
     DEC                                                                  ;84B0E3;
@@ -7226,9 +7226,9 @@ Setup_BrinstarFloorPlant:
     AND.W #$8FFF                                                         ;84B0FB;
     STA.L LevelData,X                                                    ;84B0FE;
     TYX                                                                  ;84B102;
-    LDA.W SamusXPosition                                                 ;84B103;
+    LDA.B SamusXPosition                                                 ;84B103;
     STA.W PLM_Vars,X                                                     ;84B106;
-    LDA.W SamusYPosition                                                 ;84B109;
+    LDA.B SamusYPosition                                                 ;84B109;
     DEC                                                                  ;84B10C;
     STA.L PLMExtra_Vars,X                                                ;84B10D;
     CLC                                                                  ;84B111;
@@ -7239,7 +7239,7 @@ Setup_BrinstarFloorPlant:
 Setup_BrinstarCeilingPlant:
 ;; Parameters:
 ;;     Y: PLM index
-    LDA.W SamusYPosition                                                 ;84B113;
+    LDA.B SamusYPosition                                                 ;84B113;
     SEC                                                                  ;84B116;
     SBC.W SamusYRadius                                                   ;84B117;
     AND.W #$000F                                                         ;84B11A;
@@ -7255,9 +7255,9 @@ Setup_BrinstarCeilingPlant:
     AND.W #$8FFF                                                         ;84B12E;
     STA.L LevelData,X                                                    ;84B131;
     TYX                                                                  ;84B135;
-    LDA.W SamusXPosition                                                 ;84B136;
+    LDA.B SamusXPosition                                                 ;84B136;
     STA.W PLM_Vars,X                                                     ;84B139;
-    LDA.W SamusYPosition                                                 ;84B13C;
+    LDA.B SamusYPosition                                                 ;84B13C;
     INC                                                                  ;84B13F;
     STA.L PLMExtra_Vars,X                                                ;84B140;
     CLC                                                                  ;84B144;
@@ -7283,7 +7283,7 @@ ActivateStationIfSamusArmCannonLinedUp:
 
   .found:
     PHX                                                                  ;84B154;
-    LDX.W PLM_Index                                                      ;84B155;
+    LDX.B PLM_Index                                                      ;84B155;
     JSL.L Calculate_PLM_Block_Coordinates                                ;84B158;
     PLX                                                                  ;84B15C;
     LDA.W PLM_YBlock                                                     ;84B15D;
@@ -7292,7 +7292,7 @@ ActivateStationIfSamusArmCannonLinedUp:
     ASL                                                                  ;84B162;
     ASL                                                                  ;84B163;
     ORA.W #$000B                                                         ;84B164;
-    CMP.W SamusYPosition                                                 ;84B167;
+    CMP.B SamusYPosition                                                 ;84B167;
     BNE .delete                                                          ;84B16A;
     LDA.L PLMExtra_LinkInstructions,X                                    ;84B16C;
     STA.W PLM_InstListPointers,X                                         ;84B170;
@@ -7745,7 +7745,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $B3EB: Setup - PLM $B70F (inside reaction, special air, BTS Crateria/Debug 80h. Ice physics) ;;;
 Setup_IcePhysics:
-    LDA.W SamusYPosition                                                 ;84B3EB;
+    LDA.B SamusYPosition                                                 ;84B3EB;
     CLC                                                                  ;84B3EE;
     ADC.W SamusYRadius                                                   ;84B3EF;
     DEC                                                                  ;84B3F2;
@@ -8046,8 +8046,8 @@ Setup_ClearBabyMetroidInvisibleWall:
     STA.L LevelData,X                                                    ;84B55E;
     TXA                                                                  ;84B562;
     CLC                                                                  ;84B563;
-    ADC.W RoomWidthBlocks                                                ;84B564;
-    ADC.W RoomWidthBlocks                                                ;84B567;
+    ADC.B RoomWidthBlocks                                                ;84B564;
+    ADC.B RoomWidthBlocks                                                ;84B567;
     TAX                                                                  ;84B56A;
     DEY                                                                  ;84B56B;
     BNE .loop                                                            ;84B56C;
@@ -8070,8 +8070,8 @@ CreateBabyMetroidInvisibleWall:
     STA.L LevelData,X                                                    ;84B57F;
     TXA                                                                  ;84B583;
     CLC                                                                  ;84B584;
-    ADC.W RoomWidthBlocks                                                ;84B585;
-    ADC.W RoomWidthBlocks                                                ;84B588;
+    ADC.B RoomWidthBlocks                                                ;84B585;
+    ADC.B RoomWidthBlocks                                                ;84B588;
     TAX                                                                  ;84B58B;
     DEY                                                                  ;84B58C;
     BNE .loop                                                            ;84B58D;
@@ -8120,7 +8120,7 @@ Setup_CollisionReaction_SaveStationTrigger:
     BNE .collisionReturn                                                 ;84B5B0;
     TYX                                                                  ;84B5B2;
     JSL.L Calculate_PLM_Block_Coordinates                                ;84B5B3;
-    LDA.W SamusXPosition                                                 ;84B5B7;
+    LDA.B SamusXPosition                                                 ;84B5B7;
     SEC                                                                  ;84B5BA;
     SBC.W #$0008                                                         ;84B5BB;
     LSR                                                                  ;84B5BE;
@@ -8178,22 +8178,22 @@ Setup_MotherBrainsRoomEscapeDoor:
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84B5FE;
     TXA                                                                  ;84B601;
     CLC                                                                  ;84B602;
-    ADC.W RoomWidthBlocks                                                ;84B603;
-    ADC.W RoomWidthBlocks                                                ;84B606;
+    ADC.B RoomWidthBlocks                                                ;84B603;
+    ADC.B RoomWidthBlocks                                                ;84B606;
     TAX                                                                  ;84B609;
     LDA.W #$D0FF                                                         ;84B60A; block type + BTS
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84B60D;
     TXA                                                                  ;84B610;
     CLC                                                                  ;84B611;
-    ADC.W RoomWidthBlocks                                                ;84B612;
-    ADC.W RoomWidthBlocks                                                ;84B615;
+    ADC.B RoomWidthBlocks                                                ;84B612;
+    ADC.B RoomWidthBlocks                                                ;84B615;
     TAX                                                                  ;84B618;
     LDA.W #$D0FF                                                         ;84B619; block type + BTS
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84B61C;
     TXA                                                                  ;84B61F;
     CLC                                                                  ;84B620;
-    ADC.W RoomWidthBlocks                                                ;84B621;
-    ADC.W RoomWidthBlocks                                                ;84B624;
+    ADC.B RoomWidthBlocks                                                ;84B621;
+    ADC.B RoomWidthBlocks                                                ;84B624;
     TAX                                                                  ;84B627;
     LDA.W #$D0FF                                                         ;84B628; block type + BTS
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84B62B;
@@ -8810,7 +8810,7 @@ PreInst_PLM_WakePLM_StartFXMotionIfSamusIsFarEnoughLeft:
 
 ; Used by PLM $B8AC (speed booster escape)
     LDA.W #$0AE0                                                         ;84B82A;
-    CMP.W SamusXPosition                                                 ;84B82D;
+    CMP.B SamusXPosition                                                 ;84B82D;
     BCC .return                                                          ;84B830;
     LDA.W #$0001                                                         ;84B832;
     STA.W FX_Timer                                                       ;84B835;
@@ -8833,7 +8833,7 @@ PreInst_PLM_AdvanceLavaAsSamusMovesLeft_SetLavaquakeEvent:
     TAY                                                                  ;84B849;
     LDA.W .targetSamusXpos,Y                                             ;84B84A;
     BMI .setLavaquake                                                    ;84B84D;
-    CMP.W SamusXPosition                                                 ;84B84F;
+    CMP.B SamusXPosition                                                 ;84B84F;
     BCC .return                                                          ;84B852;
     LDA.W .maxFXYpos,Y                                                   ;84B854;
     CMP.W FX_BaseYPosition                                               ;84B857;
@@ -8918,7 +8918,7 @@ PreInstruction_PLM_ShaktoolsRoom:
 
   .powerBombNotActive:
     LDA.W #$0348                                                         ;84B8C3;
-    CMP.W SamusXPosition                                                 ;84B8C6;
+    CMP.B SamusXPosition                                                 ;84B8C6;
     BCS .return                                                          ;84B8C9;
     LDA.W #$000D                                                         ;84B8CB; (Shaktool cleared a path)
     JSL.L MarkEvent_inA                                                  ;84B8CE;
@@ -8979,10 +8979,10 @@ WakePLMIfSamusIsBelowRightOfTarget:
 ;;     $12: Target X position
 ;;     $14: Target Y position
     LDA.B DP_Temp12                                                      ;84B8FD;
-    CMP.W SamusXPosition                                                 ;84B8FF;
+    CMP.B SamusXPosition                                                 ;84B8FF;
     BCS .return                                                          ;84B902;
     LDA.B DP_Temp14                                                      ;84B904;
-    CMP.W SamusYPosition                                                 ;84B906;
+    CMP.B SamusYPosition                                                 ;84B906;
     BCS .return                                                          ;84B909;
     INC.W PLM_InstListPointers,X                                         ;84B90B;
     INC.W PLM_InstListPointers,X                                         ;84B90E;
@@ -9081,7 +9081,7 @@ Setup_Reaction_CrittersEscapeBlock:
 ;;     Y: PLM index
 
 ; Sets the PLM respawn block, but never uses it
-    LDX.W ProjectileIndex                                                ;84B978;
+    LDX.B ProjectileIndex                                                ;84B978;
     LDA.W SamusProjectile_Types,X                                        ;84B97B;
     BNE .projectile                                                      ;84B97E;
     AND.W #$0F00                                                         ;84B980;
@@ -9135,15 +9135,15 @@ Setup_CrittersEscapeBlock:
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84B9CB;
     TXA                                                                  ;84B9CE;
     CLC                                                                  ;84B9CF;
-    ADC.W RoomWidthBlocks                                                ;84B9D0;
-    ADC.W RoomWidthBlocks                                                ;84B9D3;
+    ADC.B RoomWidthBlocks                                                ;84B9D0;
+    ADC.B RoomWidthBlocks                                                ;84B9D3;
     TAX                                                                  ;84B9D6;
     LDA.W #$D0FF                                                         ;84B9D7; block type + BTS
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84B9DA;
     TXA                                                                  ;84B9DD;
     CLC                                                                  ;84B9DE;
-    ADC.W RoomWidthBlocks                                                ;84B9DF;
-    ADC.W RoomWidthBlocks                                                ;84B9E2;
+    ADC.B RoomWidthBlocks                                                ;84B9DF;
+    ADC.B RoomWidthBlocks                                                ;84B9E2;
     TAX                                                                  ;84B9E5;
     LDA.W #$D0FF                                                         ;84B9E6; block type + BTS
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84B9E9;
@@ -9167,8 +9167,8 @@ Setup_TurnCeresElevatorDoorToSolidBlocksDuringEscape:
     STA.L LevelData,X                                                    ;84B9FE;
     TXA                                                                  ;84BA02;
     CLC                                                                  ;84BA03;
-    ADC.W RoomWidthBlocks                                                ;84BA04;
-    ADC.W RoomWidthBlocks                                                ;84BA07;
+    ADC.B RoomWidthBlocks                                                ;84BA04;
+    ADC.B RoomWidthBlocks                                                ;84BA07;
     TAX                                                                  ;84BA0A;
     LDA.L LevelData,X                                                    ;84BA0B;
     AND.W #$0FFF                                                         ;84BA0F;
@@ -9176,8 +9176,8 @@ Setup_TurnCeresElevatorDoorToSolidBlocksDuringEscape:
     STA.L LevelData,X                                                    ;84BA15;
     TXA                                                                  ;84BA19;
     CLC                                                                  ;84BA1A;
-    ADC.W RoomWidthBlocks                                                ;84BA1B;
-    ADC.W RoomWidthBlocks                                                ;84BA1E;
+    ADC.B RoomWidthBlocks                                                ;84BA1B;
+    ADC.B RoomWidthBlocks                                                ;84BA1E;
     TAX                                                                  ;84BA21;
     LDA.L LevelData,X                                                    ;84BA22;
     AND.W #$0FFF                                                         ;84BA26;
@@ -9185,8 +9185,8 @@ Setup_TurnCeresElevatorDoorToSolidBlocksDuringEscape:
     STA.L LevelData,X                                                    ;84BA2C;
     TXA                                                                  ;84BA30;
     CLC                                                                  ;84BA31;
-    ADC.W RoomWidthBlocks                                                ;84BA32;
-    ADC.W RoomWidthBlocks                                                ;84BA35;
+    ADC.B RoomWidthBlocks                                                ;84BA32;
+    ADC.B RoomWidthBlocks                                                ;84BA35;
     TAX                                                                  ;84BA38;
     LDA.L LevelData,X                                                    ;84BA39;
     AND.W #$0FFF                                                         ;84BA3D;
@@ -9413,14 +9413,14 @@ PreInst_PLM_WakePLMIfTriggeredOrSamusWithin4BlockColumnBelow:
 ;; Parameter:
 ;;     X: PLM index
     JSL.L Calculate_PLM_Block_Coordinates                                ;84BB6B;
-    LDA.W SamusXPosition                                                 ;84BB6F;
+    LDA.B SamusXPosition                                                 ;84BB6F;
     LSR                                                                  ;84BB72;
     LSR                                                                  ;84BB73;
     LSR                                                                  ;84BB74;
     LSR                                                                  ;84BB75;
     CMP.W PLM_XBlock                                                     ;84BB76;
     BNE +                                                                ;84BB79;
-    LDA.W SamusYPosition                                                 ;84BB7B;
+    LDA.B SamusYPosition                                                 ;84BB7B;
     LSR                                                                  ;84BB7E;
     LSR                                                                  ;84BB7F;
     LSR                                                                  ;84BB80;
@@ -9450,14 +9450,14 @@ PreInst_PLM_WakePLMIfTriggeredOrSamusWithin4BlockColumnAbove:
 ;; Parameter:
 ;;     X: PLM index
     JSL.L Calculate_PLM_Block_Coordinates                                ;84BBA4;
-    LDA.W SamusXPosition                                                 ;84BBA8;
+    LDA.B SamusXPosition                                                 ;84BBA8;
     LSR                                                                  ;84BBAB;
     LSR                                                                  ;84BBAC;
     LSR                                                                  ;84BBAD;
     LSR                                                                  ;84BBAE;
     CMP.W PLM_XBlock                                                     ;84BBAF;
     BNE +                                                                ;84BBB2;
-    LDA.W SamusYPosition                                                 ;84BBB4;
+    LDA.B SamusYPosition                                                 ;84BBB4;
     LSR                                                                  ;84BBB7;
     LSR                                                                  ;84BBB8;
     LSR                                                                  ;84BBB9;
@@ -10810,7 +10810,7 @@ InstList_PLM_ClosedBlueDoorFacingUp_43:
 Setup_LeftGreenGateTrigger:
 ;; Parameters:
 ;;     Y: PLM index
-    LDX.W ProjectileIndex                                                ;84C54D;
+    LDX.B ProjectileIndex                                                ;84C54D;
     LDA.W SamusProjectile_Types,X                                        ;84C550;
     AND.W #$0FFF                                                         ;84C553;
     CMP.W #$0200                                                         ;84C556;
@@ -10829,7 +10829,7 @@ Setup_LeftGreenGateTrigger:
 Setup_RightGreenGateTrigger:
 ;; Parameters:
 ;;     Y: PLM index
-    LDX.W ProjectileIndex                                                ;84C56C;
+    LDX.B ProjectileIndex                                                ;84C56C;
     LDA.W SamusProjectile_Types,X                                        ;84C56F;
     AND.W #$0FFF                                                         ;84C572;
     CMP.W #$0200                                                         ;84C575;
@@ -10848,7 +10848,7 @@ Setup_RightGreenGateTrigger:
 Setup_LeftRedGateTrigger:
 ;; Parameters:
 ;;     Y: PLM index
-    LDX.W ProjectileIndex                                                ;84C58B;
+    LDX.B ProjectileIndex                                                ;84C58B;
     LDA.W SamusProjectile_Types,X                                        ;84C58E;
     AND.W #$0FFF                                                         ;84C591;
     CMP.W #$0100                                                         ;84C594;
@@ -10871,7 +10871,7 @@ Setup_LeftRedGateTrigger:
 Setup_RightRedGateTrigger:
 ;; Parameters:
 ;;     Y: PLM index
-    LDX.W ProjectileIndex                                                ;84C5AF;
+    LDX.B ProjectileIndex                                                ;84C5AF;
     LDA.W SamusProjectile_Types,X                                        ;84C5B2;
     AND.W #$0FFF                                                         ;84C5B5;
     CMP.W #$0100                                                         ;84C5B8;
@@ -10894,7 +10894,7 @@ Setup_RightRedGateTrigger:
 Setup_LeftYellowGateTrigger:
 ;; Parameters:
 ;;     Y: PLM index
-    LDX.W ProjectileIndex                                                ;84C5D3;
+    LDX.B ProjectileIndex                                                ;84C5D3;
     LDA.W SamusProjectile_Types,X                                        ;84C5D6;
     AND.W #$0FFF                                                         ;84C5D9;
     CMP.W #$0300                                                         ;84C5DC;
@@ -10913,7 +10913,7 @@ Setup_LeftYellowGateTrigger:
 RightYellowGateTrigger:
 ;; Parameters:
 ;;     Y: PLM index
-    LDX.W ProjectileIndex                                                ;84C5F1;
+    LDX.B ProjectileIndex                                                ;84C5F1;
     LDA.W SamusProjectile_Types,X                                        ;84C5F4;
     AND.W #$0FFF                                                         ;84C5F7;
     CMP.W #$0300                                                         ;84C5FA;
@@ -10932,7 +10932,7 @@ RightYellowGateTrigger:
 Setup_LeftBlueGateTrigger:
 ;; Parameters:
 ;;     Y: PLM index
-    LDX.W ProjectileIndex                                                ;84C610;
+    LDX.B ProjectileIndex                                                ;84C610;
     LDA.W SamusProjectile_Types,X                                        ;84C613;
     AND.W #$0FFF                                                         ;84C616;
     CMP.W #$0300                                                         ;84C619;
@@ -10949,7 +10949,7 @@ Setup_LeftBlueGateTrigger:
 Setup_RightBlueGateTrigger:
 ;; Parameters:
 ;;     Y: PLM index
-    LDX.W ProjectileIndex                                                ;84C627;
+    LDX.B ProjectileIndex                                                ;84C627;
     LDA.W SamusProjectile_Types,X                                        ;84C62A;
     AND.W #$0FFF                                                         ;84C62D;
     CMP.W #$0300                                                         ;84C630;
@@ -11034,7 +11034,7 @@ PLM_BTS10_MovePLMDownARow:
     STA.L BTS,X                                                          ;84C689;
     TXA                                                                  ;84C68D;
     CLC                                                                  ;84C68E;
-    ADC.W RoomWidthBlocks                                                ;84C68F;
+    ADC.B RoomWidthBlocks                                                ;84C68F;
     TAX                                                                  ;84C692;
     RTS                                                                  ;84C693;
 
@@ -11066,7 +11066,7 @@ PLM_BTS10_MovePLMUpARow:
     STA.L BTS,X                                                          ;84C6B3;
     TXA                                                                  ;84C6B7;
     SEC                                                                  ;84C6B8;
-    SBC.W RoomWidthBlocks                                                ;84C6B9;
+    SBC.B RoomWidthBlocks                                                ;84C6B9;
     TAX                                                                  ;84C6BC;
     RTS                                                                  ;84C6BD;
 
@@ -11244,7 +11244,7 @@ Setup_ColoredDoor:
 Setup_BlueDoor:
 ;; Parameters:
 ;;     Y: PLM index
-    LDX.W ProjectileIndex                                                ;84C7BB;
+    LDX.B ProjectileIndex                                                ;84C7BB;
     LDA.W SamusProjectile_Types,X                                        ;84C7BE;
     AND.W #$0F00                                                         ;84C7C1;
     CMP.W #$0300                                                         ;84C7C4;
@@ -11282,7 +11282,7 @@ Setup_GenericShotTriggerForAPLM:
     RTS                                                                  ;84C7F5;
 
   .found:
-    LDY.W ProjectileIndex                                                ;84C7F6;
+    LDY.B ProjectileIndex                                                ;84C7F6;
     LDA.W SamusProjectile_Types,Y                                        ;84C7F9;
     AND.W #$1FFF                                                         ;84C7FC;
     ORA.W #$8000                                                         ;84C7FF;
@@ -12349,7 +12349,7 @@ Setup_Collision_RespawningBombBlock:
 Setup_Reaction_RespawningBombBlock:
 ;; Parameters:
 ;;     Y: PLM index
-    LDX.W ProjectileIndex                                                ;84CEDA;
+    LDX.B ProjectileIndex                                                ;84CEDA;
     LDA.W SamusProjectile_Types,X                                        ;84CEDD;
     AND.W #$0F00                                                         ;84CEE0;
     CMP.W #$0500                                                         ;84CEE3;
@@ -12389,7 +12389,7 @@ Setup_Reaction_RespawningBombBlock:
 Setup_Reaction_RespawningPowerBombBlock:
 ;; Parameters:
 ;;     Y: PLM index
-    LDX.W ProjectileIndex                                                ;84CF2E;
+    LDX.B ProjectileIndex                                                ;84CF2E;
     LDA.W SamusProjectile_Types,X                                        ;84CF31;
     AND.W #$0F00                                                         ;84CF34;
     CMP.W #$0500                                                         ;84CF37;
@@ -12420,7 +12420,7 @@ Setup_Reaction_RespawningPowerBombBlock:
 Setup_Reaction_SuperMissileBlock:
 ;; Parameters:
 ;;     Y: PLM index
-    LDX.W ProjectileIndex                                                ;84CF67;
+    LDX.B ProjectileIndex                                                ;84CF67;
     LDA.W SamusProjectile_Types,X                                        ;84CF6A;
     AND.W #$0F00                                                         ;84CF6D;
     CMP.W #$0500                                                         ;84CF70;
@@ -12451,7 +12451,7 @@ Setup_Reaction_SuperMissileBlock:
 Setup_Reaction_SpeedCrumbleBlock:
 ;; Parameters:
 ;;     Y: PLM index
-    LDX.W ProjectileIndex                                                ;84CFA0;
+    LDX.B ProjectileIndex                                                ;84CFA0;
     LDA.W SamusProjectile_Types,X                                        ;84CFA3;
     AND.W #$0F00                                                         ;84CFA6;
     CMP.W #$0500                                                         ;84CFA9;
@@ -12960,7 +12960,7 @@ PreInstruction_DeletePLM_SpawnTriggerBlockIf_4_8_IsBlankAir:
     SEP #$20                                                             ;84D15D;
     LDA.B #$08                                                           ;84D15F;
     STA.W $4202                                                          ;84D161;
-    LDA.W RoomWidthBlocks                                                ;84D164;
+    LDA.B RoomWidthBlocks                                                ;84D164;
     STA.W $4203                                                          ;84D167;
     LDA.B #$04                                                           ;84D16A;
     REP #$20                                                             ;84D16C;
@@ -12974,7 +12974,7 @@ PreInstruction_DeletePLM_SpawnTriggerBlockIf_4_8_IsBlankAir:
     BNE .return                                                          ;84D17E;
     LDA.W #$B083                                                         ;84D180; block type + BTS
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84D183;
-    LDX.W PLM_Index                                                      ;84D186;
+    LDX.B PLM_Index                                                      ;84D186;
     STZ.W PLM_IDs,X                                                      ;84D189;
 
   .return:
@@ -13741,15 +13741,15 @@ Setup_UnusedLowerNorfair2x2ChozoShotBlock:
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84D6A4;
     LDA.W PLM_BlockIndices,Y                                             ;84D6A7;
     CLC                                                                  ;84D6AA;
-    ADC.W RoomWidthBlocks                                                ;84D6AB;
-    ADC.W RoomWidthBlocks                                                ;84D6AE;
+    ADC.B RoomWidthBlocks                                                ;84D6AB;
+    ADC.B RoomWidthBlocks                                                ;84D6AE;
     TAX                                                                  ;84D6B1;
     LDA.W #$D0FF                                                         ;84D6B2; block type + BTS
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84D6B5;
     LDA.W PLM_BlockIndices,Y                                             ;84D6B8;
     CLC                                                                  ;84D6BB;
-    ADC.W RoomWidthBlocks                                                ;84D6BC;
-    ADC.W RoomWidthBlocks                                                ;84D6BF;
+    ADC.B RoomWidthBlocks                                                ;84D6BC;
+    ADC.B RoomWidthBlocks                                                ;84D6BF;
     TAX                                                                  ;84D6C2;
     INX                                                                  ;84D6C3;
     INX                                                                  ;84D6C4;
@@ -13863,7 +13863,7 @@ UNUSED_PreInst_PLM_WakePLMIfSamusIsWithin4Blocks_84D710:
 ;; Parameter:
 ;;     X: PLM index
     JSL.L Calculate_PLM_Block_Coordinates                                ;84D710;
-    LDA.W SamusXPosition                                                 ;84D714;
+    LDA.B SamusXPosition                                                 ;84D714;
     LSR                                                                  ;84D717;
     LSR                                                                  ;84D718;
     LSR                                                                  ;84D719;
@@ -13878,7 +13878,7 @@ UNUSED_PreInst_PLM_WakePLMIfSamusIsWithin4Blocks_84D710:
     BEQ +                                                                ;84D728;
     BCS .return                                                          ;84D72A;
 
-+   LDA.W SamusYPosition                                                 ;84D72C;
++   LDA.B SamusYPosition                                                 ;84D72C;
     LSR                                                                  ;84D72F;
     LSR                                                                  ;84D730;
     LSR                                                                  ;84D731;
@@ -13994,8 +13994,8 @@ Instruction_PLM_MovePLMUp1Row_MakeABlueDoorFacingRight:
     PHX                                                                  ;84D7C3;
     LDA.W PLM_BlockIndices,X                                             ;84D7C4;
     SEC                                                                  ;84D7C7;
-    SBC.W RoomWidthBlocks                                                ;84D7C8;
-    SBC.W RoomWidthBlocks                                                ;84D7CB;
+    SBC.B RoomWidthBlocks                                                ;84D7C8;
+    SBC.B RoomWidthBlocks                                                ;84D7CB;
     STA.W PLM_BlockIndices,X                                             ;84D7CE;
     TAX                                                                  ;84D7D1;
     LDA.W #$C041                                                         ;84D7D2; block type + BTS
@@ -14010,8 +14010,8 @@ Instruction_PLM_MovePLMUp1Row_MakeABlueDoorFacingLeft:
     PHX                                                                  ;84D7DA;
     LDA.W PLM_BlockIndices,X                                             ;84D7DB;
     SEC                                                                  ;84D7DE;
-    SBC.W RoomWidthBlocks                                                ;84D7DF;
-    SBC.W RoomWidthBlocks                                                ;84D7E2;
+    SBC.B RoomWidthBlocks                                                ;84D7DF;
+    SBC.B RoomWidthBlocks                                                ;84D7E2;
     STA.W PLM_BlockIndices,X                                             ;84D7E5;
     TAX                                                                  ;84D7E8;
     LDA.W #$C040                                                         ;84D7E9; block type + BTS
@@ -14027,22 +14027,22 @@ Create3BlockVerticalExtension:
 ; Used to make the rest of the blue door the eye door spawns
     TXA                                                                  ;84D7EF;
     CLC                                                                  ;84D7F0;
-    ADC.W RoomWidthBlocks                                                ;84D7F1;
-    ADC.W RoomWidthBlocks                                                ;84D7F4;
+    ADC.B RoomWidthBlocks                                                ;84D7F1;
+    ADC.B RoomWidthBlocks                                                ;84D7F4;
     TAX                                                                  ;84D7F7;
     LDA.W #$D0FF                                                         ;84D7F8; block type + BTS
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84D7FB;
     TXA                                                                  ;84D7FE;
     CLC                                                                  ;84D7FF;
-    ADC.W RoomWidthBlocks                                                ;84D800;
-    ADC.W RoomWidthBlocks                                                ;84D803;
+    ADC.B RoomWidthBlocks                                                ;84D800;
+    ADC.B RoomWidthBlocks                                                ;84D803;
     TAX                                                                  ;84D806;
     LDA.W #$D0FE                                                         ;84D807; block type + BTS
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84D80A;
     TXA                                                                  ;84D80D;
     CLC                                                                  ;84D80E;
-    ADC.W RoomWidthBlocks                                                ;84D80F;
-    ADC.W RoomWidthBlocks                                                ;84D812;
+    ADC.B RoomWidthBlocks                                                ;84D80F;
+    ADC.B RoomWidthBlocks                                                ;84D812;
     TAX                                                                  ;84D815;
     LDA.W #$D0FD                                                         ;84D816; block type + BTS
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84D819;
@@ -14372,8 +14372,8 @@ Setup_EyeDoorEye:
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84DAA4;
     LDA.W PLM_BlockIndices,Y                                             ;84DAA7;
     CLC                                                                  ;84DAAA;
-    ADC.W RoomWidthBlocks                                                ;84DAAB;
-    ADC.W RoomWidthBlocks                                                ;84DAAE;
+    ADC.B RoomWidthBlocks                                                ;84DAAB;
+    ADC.B RoomWidthBlocks                                                ;84DAAE;
     TAX                                                                  ;84DAB1;
     LDA.W #$D0FF                                                         ;84DAB2; block type + BTS
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84DAB5;
@@ -14607,12 +14607,12 @@ Instruction_PLM_DamageDraygonTurret:
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84DBA2;
     TXA                                                                  ;84DBA5;
     CLC                                                                  ;84DBA6;
-    ADC.W RoomWidthBlocks                                                ;84DBA7;
-    ADC.W RoomWidthBlocks                                                ;84DBAA;
+    ADC.B RoomWidthBlocks                                                ;84DBA7;
+    ADC.B RoomWidthBlocks                                                ;84DBAA;
     TAX                                                                  ;84DBAD;
     LDA.W #$A003                                                         ;84DBAE; block type + BTS
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84DBB1;
-    LDX.W PLM_Index                                                      ;84DBB4;
+    LDX.B PLM_Index                                                      ;84DBB4;
     RTS                                                                  ;84DBB7;
 
 
@@ -14634,11 +14634,11 @@ Instruction_PLM_DamageDraygonTurretFacingDownRight:
     INX                                                                  ;84DBD0;
     LDA.W #$A003                                                         ;84DBD1; block type + BTS
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84DBD4;
-    LDX.W PLM_Index                                                      ;84DBD7;
+    LDX.B PLM_Index                                                      ;84DBD7;
     LDA.W PLM_BlockIndices,X                                             ;84DBDA;
     CLC                                                                  ;84DBDD;
-    ADC.W RoomWidthBlocks                                                ;84DBDE;
-    ADC.W RoomWidthBlocks                                                ;84DBE1;
+    ADC.B RoomWidthBlocks                                                ;84DBDE;
+    ADC.B RoomWidthBlocks                                                ;84DBE1;
     TAX                                                                  ;84DBE4;
     LDA.W #$A003                                                         ;84DBE5; block type + BTS
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84DBE8;
@@ -14646,7 +14646,7 @@ Instruction_PLM_DamageDraygonTurretFacingDownRight:
     INX                                                                  ;84DBEC;
     LDA.W #$0000                                                         ;84DBED; block type + BTS
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84DBF0;
-    LDX.W PLM_Index                                                      ;84DBF3;
+    LDX.B PLM_Index                                                      ;84DBF3;
     RTS                                                                  ;84DBF6;
 
 
@@ -14668,11 +14668,11 @@ Instruction_PLM_DamageDraygonTurretFacingUpRight:
     INX                                                                  ;84DC0F;
     LDA.W #$0000                                                         ;84DC10;
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84DC13;
-    LDX.W PLM_Index                                                      ;84DC16;
+    LDX.B PLM_Index                                                      ;84DC16;
     LDA.W PLM_BlockIndices,X                                             ;84DC19;
     CLC                                                                  ;84DC1C;
-    ADC.W RoomWidthBlocks                                                ;84DC1D;
-    ADC.W RoomWidthBlocks                                                ;84DC20;
+    ADC.B RoomWidthBlocks                                                ;84DC1D;
+    ADC.B RoomWidthBlocks                                                ;84DC20;
     TAX                                                                  ;84DC23;
     LDA.W #$A003                                                         ;84DC24; block type + BTS
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84DC27;
@@ -14680,7 +14680,7 @@ Instruction_PLM_DamageDraygonTurretFacingUpRight:
     INX                                                                  ;84DC2B;
     LDA.W #$A003                                                         ;84DC2C; block type + BTS
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84DC2F;
-    LDX.W PLM_Index                                                      ;84DC32;
+    LDX.B PLM_Index                                                      ;84DC32;
     RTS                                                                  ;84DC35;
 
 
@@ -14702,12 +14702,12 @@ Instruction_PLM_DamageDraygonTurret_duplicate:
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84DC4A;
     TXA                                                                  ;84DC4D;
     CLC                                                                  ;84DC4E;
-    ADC.W RoomWidthBlocks                                                ;84DC4F;
-    ADC.W RoomWidthBlocks                                                ;84DC52;
+    ADC.B RoomWidthBlocks                                                ;84DC4F;
+    ADC.B RoomWidthBlocks                                                ;84DC52;
     TAX                                                                  ;84DC55;
     LDA.W #$A003                                                         ;84DC56; block type + BTS
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84DC59;
-    LDX.W PLM_Index                                                      ;84DC5C;
+    LDX.B PLM_Index                                                      ;84DC5C;
     RTS                                                                  ;84DC5F;
 
 
@@ -14729,11 +14729,11 @@ Instruction_PLM_DamageDraygonTurretFacingDownLeft:
     DEX                                                                  ;84DC78;
     LDA.W #$A003                                                         ;84DC79; block type + BTS
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84DC7C;
-    LDX.W PLM_Index                                                      ;84DC7F;
+    LDX.B PLM_Index                                                      ;84DC7F;
     LDA.W PLM_BlockIndices,X                                             ;84DC82;
     CLC                                                                  ;84DC85;
-    ADC.W RoomWidthBlocks                                                ;84DC86;
-    ADC.W RoomWidthBlocks                                                ;84DC89;
+    ADC.B RoomWidthBlocks                                                ;84DC86;
+    ADC.B RoomWidthBlocks                                                ;84DC89;
     TAX                                                                  ;84DC8C;
     LDA.W #$A003                                                         ;84DC8D; block type + BTS
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84DC90;
@@ -14741,7 +14741,7 @@ Instruction_PLM_DamageDraygonTurretFacingDownLeft:
     DEX                                                                  ;84DC94;
     LDA.W #$0000                                                         ;84DC95; block type + BTS
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84DC98;
-    LDX.W PLM_Index                                                      ;84DC9B;
+    LDX.B PLM_Index                                                      ;84DC9B;
     RTS                                                                  ;84DC9E;
 
 
@@ -14763,11 +14763,11 @@ Instruction_PLM_DamageDraygonTurretFacingUpLeft:
     DEX                                                                  ;84DCB7;
     LDA.W #$0000                                                         ;84DCB8;
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84DCBB;
-    LDX.W PLM_Index                                                      ;84DCBE;
+    LDX.B PLM_Index                                                      ;84DCBE;
     LDA.W PLM_BlockIndices,X                                             ;84DCC1;
     CLC                                                                  ;84DCC4;
-    ADC.W RoomWidthBlocks                                                ;84DCC5;
-    ADC.W RoomWidthBlocks                                                ;84DCC8;
+    ADC.B RoomWidthBlocks                                                ;84DCC5;
+    ADC.B RoomWidthBlocks                                                ;84DCC8;
     TAX                                                                  ;84DCCB;
     LDA.W #$A003                                                         ;84DCCC; block type + BTS
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84DCCF;
@@ -14775,7 +14775,7 @@ Instruction_PLM_DamageDraygonTurretFacingUpLeft:
     DEX                                                                  ;84DCD3;
     LDA.W #$A003                                                         ;84DCD4; block type + BTS
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84DCD7;
-    LDX.W PLM_Index                                                      ;84DCDA;
+    LDX.B PLM_Index                                                      ;84DCDA;
     RTS                                                                  ;84DCDD;
 
 
@@ -15030,8 +15030,8 @@ Setup_DraygonCannonWithShieldFacingRight:
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84DEA6;
     TXA                                                                  ;84DEA9;
     CLC                                                                  ;84DEAA;
-    ADC.W RoomWidthBlocks                                                ;84DEAB;
-    ADC.W RoomWidthBlocks                                                ;84DEAE;
+    ADC.B RoomWidthBlocks                                                ;84DEAB;
+    ADC.B RoomWidthBlocks                                                ;84DEAE;
     TAX                                                                  ;84DEB1;
     LDA.W #$D0FF                                                         ;84DEB2; block type + BTS
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84DEB5;
@@ -15056,8 +15056,8 @@ UNUSED_Setup_DraygonCannonWithShieldFacingDownUpRight_84DEB9:
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84DED3;
     LDA.W PLM_BlockIndices,Y                                             ;84DED6;
     CLC                                                                  ;84DED9;
-    ADC.W RoomWidthBlocks                                                ;84DEDA;
-    ADC.W RoomWidthBlocks                                                ;84DEDD;
+    ADC.B RoomWidthBlocks                                                ;84DEDA;
+    ADC.B RoomWidthBlocks                                                ;84DEDD;
     TAX                                                                  ;84DEE0;
     LDA.W #$D0FF                                                         ;84DEE1; block type + BTS
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84DEE4;
@@ -15084,8 +15084,8 @@ Setup_DraygonCannonWithShieldFacingLeft:
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84DF02;
     TXA                                                                  ;84DF05;
     CLC                                                                  ;84DF06;
-    ADC.W RoomWidthBlocks                                                ;84DF07;
-    ADC.W RoomWidthBlocks                                                ;84DF0A;
+    ADC.B RoomWidthBlocks                                                ;84DF07;
+    ADC.B RoomWidthBlocks                                                ;84DF0A;
     TAX                                                                  ;84DF0D;
     LDA.W #$D0FF                                                         ;84DF0E; block type + BTS
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84DF11;
@@ -15110,8 +15110,8 @@ UNUSED_Setup_DraygonCannonWithShieldFacingDownUpLeft_84DF15:
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84DF2F;
     LDA.W PLM_BlockIndices,Y                                             ;84DF32;
     CLC                                                                  ;84DF35;
-    ADC.W RoomWidthBlocks                                                ;84DF36;
-    ADC.W RoomWidthBlocks                                                ;84DF39;
+    ADC.B RoomWidthBlocks                                                ;84DF36;
+    ADC.B RoomWidthBlocks                                                ;84DF39;
     TAX                                                                  ;84DF3C;
     LDA.W #$D0FF                                                         ;84DF3D; block type + BTS
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84DF40;
@@ -15373,7 +15373,7 @@ DrawPLM_Wait4Frames:
     TYA                                                                  ;84E086;
     STA.W PLM_InstListPointers,X                                         ;84E087;
     JSR.W Process_PLM_Draw_Instruction                                   ;84E08A;
-    LDX.W PLM_Index                                                      ;84E08D;
+    LDX.B PLM_Index                                                      ;84E08D;
     JSL.L Calculate_PLM_Block_Coordinates                                ;84E090;
     JSR.W DrawPLM_HardCoded                                              ;84E094;
     PLA                                                                  ;84E097;

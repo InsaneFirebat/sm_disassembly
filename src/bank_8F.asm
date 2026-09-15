@@ -9214,19 +9214,19 @@ GenerateRandomExplosionOnEvenFramesOnRandomNonBlankTile:
     JSL.L GenerateRandomNumber                                           ;8FC13E;
     AND.W #$00FF                                                         ;8FC143;
     CLC                                                                  ;8FC146;
-    ADC.W Layer1XPosition                                                ;8FC147;
+    ADC.B Layer1XPosition                                                ;8FC147;
     STA.B DP_Temp12                                                      ;8FC14A;
     LDA.B RandomNumberSeed+1
     AND.W #$00FF                                                         ;8FC14E;
     CLC                                                                  ;8FC151;
-    ADC.W Layer1YPosition                                                ;8FC152;
+    ADC.B Layer1YPosition                                                ;8FC152;
     STA.B DP_Temp14                                                      ;8FC155;
     LSR                                                                  ;8FC157;
     LSR                                                                  ;8FC158;
     LSR                                                                  ;8FC159;
     LSR                                                                  ;8FC15A;
     SEP #$30                                                             ;8FC15B;
-    LDX.W RoomWidthBlocks                                                ;8FC15E;
+    LDX.B RoomWidthBlocks                                                ;8FC15E;
     STX.W $4202                                                          ;8FC161;
     STA.W $4203                                                          ;8FC165;
     REP #$30                                                             ;8FC168;
@@ -9258,12 +9258,12 @@ GenerateRandomExplosionOnEveryFourthFrame:
     JSL.L GenerateRandomNumber                                           ;8FC190;
     AND.W #$00FF                                                         ;8FC195;
     CLC                                                                  ;8FC198;
-    ADC.W Layer1XPosition                                                ;8FC199;
+    ADC.B Layer1XPosition                                                ;8FC199;
     STA.B DP_Temp12                                                      ;8FC19C;
     LDA.B RandomNumberSeed+1
     AND.W #$00FF                                                         ;8FC1A0;
     CLC                                                                  ;8FC1A3;
-    ADC.W Layer1YPosition                                                ;8FC1A4;
+    ADC.B Layer1YPosition                                                ;8FC1A4;
     STA.B DP_Temp14                                                      ;8FC1A7; fallthrough to GenerateRandomExplosionAt_12_14
 
 
@@ -9309,14 +9309,14 @@ MainASM_ScrollScreenRightInDachoraRoom:
     AND.W #$00FF                                                         ;8FC1EA;
     CMP.W #$0002                                                         ;8FC1ED;
     BNE .return                                                          ;8FC1F0;
-    LDA.W Layer1YPosition                                                ;8FC1F2;
+    LDA.B Layer1YPosition                                                ;8FC1F2;
     CMP.W #$0500                                                         ;8FC1F5;
     BCS .return                                                          ;8FC1F8;
-    LDA.W Layer1XPosition                                                ;8FC1FA;
+    LDA.B Layer1XPosition                                                ;8FC1FA;
     CMP.W #$0380                                                         ;8FC1FD;
     BCS .return                                                          ;8FC200;
     ADC.W #$0003                                                         ;8FC202;
-    STA.W Layer1XPosition                                                ;8FC205;
+    STA.B Layer1XPosition                                                ;8FC205;
 
   .return:
     RTS                                                                  ;8FC208;
@@ -14413,7 +14413,7 @@ DoorASM_SetupElevatubeFromNorth:
 MainASM_Elevatube:
 ; Room $D408. Maridia elevatube
     LDA.W #$0080                                                         ;8FE2B6;
-    STA.W SamusXPosition                                                 ;8FE2B9;
+    STA.B SamusXPosition                                                 ;8FE2B9;
     STZ.W SamusXSubPosition                                              ;8FE2BC;
     STZ.B DP_Temp12                                                      ;8FE2BF;
     STZ.B DP_Temp14                                                      ;8FE2C1;
@@ -15447,20 +15447,20 @@ MainASM_CrocomiresRoomShaking:
     STA.W Enemy.var3                                                     ;8FE924;
     BIT.W #$0001                                                         ;8FE927;
     BNE +                                                                ;8FE92A;
-    LDA.W Layer1XPosition                                                ;8FE92C;
+    LDA.B Layer1XPosition                                                ;8FE92C;
     CLC                                                                  ;8FE92F;
     ADC.W #$0004                                                         ;8FE930;
-    STA.W Layer1XPosition                                                ;8FE933;
+    STA.B Layer1XPosition                                                ;8FE933;
     RTS                                                                  ;8FE936;
 
-+   LDA.W Layer1XPosition                                                ;8FE937;
++   LDA.B Layer1XPosition                                                ;8FE937;
     SEC                                                                  ;8FE93A;
     SBC.W #$0004                                                         ;8FE93B;
-    STA.W Layer1XPosition                                                ;8FE93E;
+    STA.B Layer1XPosition                                                ;8FE93E;
     RTS                                                                  ;8FE941;
 
   .behindWallRumbling:
-    LDA.W Layer1YPosition                                                ;8FE942;
+    LDA.B Layer1YPosition                                                ;8FE942;
     CLC                                                                  ;8FE945;
     ADC.W BG1YOffset                                                     ;8FE946;
     CLC                                                                  ;8FE949;

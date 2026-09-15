@@ -734,7 +734,7 @@ FightAI_Crocomire_4_Asleep:
 ;;     Y: Instruction list pointer
     LDA.W Enemy.XPosition                                                ;A486F2;
     SEC                                                                  ;A486F5;
-    SBC.W SamusXPosition                                                 ;A486F6;
+    SBC.B SamusXPosition                                                 ;A486F6;
     BPL +                                                                ;A486F9;
     EOR.W #$FFFF                                                         ;A486FB;
     INC                                                                  ;A486FE;
@@ -1415,15 +1415,15 @@ UpdateCrocomireBG2XScroll:
     LDA.W Enemy.YPosition,X                                              ;A48BB1;
     STA.W Enemy[1].YPosition,X                                           ;A48BB4;
     LDA.W Enemy.XPosition,X                                              ;A48BB7;
-    CMP.W Layer1XPosition                                                ;A48BBA;
+    CMP.B Layer1XPosition                                                ;A48BBA;
     BPL .rightOffScreenCheck                                             ;A48BBD;
     CLC                                                                  ;A48BBF;
     ADC.W #$0080                                                         ;A48BC0;
-    CMP.W Layer1XPosition                                                ;A48BC3;
+    CMP.B Layer1XPosition                                                ;A48BC3;
     BMI .offScreen                                                       ;A48BC6;
 
   .onScreen:
-    LDA.W Layer1XPosition                                                ;A48BC8;
+    LDA.B Layer1XPosition                                                ;A48BC8;
     SEC                                                                  ;A48BCB;
     SBC.W Enemy.XPosition,X                                              ;A48BCC;
     CLC                                                                  ;A48BCF;
@@ -1449,7 +1449,7 @@ UpdateCrocomireBG2XScroll:
     RTL                                                                  ;A48BED;
 
   .rightOffScreenCheck:
-    LDA.W Layer1XPosition                                                ;A48BEE;
+    LDA.B Layer1XPosition                                                ;A48BEE;
     CLC                                                                  ;A48BF1;
     ADC.W #$0100                                                         ;A48BF2;
     STA.B DP_Temp12                                                      ;A48BF5;
@@ -1525,7 +1525,7 @@ MainAI_Crocomire_DeathSequence_0_NotStarted:
     JSL.L HandleCrocomiresBridge                                         ;A48C6E;
     LDA.W #$0101                                                         ;A48C72;
     STA.L Scrolls+4                                                      ;A48C75;
-    LDA.W SamusXPosition                                                 ;A48C79;
+    LDA.B SamusXPosition                                                 ;A48C79;
     CMP.W #$0520                                                         ;A48C7C;
     BMI .bridgeNotInSight                                                ;A48C7F;
     LDA.W #$0100                                                         ;A48C81;
@@ -1556,7 +1556,7 @@ Crocomire_vs_Samus_CollisionHandling:
     SEC                                                                  ;A48C9D;
     SBC.W Enemy.XHitboxRadius                                            ;A48C9E;
     SBC.W SamusXRadius                                                   ;A48CA1;
-    SBC.W SamusXPosition                                                 ;A48CA4;
+    SBC.B SamusXPosition                                                 ;A48CA4;
     BPL .return                                                          ;A48CA7;
     JSL.L NormalEnemyTouchAI                                             ;A48CA9;
     LDA.W Enemy.XPosition                                                ;A48CAD;
@@ -1564,7 +1564,7 @@ Crocomire_vs_Samus_CollisionHandling:
     SBC.W Enemy.XHitboxRadius                                            ;A48CB1;
     SEC                                                                  ;A48CB4;
     SBC.W SamusXRadius                                                   ;A48CB5;
-    STA.W SamusXPosition                                                 ;A48CB8;
+    STA.B SamusXPosition                                                 ;A48CB8;
     STA.W SamusPreviousXPosition                                         ;A48CBB;
     LDA.W #$FFFC                                                         ;A48CBE;
     STA.W ExtraSamusXDisplacement                                        ;A48CC1;
@@ -2047,7 +2047,7 @@ Instruction_Crocomire_MoveRight4PixelsIfOnScreen:
     SBC.W Enemy.XHitboxRadius                                            ;A4906B;
     SBC.W #$0100                                                         ;A4906E;
     SBC.B DP_Temp14                                                      ;A49071;
-    CMP.W Layer1XPosition                                                ;A49073;
+    CMP.B Layer1XPosition                                                ;A49073;
     BPL .return                                                          ;A49076;
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A49078;
 
@@ -3063,7 +3063,7 @@ EraseMeltingCrocomirePixelColumn:
 MainAI_Crocomire_DeathSequence_3E_BehindWall_WaitForSamus:
 ; Setting the camera distance index has no effect because the screen is locked by the red scrolls on either side >_<;
     REP #$20                                                             ;A497D3;
-    LDA.W SamusXPosition                                                 ;A497D5;
+    LDA.B SamusXPosition                                                 ;A497D5;
     CMP.W #$0280                                                         ;A497D8;
     BPL .return                                                          ;A497DB;
     LDA.W #$0005                                                         ;A497DD;
@@ -3856,7 +3856,7 @@ EnemyShot_Crocomire_Nothing:
 EnemyShot_Crocomire_SpawnShotExplosion:
     PHX                                                                  ;A4B968;
     PHY                                                                  ;A4B969;
-    LDA.W CollisionIndex                                                 ;A4B96A;
+    LDA.B CollisionIndex                                                 ;A4B96A;
     ASL                                                                  ;A4B96D;
     TAX                                                                  ;A4B96E;
     LDA.W SamusProjectile_XPositions,X                                   ;A4B96F;
@@ -3943,9 +3943,9 @@ EnemyShot_Crocomire_OpenMouth:
     SEC                                                                  ;A4BA12;
     SBC.W #$0100                                                         ;A4BA13;
     SEC                                                                  ;A4BA16;
-    SBC.W Layer1XPosition                                                ;A4BA17;
+    SBC.B Layer1XPosition                                                ;A4BA17;
     BPL .offScreen                                                       ;A4BA1A;
-    LDA.W CollisionIndex                                                 ;A4BA1C;
+    LDA.B CollisionIndex                                                 ;A4BA1C;
     ASL                                                                  ;A4BA1F;
     TAX                                                                  ;A4BA20;
     LDA.W SamusProjectile_Types,X                                        ;A4BA21;
@@ -4024,7 +4024,7 @@ EnemyShot_Crocomire_SpawnShotExplosion_duplicate:
 ; Used for claws
     PHX                                                                  ;A4BAB4;
     PHY                                                                  ;A4BAB5;
-    LDA.W CollisionIndex                                                 ;A4BAB6;
+    LDA.B CollisionIndex                                                 ;A4BAB6;
     ASL                                                                  ;A4BAB9;
     TAX                                                                  ;A4BABA;
     LDA.W SamusProjectile_XPositions,X                                   ;A4BABB;

@@ -12754,9 +12754,9 @@ DrawSamusSuitExploding:
     ADC.W DeathAnimation_Index                                           ;92EDDE;
     STA.B DP_Temp12                                                      ;92EDE1;
 
-+   LDA.W SamusXPosition                                                 ;92EDE3;
++   LDA.B SamusXPosition                                                 ;92EDE3;
     TAX                                                                  ;92EDE6;
-    LDA.W SamusYPosition                                                 ;92EDE7;
+    LDA.B SamusYPosition                                                 ;92EDE7;
     TAY                                                                  ;92EDEA;
     LDA.B DP_Temp12                                                      ;92EDEB;
     JSL.L AddSamusSpritemapToOAM                                         ;92EDED;

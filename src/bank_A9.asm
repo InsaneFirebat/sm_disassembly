@@ -814,7 +814,7 @@ Function_MotherBrain_FirstPhase:
     BCC .runCollisionDetection                                           ;A987E8;
     LDA.W EarthquakeTimer                                                ;A987EA;
     STA.L MotherBrainBody.brainMainShakeTimer                            ;A987ED;
-    LDA.W SamusXPosition                                                 ;A987F1;
+    LDA.B SamusXPosition                                                 ;A987F1;
     CMP.W #$00EC                                                         ;A987F4;
     BPL .runCollisionDetection                                           ;A987F7;
     LDA.W Enemy[1].health                                                ;A987F9;
@@ -2125,7 +2125,7 @@ HandleMotherBrainsNeck_Upper_3_BobDown:
     LDA.W Enemy[1].YPosition                                             ;A9911C;
     CLC                                                                  ;A9911F;
     ADC.W #$0004                                                         ;A99120;
-    CMP.W SamusYPosition                                                 ;A99123;
+    CMP.B SamusYPosition                                                 ;A99123;
     BMI +                                                                ;A99126;
     LDA.W #$0004                                                         ;A99128;
     STA.L MotherBrainBody.lowerNeckMovementIndex                         ;A9912B;
@@ -2422,7 +2422,7 @@ DrawMotherBrainHead:
     CLC                                                                  ;A993A4;
     ADC.W #$0020                                                         ;A993A5;
     SEC                                                                  ;A993A8;
-    SBC.W Layer1XPosition                                                ;A993A9;
+    SBC.B Layer1XPosition                                                ;A993A9;
     BMI .return                                                          ;A993AC;
     LDA.W ShakingOffsets_Y,X                                             ;A993AE;
     CLC                                                                  ;A993B1;
@@ -2502,7 +2502,7 @@ AddSpritemapToOAM_RoomCoordinates:
     INY                                                                  ;A993F1;
     INY                                                                  ;A993F2;
     STA.B DP_Temp18                                                      ;A993F3;
-    LDX.W OAMStack                                                       ;A993F5;
+    LDX.B OAMStack                                                       ;A993F5;
     CLC                                                                  ;A993F8;
 
   .loop:
@@ -2515,13 +2515,13 @@ AddSpritemapToOAM_RoomCoordinates:
     CLC                                                                  ;A99405;
     ADC.B DP_Temp14                                                      ;A99406;
     SEC                                                                  ;A99408;
-    SBC.W Layer1YPosition                                                ;A99409;
+    SBC.B Layer1YPosition                                                ;A99409;
     BMI .next                                                            ;A9940C;
     STA.B DP_Temp1A                                                      ;A9940E;
     LDA.W $0000,Y                                                        ;A99410;
     ADC.B DP_Temp12                                                      ;A99413;
     SEC                                                                  ;A99415;
-    SBC.W Layer1XPosition                                                ;A99416;
+    SBC.B Layer1XPosition                                                ;A99416;
     STA.W OAMLow,X                                                       ;A99419;
     AND.W #$0100                                                         ;A9941C;
     BEQ .checkSizeBit                                                    ;A9941F;
@@ -2558,7 +2558,7 @@ AddSpritemapToOAM_RoomCoordinates:
     TAY                                                                  ;A9945D;
     DEC.B DP_Temp18                                                      ;A9945E;
     BNE .loop                                                            ;A99460;
-    STX.W OAMStack                                                       ;A99462;
+    STX.B OAMStack                                                       ;A99462;
     RTS                                                                  ;A99465;
 
 
@@ -3842,13 +3842,13 @@ Instruction_MotherBrainHead_AimOnionRingsAtBabyMetroid:
 Instruction_MotherBrainHead_AimOnionRingsAtSamus:
     PHX                                                                  ;A99E5B;
     PHY                                                                  ;A99E5C;
-    LDA.W SamusXPosition                                                 ;A99E5D;
+    LDA.B SamusXPosition                                                 ;A99E5D;
     SEC                                                                  ;A99E60;
     SBC.W Enemy[1].XPosition                                             ;A99E61;
     SEC                                                                  ;A99E64;
     SBC.W #$000A                                                         ;A99E65;
     STA.B DP_Temp12                                                      ;A99E68;
-    LDA.W SamusYPosition                                                 ;A99E6A;
+    LDA.B SamusYPosition                                                 ;A99E6A;
     SEC                                                                  ;A99E6D;
     SBC.W Enemy[1].YPosition                                             ;A99E6E;
     SEC                                                                  ;A99E71;
@@ -5891,7 +5891,7 @@ MotherBrainPart_vs_Samus_CollisionDetection:
     INX                                                                  ;A9B45D;
 
   .loop:
-    LDA.W SamusYPosition                                                 ;A9B45E;
+    LDA.B SamusYPosition                                                 ;A9B45E;
     SEC                                                                  ;A9B461;
     SBC.B DP_Temp14                                                      ;A9B462;
     BPL .SamusBelowHitbox                                                ;A9B464;
@@ -5914,7 +5914,7 @@ MotherBrainPart_vs_Samus_CollisionDetection:
     SEC                                                                  ;A9B480;
     SBC.B DP_Temp18                                                      ;A9B481;
     BMI .next                                                            ;A9B483;
-    LDA.W SamusXPosition                                                 ;A9B485;
+    LDA.B SamusXPosition                                                 ;A9B485;
     SEC                                                                  ;A9B488;
     SBC.B DP_Temp12                                                      ;A9B489;
     BPL .SamusRightOfHitbox                                              ;A9B48B;
@@ -5968,7 +5968,7 @@ MotherBrainPart_vs_Samus_CollisionDetection:
     STA.W SamusKnockbackTimer                                            ;A9B4DB;
     LDA.W #$0001                                                         ;A9B4DE;
     STA.W KnockbackXDirection                                            ;A9B4E1;
-    LDA.W SamusYPosition                                                 ;A9B4E4;
+    LDA.B SamusYPosition                                                 ;A9B4E4;
     CMP.W #$00C0                                                         ;A9B4E7;
     BPL .SamusInAir                                                      ;A9B4EA;
     LDA.W #$0002                                                         ;A9B4EC;
@@ -5978,7 +5978,7 @@ MotherBrainPart_vs_Samus_CollisionDetection:
     LDA.W Enemy.XPosition                                                ;A9B4F2;
     CLC                                                                  ;A9B4F5;
     ADC.W #$0018                                                         ;A9B4F6;
-    CMP.W SamusXPosition                                                 ;A9B4F9;
+    CMP.B SamusXPosition                                                 ;A9B4F9;
     BPL .returnCollision                                                 ;A9B4FC;
     JSR.W HurtSamus_A9B5E1                                               ;A9B4FE;
 
@@ -5997,7 +5997,7 @@ EnemyShot_MotherBrainHead:
 ; This code assumes that Mother Brain's glass is the first spawned PLM (index 4Eh)
     LDA.L MotherBrainBody.form                                           ;A9B507;
     BNE .notFirstPhase                                                   ;A9B50B;
-    LDA.W CollisionIndex                                                 ;A9B50D;
+    LDA.B CollisionIndex                                                 ;A9B50D;
     ASL                                                                  ;A9B510;
     TAY                                                                  ;A9B511;
     LDA.W SamusProjectile_Types+1,Y                                      ;A9B512;
@@ -6076,7 +6076,7 @@ MotherBrainShotReaction_Phase2_3:
 ;;; $B58E: Determine Mother Brain shot reaction type ;;;
 DetermineMotherBrainShotReactionType:
 ; Return [$B5A1 + (collided projectile type)]
-    LDA.W CollisionIndex                                                 ;A9B58E;
+    LDA.B CollisionIndex                                                 ;A9B58E;
     ASL                                                                  ;A9B591;
     TAY                                                                  ;A9B592;
     LDA.W SamusProjectile_Types+1,Y                                      ;A9B593;
@@ -6148,7 +6148,7 @@ HurtSamus_A9B5E1:
     STA.W SamusKnockbackTimer                                            ;A9B5EE;
     LDY.W #$0000                                                         ;A9B5F1;
     LDX.B EnemyIndex                                                     ;A9B5F4;
-    LDA.W SamusXPosition                                                 ;A9B5F7;
+    LDA.B SamusXPosition                                                 ;A9B5F7;
     SEC                                                                  ;A9B5FA;
     SBC.W Enemy.XPosition,X                                              ;A9B5FB;
     BMI .left                                                            ;A9B5FE;
@@ -6231,7 +6231,7 @@ TryMotherBrainAttack_Phase2_TryAttack:
     CLC                                                                  ;A9B672;
     ADC.W #$0004                                                         ;A9B673;
     SEC                                                                  ;A9B676;
-    SBC.W SamusYPosition                                                 ;A9B677;
+    SBC.B SamusYPosition                                                 ;A9B677;
     BPL +                                                                ;A9B67A;
     EOR.W #$FFFF                                                         ;A9B67C;
     INC                                                                  ;A9B67F;
@@ -6494,7 +6494,7 @@ MotherBrainFiringBomb_FinishFiringBomb:
 Function_MBBody_Phase2_FiringLaser_PositionHeadQuickly:
     LDX.W #$0008                                                         ;A9B80E;
     LDA.W Enemy[1].YPosition                                             ;A9B811;
-    CMP.W SamusYPosition                                                 ;A9B814;
+    CMP.B SamusYPosition                                                 ;A9B814;
     BPL +                                                                ;A9B817;
     LDX.W #$0006                                                         ;A9B819;
 
@@ -6944,13 +6944,13 @@ AimMotherBrainRainbowBeam_IncreaseWidth:
 
 ;;; $BB82: Aim Mother Brain rainbow beam ;;;
 AimMotherBrainRainbowBeam:
-    LDA.W SamusXPosition                                                 ;A9BB82;
+    LDA.B SamusXPosition                                                 ;A9BB82;
     SEC                                                                  ;A9BB85;
     SBC.W Enemy[1].XPosition                                             ;A9BB86;
     SEC                                                                  ;A9BB89;
     SBC.W #$0010                                                         ;A9BB8A;
     STA.B DP_Temp12                                                      ;A9BB8D;
-    LDA.W SamusYPosition                                                 ;A9BB8F;
+    LDA.B SamusYPosition                                                 ;A9BB8F;
     SEC                                                                  ;A9BB92;
     SBC.W Enemy[1].YPosition                                             ;A9BB93;
     SEC                                                                  ;A9BB96;
@@ -6996,7 +6996,7 @@ MoveSamusTowardsWallDueToRainbowBeam:
 MoveSamusTowardsMiddleOfWall:
     LDA.W #$0040                                                         ;A9BBCF;
     LDY.W #$007C                                                         ;A9BBD2;
-    CPY.W SamusYPosition                                                 ;A9BBD5;
+    CPY.B SamusYPosition                                                 ;A9BBD5;
     BPL .lessThanEqualTo7C                                               ;A9BBD8;
     EOR.W #$FFFF                                                         ;A9BBDA;
     INC                                                                  ;A9BBDD;
@@ -7040,12 +7040,12 @@ MoveSamusVerticallyTowardsCeilingFloor:
     BPL +                                                                ;A9BC0F;
     ORA.W #$FF00                                                         ;A9BC11;
 
-+   ADC.W SamusYPosition                                                 ;A9BC14;
++   ADC.B SamusYPosition                                                 ;A9BC14;
     CMP.W #$0030                                                         ;A9BC17;
     BMI .load30                                                          ;A9BC1A;
     CMP.W #$00C0                                                         ;A9BC1C;
     BPL .loadC0                                                          ;A9BC1F;
-    STA.W SamusYPosition                                                 ;A9BC21;
+    STA.B SamusYPosition                                                 ;A9BC21;
     STA.W SamusPreviousYPosition                                         ;A9BC24;
     CLC                                                                  ;A9BC27;
     RTS                                                                  ;A9BC28;
@@ -7057,7 +7057,7 @@ MoveSamusVerticallyTowardsCeilingFloor:
   .loadC0:
     LDA.W #$00C0                                                         ;A9BC2E;
 
-+   STA.W SamusYPosition                                                 ;A9BC31;
++   STA.B SamusYPosition                                                 ;A9BC31;
     STA.W SamusPreviousYPosition                                         ;A9BC34;
     STZ.W SamusYSubPosition                                              ;A9BC37;
     STZ.W SamusPreviousYSubPosition                                      ;A9BC3A;
@@ -7082,16 +7082,16 @@ MoveSamusHorizontallyTowardsWall:
     BPL +                                                                ;A9BC51;
     ORA.W #$FF00                                                         ;A9BC53;
 
-+   ADC.W SamusXPosition                                                 ;A9BC56;
++   ADC.B SamusXPosition                                                 ;A9BC56;
     CMP.W #$00EB                                                         ;A9BC59;
     BPL .greaterThanEqualToEB                                            ;A9BC5C;
-    STA.W SamusXPosition                                                 ;A9BC5E;
+    STA.B SamusXPosition                                                 ;A9BC5E;
     STA.W SamusPreviousXPosition                                         ;A9BC61;
     RTS                                                                  ;A9BC64;
 
   .greaterThanEqualToEB:
     LDA.W #$00EB                                                         ;A9BC65;
-    STA.W SamusXPosition                                                 ;A9BC68;
+    STA.B SamusXPosition                                                 ;A9BC68;
     STA.W SamusPreviousXPosition                                         ;A9BC6B;
     STZ.W SamusXSubPosition                                              ;A9BC6E;
     STZ.W SamusPreviousXSubPosition                                      ;A9BC71;
@@ -9073,9 +9073,9 @@ BabyMetroidCutscene_MovementTable_CeilingToSamus:
 
 ;;; $CA66: Shitroid function - latch onto Samus ;;;
 Function_BabyMetroidCutscene_LatchOntoSamus:
-    LDA.W SamusXPosition                                                 ;A9CA66;
+    LDA.B SamusXPosition                                                 ;A9CA66;
     STA.B DP_Temp12                                                      ;A9CA69;
-    LDA.W SamusYPosition                                                 ;A9CA6B;
+    LDA.B SamusYPosition                                                 ;A9CA6B;
     SEC                                                                  ;A9CA6E;
     SBC.W #$0014                                                         ;A9CA6F;
     STA.B DP_Temp14                                                      ;A9CA72;
@@ -9093,11 +9093,11 @@ Function_BabyMetroidCutscene_HealSamusUpToFullEnergy:
     TAY                                                                  ;A9CA8A;
     LDA.W ShakingOffsets_X,Y                                             ;A9CA8B;
     CLC                                                                  ;A9CA8E;
-    ADC.W SamusXPosition                                                 ;A9CA8F;
+    ADC.B SamusXPosition                                                 ;A9CA8F;
     STA.W Enemy.XPosition,X                                              ;A9CA92;
     LDA.W ShakingOffsets_Y,Y                                             ;A9CA95;
     CLC                                                                  ;A9CA98;
-    ADC.W SamusYPosition                                                 ;A9CA99;
+    ADC.B SamusYPosition                                                 ;A9CA99;
     SEC                                                                  ;A9CA9C;
     SBC.W #$0014                                                         ;A9CA9D;
     STA.W Enemy.YPosition,X                                              ;A9CAA0;
@@ -9124,12 +9124,12 @@ Function_BabyMetroidCutscene_IdleUntilRunOutOfHealth:
     LDA.W ShakingOffsets_X,Y                                             ;A9CACA;
     ASL                                                                  ;A9CACD;
     CLC                                                                  ;A9CACE;
-    ADC.W SamusXPosition                                                 ;A9CACF;
+    ADC.B SamusXPosition                                                 ;A9CACF;
     STA.W Enemy.XPosition,X                                              ;A9CAD2;
     LDA.W ShakingOffsets_Y,Y                                             ;A9CAD5;
     ASL                                                                  ;A9CAD8;
     CLC                                                                  ;A9CAD9;
-    ADC.W SamusYPosition                                                 ;A9CADA;
+    ADC.B SamusYPosition                                                 ;A9CADA;
     SEC                                                                  ;A9CADD;
     SBC.W #$0014                                                         ;A9CADE;
     STA.W Enemy.YPosition,X                                              ;A9CAE1;
@@ -9170,7 +9170,7 @@ Function_BabyMetroidCutscene_ReleaseSamus:
 
 ;;; $CB2D: Shitroid function - stare down Mother Brain ;;;
 Function_BabyMetroidCutscene_StaredownMotherBrain:
-    LDA.W SamusXPosition                                                 ;A9CB2D;
+    LDA.B SamusXPosition                                                 ;A9CB2D;
     SEC                                                                  ;A9CB30;
     SBC.W #$0004                                                         ;A9CB31;
     STA.B DP_Temp12                                                      ;A9CB34;
@@ -9428,7 +9428,7 @@ SamusRainbowPaletteFunction_ActivateRainbowWhenEnemyIsLow:
     LDA.W Enemy.YPosition,X                                              ;A9CD30;
     CLC                                                                  ;A9CD33;
     ADC.W #$0010                                                         ;A9CD34;
-    CMP.W SamusYPosition                                                 ;A9CD37;
+    CMP.B SamusYPosition                                                 ;A9CD37;
     BMI .return                                                          ;A9CD3A;
     LDA.W #$0016                                                         ;A9CD3C;
     JSL.L Run_Samus_Command                                              ;A9CD3F;
@@ -9687,9 +9687,9 @@ EnemyTouch_BabyMetroidCutscene:
     LDA.W BabyMetroidCutscene.function,X                                 ;A9CF06;
     CMP.W #Function_BabyMetroidCutscene_LatchOntoSamus                   ;A9CF09;
     BNE .return                                                          ;A9CF0C;
-    LDA.W SamusXPosition                                                 ;A9CF0E;
+    LDA.B SamusXPosition                                                 ;A9CF0E;
     STA.B DP_Temp12                                                      ;A9CF11;
-    LDA.W SamusYPosition                                                 ;A9CF13;
+    LDA.B SamusYPosition                                                 ;A9CF13;
     SEC                                                                  ;A9CF16;
     SBC.W #$0014                                                         ;A9CF17;
     STA.B DP_Temp14                                                      ;A9CF1A;
@@ -10351,7 +10351,7 @@ CorpseTorizo_vs_Samus_CollisionDetection:
     INX                                                                  ;A9D458;
 
   .loop:
-    LDA.W SamusYPosition                                                 ;A9D459;
+    LDA.B SamusYPosition                                                 ;A9D459;
     SEC                                                                  ;A9D45C;
     SBC.B DP_Temp14                                                      ;A9D45D;
     BPL .SamusBelow                                                      ;A9D45F;
@@ -10375,7 +10375,7 @@ CorpseTorizo_vs_Samus_CollisionDetection:
     SEC                                                                  ;A9D47B;
     SBC.B DP_Temp18                                                      ;A9D47C;
     BMI .next                                                            ;A9D47E;
-    LDA.W SamusXPosition                                                 ;A9D480;
+    LDA.B SamusXPosition                                                 ;A9D480;
     SEC                                                                  ;A9D483;
     SBC.B DP_Temp12                                                      ;A9D484;
     BPL .SamusToTheRight                                                 ;A9D486;
@@ -10863,7 +10863,7 @@ MainAI_HurtAI_CorpseEnemies:
 
 ;;; $D8E2: Sidehopper corpse function - alive - waiting for activation ;;;
 Function_CorpseSidehopper_Alive_WaitingForActivation:
-    LDA.W Layer1XPosition                                                ;A9D8E2;
+    LDA.B Layer1XPosition                                                ;A9D8E2;
     CMP.W #$0201                                                         ;A9D8E5;
     BMI .activate                                                        ;A9D8E8;
     RTS                                                                  ;A9D8EA;
@@ -14201,7 +14201,7 @@ InitAI_BabyMetroid:
     STA.W Enemy.instTimer,X                                              ;A9EF66;
     STZ.W Enemy.loopCounter,X                                            ;A9EF69;
     LDA.W #Function_BabyMetroid_WaitForCamera                            ;A9EF6C;
-    BIT.W Layer1XPosition                                                ;A9EF6F;
+    BIT.B Layer1XPosition                                                ;A9EF6F;
     BPL .notLeftDoor                                                     ;A9EF72;
     LDA.W Enemy.properties,X                                             ;A9EF74;
     ORA.W #$0500                                                         ;A9EF77;
@@ -14262,11 +14262,11 @@ Function_BabyMetroid_Disappeared:
 
 ;;; $EFE6: Shitroid function - wait for camera ;;;
 Function_BabyMetroid_WaitForCamera:
-    LDA.W Layer1XPosition                                                ;A9EFE6;
+    LDA.B Layer1XPosition                                                ;A9EFE6;
     CMP.W #$0201                                                         ;A9EFE9;
     BPL .return                                                          ;A9EFEC;
     LDA.W #$0200                                                         ;A9EFEE;
-    STA.W Layer1XPosition                                                ;A9EFF1;
+    STA.B Layer1XPosition                                                ;A9EFF1;
     LDA.L Scrolls                                                        ;A9EFF4;
     AND.W #$00FF                                                         ;A9EFF8;
     STA.L Scrolls                                                        ;A9EFFB;
@@ -14469,7 +14469,7 @@ Function_BabyMetroid_StareDownSamus:
 ;     Samus X position < 200h
     LDA.W Enemy.XPosition,X                                              ;A9F180;
     SEC                                                                  ;A9F183;
-    SBC.W SamusXPosition                                                 ;A9F184;
+    SBC.B SamusXPosition                                                 ;A9F184;
     BPL +                                                                ;A9F187;
     EOR.W #$FFFF                                                         ;A9F189;
     INC                                                                  ;A9F18C;
@@ -14491,14 +14491,14 @@ Function_BabyMetroid_StareDownSamus:
 +   STA.L BabyMetroid.stareDownContactTimer,X                            ;A9F1AA;
     CMP.W #$0100                                                         ;A9F1AE;
     BCS .done                                                            ;A9F1B1;
-    LDA.W SamusXPosition                                                 ;A9F1B3;
+    LDA.B SamusXPosition                                                 ;A9F1B3;
     CMP.W #$0200                                                         ;A9F1B6;
     BMI .done                                                            ;A9F1B9;
     LDA.L BabyMetroid.aggroTimer,X                                       ;A9F1BB;
     BEQ .zeroAggroTimer                                                  ;A9F1BF;
     DEC                                                                  ;A9F1C1;
     STA.L BabyMetroid.aggroTimer,X                                       ;A9F1C2;
-    LDY.W SamusYPosition                                                 ;A9F1C6;
+    LDY.B SamusYPosition                                                 ;A9F1C6;
     BRA .notRareChance                                                   ;A9F1C9;
 
   .zeroAggroTimer:
@@ -14512,7 +14512,7 @@ Function_BabyMetroid_StareDownSamus:
 
   .notRareChance:
     STY.B DP_Temp14                                                      ;A9F1E0;
-    LDA.W SamusXPosition                                                 ;A9F1E2;
+    LDA.B SamusXPosition                                                 ;A9F1E2;
     STA.B DP_Temp12                                                      ;A9F1E5;
     LDX.B EnemyIndex                                                     ;A9F1E7;
     LDY.W #$000A                                                         ;A9F1EA;
@@ -14528,9 +14528,9 @@ Function_BabyMetroid_StareDownSamus:
 ;;; $F1FA: Shitroid function - latch onto Samus ;;;
 Function_BabyMetroid_LatchOntoSamus:
 ; See enemy touch
-    LDA.W SamusXPosition                                                 ;A9F1FA;
+    LDA.B SamusXPosition                                                 ;A9F1FA;
     STA.B DP_Temp12                                                      ;A9F1FD;
-    LDA.W SamusYPosition                                                 ;A9F1FF;
+    LDA.B SamusYPosition                                                 ;A9F1FF;
     SEC                                                                  ;A9F202;
     SBC.W #$0020                                                         ;A9F203;
     STA.B DP_Temp14                                                      ;A9F206;
@@ -14568,13 +14568,13 @@ Function_BabyMetroid_DrainingSamus:
     AND.W #$0006                                                         ;A9F246;
     TAY                                                                  ;A9F249;
     LDA.W ShakingOffsets_X,Y                                             ;A9F24A;
-    ADC.W SamusXPosition                                                 ;A9F24D;
+    ADC.B SamusXPosition                                                 ;A9F24D;
     STA.W Enemy.XPosition,X                                              ;A9F250;
     LDA.W ShakingOffsets_Y,Y                                             ;A9F253;
     CLC                                                                  ;A9F256;
     ADC.W #$FFEC                                                         ;A9F257;
     CLC                                                                  ;A9F25A;
-    ADC.W SamusYPosition                                                 ;A9F25B;
+    ADC.B SamusYPosition                                                 ;A9F25B;
     STA.W Enemy.YPosition,X                                              ;A9F25E;
     JSL.L DamageSamusDueToBabyMetroid                                    ;A9F261;
     RTS                                                                  ;A9F265;
@@ -14624,7 +14624,7 @@ Function_BabyMetroid_HeelRealization:
 
 ;;; $F2C0: Shitroid function - back off guiltily ;;;
 Function_BabyMetroid_BackOffGuiltily:
-    LDA.W SamusXPosition                                                 ;A9F2C0;
+    LDA.B SamusXPosition                                                 ;A9F2C0;
     STA.B DP_Temp12                                                      ;A9F2C3;
     LDA.W #$0068                                                         ;A9F2C5;
     STA.B DP_Temp14                                                      ;A9F2C8;
@@ -14651,7 +14651,7 @@ Function_BabyMetroid_BackOffGuiltily:
 
 ;;; $F2FB: Shitroid function - go left guiltily ;;;
 Function_BabyMetroid_GoLeftGuiltily:
-    LDA.W SamusXPosition                                                 ;A9F2FB;
+    LDA.B SamusXPosition                                                 ;A9F2FB;
     CLC                                                                  ;A9F2FE;
     ADC.W #$FFC0                                                         ;A9F2FF;
     STA.B DP_Temp12                                                      ;A9F302;
@@ -14673,7 +14673,7 @@ Function_BabyMetroid_GoLeftGuiltily:
 
 ;;; $F324: Shitroid function - go right guiltily ;;;
 Function_BabyMetroid_GoRightGuiltily:
-    LDA.W SamusXPosition                                                 ;A9F324;
+    LDA.B SamusXPosition                                                 ;A9F324;
     CLC                                                                  ;A9F327;
     ADC.W #$0060                                                         ;A9F328;
     STA.B DP_Temp12                                                      ;A9F32B;
@@ -14779,7 +14779,7 @@ GraduallyAccelerateTowardSamus:
 ; Similar to Function_BabyMetroid_StareDownSamus
     LDA.W Enemy.XPosition,X                                              ;A9F3D4;
     SEC                                                                  ;A9F3D7;
-    SBC.W SamusXPosition                                                 ;A9F3D8;
+    SBC.B SamusXPosition                                                 ;A9F3D8;
     BPL +                                                                ;A9F3DB;
     EOR.W #$FFFF                                                         ;A9F3DD;
     INC                                                                  ;A9F3E0;
@@ -14803,7 +14803,7 @@ GraduallyAccelerateTowardSamus:
     BEQ .zeroAggroTimer                                                  ;A9F406;
     DEC                                                                  ;A9F408;
     STA.L BabyMetroid.aggroTimer,X                                       ;A9F409;
-    LDA.W SamusYPosition                                                 ;A9F40D;
+    LDA.B SamusYPosition                                                 ;A9F40D;
     CLC                                                                  ;A9F410;
     ADC.W #$FFEE                                                         ;A9F411;
     TAY                                                                  ;A9F414;
@@ -14819,7 +14819,7 @@ GraduallyAccelerateTowardSamus:
     STA.L BabyMetroid.aggroTimer,X                                       ;A9F428;
 
 +   STY.B DP_Temp14                                                      ;A9F42C;
-    LDA.W SamusXPosition                                                 ;A9F42E;
+    LDA.B SamusXPosition                                                 ;A9F42E;
     STA.B DP_Temp12                                                      ;A9F431;
     LDX.B EnemyIndex                                                     ;A9F433;
     LDY.W #$0008                                                         ;A9F436;
@@ -14827,7 +14827,7 @@ GraduallyAccelerateTowardSamus:
     LDA.L BabyMetroid.stareDownContactTimer,X                            ;A9F43C;
     CMP.W #$0400                                                         ;A9F440;
     BCS .returnReadyToFlee                                               ;A9F443;
-    LDA.W SamusXPosition                                                 ;A9F445;
+    LDA.B SamusXPosition                                                 ;A9F445;
     CMP.W #$0080                                                         ;A9F448;
     BMI .returnReadyToFlee                                               ;A9F44B;
     CLC                                                                  ;A9F44D;
@@ -15061,7 +15061,7 @@ CheckIfEnemyIsVagulyOnScreen:
     CLC                                                                  ;A9F57F;
     ADC.W #$0060                                                         ;A9F580;
     SEC                                                                  ;A9F583;
-    SBC.W Layer1YPosition                                                ;A9F584;
+    SBC.B Layer1YPosition                                                ;A9F584;
     BMI .returnOffScreen                                                 ;A9F587;
     CMP.W #$01A0                                                         ;A9F589;
     BPL .returnOffScreen                                                 ;A9F58C;
@@ -15070,7 +15070,7 @@ CheckIfEnemyIsVagulyOnScreen:
     CLC                                                                  ;A9F593;
     ADC.W #$0010                                                         ;A9F594;
     SEC                                                                  ;A9F597;
-    SBC.W Layer1XPosition                                                ;A9F598;
+    SBC.B Layer1XPosition                                                ;A9F598;
     BMI .returnOffScreen                                                 ;A9F59B;
     CMP.W #$0120                                                         ;A9F59D;
     BPL .returnOffScreen                                                 ;A9F5A0;
@@ -15364,7 +15364,7 @@ EnemyTouch_BabyMetroid:
     AND.W #$00FF                                                         ;A9F797;
     CMP.W #$0003                                                         ;A9F79A;
     BNE .notSpinJumping                                                  ;A9F79D;
-    LDA.W SamusXPosition                                                 ;A9F79F;
+    LDA.B SamusXPosition                                                 ;A9F79F;
     CMP.W #$0200                                                         ;A9F7A2;
     BPL .repelled                                                        ;A9F7A5;
 
@@ -15381,9 +15381,9 @@ EnemyTouch_BabyMetroid:
     RTL                                                                  ;A9F7BA;
 
   .latchedOntoSamus:
-    LDA.W SamusXPosition                                                 ;A9F7BB;
+    LDA.B SamusXPosition                                                 ;A9F7BB;
     STA.B DP_Temp12                                                      ;A9F7BE;
-    LDA.W SamusYPosition                                                 ;A9F7C0;
+    LDA.B SamusYPosition                                                 ;A9F7C0;
     SEC                                                                  ;A9F7C3;
     SBC.W #$0020                                                         ;A9F7C4;
     STA.B DP_Temp14                                                      ;A9F7C7;
@@ -15406,11 +15406,11 @@ EnemyTouch_BabyMetroid:
     RTL                                                                  ;A9F7F8;
 
   .repelled:
-    LDA.W SamusXPosition                                                 ;A9F7F9;
+    LDA.B SamusXPosition                                                 ;A9F7F9;
     SEC                                                                  ;A9F7FC;
     SBC.W Enemy.XPosition,X                                              ;A9F7FD;
     STA.B DP_Temp12                                                      ;A9F800;
-    LDA.W SamusYPosition                                                 ;A9F802;
+    LDA.B SamusYPosition                                                 ;A9F802;
     SEC                                                                  ;A9F805;
     SBC.W Enemy.YPosition,X                                              ;A9F806;
     STA.B DP_Temp14                                                      ;A9F809;
@@ -15462,7 +15462,7 @@ EnemyShot_BabyMetroid:
     ADC.W #$0080                                                         ;A9F86C;
     AND.W #$00FF                                                         ;A9F86F;
     STA.B DP_Temp12                                                      ;A9F872;
-    LDA.W CollisionIndex                                                 ;A9F874;
+    LDA.B CollisionIndex                                                 ;A9F874;
     ASL                                                                  ;A9F877;
     TAX                                                                  ;A9F878;
     LDA.W SamusProjectile_Damages,X                                      ;A9F879;

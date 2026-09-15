@@ -248,7 +248,7 @@ ProjectileInstructionHandler:
     PHB                                                                  ;9381EA;
     PHK                                                                  ;9381EB;
     PLB                                                                  ;9381EC;
-    LDX.W ProjectileIndex                                                ;9381EF;
+    LDX.B ProjectileIndex                                                ;9381EF;
     DEC.W SamusProjectile_InstructionTimers,X                            ;9381F2;
     BNE .return                                                          ;9381F5;
     LDY.W SamusProjectile_InstructionPointers,X                          ;9381F7;
@@ -318,7 +318,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 ;;; $8254: Draw projectiles ;;;
 DrawProjectiles:
     LDX.W #$0008                                                         ;938257;
-    STX.W ProjectileIndex                                                ;93825A;
+    STX.B ProjectileIndex                                                ;93825A;
 
   .loop:
     LDA.W SamusProjectile_InstructionPointers,X                          ;93825D;
@@ -372,11 +372,11 @@ DrawProjectiles:
   .noRotation:
     LDA.W SamusProjectile_XPositions,X                                   ;9382BB;
     SEC                                                                  ;9382BE;
-    SBC.W Layer1XPosition                                                ;9382BF;
+    SBC.B Layer1XPosition                                                ;9382BF;
     STA.B DP_Temp14                                                      ;9382C2;
     LDA.W SamusProjectile_YPositions,X                                   ;9382C4;
     SEC                                                                  ;9382C7;
-    SBC.W Layer1YPosition                                                ;9382C8;
+    SBC.B Layer1YPosition                                                ;9382C8;
     STA.B DP_Temp12                                                      ;9382CB;
 
   .positionCalculated:
@@ -391,12 +391,12 @@ DrawProjectiles:
     BPL .loadIndex                                                       ;9382E0;
 
   .loadIndex:
-    LDX.W ProjectileIndex                                                ;9382E6;
+    LDX.B ProjectileIndex                                                ;9382E6;
 
   .next:
     DEX                                                                  ;9382E9;
     DEX                                                                  ;9382EA;
-    STX.W ProjectileIndex                                                ;9382EB;
+    STX.B ProjectileIndex                                                ;9382EB;
     BMI .echoes                                                          ;9382EE;
     JMP.W .loop                                                          ;9382F0;
 
@@ -415,20 +415,20 @@ UNUSED_PartialDrawProjectiles_9982FD:
     PHP                                                                  ;9382FD;
     REP #$30                                                             ;9382FE;
     LDX.W #$0008                                                         ;938300;
-    STX.W ProjectileIndex                                                ;938303;
+    STX.B ProjectileIndex                                                ;938303;
 
   .loop:
     LDA.W SamusProjectile_InstructionPointers,X                          ;938306;
     BEQ .next                                                            ;938309;
     LDA.W SamusProjectile_XPositions,X                                   ;93830B;
     SEC                                                                  ;93830E;
-    SBC.W Layer1XPosition                                                ;93830F;
+    SBC.B Layer1XPosition                                                ;93830F;
     STA.B DP_Temp14                                                      ;938312;
     LDA.W SamusProjectile_YPositions,X                                   ;938314;
     SEC                                                                  ;938317;
     SBC.W #$0008                                                         ;938318;
     SEC                                                                  ;93831B;
-    SBC.W Layer1YPosition                                                ;93831C;
+    SBC.B Layer1YPosition                                                ;93831C;
     STA.B DP_Temp12                                                      ;93831F;
     AND.W #$FF00                                                         ;938321;
     BNE +                                                                ;938324;
@@ -441,12 +441,12 @@ UNUSED_PartialDrawProjectiles_9982FD:
     BPL .getIndex                                                        ;938334;
 
   .getIndex:
-    LDX.W ProjectileIndex                                                ;93833A;
+    LDX.B ProjectileIndex                                                ;93833A;
 
   .next:
     DEX                                                                  ;93833D;
     DEX                                                                  ;93833E;
-    STX.W ProjectileIndex                                                ;93833F;
+    STX.B ProjectileIndex                                                ;93833F;
     BMI .timerExpired                                                    ;938342;
     JMP.W .loop                                                          ;938344;
 
@@ -460,7 +460,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 ;;; $834D: Draw bombs and projectile explosions ;;;
 DrawBombsAndProjectileExplosions:
     LDX.W #$0012                                                         ;938350;
-    STX.W ProjectileIndex                                                ;938353;
+    STX.B ProjectileIndex                                                ;938353;
 
   .loop:
     LDA.W SamusProjectile_InstructionPointers,X                          ;938356;
@@ -485,7 +485,7 @@ DrawBombsAndProjectileExplosions:
   .normalPositionCalculation:
     LDA.W SamusProjectile_XPositions,X                                   ;93837F;
     SEC                                                                  ;938382;
-    SBC.W Layer1XPosition                                                ;938383;
+    SBC.B Layer1XPosition                                                ;938383;
     STA.B DP_Temp14                                                      ;938386;
     CMP.W #$0130                                                         ;938388;
     BPL .next                                                            ;93838B;
@@ -493,7 +493,7 @@ DrawBombsAndProjectileExplosions:
     BMI .next                                                            ;938390;
     LDA.W SamusProjectile_YPositions,X                                   ;938392;
     SEC                                                                  ;938395;
-    SBC.W Layer1YPosition                                                ;938396;
+    SBC.B Layer1YPosition                                                ;938396;
     STA.B DP_Temp12                                                      ;938399;
 
   .calculatedPosition:
@@ -501,7 +501,7 @@ DrawBombsAndProjectileExplosions:
     BNE .offScreen                                                       ;93839E;
     LDA.W SamusProjectile_SpritemapPointers,X                            ;9383A0;
     JSL.L AddProjectileSpritemapToOAM                                    ;9383A3;
-    LDX.W ProjectileIndex                                                ;9383A7;
+    LDX.B ProjectileIndex                                                ;9383A7;
     BRA .next                                                            ;9383AA;
 
   .offScreen:
@@ -510,7 +510,7 @@ DrawBombsAndProjectileExplosions:
   .next:
     DEX                                                                  ;9383B6;
     DEX                                                                  ;9383B7;
-    STX.W ProjectileIndex                                                ;9383B8;
+    STX.B ProjectileIndex                                                ;9383B8;
     BPL .loop                                                            ;9383BB;
     RTL                                                                  ;9383BE;
 
@@ -9511,13 +9511,13 @@ UNUSED_DrawShinesparkWindupEffectSprite_93F5E2:
     LDA.B NMI_FrameCounter                                               ;93F5F5;
     BIT.W #$0001                                                         ;93F5F8;
     BNE .return                                                          ;93F5FB;
-    LDA.W SamusXPosition                                                 ;93F5FD;
+    LDA.B SamusXPosition                                                 ;93F5FD;
     SEC                                                                  ;93F600;
-    SBC.W Layer1XPosition                                                ;93F601;
+    SBC.B Layer1XPosition                                                ;93F601;
     STA.B DP_Temp14                                                      ;93F604;
-    LDA.W SamusYPosition                                                 ;93F606;
+    LDA.B SamusYPosition                                                 ;93F606;
     SEC                                                                  ;93F609;
-    SBC.W Layer1YPosition                                                ;93F60A;
+    SBC.B Layer1YPosition                                                ;93F60A;
     STA.B DP_Temp12                                                      ;93F60D;
     LDA.W #$003C                                                         ;93F60F;
     CLC                                                                  ;93F612;

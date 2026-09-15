@@ -140,11 +140,11 @@ Enemy_Projectile_Handler:
     LDX.W #$0022                                                         ;86810D;
 
   .loop:
-    STX.W EnemyProjectile_Index                                          ;868110;
+    STX.B EnemyProjectile_Index                                          ;868110;
     LDA.W EnemyProjectile_ID,X                                           ;868113;
     BEQ .next                                                            ;868116;
     JSR.W Process_Enemy_Projectile                                       ;868118;
-    LDX.W EnemyProjectile_Index                                          ;86811B;
+    LDX.B EnemyProjectile_Index                                          ;86811B;
 
   .next:
     DEX                                                                  ;86811E;
@@ -164,7 +164,7 @@ Process_Enemy_Projectile:
 ; Some instructions (e.g. sleep) pop the return address pushed to the stack by $813C to return out of *this* routine
 ; (marked "terminate processing enemy projectile")
     JSR.W (EnemyProjectile_PreInstructions,X)                            ;868125;
-    LDX.W EnemyProjectile_Index                                          ;868128;
+    LDX.B EnemyProjectile_Index                                          ;868128;
     DEC.W EnemyProjectile_InstructionTimers,X                            ;86812B;
     BNE .return                                                          ;86812E;
     LDY.W EnemyProjectile_InstListPointers,X                             ;868130;
@@ -251,7 +251,7 @@ Instruction_EnemyProjectile_CallExternalFunctionInY:
     PHY                                                                  ;86817B;
     JSL.L .externalFunction                                              ;86817C;
     PLY                                                                  ;868180;
-    LDX.W EnemyProjectile_Index                                          ;868181;
+    LDX.B EnemyProjectile_Index                                          ;868181;
     INY                                                                  ;868184;
     INY                                                                  ;868185;
     INY                                                                  ;868186;
@@ -276,7 +276,7 @@ UNUSED_Inst_EnemyProjectile_CallExternalFuncWith2ByteParam:
     PHY                                                                  ;868198;
     JSL.L .externalFunction                                              ;868199;
     PLY                                                                  ;86819D;
-    LDX.W EnemyProjectile_Index                                          ;86819E;
+    LDX.B EnemyProjectile_Index                                          ;86819E;
     TYA                                                                  ;8681A1;
     CLC                                                                  ;8681A2;
     ADC.W #$0005                                                         ;8681A3;
@@ -573,17 +573,17 @@ Instruction_EnemyProjectile_CalculateDirectionTowardsSamus:
 
 ; Used only by eye door projectile
     PHY                                                                  ;8682A5;
-    LDA.W SamusXPosition                                                 ;8682A6;
+    LDA.B SamusXPosition                                                 ;8682A6;
     SEC                                                                  ;8682A9;
     SBC.W EnemyProjectile_XPositions,X                                   ;8682AA;
     STA.B DP_Temp12                                                      ;8682AD;
-    LDA.W SamusYPosition                                                 ;8682AF;
+    LDA.B SamusYPosition                                                 ;8682AF;
     SEC                                                                  ;8682B2;
     SBC.W EnemyProjectile_YPositions,X                                   ;8682B3;
     STA.B DP_Temp14                                                      ;8682B6;
     JSL.L CalculateAngleOf_12_14_Offset                                  ;8682B8;
     ASL                                                                  ;8682BC;
-    LDY.W EnemyProjectile_Index                                          ;8682BD;
+    LDY.B EnemyProjectile_Index                                          ;8682BD;
     STA.W EnemyProjectile_Var0,Y                                         ;8682C0;
     TAX                                                                  ;8682C3;
     LDA.L SineCosineTables_8bitSine_SignExtended,X                       ;8682C4;
@@ -890,7 +890,7 @@ Draw_EnemyProjectile:
     STA.B DP_Temp1C                                                      ;8683E7;
     LDA.W EnemyProjectile_XPositions,X                                   ;8683E9;
     SEC                                                                  ;8683EC;
-    SBC.W Layer1XPosition                                                ;8683ED;
+    SBC.B Layer1XPosition                                                ;8683ED;
     CLC                                                                  ;8683F0;
     ADC.B DP_Temp24                                                      ;8683F1;
     STA.B DP_Temp14                                                      ;8683F3;
@@ -900,7 +900,7 @@ Draw_EnemyProjectile:
     BNE .return                                                          ;8683FC;
     LDA.W EnemyProjectile_YPositions,X                                   ;8683FE;
     SEC                                                                  ;868401;
-    SBC.W Layer1YPosition                                                ;868402;
+    SBC.B Layer1YPosition                                                ;868402;
     CLC                                                                  ;868405;
     ADC.B DP_Temp22                                                      ;868406;
     STA.B DP_Temp12                                                      ;868408;
@@ -1074,7 +1074,7 @@ EnemyProjectile_BlockCollision_VerticalExtension:
 
   .loop:
     CLC                                                                  ;868553;
-    ADC.W RoomWidthBlocks                                                ;868554;
+    ADC.B RoomWidthBlocks                                                ;868554;
     DEC.W CollisionMultiplicationCounter                                 ;868557;
     BNE .loop                                                            ;86855A;
     JMP.W .merge                                                         ;86855C;
@@ -1087,7 +1087,7 @@ EnemyProjectile_BlockCollision_VerticalExtension:
 
   .loop2:
     SEC                                                                  ;868568;
-    SBC.W RoomWidthBlocks                                                ;868569;
+    SBC.B RoomWidthBlocks                                                ;868569;
     INC.W CollisionMultiplicationCounter                                 ;86856C;
     BNE .loop2                                                           ;86856F;
 
@@ -1207,7 +1207,7 @@ EnemyProjectile_BlockCollision_HorizontalSlopeSquare:
     EOR.W SlopeCollisionFlipFlags                                        ;8685DC;
     ADC.W CollisionMultiplicationCounter                                 ;8685DF;
     TAX                                                                  ;8685E2;
-    LDY.W EnemyProjectile_Index                                          ;8685E3;
+    LDY.B EnemyProjectile_Index                                          ;8685E3;
     LDA.B DP_Temp20                                                      ;8685E6;
     BNE .multiBlock                                                      ;8685E8;
     LDA.W EnemyProjectile_YPositions,Y                                   ;8685EA;
@@ -1271,7 +1271,7 @@ EnemyProjectile_BlockCollision_HorizontalSlopeSquare:
     RTS                                                                  ;868650;
 
   .collision:
-    LDX.W EnemyProjectile_Index                                          ;868654;
+    LDX.B EnemyProjectile_Index                                          ;868654;
     STZ.W EnemyProjectile_XSubPositions,X                                ;868657;
     LDA.B DP_Temp22                                                      ;86865A;
     BIT.B DP_Temp14                                                      ;86865C;
@@ -1352,7 +1352,7 @@ EnemyProjectile_BlockCollision_VerticalSlopeSquare:
     RTS                                                                  ;8686C3;
 
   .multiBlock:
-    LDY.W EnemyProjectile_Index                                          ;8686C7;
+    LDY.B EnemyProjectile_Index                                          ;8686C7;
     LDA.B DP_Temp1A                                                      ;8686CA;
     BNE +                                                                ;8686CC;
     LDA.W EnemyProjectile_XPositions,Y                                   ;8686CE;
@@ -1389,7 +1389,7 @@ EnemyProjectile_BlockCollision_VerticalSlopeSquare:
     RTS                                                                  ;868703;
 
   .collision:
-    LDX.W EnemyProjectile_Index                                          ;868707;
+    LDX.B EnemyProjectile_Index                                          ;868707;
     STZ.W EnemyProjectile_YSubPositions,X                                ;86870A;
     LDA.B DP_Temp22                                                      ;86870D;
     BIT.B DP_Temp14                                                      ;86870F;
@@ -1441,7 +1441,7 @@ EnemyProjectile_BlockCollision_VerticalSlopeNonSquare:
 ;;     $1E: Enemy projectile Y radius
 ;; Returns:
 ;;     Carry: Set if collision, clear otherwise
-    LDY.W EnemyProjectile_Index                                          ;86874E;
+    LDY.B EnemyProjectile_Index                                          ;86874E;
     LDA.B DP_Temp14                                                      ;868751;
     BPL +                                                                ;868753;
     JMP.W .up                                                            ;868755;
@@ -1449,7 +1449,7 @@ EnemyProjectile_BlockCollision_VerticalSlopeNonSquare:
 +   LDX.W CurrentBlockIndex                                              ;868758;
     STX.W $4204                                                          ;86875B;
     SEP #$20                                                             ;86875E;
-    LDA.W RoomWidthBlocks                                                ;868760;
+    LDA.B RoomWidthBlocks                                                ;868760;
     STA.W $4206                                                          ;868763;
     REP #$20                                                             ;868766;
     LDA.W EnemyProjectile_XPositions,Y                                   ;868768;
@@ -1516,7 +1516,7 @@ EnemyProjectile_BlockCollision_VerticalSlopeNonSquare:
     LDX.W CurrentBlockIndex                                              ;8687CC;
     STX.W $4204                                                          ;8687CF;
     SEP #$20                                                             ;8687D2;
-    LDA.W RoomWidthBlocks                                                ;8687D4;
+    LDA.B RoomWidthBlocks                                                ;8687D4;
     STA.W $4206                                                          ;8687D7;
     REP #$20                                                             ;8687DA;
     LDA.W EnemyProjectile_XPositions,Y                                   ;8687DC;
@@ -1725,7 +1725,7 @@ Move_EnemyProjectile_Horizontally:
     LSR                                                                  ;8688FA;
     SEP #$20                                                             ;8688FB;
     STA.W $4202                                                          ;8688FD;
-    LDA.W RoomWidthBlocks                                                ;868900;
+    LDA.B RoomWidthBlocks                                                ;868900;
     STA.W $4203                                                          ;868903;
     REP #$20                                                             ;868906;
     LDA.W EnemyProjectile_XSubPositions,X                                ;868908;
@@ -1761,8 +1761,8 @@ Move_EnemyProjectile_Horizontally:
     BCS .solid                                                           ;868933;
     TXA                                                                  ;868935;
     CLC                                                                  ;868936;
-    ADC.W RoomWidthBlocks                                                ;868937;
-    ADC.W RoomWidthBlocks                                                ;86893A;
+    ADC.B RoomWidthBlocks                                                ;868937;
+    ADC.B RoomWidthBlocks                                                ;86893A;
     TAX                                                                  ;86893D;
     DEC.B DP_Temp1A                                                      ;86893E;
     BPL .loop                                                            ;868940;
@@ -1872,7 +1872,7 @@ Move_EnemyProjectile_Vertically:
     LSR                                                                  ;8689D7;
     SEP #$20                                                             ;8689D8;
     STA.W $4202                                                          ;8689DA;
-    LDA.W RoomWidthBlocks                                                ;8689DD;
+    LDA.B RoomWidthBlocks                                                ;8689DD;
     STA.W $4203                                                          ;8689E0;
     REP #$20                                                             ;8689E3;
     LDA.W EnemyProjectile_XPositions,X                                   ;8689E5;
@@ -2516,13 +2516,13 @@ PreInstruction_DraygonGoop_StuckToSamus:
     JSR.W Delete_EnemyProjectile_IfPowerBombed                           ;868DCA;
     LDA.W ContactDamageIndex                                             ;868DCD;
     BNE +                                                                ;868DD0;
-    LDA.W SamusXPosition                                                 ;868DD2;
+    LDA.B SamusXPosition                                                 ;868DD2;
     STA.W EnemyProjectile_XPositions,X                                   ;868DD5;
     LDA.W EnemyProjectile_Var1,X                                         ;868DD8;
     ASL                                                                  ;868DDB;
     ASL                                                                  ;868DDC;
     CLC                                                                  ;868DDD;
-    ADC.W SamusYPosition                                                 ;868DDE;
+    ADC.B SamusYPosition                                                 ;868DDE;
     SEC                                                                  ;868DE1;
     SBC.W #$000C                                                         ;868DE2;
     STA.W EnemyProjectile_YPositions,X                                   ;868DE5;
@@ -2561,7 +2561,7 @@ PreInstruction_EnemyProjectile_DraygonGoop:
 ;;     X: Enemy projectile index
     JSR.W Delete_EnemyProjectile_IfPowerBombed                           ;868E0F;
     JSR.W Move_EnemyProjectile_AccordingToAngleAndSpeed                  ;868E12;
-    LDA.W SamusXPosition                                                 ;868E15;
+    LDA.B SamusXPosition                                                 ;868E15;
     SEC                                                                  ;868E18;
     SBC.W EnemyProjectile_XPositions,X                                   ;868E19;
     BPL +                                                                ;868E1C;
@@ -2570,7 +2570,7 @@ PreInstruction_EnemyProjectile_DraygonGoop:
 
 +   CMP.W #$0010                                                         ;868E22;
     BPL .checkRoomBoundaries                                             ;868E25;
-    LDA.W SamusYPosition                                                 ;868E27;
+    LDA.B SamusYPosition                                                 ;868E27;
     SEC                                                                  ;868E2A;
     SBC.W EnemyProjectile_YPositions,X                                   ;868E2B;
     BPL +                                                                ;868E2E;
@@ -5761,11 +5761,11 @@ InitAI_EnemyProjectile_GunshipLiftoffDustClouds:
     STA.W EnemyProjectile_XVelocity,Y                                    ;86A2AD;
     STA.W EnemyProjectile_YVelocity,Y                                    ;86A2B0;
     LDX.W EnemyProjectile_InitParam0                                     ;86A2B3;
-    LDA.W SamusXPosition                                                 ;86A2B6;
+    LDA.B SamusXPosition                                                 ;86A2B6;
     CLC                                                                  ;86A2B9;
     ADC.W .Xoffsets,X                                                    ;86A2BA;
     STA.W EnemyProjectile_XPositions,Y                                   ;86A2BD;
-    LDA.W SamusYPosition                                                 ;86A2C0;
+    LDA.B SamusYPosition                                                 ;86A2C0;
     CLC                                                                  ;86A2C3;
     ADC.W #$0050                                                         ;86A2C4;
     STA.W EnemyProjectile_YPositions,Y                                   ;86A2C7;
@@ -5794,7 +5794,7 @@ InitAI_EnemyProjectile_CeresElevatorPad:
 ;;     Y: Enemy projectile index
     PHP                                                                  ;86A2EE;
     REP #$30                                                             ;86A2EF;
-    LDA.W SamusYPosition                                                 ;86A2F1;
+    LDA.B SamusYPosition                                                 ;86A2F1;
     CLC                                                                  ;86A2F4;
     ADC.W #$001C                                                         ;86A2F5;
     STA.W EnemyProjectile_YPositions,Y                                   ;86A2F8;
@@ -5814,7 +5814,7 @@ InitAI_EnemyProjectile_CeresElevatorPad_Common:
     STA.W EnemyProjectile_XVelocity,Y                                    ;86A30A;
     STA.W EnemyProjectile_YVelocity,Y                                    ;86A30D;
     STA.W EnemyProjectile_GraphicsIndices,Y                              ;86A310;
-    LDA.W SamusXPosition                                                 ;86A313;
+    LDA.B SamusXPosition                                                 ;86A313;
     STA.W EnemyProjectile_XPositions,Y                                   ;86A316;
     PLP                                                                  ;86A319;
     RTS                                                                  ;86A31A;
@@ -5847,17 +5847,17 @@ PreInstruction_EnemyProjectile_CeresElevatorPad:
     BPL .return                                                          ;86A332;
 
   .timerExpired:
-    LDA.W SamusYPosition                                                 ;86A334;
+    LDA.B SamusYPosition                                                 ;86A334;
     CLC                                                                  ;86A337;
     ADC.W #$001C                                                         ;86A338;
     STA.W EnemyProjectile_YPositions,X                                   ;86A33B;
-    LDA.W SamusYPosition                                                 ;86A33E;
+    LDA.B SamusYPosition                                                 ;86A33E;
     INC                                                                  ;86A341;
-    STA.W SamusYPosition                                                 ;86A342;
+    STA.B SamusYPosition                                                 ;86A342;
     CMP.W #$0049                                                         ;86A345;
     BMI .return                                                          ;86A348;
     LDA.W #$0048                                                         ;86A34A;
-    STA.W SamusYPosition                                                 ;86A34D;
+    STA.B SamusYPosition                                                 ;86A34D;
     LDA.W #$0001                                                         ;86A350;
     STA.W EnemyProjectile_InstructionTimers,X                            ;86A353;
     LDA.W #InstList_EnemyProjectile_Delete_A28B                          ;86A356;
@@ -5873,7 +5873,7 @@ PreInstruction_EnemyProjectile_CeresElevatorPad:
 PreInst_EnemyProjectile_CeresElevatorPadLevelDataConcealer:
 ;; Parameters:
 ;;     X: Enemy projectile index
-    LDA.W SamusYPosition                                                 ;86A364;
+    LDA.B SamusYPosition                                                 ;86A364;
     CMP.W #$0048                                                         ;86A367;
     BNE .return                                                          ;86A36A;
     LDA.W #$0001                                                         ;86A36C;
@@ -6386,7 +6386,7 @@ UNUSED_InitAI_EnemyProjectile_BombTorizo_86A6C7:
 ;;     Y: Enemy projectile index
     LDA.W #$0000                                                         ;86A6C7;
     STA.W EnemyProjectile_GraphicsIndices,Y                              ;86A6CA;
-    LDX.W PLM_Index                                                      ;86A6CD;
+    LDX.B PLM_Index                                                      ;86A6CD;
     JSL.L Calculate_PLM_Block_Coordinates                                ;86A6D0;
     LDA.W PLM_XBlock                                                     ;86A6D4;
     ASL                                                                  ;86A6D7;
@@ -6460,7 +6460,7 @@ InitAI_EnemyProj_BombTorizoChozoBreaking:
 ;; Parameters:
 ;;     Y: Enemy projectile index
 ;;     EnemyProjectile_InitParam0: Index. Multiple of 2, range 0..1Eh
-    LDX.W PLM_Index                                                      ;86A764;
+    LDX.B PLM_Index                                                      ;86A764;
     JSL.L Calculate_PLM_Block_Coordinates                                ;86A767;
     LDX.W EnemyProjectile_InitParam0                                     ;86A76B;
     LDA.W .InstListPointers,X                                            ;86A76E;
@@ -6833,9 +6833,9 @@ UNUSED_InitAI_EnemyProjectile_QuestionMark_86AA3D:
     CLC                                                                  ;86AA74;
     ADC.W #$0007                                                         ;86AA75;
     STA.B VRAMWriteStack                                                 ;86AA78;
-    LDA.W SamusXPosition                                                 ;86AA7B;
+    LDA.B SamusXPosition                                                 ;86AA7B;
     STA.W EnemyProjectile_XPositions,Y                                   ;86AA7E;
-    LDA.W SamusYPosition                                                 ;86AA81;
+    LDA.B SamusYPosition                                                 ;86AA81;
     SEC                                                                  ;86AA84;
     SBC.W #$0024                                                         ;86AA85;
     STA.W EnemyProjectile_YPositions,Y                                   ;86AA88;
@@ -6848,7 +6848,7 @@ UNUSED_PreInstruction_EnemyProjectile_QuestionMark:
 ;;     X: Enemy projectile index
     STZ.B DP_Temp12                                                      ;86AA8C;
     STZ.B DP_Temp14                                                      ;86AA8E;
-    LDA.W SamusXPosition                                                 ;86AA90;
+    LDA.B SamusXPosition                                                 ;86AA90;
     SEC                                                                  ;86AA93;
     SBC.W EnemyProjectile_XPositions,X                                   ;86AA94;
     BPL +                                                                ;86AA9A;
@@ -6867,7 +6867,7 @@ UNUSED_PreInstruction_EnemyProjectile_QuestionMark:
     STA.W EnemyProjectile_XPositions,X                                   ;86AAAE;
     STZ.B DP_Temp12                                                      ;86AAB1;
     STZ.B DP_Temp14                                                      ;86AAB3;
-    LDA.W SamusYPosition                                                 ;86AAB5;
+    LDA.B SamusYPosition                                                 ;86AAB5;
     SEC                                                                  ;86AAB8;
     SBC.W #$0024                                                         ;86AAB9;
     SEC                                                                  ;86AABC;
@@ -8642,7 +8642,7 @@ Delete_EnemyProjectile_IfVerticallyOffScreen:
 ;;     X: Enemy projectile index
     LDA.W EnemyProjectile_YPositions,X                                   ;86B5B9;
     SEC                                                                  ;86B5BC;
-    SBC.W Layer1YPosition                                                ;86B5BD;
+    SBC.B Layer1YPosition                                                ;86B5BD;
     BMI .return                                                          ;86B5C0;
     CMP.W #$0120                                                         ;86B5C2;
     BCC .return                                                          ;86B5C5;
@@ -8718,7 +8718,7 @@ InitAI_EnemyProjectile_EyeDoorProjectile:
 ;; Parameters:
 ;;     Y: Enemy projectile index
 ;;     EnemyProjectile_InitParam0: Index. Multiple of 4, range 0..24h. Only 0 and 14h are used
-    LDX.W PLM_Index                                                      ;86B62D;
+    LDX.B PLM_Index                                                      ;86B62D;
     LDA.W PLM_RoomArgs,X                                                 ;86B630;
     STA.W EnemyProjectile_Var1,Y                                         ;86B633;
     JSL.L Calculate_PLM_Block_Coordinates                                ;86B636;
@@ -8754,7 +8754,7 @@ InitAI_EnemyProjectile_EyeDoorSweat:
 ;; Parameters:
 ;;     Y: Enemy projectile index
 ;;     EnemyProjectile_InitParam0: Direction. 0 = left, 4 = right
-    LDX.W PLM_Index                                                      ;86B683;
+    LDX.B PLM_Index                                                      ;86B683;
     JSL.L Calculate_PLM_Block_Coordinates                                ;86B686;
     LDA.W PLM_XBlock                                                     ;86B68A;
     DEC                                                                  ;86B68D;
@@ -9348,7 +9348,7 @@ PreInst_EnemyProj_TourianStatue_Ridley_Phantoon_BaseDecor:
     EOR.W #$FFFF                                                         ;86BA4C;
     INC                                                                  ;86BA4F;
     CLC                                                                  ;86BA50;
-    ADC.W Layer1YPosition                                                ;86BA51;
+    ADC.B Layer1YPosition                                                ;86BA51;
     CLC                                                                  ;86BA54;
     ADC.W EnemyProjectile_Var1,X                                         ;86BA55;
     STA.W EnemyProjectile_YPositions,X                                   ;86BA58;
@@ -9817,17 +9817,17 @@ CheckIf_EnemyProjectile_IsOffScreen:
 ;; Returns:
 ;;     A: 1 if off-screen, 0 otherwise
     LDA.W EnemyProjectile_XPositions,X                                   ;86BD2A;
-    CMP.W Layer1XPosition                                                ;86BD2D;
+    CMP.B Layer1XPosition                                                ;86BD2D;
     BMI .offScreen                                                       ;86BD30;
-    LDA.W Layer1XPosition                                                ;86BD32;
+    LDA.B Layer1XPosition                                                ;86BD32;
     CLC                                                                  ;86BD35;
     ADC.W #$0100                                                         ;86BD36;
     CMP.W EnemyProjectile_XPositions,X                                   ;86BD39;
     BMI .offScreen                                                       ;86BD3C;
     LDA.W EnemyProjectile_YPositions,X                                   ;86BD3E;
-    CMP.W Layer1YPosition                                                ;86BD41;
+    CMP.B Layer1YPosition                                                ;86BD41;
     BMI .offScreen                                                       ;86BD44;
-    LDA.W Layer1YPosition                                                ;86BD46;
+    LDA.B Layer1YPosition                                                ;86BD46;
     CLC                                                                  ;86BD49;
     ADC.W #$0100                                                         ;86BD4A;
     CMP.W EnemyProjectile_YPositions,X                                   ;86BD4D;
@@ -10304,7 +10304,7 @@ Check_If_Turret_Is_On_Screen:
     CLC                                                                  ;86C0B9;
     ADC.W #$0010                                                         ;86C0BA;
     SEC                                                                  ;86C0BD;
-    SBC.W Layer1YPosition                                                ;86C0BE;
+    SBC.B Layer1YPosition                                                ;86C0BE;
     BMI .returnOffScreen                                                 ;86C0C1;
     CMP.W #$0100                                                         ;86C0C3;
     BPL .returnOffScreen                                                 ;86C0C6;
@@ -10313,7 +10313,7 @@ Check_If_Turret_Is_On_Screen:
     CLC                                                                  ;86C0CD;
     ADC.W #$0004                                                         ;86C0CE;
     SEC                                                                  ;86C0D1;
-    SBC.W Layer1XPosition                                                ;86C0D2;
+    SBC.B Layer1XPosition                                                ;86C0D2;
     BMI .returnOffScreen                                                 ;86C0D5;
     CMP.W #$0108                                                         ;86C0D7;
     BPL .returnOffScreen                                                 ;86C0DA;
@@ -10339,7 +10339,7 @@ PreInstruction_EnemyProjectile_MotherBrainsTurretBullets:
     TAX                                                                  ;86C0F3;
     JSL.L CheckForCollisionWithNonAirBlock                               ;86C0F4;
     BCC .return                                                          ;86C0F8;
-    LDX.W EnemyProjectile_Index                                          ;86C0FA;
+    LDX.B EnemyProjectile_Index                                          ;86C0FA;
     STZ.W EnemyProjectile_ID,X                                           ;86C0FD;
 
   .return:
@@ -10618,7 +10618,7 @@ Check_for_Collision_with_Samus:
 ;     $16: Enemy projectile X radius
 ;     $18: Enemy projectile Y radius
     JSR.W Setup_Variables_for_EnemyProjectile_Collision_Detection        ;86C239;
-    LDA.W SamusXPosition                                                 ;86C23C;
+    LDA.B SamusXPosition                                                 ;86C23C;
     SEC                                                                  ;86C23F;
     SBC.B DP_Temp12                                                      ;86C240;
     BPL +                                                                ;86C242;
@@ -10631,7 +10631,7 @@ Check_for_Collision_with_Samus:
     CMP.B DP_Temp16                                                      ;86C24E;
     BCS .returnNoCollision                                               ;86C250;
 
-+   LDA.W SamusYPosition                                                 ;86C252;
++   LDA.B SamusYPosition                                                 ;86C252;
     SEC                                                                  ;86C255;
     SBC.B DP_Temp14                                                      ;86C256;
     BPL +                                                                ;86C258;
@@ -10853,7 +10853,7 @@ Hurt_Samus:
     LDA.W #$0005                                                         ;86C36A;
     STA.W SamusKnockbackTimer                                            ;86C36D;
     LDY.W #$0000                                                         ;86C370;
-    LDA.W SamusXPosition                                                 ;86C373;
+    LDA.B SamusXPosition                                                 ;86C373;
     SEC                                                                  ;86C376;
     SBC.W EnemyProjectile_XPositions,X                                   ;86C377;
     BMI .left                                                            ;86C37A;
@@ -10929,7 +10929,7 @@ Check_for_OnionRing_Collision_with_Room:
     LDA.W EnemyProjectile_XPositions,X                                   ;86C3D6;
     BMI .returnCollision                                                 ;86C3D9;
     SEC                                                                  ;86C3DB;
-    SBC.W Layer1XPosition                                                ;86C3DC;
+    SBC.B Layer1XPosition                                                ;86C3DC;
     BMI .returnCollision                                                 ;86C3DF;
     CMP.W #$00F8                                                         ;86C3E1;
     BPL .returnCollision                                                 ;86C3E4;
@@ -11243,7 +11243,7 @@ InitAI_EnemyProjectile_MotherBrainRedBeam_Charging:
     ADC.W #$0040                                                         ;86C62C;
     STA.W EnemyProjectile_XPositions,Y                                   ;86C62F;
     STA.L MotherBrainBody.deathBeamNextXPosition                         ;86C632;
-    LDA.W SamusXPosition                                                 ;86C636;
+    LDA.B SamusXPosition                                                 ;86C636;
     SEC                                                                  ;86C639;
     SBC.L MotherBrainBody.deathBeamNextXPosition                         ;86C63A;
     STA.B DP_Temp12                                                      ;86C63E;
@@ -11252,7 +11252,7 @@ InitAI_EnemyProjectile_MotherBrainRedBeam_Charging:
     ADC.W #$FFD0                                                         ;86C644;
     STA.W EnemyProjectile_YPositions,Y                                   ;86C647;
     STA.L MotherBrainBody.deathBeamNextYPosition                         ;86C64A;
-    LDA.W SamusYPosition                                                 ;86C64E;
+    LDA.B SamusYPosition                                                 ;86C64E;
     SEC                                                                  ;86C651;
     SBC.L MotherBrainBody.deathBeamNextYPosition                         ;86C652;
     STA.B DP_Temp14                                                      ;86C656;
@@ -11629,12 +11629,12 @@ InitAI_EnemyProjectile_MotherBrainsRainbowBeamExplosion:
     LDA.B DP_Temp12                                                      ;86C933;
     STA.W EnemyProjectile_XVelocity,X                                    ;86C935;
     CLC                                                                  ;86C938;
-    ADC.W SamusXPosition                                                 ;86C939;
+    ADC.B SamusXPosition                                                 ;86C939;
     STA.W EnemyProjectile_XPositions,X                                   ;86C93C;
     LDA.B DP_Temp14                                                      ;86C93F;
     STA.W EnemyProjectile_YVelocity,X                                    ;86C941;
     CLC                                                                  ;86C944;
-    ADC.W SamusYPosition                                                 ;86C945;
+    ADC.B SamusYPosition                                                 ;86C945;
     STA.W EnemyProjectile_YPositions,X                                   ;86C948;
     RTS                                                                  ;86C94B;
 
@@ -11645,11 +11645,11 @@ PreInstruction_EnemyProj_MotherBrainsRainbowBeamExplosion:
 ;;     X: Enemy projectile index
     LDA.W EnemyProjectile_XVelocity,X                                    ;86C94C;
     CLC                                                                  ;86C94F;
-    ADC.W SamusXPosition                                                 ;86C950;
+    ADC.B SamusXPosition                                                 ;86C950;
     STA.W EnemyProjectile_XPositions,X                                   ;86C953;
     LDA.W EnemyProjectile_YVelocity,X                                    ;86C956;
     CLC                                                                  ;86C959;
-    ADC.W SamusYPosition                                                 ;86C95A;
+    ADC.B SamusYPosition                                                 ;86C95A;
     STA.W EnemyProjectile_YPositions,X                                   ;86C95D;
     RTS                                                                  ;86C960;
 
@@ -12293,7 +12293,7 @@ InitAI_EnemyProjectile_MotherBrainsGlassShattering_Shard:
     STA.W EnemyProjectile_InstListPointers,Y                             ;86CDED;
     LDA.W #$0640                                                         ;86CDF0;
     STA.W EnemyProjectile_GraphicsIndices,Y                              ;86CDF3;
-    LDX.W PLM_Index                                                      ;86CDF6;
+    LDX.B PLM_Index                                                      ;86CDF6;
     JSL.L Calculate_PLM_Block_Coordinates                                ;86CDF9;
     LDX.W EnemyProjectile_InitParam0                                     ;86CDFD;
     LDA.W PLM_XBlock                                                     ;86CE00;
@@ -13214,26 +13214,26 @@ InitAI_EnemyProjectile_WreckedShipRobotLaser_Common:
     LDA.W Enemy.XPosition,X                                              ;86D381;
     CLC                                                                  ;86D384;
     ADC.W Enemy.XHitboxRadius,X                                          ;86D385;
-    CMP.W Layer1XPosition                                                ;86D388;
+    CMP.B Layer1XPosition                                                ;86D388;
     BMI .return                                                          ;86D38B;
     LDA.W Enemy.XPosition,X                                              ;86D38D;
     SEC                                                                  ;86D390;
     SBC.W Enemy.XHitboxRadius,X                                          ;86D391;
     SEC                                                                  ;86D394;
     SBC.W #$0101                                                         ;86D395;
-    CMP.W Layer1XPosition                                                ;86D398;
+    CMP.B Layer1XPosition                                                ;86D398;
     BPL .return                                                          ;86D39B;
     LDA.W Enemy.YPosition,X                                              ;86D39D;
     CLC                                                                  ;86D3A0;
     ADC.W Enemy.YHitboxRadius,X                                          ;86D3A1;
-    CMP.W Layer1YPosition                                                ;86D3A4;
+    CMP.B Layer1YPosition                                                ;86D3A4;
     BMI .return                                                          ;86D3A7;
     LDA.W Enemy.YPosition,X                                              ;86D3A9;
     SEC                                                                  ;86D3AC;
     SBC.W Enemy.YHitboxRadius,X                                          ;86D3AD;
     SEC                                                                  ;86D3B0;
     SBC.W #$00E0                                                         ;86D3B1;
-    CMP.W Layer1YPosition
+    CMP.B Layer1YPosition
     BPL .return                                                          ;86D3B4;
     LDA.W #$0067                                                         ;86D3B6;
     JSL.L QueueSound_Lib2_Max6                                           ;86D3B9;
@@ -13679,7 +13679,7 @@ Inststruction_EnemyProjectile_NoobTubeReleasedAirBubbles:
 Instruction_EnemyProjectile_NoobTubeCrack:
 ;; Parameters:
 ;;     Y: Enemy projectile index
-    LDX.W PLM_Index                                                      ;86D6A5;
+    LDX.B PLM_Index                                                      ;86D6A5;
     JSL.L Calculate_PLM_Block_Coordinates                                ;86D6A8;
     LDA.W PLM_XBlock                                                     ;86D6AC;
     ASL                                                                  ;86D6AF;
@@ -13705,7 +13705,7 @@ InitAI_EnemyProjectile_NoobTubeShard:
 ;; Parameters:
 ;;     Y: Enemy projectile index
 ;;     EnemyProjectile_InitParam0: Index. Multiple of 2, range 0..12h
-    LDX.W PLM_Index                                                      ;86D6C9;
+    LDX.B PLM_Index                                                      ;86D6C9;
     JSL.L Calculate_PLM_Block_Coordinates                                ;86D6CC;
     LDX.W EnemyProjectile_InitParam0                                     ;86D6D0;
     LDA.W PLM_XBlock                                                     ;86D6D3;
@@ -13768,7 +13768,7 @@ InitAI_EnemyProjectile_NoobTubeReleasedAirBubbles:
 ;; Parameters:
 ;;     Y: Enemy projectile index
 ;;     EnemyProjectile_InitParam0: Position table index. Multiple of 2, range 0..Ah
-    LDX.W PLM_Index                                                      ;86D774;
+    LDX.B PLM_Index                                                      ;86D774;
     JSL.L Calculate_PLM_Block_Coordinates                                ;86D777;
     LDX.W EnemyProjectile_InitParam0                                     ;86D77B;
     LDA.W PLM_XBlock                                                     ;86D77E;
@@ -13890,7 +13890,7 @@ Instruction_EnemyProjectile_NoobTubeCrack_Falling:
 +   ROR                                                                  ;86D85B;
     ROR                                                                  ;86D85C;
     STA.B DP_Temp13                                                      ;86D85D;
-    LDX.W EnemyProjectile_Index                                          ;86D85F;
+    LDX.B EnemyProjectile_Index                                          ;86D85F;
     LDA.W EnemyProjectile_Var0,X                                         ;86D862;
     CLC                                                                  ;86D865;
     ADC.B DP_Temp12                                                      ;86D866;
@@ -13940,7 +13940,7 @@ PreInstruction_EnemyProj_NoobTubeReleasedAirBubbles_Falling:
 +   ROR                                                                  ;86D8BD;
     ROR                                                                  ;86D8BE;
     STA.B DP_Temp13                                                      ;86D8BF;
-    LDX.W EnemyProjectile_Index                                          ;86D8C1;
+    LDX.B EnemyProjectile_Index                                          ;86D8C1;
     LDA.W EnemyProjectile_Var0,X                                         ;86D8C4;
     CLC                                                                  ;86D8C7;
     ADC.B DP_Temp12                                                      ;86D8C8;
@@ -14355,17 +14355,17 @@ CheckIf_EnemyProjectile_IsOffScreen_duplicate:
 
 ; Clone of CheckIf_EnemyProjectile_IsOffScreen
     LDA.W EnemyProjectile_XPositions,X                                   ;86DACE;
-    CMP.W Layer1XPosition                                                ;86DAD1;
+    CMP.B Layer1XPosition                                                ;86DAD1;
     BMI .returnOffScreen                                                 ;86DAD4;
-    LDA.W Layer1XPosition                                                ;86DAD6;
+    LDA.B Layer1XPosition                                                ;86DAD6;
     CLC                                                                  ;86DAD9;
     ADC.W #$0100                                                         ;86DADA;
     CMP.W EnemyProjectile_XPositions,X                                   ;86DADD;
     BMI .returnOffScreen                                                 ;86DAE0;
     LDA.W EnemyProjectile_YPositions,X                                   ;86DAE2;
-    CMP.W Layer1YPosition                                                ;86DAE5;
+    CMP.B Layer1YPosition                                                ;86DAE5;
     BMI .returnOffScreen                                                 ;86DAE8;
-    LDA.W Layer1YPosition                                                ;86DAEA;
+    LDA.B Layer1YPosition                                                ;86DAEA;
     CLC                                                                  ;86DAED;
     ADC.W #$0100                                                         ;86DAEE;
     CMP.W EnemyProjectile_YPositions,X                                   ;86DAF1;
@@ -14516,17 +14516,17 @@ CheckIf_EnemyProjectile_IsOffScreen_duplicate_again:
 
 ; Clone of CheckIf_EnemyProjectile_IsOffScreen
     LDA.W EnemyProjectile_XPositions,X                                   ;86DBC2;
-    CMP.W Layer1XPosition                                                ;86DBC5;
+    CMP.B Layer1XPosition                                                ;86DBC5;
     BMI .returnOffScreen                                                 ;86DBC8;
-    LDA.W Layer1XPosition                                                ;86DBCA;
+    LDA.B Layer1XPosition                                                ;86DBCA;
     CLC                                                                  ;86DBCD;
     ADC.W #$0100                                                         ;86DBCE;
     CMP.W EnemyProjectile_XPositions,X                                   ;86DBD1;
     BMI .returnOffScreen                                                 ;86DBD4;
     LDA.W EnemyProjectile_YPositions,X                                   ;86DBD6;
-    CMP.W Layer1YPosition                                                ;86DBD9;
+    CMP.B Layer1YPosition                                                ;86DBD9;
     BMI .returnOffScreen                                                 ;86DBDC;
-    LDA.W Layer1YPosition                                                ;86DBDE;
+    LDA.B Layer1YPosition                                                ;86DBDE;
     CLC                                                                  ;86DBE1;
     ADC.W #$0100                                                         ;86DBE2;
     CMP.W EnemyProjectile_YPositions,X                                   ;86DBE5;
@@ -15011,9 +15011,9 @@ UNUSED_CheckIf_EnemyProj_isHorizontallyOffScreen_86DFA0:
 ;; Returns:
 ;;     A: 1 if off-screen, 0 otherwise
     LDA.W EnemyProjectile_XPositions,X                                   ;86DFA0;
-    CMP.W Layer1XPosition                                                ;86DFA3;
+    CMP.B Layer1XPosition                                                ;86DFA3;
     BMI .returnOffScreen                                                 ;86DFA6;
-    LDA.W Layer1XPosition                                                ;86DFA8;
+    LDA.B Layer1XPosition                                                ;86DFA8;
     CLC                                                                  ;86DFAB;
     ADC.W #$0100                                                         ;86DFAC;
     CMP.W EnemyProjectile_XPositions,X                                   ;86DFAF;
@@ -15209,17 +15209,17 @@ CheckIf_EnemyProjectile_IsOffScreen_duplicate_again3:
 
 ; Clone of CheckIf_EnemyProjectile_IsOffScreen
     LDA.W EnemyProjectile_XPositions,X                                   ;86E0B0;
-    CMP.W Layer1XPosition                                                ;86E0B3;
+    CMP.B Layer1XPosition                                                ;86E0B3;
     BMI .returnOffScreen                                                 ;86E0B6;
-    LDA.W Layer1XPosition                                                ;86E0B8;
+    LDA.B Layer1XPosition                                                ;86E0B8;
     CLC                                                                  ;86E0BB;
     ADC.W #$0100                                                         ;86E0BC;
     CMP.W EnemyProjectile_XPositions,X                                   ;86E0BF;
     BMI .returnOffScreen                                                 ;86E0C2;
     LDA.W EnemyProjectile_YPositions,X                                   ;86E0C4;
-    CMP.W Layer1YPosition                                                ;86E0C7;
+    CMP.B Layer1YPosition                                                ;86E0C7;
     BMI .returnOffScreen                                                 ;86E0CA;
-    LDA.W Layer1YPosition                                                ;86E0CC;
+    LDA.B Layer1YPosition                                                ;86E0CC;
     CLC                                                                  ;86E0CF;
     ADC.W #$0100                                                         ;86E0D0;
     CMP.W EnemyProjectile_YPositions,X                                   ;86E0D3;
@@ -15721,7 +15721,7 @@ InitAI_EnemyProj_MiscDustPLM:
     CLC                                                                  ;86E4D0;
     ADC.W PLM_MiscDust_XYOffsetTable_minY,X                              ;86E4D1;
     STA.B DP_Temp14                                                      ;86E4D4;
-    LDX.W PLM_Index                                                      ;86E4D6;
+    LDX.B PLM_Index                                                      ;86E4D6;
     JSL.L Calculate_PLM_Block_Coordinates                                ;86E4D9;
     LDA.W PLM_XBlock                                                     ;86E4DD;
     SEC                                                                  ;86E4E0;
@@ -15903,7 +15903,7 @@ InitAI_EnemyProjectile_ShotGate_Common:
 ;;     A: Y offset
 ;;     Y: Enemy projectile index
     STA.B DP_Temp12                                                      ;86E5DD;
-    LDX.W PLM_Index                                                      ;86E5DF;
+    LDX.B PLM_Index                                                      ;86E5DF;
     JSL.L Calculate_PLM_Block_Coordinates                                ;86E5E2;
     LDA.W PLM_BlockIndices,X                                             ;86E5E6;
     STA.W EnemyProjectile_Var0,Y                                         ;86E5E9;
@@ -16032,7 +16032,7 @@ InstList_EnemyProjectile_SaveStationElectricity_1:
 InitAI_EnemyProjectile_SaveStationElectricity:
 ;; Parameters:
 ;;     Y: Enemy projectile index
-    LDX.W PLM_Index                                                      ;86E6AD;
+    LDX.B PLM_Index                                                      ;86E6AD;
     JSL.L Calculate_PLM_Block_Coordinates                                ;86E6B0;
     LDA.W PLM_XBlock                                                     ;86E6B4;
     CLC                                                                  ;86E6B7;
@@ -16079,9 +16079,9 @@ CheckIf_EnemyProjectile_IsOffScreen_duplicate_again4:
     PHX                                                                  ;86E6E0;
     PHY                                                                  ;86E6E1;
     LDA.W EnemyProjectile_XPositions,X                                   ;86E6E2;
-    CMP.W Layer1XPosition                                                ;86E6E5;
+    CMP.B Layer1XPosition                                                ;86E6E5;
     BMI .returnOffScreen                                                 ;86E6E8;
-    LDA.W Layer1XPosition                                                ;86E6EA;
+    LDA.B Layer1XPosition                                                ;86E6EA;
     CLC                                                                  ;86E6ED;
     ADC.W #$0100                                                         ;86E6EE;
     STA.W Temp_ProjectilePositionOnScreen                                ;86E6F1;
@@ -16089,9 +16089,9 @@ CheckIf_EnemyProjectile_IsOffScreen_duplicate_again4:
     CMP.W Temp_ProjectilePositionOnScreen                                ;86E6F7;
     BPL .returnOffScreen                                                 ;86E6FA;
     LDA.W EnemyProjectile_YPositions,X                                   ;86E6FC;
-    CMP.W Layer1YPosition                                                ;86E6FF;
+    CMP.B Layer1YPosition                                                ;86E6FF;
     BMI .returnOffScreen                                                 ;86E702;
-    LDA.W Layer1YPosition                                                ;86E704;
+    LDA.B Layer1YPosition                                                ;86E704;
     CLC                                                                  ;86E707;
     ADC.W #$0100                                                         ;86E708;
     STA.W Temp_ProjectilePositionOnScreen                                ;86E70B;
@@ -16213,11 +16213,11 @@ PlaceAndAim_DraygonsWallTurretProjectile:
     STA.W EnemyProjectile_XPositions,Y                                   ;86E7AE;
     LDA.B DP_Temp14                                                      ;86E7B1;
     STA.W EnemyProjectile_YPositions,Y                                   ;86E7B3;
-    LDA.W SamusXPosition                                                 ;86E7B6;
+    LDA.B SamusXPosition                                                 ;86E7B6;
     SEC                                                                  ;86E7B9;
     SBC.W EnemyProjectile_XPositions,Y                                   ;86E7BA;
     STA.B DP_Temp12                                                      ;86E7BD;
-    LDA.W SamusYPosition                                                 ;86E7BF;
+    LDA.B SamusYPosition                                                 ;86E7BF;
     SEC                                                                  ;86E7C2;
     SBC.W EnemyProjectile_YPositions,Y                                   ;86E7C3;
     STA.B DP_Temp14                                                      ;86E7C6;
@@ -16902,17 +16902,17 @@ CheckIf_EnemyProjectile_IsOffScreen_duplicate_again5:
 
 ; Clone of CheckIf_EnemyProjectile_IsOffScreen
     LDA.W EnemyProjectile_XPositions,X                                   ;86EC18;
-    CMP.W Layer1XPosition                                                ;86EC1B;
+    CMP.B Layer1XPosition                                                ;86EC1B;
     BMI .returnOffScreen                                                 ;86EC1E;
-    LDA.W Layer1XPosition                                                ;86EC20;
+    LDA.B Layer1XPosition                                                ;86EC20;
     CLC                                                                  ;86EC23;
     ADC.W #$0100                                                         ;86EC24;
     CMP.W EnemyProjectile_XPositions,X                                   ;86EC27;
     BMI .returnOffScreen                                                 ;86EC2A;
     LDA.W EnemyProjectile_YPositions,X                                   ;86EC2C;
-    CMP.W Layer1YPosition                                                ;86EC2F;
+    CMP.B Layer1YPosition                                                ;86EC2F;
     BMI .returnOffScreen                                                 ;86EC32;
-    LDA.W Layer1YPosition                                                ;86EC34;
+    LDA.B Layer1YPosition                                                ;86EC34;
     CLC                                                                  ;86EC37;
     ADC.W #$0100                                                         ;86EC38;
     CMP.W EnemyProjectile_YPositions,X                                   ;86EC3B;
@@ -17532,7 +17532,7 @@ PreInstruction_EnemyProjectile_Pickup:
     LDA.W EnemyProjectile_Radii+1,X                                      ;86F04E;
     AND.W #$00FF                                                         ;86F051;
     STA.W Temp_ProjectileYRadius                                         ;86F054;
-    LDA.W SamusXPosition                                                 ;86F057;
+    LDA.B SamusXPosition                                                 ;86F057;
     SEC                                                                  ;86F05A;
     SBC.W EnemyProjectile_XPositions,X                                   ;86F05B;
     BPL +                                                                ;86F05E;
@@ -17545,7 +17545,7 @@ PreInstruction_EnemyProjectile_Pickup:
     CMP.W Temp_ProjectileXRadius                                         ;86F06A;
     BCS .return                                                          ;86F06D;
 
-+   LDA.W SamusYPosition                                                 ;86F06F;
++   LDA.B SamusYPosition                                                 ;86F06F;
     SEC                                                                  ;86F072;
     SBC.W EnemyProjectile_YPositions,X                                   ;86F073;
     BPL +                                                                ;86F076;

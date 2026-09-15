@@ -1752,11 +1752,11 @@ Function_Eye_Activating:
     JSL.L Spawn_MorphBallEyeBeam_HDMAObject                              ;A8913C;
     LDA.W #Function_Eye_Active                                           ;A89140;
     STA.W Eye.function,X                                                 ;A89143;
-    LDA.W SamusXPosition                                                 ;A89146;
+    LDA.B SamusXPosition                                                 ;A89146;
     SEC                                                                  ;A89149;
     SBC.W Enemy.XPosition,X                                              ;A8914A;
     STA.B DP_Temp12                                                      ;A8914D;
-    LDA.W SamusYPosition                                                 ;A8914F;
+    LDA.B SamusYPosition                                                 ;A8914F;
     SEC                                                                  ;A89152;
     SBC.W Enemy.YPosition,X                                              ;A89153;
     STA.B DP_Temp14                                                      ;A89156;
@@ -1800,11 +1800,11 @@ Function_Eye_Active:
     BRA .merge                                                           ;A891A0;
 
   .inProximity:
-    LDA.W SamusXPosition                                                 ;A891A2;
+    LDA.B SamusXPosition                                                 ;A891A2;
     SEC                                                                  ;A891A5;
     SBC.W Enemy.XPosition,X                                              ;A891A6;
     STA.B DP_Temp12                                                      ;A891A9;
-    LDA.W SamusYPosition                                                 ;A891AB;
+    LDA.B SamusYPosition                                                 ;A891AB;
     SEC                                                                  ;A891AE;
     SBC.W Enemy.YPosition,X                                              ;A891AF;
     STA.B DP_Temp14                                                      ;A891B2;
@@ -2840,13 +2840,13 @@ Function_Coven_Materialize_FadeFromWhite:
     STA.W Coven.functionTimer,X                                          ;A89BF3;
     LDA.W #$0004                                                         ;A89BF6;
     STA.L Coven.previousSamusXMovementDirection,X                        ;A89BF9;
-    LDA.W SamusXPosition                                                 ;A89BFD;
+    LDA.B SamusXPosition                                                 ;A89BFD;
     STA.L Coven.previousSamusXPosition,X                                 ;A89C00;
     STA.L Coven.zoneLeftPosition,X                                       ;A89C04;
     STA.L Coven.zoneRightPosition,X                                      ;A89C08;
     LDA.W #$000C                                                         ;A89C0C;
     STA.L Coven.previousSamusYMovementDirection,X                        ;A89C0F;
-    LDA.W SamusYPosition,X                                               ;A89C13;
+    LDA.B SamusYPosition,X                                               ;A89C13;
     STA.L Coven.previousSamusYPosition,X                                 ;A89C16;
     STA.L Coven.zoneTopPosition,X                                        ;A89C1A;
     STA.L Coven.zoneBottomPosition,X                                     ;A89C1E;
@@ -3017,12 +3017,12 @@ Function_Coven_Dematerialized_Awake:
 
 ; Materialise if Samus has moved at most 1px/frame for 40h frames (tracked by the "lock-on timer" and "zone" variables)
 ; or has moved more than 1px/frame in the same direction 10h times (tracked by the "directed movement timer" and "previous Samus" variables)
-    LDA.W SamusXPosition                                                 ;A89D36;
+    LDA.B SamusXPosition                                                 ;A89D36;
     CMP.L Coven.zoneLeftPosition,X                                       ;A89D39;
     BMI .breakLockOn                                                     ;A89D3D;
     CMP.L Coven.zoneRightPosition,X                                      ;A89D3F;
     BPL .breakLockOn                                                     ;A89D43;
-    LDA.W SamusYPosition,X                                               ;A89D45;
+    LDA.B SamusYPosition,X                                               ;A89D45;
     CMP.L Coven.zoneTopPosition,X                                        ;A89D48;
     BMI .breakLockOn                                                     ;A89D4C;
     CMP.L Coven.zoneBottomPosition,X                                     ;A89D4E;
@@ -3043,7 +3043,7 @@ Function_Coven_Dematerialized_Awake:
     LDA.W CovenConstants_SamusStationaryFramesThreshold                  ;A89D72;
     STA.L Coven.lockOnTimer,X                                            ;A89D75;
     LDY.W #$0000                                                         ;A89D79;
-    LDA.W SamusXPosition                                                 ;A89D7C;
+    LDA.B SamusXPosition                                                 ;A89D7C;
     SEC                                                                  ;A89D7F;
     SBC.L Coven.previousSamusXPosition,X                                 ;A89D80;
     BMI .checkXMovementDirection                                         ;A89D84;
@@ -3075,11 +3075,11 @@ Function_Coven_Dematerialized_Awake:
     CLC                                                                  ;A89DBD;
     ADC.L Coven.previousSamusYMovementDirection,X                        ;A89DBE;
     TAY                                                                  ;A89DC2;
-    LDA.W SamusXPosition,X                                               ;A89DC3;
+    LDA.B SamusXPosition,X                                               ;A89DC3;
     CLC                                                                  ;A89DC6;
     ADC.W CovenConstants_OffsetsFromSamusToMaterialize_X,Y               ;A89DC7;
     STA.W Enemy.XPosition,X                                              ;A89DCA;
-    LDA.W SamusYPosition,X                                               ;A89DCD;
+    LDA.B SamusYPosition,X                                               ;A89DCD;
     CLC                                                                  ;A89DD0;
     ADC.W CovenConstants_OffsetsFromSamusToMaterialize_Y,Y               ;A89DD1;
     STA.W Enemy.YPosition,X                                              ;A89DD4;
@@ -3087,7 +3087,7 @@ Function_Coven_Dematerialized_Awake:
 
   .checkYMovement:
     LDY.W #$0000                                                         ;A89DD8;
-    LDA.W SamusYPosition                                                 ;A89DDB;
+    LDA.B SamusYPosition                                                 ;A89DDB;
     SEC                                                                  ;A89DDE;
     SBC.L Coven.previousSamusYPosition,X                                 ;A89DDF;
     BMI .checkYMovementDirection                                         ;A89DE3;
@@ -3115,21 +3115,21 @@ Function_Coven_Dematerialized_Awake:
     BEQ .materialize                                                     ;A89E0D;
 
   .updateZone:
-    LDA.W SamusXPosition                                                 ;A89E0F;
+    LDA.B SamusXPosition                                                 ;A89E0F;
     STA.L Coven.previousSamusXPosition,X                                 ;A89E12;
     SEC                                                                  ;A89E16;
     SBC.W CovenStationaryZoneXRadius                                     ;A89E17;
     STA.L Coven.zoneLeftPosition,X                                       ;A89E1A;
-    LDA.W SamusXPosition                                                 ;A89E1E;
+    LDA.B SamusXPosition                                                 ;A89E1E;
     CLC                                                                  ;A89E21;
     ADC.W CovenStationaryZoneXRadius                                     ;A89E22;
     STA.L Coven.zoneRightPosition,X                                      ;A89E25;
-    LDA.W SamusYPosition                                                 ;A89E29;
+    LDA.B SamusYPosition                                                 ;A89E29;
     STA.L Coven.previousSamusYPosition,X                                 ;A89E2C;
     SEC                                                                  ;A89E30;
     SBC.W CovenStationaryZoneYRadius                                     ;A89E31;
     STA.L Coven.zoneTopPosition,X                                        ;A89E34;
-    LDA.W SamusYPosition                                                 ;A89E38;
+    LDA.B SamusYPosition                                                 ;A89E38;
     CLC                                                                  ;A89E3B;
     ADC.W CovenStationaryZoneYRadius                                     ;A89E3C;
     STA.L Coven.zoneBottomPosition,X                                     ;A89E3F;
@@ -3687,9 +3687,9 @@ Function_YappingMaw_Neutral:
     STA.W Temp_XPosition                                                 ;A8A23B;
     LDA.W Enemy.YPosition,X                                              ;A8A23E;
     STA.W Temp_YPosition                                                 ;A8A241;
-    LDA.W SamusXPosition                                                 ;A8A244;
+    LDA.B SamusXPosition                                                 ;A8A244;
     STA.W Temp_SamusXPosition                                            ;A8A247;
-    LDA.W SamusYPosition                                                 ;A8A24A;
+    LDA.B SamusYPosition                                                 ;A8A24A;
     STA.W Temp_SamusYPosition                                            ;A8A24D;
     JSL.L CalculateDistanceAndAngleOfSamusFromEnemy                      ;A8A250;
     JSL.L NegateA_A0B067                                                 ;A8A254;
@@ -4115,11 +4115,11 @@ MoveSamusWithYappingMawPincers:
     LDA.W Enemy.XPosition,X                                              ;A8A66F;
     CLC                                                                  ;A8A672;
     ADC.L YappingMaw.SamusXOffset,X                                      ;A8A673;
-    STA.W SamusXPosition                                                 ;A8A677;
+    STA.B SamusXPosition                                                 ;A8A677;
     LDA.W Enemy.YPosition,X                                              ;A8A67A;
     CLC                                                                  ;A8A67D;
     ADC.L YappingMaw.SamusYOffset,X                                      ;A8A67E;
-    STA.W SamusYPosition                                                 ;A8A682;
+    STA.B SamusYPosition                                                 ;A8A682;
     JSL.L CapScrollingSpeed                                              ;A8A685;
     RTS                                                                  ;A8A689;
 
@@ -5542,7 +5542,7 @@ Function_Magdollite_Slave1_AddPillarStacksToReachSamusHeight:
     LDA.W Enemy.YPosition,X                                              ;A8B23F;
     SEC                                                                  ;A8B242;
     SBC.W MagdolliteYOffsetAimingAtSamus,Y                               ;A8B243;
-    CMP.W SamusYPosition                                                 ;A8B246;
+    CMP.B SamusYPosition                                                 ;A8B246;
     BMI .doneGrowing                                                     ;A8B249;
     LDA.W Magdollite.negativeArmHeight,X                                 ;A8B24B;
     EOR.W #$FFFF                                                         ;A8B24E;
@@ -6928,9 +6928,9 @@ Function_Beetom_DrainingSamus_FacingLeft:
     BRA .return                                                          ;A8BD2C;
 
   .attached:
-    LDA.W SamusXPosition                                                 ;A8BD2E;
+    LDA.B SamusXPosition                                                 ;A8BD2E;
     STA.W Enemy.XPosition,X                                              ;A8BD31;
-    LDA.W SamusYPosition                                                 ;A8BD34;
+    LDA.B SamusYPosition                                                 ;A8BD34;
     SEC                                                                  ;A8BD37;
     SBC.W #$0004                                                         ;A8BD38;
     STA.W Enemy.YPosition,X                                              ;A8BD3B;
@@ -6965,9 +6965,9 @@ Function_Beetom_DrainingSamus_FacingRight:
     BRA .return                                                          ;A8BD76;
 
   .attached:
-    LDA.W SamusXPosition                                                 ;A8BD78;
+    LDA.B SamusXPosition                                                 ;A8BD78;
     STA.W Enemy.XPosition,X                                              ;A8BD7B;
-    LDA.W SamusYPosition                                                 ;A8BD7E;
+    LDA.B SamusYPosition                                                 ;A8BD7E;
     SEC                                                                  ;A8BD81;
     SBC.W #$0004                                                         ;A8BD82;
     STA.W Enemy.YPosition,X                                              ;A8BD85;
@@ -7094,11 +7094,11 @@ EnemyTouch_Beetom:
     STA.W Beetom.buttonCounter,X                                         ;A8BE55;
     LDA.W #$0002                                                         ;A8BE58;
     STA.W Enemy.layer,X                                                  ;A8BE5B;
-    LDA.W SamusXPosition                                                 ;A8BE5E;
+    LDA.B SamusXPosition                                                 ;A8BE5E;
     SEC                                                                  ;A8BE61;
     SBC.W Enemy.XPosition,X                                              ;A8BE62;
     STA.L ExtraEnemy7800+$C,X                                            ;A8BE65;
-    LDA.W SamusYPosition                                                 ;A8BE69;
+    LDA.B SamusYPosition                                                 ;A8BE69;
     SEC                                                                  ;A8BE6C;
     SBC.W Enemy.YPosition,X                                              ;A8BE6D;
     STA.L ExtraEnemy7800+$E,X                                            ;A8BE70;
@@ -9202,14 +9202,14 @@ Instruction_Robot_PlaySFXIfOnScreen:
     PHX                                                                  ;A8D091;
     PHY                                                                  ;A8D092;
     LDX.B EnemyIndex                                                     ;A8D093;
-    LDA.W Layer1XPosition                                                ;A8D096;
+    LDA.B Layer1XPosition                                                ;A8D096;
     CMP.W Enemy.XPosition,X                                              ;A8D099;
     BPL .return                                                          ;A8D09C;
     CLC                                                                  ;A8D09E;
     ADC.W #$0100                                                         ;A8D09F;
     CMP.W Enemy.XPosition,X                                              ;A8D0A2;
     BMI .return                                                          ;A8D0A5;
-    LDA.W Layer1YPosition                                                ;A8D0A7;
+    LDA.B Layer1YPosition                                                ;A8D0A7;
     CMP.W Enemy.YPosition,X                                              ;A8D0AA;
     BPL .return                                                          ;A8D0AD;
     CLC                                                                  ;A8D0AF;
@@ -9357,7 +9357,7 @@ Instruction_Robot_DecrementLaserCooldown:
 EnemyTouch_Robot:
     LDX.B EnemyIndex                                                     ;A8D174;
     LDA.W Enemy.XPosition,X                                              ;A8D177;
-    CMP.W SamusXPosition                                                 ;A8D17A;
+    CMP.B SamusXPosition                                                 ;A8D17A;
     BMI .rightOfSamus                                                    ;A8D17D;
     LDA.W #$FFFC                                                         ;A8D17F;
     STA.W ExtraSamusXDisplacement                                        ;A8D182;
@@ -9391,7 +9391,7 @@ EnemyShot_Robot:
     BEQ .return                                                          ;A8D1AF;
     LDA.W Robot.laserXVelocity,X                                         ;A8D1B1;
     BMI .facingLeft                                                      ;A8D1B4;
-    LDA.W SamusXPosition                                                 ;A8D1B6;
+    LDA.B SamusXPosition                                                 ;A8D1B6;
     CMP.W Enemy.XPosition,X                                              ;A8D1B9;
     BMI .facingRight_behind                                              ;A8D1BC;
     LDA.W #InstList_Robot_FacingRight_Shot_SamusIsAhead                  ;A8D1BE;
@@ -9407,7 +9407,7 @@ EnemyShot_Robot:
     RTL                                                                  ;A8D1CA;
 
   .facingLeft:
-    LDA.W SamusXPosition                                                 ;A8D1CB;
+    LDA.B SamusXPosition                                                 ;A8D1CB;
     CMP.W Enemy.XPosition,X                                              ;A8D1CE;
     BPL .facingLeft_behind                                               ;A8D1D1;
     LDA.W #InstList_Robot_FacingLeft_Shot_SamusIsAhead                   ;A8D1D3;
@@ -10257,7 +10257,7 @@ EnemyShot_Bull:
     STZ.W Enemy.loopCounter,X                                            ;A8DB38;
     LDA.W #InstList_Bull_Shot_0                                          ;A8DB3B;
     STA.W Enemy.instList,X                                               ;A8DB3E;
-    LDA.W CollisionIndex                                                 ;A8DB41;
+    LDA.B CollisionIndex                                                 ;A8DB41;
     ASL                                                                  ;A8DB44;
     TAY                                                                  ;A8DB45;
     LDA.W SamusProjectile_Directions,Y                                   ;A8DB46;
@@ -10525,7 +10525,7 @@ MainAI_Alcoon:
 Function_Alcoon_WaitForSamusToGetNear:
     LDA.L Alcoon.landingYPosition,X                                      ;A8DD71;
     SEC                                                                  ;A8DD75;
-    SBC.W SamusYPosition                                                 ;A8DD76;
+    SBC.B SamusYPosition                                                 ;A8DD76;
     BPL .SamusBelowSpawn                                                 ;A8DD79;
     EOR.W #$FFFF                                                         ;A8DD7B;
     INC                                                                  ;A8DD7E;
@@ -10533,7 +10533,7 @@ Function_Alcoon_WaitForSamusToGetNear:
   .SamusBelowSpawn:
     CMP.W #$0020                                                         ;A8DD7F;
     BPL .return                                                          ;A8DD82;
-    LDA.W SamusXPosition                                                 ;A8DD84;
+    LDA.B SamusXPosition                                                 ;A8DD84;
     SEC                                                                  ;A8DD87;
     SBC.W Enemy.XPosition,X                                              ;A8DD88;
     PHP                                                                  ;A8DD8B;
@@ -10618,7 +10618,7 @@ Function_Alcoon_Emerging_Falling:
     RTL                                                                  ;A8DE18;
 
   .collidedWithBlock:
-    LDA.W SamusXPosition                                                 ;A8DE19;
+    LDA.B SamusXPosition                                                 ;A8DE19;
     SEC                                                                  ;A8DE1C;
     SBC.W Enemy.XPosition,X                                              ;A8DE1D;
     PHP                                                                  ;A8DE20;
@@ -10657,7 +10657,7 @@ Function_Alcoon_MoveHorizontally_SpitFireballsAtSamus:
 
 +   CMP.W AlcoonConstants_XThresholdToHide                               ;A8DE64;
     BPL .farAway                                                         ;A8DE67;
-    LDA.W SamusXPosition                                                 ;A8DE69;
+    LDA.B SamusXPosition                                                 ;A8DE69;
     SEC                                                                  ;A8DE6C;
     SBC.W Enemy.XPosition,X                                              ;A8DE6D;
     PHP                                                                  ;A8DE70;
@@ -11587,7 +11587,7 @@ RTL_A8E70D:
 ;;; $E70E: Enemy shot - enemy $EA3F (Wrecked Ship spark) ;;;
 EnemyShot_Spark:
     PHX                                                                  ;A8E70E;
-    LDA.W CollisionIndex                                                 ;A8E70F;
+    LDA.B CollisionIndex                                                 ;A8E70F;
     ASL                                                                  ;A8E712;
     TAX                                                                  ;A8E713;
     LDA.W SamusProjectile_Directions,X                                   ;A8E714;
@@ -11822,7 +11822,7 @@ RTL_A8E91C:
 ;;; $E91D: Enemy shot - enemy $EA7F (blue Brinstar face block) ;;;
 EnemyShot_FaceBlock:
 ; Undeletes the collided projectile!
-    LDA.W CollisionIndex                                                 ;A8E91D;
+    LDA.B CollisionIndex                                                 ;A8E91D;
     ASL                                                                  ;A8E920;
     TAX                                                                  ;A8E921;
     LDA.W SamusProjectile_Directions,X                                   ;A8E922;
@@ -12648,7 +12648,7 @@ Function_Kihunter_Winged_IdleFlying:
 
   .noCollision:
     JSL.L AlignEnemyYPositionWIthNonSquareSlope                          ;A8F2DA;
-    LDA.W SamusXPosition                                                 ;A8F2DE;
+    LDA.B SamusXPosition                                                 ;A8F2DE;
     SEC                                                                  ;A8F2E1;
     SBC.W Enemy.XPosition,X                                              ;A8F2E2;
     STA.B DP_Temp12                                                      ;A8F2E5;
@@ -12661,7 +12661,7 @@ Function_Kihunter_Winged_IdleFlying:
     BMI +                                                                ;A8F2F2;
     RTL                                                                  ;A8F2F4;
 
-+   LDA.W SamusYPosition                                                 ;A8F2F5;
++   LDA.B SamusYPosition                                                 ;A8F2F5;
     SEC                                                                  ;A8F2F8;
     SBC.W Enemy.YPosition,X                                              ;A8F2F9;
     CMP.W #$0020                                                         ;A8F2FC;
@@ -12958,7 +12958,7 @@ Function_Kihunter_Wingless_PrepareToHop:
     ADC.W #$FFF8                                                         ;A8F59F;
     STA.L Kihunter.YVelocity,X                                           ;A8F5A2;
     LDA.W Enemy.XPosition,X                                              ;A8F5A6;
-    CMP.W SamusXPosition                                                 ;A8F5A9;
+    CMP.B SamusXPosition                                                 ;A8F5A9;
     BPL .rightOfSamus                                                    ;A8F5AC;
     LDA.W #$0000                                                         ;A8F5AE;
     STA.L Kihunter.XSubVelocity,X                                        ;A8F5B1;
@@ -13075,7 +13075,7 @@ Function_Kihunter_Wingless_Thinking:
     LDY.W #Function_Kihunter_Wingless_PrepareToHop                       ;A8F696;
     LDA.W Enemy.XPosition,X                                              ;A8F699;
     SEC                                                                  ;A8F69C;
-    SBC.W SamusXPosition                                                 ;A8F69D;
+    SBC.B SamusXPosition                                                 ;A8F69D;
     BPL +                                                                ;A8F6A0;
     EOR.W #$FFFF                                                         ;A8F6A2;
     INC                                                                  ;A8F6A5;
@@ -13096,7 +13096,7 @@ Function_Kihunter_Wingless_Thinking:
 Function_Kihunter_Wingless_FireAcidSpit:
     LDY.W #InstList_Kihunter_AcidSpitAttack_FacingLeft                   ;A8F6B3;
     LDA.W Enemy.XPosition,X                                              ;A8F6B6;
-    CMP.W SamusXPosition                                                 ;A8F6B9;
+    CMP.B SamusXPosition                                                 ;A8F6B9;
     BPL .keepLeft                                                        ;A8F6BC;
     LDY.W #InstList_Kihunter_AcidSpitAttack_FacingRight                  ;A8F6BE;
 

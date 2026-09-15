@@ -831,14 +831,14 @@ CalculateDraygonSwoopYPositions:
 +   LDA.L DraygonBody.leftSideResetXPosition                             ;A58869;
     BMI .leftSideReset                                                   ;A5886D;
     SEC                                                                  ;A5886F;
-    SBC.W SamusXPosition                                                 ;A58870;
+    SBC.B SamusXPosition                                                 ;A58870;
     JSL.L NegateA_A0B067                                                 ;A58873;
     BRA +                                                                ;A58877;
 
   .leftSideReset:
     JSL.L NegateA_A0B067                                                 ;A58879;
     CLC                                                                  ;A5887D;
-    ADC.W SamusXPosition                                                 ;A5887E;
+    ADC.B SamusXPosition                                                 ;A5887E;
     JSL.L NegateA_A0B067                                                 ;A58881;
 
 +   STA.B DP_Temp2C                                                      ;A58885;
@@ -997,7 +997,7 @@ Function_DraygonBody_SwoopLeft_Setup:
     JSR.W HandleFiringWallTurret                                         ;A589B3;
     LDA.L DraygonBody.rightSideResetXPosition                            ;A589B9;
     SEC                                                                  ;A589BD;
-    SBC.W SamusXPosition                                                 ;A589BE;
+    SBC.B SamusXPosition                                                 ;A589BE;
     JSL.L NegateA_A0B067                                                 ;A589C1;
     STA.B DP_Temp2C                                                      ;A589C5;
     STZ.B DP_Temp2A                                                      ;A589C7;
@@ -1181,7 +1181,7 @@ Function_DraygonBody_GoopRight_MoveUntilSamusInRange:
     JSR.W HandleShortDraygonBreathBubbles                                ;A58B55;
     LDA.W Enemy.XPosition                                                ;A58B58;
     SEC                                                                  ;A58B5B;
-    SBC.W SamusXPosition                                                 ;A58B5C;
+    SBC.B SamusXPosition                                                 ;A58B5C;
     JSL.L NegateA_A0B067                                                 ;A58B5F;
     CMP.W #$00D0                                                         ;A58B63;
     BPL .tooFar                                                          ;A58B66;
@@ -1351,7 +1351,7 @@ Function_DraygonBody_GoopLeft_MoveUntilSamusInRange:
     JSR.W HandleShortDraygonBreathBubbles                                ;A58CD7;
     LDA.W Enemy.XPosition                                                ;A58CDA;
     SEC                                                                  ;A58CDD;
-    SBC.W SamusXPosition                                                 ;A58CDE;
+    SBC.B SamusXPosition                                                 ;A58CDE;
     JSL.L NegateA_A0B067                                                 ;A58CE1;
     CMP.W #$00D0                                                         ;A58CE5;
     BPL .tooFar                                                          ;A58CE8;
@@ -1517,24 +1517,24 @@ Function_DraygonBody_ChaseSamus:
     CLC                                                                  ;A58E3E;
     ADC.W Enemy.XPosition                                                ;A58E3F;
     SEC                                                                  ;A58E42;
-    SBC.W SamusXPosition                                                 ;A58E43;
+    SBC.B SamusXPosition                                                 ;A58E43;
     JSL.L NegateA_A0B067                                                 ;A58E46;
     CMP.W #$0008                                                         ;A58E4A;
     BPL .notGrabbed                                                      ;A58E4D;
     LDA.W Enemy.YPosition                                                ;A58E4F;
     SEC                                                                  ;A58E52;
-    SBC.W SamusYPosition                                                 ;A58E53;
+    SBC.B SamusYPosition                                                 ;A58E53;
     JSL.L NegateA_A0B067                                                 ;A58E56;
     CMP.W #$0008                                                         ;A58E5A;
     BPL .notGrabbed                                                      ;A58E5D;
     BRA .grab                                                            ;A58E5F;
 
   .notGrabbed:
-    LDA.W SamusXPosition                                                 ;A58E61;
+    LDA.B SamusXPosition                                                 ;A58E61;
     SEC                                                                  ;A58E64;
     SBC.W Enemy.XPosition                                                ;A58E65;
     STA.B DP_Temp12                                                      ;A58E68;
-    LDA.W SamusYPosition                                                 ;A58E6A;
+    LDA.B SamusYPosition                                                 ;A58E6A;
     SEC                                                                  ;A58E6D;
     SBC.W Enemy.YPosition                                                ;A58E6E;
     STA.B DP_Temp14                                                      ;A58E71;
@@ -2127,7 +2127,7 @@ HandleShortDraygonBreathBubbles:
 
 ;;; $9342: Enemy graphics drawn hook - Draygon - set BG2 X/Y scroll ;;;
 EnemyGraphicsDrawnHook_Draygon_SetBG2XYScroll:
-    LDA.W Layer1XPosition                                                ;A59342;
+    LDA.B Layer1XPosition                                                ;A59342;
     SEC                                                                  ;A59345;
     SBC.W Enemy.XPosition                                                ;A59346;
     SEC                                                                  ;A59349;
@@ -2135,7 +2135,7 @@ EnemyGraphicsDrawnHook_Draygon_SetBG2XYScroll:
     CLC                                                                  ;A5934D;
     ADC.L DraygonBody.bodyGraphicsXDisplacement                          ;A5934E;
     STA.B DP_BG2XScroll                                                  ;A59352;
-    LDA.W Layer1YPosition                                                ;A59354;
+    LDA.B Layer1YPosition                                                ;A59354;
     SEC                                                                  ;A59357;
     SBC.W Enemy.YPosition                                                ;A59358;
     SEC                                                                  ;A5935B;
@@ -2322,11 +2322,11 @@ MoveSamusWithDraygon:
     TYA                                                                  ;A594B5;
     CLC                                                                  ;A594B6;
     ADC.W Enemy.XPosition                                                ;A594B7;
-    STA.W SamusXPosition                                                 ;A594BA;
+    STA.B SamusXPosition                                                 ;A594BA;
     LDA.W Enemy.YPosition                                                ;A594BD;
     CLC                                                                  ;A594C0;
     ADC.W #$0028                                                         ;A594C1;
-    STA.W SamusYPosition                                                 ;A594C4;
+    STA.B SamusYPosition                                                 ;A594C4;
     JSL.L CapScrollingSpeed                                              ;A594C7;
     LDA.W GrappleConnectedFlags                                          ;A594CB;
     BIT.W #$0002                                                         ;A594CE;
@@ -3147,9 +3147,9 @@ Instruction_DraygonTail_TailWhipHit:
     STA.W EarthquakeTimer                                                ;A59BB5;
     LDA.W #$0007                                                         ;A59BB8;
     STA.W EarthquakeType                                                 ;A59BBB;
-    LDA.W SamusXPosition                                                 ;A59BBE;
+    LDA.B SamusXPosition                                                 ;A59BBE;
     STA.B DP_Temp12                                                      ;A59BC1;
-    LDA.W SamusYPosition                                                 ;A59BC3;
+    LDA.B SamusYPosition                                                 ;A59BC3;
     CLC                                                                  ;A59BC6;
     ADC.W #$0010                                                         ;A59BC7;
     STA.B DP_Temp14                                                      ;A59BCA;
@@ -6447,7 +6447,7 @@ Function_DraygonEye_FacingLeft:
     SEC                                                                  ;A5C4B7;
     SBC.W #$0018                                                         ;A5C4B8;
     STA.B DP_Temp12                                                      ;A5C4BB;
-    LDA.W SamusXPosition                                                 ;A5C4BD;
+    LDA.B SamusXPosition                                                 ;A5C4BD;
     SEC                                                                  ;A5C4C0;
     SBC.B DP_Temp12                                                      ;A5C4C1;
     STA.B DP_Temp12                                                      ;A5C4C3;
@@ -6455,7 +6455,7 @@ Function_DraygonEye_FacingLeft:
     SEC                                                                  ;A5C4C8;
     SBC.W #$0020                                                         ;A5C4C9;
     STA.B DP_Temp14                                                      ;A5C4CC;
-    LDA.W SamusYPosition                                                 ;A5C4CE;
+    LDA.B SamusYPosition                                                 ;A5C4CE;
     SEC                                                                  ;A5C4D1;
     SBC.B DP_Temp14                                                      ;A5C4D2;
     STA.B DP_Temp14                                                      ;A5C4D4;
@@ -6511,7 +6511,7 @@ Function_DraygonEye_FacingRight:
     CLC                                                                  ;A5C53D;
     ADC.W #$0018                                                         ;A5C53E;
     STA.B DP_Temp12                                                      ;A5C541;
-    LDA.W SamusXPosition                                                 ;A5C543;
+    LDA.B SamusXPosition                                                 ;A5C543;
     SEC                                                                  ;A5C546;
     SBC.B DP_Temp12                                                      ;A5C547;
     STA.B DP_Temp12                                                      ;A5C549;
@@ -6519,7 +6519,7 @@ Function_DraygonEye_FacingRight:
     SEC                                                                  ;A5C54E;
     SBC.W #$0020                                                         ;A5C54F;
     STA.B DP_Temp14                                                      ;A5C552;
-    LDA.W SamusYPosition                                                 ;A5C554;
+    LDA.B SamusYPosition                                                 ;A5C554;
     SEC                                                                  ;A5C557;
     SBC.B DP_Temp14                                                      ;A5C558;
     STA.B DP_Temp14                                                      ;A5C55A;
@@ -8110,7 +8110,7 @@ UpdateSporeSpawnStalkSegmentPositions:
 
 ;;; $ED5A: Enemy shot - Spore Spawn - vulnerable ;;;
 EnemyShot_SporeSpawn_Vulnerable:
-    LDA.W CollisionIndex                                                 ;A5ED5A;
+    LDA.B CollisionIndex                                                 ;A5ED5A;
     ASL                                                                  ;A5ED5D;
     TAX                                                                  ;A5ED5E;
     LDA.W SamusProjectile_Types,X                                        ;A5ED5F;

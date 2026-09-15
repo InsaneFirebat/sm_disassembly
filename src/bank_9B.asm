@@ -580,11 +580,11 @@ SetProjectileTrailPosition:
     PHA                                                                  ;9BA3E1;
     LDA.B DP_Temp14                                                      ;9BA3E2;
     CLC                                                                  ;9BA3E4;
-    ADC.W Layer1XPosition                                                ;9BA3E5;
+    ADC.B Layer1XPosition                                                ;9BA3E5;
     STA.B DP_Temp12                                                      ;9BA3E8;
     PLA                                                                  ;9BA3EA;
     CLC                                                                  ;9BA3EB;
-    ADC.W Layer1YPosition                                                ;9BA3EC;
+    ADC.B Layer1YPosition                                                ;9BA3EC;
     STA.B DP_Temp14                                                      ;9BA3EF;
     BRA +                                                                ;9BA3F1;
 
@@ -1390,14 +1390,14 @@ SetSamusDeathSequencePose:
     STZ.W NewPoseSamusAnimationFrame                                     ;9BB402;
     PLA                                                                  ;9BB405;
     STA.W SamusAnimationFrame                                            ;9BB406;
-    LDA.W SamusXPosition                                                 ;9BB409;
+    LDA.B SamusXPosition                                                 ;9BB409;
     SEC                                                                  ;9BB40C;
-    SBC.W Layer1XPosition                                                ;9BB40D;
-    STA.W SamusXPosition                                                 ;9BB410;
-    LDA.W SamusYPosition                                                 ;9BB413;
+    SBC.B Layer1XPosition                                                ;9BB40D;
+    STA.B SamusXPosition                                                 ;9BB410;
+    LDA.B SamusYPosition                                                 ;9BB413;
     SEC                                                                  ;9BB416;
-    SBC.W Layer1YPosition                                                ;9BB417;
-    STA.W SamusYPosition                                                 ;9BB41A;
+    SBC.B Layer1YPosition                                                ;9BB417;
+    STA.B SamusYPosition                                                 ;9BB41A;
     PLB                                                                  ;9BB41D;
     PLP                                                                  ;9BB41E;
     RTL                                                                  ;9BB41F;
@@ -2305,11 +2305,11 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 HandleConnectingGrapple_Swinging:
     LDA.W #$0009                                                         ;9BBA61;
     STA.W SpecialProspectivePoseChangeCommand                            ;9BBA64;
-    LDA.W SamusXPosition                                                 ;9BBA67;
+    LDA.B SamusXPosition                                                 ;9BBA67;
     SEC                                                                  ;9BBA6A;
     SBC.W GrappleBeam_EndXPosition                                       ;9BBA6B;
     STA.B DP_Temp12                                                      ;9BBA6E;
-    LDA.W SamusYPosition                                                 ;9BBA70;
+    LDA.B SamusYPosition                                                 ;9BBA70;
     SEC                                                                  ;9BBA73;
     SBC.W GrappleBeam_EndYPosition                                       ;9BBA74;
     STA.B DP_Temp14                                                      ;9BBA77;
@@ -2334,11 +2334,11 @@ HandleConnectingGrapple_Swinging:
 HandleConnectingGrapple_StuckInPlace:
     LDA.W #$000A                                                         ;9BBA9B;
     STA.W SpecialProspectivePoseChangeCommand                            ;9BBA9E;
-    LDA.W SamusXPosition                                                 ;9BBAA1;
+    LDA.B SamusXPosition                                                 ;9BBAA1;
     SEC                                                                  ;9BBAA4;
     SBC.W GrappleBeam_EndXPosition                                       ;9BBAA5;
     STA.B DP_Temp12                                                      ;9BBAA8;
-    LDA.W SamusYPosition                                                 ;9BBAAA;
+    LDA.B SamusYPosition                                                 ;9BBAAA;
     SEC                                                                  ;9BBAAD;
     SBC.W GrappleBeam_EndYPosition                                       ;9BBAAE;
     STA.B DP_Temp14                                                      ;9BBAB1;
@@ -2393,22 +2393,22 @@ HandleSpecialGrappleBeamAngles:
     LDA.W GrappleBeamSpecialAngles_XOffset,X                             ;9BBAF0;
     CLC                                                                  ;9BBAF3;
     ADC.W GrappleBeam_EndXPosition                                       ;9BBAF4;
-    STA.W SamusXPosition                                                 ;9BBAF7;
+    STA.B SamusXPosition                                                 ;9BBAF7;
     LDA.W GrappleBeamSpecialAngles_YOffset,X                             ;9BBAFA;
     CLC                                                                  ;9BBAFD;
     ADC.W GrappleBeam_EndYPosition                                       ;9BBAFE;
-    STA.W SamusYPosition                                                 ;9BBB01;
+    STA.B SamusYPosition                                                 ;9BBB01;
     LDA.W GrappleBeamSpecialAngles_grappleFunction,X                     ;9BBB04;
     STA.W GrappleBeam_Function                                           ;9BBB07;
     STZ.W SpecialProspectivePoseChangeCommand                            ;9BBB0A;
     STZ.W GrappleBeam_SlowScrollingFlag                                  ;9BBB0D;
-    LDA.W SamusXPosition                                                 ;9BBB10;
+    LDA.B SamusXPosition                                                 ;9BBB10;
     SEC                                                                  ;9BBB13;
     SBC.W SamusPreviousXPosition                                         ;9BBB14;
     BMI .checkNegativeX                                                  ;9BBB17;
     CMP.W #$000D                                                         ;9BBB19;
     BMI +                                                                ;9BBB1C;
-    LDA.W SamusXPosition                                                 ;9BBB1E;
+    LDA.B SamusXPosition                                                 ;9BBB1E;
     SEC                                                                  ;9BBB21;
     SBC.W #$000C                                                         ;9BBB22;
     STA.W SamusPreviousXPosition                                         ;9BBB25;
@@ -2417,18 +2417,18 @@ HandleSpecialGrappleBeamAngles:
   .checkNegativeX:
     CMP.W #$FFF4                                                         ;9BBB2A;
     BPL +                                                                ;9BBB2D;
-    LDA.W SamusXPosition                                                 ;9BBB2F;
+    LDA.B SamusXPosition                                                 ;9BBB2F;
     CLC                                                                  ;9BBB32;
     ADC.W #$000C                                                         ;9BBB33;
     STA.W SamusPreviousXPosition                                         ;9BBB36;
 
-+   LDA.W SamusYPosition                                                 ;9BBB39;
++   LDA.B SamusYPosition                                                 ;9BBB39;
     SEC                                                                  ;9BBB3C;
     SBC.W SamusPreviousYPosition                                         ;9BBB3D;
     BMI .checkNegativeY                                                  ;9BBB40;
     CMP.W #$000D                                                         ;9BBB42;
     BMI .returnCarrySet                                                  ;9BBB45;
-    LDA.W SamusYPosition                                                 ;9BBB47;
+    LDA.B SamusYPosition                                                 ;9BBB47;
     SEC                                                                  ;9BBB4A;
     SBC.W #$000C                                                         ;9BBB4B;
     STA.W SamusPreviousYPosition                                         ;9BBB4E;
@@ -2437,7 +2437,7 @@ HandleSpecialGrappleBeamAngles:
   .checkNegativeY:
     CMP.W #$FFF4                                                         ;9BBB53;
     BPL .returnCarrySet                                                  ;9BBB56;
-    LDA.W SamusYPosition                                                 ;9BBB58;
+    LDA.B SamusYPosition                                                 ;9BBB58;
     CLC                                                                  ;9BBB5B;
     ADC.W #$000C                                                         ;9BBB5C;
     STA.W SamusPreviousYPosition                                         ;9BBB5F;
@@ -2849,7 +2849,7 @@ SetSamusAnimationFrameAndPositionDuringGrappleSwinging:
 
 +   CLC                                                                  ;9BBE34;
     ADC.W GrappleBeam_StartXPosition                                     ;9BBE35;
-    STA.W SamusXPosition                                                 ;9BBE38;
+    STA.B SamusXPosition                                                 ;9BBE38;
     LDA.W GrappleSwingSamusXYOffsets_Right,X                             ;9BBE3B;
     AND.W #$FF00                                                         ;9BBE3E;
     XBA                                                                  ;9BBE41;
@@ -2858,7 +2858,7 @@ SetSamusAnimationFrameAndPositionDuringGrappleSwinging:
 
 +   CLC                                                                  ;9BBE47;
     ADC.W GrappleBeam_StartYPosition                                     ;9BBE48;
-    STA.W SamusYPosition                                                 ;9BBE4B;
+    STA.B SamusYPosition                                                 ;9BBE4B;
     LDA.W GrappleBeam_StartXPosition                                     ;9BBE4E;
     STA.W GrappleBeam_FlareXPosition                                     ;9BBE51;
     LDA.W GrappleBeam_StartYPosition                                     ;9BBE54;
@@ -2877,7 +2877,7 @@ SetSamusAnimationFrameAndPositionDuringGrappleSwinging:
 
 +   CLC                                                                  ;9BBE6C;
     ADC.W GrappleBeam_StartXPosition                                     ;9BBE6D;
-    STA.W SamusXPosition                                                 ;9BBE70;
+    STA.B SamusXPosition                                                 ;9BBE70;
     LDA.W GrappleSwingSamusXYOffsets_Left,X                              ;9BBE73;
     AND.W #$FF00                                                         ;9BBE76;
     XBA                                                                  ;9BBE79;
@@ -2886,7 +2886,7 @@ SetSamusAnimationFrameAndPositionDuringGrappleSwinging:
 
 +   CLC                                                                  ;9BBE7F;
     ADC.W GrappleBeam_StartYPosition                                     ;9BBE80;
-    STA.W SamusYPosition                                                 ;9BBE83;
+    STA.B SamusYPosition                                                 ;9BBE83;
     LDA.W GrappleBeam_StartXPosition                                     ;9BBE86;
     STA.W GrappleBeam_FlareXPosition                                     ;9BBE89;
     LDA.W GrappleBeam_StartYPosition                                     ;9BBE8C;
@@ -2899,13 +2899,13 @@ SetSamusAnimationFrameAndPositionDuringGrappleSwinging:
 
 ;;; $BE98: Clamp scrolling speed ;;;
 ClampScrollingSpeed:
-    LDA.W SamusXPosition                                                 ;9BBE98;
+    LDA.B SamusXPosition                                                 ;9BBE98;
     SEC                                                                  ;9BBE9B;
     SBC.W SamusPreviousXPosition                                         ;9BBE9C;
     BMI +                                                                ;9BBE9F;
     CMP.W #$000D                                                         ;9BBEA1;
     BMI .previousY                                                       ;9BBEA4;
-    LDA.W SamusXPosition                                                 ;9BBEA6;
+    LDA.B SamusXPosition                                                 ;9BBEA6;
     SEC                                                                  ;9BBEA9;
     SBC.W #$000C                                                         ;9BBEAA;
     STA.W SamusPreviousXPosition                                         ;9BBEAD;
@@ -2913,19 +2913,19 @@ ClampScrollingSpeed:
 
 +   CMP.W #$FFF4                                                         ;9BBEB2;
     BPL .previousY                                                       ;9BBEB5;
-    LDA.W SamusXPosition                                                 ;9BBEB7;
+    LDA.B SamusXPosition                                                 ;9BBEB7;
     CLC                                                                  ;9BBEBA;
     ADC.W #$000C                                                         ;9BBEBB;
     STA.W SamusPreviousXPosition                                         ;9BBEBE;
 
   .previousY:
-    LDA.W SamusYPosition                                                 ;9BBEC1;
+    LDA.B SamusYPosition                                                 ;9BBEC1;
     SEC                                                                  ;9BBEC4;
     SBC.W SamusPreviousYPosition                                         ;9BBEC5;
     BMI +                                                                ;9BBEC8;
     CMP.W #$000D                                                         ;9BBECA;
     BMI .return                                                          ;9BBECD;
-    LDA.W SamusYPosition                                                 ;9BBECF;
+    LDA.B SamusYPosition                                                 ;9BBECF;
     SEC                                                                  ;9BBED2;
     SBC.W #$000C                                                         ;9BBED3;
     STA.W SamusPreviousYPosition                                         ;9BBED6;
@@ -2933,7 +2933,7 @@ ClampScrollingSpeed:
 
 +   CMP.W #$FFF4                                                         ;9BBEDB;
     BPL .return                                                          ;9BBEDE;
-    LDA.W SamusYPosition                                                 ;9BBEE0;
+    LDA.B SamusYPosition                                                 ;9BBEE0;
     CLC                                                                  ;9BBEE3;
     ADC.W #$000C                                                         ;9BBEE4;
     STA.W SamusPreviousYPosition                                         ;9BBEE7;
@@ -2955,14 +2955,14 @@ SetSamusAnimationFrameAndPositionForConnectingGrapple_Stuck:
     LDA.W GrappleBeam_StartXPosition                                     ;9BBEF6;
     SEC                                                                  ;9BBEF9;
     SBC.W GrappleBeamFireOffsets_NotRunning_OriginX,X                    ;9BBEFA;
-    STA.W SamusXPosition                                                 ;9BBEFD;
+    STA.B SamusXPosition                                                 ;9BBEFD;
     CLC                                                                  ;9BBF00;
     ADC.W GrappleBeamFireOffsets_NotRunning_FlareX,X                     ;9BBF01;
     STA.W GrappleBeam_FlareXPosition                                     ;9BBF04;
     LDA.W GrappleBeam_StartYPosition                                     ;9BBF07;
     SEC                                                                  ;9BBF0A;
     SBC.W GrappleBeamFireOffsets_NotRunning_OriginY,X                    ;9BBF0B;
-    STA.W SamusYPosition                                                 ;9BBF0E;
+    STA.B SamusYPosition                                                 ;9BBF0E;
     CLC                                                                  ;9BBF11;
     ADC.W GrappleBeamFireOffsets_NotRunning_FlareY,X                     ;9BBF12;
     STA.W GrappleBeam_FlareYPosition                                     ;9BBF15;
@@ -3000,7 +3000,7 @@ UpdateGrappleBeamStartPositionDuringGrappleFire:
     BEQ .running                                                         ;9BBF4C;
 
   .moonwalking:
-    LDA.W SamusXPosition                                                 ;9BBF4E;
+    LDA.B SamusXPosition                                                 ;9BBF4E;
     PHA                                                                  ;9BBF51;
     CLC                                                                  ;9BBF52;
     ADC.W GrappleBeamFireOffsets_NotRunning_OriginX,X                    ;9BBF53;
@@ -3009,7 +3009,7 @@ UpdateGrappleBeamStartPositionDuringGrappleFire:
     CLC                                                                  ;9BBF5A;
     ADC.W GrappleBeamFireOffsets_NotRunning_FlareX,X                     ;9BBF5B;
     STA.W GrappleBeam_FlareXPosition                                     ;9BBF5E;
-    LDA.W SamusYPosition                                                 ;9BBF61;
+    LDA.B SamusYPosition                                                 ;9BBF61;
     SEC                                                                  ;9BBF64;
     SBC.B DP_Temp16                                                      ;9BBF65;
     PHA                                                                  ;9BBF67;
@@ -3023,7 +3023,7 @@ UpdateGrappleBeamStartPositionDuringGrappleFire:
     BRA .return                                                          ;9BBF77;
 
   .running:
-    LDA.W SamusXPosition                                                 ;9BBF79;
+    LDA.B SamusXPosition                                                 ;9BBF79;
     PHA                                                                  ;9BBF7C;
     CLC                                                                  ;9BBF7D;
     ADC.W GrappleBeamFireOffsets_Running_OriginX,X                       ;9BBF7E;
@@ -3032,7 +3032,7 @@ UpdateGrappleBeamStartPositionDuringGrappleFire:
     CLC                                                                  ;9BBF85;
     ADC.W GrappleBeamFireOffsets_Running_FlareX,X                        ;9BBF86;
     STA.W GrappleBeam_FlareXPosition                                     ;9BBF89;
-    LDA.W SamusYPosition                                                 ;9BBF8C;
+    LDA.B SamusYPosition                                                 ;9BBF8C;
     SEC                                                                  ;9BBF8F;
     SBC.B DP_Temp16                                                      ;9BBF90;
     PHA                                                                  ;9BBF92;
@@ -3206,11 +3206,11 @@ HandleGrappleBeamFlare:
 
 +   LDA.W GrappleBeam_FlareXPosition                                     ;9BC0B3;
     SEC                                                                  ;9BC0B6;
-    SBC.W Layer1XPosition                                                ;9BC0B7;
+    SBC.B Layer1XPosition                                                ;9BC0B7;
     STA.B DP_Temp14                                                      ;9BC0BA;
     LDA.W GrappleBeam_FlareYPosition                                     ;9BC0BC;
     SEC                                                                  ;9BC0BF;
-    SBC.W Layer1YPosition                                                ;9BC0C0;
+    SBC.B Layer1YPosition                                                ;9BC0C0;
     STA.B DP_Temp12                                                      ;9BC0C3;
     AND.W #$FF00                                                         ;9BC0C5;
     BNE +                                                                ;9BC0C8;
@@ -3708,7 +3708,7 @@ GrappleBeamFunction_Fire_GotoCancel:
     SEC                                                                  ;9BC591;
     SBC.B DP_Temp16                                                      ;9BC592;
     STA.W GrappleBeam_OriginYOffset                                      ;9BC594;
-    LDA.W SamusXPosition                                                 ;9BC597;
+    LDA.B SamusXPosition                                                 ;9BC597;
     PHA                                                                  ;9BC59A;
     CLC                                                                  ;9BC59B;
     ADC.W GrappleBeamFireOffsets_NotRunning_OriginX,X                    ;9BC59C;
@@ -3718,7 +3718,7 @@ GrappleBeamFunction_Fire_GotoCancel:
     CLC                                                                  ;9BC5A6;
     ADC.W GrappleBeamFireOffsets_NotRunning_FlareX,X                     ;9BC5A7;
     STA.W GrappleBeam_FlareXPosition                                     ;9BC5AA;
-    LDA.W SamusYPosition                                                 ;9BC5AD;
+    LDA.B SamusYPosition                                                 ;9BC5AD;
     SEC                                                                  ;9BC5B0;
     SBC.B DP_Temp16                                                      ;9BC5B1;
     PHA                                                                  ;9BC5B3;
@@ -3739,7 +3739,7 @@ GrappleBeamFunction_Fire_GotoCancel:
     SEC                                                                  ;9BC5D1;
     SBC.B DP_Temp16                                                      ;9BC5D2;
     STA.W GrappleBeam_OriginYOffset                                      ;9BC5D4;
-    LDA.W SamusXPosition                                                 ;9BC5D7;
+    LDA.B SamusXPosition                                                 ;9BC5D7;
     PHA                                                                  ;9BC5DA;
     CLC                                                                  ;9BC5DB;
     ADC.W GrappleBeamFireOffsets_Running_OriginX,X                       ;9BC5DC;
@@ -3749,7 +3749,7 @@ GrappleBeamFunction_Fire_GotoCancel:
     CLC                                                                  ;9BC5E6;
     ADC.W GrappleBeamFireOffsets_Running_FlareX,X                        ;9BC5E7;
     STA.W GrappleBeam_FlareXPosition                                     ;9BC5EA;
-    LDA.W SamusYPosition                                                 ;9BC5ED;
+    LDA.B SamusYPosition                                                 ;9BC5ED;
     SEC                                                                  ;9BC5F0;
     SBC.B DP_Temp16                                                      ;9BC5F1;
     PHA                                                                  ;9BC5F3;

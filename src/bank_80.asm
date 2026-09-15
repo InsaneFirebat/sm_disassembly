@@ -996,7 +996,6 @@ CommonBootSection:
     STA.B DP_ColorMathSubScreenBackdropColor2
     LDA.B #$00
     STA.W $2133
-    STA.B DP_DisplayResolution
     SEP #$20                                                             ;8084C5;
     STZ.W APU_SoundQueueStartIndexLib1                                   ;8084C7;
     STZ.W APU_SoundQueueStartIndexLib2                                   ;8084CA;
@@ -1017,7 +1016,7 @@ CommonBootSection:
     STZ.W APU_SoundQueueLib2                                             ;8084F7;
     STZ.W APU_SoundQueueLib3                                             ;8084FA;
     REP #$20                                                             ;8084FD;
-    STZ.W OAMStack                                                       ;8084FF; OAM stack pointer = 0
+    STZ.B OAMStack                                                       ;8084FF; OAM stack pointer = 0
     STZ.B DP_OAMAddrPrio                                                 ;808502; OAM address = 0
     JSL.L ClearHighOAM                                                   ;808504; Clear high OAM
     JSL.L Finalise_OAM                                                   ;808508; Finalise OAM
@@ -1218,7 +1217,7 @@ Finalise_OAM:
 ; Uses one hell of an unrolled loop
 
 ; Sprites must be 10h px or less. For large sprites, see $8B:8ED9
-    LDA.W OAMStack                                                       ;808971;
+    LDA.B OAMStack                                                       ;808971;
     CMP.W #$0200                                                         ;808974;
     BPL .clearOAMStackPointer                                            ;808977;
     LSR                                                                  ;808979;
@@ -1233,7 +1232,7 @@ Finalise_OAM:
     JMP.W (DP_Temp12)                                                    ;80898A;
 
   .clearOAMStackPointer:
-    STZ.W OAMStack                                                       ;80898D;
+    STZ.B OAMStack                                                       ;80898D;
     RTL                                                                  ;808991;
 
   .spriteY00F0:
@@ -1366,7 +1365,7 @@ Finalise_OAM:
     STA.W OAMLow+$1F9                                                    ;808B0C;
     STA.W OAMLow+$1FD                                                    ;808B0F;
     REP #$30
-    STZ.W OAMStack                                                       ;808B12;
+    STZ.B OAMStack                                                       ;808B12;
     RTL                                                                  ;808B19;
 
 
@@ -2693,8 +2692,6 @@ NMI:
     STX.W $2132
     LDX.B DP_ColorMathSubScreenBackdropColor2
     STX.W $2132
-    LDX.B DP_DisplayResolution
-    STX.W $2133
     LDX.B DP_BG1XScroll
     STX.W $210D
     LDX.B DP_BG1XScroll+1
@@ -4965,7 +4962,7 @@ CalculateLayer2XPosition:
 ;     Carry is set (layer 2 X position unchanged)
 ; Else:
 ;     Layer 2 X position = [layer 1 X position] * ([layer 2 scroll X] >> 1) / 80h
-    LDY.W Layer1XPosition                                                ;80A2FA;
+    LDY.B Layer1XPosition                                                ;80A2FA;
     SEP #$20                                                             ;80A2FD;
     LDA.W Layer2ScrollX                                                  ;80A2FF;
     BEQ .scrollReturn                                                    ;80A302;
@@ -4973,14 +4970,14 @@ CalculateLayer2XPosition:
     BEQ .return                                                          ;80A306;
     AND.B #$FE                                                           ;80A308;
     STA.W $4202                                                          ;80A30A;
-    LDA.W Layer1XPosition                                                ;80A30D;
+    LDA.B Layer1XPosition                                                ;80A30D;
     STA.W $4203                                                          ;80A310;
     STZ.W PositionOfScrollBoundary+1                                     ;80A313;
     PHA                                                                  ;80A316;
     PLA                                                                  ;80A317;
     LDA.W $4217                                                          ;80A318;
     STA.W PositionOfScrollBoundary                                       ;80A31B;
-    LDA.W Layer1XPosition+1                                              ;80A31E;
+    LDA.B Layer1XPosition+1                                              ;80A31E;
     STA.W $4203                                                          ;80A321;
     REP #$20                                                             ;80A324;
     LDA.W PositionOfScrollBoundary                                       ;80A326;
@@ -5021,7 +5018,7 @@ CalculateLayer2YPosition:
 ;     Carry is set (layer 2 Y position unchanged)
 ; Else:
 ;     Layer 2 Y position = [layer 1 Y position] * ([layer 2 scroll Y] >> 1) / 80h
-    LDY.W Layer1YPosition                                                ;80A33B;
+    LDY.B Layer1YPosition                                                ;80A33B;
     SEP #$20                                                             ;80A33E;
     LDA.W Layer2ScrollY                                                  ;80A340;
     BEQ .scrollReturn                                                    ;80A343;
@@ -5029,14 +5026,14 @@ CalculateLayer2YPosition:
     BEQ .return                                                          ;80A347;
     AND.B #$FE                                                           ;80A349;
     STA.W $4202                                                          ;80A34B;
-    LDA.W Layer1YPosition                                                ;80A34E;
+    LDA.B Layer1YPosition                                                ;80A34E;
     STA.W $4203                                                          ;80A351;
     STZ.W PositionOfScrollBoundary+1                                     ;80A354;
     PHA                                                                  ;80A357;
     PLA                                                                  ;80A358;
     LDA.W $4217                                                          ;80A359;
     STA.W PositionOfScrollBoundary                                       ;80A35C;
-    LDA.W Layer1YPosition+1                                              ;80A35F;
+    LDA.B Layer1YPosition+1                                              ;80A35F;
     STA.W $4203                                                          ;80A362;
     REP #$20                                                             ;80A365;
     LDA.W PositionOfScrollBoundary                                       ;80A367;
@@ -5062,11 +5059,11 @@ CalculateBGScrolls:
 ; Called by:
 ;     $A07B: Start gameplay
 ;     $A3A0: Calculate BG scrolls and update BG graphics when scrolling (door transition)
-    LDA.W Layer1XPosition                                                ;80A37B;
+    LDA.B Layer1XPosition                                                ;80A37B;
     CLC                                                                  ;80A37E;
     ADC.W Layer2ScrollY+1                                                ;80A37F;
     STA.B DP_BG1XScroll                                                  ;80A382;
-    LDA.W Layer1YPosition                                                ;80A384;
+    LDA.B Layer1YPosition                                                ;80A384;
     CLC                                                                  ;80A387;
     ADC.W BG1YOffset                                                     ;80A388;
     STA.B DP_BG1YScroll                                                  ;80A38B;
@@ -5109,11 +5106,11 @@ Calc_Layer2Position_BGScrolls_UpdateBGGraphics_WhenScrolling:
     PHB                                                                  ;80A3B2;
     PHK                                                                  ;80A3B3;
     PLB                                                                  ;80A3B4;
-    LDA.W Layer1XPosition                                                ;80A3B7;
+    LDA.B Layer1XPosition                                                ;80A3B7;
     CLC                                                                  ;80A3BA;
     ADC.W Layer2ScrollY+1                                                ;80A3BB;
     STA.B DP_BG1XScroll                                                  ;80A3BE;
-    LDA.W Layer1YPosition                                                ;80A3C0;
+    LDA.B Layer1YPosition                                                ;80A3C0;
     CLC                                                                  ;80A3C3;
     ADC.W BG1YOffset                                                     ;80A3C4;
     STA.B DP_BG1YScroll                                                  ;80A3C7;
@@ -5269,7 +5266,7 @@ Calculate_BGScroll_LayerPositionBlocks:
     LSR                                                                  ;80A4C8;
     LSR                                                                  ;80A4C9;
     STA.W BG2XBlock                                                      ;80A4CA;
-    LDA.W Layer1XPosition                                                ;80A4CD;
+    LDA.B Layer1XPosition                                                ;80A4CD;
     LSR                                                                  ;80A4D0;
     LSR                                                                  ;80A4D1;
     LSR                                                                  ;80A4D2;
@@ -5301,7 +5298,7 @@ Calculate_BGScroll_LayerPositionBlocks:
     LSR                                                                  ;80A4FE;
     LSR                                                                  ;80A4FF;
     STA.W BG2YBlock                                                      ;80A500;
-    LDA.W Layer1YPosition                                                ;80A503;
+    LDA.B Layer1YPosition                                                ;80A503;
     LSR                                                                  ;80A506;
     LSR                                                                  ;80A507;
     LSR                                                                  ;80A508;
@@ -5356,19 +5353,19 @@ HandleScrollZones_HorizontalAutoscrolling:
     BEQ +                                                                ;80A532;
     JMP.W .return                                                        ;80A534;
 
-+   LDA.W Layer1XPosition                                                ;80A53D;
++   LDA.B Layer1XPosition                                                ;80A53D;
     STA.W ProposedScrolledLayer1Position                                 ;80A540;
     BPL +                                                                ;80A543;
-    STZ.W Layer1XPosition                                                ;80A545;
+    STZ.B Layer1XPosition                                                ;80A545;
 
 +   LDA.W RoomWidthScrolls                                               ;80A548;
     DEC                                                                  ;80A54B;
     XBA                                                                  ;80A54C;
-    CMP.W Layer1XPosition                                                ;80A54D;
+    CMP.B Layer1XPosition                                                ;80A54D;
     BCS +                                                                ;80A550;
-    STA.W Layer1XPosition                                                ;80A552;
+    STA.B Layer1XPosition                                                ;80A552;
 
-+   LDA.W Layer1YPosition                                                ;80A555;
++   LDA.B Layer1YPosition                                                ;80A555;
     CLC                                                                  ;80A558;
     ADC.W #$0080                                                         ;80A559;
     XBA                                                                  ;80A55C;
@@ -5377,7 +5374,7 @@ HandleScrollZones_HorizontalAutoscrolling:
     LDA.W RoomWidthScrolls                                               ;80A562;
     STA.W $4203                                                          ;80A565;
     REP #$20                                                             ;80A568;
-    LDA.W Layer1XPosition+1                                              ;80A56A;
+    LDA.B Layer1XPosition+1                                              ;80A56A;
     AND.W #$00FF                                                         ;80A56D;
     CLC                                                                  ;80A570;
     ADC.W $4216                                                          ;80A571;
@@ -5385,7 +5382,7 @@ HandleScrollZones_HorizontalAutoscrolling:
     LDA.L Scrolls,X                                                      ;80A575;
     AND.W #$00FF                                                         ;80A579;
     BNE .unboundedFromLeft                                               ;80A57C;
-    LDA.W Layer1XPosition                                                ;80A57E;
+    LDA.B Layer1XPosition                                                ;80A57E;
     AND.W #$FF00                                                         ;80A581;
     CLC                                                                  ;80A584;
     ADC.W #$0100                                                         ;80A585;
@@ -5397,7 +5394,7 @@ HandleScrollZones_HorizontalAutoscrolling:
     CMP.W PositionOfScrollBoundary                                       ;80A595;
     BCS .reachedRightScrollBoundary                                      ;80A598;
     STA.W ProposedScrolledLayer1Position                                 ;80A59A;
-    LDA.W Layer1YPosition                                                ;80A59D;
+    LDA.B Layer1YPosition                                                ;80A59D;
     CLC                                                                  ;80A5A0;
     ADC.W #$0080                                                         ;80A5A1;
     XBA                                                                  ;80A5A4;
@@ -5432,7 +5429,7 @@ HandleScrollZones_HorizontalAutoscrolling:
     LDA.L Scrolls,X                                                      ;80A5DA;
     AND.W #$00FF                                                         ;80A5DE;
     BNE .return                                                          ;80A5E1;
-    LDA.W Layer1XPosition                                                ;80A5E3;
+    LDA.B Layer1XPosition                                                ;80A5E3;
     AND.W #$FF00                                                         ;80A5E6;
     STA.W PositionOfScrollBoundary                                       ;80A5E9;
     LDA.W ProposedScrolledLayer1Position                                 ;80A5EC;
@@ -5442,7 +5439,7 @@ HandleScrollZones_HorizontalAutoscrolling:
     CMP.W PositionOfScrollBoundary                                       ;80A5F6;
     BMI .reachedLeftScrollBoundary                                       ;80A5F9;
     STA.W ProposedScrolledLayer1Position                                 ;80A5FB;
-    LDA.W Layer1YPosition                                                ;80A5FE;
+    LDA.B Layer1YPosition                                                ;80A5FE;
     CLC                                                                  ;80A601;
     ADC.W #$0080                                                         ;80A602;
     XBA                                                                  ;80A605;
@@ -5472,7 +5469,7 @@ HandleScrollZones_HorizontalAutoscrolling:
   .reachedLeftScrollBoundary:
     LDA.W PositionOfScrollBoundary                                       ;80A638;
 
-+   STA.W Layer1XPosition                                                ;80A63B;
++   STA.B Layer1XPosition                                                ;80A63B;
 
   .return:
     RTL                                                                  ;80A640;
@@ -5482,24 +5479,24 @@ HandleScrollZones_HorizontalAutoscrolling:
 HandleScrollZones_ScrollingRight:
 ; Called by:
 ;     $90:95A0: Handle horizontal scrolling
-    LDA.W Layer1XPosition                                                ;80A64B;
+    LDA.B Layer1XPosition                                                ;80A64B;
     STA.W ProposedScrolledLayer1Position                                 ;80A64E;
     LDA.W IdealLayer1XPosition                                           ;80A651;
-    CMP.W Layer1XPosition                                                ;80A654;
+    CMP.B Layer1XPosition                                                ;80A654;
     BPL +                                                                ;80A657;
     LDA.W IdealLayer1XPosition                                           ;80A659;
-    STA.W Layer1XPosition                                                ;80A65C;
+    STA.B Layer1XPosition                                                ;80A65C;
     STZ.W Layer1XSubPosition                                             ;80A65F;
 
 +   LDA.W RoomWidthScrolls                                               ;80A662;
     DEC                                                                  ;80A665;
     XBA                                                                  ;80A666;
-    CMP.W Layer1XPosition                                                ;80A667;
+    CMP.B Layer1XPosition                                                ;80A667;
     BCS +                                                                ;80A66A;
-    STA.W Layer1XPosition                                                ;80A66C;
+    STA.B Layer1XPosition                                                ;80A66C;
     BRA .return                                                          ;80A66F;
 
-+   LDA.W Layer1YPosition                                                ;80A671;
++   LDA.B Layer1YPosition                                                ;80A671;
     CLC                                                                  ;80A674;
     ADC.W #$0080                                                         ;80A675;
     XBA                                                                  ;80A678;
@@ -5508,7 +5505,7 @@ HandleScrollZones_ScrollingRight:
     LDA.W RoomWidthScrolls                                               ;80A67E;
     STA.W $4203                                                          ;80A681;
     REP #$20                                                             ;80A684;
-    LDA.W Layer1XPosition+1                                              ;80A686;
+    LDA.B Layer1XPosition+1                                              ;80A686;
     AND.W #$00FF                                                         ;80A689;
     SEC                                                                  ;80A68C;
     ADC.W $4216                                                          ;80A68D;
@@ -5516,7 +5513,7 @@ HandleScrollZones_ScrollingRight:
     LDA.L Scrolls,X                                                      ;80A691;
     AND.W #$00FF                                                         ;80A695;
     BNE .return                                                          ;80A698;
-    LDA.W Layer1XPosition                                                ;80A69A;
+    LDA.B Layer1XPosition                                                ;80A69A;
     AND.W #$FF00                                                         ;80A69D;
     STA.W PositionOfScrollBoundary                                       ;80A6A0;
     LDA.W ProposedScrolledLayer1Position                                 ;80A6A3;
@@ -5527,7 +5524,7 @@ HandleScrollZones_ScrollingRight:
     BPL +                                                                ;80A6B0;
     LDA.W PositionOfScrollBoundary                                       ;80A6B2;
 
-+   STA.W Layer1XPosition                                                ;80A6B5;
++   STA.B Layer1XPosition                                                ;80A6B5;
 
   .return:
     RTL                                                                  ;80A6BA;
@@ -5537,20 +5534,20 @@ HandleScrollZones_ScrollingRight:
 HandleScrollZones_ScrollingLeft:
 ; Called by:
 ;     $90:95A0: Handle horizontal scrolling
-    LDA.W Layer1XPosition                                                ;80A6C5;
+    LDA.B Layer1XPosition                                                ;80A6C5;
     STA.W ProposedScrolledLayer1Position                                 ;80A6C8;
     CMP.W IdealLayer1XPosition                                           ;80A6CB;
     BPL +                                                                ;80A6CE;
     LDA.W IdealLayer1XPosition                                           ;80A6D0;
-    STA.W Layer1XPosition                                                ;80A6D3;
+    STA.B Layer1XPosition                                                ;80A6D3;
     STZ.W Layer1XSubPosition                                             ;80A6D6;
 
-+   LDA.W Layer1XPosition                                                ;80A6D9;
++   LDA.B Layer1XPosition                                                ;80A6D9;
     BPL +                                                                ;80A6DC;
-    STZ.W Layer1XPosition                                                ;80A6DE;
+    STZ.B Layer1XPosition                                                ;80A6DE;
     BRA .return                                                          ;80A6E1;
 
-+   LDA.W Layer1YPosition                                                ;80A6E3;
++   LDA.B Layer1YPosition                                                ;80A6E3;
     CLC                                                                  ;80A6E6;
     ADC.W #$0080                                                         ;80A6E7;
     XBA                                                                  ;80A6EA;
@@ -5559,7 +5556,7 @@ HandleScrollZones_ScrollingLeft:
     LDA.W RoomWidthScrolls                                               ;80A6F0;
     STA.W $4203                                                          ;80A6F3;
     REP #$20                                                             ;80A6F6;
-    LDA.W Layer1XPosition+1                                              ;80A6F8;
+    LDA.B Layer1XPosition+1                                              ;80A6F8;
     AND.W #$00FF                                                         ;80A6FB;
     CLC                                                                  ;80A6FE;
     ADC.W $4216                                                          ;80A6FF;
@@ -5567,7 +5564,7 @@ HandleScrollZones_ScrollingLeft:
     LDA.L Scrolls,X                                                      ;80A703;
     AND.W #$00FF                                                         ;80A707;
     BNE .return                                                          ;80A70A;
-    LDA.W Layer1XPosition                                                ;80A70C;
+    LDA.B Layer1XPosition                                                ;80A70C;
     AND.W #$FF00                                                         ;80A70F;
     CLC                                                                  ;80A712;
     ADC.W #$0100                                                         ;80A713;
@@ -5580,7 +5577,7 @@ HandleScrollZones_ScrollingLeft:
     BCC +                                                                ;80A726;
     LDA.W PositionOfScrollBoundary                                       ;80A728;
 
-+   STA.W Layer1XPosition                                                ;80A72B;
++   STA.B Layer1XPosition                                                ;80A72B;
 
   .return:
     RTL                                                                  ;80A730;
@@ -5628,12 +5625,12 @@ HandleScrollZones_VerticalAutoscrolling:
 
 +   LDY.W #$0000                                                         ;80A746;
     SEP #$20                                                             ;80A749;
-    LDA.W Layer1YPosition+1                                              ;80A74B;
+    LDA.B Layer1YPosition+1                                              ;80A74B;
     STA.W $4202                                                          ;80A74E;
     LDA.W RoomWidthScrolls                                               ;80A751;
     STA.W $4203                                                          ;80A754;
     REP #$20                                                             ;80A757;
-    LDA.W Layer1XPosition                                                ;80A759;
+    LDA.B Layer1XPosition                                                ;80A759;
     CLC                                                                  ;80A75C;
     ADC.W #$0080                                                         ;80A75D;
     XBA                                                                  ;80A760;
@@ -5649,27 +5646,27 @@ HandleScrollZones_VerticalAutoscrolling:
     LDY.W #$001F                                                         ;80A777;
 
 +   STY.W PositionOfScrollBoundary                                       ;80A77A;
-    LDA.W Layer1YPosition                                                ;80A77D;
+    LDA.B Layer1YPosition                                                ;80A77D;
     STA.W ProposedScrolledLayer1Position                                 ;80A780;
     BPL +                                                                ;80A783;
-    STZ.W Layer1YPosition                                                ;80A785;
+    STZ.B Layer1YPosition                                                ;80A785;
 
 +   LDA.W RoomHeightScrolls                                              ;80A788;
     DEC                                                                  ;80A78B;
     XBA                                                                  ;80A78C;
     CLC                                                                  ;80A78D;
     ADC.W PositionOfScrollBoundary                                       ;80A78E;
-    CMP.W Layer1YPosition                                                ;80A791;
+    CMP.B Layer1YPosition                                                ;80A791;
     BCS +                                                                ;80A794;
-    STA.W Layer1YPosition                                                ;80A796;
+    STA.B Layer1YPosition                                                ;80A796;
 
 +   SEP #$20                                                             ;80A799;
-    LDA.W Layer1YPosition+1                                              ;80A79B;
+    LDA.B Layer1YPosition+1                                              ;80A79B;
     STA.W $4202                                                          ;80A79E;
     LDA.W RoomWidthScrolls                                               ;80A7A1;
     STA.W $4203                                                          ;80A7A4;
     REP #$20                                                             ;80A7A7;
-    LDA.W Layer1XPosition                                                ;80A7A9;
+    LDA.B Layer1XPosition                                                ;80A7A9;
     CLC                                                                  ;80A7AC;
     ADC.W #$0080                                                         ;80A7AD;
     XBA                                                                  ;80A7B0;
@@ -5680,7 +5677,7 @@ HandleScrollZones_VerticalAutoscrolling:
     LDA.L Scrolls,X                                                      ;80A7B9;
     AND.W #$00FF                                                         ;80A7BD;
     BNE .unboundedFromAbove                                              ;80A7C0;
-    LDA.W Layer1YPosition                                                ;80A7C2;
+    LDA.B Layer1YPosition                                                ;80A7C2;
     AND.W #$FF00                                                         ;80A7C5;
     CLC                                                                  ;80A7C8;
     ADC.W #$0100                                                         ;80A7C9;
@@ -5699,7 +5696,7 @@ HandleScrollZones_VerticalAutoscrolling:
     LDA.W RoomWidthScrolls                                               ;80A7EA;
     STA.W $4203                                                          ;80A7ED;
     REP #$20                                                             ;80A7F0;
-    LDA.W Layer1XPosition                                                ;80A7F2;
+    LDA.B Layer1XPosition                                                ;80A7F2;
     CLC                                                                  ;80A7F5;
     ADC.W #$0080                                                         ;80A7F6;
     XBA                                                                  ;80A7F9;
@@ -5729,12 +5726,12 @@ HandleScrollZones_VerticalAutoscrolling:
     LDA.L Scrolls,X                                                      ;80A823;
     AND.W #$00FF                                                         ;80A827;
     BNE .return                                                          ;80A82A;
-    LDA.W Layer1YPosition                                                ;80A82C;
+    LDA.B Layer1YPosition                                                ;80A82C;
     AND.W #$FF00                                                         ;80A82F;
     CLC                                                                  ;80A832;
     ADC.W PositionOfScrollBoundary                                       ;80A833;
     STA.W UpperScrollPosition                                            ;80A836;
-    CMP.W Layer1YPosition                                                ;80A839;
+    CMP.B Layer1YPosition                                                ;80A839;
     BCS .return                                                          ;80A83C;
     LDA.W ProposedScrolledLayer1Position                                 ;80A83E;
     SEC                                                                  ;80A841;
@@ -5749,7 +5746,7 @@ HandleScrollZones_VerticalAutoscrolling:
     LDA.W RoomWidthScrolls                                               ;80A858;
     STA.W $4203                                                          ;80A85B;
     REP #$20                                                             ;80A85E;
-    LDA.W Layer1XPosition                                                ;80A860;
+    LDA.B Layer1XPosition                                                ;80A860;
     CLC                                                                  ;80A863;
     ADC.W #$0080                                                         ;80A864;
     XBA                                                                  ;80A867;
@@ -5774,7 +5771,7 @@ HandleScrollZones_VerticalAutoscrolling:
     LDA.W UpperScrollPosition                                            ;80A88A;
 
   .returnLayer1Y:
-    STA.W Layer1YPosition                                                ;80A88D;
+    STA.B Layer1YPosition                                                ;80A88D;
 
   .return:
     RTL                                                                  ;80A892;
@@ -5784,16 +5781,16 @@ HandleScrollZones_VerticalAutoscrolling:
 HandleScrollZones_ScrollingDown:
 ; Called by:
 ;     $90:964F: Handle vertical scrolling
-    LDA.W Layer1YPosition                                                ;80A89D;
+    LDA.B Layer1YPosition                                                ;80A89D;
     STA.W ProposedScrolledLayer1Position                                 ;80A8A0;
     LDY.W #$0000                                                         ;80A8A3;
     SEP #$20                                                             ;80A8A6;
-    LDA.W Layer1YPosition+1                                              ;80A8A8;
+    LDA.B Layer1YPosition+1                                              ;80A8A8;
     STA.W $4202                                                          ;80A8AB;
     LDA.W RoomWidthScrolls                                               ;80A8AE;
     STA.W $4203                                                          ;80A8B1;
     REP #$20                                                             ;80A8B4;
-    LDA.W Layer1XPosition                                                ;80A8B6;
+    LDA.B Layer1XPosition                                                ;80A8B6;
     CLC                                                                  ;80A8B9;
     ADC.W #$0080                                                         ;80A8BA;
     XBA                                                                  ;80A8BD;
@@ -5810,10 +5807,10 @@ HandleScrollZones_ScrollingDown:
 
 +   STY.W PositionOfScrollBoundary                                       ;80A8D7;
     LDA.W IdealLayer1YPosition                                           ;80A8DA;
-    CMP.W Layer1YPosition                                                ;80A8DD;
+    CMP.B Layer1YPosition                                                ;80A8DD;
     BPL +                                                                ;80A8E0;
     LDA.W IdealLayer1YPosition                                           ;80A8E2;
-    STA.W Layer1YPosition                                                ;80A8E5;
+    STA.B Layer1YPosition                                                ;80A8E5;
     STZ.W Layer1YSubPosition                                             ;80A8E8;
 
 +   LDA.W RoomHeightScrolls                                              ;80A8EB;
@@ -5822,7 +5819,7 @@ HandleScrollZones_ScrollingDown:
     CLC                                                                  ;80A8F0;
     ADC.W PositionOfScrollBoundary                                       ;80A8F1;
     STA.W RoomHeightInPixels                                             ;80A8F4;
-    CMP.W Layer1YPosition                                                ;80A8F7;
+    CMP.B Layer1YPosition                                                ;80A8F7;
     BCC .setLayer1Y                                                      ;80A8FA;
     LDA.B DP_Temp14                                                      ;80A8FC;
     CLC                                                                  ;80A8FE;
@@ -5831,12 +5828,12 @@ HandleScrollZones_ScrollingDown:
     LDA.L Scrolls,X                                                      ;80A903;
     AND.W #$00FF                                                         ;80A907;
     BNE .return                                                          ;80A90A;
-    LDA.W Layer1YPosition                                                ;80A90C;
+    LDA.B Layer1YPosition                                                ;80A90C;
     AND.W #$FF00                                                         ;80A90F;
     CLC                                                                  ;80A912;
     ADC.W PositionOfScrollBoundary                                       ;80A913;
     STA.W UpperScrollPosition                                            ;80A916;
-    CMP.W Layer1YPosition                                                ;80A919;
+    CMP.B Layer1YPosition                                                ;80A919;
     BCS .return                                                          ;80A91C;
 
   .setLayer1Y:
@@ -5848,7 +5845,7 @@ HandleScrollZones_ScrollingDown:
     BPL +                                                                ;80A92B;
     LDA.W UpperScrollPosition                                            ;80A92D;
 
-+   STA.W Layer1YPosition                                                ;80A930;
++   STA.B Layer1YPosition                                                ;80A930;
 
   .return:
     RTL                                                                  ;80A935;
@@ -5858,26 +5855,26 @@ HandleScrollZones_ScrollingDown:
 HandleScrollZones_ScrollingUp:
 ; Called by:
 ;     $90:964F: Handle vertical scrolling
-    LDA.W Layer1YPosition                                                ;80A940;
+    LDA.B Layer1YPosition                                                ;80A940;
     STA.W ProposedScrolledLayer1Position                                 ;80A943;
     CMP.W IdealLayer1YPosition                                           ;80A946;
     BPL +                                                                ;80A949;
     LDA.W IdealLayer1YPosition                                           ;80A94B;
-    STA.W Layer1YPosition                                                ;80A94E;
+    STA.B Layer1YPosition                                                ;80A94E;
     STZ.W Layer1YSubPosition                                             ;80A951;
 
-+   LDA.W Layer1YPosition                                                ;80A954;
++   LDA.B Layer1YPosition                                                ;80A954;
     BPL +                                                                ;80A957;
-    STZ.W Layer1YPosition                                                ;80A959;
+    STZ.B Layer1YPosition                                                ;80A959;
     BRA .return                                                          ;80A95C;
 
 +   SEP #$20                                                             ;80A95E;
-    LDA.W Layer1YPosition+1                                              ;80A960;
+    LDA.B Layer1YPosition+1                                              ;80A960;
     STA.W $4202                                                          ;80A963;
     LDA.W RoomWidthScrolls                                               ;80A966;
     STA.W $4203                                                          ;80A969;
     REP #$20                                                             ;80A96C;
-    LDA.W Layer1XPosition                                                ;80A96E;
+    LDA.B Layer1XPosition                                                ;80A96E;
     CLC                                                                  ;80A971;
     ADC.W #$0080                                                         ;80A972;
     XBA                                                                  ;80A975;
@@ -5888,7 +5885,7 @@ HandleScrollZones_ScrollingUp:
     LDA.L Scrolls,X                                                      ;80A97E;
     AND.W #$00FF                                                         ;80A982;
     BNE .return                                                          ;80A985;
-    LDA.W Layer1YPosition                                                ;80A987;
+    LDA.B Layer1YPosition                                                ;80A987;
     AND.W #$FF00                                                         ;80A98A;
     CLC                                                                  ;80A98D;
     ADC.W #$0100                                                         ;80A98E;
@@ -5901,7 +5898,7 @@ HandleScrollZones_ScrollingUp:
     BCC +                                                                ;80A9A1;
     LDA.W PositionOfScrollBoundary                                       ;80A9A3;
 
-+   STA.W Layer1YPosition                                                ;80A9A6;
++   STA.B Layer1YPosition                                                ;80A9A6;
 
   .return:
     RTL                                                                  ;80A9AB;
@@ -5919,15 +5916,15 @@ Debug_Layer1Position_Saving_Loading:
     LSR                                                                  ;80A9B9;
     BCC +                                                                ;80A9BA;
     LDA.W Debug_Layer1X                                                  ;80A9BC;
-    STA.W Layer1XPosition                                                ;80A9BF;
+    STA.B Layer1XPosition                                                ;80A9BF;
     LDA.W Debug_Layer1Y                                                  ;80A9C2;
-    STA.W Layer1YPosition                                                ;80A9C5;
+    STA.B Layer1YPosition                                                ;80A9C5;
     RTL                                                                  ;80A9C8;
 
 
-+   LDA.W Layer1XPosition                                                ;80A9C9;
++   LDA.B Layer1XPosition                                                ;80A9C9;
     STA.W Debug_Layer1X                                                  ;80A9CC;
-    LDA.W Layer1YPosition                                                ;80A9CF;
+    LDA.B Layer1YPosition                                                ;80A9CF;
     STA.W Debug_Layer1Y                                                  ;80A9D2;
     RTL                                                                  ;80A9D5;
 endif
@@ -6001,7 +5998,7 @@ UpdateLevelBackgroundDataColumn:
     RTS                                                                  ;80A9E3;
 
 +   SEP #$20                                                             ;80A9E5;
-    LDA.W RoomWidthBlocks                                                ;80A9E7;
+    LDA.B RoomWidthBlocks                                                ;80A9E7;
     STA.W $4202                                                          ;80A9EA;
     LDA.W BlocksToUpdateYBlock                                           ;80A9ED;
     STA.W $4203                                                          ;80A9F0;
@@ -6163,8 +6160,8 @@ UpdateLevelBackgroundDataColumn:
     STY.W VRAMTilemapSourceDataIndex                                     ;80AB55;
     PLA                                                                  ;80AB58;
     CLC                                                                  ;80AB59;
-    ADC.W RoomWidthBlocks                                                ;80AB5A;
-    ADC.W RoomWidthBlocks                                                ;80AB5D;
+    ADC.B RoomWidthBlocks                                                ;80AB5A;
+    ADC.B RoomWidthBlocks                                                ;80AB5D;
     TAY                                                                  ;80AB60;
     DEC.W BackgroundDataLoopCounter                                      ;80AB61;
     BEQ .return                                                          ;80AB64;
@@ -6205,7 +6202,7 @@ UpdateBackgroundLevelDataRow:
     RTS                                                                  ;80AB7D;
 
 +   SEP #$20                                                             ;80AB7F;
-    LDA.W RoomWidthBlocks                                                ;80AB81;
+    LDA.B RoomWidthBlocks                                                ;80AB81;
     STA.W $4202                                                          ;80AB84;
     LDA.W BlocksToUpdateYBlock                                           ;80AB87;
     STA.W $4203                                                          ;80AB8A;
@@ -6413,9 +6410,9 @@ DoorTransitionScrollingSetup:
 ;     $82:E38E: Door transition function - set up scrolling
     REP #$30                                                             ;80AD30;
     LDA.W DoorDestinationXPosition                                       ;80AD32;
-    STA.W Layer1XPosition                                                ;80AD35;
+    STA.B Layer1XPosition                                                ;80AD35;
     LDA.W DoorDestinationYPosition                                       ;80AD38;
-    STA.W Layer1YPosition                                                ;80AD3B;
+    STA.B Layer1YPosition                                                ;80AD3B;
     LDA.W DoorDirection                                                  ;80AD3E;
     AND.W #$0003                                                         ;80AD41;
     ASL                                                                  ;80AD44;
@@ -6431,10 +6428,10 @@ DoorTransitionScrollingSetup_Right:
     SBC.W #$0100                                                         ;80AD4E;
     STA.W Layer2XPosition                                                ;80AD51;
     JSR.W CalculateLayer2YPosition                                       ;80AD54;
-    LDA.W Layer1XPosition                                                ;80AD57;
+    LDA.B Layer1XPosition                                                ;80AD57;
     SEC                                                                  ;80AD5A;
     SBC.W #$0100                                                         ;80AD5B;
-    STA.W Layer1XPosition                                                ;80AD5E;
+    STA.B Layer1XPosition                                                ;80AD5E;
     JSR.W UpdateBGScrollOffsets                                          ;80AD61;
     JSR.W Calculate_BGScroll_LayerPositionBlocks                         ;80AD64;
     JSR.W UpdatePreviousLayerBlocks                                      ;80AD67;
@@ -6451,10 +6448,10 @@ DoorTransitionScrollingSetup_Left:
     ADC.W #$0100                                                         ;80AD78;
     STA.W Layer2XPosition                                                ;80AD7B;
     JSR.W CalculateLayer2YPosition                                       ;80AD7E;
-    LDA.W Layer1XPosition                                                ;80AD81;
+    LDA.B Layer1XPosition                                                ;80AD81;
     CLC                                                                  ;80AD84;
     ADC.W #$0100                                                         ;80AD85;
-    STA.W Layer1XPosition                                                ;80AD88;
+    STA.B Layer1XPosition                                                ;80AD88;
     JSR.W UpdateBGScrollOffsets                                          ;80AD8B;
     JSR.W Calculate_BGScroll_LayerPositionBlocks                         ;80AD8E;
     JSR.W UpdatePreviousLayerBlocks                                      ;80AD91;
@@ -6471,10 +6468,10 @@ DoorTransitionScrollingSetup_Down:
     SEC                                                                  ;80ADA4;
     SBC.W #$00E0                                                         ;80ADA5;
     STA.W Layer2YPosition                                                ;80ADA8;
-    LDA.W Layer1YPosition                                                ;80ADAB;
+    LDA.B Layer1YPosition                                                ;80ADAB;
     SEC                                                                  ;80ADAE;
     SBC.W #$00E0                                                         ;80ADAF;
-    STA.W Layer1YPosition                                                ;80ADB2;
+    STA.B Layer1YPosition                                                ;80ADB2;
     JSR.W UpdateBGScrollOffsets                                          ;80ADB5;
     JSR.W Calculate_BGScroll_LayerPositionBlocks                         ;80ADB8;
     JSR.W UpdatePreviousLayerBlocks                                      ;80ADBB;
@@ -6487,11 +6484,11 @@ DoorTransitionScrollingSetup_Down:
 ;;; $ADC8: Door transition scrolling setup - up ;;;
 DoorTransitionScrollingSetup_Up:
     JSR.W CalculateLayer2XPosition                                       ;80ADC8;
-    LDA.W Layer1YPosition                                                ;80ADCB;
+    LDA.B Layer1YPosition                                                ;80ADCB;
     PHA                                                                  ;80ADCE;
     CLC                                                                  ;80ADCF;
     ADC.W #$001F                                                         ;80ADD0;
-    STA.W Layer1YPosition                                                ;80ADD3;
+    STA.B Layer1YPosition                                                ;80ADD3;
     JSR.W CalculateLayer2YPosition                                       ;80ADD6;
     CLC                                                                  ;80ADD9;
     ADC.W #$00E0                                                         ;80ADDA;
@@ -6499,7 +6496,7 @@ DoorTransitionScrollingSetup_Up:
     PLA                                                                  ;80ADE0;
     CLC                                                                  ;80ADE1;
     ADC.W #$0100                                                         ;80ADE2;
-    STA.W Layer1YPosition                                                ;80ADE5;
+    STA.B Layer1YPosition                                                ;80ADE5;
     JSR.W UpdateBGScrollOffsets                                          ;80ADE8;
     LDA.W DoorDestinationYPosition                                       ;80ADEB;
     CLC                                                                  ;80ADEE;
@@ -6509,7 +6506,7 @@ DoorTransitionScrollingSetup_Up:
     JSR.W UpdatePreviousLayerBlocks                                      ;80ADF8;
     INC.W PreviousLayer1YBlock                                           ;80ADFB;
     INC.W PreviousLayer2YBlock                                           ;80ADFE;
-    DEC.W Layer1YPosition                                                ;80AE01;
+    DEC.B Layer1YPosition                                                ;80AE01;
     JSR.W DoorTransitionScrolling_Up                                     ;80AE04;
     RTS                                                                  ;80AE07;
 
@@ -6544,19 +6541,19 @@ UpdateBGScrollOffsets:
 ;     $ADC8: Door transition scrolling setup - up
     LDA.B DP_BG1XScroll                                                  ;80AE29;
     SEC                                                                  ;80AE2B;
-    SBC.W Layer1XPosition                                                ;80AE2C;
+    SBC.B Layer1XPosition                                                ;80AE2C;
     STA.W Layer2ScrollY+1                                                ;80AE2F;
     LDA.B DP_BG1YScroll                                                  ;80AE32;
     SEC                                                                  ;80AE34;
-    SBC.W Layer1YPosition                                                ;80AE35;
+    SBC.B Layer1YPosition                                                ;80AE35;
     STA.W BG1YOffset                                                     ;80AE38;
     LDA.B DP_BG2XScroll                                                  ;80AE3B;
     SEC                                                                  ;80AE3D;
-    SBC.W Layer1XPosition                                                ;80AE3E;
+    SBC.B Layer1XPosition                                                ;80AE3E;
     STA.W BG2XOffset                                                     ;80AE41;
     LDA.B DP_BG2YScroll                                                  ;80AE44;
     SEC                                                                  ;80AE46;
-    SBC.W Layer1YPosition                                                ;80AE47;
+    SBC.B Layer1YPosition                                                ;80AE47;
     STA.W BG2YOffset                                                     ;80AE4A;
     RTS                                                                  ;80AE4D;
 
@@ -6575,9 +6572,9 @@ DoorTransitionScrolling:
     JSR.W (.pointers,X)                                                  ;80AE5C;
     BCC .return                                                          ;80AE5F;
     LDA.W DoorDestinationXPosition                                       ;80AE61;
-    STA.W Layer1XPosition                                                ;80AE64;
+    STA.B Layer1XPosition                                                ;80AE64;
     LDA.W DoorDestinationYPosition                                       ;80AE67;
-    STA.W Layer1YPosition                                                ;80AE6A;
+    STA.B Layer1YPosition                                                ;80AE6A;
     LDA.W #$8000                                                         ;80AE6D;
     TSB.W DoorTransitionFinishScrolling                                  ;80AE70;
 
@@ -6603,14 +6600,14 @@ DoorTransitionScrolling_Right:
     CLC                                                                  ;80AE85;
     ADC.W SamusSubSpeedDuringDoorTransition                              ;80AE86;
     STA.W SamusXSubPosition                                              ;80AE89;
-    LDA.W SamusXPosition                                                 ;80AE8C;
+    LDA.B SamusXPosition                                                 ;80AE8C;
     ADC.W SamusSpeedDuringDoorTransition                                 ;80AE8F;
-    STA.W SamusXPosition                                                 ;80AE92;
+    STA.B SamusXPosition                                                 ;80AE92;
     STA.W SamusPreviousXPosition                                         ;80AE95;
-    LDA.W Layer1XPosition                                                ;80AE98;
+    LDA.B Layer1XPosition                                                ;80AE98;
     CLC                                                                  ;80AE9B;
     ADC.W #$0004                                                         ;80AE9C;
-    STA.W Layer1XPosition                                                ;80AE9F;
+    STA.B Layer1XPosition                                                ;80AE9F;
     LDA.W Layer2XPosition                                                ;80AEA2;
     CLC                                                                  ;80AEA5;
     ADC.W #$0004                                                         ;80AEA6;
@@ -6639,14 +6636,14 @@ DoorTransitionScrolling_Left:
     SEC                                                                  ;80AEC9;
     SBC.W SamusSubSpeedDuringDoorTransition                              ;80AECA;
     STA.W SamusXSubPosition                                              ;80AECD;
-    LDA.W SamusXPosition                                                 ;80AED0;
+    LDA.B SamusXPosition                                                 ;80AED0;
     SBC.W SamusSpeedDuringDoorTransition                                 ;80AED3;
-    STA.W SamusXPosition                                                 ;80AED6;
+    STA.B SamusXPosition                                                 ;80AED6;
     STA.W SamusPreviousXPosition                                         ;80AED9;
-    LDA.W Layer1XPosition                                                ;80AEDC;
+    LDA.B Layer1XPosition                                                ;80AEDC;
     SEC                                                                  ;80AEDF;
     SBC.W #$0004                                                         ;80AEE0;
-    STA.W Layer1XPosition                                                ;80AEE3;
+    STA.B Layer1XPosition                                                ;80AEE3;
     LDA.W Layer2XPosition                                                ;80AEE6;
     SEC                                                                  ;80AEE9;
     SBC.W #$0004                                                         ;80AEEA;
@@ -6686,11 +6683,11 @@ DoorTransitionScrolling_Down:
     PHA                                                                  ;80AF0A;
     LDA.B DP_BG2YScroll                                                  ;80AF0B;
     PHA                                                                  ;80AF0D;
-    LDA.W Layer1YPosition                                                ;80AF0E;
+    LDA.B Layer1YPosition                                                ;80AF0E;
     PHA                                                                  ;80AF11;
     SEC                                                                  ;80AF12;
     SBC.W #$000F                                                         ;80AF13;
-    STA.W Layer1YPosition                                                ;80AF16;
+    STA.B Layer1YPosition                                                ;80AF16;
     LDA.W Layer2YPosition                                                ;80AF19;
     PHA                                                                  ;80AF1C;
     SEC                                                                  ;80AF1D;
@@ -6704,7 +6701,7 @@ DoorTransitionScrolling_Down:
     PLA                                                                  ;80AF34;
     STA.W Layer2YPosition                                                ;80AF35;
     PLA                                                                  ;80AF38;
-    STA.W Layer1YPosition                                                ;80AF39;
+    STA.B Layer1YPosition                                                ;80AF39;
     PLA                                                                  ;80AF3C;
     STA.B DP_BG2YScroll                                                  ;80AF3D;
     PLA                                                                  ;80AF3F;
@@ -6717,14 +6714,14 @@ DoorTransitionScrolling_Down:
     CLC                                                                  ;80AF4C;
     ADC.W SamusSubSpeedDuringDoorTransition                              ;80AF4D;
     STA.W SamusYSubPosition                                              ;80AF50;
-    LDA.W SamusYPosition                                                 ;80AF53;
+    LDA.B SamusYPosition                                                 ;80AF53;
     ADC.W SamusSpeedDuringDoorTransition                                 ;80AF56;
-    STA.W SamusYPosition                                                 ;80AF59;
+    STA.B SamusYPosition                                                 ;80AF59;
     STA.W SamusPreviousYPosition                                         ;80AF5C;
-    LDA.W Layer1YPosition                                                ;80AF5F;
+    LDA.B Layer1YPosition                                                ;80AF5F;
     CLC                                                                  ;80AF62;
     ADC.W #$0004                                                         ;80AF63;
-    STA.W Layer1YPosition                                                ;80AF66;
+    STA.B Layer1YPosition                                                ;80AF66;
     LDA.W Layer2YPosition                                                ;80AF69;
     CLC                                                                  ;80AF6C;
     ADC.W #$0004                                                         ;80AF6D;
@@ -6766,11 +6763,11 @@ DoorTransitionScrolling_Up:
     PHA                                                                  ;80AF91;
     LDA.B DP_BG2YScroll                                                  ;80AF92;
     PHA                                                                  ;80AF94;
-    LDA.W Layer1YPosition                                                ;80AF95;
+    LDA.B Layer1YPosition                                                ;80AF95;
     PHA                                                                  ;80AF98;
     SEC                                                                  ;80AF99;
     SBC.W #$0010                                                         ;80AF9A;
-    STA.W Layer1YPosition                                                ;80AF9D;
+    STA.B Layer1YPosition                                                ;80AF9D;
     LDA.W Layer2YPosition                                                ;80AFA0;
     PHA                                                                  ;80AFA3;
     SEC                                                                  ;80AFA4;
@@ -6784,7 +6781,7 @@ DoorTransitionScrolling_Up:
     PLA                                                                  ;80AFBB;
     STA.W Layer2YPosition                                                ;80AFBC;
     PLA                                                                  ;80AFBF;
-    STA.W Layer1YPosition                                                ;80AFC0;
+    STA.B Layer1YPosition                                                ;80AFC0;
     PLA                                                                  ;80AFC3;
     STA.B DP_BG2YScroll                                                  ;80AFC4;
     PLA                                                                  ;80AFC6;
@@ -6795,25 +6792,25 @@ DoorTransitionScrolling_Up:
     SEC                                                                  ;80AFCE;
     SBC.W SamusSubSpeedDuringDoorTransition                              ;80AFCF;
     STA.W SamusYSubPosition                                              ;80AFD2;
-    LDA.W SamusYPosition                                                 ;80AFD5;
+    LDA.B SamusYPosition                                                 ;80AFD5;
     SBC.W SamusSpeedDuringDoorTransition                                 ;80AFD8;
-    STA.W SamusYPosition                                                 ;80AFDB;
+    STA.B SamusYPosition                                                 ;80AFDB;
     STA.W SamusPreviousYPosition                                         ;80AFDE;
-    LDA.W Layer1YPosition                                                ;80AFE1;
+    LDA.B Layer1YPosition                                                ;80AFE1;
     SEC                                                                  ;80AFE4;
     SBC.W #$0004                                                         ;80AFE5;
-    STA.W Layer1YPosition                                                ;80AFE8;
+    STA.B Layer1YPosition                                                ;80AFE8;
     LDA.W Layer2YPosition                                                ;80AFEB;
     SEC                                                                  ;80AFEE;
     SBC.W #$0004                                                         ;80AFEF;
     STA.W Layer2YPosition                                                ;80AFF2;
     CPX.W #$0005                                                         ;80AFF5;
     BCS +                                                                ;80AFF8;
-    LDA.W Layer1XPosition                                                ;80AFFA;
+    LDA.B Layer1XPosition                                                ;80AFFA;
     CLC                                                                  ;80AFFD;
     ADC.W Layer2ScrollY+1                                                ;80AFFE;
     STA.B DP_BG1XScroll                                                  ;80B001;
-    LDA.W Layer1YPosition                                                ;80B003;
+    LDA.B Layer1YPosition                                                ;80B003;
     CLC                                                                  ;80B006;
     ADC.W BG1YOffset                                                     ;80B007;
     STA.B DP_BG1YScroll                                                  ;80B00A;
@@ -7905,21 +7902,21 @@ LoadFromLoadStation:
     LDA.W $0004,X                                                        ;80C467;
     STA.W DoorBTS                                                        ;80C46A;
     LDA.W $0006,X                                                        ;80C46D;
-    STA.W Layer1XPosition                                                ;80C470;
+    STA.B Layer1XPosition                                                ;80C470;
     STA.W Layer2ScrollY+1                                                ;80C473;
     LDA.W $0008,X                                                        ;80C476;
-    STA.W Layer1YPosition                                                ;80C479;
+    STA.B Layer1YPosition                                                ;80C479;
     STA.W BG1YOffset                                                     ;80C47C;
     LDA.W $000A,X                                                        ;80C47F;
     CLC                                                                  ;80C482;
-    ADC.W Layer1YPosition                                                ;80C483;
-    STA.W SamusYPosition                                                 ;80C486;
+    ADC.B Layer1YPosition                                                ;80C483;
+    STA.B SamusYPosition                                                 ;80C486;
     STA.W SamusPreviousYPosition                                         ;80C489;
-    LDA.W Layer1XPosition                                                ;80C48C;
+    LDA.B Layer1XPosition                                                ;80C48C;
     CLC                                                                  ;80C48F;
     ADC.W #$0080                                                         ;80C490;
     ADC.W $000C,X                                                        ;80C493;
-    STA.W SamusXPosition                                                 ;80C496;
+    STA.B SamusXPosition                                                 ;80C496;
     STA.W SamusPreviousXPosition                                         ;80C499;
     STZ.B DP_BG1XScroll                                                  ;80C49C;
     STZ.B DP_BG1YScroll                                                  ;80C49E;

@@ -1646,7 +1646,7 @@ Function_MamaTurtle_Asleep:
     STZ.W Enemy.YHitboxRadius,X                                          ;A28E1F;
     LDA.W Enemy.XPosition,X                                              ;A28E22;
     SEC                                                                  ;A28E25;
-    SBC.W SamusXPosition                                                 ;A28E26;
+    SBC.B SamusXPosition                                                 ;A28E26;
     PHP                                                                  ;A28E29;
     BPL +                                                                ;A28E2A;
     EOR.W #$FFFF                                                         ;A28E2C;
@@ -1677,7 +1677,7 @@ Function_MamaTurtle_Asleep:
     SEC                                                                  ;A28E60;
     SBC.W Enemy.YHitboxRadius,X                                          ;A28E61;
     STA.B DP_Temp12                                                      ;A28E64;
-    LDA.W SamusYPosition                                                 ;A28E66;
+    LDA.B SamusYPosition                                                 ;A28E66;
     CLC                                                                  ;A28E69;
     ADC.W SamusYRadius                                                   ;A28E6A;
     SEC                                                                  ;A28E6D;
@@ -1761,7 +1761,7 @@ Function_MamaTurtle_EnterShell:
     LDY.W #InstList_MamaTurtle_FacingLeft_EnterShell                     ;A28F3F;
     LDA.W Enemy.XPosition,X                                              ;A28F42;
     SEC                                                                  ;A28F45;
-    SBC.W SamusXPosition                                                 ;A28F46;
+    SBC.B SamusXPosition                                                 ;A28F46;
     BPL .keepLeft                                                        ;A28F49;
     LDY.W #InstList_MamaTurtle_FacingRight_EnterShell                    ;A28F4B;
 
@@ -1826,7 +1826,7 @@ Function_MamaTurtle_RiseToHover:
     LDY.W #$0000                                                         ;A28FBD;
     LDA.W Enemy.XPosition,X                                              ;A28FC0;
     SEC                                                                  ;A28FC3;
-    SBC.W SamusXPosition                                                 ;A28FC4;
+    SBC.B SamusXPosition                                                 ;A28FC4;
     BPL +                                                                ;A28FC7;
     LDY.W #$0004                                                         ;A28FC9;
 
@@ -2234,16 +2234,16 @@ EnemyTouch_BabyTurtle:
     LDA.W #$0001                                                         ;A292C7;
     STA.W Enemy.instTimer,X                                              ;A292CA;
     LDA.W Enemy.XPosition,X                                              ;A292CD;
-    CMP.W SamusXPosition                                                 ;A292D0;
+    CMP.B SamusXPosition                                                 ;A292D0;
     BPL .SamusToTheLeft                                                  ;A292D3;
-    LDA.W SamusXPosition                                                 ;A292D5;
+    LDA.B SamusXPosition                                                 ;A292D5;
     SEC                                                                  ;A292D8;
     SBC.W SamusXRadius                                                   ;A292D9;
     SBC.W Enemy.XHitboxRadius,X                                          ;A292DC;
     BRA +                                                                ;A292DF;
 
   .SamusToTheLeft:
-    LDA.W SamusXPosition                                                 ;A292E1;
+    LDA.B SamusXPosition                                                 ;A292E1;
     CLC                                                                  ;A292E4;
     ADC.W SamusXRadius                                                   ;A292E5;
     ADC.W Enemy.XHitboxRadius,X                                          ;A292E8;
@@ -2302,24 +2302,24 @@ MamaTurtle_vs_Samus_CollisionDetection:
     SEC                                                                  ;A29343;
     SBC.W #$0004                                                         ;A29344;
     STA.B DP_Temp18                                                      ;A29347;
-    LDA.W SamusXPosition                                                 ;A29349;
+    LDA.B SamusXPosition                                                 ;A29349;
     SEC                                                                  ;A2934C;
     SBC.W SamusXRadius                                                   ;A2934D;
     DEC                                                                  ;A29350;
     CMP.B DP_Temp14                                                      ;A29351;
     BPL .return                                                          ;A29353;
-    LDA.W SamusXPosition                                                 ;A29355;
+    LDA.B SamusXPosition                                                 ;A29355;
     CLC                                                                  ;A29358;
     ADC.W SamusXRadius                                                   ;A29359;
     CMP.B DP_Temp12                                                      ;A2935C;
     BMI .return                                                          ;A2935E;
-    LDA.W SamusYPosition                                                 ;A29360;
+    LDA.B SamusYPosition                                                 ;A29360;
     SEC                                                                  ;A29363;
     SBC.W SamusYRadius                                                   ;A29364;
     INC                                                                  ;A29367;
     CMP.B DP_Temp18                                                      ;A29368;
     BPL .return                                                          ;A2936A;
-    LDA.W SamusYPosition                                                 ;A2936C;
+    LDA.B SamusYPosition                                                 ;A2936C;
     CLC                                                                  ;A2936F;
     ADC.W SamusYRadius                                                   ;A29370;
     CMP.B DP_Temp16                                                      ;A29373;
@@ -4475,7 +4475,7 @@ InitAI_ShipTop:
     LDA.L SRAMMirror_LoadingGameState                                    ;A2A66D;
     CMP.W #$0022                                                         ;A2A671;
     BNE .notLandingOnZebes                                               ;A2A674;
-    LDA.W SamusYPosition                                                 ;A2A676;
+    LDA.B SamusYPosition                                                 ;A2A676;
     SEC                                                                  ;A2A679;
     SBC.W #$0011                                                         ;A2A67A;
     STA.W Enemy.YPosition,X                                              ;A2A67D;
@@ -4497,7 +4497,7 @@ InitAI_ShipTop:
     LDA.W DemoSet                                                        ;A2A69D;
     BNE .landingOnZebes                                                  ;A2A6A0;
     LDA.W #$0472                                                         ;A2A6A2;
-    STA.W SamusYPosition                                                 ;A2A6A5;
+    STA.B SamusYPosition                                                 ;A2A6A5;
     LDA.W Enemy.YPosition,X                                              ;A2A6A8;
     SEC                                                                  ;A2A6AB;
     SBC.W #$0019                                                         ;A2A6AC;
@@ -4547,7 +4547,7 @@ InitAI_ShipBottomEntrance:
     LDA.L SRAMMirror_LoadingGameState                                    ;A2A70B;
     CMP.W #$0022                                                         ;A2A70F;
     BNE .notLandingOnZebes                                               ;A2A712;
-    LDA.W SamusYPosition                                                 ;A2A714;
+    LDA.B SamusYPosition                                                 ;A2A714;
     CLC                                                                  ;A2A717;
     ADC.W #$0017                                                         ;A2A718;
     STA.W Enemy.YPosition,X                                              ;A2A71B;
@@ -4674,10 +4674,10 @@ if !DEBUG
 ;;; $A7D8: Unused. Gunship function - rise to Y position 80h and then descend ;;;
 UNUSED_Function_Ship_RiseToYPosition80_Descend:
 ; Probably a little debug function for testing the landing sequence
-    LDA.W SamusYPosition                                                 ;A2A7D8;
+    LDA.B SamusYPosition                                                 ;A2A7D8;
     SEC                                                                  ;A2A7DB;
     SBC.W #$0008                                                         ;A2A7DC;
-    STA.W SamusYPosition                                                 ;A2A7DF;
+    STA.B SamusYPosition                                                 ;A2A7DF;
     LDA.W Enemy[2].YPosition,X                                           ;A2A7E2;
     SEC                                                                  ;A2A7E5;
     SBC.W #$0008                                                         ;A2A7E6;
@@ -4710,9 +4710,9 @@ Function_Ship_LandingOnZebes_Descending:
     CLC                                                                  ;A2A817;
     ADC.W #$8000                                                         ;A2A818;
     STA.W SamusYSubPosition                                              ;A2A81B;
-    LDA.W SamusYPosition                                                 ;A2A81E;
+    LDA.B SamusYPosition                                                 ;A2A81E;
     ADC.W #$0004                                                         ;A2A821;
-    STA.W SamusYPosition                                                 ;A2A824;
+    STA.B SamusYPosition                                                 ;A2A824;
     LDA.W Enemy[2].YSubPosition,X                                        ;A2A827;
     CLC                                                                  ;A2A82A;
     ADC.W #$8000                                                         ;A2A82B;
@@ -4741,9 +4741,9 @@ Function_Ship_LandingOnZebes_Descending:
     CLC                                                                  ;A2A864;
     ADC.W #$8000                                                         ;A2A865;
     STA.W SamusYSubPosition                                              ;A2A868;
-    LDA.W SamusYPosition                                                 ;A2A86B;
+    LDA.B SamusYPosition                                                 ;A2A86B;
     ADC.W #$0002                                                         ;A2A86E;
-    STA.W SamusYPosition                                                 ;A2A871;
+    STA.B SamusYPosition                                                 ;A2A871;
     LDA.W Enemy[2].YSubPosition,X                                        ;A2A874;
     CLC                                                                  ;A2A877;
     ADC.W #$8000                                                         ;A2A878;
@@ -4790,10 +4790,10 @@ Function_Ship_LandingOnZebes_ApplyBrakes:
     LDA.W ShipTop.brakesTimer,X                                          ;A2A8D0;
     ASL                                                                  ;A2A8D3;
     TAY                                                                  ;A2A8D4;
-    LDA.W SamusYPosition                                                 ;A2A8D5;
+    LDA.B SamusYPosition                                                 ;A2A8D5;
     CLC                                                                  ;A2A8D8;
     ADC.W ShipBrakesMovementData,Y                                       ;A2A8D9;
-    STA.W SamusYPosition                                                 ;A2A8DC;
+    STA.B SamusYPosition                                                 ;A2A8DC;
     LDA.W Enemy[2].YPosition,X                                           ;A2A8DF;
     CLC                                                                  ;A2A8E2;
     ADC.W ShipBrakesMovementData,Y                                       ;A2A8E3;
@@ -4820,7 +4820,7 @@ Function_Ship_LandingOnZebes_ApplyBrakes:
     STZ.W ShipTop.hoverIndex                                             ;A2A91B;
     LDA.W Enemy.XPosition,X                                              ;A2A91E;
     INC                                                                  ;A2A921;
-    STA.W SamusXPosition                                                 ;A2A922;
+    STA.B SamusXPosition                                                 ;A2A922;
     STA.W SamusPreviousXPosition                                         ;A2A925;
     LDA.W #$0001                                                         ;A2A928;
     STA.W Enemy[2].instTimer,X                                           ;A2A92B;
@@ -4855,10 +4855,10 @@ Function_Ship_LandingOnZebes_EjectSamus:
     SEC                                                                  ;A2A953;
     SBC.W #$001E                                                         ;A2A954;
     STA.B DP_Temp12                                                      ;A2A957;
-    LDA.W SamusYPosition                                                 ;A2A959;
+    LDA.B SamusYPosition                                                 ;A2A959;
     SEC                                                                  ;A2A95C;
     SBC.W #$0001                                                         ;A2A95D;
-    STA.W SamusYPosition                                                 ;A2A960;
+    STA.B SamusYPosition                                                 ;A2A960;
     CMP.B DP_Temp12                                                      ;A2A963;
     BPL .return                                                          ;A2A965;
     LDA.W #Function_Ship_LandOnZebes_WaitForShipEntranceToClose_UnlockSamus ;A2A967;
@@ -4913,20 +4913,20 @@ Function_Ship_Idle_HandleLettingSamusEnter:
     LDA.W Enemy.XPosition,X                                              ;A2A9CD;
     SEC                                                                  ;A2A9D0;
     SBC.W #$0008                                                         ;A2A9D1;
-    CMP.W SamusXPosition                                                 ;A2A9D4;
+    CMP.B SamusXPosition                                                 ;A2A9D4;
     BPL .return                                                          ;A2A9D7;
     LDA.W Enemy.XPosition,X                                              ;A2A9D9;
     CLC                                                                  ;A2A9DC;
     ADC.W #$0008                                                         ;A2A9DD;
-    CMP.W SamusXPosition                                                 ;A2A9E0;
+    CMP.B SamusXPosition                                                 ;A2A9E0;
     BMI .return                                                          ;A2A9E3;
     LDA.W Enemy.YPosition,X                                              ;A2A9E5;
     SEC                                                                  ;A2A9E8;
     SBC.W #$0040                                                         ;A2A9E9;
-    CMP.W SamusYPosition                                                 ;A2A9EC;
+    CMP.B SamusYPosition                                                 ;A2A9EC;
     BPL .return                                                          ;A2A9EF;
     LDA.W Enemy.YPosition,X                                              ;A2A9F1;
-    CMP.W SamusYPosition                                                 ;A2A9F4;
+    CMP.B SamusYPosition                                                 ;A2A9F4;
     BMI .return                                                          ;A2A9F7;
     LDA.W MovementType                                                   ;A2A9F9;
     AND.W #$00FF                                                         ;A2A9FC;
@@ -4941,11 +4941,11 @@ Function_Ship_Idle_HandleLettingSamusEnter:
   .enterShip:
     LDA.W #Function_Ship_SamusEntering_WaitForEntrancePadToOpen          ;A2AA09;
     STA.W ShipTop.function,X                                             ;A2AA0C;
-    LDA.W SamusXPosition                                                 ;A2AA0F;
+    LDA.B SamusXPosition                                                 ;A2AA0F;
     CMP.W #$0480                                                         ;A2AA12;
     BEQ .skipMovingSamus                                                 ;A2AA15;
     LDA.W Enemy.XPosition,X                                              ;A2AA17;
-    STA.W SamusXPosition                                                 ;A2AA1A;
+    STA.B SamusXPosition                                                 ;A2AA1A;
     STA.W SamusPreviousXPosition                                         ;A2AA1D;
 
   .skipMovingSamus:
@@ -4987,10 +4987,10 @@ Function_Ship_SamusEntering_LowerSamus:
     CLC                                                                  ;A2AA60;
     ADC.W #$0012                                                         ;A2AA61;
     STA.B DP_Temp12                                                      ;A2AA64;
-    LDA.W SamusYPosition                                                 ;A2AA66;
+    LDA.B SamusYPosition                                                 ;A2AA66;
     CLC                                                                  ;A2AA69;
     ADC.W #$0002                                                         ;A2AA6A;
-    STA.W SamusYPosition                                                 ;A2AA6D;
+    STA.B SamusYPosition                                                 ;A2AA6D;
     CMP.B DP_Temp12                                                      ;A2AA70;
     BMI .return                                                          ;A2AA72;
     LDA.W #Function_Ship_SamusEntering_WaitForEntrancePadToClose         ;A2AA74;
@@ -5129,10 +5129,10 @@ Function_Ship_SamusExiting_RaiseSamus:
     SEC                                                                  ;A2AB71;
     SBC.W #$001E                                                         ;A2AB72;
     STA.B DP_Temp12                                                      ;A2AB75;
-    LDA.W SamusYPosition                                                 ;A2AB77;
+    LDA.B SamusYPosition                                                 ;A2AB77;
     SEC                                                                  ;A2AB7A;
     SBC.W #$0002                                                         ;A2AB7B;
-    STA.W SamusYPosition                                                 ;A2AB7E;
+    STA.B SamusYPosition                                                 ;A2AB7E;
     CMP.B DP_Temp12                                                      ;A2AB81;
     BPL .return                                                          ;A2AB83;
     LDA.W #Function_Ship_SamusExiting_WaitForEntrancePadToClose          ;A2AB85;
@@ -5228,44 +5228,44 @@ Function_Ship_Liftoff_FireUpEngines_SpawnDustClouds:
     BPL .rumbleIntensifies                                               ;A2AC21;
     BIT.W #$0001                                                         ;A2AC23;
     BEQ +                                                                ;A2AC26;
-    LDA.W SamusYPosition                                                 ;A2AC28;
+    LDA.B SamusYPosition                                                 ;A2AC28;
     CLC                                                                  ;A2AC2B;
     ADC.W #$0001                                                         ;A2AC2C;
-    STA.W SamusYPosition                                                 ;A2AC2F;
+    STA.B SamusYPosition                                                 ;A2AC2F;
     STA.W SamusPreviousYPosition                                         ;A2AC32;
     BRA .merge                                                           ;A2AC35;
 
-+   LDA.W SamusYPosition                                                 ;A2AC37;
++   LDA.B SamusYPosition                                                 ;A2AC37;
     SEC                                                                  ;A2AC3A;
     SBC.W #$0001                                                         ;A2AC3B;
-    STA.W SamusYPosition                                                 ;A2AC3E;
+    STA.B SamusYPosition                                                 ;A2AC3E;
     STA.W SamusPreviousYPosition                                         ;A2AC41;
     BRA .merge                                                           ;A2AC44;
 
   .rumbleIntensifies:
     BIT.W #$0001                                                         ;A2AC46;
     BEQ +                                                                ;A2AC49;
-    LDA.W SamusYPosition                                                 ;A2AC4B;
+    LDA.B SamusYPosition                                                 ;A2AC4B;
     CLC                                                                  ;A2AC4E;
     ADC.W #$0002                                                         ;A2AC4F;
-    STA.W SamusYPosition                                                 ;A2AC52;
+    STA.B SamusYPosition                                                 ;A2AC52;
     STA.W SamusPreviousYPosition                                         ;A2AC55;
     BRA .merge                                                           ;A2AC58;
 
-+   LDA.W SamusYPosition                                                 ;A2AC5A;
++   LDA.B SamusYPosition                                                 ;A2AC5A;
     SEC                                                                  ;A2AC5D;
     SBC.W #$0002                                                         ;A2AC5E;
-    STA.W SamusYPosition                                                 ;A2AC61;
+    STA.B SamusYPosition                                                 ;A2AC61;
     STA.W SamusPreviousYPosition                                         ;A2AC64;
 
   .merge:
-    LDA.W SamusYPosition                                                 ;A2AC67;
+    LDA.B SamusYPosition                                                 ;A2AC67;
     SEC                                                                  ;A2AC6A;
     SBC.W #$0011                                                         ;A2AC6B;
     STA.W Enemy.YPosition,X                                              ;A2AC6E;
     DEC                                                                  ;A2AC71;
     STA.W Enemy[2].YPosition,X                                           ;A2AC72;
-    LDA.W SamusYPosition                                                 ;A2AC75;
+    LDA.B SamusYPosition                                                 ;A2AC75;
     CLC                                                                  ;A2AC78;
     ADC.W #$0017                                                         ;A2AC79;
     STA.W Enemy[1].YPosition,X                                           ;A2AC7C;
@@ -5307,16 +5307,16 @@ Function_Ship_Liftoff_FireUpEngines_SpawnDustClouds:
 
 ;;; $ACD7: Gunship function - liftoff - steady rise ;;;
 Function_Ship_Liftoff_SteadyRise:
-    LDA.W SamusYPosition                                                 ;A2ACD7;
+    LDA.B SamusYPosition                                                 ;A2ACD7;
     SEC                                                                  ;A2ACDA;
     SBC.W #$0002                                                         ;A2ACDB;
-    STA.W SamusYPosition                                                 ;A2ACDE;
+    STA.B SamusYPosition                                                 ;A2ACDE;
     SEC                                                                  ;A2ACE4;
     SBC.W #$0011                                                         ;A2ACE5;
     STA.W Enemy.YPosition,X                                              ;A2ACE8;
     DEC                                                                  ;A2ACEB;
     STA.W Enemy[2].YPosition,X                                           ;A2ACEC;
-    LDA.W SamusYPosition                                                 ;A2ACEF;
+    LDA.B SamusYPosition                                                 ;A2ACEF;
     CLC                                                                  ;A2ACF2;
     ADC.W #$0017                                                         ;A2ACF3;
     STA.W Enemy[1].YPosition,X                                           ;A2ACF6;
@@ -5373,15 +5373,15 @@ Function_Ship_Liftoff_Accelerating:
     SEC                                                                  ;A2AD58;
     SBC.B DP_Temp14                                                      ;A2AD59;
     STA.W SamusYSubPosition                                              ;A2AD5B;
-    LDA.W SamusYPosition                                                 ;A2AD5E;
+    LDA.B SamusYPosition                                                 ;A2AD5E;
     SBC.B DP_Temp12                                                      ;A2AD61;
-    STA.W SamusYPosition                                                 ;A2AD63;
+    STA.B SamusYPosition                                                 ;A2AD63;
     SEC                                                                  ;A2AD69;
     SBC.W #$0011                                                         ;A2AD6A;
     STA.W Enemy.YPosition,X                                              ;A2AD6D;
     DEC                                                                  ;A2AD70;
     STA.W Enemy[2].YPosition,X                                           ;A2AD71;
-    LDA.W SamusYPosition                                                 ;A2AD74;
+    LDA.B SamusYPosition                                                 ;A2AD74;
     CLC                                                                  ;A2AD77;
     ADC.W #$0017                                                         ;A2AD78;
     STA.W Enemy[1].YPosition,X                                           ;A2AD7B;
@@ -5703,7 +5703,7 @@ SetFlyToAttackSamus:
     ASL                                                                  ;A2B13C;
     ASL                                                                  ;A2B13D;
     STA.W Flies.YVelocity,Y                                              ;A2B13E;
-    LDA.W SamusYPosition                                                 ;A2B141;
+    LDA.B SamusYPosition                                                 ;A2B141;
     STA.W Flies.targetYPosition,Y                                        ;A2B144;
     LDA.W #Function_Flies_AttackSamus                                    ;A2B147;
     STA.W Flies.function,Y                                               ;A2B14A;
@@ -6555,11 +6555,11 @@ Function_Rinka_Fire:
     AND.W #$FBFF                                                         ;A2B800;
     STA.W Enemy.properties,X                                             ;A2B803;
 
-+   LDA.W SamusXPosition                                                 ;A2B806;
++   LDA.B SamusXPosition                                                 ;A2B806;
     SEC                                                                  ;A2B809;
     SBC.W Enemy.XPosition,X                                              ;A2B80A;
     STA.B DP_Temp12                                                      ;A2B80D;
-    LDA.W SamusYPosition                                                 ;A2B80F;
+    LDA.B SamusYPosition                                                 ;A2B80F;
     SEC                                                                  ;A2B812;
     SBC.W Enemy.YPosition,X                                              ;A2B813;
     STA.B DP_Temp14                                                      ;A2B816;
@@ -6685,7 +6685,7 @@ CheckIfRinkaIsOnScreen:
     CLC                                                                  ;A2B8D8;
     ADC.W #$0010                                                         ;A2B8D9;
     SEC                                                                  ;A2B8DC;
-    SBC.W Layer1YPosition                                                ;A2B8DD;
+    SBC.B Layer1YPosition                                                ;A2B8DD;
     BMI .returnOffScreen                                                 ;A2B8E0;
     CMP.W #$0100                                                         ;A2B8E2;
     BPL .returnOffScreen                                                 ;A2B8E5;
@@ -6694,7 +6694,7 @@ CheckIfRinkaIsOnScreen:
     CLC                                                                  ;A2B8EC;
     ADC.W #$0010                                                         ;A2B8ED;
     SEC                                                                  ;A2B8F0;
-    SBC.W Layer1XPosition                                                ;A2B8F1;
+    SBC.B Layer1XPosition                                                ;A2B8F1;
     BMI .returnOffScreen                                                 ;A2B8F4;
     CMP.W #$0120                                                         ;A2B8F6;
     BPL .returnOffScreen                                                 ;A2B8F9;
@@ -6718,7 +6718,7 @@ CheckIfPositionIsOnScreen:
     CLC                                                                  ;A2B903;
     ADC.W #$0000                                                         ;A2B904;
     SEC                                                                  ;A2B907;
-    SBC.W Layer1YPosition                                                ;A2B908;
+    SBC.B Layer1YPosition                                                ;A2B908;
     BMI .returnOffScreen                                                 ;A2B90B;
     CMP.W #$00E0                                                         ;A2B90D;
     BPL .returnOffScreen                                                 ;A2B910;
@@ -6727,7 +6727,7 @@ CheckIfPositionIsOnScreen:
     CLC                                                                  ;A2B916;
     ADC.W #$0000                                                         ;A2B917;
     SEC                                                                  ;A2B91A;
-    SBC.W Layer1XPosition                                                ;A2B91B;
+    SBC.B Layer1XPosition                                                ;A2B91B;
     BMI .returnOffScreen                                                 ;A2B91E;
     CMP.W #$0100                                                         ;A2B920;
     BPL .returnOffScreen                                                 ;A2B923;
@@ -7097,7 +7097,7 @@ Function_Rio_WaitForSamusToGetNear:
     STA.W Rio.YVelocity,X                                                ;A2BBFA;
     LDA.W RioConstants_XVelocity                                         ;A2BBFD;
     STA.W Rio.XVelocity,X                                                ;A2BC00;
-    LDA.W SamusXPosition                                                 ;A2BC03;
+    LDA.B SamusXPosition                                                 ;A2BC03;
     CMP.W Enemy.XPosition,X                                              ;A2BC06;
     BPL +                                                                ;A2BC09;
     LDA.W Rio.XVelocity,X                                                ;A2BC0B;
@@ -7237,7 +7237,7 @@ Function_Rio_Swoop_Ascending:
 Function_Rio_Homing:
     LDA.W Enemy.YPosition,X                                              ;A2BCFF;
     SEC                                                                  ;A2BD02;
-    SBC.W SamusYPosition                                                 ;A2BD03;
+    SBC.B SamusYPosition                                                 ;A2BD03;
     BPL .resumeSwoop                                                     ;A2BD06;
     JSL.L CalculateAngleOfSamusFromEnemy                                 ;A2BD08;
     TXY                                                                  ;A2BD0C;
@@ -7996,7 +7996,7 @@ Function_Geruta_Idle:
     STA.W Geruta.YVelocity,X                                             ;A2C317;
     LDA.W GerutaConstants_swoopXSpeed                                    ;A2C31A;
     STA.W Geruta.XVelocity,X                                             ;A2C31D;
-    LDA.W SamusXPosition                                                 ;A2C320;
+    LDA.B SamusXPosition                                                 ;A2C320;
     CMP.W Enemy.XPosition,X                                              ;A2C323;
     BPL .SamusToTheLeft                                                  ;A2C326;
     LDA.W Geruta.XVelocity,X                                             ;A2C328;
@@ -8518,7 +8518,7 @@ Function_Holtz_Idle:
     STA.W Holtz.YVelocity,X                                              ;A2C793;
     LDA.W HoltzConstants_XSpeed                                          ;A2C796;
     STA.W Holtz.XVelocity,X                                              ;A2C799;
-    LDA.W SamusXPosition                                                 ;A2C79C;
+    LDA.B SamusXPosition                                                 ;A2C79C;
     CMP.W Enemy.XPosition,X                                              ;A2C79F;
     BPL +                                                                ;A2C7A2;
     LDA.W Holtz.XVelocity,X                                              ;A2C7A4;
@@ -9883,7 +9883,7 @@ EnemyTouch_Oum_DoesNotHurtSamus:
     JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A2D38C;
     BNE .return                                                          ;A2D390;
     LDX.B EnemyIndex                                                     ;A2D392;
-    LDA.W SamusXPosition                                                 ;A2D395;
+    LDA.B SamusXPosition                                                 ;A2D395;
     SEC                                                                  ;A2D398;
     SBC.W Enemy.XPosition,X                                              ;A2D399;
     BMI .rightOfSamus                                                    ;A2D39C;
@@ -12709,7 +12709,7 @@ InitializeHorizontalShutter:
   .notLeftwards:
     LDA.W #Function_HorizontalShutter_Initial                            ;A2F1C2;
     STA.W ShutterHorizShootable.function,X                               ;A2F1C5;
-    LDA.W SamusXPosition                                                 ;A2F1C8;
+    LDA.B SamusXPosition                                                 ;A2F1C8;
     STA.L ExtraEnemy7800+$2A,X                                           ;A2F1CB;
     LDA.W #$0000                                                         ;A2F1CF;
     STA.W Enemy.properties2,X                                            ;A2F1D2;
@@ -12743,7 +12743,7 @@ MainAI_ShutterHorizShootable:
     BEQ +                                                                ;A2F20F;
     JSL.L PowerBombReaction_CommonReaction_HorizontalShutter             ;A2F211;
 
-+   LDA.W SamusXPosition                                                 ;A2F215;
++   LDA.B SamusXPosition                                                 ;A2F215;
     STA.L ExtraEnemy7800+$2A,X                                           ;A2F218;
     LDA.W SamusXSubPosition                                              ;A2F21C;
     STA.L ExtraEnemy7800+$2C,X                                           ;A2F21F;
@@ -12819,7 +12819,7 @@ Function_HorizontalShutter_MovingLeft:
     STA.L ShutterHorizShootable.movingSamusFlag,X                        ;A2F27F;
     JSL.L CheckIfEnemyIsTouchingSamus                                    ;A2F283;
     BEQ .notTouchingSamus                                                ;A2F287;
-    LDA.W SamusXPosition                                                 ;A2F289;
+    LDA.B SamusXPosition                                                 ;A2F289;
     CMP.W Enemy.XPosition,X                                              ;A2F28C;
     BPL .notTouchingSamus                                                ;A2F28F;
     LDA.W #$0001                                                         ;A2F291;
@@ -12868,7 +12868,7 @@ Function_HorizontalShutter_MovingRight:
     STA.L ShutterHorizShootable.movingSamusFlag,X                        ;A2F2F1;
     JSL.L CheckIfEnemyIsTouchingSamus                                    ;A2F2F5;
     BEQ .notTouchingSamus                                                ;A2F2F9;
-    LDA.W SamusXPosition                                                 ;A2F2FB;
+    LDA.B SamusXPosition                                                 ;A2F2FB;
     CMP.W Enemy.XPosition,X                                              ;A2F2FE;
     BMI .notTouchingSamus                                                ;A2F301;
     LDA.W #$0001                                                         ;A2F303;
@@ -12993,7 +12993,7 @@ EnemyTouch_ShutterHorizShootable:
     LDA.W ShutterHorizShootable.function,X                               ;A2F3DB;
     CMP.W #RTS_A2F3D4                                                    ;A2F3DE;
     BNE .return                                                          ;A2F3E1;
-    LDA.W SamusXPosition                                                 ;A2F3E3;
+    LDA.B SamusXPosition                                                 ;A2F3E3;
     CMP.W Enemy.XPosition,X                                              ;A2F3E6;
     BPL .checkPressingLeft                                               ;A2F3E9;
     LDA.B DP_Controller1Input                                            ;A2F3EB;

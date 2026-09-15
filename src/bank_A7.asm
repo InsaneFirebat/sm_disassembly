@@ -3560,7 +3560,7 @@ MainAI_Kraid:
     SBC.W Enemy.XPosition                                                ;A7AC36;
     ADC.W Enemy.XHitboxRadius                                            ;A7AC39;
     STA.B DP_BG2XScroll                                                  ;A7AC3C;
-    LDA.W Layer1YPosition                                                ;A7AC3E;
+    LDA.B Layer1YPosition                                                ;A7AC3E;
     SEC                                                                  ;A7AC41;
     SBC.W Enemy.YPosition                                                ;A7AC42;
     ADC.W #$0098                                                         ;A7AC45;
@@ -4121,7 +4121,7 @@ KraidsMouth_vs_Projectile_CollisionHandling:
     PHX                                                                  ;A7B033;
     TXA                                                                  ;A7B034;
     LSR                                                                  ;A7B035;
-    STA.W CollisionIndex                                                 ;A7B036;
+    STA.B CollisionIndex                                                 ;A7B036;
     PHP                                                                  ;A7B039;
     JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External     ;A7B03A;
     PLP                                                                  ;A7B03E;
@@ -4222,11 +4222,11 @@ KraidBody_vs_Samus_CollisionHandling:
     LDA.W Kraid.function                                                 ;A7B0F3;
     CMP.W #KraidDeath_Initialize                                         ;A7B0F6;
     BPL .return                                                          ;A7B0F9;
-    LDA.W SamusXPosition                                                 ;A7B0FB;
+    LDA.B SamusXPosition                                                 ;A7B0FB;
     CLC                                                                  ;A7B0FE;
     ADC.W SamusXRadius                                                   ;A7B0FF;
     STA.B DP_Temp12                                                      ;A7B102;
-    LDA.W SamusYPosition                                                 ;A7B104;
+    LDA.B SamusYPosition                                                 ;A7B104;
     SEC                                                                  ;A7B107;
     SBC.W Enemy.YPosition                                                ;A7B108;
     LDX.W #$0000                                                         ;A7B10B;
@@ -4248,23 +4248,23 @@ KraidBody_vs_Samus_CollisionHandling:
     SEC                                                                  ;A7B125;
     SBC.B DP_Temp12                                                      ;A7B126;
     BPL .return                                                          ;A7B128;
-    LDA.W SamusXPosition                                                 ;A7B12A;
+    LDA.B SamusXPosition                                                 ;A7B12A;
     CMP.W #$0028                                                         ;A7B12D;
     BMI .lessThan28                                                      ;A7B130;
     SEC                                                                  ;A7B132;
     SBC.W #$0008                                                         ;A7B133;
-    STA.W SamusXPosition                                                 ;A7B136;
+    STA.B SamusXPosition                                                 ;A7B136;
     STA.W SamusPreviousXPosition                                         ;A7B139;
 
   .lessThan28:
-    LDA.W SamusYPosition                                                 ;A7B13C;
+    LDA.B SamusYPosition                                                 ;A7B13C;
     SEC                                                                  ;A7B13F;
     SBC.W #$0008                                                         ;A7B140;
     CMP.L Kraid.minimumSamusEjectionYPosition                            ;A7B143;
     BPL +                                                                ;A7B147;
     LDA.L Kraid.minimumSamusEjectionYPosition                            ;A7B149;
 
-+   STA.W SamusYPosition                                                 ;A7B14D;
++   STA.B SamusYPosition                                                 ;A7B14D;
     STA.W SamusPreviousYPosition                                         ;A7B150;
     JSR.W PushSamusBack                                                  ;A7B153;
     LDA.W SamusInvincibilityTimer                                        ;A7B156;
@@ -5015,7 +5015,7 @@ Function_Kraid_KraidShot_UnglowEye:
 
 ;;; $B7BD: Main AI - enemy $E2FF (Kraid arm) ;;;
 MainAI_KraidArm:
-    LDA.W Layer1YPosition                                                ;A7B7BD;
+    LDA.B Layer1YPosition                                                ;A7B7BD;
     CLC                                                                  ;A7B7C0;
     ADC.W #$00E0                                                         ;A7B7C1;
     STA.B DP_Temp12                                                      ;A7B7C4;
@@ -5026,7 +5026,7 @@ MainAI_KraidArm:
     TAY                                                                  ;A7B7D0;
     LDA.W Enemy[1].properties                                            ;A7B7D1;
     ORA.W #$0100                                                         ;A7B7D4;
-    CPY.W Layer1YPosition                                                ;A7B7D7;
+    CPY.B Layer1YPosition                                                ;A7B7D7;
     BMI +                                                                ;A7B7DA;
     CPY.B DP_Temp12                                                      ;A7B7DC;
     BPL +                                                                ;A7B7DE;
@@ -5074,7 +5074,7 @@ MainAI_KraidLintBottom:
 ;;; $B822: Kraid lint main AI ;;;
 MainAI_KraidLintCommon:
     JSR.W KraidLint_vs_Samus_CollisionHandling                           ;A7B822;
-    LDA.W Layer1YPosition                                                ;A7B825;
+    LDA.B Layer1YPosition                                                ;A7B825;
     CLC                                                                  ;A7B828;
     ADC.W #$00E0                                                         ;A7B829;
     STA.B DP_Temp12                                                      ;A7B82C;
@@ -5273,12 +5273,12 @@ KraidLint_vs_Samus_CollisionHandling:
     SEC                                                                  ;A7B97F;
     SBC.W #$0002                                                         ;A7B980;
     STA.B DP_Temp12                                                      ;A7B983;
-    LDA.W SamusXPosition                                                 ;A7B985;
+    LDA.B SamusXPosition                                                 ;A7B985;
     CLC                                                                  ;A7B988;
     ADC.W SamusXRadius                                                   ;A7B989;
     CMP.B DP_Temp12                                                      ;A7B98C;
     BMI .return                                                          ;A7B98E;
-    LDA.W SamusXPosition                                                 ;A7B990;
+    LDA.B SamusXPosition                                                 ;A7B990;
     SEC                                                                  ;A7B993;
     SBC.W SamusXRadius                                                   ;A7B994;
     CMP.B DP_Temp12                                                      ;A7B997;
@@ -5289,7 +5289,7 @@ KraidLint_vs_Samus_CollisionHandling:
     CLC                                                                  ;A7B9A2;
     ADC.W #$0002                                                         ;A7B9A3;
     STA.B DP_Temp16                                                      ;A7B9A6;
-    LDA.W SamusYPosition                                                 ;A7B9A8;
+    LDA.B SamusYPosition                                                 ;A7B9A8;
     CLC                                                                  ;A7B9AB;
     ADC.W SamusYRadius                                                   ;A7B9AC;
     CMP.B DP_Temp16                                                      ;A7B9AF;
@@ -5300,7 +5300,7 @@ KraidLint_vs_Samus_CollisionHandling:
     SEC                                                                  ;A7B9BA;
     SBC.W #$0002                                                         ;A7B9BB;
     STA.B DP_Temp18                                                      ;A7B9BE;
-    LDA.W SamusYPosition                                                 ;A7B9C0;
+    LDA.B SamusYPosition                                                 ;A7B9C0;
     SEC                                                                  ;A7B9C3;
     SBC.W SamusYRadius                                                   ;A7B9C4;
     CMP.B DP_Temp18                                                      ;A7B9C7;
@@ -5343,13 +5343,13 @@ MainAI_KraidFoot:
     TAX                                                                  ;A7BA0B;
     LDA.W Enemy[5].properties                                            ;A7BA0C;
     AND.W #$FEFF                                                         ;A7BA0F;
-    CPY.W Layer1YPosition                                                ;A7BA12;
+    CPY.B Layer1YPosition                                                ;A7BA12;
     BPL .offScreen                                                       ;A7BA15;
     ORA.W #$0100                                                         ;A7BA17;
     BRA +                                                                ;A7BA1A;
 
   .offScreen:
-    CPX.W Layer1YPosition                                                ;A7BA1C;
+    CPX.B Layer1YPosition                                                ;A7BA1C;
     BMI +                                                                ;A7BA1F;
     ORA.W #$0100                                                         ;A7BA21;
 
@@ -5629,7 +5629,7 @@ UNUSED_KraidFoot_LungeForwardIfSamusIsNotInvincible_A7BC75:
     BEQ .lunge                                                           ;A7BC80;
     LDA.W #Function_KraidFoot_Phase2_WalkingBackward                     ;A7BC82;
     STA.W Enemy[5].var0                                                  ;A7BC85;
-    LDA.W Layer1XPosition                                                ;A7BC88;
+    LDA.B Layer1XPosition                                                ;A7BC88;
     CLC                                                                  ;A7BC8B;
     ADC.W #$0120                                                         ;A7BC8C;
     CMP.W #$0120                                                         ;A7BC8F;
@@ -7112,7 +7112,7 @@ Function_Kraid_FadeInRegularBG_SetToDead_KraidWasAlive:
 ; Not entirely sure why this function exists
     JSR.W CheckIfKraidHasDied                                            ;A7C843;
     BEQ .setToDead                                                       ;A7C846;
-    LDA.W Layer1XPosition                                                ;A7C848;
+    LDA.B Layer1XPosition                                                ;A7C848;
     BEQ .return                                                          ;A7C84B;
 
   .setToDead:
@@ -7127,7 +7127,7 @@ Function_Kraid_FadeInRegularBG_SetToDead_KraidWasDead:
 ; Not entirely sure why this function exists
     JSR.W CheckIfKraidHasDied                                            ;A7C851;
     BEQ .setToDead                                                       ;A7C854;
-    LDA.W Layer1XPosition                                                ;A7C856;
+    LDA.B Layer1XPosition                                                ;A7C856;
     BEQ .return                                                          ;A7C859;
 
   .setToDead:
@@ -7354,12 +7354,12 @@ SpawnRandomEarthquakeProjectile:
 
 ;;; $C9EE: Restrict Samus X position to first screen ;;;
 RestrictSamusXPositionToFirstScreen:
-    LDA.W SamusXPosition                                                 ;A7C9EE;
+    LDA.B SamusXPosition                                                 ;A7C9EE;
     SEC                                                                  ;A7C9F1;
     SBC.W #$0100                                                         ;A7C9F2;
     BMI .return                                                          ;A7C9F5;
     LDA.W #$0100                                                         ;A7C9F7;
-    STA.W SamusXPosition                                                 ;A7C9FA;
+    STA.B SamusXPosition                                                 ;A7C9FA;
     STA.W SamusPreviousXPosition                                         ;A7C9FD;
 
   .return:
@@ -7841,13 +7841,13 @@ MainAI_Phantoon:
     STA.W Enemy[3].YPosition                                             ;A7CECA;
     LDA.W Phantoon.wavyPhantoonMode                                      ;A7CECD;
     BNE .return                                                          ;A7CED0;
-    LDA.W Layer1XPosition                                                ;A7CED2;
+    LDA.B Layer1XPosition                                                ;A7CED2;
     SEC                                                                  ;A7CED5;
     SBC.W Enemy.XPosition                                                ;A7CED6;
     SEC                                                                  ;A7CED9;
     SBC.W #$FFD8                                                         ;A7CEDA;
     STA.B DP_BG2XScroll                                                  ;A7CEDD;
-    LDA.W Layer1YPosition                                                ;A7CEDF;
+    LDA.B Layer1YPosition                                                ;A7CEDF;
     SEC                                                                  ;A7CEE2;
     SBC.W Enemy.YPosition                                                ;A7CEE3;
     SEC                                                                  ;A7CEE6;
@@ -8506,7 +8506,7 @@ MovePhantoonInSwoopingPattern:
     BRA +                                                                ;A7D372;
 
   .notDeathSwoop:
-    LDA.W SamusYPosition                                                 ;A7D374;
+    LDA.B SamusYPosition                                                 ;A7D374;
     SEC                                                                  ;A7D377;
     SBC.W #$0030                                                         ;A7D378;
 
@@ -10037,7 +10037,7 @@ EnemyShot_Phantoon:
     STA.B DP_Temp12                                                      ;A7DDFE;
     CMP.W #$012C                                                         ;A7DE00;
     BMI .overDamaged                                                     ;A7DE03;
-    LDA.W CollisionIndex                                                 ;A7DE05;
+    LDA.B CollisionIndex                                                 ;A7DE05;
     ASL                                                                  ;A7DE08;
     TAY                                                                  ;A7DE09;
     LDA.W SamusProjectile_Types,Y                                        ;A7DE0A;
@@ -10064,7 +10064,7 @@ EnemyShot_Phantoon:
     STA.B DP_Temp12                                                      ;A7DE34;
     CMP.W #$012C                                                         ;A7DE36;
     BMI +                                                                ;A7DE39;
-    LDA.W CollisionIndex                                                 ;A7DE3B;
+    LDA.B CollisionIndex                                                 ;A7DE3B;
     ASL                                                                  ;A7DE3E;
     TAY                                                                  ;A7DE3F;
     LDA.W SamusProjectile_Types,Y                                        ;A7DE40;
@@ -10925,7 +10925,7 @@ Function_Etecoon_StartHop_BottomOfRoom:
     STA.W Enemy.instTimer,X                                              ;A7EA1E;
     LDA.W #Function_Etecoon_Hopping_BottomOfRoom                         ;A7EA21;
     STA.W Etecoon.function,X                                             ;A7EA24;
-    LDA.W SamusXPosition                                                 ;A7EA27;
+    LDA.B SamusXPosition                                                 ;A7EA27;
     CMP.W #$0100                                                         ;A7EA2A;
     BMI .return                                                          ;A7EA2D;
     LDA.W #$0033                                                         ;A7EA2F;
@@ -11100,7 +11100,7 @@ Function_Etecoon_Jumping:
     STA.W Etecoon.function,X                                             ;A7EB7D;
     LDA.W #$0008                                                         ;A7EB80;
     STA.W Etecoon.functionTimer,X                                        ;A7EB83;
-    LDA.W SamusXPosition                                                 ;A7EB86;
+    LDA.B SamusXPosition                                                 ;A7EB86;
     CMP.W #$0100                                                         ;A7EB89;
     BMI .returnUpper                                                     ;A7EB8C;
     LDA.W #$0032                                                         ;A7EB8E;
@@ -11456,7 +11456,7 @@ Function_Etecoon_StartHop_TopOfRoom:
     STA.W Etecoon.XSubVelocity,X                                         ;A7EE25;
     LDA.W #$0001                                                         ;A7EE28;
     STA.W Enemy.instTimer,X                                              ;A7EE2B;
-    LDA.W SamusXPosition                                                 ;A7EE2E;
+    LDA.B SamusXPosition                                                 ;A7EE2E;
     CMP.W #$0100                                                         ;A7EE31;
     BMI .return                                                          ;A7EE34;
     LDA.W #$0033                                                         ;A7EE36;
@@ -11499,7 +11499,7 @@ Function_Etecoon_HopUntilSamusIsNear:
     STA.W Enemy.instList,X                                               ;A7EE7B;
     LDA.W #Function_Etecoon_Hopping_TopOfRoom                            ;A7EE7E;
     STA.W Etecoon.function,X                                             ;A7EE81;
-    LDA.W SamusXPosition                                                 ;A7EE84;
+    LDA.B SamusXPosition                                                 ;A7EE84;
     CMP.W #$0100                                                         ;A7EE87;
     BMI .skipSFX                                                         ;A7EE8A;
     LDA.W #$0033                                                         ;A7EE8C;

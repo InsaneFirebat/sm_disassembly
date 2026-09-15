@@ -659,7 +659,7 @@ AddSpritemapToOAM:
 +   STA.B DP_Temp18                                                      ;8187AA;
     INY                                                                  ;8187AC;
     INY                                                                  ;8187AD;
-    LDA.W OAMStack                                                       ;8187AE;
+    LDA.B OAMStack                                                       ;8187AE;
     BIT.W #$FE00                                                         ;8187B1;
     BNE .gotoReturn                                                      ;8187B4;
     TAX                                                                  ;8187B6;
@@ -740,12 +740,12 @@ AddSpritemapToOAM:
     BEQ +                                                                ;818844;
     JMP.W .loop                                                          ;818846;
 
-+   STX.W OAMStack                                                       ;818849;
++   STX.B OAMStack                                                       ;818849;
     PLX                                                                  ;81884C;
     RTL                                                                  ;81884D;
 
   .return:
-    STA.W OAMStack                                                       ;81884E;
+    STA.B OAMStack                                                       ;81884E;
     PLX                                                                  ;818851;
     RTL                                                                  ;818852;
 
@@ -775,7 +775,7 @@ AddSpritemapToOAM_Offscreen:
 +   STA.B DP_Temp18                                                      ;81885E;
     INY                                                                  ;818860;
     INY                                                                  ;818861;
-    LDA.W OAMStack                                                       ;818862;
+    LDA.B OAMStack                                                       ;818862;
     BIT.W #$FE00                                                         ;818865;
     BNE .goto_return                                                     ;818868;
     TAX                                                                  ;81886A;
@@ -856,12 +856,12 @@ AddSpritemapToOAM_Offscreen:
     BEQ +                                                                ;8188F8;
     JMP.W .loop                                                          ;8188FA;
 
-+   STX.W OAMStack                                                       ;8188FD;
++   STX.B OAMStack                                                       ;8188FD;
     PLX                                                                  ;818900;
     RTL                                                                  ;818901;
 
   .return:
-    STA.W OAMStack                                                       ;818902;
+    STA.B OAMStack                                                       ;818902;
     PLX                                                                  ;818905;
     RTL                                                                  ;818906;
 
@@ -980,7 +980,7 @@ AddSpritemapFrom_82C569_TableToOAM:
     STA.B DP_Temp18                                                      ;818933;
     INY                                                                  ;818935;
     INY                                                                  ;818936;
-    LDX.W OAMStack                                                       ;818937;
+    LDX.B OAMStack                                                       ;818937;
     CLC                                                                  ;81893A;
 
   .loop:
@@ -1035,7 +1035,7 @@ AddSpritemapFrom_82C569_TableToOAM:
     TAX                                                                  ;8189A4;
     DEC.B DP_Temp18                                                      ;8189A5;
     BNE .loop                                                            ;8189A7;
-    STX.W OAMStack                                                       ;8189A9;
+    STX.B OAMStack                                                       ;8189A9;
 
   .return:
     PLB                                                                  ;8189AC;
@@ -1068,7 +1068,7 @@ AddSamusSpritemapToOAM:
     STA.B DP_Temp18                                                      ;8189C2;
     INY                                                                  ;8189C4;
     INY                                                                  ;8189C5;
-    LDX.W OAMStack                                                       ;8189C6;
+    LDX.B OAMStack                                                       ;8189C6;
     CLC                                                                  ;8189C9;
 
   .loop:
@@ -1120,7 +1120,7 @@ AddSamusSpritemapToOAM:
     TAX                                                                  ;818A2D;
     DEC.B DP_Temp18                                                      ;818A2E;
     BNE .loop                                                            ;818A30;
-    STX.W OAMStack                                                       ;818A32;
+    STX.B OAMStack                                                       ;818A32;
 
   .return:
     PLB                                                                  ;818A35;
@@ -1214,7 +1214,7 @@ AddSpritemapToOAM_Common:
 ;     t = tile number
 
 ; Out of all of the spritemap loading routines, this one is the most sanely coded. No offscreen handling though (sprites wrap)
-    LDX.W OAMStack                                                       ;818A5F;
+    LDX.B OAMStack                                                       ;818A5F;
     CLC                                                                  ;818A62;
 
   .loop:
@@ -1253,7 +1253,7 @@ AddSpritemapToOAM_Common:
     TAX                                                                  ;818AAD;
     DEC.B DP_Temp18                                                      ;818AAE;
     BNE .loop                                                            ;818AB0;
-    STX.W OAMStack                                                       ;818AB2;
+    STX.B OAMStack                                                       ;818AB2;
     PLB                                                                  ;818AB5;
     RTL                                                                  ;818AB6;
 
@@ -1278,7 +1278,7 @@ AddSpritemapToOAM_WithBaseTileNumber_8AB8:
     INY                                                                  ;818ABE;
     INY                                                                  ;818ABF;
     STA.B DP_Temp18                                                      ;818AC0;
-    LDX.W OAMStack                                                       ;818AC2;
+    LDX.B OAMStack                                                       ;818AC2;
     CLC                                                                  ;818AC5;
 
   .loop:
@@ -1320,7 +1320,7 @@ AddSpritemapToOAM_WithBaseTileNumber_8AB8:
     TAX                                                                  ;818B17;
     DEC.B DP_Temp18                                                      ;818B18;
     BNE .loop                                                            ;818B1A;
-    STX.W OAMStack                                                       ;818B1C;
+    STX.B OAMStack                                                       ;818B1C;
 
   .return:
     PLY                                                                  ;818B1F;
@@ -1352,7 +1352,7 @@ AddSpritemapToOAM_WithBaseTileNumber_8B22:
     INY                                                                  ;818B28;
     INY                                                                  ;818B29;
     STA.B DP_Temp18                                                      ;818B2A;
-    LDX.W OAMStack                                                       ;818B2C;
+    LDX.B OAMStack                                                       ;818B2C;
     CLC                                                                  ;818B2F;
 
   .loop:
@@ -1404,7 +1404,7 @@ AddSpritemapToOAM_WithBaseTileNumber_8B22:
     TAX                                                                  ;818B8C;
     DEC.B DP_Temp18                                                      ;818B8D;
     BNE .loop                                                            ;818B8F;
-    STX.W OAMStack                                                       ;818B91;
+    STX.B OAMStack                                                       ;818B91;
 
   .return:
     PLY                                                                  ;818B94;
@@ -1431,7 +1431,7 @@ AddSpritemapToOAM_WithBaseTileNumber_Offscreen_8B96:
     INY                                                                  ;818B9C;
     INY                                                                  ;818B9D;
     STA.B DP_Temp18                                                      ;818B9E;
-    LDX.W OAMStack                                                       ;818BA0;
+    LDX.B OAMStack                                                       ;818BA0;
     CLC                                                                  ;818BA3;
 
   .loop:
@@ -1483,7 +1483,7 @@ AddSpritemapToOAM_WithBaseTileNumber_Offscreen_8B96:
     TAX                                                                  ;818C00;
     DEC.B DP_Temp18                                                      ;818C01;
     BNE .loop                                                            ;818C03;
-    STX.W OAMStack                                                       ;818C05;
+    STX.B OAMStack                                                       ;818C05;
 
   .return:
     PLY                                                                  ;818C08;
@@ -1510,7 +1510,7 @@ AddSpritemapToOAM_WithBaseTileNumber_8C0A:
 +   STA.B DP_Temp18                                                      ;818C10;
     INY                                                                  ;818C12;
     INY                                                                  ;818C13;
-    LDX.W OAMStack                                                       ;818C14;
+    LDX.B OAMStack                                                       ;818C14;
     CLC                                                                  ;818C17;
 
   .loop:
@@ -1564,7 +1564,7 @@ AddSpritemapToOAM_WithBaseTileNumber_8C0A:
     TAY                                                                  ;818C76;
     DEC.B DP_Temp18                                                      ;818C77;
     BNE .loop                                                            ;818C79;
-    STX.W OAMStack                                                       ;818C7B;
+    STX.B OAMStack                                                       ;818C7B;
     RTL                                                                  ;818C7E;
 
 
@@ -1588,7 +1588,7 @@ AddSpritemapToOAM_WithBaseTileNumber_Offscreen_8C7F:
 +   STA.B DP_Temp18                                                      ;818C85;
     INY                                                                  ;818C87;
     INY                                                                  ;818C88;
-    LDX.W OAMStack                                                       ;818C89;
+    LDX.B OAMStack                                                       ;818C89;
     CLC                                                                  ;818C8C;
 
   .loop:
@@ -1642,7 +1642,7 @@ AddSpritemapToOAM_WithBaseTileNumber_Offscreen_8C7F:
     TAY                                                                  ;818CEB;
     DEC.B DP_Temp18                                                      ;818CEC;
     BNE .loop                                                            ;818CEE;
-    STX.W OAMStack                                                       ;818CF0;
+    STX.B OAMStack                                                       ;818CF0;
     RTL                                                                  ;818CF3;
 
 
@@ -2022,7 +2022,7 @@ DebugGameOverMenu_Index3_Main:
 
 +   TXA                                                                  ;819043;
     ORA.W #$0028                                                         ;819044;
-    LDX.W OAMStack                                                       ;819047;
+    LDX.B OAMStack                                                       ;819047;
     STA.W OAMLow,X                                                       ;81904A;
     LDA.W #$00B6                                                         ;81904D;
     STA.W OAMLow+2,X                                                     ;819050;
@@ -2030,7 +2030,7 @@ DebugGameOverMenu_Index3_Main:
     INX                                                                  ;819054;
     INX                                                                  ;819055;
     INX                                                                  ;819056;
-    STX.W OAMStack                                                       ;819057;
+    STX.B OAMStack                                                       ;819057;
     RTS                                                                  ;81905A;
 
 

@@ -97,7 +97,6 @@ DP_GameplayColorMathB: skip 1 ; $73
 DP_ColorMathSubScreenBackdropColor0: skip 1 ; $74
 DP_ColorMathSubScreenBackdropColor1: skip 1 ; $75
 DP_ColorMathSubScreenBackdropColor2: skip 1 ; $76
-DP_DisplayResolution: skip 1 ; $77
 DP_Mode7TransMatrixA: skip 2 ; $78
 DP_Mode7TransMatrixB: skip 2 ; $7A
 DP_Mode7TransMatrixC: skip 2 ; $7C
@@ -110,13 +109,21 @@ DP_HDMAEnable: skip 1 ; $85
 DP_AutoPressInitialDelay: skip 2 ; $87
 DP_AutoPressSubsequentDelay: skip 2 ; $89
 DP_Controller1Input: skip 2 ; $8B
+if !DEBUG
 DP_Controller2Input: skip 2 ; $8D
+endif
 DP_Controller1New: skip 2 ; $8F
+if !DEBUG
 DP_Controller2New: skip 2 ; $91
+endif
 DP_Controller1Prev: skip 2 ; $97
+if !DEBUG
 DP_Controller2Prev: skip 2 ; $99
+endif
 DP_Controller1AutoPressTimer: skip 2 ; $A3
+if !DEBUG
 DP_Controller2AutoPressTimer: skip 2 ; $A5
+endif
 DP_NextIRQCmd: skip 2 ; $A7
 DP_RoomLoadIRQCmd: skip 2 ; $A9
 DP_IRQCmd: skip 2 ; $AB
@@ -132,7 +139,7 @@ DP_BG4XScroll: skip 2 ; $BD
 DP_BG4YScroll: skip 2 ; $BF
 
 ; moved to DP
-NMI_Request: skip 2 ; $05B4
+NMI_Request: skip 2 ; $05B4 (was 8bit)
 NMI_8bitFrameCounter: skip 1 ; $05B5
 NMI_FrameCounter: skip 2 ; $05B6
 NMI_Counter: skip 2 ; $05B8
@@ -140,12 +147,25 @@ VRAMWriteStack: skip 2 ; $0330
 Mode7Stack: skip 2 ; $0334
 VRAMReadStack: skip 2 ; $0360
 EnemyIndex: skip 2 ; $0E54
+RoomWidthBlocks: skip 2 ; $07A5
+SamusXPosition: skip 2 ; $0AF6
+SamusYPosition: skip 2 ; $0AFA
+Layer1XPosition: skip 2 ; $0911
+Layer1YPosition: skip 2 ; $0915
 warnpc $C1
 
-print pc, "..CF free DP"
+print pc, "..C0 free DP"
 
 org $D0
+OAMStack: skip 2 ; $0590
+SpriteObjectIndex: skip 2 ; $1844
+CollisionIndex: skip 2 ; $18A6
+PLM_Index: skip 2 ; $1C27
+ProjectileIndex: skip 2 ; $0DDE
+EnemyProjectile_Index: skip 2 ; $1991
 warnpc $E4
+
+print pc, "..E3 free DP"
 
 struct VRAMWrite $E4 ; $D0..02CD
   .size: skip 2 ; $D0
@@ -180,7 +200,7 @@ skip $10 ; $0360..6F
 
 OAMLow: skip $200 ; $0370
 OAMHigh: skip $20 ; $0570
-OAMStack: skip 2 ; $0590
+skip 2 ; $0590
 
 PowerBombExplosionStatus: skip 2 ; $0592
 skip 2 ; $0594
@@ -393,7 +413,7 @@ RoomIndex: skip 2 ; $079D
 AreaIndex: skip 2 ; $079F
 RoomMapX: skip 2 ; $07A1
 RoomMapY: skip 2 ; $07A3
-RoomWidthBlocks: skip 2 ; $07A5
+skip 2 ; $07A5
 RoomHeightBlocks: skip 2 ; $07A7
 RoomWidthScrolls: skip 2 ; $07A9
 RoomHeightScrolls: skip 2 ; $07AB
@@ -439,9 +459,9 @@ BG1YBlock: skip 2 ; $0909
 BG2XBlock: skip 2 ; $090B
 BG2YBlock: skip 2 ; $090D
 Layer1XSubPosition: skip 2 ; $090F
-Layer1XPosition: skip 2 ; $0911
+skip 2 ; $0911
 Layer1YSubPosition: skip 2 ; $0913
-Layer1YPosition: skip 2 ; $0915
+skip 2 ; $0915
 Layer2XPosition: skip 2 ; $0917
 Layer2YPosition: skip 2 ; $0919
 Layer2ScrollX: skip 1 ; $091B
@@ -698,9 +718,9 @@ AtmosphericGraphicsXPositions: skip 8 ; $0ADC..E3
 AtmosphericGraphicsYPositions: skip 8 ; $0AE4..EB
 AtmosphericGraphicsAnimFramesGraphicsTypes: skip 8 ; $0AEC..F3
 AutoJumpTimer: skip 2 ; $0AF4
-SamusXPosition: skip 2 ; $0AF6
+skip 2 ; $0AF6
 SamusXSubPosition: skip 2 ; $0AF8
-SamusYPosition: skip 2 ; $0AFA
+skip 2 ; $0AFA
 SamusYSubPosition: skip 2 ; $0AFC
 SamusXRadius: skip 2 ; $0AFE
 SamusYRadius: skip 2 ; $0B00
@@ -909,7 +929,7 @@ SlopeCollisionFlipFlags: skip 0 ; $0DD6
 SlopeCollisionDefinitionTableBaseIndex: skip 2 ; $0DD6
 skip 4 ; $0DD8..DB
 SuitPickupLightBeamWideningSpeed: skip 2 ; $0DDC
-ProjectileIndex: skip 2 ; $0DDE
+skip 2 ; $0DDE
 DebugInvincibility: skip 2 ; $0DE0
 
 DeathAnimation_Timer: skip 2 ; $0DE2
@@ -1153,7 +1173,7 @@ GlobalOffScreenEnemyProcessingFlag: skip 2 ; $183C
 EarthquakeType: skip 2 ; $183E
 EarthquakeTimer: skip 2 ; $1840
 NumberOfTimesRoomShakingExecuted: skip 2 ; $1842
-SpriteObjectIndex: skip 2 ; $1844
+skip 2 ; $1844
 DebugEnemyIndex: skip 2 ; $1846
 LogIndex: skip 2 ; $1848
 skip $10 ; $184A..59
@@ -1187,7 +1207,7 @@ SamusTargetYPosition: skip 2 ; $189E
 SamusTargetYSubPosition: skip 2 ; $18A0
 SamusXRadiusMirror: skip 2 ; $18A2
 SamusYRadiusMirror: skip 2 ; $18A4
-CollisionIndex: skip 2 ; $18A6
+skip 2 ; $18A6
 SamusInvincibilityTimer: skip 2 ; $18A8
 SamusKnockbackTimer: skip 2 ; $18AA
 ProjectileInvincibilityTimer: skip 2 ; $18AC
@@ -1239,7 +1259,7 @@ LayerBlending_PhantoonSemiTransparencyFlag: skip 2 ; $1988
 skip 3 ; $198A..8C
 
 EnemyProjectile_Enable: skip 4 ; $198D
-EnemyProjectile_Index: skip 2 ; $1991
+skip 2 ; $1991
 EnemyProjectile_InitParam0: skip 2 ; $1993
 EnemyProjectile_InitParam1: skip 2 ; $1995
 EnemyProjectile_ID: skip $24 ; $1997..BA
@@ -1394,7 +1414,7 @@ skip 2 ; $1C21
 
 PLM_Flag: skip 2 ; $1C23
 PLM_DrawTilemapIndex: skip 2 ; $1C25
-PLM_Index: skip 2 ; $1C27
+skip 2 ; $1C27
 PLM_XBlock: skip 2 ; $1C29
 PLM_YBlock: skip 2 ; $1C2B
 PLM_ItemGFXIndex: skip 2 ; $1C2D

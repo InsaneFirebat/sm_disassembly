@@ -84,10 +84,10 @@ NormalSamusPoseInputHandler_Crouching:
     LDA.W MovementType                                                   ;918092;
     AND.W #$00FF                                                         ;918095;
     BNE .return                                                          ;918098;
-    LDA.W SamusYPosition                                                 ;91809A;
+    LDA.B SamusYPosition                                                 ;91809A;
     SEC                                                                  ;91809D;
     SBC.W #$0005                                                         ;91809E;
-    STA.W SamusYPosition                                                 ;9180A1;
+    STA.B SamusYPosition                                                 ;9180A1;
     LDA.W SamusPreviousYPosition                                         ;9180A4;
     SEC                                                                  ;9180A7;
     SBC.W #$0005                                                         ;9180A8;
@@ -669,13 +669,13 @@ RecordDemoInputFrame:
     STA.L DemoRecorder_input,X                                           ;91849D;
     LDA.B DP_Controller1New                                              ;9184A1;
     STA.L DemoRecorder_new,X                                             ;9184A3;
-    LDA.W Layer1XPosition                                                ;9184A7;
+    LDA.B Layer1XPosition                                                ;9184A7;
     STA.L DemoRecorder_layer1X,X                                         ;9184AA;
-    LDA.W Layer1YPosition                                                ;9184AE;
+    LDA.B Layer1YPosition                                                ;9184AE;
     STA.L DemoRecorder_layer1Y,X                                         ;9184B1;
-    LDA.W SamusXPosition                                                 ;9184B5;
+    LDA.B SamusXPosition                                                 ;9184B5;
     STA.L DemoRecorder_SamusX,X                                          ;9184B8;
-    LDA.W SamusYPosition                                                 ;9184BC;
+    LDA.B SamusYPosition                                                 ;9184BC;
     STA.L DemoRecorder_SamusY,X                                          ;9184BF;
     LDA.W DemoInput_RecordedDuration                                     ;9184C3;
     INC                                                                  ;9184C6;
@@ -878,7 +878,7 @@ InstList_DemoInput_BabyMetroidDiscovery_End:                             ;91864B
 
 ;;; $864F: Pre-instruction - demo input - baby metroid discovery - running left ;;;
 PreInstruction_DemoInput_BabyMetroidDiscovery_RunningLeft:
-    LDA.W SamusXPosition                                                 ;91864F;
+    LDA.B SamusXPosition                                                 ;91864F;
     CMP.W #$00B2                                                         ;918652;
     BPL .return                                                          ;918655;
     LDA.W #PreInstruction_DemoInput_BabyMetroidDiscovery_StopAndLook     ;918657;
@@ -8693,14 +8693,14 @@ XraySetup_4_BuildBG2Tilemap_ReadBG2Tilemap_1stScreen:
 ; Calls Load_Item_and_Room_Special_Xray_Blocks to load item x-ray blocks
     LDA.W BG1YOffset                                                     ;91CB91;
     CLC                                                                  ;91CB94;
-    ADC.W Layer1YPosition                                                ;91CB95;
+    ADC.B Layer1YPosition                                                ;91CB95;
     AND.W #$00F0                                                         ;91CB98;
     ASL                                                                  ;91CB9B;
     ASL                                                                  ;91CB9C;
     STA.B DP_Temp18                                                      ;91CB9D;
     LDA.W BG1XOffset                                                     ;91CB9F;
     CLC                                                                  ;91CBA2;
-    ADC.W Layer1XPosition                                                ;91CBA3;
+    ADC.B Layer1XPosition                                                ;91CBA3;
     AND.W #$00F0                                                         ;91CBA6;
     LSR                                                                  ;91CBA9;
     LSR                                                                  ;91CBAA;
@@ -8710,7 +8710,7 @@ XraySetup_4_BuildBG2Tilemap_ReadBG2Tilemap_1stScreen:
     STA.B DP_Temp18                                                      ;91CBAF;
     LDA.W BG1XOffset                                                     ;91CBB1;
     CLC                                                                  ;91CBB4;
-    ADC.W Layer1XPosition                                                ;91CBB5;
+    ADC.B Layer1XPosition                                                ;91CBB5;
     AND.W #$0100                                                         ;91CBB8;
     ASL                                                                  ;91CBBB;
     ASL                                                                  ;91CBBC;
@@ -8795,15 +8795,15 @@ XraySetup_4_BuildBG2Tilemap_ReadBG2Tilemap_1stScreen:
     BEQ +                                                                ;91CC60;
     JMP.W .loopCopyBG1Row                                                ;91CC62;
 
-+   LDA.W Layer1YPosition                                                ;91CC65;
++   LDA.B Layer1YPosition                                                ;91CC65;
     LSR                                                                  ;91CC68;
     LSR                                                                  ;91CC69;
     LSR                                                                  ;91CC6A;
     LSR                                                                  ;91CC6B;
     XBA                                                                  ;91CC6C;
-    ORA.W RoomWidthBlocks                                                ;91CC6D;
+    ORA.B RoomWidthBlocks                                                ;91CC6D;
     STA.W $4202                                                          ;91CC70;
-    LDA.W Layer1XPosition                                                ;91CC73;
+    LDA.B Layer1XPosition                                                ;91CC73;
     LSR                                                                  ;91CC76;
     LSR                                                                  ;91CC77;
     LSR                                                                  ;91CC78;
@@ -8838,7 +8838,7 @@ XraySetup_4_BuildBG2Tilemap_ReadBG2Tilemap_1stScreen:
     STA.B DP_Temp16                                                      ;91CCAB;
     LDA.B DP_Temp22                                                      ;91CCAD;
     CLC                                                                  ;91CCAF;
-    ADC.W RoomWidthBlocks                                                ;91CCB0;
+    ADC.B RoomWidthBlocks                                                ;91CCB0;
     STA.B DP_Temp22                                                      ;91CCB3;
     DEC.B DP_Temp14                                                      ;91CCB5;
     BNE .loopRevealedRow                                                 ;91CCB7;
@@ -9077,7 +9077,7 @@ CalculateBlockCoordinates:
     STA.W $4204                                                          ;91CE30;
     LDA.B DP_Temp25                                                      ;91CE33;
     STA.W $4205                                                          ;91CE35;
-    LDA.W RoomWidthBlocks                                                ;91CE38;
+    LDA.B RoomWidthBlocks                                                ;91CE38;
     STA.W $4206                                                          ;91CE3B;
     REP #$20                                                             ;91CE3E;
     NOP                                                                  ;91CE40;
@@ -9103,7 +9103,7 @@ GetBlockTypeAndBTS:
 ;;     $2E: Block BTS
     LDA.B DP_Temp2C                                                      ;91CE51;
     XBA                                                                  ;91CE53;
-    ORA.W RoomWidthBlocks                                                ;91CE54;
+    ORA.B RoomWidthBlocks                                                ;91CE54;
     STA.W $4202                                                          ;91CE57;
     NOP                                                                  ;91CE5A;
     NOP                                                                  ;91CE5B;
@@ -9497,7 +9497,7 @@ LoadBlockToXrayBG2Tilemap:
     PHY                                                                  ;91D04E;
     REP #$30                                                             ;91D04F;
     STA.B DP_Temp28                                                      ;91D051;
-    LDA.W Layer1XPosition                                                ;91D053;
+    LDA.B Layer1XPosition                                                ;91D053;
     LSR                                                                  ;91D056;
     LSR                                                                  ;91D057;
     LSR                                                                  ;91D058;
@@ -9510,7 +9510,7 @@ LoadBlockToXrayBG2Tilemap:
     STA.B DP_Temp18                                                      ;91D062;
     SBC.W #$0010                                                         ;91D064;
     BPL .return                                                          ;91D067;
-    LDA.W Layer1YPosition                                                ;91D069;
+    LDA.B Layer1YPosition                                                ;91D069;
     LSR                                                                  ;91D06C;
     LSR                                                                  ;91D06D;
     LSR                                                                  ;91D06E;
@@ -9590,11 +9590,11 @@ XraySetup_5_ReadBG2Tilemap_2ndScreen:
     BEQ +                                                                ;91D0DF;
     LDA.W BG1XOffset                                                     ;91D0E1;
     CLC                                                                  ;91D0E4;
-    ADC.W Layer1XPosition                                                ;91D0E5;
+    ADC.B Layer1XPosition                                                ;91D0E5;
     STA.B DP_BG1XScroll                                                  ;91D0E8;
     LDA.W BG1YOffset                                                     ;91D0EA;
     CLC                                                                  ;91D0ED;
-    ADC.W Layer1YPosition                                                ;91D0EE;
+    ADC.B Layer1YPosition                                                ;91D0EE;
     STA.B DP_BG1YScroll                                                  ;91D0F1;
 
 +   LDA.B DP_BG1XScroll                                                  ;91D0F3;
@@ -10185,15 +10185,15 @@ VariaSuit_Pickup:
     JSL.L Set_Samus_AnimationFrame_if_PoseChanged                        ;91D56B;
     LDA.W #$0015                                                         ;91D56F;
     JSL.L Run_Samus_Command                                              ;91D572;
-    LDA.W Layer1XPosition                                                ;91D576;
+    LDA.B Layer1XPosition                                                ;91D576;
     CLC                                                                  ;91D579;
     ADC.W #$0078                                                         ;91D57A;
-    STA.W SamusXPosition                                                 ;91D57D;
+    STA.B SamusXPosition                                                 ;91D57D;
     STA.W SamusPreviousXPosition                                         ;91D580;
-    LDA.W Layer1YPosition                                                ;91D583;
+    LDA.B Layer1YPosition                                                ;91D583;
     CLC                                                                  ;91D586;
     ADC.W #$0088                                                         ;91D587;
-    STA.W SamusYPosition                                                 ;91D58A;
+    STA.B SamusYPosition                                                 ;91D58A;
     STA.W SamusPreviousYPosition                                         ;91D58D;
     LDA.W #$0056                                                         ;91D590;
     JSL.L QueueSound_Lib2_Max6                                           ;91D593;
@@ -10285,15 +10285,15 @@ GravitySuit_Pickup:
     JSL.L Set_Samus_AnimationFrame_if_PoseChanged                        ;91D643;
     LDA.W #$0015                                                         ;91D647;
     JSL.L Run_Samus_Command                                              ;91D64A;
-    LDA.W Layer1XPosition                                                ;91D64E;
+    LDA.B Layer1XPosition                                                ;91D64E;
     CLC                                                                  ;91D651;
     ADC.W #$0078                                                         ;91D652;
-    STA.W SamusXPosition                                                 ;91D655;
+    STA.B SamusXPosition                                                 ;91D655;
     STA.W SamusPreviousXPosition                                         ;91D658;
-    LDA.W Layer1YPosition                                                ;91D65B;
+    LDA.B Layer1YPosition                                                ;91D65B;
     CLC                                                                  ;91D65E;
     ADC.W #$0088                                                         ;91D65F;
-    STA.W SamusYPosition                                                 ;91D662;
+    STA.B SamusYPosition                                                 ;91D662;
     STA.W SamusPreviousYPosition                                         ;91D665;
     LDA.W #$0056                                                         ;91D668;
     JSL.L QueueSound_Lib2_Max6                                           ;91D66B;
@@ -12099,10 +12099,10 @@ Set_NonXray_SamusPose:
     SBC.W SamusYRadius                                                   ;91E330;
     STA.B DP_Temp12                                                      ;91E333;
     BMI .unfreezeEnvironment                                             ;91E335;
-    LDA.W SamusYPosition                                                 ;91E337;
+    LDA.B SamusYPosition                                                 ;91E337;
     SEC                                                                  ;91E33A;
     SBC.B DP_Temp12                                                      ;91E33B;
-    STA.W SamusYPosition                                                 ;91E33D;
+    STA.B SamusYPosition                                                 ;91E33D;
     STA.W SamusPreviousYPosition                                         ;91E340;
 
   .unfreezeEnvironment:
@@ -12224,10 +12224,10 @@ MakeSamusFaceForward:
     LDA.W SamusYRadius                                                   ;91E438;
     CMP.W #$0018                                                         ;91E43B;
     BEQ .facingForwardRadius18                                           ;91E43E;
-    LDA.W SamusYPosition                                                 ;91E440;
+    LDA.B SamusYPosition                                                 ;91E440;
     SEC                                                                  ;91E443;
     SBC.W #$0003                                                         ;91E444;
-    STA.W SamusYPosition                                                 ;91E447;
+    STA.B SamusYPosition                                                 ;91E447;
     STA.W SamusPreviousYPosition                                         ;91E44A;
 
   .facingForwardRadius18:
@@ -12328,10 +12328,10 @@ DrainedSamusController_0_LetDrainedSamusFall:
     SEC                                                                  ;91E4FB;
     SBC.W SamusYRadius                                                   ;91E4FC;
     STA.B DP_Temp12                                                      ;91E4FF;
-    LDA.W SamusYPosition                                                 ;91E501;
+    LDA.B SamusYPosition                                                 ;91E501;
     SEC                                                                  ;91E504;
     SBC.B DP_Temp12                                                      ;91E505;
-    STA.W SamusYPosition                                                 ;91E507;
+    STA.B SamusYPosition                                                 ;91E507;
     STA.W SamusPreviousYPosition                                         ;91E50A;
     LDA.W PoseXDirection                                                 ;91E50D;
     AND.W #$00FF                                                         ;91E510;
@@ -13603,10 +13603,10 @@ ProspectivePoseCmd_7_StartTransitionAnimation:
     JSL.L BlockCollisionDetectionDueToChangeOfPose                       ;91ED01;
 
   .notShrinking:
-    LDA.W SamusYPosition                                                 ;91ED05;
+    LDA.B SamusYPosition                                                 ;91ED05;
     CLC                                                                  ;91ED08;
     ADC.B DP_Temp12                                                      ;91ED09;
-    STA.W SamusYPosition                                                 ;91ED0B;
+    STA.B SamusYPosition                                                 ;91ED0B;
     STA.W SamusPreviousYPosition                                         ;91ED0E;
     LDA.W MorphBallBounceState                                           ;91ED11;
     BEQ .return                                                          ;91ED14;
@@ -13936,10 +13936,10 @@ RTS_91EF3A:
 
 ;;; $EF3B: Special prospective pose change command 8 - unused ;;;
 UNUSED_SpecialProspectivePoseCmd_8_91EF3B:
-    LDA.W SamusYPosition                                                 ;91EF3B;
+    LDA.B SamusYPosition                                                 ;91EF3B;
     SEC                                                                  ;91EF3E;
     SBC.W #$0005                                                         ;91EF3F;
-    STA.W SamusYPosition                                                 ;91EF42;
+    STA.B SamusYPosition                                                 ;91EF42;
     STA.W SamusPreviousYPosition                                         ;91EF45;
     LDA.W #RTL_90E8CD                                                    ;91EF48;
     STA.W CurrentStateHandler                                            ;91EF4B;
@@ -13954,13 +13954,13 @@ SpecialProspectivePoseCmd_9_ConnectingGrapple_Swinging:
 
 ;;; $EF53: Connecting grapple - kill speed and clamp scrolling speed ;;;
 ConnectingGrapple_KillSpeed_ClampScrollingSpeed:
-    LDA.W SamusXPosition                                                 ;91EF53;
+    LDA.B SamusXPosition                                                 ;91EF53;
     SEC                                                                  ;91EF56;
     SBC.W SamusPreviousXPosition                                         ;91EF57;
     BMI +                                                                ;91EF5A;
     CMP.W #$000D                                                         ;91EF5C;
     BMI .YPosition                                                       ;91EF5F;
-    LDA.W SamusXPosition                                                 ;91EF61;
+    LDA.B SamusXPosition                                                 ;91EF61;
     SEC                                                                  ;91EF64;
     SBC.W #$000C                                                         ;91EF65;
     STA.W SamusPreviousXPosition                                         ;91EF68;
@@ -13968,19 +13968,19 @@ ConnectingGrapple_KillSpeed_ClampScrollingSpeed:
 
 +   CMP.W #$FFF4                                                         ;91EF6D;
     BPL .YPosition                                                       ;91EF70;
-    LDA.W SamusXPosition                                                 ;91EF72;
+    LDA.B SamusXPosition                                                 ;91EF72;
     CLC                                                                  ;91EF75;
     ADC.W #$000C                                                         ;91EF76;
     STA.W SamusPreviousXPosition                                         ;91EF79;
 
   .YPosition:
-    LDA.W SamusYPosition                                                 ;91EF7C;
+    LDA.B SamusYPosition                                                 ;91EF7C;
     SEC                                                                  ;91EF7F;
     SBC.W SamusPreviousYPosition                                         ;91EF80;
     BMI +                                                                ;91EF83;
     CMP.W #$000D                                                         ;91EF85;
     BMI .killSpeed                                                       ;91EF88;
-    LDA.W SamusYPosition                                                 ;91EF8A;
+    LDA.B SamusYPosition                                                 ;91EF8A;
     SEC                                                                  ;91EF8D;
     SBC.W #$000C                                                         ;91EF8E;
     STA.W SamusPreviousYPosition                                         ;91EF91;
@@ -13988,7 +13988,7 @@ ConnectingGrapple_KillSpeed_ClampScrollingSpeed:
 
 +   CMP.W #$FFF4                                                         ;91EF96;
     BPL .killSpeed                                                       ;91EF99;
-    LDA.W SamusYPosition                                                 ;91EF9B;
+    LDA.B SamusYPosition                                                 ;91EF9B;
     CLC                                                                  ;91EF9E;
     ADC.W #$000C                                                         ;91EF9F;
     STA.W SamusPreviousYPosition                                         ;91EFA2;
@@ -14224,7 +14224,7 @@ HandleLandingGraphics_Crateria:
     db $00
 
   .wreckedShipEntrance:
-    LDA.W SamusYPosition                                                 ;91F104;
+    LDA.B SamusYPosition                                                 ;91F104;
     CMP.W #$03B0                                                         ;91F107;
     BPL HandleLandingGraphics_Maridia_HandleLandingFootstepSplashes      ;91F10A;
     BRA DeleteLandingAtmosphericGraphics                                 ;91F10C;
@@ -14260,7 +14260,7 @@ HandleLandingGraphics_Maridia_HandleLandingFootstepSplashes:
     LDA.W #$0003                                                         ;91F13F;
     STA.W AtmosphericGraphicsAnimationTimers+4                           ;91F142;
     STA.W AtmosphericGraphicsAnimationTimers+6                           ;91F145;
-    LDA.W SamusXPosition                                                 ;91F148;
+    LDA.B SamusXPosition                                                 ;91F148;
     CLC                                                                  ;91F14B;
     ADC.W #$0004                                                         ;91F14C;
     STA.W AtmosphericGraphicsXPositions+4                                ;91F14F;
@@ -14302,7 +14302,7 @@ HandleLandingGraphics_Norfair_WreckedShip_HandleLandingDust:
     LDA.W #$0003                                                         ;91F18F;
     STA.W AtmosphericGraphicsAnimationTimers+4                           ;91F192;
     STA.W AtmosphericGraphicsAnimationTimers+6                           ;91F195;
-    LDA.W SamusXPosition                                                 ;91F198;
+    LDA.B SamusXPosition                                                 ;91F198;
     CLC                                                                  ;91F19B;
     ADC.W #$0008                                                         ;91F19C;
     STA.W AtmosphericGraphicsXPositions+4                                ;91F19F;
@@ -14623,25 +14623,25 @@ SuperSpecialProspectivePoseCmd_3_TransitionAnimationFinished:
 
 ;;; $F37C: Super special prospective pose change command 4 ;;;
 SuperSpecialProspectivePoseCmd_4:
-    LDA.W Layer1XPosition                                                ;91F37C;
+    LDA.B Layer1XPosition                                                ;91F37C;
     CLC                                                                  ;91F37F;
     ADC.W #$0080                                                         ;91F380;
-    STA.W SamusXPosition                                                 ;91F383;
+    STA.B SamusXPosition                                                 ;91F383;
     STA.W SamusPreviousXPosition                                         ;91F386;
-    LDA.W Layer1YPosition                                                ;91F389;
+    LDA.B Layer1YPosition                                                ;91F389;
     CLC                                                                  ;91F38C;
     ADC.W #$0080                                                         ;91F38D;
-    STA.W SamusYPosition                                                 ;91F390;
+    STA.B SamusYPosition                                                 ;91F390;
     STA.W SamusPreviousYPosition                                         ;91F393;
     RTS                                                                  ;91F396;
 
 
 ;;; $F397: Super special prospective pose change command 5 ;;;
 SuperSpecialProspectivePoseCmd_5:
-    LDA.W SamusYPosition                                                 ;91F397;
+    LDA.B SamusYPosition                                                 ;91F397;
     CLC                                                                  ;91F39A;
     ADC.W #$0005                                                         ;91F39B;
-    STA.W SamusYPosition                                                 ;91F39E;
+    STA.B SamusYPosition                                                 ;91F39E;
     STA.W SamusPreviousYPosition                                         ;91F3A1;
     RTS                                                                  ;91F3A4;
 
@@ -14655,13 +14655,13 @@ SuperSpecialProspectivePoseCmd_6_StartGrappleWallJump:
 ;;; $F3AA: Super special prospective pose change command 7 - start release from grapple swing ;;;
 SuperSpecialProspectivePoseCmd_7_StartReleaseGrappleSwing:
 ; Clamps scrolling speed. I guess the idea is that Samus might have moved too far due to the pose change
-    LDA.W SamusXPosition                                                 ;91F3AA;
+    LDA.B SamusXPosition                                                 ;91F3AA;
     SEC                                                                  ;91F3AD;
     SBC.W SamusPreviousXPosition                                         ;91F3AE;
     BMI +                                                                ;91F3B1;
     CMP.W #$000D                                                         ;91F3B3;
     BMI .YPosition                                                       ;91F3B6;
-    LDA.W SamusXPosition                                                 ;91F3B8;
+    LDA.B SamusXPosition                                                 ;91F3B8;
     SEC                                                                  ;91F3BB;
     SBC.W #$000C                                                         ;91F3BC;
     STA.W SamusPreviousXPosition                                         ;91F3BF;
@@ -14669,19 +14669,19 @@ SuperSpecialProspectivePoseCmd_7_StartReleaseGrappleSwing:
 
 +   CMP.W #$FFF4                                                         ;91F3C4;
     BPL .YPosition                                                       ;91F3C7;
-    LDA.W SamusXPosition                                                 ;91F3C9;
+    LDA.B SamusXPosition                                                 ;91F3C9;
     CLC                                                                  ;91F3CC;
     ADC.W #$000C                                                         ;91F3CD;
     STA.W SamusPreviousXPosition                                         ;91F3D0;
 
   .YPosition:
-    LDA.W SamusYPosition                                                 ;91F3D3;
+    LDA.B SamusYPosition                                                 ;91F3D3;
     SEC                                                                  ;91F3D6;
     SBC.W SamusPreviousYPosition                                         ;91F3D7;
     BMI +                                                                ;91F3DA;
     CMP.W #$000D                                                         ;91F3DC;
     BMI .return                                                          ;91F3DF;
-    LDA.W SamusYPosition                                                 ;91F3E1;
+    LDA.B SamusYPosition                                                 ;91F3E1;
     SEC                                                                  ;91F3E4;
     SBC.W #$000C                                                         ;91F3E5;
     STA.W SamusPreviousYPosition                                         ;91F3E8;
@@ -14689,7 +14689,7 @@ SuperSpecialProspectivePoseCmd_7_StartReleaseGrappleSwing:
 
 +   CMP.W #$FFF4                                                         ;91F3ED;
     BPL .return                                                          ;91F3F0;
-    LDA.W SamusYPosition                                                 ;91F3F2;
+    LDA.B SamusYPosition                                                 ;91F3F2;
     CLC                                                                  ;91F3F5;
     ADC.W #$000C                                                         ;91F3F6;
     STA.W SamusPreviousYPosition                                         ;91F3F9;
@@ -14937,10 +14937,10 @@ InitializeSamusPose_NormalJumping:
     AND.W #$00FF                                                         ;91F583;
     CMP.W #$0002                                                         ;91F586;
     BNE .returnCarrySet                                                  ;91F589;
-    LDA.W SamusYPosition                                                 ;91F58B;
+    LDA.B SamusYPosition                                                 ;91F58B;
     SEC                                                                  ;91F58E;
     SBC.W #$0001                                                         ;91F58F;
-    STA.W SamusYPosition                                                 ;91F592;
+    STA.B SamusYPosition                                                 ;91F592;
     STA.W SamusPreviousYPosition                                         ;91F595;
 
   .returnCarrySet:
@@ -15726,7 +15726,7 @@ InitializeSamusPose_WallJumping:
     AND.W #$00FF                                                         ;91FAAA;
     CMP.W #$0008                                                         ;91FAAD;
     BEQ .facingRight                                                     ;91FAB0;
-    LDA.W SamusXPosition                                                 ;91FAB2;
+    LDA.B SamusXPosition                                                 ;91FAB2;
     CLC                                                                  ;91FAB5;
     ADC.W #$0006                                                         ;91FAB6;
     STA.W AtmosphericGraphicsXPositions+6                                ;91FAB9;
@@ -15734,7 +15734,7 @@ InitializeSamusPose_WallJumping:
     RTS                                                                  ;91FABD;
 
   .facingRight:
-    LDA.W SamusXPosition                                                 ;91FABE;
+    LDA.B SamusXPosition                                                 ;91FABE;
     SEC                                                                  ;91FAC1;
     SBC.W #$0006                                                         ;91FAC2;
     STA.W AtmosphericGraphicsXPositions+6                                ;91FAC5;
@@ -15798,7 +15798,7 @@ Set_Samus_AnimationFrame_if_PoseChanged:
     LDA.L PoseDefinitions_YRadius,X                                      ;91FB1D;
     AND.W #$00FF                                                         ;91FB21;
     CLC                                                                  ;91FB24;
-    ADC.W SamusYPosition                                                 ;91FB25;
+    ADC.B SamusYPosition                                                 ;91FB25;
     DEC                                                                  ;91FB28;
     STA.B DP_Temp12                                                      ;91FB29;
     LDA.W FX_YPosition                                                   ;91FB2B;
@@ -16033,10 +16033,10 @@ HandleJumpTransition_NormalJumping:
     BNE .jump                                                            ;91FC88;
 
   .crouchJump:
-    LDA.W SamusYPosition                                                 ;91FC8A;
+    LDA.B SamusYPosition                                                 ;91FC8A;
     SEC                                                                  ;91FC8D;
     SBC.W #$000A                                                         ;91FC8E;
-    STA.W SamusYPosition                                                 ;91FC91;
+    STA.B SamusYPosition                                                 ;91FC91;
 
   .jump:
     JSL.L Make_Samus_Jump                                                ;91FC94;
@@ -16426,10 +16426,10 @@ PoseChangeCollision_Block_FromAbove:
     LDA.W SolidEnemyCollisionFlags                                       ;91FF31;
     BIT.W #$0002                                                         ;91FF34;
     BNE HandleCollisionFromBothSidesDueToPoseChange                      ;91FF37;
-    LDA.W SamusYPosition                                                 ;91FF39;
+    LDA.B SamusYPosition                                                 ;91FF39;
     CLC                                                                  ;91FF3C;
     ADC.B DP_Temp12                                                      ;91FF3D;
-    STA.W SamusYPosition                                                 ;91FF3F;
+    STA.B SamusYPosition                                                 ;91FF3F;
     STA.W SamusPreviousYPosition                                         ;91FF42;
     CLC                                                                  ;91FF45;
     RTS                                                                  ;91FF46;
@@ -16455,10 +16455,10 @@ PoseChangeCollision_Block_FromBelow:
     LDA.W SolidEnemyCollisionFlags                                       ;91FF5E;
     BIT.W #$0001                                                         ;91FF61;
     BNE HandleCollisionFromBothSidesDueToPoseChange                      ;91FF64;
-    LDA.W SamusYPosition                                                 ;91FF66;
+    LDA.B SamusYPosition                                                 ;91FF66;
     SEC                                                                  ;91FF69;
     SBC.B DP_Temp12                                                      ;91FF6A;
-    STA.W SamusYPosition                                                 ;91FF6C;
+    STA.B SamusYPosition                                                 ;91FF6C;
     STA.W SamusPreviousYPosition                                         ;91FF6F;
     CLC                                                                  ;91FF72;
     RTS                                                                  ;91FF73;
@@ -16488,10 +16488,10 @@ PoseChangeCollision_NoCollision:
 HandleBlockCollisionToPoseChange_NoCollision_Enemy_FromAbove:
 ;; Returns:
 ;;     Carry: Clear. There's space for Samus pose
-    LDA.W SamusYPosition                                                 ;91FF89;
+    LDA.B SamusYPosition                                                 ;91FF89;
     CLC                                                                  ;91FF8C;
     ADC.W SpaceToMoveUpEnemy                                             ;91FF8D;
-    STA.W SamusYPosition                                                 ;91FF90;
+    STA.B SamusYPosition                                                 ;91FF90;
     STA.W SamusPreviousYPosition                                         ;91FF93;
     CLC                                                                  ;91FF96;
     RTS                                                                  ;91FF97;
@@ -16501,10 +16501,10 @@ HandleBlockCollisionToPoseChange_NoCollision_Enemy_FromAbove:
 HandleBlockCollisionToPoseChange_NoCollision_Enemy_FromBelow:
 ;; Returns:
 ;;     Carry: Clear. There's space for Samus pose
-    LDA.W SamusYPosition                                                 ;91FF98;
+    LDA.B SamusYPosition                                                 ;91FF98;
     SEC                                                                  ;91FF9B;
     SBC.W SpaceToMoveDownEnemy                                           ;91FF9C;
-    STA.W SamusYPosition                                                 ;91FF9F;
+    STA.B SamusYPosition                                                 ;91FF9F;
     STA.W SamusPreviousYPosition                                         ;91FFA2;
     CLC                                                                  ;91FFA5;
     RTS                                                                  ;91FFA6;
@@ -16545,10 +16545,10 @@ HandleCollisionFromBothSidesDueToPoseChange:
     SEC                                                                  ;91FFDB;
     SBC.B DP_Temp12                                                      ;91FFDC;
     STA.B DP_Temp12                                                      ;91FFDE;
-    LDA.W SamusYPosition                                                 ;91FFE0;
+    LDA.B SamusYPosition                                                 ;91FFE0;
     CLC                                                                  ;91FFE3;
     ADC.B DP_Temp12                                                      ;91FFE4;
-    STA.W SamusYPosition                                                 ;91FFE6;
+    STA.B SamusYPosition                                                 ;91FFE6;
     STA.W SamusPreviousYPosition                                         ;91FFE9;
 
   .returnCarryClear:

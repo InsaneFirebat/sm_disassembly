@@ -5719,7 +5719,7 @@ Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY:
 
   .noCollision:
     JSL.L AlignEnemyYPositionWIthNonSquareSlope                          ;AAC49A;
-    LDA.W SamusXPosition                                                 ;AAC49E;
+    LDA.B SamusXPosition                                                 ;AAC49E;
     SEC                                                                  ;AAC4A1;
     SBC.W Enemy.XPosition,X                                              ;AAC4A2;
     EOR.W Torizo.graphicalProperties,X                                   ;AAC4A5;
@@ -5769,7 +5769,7 @@ Instruction_Torizo_BTWalkingMovement_Faceless_IndexInY:
 
   .noCollision:
     JSL.L AlignEnemyYPositionWIthNonSquareSlope                          ;AAC50F;
-    LDA.W SamusXPosition                                                 ;AAC513;
+    LDA.B SamusXPosition                                                 ;AAC513;
     SEC                                                                  ;AAC516;
     SBC.W Enemy.XPosition,X                                              ;AAC517;
     EOR.W Torizo.graphicalProperties,X                                   ;AAC51A;
@@ -5821,7 +5821,7 @@ Instruction_Torizo_CallYIfSamusIsLessThan38PixelsInFront:
     RTL                                                                  ;AAC572;
 
   .near:
-    LDA.W SamusXPosition                                                 ;AAC573;
+    LDA.B SamusXPosition                                                 ;AAC573;
     SEC                                                                  ;AAC576;
     SBC.W Enemy.XPosition,X                                              ;AAC577;
     EOR.W Torizo.graphicalProperties,X                                   ;AAC57A;
@@ -5864,7 +5864,7 @@ Instruction_Torizo_CallY_OrY2_ForBombTorizoAttack:
     LDA.W Missiles                                                       ;AAC5AD;
     CMP.W #$0005                                                         ;AAC5B0;
     BCC .spewOrbs                                                        ;AAC5B3;
-    LDA.W SamusXPosition                                                 ;AAC5B5;
+    LDA.B SamusXPosition                                                 ;AAC5B5;
     LSR                                                                  ;AAC5B8;
     ADC.B NMI_FrameCounter                                               ;AAC5B9;
     BIT.W #$0008                                                         ;AAC5BC;
@@ -7490,7 +7490,7 @@ CheckIfTorizoIsFacingSamus:
 ; Facing right: [Torizo.graphicalProperties] & 8000h != 0
     LDA.W Enemy.XPosition,X                                              ;AAD3A7;
     SEC                                                                  ;AAD3AA;
-    SBC.W SamusXPosition                                                 ;AAD3AB;
+    SBC.B SamusXPosition                                                 ;AAD3AB;
     EOR.W Torizo.graphicalProperties,X                                   ;AAD3AE;
     RTS                                                                  ;AAD3B1;
 
@@ -7742,7 +7742,7 @@ Instruction_GoldenTorizo_CallY_OrY2_ForAttack:
     LDA.W Missiles                                                       ;AAD52F;
     CMP.W #$0020                                                         ;AAD532;
     BCC .spewOrbs                                                        ;AAD535;
-    LDA.W SamusXPosition                                                 ;AAD537;
+    LDA.B SamusXPosition                                                 ;AAD537;
     LSR                                                                  ;AAD53A;
     ADC.B NMI_FrameCounter                                               ;AAD53B;
     AND.W #$0008                                                         ;AAD53E;
@@ -7785,7 +7785,7 @@ Instruction_GoldenTorizo_WalkingMovement_IndexInY:
 
   .noCollision:
     JSL.L AlignEnemyYPositionWIthNonSquareSlope                          ;AAD577;
-    LDA.W SamusXPosition                                                 ;AAD57B;
+    LDA.B SamusXPosition                                                 ;AAD57B;
     SEC                                                                  ;AAD57E;
     SBC.W Enemy.XPosition,X                                              ;AAD57F;
     EOR.W Torizo.graphicalProperties,X                                   ;AAD582;
@@ -7814,10 +7814,10 @@ Instruction_GoldenTorizo_WalkingMovement_IndexInY:
 ;;; $D5C2: Torizo function - Golden Torizo - wake enemy if Samus is below and right of target position ;;;
 Function_GoldenTorizo_WakeIfSamusIsBelowAndRightOfTargetPos:
     LDA.W #$0140                                                         ;AAD5C2;
-    CMP.W SamusYPosition                                                 ;AAD5C5;
+    CMP.B SamusYPosition                                                 ;AAD5C5;
     BCS .return                                                          ;AAD5C8;
     LDA.W #$0170                                                         ;AAD5CA;
-    CMP.W SamusXPosition                                                 ;AAD5CD;
+    CMP.B SamusXPosition                                                 ;AAD5CD;
     BCS .return                                                          ;AAD5D0;
     INC.W Enemy.instList,X                                               ;AAD5D2;
     INC.W Enemy.instList,X                                               ;AAD5D5;
@@ -7934,7 +7934,7 @@ ShotReaction_GoldenTorizo_Normal:
     LDA.W Torizo.behavioralProperties,X                                  ;AAD67C;
     BIT.W #$1000                                                         ;AAD67F;
     BNE .stun                                                            ;AAD682;
-    LDA.W CollisionIndex                                                 ;AAD684;
+    LDA.B CollisionIndex                                                 ;AAD684;
     ASL                                                                  ;AAD687;
     TAY                                                                  ;AAD688;
     LDA.W SamusProjectile_Types,Y                                        ;AAD689;
@@ -9431,7 +9431,7 @@ Instruction_Chozo_SpawnChozoSpikeClearingFootstepProjectile:
     JSL.L CalculateTheBlockContainingAPixelPosition                      ;AAE5A1;
     LDA.W CurrentBlockIndex                                              ;AAE5A5;
     CLC                                                                  ;AAE5A8;
-    ADC.W RoomWidthBlocks                                                ;AAE5A9;
+    ADC.B RoomWidthBlocks                                                ;AAE5A9;
     ASL                                                                  ;AAE5AC;
     TAX                                                                  ;AAE5AD;
     LDA.L LevelData,X                                                    ;AAE5AE;
@@ -9440,7 +9440,7 @@ Instruction_Chozo_SpawnChozoSpikeClearingFootstepProjectile:
     BNE .return                                                          ;AAE5B8;
     TXA                                                                  ;AAE5BA;
     SEC                                                                  ;AAE5BB;
-    SBC.W RoomWidthBlocks                                                ;AAE5BC;
+    SBC.B RoomWidthBlocks                                                ;AAE5BC;
     TAX                                                                  ;AAE5BF;
     LDA.W #PLMEntries_CrumbleLowerNorfairChozoRoomPlug                   ;AAE5C0;
     JSL.L Spawn_PLM_to_CurrentBlockIndex                                 ;AAE5C3;
@@ -9493,11 +9493,11 @@ Instruction_Chozo_Movement_IndexInY:
     LDA.W Enemy.XPosition,X                                              ;AAE618;
     CLC                                                                  ;AAE61B;
     ADC.W .XOffsets,Y                                                    ;AAE61C;
-    STA.W SamusXPosition                                                 ;AAE61F;
+    STA.B SamusXPosition                                                 ;AAE61F;
     LDA.W Enemy.YPosition,X                                              ;AAE622;
     CLC                                                                  ;AAE625;
     ADC.W .YOffsets,Y                                                    ;AAE626;
-    STA.W SamusYPosition                                                 ;AAE629;
+    STA.B SamusYPosition                                                 ;AAE629;
     PLY                                                                  ;AAE62C;
     INY                                                                  ;AAE62D;
     INY                                                                  ;AAE62E;

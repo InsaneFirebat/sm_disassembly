@@ -3601,11 +3601,11 @@ DebugHandler_6_EnemyDebugger_EnemyMover:
     BIT.W #$0080                                                         ;B49A9A;
     BEQ .checkX                                                          ;B49A9D;
     LDX.W DebugEnemyIndex                                                ;B49A9F;
-    LDA.W SamusXPosition                                                 ;B49AA2;
+    LDA.B SamusXPosition                                                 ;B49AA2;
     CLC                                                                  ;B49AA5;
     ADC.W #$0020                                                         ;B49AA6;
     STA.W Enemy.XPosition,X                                              ;B49AA9;
-    LDA.W SamusYPosition                                                 ;B49AAC;
+    LDA.B SamusYPosition                                                 ;B49AAC;
     STA.W Enemy.YPosition,X                                              ;B49AAF;
 
   .checkX:
@@ -3621,17 +3621,17 @@ DebugHandler_6_EnemyDebugger_EnemyMover:
 
 +   LDX.W DebugEnemyIndex                                                ;B49AC6;
     LDA.W Enemy.XPosition,X                                              ;B49AC9;
-    CMP.W Layer1XPosition                                                ;B49ACC;
+    CMP.B Layer1XPosition                                                ;B49ACC;
     BMI +                                                                ;B49ACF;
-    LDA.W Layer1XPosition                                                ;B49AD1;
+    LDA.B Layer1XPosition                                                ;B49AD1;
     CLC                                                                  ;B49AD4;
     ADC.W #$0100                                                         ;B49AD5;
     CMP.W Enemy.XPosition,X                                              ;B49AD8;
     BMI +                                                                ;B49ADB;
     LDA.W Enemy.YPosition,X                                              ;B49ADD;
-    CMP.W Layer1YPosition                                                ;B49AE0;
+    CMP.B Layer1YPosition                                                ;B49AE0;
     BMI +                                                                ;B49AE3;
-    LDA.W Layer1YPosition                                                ;B49AE5;
+    LDA.B Layer1YPosition                                                ;B49AE5;
     CLC                                                                  ;B49AE8;
     ADC.W #$0100                                                         ;B49AE9;
     CMP.W Enemy.YPosition,X                                              ;B49AEC;
@@ -3639,12 +3639,12 @@ DebugHandler_6_EnemyDebugger_EnemyMover:
     LDX.W DebugEnemyIndex                                                ;B49AF1;
     LDA.W Enemy.XPosition,X                                              ;B49AF4;
     SEC                                                                  ;B49AF7;
-    SBC.W Layer1XPosition                                                ;B49AF8;
+    SBC.B Layer1XPosition                                                ;B49AF8;
     STA.B DP_Temp14                                                      ;B49AFB;
     STA.W Temp_DebuggerHexValueYPosition                                 ;B49AFD;
     LDA.W Enemy.YPosition,X                                              ;B49B00;
     SEC                                                                  ;B49B03;
-    SBC.W Layer1YPosition                                                ;B49B04;
+    SBC.B Layer1YPosition                                                ;B49B04;
     STA.B DP_Temp12                                                      ;B49B07;
     STA.W Temp_DebuggerHexValueXPosition                                 ;B49B09;
     LDA.W Temp_DebuggerHexValueYPosition                                 ;B49B0C;
@@ -4291,7 +4291,7 @@ Add_Debug_Spritemap_to_OAM:
     INY                                                                  ;B4A02E;
     INY                                                                  ;B4A02F;
     STA.B DP_Temp18                                                      ;B4A030;
-    LDX.W OAMStack                                                       ;B4A032;
+    LDX.B OAMStack                                                       ;B4A032;
 
   .loop:
     LDA.W $0000,Y                                                        ;B4A035;
@@ -4393,7 +4393,7 @@ Add_Debug_Spritemap_to_OAM:
     JMP.W .loop                                                          ;B4A0D4;
 
   .return:
-    STX.W OAMStack                                                       ;B4A0D7;
+    STX.B OAMStack                                                       ;B4A0D7;
     PLB                                                                  ;B4A0DC;
     PLP                                                                  ;B4A0DF;
     RTL                                                                  ;B4A0E0;
@@ -6355,10 +6355,10 @@ if !DEBUG
 endif
     BNE .return                                                          ;B4BC93;
     LDX.W #$003E                                                         ;B4BC95;
-    STX.W SpriteObjectIndex                                              ;B4BC98;
+    STX.B SpriteObjectIndex                                              ;B4BC98;
 
   .loop:
-    LDX.W SpriteObjectIndex                                              ;B4BC9B;
+    LDX.B SpriteObjectIndex                                              ;B4BC9B;
     LDA.L SpriteObjects_InstListPointers,X                               ;B4BC9E;
     BEQ .next                                                            ;B4BCA2;
     LDA.L SpriteObjects_DisableFlags,X                                   ;B4BCA4;
@@ -6379,14 +6379,14 @@ endif
     LDA.L SpriteObjectInstLists,X                                        ;B4BCC7;
     CMP.W #$8000                                                         ;B4BCCB;
     BPL .ASMInstruction                                                  ;B4BCCE;
-    LDX.W SpriteObjectIndex                                              ;B4BCD0;
+    LDX.B SpriteObjectIndex                                              ;B4BCD0;
     STA.L SpriteObjects_InstructionsTimers,X                             ;B4BCD3;
 
   .next:
-    LDA.W SpriteObjectIndex                                              ;B4BCD7;
+    LDA.B SpriteObjectIndex                                              ;B4BCD7;
     DEC                                                                  ;B4BCDA;
     DEC                                                                  ;B4BCDB;
-    STA.W SpriteObjectIndex                                              ;B4BCDC;
+    STA.B SpriteObjectIndex                                              ;B4BCDC;
     BPL .loop                                                            ;B4BCDF;
     BRA .return                                                          ;B4BCE1;
 
@@ -6405,7 +6405,7 @@ endif
 
 ;;; $BCF0: Sprite object instruction - go back 4 bytes ;;;
 Instruction_SpriteObject_GoBack4Bytes:
-    LDX.W SpriteObjectIndex                                              ;B4BCF0;
+    LDX.B SpriteObjectIndex                                              ;B4BCF0;
     LDA.L SpriteObjects_InstListPointers,X                               ;B4BCF3;
     DEC                                                                  ;B4BCF7;
     DEC                                                                  ;B4BCF8;
@@ -6419,7 +6419,7 @@ Instruction_SpriteObject_GoBack4Bytes:
 
 ;;; $BD07: Sprite object instruction - delete ;;;
 Instruction_SpriteObject_Delete:
-    LDX.W SpriteObjectIndex                                              ;B4BD07;
+    LDX.B SpriteObjectIndex                                              ;B4BD07;
     LDA.W #$0000                                                         ;B4BD0A;
     STA.L SpriteObjects_InstListPointers,X                               ;B4BD0D;
     RTS                                                                  ;B4BD11;
@@ -6427,15 +6427,15 @@ Instruction_SpriteObject_Delete:
 
 ;;; $BD12: Sprite object instruction - go to parameter ;;;
 Instruction_SpriteObject_GotoParameter:
-    LDX.W SpriteObjectIndex                                              ;B4BD12;
+    LDX.B SpriteObjectIndex                                              ;B4BD12;
     LDA.L SpriteObjects_InstListPointers,X                               ;B4BD15;
     TAX                                                                  ;B4BD19;
     LDA.L SpriteObjectInstLists+2,X                                      ;B4BD1A;
-    LDX.W SpriteObjectIndex                                              ;B4BD1E;
+    LDX.B SpriteObjectIndex                                              ;B4BD1E;
     STA.L SpriteObjects_InstListPointers,X                               ;B4BD21;
     TAX                                                                  ;B4BD25;
     LDA.L SpriteObjectInstLists,X                                        ;B4BD26;
-    LDX.W SpriteObjectIndex                                              ;B4BD2A;
+    LDX.B SpriteObjectIndex                                              ;B4BD2A;
     STA.L SpriteObjects_InstructionsTimers,X                             ;B4BD2D;
     RTS                                                                  ;B4BD31;
 
@@ -6453,7 +6453,7 @@ DrawSpriteObjects:
     BEQ .next                                                            ;B4BD44;
     LDA.L SpriteObjects_XPositions,X                                     ;B4BD46;
     SEC                                                                  ;B4BD4A;
-    SBC.W Layer1XPosition                                                ;B4BD4B;
+    SBC.B Layer1XPosition                                                ;B4BD4B;
     STA.B DP_Temp14                                                      ;B4BD4E;
     CLC                                                                  ;B4BD50;
     ADC.W #$0010                                                         ;B4BD51;
@@ -6462,7 +6462,7 @@ DrawSpriteObjects:
     BPL .next                                                            ;B4BD59;
     LDA.L SpriteObjects_YPositions,X                                     ;B4BD5B;
     SEC                                                                  ;B4BD5F;
-    SBC.W Layer1YPosition                                                ;B4BD60;
+    SBC.B Layer1YPosition                                                ;B4BD60;
     STA.B DP_Temp12                                                      ;B4BD63;
     BMI .next                                                            ;B4BD65;
     CMP.W #$0110                                                         ;B4BD67;

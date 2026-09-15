@@ -50,13 +50,12 @@ Setup_PPU_TitleSequence:
     STA.W $2132                                                          ;8B805F;
     LDA.B #$00                                                           ;8B8062;
     STA.W $2133                                                          ;8B8064;
-    STA.B DP_DisplayResolution                                           ;8B8067;
     REP #$30                                                             ;8B8069;
     LDA.W #$0000                                                         ;8B806B;
     LDX.W #$3000                                                         ;8B806E;
     LDY.W #$07FE                                                         ;8B8071;
     JSL.L WriteYBytesOfATo_7E0000_X_16bit                                ;8B8074;
-    STZ.W OAMStack                                                       ;8B8078;
+    STZ.B OAMStack                                                       ;8B8078;
     STZ.W MenuOptionIndex                                                ;8B807B;
     STZ.W ScreenFadeDelay                                                ;8B807E;
     STZ.W ScreenFadeCounter                                              ;8B8081;
@@ -140,7 +139,6 @@ Setup_PPU_Intro:
     STA.W $2132                                                          ;8B813F;
     LDA.B #$00                                                           ;8B8142;
     STA.W $2133                                                          ;8B8144;
-    STA.B DP_DisplayResolution                                           ;8B8147;
     STZ.B DP_ColorMathA                                                  ;8B8149;
     STZ.B DP_ColorMathB                                                  ;8B814B;
     LDA.B #$20                                                           ;8B814D;
@@ -155,7 +153,7 @@ Setup_PPU_Intro:
     LDX.W #$3000                                                         ;8B8160;
     LDY.W #$07FE                                                         ;8B8163;
     JSL.L WriteYBytesOfATo_7E0000_X_16bit                                ;8B8166;
-    STZ.W OAMStack                                                       ;8B816A;
+    STZ.B OAMStack                                                       ;8B816A;
     STZ.W Mode7TransformationAngle                                       ;8B816D;
     LDA.W #$0100                                                         ;8B8170;
     STA.W Mode7TransformationZoomLevel                                   ;8B8173;
@@ -339,7 +337,6 @@ Setup_PPU_ZebesDestruction:
     STA.W $2132                                                          ;8B82F6;
     LDA.B #$00                                                           ;8B82F9;
     STA.W $2133                                                          ;8B82FB;
-    STA.B DP_DisplayResolution                                           ;8B82FE;
     LDA.B #$20                                                           ;8B8300;
     STA.B DP_ColorMathSubScreenBackdropColor0                            ;8B8302;
     LDA.B #$40                                                           ;8B8304;
@@ -347,7 +344,7 @@ Setup_PPU_ZebesDestruction:
     LDA.B #$80                                                           ;8B8308;
     STA.B DP_ColorMathSubScreenBackdropColor2                            ;8B830A;
     REP #$30                                                             ;8B830C;
-    STZ.W OAMStack                                                       ;8B830E;
+    STZ.B OAMStack                                                       ;8B830E;
     STZ.W ScreenFadeDelay                                                ;8B8311;
     STZ.W ScreenFadeCounter                                              ;8B8314;
     STZ.W Mode7TransformationAngle                                       ;8B8317;
@@ -490,7 +487,7 @@ Setup_PPU_Credits:
     LDA.B #$80                                                          ;8B843C;
     STA.B DP_ColorMathSubScreenBackdropColor2                           ;8B843E;
     REP #$30                                                            ;8B8440;
-    STZ.W OAMStack                                                      ;8B8442;
+    STZ.B OAMStack                                                      ;8B8442;
     LDA.W #$0100                                                        ;8B8445;
     STA.W $211B                                                         ;8B8448;
     STA.B DP_Mode7TransMatrixA                                          ;8B844B;
@@ -868,7 +865,7 @@ Debug_DisplayVersionInfo:
 
     PHP                                                                  ;8B8698;
     REP #$30                                                             ;8B8699;
-    LDX.W OAMStack                                                       ;8B869B;
+    LDX.B OAMStack                                                       ;8B869B;
     LDY.W #$0000                                                         ;8B869E;
 
   .loopVersionString:
@@ -906,7 +903,7 @@ Debug_DisplayVersionInfo:
 
   .done:
     PLY                                                                  ;8B86DC;
-    STX.W OAMStack                                                       ;8B86DD;
+    STX.B OAMStack                                                       ;8B86DD;
     LDA.L DebugConst_DisableAudio                                        ;8B86E0;
     BEQ .versionNumber                                                   ;8B86E4;
     LDA.W #$00B4                                                         ;8B86E6;
@@ -966,7 +963,7 @@ Debug_DisplayVersionInfo:
     INY                                                                  ;8B8759;
     CPY.W #$0006                                                         ;8B875A;
     BMI .loopVer                                                         ;8B875D;
-    STX.W OAMStack                                                       ;8B875F;
+    STX.B OAMStack                                                       ;8B875F;
     PLP                                                                  ;8B8762;
     RTS                                                                  ;8B8763;
 
@@ -1472,13 +1469,13 @@ Calculate_SamusPosition_InRotatingElevatorRoom:
     PHK                                                                  ;8B8A54;
     PLB                                                                  ;8B8A55;
     REP #$30                                                             ;8B8A56;
-    LDA.W SamusXPosition                                                 ;8B8A58;
+    LDA.B SamusXPosition                                                 ;8B8A58;
     SEC                                                                  ;8B8A5B;
     SBC.B DP_Mode7TransOriginX                                           ;8B8A5C;
     STA.B DP_Temp22                                                      ;8B8A5E;
     LDA.B DP_Mode7TransOriginY                                           ;8B8A60;
     SEC                                                                  ;8B8A62;
-    SBC.W SamusYPosition                                                 ;8B8A63;
+    SBC.B SamusYPosition                                                 ;8B8A63;
     STA.B DP_Temp24                                                      ;8B8A66;
     LDA.B DP_Temp22                                                      ;8B8A68;
     STA.B DP_Temp26                                                      ;8B8A6A;
@@ -1507,7 +1504,7 @@ Calculate_SamusPosition_InRotatingElevatorRoom:
     LDA.B DP_Mode7TransOriginX                                           ;8B8A97;
     CLC                                                                  ;8B8A99;
     ADC.B DP_Temp1A                                                      ;8B8A9A;
-    STA.W SamusXPosition                                                 ;8B8A9C;
+    STA.B SamusXPosition                                                 ;8B8A9C;
     LDA.B DP_Mode7TransMatrixC                                           ;8B8A9F;
     STA.B DP_Temp26                                                      ;8B8AA1;
     LDA.B DP_Temp22                                                      ;8B8AA3;
@@ -1535,7 +1532,7 @@ Calculate_SamusPosition_InRotatingElevatorRoom:
     LDA.B DP_Mode7TransOriginY                                           ;8B8ACE;
     SEC                                                                  ;8B8AD0;
     SBC.B DP_Temp1A                                                      ;8B8AD1;
-    STA.W SamusYPosition                                                 ;8B8AD3;
+    STA.B SamusYPosition                                                 ;8B8AD3;
     PLB                                                                  ;8B8AD6;
     PLP                                                                  ;8B8AD7;
     RTL                                                                  ;8B8AD8;
@@ -1589,7 +1586,7 @@ Calculate_ProjectilePosition_InRotatingElevatorRoom:
     CLC                                                                  ;8B8B20;
     ADC.B DP_Temp1A                                                      ;8B8B21;
     SEC                                                                  ;8B8B23;
-    SBC.W Layer1XPosition                                                ;8B8B24;
+    SBC.B Layer1XPosition                                                ;8B8B24;
     STA.B DP_Temp14                                                      ;8B8B27;
     LDA.B DP_Mode7TransMatrixC                                           ;8B8B29;
     STA.B DP_Temp26                                                      ;8B8B2B;
@@ -1619,7 +1616,7 @@ Calculate_ProjectilePosition_InRotatingElevatorRoom:
     SEC                                                                  ;8B8B5A;
     SBC.B DP_Temp1A                                                      ;8B8B5B;
     SEC                                                                  ;8B8B5D;
-    SBC.W Layer1YPosition                                                ;8B8B5E;
+    SBC.B Layer1YPosition                                                ;8B8B5E;
     STA.B DP_Temp12                                                      ;8B8B61;
     PLB                                                                  ;8B8B63;
     PLP                                                                  ;8B8B64;
@@ -2314,7 +2311,7 @@ MoveUnusedSpritesOffScreen:
 ; In all these cases, the number of sprites is 40h or 80h
     PHP                                                                  ;8B8ED9;
     REP #$30                                                             ;8B8EDA;
-    LDA.W OAMStack                                                       ;8B8EDC;
+    LDA.B OAMStack                                                       ;8B8EDC;
     CMP.W #$0200                                                         ;8B8EDF;
     BPL .return                                                          ;8B8EE2;
     LSR                                                                  ;8B8EE4;
@@ -2344,7 +2341,7 @@ MoveUnusedSpritesOffScreen:
     BMI .loop                                                            ;8B8F0B;
 
   .setXpos:
-    LDA.W OAMStack                                                       ;8B8F0D;
+    LDA.B OAMStack                                                       ;8B8F0D;
     LSR                                                                  ;8B8F10;
     STA.B DP_Temp12                                                      ;8B8F11;
     LSR                                                                  ;8B8F13;
@@ -2647,7 +2644,7 @@ Initialise_IO_Registers_and_Display_Nintendo_Logo:
     STA.W $2100                                                          ;8B914E;
     STA.B DP_Brightness                                                  ;8B9151;
     REP #$30                                                             ;8B9153;
-    STZ.W OAMStack                                                       ;8B9155;
+    STZ.B OAMStack                                                       ;8B9155;
     JSL.L ClearHighOAM                                                   ;8B9158;
     JSL.L Finalise_OAM                                                   ;8B915C;
     STZ.W SamusTiles_TopHalfFlag                                         ;8B9160;
@@ -2765,7 +2762,6 @@ Initialise_IO_Registers_and_Display_Nintendo_Logo:
     STA.B DP_ColorMathSubScreenBackdropColor2                            ;8B9288;
     LDA.B #$00                                                           ;8B928A;
     STA.W $2133                                                          ;8B928C;
-    STA.B DP_DisplayResolution                                           ;8B928F;
     REP #$20                                                             ;8B9291;
     LDA.W #Tiles_Title_Sprite>>8&$FF00                                   ;8B9293;
     STA.B DP_DecompSrc+1                                                 ;8B9296;
@@ -2810,7 +2806,7 @@ Initialise_IO_Registers_and_Display_Nintendo_Logo:
 
   .fadeIn:
     JSL.L ClearHighOAM                                                   ;8B92EB;
-    STZ.W OAMStack                                                       ;8B92EF;
+    STZ.B OAMStack                                                       ;8B92EF;
     JSR.W AddNintendoBootLogoSpritemapToOAM                              ;8B92F2;
     JSR.W AdvanceFastScreenFadeIn                                        ;8B92F5;
     BCS .maxBrightness                                                   ;8B92F8;
@@ -2826,7 +2822,7 @@ Initialise_IO_Registers_and_Display_Nintendo_Logo:
 
   .loopNintendoLogo:
     JSL.L ClearHighOAM                                                   ;8B9312;
-    STZ.W OAMStack                                                       ;8B9316;
+    STZ.B OAMStack                                                       ;8B9316;
     JSR.W AddNintendoBootLogoSpritemapToOAM                              ;8B9319;
     DEC.W GameOptionsMenuIndex                                           ;8B931C;
     BEQ .timerExpired                                                    ;8B931F;
@@ -2843,7 +2839,7 @@ Initialise_IO_Registers_and_Display_Nintendo_Logo:
 
   .loopFadeOut:
     JSL.L ClearHighOAM                                                   ;8B933C;
-    STZ.W OAMStack                                                       ;8B9340;
+    STZ.B OAMStack                                                       ;8B9340;
     JSR.W AddNintendoBootLogoSpritemapToOAM                              ;8B9343;
     JSR.W AdvanceFastScreenFadeOut                                       ;8B9346;
     BCS .zeroBrightness                                                  ;8B9349;
@@ -3756,11 +3752,11 @@ Draw_CinematicSpriteObjects_IntroTitleSequence:
     STA.B DP_Temp16                                                      ;8B975D;
     LDA.W CinematicSpriteObject_XPositions,X                             ;8B975F;
     SEC                                                                  ;8B9762;
-    SBC.W Layer1XPosition                                                ;8B9763;
+    SBC.B Layer1XPosition                                                ;8B9763;
     STA.B DP_Temp14                                                      ;8B9766;
     LDA.W CinematicSpriteObject_YPositions,X                             ;8B9768;
     SEC                                                                  ;8B976B;
-    SBC.W Layer1YPosition                                                ;8B976C;
+    SBC.B Layer1YPosition                                                ;8B976C;
     STA.B DP_Temp12                                                      ;8B976F;
     BIT.W #$FF00                                                         ;8B9771;
     BNE +                                                                ;8B9774;
@@ -3804,11 +3800,11 @@ Draw_CinematicSpriteObjects_EndingCredits:
     STA.B DP_Temp16                                                      ;8B97B0;
     LDA.W CinematicSpriteObject_XPositions,X                             ;8B97B2;
     SEC                                                                  ;8B97B5;
-    SBC.W Layer1XPosition                                                ;8B97B6;
+    SBC.B Layer1XPosition                                                ;8B97B6;
     STA.B DP_Temp14                                                      ;8B97B9;
     LDA.W CinematicSpriteObject_YPositions,X                             ;8B97BB;
     SEC                                                                  ;8B97BE;
-    SBC.W Layer1YPosition                                                ;8B97BF;
+    SBC.B Layer1YPosition                                                ;8B97BF;
     STA.B DP_Temp12                                                      ;8B97C2;
     BIT.W #$FF00                                                         ;8B97C4;
     BNE +                                                                ;8B97C7;
@@ -5483,7 +5479,7 @@ CinematicFunction_Intro_Initial:
     STZ.B DP_NextIRQCmd                                                  ;8BA39A;
     STZ.W AreaIndex                                                      ;8BA39C;
     LDA.W #$0010                                                         ;8BA39F;
-    STA.W RoomWidthBlocks                                                ;8BA3A2;
+    STA.B RoomWidthBlocks                                                ;8BA3A2;
     STA.W RoomHeightBlocks                                               ;8BA3A5;
     JSL.L InitializeSamus                                                ;8BA3A8;
     JSL.L Update_Beam_Tiles_and_Palette                                  ;8BA3AC;
@@ -5668,8 +5664,8 @@ endif
     TSB.W PaletteFXObject_Enable
     JSL.L Clear_PaletteFXObjects                                         ;8BA55A;
     STZ.W DoorPointer                                                    ;8BA562;
-    STZ.W Layer1XPosition                                                ;8BA565;
-    STZ.W Layer1YPosition                                                ;8BA568;
+    STZ.B Layer1XPosition                                                ;8BA565;
+    STZ.B Layer1YPosition                                                ;8BA568;
     STZ.W CinematicSpriteObject_IntroSubtitleTimer                       ;8BA56B;
     LDX.W #$07FE                                                         ;8BA56E;
 
@@ -6115,7 +6111,7 @@ InitFunction_CinematicSpriteObject_MetroidEgg:
 
 ;;; $A8E8: Pre-instruction - cinematic sprite object $CE5B (metroid egg) ;;;
 PreInstruction_CinematicSpriteObject_MetroidEgg:
-    LDA.W SamusXPosition                                                 ;8BA8E8;
+    LDA.B SamusXPosition                                                 ;8BA8E8;
     CMP.W #$00A9                                                         ;8BA8EB;
     BPL .return                                                          ;8BA8EE;
     LDA.W #$0001                                                         ;8BA8F0;
@@ -6692,10 +6688,10 @@ CinematicFunction_Intro_WaitForInput_SetupMotherBrainFight:
     LDA.W PoseXDirection                                                 ;8BAEEF;
     STA.W PreviousPoseXDirection                                         ;8BAEF2;
     LDA.W #$009B                                                         ;8BAEF5;
-    STA.W SamusXPosition                                                 ;8BAEF8;
+    STA.B SamusXPosition                                                 ;8BAEF8;
     STA.W SamusPreviousXPosition                                         ;8BAEFB;
     LDA.W #$0073                                                         ;8BAEFE;
-    STA.W SamusYPosition                                                 ;8BAF01;
+    STA.B SamusYPosition                                                 ;8BAF01;
     STA.W SamusPreviousYPosition                                         ;8BAF04;
     STZ.W CinematicBG1_XPosition                                         ;8BAF07;
     LDA.W #$007F                                                         ;8BAF0A;
@@ -6758,7 +6754,7 @@ CinematicFunc_Intro_WaitForInput_SetupBabyMetroidDiscovery:
     STA.B DP_BG1TilemapAddrSize                                          ;8BAF7F;
     REP #$20                                                             ;8BAF81;
     LDA.W #$0020                                                         ;8BAF83;
-    STA.W RoomWidthBlocks                                                ;8BAF86;
+    STA.B RoomWidthBlocks                                                ;8BAF86;
     LDA.W #$0010                                                         ;8BAF89;
     STA.W RoomHeightBlocks                                               ;8BAF8C;
     LDA.W #$0002                                                         ;8BAF8F;
@@ -6774,10 +6770,10 @@ CinematicFunc_Intro_WaitForInput_SetupBabyMetroidDiscovery:
     LDA.W PoseXDirection                                                 ;8BAFAF;
     STA.W PreviousPoseXDirection                                         ;8BAFB2;
     LDA.W #$0178                                                         ;8BAFB5;
-    STA.W SamusXPosition                                                 ;8BAFB8;
+    STA.B SamusXPosition                                                 ;8BAFB8;
     STA.W SamusPreviousXPosition                                         ;8BAFBB;
     LDA.W #$0093                                                         ;8BAFBE;
-    STA.W SamusYPosition                                                 ;8BAFC1;
+    STA.B SamusYPosition                                                 ;8BAFC1;
     STA.W SamusPreviousYPosition                                         ;8BAFC4;
     STZ.W CinematicBG1_XPosition                                         ;8BAFC7;
     LDA.W #$007F                                                         ;8BAFCA;
@@ -7824,7 +7820,7 @@ PreInstruction_IntroRinka_Moving_HitsSamus:
     LDA.W CinematicSpriteObject_YPositions,X                             ;8BB8F5;
     ADC.W #$0000                                                         ;8BB8F8;
     STA.W CinematicSpriteObject_YPositions,X                             ;8BB8FB;
-    LDA.W SamusXPosition                                                 ;8BB8FE;
+    LDA.B SamusXPosition                                                 ;8BB8FE;
     SEC                                                                  ;8BB901;
     SBC.W #$0005                                                         ;8BB902;
     STA.B DP_Temp12                                                      ;8BB905;
@@ -8042,7 +8038,7 @@ PreInstruction_ConfusedBabyMetroid_Hatched:
     LDA.W #$0023                                                         ;8BBA9F;
     JSL.L QueueSound_Lib3_Max6                                           ;8BBAA2;
 
-+   LDA.W SamusYPosition                                                 ;8BBAA6;
++   LDA.B SamusYPosition                                                 ;8BBAA6;
     SEC                                                                  ;8BBAA9;
     SBC.W #$0020                                                         ;8BBAAA;
     CMP.W CinematicSpriteObject_YPositions,X                             ;8BBAAD;
@@ -8132,7 +8128,7 @@ PreInstruction_ConfusedBabyMetroid_Dancing:
     LDA.W #$0023                                                         ;8BBB4A;
     JSL.L QueueSound_Lib3_Max6                                           ;8BBB4D;
 
-+   LDA.W SamusXPosition                                                 ;8BBB51;
++   LDA.B SamusXPosition                                                 ;8BBB51;
     CMP.W CinematicSpriteObject_XPositions,X                             ;8BBB54;
     BMI .checkXposition                                                  ;8BBB57;
     LDA.W IntroBabyMetroidXVelocity                                      ;8BBB59;
@@ -8180,7 +8176,7 @@ PreInstruction_ConfusedBabyMetroid_Dancing:
     LDA.W CinematicSpriteObject_XPositions,X                             ;8BBBAA;
     ADC.B DP_Temp12                                                      ;8BBBAD;
     STA.W CinematicSpriteObject_XPositions,X                             ;8BBBAF;
-    LDA.W SamusYPosition                                                 ;8BBBB2;
+    LDA.B SamusYPosition                                                 ;8BBBB2;
     SEC                                                                  ;8BBBB5;
     SBC.W #$0008                                                         ;8BBBB6;
     CMP.W CinematicSpriteObject_YPositions,X                             ;8BBBB9;
@@ -8893,8 +8889,8 @@ CinematicFunction_CeresGoesBoom_Initial:
     DEX                                                                  ;8BC136;
     BPL .loop                                                            ;8BC137;
     STZ.W DoorPointer                                                    ;8BC139;
-    STZ.W Layer1XPosition                                                ;8BC13C;
-    STZ.W Layer1YPosition                                                ;8BC13F;
+    STZ.B Layer1XPosition                                                ;8BC13C;
+    STZ.B Layer1YPosition                                                ;8BC13F;
     LDX.W #$0000                                                         ;8BC142;
 
   .loopPalettes:
@@ -11651,8 +11647,8 @@ CinematicFunction_Ending_Setup:
     STA.W CinematicBG1_XPosition                                         ;8BD659;
     STA.W CinematicBG1_YPosition                                         ;8BD65C;
     STZ.W DoorPointer                                                    ;8BD65F;
-    STZ.W Layer1XPosition                                                ;8BD662;
-    STZ.W Layer1YPosition                                                ;8BD665;
+    STZ.B Layer1XPosition                                                ;8BD662;
+    STZ.B Layer1YPosition                                                ;8BD665;
     JSL.L Clear_PaletteFXObjects                                         ;8BD668;
     LDA.W #$8000
     TSB.W PaletteFXObject_Enable
@@ -12770,8 +12766,8 @@ CinematicFunction_Credits_Setup:
     LDA.B #$0F                                                           ;8BE09C;
     STA.B DP_Brightness                                                  ;8BE09E;
     REP #$20                                                             ;8BE0A0;
-    STZ.W Layer1XPosition                                                ;8BE0A2;
-    STZ.W Layer1YPosition                                                ;8BE0A5;
+    STZ.B Layer1XPosition                                                ;8BE0A2;
+    STZ.B Layer1YPosition                                                ;8BE0A5;
     LDA.W #$8000
     TSB.W HDMAObject_Enable
     LDX.W #$01FE                                                         ;8BE0AC;
@@ -13401,8 +13397,8 @@ CinematicFunction_PostCredits_FadeFromWhite:
     STA.W CinematicBGObject_VRAMAddr                                     ;8BE545;
     JSR.W CinematicBGObjects_Update32x32CinematicBGTilemap               ;8BE548;
     LDA.W #$0100                                                         ;8BE54B;
-    STA.W Layer1XPosition                                                ;8BE54E;
-    STA.W Layer1YPosition                                                ;8BE551;
+    STA.B Layer1XPosition                                                ;8BE54E;
+    STA.B Layer1YPosition                                                ;8BE551;
     LDY.W #CinematicSpriteObjectDefinitions_SuperMetroidIcon_S_TopHalf   ;8BE554;
     JSR.W Spawn_CinematicSpriteObject_Y                                  ;8BE557;
     LDY.W #CinematicSpriteObjectDefs_SuperMetroidIcon_S_BottomHalf       ;8BE55A;
@@ -13986,7 +13982,7 @@ Handle_ShootingStars:
   .loopDrawSetup:
     LDA.W #$0028                                                         ;8BE8F2;
     STA.B DP_Temp16                                                      ;8BE8F5;
-    LDX.W OAMStack                                                       ;8BE8F7;
+    LDX.B OAMStack                                                       ;8BE8F7;
     LDY.W #ShootingStars_StarIndex                                       ;8BE8FA;
 
   .loopDraw:
@@ -14057,7 +14053,7 @@ Handle_ShootingStars:
     JMP.W .loopDraw                                                      ;8BE975;
 
   .return:
-    STX.W OAMStack                                                       ;8BE978;
+    STX.B OAMStack                                                       ;8BE978;
     PLP                                                                  ;8BE97B;
     RTS                                                                  ;8BE97C;
 

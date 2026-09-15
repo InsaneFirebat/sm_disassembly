@@ -8731,7 +8731,7 @@ InstList_PaletteFXObject_Crateria1_3:
 
 ;;; $EC59: Pre-instruction - restart Crateria 1 instruction list if Samus isn't low enough ;;;
 PreInst_PaletteFXObject_RestartCrateria1IfSamusIsntLowEnough:
-    LDA.W SamusYPosition                                                 ;8DEC59;
+    LDA.B SamusYPosition                                                 ;8DEC59;
     CMP.W #$0380                                                         ;8DEC5C;
     BCS .return                                                          ;8DEC5F;
     LDA.W #$0001                                                         ;8DEC61;
@@ -8809,7 +8809,7 @@ UNUSED_InstList_PaletteFXObject_DarkLightning_3_8DED34:
 
 ;;; $ED84: Pre-instruction - restart dark lightning instruction list if Samus isn't low enough ;;;
 UNUSED_PreInst_PalFXObj_RestartDarkLightningIfSamus_8DED84:
-    LDA.W SamusYPosition                                                 ;8DED84;
+    LDA.B SamusYPosition                                                 ;8DED84;
     CMP.W #$0380                                                         ;8DED87;
     BCS .return                                                          ;8DED8A;
     LDA.W #$0001                                                         ;8DED8C;

@@ -725,7 +725,7 @@ EnemyShot_SpacePirate_GoldNinjaIsVulnerable:
     JMP.W NormalPirateShot                                               ;B287D3;
 
   .goldNinja:
-    LDA.W CollisionIndex                                                 ;B287D6;
+    LDA.B CollisionIndex                                                 ;B287D6;
     ASL                                                                  ;B287D9;
     TAY                                                                  ;B287DA;
     LDA.W SamusProjectile_Types,Y                                        ;B287DB;
@@ -792,7 +792,7 @@ EnemyShot_SpacePirate_GoldNinjaIsInvincible:
 
   .gold:
     LDX.B EnemyIndex                                                     ;B2884C;
-    LDA.W CollisionIndex                                                 ;B2884F;
+    LDA.B CollisionIndex                                                 ;B2884F;
     ASL                                                                  ;B28852;
     TAY                                                                  ;B28853;
     LDA.W SamusProjectile_Types,Y                                        ;B28854;
@@ -10235,7 +10235,7 @@ Instruction_PirateNinja_SetFunction0FAC_Active:
     LDX.B EnemyIndex                                                     ;B2F591;
     LDA.W Enemy.XPosition,X                                              ;B2F594;
     SEC                                                                  ;B2F597;
-    SBC.W SamusXPosition                                                 ;B2F598;
+    SBC.B SamusXPosition                                                 ;B2F598;
     STA.B DP_Temp12                                                      ;B2F59B;
     LDA.W #$0001                                                         ;B2F59D;
     STA.W Enemy.instTimer,X                                              ;B2F5A0;
@@ -10258,7 +10258,7 @@ UNUSED_Instruction_PirateNinja_Set0FAC_StandingKick_B2F5B3:
     LDX.B EnemyIndex                                                     ;B2F5B4;
     LDA.W Enemy.XPosition,X                                              ;B2F5B7;
     SEC                                                                  ;B2F5BA;
-    SBC.W SamusXPosition                                                 ;B2F5BB;
+    SBC.B SamusXPosition                                                 ;B2F5BB;
     STA.B DP_Temp12                                                      ;B2F5BE;
     LDA.W #$0001                                                         ;B2F5C0;
     STA.W Enemy.instTimer,X                                              ;B2F5C3;
@@ -10392,7 +10392,7 @@ Function_PirateNinja_Initial:
     LDX.B EnemyIndex                                                     ;B2F6A9;
     LDA.W Enemy.XPosition,X                                              ;B2F6AC;
     SEC                                                                  ;B2F6AF;
-    SBC.W SamusXPosition                                                 ;B2F6B0;
+    SBC.B SamusXPosition                                                 ;B2F6B0;
     BPL +                                                                ;B2F6B3;
     EOR.W #$FFFF                                                         ;B2F6B5;
     INC                                                                  ;B2F6B8;
@@ -10402,7 +10402,7 @@ Function_PirateNinja_Initial:
     BPL .tooFar                                                          ;B2F6BD;
     LDA.W Enemy.XPosition,X                                              ;B2F6BF;
     SEC                                                                  ;B2F6C2;
-    SBC.W SamusXPosition                                                 ;B2F6C3;
+    SBC.B SamusXPosition                                                 ;B2F6C3;
     STA.B DP_Temp12                                                      ;B2F6C6;
     LDY.W #InstList_PirateNinja_Active_FacingLeft_0                      ;B2F6C8;
     LDA.B DP_Temp12                                                      ;B2F6CB;
@@ -10446,7 +10446,7 @@ PirateNinja_ProjectileClawAttackTrigger:
     BEQ .reachedLeftPost                                                 ;B2F705;
     LDA.W Enemy.XPosition,X                                              ;B2F707;
     SEC                                                                  ;B2F70A;
-    SBC.W SamusXPosition                                                 ;B2F70B;
+    SBC.B SamusXPosition                                                 ;B2F70B;
     BPL .return                                                          ;B2F70E;
     LDA.W #InstList_PirateNinja_ProjectileClawAttack_Right               ;B2F710;
     STA.W Enemy.instList,X                                               ;B2F713;
@@ -10455,7 +10455,7 @@ PirateNinja_ProjectileClawAttackTrigger:
   .reachedLeftPost:
     LDA.W Enemy.XPosition,X                                              ;B2F718;
     SEC                                                                  ;B2F71B;
-    SBC.W SamusXPosition                                                 ;B2F71C;
+    SBC.B SamusXPosition                                                 ;B2F71C;
     BMI .return                                                          ;B2F71F;
     LDA.W #InstList_PirateNinja_ProjectileClawAttack_Left                ;B2F721;
     STA.W Enemy.instList,X                                               ;B2F724;
@@ -10507,7 +10507,7 @@ PirateNinja_FlinchTrigger:
     BPL .returnNoFlinch                                                  ;B2F764;
     LDA.W Enemy.XPosition,X                                              ;B2F766;
     SEC                                                                  ;B2F769;
-    SBC.W SamusXPosition                                                 ;B2F76A;
+    SBC.B SamusXPosition                                                 ;B2F76A;
     STA.B DP_Temp12                                                      ;B2F76D;
     LDY.W #InstList_PirateNinja_Flinch_FacingLeft                        ;B2F76F;
     LDA.B DP_Temp12                                                      ;B2F772;
@@ -10537,7 +10537,7 @@ PirateNinja_SpinJumpTrigger:
     LDX.B EnemyIndex                                                     ;B2F78E;
     LDA.W PirateNinja.postsMidpointXPosition,X                           ;B2F791;
     SEC                                                                  ;B2F794;
-    SBC.W SamusXPosition                                                 ;B2F795;
+    SBC.B SamusXPosition                                                 ;B2F795;
     BPL +                                                                ;B2F798;
     EOR.W #$FFFF                                                         ;B2F79A;
     INC                                                                  ;B2F79D;
@@ -10572,7 +10572,7 @@ PirateNinja_StandingKickTrigger:
 ;;     A: 1 if kick triggered, 0 otherwise
     PHX                                                                  ;B2F7C6;
     LDX.B EnemyIndex                                                     ;B2F7C7;
-    LDA.W SamusXPosition                                                 ;B2F7CA;
+    LDA.B SamusXPosition                                                 ;B2F7CA;
     SEC                                                                  ;B2F7CD;
     SBC.W Enemy.XPosition,X                                              ;B2F7CE;
     BPL +                                                                ;B2F7D1;
@@ -10582,7 +10582,7 @@ PirateNinja_StandingKickTrigger:
 +   SEC                                                                  ;B2F7D7;
     SBC.W #$0028                                                         ;B2F7D8;
     BPL .returnNoStandingKick                                            ;B2F7DB;
-    LDA.W SamusYPosition                                                 ;B2F7DD;
+    LDA.B SamusYPosition                                                 ;B2F7DD;
     SEC                                                                  ;B2F7E0;
     SBC.W Enemy.YPosition,X                                              ;B2F7E1;
     BPL +                                                                ;B2F7E4;
@@ -10594,7 +10594,7 @@ PirateNinja_StandingKickTrigger:
     BPL .returnNoStandingKick                                            ;B2F7EE;
     LDA.W Enemy.XPosition,X                                              ;B2F7F0;
     SEC                                                                  ;B2F7F3;
-    SBC.W SamusXPosition                                                 ;B2F7F4;
+    SBC.B SamusXPosition                                                 ;B2F7F4;
     STA.B DP_Temp12                                                      ;B2F7F7;
     LDY.W #InstList_PirateNinja_StandingKick_FacingLeft                  ;B2F7F9;
     LDA.B DP_Temp12                                                      ;B2F7FC;
@@ -10751,7 +10751,7 @@ PirateNinja_DivekickTrigger:
     LDX.B EnemyIndex                                                     ;B2F917;
     LDA.W PirateNinja.postsMidpointXPosition,X                           ;B2F91A;
     SEC                                                                  ;B2F91D;
-    SBC.W SamusXPosition                                                 ;B2F91E;
+    SBC.B SamusXPosition                                                 ;B2F91E;
     BPL +                                                                ;B2F921;
     EOR.W #$FFFF                                                         ;B2F923;
     INC                                                                  ;B2F926;
@@ -11233,7 +11233,7 @@ Instruction_PirateWalking_ChooseAMovement:
     BNE .verticalClose                                                   ;B2FCD8;
     LDX.B EnemyIndex                                                     ;B2FCDA;
     LDY.W #InstList_PirateWalking_WalkingRight_0                         ;B2FCDD;
-    LDA.W SamusXPosition                                                 ;B2FCE0;
+    LDA.B SamusXPosition                                                 ;B2FCE0;
     SEC                                                                  ;B2FCE3;
     SBC.W Enemy.XPosition,X                                              ;B2FCE4;
     BMI .returnWalking                                                   ;B2FCE7;
@@ -11246,7 +11246,7 @@ Instruction_PirateWalking_ChooseAMovement:
   .verticalClose:
     LDX.B EnemyIndex                                                     ;B2FCEE;
     LDY.W #InstList_PirateWalking_FireLasersLeft                         ;B2FCF1;
-    LDA.W SamusXPosition                                                 ;B2FCF4;
+    LDA.B SamusXPosition                                                 ;B2FCF4;
     SEC                                                                  ;B2FCF7;
     SBC.W Enemy.XPosition,X                                              ;B2FCF8;
     BMI .returnLasers                                                    ;B2FCFB;
@@ -11302,7 +11302,7 @@ Function_PirateWalking_WalkingLeft:
     JSL.L IsSamusWithingAPixelRowsOfEnemy                                ;B2FD4A;
     BEQ .walk                                                            ;B2FD4E;
     LDY.W #InstList_PirateWalking_FireLasersLeft                         ;B2FD50;
-    LDA.W SamusXPosition                                                 ;B2FD53;
+    LDA.B SamusXPosition                                                 ;B2FD53;
     SEC                                                                  ;B2FD56;
     SBC.W Enemy.XPosition,X                                              ;B2FD57;
     BMI .keepLeft                                                        ;B2FD5A;
@@ -11367,7 +11367,7 @@ Function_PirateWalking_WalkingRight:
     JSL.L IsSamusWithingAPixelRowsOfEnemy                                ;B2FDD4;
     BEQ .walk                                                            ;B2FDD8;
     LDY.W #InstList_PirateWalking_FireLasersLeft                         ;B2FDDA;
-    LDA.W SamusXPosition                                                 ;B2FDDD;
+    LDA.B SamusXPosition                                                 ;B2FDDD;
     SEC                                                                  ;B2FDE0;
     SBC.W Enemy.XPosition,X                                              ;B2FDE1;
     BMI .keepLeft                                                        ;B2FDE4;
@@ -11463,7 +11463,7 @@ PirateWalking_FlinchTrigger:
     BPL .returnNoFlinch                                                  ;B2FE81;
     LDA.W Enemy.XPosition,X                                              ;B2FE83;
     SEC                                                                  ;B2FE86;
-    SBC.W SamusXPosition                                                 ;B2FE87;
+    SBC.B SamusXPosition                                                 ;B2FE87;
     STA.B DP_Temp12                                                      ;B2FE8A;
     LDY.W #InstList_PirateWalking_Flinch_FacingLeft                      ;B2FE8C;
     LDA.B DP_Temp12                                                      ;B2FE8F;

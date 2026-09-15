@@ -896,7 +896,7 @@ Function_Zeb_Zebbo_WaitForSamusToGetNear:
     ROR.W Zeb.direction,X                                                ;B388A4;
     LDA.W Enemy.XPosition,X                                              ;B388A7;
     SEC                                                                  ;B388AA;
-    SBC.W SamusXPosition                                                 ;B388AB;
+    SBC.B SamusXPosition                                                 ;B388AB;
     BPL +                                                                ;B388AE;
     EOR.W #$FFFF                                                         ;B388B0;
     INC                                                                  ;B388B3;
@@ -941,7 +941,7 @@ Function_Zeb_Zebbo_Rising:
     CMP.W Enemy.YPosition,X                                              ;B388FA;
     BMI .return                                                          ;B388FD;
     LDA.W Enemy.YPosition,X                                              ;B388FF;
-    CMP.W SamusYPosition                                                 ;B38902;
+    CMP.B SamusYPosition                                                 ;B38902;
     BCC .targetHeight                                                    ;B38905;
     BRA .return                                                          ;B38907;
 
@@ -1324,7 +1324,7 @@ Function_Gamet_WaitForSamusToGetNear:
     JSL.L IsSamusWithinAPixelColumnsOfEnemy                              ;B38C08;
     BEQ .return                                                          ;B38C0C;
     LDA.W Enemy.YPosition,X                                              ;B38C0E;
-    CMP.W SamusYPosition                                                 ;B38C11;
+    CMP.B SamusYPosition                                                 ;B38C11;
     BMI .return                                                          ;B38C14;
     INC.W Gamet.shootDelayTimer,X                                        ;B38C16;
     LDA.W #$0001                                                         ;B38C19;
@@ -1405,7 +1405,7 @@ Function_Gamet_Rising:
     CLC                                                                  ;B38CC8;
     ADC.W CommonEnemySpeeds_LinearlyIncreasing+4,Y                       ;B38CC9;
     STA.W Enemy.YPosition,X                                              ;B38CCC;
-    CMP.W SamusYPosition                                                 ;B38CCF;
+    CMP.B SamusYPosition                                                 ;B38CCF;
     BPL .return                                                          ;B38CD2;
     LDA.W Gamet.formationFunction,X                                      ;B38CD4;
     STA.W Gamet.function,X                                               ;B38CD7;
@@ -1870,7 +1870,7 @@ Function_Geega_ShootingLeft:
     BNE .return                                                          ;B39064;
     LDA.W Enemy.XPosition,X                                              ;B39066;
     SEC                                                                  ;B39069;
-    SBC.W SamusXPosition                                                 ;B3906A;
+    SBC.B SamusXPosition                                                 ;B3906A;
     CMP.W #regional($0030, $0028)                                        ;B3906D;
     BPL .return                                                          ;B39070;
     LDA.W #Function_Geega_DippingLeft                                    ;B39072;
@@ -1935,7 +1935,7 @@ Function_Geega_ShootingRight:
     BNE .return                                                          ;B390F9;
     LDA.W Enemy.XPosition,X                                              ;B390FB;
     SEC                                                                  ;B390FE;
-    SBC.W SamusXPosition                                                 ;B390FF;
+    SBC.B SamusXPosition                                                 ;B390FF;
     EOR.W #$FFFF                                                         ;B39102;
     INC                                                                  ;B39105;
     CMP.W #regional($0030, $0028)                                        ;B39106;

@@ -295,9 +295,8 @@ SetupPPUForGameplay:
     STA.W $2132                                                          ;82828D;
     LDA.B #$00                                                           ;828290;
     STA.W $2133                                                          ;828292;
-    STA.B DP_DisplayResolution                                           ;828295;
     REP #$30                                                             ;828297;
-    STZ.W OAMStack                                                       ;828299;
+    STZ.B OAMStack                                                       ;828299;
     LDA.W #$0000                                                         ;82829C;
     LDX.W #$3000                                                         ;82829F;
     LDY.W #$07FE                                                         ;8282A2;
@@ -778,22 +777,22 @@ LoadDemoRoomData:
     LDA.W $0004,X                                                        ;8286A3;
     STA.W DoorBTS                                                        ;8286A6;
     LDA.W $0006,X                                                        ;8286A9;
-    STA.W Layer1XPosition                                                ;8286AC;
+    STA.B Layer1XPosition                                                ;8286AC;
     STA.W BG1XOffset                                                     ;8286AF;
     LDA.W $0008,X                                                        ;8286B2;
-    STA.W Layer1YPosition                                                ;8286B5;
+    STA.B Layer1YPosition                                                ;8286B5;
     STA.W BG1YOffset                                                     ;8286B8;
     LDA.W $000A,X                                                        ;8286BB;
     CLC                                                                  ;8286BE;
-    ADC.W Layer1YPosition                                                ;8286BF;
-    STA.W SamusYPosition                                                 ;8286C2;
+    ADC.B Layer1YPosition                                                ;8286BF;
+    STA.B SamusYPosition                                                 ;8286C2;
     STA.W SamusPreviousYPosition                                         ;8286C5;
-    LDA.W Layer1XPosition                                                ;8286C8;
+    LDA.B Layer1XPosition                                                ;8286C8;
     CLC                                                                  ;8286CB;
     ADC.W #$0080                                                         ;8286CC;
     CLC                                                                  ;8286CF;
     ADC.W $000C,X                                                        ;8286D0;
-    STA.W SamusXPosition                                                 ;8286D3;
+    STA.B SamusXPosition                                                 ;8286D3;
     STA.W SamusPreviousXPosition                                         ;8286D6;
     LDA.W $000E,X                                                        ;8286D9;
     STA.W DemoTimer                                                      ;8286DC;
@@ -1083,7 +1082,7 @@ endif
     JSL.L HDMAObjectHandler_HandleMusicQueue                             ;82894B;
     JSL.L GenerateRandomNumber                                           ;82894F;
     JSL.L ClearHighOAM                                                   ;828953;
-    STZ.W OAMStack                                                       ;828957;
+    STZ.B OAMStack                                                       ;828957;
     STZ.W SamusTiles_TopHalfFlag                                         ;82895A;
     STZ.W SamusTiles_TopHalfTilesDef                                     ;82895D;
     STZ.W SamusTiles_BottomHalfTilesDef                                  ;828960;
@@ -2164,7 +2163,7 @@ Setup_MapScrolling_for_FileSelectMap:
     SEC                                                                  ;82903A;
     SBC.W #$0080                                                         ;82903B;
     STA.B DP_BG1XScroll                                                  ;82903E;
-    LDA.W SamusXPosition                                                 ;829040;
+    LDA.B SamusXPosition                                                 ;829040;
     AND.W #$FF00                                                         ;829043;
     XBA                                                                  ;829046;
     CLC                                                                  ;829047;
@@ -2214,7 +2213,7 @@ Setup_MapScrolling_for_FileSelectMap:
     EOR.W #$FFFF                                                         ;829092;
     INC                                                                  ;829095;
     STA.B DP_BG1YScroll                                                  ;829096;
-    LDA.W SamusYPosition                                                 ;829098;
+    LDA.B SamusYPosition                                                 ;829098;
     XBA                                                                  ;82909B;
     AND.W #$00FF                                                         ;82909C;
     CLC                                                                  ;82909F;
@@ -3626,7 +3625,7 @@ SetupMapScrollingForPauseMenu:
     SEC                                                                  ;829E37;
     SBC.W #$0080                                                         ;829E38;
     STA.B DP_BG1XScroll                                                  ;829E3B;
-    LDA.W SamusXPosition                                                 ;829E3D;
+    LDA.B SamusXPosition                                                 ;829E3D;
     AND.W #$FF00                                                         ;829E40;
     XBA                                                                  ;829E43;
     CLC                                                                  ;829E44;
@@ -3676,7 +3675,7 @@ SetupMapScrollingForPauseMenu:
     EOR.W #$FFFF                                                         ;829E8E;
     INC                                                                  ;829E91;
     STA.B DP_BG1YScroll                                                  ;829E92;
-    LDA.W SamusYPosition                                                 ;829E94;
+    LDA.B SamusYPosition                                                 ;829E94;
     XBA                                                                  ;829E97;
     AND.W #$00FF                                                         ;829E98;
     CLC                                                                  ;829E9B;
@@ -4389,11 +4388,11 @@ Calculate_BG_Scrolls_bank82:
 ; Called during unpausing
     PHP                                                                  ;82A34E;
     REP #$30                                                             ;82A34F;
-    LDA.W Layer1XPosition                                                ;82A351;
+    LDA.B Layer1XPosition                                                ;82A351;
     CLC                                                                  ;82A354;
     ADC.W BG1XOffset                                                     ;82A355;
     STA.B DP_BG1XScroll                                                  ;82A358;
-    LDA.W Layer1YPosition                                                ;82A35A;
+    LDA.B Layer1YPosition                                                ;82A35A;
     CLC                                                                  ;82A35D;
     ADC.W BG1YOffset                                                     ;82A35E;
     STA.B DP_BG1YScroll                                                  ;82A361;
@@ -7523,7 +7522,7 @@ MapScreen_DrawSamusPositionIndicator:
     STA.B DP_Temp03                                                      ;82B9CB;
     JSR.W Update_Samus_Position_Indicator_Animation                      ;82B9CD;
     PHA                                                                  ;82B9D0;
-    LDA.W SamusXPosition                                                 ;82B9D1;
+    LDA.B SamusXPosition                                                 ;82B9D1;
     XBA                                                                  ;82B9D4;
     AND.W #$00FF                                                         ;82B9D5;
     CLC                                                                  ;82B9D8;
@@ -7534,7 +7533,7 @@ MapScreen_DrawSamusPositionIndicator:
     SEC                                                                  ;82B9DF;
     SBC.B DP_BG1XScroll                                                  ;82B9E0;
     TAX                                                                  ;82B9E2;
-    LDA.W SamusYPosition                                                 ;82B9E3;
+    LDA.B SamusYPosition                                                 ;82B9E3;
     XBA                                                                  ;82B9E6;
     AND.W #$00FF                                                         ;82B9E7;
     CLC                                                                  ;82B9EA;
@@ -10953,7 +10952,7 @@ Load_Room_Header:
     ASL                                                                  ;82DEA5;
     ASL                                                                  ;82DEA6;
     ASL                                                                  ;82DEA7;
-    STA.W RoomWidthBlocks                                                ;82DEA8;
+    STA.B RoomWidthBlocks                                                ;82DEA8;
     LDA.W $0005,X                                                        ;82DEAB;
     AND.W #$00FF                                                         ;82DEAE;
     STA.W RoomHeightScrolls                                              ;82DEB1;
@@ -10972,7 +10971,7 @@ Load_Room_Header:
     STA.W DoorListPointer                                                ;82DED0;
     JSL.L Room_State_Checking_Handler                                    ;82DED3;
     SEP #$20                                                             ;82DED7;
-    LDA.W RoomWidthBlocks                                                ;82DED9;
+    LDA.B RoomWidthBlocks                                                ;82DED9;
     STA.W $4202                                                          ;82DEDC;
     LDA.W RoomHeightBlocks                                               ;82DEDF;
     STA.W $4203                                                          ;82DEE2;
@@ -11576,10 +11575,10 @@ DoorTransitionFunction_ScrollScreenToAlignment:
     BIT.W #$FF00                                                         ;82E320;
     BEQ .done                                                            ;82E323;
     BMI +                                                                ;82E325;
-    DEC.W Layer1YPosition                                                ;82E327;
+    DEC.B Layer1YPosition                                                ;82E327;
     BRA .return                                                          ;82E32A;
 
-+   INC.W Layer1YPosition                                                ;82E32C;
++   INC.B Layer1YPosition                                                ;82E32C;
     BRA .return                                                          ;82E32F;
 
   .vertical:
@@ -11587,10 +11586,10 @@ DoorTransitionFunction_ScrollScreenToAlignment:
     BIT.W #$FF00                                                         ;82E334;
     BEQ .done                                                            ;82E337;
     BMI +                                                                ;82E339;
-    DEC.W Layer1XPosition                                                ;82E33B;
+    DEC.B Layer1XPosition                                                ;82E33B;
     BRA .return                                                          ;82E33E;
 
-+   INC.W Layer1XPosition                                                ;82E340;
++   INC.B Layer1XPosition                                                ;82E340;
 
   .return:
     JSL.L Calc_Layer2Position_BGScrolls_UpdateBGGraphics_WhenScrolling   ;82E343;
@@ -11661,17 +11660,17 @@ DoorTransitionFunction_SetupScrolling:
 
 ;;; $E3C0: Door transition function - place Samus, load tiles ;;;
 DoorTransitionFunction_PlaceSamus_LoadTiles:
-    LDA.W SamusXPosition                                                 ;82E3C5;
+    LDA.B SamusXPosition                                                 ;82E3C5;
     AND.W #$00FF                                                         ;82E3C8;
     CLC                                                                  ;82E3CB;
-    ADC.W Layer1XPosition                                                ;82E3CC;
-    STA.W SamusXPosition                                                 ;82E3CF;
+    ADC.B Layer1XPosition                                                ;82E3CC;
+    STA.B SamusXPosition                                                 ;82E3CF;
     STA.W SamusPreviousXPosition                                         ;82E3D2;
-    LDA.W SamusYPosition                                                 ;82E3D5;
+    LDA.B SamusYPosition                                                 ;82E3D5;
     AND.W #$00FF                                                         ;82E3D8;
     CLC                                                                  ;82E3DB;
-    ADC.W Layer1YPosition                                                ;82E3DC;
-    STA.W SamusYPosition                                                 ;82E3DF;
+    ADC.B Layer1YPosition                                                ;82E3DC;
+    STA.B SamusYPosition                                                 ;82E3DF;
     STA.W SamusPreviousYPosition                                         ;82E3E2;
     STZ.W DoorTransitionFinishScrolling                                  ;82E3E5;
     STZ.W DoorTransitionVRAM_Flag                                        ;82E3E8;
@@ -11847,12 +11846,12 @@ DoorTransitionFunction_LoadSpritesBGPLMsAudio_RunDoorRoomASM:
     AND.W #$0003                                                         ;82E54C;
     BEQ .right                                                           ;82E54F;
     LDA.W #$0007                                                         ;82E551;
-    TRB.W SamusXPosition                                                 ;82E554;
+    TRB.B SamusXPosition                                                 ;82E554;
     BRA .return                                                          ;82E557;
 
   .right:
     LDA.W #$0007                                                         ;82E559;
-    TSB.W SamusXPosition                                                 ;82E55C;
+    TSB.B SamusXPosition                                                 ;82E55C;
 
   .return:
     LDA.W #DoorTransitionFunction_HandleAnimatedTiles                    ;82E55F;
@@ -12128,36 +12127,36 @@ DoorTransitionFunction_NudgeSamusIfInterceptingTheDoor:
 ; Neither of the calls to $90:F084 are needed (they've both already been done elsewhere, and there's no reason to do only one of the two anyway...)
 ; tldr, ignore the elevator specific code.
 ; The clearing of $7E:9C00..9FFF I don't think is needed, that RAM AFAIK is only used for HDMA tables (other RAM is used for HDMA tables too...)
-    LDA.W SamusXPosition                                                 ;82E6A2;
+    LDA.B SamusXPosition                                                 ;82E6A2;
     AND.W #$00F0                                                         ;82E6A5;
     CMP.W #$0010                                                         ;82E6A8;
     BNE .X                                                               ;82E6AB;
-    LDA.W SamusXPosition                                                 ;82E6AD;
+    LDA.B SamusXPosition                                                 ;82E6AD;
     ORA.W #$000F                                                         ;82E6B0;
     CLC                                                                  ;82E6B3;
     ADC.W #$0008                                                         ;82E6B4;
-    STA.W SamusXPosition                                                 ;82E6B7;
+    STA.B SamusXPosition                                                 ;82E6B7;
     BRA .Y                                                               ;82E6BA;
 
   .X:
     CMP.W #$00E0                                                         ;82E6BC;
     BNE .Y                                                               ;82E6BF;
-    LDA.W SamusXPosition                                                 ;82E6C1;
+    LDA.B SamusXPosition                                                 ;82E6C1;
     AND.W #$FFF0                                                         ;82E6C4;
     SEC                                                                  ;82E6C7;
     SBC.W #$0008                                                         ;82E6C8;
-    STA.W SamusXPosition                                                 ;82E6CB;
+    STA.B SamusXPosition                                                 ;82E6CB;
 
   .Y:
-    LDA.W SamusYPosition                                                 ;82E6CE;
+    LDA.B SamusYPosition                                                 ;82E6CE;
     AND.W #$00F0                                                         ;82E6D1;
     CMP.W #$0010                                                         ;82E6D4;
     BNE .what                                                            ;82E6D7;
-    LDA.W SamusYPosition                                                 ;82E6D9;
+    LDA.B SamusYPosition                                                 ;82E6D9;
     ORA.W #$000F                                                         ;82E6DC;
     CLC                                                                  ;82E6DF;
     ADC.W #$0008                                                         ;82E6E0;
-    STA.W SamusYPosition                                                 ;82E6E3;
+    STA.B SamusYPosition                                                 ;82E6E3;
     BRA +                                                                ;82E6E6;
 
   .what:
@@ -12503,7 +12502,7 @@ CheckIfColoredDoorcapWasSpawned_SwitchDoorPLMInstruction:
     SEP #$20                                                             ;82E920;
     LDA.L DoorHeaders_doorcapYBlocks,X                                   ;82E922;
     STA.W $4202                                                          ;82E926;
-    LDA.W RoomWidthBlocks                                                ;82E929;
+    LDA.B RoomWidthBlocks                                                ;82E929;
     STA.W $4203                                                          ;82E92C;
     LDA.L DoorHeaders_doorcapXBlocks,X                                   ;82E92F;
     REP #$20                                                             ;82E933;
@@ -13838,7 +13837,7 @@ GameOptionsMenu_7_ControllerSettings:
 
   .downEnd:
     LDA.B DP_Controller1New                                              ;82F1B1;
-    BEQ .misplacedCode                                                   ;82F1B3;
+    BEQ .backOnTrack
     LDA.W #$0038                                                         ;82F1B5;
     JSL.L QueueSound_Lib1_Max6                                           ;82F1B8;
     LDA.W MenuOptionIndex                                                ;82F1BC;
@@ -13846,10 +13845,6 @@ GameOptionsMenu_7_ControllerSettings:
     TAX                                                                  ;82F1C0;
     JSR.W (.pointers,X)                                                  ;82F1C1;
     RTS                                                                  ;82F1C4;
-
-  .misplacedCode:
-    LDA.B DP_Controller2New                                              ;82F1C5;
-    BRA .backOnTrack                                                     ;82F1C7;
 
   .pointers:
     dw GameOptions_ControllerSettings_SetBinding                         ;82F1C9;

@@ -1365,7 +1365,7 @@ CheckIfKzanIsTouchingSamusFromBelow:
 ;;     Zero: clear if touching Samus, otherwise set
 
 ; This is a copy+paste of CheckIfEnemyIsTouchingSamusFromBelow with the Y delta threshold changed from 3 to 5
-    LDA.W SamusXPosition                                                 ;A68CA1;
+    LDA.B SamusXPosition                                                 ;A68CA1;
     SEC                                                                  ;A68CA4;
     SBC.W Enemy.XPosition,X                                              ;A68CA5;
     BPL +                                                                ;A68CA8;
@@ -1381,7 +1381,7 @@ CheckIfKzanIsTouchingSamusFromBelow:
     RTL                                                                  ;A68CBC;
 
   .YPosition:
-    LDA.W SamusYPosition                                                 ;A68CBD;
+    LDA.B SamusYPosition                                                 ;A68CBD;
     CLC                                                                  ;A68CC0;
     ADC.W #$0005                                                         ;A68CC1;
     SEC                                                                  ;A68CC4;
@@ -3002,7 +3002,7 @@ InitAI_MiniKraid:
     LDY.W #InstList_MiniKraid_StepForwards_FacingLeft                    ;A69AA5;
     LDA.W Enemy.XPosition,X                                              ;A69AA8;
     SEC                                                                  ;A69AAB;
-    SBC.W SamusXPosition                                                 ;A69AAC;
+    SBC.B SamusXPosition                                                 ;A69AAC;
     BPL .keepLeft                                                        ;A69AAF;
     LDA.W #$0004                                                         ;A69AB1;
     STA.W MiniKraid.XVelocity,X                                          ;A69AB4;
@@ -3108,7 +3108,7 @@ Instruction_MiniKraid_Move:
     STA.W MiniKraid.direction,X                                          ;A69B60;
     LDA.W Enemy.XPosition,X                                              ;A69B63;
     SEC                                                                  ;A69B66;
-    SBC.W SamusXPosition                                                 ;A69B67;
+    SBC.B SamusXPosition                                                 ;A69B67;
     BPL .return                                                          ;A69B6A;
     LDA.W #$0004                                                         ;A69B6C;
     STA.W MiniKraid.direction,X                                          ;A69B6F;
@@ -4324,9 +4324,9 @@ Function_RidleyCeres_Lunge_Setup:
 
 ;;; $A84E: Ridley function - lunge - main ;;;
 Function_RidleyCeres_Lunge_Main:
-    LDA.W SamusXPosition                                                 ;A6A84E;
+    LDA.B SamusXPosition                                                 ;A6A84E;
     STA.B DP_Temp12                                                      ;A6A851;
-    LDA.W SamusYPosition                                                 ;A6A853;
+    LDA.B SamusYPosition                                                 ;A6A853;
     SEC                                                                  ;A6A856;
     SBC.W #$0044                                                         ;A6A857;
     CMP.W #$0040                                                         ;A6A85A;
@@ -5844,7 +5844,7 @@ RidleyHoverMovement:
 ;;     $12: Target X position
 ;; Returns:
 ;;     Carry: Clear if spin jumping, otherwise set
-    LDA.W SamusYPosition                                                 ;A6B641;
+    LDA.B SamusYPosition                                                 ;A6B641;
     CMP.W #$0160                                                         ;A6B644;
     BMI .minY160                                                         ;A6B647;
     LDA.W #$0160                                                         ;A6B649;
@@ -6175,7 +6175,7 @@ SetRidleyPogoXMovementDirection:
   .storeXSpeed:
     LDA.W Enemy.XPosition                                                ;A6B8BD;
     SEC                                                                  ;A6B8C0;
-    SBC.W SamusXPosition                                                 ;A6B8C1;
+    SBC.B SamusXPosition                                                 ;A6B8C1;
     EOR.W RidleyCeres.XVelocity                                          ;A6B8C4;
     BMI .movingTowardsSamus                                              ;A6B8C7;
     LDA.W Enemy.XPosition                                                ;A6B8C9;
@@ -6361,7 +6361,7 @@ MoveSamusWithRidleyFeet:
     ADC.W Enemy.XPosition                                                ;A6BA34;
     CLC                                                                  ;A6BA37;
     ADC.L Ridley.grabbedSamusXOffset                                     ;A6BA38;
-    STA.W SamusXPosition                                                 ;A6BA3C;
+    STA.B SamusXPosition                                                 ;A6BA3C;
     LDA.L Ridley.feetDistanceIndex                                       ;A6BA3F;
     TAY                                                                  ;A6BA43;
     LDA.W HoldingSamusYDispacement,Y                                     ;A6BA44;
@@ -6369,7 +6369,7 @@ MoveSamusWithRidleyFeet:
     ADC.W Enemy.YPosition                                                ;A6BA48;
     CLC                                                                  ;A6BA4B;
     ADC.L Ridley.grabbedSamusYOffset                                     ;A6BA4C;
-    STA.W SamusYPosition                                                 ;A6BA50;
+    STA.B SamusYPosition                                                 ;A6BA50;
     RTS                                                                  ;A6BA53;
 
 
@@ -6382,7 +6382,7 @@ SetGrabbedSamusXYOffset:
     LDA.W HoldingSamusXDispacement,Y                                     ;A6BA5A;
     ADC.W Enemy.XPosition                                                ;A6BA5D;
     SEC                                                                  ;A6BA60;
-    SBC.W SamusXPosition                                                 ;A6BA61;
+    SBC.B SamusXPosition                                                 ;A6BA61;
     EOR.W #$FFFF                                                         ;A6BA64;
     INC                                                                  ;A6BA67;
     STA.L Ridley.grabbedSamusXOffset                                     ;A6BA68;
@@ -6392,7 +6392,7 @@ SetGrabbedSamusXYOffset:
     CLC                                                                  ;A6BA74;
     ADC.W Enemy.YPosition                                                ;A6BA75;
     SEC                                                                  ;A6BA78;
-    SBC.W SamusYPosition                                                 ;A6BA79;
+    SBC.B SamusYPosition                                                 ;A6BA79;
     EOR.W #$FFFF                                                         ;A6BA7C;
     INC                                                                  ;A6BA7F;
     STA.L Ridley.grabbedSamusYOffset                                     ;A6BA80;
@@ -6437,7 +6437,7 @@ Function_Ridley_Action_Lunge:
     STA.B DP_Temp12                                                      ;A6BACB;
     LDA.W Enemy.XPosition                                                ;A6BACD;
     SEC                                                                  ;A6BAD0;
-    SBC.W SamusXPosition                                                 ;A6BAD1;
+    SBC.B SamusXPosition                                                 ;A6BAD1;
     STA.B DP_Temp14                                                      ;A6BAD4;
     EOR.B DP_Temp12                                                      ;A6BAD6;
     BPL +                                                                ;A6BAD8;
@@ -6454,7 +6454,7 @@ Function_Ridley_Action_Lunge:
     CLC                                                                  ;A6BAEA;
     ADC.W #$0023                                                         ;A6BAEB;
     SEC                                                                  ;A6BAEE;
-    SBC.W SamusYPosition                                                 ;A6BAEF;
+    SBC.B SamusYPosition                                                 ;A6BAEF;
     BPL RidleyLungeMissedSamus                                           ;A6BAF2;
     LDX.W #$FFF0                                                         ;A6BAF4;
     LDA.L Ridley.facingDirection                                         ;A6BAF7;
@@ -6464,9 +6464,9 @@ Function_Ridley_Action_Lunge:
   .facingLeft:
     TXA                                                                  ;A6BB00;
     CLC                                                                  ;A6BB01;
-    ADC.W SamusXPosition                                                 ;A6BB02;
+    ADC.B SamusXPosition                                                 ;A6BB02;
     STA.B DP_Temp12                                                      ;A6BB05;
-    LDA.W SamusYPosition                                                 ;A6BB07;
+    LDA.B SamusYPosition                                                 ;A6BB07;
     CLC                                                                  ;A6BB0A;
     ADC.W #$FFFC                                                         ;A6BB0B;
     STA.B DP_Temp14                                                      ;A6BB0E;
@@ -6775,7 +6775,7 @@ CheckIfSamusMorphedSpinJumpingDamageBoosting:
 CheckIfSamusIsInPogoZone:
 ;; Returns:
 ;;     Carry: Set if Samus is in pogo zone
-    LDA.W SamusYPosition                                                 ;A6BD20;
+    LDA.B SamusYPosition                                                 ;A6BD20;
     CMP.W #$0160                                                         ;A6BD23;
     BPL .aboveThreshold                                                  ;A6BD26;
     CLC                                                                  ;A6BD28;
@@ -8965,7 +8965,7 @@ HandleRidleyTailWhip:
     STA.W Ridley.tailWhipTargetClockwiseAngle                            ;A6CC65;
     STA.W Ridley.tailWhipTargetCounterClockwiseAngle                     ;A6CC68;
     LDA.W #$0002                                                         ;A6CC6B;
-    LDY.W SamusXPosition                                                 ;A6CC6E;
+    LDY.B SamusXPosition                                                 ;A6CC6E;
     CPY.W #$0070                                                         ;A6CC71;
     BCS .SamusNotLeftSide                                                ;A6CC74;
     LDA.W #$0001                                                         ;A6CC76;
@@ -8998,7 +8998,7 @@ HandleRidleyTailFlingTrigger:
     AND.W #$00FF                                                         ;A6CC92;
     CMP.W #$00F0                                                         ;A6CC95;
     BCS .aimTailWhip                                                     ;A6CC98;
-    LDA.W SamusXPosition                                                 ;A6CC9A;
+    LDA.B SamusXPosition                                                 ;A6CC9A;
     SEC                                                                  ;A6CC9D;
     SBC.W Enemy.XPosition                                                ;A6CC9E;
     BPL .rightOfRidley                                                   ;A6CCA1;
@@ -9054,7 +9054,7 @@ UNUSED_HandleRidleyTailWhipWithExtraSpinning_A6CCC0:
     STA.L Ridley.tailWhipTargetClockwiseAngle                            ;A6CCF1;
     STA.L Ridley.tailWhipTargetCounterClockwiseAngle                     ;A6CCF5;
     LDA.W #$0002                                                         ;A6CCF9;
-    LDY.W SamusXPosition                                                 ;A6CCFC;
+    LDY.B SamusXPosition                                                 ;A6CCFC;
     CPY.W #$0070                                                         ;A6CCFF;
     BCS +                                                                ;A6CD02;
     LDA.W #$0001                                                         ;A6CD04;
@@ -9089,7 +9089,7 @@ HandleNormalRidleyPogoTail:
     AND.W #$00FF                                                         ;A6CD2F;
     CMP.W #$00F0                                                         ;A6CD32;
     BCS .randomlySkipDistanceCheck                                       ;A6CD35;
-    LDA.W SamusXPosition                                                 ;A6CD37;
+    LDA.B SamusXPosition                                                 ;A6CD37;
     SEC                                                                  ;A6CD3A;
     SBC.W Enemy.XPosition                                                ;A6CD3B;
     BPL .SamusOnRight                                                    ;A6CD3F;
@@ -9159,7 +9159,7 @@ HandleRidleyPogoTailStab:
     AND.W #$00FF                                                         ;A6CDB5;
     CMP.W #$00F0                                                         ;A6CDB8;
     BCS .randomlySkipDistanceCheck                                       ;A6CDBB;
-    LDA.W SamusXPosition                                                 ;A6CDBD;
+    LDA.B SamusXPosition                                                 ;A6CDBD;
     SEC                                                                  ;A6CDC0;
     SBC.L Enemy.XPosition                                                ;A6CDC1;
     BPL .SamusOnRight                                                    ;A6CDC5;
@@ -9692,11 +9692,11 @@ SetRidleyTailWhipTarget:
     RTS                                                                  ;A6D1C5;
 
   .noMissile:
-    LDA.W SamusXPosition                                                 ;A6D1C6;
+    LDA.B SamusXPosition                                                 ;A6D1C6;
     SEC                                                                  ;A6D1C9;
     SBC.W RidleyTail.XPosition                                           ;A6D1CA;
     STA.B DP_Temp12                                                      ;A6D1CD;
-    LDA.W SamusYPosition                                                 ;A6D1CF;
+    LDA.B SamusYPosition                                                 ;A6D1CF;
     CLC                                                                  ;A6D1D2;
     ADC.W #$0018                                                         ;A6D1D3;
     SEC                                                                  ;A6D1D6;
@@ -10158,7 +10158,7 @@ CheckForCollisionWithNonAirBlock:
     LSR                                                                  ;A6D4FD;
     SEP #$20                                                             ;A6D4FE;
     STA.W $4202                                                          ;A6D500;
-    LDA.W RoomWidthBlocks                                                ;A6D503;
+    LDA.B RoomWidthBlocks                                                ;A6D503;
     STA.W $4203                                                          ;A6D506;
     REP #$20                                                             ;A6D509;
     TXA                                                                  ;A6D50B;
@@ -11307,7 +11307,7 @@ RidleyGeneralUseDrawing:
     INY                                                                  ;A6DC16;
     INY                                                                  ;A6DC17;
     STA.B DP_Temp18                                                      ;A6DC18;
-    LDX.W OAMStack                                                       ;A6DC1A;
+    LDX.B OAMStack                                                       ;A6DC1A;
     CLC                                                                  ;A6DC1D;
 
   .loop:
@@ -11320,7 +11320,7 @@ RidleyGeneralUseDrawing:
     CLC                                                                  ;A6DC2A;
     ADC.B DP_Temp14                                                      ;A6DC2B;
     SEC                                                                  ;A6DC2D;
-    SBC.W Layer1YPosition                                                ;A6DC2E;
+    SBC.B Layer1YPosition                                                ;A6DC2E;
     BMI .next                                                            ;A6DC31;
     CMP.W #$00E0                                                         ;A6DC33;
     BPL .next                                                            ;A6DC36;
@@ -11328,7 +11328,7 @@ RidleyGeneralUseDrawing:
     LDA.W $0000,Y                                                        ;A6DC3A;
     ADC.B DP_Temp12                                                      ;A6DC3D;
     SEC                                                                  ;A6DC3F;
-    SBC.W Layer1XPosition                                                ;A6DC40;
+    SBC.B Layer1XPosition                                                ;A6DC40;
     STA.W OAMLow,X                                                       ;A6DC43;
     AND.W #$0100                                                         ;A6DC46;
     BEQ +                                                                ;A6DC49;
@@ -11364,7 +11364,7 @@ RidleyGeneralUseDrawing:
     TAY                                                                  ;A6DC87;
     DEC.B DP_Temp18                                                      ;A6DC88;
     BNE .loop                                                            ;A6DC8A;
-    STX.W OAMStack                                                       ;A6DC8C;
+    STX.B OAMStack                                                       ;A6DC8C;
     RTS                                                                  ;A6DC8F;
 
 
@@ -11586,7 +11586,7 @@ CheckIfRidleyIsOnScreen:
     CLC                                                                  ;A6DE7F;
     ADC.W #$0020                                                         ;A6DE80;
     SEC                                                                  ;A6DE83;
-    SBC.W Layer1YPosition                                                ;A6DE84;
+    SBC.B Layer1YPosition                                                ;A6DE84;
     BMI .offScreen                                                       ;A6DE87;
     CMP.W #$0120                                                         ;A6DE89;
     BPL .offScreen                                                       ;A6DE8C;
@@ -11595,7 +11595,7 @@ CheckIfRidleyIsOnScreen:
     CLC                                                                  ;A6DE93;
     ADC.W #$0020                                                         ;A6DE94;
     SEC                                                                  ;A6DE97;
-    SBC.W Layer1XPosition                                                ;A6DE98;
+    SBC.B Layer1XPosition                                                ;A6DE98;
     BMI .offScreen                                                       ;A6DE9B;
     CMP.W #$0140                                                         ;A6DE9D;
     BPL .offScreen                                                       ;A6DEA0;
@@ -11717,7 +11717,7 @@ CheckForSamusCollisionWithRectangle:
 ;;     $18: Rectangle Y radius
 ;; Returns:
 ;;     Carry: Set if collision, clear otherwise
-    LDA.W SamusXPosition                                                 ;A6DF29;
+    LDA.B SamusXPosition                                                 ;A6DF29;
     SEC                                                                  ;A6DF2C;
     SBC.B DP_Temp12                                                      ;A6DF2D;
     BPL +                                                                ;A6DF2F;
@@ -11730,7 +11730,7 @@ CheckForSamusCollisionWithRectangle:
     CMP.B DP_Temp16                                                      ;A6DF3B;
     BCS .returnNoCollision                                               ;A6DF3D;
 
-+   LDA.W SamusYPosition                                                 ;A6DF3F;
++   LDA.B SamusYPosition                                                 ;A6DF3F;
     SEC                                                                  ;A6DF42;
     SBC.B DP_Temp14                                                      ;A6DF43;
     BPL +                                                                ;A6DF45;
@@ -11775,7 +11775,7 @@ UNUSED_HurtSamus_A6DF66:
     STA.W SamusKnockbackTimer                                            ;A6DF73;
     LDY.W #$0000                                                         ;A6DF76;
     LDX.B EnemyIndex                                                     ;A6DF79;
-    LDA.W SamusXPosition                                                 ;A6DF7C;
+    LDA.B SamusXPosition                                                 ;A6DF7C;
     SEC                                                                  ;A6DF7F;
     SBC.W Enemy.XPosition,X                                              ;A6DF80;
     BMI .left                                                            ;A6DF83;
@@ -11853,7 +11853,7 @@ RidleyTail_vs_Samus_CollisionHandling:
     LDA.W #$0005                                                         ;A6E003;
     STA.W SamusKnockbackTimer                                            ;A6E006;
     LDY.W #$0000                                                         ;A6E009;
-    LDA.W SamusXPosition                                                 ;A6E00C;
+    LDA.B SamusXPosition                                                 ;A6E00C;
     SEC                                                                  ;A6E00F;
     SBC.L RidleyTail[6].XPosition                                        ;A6E010;
     BMI .knockbackDirection                                              ;A6E014;
@@ -11888,7 +11888,7 @@ UNUSED_SlowDownRidleyBasedOnProjectileDamage_A6E01B:
     ADC.W #$0080                                                         ;A6E03D;
     AND.W #$00FF                                                         ;A6E040;
     STA.B DP_Temp12                                                      ;A6E043;
-    LDA.W CollisionIndex                                                 ;A6E045;
+    LDA.B CollisionIndex                                                 ;A6E045;
     ASL                                                                  ;A6E048;
     TAX                                                                  ;A6E049;
     LDA.W SamusProjectile_Damages,X                                      ;A6E04A;
@@ -12233,9 +12233,9 @@ Instruction_RidleyCeres_RidleyFeetDistanceIndexInY:
 ;;     Y: Pointer to next instruction
 
 ; Also prevents scrolling o_O
-    LDA.W SamusXPosition                                                 ;A6E501;
+    LDA.B SamusXPosition                                                 ;A6E501;
     STA.W SamusPreviousXPosition                                         ;A6E504;
-    LDA.W SamusYPosition                                                 ;A6E507;
+    LDA.B SamusYPosition                                                 ;A6E507;
     STA.W SamusPreviousYPosition                                         ;A6E50A;
     LDA.W $0000,Y                                                        ;A6E50D;
     STA.L Ridley.feetDistanceIndex                                       ;A6E510; fallthrough to Instruction_Ridley_SkipToNextInstruction
@@ -12671,7 +12671,7 @@ Instruction_Ridley_CalculateFireballXYVelocities:
     CLC                                                                  ;A6E858;
     ADC.W Enemy.XPosition                                                ;A6E859;
     STA.B DP_Temp12                                                      ;A6E85C;
-    LDA.W SamusXPosition                                                 ;A6E85E;
+    LDA.B SamusXPosition                                                 ;A6E85E;
     SEC                                                                  ;A6E861;
     SBC.B DP_Temp12                                                      ;A6E862;
     STA.B DP_Temp12                                                      ;A6E864;
@@ -12679,7 +12679,7 @@ Instruction_Ridley_CalculateFireballXYVelocities:
     CLC                                                                  ;A6E869;
     ADC.W Enemy.YPosition                                                ;A6E86A;
     STA.B DP_Temp14                                                      ;A6E86D;
-    LDA.W SamusYPosition                                                 ;A6E86F;
+    LDA.B SamusYPosition                                                 ;A6E86F;
     SEC                                                                  ;A6E872;
     SBC.B DP_Temp14                                                      ;A6E873;
     STA.B DP_Temp14                                                      ;A6E875;
@@ -12711,7 +12711,7 @@ Instruction_Ridley_CalculateFireballXYVelocities:
     CLC                                                                  ;A6E8A4;
     ADC.W Enemy.XPosition                                                ;A6E8A5;
     STA.B DP_Temp12                                                      ;A6E8A8;
-    LDA.W SamusXPosition                                                 ;A6E8AA;
+    LDA.B SamusXPosition                                                 ;A6E8AA;
     SEC                                                                  ;A6E8AD;
     SBC.B DP_Temp12                                                      ;A6E8AE;
     STA.B DP_Temp12                                                      ;A6E8B0;
@@ -12719,7 +12719,7 @@ Instruction_Ridley_CalculateFireballXYVelocities:
     CLC                                                                  ;A6E8B5;
     ADC.W Enemy.YPosition                                                ;A6E8B6;
     STA.B DP_Temp14                                                      ;A6E8B9;
-    LDA.W SamusYPosition                                                 ;A6E8BB;
+    LDA.B SamusYPosition                                                 ;A6E8BB;
     SEC                                                                  ;A6E8BE;
     SBC.B DP_Temp14                                                      ;A6E8BF;
     STA.B DP_Temp14                                                      ;A6E8C1;
@@ -14204,7 +14204,7 @@ Inst_CeresDoor_GotoYIfSamusIsNotWithing30Pixels:
 ; Measure with taxicab distance
     LDA.W Enemy.XPosition,X                                              ;A6F63E;
     SEC                                                                  ;A6F641;
-    SBC.W SamusXPosition                                                 ;A6F642;
+    SBC.B SamusXPosition                                                 ;A6F642;
     BPL +                                                                ;A6F645;
     EOR.W #$FFFF                                                         ;A6F647;
     INC                                                                  ;A6F64A;
@@ -14213,7 +14213,7 @@ Inst_CeresDoor_GotoYIfSamusIsNotWithing30Pixels:
     BCS Inst_CeresDoor_GotoYIfSamusIsNotWithin30Pixels_gotoY             ;A6F64E;
     LDA.W Enemy.YPosition,X                                              ;A6F650;
     SEC                                                                  ;A6F653;
-    SBC.W SamusYPosition                                                 ;A6F654;
+    SBC.B SamusYPosition                                                 ;A6F654;
     BPL +                                                                ;A6F657;
     EOR.W #$FFFF                                                         ;A6F659;
     INC                                                                  ;A6F65C;

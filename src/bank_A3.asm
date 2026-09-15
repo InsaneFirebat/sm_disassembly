@@ -978,7 +978,7 @@ Function_Metaree_Idling:
     LDX.B EnemyIndex                                                     ;A38987;
     LDA.W Enemy.XPosition,X                                              ;A3898A;
     SEC                                                                  ;A3898D;
-    SBC.W SamusXPosition                                                 ;A3898E;
+    SBC.B SamusXPosition                                                 ;A3898E;
     BPL +                                                                ;A38991;
     EOR.W #$FFFF                                                         ;A38993;
     INC                                                                  ;A38996;
@@ -1000,7 +1000,7 @@ DetermineMetareeYVelocity:
 ; This subroutine assumes SamusYPosition >= Enemy.YPosition
 ; If this is not the case, then due to the unsigned nature of division,
 ; the resulting enemy velocity will be some large value (~AAh) that makes the metaree shoot off-screen in an instant and/or hit the ground from many tiles away
-    LDA.W SamusYPosition                                                 ;A389AC;
+    LDA.B SamusYPosition                                                 ;A389AC;
     SEC                                                                  ;A389AF;
     SBC.W Enemy.YPosition,X                                              ;A389B0;
     STA.W $4204                                                          ;A389B3;
@@ -1062,7 +1062,7 @@ Function_Metaree_LaunchedAttack:
     LDA.W #$0002                                                         ;A38A22;
     STA.W Temp_XVelocity                                                 ;A38A25;
     LDA.W Enemy.XPosition,X                                              ;A38A28;
-    CMP.W SamusXPosition                                                 ;A38A2B;
+    CMP.B SamusXPosition                                                 ;A38A2B;
     BMI .steerLeft                                                       ;A38A2E;
     LDA.W #$FFFE                                                         ;A38A30;
     STA.W Temp_XVelocity                                                 ;A38A33;
@@ -2342,10 +2342,10 @@ PlaceSamusOnElevator:
     LDA.W Enemy.YPosition,X                                              ;A39615;
     SEC                                                                  ;A39618;
     SBC.W #$001A                                                         ;A39619;
-    STA.W SamusYPosition                                                 ;A3961C;
+    STA.B SamusYPosition                                                 ;A3961C;
     STZ.W SamusYSubPosition                                              ;A3961F;
     LDA.W Enemy.XPosition,X                                              ;A39622;
-    STA.W SamusXPosition                                                 ;A39625;
+    STA.B SamusXPosition                                                 ;A39625;
     STZ.W SamusYSpeed                                                    ;A39628;
     STZ.W SamusYSubSpeed                                                 ;A3962B;
     RTS                                                                  ;A3962E;
@@ -4099,7 +4099,7 @@ Function_Sbug_MoveStraightAlongAngle_ReverseUntil6BlocksAway:
     BMI .done                                                            ;A3A481;
     LDA.W Enemy.XPosition,X                                              ;A3A483;
     SEC                                                                  ;A3A486;
-    SBC.W SamusXPosition                                                 ;A3A487;
+    SBC.B SamusXPosition                                                 ;A3A487;
     JSL.L NegateA_A0B067                                                 ;A3A48A;
     CMP.W #$0060                                                         ;A3A48E;
     BPL +                                                                ;A3A491;
@@ -4107,7 +4107,7 @@ Function_Sbug_MoveStraightAlongAngle_ReverseUntil6BlocksAway:
 
 +   LDA.W Enemy.YPosition,X                                              ;A3A495;
     SEC                                                                  ;A3A498;
-    SBC.W SamusYPosition                                                 ;A3A499;
+    SBC.B SamusYPosition                                                 ;A3A499;
     JSL.L NegateA_A0B067                                                 ;A3A49C;
     CMP.W #$0060                                                         ;A3A4A0;
     BPL .reverse                                                         ;A3A4A3;
@@ -4521,7 +4521,7 @@ Function_Mochtroid_0_NotTouchingSamus:
     STZ.B DP_Temp14                                                      ;A3A7AF;
     LDA.W Enemy.YPosition,X                                              ;A3A7B1;
     SEC                                                                  ;A3A7B4;
-    SBC.W SamusYPosition                                                 ;A3A7B5;
+    SBC.B SamusYPosition                                                 ;A3A7B5;
     LSR                                                                  ;A3A7B8;
     LSR                                                                  ;A3A7B9;
     STA.B DP_Temp13                                                      ;A3A7BA;
@@ -4575,7 +4575,7 @@ Function_Mochtroid_0_NotTouchingSamus:
     STZ.B DP_Temp14                                                      ;A3A81E;
     LDA.W Enemy.XPosition,X                                              ;A3A820;
     SEC                                                                  ;A3A823;
-    SBC.W SamusXPosition                                                 ;A3A824;
+    SBC.B SamusXPosition                                                 ;A3A824;
     LSR                                                                  ;A3A827;
     LSR                                                                  ;A3A828;
     STA.B DP_Temp13                                                      ;A3A829;
@@ -4663,7 +4663,7 @@ Function_Mochtroid_1_TouchingSamus:
 
     LDX.B EnemyIndex                                                     ;A3A8C8;
     LDA.W Enemy.XPosition,X                                              ;A3A8CB;
-    CMP.W SamusXPosition                                                 ;A3A8CE;
+    CMP.B SamusXPosition                                                 ;A3A8CE;
     BEQ .centeredX                                                       ;A3A8D1;
     BPL .moveLeft                                                        ;A3A8D3;
     BMI .moveRight                                                       ;A3A8D5;
@@ -4703,7 +4703,7 @@ endif
     STA.B DP_Temp14                                                      ;A3A8FD;
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A3A8FF;
     LDA.W Enemy.YPosition,X                                              ;A3A903;
-    CMP.W SamusYPosition                                                 ;A3A906;
+    CMP.B SamusYPosition                                                 ;A3A906;
     BEQ .centeredY                                                       ;A3A909;
     BPL .moveUp                                                          ;A3A90B;
     BMI .moveDown                                                        ;A3A90D;
@@ -7364,7 +7364,7 @@ EnemyShot_Bang:
     LDA.W Bang.movementFunction,X                                        ;A3BF00;
     CMP.W #Function_Bang_Movement_GetEnemyIndex                          ;A3BF03;
     BEQ .RTSFunction                                                     ;A3BF06;
-    LDA.W CollisionIndex                                                 ;A3BF08;
+    LDA.B CollisionIndex                                                 ;A3BF08;
     ASL                                                                  ;A3BF0B;
     TAY                                                                  ;A3BF0C;
     LDA.W SamusProjectile_Directions,Y                                   ;A3BF0D;
@@ -7394,7 +7394,7 @@ EnemyShot_Bang:
     INC                                                                  ;A3BF49;
     STA.L Bang.newInstListIndex,X                                        ;A3BF4A;
     JSR.W SetBangInstList                                                ;A3BF4E;
-    LDA.W CollisionIndex                                                 ;A3BF51;
+    LDA.B CollisionIndex                                                 ;A3BF51;
     ASL                                                                  ;A3BF54;
     TAY                                                                  ;A3BF55;
     LDA.W SamusProjectile_Damages,Y                                      ;A3BF56;
@@ -8192,7 +8192,7 @@ Function_Skree_Idling:
     LDX.B EnemyIndex                                                     ;A3C6D5;
     LDA.W Enemy.XPosition,X                                              ;A3C6D8;
     SEC                                                                  ;A3C6DB;
-    SBC.W SamusXPosition                                                 ;A3C6DC;
+    SBC.B SamusXPosition                                                 ;A3C6DC;
     BPL +                                                                ;A3C6DF;
     EOR.W #$FFFF                                                         ;A3C6E1;
     INC                                                                  ;A3C6E4;
@@ -8247,7 +8247,7 @@ Function_Skree_LaunchedAttack:
     LDA.W #$0001                                                         ;A3C745;
     STA.W Temp_XVelocity                                                 ;A3C748;
     LDA.W Enemy.XPosition,X                                              ;A3C74B;
-    CMP.W SamusXPosition                                                 ;A3C74E;
+    CMP.B SamusXPosition                                                 ;A3C74E;
     BMI .steerRight                                                      ;A3C751;
     LDA.W #$FFFF                                                         ;A3C753;
     STA.W Temp_XVelocity                                                 ;A3C756;
@@ -8348,7 +8348,7 @@ EnemyShot_Skree:
     LDY.W #EnemyProjectile_SkreeParticles_UpLeft                         ;A3C81F;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A3C822;
     LDY.W #$0002                                                         ;A3C826;
-    LDA.W CollisionIndex                                                 ;A3C829;
+    LDA.B CollisionIndex                                                 ;A3C829;
     ASL                                                                  ;A3C82C;
     TAX                                                                  ;A3C82D;
     LDA.W SamusProjectile_Types,X                                        ;A3C82E;
@@ -9230,11 +9230,11 @@ HandleYardHiding:
     BEQ .return1                                                         ;A3CEB0;
     LDA.W Enemy.YPosition,X                                              ;A3CEB2;
     SEC                                                                  ;A3CEB5;
-    SBC.W SamusYPosition                                                 ;A3CEB6;
+    SBC.B SamusYPosition                                                 ;A3CEB6;
     CMP.W #$FFA0                                                         ;A3CEB9;
     BMI .crawl                                                           ;A3CEBC;
     LDA.W Enemy.XPosition,X                                              ;A3CEBE;
-    CMP.W SamusXPosition                                                 ;A3CEC1;
+    CMP.B SamusXPosition                                                 ;A3CEC1;
     BMI .leftOfSamus                                                     ;A3CEC4;
     LDA.W PoseXDirection                                                 ;A3CEC6;
     AND.W #$00FF                                                         ;A3CEC9;
@@ -9871,14 +9871,14 @@ UNUSED_MakeYardFaceSamus_A3D315:
     BIT.W #$0001                                                         ;A3D326;
     BNE .movingDown                                                      ;A3D329;
     LDA.W Enemy.YPosition,X                                              ;A3D32B;
-    CMP.W SamusYPosition                                                 ;A3D32E;
+    CMP.B SamusYPosition                                                 ;A3D32E;
     BCC TurnYardAround                                                   ;A3D331;
     CLC                                                                  ;A3D333;
     RTL                                                                  ;A3D334;
 
   .movingDown:
     LDA.W Enemy.YPosition,X                                              ;A3D335;
-    CMP.W SamusYPosition                                                 ;A3D338;
+    CMP.B SamusYPosition                                                 ;A3D338;
     BCS TurnYardAround                                                   ;A3D33B;
     RTL                                                                  ;A3D33D;
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -9893,14 +9893,14 @@ MakeYardFaceSamusHorizontally:
     LDA.W Yard.airborneFacingDirection,X                                 ;A3D33E;
     BNE .facingRight                                                     ;A3D341;
     LDA.W Enemy.XPosition,X                                              ;A3D343;
-    CMP.W SamusXPosition                                                 ;A3D346;
+    CMP.B SamusXPosition                                                 ;A3D346;
     BCC TurnYardAround                                                   ;A3D349;
     CLC                                                                  ;A3D34B;
     RTL                                                                  ;A3D34C;
 
   .facingRight:
     LDA.W Enemy.XPosition,X                                              ;A3D34D;
-    CMP.W SamusXPosition                                                 ;A3D350;
+    CMP.B SamusXPosition                                                 ;A3D350;
     BCS TurnYardAround                                                   ;A3D353;
     RTL                                                                  ;A3D355;
 
@@ -10072,7 +10072,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 ;;; $D469: Enemy shot - enemy $DBBF (yard) ;;;
 EnemyShot_Yard:
     LDX.B EnemyIndex                                                     ;A3D469;
-    LDA.W CollisionIndex                                                 ;A3D46C;
+    LDA.B CollisionIndex                                                 ;A3D46C;
     ASL                                                                  ;A3D46F;
     TAY                                                                  ;A3D470;
     LDA.W SamusProjectile_Types,Y                                        ;A3D471;
@@ -10975,7 +10975,7 @@ RTL_A3DC1B:
 ;;; $DC1C: Enemy shot - enemy $DBFF (reflec) ;;;
 EnemyShot_Reflec:
     LDX.B EnemyIndex                                                     ;A3DC1C;
-    LDA.W CollisionIndex                                                 ;A3DC1F;
+    LDA.B CollisionIndex                                                 ;A3DC1F;
     ASL                                                                  ;A3DC22;
     TAY                                                                  ;A3DC23;
     LDA.W #$000A                                                         ;A3DC24;
@@ -11570,7 +11570,7 @@ Function_HZoomer_CrawlingVertically:
     JSL.L MoveEnemyDownBy_14_12                                          ;A3E0E3;
     BCS .insideTurn                                                      ;A3E0E7;
     LDX.B EnemyIndex                                                     ;A3E0E9;
-    LDA.W SamusYPosition                                                 ;A3E0EC;
+    LDA.B SamusYPosition                                                 ;A3E0EC;
     SEC                                                                  ;A3E0EF;
     SBC.W Enemy.YPosition,X                                              ;A3E0F0;
     BPL .SamusRightOfZHoomer                                             ;A3E0F3;
@@ -11684,7 +11684,7 @@ Function_HZoomer_CrawlingHorizontally:
     BCS .insideTurn                                                      ;A3E1BA;
     JSL.L AlignEnemyYPositionWIthNonSquareSlope                          ;A3E1BC;
     LDX.B EnemyIndex                                                     ;A3E1C0;
-    LDA.W SamusXPosition                                                 ;A3E1C3;
+    LDA.B SamusXPosition                                                 ;A3E1C3;
     SEC                                                                  ;A3E1C6;
     SBC.W Enemy.XPosition,X                                              ;A3E1C7;
     BPL .SamusToTheRight                                                 ;A3E1CA;
@@ -12752,7 +12752,7 @@ HurtAI_Metroid:
 ;;; $EB98: Main AI - enemy $DD7F (metroid) ;;;
 MainAI_Metroid:
     LDX.B EnemyIndex                                                     ;A3EB98;
-    LDA.W SamusYPosition                                                 ;A3EB9B;
+    LDA.B SamusYPosition                                                 ;A3EB9B;
     SEC                                                                  ;A3EB9E;
     SBC.W #$0008                                                         ;A3EB9F;
     STA.W Temp_TargetYPosition                                           ;A3EBA2;
@@ -12860,7 +12860,7 @@ Function_Metroid_0_ChaseSamus:
     STZ.B DP_Temp14                                                      ;A3EC7B;
     LDA.W Enemy.XPosition,X                                              ;A3EC7D;
     SEC                                                                  ;A3EC80;
-    SBC.W SamusXPosition                                                 ;A3EC81;
+    SBC.B SamusXPosition                                                 ;A3EC81;
     LSR                                                                  ;A3EC84;
     LSR                                                                  ;A3EC85;
     STA.B DP_Temp13                                                      ;A3EC86;
@@ -12967,7 +12967,7 @@ Function_Metroid_1_LatchOntoSamus:
     LDX.B EnemyIndex                                                     ;A3ED35;
     STZ.B DP_Temp12                                                      ;A3ED38;
     STZ.B DP_Temp14                                                      ;A3ED3A;
-    LDA.W SamusXPosition                                                 ;A3ED3C;
+    LDA.B SamusXPosition                                                 ;A3ED3C;
     SEC                                                                  ;A3ED3F;
     SBC.W Enemy.XPosition,X                                              ;A3ED40;
     XBA                                                                  ;A3ED43;
@@ -13019,7 +13019,7 @@ Function_Metroid_2_LatchedOntoSamus:
 ;; Parameter:
 ;;     Temp_TargetYPosition: [Samus Y position] - 8
     LDX.B EnemyIndex                                                     ;A3ED8F;
-    LDA.W SamusXPosition                                                 ;A3ED92;
+    LDA.B SamusXPosition                                                 ;A3ED92;
     STA.W Enemy.XPosition,X                                              ;A3ED95;
     LDA.W Temp_TargetYPosition                                           ;A3ED98;
     STA.W Enemy.YPosition,X                                              ;A3ED9B;
@@ -13063,7 +13063,7 @@ Function_Metroid_3_BombedOffSamus:
 
 ;;; $EDEB: Enemy touch - enemy $DD7F (metroid) ;;;
 EnemyTouch_Metroid:
-    LDA.W SamusYPosition                                                 ;A3EDEB;
+    LDA.B SamusYPosition                                                 ;A3EDEB;
     SEC                                                                  ;A3EDEE;
     SBC.W #$0008                                                         ;A3EDEF;
     STA.W Temp_TargetYPosition                                           ;A3EDF2;
@@ -13078,7 +13078,7 @@ EnemyTouch_Metroid:
     LDY.W #$0000                                                         ;A3EE0B;
     LDA.W Enemy.XPosition,X                                              ;A3EE0E;
     SEC                                                                  ;A3EE11;
-    SBC.W SamusXPosition                                                 ;A3EE12;
+    SBC.B SamusXPosition                                                 ;A3EE12;
     BPL +                                                                ;A3EE15;
     LDY.W #$FF00                                                         ;A3EE17;
 
@@ -13144,7 +13144,7 @@ EnemyTouch_Metroid:
     LDY.W #$0001                                                         ;A3EE87;
     LDA.W Enemy.XPosition,X                                              ;A3EE8A;
     SEC                                                                  ;A3EE8D;
-    SBC.W SamusXPosition                                                 ;A3EE8E;
+    SBC.B SamusXPosition                                                 ;A3EE8E;
     BPL +                                                                ;A3EE91;
     EOR.W #$FFFF                                                         ;A3EE93;
     INC                                                                  ;A3EE96;
@@ -13209,7 +13209,7 @@ DealMetroidContactDamageToSamus:
 
 ;;; $EF07: Enemy shot - enemy $DD7F (metroid) ;;;
 EnemyShot_Metroid:
-    LDA.W CollisionIndex                                                 ;A3EF11;
+    LDA.B CollisionIndex                                                 ;A3EF11;
     ASL                                                                  ;A3EF14;
     TAY                                                                  ;A3EF15;
     LDX.B EnemyIndex                                                     ;A3EF16;
@@ -13314,7 +13314,7 @@ EnemyShot_Metroid:
     STA.W Enemy.instList,X                                               ;A3EFF2;
     LDA.W #$0001                                                         ;A3EFF5;
     STA.W Enemy.instTimer,X                                              ;A3EFF8;
-    LDA.W CollisionIndex                                                 ;A3EFFB;
+    LDA.B CollisionIndex                                                 ;A3EFFB;
     ASL                                                                  ;A3EFFE;
     TAY                                                                  ;A3EFFF;
     LDA.W SamusProjectile_Types,Y                                        ;A3F000;

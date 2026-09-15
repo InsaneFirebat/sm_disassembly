@@ -1656,9 +1656,9 @@ Determine_Which_Enemies_to_Process:
     LDA.W Enemy.XPosition,X                                              ;A08F00;
     CLC                                                                  ;A08F03;
     ADC.W Enemy.XHitboxRadius,X                                          ;A08F04;
-    CMP.W Layer1XPosition                                                ;A08F07;
+    CMP.B Layer1XPosition                                                ;A08F07;
     BMI .next                                                            ;A08F0A;
-    LDA.W Layer1XPosition                                                ;A08F0C;
+    LDA.B Layer1XPosition                                                ;A08F0C;
     CLC                                                                  ;A08F0F;
     ADC.W #$0100                                                         ;A08F10;
     CLC                                                                  ;A08F13;
@@ -1668,9 +1668,9 @@ Determine_Which_Enemies_to_Process:
     LDA.W Enemy.YPosition,X                                              ;A08F1C;
     CLC                                                                  ;A08F1F;
     ADC.W #$0008                                                         ;A08F20;
-    CMP.W Layer1YPosition                                                ;A08F23;
+    CMP.B Layer1YPosition                                                ;A08F23;
     BMI .next                                                            ;A08F26;
-    LDA.W Layer1YPosition                                                ;A08F28;
+    LDA.B Layer1YPosition                                                ;A08F28;
     CLC                                                                  ;A08F2B;
     ADC.W #$00F8                                                         ;A08F2C;
     CMP.W Enemy.YPosition,X                                              ;A08F2F;
@@ -2069,7 +2069,7 @@ UNUSED_LoggingRoutineForASpecificVertcalEnemyReaction_A0918B:
     STA.L EnemyLogging.extraSamusYDisplacement&$FF00FF,X                 ;A091AD;
     LDA.W ExtraSamusYSubDisplacement                                     ;A091B1;
     STA.L EnemyLogging.decreasingMomentumFlag&$FF00FF,X                  ;A091B4;
-    LDA.W SamusYPosition                                                 ;A091B8;
+    LDA.B SamusYPosition                                                 ;A091B8;
     STA.L EnemyLogging.SamusYPosition&$FF00FF,X                          ;A091BB;
     LDA.W SamusYSubPosition                                              ;A091BF;
     STA.L EnemyLogging.SamusYSubPosition&$FF00FF,X                       ;A091C2;
@@ -2386,14 +2386,14 @@ WriteEnemyOAM_IfNotFrozenOrInvincibleFrame:
     REP #$30                                                             ;A09454;
     LDA.W Enemy.XPosition,X                                              ;A09459;
     SEC                                                                  ;A0945C;
-    SBC.W Layer1XPosition                                                ;A0945D;
+    SBC.B Layer1XPosition                                                ;A0945D;
     CLC                                                                  ;A09460;
     ADC.L EnemySpawnData.graphicalXOffset,X                              ;A09461;
     STA.W Temp_XPositionOnScreen                                         ;A09465;
     STA.B DP_Temp14                                                      ;A09468;
     LDA.W Enemy.YPosition,X                                              ;A0946A;
     SEC                                                                  ;A0946D;
-    SBC.W Layer1YPosition                                                ;A0946E;
+    SBC.B Layer1YPosition                                                ;A0946E;
     CLC                                                                  ;A09471;
     ADC.L EnemySpawnData.graphicalYOffset,X                              ;A09472;
     STA.W Temp_YPositionOnScreen                                         ;A09476;
@@ -2857,10 +2857,10 @@ endif
     RTL                                                                  ;A097BE;
 
   .resetProjectileIndex:
-    STZ.W CollisionIndex                                                 ;A097BF;
+    STZ.B CollisionIndex                                                 ;A097BF;
 
   .loop:
-    LDA.W CollisionIndex                                                 ;A097C2;
+    LDA.B CollisionIndex                                                 ;A097C2;
     ASL                                                                  ;A097C5;
     TAY                                                                  ;A097C6;
     LDA.W SamusProjectile_Damages,Y                                      ;A097C7;
@@ -2884,7 +2884,7 @@ endif
     BNE .gotoNext                                                        ;A097E8;
     LDA.W SamusProjectile_XPositions,Y                                   ;A097EA;
     SEC                                                                  ;A097ED;
-    SBC.W SamusXPosition                                                 ;A097EE;
+    SBC.B SamusXPosition                                                 ;A097EE;
     BPL +                                                                ;A097F1;
     EOR.W #$FFFF                                                         ;A097F3;
     INC                                                                  ;A097F6;
@@ -2897,7 +2897,7 @@ endif
 
 +   LDA.W SamusProjectile_YPositions,Y                                   ;A09802;
     SEC                                                                  ;A09805;
-    SBC.W SamusYPosition                                                 ;A09806;
+    SBC.B SamusYPosition                                                 ;A09806;
     BPL +                                                                ;A09809;
     EOR.W #$FFFF                                                         ;A0980B;
     INC                                                                  ;A0980E;
@@ -2921,7 +2921,7 @@ endif
     LDA.W SamusProjectile_BombTimers-$A,Y                                ;A0982C;
     CMP.W #$0008                                                         ;A0982F;
     BNE .next                                                            ;A09832;
-    LDA.W SamusXPosition                                                 ;A09834;
+    LDA.B SamusXPosition                                                 ;A09834;
     CMP.W SamusProjectile_XPositions,Y                                   ;A09837;
     BEQ .straight                                                        ;A0983A;
     BMI .left                                                            ;A0983C;
@@ -2951,7 +2951,7 @@ endif
     LDA.W #$0005                                                         ;A0986A;
     STA.W SamusKnockbackTimer                                            ;A0986D;
     LDY.W #$0000                                                         ;A09870;
-    LDA.W SamusXPosition                                                 ;A09873;
+    LDA.B SamusXPosition                                                 ;A09873;
     SEC                                                                  ;A09876;
     SBC.W EnemyProjectile_XPositions,X                                   ;A09877;
     BMI .storeKnockbackDirection                                         ;A0987A;
@@ -2962,8 +2962,8 @@ endif
     BRA .returnLower                                                     ;A09882;
 
   .next:
-    INC.W CollisionIndex                                                 ;A09884;
-    LDA.W CollisionIndex                                                 ;A09887;
+    INC.B CollisionIndex                                                 ;A09884;
+    LDA.B CollisionIndex                                                 ;A09887;
     CMP.W EnemySpritemapEntryYPositionDuringCollision                    ;A0988A;
     BEQ .returnLower                                                     ;A0988D;
     JMP.W .loop                                                          ;A0988F;
@@ -2991,10 +2991,10 @@ endif
     LDA.W ContactDamageIndex                                             ;A098AC;
     BNE .return                                                          ;A098AF;
     LDA.W #$0022                                                         ;A098B1;
-    STA.W CollisionIndex                                                 ;A098B4;
+    STA.B CollisionIndex                                                 ;A098B4;
 
   .loop:
-    LDX.W CollisionIndex                                                 ;A098B7;
+    LDX.B CollisionIndex                                                 ;A098B7;
     LDA.W EnemyProjectile_ID,X                                           ;A098BA;
     BEQ .next                                                            ;A098BD;
     LDA.W EnemyProjectile_Properties,X                                   ;A098BF;
@@ -3011,7 +3011,7 @@ endif
     AND.W #$00FF                                                         ;A098D8;
     BEQ .next                                                            ;A098DB;
     STA.W Temp_ProjectileYRadius                                         ;A098DD;
-    LDA.W SamusXPosition                                                 ;A098E0;
+    LDA.B SamusXPosition                                                 ;A098E0;
     SEC                                                                  ;A098E3;
     SBC.W EnemyProjectile_XPositions,X                                   ;A098E4;
     BPL +                                                                ;A098E7;
@@ -3025,7 +3025,7 @@ endif
     BCS .next                                                            ;A098F6;
 
   .checkY:
-    LDA.W SamusYPosition                                                 ;A098F8;
+    LDA.B SamusYPosition                                                 ;A098F8;
     SEC                                                                  ;A098FB;
     SBC.W EnemyProjectile_YPositions,X                                   ;A098FC;
     BPL +                                                                ;A098FF;
@@ -3043,9 +3043,9 @@ endif
     JSR.W HandleEnemyProjectileCollisionWithSamus                        ;A09912;
 
   .next:
-    DEC.W CollisionIndex                                                 ;A09915;
-    DEC.W CollisionIndex                                                 ;A09918;
-    LDA.W CollisionIndex                                                 ;A0991B;
+    DEC.B CollisionIndex                                                 ;A09915;
+    DEC.B CollisionIndex                                                 ;A09918;
+    LDA.B CollisionIndex                                                 ;A0991B;
     BPL .loop                                                            ;A0991E;
 
   .return:
@@ -3081,7 +3081,7 @@ HandleEnemyProjectileCollisionWithSamus:
     JSL.L Suit_Damage_Division                                           ;A09951;
     JSL.L Deal_A_Damage_to_Samus                                         ;A09955;
     LDY.W #$0000                                                         ;A09959;
-    LDA.W SamusXPosition                                                 ;A0995C;
+    LDA.B SamusXPosition                                                 ;A0995C;
     SEC                                                                  ;A0995F;
     SBC.W EnemyProjectile_XPositions,X                                   ;A09960;
     BMI .knockbackDirection                                              ;A09963;
@@ -3108,10 +3108,10 @@ endif
 
   .setIndex:
     LDA.W #$0022                                                         ;A09984;
-    STA.W CollisionIndex                                                 ;A09987;
+    STA.B CollisionIndex                                                 ;A09987;
 
   .loopEnemyProjectile:
-    LDX.W CollisionIndex                                                 ;A0998A;
+    LDX.B CollisionIndex                                                 ;A0998A;
     LDA.W EnemyProjectile_ID,X                                           ;A0998D;
     BEQ .nextEnemyProjectile                                             ;A09990;
     LDA.W EnemyProjectile_Properties,X                                   ;A09992;
@@ -3154,9 +3154,9 @@ endif
     BMI .loopProjectile                                                  ;A099E6;
 
   .nextEnemyProjectile:
-    DEC.W CollisionIndex                                                 ;A099E8;
-    DEC.W CollisionIndex                                                 ;A099EB;
-    LDA.W CollisionIndex                                                 ;A099EE;
+    DEC.B CollisionIndex                                                 ;A099E8;
+    DEC.B CollisionIndex                                                 ;A099EB;
+    LDA.B CollisionIndex                                                 ;A099EE;
     BMI .return                                                          ;A099F1;
     JMP.W .loopEnemyProjectile                                           ;A099F3;
 
@@ -3264,19 +3264,19 @@ endif
     LDA.W Enemy.spritemap,Y                                              ;A09A9D;
     CMP.W #$8000                                                         ;A09AA0;
     BMI .returnUpper                                                     ;A09AA3;
-    LDA.W SamusXPosition                                                 ;A09AA5;
+    LDA.B SamusXPosition                                                 ;A09AA5;
     CLC                                                                  ;A09AA8;
     ADC.W SamusXRadius                                                   ;A09AA9;
     STA.W SamusRightBoundaryForEnemyVsSamusCollisions                    ;A09AAC;
-    LDA.W SamusXPosition                                                 ;A09AAF;
+    LDA.B SamusXPosition                                                 ;A09AAF;
     SEC                                                                  ;A09AB2;
     SBC.W SamusXRadius                                                   ;A09AB3;
     STA.W SamusLeftBoundaryForEnemyVsSamusCollisions                     ;A09AB6;
-    LDA.W SamusYPosition                                                 ;A09AB9;
+    LDA.B SamusYPosition                                                 ;A09AB9;
     CLC                                                                  ;A09ABC;
     ADC.W SamusYRadius                                                   ;A09ABD;
     STA.W SamusBottomBoundaryForEnemyVsSamusCollisions                   ;A09AC0;
-    LDA.W SamusYPosition                                                 ;A09AC3;
+    LDA.B SamusYPosition                                                 ;A09AC3;
     SEC                                                                  ;A09AC6;
     SBC.W SamusYRadius                                                   ;A09AC7;
     STA.W SamusTopBoundaryForEnemyVsSamusCollisions                      ;A09ACA;
@@ -3408,11 +3408,11 @@ endif
     LDA.W Enemy.ID,X                                                     ;A09BCE;
     CMP.W #EnemyHeaders_Respawn                                          ;A09BD1;
     BEQ .returnUpper                                                     ;A09BD4;
-    STZ.W CollisionIndex                                                 ;A09BD6;
+    STZ.B CollisionIndex                                                 ;A09BD6;
 
   .loopProjectiles:
     LDX.B EnemyIndex                                                     ;A09BD9;
-    LDA.W CollisionIndex                                                 ;A09BDC;
+    LDA.B CollisionIndex                                                 ;A09BDC;
     ASL                                                                  ;A09BDF;
     TAY                                                                  ;A09BE0;
     LDA.W SamusProjectile_Types,Y                                        ;A09BE1;
@@ -3468,7 +3468,7 @@ endif
 
   .loopHitboxes:
     LDX.W EnemyHitboxEntryPointerDuringCollision                         ;A09C43;
-    LDA.W CollisionIndex                                                 ;A09C46;
+    LDA.B CollisionIndex                                                 ;A09C46;
     ASL                                                                  ;A09C49;
     TAY                                                                  ;A09C4A;
     LDA.W $0000,X                                                        ;A09C4B;
@@ -3557,8 +3557,8 @@ endif
     JMP.W .loopSpritemapEntries                                          ;A09D04;
 
   .nextProjectile:
-    INC.W CollisionIndex                                                 ;A09D07;
-    LDA.W CollisionIndex                                                 ;A09D0A;
+    INC.B CollisionIndex                                                 ;A09D07;
+    LDA.B CollisionIndex                                                 ;A09D0A;
     CMP.W #$0005                                                         ;A09D0D;
     BPL .returnLower                                                     ;A09D10;
     JMP.W .loopProjectiles                                               ;A09D12;
@@ -3612,11 +3612,11 @@ endif
 +   LDA.W SamusProjectile_BombCounter                                    ;A09D66;
     BEQ .returnUpper                                                     ;A09D69;
     LDA.W #$0005                                                         ;A09D6B;
-    STA.W CollisionIndex                                                 ;A09D6E;
+    STA.B CollisionIndex                                                 ;A09D6E;
 
   .loopProjectiles:
     LDX.B EnemyIndex                                                     ;A09D71;
-    LDA.W CollisionIndex                                                 ;A09D74;
+    LDA.B CollisionIndex                                                 ;A09D74;
     ASL                                                                  ;A09D77;
     TAY                                                                  ;A09D78;
     LDA.W SamusProjectile_XPositions,Y                                   ;A09D79;
@@ -3677,7 +3677,7 @@ endif
 
   .loopHitboxes:
     LDX.W EnemyHitboxEntryPointerDuringCollision                         ;A09DDE;
-    LDA.W CollisionIndex                                                 ;A09DE1;
+    LDA.B CollisionIndex                                                 ;A09DE1;
     ASL                                                                  ;A09DE4;
     TAY                                                                  ;A09DE5;
     LDA.W $0000,X                                                        ;A09DE6;
@@ -3747,8 +3747,8 @@ endif
     JMP.W .loopSpritemapEntries                                          ;A09E7B;
 
   .nextProjectile:
-    INC.W CollisionIndex                                                 ;A09E7E;
-    LDA.W CollisionIndex                                                 ;A09E81;
+    INC.B CollisionIndex                                                 ;A09E7E;
+    LDA.B CollisionIndex                                                 ;A09E81;
     CMP.W #$000A                                                         ;A09E84;
     BEQ .returnLower                                                     ;A09E87;
     JMP.W .loopProjectiles                                               ;A09E89;
@@ -3789,7 +3789,7 @@ EnemyGrappleBeamCollisionDetection:
     BNE +                                                                ;A09EA4;
     JMP.W .grappleIndexDetermined                                        ;A09EA6;
 
-+   STZ.W CollisionIndex                                                 ;A09EA9;
++   STZ.B CollisionIndex                                                 ;A09EA9;
     STZ.W InteractiveEnemyIndicesIndex                                   ;A09EAC;
 
   .loop:
@@ -4059,7 +4059,7 @@ endif
     RTS                                                                  ;A0A0CC;
 
   .hasTouchAI:
-    LDA.W SamusXPosition                                                 ;A0A0D0;
+    LDA.B SamusXPosition                                                 ;A0A0D0;
     SEC                                                                  ;A0A0D3;
     SBC.W Enemy.XPosition,X                                              ;A0A0D4;
     BPL +                                                                ;A0A0D7;
@@ -4073,7 +4073,7 @@ endif
     BCS ..return                                                         ;A0A0E6;
 
   ..Y:
-    LDA.W SamusYPosition                                                 ;A0A0E8;
+    LDA.B SamusYPosition                                                 ;A0A0E8;
     SEC                                                                  ;A0A0EB;
     SBC.W Enemy.YPosition,X                                              ;A0A0EC;
     BPL +                                                                ;A0A0EF;
@@ -4155,10 +4155,10 @@ endif
     BEQ .returnUpper                                                     ;A0A17A;
     LDA.W Enemy.invincibilityTimer,X                                     ;A0A17C;
     BNE .returnUpper                                                     ;A0A17F;
-    STZ.W CollisionIndex                                                 ;A0A181;
+    STZ.B CollisionIndex                                                 ;A0A181;
 
   .loop:
-    LDA.W CollisionIndex                                                 ;A0A187;
+    LDA.B CollisionIndex                                                 ;A0A187;
     ASL                                                                  ;A0A18A;
     TAY                                                                  ;A0A18B;
     LDA.W SamusProjectile_Types,Y                                        ;A0A18C;
@@ -4231,8 +4231,8 @@ endif
     BRA .returnLower                                                     ;A0A214;
 
   .nextProjectile:
-    INC.W CollisionIndex                                                 ;A0A216;
-    LDA.W CollisionIndex                                                 ;A0A219;
+    INC.B CollisionIndex                                                 ;A0A216;
+    LDA.B CollisionIndex                                                 ;A0A219;
     CMP.W #$0005                                                         ;A0A21C;
     BEQ .returnLower                                                     ;A0A21F;
     JMP.W .loop                                                          ;A0A221;
@@ -4279,10 +4279,10 @@ endif
     CMP.W #EnemyHeaders_Respawn                                          ;A0A265;
     BEQ .returnUpper                                                     ;A0A268;
     LDA.W #$0005                                                         ;A0A26A;
-    STA.W CollisionIndex                                                 ;A0A26D;
+    STA.B CollisionIndex                                                 ;A0A26D;
 
   .loop:
-    LDA.W CollisionIndex                                                 ;A0A273;
+    LDA.B CollisionIndex                                                 ;A0A273;
     ASL                                                                  ;A0A276;
     TAY                                                                  ;A0A277;
     LDA.W SamusProjectile_Types,Y                                        ;A0A278;
@@ -4340,8 +4340,8 @@ endif
     BRA .returnLower                                                     ;A0A2E4;
 
   .next:
-    INC.W CollisionIndex                                                 ;A0A2E6;8
-    LDA.W CollisionIndex                                                 ;A0A2E9;
+    INC.B CollisionIndex                                                 ;A0A2E6;8
+    LDA.B CollisionIndex                                                 ;A0A2E9;
     CMP.W #$000A                                                         ;A0A2EC;
     BEQ .returnLower                                                     ;A0A2EF;
     JMP.W .loop                                                          ;A0A2F1;
@@ -4731,7 +4731,7 @@ NormalEnemyTouchAI_NoDeathCheck:
     STA.W SamusKnockbackTimer                                            ;A0A57E;
     LDY.W #$0000                                                         ;A0A581;
     LDX.B EnemyIndex                                                     ;A0A584;
-    LDA.W SamusXPosition                                                 ;A0A587;
+    LDA.B SamusXPosition                                                 ;A0A587;
     SEC                                                                  ;A0A58A;
     SBC.W Enemy.XPosition,X                                              ;A0A58B;
     BMI .storeKnockbackDirection                                         ;A0A58E;
@@ -4843,7 +4843,7 @@ NormalEnemyShotAI:
   .notHit:
     LDA.W Enemy.health,X                                                 ;A0A666;
     BNE .return                                                          ;A0A669;
-    LDA.W CollisionIndex                                                 ;A0A66B;
+    LDA.B CollisionIndex                                                 ;A0A66B;
     ASL                                                                  ;A0A66E;
     TAY                                                                  ;A0A66F;
     LDA.W SamusProjectile_Types,Y                                        ;A0A670;
@@ -4920,7 +4920,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
 ;         d: Damage multiplier * 2
 ;         f: Does not freeze
     PHB                                                                  ;A0A6DE;
-    LDA.W CollisionIndex                                                 ;A0A6DF;
+    LDA.B CollisionIndex                                                 ;A0A6DF;
     ASL                                                                  ;A0A6E2;
     TAX                                                                  ;A0A6E3;
     LDA.W SamusProjectile_Damages,X                                      ;A0A6E4;
@@ -5015,7 +5015,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
     JMP.W .calculateDamage                                               ;A0A7A5;
 
   .noDamage:
-    LDA.W CollisionIndex                                                 ;A0A7A8;
+    LDA.B CollisionIndex                                                 ;A0A7A8;
     ASL                                                                  ;A0A7AB;
     TAX                                                                  ;A0A7AC;
     LDA.W SamusProjectile_Directions,X                                   ;A0A7AD;
@@ -5094,7 +5094,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
     INC.W Temp_ShotAIHitFlag                                             ;A0A849;
 
   .noFlashNoCry:
-    LDA.W CollisionIndex                                                 ;A0A84F;
+    LDA.B CollisionIndex                                                 ;A0A84F;
     ASL                                                                  ;A0A852;
     TAY                                                                  ;A0A853;
     LDA.W SamusProjectile_Types,Y                                        ;A0A854;
@@ -5152,7 +5152,7 @@ NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic:
 CreateADudShot:
     PHX                                                                  ;A0A8BC;
     PHY                                                                  ;A0A8BD;
-    LDA.W CollisionIndex                                                 ;A0A8BE;
+    LDA.B CollisionIndex                                                 ;A0A8BE;
     ASL                                                                  ;A0A8C1;
     TAX                                                                  ;A0A8C2;
     LDA.W SamusProjectile_XPositions,X                                   ;A0A8C3;
@@ -5165,7 +5165,7 @@ CreateADudShot:
     JSL.L Create_Sprite_Object                                           ;A0A8D4;
     LDA.W #$003D                                                         ;A0A8D8;
     JSL.L QueueSound_Lib1_Max3                                           ;A0A8DB;
-    LDA.W CollisionIndex                                                 ;A0A8DF;
+    LDA.B CollisionIndex                                                 ;A0A8DF;
     ASL                                                                  ;A0A8E2;
     TAX                                                                  ;A0A8E3;
     LDA.W SamusProjectile_Directions,X                                   ;A0A8E4;
@@ -5236,7 +5236,7 @@ Samus_vs_SolidEnemy_CollisionDetection:
     EOR.W #$FFFF                                                         ;A0A91B;
     INC                                                                  ;A0A91E;
     CLC                                                                  ;A0A91F;
-    ADC.W SamusXPosition                                                 ;A0A920;
+    ADC.B SamusXPosition                                                 ;A0A920;
     STA.W SamusTargetXPosition                                           ;A0A923;
     LDA.W SamusXSubPosition                                              ;A0A926;
     SEC                                                                  ;A0A929;
@@ -5249,7 +5249,7 @@ Samus_vs_SolidEnemy_CollisionDetection:
     DEC.W SamusTargetXPosition                                           ;A0A933;
 
   ..zeroTarget:
-    LDA.W SamusYPosition                                                 ;A0A936;
+    LDA.B SamusYPosition                                                 ;A0A936;
     STA.W SamusTargetYPosition                                           ;A0A939;
     LDA.W SamusYSubPosition                                              ;A0A93C;
     STA.W SamusTargetYSubPosition                                        ;A0A93F;
@@ -5258,7 +5258,7 @@ Samus_vs_SolidEnemy_CollisionDetection:
   .right:
     LDA.B DP_Temp12                                                      ;A0A945;
     CLC                                                                  ;A0A947;
-    ADC.W SamusXPosition                                                 ;A0A948;
+    ADC.B SamusXPosition                                                 ;A0A948;
     STA.W SamusTargetXPosition                                           ;A0A94B;
     LDA.B DP_Temp14                                                      ;A0A94E;
     CLC                                                                  ;A0A950;
@@ -5271,14 +5271,14 @@ Samus_vs_SolidEnemy_CollisionDetection:
     INC.W SamusTargetXPosition                                           ;A0A95B;
 
   ..zeroTarget:
-    LDA.W SamusYPosition                                                 ;A0A95E;
+    LDA.B SamusYPosition                                                 ;A0A95E;
     STA.W SamusTargetYPosition                                           ;A0A961;
     LDA.W SamusYSubPosition                                              ;A0A964;
     STA.W SamusTargetYSubPosition                                        ;A0A967;
     BRA .targetPositionSet                                               ;A0A96A;
 
   .up:
-    LDA.W SamusYPosition                                                 ;A0A96C;
+    LDA.B SamusYPosition                                                 ;A0A96C;
     SEC                                                                  ;A0A96F;
     SBC.B DP_Temp12                                                      ;A0A970;
     STA.W SamusTargetYPosition                                           ;A0A972;
@@ -5293,7 +5293,7 @@ Samus_vs_SolidEnemy_CollisionDetection:
     DEC.W SamusTargetYPosition                                           ;A0A982;
 
   ..zeroTarget:
-    LDA.W SamusXPosition                                                 ;A0A985;
+    LDA.B SamusXPosition                                                 ;A0A985;
     STA.W SamusTargetXPosition                                           ;A0A988;
     LDA.W SamusXSubPosition                                              ;A0A98B;
     STA.W SamusTargetXSubPosition                                        ;A0A98E;
@@ -5302,7 +5302,7 @@ Samus_vs_SolidEnemy_CollisionDetection:
   .down:
     LDA.B DP_Temp12                                                      ;A0A993;
     CLC                                                                  ;A0A995;
-    ADC.W SamusYPosition                                                 ;A0A996;
+    ADC.B SamusYPosition                                                 ;A0A996;
     STA.W SamusTargetYPosition                                           ;A0A999;
     LDA.B DP_Temp14                                                      ;A0A99C;
     CLC                                                                  ;A0A99E;
@@ -5315,7 +5315,7 @@ Samus_vs_SolidEnemy_CollisionDetection:
     INC.W SamusTargetYPosition                                           ;A0A9A9;
 
   ..zeroTarget:
-    LDA.W SamusXPosition                                                 ;A0A9AC;
+    LDA.B SamusXPosition                                                 ;A0A9AC;
     STA.W SamusTargetXPosition                                           ;A0A9AF;
     LDA.W SamusXSubPosition                                              ;A0A9B2;
     STA.W SamusTargetXSubPosition                                        ;A0A9B5;
@@ -5325,7 +5325,7 @@ Samus_vs_SolidEnemy_CollisionDetection:
     STA.W SamusXRadiusMirror                                             ;A0A9BB;
     LDA.W SamusYRadius                                                   ;A0A9BE;
     STA.W SamusYRadiusMirror                                             ;A0A9C1;
-    STZ.W CollisionIndex                                                 ;A0A9C4;
+    STZ.B CollisionIndex                                                 ;A0A9C4;
     STZ.W InteractiveEnemyIndicesIndex                                   ;A0A9C7;
 
   .loop:
@@ -5336,7 +5336,7 @@ Samus_vs_SolidEnemy_CollisionDetection:
     JMP.W .returnZeroLower                                               ;A0A9D5;
 
   .valid:
-    STA.W CollisionIndex                                                 ;A0A9D8;
+    STA.B CollisionIndex                                                 ;A0A9D8;
     TAX                                                                  ;A0A9DB;
     LDA.W Enemy.freezeTimer,X                                            ;A0A9DC;
     BNE .notFrozenNotSolid                                               ;A0A9DF;
@@ -5395,12 +5395,12 @@ Samus_vs_SolidEnemy_CollisionDetection:
     dw .collisionDown                                                    ;A0AA35;
 
   .collisionLeft:
-    LDX.W CollisionIndex                                                 ;A0AA37;
+    LDX.B CollisionIndex                                                 ;A0AA37;
     LDA.W Enemy.XPosition,X                                              ;A0AA3A;
     CLC                                                                  ;A0AA3D;
     ADC.W Enemy.XHitboxRadius,X                                          ;A0AA3E;
     STA.W Temp_RightBottomBoundaryPosition                               ;A0AA41;
-    LDA.W SamusXPosition                                                 ;A0AA44;
+    LDA.B SamusXPosition                                                 ;A0AA44;
     SEC                                                                  ;A0AA47;
     SBC.W SamusXRadius                                                   ;A0AA48;
     SEC                                                                  ;A0AA4B;
@@ -5416,8 +5416,8 @@ Samus_vs_SolidEnemy_CollisionDetection:
     JMP.W .touching                                                      ;A0AA59;
 
   .collisionRight:
-    LDX.W CollisionIndex                                                 ;A0AA5C;
-    LDA.W SamusXPosition                                                 ;A0AA5F;
+    LDX.B CollisionIndex                                                 ;A0AA5C;
+    LDA.B SamusXPosition                                                 ;A0AA5F;
     CLC                                                                  ;A0AA62;
     ADC.W SamusXRadius                                                   ;A0AA63;
     STA.W Temp_RightBottomBoundaryPosition                               ;A0AA66;
@@ -5434,12 +5434,12 @@ Samus_vs_SolidEnemy_CollisionDetection:
     JMP.W .notTouching                                                   ;A0AA7B;
 
   .collisionUp:
-    LDX.W CollisionIndex                                                 ;A0AA7E;
+    LDX.B CollisionIndex                                                 ;A0AA7E;
     LDA.W Enemy.YPosition,X                                              ;A0AA81;
     CLC                                                                  ;A0AA84;
     ADC.W Enemy.YHitboxRadius,X                                          ;A0AA85;
     STA.W Temp_RightBottomBoundaryPosition                               ;A0AA88;
-    LDA.W SamusYPosition                                                 ;A0AA8B;
+    LDA.B SamusYPosition                                                 ;A0AA8B;
     SEC                                                                  ;A0AA8E;
     SBC.W SamusYRadius                                                   ;A0AA8F;
     SEC                                                                  ;A0AA92;
@@ -5452,8 +5452,8 @@ Samus_vs_SolidEnemy_CollisionDetection:
     JMP.W .notTouching                                                   ;A0AA9D;
 
   .collisionDown:
-    LDX.W CollisionIndex                                                 ;A0AAA0;
-    LDA.W SamusYPosition                                                 ;A0AAA3;
+    LDX.B CollisionIndex                                                 ;A0AAA0;
+    LDA.B SamusYPosition                                                 ;A0AAA3;
     CLC                                                                  ;A0AAA6;
     ADC.W SamusYRadius                                                   ;A0AAA7;
     STA.W Temp_RightBottomBoundaryPosition                               ;A0AAAA;
@@ -5475,13 +5475,13 @@ Samus_vs_SolidEnemy_CollisionDetection:
     STZ.W SamusYSubPosition                                              ;A0AAC8; (!)
     STZ.B DP_Temp12                                                      ;A0AB02;
     STZ.B DP_Temp14                                                      ;A0AB04;
-    LDA.W CollisionIndex                                                 ;A0AB06;
+    LDA.B CollisionIndex                                                 ;A0AB06;
     STA.B DP_Temp16                                                      ;A0AB09;
     LDA.W CollisionMovementDirection                                     ;A0AB0B;
     AND.W #$0003                                                         ;A0AB0E;
     ASL                                                                  ;A0AB11;
     TAX                                                                  ;A0AB12;
-    LDA.W CollisionIndex                                                 ;A0AB13;
+    LDA.B CollisionIndex                                                 ;A0AB13;
     STA.W EnemyIndexSamusCollidesLeft,X                                  ;A0AB16;
     LDA.W #$FFFF                                                         ;A0AB1C;
     PLB                                                                  ;A0AB1F;
@@ -5496,7 +5496,7 @@ Samus_vs_SolidEnemy_CollisionDetection:
     PLA                                                                  ;A0AB62;
     STA.B DP_Temp12                                                      ;A0AB63;
     STZ.B DP_Temp14                                                      ;A0AB68;
-    LDA.W CollisionIndex                                                 ;A0AB6A;
+    LDA.B CollisionIndex                                                 ;A0AB6A;
     STA.B DP_Temp16                                                      ;A0AB6D;
     STA.W EnemyIndexSamusCollidesLeft,X                                  ;A0AB72;
     LDA.W #$FFFF                                                         ;A0AB75;
@@ -5513,7 +5513,7 @@ Samus_vs_SolidEnemy_CollisionDetection:
 CheckIfEnemyIsTouchingSamusFromBelow:
 ;; Returns:
 ;;     A: FFFFh if touching Samus, otherwise 0
-    LDA.W SamusXPosition                                                 ;A0ABE7;
+    LDA.B SamusXPosition                                                 ;A0ABE7;
     SEC                                                                  ;A0ABEA;
     SBC.W Enemy.XPosition,X                                              ;A0ABEB;
     BPL +                                                                ;A0ABEE;
@@ -5529,7 +5529,7 @@ CheckIfEnemyIsTouchingSamusFromBelow:
     RTL                                                                  ;A0AC02;
 
   .checkY:
-    LDA.W SamusYPosition                                                 ;A0AC03;
+    LDA.B SamusYPosition                                                 ;A0AC03;
     CLC                                                                  ;A0AC06;
     ADC.W #$0003                                                         ;A0AC07;
     SEC                                                                  ;A0AC0A;
@@ -5558,7 +5558,7 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_CheckIfEnemyIsTouchingSamusFromAbove_A0AC29:
 ;; Returns:
 ;;     A: FFFFh if touching Samus, otherwise 0
-    LDA.W SamusXPosition                                                 ;A0AC29;
+    LDA.B SamusXPosition                                                 ;A0AC29;
     SEC                                                                  ;A0AC2C;
     SBC.W Enemy.XPosition,X                                              ;A0AC2D;
     BPL +                                                                ;A0AC30;
@@ -5574,7 +5574,7 @@ UNUSED_CheckIfEnemyIsTouchingSamusFromAbove_A0AC29:
     RTL                                                                  ;A0AC44;
 
   .checkY:
-    LDA.W SamusYPosition                                                 ;A0AC45;
+    LDA.B SamusYPosition                                                 ;A0AC45;
     SEC                                                                  ;A0AC48;
     SBC.W Enemy.YPosition,X                                              ;A0AC49;
     BPL .noTouch                                                         ;A0AC4C;
@@ -5601,7 +5601,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 CheckIfEnemyIsTouchingSamus:
 ;; Returns:
 ;;     A: FFFFh if touching Samus, otherwise 0
-    LDA.W SamusXPosition                                                 ;A0AC67;
+    LDA.B SamusXPosition                                                 ;A0AC67;
     SEC                                                                  ;A0AC6A;
     SBC.W Enemy.XPosition,X                                              ;A0AC6B;
     BPL +                                                                ;A0AC6E;
@@ -5619,7 +5619,7 @@ CheckIfEnemyIsTouchingSamus:
     RTL                                                                  ;A0AC87;
 
   .checkY:
-    LDA.W SamusYPosition                                                 ;A0AC88;
+    LDA.B SamusYPosition                                                 ;A0AC88;
     SEC                                                                  ;A0AC8B;
     SBC.W Enemy.YPosition,X                                              ;A0AC8C;
     BPL +                                                                ;A0AC8F;
@@ -5785,17 +5785,17 @@ CheckIfEnemyCenterIsOnScreen:
 ;;     A/zero: 0/set if enemy center is on screen, 1/clear otherwise
     LDX.B EnemyIndex                                                     ;A0AD70;
     LDA.W Enemy.XPosition,X                                              ;A0AD73;
-    CMP.W Layer1XPosition                                                ;A0AD76;
+    CMP.B Layer1XPosition                                                ;A0AD76;
     BMI .offScreen                                                       ;A0AD79;
-    LDA.W Layer1XPosition                                                ;A0AD7B;
+    LDA.B Layer1XPosition                                                ;A0AD7B;
     CLC                                                                  ;A0AD7E;
     ADC.W #$0100                                                         ;A0AD7F;
     CMP.W Enemy.XPosition,X                                              ;A0AD82;
     BMI .offScreen                                                       ;A0AD85;
     LDA.W Enemy.YPosition,X                                              ;A0AD87;
-    CMP.W Layer1YPosition                                                ;A0AD8A;
+    CMP.B Layer1YPosition                                                ;A0AD8A;
     BMI .offScreen                                                       ;A0AD8D;
-    LDA.W Layer1YPosition                                                ;A0AD8F;
+    LDA.B Layer1YPosition                                                ;A0AD8F;
     CLC                                                                  ;A0AD92;
     ADC.W #$0100                                                         ;A0AD93;
     CMP.W Enemy.YPosition,X                                              ;A0AD96;
@@ -5822,9 +5822,9 @@ CheckIfEnemyCenterIsOverAPixelsOffScreen:
     LDA.W Enemy.XPosition,X                                              ;A0ADA9;
     CLC                                                                  ;A0ADAC;
     ADC.B DP_Temp12                                                      ;A0ADAD;
-    CMP.W Layer1XPosition                                                ;A0ADAF;
+    CMP.B Layer1XPosition                                                ;A0ADAF;
     BMI .offScreen                                                       ;A0ADB2;
-    LDA.W Layer1XPosition                                                ;A0ADB4;
+    LDA.B Layer1XPosition                                                ;A0ADB4;
     CLC                                                                  ;A0ADB7;
     ADC.W #$0100                                                         ;A0ADB8;
     CLC                                                                  ;A0ADBB;
@@ -5834,9 +5834,9 @@ CheckIfEnemyCenterIsOverAPixelsOffScreen:
     LDA.W Enemy.YPosition,X                                              ;A0ADC3;
     CLC                                                                  ;A0ADC6;
     ADC.B DP_Temp12                                                      ;A0ADC7;
-    CMP.W Layer1YPosition                                                ;A0ADC9;
+    CMP.B Layer1YPosition                                                ;A0ADC9;
     BMI .offScreen                                                       ;A0ADCC;
-    LDA.W Layer1YPosition                                                ;A0ADCE;
+    LDA.B Layer1YPosition                                                ;A0ADCE;
     CLC                                                                  ;A0ADD1;
     ADC.W #$0100                                                         ;A0ADD2;
     CLC                                                                  ;A0ADD5;
@@ -5862,9 +5862,9 @@ CheckIfEnemyIsOnScreen:
     LDA.W Enemy.XPosition,X                                              ;A0ADEB;
     CLC                                                                  ;A0ADEE;
     ADC.W Enemy.XHitboxRadius,X                                          ;A0ADEF;
-    CMP.W Layer1XPosition                                                ;A0ADF2;
+    CMP.B Layer1XPosition                                                ;A0ADF2;
     BMI .offScreen                                                       ;A0ADF5;
-    LDA.W Layer1XPosition                                                ;A0ADF7;
+    LDA.B Layer1XPosition                                                ;A0ADF7;
     CLC                                                                  ;A0ADFA;
     ADC.W #$0100                                                         ;A0ADFB;
     CLC                                                                  ;A0ADFE;
@@ -5874,9 +5874,9 @@ CheckIfEnemyIsOnScreen:
     LDA.W Enemy.YPosition,X                                              ;A0AE07;
     CLC                                                                  ;A0AE0A;
     ADC.W #$0008                                                         ;A0AE0B;
-    CMP.W Layer1YPosition                                                ;A0AE0E;
+    CMP.B Layer1YPosition                                                ;A0AE0E;
     BMI .offScreen                                                       ;A0AE11;
-    LDA.W Layer1YPosition                                                ;A0AE13;
+    LDA.B Layer1YPosition                                                ;A0AE13;
     CLC                                                                  ;A0AE16;
     ADC.W #$00F8                                                         ;A0AE17;
     CMP.W Enemy.YPosition,X                                              ;A0AE1A;
@@ -6022,7 +6022,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $AEDD: A = [Samus Y position] - [enemy Y position] ;;;
 Get_SamusY_minus_EnemyY:
-    LDA.W SamusYPosition                                                 ;A0AEDD;
+    LDA.B SamusYPosition                                                 ;A0AEDD;
     SEC                                                                  ;A0AEE0;
     SBC.W Enemy.YPosition,X                                              ;A0AEE1;
     RTL                                                                  ;A0AEE4;
@@ -6030,7 +6030,7 @@ Get_SamusY_minus_EnemyY:
 
 ;;; $AEE5: A = [Samus X position] - [enemy X position] ;;;
 Get_SamusX_minus_EnemyX:
-    LDA.W SamusXPosition                                                 ;A0AEE5;
+    LDA.B SamusXPosition                                                 ;A0AEE5;
     SEC                                                                  ;A0AEE8;
     SBC.W Enemy.XPosition,X                                              ;A0AEE9;
     RTL                                                                  ;A0AEEC;
@@ -6039,7 +6039,7 @@ Get_SamusX_minus_EnemyX:
 ;;; $AEED: Is Samus within [A] pixel rows of enemy ;;;
 IsSamusWithingAPixelRowsOfEnemy:
     STA.W Temp_Threshold                                                 ;A0AEED;
-    LDY.W SamusYPosition                                                 ;A0AEF0;
+    LDY.B SamusYPosition                                                 ;A0AEF0;
     LDA.W Enemy.YPosition,X                                              ;A0AEF3;
     TAX                                                                  ;A0AEF6;
     JSL.L GetSignedYMinusX_A0B07D                                        ;A0AEF7;
@@ -6057,7 +6057,7 @@ IsSamusWithingAPixelRowsOfEnemy:
 ;;; $AF0B: Is Samus within [A] pixel columns of enemy ;;;
 IsSamusWithinAPixelColumnsOfEnemy:
     STA.W Temp_Threshold                                                 ;A0AF0B;
-    LDY.W SamusXPosition                                                 ;A0AF0E;
+    LDY.B SamusXPosition                                                 ;A0AF0E;
     LDA.W Enemy.XPosition,X                                              ;A0AF11;
     TAX                                                                  ;A0AF14;
     JSL.L GetSignedYMinusX_A0B07D                                        ;A0AF15;
@@ -6169,7 +6169,7 @@ UNUSED_MoveSamus_ExtraXDisplacement_minus_12_14_A0AFA2:
     SEC                                                                  ;A0AFA5;
     SBC.B DP_Temp12                                                      ;A0AFA6;
     STA.W ExtraSamusXSubDisplacement                                     ;A0AFA8;
-    LDA.W SamusXPosition                                                 ;A0AFAB;
+    LDA.B SamusXPosition                                                 ;A0AFAB;
     SBC.B DP_Temp14                                                      ;A0AFAE;
     STA.W ExtraSamusXDisplacement                                        ;A0AFB0;
     RTL                                                                  ;A0AFB3;
@@ -6181,7 +6181,7 @@ UNUSED_MoveSamus_ExtraXDisplacement_plus_12_14_A0AFB4:
     CLC                                                                  ;A0AFB7;
     ADC.B DP_Temp12                                                      ;A0AFB8;
     STA.W ExtraSamusXSubDisplacement                                     ;A0AFBA;
-    LDA.W SamusXPosition                                                 ;A0AFBD;
+    LDA.B SamusXPosition                                                 ;A0AFBD;
     ADC.B DP_Temp14                                                      ;A0AFC0;
     STA.W ExtraSamusXDisplacement                                        ;A0AFC2;
     RTL                                                                  ;A0AFC5;
@@ -6193,7 +6193,7 @@ UNUSED_MoveSamus_ExtraYDisplacement_minus_12_14_A0AFC6:
     SEC                                                                  ;A0AFC9;
     SBC.B DP_Temp12                                                      ;A0AFCA;
     STA.W ExtraSamusYSubDisplacement                                     ;A0AFCC;
-    LDA.W SamusYPosition                                                 ;A0AFCF;
+    LDA.B SamusYPosition                                                 ;A0AFCF;
     SBC.B DP_Temp14                                                      ;A0AFD2;
     STA.W ExtraSamusYDisplacement                                        ;A0AFD4;
     RTL                                                                  ;A0AFD7;
@@ -6205,7 +6205,7 @@ UNUSED_MoveSamus_ExtraYDisplacement_plus_12_14_A0AFD8:
     CLC                                                                  ;A0AFDB;
     ADC.B DP_Temp12                                                      ;A0AFDC;
     STA.W ExtraSamusYSubDisplacement                                     ;A0AFDE;
-    LDA.W SamusYPosition                                                 ;A0AFE1;
+    LDA.B SamusYPosition                                                 ;A0AFE1;
     ADC.B DP_Temp14                                                      ;A0AFE4;
     STA.W ExtraSamusYDisplacement                                        ;A0AFE6;
     RTL                                                                  ;A0AFE9;
@@ -6846,7 +6846,7 @@ CapScrollingSpeed:
 ; Called by Draygon and yapping maw
     PHX                                                                  ;A0B7A1;
     PHY                                                                  ;A0B7A2;
-    LDA.W SamusYPosition                                                 ;A0B7A3;
+    LDA.B SamusYPosition                                                 ;A0B7A3;
     SEC                                                                  ;A0B7A6;
     SBC.W SamusPreviousYPosition                                         ;A0B7A7;
     STA.B DP_Temp12                                                      ;A0B7AA;
@@ -6861,11 +6861,11 @@ CapScrollingSpeed:
   .negative:
     TYA                                                                  ;A0B7BF;
     CLC                                                                  ;A0B7C0;
-    ADC.W SamusYPosition                                                 ;A0B7C1;
+    ADC.B SamusYPosition                                                 ;A0B7C1;
     STA.W SamusPreviousYPosition                                         ;A0B7C4;
 
   .YPositionEnd:
-    LDA.W SamusXPosition                                                 ;A0B7C7;
+    LDA.B SamusXPosition                                                 ;A0B7C7;
     SEC                                                                  ;A0B7CA;
     SBC.W SamusPreviousXPosition                                         ;A0B7CB;
     STA.B DP_Temp12                                                      ;A0B7CE;
@@ -6879,7 +6879,7 @@ CapScrollingSpeed:
 
 +   TYA                                                                  ;A0B7E3;
     CLC                                                                  ;A0B7E4;
-    ADC.W SamusXPosition                                                 ;A0B7E5;
+    ADC.B SamusXPosition                                                 ;A0B7E5;
     STA.W SamusPreviousXPosition                                         ;A0B7E8;
 
   .retrun:
@@ -7236,7 +7236,7 @@ CalculateTheBlockContainingAPixelPosition:
     LSR                                                                  ;A0BB75;
     SEP #$20                                                             ;A0BB76;
     STA.W $4202                                                          ;A0BB78;
-    LDA.W RoomWidthBlocks                                                ;A0BB7B;
+    LDA.B RoomWidthBlocks                                                ;A0BB7B;
     STA.W $4203                                                          ;A0BB7E;
     REP #$20                                                             ;A0BB81;
     LDA.B $06,S                                                          ;A0BB83;
@@ -7261,7 +7261,7 @@ CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA:
 ;; Returns:
 ;;     Carry: Set if X distance between enemy and Samus is at least [A], clear otherwise
     PHA                                                                  ;A0BB9B;
-    LDA.W SamusXPosition                                                 ;A0BB9C;
+    LDA.B SamusXPosition                                                 ;A0BB9C;
     SEC                                                                  ;A0BB9F;
     SBC.W Enemy.XPosition,X                                              ;A0BBA0;
     BPL +                                                                ;A0BBA3;
@@ -7279,7 +7279,7 @@ UNUSED_CheckIfYDistanceBetweenEnemyAndSamusIsAtLeastA_A0BBAD:
 ;; Returns:
 ;;     Carry: Set if Y distance between enemy and Samus is at least [A], clear otherwise
     PHA                                                                  ;A0BBAD;
-    LDA.W SamusYPosition                                                 ;A0BBAE;
+    LDA.B SamusYPosition                                                 ;A0BBAE;
     SEC                                                                  ;A0BBB1;
     SBC.W Enemy.YPosition,X                                              ;A0BBB2;
     BPL +                                                                ;A0BBB5;
@@ -7327,7 +7327,7 @@ CheckForHorizontalSolidBlockCollision:
     LSR                                                                  ;A0BBF0;
     SEP #$20                                                             ;A0BBF1;
     STA.W $4202                                                          ;A0BBF3;
-    LDA.W RoomWidthBlocks                                                ;A0BBF6;
+    LDA.B RoomWidthBlocks                                                ;A0BBF6;
     STA.W $4203                                                          ;A0BBF9;
     REP #$20                                                             ;A0BBFC;
     LDA.W Enemy.XSubPosition,X                                           ;A0BBFE;
@@ -7363,8 +7363,8 @@ CheckForHorizontalSolidBlockCollision:
     BMI +                                                                ;A0BC2C;
     TXA                                                                  ;A0BC2E;
     CLC                                                                  ;A0BC2F;
-    ADC.W RoomWidthBlocks                                                ;A0BC30;
-    ADC.W RoomWidthBlocks                                                ;A0BC33;
+    ADC.B RoomWidthBlocks                                                ;A0BC30;
+    ADC.B RoomWidthBlocks                                                ;A0BC33;
     TAX                                                                  ;A0BC36;
     DEC.B DP_Temp1A                                                      ;A0BC37;
     BPL .loop                                                            ;A0BC39;
@@ -7459,7 +7459,7 @@ CheckForVerticalSolidBlockCollision:
     LSR                                                                  ;A0BCC0;
     SEP #$20                                                             ;A0BCC1;
     STA.W $4202                                                          ;A0BCC3;
-    LDA.W RoomWidthBlocks                                                ;A0BCC6;
+    LDA.B RoomWidthBlocks                                                ;A0BCC6;
     STA.W $4203                                                          ;A0BCC9;
     REP #$20                                                             ;A0BCCC;
     LDA.W Enemy.XPosition,X                                              ;A0BCCE;
@@ -7563,7 +7563,7 @@ UNUSED_MoveEnemyRight_NoBlockCollisionReactions_A0BD26:
     LSR                                                                  ;A0BD59;
     SEP #$20                                                             ;A0BD5A;
     STA.W $4202                                                          ;A0BD5C;
-    LDA.W RoomWidthBlocks                                                ;A0BD5F;
+    LDA.B RoomWidthBlocks                                                ;A0BD5F;
     STA.W $4203                                                          ;A0BD62;
     REP #$20                                                             ;A0BD65;
     LDA.B DP_Temp1C                                                      ;A0BD67;
@@ -7607,8 +7607,8 @@ UNUSED_MoveEnemyRight_NoBlockCollisionReactions_A0BD26:
     BMI +                                                                ;A0BDA5;
     TXA                                                                  ;A0BDA7;
     CLC                                                                  ;A0BDA8;
-    ADC.W RoomWidthBlocks                                                ;A0BDA9;
-    ADC.W RoomWidthBlocks                                                ;A0BDAC;
+    ADC.B RoomWidthBlocks                                                ;A0BDA9;
+    ADC.B RoomWidthBlocks                                                ;A0BDAC;
     TAX                                                                  ;A0BDAF;
     DEC.B DP_Temp1A                                                      ;A0BDB0;
     BPL .loop                                                            ;A0BDB2;
@@ -7719,7 +7719,7 @@ UNUSED_MoveEnemyDown_NoBlockCollisionReactions_A0BDF6:
     LSR                                                                  ;A0BE52;
     SEP #$20                                                             ;A0BE53;
     STA.W $4202                                                          ;A0BE55;
-    LDA.W RoomWidthBlocks                                                ;A0BE58;
+    LDA.B RoomWidthBlocks                                                ;A0BE58;
     STA.W $4203                                                          ;A0BE5B;
     REP #$20                                                             ;A0BE5E;
     LDA.W Enemy.XPosition,X                                              ;A0BE60;
@@ -7824,7 +7824,7 @@ UNUSED_CheckForHorizontalSolidBlockCollision_A0BEBF:
     LSR                                                                  ;A0BEF2;
     SEP #$20                                                             ;A0BEF3;
     STA.W $4202                                                          ;A0BEF5;
-    LDA.W RoomWidthBlocks                                                ;A0BEF8;
+    LDA.B RoomWidthBlocks                                                ;A0BEF8;
     STA.W $4203                                                          ;A0BEFB;
     REP #$20                                                             ;A0BEFE;
     LDA.B DP_Temp1C                                                      ;A0BF00;
@@ -7868,8 +7868,8 @@ UNUSED_CheckForHorizontalSolidBlockCollision_A0BEBF:
     BMI +                                                                ;A0BF3E;
     TXA                                                                  ;A0BF40;
     CLC                                                                  ;A0BF41;
-    ADC.W RoomWidthBlocks                                                ;A0BF42;
-    ADC.W RoomWidthBlocks                                                ;A0BF45;
+    ADC.B RoomWidthBlocks                                                ;A0BF42;
+    ADC.B RoomWidthBlocks                                                ;A0BF45;
     TAX                                                                  ;A0BF48;
     DEC.B DP_Temp1A                                                      ;A0BF49;
     BPL .loop                                                            ;A0BF4B;
@@ -7979,7 +7979,7 @@ CheckForVerticalSolidBlockCollision_SkreeMetaree:
     LSR                                                                  ;A0BFE6;
     SEP #$20                                                             ;A0BFE7;
     STA.W $4202                                                          ;A0BFE9;
-    LDA.W RoomWidthBlocks                                                ;A0BFEC;
+    LDA.B RoomWidthBlocks                                                ;A0BFEC;
     STA.W $4203                                                          ;A0BFEF;
     REP #$20                                                             ;A0BFF2;
     LDA.W Enemy.XPosition,X                                              ;A0BFF4;
@@ -8060,11 +8060,11 @@ CalculateAngleOfSamusFromEnemyProjectile:
 
 ; Assumes Samus and enemy are with FFh pixels of each other in both dimensions
 ; Used by Golden Torizo super missile
-    LDA.W SamusXPosition                                                 ;A0C051;
+    LDA.B SamusXPosition                                                 ;A0C051;
     SEC                                                                  ;A0C054;
     SBC.W EnemyProjectile_XPositions,X                                   ;A0C055;
     STA.B DP_Temp12                                                      ;A0C058;
-    LDA.W SamusYPosition                                                 ;A0C05A;
+    LDA.B SamusYPosition                                                 ;A0C05A;
     SEC                                                                  ;A0C05D;
     SBC.W EnemyProjectile_YPositions,X                                   ;A0C05E;
     STA.B DP_Temp14                                                      ;A0C061;
@@ -8088,11 +8088,11 @@ CalculateAngleOfSamusFromEnemy:
 ; Where # is the origin enemy and | is the negative y axis
 
 ; Assumes Samus and enemy are with FFh pixels of each other in both dimensions
-    LDA.W SamusXPosition                                                 ;A0C069;
+    LDA.B SamusXPosition                                                 ;A0C069;
     SEC                                                                  ;A0C06C;
     SBC.W Enemy.XPosition,X                                              ;A0C06D;
     STA.B DP_Temp12                                                      ;A0C070;
-    LDA.W SamusYPosition                                                 ;A0C072;
+    LDA.B SamusYPosition                                                 ;A0C072;
     SEC                                                                  ;A0C075;
     SBC.W Enemy.YPosition,X                                              ;A0C076;
     STA.B DP_Temp14                                                      ;A0C079;
@@ -8386,7 +8386,7 @@ CheckIfEnemyIsHorizontallyOffScreen:
     CLC                                                                  ;A0C193;
     ADC.W Enemy.XHitboxRadius,X                                          ;A0C194;
     SEC                                                                  ;A0C197;
-    SBC.W Layer1XPosition                                                ;A0C198;
+    SBC.B Layer1XPosition                                                ;A0C198;
     BMI .offScreen                                                       ;A0C19B;
     SEC                                                                  ;A0C19D;
     SBC.W #$0100                                                         ;A0C19E;
@@ -8415,7 +8415,7 @@ UNUSED_CheckIfEnemyIsVerticallyOffScreen_A0C1B1:
     CLC                                                                  ;A0C1B6;
     ADC.W Enemy.YHitboxRadius,X                                          ;A0C1B7;
     SEC                                                                  ;A0C1BA;
-    SBC.W Layer1YPosition                                                ;A0C1BB;
+    SBC.B Layer1YPosition                                                ;A0C1BB;
     BMI .offScreen                                                       ;A0C1BE;
     SEC                                                                  ;A0C1C0;
     SBC.W #$0100                                                         ;A0C1C1;
@@ -8958,7 +8958,7 @@ EnemyBlockCollisionReaction_Vertical_Slope_NonSquare:
 +   LDX.W CurrentBlockIndex                                              ;A0C529;
     STX.W $4204                                                          ;A0C52C;
     SEP #$20                                                             ;A0C52F;
-    LDA.W RoomWidthBlocks                                                ;A0C531;
+    LDA.B RoomWidthBlocks                                                ;A0C531;
     STA.W $4206                                                          ;A0C534;
     REP #$20                                                             ;A0C537;
     LDA.W Enemy.XPosition,Y                                              ;A0C539;
@@ -9023,7 +9023,7 @@ EnemyBlockCollisionReaction_Vertical_Slope_NonSquare:
     LDX.W CurrentBlockIndex                                              ;A0C59E;
     STX.W $4204                                                          ;A0C5A1;
     SEP #$20                                                             ;A0C5A4;
-    LDA.W RoomWidthBlocks                                                ;A0C5A6;
+    LDA.B RoomWidthBlocks                                                ;A0C5A6;
     STA.W $4206                                                          ;A0C5A9;
     REP #$20                                                             ;A0C5AC;
     LDA.W Enemy.XPosition,Y                                              ;A0C5AE;
@@ -9147,7 +9147,7 @@ EnemyBlockCollisionReaction_VerticalExtension:
     LDA.W CurrentBlockIndex                                              ;A0C663;
 
 -   CLC                                                                  ;A0C666;
-    ADC.W RoomWidthBlocks                                                ;A0C667;
+    ADC.B RoomWidthBlocks                                                ;A0C667;
     DEC.W CollisionVariable                                              ;A0C66A;
     BNE -                                                                ;A0C66D;
     JMP.W +                                                              ;A0C66F;
@@ -9159,7 +9159,7 @@ EnemyBlockCollisionReaction_VerticalExtension:
 
   .loop:
     SEC                                                                  ;A0C67B;
-    SBC.W RoomWidthBlocks                                                ;A0C67C;
+    SBC.B RoomWidthBlocks                                                ;A0C67C;
     INC.W CollisionVariable                                              ;A0C67F;
     BNE .loop                                                            ;A0C682;
 
@@ -9268,7 +9268,7 @@ MoveEnemyRightBy_14_12_Common:
     LSR                                                                  ;A0C6DF;
     SEP #$20                                                             ;A0C6E0;
     STA.W $4202                                                          ;A0C6E2;
-    LDA.W RoomWidthBlocks                                                ;A0C6E5;
+    LDA.B RoomWidthBlocks                                                ;A0C6E5;
     STA.W $4203                                                          ;A0C6E8;
     REP #$20                                                             ;A0C6EB;
     LDA.W Enemy.XSubPosition,X                                           ;A0C6ED;
@@ -9305,8 +9305,8 @@ MoveEnemyRightBy_14_12_Common:
     BCS .solid                                                           ;A0C71E;
     TXA                                                                  ;A0C720;
     CLC                                                                  ;A0C721;
-    ADC.W RoomWidthBlocks                                                ;A0C722;
-    ADC.W RoomWidthBlocks                                                ;A0C725;
+    ADC.B RoomWidthBlocks                                                ;A0C722;
+    ADC.B RoomWidthBlocks                                                ;A0C725;
     TAX                                                                  ;A0C728;
     DEC.B DP_Temp1C                                                      ;A0C729;
     BPL .loop                                                            ;A0C72B;
@@ -9454,7 +9454,7 @@ MoveEnemyDownBy_14_12_BranchEntry:
     LSR                                                                  ;A0C7D3;
     SEP #$20                                                             ;A0C7D4;
     STA.W $4202                                                          ;A0C7D6;
-    LDA.W RoomWidthBlocks                                                ;A0C7D9;
+    LDA.B RoomWidthBlocks                                                ;A0C7D9;
     STA.W $4203                                                          ;A0C7DC;
     REP #$20                                                             ;A0C7DF;
     LDA.W Enemy.XPosition,X                                              ;A0C7E1;

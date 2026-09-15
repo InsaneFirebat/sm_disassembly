@@ -1812,18 +1812,18 @@ Calculate_Xray_HDMADataTable:
     AND.W #$00FF                                                         ;8888B0;
     CMP.W #$0004                                                         ;8888B3;
     BEQ .facingLeft                                                      ;8888B6;
-    LDA.W SamusXPosition                                                 ;8888B8;
+    LDA.B SamusXPosition                                                 ;8888B8;
     SEC                                                                  ;8888BB;
-    SBC.W Layer1XPosition                                                ;8888BC;
+    SBC.B Layer1XPosition                                                ;8888BC;
     CLC                                                                  ;8888BF;
     ADC.W #$0003                                                         ;8888C0;
     TAX                                                                  ;8888C3;
     BRA .checkMovement                                                   ;8888C4;
 
   .facingLeft:
-    LDA.W SamusXPosition                                                 ;8888C6;
+    LDA.B SamusXPosition                                                 ;8888C6;
     SEC                                                                  ;8888C9;
-    SBC.W Layer1XPosition                                                ;8888CA;
+    SBC.B Layer1XPosition                                                ;8888CA;
     SBC.W #$0003                                                         ;8888CD;
     TAX                                                                  ;8888D0;
 
@@ -1832,17 +1832,17 @@ Calculate_Xray_HDMADataTable:
     AND.W #$00FF                                                         ;8888D4;
     CMP.W #$0005                                                         ;8888D7;
     BEQ .crouching                                                       ;8888DA;
-    LDA.W SamusYPosition                                                 ;8888DC;
+    LDA.B SamusYPosition                                                 ;8888DC;
     SEC                                                                  ;8888DF;
-    SBC.W Layer1YPosition                                                ;8888E0;
+    SBC.B Layer1YPosition                                                ;8888E0;
     SBC.W #$0010                                                         ;8888E3;
     TAY                                                                  ;8888E6;
     BRA .checkScreenPosition                                             ;8888E7;
 
   .crouching:
-    LDA.W SamusYPosition                                                 ;8888E9;
+    LDA.B SamusYPosition                                                 ;8888E9;
     SEC                                                                  ;8888EC;
-    SBC.W Layer1YPosition                                                ;8888ED;
+    SBC.B Layer1YPosition                                                ;8888ED;
     SBC.W #$000C                                                         ;8888F0;
     TAY                                                                  ;8888F3;
 
@@ -2160,10 +2160,10 @@ PowerBombExplosion_Setup4_Explosion_White:
 PowerBombExplosion_ClearnUp_TryCrystalFlash:
 ;; Parameters:
 ;;     X: HDMA object index
-    LDA.W SamusXPosition                                                 ;888B4E;
+    LDA.B SamusXPosition                                                 ;888B4E;
     CMP.W SamusProjectile_PowerBombExplosionXPosition                    ;888B51;
     BNE .clearPBFlag                                                     ;888B54;
-    LDA.W SamusYPosition                                                 ;888B56;
+    LDA.B SamusYPosition                                                 ;888B56;
     CMP.W SamusProjectile_PowerBombExplosionYPosition                    ;888B59;
     BNE .clearPBFlag                                                     ;888B5C;
     PHX                                                                  ;888B5E;
@@ -2378,7 +2378,7 @@ Calculate_PowerBombExplosion_HDMADataTablePointers:
   .exploding:
     LDA.W SamusProjectile_PowerBombExplosionXPosition                    ;888C68;
     SEC                                                                  ;888C6B;
-    SBC.W Layer1XPosition                                                ;888C6C;
+    SBC.B Layer1XPosition                                                ;888C6C;
     CLC                                                                  ;888C6F;
     ADC.W #$0100                                                         ;888C70;
     CMP.W #$0300                                                         ;888C73;
@@ -2388,7 +2388,7 @@ Calculate_PowerBombExplosion_HDMADataTablePointers:
 +   STA.W SamusProjectile_PowerBombPositionOnScreen                      ;888C7A;
     LDA.W SamusProjectile_PowerBombExplosionYPosition                    ;888C7D;
     SEC                                                                  ;888C80;
-    SBC.W Layer1YPosition                                                ;888C81;
+    SBC.B Layer1YPosition                                                ;888C81;
     CLC                                                                  ;888C84;
     ADC.W #$0100                                                         ;888C85;
     CMP.W #$0300                                                         ;888C88;
@@ -2863,7 +2863,7 @@ Calculate_PowerBombPreExplosion_HDMAObjectTablePointers:
   .exploding:
     LDA.W SamusProjectile_PowerBombExplosionXPosition                    ;888F5C;
     SEC                                                                  ;888F5F;
-    SBC.W Layer1XPosition                                                ;888F60;
+    SBC.B Layer1XPosition                                                ;888F60;
     CLC                                                                  ;888F63;
     ADC.W #$0100                                                         ;888F64;
     CMP.W #$0300                                                         ;888F67;
@@ -2873,7 +2873,7 @@ Calculate_PowerBombPreExplosion_HDMAObjectTablePointers:
 +   STA.W SamusProjectile_PowerBombPositionOnScreen                      ;888F6E;
     LDA.W SamusProjectile_PowerBombExplosionYPosition                    ;888F71;
     SEC                                                                  ;888F74;
-    SBC.W Layer1YPosition                                                ;888F75;
+    SBC.B Layer1YPosition                                                ;888F75;
     CLC                                                                  ;888F78;
     ADC.W #$0100                                                         ;888F79;
     CMP.W #$0300                                                         ;888F7C;
@@ -3862,7 +3862,7 @@ Calculate_CrystalFlash_HDMAObjectTablePointers:
   .exploding:
     LDA.W SamusProjectile_PowerBombExplosionXPosition                    ;88A435;
     SEC                                                                  ;88A438;
-    SBC.W Layer1XPosition                                                ;88A439;
+    SBC.B Layer1XPosition                                                ;88A439;
     CLC                                                                  ;88A43C;
     ADC.W #$0100                                                         ;88A43D;
     CMP.W #$0300                                                         ;88A440;
@@ -3872,7 +3872,7 @@ Calculate_CrystalFlash_HDMAObjectTablePointers:
 +   STA.W SamusProjectile_PowerBombPositionOnScreen                      ;88A447;
     LDA.W SamusProjectile_PowerBombExplosionYPosition                    ;88A44A;
     SEC                                                                  ;88A44D;
-    SBC.W Layer1YPosition                                                ;88A44E;
+    SBC.B Layer1YPosition                                                ;88A44E;
     CLC                                                                  ;88A451;
     ADC.W #$0100                                                         ;88A452;
     CMP.W #$0300                                                         ;88A455;
@@ -4218,7 +4218,7 @@ PreInstruction_FXType_22_BG3XScroll:
     PHB                                                                  ;88A676;
     PHX                                                                  ;88A677;
     PHY                                                                  ;88A678;
-    LDA.W Layer1YPosition                                                ;88A679;
+    LDA.B Layer1YPosition                                                ;88A679;
     CMP.W #$0400                                                         ;88A67C;
     BPL .wavy                                                            ;88A67F;
     LDA.B NMI_8bitFrameCounter                                           ;88A681;
@@ -4284,7 +4284,7 @@ PreInstruction_FXType_22_BG3XScroll:
     LDA.W #FXType22BG3XScrollIndirectHDMATable-2                         ;88A6F6;
     STA.L FXType22BG3XScrollIndirectHDMATable+1                          ;88A6F9;
     STA.L FXType22BG1XScrollIndirectHDMADataTable+1                      ;88A6FD;
-    LDA.W Layer1YPosition                                                ;88A701;
+    LDA.B Layer1YPosition                                                ;88A701;
     CMP.W #$0400                                                         ;88A704;
     BMI .lessThan400                                                     ;88A707;
     LDA.W #$00B1                                                         ;88A709;
@@ -4369,7 +4369,7 @@ Calculate_FXType_22_IndirectHDMATable:
 ; (In the following calculations, 1Fh is the HUD height)
     LDA.W #$04C0                                                         ;88A786;
     SEC                                                                  ;88A789;
-    SBC.W Layer1YPosition                                                ;88A78A;
+    SBC.B Layer1YPosition                                                ;88A78A;
     STA.B DP_Temp18                                                      ;88A78D;
     BMI .return                                                          ;88A78F;
     BEQ .return                                                          ;88A791;
@@ -4467,7 +4467,7 @@ Calculate_FXType_22_BG3YScrollHDMATable:
     LDA.W #$0000                                                         ;88A82A;
     STA.L FXType22BG3YScrollHDMATable+1                                  ;88A82D;
     LDX.W #$0003                                                         ;88A831;
-    LDA.W Layer1YPosition                                                ;88A834;
+    LDA.B Layer1YPosition                                                ;88A834;
     CLC                                                                  ;88A837;
     ADC.W YPositionOnScreenFX22                                          ;88A838;
     STA.B DP_Temp12                                                      ;88A83B;
@@ -4563,7 +4563,7 @@ Calculate_FXType_22_BG3YScrollHDMATable:
 
 ;;; $A8C4: Damage Samus if she is in the top row ;;;
 Damage_Samus_IfSheIsInTheTopRow:
-    LDA.W SamusYPosition                                                 ;88A8C4;
+    LDA.B SamusYPosition                                                 ;88A8C4;
     SEC                                                                  ;88A8C7;
     SBC.W SamusYRadius                                                   ;88A8C8;
     BMI .8damage                                                         ;88A8CB;
@@ -4818,7 +4818,7 @@ Handle_ScrollingSky_BG2XScroll_HDMATables:
     STA.L ScrollingSkyBG2XScrollIndirectHDMATable                        ;88AE01;
     LDA.W #HUDBG2XPositionScrollingSky                                   ;88AE05;
     STA.L ScrollingSkyBG2XScrollIndirectHDMATable+1                      ;88AE08;
-    LDA.W Layer1YPosition                                                ;88AE0C;
+    LDA.B Layer1YPosition                                                ;88AE0C;
     CLC                                                                  ;88AE0F;
     ADC.W #$0020                                                         ;88AE10;
     STA.B DP_Temp12                                                      ;88AE13;
@@ -5010,7 +5010,7 @@ RoomMainASM_ScrollingSky:
 
   .timeNotFrozen:
     REP #$30                                                             ;88AFB0;
-    LDA.W Layer1YPosition                                                ;88AFB2;
+    LDA.B Layer1YPosition                                                ;88AFB2;
     STA.B DP_BG2YScroll                                                  ;88AFB5;
     LDX.B VRAMWriteStack                                                 ;88AFB7;
     LDA.W #$0040                                                         ;88AFBA;
@@ -5018,7 +5018,7 @@ RoomMainASM_ScrollingSky:
     STA.B VRAMWrite[1].size,X                                            ;88AFBF;
     STA.B VRAMWrite[2].size,X                                            ;88AFC1;
     STA.B VRAMWrite[3].size,X                                            ;88AFC3;
-    LDA.W Layer1YPosition                                                ;88AFC5;
+    LDA.B Layer1YPosition                                                ;88AFC5;
     AND.W #$07F8                                                         ;88AFC8;
     SEC                                                                  ;88AFCB;
     SBC.W #$0010                                                         ;88AFCC;
@@ -5038,7 +5038,7 @@ RoomMainASM_ScrollingSky:
     CLC                                                                  ;88AFE2;
     ADC.W #$0040                                                         ;88AFE3;
     STA.B VRAMWrite[1].src,X                                             ;88AFE6;
-    LDA.W Layer1YPosition                                                ;88AFE8;
+    LDA.B Layer1YPosition                                                ;88AFE8;
     AND.W #$07F8                                                         ;88AFEB;
     CLC                                                                  ;88AFEE;
     ADC.W #$00F0                                                         ;88AFEF;
@@ -5069,7 +5069,7 @@ RoomMainASM_ScrollingSky:
     AND.W #$00FC                                                         ;88B01B;
     XBA                                                                  ;88B01E;
     STA.B DP_Temp12                                                      ;88B01F;
-    LDA.W Layer1YPosition                                                ;88B021;
+    LDA.B Layer1YPosition                                                ;88B021;
     SEC                                                                  ;88B024;
     SBC.W #$0010                                                         ;88B025;
     AND.W #$01F8                                                         ;88B028;
@@ -5081,7 +5081,7 @@ RoomMainASM_ScrollingSky:
     CLC                                                                  ;88B032;
     ADC.W #$0020                                                         ;88B033;
     STA.B VRAMWrite[1].dest,X                                            ;88B036;
-    LDA.W Layer1YPosition                                                ;88B038;
+    LDA.B Layer1YPosition                                                ;88B038;
     CLC                                                                  ;88B03B;
     ADC.W #$00F0                                                         ;88B03C;
     AND.W #$01F8                                                         ;88B03F;
@@ -5652,7 +5652,7 @@ PreInstruction_LavaAcid_BG3YScroll:
     LDA.W FX_LavaAcidYPosition                                           ;88B3F2;
     BMI .offScreen                                                       ;88B3F5;
     SEC                                                                  ;88B3F7;
-    SBC.W Layer1YPosition                                                ;88B3F8;
+    SBC.B Layer1YPosition                                                ;88B3F8;
     BEQ +                                                                ;88B3FB;
     BPL .positive                                                        ;88B3FD;
 
@@ -5702,7 +5702,7 @@ PreInstruction_LavaAcid_BG3YScroll:
     LDA.W FX_LavaAcidYPosition                                           ;88B45B;
     BMI .negative                                                        ;88B45E;
     SEC                                                                  ;88B460;
-    SBC.W Layer1YPosition                                                ;88B461;
+    SBC.B Layer1YPosition                                                ;88B461;
     CLC                                                                  ;88B464;
     ADC.W #$0100                                                         ;88B465;
     BPL +                                                                ;88B468;
@@ -7268,7 +7268,7 @@ PreInstruction_Water_BG3_Xscroll:
     STA.W FX_YPosition                                                   ;88C4BB;
     BMI .negative                                                        ;88C4C1;
     SEC                                                                  ;88C4C3;
-    SBC.W Layer1YPosition                                                ;88C4C4;
+    SBC.B Layer1YPosition                                                ;88C4C4;
     BEQ +                                                                ;88C4C7;
     BPL .notAboveScreen                                                  ;88C4C9;
 
@@ -7302,7 +7302,7 @@ PreInstruction_Water_BG3_Xscroll:
     AND.W #$00FF                                                         ;88C4F8;
 
 +   CLC                                                                  ;88C4FB;
-    ADC.W Layer1XPosition                                                ;88C4FC;
+    ADC.B Layer1XPosition                                                ;88C4FC;
     STA.B DP_Temp14                                                      ;88C4FF;
     DEC.W HDMAObject_Var1,X                                              ;88C501;
     BNE .loopSetup                                                       ;88C504;
@@ -7345,7 +7345,7 @@ PreInstruction_Water_BG3_Xscroll:
     LDA.W FX_YPosition                                                   ;88C54A;
     BMI .negative2                                                       ;88C54D;
     SEC                                                                  ;88C54F;
-    SBC.W Layer1YPosition                                                ;88C550;
+    SBC.B Layer1YPosition                                                ;88C550;
     CLC                                                                  ;88C553;
     ADC.W #$0100                                                         ;88C554;
     BPL .lessThan100                                                     ;88C557;
@@ -7420,7 +7420,7 @@ PreInstruction_Water_BG2_Xscroll:
     LDA.W FX_YPosition                                                   ;88C5AF;
     BMI .negative                                                        ;88C5B2;
     SEC                                                                  ;88C5B4;
-    SBC.W Layer1YPosition                                                ;88C5B5;
+    SBC.B Layer1YPosition                                                ;88C5B5;
     CLC                                                                  ;88C5B8;
     ADC.W #$0100                                                         ;88C5B9;
     BPL .lessThan100                                                     ;88C5BC;
@@ -9328,7 +9328,7 @@ PreInstruction_RainBG3Scroll:
   .notFrozen:
     LDA.W HDMAObject_Var4,X                                              ;88D9B3;
     SEC                                                                  ;88D9B6;
-    SBC.W Layer1YPosition                                                ;88D9B7;
+    SBC.B Layer1YPosition                                                ;88D9B7;
     STA.B DP_Temp12                                                      ;88D9BA;
     LDA.W HDMAObject_Var0,X                                              ;88D9BC;
     XBA                                                                  ;88D9BF;
@@ -9346,11 +9346,11 @@ PreInstruction_RainBG3Scroll:
     CLC                                                                  ;88D9D4;
     ADC.W #$FA00                                                         ;88D9D5; -$600
     STA.W HDMAObject_Var0,X                                              ;88D9D8;
-    LDA.W Layer1YPosition                                                ;88D9DB;
+    LDA.B Layer1YPosition                                                ;88D9DB;
     STA.W HDMAObject_Var4,X                                              ;88D9DE;
     LDA.W HDMAObject_Var5,X                                              ;88D9E1;
     SEC                                                                  ;88D9E4;
-    SBC.W Layer1XPosition                                                ;88D9E5;
+    SBC.B Layer1XPosition                                                ;88D9E5;
     STA.B DP_Temp12                                                      ;88D9E8;
     LDA.W HDMAObject_Var1,X                                              ;88D9EA;
     XBA                                                                  ;88D9ED;
@@ -9368,7 +9368,7 @@ PreInstruction_RainBG3Scroll:
     CLC                                                                  ;88DA02;
     ADC.W HDMAObject_Var3,X                                              ;88DA03;
     STA.W HDMAObject_Var1,X                                              ;88DA06;
-    LDA.W Layer1XPosition                                                ;88DA09;
+    LDA.B Layer1XPosition                                                ;88DA09;
     STA.W HDMAObject_Var5,X                                              ;88DA0C;
     PLB                                                                  ;88DA0F;
     RTL                                                                  ;88DA10;
@@ -9437,7 +9437,7 @@ PreInstruction_Spores_BG3_Xsscroll:
     AND.W #$00FF                                                         ;88DA64;
 
 +   CLC                                                                  ;88DA67;
-    ADC.W Layer1YPosition                                                ;88DA68;
+    ADC.B Layer1YPosition                                                ;88DA68;
     STA.L BG3YPosition                                                   ;88DA6B;
     LDA.W HDMAObject_Var2,X                                              ;88DA6F;
     CLC                                                                  ;88DA72;
@@ -9454,7 +9454,7 @@ PreInstruction_Spores_BG3_Xsscroll:
     AND.W #$00FF                                                         ;88DA86;
 
 +   CLC                                                                  ;88DA89;
-    ADC.W Layer1XPosition                                                ;88DA8A;
+    ADC.B Layer1XPosition                                                ;88DA8A;
     STA.L BG3XPosition                                                   ;88DA8D;
     STA.B DP_Temp12                                                      ;88DA91;
     LDA.W HDMAObject_Var3,X                                              ;88DA93;
@@ -9494,7 +9494,7 @@ UNUSED_HandleSporesWaviness_88DA9F:
   .loop:
     LDA.B DP_Temp12                                                      ;88DABB;
     CLC                                                                  ;88DABD;
-    ADC.W SamusXPosition                                                 ;88DABE;
+    ADC.B SamusXPosition                                                 ;88DABE;
     ADC.W .waveDisplacementTable,Y                                       ;88DAC1;
     STA.L WaterBG3XScrollHDMADataTable,X                                 ;88DAC4;
     TXA                                                                  ;88DAC8;
@@ -9589,7 +9589,7 @@ PreInstruction_Fog_BG3Scroll:
     AND.W #$00FF                                                         ;88DB53;
 
 +   CLC                                                                  ;88DB56;
-    ADC.W Layer1YPosition                                                ;88DB57;
+    ADC.B Layer1YPosition                                                ;88DB57;
     STA.L BG3YPosition                                                   ;88DB5A;
     LDA.W HDMAObject_Var0,X                                              ;88DB5E;
     CLC                                                                  ;88DB61;
@@ -9605,7 +9605,7 @@ PreInstruction_Fog_BG3Scroll:
     AND.W #$00FF                                                         ;88DB73;
 
 +   CLC                                                                  ;88DB76;
-    ADC.W Layer1XPosition                                                ;88DB77;
+    ADC.B Layer1XPosition                                                ;88DB77;
     STA.L BG3XPosition                                                   ;88DB7A;
     LDA.W HDMAObject_Var1,X                                              ;88DB7E;
     CLC                                                                  ;88DB81;
@@ -9651,7 +9651,7 @@ Set_TourianEntranceStatue_BG2_Yscroll:
 ;;     X: HDMA object index
     LDA.W HDMAObject_Var1,X                                              ;88DBCB;
     CLC                                                                  ;88DBCE;
-    ADC.W Layer1YPosition                                                ;88DBCF;
+    ADC.B Layer1YPosition                                                ;88DBCF;
     STA.L TourianStatueBG2YScroll                                        ;88DBD2;
     RTS                                                                  ;88DBD6;
 
@@ -10295,7 +10295,7 @@ PreInstruction_DraygonMainScreenLayers:
     BNE .offScreen                                                       ;88DF9A;
     LDA.W Enemy.XPosition                                                ;88DF9C;
     SEC                                                                  ;88DF9F;
-    SBC.W Layer1XPosition                                                ;88DFA0;
+    SBC.B Layer1XPosition                                                ;88DFA0;
     CLC                                                                  ;88DFA3;
     ADC.W #$0040                                                         ;88DFA4;
     BMI .offScreen                                                       ;88DFA7;
@@ -10303,13 +10303,13 @@ PreInstruction_DraygonMainScreenLayers:
     BPL .offScreen                                                       ;88DFAC;
     LDA.W Enemy.YPosition                                                ;88DFAE;
     SEC                                                                  ;88DFB1;
-    SBC.W Layer1YPosition                                                ;88DFB2;
+    SBC.B Layer1YPosition                                                ;88DFB2;
     CLC                                                                  ;88DFB5;
     ADC.W #$0010                                                         ;88DFB6;
     BMI .offScreen                                                       ;88DFB9;
     LDA.W Enemy.YPosition                                                ;88DFBB;
     SEC                                                                  ;88DFBE;
-    SBC.W Layer1YPosition                                                ;88DFBF;
+    SBC.B Layer1YPosition                                                ;88DFBF;
     CMP.W #$0130                                                         ;88DFC2;
     BPL .offScreen                                                       ;88DFC5;
     CMP.W #$0028                                                         ;88DFC7;
@@ -11619,11 +11619,11 @@ Update_MorphBallEyeBeam_HDMATable_ColorMathSubScnBackColor:
     STA.B DP_Temp14                                                      ;88E993;
     LDA.W Enemy[1].YPosition                                             ;88E995;
     SEC                                                                  ;88E998;
-    SBC.W Layer1YPosition                                                ;88E999;
+    SBC.B Layer1YPosition                                                ;88E999;
     TAY                                                                  ;88E99C;
     LDA.W Enemy[1].XPosition                                             ;88E99D;
     SEC                                                                  ;88E9A0;
-    SBC.W Layer1XPosition                                                ;88E9A1;
+    SBC.B Layer1XPosition                                                ;88E9A1;
     TAX                                                                  ;88E9A4;
     BMI .offScreen                                                       ;88E9A5;
     CMP.W #$0100                                                         ;88E9A7;
