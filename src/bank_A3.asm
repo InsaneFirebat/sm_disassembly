@@ -13245,7 +13245,7 @@ EnemyShot_Metroid:
     TAX                                                                  ;A3EF6C;
     LDA.W #$0000                                                         ;A3EF6D;
     STA.L SpriteObjects_InstListPointers,X                               ;A3EF70;
-    JSL.L MetroidDeathItemDropRoutine                                    ;A3EF74;
+    JML MetroidDeathItemDropRoutine
 
   .returnUpper:
     RTL                                                                  ;A3EF78;

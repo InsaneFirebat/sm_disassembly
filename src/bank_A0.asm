@@ -691,8 +691,7 @@ endif
 Handle_Room_Shaking:
 ; Enemy projectile shaking is handled by $86:8427
     PHB                                                                  ;A08687;
-    PEA.W BGShakeDisplacements>>8&$FF00                                  ;A08688;
-    PLB                                                                  ;A0868B;
+    PHK
     PLB                                                                  ;A0868C;
     LDA.W EarthquakeTimer                                                ;A0868F;
     BEQ .return                                                          ;A08692;
@@ -813,8 +812,7 @@ BGShakeDisplacements:
 ;;; $884D: Draw Samus, projectiles, enemies and enemy projectiles ;;;
 Draw_Samus_Projectiles_Enemies_and_Enemy_Projectiles:
     PHB                                                                  ;A0884D;
-    PEA.W AddressesForEnemyDrawingQueues>>8&$FF00                        ;A0884E;
-    PLB                                                                  ;A08851;
+    PHK
     PLB                                                                  ;A08852;
     JSL.L DrawSpriteObjects                                              ;A08855;
     JSL.L DrawBombsAndProjectileExplosions                               ;A08859;
@@ -1046,8 +1044,7 @@ Load_Enemies:
 ; Aside from loading tile data, this routine also loads palette data, and the enemy GFX data needed for respawn
     PHP                                                                  ;A08A1E;
     PHB                                                                  ;A08A1F;
-    PEA.W Load_Enemies>>8&$FF00                                          ;A08A20;
-    PLB                                                                  ;A08A23;
+    PHK
     PLB                                                                  ;A08A24;
     REP #$30                                                             ;A08A25;
 if !DEBUG
@@ -1076,8 +1073,7 @@ endif
 ClearEnemyData_ProcessEnemySet:
     PHP                                                                  ;A08A6D;
     PHB                                                                  ;A08A6E;
-    PEA.W ClearEnemyData_ProcessEnemySet>>8&$FF00                        ;A08A6F;
-    PLB                                                                  ;A08A72;
+    PHK
     PLB                                                                  ;A08A73;
     REP #$30                                                             ;A08A74;
     LDA.W #$0000                                                         ;A08A76;
@@ -1120,8 +1116,7 @@ Initialise_Enemies:
     INX                                                                  ;A08AAE;
     DEY                                                                  ;A08AAF;
     BNE .loopExtraEnemyRAM                                               ;A08AB0;
-    PEA.W EnemyHeaders>>8&$FF00                                          ;A08AB2;
-    PLB                                                                  ;A08AB5;
+    PHK
     PLB                                                                  ;A08AB6;
     REP #$30                                                             ;A08AB7;
     STZ.W NumberOfEnemiesKilled                                          ;A08ABC;
@@ -1838,8 +1833,7 @@ Main_Enemy_Routine:
 ;     Distances between Samus and enemy when Samus collides with solid enemy = 0
 ; }
     PHB                                                                  ;A08FD4;
-    PEA.W EnemyHeaders>>8&$FF00                                          ;A08FD5;
-    PLB                                                                  ;A08FD8;
+    PHK
     PLB                                                                  ;A08FD9;
     LDA.W FirstFreeEnemyIndex                                            ;A08FDC;
     BNE .processEnemies                                                  ;A08FDF;
@@ -2118,8 +2112,7 @@ Spawn_Enemy_Drops:
 ; Used for boss deaths and enemy projectiles, but not normal enemy death
     PHB                                                                  ;A0920F;
     STA.W Temp_EnemyHeaderPointer                                        ;A09212;
-    PEA.W Spawn_Enemy_Drops>>8&$FF00                                     ;A09215;
-    PLB                                                                  ;A09218;
+    PHK
     PLB                                                                  ;A09219;
     LDY.W #EnemyProjectile_EnemyDeathPickup                              ;A0921C;
     LDA.W Temp_EnemyProjectileInitParam                                  ;A0921F;
@@ -2828,8 +2821,7 @@ EnemyCollisionHandling:
 Samus_Projectiles_Interaction_Handling:
 ; Handles bomb jumps and damage due to reflected projectiles
     PHB                                                                  ;A09785;
-    PEA.W Samus_Projectiles_Interaction_Handling>>8&$FF00                ;A09786;
-    PLB                                                                  ;A09789;
+    PHK
     PLB                                                                  ;A0978A;
 if !DEBUG
     LDA.W #$000A                                                         ;A0978D;
@@ -2984,8 +2976,7 @@ endif
 ;;; $9894: Enemy projectile / Samus collision handling ;;;
 EnemyProjectile_Samus_Collision_Handling:
     PHB                                                                  ;A09895;
-    PEA.W EnemyProjectile_Samus_Collision_Handling>>8&$FF00              ;A09896;
-    PLB                                                                  ;A09899;
+    PHK
     PLB                                                                  ;A0989A;
 if !DEBUG
     LDA.W #$000B                                                         ;A0989D;
@@ -3104,8 +3095,7 @@ HandleEnemyProjectileCollisionWithSamus:
 ;;; $996C: Enemy projectile / projectile collision handling ;;;
 Projectile_vs_Projectile_Collision_Handling:
     PHB                                                                  ;A0996D;
-    PEA.W Projectile_vs_Projectile_Collision_Handling>>8&$FF00           ;A0996E;
-    PLB                                                                  ;A09971;
+    PHK
     PLB                                                                  ;A09972;
 if !DEBUG
     LDA.W #$000C                                                         ;A09975;
@@ -4029,8 +4019,7 @@ Enemy_vs_Samus_CollisionHandling:
 ; $A091 is the cause of screw attack cancelling invincibility (need to check $9A8B too)
 ; Not the cause of crystal flash insta-death, that would be $90:D6D6
     PHB                                                                  ;A0A07A;
-    PEA.W EnemyHeaders>>8&$FF00                                          ;A0A07D;
-    PLB                                                                  ;A0A080;
+    PHK
     PLB                                                                  ;A0A081;
 if !DEBUG
     LDA.W #$0009                                                         ;A0A082;
@@ -4482,8 +4471,7 @@ EnemyDeath:
 ; Enemy index is loaded into X at $A3D3, so only the enemy AI handler read is affected
     PHP                                                                  ;A0A3AF;
     PHB                                                                  ;A0A3B0;
-    PEA.W EnemyDeath>>8&$FF00                                            ;A0A3B1;
-    PLB                                                                  ;A0A3B4;
+    PHK
     PLB                                                                  ;A0A3B5;
     REP #$30                                                             ;A0A3B6;
     PHA                                                                  ;A0A3B8;
@@ -4542,8 +4530,7 @@ RinkaDeath:
 ;;         2: Normal explosion
     PHP                                                                  ;A0A410;
     PHB                                                                  ;A0A411;
-    PEA.W RinkaDeath>>8&$FF00                                            ;A0A412;
-    PLB                                                                  ;A0A415;
+    PHK
     PLB                                                                  ;A0A416;
     REP #$30                                                             ;A0A417;
     CMP.W #$0003                                                         ;A0A419;
@@ -5222,20 +5209,13 @@ Samus_vs_SolidEnemy_CollisionDetection:
 ; Because a collision is reported in this case, no Samus block collision detection is done, meaning Samus doesn't collide with the wall,
 ; and because the zebetite's right boundary is aligned with the wall (one pixel further right than the rinka's),
 ; Samus is now horizontally inside the zebetite, and so no horizontal collision will be detected due to the zebetite
-    PHP                                                                  ;A0A8F0;
     PHB                                                                  ;A0A8F1;
-    PEA.W Samus_vs_SolidEnemy_CollisionDetection>>8&$FF00                ;A0A8F2;
-    PLB                                                                  ;A0A8F5;
+    PHK
     PLB                                                                  ;A0A8F6;
-    REP #$30                                                             ;A0A8F7;
     LDA.W InteractiveEnemyIndicesStackPointer                            ;A0A8F9;
-    BEQ .returnZeroUpper                                                 ;A0A8FC;
-    BRA .execute                                                         ;A0A8FE;
-
-  .returnZeroUpper:
+    BNE .execute
     LDA.W #$0000                                                         ;A0A900;
     PLB                                                                  ;A0A903;
-    PLP                                                                  ;A0A904;
     RTL                                                                  ;A0A905;
 
   .execute:
@@ -5427,7 +5407,7 @@ Samus_vs_SolidEnemy_CollisionDetection:
     SBC.W Temp_RightBottomBoundaryPosition                               ;A0AA4C;
     BEQ ..gotoTouching                                                   ;A0AA4F;
     BPL ..gotoNotTouching                                                ;A0AA51;
-    JMP.W .gotoNextLower                                                 ;A0AA53;
+    JMP.W .next
 
   ..gotoNotTouching:
     JMP.W .notTouching                                                   ;A0AA56;
@@ -5448,7 +5428,7 @@ Samus_vs_SolidEnemy_CollisionDetection:
     SBC.W Temp_RightBottomBoundaryPosition                               ;A0AA71;
     BEQ .touching                                                        ;A0AA74;
     BPL ..gotoNotTouching                                                ;A0AA76;
-    JMP.W .gotoNextLower                                                 ;A0AA78;
+    JMP.W .next
 
   ..gotoNotTouching:
     JMP.W .notTouching                                                   ;A0AA7B;
@@ -5466,7 +5446,7 @@ Samus_vs_SolidEnemy_CollisionDetection:
     SBC.W Temp_RightBottomBoundaryPosition                               ;A0AA93;
     BEQ .touching                                                        ;A0AA96;
     BPL ..gotoNotTouching                                                ;A0AA98;
-    JMP.W .gotoNextLower                                                 ;A0AA9A;
+    JMP.W .next
 
   ..gotoNotTouching:
     JMP.W .notTouching                                                   ;A0AA9D;
@@ -5484,7 +5464,7 @@ Samus_vs_SolidEnemy_CollisionDetection:
     SBC.W Temp_RightBottomBoundaryPosition                               ;A0AAB5;
     BEQ .touching                                                        ;A0AAB8;
     BPL .notTouching                                                     ;A0AABA;
-    JMP.W .gotoNextLower                                                 ;A0AABC;
+    JMP.W .next
 
   .next:
     INC.W InteractiveEnemyIndicesIndex                                   ;A0AABF;
@@ -5505,7 +5485,6 @@ Samus_vs_SolidEnemy_CollisionDetection:
     STA.W EnemyIndexSamusCollidesLeft,X                                  ;A0AB16;
     LDA.W #$FFFF                                                         ;A0AB1C;
     PLB                                                                  ;A0AB1F;
-    PLP                                                                  ;A0AB20;
     RTL                                                                  ;A0AB21;
 
   .notTouching:
@@ -5522,44 +5501,12 @@ Samus_vs_SolidEnemy_CollisionDetection:
     STA.W EnemyIndexSamusCollidesLeft,X                                  ;A0AB72;
     LDA.W #$FFFF                                                         ;A0AB75;
     PLB                                                                  ;A0AB78;
-    PLP                                                                  ;A0AB79;
     RTL                                                                  ;A0AB7A;
 
   .returnZeroLower:
     LDA.W #$0000                                                         ;A0AB7B;
     PLB                                                                  ;A0AB7E;
-    PLP                                                                  ;A0AB7F;
     RTL                                                                  ;A0AB80;
-
-  .gotoNextLower:
-    JMP.W .next                                                          ;A0AB81;
-
-if !FEATURE_KEEP_UNREFERENCED
-  .unused:
-    PHA                                                                  ;A0AB84;
-    LDA.W CollisionMovementDirection                                     ;A0ABBC;
-    AND.W #$0003                                                         ;A0ABBF;
-    ASL                                                                  ;A0ABC2;
-    TAX                                                                  ;A0ABC3;
-    PLA                                                                  ;A0ABC4;
-    EOR.W #$FFFF                                                         ;A0ABC5;
-    INC                                                                  ;A0ABC8;
-    STA.B DP_Temp12                                                      ;A0ABC9;
-    STZ.B DP_Temp14                                                      ;A0ABCE;
-    LDA.W CollisionIndex                                                 ;A0ABD0;
-    STA.B DP_Temp16                                                      ;A0ABD3;
-    STA.W EnemyIndexSamusCollidesLeft,X                                  ;A0ABD8;
-    LDA.W #$FFFF                                                         ;A0ABDB;
-    PLB                                                                  ;A0ABDE;
-    PLP                                                                  ;A0ABDF;
-    RTL                                                                  ;A0ABE0;
-
-  ..return:
-    LDA.W #$0000                                                         ;A0ABE1;
-    PLB                                                                  ;A0ABE4;
-    PLP                                                                  ;A0ABE5;
-    RTL                                                                  ;A0ABE6;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $ABE7: Check if enemy is touching Samus from below ;;;
@@ -6663,8 +6610,7 @@ Do_Some_Math_With_Sine_Cosine_Terrible_Label_Name:
 ; Where # is the origin and | is the negative y axis
     PHB                                                                  ;A0B643;
     PHX                                                                  ;A0B644;
-    PEA.W UnsignedSineTable>>8&$FF00                                     ;A0B645;
-    PLB                                                                  ;A0B648;
+    PHK
     PLB                                                                  ;A0B649;
     REP #$30                                                             ;A0B64A;
     LDA.B DP_Temp12                                                      ;A0B64C;
@@ -6965,9 +6911,6 @@ UnsignedSineTable:
 
 ;;; $B8EE: Fake Kraid death item drop routine ;;;
 MiniKraidDeathItemDropRoutine:
-    PHX                                                                  ;A0B8EE;
-    PHY                                                                  ;A0B8EF;
-    PHP                                                                  ;A0B8F0;
     LDA.W #$0004                                                         ;A0B8F1;
     STA.W NumberOfDrops                                                  ;A0B8F4;
 
@@ -6991,17 +6934,11 @@ MiniKraidDeathItemDropRoutine:
     JSL.L Spawn_Enemy_Drops                                              ;A0B91E;
     DEC.W NumberOfDrops                                                  ;A0B922;
     BNE .loop                                                            ;A0B925;
-    PLP                                                                  ;A0B927;
-    PLY                                                                  ;A0B928;
-    PLX                                                                  ;A0B929;
     RTL                                                                  ;A0B92A;
 
 
 ;;; $B92B: Gold ninja space pirate death item drop routine ;;;
 MetalNinjaPirateDeathItemDropRoutine:
-    PHX                                                                  ;A0B92B;
-    PHY                                                                  ;A0B92C;
-    PHP                                                                  ;A0B92D;
     LDA.W #$0005                                                         ;A0B92E;
     STA.W NumberOfDrops                                                  ;A0B931;
 
@@ -7025,17 +6962,11 @@ MetalNinjaPirateDeathItemDropRoutine:
     JSL.L Spawn_Enemy_Drops                                              ;A0B95B;
     DEC.W NumberOfDrops                                                  ;A0B95F;
     BNE .loop                                                            ;A0B962;
-    PLP                                                                  ;A0B964;
-    PLY                                                                  ;A0B965;
-    PLX                                                                  ;A0B966;
     RTL                                                                  ;A0B967;
 
 
 ;;; $B968: Metroid death item drop routine ;;;
 MetroidDeathItemDropRoutine:
-    PHX                                                                  ;A0B968;
-    PHY                                                                  ;A0B969;
-    PHP                                                                  ;A0B96A;
     LDA.W #$0005                                                         ;A0B96B;
     STA.W NumberOfDrops                                                  ;A0B96E;
 
@@ -7059,17 +6990,11 @@ MetroidDeathItemDropRoutine:
     JSL.L Spawn_Enemy_Drops                                              ;A0B998;
     DEC.W NumberOfDrops                                                  ;A0B99C;
     BNE .loop                                                            ;A0B99F;
-    PLP                                                                  ;A0B9A1;
-    PLY                                                                  ;A0B9A2;
-    PLX                                                                  ;A0B9A3;
     RTL                                                                  ;A0B9A4;
 
 
 ;;; $B9A5: Ridley death item drop routine ;;;
 RidleyDeathItemDropRoutine:
-    PHX                                                                  ;A0B9A5;
-    PHY                                                                  ;A0B9A6;
-    PHP                                                                  ;A0B9A7;
     LDA.W #$0010                                                         ;A0B9A8;
     STA.W NumberOfDrops                                                  ;A0B9AB;
 
@@ -7089,17 +7014,11 @@ RidleyDeathItemDropRoutine:
     JSL.L Spawn_Enemy_Drops                                              ;A0B9CB;
     DEC.W NumberOfDrops                                                  ;A0B9CF;
     BNE .loop                                                            ;A0B9D2;
-    PLP                                                                  ;A0B9D4;
-    PLY                                                                  ;A0B9D5;
-    PLX                                                                  ;A0B9D6;
     RTL                                                                  ;A0B9D7;
 
 
 ;;; $B9D8: Crocomire death item drop routine ;;;
 CrocomireDeathItemDropRoutine:
-    PHX                                                                  ;A0B9D8;
-    PHY                                                                  ;A0B9D9;
-    PHP                                                                  ;A0B9DA;
     LDA.W #$0010                                                         ;A0B9DB;
     STA.W NumberOfDrops                                                  ;A0B9DE;
 
@@ -7119,17 +7038,11 @@ CrocomireDeathItemDropRoutine:
     JSL.L Spawn_Enemy_Drops                                              ;A0B9FE;
     DEC.W NumberOfDrops                                                  ;A0BA02;
     BNE .loop                                                            ;A0BA05;
-    PLP                                                                  ;A0BA07;
-    PLY                                                                  ;A0BA08;
-    PLX                                                                  ;A0BA09;
     RTL                                                                  ;A0BA0A;
 
 
 ;;; $BA0B: Phantoon death item drop routine ;;;
 PhantoonDeathItemDropRoutine:
-    PHX                                                                  ;A0BA0B;
-    PHY                                                                  ;A0BA0C;
-    PHP                                                                  ;A0BA0D;
     LDA.W #$0010                                                         ;A0BA0E;
     STA.W NumberOfDrops                                                  ;A0BA11;
 
@@ -7149,9 +7062,6 @@ PhantoonDeathItemDropRoutine:
     JSL.L Spawn_Enemy_Drops                                              ;A0BA31;
     DEC.W NumberOfDrops                                                  ;A0BA35;
     BNE .loop                                                            ;A0BA38;
-    PLP                                                                  ;A0BA3A;
-    PLY                                                                  ;A0BA3B;
-    PLX                                                                  ;A0BA3C;
     RTL                                                                  ;A0BA3D;
 
 
@@ -7159,7 +7069,6 @@ PhantoonDeathItemDropRoutine:
 BotwoonDeathItemDropRoutine:
     PHX                                                                  ;A0BA3E;
     PHY                                                                  ;A0BA3F;
-    PHP                                                                  ;A0BA40;
     LDA.W #$0010                                                         ;A0BA41;
     STA.W NumberOfDrops                                                  ;A0BA44;
 
@@ -7179,7 +7088,6 @@ BotwoonDeathItemDropRoutine:
     JSL.L Spawn_Enemy_Drops                                              ;A0BA64;
     DEC.W NumberOfDrops                                                  ;A0BA68;
     BNE .loop                                                            ;A0BA6B;
-    PLP                                                                  ;A0BA6D;
     PLY                                                                  ;A0BA6E;
     PLX                                                                  ;A0BA6F;
     RTL                                                                  ;A0BA70;
@@ -7187,9 +7095,6 @@ BotwoonDeathItemDropRoutine:
 
 ;;; $BA71: Kraid death item drop routine ;;;
 KraidDeathItemDropRoutine:
-    PHX                                                                  ;A0BA71;
-    PHY                                                                  ;A0BA72;
-    PHP                                                                  ;A0BA73;
     LDA.W #$0010                                                         ;A0BA74;
     STA.W NumberOfDrops                                                  ;A0BA77;
 
@@ -7209,9 +7114,6 @@ KraidDeathItemDropRoutine:
     JSL.L Spawn_Enemy_Drops                                              ;A0BA97;
     DEC.W NumberOfDrops                                                  ;A0BA9B;
     BNE .loop                                                            ;A0BA9E;
-    PLP                                                                  ;A0BAA0;
-    PLY                                                                  ;A0BAA1;
-    PLX                                                                  ;A0BAA2;
     RTL                                                                  ;A0BAA3;
 
 
@@ -7219,7 +7121,6 @@ KraidDeathItemDropRoutine:
 BombTorizoDeathItemDropRoutine:
     PHX                                                                  ;A0BAA4;
     PHY                                                                  ;A0BAA5;
-    PHP                                                                  ;A0BAA6;
     LDA.W #$0010                                                         ;A0BAA7;
     STA.W NumberOfDrops                                                  ;A0BAAA;
 
@@ -7239,7 +7140,6 @@ BombTorizoDeathItemDropRoutine:
     JSL.L Spawn_Enemy_Drops                                              ;A0BACA;
     DEC.W NumberOfDrops                                                  ;A0BACE;
     BNE .loop                                                            ;A0BAD1;
-    PLP                                                                  ;A0BAD3;
     PLY                                                                  ;A0BAD4;
     PLX                                                                  ;A0BAD5;
     RTL                                                                  ;A0BAD6;
@@ -7249,7 +7149,6 @@ BombTorizoDeathItemDropRoutine:
 GoldenTorizoDeathItemDropRoutine:
     PHX                                                                  ;A0BAD7;
     PHY                                                                  ;A0BAD8;
-    PHP                                                                  ;A0BAD9;
     LDA.W #$0010                                                         ;A0BADA;
     STA.W NumberOfDrops                                                  ;A0BADD;
 
@@ -7269,7 +7168,6 @@ GoldenTorizoDeathItemDropRoutine:
     JSL.L Spawn_Enemy_Drops                                              ;A0BAFD;
     DEC.W NumberOfDrops                                                  ;A0BB01;
     BNE .loop                                                            ;A0BB04;
-    PLP                                                                  ;A0BB06;
     PLY                                                                  ;A0BB07;
     PLX                                                                  ;A0BB08;
     RTL                                                                  ;A0BB09;
@@ -7277,9 +7175,6 @@ GoldenTorizoDeathItemDropRoutine:
 
 ;;; $BB0A: Spore Spawn death item drop routine ;;;
 SporeSpawnDeathItemDropRoutine:
-    PHX                                                                  ;A0BB0A;
-    PHY                                                                  ;A0BB0B;
-    PHP                                                                  ;A0BB0C;
     LDA.W #$0010                                                         ;A0BB0D;
     STA.W NumberOfDrops                                                  ;A0BB10;
 
@@ -7299,17 +7194,11 @@ SporeSpawnDeathItemDropRoutine:
     JSL.L Spawn_Enemy_Drops                                              ;A0BB30;
     DEC.W NumberOfDrops                                                  ;A0BB34;
     BNE .loop                                                            ;A0BB37;
-    PLP                                                                  ;A0BB39;
-    PLY                                                                  ;A0BB3A;
-    PLX                                                                  ;A0BB3B;
     RTL                                                                  ;A0BB3C;
 
 
 ;;; $BB3D: Draygon death item drop routine ;;;
 DraygonDeathItemDropRoutine:
-    PHX                                                                  ;A0BB3D;
-    PHY                                                                  ;A0BB3E;
-    PHP                                                                  ;A0BB3F;
     LDA.W #$0010                                                         ;A0BB40;
     STA.W NumberOfDrops                                                  ;A0BB43;
 
@@ -7329,9 +7218,6 @@ DraygonDeathItemDropRoutine:
     JSL.L Spawn_Enemy_Drops                                              ;A0BB63;
     DEC.W NumberOfDrops                                                  ;A0BB67;
     BNE .loop                                                            ;A0BB6A;
-    PLP                                                                  ;A0BB6C;
-    PLY                                                                  ;A0BB6D;
-    PLX                                                                  ;A0BB6E;
     RTL                                                                  ;A0BB6F;
 
 
@@ -7413,11 +7299,8 @@ CheckForHorizontalSolidBlockCollision:
 ;; Returns:
 ;;     Carry: Set if collision, clear otherwise
     PHB                                                                  ;A0BBBF;
-    SEP #$20                                                             ;A0BBC0;
-    LDA.B #CheckForHorizontalSolidBlockCollision>>16                     ;A0BBC2;
-    PHA                                                                  ;A0BBC4;
+    PHK
     PLB                                                                  ;A0BBC5;
-    REP #$30                                                             ;A0BBC6;
     PHX                                                                  ;A0BBC8;
     LDA.W Enemy.YPosition,X                                              ;A0BBC9;
     SEC                                                                  ;A0BBCC;
@@ -7532,11 +7415,8 @@ CheckForVerticalSolidBlockCollision:
 ;; Returns:
 ;;     Carry: Set if collision, clear otherwise
     PHB                                                                  ;A0BC76;
-    SEP #$20                                                             ;A0BC77;
-    LDA.B #CheckForVerticalSolidBlockCollision>>16                       ;A0BC79;
-    PHA                                                                  ;A0BC7B;
+    PHK
     PLB                                                                  ;A0BC7C;
-    REP #$30                                                             ;A0BC7D;
     PHX                                                                  ;A0BC7F;
     LDA.W Enemy.XPosition,X                                              ;A0BC80;
     SEC                                                                  ;A0BC83;
@@ -7786,11 +7666,8 @@ UNUSED_MoveEnemyDown_NoBlockCollisionReactions_A0BDF6:
 ;; Returns:
 ;;     Carry: Set if collision, clear otherwise
     PHB                                                                  ;A0BDF6;
-    SEP #$20                                                             ;A0BDF7;
-    LDA.B #UNUSED_MoveEnemyDown_NoBlockCollisionReactions_A0BDF6>>16     ;A0BDF9;
-    PHA                                                                  ;A0BDFB;
+    PHK
     PLB                                                                  ;A0BDFC;
-    REP #$30                                                             ;A0BDFD;
     STA.B DP_Temp1C                                                      ;A0BDFF;
     PHX                                                                  ;A0BE01;
     LDA.W Enemy.XPosition,X                                              ;A0BE02;
@@ -7919,11 +7796,8 @@ UNUSED_CheckForHorizontalSolidBlockCollision_A0BEBF:
 ;;     Carry: Set if collision, clear otherwise
     STA.B DP_Temp1C                                                      ;A0BEBF;
     PHB                                                                  ;A0BEC1;
-    SEP #$20                                                             ;A0BEC2;
-    LDA.B #UNUSED_CheckForHorizontalSolidBlockCollision_A0BEBF>>16       ;A0BEC4;
-    PHA                                                                  ;A0BEC6;
+    PHK
     PLB                                                                  ;A0BEC7;
-    REP #$30                                                             ;A0BEC8;
     PHX                                                                  ;A0BECA;
     LDA.W Enemy.YPosition,X                                              ;A0BECB;
     SEC                                                                  ;A0BECE;
@@ -8053,11 +7927,8 @@ CheckForVerticalSolidBlockCollision_SkreeMetaree:
 ; Used by skree/metaree. Only used for downwards direction
     STA.B DP_Temp1C                                                      ;A0BF8A;
     PHB                                                                  ;A0BF8C;
-    SEP #$20                                                             ;A0BF8D;
-    LDA.B #CheckForVerticalSolidBlockCollision_SkreeMetaree>>16          ;A0BF8F;
-    PHA                                                                  ;A0BF91;
+    PHK
     PLB                                                                  ;A0BF92;
-    REP #$30                                                             ;A0BF93;
     PHX                                                                  ;A0BF95;
     LDA.W Enemy.XPosition,X                                              ;A0BF96;
     SEC                                                                  ;A0BF99;
@@ -8189,8 +8060,6 @@ CalculateAngleOfSamusFromEnemyProjectile:
 
 ; Assumes Samus and enemy are with FFh pixels of each other in both dimensions
 ; Used by Golden Torizo super missile
-    PHP                                                                  ;A0C04E;
-    REP #$30                                                             ;A0C04F;
     LDA.W SamusXPosition                                                 ;A0C051;
     SEC                                                                  ;A0C054;
     SBC.W EnemyProjectile_XPositions,X                                   ;A0C055;
@@ -8219,8 +8088,6 @@ CalculateAngleOfSamusFromEnemy:
 ; Where # is the origin enemy and | is the negative y axis
 
 ; Assumes Samus and enemy are with FFh pixels of each other in both dimensions
-    PHP                                                                  ;A0C066;
-    REP #$30                                                             ;A0C067;
     LDA.W SamusXPosition                                                 ;A0C069;
     SEC                                                                  ;A0C06C;
     SBC.W Enemy.XPosition,X                                              ;A0C06D;
@@ -8283,8 +8150,6 @@ CalculateAngleOfEnemyYFromEnemyX:
 ; Assumes enemies are with FFh pixels of each other in both dimensions
 
 ; Used by shaktool
-    PHP                                                                  ;A0C096;
-    REP #$30                                                             ;A0C097;
     LDA.W Enemy.XPosition,X                                              ;A0C099;
     SEC                                                                  ;A0C09C;
     SBC.W Enemy.XPosition,Y                                              ;A0C09D;
@@ -8314,8 +8179,7 @@ CalculateAngleOf_12_14_Offset:
 ; Where # is the origin and | is the negative y axis
 
 ; Assumes -FFh <= x,y <= FFh
-    PHP                                                                  ;A0C0AE;
-    REP #$30                                                             ;A0C0AF; fallthrough to CalculateAngleOfXYOffset
+; fallthrough to CalculateAngleOfXYOffset
 
 
 ;;; $C0B1: Calculate angle of (x, y) offset ;;;
@@ -8374,7 +8238,6 @@ CalculateAngleOfXYOffset:
     REP #$20                                                             ;A0C0E2;
     JSR.W (.pointers,X)                                                  ;A0C0E4;
     PLX                                                                  ;A0C0E7;
-    PLP                                                                  ;A0C0E8;
     RTL                                                                  ;A0C0E9;
 
   .pointers:
@@ -8394,7 +8257,6 @@ CalculateAngleOfXYOffset:
     REP #$20                                                             ;A0C102;
     JSR.W (..pointers,X)                                                 ;A0C104;
     PLX                                                                  ;A0C107;
-    PLP                                                                  ;A0C108;
     RTL                                                                  ;A0C109;
 
   ..pointers:
@@ -8726,10 +8588,9 @@ EnemyBlockCollisionReaction_Spike:
     LDX.W CurrentBlockIndex                                              ;A0C2C0;
     LDA.L BTS,X                                                          ;A0C2C3;
     AND.W #$007F                                                         ;A0C2C7;
-    ASL                                                                  ;A0C2CA;
-    TAX                                                                  ;A0C2CB;
-    LDA.L .PLMs,X                                                        ;A0C2CC;
-    BEQ .returnCollision                                                 ;A0C2D0;
+    CMP.W #$000F
+    BNE .returnCollision
+    LDA.W #PLMEntries_EnemyBreakableBlock
     JSL.L Spawn_PLM_to_CurrentBlockIndex                                 ;A0C2D2;
     CLC                                                                  ;A0C2D6;
     RTS                                                                  ;A0C2D7;
@@ -8737,24 +8598,6 @@ EnemyBlockCollisionReaction_Spike:
   .returnCollision:
     SEC                                                                  ;A0C2D8;
     RTS                                                                  ;A0C2D9;
-
-  .PLMs:
-    dw $0000                                                             ;A0C2DA;
-    dw $0000                                                             ;A0C2DC;
-    dw $0000                                                             ;A0C2DE;
-    dw $0000                                                             ;A0C2E0;
-    dw $0000                                                             ;A0C2E2;
-    dw $0000                                                             ;A0C2E4;
-    dw $0000                                                             ;A0C2E6;
-    dw $0000                                                             ;A0C2E8;
-    dw $0000                                                             ;A0C2EA;
-    dw $0000                                                             ;A0C2EC;
-    dw $0000                                                             ;A0C2EE;
-    dw $0000                                                             ;A0C2F0;
-    dw $0000                                                             ;A0C2F2;
-    dw $0000                                                             ;A0C2F4;
-    dw $0000                                                             ;A0C2F6;
-    dw PLMEntries_EnemyBreakableBlock                                    ;A0C2F8;
 
 
 ;;; $C2FA: Enemy block collision reaction - horizontal - slope ;;;
@@ -9032,7 +8875,6 @@ EnemyBlockCollisionReaction_Horizontal_Slope_NonSquare:
     LDA.W CurrentSlopeBTS                                                ;A0C453;
     AND.W #$001F                                                         ;A0C456;
     ASL                                                                  ;A0C459;
-    ASL                                                                  ;A0C45A;
     TAX                                                                  ;A0C45B;
     LDA.B DP_Temp14                                                      ;A0C45C;
     BPL +                                                                ;A0C45E;
@@ -9065,44 +8907,40 @@ EnemyBlockCollisionReaction_Horizontal_Slope_NonSquare:
     CLC                                                                  ;A0C49D;
     RTS                                                                  ;A0C49E;
 
-;        _________ Unused. Seem to be additive speed modifiers in the $94:8586 version of this table
-;       |      ___ Adjusted distance multiplier * 100h
-;       |     |
-  .unused:
-    dw $0000                                                             ;A0C49F;
   .adjustedDistanceMult:
-    dw       $0100                                                       ;A0C4A1;
-    dw $0000,$0100
-    dw $0000,$0100
-    dw $0000,$0100
-    dw $0000,$0100
-    dw $0000,$0100 ; 5: Unused. Half height isosceles triangle
-    dw $0000,$0100 ; 6: Unused. Isosceles triangle
-    dw $0000,$0100 ; 7: Half height rectangle
-    dw $0000,$0100 ; 8: Unused. Rectangle
-    dw $0000,$0100 ; 9: Unused. Rectangle
-    dw $0000,$0100 ; Ah: Unused. Rectangle
-    dw $0000,$0100 ; Bh: Unused. Rectangle
-    dw $0000,$0100 ; Ch: Unused. Rectangle
-    dw $0000,$0100 ; Dh: Unused. Rectangle
-    dw $1000,$00B0 ; Eh: Unused. Very bumpy triangle
-    dw $1000,$00B0 ; Fh: Bumpy triangle
-    dw $0000,$0100 ; 10h: Unused
-    dw $0000,$0100 ; 11h: Unused
-    dw $1000,$00C0 ; 12h: Triangle
-    dw $0000,$0100 ; 13h: Rectangle
-    dw $1000,$00C0 ; 14h: Quarter triangle
-    dw $1000,$00C0 ; 15h: Three quarter triangle
-    dw $0800,$00D8 ; 16h: Lower half-height triangle
-    dw $0800,$00D8 ; 17h: Upper half-height triangle
-    dw $0600,$00F0 ; 18h: Unused. Lower third-height triangle
-    dw $0600,$00F0 ; 19h: Unused. Middle third-height triangle
-    dw $0600,$00F0 ; 1Ah: Unused. Upper third-height triangle
-    dw $4000,$0080 ; 1Bh: Upper half-width triangle
-    dw $4000,$0080 ; 1Ch: Lower half-width triangle
-    dw $6000,$0050 ; 1Dh: Unused. Upper third-width triangle
-    dw $6000,$0050 ; 1Eh: Unused. Middle third-width triangle
-    dw $6000,$0050 ; 1Fh: Unused. Lower third-width triangle
+    ; Adjusted distance multiplier * 100h
+    dw $0100                                                             ;A0C4A1;
+    dw $0100
+    dw $0100
+    dw $0100
+    dw $0100
+    dw $0100 ; 5: Unused. Half height isosceles triangle
+    dw $0100 ; 6: Unused. Isosceles triangle
+    dw $0100 ; 7: Half height rectangle
+    dw $0100 ; 8: Unused. Rectangle
+    dw $0100 ; 9: Unused. Rectangle
+    dw $0100 ; Ah: Unused. Rectangle
+    dw $0100 ; Bh: Unused. Rectangle
+    dw $0100 ; Ch: Unused. Rectangle
+    dw $0100 ; Dh: Unused. Rectangle
+    dw $00B0 ; Eh: Unused. Very bumpy triangle
+    dw $00B0 ; Fh: Bumpy triangle
+    dw $0100 ; 10h: Unused
+    dw $0100 ; 11h: Unused
+    dw $00C0 ; 12h: Triangle
+    dw $0100 ; 13h: Rectangle
+    dw $00C0 ; 14h: Quarter triangle
+    dw $00C0 ; 15h: Three quarter triangle
+    dw $00D8 ; 16h: Lower half-height triangle
+    dw $00D8 ; 17h: Upper half-height triangle
+    dw $00F0 ; 18h: Unused. Lower third-height triangle
+    dw $00F0 ; 19h: Unused. Middle third-height triangle
+    dw $00F0 ; 1Ah: Unused. Upper third-height triangle
+    dw $0080 ; 1Bh: Upper half-width triangle
+    dw $0080 ; 1Ch: Lower half-width triangle
+    dw $0050 ; 1Dh: Unused. Upper third-width triangle
+    dw $0050 ; 1Eh: Unused. Middle third-width triangle
+    dw $0050 ; 1Fh: Unused. Lower third-width triangle
 
 
 ;;; $C51F: Enemy block collision reaction - vertical - slope - non-square ;;;
@@ -9483,11 +9321,6 @@ MoveEnemyRightBy_14_12_Common:
     CLC                                                                  ;A0C73F;
     RTL                                                                  ;A0C740;
 
-; Nothing points here
-    PLX                                                                  ;A0C741; dead code
-    SEC                                                                  ;A0C742;
-    RTL                                                                  ;A0C743;
-
   .solid:
     PLX                                                                  ;A0C744;
     LDA.B DP_Temp1A                                                      ;A0C745;
@@ -9651,11 +9484,6 @@ MoveEnemyDownBy_14_12_BranchEntry:
     STA.W Enemy.YPosition,X                                              ;A0C809;
     CLC                                                                  ;A0C80C;
     RTL                                                                  ;A0C80D;
-
-; Nothing points here
-    PLX                                                                  ;A0C80E; dead code
-    SEC                                                                  ;A0C80F;
-    RTL                                                                  ;A0C810;
 
   .solid:
     PLX                                                                  ;A0C811;

@@ -5451,13 +5451,6 @@ EquipmentScreen_SetupReserveMode_and_DetermineInitialSelect:
     INX                                                                  ;82AC04;
     CPX.W #$0006                                                         ;82AC05;
     BMI .loopNoSuitMisc                                                  ;82AC08;
-    BRA .return                                                          ;82AC0A;
-
-    TXA                                                                  ;82AC0C; dead code
-    LSR                                                                  ;82AC0D;
-    XBA                                                                  ;82AC0E;
-    ORA.W #$0003                                                         ;82AC0F;
-    STA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82AC12;
 
   .return:
     LDA.W ReserveEnergy                                                  ;82AC15;
@@ -10519,8 +10512,6 @@ Advance_GradualColorChange_ofPalettesInA:
   .advance:
     JSR.W Advance_GradualColorChange_ofPaletteX_DividedBy_20             ;82DB36;
     BRA .loop                                                            ;82DB39;
-
-    PLA                                                                  ;82DB3B; dead code (just the PLA)
 
 +   INC.W PaletteChangeNumerator                                         ;82DB3C;
     CLC                                                                  ;82DB3F;

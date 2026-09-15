@@ -5500,8 +5500,6 @@ AddExpandingSquareTransition_LeftPos_IndirectHDMATable:
     PLA                                                                  ;81AC0D;
     RTS                                                                  ;81AC0E;
 
-    SEP #$20                                                             ;81AC0F; dead code
-
 +   SEC                                                                  ;81AC11;
     SBC.B #$7F                                                           ;81AC12;
     STA.L ExpandingSquareTransitionWindow1LeftIndirectHDMATable,X        ;81AC14;
@@ -5538,8 +5536,6 @@ AddExpandingSquareTransition_RightPos_IndirectHDMATable:
     INX                                                                  ;81AC41;
     PLP                                                                  ;81AC42;
     RTS                                                                  ;81AC43;
-
-    SEP #$20                                                             ;81AC44; dead code
 
 +   SEC                                                                  ;81AC46;
     SBC.B #$7F                                                           ;81AC47;

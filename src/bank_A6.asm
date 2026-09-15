@@ -3249,7 +3249,7 @@ Reaction_MiniKraid_Common:
     BNE .return                                                          ;A69C56;
     LDA.W #$0003                                                         ;A69C58;
     JSL.L EnemyDeath                                                     ;A69C5B;
-    JSL.L MiniKraidDeathItemDropRoutine                                  ;A69C5F;
+    JML MiniKraidDeathItemDropRoutine
 
   .return:
     RTL                                                                  ;A69C63;
@@ -10863,16 +10863,7 @@ TriggerCeresRidleyEarthquakeIfMovingFastEnough:
   .XSpeedGreater:
     CMP.W #$0280                                                         ;A6D936;
     BCC .return                                                          ;A6D939;
-    LDA.W AreaIndex                                                      ;A6D93B;
-    CMP.W #$0002                                                         ;A6D93E;
-    BEQ .norfair                                                         ;A6D941;
     LDA.W #$0021                                                         ;A6D943;
-    BRA .branch                                                          ;A6D946;
-
-  .norfair:
-    LDA.W #$0018                                                         ;A6D948; dead code
-
-  .branch
     STA.W EarthquakeType                                                 ;A6D94B;
     LDA.W #$000C                                                         ;A6D94E;
     STA.W EarthquakeTimer                                                ;A6D951;

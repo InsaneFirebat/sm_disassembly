@@ -2057,7 +2057,18 @@ Function_DraygonBody_DeathSequence_BuriedByEvirs:
     ORA.W #$0001                                                         ;A592DB;
     STA.L SRAMMirror_Boss,X                                              ;A592DE;
     JSL.L DraygonDeathItemDropRoutine                                    ;A592E2;
-    JSR.W Draygon_ClearSpriteObjects                                     ;A592E6;
+    PHB
+    PEA.W SpriteObjects_InstListPointers>>8
+    PLB
+    PLB
+    LDX.W #$003E
+
+  .loop:
+    STZ.W SpriteObjects_InstListPointers,X
+    DEX
+    DEX
+    BPL .loop
+    PLB
 
   .return:
     RTS                                                                  ;A592E9;
@@ -3738,14 +3749,6 @@ SpawnDeathSequenceEvirSpriteObjects:
 Draygon_ClearSpriteObjects:
     PHX                                                                  ;A5A0C6;
     PHY                                                                  ;A5A0C7;
-    LDX.W #$003E                                                         ;A5A0C8;
-    LDA.W #$0000                                                         ;A5A0CB;
-
-  .loop:
-    STA.L SpriteObjects_InstListPointers,X                               ;A5A0CE;
-    DEX                                                                  ;A5A0D2;
-    DEX                                                                  ;A5A0D3;
-    BPL .loop                                                            ;A5A0D4;
     PLY                                                                  ;A5A0D6;
     PLX                                                                  ;A5A0D7;
     RTS                                                                  ;A5A0D8;
@@ -7481,7 +7484,7 @@ if !PAL != 0
 endif
     LDA.W $0000,Y                                                        ;A5E897;
     JSL.L regional(QueueSound_Lib2_Max6, QueueSound_Lib2_Max1)           ;A5E89A;
-    
+
 +   PLY                                                                  ;A5E89E;
     PLX                                                                  ;A5E89F;
     INY                                                                  ;A5E8A0;
@@ -7894,11 +7897,11 @@ if !PAL != 0
     INC A
     STA.L SporeSpawn.angle
     BRA ++
-    
+
 +   LDA.L SporeSpawn.angle
     DEC A
     STA.L SporeSpawn.angle
-    
+
 ++
 endif
     LDA.L SporeSpawn.angle                                               ;A5EB8A;

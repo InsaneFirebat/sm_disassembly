@@ -5809,11 +5809,9 @@ BombSpreadBlockCollisionDetection:
 ;;     X: Projectile index
 ;; Returns:
 ;;     Carry: Set if collision detected, clear otherwise
-    PHP                                                                  ;94A621;
     PHB                                                                  ;94A622;
     PHK                                                                  ;94A623;
     PLB                                                                  ;94A624;
-    REP #$30                                                             ;94A625;
     LDA.W SamusProjectile_XPositions,X                                   ;94A627;
     STA.B DP_Temp1A                                                      ;94A62A;
     LDA.W SamusProjectile_YPositions,X                                   ;94A62C;
@@ -5847,13 +5845,11 @@ BombSpreadBlockCollisionDetection:
 
   .returnNoCollision:
     PLB                                                                  ;94A662;
-    PLP                                                                  ;94A663;
     CLC                                                                  ;94A664;
     RTL                                                                  ;94A665;
 
   .returnCollision:
     PLB                                                                  ;94A666;
-    PLP                                                                  ;94A667;
     SEC                                                                  ;94A668;
     RTL                                                                  ;94A669;
 
@@ -6801,17 +6797,14 @@ HandleGrappleBeamSwingingMovement:
     STA.W GrappleCollision_TotalSwingAngularVelocity                     ;94AD29;
     JMP.W .anticlockwise                                                 ;94AD2C;
 
+  .gotoFailedMovement:
+    JMP.W .failedMovement
+
   .preClockwise:
     JSL.L A_Y_16bit_UnsignedMultiplication                               ;94AD2F;
     LDA.W MultiplicationResult+1                                         ;94AD33;
     BEQ .gotoFailedMovement                                              ;94AD36;
     STA.W GrappleCollision_TotalSwingAngularVelocity                     ;94AD38;
-    BRA .clockwise                                                       ;94AD3B;
-
-  .gotoFailedMovement:
-    JMP.W .failedMovement                                                ;94AD3D;
-
-  .clockwise:
     CLC                                                                  ;94AD40;
     ADC.W GrappleBeam_EndAngle                                           ;94AD41;
     XBA                                                                  ;94AD44;
@@ -7257,17 +7250,7 @@ DrawGrappleSegment:
     LDA.B DP_Temp14                                                      ;94B0BA;
     ADC.B DP_Temp1C                                                      ;94B0BC;
     STA.B DP_Temp14                                                      ;94B0BE;
-    AND.W #$0100                                                         ;94B0C0;
-    BRA +                                                                ;94B0C3;
-
-; Nothing points to this
-    LDA.L MapOfOAMIndexToHighOAM_address,X                               ;94B0C5; dead code
-    STA.B DP_Temp22                                                      ;94B0C9;
-    LDA.B (DP_Temp22)                                                    ;94B0CB;
-    ORA.L MapOfOAMIndex_highXPosBit,X                                    ;94B0CD;
-    STA.B (DP_Temp22)                                                    ;94B0D1;
-
-+   LDA.B DP_Temp18                                                      ;94B0D3;
+    LDA.B DP_Temp18                                                      ;94B0D3;
     STA.W OAMLow+1,X                                                     ;94B0D5;
     LDA.B DP_Temp16                                                      ;94B0D8;
     CLC                                                                  ;94B0DA;

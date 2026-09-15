@@ -1404,8 +1404,6 @@ QueueMode7Transfers:
 ;     $A6:AD27: Animate Ceres Ridley mode 7 wings with DB:X = $A6:AD49/AD80
 ;     $A6:F8F1: Animate Ceres elevator platform with DB:X = $A6:F904/F90E (light/dark)
 
-; CGRAM transfers are supported, but no mode 7 transfers data actually define any CGRAM transfers, so $8B62..8B8A is dead code
-
 ; From the RAM map:
 ; $02D0..032F: Mode 7 transfers. 7 or 9 byte entries. 1 byte zero-terminator
 ; {

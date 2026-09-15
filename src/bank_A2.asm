@@ -6298,12 +6298,6 @@ InitAI_Rinka:
     STA.W Enemy.properties,X                                             ;A2B61A;
     BRA .propertiesSet                                                   ;A2B61D;
 
-; Nothing points here
-    LDA.W Enemy.properties,X                                             ;A2B61F; dead code
-    ORA.W #$2C00                                                         ;A2B622;
-    STA.W Enemy.properties,X                                             ;A2B625;
-    BRA .propertiesSet                                                   ;A2B628;
-
   .notMBRoom:
     LDA.W Enemy.properties,X                                             ;A2B62A;
     ORA.W #$6400                                                         ;A2B62D;

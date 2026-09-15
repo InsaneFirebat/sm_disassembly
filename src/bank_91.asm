@@ -11810,13 +11810,11 @@ endif
     STA.W HorizontalSlopeCollision                                       ;91E0DE;
     STZ.W HurtFlashCounter                                               ;91E0E1;
     STZ.W SuperSpecialPaletteFlags                                       ;91E0E4;
-    LDA.L SamusPhysicsConstants_CameraXSubOffsetFromSamusWhenTurning     ;91E0E7;
-    STA.W CameraXSubSpeed                                                ;91E0EB;
-    LDA.L SamusPhysicsConstants_CameraXOffsetFromSamusWhenTurning        ;91E0EE;
+    STZ.W CameraXSubSpeed
+    LDA.W #$0001
     STA.W CameraXSpeed                                                   ;91E0F2;
-    LDA.L SamusPhysicsConstants_CameraYSubOffsetFromSamusWhenTurning     ;91E0F5;
-    STA.W CameraYSubSpeed                                                ;91E0F9;
-    LDA.L SamusPhysicsConstants_CameraYOffsetFromSamusWhenTurning        ;91E0FC;
+    STZ.W CameraYSubSpeed
+    LDA.W #$0001
     STA.W CameraYSpeed                                                   ;91E100;
     LDX.W #$01FE                                                         ;91E103;
     LDA.W #$00FF                                                         ;91E106;
@@ -11826,10 +11824,9 @@ endif
     DEX                                                                  ;91E10D;
     DEX                                                                  ;91E10E;
     BPL .loopSamusHDMATables                                             ;91E10F;
-    LDA.L SamusPhysicsConstants_YSubAccelerationInAir                    ;91E111;
+    LDA.W #regional($1C00, $2800)
     STA.W SamusYSubAcceleration                                          ;91E115;
-    LDA.L SamusPhysicsConstants_YAccelerationInAir                       ;91E118;
-    STA.W SamusYAcceleration                                             ;91E11C;
+    STZ.W SamusYAcceleration
     LDA.W #$FFFF                                                         ;91E11F;
     STA.W FX_YPosition                                                   ;91E122;
     STA.W FX_LavaAcidYPosition                                           ;91E125;
@@ -14408,9 +14405,9 @@ MorphBallBounce_MorphBall_NotBouncing:
     INC.W MorphBallBounceState                                           ;91F212;
     LDA.W #$0001                                                         ;91F215;
     STA.W SamusYDirection                                                ;91F218;
-    LDA.L SamusPhysicsConstants_YSubSpeedWhenBouncingInMorphBall         ;91F21B;
+    LDA.W #$100*!SPF*$100
     STA.W SamusYSubSpeed                                                 ;91F21F;
-    LDA.L SamusPhysicsConstants_YSpeedWhenBouncingInMorphBall            ;91F222;
+    LDA.W #$0001
     STA.W SamusYSpeed                                                    ;91F226;
     SEC                                                                  ;91F229;
     RTS                                                                  ;91F22A;
@@ -14423,11 +14420,9 @@ MorphBallBounce_MorphBall_FirstBounce:
     INC.W MorphBallBounceState                                           ;91F22B;
     LDA.W #$0001                                                         ;91F22E;
     STA.W SamusYDirection                                                ;91F231;
-    LDA.L SamusPhysicsConstants_YSubSpeedWhenBouncingInMorphBall         ;91F234;
+    LDA.W #$100*!SPF*$100
     STA.W SamusYSubSpeed                                                 ;91F238;
-    LDA.L SamusPhysicsConstants_YSpeedWhenBouncingInMorphBall            ;91F23B;
-    DEC                                                                  ;91F23F;
-    STA.W SamusYSpeed                                                    ;91F240;
+    STZ.W SamusYSpeed
     SEC                                                                  ;91F243;
     RTS                                                                  ;91F244;
 
@@ -14493,9 +14488,9 @@ MorphBallBounce_SpringBall_NotBouncing:
     STA.W MorphBallBounceState                                           ;91F28A;
     LDA.W #$0001                                                         ;91F28D;
     STA.W SamusYDirection                                                ;91F290;
-    LDA.L SamusPhysicsConstants_YSubSpeedWhenBouncingInMorphBall         ;91F293;
+    LDA.W #$100*!SPF*$100
     STA.W SamusYSubSpeed                                                 ;91F297;
-    LDA.L SamusPhysicsConstants_YSpeedWhenBouncingInMorphBall            ;91F29A;
+    LDA.W #$0001
     STA.W SamusYSpeed                                                    ;91F29E;
     SEC                                                                  ;91F2A1;
     RTS                                                                  ;91F2A2;
@@ -14509,9 +14504,9 @@ MorphBallBounce_SpringBall_FirstBounce:
     STA.W MorphBallBounceState                                           ;91F2A6;
     LDA.W #$0001                                                         ;91F2A9;
     STA.W SamusYDirection                                                ;91F2AC;
-    LDA.L SamusPhysicsConstants_YSubSpeedWhenBouncingInMorphBall         ;91F2AF;
+    LDA.W #$100*!SPF*$100
     STA.W SamusYSubSpeed                                                 ;91F2B3;
-    LDA.L SamusPhysicsConstants_YSpeedWhenBouncingInMorphBall            ;91F2B6;
+    LDA.W #$0001
     DEC                                                                  ;91F2BA;
     STA.W SamusYSpeed                                                    ;91F2BB;
     SEC                                                                  ;91F2BE;
@@ -15827,12 +15822,12 @@ Set_Samus_AnimationFrame_if_PoseChanged:
     LDA.W FX_LiquidOptions                                               ;91FB46;
     BIT.W #$0004                                                         ;91FB49;
     BNE .normalGravity                                                   ;91FB4C;
-    LDA.L SamusPhysicsConstants_AnimationDelayInWater                    ;91FB4E;
+    LDA.W #$0003
     STA.B DP_Temp12                                                      ;91FB52;
     BRA .merge                                                           ;91FB54;
 
   .submergedInAcidLava:
-    LDA.L SamusPhysicsConstants_AnimationDelayInLavaAcid                 ;91FB56;
+    LDA.W #$0002
     STA.B DP_Temp12                                                      ;91FB5A;
 
   .merge:

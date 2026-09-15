@@ -4298,14 +4298,10 @@ Instruction_Torizo_SetBossBit_QueueElevatorMusic_SpawnDrops:
     JSL.L QueueMusicDataOrTrack_8FrameDelay                              ;AAB257;
     LDA.W AreaIndex                                                      ;AAB25E;
     BNE .notCrateria                                                     ;AAB261;
-    JSL.L BombTorizoDeathItemDropRoutine                                 ;AAB263;
-    BRA .return                                                          ;AAB267;
+    JML BombTorizoDeathItemDropRoutine
 
   .notCrateria:
-    JSL.L GoldenTorizoDeathItemDropRoutine                               ;AAB269;
-
-  .return:
-    RTL                                                                  ;AAB270;
+    JML GoldenTorizoDeathItemDropRoutine
 
 
 ;;; $B271: Instruction - advance gradual colour change ;;;

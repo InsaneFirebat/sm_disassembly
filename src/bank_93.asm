@@ -117,11 +117,9 @@ InitializeBomb:
 ;;; $80CF: Part of kill projectile - queue sound effect and set instruction ;;;
 PartOfKillProjectile_QueueSFX_SetInstruction:
 ; Called by Kill_Projectile
-    PHP                                                                  ;9380CF;
     PHB                                                                  ;9380D0;
     PHK                                                                  ;9380D1;
     PLB                                                                  ;9380D2;
-    REP #$30                                                             ;9380D3;
     LDA.W SamusProjectile_Types,X                                        ;9380D5;
     BIT.W #$0F00                                                         ;9380D8;
     BNE .notBeam                                                         ;9380DB;
@@ -244,21 +242,6 @@ InitializeSBAProjectile:
     RTL                                                                  ;9381D0;
 
 
-;;; $81D1: $16 = projectile trail frame ;;;
-Get_ProjectileTrailFrame:
-    PHB                                                                  ;9381D2;
-    PHK                                                                  ;9381D3;
-    PLB                                                                  ;9381D4;
-    LDA.W SamusProjectile_InstructionPointers,X                          ;9381D8;
-    SEC                                                                  ;9381DB;
-    SBC.W #$0008                                                         ;9381DC;
-    TAY                                                                  ;9381DF;
-    LDA.W $0006,Y                                                        ;9381E0;
-    STA.B DP_Temp16                                                      ;9381E3;
-    PLB                                                                  ;9381E6;
-    RTL                                                                  ;9381E8;
-
-
 ;;; $81E9: Projectile instruction handler ;;;
 ProjectileInstructionHandler:
 ; Called by Handle_Projectiles
@@ -301,11 +284,10 @@ ProjectileInstructionHandler:
 
 ;;; $822F: Instruction - delete ;;;
 Instruction_SamusProjectile_Delete:
-    JSL.L Clear_Projectile                                               ;938231;
-    PLA                                                                  ;938235;
-    PLB                                                                  ;938236;
-    PLP                                                                  ;938237;
-    RTL                                                                  ;938238;
+; Pulls its return and exits instruction handler
+    PLA
+    PLB
+    JML Clear_Projectile
 
 
 ;;; $8239: Instruction - go to [[Y]] ;;;

@@ -561,11 +561,18 @@ SetProjectileTrailPosition:
 ;; Parameters:
 ;;     X: Projectile index
 ;;     Y: Projectile trail index
-    PHB                                                                  ;9BA3CD;
+    PHY
+    PEA.W InitializeProjectile>>8
+    PLB
+    PLB
+    LDA.W SamusProjectile_InstructionPointers,X
+    SEC
+    SBC.W #$0008
+    TAY
+    LDA.W $0006,Y
+    STA.B DP_Temp16
     PHK                                                                  ;9BA3CE;
     PLB                                                                  ;9BA3CF;
-    PHY
-    JSL.L Get_ProjectileTrailFrame                                       ;9BA3D2;
     LDA.W CeresStatus                                                    ;9BA3D6;
     BPL .notRotatingRoom                                                 ;9BA3D9;
     JSL.L Calculate_ProjectilePosition_InRotatingElevatorRoom            ;9BA3DB;
@@ -690,8 +697,6 @@ SetProjectileTrailPosition:
     SEC                                                                  ;9BA4A8;
     SBC.W #$0004                                                         ;9BA4A9;
     STA.L ProjectileTrail_RightXPosition,X                               ;9BA4AC;
-    PLB                                                                  ;9BA4B0;
-    PLP                                                                  ;9BA4B1;
     RTL                                                                  ;9BA4B2;
 
 

@@ -704,7 +704,7 @@ NormalPirateShot:
     STZ.W Enemy.var1,X                                                   ;B287AE;
     LDA.W #$0004                                                         ;B287B1;
     JSL.L EnemyDeath                                                     ;B287B4;
-    JSL.L MetalNinjaPirateDeathItemDropRoutine                           ;B287B8;
+    JML MetalNinjaPirateDeathItemDropRoutine
 
   .return:
     RTL                                                                  ;B287BC;
@@ -712,8 +712,7 @@ NormalPirateShot:
   .notGold:
     STZ.W Enemy.var1,X                                                   ;B287BD;
     LDA.W #$0004                                                         ;B287C0;
-    JSL.L EnemyDeath                                                     ;B287C3;
-    RTL                                                                  ;B287C7;
+    JML EnemyDeath
 
 
 ;;; $87C8: Enemy shot - space pirate - gold ninja space pirate is vulnerable ;;;
