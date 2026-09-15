@@ -5278,6 +5278,7 @@ Draw_PauseScreen_SpriteAnimation:
 ;;; $A92B: Handle pause menu palette animation ;;;
 Handle_PauseScreen_PaletteAnimation:
 ; Map arrows, status selection box, etc.
+    LDA #$0000
     SEP #$20                                                             ;82A92C;
     LDA.W PauseMenu_PaletteAnimationTimer                                ;82A933;
     BEQ .return                                                          ;82A936;
