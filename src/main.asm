@@ -41,6 +41,11 @@ endif
 !ANCHOR_LABELS ?= 1
 
 incsrc macros.asm ; All macros are defined here
+incsrc labels.asm ; Labels that don't point directly to ROM/RAM
+incsrc memory.asm ; Memory labels
+
+reset bytes ; skips count as bytes written
+
 incsrc bank_80.asm ; Game engine
 incsrc bank_81.asm ; SRAM, spritemap handling
 incsrc bank_82.asm ; Gameplay
@@ -97,7 +102,5 @@ incsrc bank_B8.asm ; Empty (debug demo recorder writes here)
 incsrc bank_B9..CE.asm ; CRE, backgrounds, palettes, level data
 incsrc bank_CF..DE.asm ; SPC engine
 incsrc bank_DF.asm ; Unused music track
-incsrc labels.asm ; Labels that don't point directly to ROM/RAM
-incsrc memory.asm ; Memory labels
 
 print "Assembly complete. Total bytes written: ", bytes
