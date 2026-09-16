@@ -10259,7 +10259,7 @@ Advance_GradualColorChange_ofBGPalette6:
 
   .advance:
     PHB                                                                  ;82D985;
-    PEA.W Palettes>>16<<8|Palettes>>16                                   ;82D986; >.<
+    PEA.W Palettes>>16<<8|(Palettes>>16)                                 ;82D986; >.<
     PLB                                                                  ;82D989;
     PLB                                                                  ;82D98A;
     LDX.W #$00C0                                                         ;82D98B;
@@ -10303,7 +10303,7 @@ Advance_GradualColorChange_ofPaletteRAM:
   .advance:
     STY.B DP_Temp22                                                      ;82D9D0;
     PHB                                                                  ;82D9D2;
-    PEA.W Palettes>>16<<8|Palettes>>16                                   ;82D9D3; >.<
+    PEA.W Palettes>>16<<8|(Palettes>>16)                                 ;82D9D3; >.<
     PLB                                                                  ;82D9D6;
     PLB                                                                  ;82D9D7;
 
@@ -10346,7 +10346,7 @@ Advance_GradualColorChange_ofAllPalettes:
 
   .advance:
     PHB                                                                  ;82DA18;
-    PEA.W Palettes>>16<<8|Palettes>>16                                   ;82DA19;
+    PEA.W Palettes>>16<<8|(Palettes>>16)                                 ;82DA19;
     PLB                                                                  ;82DA1C;
     PLB                                                                  ;82DA1D;
     LDX.W #$0000                                                         ;82DA1E;
@@ -10559,7 +10559,7 @@ Advance_GradualColorChange_ofPalettesInA_Denominator_C:
     PHX                                                                  ;82DAF7;
     PHY                                                                  ;82DAF8;
     PHB                                                                  ;82DAF9;
-    PEA.W Palettes>>16<<8|Palettes>>16                                   ;82DAFA;
+    PEA.W Palettes>>16<<8|(Palettes>>16)                                 ;82DAFA;
     PLB                                                                  ;82DAFD;
     PLB                                                                  ;82DAFE;
     LDX.W #$000C                                                         ;82DAFF;
