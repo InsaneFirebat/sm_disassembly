@@ -673,6 +673,8 @@ GameState_2B_UnloadGameData:
     DEX                                                                  ;8285E4;
     BPL .clearGameplayRAM                                                ;8285E5;
     STZ.B DP_NextGameplayColorMathA                                      ;8285E9;
+    STZ.B Layer1XPosition
+    STZ.B Layer1YPosition
     SEP #$20
     LDA.B #$10                                                           ;8285ED;
     STA.B DP_MainScreenLayers                                            ;8285EF;
