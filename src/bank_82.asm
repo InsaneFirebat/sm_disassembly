@@ -11568,30 +11568,36 @@ DoorTransitionFunction_LoadDoorHeader_DeleteHDMAObjects_IRQ:
 
 ;;; $E310: Door transition function - scroll screen to alignment ;;;
 DoorTransitionFunction_ScrollScreenToAlignment:
+    SEP #$20
     LDA.W DoorDirection                                                  ;82E315;
-    BIT.W #$0002                                                         ;82E318;
+    BIT.B #$02
     BNE .vertical                                                        ;82E31B;
-    LDA.W Layer1YSubPosition+1                                           ;82E31D;
-    BIT.W #$FF00                                                         ;82E320;
+    LDA.B Layer1YPosition
     BEQ .done                                                            ;82E323;
-    BMI +                                                                ;82E325;
-    DEC.B Layer1YPosition                                                ;82E327;
+    BMI .scrollUp                                                        ;82E325;
+    DEC
+    STA.B Layer1YPosition
     BRA .return                                                          ;82E32A;
 
-+   INC.B Layer1YPosition                                                ;82E32C;
+  .scrollUp:
+    INC
+    STA.B Layer1YPosition
     BRA .return                                                          ;82E32F;
 
   .vertical:
-    LDA.W Layer1XSubPosition+1                                           ;82E331;
-    BIT.W #$FF00                                                         ;82E334;
+    LDA.B Layer1XPosition
     BEQ .done                                                            ;82E337;
-    BMI +                                                                ;82E339;
-    DEC.B Layer1XPosition                                                ;82E33B;
+    BMI .scrollRight                                                     ;82E339;
+    DEC
+    STA.B Layer1XPosition
     BRA .return                                                          ;82E33E;
 
-+   INC.B Layer1XPosition                                                ;82E340;
+  .scrollRight:
+    INC
+    STA.B Layer1XPosition
 
   .return:
+    REP #$20
     JSL.L Calc_Layer2Position_BGScrolls_UpdateBGGraphics_WhenScrolling   ;82E343;
     RTS                                                                  ;82E347;
 
