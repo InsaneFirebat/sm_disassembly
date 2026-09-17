@@ -60,6 +60,7 @@ SpawnEnemyProjectileY_ParameterA_XGraphics:
     STA.W EnemyProjectile_CollidedProjectileType,Y                       ;868089;
     PHY                                                                  ;86808C;
     JSR.W ($0000,X)                                                      ;86808D;
+    LDX.B EnemyIndex
     PLA                                                                  ;868090;
     PLB                                                                  ;868093;
     CLC                                                                  ;868095;
