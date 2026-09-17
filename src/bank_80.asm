@@ -2682,7 +2682,7 @@ NMI:
     STX.W $212D
     LDX.B DP_WindowAreaSubScreen
     STX.W $212F
-    LDX.B DP_ColorMathA
+    LDA.B DP_ColorMathA
     STA.W $2130
     LDA.B DP_NextGameplayColorMathA
     STA.B DP_GameplayColorMathA
