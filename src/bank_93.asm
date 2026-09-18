@@ -120,7 +120,7 @@ InitializeBomb:
 
 
 ;;; $80CF: Part of kill projectile - queue sound effect and set instruction ;;;
-PartOfKillProjectile_QueueSFX_SetInstruction:
+Initialize_Beam_Missile_Explosion:
 ; Called by Kill_Projectile
     PHB                                                                  ;9380D0;
     PHK                                                                  ;9380D1;
