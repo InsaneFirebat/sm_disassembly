@@ -3214,7 +3214,7 @@ TransferSamusTilesToVRAM:
 ;     n: Part 1 size, n = 0 means 10000h bytes are transferred
 ;     N: Part 2 size, N = 0 means no bytes are transferred
     PHB                                                                  ;809376;
-    LDX.B #$92                                                           ;809377;
+    LDX.B #SamusTopTiles_Set0_CBEE>>16                                   ;809377;
     PHX                                                                  ;809379;
     PLB                                                                  ;80937A;
     LDX.B #$02                                                           ;80937B;
@@ -5800,18 +5800,18 @@ HandleScrollZones_HorizontalAutoscrolling:
 ; If layer 1 position + 1/2 scroll down's scroll = red:
 ; {
 ;     PositionOfScrollBoundary = position of right scroll boundary
-;     ProposedScrolledLayer1Position  = [layer 1 X position] + [camera X speed] + 2
-;     Layer 1 X position = min(ProposedScrolledLayer1Position , PositionOfScrollBoundary)
-;     If ProposedScrolledLayer1Position  < PositionOfScrollBoundary and layer 1 position + 1/2 scroll down + 1 scroll right's scroll = red:
+;     ProposedScrolledLayer1Position = [layer 1 X position] + [camera X speed] + 2
+;     Layer 1 X position = min(ProposedScrolledLayer1Position, PositionOfScrollBoundary)
+;     If ProposedScrolledLayer1Position < PositionOfScrollBoundary and layer 1 position + 1/2 scroll down + 1 scroll right's scroll = red:
 ;         Round layer 1 X position to left scroll boundary
 ; }
 ; Else if layer 1 position + 1/2 scroll down + 1 scroll right's scroll = red:
 ; {
 ;     PositionOfScrollBoundary = position of left scroll boundary
-;     ProposedScrolledLayer1Position  = [layer 1 X position] - [camera X speed] - 2
-;     Layer 1 X position = max(ProposedScrolledLayer1Position , PositionOfScrollBoundary)
-;     If ProposedScrolledLayer1Position  >= PositionOfScrollBoundary and layer 1 position + 1/2 scroll down's scroll = red:
-;         Layer 1 X position = ProposedScrolledLayer1Position  rounded to right scroll boundary
+;     ProposedScrolledLayer1Position = [layer 1 X position] - [camera X speed] - 2
+;     Layer 1 X position = max(ProposedScrolledLayer1Position, PositionOfScrollBoundary)
+;     If ProposedScrolledLayer1Position >= PositionOfScrollBoundary and layer 1 position + 1/2 scroll down's scroll = red:
+;         Layer 1 X position = ProposedScrolledLayer1Position rounded to right scroll boundary
 ; }
     PHP                                                                  ;80A528;
     PHB                                                                  ;80A529;
@@ -6095,9 +6095,9 @@ HandleScrollZones_VerticalAutoscrolling:
 ; If layer 1 position + 1/2 scroll right's scroll = red:
 ; {
 ;     XBlockOfVRAMBlocksToUpdate = position of bottom scroll boundary
-;     ProposedScrolledLayer1Position  = [layer 1 Y position] + [camera Y speed] + 2
-;     Layer 1 X position = min(ProposedScrolledLayer1Position , XBlockOfVRAMBlocksToUpdate)
-;     If ProposedScrolledLayer1Position  < XBlockOfVRAMBlocksToUpdate and layer 1 position + 1/2 scroll right + 1 scroll down's scroll = red:
+;     ProposedScrolledLayer1Position = [layer 1 Y position] + [camera Y speed] + 2
+;     Layer 1 X position = min(ProposedScrolledLayer1Position, XBlockOfVRAMBlocksToUpdate)
+;     If ProposedScrolledLayer1Position < XBlockOfVRAMBlocksToUpdate and layer 1 position + 1/2 scroll right + 1 scroll down's scroll = red:
 ;         Round layer 1 Y position to top scroll boundary
 ; }
 ; Else if layer 1 position + 1/2 scroll right + 1 scroll down's scroll = red:
@@ -6105,10 +6105,10 @@ HandleScrollZones_VerticalAutoscrolling:
 ;     $0937 = position of top scroll boundary + PositionOfScrollBoundary
 ;     If [$0937] < [layer 1 Y position]:
 ;     {
-;         ProposedScrolledLayer1Position  = [layer 1 Y position] - [camera Y speed] - 2
-;         Layer 1 Y position = max(ProposedScrolledLayer1Position , [$0937])
-;         If ProposedScrolledLayer1Position  >= [$0937] and layer 1 position + 1/2 scroll right's scroll = red:
-;             Layer 1 Y position = ProposedScrolledLayer1Position  rounded to right bottom boundary
+;         ProposedScrolledLayer1Position = [layer 1 Y position] - [camera Y speed] - 2
+;         Layer 1 Y position = max(ProposedScrolledLayer1Position, [$0937])
+;         If ProposedScrolledLayer1Position >= [$0937] and layer 1 position + 1/2 scroll right's scroll = red:
+;             Layer 1 Y position = ProposedScrolledLayer1Position rounded to right bottom boundary
 ;     }
 ; }
     PHP                                                                  ;80A731;
@@ -6311,9 +6311,10 @@ HandleScrollZones_ScrollingDown:
     LDA.L Scrolls,X                                                      ;80A8C8;
     AND.W #$00FF                                                         ;80A8CC;
     CMP.W #$0001                                                         ;80A8CF;
-    BEQ +                                                                ;80A8D2;
+    BEQ .blueScroll                                                      ;80A8D2;
     LDY.W #$001F                                                         ;80A8D4;
 
+  .blueScroll:
 +   STY.W PositionOfScrollBoundary                                       ;80A8D7;
     LDA.W IdealLayer1YPosition                                           ;80A8DA;
     CMP.W Layer1YPosition                                                ;80A8DD;
