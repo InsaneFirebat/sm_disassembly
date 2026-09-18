@@ -86,7 +86,7 @@ CommonA5_NormalEnemyFrozenAI:
 
 ;;; $8046: Creates a dud shot ;;;
 CommonA5_CreateADudShot:
-    JML CreateADudShot                                                   ;A58046;
+    JML CreateADudShot
 
 
 ;;; $804B: RTS ;;;
@@ -4961,13 +4961,13 @@ Hitbox_Draygon_1A:
     dw EnemyShot_Draygon                                                 ;A5AAA1;
     dw $FFC5,$FFBE,$0003,$FFE2                                           ;A5AAA3;
     dw EnemyTouch_Draygon                                                ;A5AAAB;
-    dw Common_CreateADudShot                                             ;A5AAAD;
+    dw BankA5_CreateADudShot                                             ;A5AAAD;
     dw $0010,$0001,$003C,$0035                                           ;A5AAAF;
     dw EnemyTouch_Draygon                                                ;A5AAB7;
-    dw Common_CreateADudShot                                             ;A5AAB9;
+    dw BankA5_CreateADudShot                                             ;A5AAB9;
     dw $FFE4,$FFDB,$003D,$FFF6                                           ;A5AABB;
     dw EnemyTouch_Draygon                                                ;A5AAC3;
-    dw Common_CreateADudShot                                             ;A5AAC5;
+    dw BankA5_CreateADudShot                                             ;A5AAC5;
 
 Hitbox_Draygon_1B:
     dw $0000                                                             ;A5AAC7;
@@ -5078,13 +5078,13 @@ Hitbox_Draygon_2D:
     dw EnemyShot_Draygon                                                 ;A5ABB7;
     dw $FFF6,$FFC1,$003E,$FFE6                                           ;A5ABB9;
     dw EnemyTouch_Draygon                                                ;A5ABC1;
-    dw Common_CreateADudShot                                             ;A5ABC3;
+    dw BankA5_CreateADudShot                                             ;A5ABC3;
     dw $FFC9,$0000,$FFEB,$0039                                           ;A5ABC5;
     dw EnemyTouch_Draygon                                                ;A5ABCD;
-    dw Common_CreateADudShot                                             ;A5ABCF;
+    dw BankA5_CreateADudShot                                             ;A5ABCF;
     dw $FFC2,$FFDF,$000F,$FFFB                                           ;A5ABD1;
     dw EnemyTouch_Draygon                                                ;A5ABD9;
-    dw Common_CreateADudShot                                             ;A5ABDB;
+    dw BankA5_CreateADudShot                                             ;A5ABDB;
 
 Hitbox_Draygon_2E:
     dw $0000                                                             ;A5ABDD;
@@ -8415,142 +8415,142 @@ Hitbox_SporeSpawn_0:
     dw $0002                                                             ;A5EF73;
     dw $FFD7,$FFE2,$0029,$001E
     dw RTL_A5804C                                                        ;A5EF7D;
-    dw Common_CreateADudShot                                             ;A5EF7F;
+    dw BankA5_CreateADudShot                                             ;A5EF7F;
     dw $FFF0,$FFD3,$000F,$FFE2                                           ;A5EF81;
     dw RTL_A5804C                                                        ;A5EF89;
-    dw Common_CreateADudShot                                             ;A5EF8B;
+    dw BankA5_CreateADudShot                                             ;A5EF8B;
 
 Hitbox_SporeSpawn_1:
     dw $0002                                                             ;A5EF8D;
     dw $FFD7,$FFE2,$0029,$001E
     dw EnemyTouch_SporeSpawn                                             ;A5EF97;
-    dw Common_CreateADudShot                                             ;A5EF99;
+    dw BankA5_CreateADudShot                                             ;A5EF99;
     dw $FFF0,$FFD3,$000F,$FFE2                                           ;A5EF9B;
     dw EnemyTouch_SporeSpawn                                             ;A5EFA3;
-    dw Common_CreateADudShot                                             ;A5EFA5;
+    dw BankA5_CreateADudShot                                             ;A5EFA5;
 
 Hitbox_SporeSpawn_2:
     dw $0002                                                             ;A5EFA7;
     dw $FFD4,$FFDD,$002B,$0021
     dw EnemyTouch_SporeSpawn                                             ;A5EFB1;
-    dw Common_CreateADudShot                                             ;A5EFB3;
+    dw BankA5_CreateADudShot                                             ;A5EFB3;
     dw $FFF0,$FFCF,$000F,$FFDD                                           ;A5EFB5;
     dw EnemyTouch_SporeSpawn                                             ;A5EFBD;
-    dw Common_CreateADudShot                                             ;A5EFBF;
+    dw BankA5_CreateADudShot                                             ;A5EFBF;
 
 Hitbox_SporeSpawn_3:
     dw $0004                                                             ;A5EFC1;
     dw $FFD3,$FFDA,$002C,$FFF7
     dw EnemyTouch_SporeSpawn                                             ;A5EFCB;
-    dw Common_CreateADudShot                                             ;A5EFCD;
+    dw BankA5_CreateADudShot                                             ;A5EFCD;
     dw $FFD3,$0008,$002C,$0023                                           ;A5EFCF;
     dw EnemyTouch_SporeSpawn                                             ;A5EFD7;
-    dw Common_CreateADudShot                                             ;A5EFD9;
+    dw BankA5_CreateADudShot                                             ;A5EFD9;
     dw $FFF1,$FFE8,$000E,$0017                                           ;A5EFDB;
     dw EnemyTouch_SporeSpawn                                             ;A5EFE3;
     dw EnemyShot_SporeSpawn_Vulnerable                                   ;A5EFE5;
     dw $FFF0,$FFCA,$0010,$FFEA                                           ;A5EFE7;
     dw EnemyTouch_SporeSpawn                                             ;A5EFEF;
-    dw Common_CreateADudShot                                             ;A5EFF1;
+    dw BankA5_CreateADudShot                                             ;A5EFF1;
 
 Hitbox_SporeSpawn_4:
     dw $0004                                                             ;A5EFF3;
     dw $FFD5,$FFD4,$002A,$FFF3
     dw EnemyTouch_SporeSpawn                                             ;A5EFFD;
-    dw Common_CreateADudShot                                             ;A5EFFF;
+    dw BankA5_CreateADudShot                                             ;A5EFFF;
     dw $FFD4,$000C,$002A,$002A                                           ;A5F001;
     dw EnemyTouch_SporeSpawn                                             ;A5F009;
-    dw Common_CreateADudShot                                             ;A5F00B;
+    dw BankA5_CreateADudShot                                             ;A5F00B;
     dw $FFF1,$FFE8,$000E,$0017                                           ;A5F00D;
     dw EnemyTouch_SporeSpawn                                             ;A5F015;
     dw EnemyShot_SporeSpawn_Vulnerable                                   ;A5F017;
     dw $FFF0,$FFC6,$0010,$FFD6                                           ;A5F019;
     dw EnemyTouch_SporeSpawn                                             ;A5F021;
-    dw Common_CreateADudShot                                             ;A5F023;
+    dw BankA5_CreateADudShot                                             ;A5F023;
 
 Hitbox_SporeSpawn_5:
     dw $0004                                                             ;A5F025;
     dw $FFD3,$FFD1,$002C,$FFEF
     dw EnemyTouch_SporeSpawn                                             ;A5F02F;
-    dw Common_CreateADudShot                                             ;A5F031;
+    dw BankA5_CreateADudShot                                             ;A5F031;
     dw $FFD4,$0010,$002B,$002E                                           ;A5F033;
     dw EnemyTouch_SporeSpawn                                             ;A5F03B;
-    dw Common_CreateADudShot                                             ;A5F03D;
+    dw BankA5_CreateADudShot                                             ;A5F03D;
     dw $FFF1,$FFE8,$000E,$0017                                           ;A5F03F;
     dw EnemyTouch_SporeSpawn                                             ;A5F047;
     dw EnemyShot_SporeSpawn_Vulnerable                                   ;A5F049;
     dw $FFF0,$FFC2,$0010,$FFD3                                           ;A5F04B;
     dw EnemyTouch_SporeSpawn                                             ;A5F053;
-    dw Common_CreateADudShot                                             ;A5F055;
+    dw BankA5_CreateADudShot                                             ;A5F055;
 
 Hitbox_SporeSpawn_6:
     dw $0004                                                             ;A5F057;
     dw $FFD4,$FFCE,$002D,$FFEB
     dw EnemyTouch_SporeSpawn                                             ;A5F061;
-    dw Common_CreateADudShot                                             ;A5F063;
+    dw BankA5_CreateADudShot                                             ;A5F063;
     dw $FFD5,$0014,$002B,$0032                                           ;A5F065;
     dw EnemyTouch_SporeSpawn                                             ;A5F06D;
-    dw Common_CreateADudShot                                             ;A5F06F;
+    dw BankA5_CreateADudShot                                             ;A5F06F;
     dw $FFF1,$FFE8,$000E,$0017                                           ;A5F071;
     dw EnemyTouch_SporeSpawn                                             ;A5F079;
     dw EnemyShot_SporeSpawn_Vulnerable                                   ;A5F07B;
     dw $FFF0,$FFC0,$0010,$FFD0                                           ;A5F07D;
     dw EnemyTouch_SporeSpawn                                             ;A5F085;
-    dw Common_CreateADudShot                                             ;A5F087;
+    dw BankA5_CreateADudShot                                             ;A5F087;
 
 Hitbox_SporeSpawn_7:
     dw $0002                                                             ;A5F089;
     dw $FFD2,$FFDD,$002C,$0023
     dw EnemyTouch_SporeSpawn                                             ;A5F093;
-    dw Common_CreateADudShot                                             ;A5F095;
+    dw BankA5_CreateADudShot                                             ;A5F095;
     dw $FFF0,$FFD0,$0010,$FFE0                                           ;A5F097;
     dw EnemyTouch_SporeSpawn                                             ;A5F09F;
-    dw Common_CreateADudShot                                             ;A5F0A1;
+    dw BankA5_CreateADudShot                                             ;A5F0A1;
 
 Hitbox_SporeSpawn_8:
     dw $0004                                                             ;A5F0A3;
     dw $FFD3,$FFD9,$002D,$FFF7
     dw EnemyTouch_SporeSpawn                                             ;A5F0AD;
-    dw Common_CreateADudShot                                             ;A5F0AF;
+    dw BankA5_CreateADudShot                                             ;A5F0AF;
     dw $FFD4,$0008,$002C,$0026                                           ;A5F0B1;
     dw EnemyTouch_SporeSpawn                                             ;A5F0B9;
-    dw Common_CreateADudShot                                             ;A5F0BB;
+    dw BankA5_CreateADudShot                                             ;A5F0BB;
     dw $FFF1,$FFE8,$000E,$0017                                           ;A5F0BD;
     dw EnemyTouch_SporeSpawn                                             ;A5F0C5;
     dw EnemyShot_SporeSpawn_Vulnerable                                   ;A5F0C7;
     dw $FFF0,$FFCA,$0010,$FFE0                                           ;A5F0C9;
     dw EnemyTouch_SporeSpawn                                             ;A5F0D1;
-    dw Common_CreateADudShot                                             ;A5F0D3;
+    dw BankA5_CreateADudShot                                             ;A5F0D3;
 
 Hitbox_SporeSpawn_9:
     dw $0004                                                             ;A5F0D5;
     dw $FFD3,$FFD4,$002D,$FFF3
     dw EnemyTouch_SporeSpawn                                             ;A5F0DF;
-    dw Common_CreateADudShot                                             ;A5F0E1;
+    dw BankA5_CreateADudShot                                             ;A5F0E1;
     dw $FFD6,$000C,$002A,$002B                                           ;A5F0E3;
     dw EnemyTouch_SporeSpawn                                             ;A5F0EB;
-    dw Common_CreateADudShot                                             ;A5F0ED;
+    dw BankA5_CreateADudShot                                             ;A5F0ED;
     dw $FFF1,$FFE8,$000E,$0017                                           ;A5F0EF;
     dw EnemyTouch_SporeSpawn                                             ;A5F0F7;
     dw EnemyShot_SporeSpawn_Vulnerable                                   ;A5F0F9;
     dw $FFF0,$FFC6,$0010,$FFE0                                           ;A5F0FB;
     dw EnemyTouch_SporeSpawn                                             ;A5F103;
-    dw Common_CreateADudShot                                             ;A5F105;
+    dw BankA5_CreateADudShot                                             ;A5F105;
 
 Hitbox_SporeSpawn_A:
     dw $0004                                                             ;A5F107;
     dw $FFD4,$FFD1,$0029,$FFEF
     dw EnemyTouch_SporeSpawn                                             ;A5F111;
-    dw Common_CreateADudShot                                             ;A5F113;
+    dw BankA5_CreateADudShot                                             ;A5F113;
     dw $FFD4,$0010,$002C,$002D                                           ;A5F115;
     dw EnemyTouch_SporeSpawn                                             ;A5F11D;
-    dw Common_CreateADudShot                                             ;A5F11F;
+    dw BankA5_CreateADudShot                                             ;A5F11F;
     dw $FFF1,$FFE8,$000E,$0017                                           ;A5F121;
     dw EnemyTouch_SporeSpawn                                             ;A5F129;
     dw EnemyShot_SporeSpawn_Vulnerable                                   ;A5F12B;
     dw $FFF0,$FFC3,$0010,$FFD2                                           ;A5F12D;
     dw EnemyTouch_SporeSpawn                                             ;A5F135;
-    dw Common_CreateADudShot                                             ;A5F137;
+    dw BankA5_CreateADudShot                                             ;A5F137;
 
 Hitbox_SporeSpawn_B:
     dw $0001                                                             ;A5F139;
@@ -8568,25 +8568,25 @@ Hitbox_SporeSpawn_D:
     dw $0001                                                             ;A5F155;
     dw $FFF1,$FFE8,$000E,$0017
     dw EnemyTouch_SporeSpawn                                             ;A5F15F;
-    dw Common_CreateADudShot                                             ;A5F161;
+    dw BankA5_CreateADudShot                                             ;A5F161;
 
 Hitbox_SporeSpawn_E:
     dw $0001                                                             ;A5F163;
     dw $FFF8,$FFF8,$0007,$0007
     dw EnemyTouch_SporeSpawn                                             ;A5F16D;
-    dw Common_CreateADudShot                                             ;A5F16F;
+    dw BankA5_CreateADudShot                                             ;A5F16F;
 
 Hitbox_SporeSpawn_F:
     dw $0001                                                             ;A5F171;
     dw $FFF8,$FFF8,$0007,$0006
     dw EnemyTouch_SporeSpawn                                             ;A5F17B;
-    dw Common_CreateADudShot                                             ;A5F17D;
+    dw BankA5_CreateADudShot                                             ;A5F17D;
 
 Hitbox_SporeSpawn_10:
     dw $0001                                                             ;A5F17F;
     dw $FFF8,$FFF8,$0007,$0006
     dw EnemyTouch_SporeSpawn                                             ;A5F189;
-    dw Common_CreateADudShot                                             ;A5F18B;
+    dw BankA5_CreateADudShot                                             ;A5F18B;
 
 Hitbox_SporeSpawn_11:
     dw $0001                                                             ;A5F18D;
@@ -8604,31 +8604,31 @@ Hitbox_SporeSpawn_13:
     dw $0004                                                             ;A5F1A9;
     dw $FFD4,$FFCB,$002C,$FFE9
     dw EnemyTouch_SporeSpawn                                             ;A5F1B3;
-    dw Common_CreateADudShot                                             ;A5F1B5;
+    dw BankA5_CreateADudShot                                             ;A5F1B5;
     dw $FFD4,$0016,$002B,$0034                                           ;A5F1B7;
     dw EnemyTouch_SporeSpawn                                             ;A5F1BF;
-    dw Common_CreateADudShot                                             ;A5F1C1;
+    dw BankA5_CreateADudShot                                             ;A5F1C1;
     dw $FFF1,$FFE8,$000E,$0017                                           ;A5F1C3;
     dw EnemyTouch_SporeSpawn                                             ;A5F1CB;
     dw EnemyShot_SporeSpawn_Vulnerable                                   ;A5F1CD;
     dw $FFF0,$FFBC,$0010,$FFD0                                           ;A5F1CF;
     dw EnemyTouch_SporeSpawn                                             ;A5F1D7;
-    dw Common_CreateADudShot                                             ;A5F1D9;
+    dw BankA5_CreateADudShot                                             ;A5F1D9;
 
 Hitbox_SporeSpawn_14:
     dw $0004                                                             ;A5F1DB;
     dw $FFD4,$FFC9,$002B,$FFE7
     dw EnemyTouch_SporeSpawn                                             ;A5F1E5;
-    dw Common_CreateADudShot                                             ;A5F1E7;
+    dw BankA5_CreateADudShot                                             ;A5F1E7;
     dw $FFD3,$0018,$002B,$0037                                           ;A5F1E9;
     dw EnemyTouch_SporeSpawn                                             ;A5F1F1;
-    dw Common_CreateADudShot                                             ;A5F1F3;
+    dw BankA5_CreateADudShot                                             ;A5F1F3;
     dw $FFF1,$FFE7,$000E,$0018                                           ;A5F1F5;
     dw EnemyTouch_SporeSpawn                                             ;A5F1FD;
     dw EnemyShot_SporeSpawn_Vulnerable                                   ;A5F1FF;
     dw $FFF0,$FFBB,$0010,$FFD0                                           ;A5F201;
     dw EnemyTouch_SporeSpawn                                             ;A5F209;
-    dw Common_CreateADudShot                                             ;A5F20B;
+    dw BankA5_CreateADudShot                                             ;A5F20B;
 
 
 ;;; $F20D: Spore Spawn spritemaps ;;;
@@ -9066,3 +9066,27 @@ Spritemap_SporeSpawn_16:
 
 Freespace_BankA5_F95A:                                                   ;A5F95A;
 ; $6A6 bytes
+
+
+;;; $A8BC: Creates a dud shot ;;;
+BankA5_CreateADudShot:
+CreateADudShot:
+    LDA.B CollisionIndex
+    ASL
+    TAX
+    LDA.W SamusProjectile_XPositions,X
+    STA.B DP_Temp12
+    LDA.W SamusProjectile_YPositions,X
+    STA.B DP_Temp14
+    LDA.W #$0006
+    STA.B DP_Temp16
+    STZ.B DP_Temp18
+    JSL.L Create_Sprite_Object
+    LDA.B CollisionIndex
+    ASL
+    TAX
+    LDA.W SamusProjectile_Directions,X
+    ORA.W #$0010
+    STA.W SamusProjectile_Directions,X
+    LDA.W #$003D
+    JML QueueSound_Lib1_Max3

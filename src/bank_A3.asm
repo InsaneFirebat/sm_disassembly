@@ -1051,10 +1051,8 @@ Function_Metaree_LaunchedAttack:
     LDA.W Enemy.properties,X                                             ;A38A03;
     ORA.W #$0003                                                         ;A38A06;
     STA.W Enemy.properties,X                                             ;A38A09;
-    LDX.B EnemyIndex                                                     ;A38A0C;
     JSL.L CheckForVerticalSolidBlockCollision_SkreeMetaree               ;A38A0F;
     BCS .collision                                                       ;A38A13;
-    LDX.B EnemyIndex                                                     ;A38A15;
     LDA.W Enemy.YPosition,X                                              ;A38A18;
     CLC                                                                  ;A38A1B;
     ADC.W Metaree.YVelocity,X                                            ;A38A1C;
@@ -1075,7 +1073,6 @@ Function_Metaree_LaunchedAttack:
     BRA .return                                                          ;A38A40;
 
   .collision:
-    LDX.B EnemyIndex                                                     ;A38A42;
     LDA.W #$0001                                                         ;A38A45;
     STA.W Enemy.instTimer,X                                              ;A38A48;
     STZ.W Enemy.loopCounter,X                                            ;A38A4B;
@@ -5148,7 +5145,9 @@ Function_Hopper_Hop_UpsideUp:
     LDX.B EnemyIndex                                                     ;A3AC40;
     LDA.W #Function_Hopper_HopBackwards_UpsideUp                         ;A3AC43;
     STA.W Hopper.function,X                                              ;A3AC46;
-    JSL.L Get_SamusX_minus_EnemyX                                        ;A3AC49;
+    LDA.B SamusXPosition
+    SEC
+    SBC.W Enemy.XPosition,X
     BMI .return                                                          ;A3AC4D;
     LDA.W #Function_Hopper_HopForwards_UpsideUp                          ;A3AC4F;
     STA.W Hopper.function,X                                              ;A3AC52;
@@ -5162,7 +5161,9 @@ Function_Hopper_Hop_UpsideDown:
     LDX.B EnemyIndex                                                     ;A3AC56;
     LDA.W #Function_Hopper_HopBackwards_UpsideDown                       ;A3AC59;
     STA.W Hopper.function,X                                              ;A3AC5C;
-    JSL.L Get_SamusX_minus_EnemyX                                        ;A3AC5F;
+    LDA.B SamusXPosition
+    SEC
+    SBC.W Enemy.XPosition,X
     BMI .return                                                          ;A3AC63;
     LDA.W #Function_Hopper_HopForwards_UpsideDown                        ;A3AC65;
     STA.W Hopper.function,X                                              ;A3AC68;
@@ -6054,7 +6055,9 @@ Function_Zoa_WaitForSamusToGetNear:
     JSL.L IsSamusWithinAPixelColumnsOfEnemy                              ;A3B488;
     BEQ .return                                                          ;A3B48C;
     LDY.W #$0001                                                         ;A3B48E;
-    JSL.L Get_SamusX_minus_EnemyX                                        ;A3B491;
+    LDA.B SamusXPosition
+    SEC
+    SBC.W Enemy.XPosition,X
     BMI .keepLeft                                                        ;A3B495;
     LDY.W #$0003                                                         ;A3B497;
 
@@ -6074,7 +6077,9 @@ Function_Zoa_Rising:
     LDA.W Enemy.properties,X                                             ;A3B4A8;
     AND.W #$FEFF                                                         ;A3B4AB;
     STA.W Enemy.properties,X                                             ;A3B4AE;
-    JSL.L Get_SamusY_minus_EnemyY                                        ;A3B4B1;
+    LDA.B SamusYPosition
+    SEC
+    SBC.W Enemy.YPosition,X
     BMI .rising                                                          ;A3B4B5;
     DEC.W Zoa.instListTableIndex,X                                       ;A3B4B7;
     JSR.W SetZoaInstList                                                 ;A3B4BA;
@@ -6088,7 +6093,13 @@ Function_Zoa_Rising:
     STA.B DP_Temp14                                                      ;A3B4CA;
     LDA.W #regional($8000, $A000)                                        ;A3B4CC;
     STA.B DP_Temp12                                                      ;A3B4CF;
-    JSL.L MoveEnemyY_minus_12_14                                         ;A3B4D1;
+    LDA.W Enemy.YSubPosition,X
+    SEC
+    SBC.B DP_Temp12
+    STA.W Enemy.YSubPosition,X
+    LDA.W Enemy.YPosition,X
+    SBC.B DP_Temp14
+    STA.W Enemy.YPosition,X
     RTL                                                                  ;A3B4D5;
 
 
@@ -6102,7 +6113,13 @@ Function_Zoa_Shooting:
     STA.B DP_Temp14                                                      ;A3B4E3;
     LDA.W ZoaXSpeedTable_subSpeed,Y                                      ;A3B4E5;
     STA.B DP_Temp12                                                      ;A3B4E8;
-    JSL.L MoveEnemyX_plus_12_14                                          ;A3B4EA;
+    LDA.W Enemy.XSubPosition,X
+    CLC
+    ADC.B DP_Temp12
+    STA.W Enemy.XSubPosition,X
+    LDA.W Enemy.XPosition,X
+    ADC.B DP_Temp14
+    STA.W Enemy.XPosition,X
     JSL.L CheckIfEnemyCenterIsOnScreen                                   ;A3B4EE;
     BNE .offScreen                                                       ;A3B4F2;
     JSR.W SetZoaInstList                                                 ;A3B4F4;
@@ -6115,7 +6132,13 @@ Function_Zoa_Shooting:
     STA.B DP_Temp14                                                      ;A3B500;
     LDA.W ZoaXSpeedTable_subSpeed,Y                                      ;A3B502;
     STA.B DP_Temp12                                                      ;A3B505;
-    JSL.L MoveEnemyX_minus_12_14                                         ;A3B507;
+    LDA.W Enemy.XSubPosition,X
+    SEC
+    SBC.B DP_Temp12
+    STA.W Enemy.XSubPosition,X
+    LDA.W Enemy.XPosition,X
+    SBC.B DP_Temp14
+    STA.W Enemy.XPosition,X
     JSL.L CheckIfEnemyCenterIsOnScreen                                   ;A3B50B;
     BNE .offScreen                                                       ;A3B50F;
     JSR.W SetZoaInstList                                                 ;A3B511;
@@ -8236,10 +8259,8 @@ Function_Skree_LaunchedAttack:
     LDA.W Enemy.properties,X                                             ;A3C726;
     ORA.W #$0003                                                         ;A3C729;
     STA.W Enemy.properties,X                                             ;A3C72C;
-    LDX.B EnemyIndex                                                     ;A3C72F;
     JSL.L CheckForVerticalSolidBlockCollision_SkreeMetaree               ;A3C732;
     BCS .collision                                                       ;A3C736;
-    LDX.B EnemyIndex                                                     ;A3C738;
     LDA.W Enemy.YPosition,X                                              ;A3C73B;
     CLC                                                                  ;A3C73E;
     ADC.W #regional($0006, $000A)                                        ;A3C73F;
@@ -8260,7 +8281,6 @@ Function_Skree_LaunchedAttack:
     BRA .return                                                          ;A3C763;
 
   .collision:
-    LDX.B EnemyIndex                                                     ;A3C765;
     LDA.W #$0001                                                         ;A3C768;
     STA.W Enemy.instTimer,X                                              ;A3C76B;
     STZ.W Enemy.loopCounter,X                                            ;A3C76E;
@@ -11683,7 +11703,6 @@ Function_HZoomer_CrawlingHorizontally:
     JSL.L MoveEnemyRightBy_14_12_ProcessSlopes                           ;A3E1B6;
     BCS .insideTurn                                                      ;A3E1BA;
     JSL.L AlignEnemyYPositionWIthNonSquareSlope                          ;A3E1BC;
-    LDX.B EnemyIndex                                                     ;A3E1C0;
     LDA.B SamusXPosition                                                 ;A3E1C3;
     SEC                                                                  ;A3E1C6;
     SBC.W Enemy.XPosition,X                                              ;A3E1C7;
@@ -12440,7 +12459,7 @@ Function_Crawlers_CrawlingHorizontally:
 ;;; $E8A5: Adjust enemy X velocity for slopes ;;;
 AdjustEnemyXVelocityForSlopes:
     LDA.W Enemy.XPosition,X                                              ;A3E8A5;
-    PHA                                                                  ;A3E8A8;
+    STA.B DP_Temp2E
     LDA.W Enemy.YPosition,X                                              ;A3E8A9;
     BIT.W Crawler.YVelocity,X                                            ;A3E8AC;
     BPL .negativeYVelocity                                               ;A3E8AF;
@@ -12454,7 +12473,6 @@ AdjustEnemyXVelocityForSlopes:
     DEC                                                                  ;A3E8BB;
 
   .positiveYVelocity:
-    PHA                                                                  ;A3E8BC;
     JSL.L CalculateTheBlockContainingAPixelPosition                      ;A3E8BD;
     LDA.W CurrentBlockIndex                                              ;A3E8C1;
     ASL                                                                  ;A3E8C4;

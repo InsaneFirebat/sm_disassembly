@@ -728,13 +728,17 @@ MainAI_Boulder:
 ;;; $879A: Boulder function - wait for Samus to get near ;;;
 Function_Boulder_WaitForSamusToGetNear:
     LDX.B EnemyIndex                                                     ;A6879A;
-    JSL.L Get_SamusY_minus_EnemyY                                        ;A6879D;
+    LDA.B SamusYPosition
+    SEC
+    SBC.W Enemy.YPosition,X
     BMI .return                                                          ;A687A1;
     CMP.L Boulder.YProximity,X                                           ;A687A3;
     BPL .return                                                          ;A687A7;
     LDA.W Boulder.direction,X                                            ;A687A9;
     BNE .left                                                            ;A687AC;
-    JSL.L Get_SamusX_minus_EnemyX                                        ;A687AE;
+    LDA.B SamusXPosition
+    SEC
+    SBC.W Enemy.XPosition,X
     BMI .return                                                          ;A687B2;
     CMP.L Boulder.XProximity,X                                           ;A687B4;
     BPL .return                                                          ;A687B8;
@@ -748,7 +752,9 @@ Function_Boulder_WaitForSamusToGetNear:
 
 
   .left:
-    JSL.L Get_SamusX_minus_EnemyX                                        ;A687CE;
+    LDA.B SamusXPosition
+    SEC
+    SBC.W Enemy.XPosition,X
     BPL .return                                                          ;A687D2;
     CMP.L Boulder.XProximity,X                                           ;A687D4;
     BMI .return                                                          ;A687D8;
@@ -1275,7 +1281,13 @@ Function_Kzan_Falling:
     LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,X                       ;A68BF1;
     STA.B DP_Temp12                                                      ;A68BF4;
     LDX.B EnemyIndex                                                     ;A68BF6;
-    JSL.L MoveEnemyY_plus_12_14                                          ;A68BF9;
+    LDA.W Enemy.YSubPosition,X
+    CLC
+    ADC.B DP_Temp12
+    STA.W Enemy.YSubPosition,X
+    LDA.W Enemy.YPosition,X
+    ADC.B DP_Temp14
+    STA.W Enemy.YPosition,X
     LDA.W Enemy.YPosition,X                                              ;A68BFD;
     CMP.W Kzan.fallingTargetYPosition,X                                  ;A68C00;
     BMI .notReachedTarget                                                ;A68C03;
@@ -1335,7 +1347,13 @@ Function_Kzan_Rising:
     STA.B DP_Temp12                                                      ;A68C6B;
     LDA.W #$0000                                                         ;A68C6D;
     STA.B DP_Temp14                                                      ;A68C70;
-    JSL.L MoveEnemyY_minus_12_14                                         ;A68C72;
+    LDA.W Enemy.YSubPosition,X
+    SEC
+    SBC.B DP_Temp12
+    STA.W Enemy.YSubPosition,X
+    LDA.W Enemy.YPosition,X
+    SBC.B DP_Temp14
+    STA.W Enemy.YPosition,X
     LDA.W Enemy.YPosition,X                                              ;A68C76;
     CMP.W Kzan.risingTargetYPosition,X                                   ;A68C79;
     BPL .notReachedTarget                                                ;A68C7C;
@@ -7315,7 +7333,7 @@ SelfDestructSequenceFunction_8_JapaneseTextAppears:
     INC.W RidleyCeres.misc1                                              ;A6C0FA;
     INC.W RidleyCeres.misc1                                              ;A6C0FD;
 if !PAL != 0
-    LDA.W AltText  
+    LDA.W AltText
     BNE +
     JSL.L QueueCeresEscapeSubtitleTilemapTransfers_DefaultLanguage
     BRA SelfDestructSequenceFunction_A_TypingSelfDestructSequenceText
@@ -7621,7 +7639,7 @@ HandleTypewriterText:
 
 if !PAL != 0
 QueueZebesEscapeSubtitleTilemapTransfers:
-    LDA.W AltText  
+    LDA.W AltText
     BNE .French
 
     LDX.W #TypewriterZebesEscapeSubtitleTilemapTransfer_German
@@ -7926,19 +7944,19 @@ else
     dw $0200                   ; Size
     dl Tiles_EscapeTimerText_1 ; Source address
     dw $1900                   ; VRAM address
-                               
+
     dw $0200                   ; Size
     dl Tiles_EscapeTimerText_2 ; Source address
     dw $1A00                   ; VRAM address
-                               
+
     dw $0200                   ; Size
     dl Tiles_EscapeTimerText_3 ; Source address
     dw $1B00                   ; VRAM address
-                               
+
     dw $0100                   ; Size
     dl Tiles_EscapeTimerText_4 ; Source address
     dw $1C00                   ; VRAM address
-    
+
     dw $0100                   ; Size
     dl Tiles_EscapeTimerText_5 ; Source address
     dw $1D00                   ; VRAM address

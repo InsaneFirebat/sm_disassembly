@@ -1272,7 +1272,6 @@ AddSpritemapToOAM_WithBaseTileNumber_8AB8:
 ;    $B4:BD32: Draw sprite objects
 
 ; See $879F for spritemap format
-    PHY                                                                  ;818AB8;
     LDA.W $0000,Y                                                        ;818AB9;
     BEQ .return                                                          ;818ABC;
     INY                                                                  ;818ABE;
@@ -1323,7 +1322,6 @@ AddSpritemapToOAM_WithBaseTileNumber_8AB8:
     STX.B OAMStack                                                       ;818B1C;
 
   .return:
-    PLY                                                                  ;818B1F;
     RTL                                                                  ;818B20;
 
 
@@ -5204,7 +5202,7 @@ DrawAreaSelectMapLabels:
     ASL                                                                  ;81A9A6;
     TAX                                                                  ;81A9A7;
     PHB                                                                  ;81A9A8;
-    PEA.W #MapIcon_PositionTablePointers>>8&$FF00                        ;81A9A9;
+    PEA.W MapIcon_PositionTablePointers>>8&$FF00                         ;81A9A9;
     PLB                                                                  ;81A9AD;
     PLB                                                                  ;81A9AE;
     LDA.L SRAMMirror_UsedSaveStationsElevators,X                         ;81A9AF;

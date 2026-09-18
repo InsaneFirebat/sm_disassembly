@@ -16380,11 +16380,9 @@ Run_Samus_Command:
 ;;     A: If [A] = Dh: 1 if grapple beam is active, otherwise 0
 
 ; Some of these commands unconditionally return false, and you might be wondering what the point is in calling that code indirectly through this function
-    PHP                                                                  ;90F084;
     PHB                                                                  ;90F085;
     PHK                                                                  ;90F086;
     PLB                                                                  ;90F087;
-    REP #$30                                                             ;90F088;
     PHX                                                                  ;90F08A;
     AND.W #$001F                                                         ;90F08B;
     ASL                                                                  ;90F08E;
@@ -16402,7 +16400,6 @@ Run_Samus_Command:
   .return:
     PLX                                                                  ;90F0AA;
     PLB                                                                  ;90F0AB;
-    PLP                                                                  ;90F0AC;
     RTL                                                                  ;90F0AD;
 
   .pointers:

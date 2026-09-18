@@ -885,11 +885,15 @@ Function_Zeb_Zebbo_WaitUntilOnScreen:
 
 ;;; $8890: Zeb/zebbo function - wait for Samus to get near ;;;
 Function_Zeb_Zebbo_WaitForSamusToGetNear:
-    JSL.L Get_SamusY_minus_EnemyY                                        ;B38890;
+    LDA.B SamusYPosition
+    SEC
+    SBC.W Enemy.YPosition,X
     BPL .return                                                          ;B38894;
     CMP.W #$FFA0                                                         ;B38896;
     BMI .return                                                          ;B38899;
-    JSL.L Get_SamusX_minus_EnemyX                                        ;B3889B;
+    LDA.B SamusXPosition
+    SEC
+    SBC.W Enemy.XPosition,X
     TAY                                                                  ;B3889F;
     ROL.W Zeb.direction,X                                                ;B388A0;
     ROL                                                                  ;B388A3;
@@ -1330,7 +1334,9 @@ Function_Gamet_WaitForSamusToGetNear:
     LDA.W #$0001                                                         ;B38C19;
     STA.W Enemy.instTimer,X                                              ;B38C1C;
     STZ.W Enemy.loopCounter,X                                            ;B38C1F;
-    JSL.L Get_SamusX_minus_EnemyX                                        ;B38C22;
+    LDA.B SamusXPosition
+    SEC
+    SBC.W Enemy.XPosition,X
     BPL .facingRight                                                     ;B38C26;
     LDA.W #InstList_Gamet_FacingLeft_Rising                              ;B38C28;
     STA.W Enemy.instList,X                                               ;B38C2B;
@@ -1414,7 +1420,9 @@ Function_Gamet_Rising:
     LDA.W #$0001                                                         ;B38CE1;
     STA.W Enemy.instTimer,X                                              ;B38CE4;
     STZ.W Enemy.loopCounter,X                                            ;B38CE7;
-    JSL.L Get_SamusX_minus_EnemyX                                        ;B38CEA;
+    LDA.B SamusXPosition
+    SEC
+    SBC.W Enemy.XPosition,X
     BPL .facingRight                                                     ;B38CEE;
     LDA.W #InstList_Gamet_FacingLeft_Rising                              ;B38CF0;
     STA.W Enemy.instList,X                                               ;B38CF3;
@@ -1630,7 +1638,9 @@ Function_Gamet_ShootDelay:
     STA.W Gamet.function,X                                               ;B38E78;
     LDA.W #InstList_Gamet_FacingLeft_Shooting                            ;B38E7B;
     STA.W Enemy.instList,X                                               ;B38E7E;
-    JSL.L Get_SamusX_minus_EnemyX                                        ;B38E81;
+    LDA.B SamusXPosition
+    SEC
+    SBC.W Enemy.XPosition,X
     BMI .return                                                          ;B38E85;
     LDA.W #Function_Gamet_ShootingRight                                  ;B38E87;
     STA.W Gamet.function,X                                               ;B38E8A;
@@ -1790,14 +1800,18 @@ Function_Geega_WaitForSamusToGetNear:
     LDX.B EnemyIndex                                                     ;B38FB5;
     LDA.W Enemy.init0,X                                                  ;B38FB8;
     BNE .leftwards                                                       ;B38FBB;
-    JSL.L Get_SamusX_minus_EnemyX                                        ;B38FBD;
+    LDA.B SamusXPosition
+    SEC
+    SBC.W Enemy.XPosition,X
     BMI .return                                                          ;B38FC1;
     CMP.W #$00C0                                                         ;B38FC3;
     BPL .return                                                          ;B38FC6;
     BRA +                                                                ;B38FC8;
 
   .leftwards:
-    JSL.L Get_SamusX_minus_EnemyX                                        ;B38FCA;
+    LDA.B SamusXPosition
+    SEC
+    SBC.W Enemy.XPosition,X
     BPL .return                                                          ;B38FCE;
     CMP.W #$FF40                                                         ;B38FD0;
     BMI .return                                                          ;B38FD3;

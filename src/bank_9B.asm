@@ -3964,7 +3964,6 @@ GrappleBeamFunction_Connected_LockedInPlace:
 
   .firing:
     JSL.L EnemyGrappleBeamCollisionDetection                             ;9BC78C;
-    TAY                                                                  ;9BC790;
     BNE .returnCarryClear                                                ;9BC791;
     JSR.W CheckIfGrappleIsConnectedToBlock                               ;9BC793;
     BCC .cancel                                                          ;9BC796;
@@ -4018,7 +4017,6 @@ GrappleBeamFunction_Connected_Swinging:
 
   .enemyCollision:
     JSL.L EnemyGrappleBeamCollisionDetection                             ;9BC7F0;
-    TAY                                                                  ;9BC7F4;
     BEQ .blockCollision                                                  ;9BC7F5;
     LDA.W GrappleBeam_Flags                                              ;9BC7F7;
     ORA.W #$8000                                                         ;9BC7FA;

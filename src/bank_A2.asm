@@ -3066,7 +3066,9 @@ ChooseHopType:
     LDX.B EnemyIndex                                                     ;A29AAA;
     LDA.W #$0001                                                         ;A29AAD;
     STA.L Puyo.direction,X                                               ;A29AB0;
-    JSL.L Get_SamusX_minus_EnemyX                                        ;A29AB4;
+    LDA.B SamusXPosition
+    SEC
+    SBC.W Enemy.XPosition,X
     BMI .checkInverted                                                   ;A29AB8;
     LDA.W #$0000                                                         ;A29ABA;
     STA.L Puyo.direction,X                                               ;A29ABD;
@@ -9293,7 +9295,9 @@ Function_Oum_Idle:
   .noBounce:
     LDA.W #$0000                                                         ;A2CDF3;
     STA.L Oum.newInstListIndex,X                                         ;A2CDF6;
-    JSL.L Get_SamusX_minus_EnemyX                                        ;A2CDFA;
+    LDA.B SamusXPosition
+    SEC
+    SBC.W Enemy.XPosition,X
     BPL .SamusToTheLeft                                                  ;A2CDFE;
     LDA.W #$0001                                                         ;A2CE00;
     STA.W Oum.movementDirection,X                                        ;A2CE03;
@@ -9355,7 +9359,9 @@ Function_Oum_Rolling:
     LDA.W #$0000                                                         ;A2CE7B;
     STA.L Oum.newInstListIndex,X                                         ;A2CE7E;
     STA.W Oum.movementDirection,X                                        ;A2CE82;
-    JSL.L Get_SamusX_minus_EnemyX                                        ;A2CE85;
+    LDA.B SamusXPosition
+    SEC
+    SBC.W Enemy.XPosition,X
     BPL .SamusToTheRight                                                 ;A2CE89;
     LDA.W #$0001                                                         ;A2CE8B;
     STA.L Oum.newInstListIndex,X                                         ;A2CE8E;
@@ -9574,7 +9580,9 @@ CheckIfTouchingSamus:
     BEQ .return                                                          ;A2D01D;
     LDA.W #$0001                                                         ;A2D01F;
     STA.L Oum.touchingSamusFlag,X                                        ;A2D022;
-    JSL.L Get_SamusX_minus_EnemyX                                        ;A2D026;
+    LDA.B SamusXPosition
+    SEC
+    SBC.W Enemy.XPosition,X
     BPL .return                                                          ;A2D02A;
     LDA.W #$0001                                                         ;A2D02C;
     STA.L Oum.directionToSamus,X                                         ;A2D02F;
@@ -11329,7 +11337,9 @@ Function_Dragon_WaitToRise:
     STA.W Dragon.functionTimer,X                                         ;A2E65D;
     LDA.W #Function_Dragon_Rising                                        ;A2E660;
     STA.W Dragon.function,X                                              ;A2E663;
-    JSL.L Get_SamusX_minus_EnemyX                                        ;A2E666;
+    LDA.B SamusXPosition
+    SEC
+    SBC.W Enemy.XPosition,X
     TAY                                                                  ;A2E66A;
     ROL.W Enemy.var0,X                                                   ;A2E66B;
     ROL                                                                  ;A2E66E;

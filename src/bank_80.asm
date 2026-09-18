@@ -599,6 +599,7 @@ WaitForNMI:
     STA.B NMI_Request                                                    ;808340; Set NMI request flag
 
   .wait:
+    WAI
     LDA.B NMI_Request                                                    ;808343;
     BNE .wait                                                            ;808346; Wait until NMI request acknowledged
     PLB                                                                  ;808348;
@@ -5779,7 +5780,6 @@ HandleScrollZones_VerticalAutoscrolling:
 HandleScrollZones_ScrollingDown:
 ; Called by:
 ;     $90:964F: Handle vertical scrolling
-    LDA.B Layer1YPosition                                                ;80A89D;
     STA.W ProposedScrolledLayer1Position                                 ;80A8A0;
     LDY.W #$0000                                                         ;80A8A3;
     SEP #$20                                                             ;80A8A6;

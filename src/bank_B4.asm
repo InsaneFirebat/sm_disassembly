@@ -6291,49 +6291,42 @@ Create_Sprite_Object:
 ;;     $12: Index of created sprite object if successful
     PHX                                                                  ;B4BC26;
     PHY                                                                  ;B4BC27;
-    PHP                                                                  ;B4BC28;
     PHB                                                                  ;B4BC29;
-    PEA.W SpriteObject_DrawInst_Pointers>>8&$FF00                        ;B4BC2A;
+    PEA.W SpriteObjects_InstListPointers>>8&$FF00
     PLB                                                                  ;B4BC2D;
     PLB                                                                  ;B4BC2E;
-    REP #$30                                                             ;B4BC2F;
-    LDX.W #$003E                                                         ;B4BC31;
+    LDY.W #$003E
 
   .loop:
-    LDA.L SpriteObjects_InstListPointers,X                               ;B4BC34;
+    LDA.W SpriteObjects_InstListPointers,Y
     BEQ .found                                                           ;B4BC38;
-    DEX                                                                  ;B4BC3A;
-    DEX                                                                  ;B4BC3B;
+    DEY                                                                  ;B4BC3A;
+    DEY                                                                  ;B4BC3B;
     BPL .loop                                                            ;B4BC3C;
     BRA .return                                                          ;B4BC3E;
 
   .found:
-    LDA.W #$0000                                                         ;B4BC40;
-    STA.L SpriteObjects_Palettes,X                                       ;B4BC43;
-    STA.L SpriteObjects_XSubPositions,X                                  ;B4BC47;
-    STA.L SpriteObjects_YSubPositions,X                                  ;B4BC4B;
-    STA.L SpriteObjects_DisableFlags,X                                   ;B4BC4F;
+    STA.W SpriteObjects_Palettes,Y
+    STA.W SpriteObjects_XSubPositions,Y
+    STA.W SpriteObjects_YSubPositions,Y
+    STA.W SpriteObjects_DisableFlags,Y
     LDA.B DP_Temp12                                                      ;B4BC53;
-    STA.L SpriteObjects_XPositions,X                                     ;B4BC55;
+    STA.W SpriteObjects_XPositions,Y
     LDA.B DP_Temp14                                                      ;B4BC59;
-    STA.L SpriteObjects_YPositions,X                                     ;B4BC5B;
+    STA.W SpriteObjects_YPositions,Y
     LDA.B DP_Temp18                                                      ;B4BC5F;
-    STA.L SpriteObjects_Palettes,X                                       ;B4BC61;
+    STA.W SpriteObjects_Palettes,Y
     LDA.B DP_Temp16                                                      ;B4BC65;
     ASL                                                                  ;B4BC67;
-    TAY                                                                  ;B4BC68;
-    LDA.W SpriteObject_DrawInst_Pointers,Y                               ;B4BC69;
-    STA.L SpriteObjects_InstListPointers,X                               ;B4BC6C;
-    PHX                                                                  ;B4BC70;
-    TAX                                                                  ;B4BC71;
-    LDA.L SpriteObjectInstLists,X                                        ;B4BC72;
-    PLX                                                                  ;B4BC76;
-    STA.L SpriteObjects_InstructionsTimers,X                             ;B4BC77;
-    STX.B DP_Temp12                                                      ;B4BC7B;
+    TAX
+    LDA.L SpriteObject_DrawInst_Pointers,X
+    STA.W SpriteObjects_InstListPointers,Y
+    TAX
+    LDA.L SpriteObjectInstLists,X
+    STA.W SpriteObjects_InstructionsTimers,Y
 
   .return:
     PLB                                                                  ;B4BC7D;
-    PLP                                                                  ;B4BC7E;
     PLY                                                                  ;B4BC7F;
     PLX                                                                  ;B4BC80;
     RTL                                                                  ;B4BC81;
@@ -6341,14 +6334,6 @@ Create_Sprite_Object:
 
 ;;; $BC82: Handle sprite objects ;;;
 HandleSpriteObjects:
-    PHX                                                                  ;B4BC82;
-    PHY                                                                  ;B4BC83;
-    PHP                                                                  ;B4BC84;
-    PHB                                                                  ;B4BC85;
-    PEA.W HandleSpriteObjects>>8&$FF00                                   ;B4BC86;
-    PLB                                                                  ;B4BC89;
-    PLB                                                                  ;B4BC8A;
-    REP #$30                                                             ;B4BC8B;
     LDA.W TimeIsFrozenFlag                                               ;B4BC8D;
 if !DEBUG
     ORA.W DebugTimeIsFrozenForEnemies                                    ;B4BC90;
@@ -6358,7 +6343,6 @@ endif
     STX.B SpriteObjectIndex                                              ;B4BC98;
 
   .loop:
-    LDX.B SpriteObjectIndex                                              ;B4BC9B;
     LDA.L SpriteObjects_InstListPointers,X                               ;B4BC9E;
     BEQ .next                                                            ;B4BCA2;
     LDA.L SpriteObjects_DisableFlags,X                                   ;B4BCA4;
@@ -6370,15 +6354,12 @@ endif
     STA.L SpriteObjects_InstructionsTimers,X                             ;B4BCB4;
     BNE .next                                                            ;B4BCB8;
     LDA.L SpriteObjects_InstListPointers,X                               ;B4BCBA;
-    INC                                                                  ;B4BCBE;
-    INC                                                                  ;B4BCBF;
-    INC                                                                  ;B4BCC0;
-    INC                                                                  ;B4BCC1;
+    CLC
+    ADC.W #$0004
     STA.L SpriteObjects_InstListPointers,X                               ;B4BCC2;
     TAX                                                                  ;B4BCC6;
     LDA.L SpriteObjectInstLists,X                                        ;B4BCC7;
-    CMP.W #$8000                                                         ;B4BCCB;
-    BPL .ASMInstruction                                                  ;B4BCCE;
+    BMI .ASMInstruction
     LDX.B SpriteObjectIndex                                              ;B4BCD0;
     STA.L SpriteObjects_InstructionsTimers,X                             ;B4BCD3;
 
@@ -6387,30 +6368,24 @@ endif
     DEC                                                                  ;B4BCDA;
     DEC                                                                  ;B4BCDB;
     STA.B SpriteObjectIndex                                              ;B4BCDC;
+    TAX
     BPL .loop                                                            ;B4BCDF;
-    BRA .return                                                          ;B4BCE1;
+
+  .return:
+    RTL
 
   .ASMInstruction:
     STA.B DP_Temp12                                                      ;B4BCE3;
     PEA.W .next-1                                                        ;B4BCE5;
     JMP.W (DP_Temp12)                                                    ;B4BCE8;
 
-  .return:
-    PLB                                                                  ;B4BCEB;
-    PLP                                                                  ;B4BCEC;
-    PLY                                                                  ;B4BCED;
-    PLX                                                                  ;B4BCEE;
-    RTL                                                                  ;B4BCEF;
-
 
 ;;; $BCF0: Sprite object instruction - go back 4 bytes ;;;
 Instruction_SpriteObject_GoBack4Bytes:
     LDX.B SpriteObjectIndex                                              ;B4BCF0;
     LDA.L SpriteObjects_InstListPointers,X                               ;B4BCF3;
-    DEC                                                                  ;B4BCF7;
-    DEC                                                                  ;B4BCF8;
-    DEC                                                                  ;B4BCF9;
-    DEC                                                                  ;B4BCFA;
+    SEC
+    SBC.W #$0004
     STA.L SpriteObjects_InstListPointers,X                               ;B4BCFB;
     LDA.W #$7FFF                                                         ;B4BCFF;
     STA.L SpriteObjects_InstructionsTimers,X                             ;B4BD02;

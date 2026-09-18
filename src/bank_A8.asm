@@ -811,7 +811,9 @@ InitAI_Evir:
 ;;; $8838: Set evir facing direction ;;;
 SetEvirFacingDirection:
     LDX.B EnemyIndex                                                     ;A88838;
-    JSL.L Get_SamusX_minus_EnemyX                                        ;A8883B;
+    LDA.B SamusXPosition
+    SEC
+    SBC.W Enemy.XPosition,X
     BPL .SamusToTheRight                                                 ;A8883F;
     LDA.W #$0000                                                         ;A88841;
     STA.W Evir.facingDirection,X                                         ;A88844;
@@ -1128,29 +1130,41 @@ Function_EvirProjectile_Regenerating:
 StartEvirProjectileRegeneratingIfFarOffScreen:
     LDX.B EnemyIndex                                                     ;A88AB1;
     LDA.W #$0100                                                         ;A88AB4;
-    JSL.L CheckIfEnemyCenterIsOverAPixelsOffScreen                       ;A88AB7;
-    BEQ .return                                                          ;A88ABB;
+;;; $ADA3: Check if enemy center is over [A] pixels off-screen ;;;
+    LDA.W Enemy.XPosition,X
+    CLC
+    ADC.W #$0100
+    CMP.B Layer1XPosition
+    BMI SetEvirInstList_return
+    LDA.B Layer1XPosition
+    CLC
+    ADC.W #$0200
+    CMP.W Enemy.XPosition,X
+    BMI SetEvirInstList_return
+    LDA.W Enemy.YPosition,X
+    CLC
+    ADC.W #$0100
+    CMP.B Layer1YPosition
+    BMI SetEvirInstList_return
+    LDA.B Layer1YPosition
+    CLC
+    ADC.W #$0200
+    CMP.W Enemy.YPosition,X
+    BMI SetEvirInstList_return
     LDA.W Enemy[-2].freezeTimer,X                                        ;A88ABD;
-    BNE .return                                                          ;A88AC0;
+    BNE SetEvirInstList_return
     LDA.W #$0000                                                         ;A88AC2;
     STA.L Evir.movingFlag,X                                              ;A88AC5;
     LDA.W #$0001                                                         ;A88AC9;
     STA.L Evir.regenerationFlag,X                                        ;A88ACC;
     LDA.W #Function_EvirProjectile_Regenerating                          ;A88AD0;
     STA.W Evir.function,X                                                ;A88AD3;
-    LDA.W #$0001                                                         ;A88AD6;
-    STA.L Evir.regenerationFlag,X                                        ;A88AD9;
     LDA.W #InstList_Evir_Projectile_Regenerating_0                       ;A88ADD;
-    STA.L Evir.newInstList,X                                             ;A88AE0;
-    JSR.W SetEvirInstList                                                ;A88AE4;
-
-  .return:
-    RTS                                                                  ;A88AE7;
+    STA.L Evir.newInstList,X                                             ;A88AE0; fallthrough to SetEvirInstList
 
 
 ;;; $8AE8: Set evir instruction list ;;;
 SetEvirInstList:
-    LDX.B EnemyIndex                                                     ;A88AE8;
     LDA.L Evir.newInstList,X                                             ;A88AEB;
     CMP.L Evir.instList,X                                                ;A88AEF;
     BEQ .return                                                          ;A88AF3;
@@ -3682,7 +3696,6 @@ MainAI_YappingMaw:
 
 ;;; $A235: Yapping maw function - neutral ;;;
 Function_YappingMaw_Neutral:
-    LDX.B EnemyIndex                                                     ;A8A235;
     LDA.W Enemy.XPosition,X                                              ;A8A238;
     STA.W Temp_XPosition                                                 ;A8A23B;
     LDA.W Enemy.YPosition,X                                              ;A8A23E;
@@ -3691,8 +3704,68 @@ Function_YappingMaw_Neutral:
     STA.W Temp_SamusXPosition                                            ;A8A247;
     LDA.B SamusYPosition                                                 ;A8A24A;
     STA.W Temp_SamusYPosition                                            ;A8A24D;
-    JSL.L CalculateDistanceAndAngleOfSamusFromEnemy                      ;A8A250;
-    JSL.L NegateA_A0B067                                                 ;A8A254;
+;;; $ACA8: Calculate distance and angle of Samus from enemy ;;;
+    LDA.W Temp_SamusXPosition
+    SEC
+    SBC.W Temp_XPosition
+    STA.W Temp_XDistanceFromEnemyToSamus
+    BPL +
+    EOR.W #$FFFF
+    INC
+
++   STA.B DP_Temp12
+    STA.W Temp_AbsoluteXDistanceFromEnemyToSamus
+    LDA.W Temp_SamusYPosition
+    SEC
+    SBC.W Temp_YPosition
+    STA.W Temp_YDistanceFromEnemyToSamus
+    BPL +
+    EOR.W #$FFFF
+    INC
+
++   STA.B DP_Temp14
+    STA.W Temp_AbsoluteYDistanceFromEnemyToSamus
+    JSL.L CalculateAngleOf_12_14_Offset
+    STA.W Temp_AngleFromEnemyToSamusReflectedDownRight
+    LDA.W Temp_AbsoluteXDistanceFromEnemyToSamus
+    STA.W Temp_XPosition
+    LDA.W Temp_AngleFromEnemyToSamusReflectedDownRight
+    JSL.L EightBitNegativeSineMultiplication_A0B0C6
+    BIT.W #$8000
+    BEQ +
+    EOR.W #$FFFF
+    INC
+
++   STA.W Temp_XSquaredDividedByRadius
+    LDA.W Temp_AbsoluteYDistanceFromEnemyToSamus
+    STA.W Temp_XPosition
+    LDA.W Temp_AngleFromEnemyToSamusReflectedDownRight
+    JSL.L EightBitCosineMultiplication_A0B0B2
+    BIT.W #$8000
+    BEQ +
+    EOR.W #$FFFF
+    INC
+
++   CLC
+    ADC.W Temp_XSquaredDividedByRadius
+    TAY
+    LDA.W Temp_XDistanceFromEnemyToSamus
+    STA.B DP_Temp12
+    LDA.W Temp_YDistanceFromEnemyToSamus
+    STA.B DP_Temp14
+    JSL.L CalculateAngleOf_12_14_Offset
+    STA.W Temp_AngleFromEnemyToSamus
+;;; $B067: A = |[A]| ;;;
+    TYA
+    AND.W #$8000
+    BEQ .reload
+    TYA
+    EOR.W #$FFFF
+    INC
+    TAY
+
+  .reload
+    TYA
     STA.L YappingMaw.targetLength,X                                      ;A8A258;
     CMP.W #$0020                                                         ;A8A25C;
     BMI .pointBlank                                                      ;A8A25F;
@@ -3719,7 +3792,6 @@ Function_YappingMaw_Neutral:
 
 ;;; $A28C: Yapping maw function - attack ;;;
 Function_YappingMaw_Attack:
-    LDX.B EnemyIndex                                                     ;A8A28C;
     STZ.W YappingMaw.angle,X                                             ;A8A28F;
     STZ.W YappingMaw.subAngle,X                                          ;A8A292;
     STZ.W YappingMaw.angularSpeedTableIndex,X                            ;A8A295;
@@ -3896,7 +3968,6 @@ Function_YappingMaw_Attacking:
 ;     Enemy segment Y offset = ([enemy length] * cos([enemy segment angle] * pi / 80h) - [enemy origin X position]) * -sin([enemy target angle] * pi / 80h) + [enemy length] / 2 * -sin([enemy segment angle] * pi / 80h) - [enemy origin Y position]
 
 ; TODO: deserving of a diagram? need to verify with lua script also
-    LDX.B EnemyIndex                                                     ;A8A445;
     LDA.W YappingMaw.angle,X                                             ;A8A448;
     LSR                                                                  ;A8A44B;
     LSR                                                                  ;A8A44C;
@@ -4013,7 +4084,7 @@ Function_YappingMaw_Attacking:
     LDA.W YappingMaw.angle,X                                             ;A8A5AE;
     BMI .cooldown                                                        ;A8A5B4;
     CMP.W #$0080                                                         ;A8A5B6;
-    BMI .gotoMoveSamus                                                   ;A8A5B9;
+    BMI .moveSamus
     LDA.W #$0080                                                         ;A8A5BB;
     STA.W YappingMaw.angle,X                                             ;A8A5BE;
     STZ.W YappingMaw.subAngle,X                                          ;A8A5C1;
@@ -4021,7 +4092,7 @@ Function_YappingMaw_Attacking:
     INC.W YappingMaw.angularSpeedTableIndex,X                            ;A8A5C7;
     INC.W YappingMaw.angularSpeedTableIndex,X                            ;A8A5CA;
     INC.W YappingMaw.angularSpeedTableIndex,X                            ;A8A5CD;
-    BRA .gotoMoveSamus                                                   ;A8A5D0;
+    BRA .moveSamus
 
   .cooldown:
     LDA.W #Function_YappingMaw_Cooldown                                  ;A8A5D2;
@@ -4033,10 +4104,9 @@ Function_YappingMaw_Attacking:
     BEQ .upRight                                                         ;A8A5E6;
     CMP.W #$000C                                                         ;A8A5E8;
     BEQ .upLeft                                                          ;A8A5EB;
-    BRA .up                                                              ;A8A5ED;
-
-  .gotoMoveSamus:
-    BRA .moveSamus                                                       ;A8A5EF;
+    LDA.W #InstList_YappingMaw_Cooldown_FacingUp_0
+    STA.W Enemy.instList,X
+    BRA .upMerge
 
   .upRight:
     LDA.W #InstList_YappingMaw_Cooldown_FacingUpRight                    ;A8A5F1;
@@ -4046,11 +4116,6 @@ Function_YappingMaw_Attacking:
   .upLeft:
     LDA.W #InstList_YappingMaw_Cooldown_FacingUpLeft_0                   ;A8A5F9;
     STA.W Enemy.instList,X                                               ;A8A5FC;
-    BRA .upMerge                                                         ;A8A5FF;
-
-  .up:
-    LDA.W #InstList_YappingMaw_Cooldown_FacingUp_0                       ;A8A601;
-    STA.W Enemy.instList,X                                               ;A8A604;
 
   .upMerge:
     LDA.W Enemy.init1,X                                                  ;A8A607;
@@ -4075,12 +4140,12 @@ Function_YappingMaw_Attacking:
   .down:
     LDA.W #InstList_YappingMaw_Cooldown_FacingDown_0                     ;A8A62C;
     STA.W Enemy.instList,X                                               ;A8A62F;
-    BRA .return                                                          ;A8A632;
+    RTS
 
   .moveSamus:
     LDA.L YappingMaw.grabbingSamusFlag,X                                 ;A8A634;
     BEQ .return                                                          ;A8A638;
-    JSR.W MoveSamusWithYappingMawPincers                                 ;A8A63A;
+    JMP.W MoveSamusWithYappingMawPincers
 
   .return:
     RTS                                                                  ;A8A63D;
@@ -4137,12 +4202,12 @@ Function_YappingMaw_Cooldown:
 ;      which is only 3 entries long
 ;      The resulting jump pointer is loaded from $90:D57B, which happens to be $FEAD, which is in the free space of bank $90
 ;      Eventually, the PC lands on $0001 and starts executing from WRAM where a crash is inevitable
-    LDX.B EnemyIndex                                                     ;A8A68A;
     LDA.L YappingMaw.grabbingSamusFlag,X                                 ;A8A68D;
     BEQ .notGrabbingSamus                                                ;A8A691;
     JSR.W MoveSamusWithYappingMawPincers                                 ;A8A693;
 
   .notGrabbingSamus:
+    LDX.B EnemyIndex
     DEC.W Enemy.var4,X                                                   ;A8A696;
     BPL .return                                                          ;A8A699;
     LDA.W PoseInputHandler                                               ;A8A69B;
@@ -5225,7 +5290,9 @@ Function_Magdollite_Init_Master:
     STA.L Magdollite.emergeNotReadyFlag,X                                ;A8AFAA;
     LDA.W Enemy.YPosition,X                                              ;A8AFAE;
     STA.L Magdollite.YSpawnPosition,X                                    ;A8AFB1;
-    JSL.L Get_SamusX_minus_EnemyX                                        ;A8AFB5;
+    LDA.B SamusXPosition
+    SEC
+    SBC.W Enemy.XPosition,X
     BPL .keepLeft                                                        ;A8AFB9;
     LDA.W #$0001                                                         ;A8AFBB;
     STA.L Magdollite.headDirection,X                                     ;A8AFBE;
@@ -5400,7 +5467,9 @@ Function_Magdollite_WaitForSamusToGetNear:
     STA.L Magdollite.headDirection,X                                     ;A8B120;
     LDA.W #InstList_Magdollite_Idling_FacingLeft                         ;A8B124;
     STA.W Magdollite.newInstList,X                                       ;A8B127;
-    JSL.L Get_SamusX_minus_EnemyX                                        ;A8B12A;
+    LDA.B SamusXPosition
+    SEC
+    SBC.W Enemy.XPosition,X
     BMI .facingDirectionChosen                                           ;A8B12E;
     LDA.W #InstList_Magdollite_Idling_FacingRight                        ;A8B130;
     STA.W Magdollite.newInstList,X                                       ;A8B133;
@@ -5456,7 +5525,9 @@ Function_Magdollite_WaitForOtherPartsToFinish:
     BNE .return                                                          ;A8B19A;
     LDA.W #InstList_Magdollite_UnformBasePillar_SplashBackToIdle_Left_0  ;A8B19C;
     STA.W Magdollite.newInstList,X                                       ;A8B19F;
-    JSL.L Get_SamusX_minus_EnemyX                                        ;A8B1A2;
+    LDA.B SamusXPosition
+    SEC
+    SBC.W Enemy.XPosition,X
     BMI .facingDirectionChosen                                           ;A8B1A6;
     LDA.W #InstList_Magdollite_UnformBasePillar_SplashBackToIdle_Right_0 ;A8B1A8;
     STA.W Magdollite.newInstList,X                                       ;A8B1AB;
@@ -5477,7 +5548,9 @@ Function_Magdollite_UnformBasePillarBackToHeadIdling:
     BNE .return                                                          ;A8B1BF;
     LDA.W #InstList_Magdollite_Idling_FacingLeft                         ;A8B1C1;
     STA.W Magdollite.newInstList,X                                       ;A8B1C4;
-    JSL.L Get_SamusX_minus_EnemyX                                        ;A8B1C7;
+    LDA.B SamusXPosition
+    SEC
+    SBC.W Enemy.XPosition,X
     BMI .facingDirectionChosen                                           ;A8B1CB;
     LDA.W #InstList_Magdollite_Idling_FacingRight                        ;A8B1CD;
     STA.W Magdollite.newInstList,X                                       ;A8B1D0;
@@ -5692,7 +5765,9 @@ Function_Magdollite_Slave2_SetToThrowFireballsAfterGrowing:
     STA.W Magdollite.newInstList,X                                       ;A8B362;
     LDA.W #$0000                                                         ;A8B365;
     STA.W Magdollite.handDirection,X                                     ;A8B368;
-    JSL.L Get_SamusX_minus_EnemyX                                        ;A8B36B;
+    LDA.B SamusXPosition
+    SEC
+    SBC.W Enemy.XPosition,X
     BMI .directionChosen                                                 ;A8B36F;
     LDA.W #InstList_Magdollite_ThrowFireballs_FacingRight                ;A8B371;
     STA.W Magdollite.newInstList,X                                       ;A8B374;
@@ -6197,7 +6272,9 @@ InitAI_Beetom:
     STA.L Beetom.initialLungeYSpeedIndex,X                               ;A8B7CD;
     LDA.W #InstList_Beetom_Crawling_FacingRight_0                        ;A8B7D1;
     STA.L Beetom.instList,X                                              ;A8B7D4;
-    JSL.L Get_SamusX_minus_EnemyX                                        ;A8B7D8;
+    LDA.B SamusXPosition
+    SEC
+    SBC.W Enemy.XPosition,X
     BPL .SamusToTheLeft                                                  ;A8B7DC;
     LDA.W #InstList_Beetom_Crawling_FacingLeft_0                         ;A8B7DE;
     STA.L Beetom.instList,X                                              ;A8B7E1;
@@ -6382,7 +6459,9 @@ Function_Beetom_DecideAction_SamusInProximity:
     STA.W Beetom.function,X                                              ;A8B923;
     LDA.W #$0001                                                         ;A8B926;
     STA.L Beetom.direction,X                                             ;A8B929;
-    JSL.L Get_SamusX_minus_EnemyX                                        ;A8B92D;
+    LDA.B SamusXPosition
+    SEC
+    SBC.W Enemy.XPosition,X
     BPL .SamusToTheLeft                                                  ;A8B931;
     LDA.W #InstList_Beetom_Hop_FacingLeft                                ;A8B933;
     STA.L Beetom.instList,X                                              ;A8B936;
@@ -10212,7 +10291,7 @@ Negate_1E_1C_A8DAF6:
 ; Actual result is as follows:
 ;     If [$1E].[$1C] = 0.0:
 ;         Return
-;     
+;
 ;     If [$1C] != 0:
 ;         $1E = -[$1E].[$1C]
 ;     Else:
@@ -11182,7 +11261,9 @@ ChooseAtomicYMovementFunction:
     LDX.B EnemyIndex                                                     ;A8E3D9;
     LDA.W #Function_Atomic_MoveUp                                        ;A8E3DC;
     STA.W Atomic.XMovementFunction,X                                     ;A8E3DF;
-    JSL.L Get_SamusY_minus_EnemyY                                        ;A8E3E2;
+    LDA.B SamusYPosition
+    SEC
+    SBC.W Enemy.YPosition,X
     BMI .return                                                          ;A8E3E6;
     LDA.W #Function_Atomic_MoveDown                                      ;A8E3E8;
     STA.W Atomic.XMovementFunction,X                                     ;A8E3EB;
@@ -11196,7 +11277,9 @@ ChooseAtomicXMovementFunction:
     LDX.B EnemyIndex                                                     ;A8E3EF;
     LDA.W #Function_Atomic_MoveLeft                                      ;A8E3F2;
     STA.W Atomic.YMovementFunction,X                                     ;A8E3F5;
-    JSL.L Get_SamusX_minus_EnemyX                                        ;A8E3F8;
+    LDA.B SamusXPosition
+    SEC
+    SBC.W Enemy.XPosition,X
     BMI .return                                                          ;A8E3FC;
     LDA.W #Function_Atomic_MoveRight                                     ;A8E3FE;
     STA.W Atomic.YMovementFunction,X                                     ;A8E401;
@@ -11782,11 +11865,15 @@ MainAI_FaceBlock:
     STA.W EnemyPaletteCycle_PaletteIndex                                 ;A8E8CA;
     LDA.W FaceBlock.activatedFlag,X                                      ;A8E8CD;
     BNE .return                                                          ;A8E8D0;
-    JSL.L Get_SamusY_minus_EnemyY                                        ;A8E8D2;
+    LDA.B SamusYPosition
+    SEC
+    SBC.W Enemy.YPosition,X
     JSL.L NegateA_A0B067                                                 ;A8E8D6;
     CMP.W Enemy.init0,X                                                  ;A8E8DA;
     BPL .return                                                          ;A8E8DD;
-    JSL.L Get_SamusX_minus_EnemyX                                        ;A8E8DF;
+    LDA.B SamusXPosition
+    SEC
+    SBC.W Enemy.XPosition,X
     STA.W FaceBlock.directionToSamus,X                                   ;A8E8E3;
     JSL.L NegateA_A0B067                                                 ;A8E8E6;
     CMP.W Enemy.init0,X                                                  ;A8E8EA;

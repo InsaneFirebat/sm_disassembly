@@ -9423,11 +9423,10 @@ Instruction_Chozo_SpawnChozoSpikeClearingFootstepProjectile:
     LDA.W Enemy.XPosition,X                                              ;AAE591;
     CLC                                                                  ;AAE594;
     ADC.W $0000,Y                                                        ;AAE595;
-    PHA                                                                  ;AAE598;
+    STA.B DP_Temp2E
     LDA.W Enemy.YPosition,X                                              ;AAE599;
     CLC                                                                  ;AAE59C;
     ADC.W #$001C                                                         ;AAE59D;
-    PHA                                                                  ;AAE5A0;
     JSL.L CalculateTheBlockContainingAPixelPosition                      ;AAE5A1;
     LDA.W CurrentBlockIndex                                              ;AAE5A5;
     CLC                                                                  ;AAE5A8;

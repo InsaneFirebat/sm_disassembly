@@ -140,7 +140,7 @@ EnemyHeaders:
   .deathAnimation: skip 2 ; 22h: Death animation
   .unused24: skip 4 ; 24h: Unused
   .powerBombReaction: skip 2 ; 28h: Power bomb reaction
-  .sidehopperVariantIndex: skip 2 ; 2Ah: Sidehopper variant index. Unused proto instruction list (see $A0:AE7C) for flies, (multi)viola, ripper (ii), Ceres door
+  .sidehopperVariantIndex: skip 2 ; 2Ah: Sidehopper variant index. Unused proto instruction list (see UNUSED_ProtoInstructionListHandler_A0AE7C) for flies, (multi)viola, ripper (ii), Ceres door
   .unused2C: skip 4 ; 2Ch: Unused
   .enemyTouch: skip 2 ; 30h: Enemy touch
   .enemyShot: skip 2 ; 32h: Enemy shot
