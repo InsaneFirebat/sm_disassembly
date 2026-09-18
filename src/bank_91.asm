@@ -7941,7 +7941,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards:
     LDA.B DP_Temp17                                                      ;91C6CB;
     STA.B [DP_Temp00],Y                                                  ;91C6CD;
     INY                                                                  ;91C6CF;
-    LDA.B DP_Temp17                                                      ;91C6D0;
+    LDA.B DP_Temp17                                                      ;91C6D0; >.<
     STA.B [DP_Temp00],Y                                                  ;91C6D2;
     REP #$20                                                             ;91C6D4;
     DEY                                                                  ;91C6D6;

@@ -689,7 +689,7 @@ endif
 
 ;;; $8687: Handle room shaking ;;;
 Handle_Room_Shaking:
-; Enemy projectile shaking is handled by $86:8427
+; Enemy projectile shaking is handled by Get_Values_for_Screen_Shaking
     PHB                                                                  ;A08687;
     PHK
     PLB                                                                  ;A0868C;
@@ -4491,7 +4491,7 @@ EnemyDeath:
   .AIsValid:
     STA.W Temp_DeathExplosionType                                        ;A0A3D0;
     LDY.W #EnemyProjectile_EnemyDeathExplosion                           ;A0A3D6;
-    LDA.W Temp_DeathExplosionType                                        ;A0A3D9;
+    LDA.W Temp_DeathExplosionType                                        ;A0A3D9; >.<
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A0A3DC;
     LDX.B EnemyIndex
     LDA.W Enemy.properties,X                                             ;A0A3E0;
@@ -6976,7 +6976,7 @@ MetroidDeathItemDropRoutine:
     SEC                                                                  ;A0B978;
     SBC.W #$0010                                                         ;A0B979;
     CLC                                                                  ;A0B97C;
-    ADC.L EnemyProjectileData_SpecialDeathItemDropXOriginPosition                                                        ;A0B97D;
+    ADC.L EnemyProjectileData_SpecialDeathItemDropXOriginPosition        ;A0B97D;
     STA.B DP_Temp12                                                      ;A0B981;
     LDA.B RandomNumberSeed                                               ;A0B983;
     AND.W #$1F00                                                         ;A0B986;
@@ -6984,7 +6984,7 @@ MetroidDeathItemDropRoutine:
     SEC                                                                  ;A0B98A;
     SBC.W #$0010                                                         ;A0B98B;
     CLC                                                                  ;A0B98E;
-    ADC.L EnemyProjectileData_SpecialDeathItemDropYOriginPosition                                                        ;A0B98F;
+    ADC.L EnemyProjectileData_SpecialDeathItemDropYOriginPosition        ;A0B98F;
     STA.B DP_Temp14                                                      ;A0B993;
     LDA.W #EnemyHeaders_Metroid                                          ;A0B995;
     JSL.L Spawn_Enemy_Drops                                              ;A0B998;
@@ -9205,7 +9205,7 @@ MoveEnemyRightBy_14_12_ProcessSlopes:
 ;; Returns:
 ;;     Carry: Set if collision, clear otherwise
 
-; Call $A0:C8AD if this routine returns carry clear to adjust the enemy's position for any slopes
+; Call AlignEnemyYPositionWIthNonSquareSlope if this routine returns carry clear to adjust the enemy's position for any slopes
 ; Used by yard and Wrecked Ship orange zoomer
     LDA.W #$8000                                                         ;A0C6A4;
     STA.B DP_Temp20                                                      ;A0C6A7;

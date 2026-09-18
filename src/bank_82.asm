@@ -12489,7 +12489,7 @@ Spawn_Door_Closing_PLM:
     LDX.W DoorPointer                                                    ;82E909;
     LDA.L DoorHeaders_doorcapXBlocks,X                                   ;82E90C;
     STA.B DP_Temp14                                                      ;82E910;
-    LDX.W #$0012                                                         ;82E912;
+    LDX.W #DP_Temp12                                                     ;82E912; causes some harmless garbage reads
     JSL.L Spawn_Room_PLM                                                 ;82E915;
 
   .return:
@@ -13866,8 +13866,8 @@ GameOptionsMenu_7_ControllerSettings:
     dw GameOptions_ControllerSettings_ResetToDefault                     ;82F1D9;
 
   .backOnTrack:
-    TAY                                                                  ;82F1DB;
 if !DEBUG
+    TAY                                                                  ;82F1DB;
     BEQ .otherReturn                                                     ;82F1DC;
     LDA.W MenuOptionIndex                                                ;82F1DE;
     CMP.W #$0008                                                         ;82F1E1;

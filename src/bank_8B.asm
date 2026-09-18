@@ -2667,7 +2667,7 @@ Initialise_IO_Registers_and_Display_Nintendo_Logo:
     STZ.W $420B                                                          ;8B9190;
     STZ.W $420C                                                          ;8B9193;
     STZ.B DP_HDMAEnable                                                  ;8B9196;
-    LDA.B #$01                                                           ;8B9198;
+    LDA.B #$01                                                           ;8B9198; >.<
     STA.W $420D                                                          ;8B919A;
     LDA.B #$03                                                           ;8B919F;
     STA.W $2101                                                          ;8B91A1;
@@ -3549,7 +3549,7 @@ Process_CinematicBGObject_InstList:
 ; (marked "terminate processing cinematic BG object")
     JSR.W (CinematicBGObject_PreInstructions,X)                          ;8B9659;
     PHB                                                                  ;8B965C;
-    PEA.W CinematicBGObjectInstLists>>8&$FF00                            ;8B965D;
+    PEA.W CinematicBGObjectInstLists>>8                                  ;8B965D;
     PLB                                                                  ;8B9660;
     PLB                                                                  ;8B9661;
     LDX.W CinematicBGObject_Index                                        ;8B9662;

@@ -6583,7 +6583,7 @@ Kill_Projectile:
     TYX                                                                  ;90AE2C;
 
   .missile:
-    JSL.L PartOfKillProjectile_QueueSFX_SetInstruction                   ;90AE2D;
+    JSL.L Initialize_Beam_Missile_Explosion                              ;90AE2D;
     LDA.W #RTS_90B169                                                    ;90AE31;
     STA.W SamusProjectile_PreInstructions,X                              ;90AE34;
     RTL                                                                  ;90AE39;
@@ -13444,7 +13444,7 @@ endif
   .noKnockback:
     LDA.W BombJumpDirection                                              ;90DE78;
     BEQ .returnLower                                                     ;90DE7B;
-    JMP.W SerupBombJump
+    JMP.W SetupBombJump
 
   .returnLower:
     RTS                                                                  ;90DE81;
@@ -13688,7 +13688,7 @@ HandleKnockbackVerticalCollision:
 
 
 ;;; $DF99: Set up bomb jump ;;;
-SerupBombJump:
+SetupBombJump:
     LDA.W BombJumpDirection                                              ;90DF99;
     BIT.W #$FF00                                                         ;90DF9C;
     BNE .return                                                          ;90DF9F;

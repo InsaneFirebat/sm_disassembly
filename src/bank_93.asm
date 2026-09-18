@@ -69,6 +69,9 @@ InitializeProjectile:
 
 ;;; $8071: Initialise super missile link ;;;
 InitializeSuperMissileLink:
+;; Parameters:
+;;     X: Projectile index
+
 ; Instruction list is InstList_SamusProjectile_SuperMissileLink (loop of single instruction with 8x8 radius and dummy empty spritemap)
     PHB                                                                  ;938072;
     PHK                                                                  ;938073;
@@ -93,6 +96,8 @@ InitializeSuperMissileLink:
 
 ;;; $80A0: Initialise (power) bomb ;;;
 InitializeBomb:
+;; Parameters:
+;;     X: Projectile index
     PHB                                                                  ;9380A1;
     PHK                                                                  ;9380A2;
     PLB                                                                  ;9380A3;
@@ -178,6 +183,8 @@ PartOfKillProjectile_QueueSFX_SetInstruction:
 
 ;;; $814E: Initialise bomb explosion ;;;
 Initialize_Bomb_Explosion:
+;; Parameters:
+;;     X: Projectile index
     PHB                                                                  ;93814F;
     PHK                                                                  ;938150;
     PLB                                                                  ;938151;
@@ -191,6 +198,8 @@ Initialize_Bomb_Explosion:
 
 ;;; $8163: Initialise shinespark echo or spazer SBA trail projectile ;;;
 Initialize_ShinesparkEcho_or_SpazerSBATrailProjectile:
+;; Parameters:
+;;     X: Projectile index
     PHB                                                                  ;938164;
     PHK                                                                  ;938165;
     PLB                                                                  ;938166;
@@ -222,6 +231,9 @@ Initialize_ShinesparkEcho_or_SpazerSBATrailProjectile:
 
 ;;; $81A4: Initialise SBA projectile ;;;
 InitializeSBAProjectile:
+;; Parameters:
+;;     X: Projectile index
+
 ; Excluding ice SBA, which is run as a regular projectile
     PHB                                                                  ;9381A5;
     PHK                                                                  ;9381A6;
@@ -284,6 +296,8 @@ ProjectileInstructionHandler:
 
 ;;; $822F: Instruction - delete ;;;
 Instruction_SamusProjectile_Delete:
+;; Parameters:
+;;     X: Projectile index
 ; Pulls its return and exits instruction handler
     PLA
     PLB
@@ -292,6 +306,10 @@ Instruction_SamusProjectile_Delete:
 
 ;;; $8239: Instruction - go to [[Y]] ;;;
 Instruction_SamusProjectile_GotoY:
+;; Parameters:
+;;     Y: Pointer to instruction arguments
+;; Returns:
+;;     Y: Pointer to next instruction
     LDA.W $0000,Y                                                        ;93823B;
     TAY                                                                  ;93823E;
     RTS                                                                  ;93823F;
@@ -300,6 +318,11 @@ Instruction_SamusProjectile_GotoY:
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $8240: Unused. Instruction - go to [[Y] + 2] if [bomb timer] <= [[Y]] else go to [[Y] + 4] ;;;
 UNUSED_Instruction_SamusProj_GotoY_BasedOnBombTimer_938240:
+;; Parameters:
+;;     X: Projectile index
+;;     Y: Pointer to instruction arguments
+;; Returns:
+;;     Y: Pointer to next instruction
     REP #$30                                                             ;938240;
     LDA.W $0000,Y                                                        ;938242;
     CMP.W SamusProjectile_BombTimers-$A,X                                ;938245;

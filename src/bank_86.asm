@@ -15697,7 +15697,7 @@ PLM_MiscDust_XYOffsetTable_minY:
 InitAI_EnemyProj_MiscDustPLM:
 ;; Parameters:
 ;;     Y: Enemy projectile index
-;;     EnemyProjectile_InitParam0 low: Index. Range 0..1Dh. Only Ah (corpse dust cloud) and Bh (eye door sweat drop) are used. See $E468 for other values
+;;     EnemyProjectile_InitParam0 low: Index. Range 0..1Dh. Only Ah (corpse dust cloud) and Bh (eye door sweat drop) are used. See InitAI_EnemyProj_MiscDust for other values
 ;;     EnemyProjectile_InitParam0 high: X/Y offset table index. Range 0..4. Only 0 and 3 are used
     LDA.W EnemyProjectile_InitParam0                                     ;86E4A6;
     AND.W #$00FF                                                         ;86E4A9;
