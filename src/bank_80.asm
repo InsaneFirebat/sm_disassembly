@@ -5349,7 +5349,6 @@ HandleScrollZones_HorizontalAutoscrolling:
 ;         Layer 1 X position = ProposedScrolledLayer1Position  rounded to right scroll boundary
 ; }
     LDA.W TimeIsFrozenFlag                                               ;80A52C;
-    ORA.W TimeIsFrozenFlag+1                                             ;80A52F;
     BEQ +                                                                ;80A532;
     JMP.W .return                                                        ;80A534;
 
@@ -5619,7 +5618,6 @@ HandleScrollZones_VerticalAutoscrolling:
 ;     }
 ; }
     LDA.W TimeIsFrozenFlag                                               ;80A735;
-    ORA.W TimeIsFrozenFlag+1                                             ;80A738;
     BEQ +                                                                ;80A73B;
     JMP.W .return                                                        ;80A73D;
 

@@ -5176,7 +5176,7 @@ SamusMovement_SpinJumping:
     BNE .return                                                          ;90A4FF;
     LDA.W #$0004                                                         ;90A501;
     STA.W ContactDamageIndex                                             ;90A504;
-    RTS
+    JMP.W Samus_SpinJumping_Movement
 
   .screwAttack:
     LDA.W #$0003                                                         ;90A509;
