@@ -11739,25 +11739,27 @@ DoorTransitionFunction_ScrollScreenToAlignment:
     LDA.W DoorDirection                                                  ;82E315;
     BIT.W #$0002                                                         ;82E318;
     BNE .vertical                                                        ;82E31B;
-    LDA.W Layer1YSubPosition+1                                           ;82E31D;
+    LDA.W Layer1YPosition-1                                              ;82E31D;
     BIT.W #$FF00                                                         ;82E320;
     BEQ .done                                                            ;82E323;
-    BMI +                                                                ;82E325;
+    BMI .scrollUp                                                        ;82E325;
     DEC.W Layer1YPosition                                                ;82E327;
     BRA .return                                                          ;82E32A;
 
-+   INC.W Layer1YPosition                                                ;82E32C;
+  .scrollUp:
+    INC.W Layer1YPosition                                                ;82E32C;
     BRA .return                                                          ;82E32F;
 
   .vertical:
-    LDA.W Layer1XSubPosition+1                                           ;82E331;
+    LDA.W Layer1XPosition-1                                              ;82E331;
     BIT.W #$FF00                                                         ;82E334;
     BEQ .done                                                            ;82E337;
-    BMI +                                                                ;82E339;
+    BMI .scrollRight                                                     ;82E339;
     DEC.W Layer1XPosition                                                ;82E33B;
     BRA .return                                                          ;82E33E;
 
-+   INC.W Layer1XPosition                                                ;82E340;
+  .scrollRight:
+    INC.W Layer1XPosition                                                ;82E340;
 
   .return:
     JSL.L Calc_Layer2Position_BGScrolls_UpdateBGGraphics_WhenScrolling   ;82E343;
@@ -12637,7 +12639,7 @@ Spawn_Door_Closing_PLM:
     LDX.W DoorPointer                                                    ;82E909;
     LDA.L DoorHeaders_doorcapXBlocks,X                                   ;82E90C;
     STA.B DP_Temp14                                                      ;82E910;
-    LDX.W #$0012                                                         ;82E912;
+    LDX.W #DP_Temp12                                                     ;82E912; causes some harmless garbage reads
     JSL.L Spawn_Room_PLM                                                 ;82E915;
 
   .return:
@@ -13999,7 +14001,9 @@ GameOptionsMenu_7_ControllerSettings:
     RTS                                                                  ;82F1C4;
 
   .misplacedCode:
+if !DEBUG
     LDA.B DP_Controller2New                                              ;82F1C5;
+endif
     BRA .backOnTrack                                                     ;82F1C7;
 
   .pointers:
@@ -14014,8 +14018,8 @@ GameOptionsMenu_7_ControllerSettings:
     dw GameOptions_ControllerSettings_ResetToDefault                     ;82F1D9;
 
   .backOnTrack:
-    TAY                                                                  ;82F1DB;
 if !DEBUG
+    TAY                                                                  ;82F1DB;
     BEQ .otherReturn                                                     ;82F1DC;
     LDA.W MenuOptionIndex                                                ;82F1DE;
     CMP.W #$0008                                                         ;82F1E1;

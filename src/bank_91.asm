@@ -8220,7 +8220,7 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards:
     LDA.B DP_Temp17                                                      ;91C6CB;
     STA.B [DP_Temp00],Y                                                  ;91C6CD;
     INY                                                                  ;91C6CF;
-    LDA.B DP_Temp17                                                      ;91C6D0;
+    LDA.B DP_Temp17                                                      ;91C6D0; >.<
     STA.B [DP_Temp00],Y                                                  ;91C6D2;
     REP #$20                                                             ;91C6D4;
     DEY                                                                  ;91C6D6;
@@ -10686,11 +10686,11 @@ InitializeSuitPickupHDMA:
     SEP #$30                                                             ;91D696;
     LDA.B #$13                                                           ;91D698;
     STA.B DP_MainScreenLayers                                            ;91D69A;
-    LDA.B #$13                                                           ;91D69C;
+    LDA.B #$13                                                           ;91D69C; >.<
     STA.B DP_WindowAreaMainScreen                                        ;91D69E;
     LDA.B #$04                                                           ;91D6A0;
     STA.B DP_SubScreenLayers                                             ;91D6A2;
-    LDA.B #$04                                                           ;91D6A4;
+    LDA.B #$04                                                           ;91D6A4; >.<
     STA.B DP_WindowAreaSubScreen                                         ;91D6A6;
     LDA.B #$10                                                           ;91D6A8;
     STA.B DP_NextGameplayColorMathA                                      ;91D6AA;

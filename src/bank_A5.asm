@@ -7561,7 +7561,7 @@ if !PAL != 0
 endif
     LDA.W $0000,Y                                                        ;A5E897;
     JSL.L regional(QueueSound_Lib2_Max6, QueueSound_Lib2_Max1)           ;A5E89A;
-    
+
 +   PLY                                                                  ;A5E89E;
     PLX                                                                  ;A5E89F;
     INY                                                                  ;A5E8A0;
@@ -7976,11 +7976,11 @@ if !PAL != 0
     INC A
     STA.L SporeSpawn.angle
     BRA ++
-    
+
 +   LDA.L SporeSpawn.angle
     DEC A
     STA.L SporeSpawn.angle
-    
+
 ++
 endif
     LDA.L SporeSpawn.angle                                               ;A5EB8A;

@@ -1112,7 +1112,7 @@ Function_Metaree_Burrowing:
     LDA.W Metaree.burrowTimer,X                                          ;A38A64;
     CMP.W #regional($0008, $0005)                                        ;A38A67;
     BNE .timerNot8                                                       ;A38A6A;
-    LDX.W EnemyIndex                                                     ;A38A6C;
+    LDX.W EnemyIndex                                                     ;A38A6C; >.<
     LDY.W #EnemyProjectile_MetalSkreeParticles_DownRight                 ;A38A6F;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A38A72;
     LDY.W #EnemyProjectile_MetalSkreeParticles_UpRight                   ;A38A76;
