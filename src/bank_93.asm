@@ -78,6 +78,9 @@ InitializeProjectile:
 
 ;;; $8071: Initialise super missile link ;;;
 InitializeSuperMissileLink:
+;; Parameters:
+;;     X: Projectile index
+
 ; Instruction list is InstList_SamusProjectile_SuperMissileLink (loop of single instruction with 8x8 radius and dummy empty spritemap)
     PHP                                                                  ;938071;
     PHB                                                                  ;938072;
@@ -109,6 +112,8 @@ InitializeSuperMissileLink:
 
 ;;; $80A0: Initialise (power) bomb ;;;
 InitializeBomb:
+;; Parameters:
+;;     X: Projectile index
     PHP                                                                  ;9380A0;
     PHB                                                                  ;9380A1;
     PHK                                                                  ;9380A2;
@@ -137,9 +142,12 @@ InitializeBomb:
     RTL                                                                  ;9380CE;
 
 
-;;; $80CF: Part of kill projectile - queue sound effect and set instruction ;;;
-PartOfKillProjectile_QueueSFX_SetInstruction:
-; Called by Kill_Projectile
+;;; $80CF: Initialise beam / missile explosion ;;;
+Initialize_Beam_Missile_Explosion:
+;; Parameters:
+;;     X: Projectile index
+
+; Called by $90:AE06 (kill projectile)
     PHP                                                                  ;9380CF;
     PHB                                                                  ;9380D0;
     PHK                                                                  ;9380D1;
@@ -204,6 +212,8 @@ PartOfKillProjectile_QueueSFX_SetInstruction:
 
 ;;; $814E: Initialise bomb explosion ;;;
 Initialize_Bomb_Explosion:
+;; Parameters:
+;;     X: Projectile index
     PHP                                                                  ;93814E;
     PHB                                                                  ;93814F;
     PHK                                                                  ;938150;
@@ -220,6 +230,8 @@ Initialize_Bomb_Explosion:
 
 ;;; $8163: Initialise shinespark echo or spazer SBA trail projectile ;;;
 Initialize_ShinesparkEcho_or_SpazerSBATrailProjectile:
+;; Parameters:
+;;     X: Projectile index
     PHP                                                                  ;938163;
     PHB                                                                  ;938164;
     PHK                                                                  ;938165;
@@ -260,6 +272,9 @@ Initialize_ShinesparkEcho_or_SpazerSBATrailProjectile:
 
 ;;; $81A4: Initialise SBA projectile ;;;
 InitializeSBAProjectile:
+;; Parameters:
+;;     X: Projectile index
+
 ; Excluding ice SBA, which is run as a regular projectile
     PHP                                                                  ;9381A4;
     PHB                                                                  ;9381A5;
@@ -289,6 +304,10 @@ InitializeSBAProjectile:
 
 ;;; $81D1: $16 = projectile trail frame ;;;
 Get_ProjectileTrailFrame:
+;; Parameters:
+;;     X: Projectile index
+;; Returns:
+;;     $16: Projectile trail frame. Used to index beam trail offset table, see BeamTrailOffsets_uncharged
     PHP                                                                  ;9381D1;
     PHB                                                                  ;9381D2;
     PHK                                                                  ;9381D3;
@@ -352,6 +371,8 @@ ProjectileInstructionHandler:
 
 ;;; $822F: Instruction - delete ;;;
 Instruction_SamusProjectile_Delete:
+;; Parameters:
+;;     X: Projectile index
     REP #$30                                                             ;93822F;
     JSL.L Clear_Projectile                                               ;938231;
     PLA                                                                  ;938235;
@@ -362,6 +383,10 @@ Instruction_SamusProjectile_Delete:
 
 ;;; $8239: Instruction - go to [[Y]] ;;;
 Instruction_SamusProjectile_GotoY:
+;; Parameters:
+;;     Y: Pointer to instruction arguments
+;; Returns:
+;;     Y: Pointer to next instruction
     REP #$30                                                             ;938239;
     LDA.W $0000,Y                                                        ;93823B;
     TAY                                                                  ;93823E;
@@ -371,6 +396,11 @@ Instruction_SamusProjectile_GotoY:
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $8240: Unused. Instruction - go to [[Y] + 2] if [bomb timer] <= [[Y]] else go to [[Y] + 4] ;;;
 UNUSED_Instruction_SamusProj_GotoY_BasedOnBombTimer_938240:
+;; Parameters:
+;;     X: Projectile index
+;;     Y: Pointer to instruction arguments
+;; Returns:
+;;     Y: Pointer to next instruction
     REP #$30                                                             ;938240;
     LDA.W $0000,Y                                                        ;938242;
     CMP.W SamusProjectile_BombTimers-$A,X                                ;938245;

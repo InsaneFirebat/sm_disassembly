@@ -2843,8 +2843,12 @@ BlockShotBombedGrappledCollisionInsideReaction_VerticalExt:
 
 ;;; $9495: Calculate Samus Y block span ;;;
 CalculateSamusYBlockSpan:
-; A = $1A = $1C = ([Samus Y position] + [Samus Y radius] - 1) / 10h
-;               - ([Samus Y position] - [Samus Y radius]) / 10h
+;; Returns:
+;;     $1A: Number of blocks left to check (0 if final (bottom) block)
+;;     $1C: Samus' Y block span
+
+; $1A = $1C = ([Samus Y position] + [Samus Y radius] - 1) / 10h
+;           - ([Samus Y position] - [Samus Y radius]) / 10h
     LDA.W SamusYPosition                                                 ;949495;
     SEC                                                                  ;949498;
     SBC.W SamusYRadius                                                   ;949499;
@@ -2867,8 +2871,12 @@ CalculateSamusYBlockSpan:
 
 ;;; $94B5: Calculate Samus X block span ;;;
 CalculateSamusXBlockSpan:
-; A = $1A = $1C = ([Samus X position] + [Samus X radius] - 1) / 10h
-;               - ([Samus X position] - [Samus X radius]) / 10h
+;; Returns:
+;;     $1A: Number of blocks left to check (0 if final (rightmost) block)
+;;     $1C: Samus' X block span
+
+; $1A = $1C = ([Samus X position] + [Samus X radius] - 1) / 10h
+;           - ([Samus X position] - [Samus X radius]) / 10h
     LDA.W SamusXPosition                                                 ;9494B5;
     SEC                                                                  ;9494B8;
     SBC.W SamusXRadius                                                   ;9494B9;
@@ -3542,6 +3550,7 @@ CLCRTS_949812:
     CLC                                                                  ;949812;
     RTS                                                                  ;949813;
 
+if !FEATURE_KEEP_UNREFERENCED
 ; Damages Samus, kills her jump height, gives her lava X speed physics
     LDY.W #$0000                                                         ;949814;
     LDA.W PeriodicSubDamage                                              ;949817;
@@ -3582,6 +3591,7 @@ CLCRTS_949812:
     dw $0000                                                             ;949861;
   .data4:
     dw       $0002                                                       ;949863;
+endif
 
 
 ;;; $9865: RTS ;;;
@@ -4141,7 +4151,13 @@ SamusBlockInsideHandling:
 
 ;;; $9C1D: Calculate block at ([$1A] + [$1E], [$1C] + [$20]) ;;;
 CalculateBlockAt_12_1E_1C_20:
-; Every call site sets $1E and $20 to zero
+;; Parameters:
+;;     $1A: X position
+;;     $1C: Y position
+;;     $1E: 0
+;;     $20: 0
+
+; Every call site sets DP_Temp1E and DP_Temp20 to zero
 ; Sets X to zero if block index is calculated successfully (for no reason)
     PHP                                                                  ;949C1D;
     REP #$30                                                             ;949C1E;
@@ -4205,8 +4221,8 @@ DetermineProjectile_Prototype:
 ; Highly likely that this is based on an old model of the projectile system and was supposed to have been entirely abandoned,
 ; but here we are
 
-; The is a frame after the end of a power bomb explosion where this subroutine is called where the projectile type is 0,
-; cause the code at $9C83 to be executed. I doubt this is intentional
+; There is a frame after the end of a power bomb explosion where this subroutine is called where the projectile type is 0,
+; causing the code at $9C83 to be executed. I doubt this is intentional
     PHP                                                                  ;949C73;
     PHB                                                                  ;949C74;
     PHX                                                                  ;949C75;
@@ -4330,6 +4346,10 @@ RTS_949D33:
 
 ;;; $9D34: Move block index X one row up ;;;
 MoveBlockIndexX_OneBlockUp:
+;; Parameters:
+;;     X: Block index
+;; Returns:
+;;     X: New block index
     TXA                                                                  ;949D34;
     SEC                                                                  ;949D35;
     SBC.W RoomWidthBlocks                                                ;949D36;
@@ -4340,6 +4360,10 @@ MoveBlockIndexX_OneBlockUp:
 
 ;;; $9D3E: Move block index X one row down, one column right ;;;
 MoveBlockIndexX_OneRowDown_OneColumnRight:
+;; Parameters:
+;;     X: Block index
+;; Returns:
+;;     X: New block index
     TXA                                                                  ;949D3E;
     SEC                                                                  ;949D3F;
     ADC.W RoomWidthBlocks                                                ;949D40;
@@ -4351,6 +4375,10 @@ MoveBlockIndexX_OneRowDown_OneColumnRight:
 
 ;;; $9D49: Move block index X two columns left ;;;
 MoveBlockIndexX_TwoColumnsLeft:
+;; Parameters:
+;;     X: Block index
+;; Returns:
+;;     X: New block index
     DEX                                                                  ;949D49;
     DEX                                                                  ;949D4A;
     DEX                                                                  ;949D4B;
@@ -4360,6 +4388,11 @@ MoveBlockIndexX_TwoColumnsLeft:
 
 ;;; $9D4E: Move block index X one row down, one column right ;;;
 MoveBlockIndexX_OneRowDown_OneColumRight_duplicate:
+;; Parameters:
+;;     X: Block index
+;; Returns:
+;;     X: New block index
+
 ; Clone of MoveBlockIndexX_OneRowDown_OneColumnRight
     TXA                                                                  ;949D4E;
     SEC                                                                  ;949D4F;
@@ -5154,7 +5187,7 @@ BlockShotReaction_Horizontal:
 ;;     $26: Number of blocks left to check - 1
 ;;     $28: Target number of collisions - 1
 ;; Returns:
-;;     Carry: set if collided with block, clear otherwise
+;;     Carry: Set if collided with block, clear otherwise
 ;;     $26: Remaining number of blocks left to check - 1
 ;;     $28: Remaining target number of collisions - 1
     CPX.W LevelDataSize                                                  ;94A1B5;
@@ -5190,7 +5223,7 @@ BlockShotReaction_Vertical:
 ;;     $26: Number of blocks left to check - 1
 ;;     $28: Target number of collisions - 1
 ;; Returns:
-;;     Carry: set if collided with block, clear otherwise
+;;     Carry: Set if collided with block, clear otherwise
 ;;     $26: Remaining number of blocks left to check - 1
 ;;     $28: Remaining target number of collisions - 1
     CPX.W LevelDataSize                                                  ;94A1D6;
@@ -5279,7 +5312,7 @@ MoveBeamHorizontally_NoWaveBeam:
 ;; Parameters:
 ;;     X: Projectile index
 ;; Returns:
-;;     Carry: set if collided with block, clear otherwise
+;;     Carry: Set if collided with block, clear otherwise
     PHB                                                                  ;94A23B;
     PHX                                                                  ;94A23C;
     PHK                                                                  ;94A23D;
@@ -5373,7 +5406,7 @@ MoveBeamVertically_NoWaveBeam:
 ;; Parameters:
 ;;     X: Projectile index
 ;; Returns:
-;;     Carry: set if collided with block, clear otherwise
+;;     Carry: Set if collided with block, clear otherwise
     PHB                                                                  ;94A2CA;
     PHX                                                                  ;94A2CB;
     PHK                                                                  ;94A2CC;
@@ -5645,7 +5678,7 @@ MoveMissileHorizontally:
 ;; Parameters:
 ;;     X: Projectile index
 ;; Returns:
-;;     Carry: set if collided with block, clear otherwise
+;;     Carry: Set if collided with block, clear otherwise
     PHB                                                                  ;94A46F;
     PHX                                                                  ;94A470;
     PHK                                                                  ;94A471;
@@ -5715,7 +5748,7 @@ MoveMissileVertically:
 ;; Parameters:
 ;;     X: Projectile index
 ;; Returns:
-;;     Carry: set if collided with block, clear otherwise
+;;     Carry: Set if collided with block, clear otherwise
     PHB                                                                  ;94A4D9;
     PHX                                                                  ;94A4DA;
     PHK                                                                  ;94A4DB;
@@ -6655,7 +6688,7 @@ GrappleSwingCollisionReaction:
     STA.W $4202                                                          ;94AA69;
     LDA.W RoomWidthBlocks                                                ;94AA6C;
     STA.W $4203                                                          ;94AA6F;
-    REP #$21                                                             ;94AA72;
+    REP #$21                                                             ;94AA72; carry clear
     LDA.W GrappleCollision_XBlock                                        ;94AA74;
     ADC.W $4216                                                          ;94AA77;
     STA.W CurrentBlockIndex                                              ;94AA7A;
@@ -6799,6 +6832,12 @@ GrappleSwingCollisionReaction_Pointers:
 
 ;;; $ABB0: Grapple swing collision reaction ;;;
 GrappleSwingCollisionReaction_duplicate:
+;; Parameters:
+;;     $0D94: X block
+;;     $0D96: Y block
+;; Returns:
+;;     Carry: Set if collision, clear otherwise
+
 ; Clone of GrappleSwingCollisionReaction
     SEP #$20                                                             ;94ABB0;
     LDA.W GrappleCollision_YBlock                                        ;94ABB2;
@@ -6837,7 +6876,7 @@ GrappleSwingCollisionReaction_duplicate:
 ;;; $ABE6: Grapple swing collision detection due to swinging ;;;
 GrappleSwingCollisionDetectionDueToSwinging:
 ;; Returns:
-;;     Carry: set if collision, clear otherwise
+;;     Carry: Set if collision, clear otherwise
 ;;     GrappleCollision_DistanceFromSamusFeet: Distance of grapple swing collision from Samus' feet. Unit 8px
 
 ; Checks 6(!) points along the 48px line projecting 8px beyond the grapple beam start position
@@ -6884,6 +6923,7 @@ UpdateGrappleBeamStartPositionDuringGrappleSwinging:
 
 ;;; $AC31: Handle grapple beam length change ;;;
 HandleGrappleBeamLengthChange:
+; Carry is ignored by caller
     PHB                                                                  ;94AC31;
     PHK                                                                  ;94AC32;
     PLB                                                                  ;94AC33;
@@ -7589,6 +7629,10 @@ DrawGrappleSegment:
 
 ;;; $B0F4: Instruction - go to [[Y]] ;;;
 Instruction_DrawGrappleBeam_GotoY:
+;; Parameters:
+;;     Y: Pointer to instruction arguments
+;; Returns:
+;;     Y: Pointer to next instruction
     LDA.W $0000,Y                                                        ;94B0F4;
     TAY                                                                  ;94B0F7;
     RTS                                                                  ;94B0F8;

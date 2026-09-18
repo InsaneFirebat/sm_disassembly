@@ -580,7 +580,7 @@ Handle_LayerBlending_Xray_FirefleaRoom:
     STA.B DP_WindowMaskSprite                                            ;8881E3;
     LDA.B #$13                                                           ;8881E5;
     STA.B DP_MainScreenLayers                                            ;8881E7;
-    LDA.B #$04                                                           ;8881E9;
+    LDA.B #$04                                                           ;8881E9; >_<
     STZ.B DP_SubScreenLayers                                             ;8881EB;
     LDA.B #$03                                                           ;8881ED;
     STA.B DP_WindowAreaMainScreen                                        ;8881EF;
