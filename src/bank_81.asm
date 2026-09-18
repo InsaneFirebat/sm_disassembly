@@ -5204,8 +5204,7 @@ DrawAreaSelectMapLabels:
     ASL                                                                  ;81A9A6;
     TAX                                                                  ;81A9A7;
     PHB                                                                  ;81A9A8;
-    LDA.W #MapIcon_PositionTablePointers>>8&$FF00                        ;81A9A9;
-    PHA                                                                  ;81A9AC;
+    PEA.W #MapIcon_PositionTablePointers>>8&$FF00                        ;81A9A9;
     PLB                                                                  ;81A9AD;
     PLB                                                                  ;81A9AE;
     LDA.L SRAMMirror_UsedSaveStationsElevators,X                         ;81A9AF;
@@ -5432,8 +5431,8 @@ FileSelectMap_Index7_AreaSelectMapToRoomSelectMap:
     STA.L ExpandingSquare_BottomSubVelocity                              ;81AB83;
     LDA.W RoomSelectMap_ExpandingSquare_Velocities_bottom,X              ;81AB87;
     STA.L ExpandingSquare_BottomVelocity                                 ;81AB8A;
-    SEP #$20                                                             ;81AB8E;
     JSR.W Setup_FileSelectMap_ExpandingSquareTransition_HDMA             ;81AB90;
+    SEP #$20
     LDA.B #$0C                                                           ;81AB93;
     STA.B DP_HDMAEnable                                                  ;81AB95;
     STA.W $420C                                                          ;81AB97;
@@ -5476,6 +5475,7 @@ Setup_FileSelectMap_ExpandingSquareTransition_HDMA:
     LDA.B #$00                                                           ;81ABEC;
     STA.L ExpandingSquareTransitionWindow1LeftIndirectHDMATable,X        ;81ABEE;
     STA.L ExpandingSquare_TransitionWindow1RightIndirectHDMATable,X      ;81ABF2;
+    REP #$20
     RTS                                                                  ;81ABF6;
 
 
@@ -5622,7 +5622,6 @@ HandleRoomSelectMap_ExpandingSquareTransition:
 
 +   STA.L ExpandingSquare_BottomPosition                                 ;81AD04;
     JSR.W Setup_FileSelectMap_ExpandingSquareTransition_HDMA             ;81AD08;
-    REP #$20                                                             ;81AD0B;
     LDA.L ExpandingSquare_Timer                                          ;81AD0D;
     DEC                                                                  ;81AD11;
     STA.L ExpandingSquare_Timer                                          ;81AD12;
@@ -6124,7 +6123,6 @@ FileSelectMap_Index14_PrepContractSquareTransToAreaSelect:
 
 ;;; $B0BB: File select map - index 15h: room select map to area select map - contracting square transition ;;;
 FileSelectMap_Index15_RoomSelectMapToAreaSelectMap:
-    REP #$30                                                             ;81B0BB;
     LDA.L ExpandingSquare_LeftSubPosition                                ;81B0BD;
     SEC                                                                  ;81B0C1;
     SBC.L ExpandingSquare_LeftPositionSubVelocity                        ;81B0C2;
@@ -6154,7 +6152,6 @@ FileSelectMap_Index15_RoomSelectMapToAreaSelectMap:
     SBC.L ExpandingSquare_BottomVelocity                                 ;81B119;
     STA.L ExpandingSquare_BottomPosition                                 ;81B11D;
     JSR.W Setup_FileSelectMap_ExpandingSquareTransition_HDMA             ;81B121;
-    REP #$20                                                             ;81B124;
     JSR.W DrawAreaSelectMapLabels                                        ;81B126;
     LDA.L ExpandingSquare_Timer                                          ;81B129;
     DEC                                                                  ;81B12D;
@@ -6170,6 +6167,7 @@ FileSelectMap_Index15_RoomSelectMapToAreaSelectMap:
     LDA.B #$00                                                           ;81B144;
     STA.B DP_WindowAreaMainScreen                                        ;81B146;
     STA.B DP_WindowAreaSubScreen                                         ;81B148;
+    REP #$20
 
   .return:
     RTS                                                                  ;81B14A;
