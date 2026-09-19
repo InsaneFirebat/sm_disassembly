@@ -3204,8 +3204,6 @@ InitAI_EnemyProjectile_CrocomireBridgeCrumbling:
 PreInstruction_EnemyProjectile_CrocomireBridgeCrumbling:
 ;; Parameters:
 ;;     X: Enemy projectile index
-    PHP                                                                  ;8692BA;
-    REP #$20                                                             ;8692BB;
     JSR.W Move_EnemyProjectile_Vertically                                ;8692BD;
     BCS .delete                                                          ;8692C0;
     LDA.W EnemyProjectile_YVelocity,X                                    ;8692C2;
@@ -3218,7 +3216,6 @@ PreInstruction_EnemyProjectile_CrocomireBridgeCrumbling:
 
   .delete:
     STZ.W EnemyProjectile_ID,X                                           ;8692D1;
-    PLP                                                                  ;8692D4;
     RTS                                                                  ;8692D5;
 
 
@@ -4151,8 +4148,6 @@ InitAI_EnemyProjectile_PhantoonDestroyableFlames:
 ;;             d: Fall delay. Fall timer = d * 8
 ;;         060i: Flame spiral
 ;;             i: Direction index. Initial angle = i * 20h
-    PHP                                                                  ;869824;
-    REP #$30                                                             ;869825;
     LDA.W EnemyProjectile_InitParam0                                     ;869827;
     AND.W #$FF00                                                         ;86982A;
     XBA                                                                  ;86982D;
@@ -4187,7 +4182,6 @@ PhantoonDestroyableFlameInit_Type0_Casual:
     AND.W #$0FFF                                                         ;869862;
     ORA.W #$2000                                                         ;869865;
     STA.W EnemyProjectile_Properties,Y                                   ;869868;
-    PLP                                                                  ;86986B;
     RTS                                                                  ;86986C;
 
 
@@ -4224,7 +4218,6 @@ PhantoonDestroyableFlameInit_Type2_Enraged:
     STA.W EnemyProjectile_YPositions,Y                                   ;8698A9;
     LDA.W #PreInst_EnemyProj_PhantoonDestroyableFlame_Enraged            ;8698AC;
     STA.W EnemyProjectile_PreInstructions,Y                              ;8698AF;
-    PLP                                                                  ;8698B2;
     RTS                                                                  ;8698B3;
 
   .angles:                                                               ;8698B4;
@@ -4259,7 +4252,6 @@ PhantoonDestroyableFlameInit_Type4_Rain:
     STA.W EnemyProjectile_YPositions,Y                                   ;8698EC;
     LDA.W #PreInst_EnemyProj_PhantoonDestroyableFlame_Rain               ;8698EF;
     STA.W EnemyProjectile_PreInstructions,Y                              ;8698F2;
-    PLP                                                                  ;8698F5;
     RTS                                                                  ;8698F6;
 
   .XPositions:
@@ -4291,7 +4283,6 @@ PhantoonDestroyableFlameInit_Type6_Spiral:
     STA.W EnemyProjectile_YPositions,Y                                   ;86992F;
     LDA.W #PreInst_EnemyProj_PhantoonDestroyableFlame_Spiral             ;869932;
     STA.W EnemyProjectile_PreInstructions,Y                              ;869935;
-    PLP                                                                  ;869938;
     RTS                                                                  ;869939;
 
 
@@ -4300,8 +4291,6 @@ InitAI_EnemyProjectile_PhantoonStartingFlames:
 ;; Parameters:
 ;;     Y: Enemy projectile index
 ;;     EnemyProjectile_InitParam0: Direction index. Initial angle = i * 20h
-    PHP                                                                  ;86993A;
-    REP #$30                                                             ;86993B;
     LDA.W #$0000                                                         ;86993D;
     STA.W EnemyProjectile_XSubPositions,Y                                ;869940;
     STA.W EnemyProjectile_YSubPositions,Y                                ;869943;
@@ -4326,7 +4315,6 @@ InitAI_EnemyProjectile_PhantoonStartingFlames:
     CLC                                                                  ;869971;
     ADC.B DP_Temp16                                                      ;869972;
     STA.W EnemyProjectile_YPositions,Y                                   ;869974;
-    PLP                                                                  ;869977;
     RTS                                                                  ;869978;
 
 
@@ -4647,8 +4635,6 @@ Calculate_XY_ComponentsOf_RadiusA_AngleY:
 ;; Returns:
 ;;     $14: X component of radius
 ;;     $16: Y component of radius
-    PHP                                                                  ;869BA2;
-    REP #$30                                                             ;869BA3;
     PHX                                                                  ;869BA5;
     STA.B DP_Temp18                                                      ;869BA6;
     TYA                                                                  ;869BA8;
@@ -4694,7 +4680,6 @@ Calculate_XY_ComponentsOf_RadiusA_AngleY:
 
 +   STA.B DP_Temp16                                                      ;869BEE;
     PLX                                                                  ;869BF0;
-    PLP                                                                  ;869BF1;
     RTS                                                                  ;869BF2;
 
 
@@ -4920,8 +4905,6 @@ Instruction_EnemyProjectile_KraidRisingRocks:
 PreInstruction_EnemyProjectile_KraidRocks:
 ;; Parameters:
 ;;     X: Enemy projectile index
-    PHP                                                                  ;869D56;
-    REP #$20                                                             ;869D57;
     JSR.W Move_EnemyProjectile_Horizontally                              ;869D59;
     BCS .delete                                                          ;869D5C;
     JSR.W Move_EnemyProjectile_Vertically                                ;869D5E;
@@ -4939,12 +4922,10 @@ PreInstruction_EnemyProjectile_KraidRocks:
     CLC                                                                  ;869D7B;
     ADC.W #$0040*!SPF                                                    ;869D7C;
     STA.W EnemyProjectile_YVelocity,X                                    ;869D7F;
-    PLP                                                                  ;869D82;
     RTS                                                                  ;869D83;
 
   .delete:
     STZ.W EnemyProjectile_ID,X                                           ;869D84;
-    PLP                                                                  ;869D87;
     RTS                                                                  ;869D88;
 
 
@@ -4952,8 +4933,6 @@ PreInstruction_EnemyProjectile_KraidRocks:
 PreInstruction_EnemyProjectile_KraidCeilingRocks:
 ;; Parameters:
 ;;     X: Enemy projectile index
-    PHP                                                                  ;869D89;
-    REP #$20                                                             ;869D8A;
     JSR.W Move_EnemyProjectile_Vertically                                ;869D8C;
     BCS .collision                                                       ;869D8F;
     LDA.W EnemyProjectile_YVelocity,X                                    ;869D91;
@@ -4966,7 +4945,6 @@ PreInstruction_EnemyProjectile_KraidCeilingRocks:
 
   .collision:
     STZ.W EnemyProjectile_ID,X                                           ;869DA0;
-    PLP                                                                  ;869DA3;
     RTS                                                                  ;869DA4;
 
 
@@ -4974,11 +4952,8 @@ PreInstruction_EnemyProjectile_KraidCeilingRocks:
 PreInstruction_EnemyProjectile_KraidRockSpit_UsePalette0:
 ;; Parameters:
 ;;     X: Enemy projectile index
-    PHP                                                                  ;869DA5;
-    REP #$30                                                             ;869DA6;
     LDA.W #$0000                                                         ;869DA8;
     STA.W EnemyProjectile_GraphicsIndices,X                              ;869DAB;
-    PLP                                                                  ;869DAE;
     RTS                                                                  ;869DAF;
 
 
@@ -5061,8 +5036,6 @@ InitAI_EnemyProjectile_MiniKraidSpit:
 PreInstruction_EnemyProjectile_MiniKraidSpit:
 ;; Parameters:
 ;;     X: Enemy projectile index
-    PHP                                                                  ;869E1E;
-    REP #$20                                                             ;869E1F;
     JSR.W Move_EnemyProjectile_Horizontally                              ;869E21;
     BCS .delete                                                          ;869E24;
     JSR.W Move_EnemyProjectile_Vertically                                ;869E26;
@@ -5077,12 +5050,10 @@ PreInstruction_EnemyProjectile_MiniKraidSpit:
 
   .setYvelocity:
     STA.W EnemyProjectile_YVelocity,X                                    ;869E3C;
-    PLP                                                                  ;869E3F;
     RTS                                                                  ;869E40;
 
   .delete:
     STZ.W EnemyProjectile_ID,X                                           ;869E41;
-    PLP                                                                  ;869E44;
     RTS                                                                  ;869E45;
 
 
@@ -5132,14 +5103,11 @@ InitAI_EnemyProjectile_MiniKraidSpikes_Common:
 PreInstruction_EnemyProjectile_MiniKraidSpikes:
 ;; Parameters:
 ;;     X: Enemy projectile index
-    PHP                                                                  ;869E83;
-    REP #$20                                                             ;869E84;
     JSR.W Move_EnemyProjectile_Horizontally                              ;869E86;
     BCC .return                                                          ;869E89;
     STZ.W EnemyProjectile_ID,X                                           ;869E8B;
 
   .return:
-    PLP                                                                  ;869E8E;
     RTS                                                                  ;869E8F;
 
 
@@ -5754,8 +5722,6 @@ InitAI_EnemyProjectile_GunshipLiftoffDustClouds:
 ;; Parameters:
 ;;     Y: Enemy projectile index
 ;;     EnemyProjectile_InitParam0: Index. Multiple of 2, range 0..Ah. 0/2/4 are on the right side, 6/8/Ah on the left side
-    PHP                                                                  ;86A2A1;
-    REP #$30                                                             ;86A2A2;
     LDA.W #$0000                                                         ;86A2A4;
     STA.W EnemyProjectile_XSubPositions,Y                                ;86A2A7;
     STA.W EnemyProjectile_YSubPositions,Y                                ;86A2AA;
@@ -5774,7 +5740,6 @@ InitAI_EnemyProjectile_GunshipLiftoffDustClouds:
     STA.W EnemyProjectile_InstListPointers,Y                             ;86A2CD;
     TXA                                                                  ;86A2D0;
     STA.W EnemyProjectile_Var0,Y                                         ;86A2D1;
-    PLP                                                                  ;86A2D4;
     RTS                                                                  ;86A2D5;
 
   .Xoffsets:
@@ -5793,8 +5758,6 @@ InitAI_EnemyProjectile_GunshipLiftoffDustClouds:
 InitAI_EnemyProjectile_CeresElevatorPad:
 ;; Parameters:
 ;;     Y: Enemy projectile index
-    PHP                                                                  ;86A2EE;
-    REP #$30                                                             ;86A2EF;
     LDA.B SamusYPosition                                                 ;86A2F1;
     CLC                                                                  ;86A2F4;
     ADC.W #$001C                                                         ;86A2F5;
@@ -5817,7 +5780,6 @@ InitAI_EnemyProjectile_CeresElevatorPad_Common:
     STA.W EnemyProjectile_GraphicsIndices,Y                              ;86A310;
     LDA.B SamusXPosition                                                 ;86A313;
     STA.W EnemyProjectile_XPositions,Y                                   ;86A316;
-    PLP                                                                  ;86A319;
     RTS                                                                  ;86A31A;
 
 
@@ -5825,8 +5787,6 @@ InitAI_EnemyProjectile_CeresElevatorPad_Common:
 InitAI_EnemyProjectile_CeresElevatorPadLevelDataConcealer:
 ;; Parameters:
 ;;     Y: Enemy projectile index
-    PHP                                                                  ;86A31B;
-    REP #$30                                                             ;86A31C;
     LDA.W #$0061                                                         ;86A31E;
     STA.W EnemyProjectile_YPositions,Y                                   ;86A321;
     JMP.W InitAI_EnemyProjectile_CeresElevatorPad_Common                 ;86A324;
@@ -13010,8 +12970,6 @@ InitAI_EnemyProjectile_PowampSpike:
 ;;         5: Down-left
 ;;         6: Left
 ;;         7: Up-left
-    PHP                                                                  ;86D23A;
-    REP #$30                                                             ;86D23B;
     LDA.W #$0000                                                         ;86D23D;
     STA.W EnemyProjectile_XSubPositions,Y                                ;86D240;
     STA.W EnemyProjectile_YSubPositions,Y                                ;86D243;
@@ -13024,7 +12982,6 @@ InitAI_EnemyProjectile_PowampSpike:
     STA.W EnemyProjectile_YPositions,Y                                   ;86D258;
     LDA.W EnemyProjectile_InitParam0                                     ;86D25B;
     STA.W EnemyProjectile_Var0,Y                                         ;86D25E;
-    PLP                                                                  ;86D261;
     RTS                                                                  ;86D262;
 
 
@@ -13257,8 +13214,6 @@ InitAI_EnemyProjectile_WreckedShipRobotLaser_Common:
 PreInstruction_EnemyProjectile_WreckedShipRobotLaser:
 ;; Parameters:
 ;;     X: Enemy projectile index
-    PHP                                                                  ;86D3BF;
-    REP #$20                                                             ;86D3C0;
     LDA.W #$0000                                                         ;86D3C2;
     STA.W EnemyProjectile_GraphicsIndices,X                              ;86D3C5;
     JSR.W Move_EnemyProjectile_Horizontally                              ;86D3C8;
@@ -13270,7 +13225,6 @@ PreInstruction_EnemyProjectile_WreckedShipRobotLaser:
     STZ.W EnemyProjectile_ID,X                                           ;86D3D2;
 
   .return:
-    PLP                                                                  ;86D3D5;
     RTS                                                                  ;86D3D6;
 
 

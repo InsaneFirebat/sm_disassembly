@@ -11,11 +11,9 @@ Set_SamusTilesDefinitions_ForCurrentAnimation:
 ; Animation definitions are 4 bytes
 ; First byte indexes the top half tiles definitions pointer table ($D91E) for a pointer to a list of DMA entries that is indexed by the second byte
 ; Third byte indexes the bottom half tiles definitions pointer table ($D938) for a pointer to a list of DMA entries that is indexed by the fourth byte
-    PHP                                                                  ;928000;
     PHB                                                                  ;928001;
     PHK                                                                  ;928002;
     PLB                                                                  ;928003;
-    REP #$30                                                             ;928004;
     LDA.W SamusAnimationFrame                                            ;928006;
     ASL                                                                  ;928009;
     ASL                                                                  ;92800A;
@@ -87,7 +85,6 @@ Set_SamusTilesDefinitions_ForCurrentAnimation:
 
   .return:
     PLB                                                                  ;92808A;
-    PLP                                                                  ;92808B;
     RTL                                                                  ;92808C;
 
 

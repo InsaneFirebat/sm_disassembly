@@ -12228,12 +12228,9 @@ endif
 
 ;;; $E3F6: Make Samus face forward ;;;
 MakeSamusFaceForward:
-    PHP                                                                  ;91E3F6;
     PHB                                                                  ;91E3F7;
     PHK                                                                  ;91E3F8;
     PLB                                                                  ;91E3F9;
-    REP #$30                                                             ;91E3FA;
-    PHX                                                                  ;91E3FC;
     LDA.W EquippedItems                                                  ;91E3FD;
     BIT.W #$0020                                                         ;91E400;
     BNE .suited                                                          ;91E403;
@@ -12314,9 +12311,7 @@ MakeSamusFaceForward:
     STZ.W SamusProjectile_FlareSlowSparksAnimationFrame0CDE              ;91E49F;
     STZ.W SamusProjectile_FlareFastSparksAnimationFrame0CE0              ;91E4A2;
     JSL.L LoadSamusSuitPalette                                           ;91E4A5;
-    PLX                                                                  ;91E4A9;
     PLB                                                                  ;91E4AA;
-    PLP                                                                  ;91E4AB;
     RTL                                                                  ;91E4AC;
 
 
@@ -12546,11 +12541,6 @@ UpdateSamusPoseDueToChangeOfEquipment:
 ; Seems to have been coded far more generally than for just map station release
 ; Notably, this handles equipping speed booster mid-run
 ; (if it did not, the speed boost timer might be 0 and underflow during the speed boost check Handle_SpeedBooster_AnimationDelay_speedBoostTimer)
-    PHP                                                                  ;91E633;
-    PHB                                                                  ;91E634;
-    PHK                                                                  ;91E635;
-    PLB                                                                  ;91E636;
-    REP #$30                                                             ;91E637;
     LDA.W MovementType                                                   ;91E639;
     AND.W #$00FF                                                         ;91E63C;
     ASL                                                                  ;91E63F;
@@ -12620,8 +12610,6 @@ UpdateSamusPoseDueToChangeOfEquipment:
     JSL.L QueueSound_Lib3_Max6                                           ;91E6DA;
 
   .return:
-    PLB                                                                  ;91E6DE;
-    PLP                                                                  ;91E6DF;
     RTL                                                                  ;91E6E0;
 
   .pointers:
@@ -12653,19 +12641,6 @@ UpdateSamusPoseDueToChangeOfEquipment:
     dw RTS_91E732                                                        ;91E713;  19h: Damage boost
     dw RTS_91E732                                                        ;91E715;  1Ah: Grabbed by Draygon
     dw RTS_91E732                                                        ;91E717;  1Bh: Shinespark / crystal flash / drained by metroid / damaged by MB's attacks
-
-
-;;; $E719: Update Samus previous pose ;;;
-UpdateSamusPreviousPose:
-    LDA.W PreviousPose                                                   ;91E719;
-    STA.W LastDifferentPose                                              ;91E71C;
-    LDA.W PreviousPoseXDirection                                         ;91E71F;
-    STA.W LastDifferentPoseXDirection                                    ;91E722;
-    LDA.W Pose                                                           ;91E725;
-    STA.W PreviousPose                                                   ;91E728;
-    LDA.W PoseXDirection                                                 ;91E72B;
-    STA.W PreviousPoseXDirection                                         ;91E72E;
-    RTS                                                                  ;91E731;
 
 
 ;;; $E732: RTS ;;;
@@ -12706,7 +12681,14 @@ UpdateSamusPoseEquipment_Standing:
   .poseChanged:
     JSL.L InitializeSamusPose_1                                          ;91E76A;
     JSL.L Set_Samus_AnimationFrame_if_PoseChanged                        ;91E76E;
-    JSR.W UpdateSamusPreviousPose                                        ;91E772;
+    LDA.W PreviousPose
+    STA.W LastDifferentPose
+    LDA.W PreviousPoseXDirection
+    STA.W LastDifferentPoseXDirection
+    LDA.W Pose
+    STA.W PreviousPose
+    LDA.W PoseXDirection
+    STA.W PreviousPoseXDirection
 
   .return:
     RTS                                                                  ;91E775;
@@ -12810,7 +12792,14 @@ UpdateSamusPoseEquipment_SpinJumping:
     LDA.W #$0304                                                         ;91E830;
     STA.W PreviousPoseXDirection                                         ;91E833;
 
-+   JSR.W UpdateSamusPreviousPose                                        ;91E836;
++   LDA.W PreviousPose
+    STA.W LastDifferentPose
+    LDA.W PreviousPoseXDirection
+    STA.W LastDifferentPoseXDirection
+    LDA.W Pose
+    STA.W PreviousPose
+    LDA.W PoseXDirection
+    STA.W PreviousPoseXDirection
     RTS                                                                  ;91E839;
 
 
@@ -12833,7 +12822,14 @@ UpdateSamusPoseEquipment_MorphBall:
 
 +   JSL.L InitializeSamusPose_1                                          ;91E85B;
     JSL.L Set_Samus_AnimationFrame_if_PoseChanged                        ;91E85F;
-    JSR.W UpdateSamusPreviousPose                                        ;91E863;
+    LDA.W PreviousPose
+    STA.W LastDifferentPose
+    LDA.W PreviousPoseXDirection
+    STA.W LastDifferentPoseXDirection
+    LDA.W Pose
+    STA.W PreviousPose
+    LDA.W PoseXDirection
+    STA.W PreviousPoseXDirection
 
   .return:
     RTS                                                                  ;91E866;
@@ -12858,7 +12854,14 @@ UpdateSamusPoseEquipment_SpringBall:
 
 +   JSL.L InitializeSamusPose_1                                          ;91E888;
     JSL.L Set_Samus_AnimationFrame_if_PoseChanged                        ;91E88C;
-    JSR.W UpdateSamusPreviousPose                                        ;91E890;
+    LDA.W PreviousPose
+    STA.W LastDifferentPose
+    LDA.W PreviousPoseXDirection
+    STA.W LastDifferentPoseXDirection
+    LDA.W Pose
+    STA.W PreviousPose
+    LDA.W PoseXDirection
+    STA.W PreviousPoseXDirection
 
   .return:
     RTS                                                                  ;91E893;

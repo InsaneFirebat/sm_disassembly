@@ -1592,7 +1592,6 @@ DrawShinesparkCrashEchoCircle:
 ;;     X: Speed echo index
 
 ; Draws the echoes that circle around Samus on shinespark crash
-    PHP                                                                  ;9088BA;
     PHB                                                                  ;9088BB;
     PEA.W SamusSpritemapTableIndices_TopHalf>>8
     PLB
@@ -1635,7 +1634,8 @@ DrawShinesparkCrashEchoCircle:
     PLA                                                                  ;908905;
     PLY                                                                  ;908906;
     PLX                                                                  ;908907;
-    BRA .return                                                          ;908908;
+    PLB
+    RTS
 
 +   TAY                                                                  ;90890A;
     PLA                                                                  ;90890B;
@@ -1675,7 +1675,6 @@ DrawShinesparkCrashEchoCircle:
 
   .return:
     PLB                                                                  ;908950;
-    PLP                                                                  ;908951;
     RTS                                                                  ;908952;
 
 
@@ -1701,11 +1700,9 @@ DrawShinesparkCrashEchoProjectiles:
 
 ;;; $8976: Draw Samus starting death animation ;;;
 Draw_Samus_Starting_Death_Animation:
-    PHP                                                                  ;908976;
     PHB                                                                  ;908977;
     PHK                                                                  ;908978;
     PLB                                                                  ;908979;
-    REP #$30                                                             ;90897A;
     LDA.W SamusAnimationFrameTimer                                       ;90897C;
     DEC                                                                  ;90897F;
     STA.W SamusAnimationFrameTimer                                       ;908980;
@@ -1720,7 +1717,6 @@ Draw_Samus_Starting_Death_Animation:
   .drawDeath:
     JSL.L Draw_Samus_During_Death_Animation                              ;908991;
     PLB                                                                  ;908995;
-    PLP                                                                  ;908996;
     RTL                                                                  ;908997;
 
 
@@ -1728,13 +1724,10 @@ Draw_Samus_Starting_Death_Animation:
 Draw_Samus_During_Death_Animation:
 ; This is the same as Draw_Inanimate_Samus, except that layer 1 position is added to Samus spritemap position for some reason,
 ; to account for this, there's code at $9B:B409 that subtracts the layer 1 position from Samus position...
-    PHP                                                                  ;908998;
     PHB                                                                  ;908999;
-    SEP #$20                                                             ;90899A;
-    LDA.B #SamusSpritemapTableIndices_TopHalf>>16                        ;90899C;
-    PHA                                                                  ;90899E;
+    PEA.W SamusSpritemapTableIndices_TopHalf>>8
+    PLB
     PLB                                                                  ;90899F;
-    REP #$30                                                             ;9089A0;
     LDA.W Pose                                                           ;9089A2;
     ASL                                                                  ;9089A5;
     TAX                                                                  ;9089A6;
@@ -1781,7 +1774,6 @@ Draw_Samus_During_Death_Animation:
   .setDefinitions:
     JSL.L Set_SamusTilesDefinitions_ForCurrentAnimation                  ;9089F9;
     PLB                                                                  ;9089FD;
-    PLP                                                                  ;9089FE;
     RTL                                                                  ;9089FF;
 
 
@@ -16380,10 +16372,6 @@ Run_Samus_Command:
 ;;     A: If [A] = Dh: 1 if grapple beam is active, otherwise 0
 
 ; Some of these commands unconditionally return false, and you might be wondering what the point is in calling that code indirectly through this function
-    PHB                                                                  ;90F085;
-    PHK                                                                  ;90F086;
-    PLB                                                                  ;90F087;
-    PHX                                                                  ;90F08A;
     AND.W #$001F                                                         ;90F08B;
     ASL                                                                  ;90F08E;
     TAX                                                                  ;90F08F;
@@ -16398,8 +16386,6 @@ Run_Samus_Command:
     STZ.W SuperSpecialProspectivePoseChangeCommand                       ;90F0A7;
 
   .return:
-    PLX                                                                  ;90F0AA;
-    PLB                                                                  ;90F0AB;
     RTL                                                                  ;90F0AD;
 
   .pointers:
@@ -17348,8 +17334,6 @@ Handle_UnspinSFX_CancellingEchoSound_SettingTimeUpGameState:
 ; Also enables debug invincibility if debug mode is enabled and controller 2 newly presses A whilst L + R is pressed
 ; The code at SamusTimerHackHandler_HandleTimer is supposed to set the time up game state, and also sets HackHandler to SamusTimerHackHandler_DrawTimer
 ; The purpose of the code at Handle_UnspinSFX_CancellingEchoSound_SettingTimeUpGameState_debugEnd checking for HackHandler = SamusTimerHackHandler_DrawTimer and setting the time up game state seems to be for handling edge cases like entering at door at timer = 00'00"00
-    PHP                                                                  ;90F576;
-    REP #$30                                                             ;90F577;
     LDA.W ResumeChargingBeamSFXFlag                                      ;90F579;
     BMI .negative                                                        ;90F57C;
     BEQ .notSet                                                          ;90F57E;
@@ -17411,7 +17395,6 @@ if !DEBUG
     LDA.W DebugInvincibility                                             ;90F5F3;
     CMP.W #$0007                                                         ;90F5F6;
     BMI .resetInvincibility                                              ;90F5F9;
-    PLP                                                                  ;90F5FB;
     RTS                                                                  ;90F5FC;
 
   .checkInputs:
@@ -17444,7 +17427,6 @@ endif
     STA.W GameState                                                      ;90F635;
 
   .return:
-    PLP                                                                  ;90F638;
     RTS                                                                  ;90F639;
 
 

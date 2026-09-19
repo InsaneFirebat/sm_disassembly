@@ -72,9 +72,7 @@ Load_Room_PLM_Graphics:
 ; which is where the PLM's $7E:DF0C variable is written
 ; In the case of unpausing, this variable doesn't need to be written again,
 ; but this does mean that the PLM with indexes 0/2/4/6 get their $7E:DF0C variable clobbered
-    PHP                                                                  ;848232;
     PHB                                                                  ;848233;
-    REP #$30                                                             ;848234;
     PHK                                                                  ;848236;
     PLB                                                                  ;848237;
     STZ.W PLM_ItemGFXIndex                                               ;848238;
@@ -90,7 +88,6 @@ Load_Room_PLM_Graphics:
     CPX.W #$0008                                                         ;848248;
     BNE .loop                                                            ;84824B;
     PLB                                                                  ;84824D;
-    PLP                                                                  ;84824E;
     RTL                                                                  ;84824F;
 
 
@@ -318,11 +315,7 @@ Load_Item_and_Room_Special_Xray_Blocks:
 ; which is an index (2k for k in 0..7) to the table of draw instruction pointers responsible for drawing the x-ray tile
 
 ; see labels.asm for RoomVars:
-    PHP                                                                  ;84831A;
     PHB                                                                  ;84831B;
-    REP #$30                                                             ;84831C;
-    PHX                                                                  ;84831E;
-    PHY                                                                  ;84831F;
     PHK                                                                  ;848320;
     PLB                                                                  ;848321;
     LDX.W #$004E                                                         ;848322;
@@ -381,10 +374,7 @@ Load_Item_and_Room_Special_Xray_Blocks:
     JMP.W .loopRoomVar                                                   ;848395;
 
   .return:
-    PLY                                                                  ;848398;
-    PLX                                                                  ;848399;
     PLB                                                                  ;84839A;
-    PLP                                                                  ;84839B;
     RTL                                                                  ;84839C;
 
   .InstructionPointers:

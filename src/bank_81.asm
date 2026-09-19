@@ -2408,7 +2408,6 @@ Tilemap_GameOver_noGoToTitle:
 
 ;;; $93E8: Game over menu - index 2: play pre-statue hall music track ;;;
 GameOverMenu_Index2_PlayMusicTrack:
-    REP #$30                                                             ;8193E8;
     JSL.L CheckIfMusicIsQueued                                           ;8193EA;
     BCS .return                                                          ;8193EE;
     INC.W PauseMenu_MenuIndex                                            ;8193F0;
@@ -2421,7 +2420,6 @@ GameOverMenu_Index2_PlayMusicTrack:
 
 ;;; $93FB: File select menu ;;;
 FileSelectMenu:
-    REP #$30                                                             ;8193FB;
     PHB                                                                  ;8193FD;
     PHK                                                                  ;8193FE;
     PLB                                                                  ;8193FF;

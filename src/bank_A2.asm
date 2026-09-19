@@ -4955,6 +4955,7 @@ Function_Ship_Idle_HandleLettingSamusEnter:
     LDA.W #SamusNewStateHandler_EnteringExitingGunship
     STA.W NewStateHandler
     STZ.W ElevatorStatus                                                 ;A2AA2B;
+    LDX.B EnemyIndex
     LDA.W Enemy.YPosition,X                                              ;A2AA2E;
     DEC                                                                  ;A2AA31;
     STA.W Enemy[2].YPosition,X                                           ;A2AA32;

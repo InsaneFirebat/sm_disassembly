@@ -279,8 +279,6 @@ InitialiseCPURegistersForGameplay:
     STZ.W $420B                                                          ;8281CC;
     STZ.W $420C                                                          ;8281CF;
     STZ.B DP_HDMAEnable                                                  ;8281D2;
-    LDA.B #$01                                                           ;8281D4;
-    STA.W $420D                                                          ;8281D6;
     REP #$30
     RTS                                                                  ;8281DC;
 
@@ -1244,7 +1242,6 @@ GameState_5_FileSelectMap:
 
 ;;; $89EF: Handle sounds ;;;
 HandleSounds:
-    PHP                                                                  ;8289EF;
     SEP #$30                                                             ;8289F0;
     LDA.W APU_SoundHandlerDowntime                                       ;8289F2;
     DEC                                                                  ;8289F5;
@@ -1261,7 +1258,7 @@ HandleSounds:
     INY                                                                  ;828A04;
     CPY.B #$03                                                           ;828A05;
     BCC .loop                                                            ;828A07;
-    PLP                                                                  ;828A09;
+    REP #$30
     RTL                                                                  ;828A0A;
 
   .downtime:
@@ -1272,7 +1269,7 @@ HandleSounds:
     STZ.W APU_CurrentSoundLib2                                           ;828A17;
     STZ.W $2143                                                          ;828A1A;
     STZ.W APU_CurrentSoundLib3                                           ;828A1D;
-    PLP                                                                  ;828A20;
+    REP #$30
     RTL                                                                  ;828A21;
 
   .pointers:
@@ -1383,14 +1380,11 @@ SoundState_4_ResetSoundState:
 ;;; $8A9A: Reset sound queues ;;;
 ResetSoundQueues:
 ; Clear sound queue start/next indices and sound states
-    PHP                                                                  ;828A9A;
-    REP #$20                                                             ;828A9B;
     STZ.W APU_SoundQueueStartIndexLib1                                   ;828A9D;
     STZ.W APU_SoundQueueStartIndexLib3                                   ;828AA0;
     STZ.W APU_SoundQueueNextIndexLib2                                    ;828AA3;
     STZ.W APU_SoundStateLib1                                             ;828AA6;
     STZ.W APU_SoundStateLib3-1
-    PLP                                                                  ;828AAE;
     RTL                                                                  ;828AAF;
 
 
@@ -1486,14 +1480,13 @@ GameState_7_MainGameplayFadingIn:
     SEP #$20                                                             ;828B2A;
     LDA.B DP_Brightness                                                  ;828B2C;
     CMP.B #$0F                                                           ;828B2E;
+    REP #$30
     BNE .return                                                          ;828B30;
-    REP #$20                                                             ;828B32;
     STZ.W ScreenFadeDelay                                                ;828B34;
     STZ.W ScreenFadeCounter                                              ;828B37;
     INC.W GameState                                                      ;828B3A;
 
   .return:
-    REP #$30
     RTS                                                                  ;828B3E;
 
 
@@ -1550,22 +1543,6 @@ endif
     JSL.L Handle_Room_Shaking                                            ;828BAF;
     JSL.L DecrementSamusHurtTimers_ClearActiveEnemyIndicesLists          ;828BB3;
     RTS                                                                  ;828BB8;
-
-
-;;; $8BB9: Delete game options menu objects ;;;
-Delete_GameOptionsMenu_Objects:
-    PHP                                                                  ;828BB9;
-    REP #$30                                                             ;828BBA;
-    LDX.W #$000E                                                         ;828BBC;
-
-  .loop:
-    STZ.W GameOptionsMenuObject_SpritemapPointers,X                      ;828BBF;
-    STZ.W GameOptionsMenuObject_InstListPointers,X                       ;828BC2;
-    DEX                                                                  ;828BC5;
-    DEX                                                                  ;828BC6;
-    BPL .loop                                                            ;828BC7;
-    PLP                                                                  ;828BC9;
-    RTS                                                                  ;828BCA;
 
 
 ;;; $8BCB: Spawn game options menu object ;;;
@@ -10230,29 +10207,27 @@ Advance_GradualColorChange_ofBGPalette6:
 
   .advance:
     PHB                                                                  ;82D985;
-    PEA.W Palettes>>16<<8|Palettes>>16                                   ;82D986; >.<
+    PEA.W Palettes>>8
     PLB                                                                  ;82D989;
     PLB                                                                  ;82D98A;
     LDX.W #$00C0                                                         ;82D98B;
 
   .loop:
     PHX                                                                  ;82D98E;
-    LDA.L TargetPalettes_BGP0,X                                          ;82D98F;
+    LDA.W TargetPalettes_BGP0,X
     TAY                                                                  ;82D993;
-    LDA.L Palettes,X                                                     ;82D994;
+    LDA.W Palettes,X
     TAX                                                                  ;82D998;
-    LDA.L PaletteChangeNumerator                                         ;82D999;
+    LDA.W PaletteChangeNumerator
     JSR.W CalculateTheAth_TransitionalColor_fromXtoY                     ;82D99D;
     PLX                                                                  ;82D9A0;
-    STA.L Palettes,X                                                     ;82D9A1;
+    STA.W Palettes,X
     INX                                                                  ;82D9A5;
     INX                                                                  ;82D9A6;
     CPX.W #$00E0                                                         ;82D9A7;
     BCC .loop                                                            ;82D9AA;
-    PLB                                                                  ;82D9AC;
-    LDA.L PaletteChangeNumerator                                         ;82D9AD;
-    INC                                                                  ;82D9B1;
-    STA.L PaletteChangeNumerator                                         ;82D9B2;
+    INC.W PaletteChangeNumerator
+    PLB
     CLC                                                                  ;82D9B6;
     RTL                                                                  ;82D9B7;
 
@@ -10274,29 +10249,27 @@ Advance_GradualColorChange_ofPaletteRAM:
   .advance:
     STY.B DP_Temp22                                                      ;82D9D0;
     PHB                                                                  ;82D9D2;
-    PEA.W Palettes>>16<<8|Palettes>>16                                   ;82D9D3; >.<
+    PEA.W Palettes>>8
     PLB                                                                  ;82D9D6;
     PLB                                                                  ;82D9D7;
 
   .loop:
     PHX                                                                  ;82D9D8;
-    LDA.L TargetPalettes_BGP0,X                                          ;82D9D9;
+    LDA.W TargetPalettes_BGP0,X
     TAY                                                                  ;82D9DD;
-    LDA.L Palettes,X                                                     ;82D9DE;
+    LDA.W Palettes,X
     TAX                                                                  ;82D9E2;
-    LDA.L PaletteChangeNumerator                                         ;82D9E3;
+    LDA.W PaletteChangeNumerator
     INC                                                                  ;82D9E7;
     JSR.W CalculateTheAth_TransitionalColor_fromXtoY                     ;82D9E8;
     PLX                                                                  ;82D9EB;
-    STA.L Palettes,X                                                     ;82D9EC;
+    STA.W Palettes,X
     INX                                                                  ;82D9F0;
     INX                                                                  ;82D9F1;
     CPX.B DP_Temp22                                                      ;82D9F2;
     BCC .loop                                                            ;82D9F4;
-    PLB                                                                  ;82D9F6;
-    LDA.L PaletteChangeNumerator                                         ;82D9F7;
-    INC                                                                  ;82D9FB;
-    STA.L PaletteChangeNumerator                                         ;82D9FC;
+    INC.W PaletteChangeNumerator
+    PLB
     CLC                                                                  ;82DA00;
     RTL                                                                  ;82DA01;
 
@@ -10529,55 +10502,25 @@ Advance_GradualColorChange_ofPalettesInA_Denominator_C:
     PHX                                                                  ;82DAF7;
     PHY                                                                  ;82DAF8;
     PHB                                                                  ;82DAF9;
-    PEA.W Palettes>>16<<8|Palettes>>16                                   ;82DAFA;
+    PEA.W Palettes>>8
     PLB                                                                  ;82DAFD;
     PLB                                                                  ;82DAFE;
     LDX.W #$000C                                                         ;82DAFF;
     STX.W PaletteChangeDenominator                                       ;82DB02;
-    JSR.W Advance_GradualColorChange_ofPalettesInA                       ;82DB05;
-    PLB                                                                  ;82DB08;
-    PLY                                                                  ;82DB09;
-    PLX                                                                  ;82DB0A;
-    RTL                                                                  ;82DB0B;
-
 
 ;;; $DB0C: Advance gradual colour change of palettes in [A] ;;;
-Advance_GradualColorChange_ofPalettesInA:
-;; Parameters:
-;;     A: Bitset of palettes to advance
-       {
-;;         1: BG palette 0
-;;         2: BG palette 1
-;;         4: BG palette 2
-;;         8: BG palette 3
-;;         10h: BG palette 4
-;;         20h: BG palette 5
-;;         40h: BG palette 6
-;;         80h: BG palette 7
-;;         100h: Sprite palette 0
-;;         200h: Sprite palette 1
-;;         400h: Sprite palette 2
-;;         800h: Sprite palette 3
-;;         1000h: Sprite palette 4
-;;         2000h: Sprite palette 5
-;;         4000h: Sprite palette 6
-;;         8000h: Sprite palette 7
-       }
-;; Returns:
-;;     Carry: Set if reached target colour, clear otherwise
-
-; DB must be set to $7E
-    REP #$30                                                             ;82DB0C;
     PHA                                                                  ;82DB0E;
-    LDA.W PaletteChangeDenominator                                       ;82DB0F;
+    TXA
     INC                                                                  ;82DB12;
     CMP.W PaletteChangeNumerator                                         ;82DB13;
     BCS +                                                                ;82DB16;
-    LDA.W #$0000                                                         ;82DB18;
-    STA.W PaletteChangeNumerator                                         ;82DB1B;
+    STZ.W PaletteChangeNumerator
     PLA                                                                  ;82DB1E;
     SEC                                                                  ;82DB1F;
-    RTS                                                                  ;82DB20;
+    PLB
+    PLY
+    PLX
+    RTL
 
 +   STZ.W ColorIndexInPaletteChangeRoutines                              ;82DB21;
 
@@ -10598,7 +10541,10 @@ Advance_GradualColorChange_ofPalettesInA:
 
 +   INC.W PaletteChangeNumerator                                         ;82DB3C;
     CLC                                                                  ;82DB3F;
-    RTS                                                                  ;82DB40;
+    PLB
+    PLY
+    PLX
+    RTL
 
 
 ;;; $DB41: Advance gradual colour change of palette at colour index ;;;
@@ -13243,7 +13189,13 @@ endif
     DEX                                                                  ;82ECC7;
     BPL -                                                                ;82ECC8;
     STZ.W MenuOptionIndex                                                ;82ECCA;
-    JSR.W Delete_GameOptionsMenu_Objects                                 ;82ECCD;
+    LDX.W #$000E
+
+-   STZ.W GameOptionsMenuObject_SpritemapPointers,X
+    STZ.W GameOptionsMenuObject_InstListPointers,X
+    DEX
+    DEX
+    BPL -
     LDY.W #GameOptionsMenu_Objects_MenuSelectionMissile_setup            ;82ECD0;
     JSR.W Spawn_GameOptionsMenu_Object                                   ;82ECD3;
     LDY.W #GameOptionsMenu_Objects_OPTION_MODE_Border                    ;82ECD6;

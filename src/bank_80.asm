@@ -504,7 +504,6 @@ Text_supermetroid:
 
 ;;; $82C5: Wait until the end of a v-blank ;;;
 WaitUntilTheEndOfAVBlank:
-    PHP                                                                  ;8082C6;
     SEP #$20                                                             ;8082C7;
 
   .waitVBlankStart:
@@ -514,7 +513,7 @@ WaitUntilTheEndOfAVBlank:
   .waitVBlankEnd:
     LDA.W $4212                                                          ;8082CE;
     BMI .waitVBlankEnd                                                   ;8082D1; Wait until v-blank has finished
-    PLP                                                                  ;8082D3;
+    REP #$20
     RTL                                                                  ;8082D5;
 
 
@@ -590,20 +589,12 @@ A_Y_16bit_UnsignedMultiplication:
 
 ;;; $8338: Wait for NMI ;;;
 WaitForNMI:
-    PHP                                                                  ;808338;
-    PHB                                                                  ;808339;
-    PHK                                                                  ;80833A;
-    PLB                                                                  ;80833B;
-    SEP #$30                                                             ;80833C;
-    LDA.B #$01                                                           ;80833E;
-    STA.B NMI_Request                                                    ;808340; Set NMI request flag
+    INC.B NMI_Request                                                    ;808340; Set NMI request flag
 
   .wait:
     WAI
     LDA.B NMI_Request                                                    ;808343;
-    BNE .wait                                                            ;808346; Wait until NMI request acknowledged
-    PLB                                                                  ;808348;
-    PLP                                                                  ;808349;
+    BNE .wait                                                            ;808346; Ensure NMI request was acknowledged
     RTL                                                                  ;80834A;
 
 
@@ -625,9 +616,8 @@ SetForceBlankAndWaitForNMI:
     LDA.B DP_Brightness                                                  ;808375;
     ORA.B #$80                                                           ;808377;
     STA.B DP_Brightness                                                  ;808379;
-    JSL.L WaitForNMI                                                     ;80837B;
     REP #$20
-    RTL                                                                  ;808381;
+    JML WaitForNMI
 
 
 ;;; $8382: Clear force blank and wait for NMI ;;;
@@ -642,9 +632,8 @@ ClearForceBlankAndWaitForNMI:
     LDA.B DP_Brightness                                                  ;808388;
     AND.B #$7F                                                           ;80838A;
     STA.B DP_Brightness                                                  ;80838C;
-    JSL.L WaitForNMI                                                     ;80838E;
     REP #$20
-    RTL                                                                  ;808394;
+    JML WaitForNMI
 
 
 if !FEATURE_KEEP_UNREFERENCED
@@ -835,7 +824,9 @@ SoftReset:
     PHK                                                                  ;80846F;
     PLB                                                                  ;808470; DB = $80
     SEP #$30                                                             ;808471;
-
+    LDA.B #$01
+    STA.W $420D
+    JML .wait
 
   .wait:
     LDA.W $4212                                                          ;808475;
@@ -889,8 +880,6 @@ CommonBootSection:
     STZ.W $420B
     STZ.W $420C
     STZ.B DP_HDMAEnable
-    LDA.B #$01
-    STA.W $420D
     LDA.B #$03
     STA.W $2101
     STA.B DP_SpriteSizeAddr
@@ -1682,8 +1671,6 @@ HandleVRAMWriteTable_ScrollingDMAs:
 CheckIfMusicIsQueued:
 ;; Returns:
 ;;     Carry: set if there's a non-zero music queue timer, clear otherwise
-    PHP                                                                  ;808EF4;
-    REP #$30                                                             ;808EF5;
     PHX                                                                  ;808EF7;
     LDX.W #$000E                                                         ;808EF8;
 
@@ -1694,13 +1681,11 @@ CheckIfMusicIsQueued:
     DEX                                                                  ;808F01;
     BPL .loop                                                            ;808F02;
     PLX                                                                  ;808F04;
-    PLP                                                                  ;808F05;
     CLC                                                                  ;808F06;
     RTL                                                                  ;808F07;
 
   .nonZeroTimer:
     PLX                                                                  ;808F08;
-    PLP                                                                  ;808F09;
     SEC                                                                  ;808F0A;
     RTL                                                                  ;808F0B;
 
@@ -1723,12 +1708,9 @@ HandleMusicQueue:
 ;     Load music entry and music timer from first entry in queue
 
 ; Note that APU_CurrentMusicTrack is never read anywhere, MusicTrackIndex is used instead
-    PHP                                                                  ;808F0C;
-    REP #$20                                                             ;808F0D;
     DEC.W APU_MusicTimer                                                 ;808F0F;
     BMI .negative                                                        ;808F12;
     BEQ .positive                                                        ;808F14;
-    PLP                                                                  ;808F16;
     RTL                                                                  ;808F17;
 
   .positive:
@@ -1760,12 +1742,10 @@ HandleMusicQueue:
     STA.W APU_MusicEntry                                                 ;808F52;
     LDA.W APU_MusicQueueTimers,X                                         ;808F55;
     STA.W APU_MusicTimer                                                 ;808F58;
-    PLP                                                                  ;808F5B;
     RTL                                                                  ;808F5C;
 
   .clearTimer:
     STZ.W APU_MusicTimer                                                 ;808F5D;
-    PLP                                                                  ;808F60;
     RTL                                                                  ;808F61;
 
   .musicData:
@@ -1794,7 +1774,6 @@ HandleMusicQueue:
     STA.W APU_MusicQueueStartIndex                                       ;808F98;
     LDA.W #$0008                                                         ;808F9B;
     STA.W APU_SoundHandlerDowntime                                       ;808F9E;
-    PLP                                                                  ;808FA1;
     RTL                                                                  ;808FA2;
 
 

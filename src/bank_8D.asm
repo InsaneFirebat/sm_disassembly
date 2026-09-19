@@ -6396,8 +6396,6 @@ EnemyProjSpritemaps_Sparks_2:
 
 ;;; $C4D8: Clear palette FX objects ;;;
 Clear_PaletteFXObjects:
-    PHP                                                                  ;8DC4D8;
-    REP #$30                                                             ;8DC4D9;
     PHX                                                                  ;8DC4DB;
     LDX.W #$000E                                                         ;8DC4DC;
 
@@ -6407,7 +6405,6 @@ Clear_PaletteFXObjects:
     DEX                                                                  ;8DC4E3;
     BPL .loop                                                            ;8DC4E4;
     PLX                                                                  ;8DC4E6;
-    PLP                                                                  ;8DC4E7;
     RTL                                                                  ;8DC4E8;
 
 

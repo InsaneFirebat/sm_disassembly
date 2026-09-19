@@ -8,9 +8,7 @@ org $878000
 Spawn_AnimatedTilesObject:
 ;; Parameter:
 ;;     Y: Animated tiles object ID
-    PHP                                                                  ;878027;
     PHB                                                                  ;878028;
-    PHX                                                                  ;878029;
     PHK                                                                  ;87802A;
     PLB                                                                  ;87802B;
     LDX.W #$000A                                                         ;87802C;
@@ -21,9 +19,7 @@ Spawn_AnimatedTilesObject:
     DEX                                                                  ;878034;
     DEX                                                                  ;878035;
     BPL .loop                                                            ;878036;
-    PLX                                                                  ;878038;
     PLB                                                                  ;878039;
-    PLP                                                                  ;87803A;
     SEC                                                                  ;87803B;
     RTL                                                                  ;87803C;
 
@@ -40,9 +36,7 @@ Spawn_AnimatedTilesObject:
     STA.W AnimatedTilesObject_VRAMAddr,X                                 ;878056;
     LDA.W #$0001                                                         ;878059;
     STA.W AnimatedTilesObject_InstructionTimers,X                        ;87805C;
-    PLX                                                                  ;87805F;
     PLB                                                                  ;878060;
-    PLP                                                                  ;878061;
     CLC                                                                  ;878062;
     RTL                                                                  ;878063;
 
