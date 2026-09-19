@@ -6672,8 +6672,17 @@ GrabSamus:
     STA.W Enemy.properties                                               ;A6BC71;
     LDA.W #$0001                                                         ;A6BC74;
     STA.L Ridley.holdingSamus                                            ;A6BC77;
-    DEC                                                                  ;A6BC7B;
-    JSL.L Run_Samus_Command                                              ;A6BC7C;
+    LDA.W #SamusCurrentStateHandler_SamusIsLocked
+    STA.W CurrentStateHandler
+    LDA.W #SamusNewStateHandler_SamusIsLocked
+    STA.W NewStateHandler
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
     SEC                                                                  ;A6BC80;
     JMP.W DrawRidleysFeet                                                ;A6BC81;
 
@@ -6695,8 +6704,17 @@ ReleaseSamus:
   .noTangibilityUpdate:
     LDA.W #$0000                                                         ;A6BCA4;
     STA.L Ridley.holdingSamus                                            ;A6BCA7;
-    INC                                                                  ;A6BCAB;
-    JSL.L Run_Samus_Command                                              ;A6BCAC;
+    LDA.W #SamusCurrentStateHandler_Normal
+    STA.W CurrentStateHandler
+    LDA.W #SamusNewStateHandler_Normal
+    STA.W NewStateHandler
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
     CLC                                                                  ;A6BCB0;
     JMP.W DrawRidleysFeet                                                ;A6BCB1;
 

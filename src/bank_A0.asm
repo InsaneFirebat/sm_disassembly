@@ -3757,12 +3757,13 @@ EnemyGrappleBeamCollisionDetection:
 
 ; Grapple reaction indices 1/4/5 set the grapple beam's end position to the enemy's position.
 ; Collision detection ignores the extended hitbox format
-    LDA.W #$000D                                                         ;A09E9D;
-    JSL.L Run_Samus_Command                                              ;A09EA0;
-    BNE +                                                                ;A09EA4;
+    LDA.W GrappleBeam_Function
+    CMP.W #GrappleBeamFunction_Inactive
+    BNE .active
     JMP.W .grappleIndexDetermined                                        ;A09EA6;
 
-+   STZ.B CollisionIndex                                                 ;A09EA9;
+  .active:
+    STZ.B CollisionIndex                                                 ;A09EA9;
     STZ.W InteractiveEnemyIndicesIndex                                   ;A09EAC;
 
   .loop:

@@ -10767,8 +10767,19 @@ GravitySuitPickup_Stage6:
     STA.W HDMAObject_InstListPointers,X                                  ;88E2A2;
     LDA.W #$0001                                                         ;88E2A5;
     STA.W HDMAObject_InstructionTimers,X                                 ;88E2A8;
-    LDA.W #$000B                                                         ;88E2AB;
-    JSL.L Run_Samus_Command                                              ;88E2AE;
+    LDA.W #SamusDrawingHandler_Default
+    STA.W DrawingHandler
+    LDA.W #SamusCurrentStateHandler_Normal
+    STA.W CurrentStateHandler
+    LDA.W #SamusNewStateHandler_Normal
+    STA.W NewStateHandler
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
     CLC                                                                  ;88E2B2;
     RTS                                                                  ;88E2B3;
 

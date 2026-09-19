@@ -10749,8 +10749,46 @@ endif
     RTS                                                                  ;91D94B;
 
   .spinning:
-    LDA.W #$001C                                                         ;91D94C;
-    JSL.L Run_Samus_Command                                              ;91D94F;
+    LDA.W MovementType
+    AND.W #$00FF
+    CMP.W #$0014
+    BEQ .wallJump
+    CMP.W #$0003
+    BEQ .spinJumping
+    RTS
+
+  .spinJumping:
+    LDA.W Pose
+    CMP.W #$0081
+    BEQ .screwAttack
+    CMP.W #$0082
+    BEQ .screwAttack
+    CMP.W #$001B
+    BEQ .spaceJump
+    CMP.W #$001C
+    BEQ .spaceJump
+    BRA .spinJump
+
+  .wallJump:
+    LDA.W SamusAnimationFrame
+    CMP.W #$0017
+    BPL .screwAttack
+    CMP.W #$000D
+    BPL .spaceJump
+
+  .spinJump:
+    LDA.W #$0031
+    JSL.L QueueSound_Lib1_Max9
+    RTS
+
+  .spaceJump:
+    LDA.W #$003E
+    JSL.L QueueSound_Lib1_Max9
+    RTS
+
+  .screwAttack:
+    LDA.W #$0033
+    JSL.L QueueSound_Lib1_Max9
     RTS                                                                  ;91D953;
 
 if !PAL != 0
@@ -12241,9 +12279,25 @@ MakeSamusFaceForward:
     STZ.W ProspectivePoseChangeCommand                                   ;91E465;
     STZ.W SpecialProspectivePoseChangeCommand                            ;91E468;
     STZ.W SuperSpecialProspectivePoseChangeCommand                       ;91E46B;
-    LDA.W #$001F                                                         ;91E46E;
-    JSL.L Run_Samus_Command                                              ;91E471;
-    STZ.W SamusXExtraRunSpeed                                            ;91E475;
+    LDA.W GrappleBeam_Function
+    CMP.W #GrappleBeamFunction_Inactive
+    BEQ +
+
+  .grappleActive:
+    STZ.W GrappleBeam_DirectionFired
+    STZ.W GrappleBeam_SpecialAngleHandlingFlag
+    STZ.W GrappleWalljumpTimer
+    STZ.W GrappleBeam_SlowScrollingFlag
+    STZ.W GrappleBeam_PoseChangeAutoFireTimer
+    STZ.W GrappleBeam_Flags
+    LDA.W EquippedBeams
+    JSL.L Load_Beam_Palette_External
+    LDA.W #GrappleBeamFunction_Inactive
+    STA.W GrappleBeam_Function
+    LDA.W #SamusDrawingHandler_Default
+    STA.W DrawingHandler
+
++   STZ.W SamusXExtraRunSpeed                                            ;91E475;
     STZ.W SamusXExtraRunSubSpeed                                         ;91E478;
     STZ.W SamusXBaseSpeed                                                ;91E47B;
     STZ.W SamusXBaseSubSpeed                                             ;91E47E;

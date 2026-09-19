@@ -4088,8 +4088,46 @@ GrappleBeamFunction_HitNothing_Cancel:
     BRA +                                                                ;9BC86C;
 
   .notGrappling:
-    LDA.W #$001C                                                         ;9BC86E;
-    JSL.L Run_Samus_Command                                              ;9BC871;
+    LDA.W MovementType
+    AND.W #$00FF
+    CMP.W #$0014
+    BEQ .wallJump
+    CMP.W #$0003
+    BEQ .spinJumping
+    BRA +
+
+  .spinJumping:
+    LDA.W Pose
+    CMP.W #$0081
+    BEQ .screwAttack
+    CMP.W #$0082
+    BEQ .screwAttack
+    CMP.W #$001B
+    BEQ .spaceJump
+    CMP.W #$001C
+    BEQ .spaceJump
+    BRA .spinJump
+
+  .wallJump:
+    LDA.W SamusAnimationFrame
+    CMP.W #$0017
+    BPL .screwAttack
+    CMP.W #$000D
+    BPL .spaceJump
+
+  .spinJump:
+    LDA.W #$0031
+    JSL.L QueueSound_Lib1_Max9
+    BRA +
+
+  .spaceJump:
+    LDA.W #$003E
+    JSL.L QueueSound_Lib1_Max9
+    BRA +
+
+  .screwAttack:
+    LDA.W #$0033
+    JSL.L QueueSound_Lib1_Max9
 
 +   STZ.W GrappleBeam_DirectionFired                                     ;9BC87B;
     STZ.W GrappleBeam_SpecialAngleHandlingFlag                           ;9BC87E;

@@ -848,8 +848,17 @@ Function_MBBody_FakeDeath_Descent_LockSamus_SetScrollRegion:
     RTS                                                                  ;A9882E;
 
   .timerExpired:
-    LDA.W #$0000                                                         ;A9882F;
-    JSL.L Run_Samus_Command                                              ;A98832;
+    LDA.W #SamusCurrentStateHandler_SamusIsLocked
+    STA.W CurrentStateHandler
+    LDA.W #SamusNewStateHandler_SamusIsLocked
+    STA.W NewStateHandler
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
     LDA.L Scrolls                                                        ;A98836;
     AND.W #$00FF                                                         ;A9883A;
     STA.L Scrolls                                                        ;A9883D;
@@ -877,8 +886,17 @@ Function_MotherBrainBody_FakeDeath_Descent_QueueMusic:
 Function_MotherBrainBody_FakeDeath_Descent_UnlockSamus:
     DEC.W MotherBrainBody.functionTimer                                  ;A9886C;
     BPL Function_MBBody_FakeDeath_Descent_BeginScnFlashing_LowerAcid_return ;A9886F;
-    LDA.W #$0001                                                         ;A98871;
-    JSL.L Run_Samus_Command                                              ;A98874;
+    LDA.W #SamusCurrentStateHandler_Normal
+    STA.W CurrentStateHandler
+    LDA.W #SamusNewStateHandler_Normal
+    STA.W NewStateHandler
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
     LDA.W #Function_MBBody_FakeDeath_Descent_BeginScnFlashing_LowerAcid  ;A98878;
     STA.W MotherBrainBody.function                                       ;A9887B;
     LDA.W #$0008                                                         ;A9887E;
@@ -5695,8 +5713,8 @@ Function_MBBody_Phase3_DeathSequence_DoorExploding_StartTimer:
     JSL.L GenerateEscapeDoorExplosion                                    ;A9B2F9;
     DEC.W MotherBrainBody.functionTimer                                  ;A9B2FD;
     BPL .return                                                          ;A9B300;
-    LDA.W #$000F                                                         ;A9B302;
-    JSL.L Run_Samus_Command                                              ;A9B305;
+    LDA.W #SamusTimerHackHandler_HandleTimer
+    STA.W HackHandler
     LDA.W #$0002                                                         ;A9B309;
     STA.W TimerStatus                                                    ;A9B30C;
     JSL.L SetBossBitsInAForCurrentArea                                   ;A9B30F;
@@ -6788,9 +6806,11 @@ Function_MBBody_Phase2_FiringRainbowBeam_DrainingSamus:
     JSR.W DecrementAmmoDueToRainbowBeam                                  ;A9BA4C;
     JSR.W MoveSamusTowardsMiddleOfWall                                   ;A9BA4F;
     DEC.W MotherBrainBody.functionTimer                                  ;A9BA52;
-    BPL Function_MBBody_Phase2_FiringRainbowBeam_FinishFiring_return     ;A9BA55;
+    BPL .return
     LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_FinishFiring         ;A9BA57;
     STA.W MotherBrainBody.function                                       ;A9BA5A;
+
+  .return:
     RTS                                                                  ;A9BA5D;
 
 
@@ -6823,8 +6843,17 @@ Function_MBBody_Phase2_FiringRainbowBeam_FinishFiring:
     JSL.L QueueSound_Lib1_Max6                                           ;A9BAA5;
     LDA.W #$0000                                                         ;A9BAA9;
     STA.L MotherBrainBody.rainbowBeamSFXIsPlayingFlag                    ;A9BAAC;
-    LDA.W #$0001                                                         ;A9BAB0;
-    JSL.L Run_Samus_Command                                              ;A9BAB3;
+    LDA.W #SamusCurrentStateHandler_Normal
+    STA.W CurrentStateHandler
+    LDA.W #SamusNewStateHandler_Normal
+    STA.W NewStateHandler
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
     LDA.W #$0008                                                         ;A9BAB7;
     STA.W SamusProjectile_CooldownTimer                                  ;A9BABA;
     LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_LetSamusFall         ;A9BABD;
@@ -9333,8 +9362,17 @@ Function_BabyMetroidCutscene_PlaySamusTheme:
 Function_BabyMetroidCutscene_PrepareForHyperBeam:
     DEC.W BabyMetroidCutscene.functionTimer,X                            ;A9CC7F;
     BPL .return                                                          ;A9CC82;
-    LDA.W #$0019                                                         ;A9CC84;
-    JSL.L Run_Samus_Command                                              ;A9CC87;
+    LDA.W #$0001
+    STA.W SamusAnimationFrameTimer
+    LDA.W #$001C
+    STA.W SamusAnimationFrame
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
     LDA.W #SamusRainbowPaletteFunction_ActivateRainbowWhenEnemyIsLow     ;A9CC8B;
     STA.L MotherBrainBody.SamusRainbowPaletteFunction                    ;A9CC8E;
     LDA.W #Function_BabyMetroidCutscene_DeathSequence                    ;A9CC92;
@@ -9404,8 +9442,15 @@ Function_BabyMetroidCutscene_FinalCutscene:
     BCC Function_BabyMetroidCutscene_DeathSequence_return                ;A9CD00;
     LDA.W #Function_MBBody_Phase3_RecoverFromCutscene_MakeSomeDistance   ;A9CD02;
     STA.W MotherBrainBody.function                                       ;A9CD05;
-    LDA.W #$0017                                                         ;A9CD08;
-    JSL.L Run_Samus_Command                                              ;A9CD0B;
+    STZ.W SuperSpecialPaletteFlags
+    STZ.W SpecialSamusPaletteFrame
+    STZ.W CommonPaletteTimer
+    STZ.W SamusChargePaletteIndex
+    JSL.L LoadSamusSuitPalette
+    LDA.W #$0001
+    STA.W SamusAnimationFrameTimer
+    LDA.W #$000D
+    STA.W SamusAnimationFrame
     LDA.W #$0003                                                         ;A9CD0F;
     JSL.L DrainedSamusController                                         ;A9CD12;
     LDA.W Enemy.properties,X                                             ;A9CD16;
@@ -9430,8 +9475,12 @@ SamusRainbowPaletteFunction_ActivateRainbowWhenEnemyIsLow:
     ADC.W #$0010                                                         ;A9CD34;
     CMP.B SamusYPosition                                                 ;A9CD37;
     BMI .return                                                          ;A9CD3A;
-    LDA.W #$0016                                                         ;A9CD3C;
-    JSL.L Run_Samus_Command                                              ;A9CD3F;
+    LDA.W #$8000
+    STA.W SuperSpecialPaletteFlags
+    LDA.W #$0001
+    STA.W SpecialSamusPaletteFrame
+    STA.W CommonPaletteTimer
+    STZ.W SamusChargePaletteIndex
     LDA.W #SamusRainbowPaletteFunction_GraduallySlowAnimationDown        ;A9CD43;
     STA.L MotherBrainBody.SamusRainbowPaletteFunction                    ;A9CD46;
 
@@ -14540,8 +14589,8 @@ Function_BabyMetroid_LatchOntoSamus:
 
 ;;; $F20E: Shitroid function - start draining Samus ;;;
 Function_BabyMetroid_StartDrainingSamus:
-    LDA.W #$0012                                                         ;A9F20E;
-    JSL.L Run_Samus_Command                                              ;A9F211;
+    LDA.W #$0001
+    STA.W SuperSpecialPaletteFlags
     LDA.W #Function_BabyMetroid_DrainingSamus                            ;A9F215;
     STA.W BabyMetroid.function                                           ;A9F218; fallthrough to Function_BabyMetroid_DrainingSamus
 
@@ -14590,8 +14639,8 @@ Function_BabyMetroid_DrainingSamus:
     JSL.L SetEnemyInstList                                               ;A9F27B;
     LDA.W #$000A                                                         ;A9F27F;
     STA.W BabyMetroid.paletteHandlerDelay,X                              ;A9F282;
-    LDA.W #$0013                                                         ;A9F285;
-    JSL.L Run_Samus_Command                                              ;A9F288;
+    STZ.W SuperSpecialPaletteFlags
+    JSL.L LoadSamusSuitPalette
     LDA.W #$0000                                                         ;A9F28C;
     JSL.L DrainedSamusController                                         ;A9F28F;
     LDA.W #$0000                                                         ;A9F293;

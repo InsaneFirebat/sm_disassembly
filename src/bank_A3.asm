@@ -2246,8 +2246,23 @@ ElevatorAI_0_LeavingRoom:
     JSL.L QueueSound_Lib3_Max6                                           ;A39558;
     LDA.W #$0032                                                         ;A3955C;
     JSL.L QueueSound_Lib1_Max6                                           ;A3955F;
-    LDA.W #$0007                                                         ;A39563;
-    JSL.L Run_Samus_Command                                              ;A39566;
+    JSL.L MakeSamusFaceForward                                        
+    LDA.W #SamusNewStateHandler_RidingElevator                        
+    STA.W NewStateHandler                                             
+    LDA.W #SamusMovementHandler_Normal                                
+    STA.W MovementHandler                                             
+    LDA.W #SamusDisplayHandler_UsingElevator                          
+    STA.W DrawingHandler                                              
+    LDA.W #SamusPoseInputHandler_Normal                               
+    STA.W PoseInputHandler                                            
+    STZ.W BombJumpDirection                                           
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
     JSL.L Reset_Projectile_Data                                          ;A3956A;
     JSR.W PlaceSamusOnElevator                                           ;A3956E;
     INC.W ElevatorStatus                                                 ;A39571;
@@ -2329,8 +2344,19 @@ ElevatorAI_3_EnteringRoom:
     JSL.L QueueSound_Lib3_Max6                                           ;A39601;
     LDA.W Elevator.targetYPosition,X                                     ;A39605;
     STA.W Enemy.YPosition,X                                              ;A39608;
-    LDA.W #$000B                                                         ;A3960B;
-    JSL.L Run_Samus_Command                                              ;A3960E; fallthrough to PlaceSamusOnElevator
+    LDA.W #SamusDrawingHandler_Default
+    STA.W DrawingHandler
+    LDA.W #SamusCurrentStateHandler_Normal
+    STA.W CurrentStateHandler
+    LDA.W #SamusNewStateHandler_Normal
+    STA.W NewStateHandler
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand                       ; fallthrough to PlaceSamusOnElevator
 
 
 ;;; $9612: Place Samus on top of elevator ;;;
@@ -13179,8 +13205,8 @@ EnemyTouch_Metroid:
 +   CMP.W #$0008                                                         ;A3EEA9;
     BCS .setFunction                                                     ;A3EEAC;
     LDY.W #$0002                                                         ;A3EEAE;
-    LDA.W #$0012                                                         ;A3EEB1;
-    JSL.L Run_Samus_Command                                              ;A3EEB4;
+    LDA.W #$0001
+    STA.W SuperSpecialPaletteFlags
 
   .setFunction:
     TYA                                                                  ;A3EEB8;
@@ -13251,8 +13277,8 @@ EnemyShot_Metroid:
     STZ.W Metroid.XVelocity,X                                            ;A3EF45;
     LDA.W #$0004                                                         ;A3EF48;
     JSL.L EnemyDeath                                                     ;A3EF4B;
-    LDA.W #$0013                                                         ;A3EF4F;
-    JSL.L Run_Samus_Command                                              ;A3EF52;
+    STZ.W SuperSpecialPaletteFlags
+    JSL.L LoadSamusSuitPalette
     LDX.B EnemyIndex                                                     ;A3EF56;
     LDA.L Metroid.electricitySpriteObjectIndex,X                         ;A3EF59;
     TAX                                                                  ;A3EF5D;
@@ -13284,8 +13310,8 @@ EnemyShot_Metroid:
     STA.W Enemy.instList,X                                               ;A3EF9B;
     LDA.W #$0001                                                         ;A3EF9E;
     STA.W Enemy.instTimer,X                                              ;A3EFA1;
-    LDA.W #$0013                                                         ;A3EFA4;
-    JSL.L Run_Samus_Command                                              ;A3EFA7;
+    STZ.W SuperSpecialPaletteFlags
+    JML LoadSamusSuitPalette
 
   .returnLower:
     RTL                                                                  ;A3EFAB;
@@ -13373,8 +13399,8 @@ PowerBombReaction_Metroid:
     JSL.L NormalEnemyPowerBombAI                                         ;A3F042;
     LDA.W Enemy.health,X                                                 ;A3F046;
     BNE .return                                                          ;A3F049;
-    LDA.W #$0013                                                         ;A3F04B;
-    JSL.L Run_Samus_Command                                              ;A3F04E;
+    STZ.W SuperSpecialPaletteFlags
+    JSL.L LoadSamusSuitPalette
     LDX.B EnemyIndex                                                     ;A3F052;
     LDA.L Metroid.electricitySpriteObjectIndex,X                         ;A3F055;
     TAX                                                                  ;A3F059;

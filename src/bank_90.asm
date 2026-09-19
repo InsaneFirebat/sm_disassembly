@@ -16403,12 +16403,13 @@ Run_Samus_Command:
     RTL                                                                  ;90F0AD;
 
   .pointers:
+    ; Most of these were inlined, remaining used commands are marked with *
     dw SamusCommand_0_LockSamus                                          ;90F0AE;
     dw SamusCommand_1_UnlockSamus                                        ;90F0B0;
-    dw SamusCommand_2_SamusReachedCeresElevator                          ;90F0B2;
-    dw SamusCommand_3_UnspinSamus                                        ;90F0B4;
-    dw SamusCommand_4_EndChargeBeam                                      ;90F0B6;
-    dw SamusCommand_5_SetupSamusForBeingDrained_AbleToStand              ;90F0B8;
+    dw SamusCommand_2_SamusReachedCeresElevator                          ;90F0B2; *
+    dw SamusCommand_3_UnspinSamus                                        ;90F0B4; *
+    dw SamusCommand_4_EndChargeBeam                                      ;90F0B6; *
+    dw SamusCommand_5_SetupSamusForBeingDrained_AbleToStand              ;90F0B8; *
     dw SamusCommand_6_LockSamusIntoRefillStation                         ;90F0BA;
     dw SamusCommand_7_SetupSamusForElevator                              ;90F0BC;
     dw SamusCommand_8_SetupSamusForCeresStart                            ;90F0BE;
@@ -16423,17 +16424,17 @@ Run_Samus_Command:
     dw SamusCommand_11_SetupSamusForDeathSequence                        ;90F0D0;
     dw SamusCommand_12_EnableSamusBlueFlashing                           ;90F0D2;
     dw SamusCommand_13_DisableSamusBlueFlashing                          ;90F0D4;
-    dw SamusCommand_14_QueueLowEnergyAndGrappleSFX                       ;90F0D6;
-    dw SamusCommand_15_LockSamusIntoSuitPickup                           ;90F0D8;
+    dw SamusCommand_14_QueueLowEnergyAndGrappleSFX                       ;90F0D6; *
+    dw SamusCommand_15_LockSamusIntoSuitPickup                           ;90F0D8; *
     dw SamusCommand_16_EnableRainbowSamus                                ;90F0DA;
     dw SamusCommand_17_DisableRainbowSamus_StandHerUp                    ;90F0DC;
-    dw SamusCommand_18_SetupSamusForBeingDrained_UnableToStand           ;90F0DE;
+    dw SamusCommand_18_SetupSamusForBeingDrained_UnableToStand           ;90F0DE; *
     dw SamusCommand_19_FreezeDrainedSamusAnimation                       ;90F0E0;
     dw SamusCommand_1A_SamusEntersGunship                                ;90F0E2;
-    dw SamusCommand_1B_LockSamusForReserveTank                           ;90F0E4;
+    dw SamusCommand_1B_LockSamusForReserveTank                           ;90F0E4; *
     dw SamusCommand_1C_PlaySpinJumpSoundIfSpinJumping                    ;90F0E6;
     dw SamusCommand_1D_ClearSoundsWhenGoingThroughDoor                   ;90F0E8;
-    dw SamusCommand_1E_ResumeSoundsAfterPowerBombExplosion               ;90F0EA;
+    dw SamusCommand_1E_ResumeSoundsAfterPowerBombExplosion               ;90F0EA; *
     dw SamusCommand_1F_KillGrappleBeam                                   ;90F0EC;
 
 
@@ -17311,8 +17312,15 @@ DebugCommandHandler_DisableRainbowSamus_StandHerUp:
     LDA.B DP_Controller2New                                              ;90F54C;
     BIT.W #$4000                                                         ;90F54E;
     BEQ .return                                                          ;90F551;
-    LDA.W #$0017                                                         ;90F553;
-    JSL.L Run_Samus_Command                                              ;90F556;
+    STZ.W SuperSpecialPaletteFlags
+    STZ.W SpecialSamusPaletteFrame
+    STZ.W CommonPaletteTimer
+    STZ.W SamusChargePaletteIndex
+    JSL.L LoadSamusSuitPalette
+    LDA.W #$0001
+    STA.W SamusAnimationFrameTimer
+    LDA.W #$000D
+    STA.W SamusAnimationFrame
     LDA.W #RTS_90F534                                                    ;90F55A;
     STA.W DebugCommandPointer                                            ;90F55D;
 

@@ -9290,8 +9290,17 @@ Instruction_Chozo_SetLoweredAcidPosition:
 
 ;;; $E43D: Instruction - unlock Samus ;;;
 Instruction_Chozo_UnlockSamus:
-    LDA.W #$0001                                                         ;AAE43D;
-    JSL.L Run_Samus_Command                                              ;AAE440;
+    LDA.W #SamusCurrentStateHandler_Normal
+    STA.W CurrentStateHandler
+    LDA.W #SamusNewStateHandler_Normal
+    STA.W NewStateHandler
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
     RTL                                                                  ;AAE444;
 
 
@@ -9526,9 +9535,18 @@ Instruction_Chozo_Movement_IndexInY:
 
 ;;; $E6F0: Instruction - release Samus and block slope access ;;;
 Instruction_Chozo_ReleaseSamus_BlockSlopeAccess:
-    LDA.W #$0001                                                         ;AAE6F0;
-    JSL.L Run_Samus_Command                                              ;AAE6F3;
-    LDA.W #$0000                                                         ;AAE6F7;
+    LDA.W #SamusCurrentStateHandler_Normal
+    STA.W CurrentStateHandler
+    LDA.W #SamusNewStateHandler_Normal
+    STA.W NewStateHandler
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
+    INC
     STA.L Scrolls+6                                                      ;AAE6FA;
     STA.L Scrolls+8                                                      ;AAE6FE;
     STA.L Scrolls+9                                                      ;AAE702;

@@ -97,8 +97,28 @@ Load_Room_PLM_Graphics:
 ;;; $8250: Clear sounds when going through door ;;;
 Clear_Sounds_When_Going_Through_Door:
 ; Called at start of door transition
-    LDA.W #$001D                                                         ;848250;
-    JSL.L Run_Samus_Command                                              ;848253;
+    LDA.W MovementType
+    AND.W #$00FF
+    CMP.W #$0003
+    BEQ .endSpaceJumpSFX
+    CMP.W #$0014
+    BNE .notSpinning
+
+  .endSpaceJumpSFX:
+    LDA.W #$0032
+    JML QueueSound
+
+  .notSpinning:
+    LDA.B DP_Controller1Input
+    BIT.W ShotBinding
+    BNE .return
+    LDA.W SamusProjectile_FlareCounter
+    CMP.W #$0010
+    BPL .return
+    LDA.W #$0002
+    JML QueueSound
+
+  .return:
     RTL                                                                  ;848257;
 
 
@@ -124,8 +144,46 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 ;;; $8270: Play spin jump sound if spin jumping ;;;
 Play_SpinJumpSound_if_SpinJumping:
 ; Called at end of door transition
-    LDA.W #$001C                                                         ;848270;
-    JSL.L Run_Samus_Command                                              ;848273;
+    LDA.W MovementType
+    AND.W #$00FF
+    CMP.W #$0014
+    BEQ .wallJump
+    CMP.W #$0003
+    BEQ .spinJumping
+    RTL
+
+  .spinJumping:
+    LDA.W Pose
+    CMP.W #$0081
+    BEQ .screwAttack
+    CMP.W #$0082
+    BEQ .screwAttack
+    CMP.W #$001B
+    BEQ .spaceJump
+    CMP.W #$001C
+    BEQ .spaceJump
+    BRA .spinJump
+
+  .wallJump:
+    LDA.W SamusAnimationFrame
+    CMP.W #$0017
+    BPL .screwAttack
+    CMP.W #$000D
+    BPL .spaceJump
+
+  .spinJump:
+    LDA.W #$0031
+    JSL.L QueueSound_Lib1_Max9
+    RTL
+
+  .spaceJump:
+    LDA.W #$003E
+    JSL.L QueueSound_Lib1_Max9
+    RTL
+
+  .screwAttack:
+    LDA.W #$0033
+    JSL.L QueueSound_Lib1_Max9
     RTL                                                                  ;848277;
 
 
@@ -2128,8 +2186,17 @@ Instruction_PLM_Activate_EnergyStation:
     STA.W Energy                                                         ;848CC3;
 
   .unlockSamus:
-    LDA.W #$0001                                                         ;848CC6;
-    JSL.L Run_Samus_Command                                              ;848CC9;
+    LDA.W #SamusCurrentStateHandler_Normal
+    STA.W CurrentStateHandler
+    LDA.W #SamusNewStateHandler_Normal
+    STA.W NewStateHandler
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
     PLY                                                                  ;848CCD;
     PLX                                                                  ;848CCE;
     RTS                                                                  ;848CCF;
@@ -2148,8 +2215,17 @@ Instruction_PLM_Activate_MissileStation:
     STA.W Missiles                                                       ;848CE4;
 
   .unlockSamus:
-    LDA.W #$0001                                                         ;848CE7;
-    JSL.L Run_Samus_Command                                              ;848CEA;
+    LDA.W #SamusCurrentStateHandler_Normal
+    STA.W CurrentStateHandler
+    LDA.W #SamusNewStateHandler_Normal
+    STA.W NewStateHandler
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
     PLY                                                                  ;848CEE;
     PLX                                                                  ;848CEF;
     RTS                                                                  ;848CF0;
@@ -6749,8 +6825,17 @@ Instruction_PLM_GotoY_EnableMovementIfSamusEnergyIsFull:
     RTS                                                                  ;84AE3F;
 
   .fullEnergy:
-    LDA.W #$0001                                                         ;84AE40;
-    JSL.L Run_Samus_Command                                              ;84AE43;
+    LDA.W #SamusCurrentStateHandler_Normal
+    STA.W CurrentStateHandler
+    LDA.W #SamusNewStateHandler_Normal
+    STA.W NewStateHandler
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
     LDA.W $0000,Y                                                        ;84AE47;
     TAY                                                                  ;84AE4A;
     RTS                                                                  ;84AE4B;
@@ -6833,8 +6918,17 @@ Instruction_PLM_GotoY_EnableMovementIfSamusMissilesAreFull:
     RTS                                                                  ;84AEC9;
 
   .missilesFull:
-    LDA.W #$0001                                                         ;84AECA;
-    JSL.L Run_Samus_Command                                              ;84AECD;
+    LDA.W #SamusCurrentStateHandler_Normal
+    STA.W CurrentStateHandler
+    LDA.W #SamusNewStateHandler_Normal
+    STA.W NewStateHandler
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
     LDA.W $0000,Y                                                        ;84AED1;
     TAY                                                                  ;84AED4;
     RTS                                                                  ;84AED5;
@@ -7067,8 +7161,17 @@ Instruction_PLM_DisplayGameSavedMessageBox:
 
 ;;; $B030: Instruction - enable movement and set save station used ;;;
 Instruction_PLM_EnableMovement_SetSaveStationUsed:
-    LDA.W #$0001                                                         ;84B030;
-    JSL.L Run_Samus_Command                                              ;84B033;
+    LDA.W #SamusCurrentStateHandler_Normal
+    STA.W CurrentStateHandler
+    LDA.W #SamusNewStateHandler_Normal
+    STA.W NewStateHandler
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
     LDA.W #$0001                                                         ;84B037;
     STA.W SaveStationLockoutFlag                                         ;84B03A;
     RTS                                                                  ;84B03D;
@@ -13019,8 +13122,17 @@ Setup_Reaction_LowerNorfairChozoHandTrigger:
     LDA.L LevelData,X                                                    ;84D1C4;
     AND.W #$0FFF                                                         ;84D1C8;
     STA.L LevelData,X                                                    ;84D1CB;
-    LDA.W #$0000                                                         ;84D1CF;
-    JSL.L Run_Samus_Command                                              ;84D1D2;
+    LDA.W #SamusCurrentStateHandler_SamusIsLocked
+    STA.W CurrentStateHandler
+    LDA.W #SamusNewStateHandler_SamusIsLocked
+    STA.W NewStateHandler
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
     JSL.L Spawn_Hardcoded_PLM                                            ;84D1D6;
     db $0C,$1D                                                           ;84D1DA;
     dw PLMEntries_CrumbleLowerNorfairChozoRoomPlug                       ;84D1DC;
@@ -13599,15 +13711,33 @@ Inst_PLM_SpawnANoobTubeShards_6NoobTubeReleasedAirBubbles:
 
 ;;; $D5E6: Instruction - lock Samus ;;;
 Instruction_PLM_LockSamus:
-    LDA.W #$0000                                                         ;84D5E6;
-    JSL.L Run_Samus_Command                                              ;84D5E9;
+    LDA.W #SamusCurrentStateHandler_SamusIsLocked
+    STA.W CurrentStateHandler
+    LDA.W #SamusNewStateHandler_SamusIsLocked
+    STA.W NewStateHandler
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
     RTS                                                                  ;84D5ED;
 
 
 ;;; $D5EE: Instruction - unlock Samus ;;;
 Instruction_PLM_UnlockSamus:
-    LDA.W #$0001                                                         ;84D5EE;
-    JSL.L Run_Samus_Command                                              ;84D5F1;
+    LDA.W #SamusCurrentStateHandler_Normal
+    STA.W CurrentStateHandler
+    LDA.W #SamusNewStateHandler_Normal
+    STA.W NewStateHandler
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
     RTS                                                                  ;84D5F5;
 
 
@@ -13687,8 +13817,17 @@ Setup_Collision_WreckedShipChozoHandTrigger:
     LDA.L LevelData,X                                                    ;84D65D;
     AND.W #$0FFF                                                         ;84D661;
     STA.L LevelData,X                                                    ;84D664;
-    LDA.W #$0000                                                         ;84D668;
-    JSL.L Run_Samus_Command                                              ;84D66B;
+    LDA.W #SamusCurrentStateHandler_SamusIsLocked
+    STA.W CurrentStateHandler
+    LDA.W #SamusNewStateHandler_SamusIsLocked
+    STA.W NewStateHandler
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
     JSL.L Spawn_Hardcoded_PLM                                            ;84D66F;
     db $17,$1D                                                           ;84D673;
     dw PLMEntries_ClearSlopeAccessForWreckedShipChozo                    ;84D675;

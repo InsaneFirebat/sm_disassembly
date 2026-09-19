@@ -5863,8 +5863,17 @@ PreInstruction_EnemyProjectile_CeresElevatorPad:
     STA.W EnemyProjectile_InstructionTimers,X                            ;86A353;
     LDA.W #InstList_EnemyProjectile_Delete_A28B                          ;86A356;
     STA.W EnemyProjectile_InstListPointers,X                             ;86A359;
-    LDA.W #$000E                                                         ;86A35C;
-    JSL.L Run_Samus_Command                                              ;86A35F;
+    LDA.W #SamusCurrentStateHandler_Normal
+    STA.W CurrentStateHandler
+    LDA.W #SamusNewStateHandler_Ceres
+    STA.W NewStateHandler
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
 
   .return:
     RTS                                                                  ;86A363;
@@ -17484,9 +17493,8 @@ PreInstruction_EnemyProjectile_Pickup:
     DEC.W EnemyProjectile_Var1,X                                         ;86EFE2;
     LDA.W EnemyProjectile_Var1,X                                         ;86EFE5;
     BEQ .timerExpired                                                    ;86EFE8;
-    LDA.W #$000D                                                         ;86EFEA;
-    JSL.L Run_Samus_Command                                              ;86EFED;
-    AND.W #$FFFF                                                         ;86EFF1;
+    LDA.W GrappleBeam_Function
+    CMP.W #GrappleBeamFunction_Inactive
     BEQ .notGrappled                                                     ;86EFF4;
     LDA.W EnemyProjectile_Var1,X                                         ;86EFF6;
     CMP.W #$0180                                                         ;86EFF9;

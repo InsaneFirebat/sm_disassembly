@@ -14383,8 +14383,17 @@ DoorASM_SetupElevatubeFromSouth:
     STA.W RoomMainASMVar2                                                ;8FE278;
     LDA.W #$FFE0                                                         ;8FE27B;
     STA.W RoomMainASMVar4                                                ;8FE27E;
-    LDA.W #$0000                                                         ;8FE281;
-    JSL.L Run_Samus_Command                                              ;8FE284;
+    LDA.W #SamusCurrentStateHandler_SamusIsLocked
+    STA.W CurrentStateHandler
+    LDA.W #SamusNewStateHandler_SamusIsLocked
+    STA.W NewStateHandler
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
     JSL.L Spawn_Hardcoded_PLM                                            ;8FE288;
     db $01,$00                                                           ;8FE28C;
     dw PLMEntries_maridiaElevatube                                       ;8FE28E;
@@ -14401,8 +14410,17 @@ DoorASM_SetupElevatubeFromNorth:
     STA.W RoomMainASMVar2                                                ;8FE29D;
     LDA.W #$0020                                                         ;8FE2A0;
     STA.W RoomMainASMVar4                                                ;8FE2A3;
-    LDA.W #$0000                                                         ;8FE2A6;
-    JSL.L Run_Samus_Command                                              ;8FE2A9;
+    LDA.W #SamusCurrentStateHandler_SamusIsLocked
+    STA.W CurrentStateHandler
+    LDA.W #SamusNewStateHandler_SamusIsLocked
+    STA.W NewStateHandler
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
     JSL.L Spawn_Hardcoded_PLM                                            ;8FE2AD;
     db $01,$00                                                           ;8FE2B1;
     dw PLMEntries_maridiaElevatube                                       ;8FE2B3;
@@ -14452,8 +14470,17 @@ MainASM_Elevatube:
 ;;; $E301: Door ASM: reset elevatube on north exit ;;;
 DoorASM_ResetElevatubeOnNorthExit:
 ; Room $D408, door list index 1: Door
-    LDA.W #$0001                                                         ;8FE301;
-    JSL.L Run_Samus_Command                                              ;8FE304;
+    LDA.W #SamusCurrentStateHandler_Normal
+    STA.W CurrentStateHandler
+    LDA.W #SamusNewStateHandler_Normal
+    STA.W NewStateHandler
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
     RTS                                                                  ;8FE308;
 
 
@@ -14462,8 +14489,17 @@ DoorASM_ResetElevatubeOnSouthExit:
 ; Room $D408, door list index 0: Door
     LDA.W #$0202                                                         ;8FE309;
     STA.L Scrolls                                                        ;8FE30C;
-    LDA.W #$0001                                                         ;8FE310;
-    JSL.L Run_Samus_Command                                              ;8FE313;
+    LDA.W #SamusCurrentStateHandler_Normal
+    STA.W CurrentStateHandler
+    LDA.W #SamusNewStateHandler_Normal
+    STA.W NewStateHandler
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
     RTS                                                                  ;8FE317;
 
 

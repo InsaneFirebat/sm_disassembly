@@ -133,13 +133,80 @@ GameState_6_1F_28_LoadingGameData_SetupNewGame_LoadDemoData:
     BNE .runSamusCmd                                                     ;82812B;
     LDA.W #$0000                                                         ;82812D;
     STA.L Palettes_SpriteP5+$1E                                          ;828130;
-    LDA.W #$0008                                                         ;828134;
-    JSL.L Run_Samus_Command                                              ;828137;
+    LDA.W #RTL_90E8CD
+    STA.W CurrentStateHandler
+    LDA.W #SamusNewStateHandler_SamusIsLocked
+    STA.W NewStateHandler
+    LDA.W #$0000
+    STA.W Pose
+    STZ.W NewPoseSamusAnimationFrame
+    JSL.L InitializeSamusPose_1
+    JSL.L Set_Samus_AnimationFrame_if_PoseChanged
+    JSL.L LoadSamusSuitPalette
+    LDA.W #SamusDrawingHandler_Default
+    STA.W DrawingHandler
+    LDA.W Pose
+    STA.W PreviousPose
+    STA.W LastDifferentPose
+    LDA.W PoseXDirection
+    STA.W PreviousPoseXDirection
+    STA.W LastDifferentPoseXDirection
+    STZ.B SamusYPosition
+    LDY.W #EnemyProjectile_CeresElevatorPad
+    JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics
+    LDY.W #EnemyProjectile_CeresElevatorPadLevelDataConcealer
+    JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics
+    STZ.W DisableMinimap
+    JSL.L Play_Room_Music_Track_After_A_Frames
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
     RTS                                                                  ;82813C;
 
   .runSamusCmd:
-    LDA.W #$0009                                                         ;82813D;
-    JSL.L Run_Samus_Command                                              ;828140;
+    LDA.W EquippedItems
+    BIT.W #$0020
+    BNE .gravity
+    BIT.W #$0001
+    BNE .varia
+    LDY.W #PaletteFXObjects_SamusLoading_PowerSuit
+    JSL.L Spawn_PaletteFXObject
+    LDA.W #$0000
+    STA.W Pose
+    BRA .merge
+
+  .varia:
+    LDY.W #PaletteFXObjects_SamusLoading_VariaSuit
+    JSL.L Spawn_PaletteFXObject
+    LDA.W #$009B
+    STA.W Pose
+    BRA .merge
+
+  .gravity:
+    LDY.W #PaletteFXObjects_SamusLoading_GravitySuit
+    JSL.L Spawn_PaletteFXObject
+    LDA.W #$009B
+    STA.W Pose
+
+  .merge:
+    JSL.L LoadSamusSuitPalette
+    JSL.L InitializeSamusPose_1
+    LDA.W #$0003
+    STA.W SamusAnimationFrameTimer
+    LDA.W #$0002
+    STA.W SamusAnimationFrame
+    STZ.W SamusAppearsFanfareTimer
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
     RTS                                                                  ;828145;
 
   .demo:
@@ -4349,8 +4416,23 @@ ContinueInitialising_GameplayResume:
     JSR.W JSL_to_Update_BeamTiles_and_Palette                            ;82A303;
     JSR.W Clear_PauseMenu_Data                                           ;82A306;
     REP #$30                                                             ;82A309;
-    LDA.W #$000C                                                         ;82A30B;
-    JSL.L Run_Samus_Command                                              ;82A30E;
+    JSL.L UpdateSamusPoseDueToChangeOfEquipment
+    LDA.W NewStateHandler
+    CMP.W #RTL_90E8D6
+    BNE .return
+    LDA.W #SamusCurrentStateHandler_Normal
+    STA.W CurrentStateHandler
+    LDA.W #SamusNewStateHandler_Normal
+    STA.W NewStateHandler
+
+  .return:
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
     RTS                                                                  ;82A312;
 
 
@@ -10574,8 +10656,21 @@ HandleSamusRunningOutOfEnergy_and_IncrementGameTime:
   .normalGameplay:
     LDA.W #$8000                                                         ;82DB9F;
     STA.W TimeIsFrozenFlag                                               ;82DBA2;
-    LDA.W #$0011                                                         ;82DBA5;
-    JSL.L Run_Samus_Command                                              ;82DBA8;
+    LDA.W #$8000
+    TRB.W PaletteFXObject_Enable
+    LDA.W #SamusCurrentStateHandler_SamusIsLocked
+    STA.W CurrentStateHandler
+    LDA.W #RTL_90E8CD
+    STA.W NewStateHandler
+    LDA.W #SamusDisplayHandler_InanimateSamus
+    STA.W DrawingHandler
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
     LDA.W #$0013                                                         ;82DBAC;
     STA.W GameState                                                      ;82DBAF;
 
@@ -10629,8 +10724,31 @@ GameState_1B_ReserveTankAuto:
     STZ.W TimeIsFrozenFlag                                               ;82DC18;
     LDA.W #$0008                                                         ;82DC1B;
     STA.W GameState                                                      ;82DC1E;
-    LDA.W #$0010                                                         ;82DC21;
-    JSL.L Run_Samus_Command                                              ;82DC24;
+    LDA.W NewStateHandler
+    CMP.W #RTL_90E8D9
+    BNE .noRainbowBeam
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
+    BRA +
+
+  .noRainbowBeam:
+    LDA.W #SamusCurrentStateHandler_Normal
+    STA.W CurrentStateHandler
+    LDA.W #SamusNewStateHandler_Normal
+    STA.W NewStateHandler
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
+    BRA +
 
 +   JSR.W GameState_8_MainGameplay                                       ;82DC28;
     JSL.L Low_Health_Check_external                                      ;82DC2B;
@@ -11369,8 +11487,17 @@ DoorTransitionFunction_HandleElevator:
 ;;     Carry: Set if finished delay, clear otherwise
     LDA.W ElevatorProperties                                             ;82E17D;
     BEQ .return                                                          ;82E180;
-    LDA.W #$0000                                                         ;82E182;
-    JSL.L Run_Samus_Command                                              ;82E185;
+    LDA.W #SamusCurrentStateHandler_SamusIsLocked
+    STA.W CurrentStateHandler
+    LDA.W #SamusNewStateHandler_SamusIsLocked
+    STA.W NewStateHandler
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
     LDA.W ElevatorDirection                                              ;82E189;
     BMI .return                                                          ;82E18C;
     LDA.W #$0030*!FPS                                                    ;82E18E;
@@ -12192,13 +12319,37 @@ DoorTransitionFunction_NudgeSamusIfInterceptingTheDoor:
     BEQ .notElevator                                                     ;82E70E;
     BIT.W ElevatorDirection                                              ;82E710;
     BPL .samusCmd                                                        ;82E713;
-    LDA.W #$0000                                                         ;82E715;
-    JSL.L Run_Samus_Command                                              ;82E718;
+    LDA.W #SamusCurrentStateHandler_SamusIsLocked
+    STA.W CurrentStateHandler
+    LDA.W #SamusNewStateHandler_SamusIsLocked
+    STA.W NewStateHandler
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
     BRA .notElevator                                                     ;82E71C;
 
   .samusCmd:
-    LDA.W #$0007                                                         ;82E71E;
-    JSL.L Run_Samus_Command                                              ;82E721;
+    JSL.L MakeSamusFaceForward
+    LDA.W #SamusNewStateHandler_RidingElevator
+    STA.W NewStateHandler
+    LDA.W #SamusMovementHandler_Normal
+    STA.W MovementHandler
+    LDA.W #SamusDisplayHandler_UsingElevator
+    STA.W DrawingHandler
+    LDA.W #SamusPoseInputHandler_Normal
+    STA.W PoseInputHandler
+    STZ.W BombJumpDirection
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
 
   .notElevator:
     JSL.L SetLiquidPhysicsType                                           ;82E725;

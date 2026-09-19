@@ -4952,8 +4952,8 @@ Function_Ship_Idle_HandleLettingSamusEnter:
 
   .skipMovingSamus:
     JSL.L MakeSamusFaceForward                                           ;A2AA20;
-    LDA.W #$001A                                                         ;A2AA24;
-    JSL.L Run_Samus_Command                                              ;A2AA27;
+    LDA.W #SamusNewStateHandler_EnteringExitingGunship
+    STA.W NewStateHandler
     STZ.W ElevatorStatus                                                 ;A2AA2B;
     LDA.W Enemy.YPosition,X                                              ;A2AA2E;
     DEC                                                                  ;A2AA31;
@@ -5071,8 +5071,8 @@ endif
     STZ.W EndingClearTime_HoursUnits                                     ;A2AB07;
     STZ.W EndingClearTime_MinutesTens                                    ;A2AB0A;
     STZ.W EndingClearTime_MinutesUnits                                   ;A2AB0D;
-    LDA.W #$000A                                                         ;A2AB10;
-    JSL.L Run_Samus_Command                                              ;A2AB13;
+    LDA.W #RTS_90E90E
+    STA.W DrawingHandler
     RTL                                                                  ;A2AB17;
 
   .continue:

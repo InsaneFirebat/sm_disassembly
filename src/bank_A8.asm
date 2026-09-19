@@ -4175,8 +4175,54 @@ UpdateYappingMawAngularSpeed:
 ;;; $A665: Move Samus with yapping maw pincers ;;;
 MoveSamusWithYappingMawPincers:
     LDX.B EnemyIndex                                                     ;A8A665;
-    LDA.W #$0003                                                         ;A8A668;
-    JSL.L Run_Samus_Command                                              ;A8A66B;
+    LDA.W GrappleBeam_Function
+    CMP.W #GrappleBeamFunction_Inactive
+    BEQ .grappleInactive
+    LDA.W #GrappleBeamFunction_Dropped
+    STA.W GrappleBeam_Function
+    BRA .returnSamusCmd3
+
+  .grappleInactive:
+    LDA.W MovementType
+    AND.W #$00FF
+    CMP.W #$0003
+    BEQ .checkDirection
+    CMP.W #$0014
+    BNE .returnSamusCmd3
+
+  .checkDirection:
+    LDA.W PoseXDirection
+    AND.W #$00FF
+    CMP.W #$0004
+    BEQ .facingLeft
+    LDA.W #$0001
+    STA.W Pose
+    BRA +
+
+  .facingLeft:
+    LDA.W #$0002
+    STA.W Pose
+
++   STZ.W NewPoseSamusAnimationFrame
+    JSL.L InitializeSamusPose_1
+    JSL.L Set_Samus_AnimationFrame_if_PoseChanged
+    LDA.W PreviousPose
+    STA.W LastDifferentPose
+    LDA.W PreviousPoseXDirection
+    STA.W LastDifferentPoseXDirection
+    LDA.W Pose
+    STA.W PreviousPose
+    LDA.W PoseXDirection
+    STA.W PreviousPoseXDirection
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
+
+  .returnSamusCmd3:
     LDA.W Enemy.XPosition,X                                              ;A8A66F;
     CLC                                                                  ;A8A672;
     ADC.L YappingMaw.SamusXOffset,X                                      ;A8A673;

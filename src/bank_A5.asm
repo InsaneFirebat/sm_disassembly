@@ -1570,10 +1570,9 @@ Function_DraygonBody_ChaseSamus:
     STY.W Enemy[3].instList                                              ;A58EB5;
     LDA.W #$0001                                                         ;A58EB8;
     STA.W Enemy[3].instTimer                                             ;A58EBB;
-    LDA.W #$000D                                                         ;A58EBE;
-    JSL.L Run_Samus_Command                                              ;A58EC1;
-    AND.W #$FFFF                                                         ;A58EC5;
-    BNE .retreat                                                         ;A58EC8;
+    LDA.W GrappleBeam_Function
+    CMP.W #GrappleBeamFunction_Inactive
+    BNE .retreat
     LDY.W #$0000                                                         ;A58ECA;
     LDA.L DraygonBody.facingDirection                                    ;A58ECD;
     BEQ .left                                                            ;A58ED1;
