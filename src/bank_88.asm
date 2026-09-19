@@ -681,8 +681,8 @@ Handle_LayerBlending_PowerBomb_6:
 
 ;;; $829E: Wait until the end of a v-blank and clear (H)DMA enable flags ;;;
 Wait_End_VBlank_Clear_HDMA:
-    SEP #$20                                                             ;88829F;
     JSL.L WaitUntilTheEndOfAVBlank                                       ;8882A1;
+    SEP #$20
     STZ.W $420B                                                          ;8882A5;
     STZ.W $420C                                                          ;8882A8;
     STZ.B DP_HDMAEnable                                                  ;8882AF;
