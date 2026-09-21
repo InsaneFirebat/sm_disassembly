@@ -11586,8 +11586,6 @@ Cancel_SpeedBoosting:
 
 ;;; $DEBA: Load Samus suit palette ;;;
 LoadSamusSuitPalette:
-    PHP                                                                  ;91DEBA;
-    REP #$30                                                             ;91DEBE;
     LDA.W EquippedItems                                                  ;91DEC0;
     BIT.W #$0020                                                         ;91DEC3;
     BNE .gravitySuit                                                     ;91DEC6;
@@ -11607,14 +11605,11 @@ LoadSamusSuitPalette:
     JSR.W Load20BytesOfSamusPaletteInX                                   ;91DEE0;
 
   .return:
-    PLP                                                                  ;91DEE4;
     RTL                                                                  ;91DEE5;
 
 
 ;;; $DEE6: Load Samus suit target palette ;;;
 LoadSamusSuitTargetPalette:
-    PHP                                                                  ;91DEE6;
-    REP #$30                                                             ;91DEEA;
     LDA.W EquippedItems                                                  ;91DEEC;
     BIT.W #$0020                                                         ;91DEEF;
     BNE .gravitySuit                                                     ;91DEF2;
@@ -11634,7 +11629,6 @@ LoadSamusSuitTargetPalette:
     JSR.W Load20BytesOfSamusTargetPaletteInX                             ;91DF0C;
 
   .return:
-    PLP                                                                  ;91DF10;
     RTL                                                                  ;91DF11;
 
 
@@ -11642,10 +11636,8 @@ LoadSamusSuitTargetPalette:
 Restore_A_Energy_ToSamus:
 ;; Parameters:
 ;;     A: Health
-    STA.B DP_Temp12                                                      ;91DF18;
-    LDA.W Energy                                                         ;91DF1A;
     CLC                                                                  ;91DF1D;
-    ADC.B DP_Temp12                                                      ;91DF1E;
+    ADC.B Energy
     STA.W Energy                                                         ;91DF20;
     CMP.W MaxEnergy                                                      ;91DF23;
     BMI .return                                                          ;91DF26;

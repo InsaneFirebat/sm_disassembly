@@ -1790,13 +1790,6 @@ PaletteCrossFading_ClearYColorsStartingFromColorIndexX:
 ;; Parameters:
 ;;     X: Colour index
 ;;     Y: Number of colours
-    PHP                                                                  ;8B8C5E;
-    PHB                                                                  ;8B8C5F;
-    SEP #$20                                                             ;8B8C60;
-    LDA.B #$7F                                                           ;8B8C62;
-    PHA                                                                  ;8B8C64;
-    PLB                                                                  ;8B8C65;
-    REP #$30                                                             ;8B8C66;
 
   .loop:
     LDA.W #$0000                                                         ;8B8C68;
@@ -1808,8 +1801,6 @@ PaletteCrossFading_ClearYColorsStartingFromColorIndexX:
     INX                                                                  ;8B8C7C;
     DEY                                                                  ;8B8C7D;
     BNE .loop                                                            ;8B8C7E;
-    PLB                                                                  ;8B8C80;
-    PLP                                                                  ;8B8C81;
     RTS                                                                  ;8B8C82;
 
 

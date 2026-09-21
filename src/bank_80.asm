@@ -4697,7 +4697,7 @@ ResumeGameplay:
     LDA.W #$0030
     TRB.B DP_IRQAutoJoy
     SEI
-    JSL.L Load_CRETiles_TilesetTiles_and_TilesetPalette_DB_8F            ;80A15B;
+    JSL.L Load_CRETiles_TilesetTiles_and_TilesetPalette
     JSL.L LoadLibraryBackground_LoadingPausing                           ;80A15F;
     JSR.W DisplayViewablePartOfRoom                                      ;80A163;
     JSL.L Load_Room_PLM_Graphics                                         ;80A167;
@@ -6415,8 +6415,7 @@ DoorTransitionScrollingSetup_Right:
     JSR.W UpdatePreviousLayerBlocks                                      ;80AD67;
     DEC.W PreviousLayer1XBlock                                           ;80AD6A;
     DEC.W PreviousLayer2XBlock                                           ;80AD6D;
-    JSR.W DoorTransitionScrolling_Right                                  ;80AD70;
-    RTS                                                                  ;80AD73;
+    JMP.W DoorTransitionScrolling_Right
 
 
 ;;; $AD74: Door transition scrolling setup - left ;;;
@@ -6435,8 +6434,7 @@ DoorTransitionScrollingSetup_Left:
     JSR.W UpdatePreviousLayerBlocks                                      ;80AD91;
     INC.W PreviousLayer1XBlock                                           ;80AD94;
     INC.W PreviousLayer2XBlock                                           ;80AD97;
-    JSR.W DoorTransitionScrolling_Left                                   ;80AD9A;
-    RTS                                                                  ;80AD9D;
+    JMP.W DoorTransitionScrolling_Left
 
 
 ;;; $AD9E: Door transition scrolling setup - down ;;;
@@ -6455,8 +6453,7 @@ DoorTransitionScrollingSetup_Down:
     JSR.W UpdatePreviousLayerBlocks                                      ;80ADBB;
     DEC.W PreviousLayer1YBlock                                           ;80ADBE;
     DEC.W PreviousLayer2YBlock                                           ;80ADC1;
-    JSR.W DoorTransitionScrolling_Down                                   ;80ADC4;
-    RTS                                                                  ;80ADC7;
+    JMP.W DoorTransitionScrolling_Down
 
 
 ;;; $ADC8: Door transition scrolling setup - up ;;;
@@ -6485,8 +6482,7 @@ DoorTransitionScrollingSetup_Up:
     INC.W PreviousLayer1YBlock                                           ;80ADFB;
     INC.W PreviousLayer2YBlock                                           ;80ADFE;
     DEC.B Layer1YPosition                                                ;80AE01;
-    JSR.W DoorTransitionScrolling_Up                                     ;80AE04;
-    RTS                                                                  ;80AE07;
+    JMP.W DoorTransitionScrolling_Up
 
 
 ;;; $AE08: Pointers to door transition scrolling setup code ;;;

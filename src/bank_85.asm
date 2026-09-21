@@ -840,9 +840,7 @@ Write_MessageBox_BG3_Yscroll_HDMA_DataTable:
 Restore_PPU:
 ; If there's an active power bomb explosion, then the call to HDMAObjectHandler_HandleMusicQueue will increase the explosion radius,
 ; and no collision detection is done before the next radius increase, resulting in PBs missing a column of blocks sometimes
-    REP #$20                                                             ;85861A;
     JSR.W Wait_for_Lag_Frame                                             ;85861C;
-    REP #$20                                                             ;85861F; >_<;
     LDA.W #$5880                                                         ;858621;
     STA.W $2116                                                          ;858624;
     LDA.W #$1801                                                         ;858627;
@@ -861,7 +859,6 @@ Restore_PPU:
     LDA.B #$02                                                           ;85864C;
     STA.W $420B                                                          ;85864E;
     JSR.W Wait_for_Lag_Frame                                             ;858651;
-    SEP #$20                                                             ;858654;
     LDA.L BackupOfHDMAChannelsDuringMessageBoxes                         ;858656;
     STA.B DP_HDMAEnable                                                  ;85865A;
     STA.W $420C                                                          ;85865C;

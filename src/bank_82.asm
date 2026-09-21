@@ -10927,21 +10927,14 @@ GameState_19_DeathSequence_BlackOut:
 
 ;;; $DDF1: Load destination room CRE bitset ;;;
 Load_Destination_RoomCRE_Bitset:
-    PHB                                                                  ;82DDF1;
-    PHX                                                                  ;82DDF2;
-    PEA.W RoomHeaders>>8                                                 ;82DDF3;
-    PLB                                                                  ;82DDF6;
-    PLB                                                                  ;82DDF7;
     LDX.W DoorPointer                                                    ;82DDF8;
     LDA.L DoorHeaders_destRoomHeader,X                                   ;82DDFB;
     TAX                                                                  ;82DDFF;
     LDA.W CREBitset                                                      ;82DE00;
     STA.W PreviousCREBitset                                              ;82DE03;
-    LDA.W $0008,X                                                        ;82DE06;
+    LDA.L RoomHeaders+8,X
     AND.W #$00FF                                                         ;82DE09;
     STA.W CREBitset                                                      ;82DE0C;
-    PLX                                                                  ;82DE0F;
-    PLB                                                                  ;82DE10;
     RTS                                                                  ;82DE11;
 
 
@@ -11715,9 +11708,6 @@ DoorTransitionFunction_LoadRoomHeader_SetupMap_Decompress:
 
 ;;; $E38E: Door transition function - set up scrolling ;;;
 DoorTransitionFunction_SetupScrolling:
-    PEA.W RoomHeaders>>8                                                 ;82E38E; >.<
-    PLB                                                                  ;82E391;
-    PLB                                                                  ;82E392;
     STZ.B DP_BG2XScroll                                                  ;82E393;
     STZ.B DP_BG2YScroll                                                  ;82E395;
     STZ.W ScrollingSkyFinishedHook                                       ;82E397;
@@ -12331,9 +12321,7 @@ DoorTransitionFunction_FadeInTheScreen_and_RunEnemies_Finish:
 
 ;;; $E76B: Load destination room CRE bitset, door/room/state headers, CRE tiles, tileset tiles and tileset palette ;;;
 Load_Destination_Room:
-    PHP                                                                  ;82E76B;
     PHB                                                                  ;82E76C;
-    REP #$30                                                             ;82E76D;
     PEA.W RoomHeaders>>8                                                 ;82E76F;
     PLB                                                                  ;82E772;
     PLB                                                                  ;82E773;
@@ -12341,18 +12329,7 @@ Load_Destination_Room:
     JSR.W Load_Door_Header                                               ;82E777;
     JSR.W Load_Room_Header                                               ;82E77A;
     JSR.W Load_State_Header                                              ;82E77D;
-    JMP.W Load_CRETiles_TilesetTiles_and_TilesetPalette                  ;82E780;
-
-
-;;; $E783: Load CRE tiles, tileset tiles and tileset palette ;;;
-Load_CRETiles_TilesetTiles_and_TilesetPalette_DB_8F:
-    PHP                                                                  ;82E783;
-    PHB                                                                  ;82E784;
-    REP #$30                                                             ;82E785;
-    PEA.W RoomHeaders>>8                                                 ;82E787; >.<
-    PLB                                                                  ;82E78A;
-    PLB                                                                  ;82E78B;
-
+    PLB
 
 ;;; $E78C: Load CRE tiles, tileset tiles and tileset palette ;;;
 Load_CRETiles_TilesetTiles_and_TilesetPalette:
@@ -12381,8 +12358,6 @@ Load_CRETiles_TilesetTiles_and_TilesetPalette:
     STY.B DP_DecompSrc                                                   ;82E7C7;
     JSL.L Decompression_HardcodedDestination                             ;82E7C9;
     dl TargetPalettes_BGP0                                               ;82E7CD;
-    PLB                                                                  ;82E7D0;
-    PLP                                                                  ;82E7D1;
     RTL                                                                  ;82E7D2;
 
 
