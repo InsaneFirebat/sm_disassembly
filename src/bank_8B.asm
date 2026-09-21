@@ -6812,11 +6812,10 @@ Setup_Intro_CrossFade_Into_SamusGameplay:
     STA.B DP_MainScreenLayers                                            ;8BB01C;
     LDA.B #$11                                                           ;8BB01E;
     STA.B DP_SubScreenLayers                                             ;8BB020;
-    LDA.B #$02                                                           ;8BB022;
+    REP #$20
+    LDA.W #$0002
     STA.B DP_ColorMathA                                                  ;8BB024;
-    STZ.B DP_ColorMathB                                                  ;8BB026;
     JSL.L SpawnIntroCutsceneCrossFade_HDMAObject                         ;8BB028;
-    REP #$20                                                             ;8BB02C;
     JSR.W PlaceIntroTextCaretOffScreen                                   ;8BB02E;
     LDA.W #CinematicFunction_Intro_CrossFadeToSamusGameplay              ;8BB031;
     STA.W CinematicFunction                                              ;8BB034;
@@ -7031,11 +7030,10 @@ SetupIntroCrossFadeIntoScientistCutscene:
     STA.B DP_MainScreenLayers                                            ;8BB155;
     LDA.B #$11                                                           ;8BB157;
     STA.B DP_SubScreenLayers                                             ;8BB159;
-    LDA.B #$02                                                           ;8BB15B;
+    REP #$20
+    LDA.W #$0002
     STA.B DP_ColorMathA                                                  ;8BB15D;
-    STZ.B DP_ColorMathB                                                  ;8BB15F;
     JSL.L SpawnIntroCutsceneCrossFade_HDMAObject                         ;8BB161;
-    REP #$20                                                             ;8BB165;
     JSR.W PlaceIntroTextCaretOffScreen                                   ;8BB167;
     LDA.W #CinematicFunction_Intro_CrossFadeToScientistCutscene          ;8BB16A;
     STA.W CinematicFunction                                              ;8BB16D;
@@ -7396,10 +7394,9 @@ Setup_Intro_CrossFade_Into_Text:
     STA.B DP_MainScreenLayers                                            ;8BB3A5;
     LDA.B #$11                                                           ;8BB3A7;
     STA.B DP_SubScreenLayers                                             ;8BB3A9;
-    LDA.B #$02                                                           ;8BB3AB;
+    REP #$20
+    LDA.W #$0002
     STA.B DP_ColorMathA                                                  ;8BB3AD;
-    STZ.B DP_ColorMathB                                                  ;8BB3AF;
-    REP #$20                                                             ;8BB3B1;
     LDX.W #$0000                                                         ;8BB3B3;
 
   .loopPalettes:
@@ -9150,7 +9147,7 @@ CinematicFunction_CeresGoesBoom_CeresExplosions:
     PLP                                                                  ;8BC3A2;
     PLY                                                                  ;8BC3A3;
     PLX                                                                  ;8BC3A4;
-    LDA.B #$3710
+    LDA.W #$3710
     STA.B DP_ColorMathA                                                  ;8BC3A9;
     LDA.W #$0300                                                         ;8BC3B1;
     STA.W Mode7TransformationZoomLevel                                   ;8BC3B4;
@@ -9423,7 +9420,7 @@ InitFunction_CinematicSpriteObject_CeresFinalExplosion:
 ;;; $C5CA: Cinematic function - Ceres goes boom - gunship flying away ;;;
 CinematicFunction_CeresGoesBoom_GunshipFlyingAway:
 ; This cinematic function is used even if Samus doesn't get away, just with the gunship tilemap unloaded ^_^;
-    LDA.B #$3710                                                         ;8BC5CC;
+    LDA.W #$3710                                                         ;8BC5CC;
     STA.B DP_ColorMathA                                                  ;8BC5CE;
     LDA.W CinematicBG1_XSubPosition                                      ;8BC5D6;
     CLC                                                                  ;8BC5D9;
@@ -11661,7 +11658,7 @@ CinematicFunction_Ending_Setup:
     LDA.B #$01                                                           ;8BD67D;
     STA.B DP_SubScreenLayers                                             ;8BD67F;
     REP #$20
-    LDA.B #$1102                                                         ;8BD681;
+    LDA.W #$1102
     STA.B DP_ColorMathA                                                  ;8BD683;
     LDA.W #$0000                                                         ;8BD68B;
     LDY.W #CinematicSpriteObjectDefinitions_Right                        ;8BD68E;
@@ -12018,7 +12015,7 @@ CinematicFunc_Ending_ZebesDestruction2_CrossFade_Setup:
     LDA.B #$10                                                           ;8BD9CC;
     STA.B DP_SubScreenLayers                                             ;8BD9CE;
     REP #$20
-    LDA.B #$2102                                                         ;8BD9D0;
+    LDA.W #$2102
     STA.B DP_ColorMathA                                                  ;8BD9D2;
     JSR.W PaletteCrossFading_CopyCurrentPalettesToFadingPalettes         ;8BD9DA;
     JSR.W PaletteCrossFading_DecomposePaletteDataForFading               ;8BD9DD;
@@ -12835,7 +12832,7 @@ CinematicFunction_PostCredits_FadeInShootingStars:
     LDA.B #$10                                                           ;8BE125;
     STA.B DP_SubScreenLayers                                             ;8BE127;
     REP #$20
-    LDA.B #$2202                                                         ;8BE129;
+    LDA.W #$2202
     STA.B DP_ColorMathA                                                  ;8BE12B;
     STZ.W ScreenFadeDelay                                                ;8BE133;
     STZ.W ScreenFadeCounter                                              ;8BE136;
@@ -12869,7 +12866,7 @@ CinematicFunction_PostCredits_FadeInSamus:
     LDA.B #$04                                                           ;8BE171;
     STA.B DP_SubScreenLayers                                             ;8BE173;
     REP #$20
-    LDA.B #$0202
+    LDA.W #$0202
     STA.B DP_ColorMathA                                                  ;8BE177;
     LDA.W #regional($00B4, $0084)                                        ;8BE17F;
     STA.W CinematicFunctionTimer                                         ;8BE182;
@@ -12977,7 +12974,7 @@ CinematicFunction_PostCredits_DeerForce:
     LDA.B #$10                                                           ;8BE250;
     STA.B DP_SubScreenLayers                                             ;8BE252;
     REP #$20
-    LDA.B #$2202
+    LDA.W #$2202
     STA.B DP_ColorMathA                                                  ;8BE256;
     LDA.W #CinematicFunc_PostCredits_IdleSamus_1_CrossFadeOutSamusSuit   ;8BE25E;
     STA.W CinematicFunction                                              ;8BE261;
@@ -13071,7 +13068,7 @@ CinematicFunction_PostCredits_1994Nintendo:
     LDA.B #$10                                                           ;8BE2FF;
     STA.B DP_SubScreenLayers                                             ;8BE301;
     REP #$20
-    LDA.B #$2202
+    LDA.W #$2202
     STA.B DP_ColorMathA                                                  ;8BE305;
     LDA.W #CinematicFunc_PostCredits_IdleSamus2_CrossFadeOutSamusSuit    ;8BE30D;
     STA.W CinematicFunction                                              ;8BE310;
@@ -15256,15 +15253,13 @@ Instruction_GreyOutSuperMetroidIcon:
     STA.B DP_MainScreenLayers                                            ;8BF262;
     LDA.B #$10                                                           ;8BF264;
     STA.B DP_SubScreenLayers                                             ;8BF266;
-    LDA.B #$02                                                           ;8BF268;
-    STA.B DP_ColorMathA                                                  ;8BF26A;
-    LDA.B #$22                                                           ;8BF26C;
-    STA.B DP_ColorMathB                                                  ;8BF26E;
     LDA.B #$64                                                           ;8BF270;
     STA.B DP_BGTilesAddr                                                 ;8BF272;
     LDA.B #$54                                                           ;8BF274;
     STA.B DP_BG2TilemapAddrSize                                          ;8BF276;
     REP #$20                                                             ;8BF278;
+    LDA.W #$2202
+    STA.B DP_ColorMathA
     STZ.W CinematicFunctionTimer                                         ;8BF27A;
     LDA.W #CinematicFunction_PostCredits_GreyOutSuperMetroidIcon         ;8BF27D;
     STA.W CinematicFunction                                              ;8BF280;
@@ -15314,13 +15309,11 @@ Instruction_CinematicSpriteObject_StartZebesExplosion:
     STA.B DP_MainScreenLayers                                            ;8BF2BC;
     LDA.B #$02                                                           ;8BF2BE;
     STA.B DP_SubScreenLayers                                             ;8BF2C0;
-    LDA.B #$02                                                           ;8BF2C2;
-    STA.B DP_ColorMathA                                                  ;8BF2C4;
-    LDA.B #$11                                                           ;8BF2C6;
-    STA.B DP_ColorMathB                                                  ;8BF2C8;
     LDA.B #$7C                                                           ;8BF2CA;
     STA.B DP_BG2TilemapAddrSize                                          ;8BF2CC;
     REP #$20                                                             ;8BF2CE;
+    LDA.W #$1102
+    STA.B DP_ColorMathA
     LDY.W #CinematicSpriteObjectDefinitions_ZebesExplosion_Stars_Right   ;8BF2D0;
     STZ.B DP_Temp12                                                      ;8BF2D3;
     JSR.W Spawn_CinematicSpriteObject_YToIndex12                         ;8BF2D5;
@@ -15346,15 +15339,13 @@ Instruction_ZebesExplosionFinale:
     STA.B DP_MainScreenLayers                                            ;8BF2FF;
     LDA.B #$12                                                           ;8BF301;
     STA.B DP_SubScreenLayers                                             ;8BF303;
-    LDA.B #$02                                                           ;8BF305;
-    STA.B DP_ColorMathA                                                  ;8BF307;
-    LDA.B #$33                                                           ;8BF309;
-    STA.B DP_ColorMathB                                                  ;8BF30B;
     LDA.B #$74                                                           ;8BF30D;
     STA.B DP_BG1TilemapAddrSize                                          ;8BF30F;
     LDA.B #$78                                                           ;8BF311;
     STA.B DP_BG2TilemapAddrSize                                          ;8BF313;
     REP #$20                                                             ;8BF315;
+    LDA.W #$3302
+    STA.B DP_ColorMathA
     LDY.W #PaletteFXObjects_ZebesExplosionFinale                         ;8BF317;
     JSL.L Spawn_PaletteFXObject                                          ;8BF31A;
     LDY.W #CinematicSpriteObjectDefinitions_ZebesExplosion_AfterGlow     ;8BF31E;
@@ -15837,11 +15828,9 @@ Instruction_CinematicSpriteObject_SamusShootsScreen:
     STA.B DP_MainScreenLayers                                            ;8BF616;
     LDA.B #$10                                                           ;8BF618;
     STA.B DP_SubScreenLayers                                             ;8BF61A;
-    LDA.B #$02                                                           ;8BF61C;
+    REP #$20
+    LDA.W #$8102
     STA.B DP_ColorMathA                                                  ;8BF61E;
-    LDA.B #$81                                                           ;8BF620;
-    STA.B DP_ColorMathB                                                  ;8BF622;
-    REP #$20                                                             ;8BF624;
     LDA.W #$FFFC                                                         ;8BF626;
     STA.W CinematicBG1_XPosition                                         ;8BF629;
     LDA.W #$FFF8                                                         ;8BF62C;
