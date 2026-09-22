@@ -863,7 +863,7 @@ Restore_PPU:
     LDA.B #$02                                                           ;85864C;
     STA.W $420B                                                          ;85864E;
     JSR.W Wait_for_Lag_Frame                                             ;858651;
-    SEP #$20                                                             ;858654;
+    SEP #$20                                                             ;858654; >.<
     LDA.L BackupOfHDMAChannelsDuringMessageBoxes                         ;858656;
     STA.B DP_HDMAEnable                                                  ;85865A;
     STA.W $420C                                                          ;85865C;

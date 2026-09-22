@@ -17714,9 +17714,9 @@ SamusCommand_5_SetupSamusForBeingDrained_AbleToStand:
 ;;     Carry: Set. Cancel any pending pose transition
 
 ; Called by:
-;     $A9:B975: Mother Brain body function - second phase - firing rainbow beam - start firing rainbow beam
-    LDA.W #SamusTimerHackHandler_HandleLettingSamusUpFromBeingDrained    ;90F38E; fallthrough to SetupSamusForBeingDrained
-    STA.W HackHandler                                                    ;90F391;
+;     Function_MBBody_Phase2_FiringRainbowBeam_StartFiringRainbowBeam
+    LDA.W #SamusTimerHackHandler_HandleLettingSamusUpFromBeingDrained    ;90F38E;
+    STA.W HackHandler                                                    ;90F391; fallthrough to SetupSamusForBeingDrained
 
 
 ;;; $F394: Set up Samus for being drained ;;;
@@ -17746,7 +17746,7 @@ SamusCommand_18_SetupSamusForBeingDrained_UnableToStand:
 ;;     Carry: Set. Clear any pending pose transition
 
 ; Called by:
-;     $A9:B975: Mother Brain body function - second phase - firing rainbow beam - start firing rainbow beam
+;     Function_MBBody_Phase2_FiringRainbowBeam_StartFiringRainbowBeam
     LDA.W #SamusTimerHackHandler_LetSamusFailToStandUpFromBeingDrained   ;90F3C0;
     STA.W HackHandler                                                    ;90F3C3;
     JMP.W SetupSamusForBeingDrained                                      ;90F3C6;

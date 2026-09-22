@@ -6747,10 +6747,10 @@ Function_MBBody_Phase2_FiringRainbowBeam_StartFiringRainbowBeam:
     LDA.W #$0005                                                         ;A9B9C5;
     LDY.W Energy                                                         ;A9B9C8;
     CPY.W #$02BC                                                         ;A9B9CB;
-    BPL .greaterThan2BC                                                  ;A9B9CE;
+    BPL .greaterThan700                                                  ;A9B9CE;
     LDA.W #$0018                                                         ;A9B9D0;
 
-  .greaterThan2BC:
+  .greaterThan700:
     JSL.L Run_Samus_Command                                              ;A9B9D3;
     LDA.W #$0006                                                         ;A9B9D7;
     STA.L MotherBrainBody.numberOfTimesToQueueRainbowBeamSFX             ;A9B9DA;
