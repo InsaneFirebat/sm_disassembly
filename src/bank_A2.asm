@@ -931,7 +931,6 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Spritemap_Boyon_A2890B:
     dw $0001                                                             ;A2890B;
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $10E)
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $8912: Palette - enemy $CEFF (mini-Crocomire) ;;;
@@ -1261,6 +1260,7 @@ Spritemap_Stoke_AttackingRight:
     %spritemapEntry(0, $02, $F0, 0, 1, 2, 0, $10D)
     %spritemapEntry(1, $43F2, $F8, 0, 1, 2, 0, $10B)
     %spritemapEntry(1, $43FA, $F8, 0, 1, 2, 0, $10A)
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $8B60: Palette - enemy $CF3F/$CF7F (tatori) ;;;

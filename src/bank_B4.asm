@@ -42,7 +42,9 @@ EnemySetName_FinalMissileBombway_1:
 
 EnemySets_FinalMissileBombway_1:
     dw EnemyHeaders_FaceBlock,$0007                                      ;B48043;
+if !FEATURE_KEEP_UNREFERENCED
     dw EnemyHeaders_Stoke,$0007                                          ;B48047;
+endif ; !FEATURE_KEEP_UNREFERENCED
     dw $FFFF
     db $00                                                               ;B4804D;
 
@@ -51,7 +53,9 @@ EnemySetName_FinalMissileBombway_0:
 
 EnemySets_FinalMissileBombway_0:
     dw EnemyHeaders_FaceBlock,$0007                                      ;B48055;
+if !FEATURE_KEEP_UNREFERENCED
     dw EnemyHeaders_Stoke,$0007                                          ;B48059;
+endif ; !FEATURE_KEEP_UNREFERENCED
     dw $FFFF
     db $00                                                               ;B4805F;
 

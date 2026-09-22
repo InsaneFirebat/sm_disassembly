@@ -9716,6 +9716,7 @@ EnemyHeaders_Boyon:                                                      ;A0CEBF
     %vulnerabilities(EnemyVulnerabilities_Boyon),
     %name(EnemyName_Boyon))
 
+if !FEATURE_KEEP_UNREFERENCED
 EnemyHeaders_Stoke:                                                      ;A0CEFF;
     %EnemyHeader(\
     %tileDataSize($0400),
@@ -9747,6 +9748,7 @@ EnemyHeaders_Stoke:                                                      ;A0CEFF
     %drops(EnemyDropChances_Stoke),
     %vulnerabilities(EnemyVulnerabilities_Default),
     %name(EnemyName_Stoke))
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyHeaders_MamaTurtle:                                                 ;A0CF3F;
     %EnemyHeader(\
