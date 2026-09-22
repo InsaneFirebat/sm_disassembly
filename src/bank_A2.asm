@@ -5305,18 +5305,14 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $B06B: Initialisation AI - enemy $D0FF/$D13F/$D17F (flies) ;;;
 InitAI_Mellow_Mella_Menu:
-    LDX.B EnemyIndex                                                     ;A2B06B;
+    TYX
     STZ.W Flies.angle,X                                                  ;A2B06E;
     LDA.W #Function_Flies_IdleMovement_ClockwiseCircle                   ;A2B071;
     STA.W Flies.function,X                                               ;A2B074;
     LDA.W #InstList_Mellow_Mella_Menu                                    ;A2B077;
     STA.W Enemy.instList,X                                               ;A2B07A;
-    LDA.W #Spritemap_Common_Nothing                                      ;A2B07D;
-    STA.W Enemy.spritemap,X                                              ;A2B080;
     LDA.W #$0001                                                         ;A2B083;
     STA.W Enemy.instTimer,X                                              ;A2B086;
-    LDA.W #Spritemap_Common_Nothing                                      ;A2B089;
-    STA.W Enemy.spritemap,X                                              ;A2B08C;
     RTL                                                                  ;A2B08F;
 
 
@@ -5402,7 +5398,6 @@ MoveFlyAccordingToVelocities:
 ;;; $B11F: Main AI - enemy $D0FF/$D13F/$D17F (flies) ;;;
 MainAI_Mellow_Mella_Menu:
     JSL.L GenerateRandomNumber                                           ;A2B11F;
-    LDX.B EnemyIndex                                                     ;A2B123;
     JMP.W (Flies.function,X)                                             ;A2B126;
 
 
@@ -5727,7 +5722,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 ;;; $B3E0: Initialisation AI - enemy $D1BF (multiviola) ;;;
 InitAI_Multiviola:
 ; Everything but the instruction list pointer assignment is done in the main AI, making it completely redundant to do here
-    LDX.B EnemyIndex                                                     ;A2B3E0;
+    TYX
     LDA.W Enemy.init0,X                                                  ;A2B3E3;
     STA.B DP_Temp12                                                      ;A2B3E6;
     LDA.W Enemy.init1,X                                                  ;A2B3E8;
@@ -5750,7 +5745,6 @@ InitAI_Multiviola:
 ;;; $B40F: Main AI - enemy $D1BF (multiviola) ;;;
 MainAI_Multiviola:
 ; Note the two fixed point negation operations at $B443 and $B47D are off by 1.0 when the low word is zero
-    LDX.B EnemyIndex                                                     ;A2B40F;
     LDA.W Enemy.init0,X                                                  ;A2B412;
     STA.B DP_Temp12                                                      ;A2B415;
     LDA.W Enemy.init1,X                                                  ;A2B417;
@@ -5913,7 +5907,7 @@ PolypData:
 
 ;;; $B570: Initialisation AI - enemy $D1FF (polyp) ;;;
 InitAI_Polyp:
-    LDX.B EnemyIndex                                                     ;A2B570;
+    TYX
     LDA.W #InstList_Polyp                                                ;A2B573;
     STA.W Enemy.instList,X                                               ;A2B576;
     LDA.W #$0001                                                         ;A2B579;
@@ -5928,14 +5922,11 @@ InitAI_Polyp:
 
 ;;; $B58F: Main AI - enemy $D1FF (polyp) ;;;
 MainAI_Polyp:
-    LDX.B EnemyIndex                                                     ;A2B58F;
-    JSR.W (Polyp.function,X)                                             ;A2B592;
-    RTL                                                                  ;A2B595;
+    JMP.W (Polyp.function,X)
 
 
 ;;; $B596: Polyp function - wait for Samus to get near ;;;
 Function_Polyp_WaitForSamusToGetNear:
-    LDX.B EnemyIndex                                                     ;A2B596;
     LDA.W #$0040                                                         ;A2B599;
     JSL.L IsSamusWithinAPixelColumnsOfEnemy                              ;A2B59C;
     BEQ .return                                                          ;A2B5A0;
@@ -5946,12 +5937,11 @@ Function_Polyp_WaitForSamusToGetNear:
     STA.W Polyp.function,X                                               ;A2B5AE;
 
   .return:
-    RTS                                                                  ;A2B5B1;
+    RTL
 
 
 ;;; $B5B2: Polyp function - shoot rock ;;;
 Function_Polyp_ShootRock:
-    LDX.B EnemyIndex                                                     ;A2B5B2;
     JSL.L GenerateRandomNumber                                           ;A2B5B5;
     AND.W #$001E                                                         ;A2B5B9;
     TAY                                                                  ;A2B5BC;
@@ -5971,19 +5961,18 @@ Function_Polyp_ShootRock:
     TAY                                                                  ;A2B5E2;
     LDA.W PolypData_cooldownTimer,Y                                      ;A2B5E3;
     STA.W Polyp.cooldownTimer,X                                          ;A2B5E6;
-    RTS                                                                  ;A2B5E9;
+    RTL
 
 
 ;;; $B5EA: Polyp function - cooldown ;;;
 Function_Polyp_Cooldown:
-    LDX.B EnemyIndex                                                     ;A2B5EA;
     DEC.W Polyp.cooldownTimer,X                                          ;A2B5ED;
     BPL .return                                                          ;A2B5F0;
     LDA.W #Function_Polyp_WaitForSamusToGetNear                          ;A2B5F2;
     STA.W Polyp.function,X                                               ;A2B5F5;
 
   .return:
-    RTS                                                                  ;A2B5F8;
+    RTL
 
 
 ;;; $B5F9: RTL ;;;
@@ -6004,7 +5993,7 @@ Spritemap_Polyp:
 
 ;;; $B602: Initialisation AI - enemy $D23F (rinka) ;;;
 InitAI_Rinka:
-    LDX.B EnemyIndex                                                     ;A2B602;
+    TYX
     LDA.W Enemy.init0,X                                                  ;A2B605;
     BEQ .notMBRoom                                                       ;A2B608;
     JSR.W SpawnMotherBrainsRoomRinka                                     ;A2B60A;
@@ -6093,19 +6082,19 @@ SpawnMotherBrainsRoomRinka:
     BCS +                                                                ;A2B6AB;
     JSR.W GetAvailabilityIndexOfEnemySpawnPosition                       ;A2B6AD;
     TAY                                                                  ;A2B6B0;
-    PHX                                                                  ;A2B6B1;
+    STX.B DP_Temp16
     TAX                                                                  ;A2B6B2;
     LDA.L ExtraEnemy8800-2,X                                             ;A2B6B3;
     LSR                                                                  ;A2B6B7;
-    PLX                                                                  ;A2B6B8;
+    LDX.B DP_Temp16
     BCS +                                                                ;A2B6B9;
     TYA                                                                  ;A2B6BB;
     STA.W Rinka.spawnPointAvailabilityTableIndex,X                       ;A2B6BC;
-    PHX                                                                  ;A2B6BF;
+    STX.B DP_Temp16
     TAX                                                                  ;A2B6C0;
     LDA.W #$FFFF                                                         ;A2B6C1;
     STA.L ExtraEnemy8800-2,X                                             ;A2B6C4;
-    PLX                                                                  ;A2B6C8;
+    LDX.B DP_Temp16
     RTS                                                                  ;A2B6C9;
 
 +   LDY.W #$0000                                                         ;A2B6CA;
@@ -6117,20 +6106,18 @@ SpawnMotherBrainsRoomRinka:
     STA.B DP_Temp14                                                      ;A2B6D5;
     JSL.L CheckIfPositionIsOnScreen                                      ;A2B6D7;
     BCS .next                                                            ;A2B6DB;
-    PHX                                                                  ;A2B6DD;
+    STX.B DP_Temp16
     LDX.W MotherBrainsRoomRinkaSpawnData_spawnPointAvailabilityIndex,Y   ;A2B6DE;
     LDA.L ExtraEnemy8800-2,X                                             ;A2B6E1;
     LSR                                                                  ;A2B6E5;
-    PLX                                                                  ;A2B6E6;
+    LDX.B DP_Temp16
     BCC .found                                                           ;A2B6E7;
 
   .next:
-    INY                                                                  ;A2B6E9;
-    INY                                                                  ;A2B6EA;
-    INY                                                                  ;A2B6EB;
-    INY                                                                  ;A2B6EC;
-    INY                                                                  ;A2B6ED;
-    INY                                                                  ;A2B6EE;
+    TYA
+    CLC
+    ADC.W #$0006
+    TAY
     CPY.W #$0042                                                         ;A2B6EF;
     BMI .loopOnScreen                                                    ;A2B6F2;
     JMP.W .notFound                                                      ;A2B6F4;
@@ -6142,12 +6129,12 @@ SpawnMotherBrainsRoomRinka:
     LDA.B DP_Temp14                                                      ;A2B701;
     STA.L EnemySpawnData.YPosition,X                                     ;A2B703;
     STA.W Enemy.YPosition,X                                              ;A2B707;
-    PHX                                                                  ;A2B70A;
+    STX.B DP_Temp16
     LDX.W MotherBrainsRoomRinkaSpawnData_spawnPointAvailabilityIndex,Y   ;A2B70B;
     LDA.W #$FFFF                                                         ;A2B70E;
     STA.L ExtraEnemy8800-2,X                                             ;A2B711;
     TXA                                                                  ;A2B715;
-    PLX                                                                  ;A2B716;
+    LDX.B DP_Temp16
     STA.W Rinka.spawnPointAvailabilityTableIndex,X                       ;A2B717;
     RTS                                                                  ;A2B71A;
 
@@ -6155,18 +6142,16 @@ SpawnMotherBrainsRoomRinka:
     LDY.W #$0000                                                         ;A2B71B;
 
   .loopAny:
-    PHX                                                                  ;A2B71E;
+    STX.B DP_Temp16
     LDX.W MotherBrainsRoomRinkaSpawnData_spawnPointAvailabilityIndex,Y   ;A2B71F;
     LDA.L ExtraEnemy8800-2,X                                             ;A2B722;
-    PLX                                                                  ;A2B726;
+    LDX.B DP_Temp16
     LSR                                                                  ;A2B727;
     BCC .spawn                                                           ;A2B728;
-    INY                                                                  ;A2B72A;
-    INY                                                                  ;A2B72B;
-    INY                                                                  ;A2B72C;
-    INY                                                                  ;A2B72D;
-    INY                                                                  ;A2B72E;
-    INY                                                                  ;A2B72F;
+    TYA
+    CLC
+    ADC.W #$0006
+    TAY
     CPY.W #$0042                                                         ;A2B730;
     BMI .loopAny                                                         ;A2B733;
     RTS                                                                  ;A2B735;
@@ -6180,11 +6165,11 @@ SpawnMotherBrainsRoomRinka:
     STA.W Enemy.YPosition,X                                              ;A2B747;
     LDA.W MotherBrainsRoomRinkaSpawnData_spawnPointAvailabilityIndex,Y   ;A2B74A;
     STA.W Rinka.spawnPointAvailabilityTableIndex,X                       ;A2B74D;
-    PHX                                                                  ;A2B750;
+    STX.B DP_Temp16
     TAX                                                                  ;A2B751;
     LDA.W #$FFFF                                                         ;A2B752;
     STA.L ExtraEnemy8800-2,X                                             ;A2B755;
-    PLX                                                                  ;A2B759;
+    STX.B DP_Temp16
     RTS                                                                  ;A2B75A;
 
 
@@ -6240,7 +6225,6 @@ GetAvailabilityIndexOfEnemySpawnPosition:
 
 ;;; $B7C4: Main AI - enemy $D23F (rinka) ;;;
 MainAI_Rinka:
-    LDX.B EnemyIndex                                                     ;A2B7C4;
     LDA.W Enemy.init0,X                                                  ;A2B7C7;
     BEQ .function                                                        ;A2B7CA;
     LDA.L MotherBrainBody.deleteTurretsRinkasFlag                        ;A2B7CC;
@@ -6313,7 +6297,7 @@ Function_Rinka_Killed:
 Function_Rinka_WaitingToFire:
     JSL.L CheckIfRinkaIsOnScreen                                         ;A2B852;
     BCC Function_Rinka_Fire_return                                       ;A2B856;
-    JMP.W DeleteAndRespawnRinka                                          ;A2B858;
+    BRA DeleteAndRespawnRinka
 
 
 ;;; $B85B: Rinka function - moving ;;;
@@ -6332,6 +6316,7 @@ DeleteAndRespawnRinka:
     BEQ .notMBRoom                                                       ;A2B871;
     JSR.W DecrementRinkaCounter                                          ;A2B873;
     STZ.W Enemy.ID,X
+    RTL
 
   .notMBRoom:
     JSR.W DecrementRinkaCounter                                          ;A2B87A;
@@ -6522,6 +6507,7 @@ ContactReaction_Rinka_Common:
     LDY.W #EnemyProjectile_MiscDust                                      ;A2B98B;
     LDA.W #$0003                                                         ;A2B98E;
     JSL.L SpawnEnemyProjectileY_ParameterA_RoomGraphics                  ;A2B991;
+    LDX.B EnemyIndex
     LDA.W #Function_Rinka_Killed                                         ;A2B995;
     STA.W Rinka.function,X                                               ;A2B998;
     LDA.W #$0001                                                         ;A2B99B;
