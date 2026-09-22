@@ -6865,8 +6865,69 @@ Function_MBBody_Phase2_FiringRainbowBeam_FinishFiring:
 
 ;;; $BAC4: Mother Brain body function - second phase - firing rainbow beam - let Samus fall ;;;
 Function_MBBody_Phase2_FiringRainbowBeam_LetSamusFall:
-    LDA.W #$0000                                                         ;A9BAC4;
-    JSL.L DrainedSamusController                                         ;A9BAC7;
+;;; $E4F8: Drained Samus controller - 0: let drained Samus fall ;;;
+    LDA.W #$0015
+    SEC
+    SBC.W SamusYRadius
+    STA.B DP_Temp12
+    LDA.B SamusYPosition
+    SEC
+    SBC.B DP_Temp12
+    STA.B SamusYPosition
+    STA.W SamusPreviousYPosition
+    LDA.W PoseXDirection
+    AND.W #$00FF
+    CMP.W #$0004
+    BEQ .facingLeft
+    LDA.W #$00E8
+    STA.W Pose
+    BRA +
+
+  .facingLeft:
+    LDA.W #$00E9
+    STA.W Pose
+
++   LDA.W #$0002
+    STA.W NewPoseSamusAnimationFrame
+    JSL.L InitializeSamusPose_1
+    JSL.L Set_Samus_AnimationFrame_if_PoseChanged
+    LDA.W Pose
+    ASL
+    ASL
+    ASL
+    TAX
+    LDA.W PoseDefinitions_YRadius,X
+    AND.W #$00FF
+    STA.W SamusYRadius
+    STZ.W SamusXBaseSpeed
+    STZ.W SamusXBaseSubSpeed
+    STZ.W SamusYSubSpeed
+    STZ.W SamusYSpeed
+    LDA.W #$0002
+    STA.W SamusYDirection
+    STZ.W SamusProjectile_FlareCounter
+    STZ.W SamusProjectile_FlareAnimationFrame
+    STZ.W SamusProjectile_FlareSlowSparksAnimationFrame0CD8
+    STZ.W SamusProjectile_FlareFastSparksAnimationFrame0CDA
+    STZ.W SamusProjectile_FlareAnimationTimer
+    STZ.W SamusProjectile_FlareSlowSparksAnimationFrame0CDE
+    STZ.W SamusProjectile_FlareFastSparksAnimationFrame0CE0
+    JSL.L LoadSamusSuitPalette
+    LDA.W PreviousPose
+    STA.W LastDifferentPose
+    LDA.W PreviousPoseXDirection
+    STA.W LastDifferentPoseXDirection
+    LDA.W Pose
+    STA.W PreviousPose
+    LDA.W PoseXDirection
+    STA.W PreviousPoseXDirection
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
     LDA.W #Function_MBBody_Phase2_FiringRainbowBeam_WaitForSamusToLand   ;A9BACB;
     STA.W MotherBrainBody.function                                       ;A9BACE; fallthrough to Function_MBBody_Phase2_FiringRainbowBeam_WaitForSamusToLand
 
@@ -8829,8 +8890,39 @@ Function_BabyMetroidCutscene_GetRightUpInMotherBrainsFace:
   .timerExpired:
     LDA.W #Function_BabyMetroidCutscene_LatchOntoMotherBrain             ;A9C843;
     STA.W BabyMetroidCutscene.function,X                                 ;A9C846;
-    LDA.W #$0001                                                         ;A9C849;
-    JSL.L DrainedSamusController                                         ;A9C84C;
+;;; $E571: Drained Samus controller - 1: put Samus into standing drained pose ;;;
+    LDA.W #$0010
+    STA.W SamusAnimationFrameTimer
+    STZ.W SamusAnimationFrame
+    LDA.W PoseXDirection
+    AND.W #$00FF
+    CMP.W #$0004
+    BEQ .facingLeft
+    LDA.W #$00EA
+    STA.W Pose
+    BRA +
+
+  .facingLeft:
+    LDA.W #$00EB
+    STA.W Pose
+
++   LDA.W #RTS_90E90E
+    STA.W HackHandler
+    LDA.W PreviousPose
+    STA.W LastDifferentPose
+    LDA.W PreviousPoseXDirection
+    STA.W LastDifferentPoseXDirection
+    LDA.W Pose
+    STA.W PreviousPose
+    LDA.W PoseXDirection
+    STA.W PreviousPoseXDirection
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
     RTS                                                                  ;A9C850;
 
 
@@ -8983,8 +9075,54 @@ Function_BabyMetroidCutscene_MoveToTheCeiling:
     RTS                                                                  ;A9C976;
 
   .collision:
-    LDA.W #$0004                                                         ;A9C977;
-    JSL.L DrainedSamusController                                         ;A9C97A;
+;;; $E60C: Drained Samus controller - 4: put Samus into crouching/falling drained pose ;;;
+    LDA.W #$0010
+    STA.W SamusAnimationFrameTimer
+    LDA.W #$0008
+    STA.W SamusAnimationFrame
+    LDA.W PoseXDirection
+    AND.W #$00FF
+    CMP.W #$0004
+    BEQ .facingLeft
+    LDA.W #$00E8
+    STA.W Pose
+    LDA.W PreviousPose
+    STA.W LastDifferentPose
+    LDA.W PreviousPoseXDirection
+    STA.W LastDifferentPoseXDirection
+    LDA.W Pose
+    STA.W PreviousPose
+    LDA.W PoseXDirection
+    STA.W PreviousPoseXDirection
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
+    BRA +
+
+  .facingLeft:
+    LDA.W #$00E9
+    STA.W Pose
+    LDA.W PreviousPose
+    STA.W LastDifferentPose
+    LDA.W PreviousPoseXDirection
+    STA.W LastDifferentPoseXDirection
+    LDA.W Pose
+    STA.W PreviousPose
+    LDA.W PoseXDirection
+    STA.W PreviousPoseXDirection
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
+
++   LDX.B EnemyIndex
     LDA.W #Function_BabyMetroidCutscene_MoveToSamus                      ;A9C97E;
     STA.W BabyMetroidCutscene.function,X                                 ;A9C981;
     LDA.W #BabyMetroidCutscene_MovementTable_CeilingToSamus              ;A9C984;
@@ -9451,8 +9589,16 @@ Function_BabyMetroidCutscene_FinalCutscene:
     STA.W SamusAnimationFrameTimer
     LDA.W #$000D
     STA.W SamusAnimationFrame
-    LDA.W #$0003                                                         ;A9CD0F;
-    JSL.L DrainedSamusController                                         ;A9CD12;
+;;; $E5F0: Drained Samus controller - 3: enable hyper beam ;;;
+    LDA.W #$1009
+    STA.W EquippedBeams
+    JSL.L Update_Beam_Tiles_and_Palette
+    LDY.W #PaletteFXObjects_HyperBeam
+    JSL.L Spawn_PaletteFXObject
+    LDA.W #$8000
+    STA.W HyperBeam
+    STZ.W ResumeChargingBeamSFXFlag
+    LDX.B EnemyIndex
     LDA.W Enemy.properties,X                                             ;A9CD16;
     ORA.W #$0200                                                         ;A9CD19;
     STA.W Enemy.properties,X                                             ;A9CD1C;
@@ -14641,8 +14787,70 @@ Function_BabyMetroid_DrainingSamus:
     STA.W BabyMetroid.paletteHandlerDelay,X                              ;A9F282;
     STZ.W SuperSpecialPaletteFlags
     JSL.L LoadSamusSuitPalette
-    LDA.W #$0000                                                         ;A9F28C;
-    JSL.L DrainedSamusController                                         ;A9F28F;
+;;; $E4F8: Drained Samus controller - 0: let drained Samus fall ;;;
+    LDA.W #$0015
+    SEC
+    SBC.W SamusYRadius
+    STA.B DP_Temp12
+    LDA.B SamusYPosition
+    SEC
+    SBC.B DP_Temp12
+    STA.B SamusYPosition
+    STA.W SamusPreviousYPosition
+    LDA.W PoseXDirection
+    AND.W #$00FF
+    CMP.W #$0004
+    BEQ .facingLeft
+    LDA.W #$00E8
+    STA.W Pose
+    BRA +
+
+  .facingLeft:
+    LDA.W #$00E9
+    STA.W Pose
+
++   LDA.W #$0002
+    STA.W NewPoseSamusAnimationFrame
+    JSL.L InitializeSamusPose_1
+    JSL.L Set_Samus_AnimationFrame_if_PoseChanged
+    LDA.W Pose
+    ASL
+    ASL
+    ASL
+    TAX
+    LDA.W PoseDefinitions_YRadius,X
+    AND.W #$00FF
+    STA.W SamusYRadius
+    STZ.W SamusXBaseSpeed
+    STZ.W SamusXBaseSubSpeed
+    STZ.W SamusYSubSpeed
+    STZ.W SamusYSpeed
+    LDA.W #$0002
+    STA.W SamusYDirection
+    STZ.W SamusProjectile_FlareCounter
+    STZ.W SamusProjectile_FlareAnimationFrame
+    STZ.W SamusProjectile_FlareSlowSparksAnimationFrame0CD8
+    STZ.W SamusProjectile_FlareFastSparksAnimationFrame0CDA
+    STZ.W SamusProjectile_FlareAnimationTimer
+    STZ.W SamusProjectile_FlareSlowSparksAnimationFrame0CDE
+    STZ.W SamusProjectile_FlareFastSparksAnimationFrame0CE0
+    JSL.L LoadSamusSuitPalette
+    LDA.W PreviousPose
+    STA.W LastDifferentPose
+    LDA.W PreviousPoseXDirection
+    STA.W LastDifferentPoseXDirection
+    LDA.W Pose
+    STA.W PreviousPose
+    LDA.W PoseXDirection
+    STA.W PreviousPoseXDirection
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
+    LDX.B EnemyIndex
     LDA.W #$0000                                                         ;A9F293;
     STA.L BabyMetroid.crySFXFlag,X                                       ;A9F296;
     LDA.W #$0007                                                         ;A9F29A;
@@ -14790,8 +14998,61 @@ Function_BabyMetroid_SamusRecovering:
     JMP.W GraduallyAccelerateTowardSamus                                 ;A9F3A8;
 
   .timerExpired:
-    LDA.W #$0002                                                         ;A9F3AB;
-    JSL.L DrainedSamusController                                         ;A9F3AE;
+;;; $E59B: Drained Samus controller - 2: release Samus from drained pose ;;;
+    LDA.W Pose
+    CMP.W #$00E8
+    BEQ .crouchingFalling
+    CMP.W #$00E9
+    BEQ .crouchingFalling
+    CMP.W #$00EA
+    BEQ .drainedStanding
+    CMP.W #$00EB
+    BNE .merge
+
+  .drainedStanding:
+    LDA.W #$0001
+    STA.W SamusAnimationFrameTimer
+    LDA.W #$0004
+    STA.W SamusAnimationFrame
+    BRA .merge
+
+  .crouchingFalling:
+    LDA.W #$0001
+    STA.W SamusAnimationFrameTimer
+    LDA.W #$000D
+    STA.W SamusAnimationFrame
+
+  .merge:
+    LDA.W Pose
+    ASL
+    ASL
+    ASL
+    TAX
+    LDA.W PoseDefinitions_YRadius,X
+    AND.W #$00FF
+    STA.W SamusYRadius
+    STZ.W SamusXBaseSpeed
+    STZ.W SamusXBaseSubSpeed
+    STZ.W SamusYSubSpeed
+    STZ.W SamusYSpeed
+    LDA.W #$0002
+    STA.W SamusYDirection
+    LDA.W PreviousPose
+    STA.W LastDifferentPose
+    LDA.W PreviousPoseXDirection
+    STA.W LastDifferentPoseXDirection
+    LDA.W Pose
+    STA.W PreviousPose
+    LDA.W PoseXDirection
+    STA.W PreviousPoseXDirection
+    LDA.W #$FFFF
+    STA.W ProspectivePose
+    STA.W SpecialProspectivePose
+    STA.W SuperSpecialProspectivePose
+    STZ.W ProspectivePoseChangeCommand
+    STZ.W SpecialProspectivePoseChangeCommand
+    STZ.W SuperSpecialProspectivePoseChangeCommand
+    LDX.B EnemyIndex
     LDA.W #$0001                                                         ;A9F3B2;
     STA.W BabyMetroid.contactReactionFlag,X                              ;A9F3B5;
     LDA.W #Function_BabyMetroid_Remorse                                  ;A9F3B8;
