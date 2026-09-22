@@ -1259,7 +1259,7 @@ AddSpritemapToOAM_Common:
 
 
 ;;; $8AB8: Add spritemap to OAM with base tile number - no off-screen handling ;;;
-AddSpritemapToOAM_WithBaseTileNumber_8AB8:
+AddSpritemapToOAM_WithBaseTileNumber_NoOffScreen:
 ;; Parameters:
 ;;     DB:Y: Address of spritemap
 ;;     $12: Spritemap Y origin
@@ -1325,9 +1325,11 @@ AddSpritemapToOAM_WithBaseTileNumber_8AB8:
     RTL                                                                  ;818B20;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 ;;; $8B21: Unused. RTL ;;;
 RTL_818B21:
     RTL                                                                  ;818B21;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $8B22: Add spritemap to OAM with base tile number - Y origin on-screen ;;;

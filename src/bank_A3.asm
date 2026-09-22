@@ -1503,7 +1503,7 @@ EnemyTouch_Fireflea:
 ; If the enemy is not killed by CommonA3_NormalEnemyTouchAI, then the enemy death routine will be run with A = [enemy health] (from $A0:A480),
 ; in death animation > 4, which gets corrected to 0 (small explosion), so that works out fine by chance
 
-; FirefleaFlashing_DarknessLevel is used to index $88:B070 by FX code, the table is 6 entries long, so the max index should be Ah
+; FirefleaFlashing_DarknessLevel is used to index Fireflea_Darkness_Shades by FX code, the table is 6 entries long, so the max index should be Ah
 ; If you do place 6 fireflea in a room (which vanilla does not do) and kill them all,
 ; the screen will get bright again because it reads beyond the table,
 ; which happens to result in a large value that results in the backdrop colour not being solid white
@@ -9523,7 +9523,7 @@ YardCrawlingMovement_Vertical:
     LDA.W #$0000                                                         ;A3D027;
     STA.W Yard.consequtiveTurnCounter,X                                  ;A3D02A;
     PHY                                                                  ;A3D02D;
-    JSL.L AlignEnemyYPositionWIthNonSquareSlope                          ;A3D02E;
+    JSL.L AlignEnemyYPositionWithNonSquareSlope                          ;A3D02E;
     PLY                                                                  ;A3D032;
     JSR.W HandleTurnTransitionDisabling                                  ;A3D033;
     STZ.B DP_Temp12                                                      ;A3D036;
@@ -9606,7 +9606,7 @@ YardCrawlingMovement_Horizontal:
     JSL.L MoveEnemyRightBy_14_12_ProcessSlopes                           ;A3D0B7;
     PLY                                                                  ;A3D0BB;
     BCS .insideTurn                                                      ;A3D0BC;
-    JSL.L AlignEnemyYPositionWIthNonSquareSlope                          ;A3D0BE;
+    JSL.L AlignEnemyYPositionWithNonSquareSlope                          ;A3D0BE;
     JSR.W HandleTurnTransitionDisabling                                  ;A3D0C2;
     RTL                                                                  ;A3D0C5;
 
@@ -11604,7 +11604,7 @@ Function_HZoomer_CrawlingVertically:
     BCC .outsideTurn                                                     ;A3E0C9;
     LDA.W #$0000                                                         ;A3E0CB;
     STA.L Crawler.consecutiveTurnCounter,X                               ;A3E0CE;
-    JSL.L AlignEnemyYPositionWIthNonSquareSlope                          ;A3E0D2;
+    JSL.L AlignEnemyYPositionWithNonSquareSlope                          ;A3E0D2;
     STZ.B DP_Temp12                                                      ;A3E0D6;
     STZ.B DP_Temp14                                                      ;A3E0D8;
     LDA.W Crawler.YVelocity,X                                            ;A3E0DA;
@@ -11728,7 +11728,7 @@ Function_HZoomer_CrawlingHorizontally:
     STA.B DP_Temp13                                                      ;A3E1B4;
     JSL.L MoveEnemyRightBy_14_12_ProcessSlopes                           ;A3E1B6;
     BCS .insideTurn                                                      ;A3E1BA;
-    JSL.L AlignEnemyYPositionWIthNonSquareSlope                          ;A3E1BC;
+    JSL.L AlignEnemyYPositionWithNonSquareSlope                          ;A3E1BC;
     LDA.B SamusXPosition                                                 ;A3E1C3;
     SEC                                                                  ;A3E1C6;
     SBC.W Enemy.XPosition,X                                              ;A3E1C7;
@@ -12276,7 +12276,7 @@ Function_Crawlers_CrawlingVertically:
     BCC .outsideTurn                                                     ;A3E700;
     LDA.W #$0000                                                         ;A3E702;
     STA.L Crawler.consecutiveTurnCounter,X                               ;A3E705;
-    JSL.L AlignEnemyYPositionWIthNonSquareSlope                          ;A3E709;
+    JSL.L AlignEnemyYPositionWithNonSquareSlope                          ;A3E709;
     STZ.B DP_Temp12                                                      ;A3E70D;
     STZ.B DP_Temp14                                                      ;A3E70F;
     LDA.W Crawler.YVelocity,X                                            ;A3E711;
@@ -12428,7 +12428,7 @@ Function_Crawlers_CrawlingHorizontally:
     JSR.W AdjustEnemyXVelocityForSlopes                                  ;A3E833;
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A3E836;
     BCS .insideTurn                                                      ;A3E83A;
-    JSL.L AlignEnemyYPositionWIthNonSquareSlope                          ;A3E83C;
+    JSL.L AlignEnemyYPositionWithNonSquareSlope                          ;A3E83C;
     RTL                                                                  ;A3E840;
 
   .insideTurn:

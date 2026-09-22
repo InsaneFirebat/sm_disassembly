@@ -1713,7 +1713,7 @@ PaletteCrossFading_CopyCurrentPalettesToFadingPalettes:
     PHP                                                                  ;8B8BE9;
     PHB                                                                  ;8B8BEA;
     SEP #$30                                                             ;8B8BEB;
-    LDA.B #$7F                                                           ;8B8BED;
+    LDA.B #HighRAM>>16                                                   ;8B8BED; >_<
     PHA                                                                  ;8B8BEF;
     PLB                                                                  ;8B8BF0;
     REP #$30                                                             ;8B8BF1;
@@ -1790,8 +1790,6 @@ PaletteCrossFading_ClearYColorsStartingFromColorIndexX:
 ;; Parameters:
 ;;     X: Colour index
 ;;     Y: Number of colours
-
-  .loop:
     LDA.W #$0000                                                         ;8B8C68;
     STA.L FadingPalettes_Initial,X                                       ;8B8C6B;
     STA.L FadingPalettes_Red,X                                           ;8B8C6F;
@@ -1800,7 +1798,7 @@ PaletteCrossFading_ClearYColorsStartingFromColorIndexX:
     INX                                                                  ;8B8C7B;
     INX                                                                  ;8B8C7C;
     DEY                                                                  ;8B8C7D;
-    BNE .loop                                                            ;8B8C7E;
+    BNE PaletteCrossFading_ClearYColorsStartingFromColorIndexX           ;8B8C7E;
     RTS                                                                  ;8B8C82;
 
 

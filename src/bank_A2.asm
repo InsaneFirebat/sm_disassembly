@@ -85,7 +85,7 @@ CommonA2_NormalEnemyFrozenAI:
 
 
 ;;; $8046: Creates a dud shot ;;;
-CommonA2_CreateADudShot_JSL:
+CommonA2_CreateADudShot:
     JML CreateADudShot                                                   ;A28046;
 
 
@@ -888,6 +888,7 @@ Instruction_Boyon_StartBounce:
     JML QueueSound_Lib2_Max6
 
 
+if !FEATURE_KEEP_UNREFERENCED
 ;;; $88D8: RTL ;;;
 RTL_A288D8:
     RTL                                                                  ;A288D8;
@@ -896,6 +897,7 @@ RTL_A288D8:
 ;;; $88D9: RTL ;;;
 RTL_A288D9:
     RTL                                                                  ;A288D9;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $88DA: Spritemaps - boyon ;;;
@@ -3042,7 +3044,7 @@ PuyoMovement:
     LDY.W Puyo.hopTableIndex,X                                           ;A29BF5;
     LDA.L Puyo.fallingFlag,X                                             ;A29BF8;
     BNE ..falling                                                        ;A29BFC;
-    JSR.W SetRisingInstList                                              ;A29BFE;
+    JSR.W Puyo_SetRisingInstList                                         ;A29BFE;
     LDA.W Puyo.YSpeedTableIndex,X                                        ;A29C01;
     SEC                                                                  ;A29C04;
     SBC.W PuyoHopTable_YSpeedTableIndexDelta,Y                           ;A29C05;
@@ -3050,7 +3052,7 @@ PuyoMovement:
     BRA +                                                                ;A29C0B;
 
   ..falling:
-    JSR.W SetFallingInstList                                             ;A29C0D;
+    JSR.W Puyo_SetFallingInstList                                        ;A29C0D;
     LDA.W Puyo.YSpeedTableIndex,X                                        ;A29C10;
     CLC                                                                  ;A29C13;
     ADC.W PuyoHopTable_YSpeedTableIndexDelta,Y                           ;A29C14;
@@ -3102,7 +3104,7 @@ endif
 
 
 ;;; $9C71: Set rising instruction list ;;;
-SetRisingInstList:
+Puyo_SetRisingInstList:
     LDA.L Puyo.direction,X                                               ;A29C74;
     BNE .left                                                            ;A29C78;
     LDA.W Puyo.YSpeedTableIndex,X                                        ;A29C7A;
@@ -3152,7 +3154,7 @@ SetRisingInstList:
 
 
 ;;; $9CBE: Set falling instruction list ;;;
-SetFallingInstList:
+Puyo_SetFallingInstList:
     LDA.L Puyo.direction,X                                               ;A29CC1;
     BNE .left                                                            ;A29CC5;
     LDA.W Puyo.YSpeedTableIndex,X                                        ;A29CC7;
@@ -4794,10 +4796,10 @@ endif
     STA.W ShipTop.function,X                                             ;A2AAFB;
     STZ.W Enemy[1].var5,X                                                ;A2AAFE;
     STZ.W Enemy[1].var4,X                                                ;A2AB01;
-    STZ.W EndingClearTime_HoursTens                                      ;A2AB04;
-    STZ.W EndingClearTime_HoursUnits                                     ;A2AB07;
-    STZ.W EndingClearTime_MinutesTens                                    ;A2AB0A;
-    STZ.W EndingClearTime_MinutesUnits                                   ;A2AB0D;
+    STZ.W ShipLiftoffTransferIndex                                       ;A2AB04;
+    STZ.W ShipLiftoffTransferIndex+2                                     ;A2AB07;
+    STZ.W ShipLiftoffTransferIndex+4                                     ;A2AB0A;
+    STZ.W ShipLiftoffTransferIndex+6                                     ;A2AB0D;
     LDA.W #RTS_90E90E
     STA.W DrawingHandler
     RTL                                                                  ;A2AB17;
@@ -4901,7 +4903,7 @@ Function_Ship_SamusExiting_WaitForEntrancePadToClose:
 
 ;;; $ABC7: Gunship function - liftoff - load dust cloud tiles ;;;
 Function_Ship_Liftoff_LoadDustCloudTiles:
-    LDY.W EndingClearTime_HoursTens                                      ;A2ABC7;
+    LDY.W ShipLiftoffTransferIndex                                       ;A2ABC7;
     LDX.B VRAMWriteStack                                                 ;A2ABCB;
     LDA.W #$0400                                                         ;A2ABCE;
     STA.B VRAMWrite.size,X                                               ;A2ABD1;
@@ -4921,16 +4923,16 @@ Function_Ship_Liftoff_LoadDustCloudTiles:
     INX                                                                  ;A2ABEA;
     INX                                                                  ;A2ABEB;
     STX.B VRAMWriteStack                                                 ;A2ABEC;
-    LDA.W EndingClearTime_HoursTens                                      ;A2ABF0;
+    LDA.W ShipLiftoffTransferIndex                                       ;A2ABF0;
     INC                                                                  ;A2ABF3;
     INC                                                                  ;A2ABF4;
-    STA.W EndingClearTime_HoursTens                                      ;A2ABF5;
+    STA.W ShipLiftoffTransferIndex                                       ;A2ABF5;
     CMP.W #$000A                                                         ;A2ABF8;
     BMI .return                                                          ;A2ABFB;
     LDX.B EnemyIndex
     LDA.W #Function_Ship_Liftoff_FireUpEngines_SpawnDustClouds           ;A2ABFD;
     STA.W ShipTop.function,X                                             ;A2AC00;
-    STZ.W EndingClearTime_HoursTens                                      ;A2AC03;
+    STZ.W ShipLiftoffTransferIndex                                       ;A2AC03;
 
   .return:
     RTL                                                                  ;A2AC06;
@@ -5360,7 +5362,7 @@ MoveFlyAccordingToAngle:
 MoveFlyAccordingToVelocities:
 ;; Returns:
 ;;     A: Enemy Y position
-    LDA.W Enemy.var0+1,X                                                 ;A2B0DC;
+    LDA.W Enemy.var1-1,X                                                 ;A2B0DC;
     AND.W #$FF00                                                         ;A2B0DF;
     CLC                                                                  ;A2B0E2;
     ADC.W Enemy.XSubPosition,X                                           ;A2B0E3;
@@ -5376,7 +5378,7 @@ MoveFlyAccordingToVelocities:
 
 +   ADC.W Enemy.XPosition,X                                              ;A2B0F7;
     STA.W Enemy.XPosition,X                                              ;A2B0FA;
-    LDA.W Enemy.var1+1,X                                                 ;A2B0FD;
+    LDA.W Enemy.var2-1,X                                                 ;A2B0FD;
     AND.W #$FF00                                                         ;A2B100;
     CLC                                                                  ;A2B103;
     ADC.W Enemy.YSubPosition,X                                           ;A2B104;
@@ -5975,14 +5977,16 @@ Function_Polyp_Cooldown:
     RTL
 
 
+if !FEATURE_KEEP_UNREFERENCED
 ;;; $B5F9: RTL ;;;
-RTL_B5FAF9:
+RTL_A2B5F9:
     RTL                                                                  ;A2B5F9;
 
 
 ;;; $B5FA: RTL ;;;
-RTL_B5FAFA:
+RTL_A2B5FA:
     RTL                                                                  ;A2B5FA;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $B5FB: Spritemap - polyp ;;;

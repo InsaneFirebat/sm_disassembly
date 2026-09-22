@@ -1829,7 +1829,7 @@ Load_FX_Entry:
     CLC                                                                  ;89AB10;
     ADC.W FXPointer                                                      ;89AB11;
     STA.W FX_CurrentEntryPointer                                         ;89AB14;
-    PEA.W FXHeaders>>8                                                    ;89AB17;
+    PEA.W FXHeaders>>8                                                   ;89AB17;
     PLB                                                                  ;89AB1A;
     PLB                                                                  ;89AB1B;
     LDX.W FX_CurrentEntryPointer                                         ;89AB1C;

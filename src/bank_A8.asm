@@ -10941,7 +10941,7 @@ Instruction_Alcoon_MoveHorizontally_TurnIfWallCollision:
     STA.B DP_Temp14                                                      ;A8DF7A;
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A8DF7C;
     BCS .turnAround                                                      ;A8DF80;
-    JSL.L AlignEnemyYPositionWIthNonSquareSlope                          ;A8DF82;
+    JSL.L AlignEnemyYPositionWithNonSquareSlope                          ;A8DF82;
     PLY                                                                  ;A8DF86;
     RTL                                                                  ;A8DF87;
 
@@ -12763,7 +12763,7 @@ Function_Kihunter_Winged_IdleFlying:
     STA.W Enemy[1].instTimer,X                                           ;A8F2D7;
 
   .noCollision:
-    JSL.L AlignEnemyYPositionWIthNonSquareSlope                          ;A8F2DA;
+    JSL.L AlignEnemyYPositionWithNonSquareSlope                          ;A8F2DA;
     LDA.B SamusXPosition                                                 ;A8F2DE;
     SEC                                                                  ;A8F2E1;
     SBC.W Enemy.XPosition,X                                              ;A8F2E2;
@@ -12945,7 +12945,7 @@ endif
     STZ.B DP_Temp12                                                      ;A8F487;
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A8F489;
     BCS .collidedHorizontally                                            ;A8F48D;
-    JSL.L AlignEnemyYPositionWIthNonSquareSlope                          ;A8F48F;
+    JSL.L AlignEnemyYPositionWithNonSquareSlope                          ;A8F48F;
     LDA.L Kihunter.arcYRadius,X                                          ;A8F493;
     STA.W Temp_Radius                                                    ;A8F497;
     LDA.W Kihunter.arcAngle,X                                            ;A8F49A;
@@ -12993,7 +12993,7 @@ Function_Kihunter_Winged_BackOff:
     STA.B DP_Temp14                                                      ;A8F4F7;
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A8F4F9;
     BCS .collidedWithBlock                                               ;A8F4FD;
-    JSL.L AlignEnemyYPositionWIthNonSquareSlope                          ;A8F4FF;
+    JSL.L AlignEnemyYPositionWithNonSquareSlope                          ;A8F4FF;
     LDA.L Kihunter.YSubVelocity,X                                        ;A8F503;
     STA.B DP_Temp12                                                      ;A8F507;
     LDA.L Kihunter.YVelocity,X                                           ;A8F509;
@@ -13125,7 +13125,7 @@ Function_Kihunter_Wingless_Hop:
     STA.B DP_Temp14                                                      ;A8F60C;
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A8F60E;
     BCS .collidedHorizontally                                            ;A8F612;
-    JSL.L AlignEnemyYPositionWIthNonSquareSlope                          ;A8F614;
+    JSL.L AlignEnemyYPositionWithNonSquareSlope                          ;A8F614;
     LDA.L Kihunter.YSubVelocity,X                                        ;A8F618;
     CLC                                                                  ;A8F61C;
     ADC.W KihunterConstants_fallingAcceleration_hop                      ;A8F61D;

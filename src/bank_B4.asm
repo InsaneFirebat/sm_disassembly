@@ -6457,7 +6457,7 @@ DrawSpriteObjects:
     TAX                                                                  ;B4BD83;
     LDA.L SpriteObjectInstLists+2,X                                      ;B4BD84;
     TAY                                                                  ;B4BD88;
-    JSL.L AddSpritemapToOAM_WithBaseTileNumber_8AB8                      ;B4BD89;
+    JSL.L AddSpritemapToOAM_WithBaseTileNumber_NoOffScreen               ;B4BD89;
     PLX                                                                  ;B4BD8D;
 
   .next:

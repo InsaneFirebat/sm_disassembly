@@ -5718,7 +5718,7 @@ Instruction_Torizo_BombTorizoWalkingMovement_Normal_IndexInY:
     RTL                                                                  ;AAC499;
 
   .noCollision:
-    JSL.L AlignEnemyYPositionWIthNonSquareSlope                          ;AAC49A;
+    JSL.L AlignEnemyYPositionWithNonSquareSlope                          ;AAC49A;
     LDA.B SamusXPosition                                                 ;AAC49E;
     SEC                                                                  ;AAC4A1;
     SBC.W Enemy.XPosition,X                                              ;AAC4A2;
@@ -5768,7 +5768,7 @@ Instruction_Torizo_BTWalkingMovement_Faceless_IndexInY:
     RTL                                                                  ;AAC50E;
 
   .noCollision:
-    JSL.L AlignEnemyYPositionWIthNonSquareSlope                          ;AAC50F;
+    JSL.L AlignEnemyYPositionWithNonSquareSlope                          ;AAC50F;
     LDA.B SamusXPosition                                                 ;AAC513;
     SEC                                                                  ;AAC516;
     SBC.W Enemy.XPosition,X                                              ;AAC517;
@@ -6267,7 +6267,7 @@ Function_Torizo_Movement_Jumping_Falling:
 
 +   STA.B DP_Temp13                                                      ;AAC837;
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;AAC839;
-    JSL.L AlignEnemyYPositionWIthNonSquareSlope                          ;AAC83D;
+    JSL.L AlignEnemyYPositionWithNonSquareSlope                          ;AAC83D;
     STZ.B DP_Temp12                                                      ;AAC841;
     STZ.B DP_Temp14                                                      ;AAC843;
     LDA.W Torizo.YVelocity,X                                             ;AAC845;
@@ -7784,7 +7784,7 @@ Instruction_GoldenTorizo_WalkingMovement_IndexInY:
     RTL                                                                  ;AAD576;
 
   .noCollision:
-    JSL.L AlignEnemyYPositionWIthNonSquareSlope                          ;AAD577;
+    JSL.L AlignEnemyYPositionWithNonSquareSlope                          ;AAD577;
     LDA.B SamusXPosition                                                 ;AAD57B;
     SEC                                                                  ;AAD57E;
     SBC.W Enemy.XPosition,X                                              ;AAD57F;
@@ -9496,7 +9496,7 @@ Instruction_Chozo_Movement_IndexInY:
     BCS .move                                                            ;AAE60F;
 
   .move:
-    JSL.L AlignEnemyYPositionWIthNonSquareSlope                          ;AAE611;
+    JSL.L AlignEnemyYPositionWithNonSquareSlope                          ;AAE611;
     LDY.W Chozo.movementIndex,X                                          ;AAE615;
     LDA.W Enemy.XPosition,X                                              ;AAE618;
     CLC                                                                  ;AAE61B;

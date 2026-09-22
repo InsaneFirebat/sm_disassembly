@@ -969,7 +969,8 @@ ShinesparkYAcceleration: skip 0 ; $0DEC
 DraygonEscapeButtonCounter: skip 0 ; $0DEC
 SamusAppearsFanfareTimer: skip 0 ; $0DEC
 DebugDeathAnimationFlag: skip 0 ; $0DEC
-DemoControlFlags: skip 2 ; $0DEC
+DemoControlFlags: skip 0 ; $0DEC
+ShipLiftoffTransferIndex: skip 2 ; $0DEC
 ShinesparkYSubAcceleration: skip 0 ; $0DEE
 DraygonEscapePreviousDpadInput: skip 2 ; $0DEE
 skip 4 ; $0DF0..F3
@@ -1820,7 +1821,7 @@ TargetPalettes_SpriteP7: skip $20 ; $7EC3E0..FF
 
 PaletteChangeNumerator: skip 2 ; $7EC400
 PaletteChangeDenominator: skip 2 ; $7EC402
-ColorIndexInPaletteChangeRoutines: skip 2 ; $7EC404
+PaletteChangeColorIndex: skip 2 ; $7EC404
 
 PowerBombExplosionWindow2LeftHDMADataTable: skip $C0 ; $7EC406..C5
 skip $40 ; $7EC4C6..C505
@@ -2147,6 +2148,7 @@ endstruct
 struct ShipBottomEntrance $0FAE
   .hoverSFXTimer: skip 2 ; $0FAE
   .liftoffTimer: skip 2 ; $0FB0
+  .function: skip 0 ; $0FB2
   .YVelocity: skip 2 ; $0FB2
 endstruct
 
