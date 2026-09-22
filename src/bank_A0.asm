@@ -1113,7 +1113,7 @@ endif
     STA.W EnemyBG2TilemapSize                                            ;A08A4C;
     STZ.W neverRead179E                                                  ;A08A4F;
     STZ.W neverRead17A0                                                  ;A08A52;
-    STZ.W BossID                                                         ;A08A55;
+    STZ.W BossID                                                         ;A08A55; >.<
     JSL.L ClearEnemyData_ProcessEnemySet                                 ;A08A58;
     JSL.L LoadEnemyTileData                                              ;A08A5C;
     STZ.W EnemyTileData_SrcAddr                                          ;A08A60;
@@ -2055,7 +2055,7 @@ endif
 
 +   LDA.W #$0000                                                         ;A090E1;
     STA.L EnemyTileData+2,X                                              ;A090E4;
-    LDA.W #$0000                                                         ;A090E8;
+    LDA.W #$0000                                                         ;A090E8; >.<
     JSL.L EnemyDeath                                                     ;A090EB;
 
   .paralysedEnd:
@@ -2581,7 +2581,7 @@ if !DEBUG
     STA.L EnemyProcessingStage                                           ;A094E7;
 endif
     LDY.W Enemy.spritemap,X                                              ;A094EB;
-    JSL.L AddSpritemapToOAM_WithBaseTileNumber_8AB8                      ;A094EE;
+    JSL.L AddSpritemapToOAM_WithBaseTileNumber_NoOffScreen               ;A094EE;
     PLB                                                                  ;A094F2;
     RTS                                                                  ;A094F3;
 
@@ -2943,7 +2943,7 @@ EnemyCollisionHandling:
     BEQ .notExtendedSpritemap                                            ;A0976A;
     JSR.W Enemy_vs_Projectile_CollisionHandling_ExtendedSpritemap        ;A0976C;
     JSR.W Enemy_vs_Bomb_CollisionHandling_ExtendedSpritemap              ;A0976F;
-    JSR.W EnemySamusCollisionHandling_ExtendedSpritemap                  ;A09772;
+    JSR.W Enemy_vs_Samus_CollisionHandling_ExtendedSpritemap             ;A09772;
     PLB                                                                  ;A09775;
     PLP                                                                  ;A09776;
     RTS                                                                  ;A09777;
@@ -3378,7 +3378,7 @@ HandleEnemyProjectileCollisionWithProjectile:
 
 
 ;;; $9A5A: Enemy / Samus collision handling - extended spritemap ;;;
-EnemySamusCollisionHandling_ExtendedSpritemap:
+Enemy_vs_Samus_CollisionHandling_ExtendedSpritemap:
 ; This routine disables Samus' invincibility if she is using blue suit or screw attack (unless there are no tangible enemies)
     PHB                                                                  ;A09A5A;
     LDX.W EnemyIndex                                                     ;A09A5B;
@@ -5002,7 +5002,7 @@ NormalEnemyPowerBombAI_NoDeathCheck:
     STA.W Temp_DamageMultiplier                                          ;A0A5E1;
     BEQ .return                                                          ;A0A5E4;
     LDA.W #$00C8                                                         ;A0A5E6;
-    LSR                                                                  ;A0A5E9;
+    LSR                                                                  ;A0A5E9; >.<
     STA.B DP_Temp26                                                      ;A0A5EA;
     LDA.W Temp_DamageMultiplier                                          ;A0A5EC;
     STA.B DP_Temp28                                                      ;A0A5EF;
@@ -5981,13 +5981,13 @@ CalculateDistanceAndAngleOfSamusFromEnemy:
 ;; Returns:
 ;;     Carry: Set if error, clear otherwise
 ;;     A: If carry clear, distance from enemy to Samus
-;;     $0E3A: If carry clear, angle from enemy to Samus
+;;     Temp_AngleFromEnemyToSamus: If carry clear, angle from enemy to Samus
 
 ; Called by yapping maw only
 ; Avoids sqrt and division operations with the identity
 ;     sqrt(x² + y²) = x cos(arctan(x, y)) + y sin(arctan(x, y))
 ; (tweaked to account for SM's angle convention)
-; Slightly unfortunate second call to $C0AE, would have been sufficient to call it once to get $0E3A and normalise the quadrant with
+; Slightly unfortunate second call to CalculateAngleOf_12_14_Offset, would have been sufficient to call it once to get $0E3A and normalise the quadrant with
 ;     LDA $0E3A : AND #$007F : CMP #$0040 : BCS + : EOR #$007F : INC : + : STA $0E24
     PHX                                                                  ;A0ACA8;
     PHY                                                                  ;A0ACA9;
@@ -6297,7 +6297,7 @@ DetermineDirectionOfSamusFromEnemy:
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $AE7C: Unused. Proto instruction list handler ;;;
 UNUSED_ProtoInstructionListHandler_A0AE7C:
-; Uses $A0:002A(!) as pointer to instruction list pointer table, indexed by Enemy.instList * 2
+; Uses EnemyHeaders_sidehopperVariantIndex(!) as pointer to instruction list pointer table, indexed by Enemy.instList * 2
 ; Enemy Enemy.loopCounter is the instruction list pointer, and these instruction lists terminate with FFFFh and loop with FFFEh
 ; No support for ASM commands
     LDX.W EnemyIndex                                                     ;A0AE7C;
@@ -9262,6 +9262,7 @@ EnemyBlockCollisionReaction_Vertical_Slope_Square:
     SEC                                                                  ;A0C411;
     RTS                                                                  ;A0C412;
 
+if !FEATURE_KEEP_UNREFERENCED
   .deadCode:
 ; Looks like code that was RTS'd out. Without this code, enemies don't align with slopes when the collide with them,
 ; e.g. an enemy falling at 5px/frame can "land" 4px above a half-height slope
@@ -9284,11 +9285,12 @@ EnemyBlockCollisionReaction_Vertical_Slope_Square:
     STA.W Enemy.YPosition,X                                              ;A0C430;
     SEC                                                                  ;A0C433;
     RTS                                                                  ;A0C434;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $C435: Square slope definitions ;;;
 SquareSlopeDefinitions_BankA0:                                           ;A0C435;
-; Copy of $94:8E54 for enemies
+; Copy of SquareSlopeDefinitions_Bank94 for enemies
 ; 7Fh- = air, 80h+ = solid
 
 ;        _____________ Top-left
@@ -9665,7 +9667,7 @@ MoveEnemyRightBy_14_12_ProcessSlopes:
 ;; Returns:
 ;;     Carry: Set if collision, clear otherwise
 
-; Call AlignEnemyYPositionWIthNonSquareSlope if this routine returns carry clear to adjust the enemy's position for any slopes
+; Call AlignEnemyYPositionWithNonSquareSlope if this routine returns carry clear to adjust the enemy's position for any slopes
 ; Used by yard and Wrecked Ship orange zoomer
     LDA.W #$8000                                                         ;A0C6A4;
     STA.B DP_Temp20                                                      ;A0C6A7;
@@ -10085,7 +10087,7 @@ EnemyVerticalBlockReaction:
 
 
 ;;; $C8AD: Align enemy Y position with non-square slope ;;;
-AlignEnemyYPositionWIthNonSquareSlope:
+AlignEnemyYPositionWithNonSquareSlope:
 ;; Parameters:
 ;;     X: Enemy index
 ;; Returns:

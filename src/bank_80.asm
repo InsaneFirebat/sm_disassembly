@@ -7474,11 +7474,11 @@ UNUSED_ConfigureMode7RotationMatrix_80B0C2:
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
-;;; $B119: Decompression - variable destination ;;;
+;;; $B0FF: Decompression - hardcoded destination ;;;
 Decompression_HardcodedDestination:
 ;; Parameters:
+;;     [[S] + 1]: Destination address (3 bytes)
 ;;     $47: Source address (3 bytes)
-;;     $4C: Destination address (3 bytes)
 
 ; Source may overflow bank, target may NOT
     LDA.B $02,S                                                          ;80B0FF;

@@ -442,7 +442,7 @@ Spawn_Hardcoded_PLM:
     PHK                                                                  ;84842B;
     PLB                                                                  ;84842C;
     TXA                                                                  ;84842D;
-    STA.W PLM_IDs,Y                                                        ;84842E;
+    STA.W PLM_IDs,Y                                                      ;84842E;
     TYX                                                                  ;848431;
     TAY                                                                  ;848432;
     LDA.W #$0000                                                         ;848433;

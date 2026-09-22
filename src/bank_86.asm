@@ -1470,7 +1470,7 @@ EnemyProjectile_BlockCollision_VerticalSlopeSquare:
 
 ;;; $8729: Square slope definitions ;;;
 SquareSlopeDefinitions_Bank86:
-; Copy of $94:8E54 for enemy projectiles
+; Copy of SquareSlopeDefinitions_Bank94 for enemy projectiles
 ; 7Fh- = air, 80h+ = solid
 
 ;        _____________ Top-left
