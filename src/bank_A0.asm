@@ -1058,7 +1058,6 @@ endif
     STA.W EnemyGraphicsDrawnHook                                         ;A08A3A;
     LDA.W #$0800                                                         ;A08A49;
     STA.W EnemyBG2TilemapSize                                            ;A08A4C;
-    STZ.W BossID                                                         ;A08A55; >.<
     JSL.L ClearEnemyData_ProcessEnemySet                                 ;A08A58;
     JSL.L LoadEnemyTileData                                              ;A08A5C;
     STZ.W EnemyTileData_SrcAddr                                          ;A08A60;
@@ -4511,7 +4510,6 @@ RinkaDeath:
     STA.W Enemy.bank,X                                                   ;A0A458;
 
   .return:
-    PLP                                                                  ;A0A45C;
     RTL                                                                  ;A0A45D;
 
 

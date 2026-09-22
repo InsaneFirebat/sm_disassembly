@@ -11637,7 +11637,7 @@ Restore_A_Energy_ToSamus:
 ;; Parameters:
 ;;     A: Health
     CLC                                                                  ;91DF1D;
-    ADC.B Energy
+    ADC.W Energy
     STA.W Energy                                                         ;91DF20;
     CMP.W MaxEnergy                                                      ;91DF23;
     BMI .return                                                          ;91DF26;
@@ -12068,8 +12068,6 @@ Set_NonXray_SamusPose:
 ; This routine is responsible for the x-ray stand-up glitch
 ; The case of [Samus movement type] = turning around isn't considered, and falls into the standing case,
 ; even if she was crouched whilst turning
-    PHP                                                                  ;91E2AD;
-    REP #$30                                                             ;91E2AE;
     LDA.W MovementType                                                   ;91E2B0;
     AND.W #$00FF                                                         ;91E2B3;
     CMP.W #$0005                                                         ;91E2B6;
@@ -12140,7 +12138,6 @@ Set_NonXray_SamusPose:
     TSB.W PLM_Flag
     TSB.W AnimatedTilesObject_Enable
     TSB.W PaletteFXObject_Enable
-    PLP                                                                  ;91E353;
     RTL                                                                  ;91E354;
 
 
@@ -12302,9 +12299,6 @@ MakeSamusFaceForward:
     STZ.W SamusProjectile_FlareAnimationTimer                            ;91E49C;
     STZ.W SamusProjectile_FlareSlowSparksAnimationFrame0CDE              ;91E49F;
     STZ.W SamusProjectile_FlareFastSparksAnimationFrame0CE0              ;91E4A2;
-    JSL.L LoadSamusSuitPalette                                           ;91E4A5;
-    PLB                                                                  ;91E4AA;
-    RTL                                                                  ;91E4AC;
     PLB
     JML LoadSamusSuitPalette
 
@@ -14540,11 +14534,9 @@ SuperSpecialProspectivePoseCmd_8_KnockbackAndTransAnimFinish:
 HandleSamusPoseChange:
 ;; Returns:
 ;;     Carry: Set if pose changed, clear otherwise
-    PHP                                                                  ;91F404;
     PHB                                                                  ;91F405;
     PHK                                                                  ;91F406;
     PLB                                                                  ;91F407;
-    REP #$30                                                             ;91F408;
     LDA.W Pose                                                           ;91F40A;
     PHA                                                                  ;91F40D;
     CMP.W PreviousPose                                                   ;91F40E;
@@ -14560,24 +14552,20 @@ HandleSamusPoseChange:
     CMP.W Pose                                                           ;91F426;
     BNE .poseChange                                                      ;91F429;
     PLB                                                                  ;91F42B;
-    PLP                                                                  ;91F42C;
     CLC                                                                  ;91F42D;
     RTL                                                                  ;91F42E;
 
   .poseChange:
     PLB                                                                  ;91F42F;
-    PLP                                                                  ;91F430;
     SEC                                                                  ;91F431;
     RTL                                                                  ;91F432;
 
 
 ;;; $F433: Initialise Samus pose (1/2) ;;;
 InitializeSamusPose_1:
-    PHP                                                                  ;91F433;
     PHB                                                                  ;91F434;
     PHK                                                                  ;91F435;
     PLB                                                                  ;91F436;
-    REP #$30                                                             ;91F437;
     LDA.W Pose                                                           ;91F439;
     ASL                                                                  ;91F43C;
     ASL                                                                  ;91F43D;
@@ -14601,7 +14589,6 @@ InitializeSamusPose_1:
 
   .return:
     PLB                                                                  ;91F465;
-    PLP                                                                  ;91F466;
     RTL                                                                  ;91F467;
 
 

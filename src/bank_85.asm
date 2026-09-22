@@ -367,7 +367,6 @@ Write_Message_Tilemap:
     JSR.W Wait_for_Lag_Frame                                             ;8582B8;
     JSL.L HandleMusicQueue                                               ;8582BB;
     JSL.L HandleSounds                                                   ;8582BF;
-    REP #$30                                                             ;8582C3;
     LDA.W #$0070                                                         ;8582C5;
     STA.W MessageBoxAnim_BottomHalf                                      ;8582C8;
     LDA.W #$007C                                                         ;8582CB;
@@ -620,6 +619,7 @@ Handle_MessageBox_Interaction:
     PLX                                                                  ;85849F;
     DEX                                                                  ;8584A0;
     BNE .lagLoop                                                         ;8584A1;
+    SEP #$20
 
   .loopInput:
     LDA.W $4212                                                          ;8584A3;
@@ -646,6 +646,7 @@ Handle_MessageBox_Interaction:
     PHX                                                                  ;8584C1;
     JSL.L HandleMusicQueue                                               ;8584C2;
     JSL.L HandleSounds                                                   ;8584C6;
+    SEP #$30
     PLX                                                                  ;8584CA;
     DEX                                                                  ;8584CB;
     BNE .waitLoop                                                        ;8584CC;
@@ -737,9 +738,11 @@ Play_2_Lag_Frames_of_Music_and_Sound_Effects:
     PHX                                                                  ;85857B;
     JSL.L HandleMusicQueue                                               ;85857C;
     JSL.L HandleSounds                                                   ;858580;
+    SEP #$30
     PLX                                                                  ;858584;
     DEX                                                                  ;858585;
     BNE .loop                                                            ;858586;
+    REP #$30
     RTS                                                                  ;858588;
 
 

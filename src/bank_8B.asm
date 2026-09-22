@@ -1709,11 +1709,9 @@ Calculate_CeresSteamPosition_InRotatingElevatorRoom:
 
 ;;; $8BE9: Copy current palettes to fading palettes ;;;
 PaletteCrossFading_CopyCurrentPalettesToFadingPalettes:
-; Temporarily changes DB to $7F for absolutely no reason!
-    PHP                                                                  ;8B8BE9;
     PHB                                                                  ;8B8BEA;
     SEP #$30                                                             ;8B8BEB;
-    LDA.B #HighRAM>>16                                                   ;8B8BED; >_<
+    LDA.B #Palettes>>16                                                  ;8B8BED;
     PHA                                                                  ;8B8BEF;
     PLB                                                                  ;8B8BF0;
     REP #$30                                                             ;8B8BF1;
@@ -1721,67 +1719,63 @@ PaletteCrossFading_CopyCurrentPalettesToFadingPalettes:
     LDX.W #$0000                                                         ;8B8BF6;
 
   .loop:
-    LDA.L Palettes,X                                                     ;8B8BF9;
-    STA.L FadingPalettes_Initial,X                                       ;8B8BFD;
+    LDA.W Palettes,X                                                     ;8B8BF9;
+    STA.W FadingPalettes_Initial,X                                       ;8B8BFD;
     INX                                                                  ;8B8C01;
     INX                                                                  ;8B8C02;
     DEY                                                                  ;8B8C03;
     BNE .loop                                                            ;8B8C04;
     PLB                                                                  ;8B8C06;
-    PLP                                                                  ;8B8C07;
     RTS                                                                  ;8B8C08;
 
 
 ;;; $8C09: Decompose palette data for fading ;;;
 PaletteCrossFading_DecomposePaletteDataForFading:
-    PHP                                                                  ;8B8C09;
     PHB                                                                  ;8B8C0A;
     SEP #$30                                                             ;8B8C0B;
-    LDA.B #$7F                                                           ;8B8C0D;
+    LDA.B #FadingPalettes_Initial>>16                                    ;8B8C0D;
     PHA                                                                  ;8B8C0F;
     PLB                                                                  ;8B8C10;
-    REP #$30                                                             ;8B8C11;
     LDX.W #$0000                                                         ;8B8C13;
     LDY.W #$0100                                                         ;8B8C16;
 
   .loop:
-    LDA.L FadingPalettes_Initial,X                                       ;8B8C19;
+    LDA.W FadingPalettes_Initial,X                                       ;8B8C19;
     STA.B DP_Temp12                                                      ;8B8C1D;
     AND.W #$001F                                                         ;8B8C1F;
     XBA                                                                  ;8B8C22;
-    STA.L FadingPalettes_Red,X                                           ;8B8C23;
+    STA.W FadingPalettes_Red,X                                           ;8B8C23;
     XBA                                                                  ;8B8C27;
     ASL                                                                  ;8B8C28;
     ASL                                                                  ;8B8C29;
     ASL                                                                  ;8B8C2A;
-    STA.L FadingPalettes_DeltaRed,X                                      ;8B8C2B;
+    STA.W FadingPalettes_DeltaRed,X                                      ;8B8C2B;
     LDA.B DP_Temp12                                                      ;8B8C2F;
     AND.W #$03E0                                                         ;8B8C31;
     ASL                                                                  ;8B8C34;
     ASL                                                                  ;8B8C35;
     ASL                                                                  ;8B8C36;
-    STA.L FadingPalettes_Green,X                                         ;8B8C37;
+    STA.W FadingPalettes_Green,X                                         ;8B8C37;
     XBA                                                                  ;8B8C3B;
     ASL                                                                  ;8B8C3C;
     ASL                                                                  ;8B8C3D;
     ASL                                                                  ;8B8C3E;
-    STA.L FadingPalettes_DeltaGreen,X                                    ;8B8C3F;
+    STA.W FadingPalettes_DeltaGreen,X                                    ;8B8C3F;
     LDA.B DP_Temp12                                                      ;8B8C43;
     AND.W #$7C00                                                         ;8B8C45;
     LSR                                                                  ;8B8C48;
     LSR                                                                  ;8B8C49;
-    STA.L FadingPalettes_Blue,X                                          ;8B8C4A;
+    STA.W FadingPalettes_Blue,X                                          ;8B8C4A;
     XBA                                                                  ;8B8C4E;
     ASL                                                                  ;8B8C4F;
     ASL                                                                  ;8B8C50;
     ASL                                                                  ;8B8C51;
-    STA.L FadingPalettes_DeltaBlue,X                                     ;8B8C52;
+    STA.W FadingPalettes_DeltaBlue,X                                     ;8B8C52;
     INX                                                                  ;8B8C56;
     INX                                                                  ;8B8C57;
     DEY                                                                  ;8B8C58;
     BNE .loop                                                            ;8B8C59;
     PLB                                                                  ;8B8C5B;
-    PLP                                                                  ;8B8C5C;
     RTS                                                                  ;8B8C5D;
 
 

@@ -2396,7 +2396,6 @@ CalculateSamusSpritemapPosition_Shinespark_CF_Drained:
     SBC.B Layer1XPosition                                                ;908DE6;
     STA.W SamusSpritemapXPosition                                        ;908DE9;
     TAX                                                                  ;908DEC;
-    PLB                                                                  ;908DED;
     RTS                                                                  ;908DEE;
 
   .data:
