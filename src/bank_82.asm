@@ -10352,7 +10352,7 @@ Advance_GradualColorChange_ofAllPalettes:
     LDX.W #$0000                                                         ;82DA1E;
 
   .loop:
-    STX.W ColorIndexInPaletteChangeRoutines                              ;82DA21;
+    STX.W PaletteChangeColorIndex                                        ;82DA21;
     LDA.W TargetPalettes_BGP0,X                                          ;82DA24;
     CMP.W Palettes,X                                                     ;82DA27;
     BEQ .next                                                            ;82DA2A;
@@ -10361,7 +10361,7 @@ Advance_GradualColorChange_ofAllPalettes:
     TAX                                                                  ;82DA30;
     LDA.W PaletteChangeNumerator                                         ;82DA31;
     JSR.W CalculateTheAth_TransitionalColor_fromXtoY                     ;82DA34;
-    LDX.W ColorIndexInPaletteChangeRoutines                              ;82DA37;
+    LDX.W PaletteChangeColorIndex                                        ;82DA37;
     STA.W Palettes,X                                                     ;82DA3A;
 
   .next:
@@ -10609,17 +10609,17 @@ Advance_GradualColorChange_ofPalettesInA:
     SEC                                                                  ;82DB1F;
     RTS                                                                  ;82DB20;
 
-+   STZ.W ColorIndexInPaletteChangeRoutines                              ;82DB21;
++   STZ.W PaletteChangeColorIndex                                        ;82DB21;
 
   .loop:
     PLA                                                                  ;82DB24;
-    BEQ +                                                                ;82DB25;
+    BEQ .returnCarryClear                                                ;82DB25;
     LSR                                                                  ;82DB27;
     PHA                                                                  ;82DB28;
     BCS .advance                                                         ;82DB29;
-    LDA.W ColorIndexInPaletteChangeRoutines                              ;82DB2B;
+    LDA.W PaletteChangeColorIndex                                        ;82DB2B;
     ADC.W #$0020                                                         ;82DB2E;
-    STA.W ColorIndexInPaletteChangeRoutines                              ;82DB31;
+    STA.W PaletteChangeColorIndex                                        ;82DB31;
     BRA .loop                                                            ;82DB34;
 
   .advance:
@@ -10628,14 +10628,15 @@ Advance_GradualColorChange_ofPalettesInA:
 
     PLA                                                                  ;82DB3B; dead code (just the PLA)
 
-+   INC.W PaletteChangeNumerator                                         ;82DB3C;
+  .returnCarryClear
+    INC.W PaletteChangeNumerator                                         ;82DB3C;
     CLC                                                                  ;82DB3F;
     RTS                                                                  ;82DB40;
 
 
 ;;; $DB41: Advance gradual colour change of palette at colour index ;;;
 Advance_GradualColorChange_ofPaletteX_DividedBy_20:
-    LDX.W ColorIndexInPaletteChangeRoutines                              ;82DB41;
+    LDX.W PaletteChangeColorIndex                                        ;82DB41;
 
   .loop:
     LDA.W TargetPalettes_BGP0,X                                          ;82DB44;
@@ -10646,13 +10647,13 @@ Advance_GradualColorChange_ofPaletteX_DividedBy_20:
     TAX                                                                  ;82DB50;
     LDA.W PaletteChangeNumerator                                         ;82DB51;
     JSR.W CalculateTheAth_TransitionalColor_fromXtoY                     ;82DB54;
-    LDX.W ColorIndexInPaletteChangeRoutines                              ;82DB57;
+    LDX.W PaletteChangeColorIndex                                        ;82DB57;
     STA.W Palettes,X                                                     ;82DB5A;
 
   .next:
     INX                                                                  ;82DB5D;
     INX                                                                  ;82DB5E;
-    STX.W ColorIndexInPaletteChangeRoutines                              ;82DB5F;
+    STX.W PaletteChangeColorIndex                                        ;82DB5F;
     TXA                                                                  ;82DB62;
     AND.W #$001F                                                         ;82DB63;
     BNE .loop                                                            ;82DB66;
@@ -11078,7 +11079,7 @@ Load_Door_Header:
 
 ;;; $DE6F: Load room header ;;;
 Load_Room_Header:
-    PEA.W RoomHeader_LandingSite>>8&$FF00                                ;82DE6F;
+    PEA.W RoomHeaders>>8                                                 ;82DE6F;
     PLB                                                                  ;82DE72;
     PLB                                                                  ;82DE73;
     LDX.W RoomPointer                                                    ;82DE74;
@@ -12404,7 +12405,7 @@ Load_CRETiles_TilesetTiles_and_TilesetPalette_DB_8F:
     REP #$30                                                             ;82E785;
     PEA.W RoomHeaders>>8                                                 ;82E787; >.<
     PLB                                                                  ;82E78A;
-    PLB                                                                  ;82E78B;
+    PLB                                                                  ;82E78B; fallthrough to Load_CRETiles_TilesetTiles_and_TilesetPalette
 
 
 ;;; $E78C: Load CRE tiles, tileset tiles and tileset palette ;;;

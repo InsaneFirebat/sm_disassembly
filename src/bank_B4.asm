@@ -6382,7 +6382,7 @@ endif
     STA.L SpriteObjects_InstListPointers,X                               ;B4BCC2;
     TAX                                                                  ;B4BCC6;
     LDA.L SpriteObjectInstLists,X                                        ;B4BCC7;
-    CMP.W #$8000                                                         ;B4BCCB;
+    CMP.W #$8000                                                         ;B4BCCB; >.<
     BPL .ASMInstruction                                                  ;B4BCCE;
     LDX.W SpriteObjectIndex                                              ;B4BCD0;
     STA.L SpriteObjects_InstructionsTimers,X                             ;B4BCD3;
@@ -6487,7 +6487,7 @@ DrawSpriteObjects:
     TAX                                                                  ;B4BD83;
     LDA.L SpriteObjectInstLists+2,X                                      ;B4BD84;
     TAY                                                                  ;B4BD88;
-    JSL.L AddSpritemapToOAM_WithBaseTileNumber_8AB8                      ;B4BD89;
+    JSL.L AddSpritemapToOAM_WithBaseTileNumber_NoOffScreen               ;B4BD89;
     PLX                                                                  ;B4BD8D;
 
   .next:

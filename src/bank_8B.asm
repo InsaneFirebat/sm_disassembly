@@ -1718,7 +1718,7 @@ PaletteCrossFading_CopyCurrentPalettesToFadingPalettes:
     PHP                                                                  ;8B8BE9;
     PHB                                                                  ;8B8BEA;
     SEP #$30                                                             ;8B8BEB;
-    LDA.B #$7F                                                           ;8B8BED;
+    LDA.B #HighRAM>>16                                                   ;8B8BED; >_<
     PHA                                                                  ;8B8BEF;
     PLB                                                                  ;8B8BF0;
     REP #$30                                                             ;8B8BF1;
@@ -1798,7 +1798,7 @@ PaletteCrossFading_ClearYColorsStartingFromColorIndexX:
     PHP                                                                  ;8B8C5E;
     PHB                                                                  ;8B8C5F;
     SEP #$20                                                             ;8B8C60;
-    LDA.B #$7F                                                           ;8B8C62;
+    LDA.B #HighRAM>>16                                                   ;8B8C62; >_<
     PHA                                                                  ;8B8C64;
     PLB                                                                  ;8B8C65;
     REP #$30                                                             ;8B8C66;

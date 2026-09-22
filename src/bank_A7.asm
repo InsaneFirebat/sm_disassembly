@@ -12312,7 +12312,7 @@ Function_Dachora_RunningLeft:
 
 +   JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A7F603;
     BCS .stop                                                            ;A7F607;
-    JSL.L AlignEnemyYPositionWIthNonSquareSlope                          ;A7F609;
+    JSL.L AlignEnemyYPositionWithNonSquareSlope                          ;A7F609;
     BRA .noWall                                                          ;A7F60D;
 
   .stop:
@@ -12340,6 +12340,7 @@ Function_Dachora_RunningLeft:
     BMI .stop                                                            ;A7F640;
     RTL                                                                  ;A7F642;
 
+if !FEATURE_KEEP_UNREFERENCED
 ; Unused branch
     LDA.W UNUSED_DachoraConstants_maxXDistanceFromSamusToStop_A7F4CB     ;A7F643; dead code
     JSL.L IsSamusWithinAPixelColumnsOfEnemy                              ;A7F646;
@@ -12351,6 +12352,7 @@ Function_Dachora_RunningLeft:
     STA.W Dachora.function,X                                             ;A7F656;
     STZ.W Dachora.paletteAnimationTimer,X                                ;A7F659;
     BRA .merge                                                           ;A7F65C;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $F65E: Dachora function - running right ;;;
@@ -12358,7 +12360,7 @@ Function_Dachora_RunningRight:
     JSR.W AccelerateRunningDachora                                       ;A7F65E;
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A7F661;
     BCS .collision                                                       ;A7F665;
-    JSL.L AlignEnemyYPositionWIthNonSquareSlope                          ;A7F667;
+    JSL.L AlignEnemyYPositionWithNonSquareSlope                          ;A7F667;
     BRA .noWall                                                          ;A7F66B;
 
   .collision:
