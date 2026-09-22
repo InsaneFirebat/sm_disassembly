@@ -5172,7 +5172,6 @@ Function_KraidLint_FireLint:
 
   .greaterThanEqualTo20:
     JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A7B8E2;
-    AND.W #$FFFF                                                         ;A7B8E6;
     BEQ .return                                                          ;A7B8E9;
     LDA.W ExtraSamusXSubDisplacement                                     ;A7B8EB;
     SEC                                                                  ;A7B8EE;

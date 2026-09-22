@@ -2435,7 +2435,8 @@ Function_Namihe_WaitForSamusToGetNear:
     LDX.B EnemyIndex                                                     ;A8975C;
     LDA.W FuneNamihe.instListPointersPointer,X                           ;A8975F;
     STA.L ExtraEnemy7800,X                                               ;A89762;
-    JSR.W Namihe_CheckIfSamusIsInProximity                               ;A89766;
+    LDA.W Enemy.init1,X
+    JSL.L IsSamusWithinAPixelColumnsOfEnemy
     BEQ .notInProximity                                                  ;A89769;
     LDA.L ExtraEnemy7800,X                                               ;A8976B;
     STA.W FuneNamihe.instListPointersPointer,X                           ;A8976F;
@@ -2463,16 +2464,6 @@ RTS_A8978E:
 ;;; $978F: RTS ;;;
 RTS_A8978F:
     RTS                                                                  ;A8978F;
-
-
-;;; $9790: Check if Samus is in proximity ;;;
-Namihe_CheckIfSamusIsInProximity:
-;; Returns:
-;;     Zero: Clear if Samus is in proximity, set otherwise
-    LDX.B EnemyIndex                                                     ;A89790;
-    LDA.W FuneNamihe.YProximity,X                                        ;A89793;
-    JSL.L IsSamusWithingAPixelRowsOfEnemy                                ;A89796;
-    RTS                                                                  ;A8979A;
 
 
 ;;; $979B: Set fune / namihe instruction list ;;;
@@ -8897,7 +8888,6 @@ Instruction_Robot_FacingLeft_MoveForward_HandleWallOrFall:
 
   .notCollidedWithWall:
     JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A8CD37;
-    AND.W #$FFFF                                                         ;A8CD3B;
     BEQ .notTouchingSamusFromBelow                                       ;A8CD3E;
     LDA.W #$0000                                                         ;A8CD40;
     STA.W ExtraSamusXSubDisplacement                                     ;A8CD43;
@@ -8970,7 +8960,6 @@ Instruction_Robot_FacingLeft_MoveForward_HandleHittingWall:
 
   .notCollidedWtihWall:
     JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A8CDD2;
-    AND.W #$FFFF                                                         ;A8CDD6;
     BEQ .return                                                          ;A8CDD9;
     LDA.W #$0000                                                         ;A8CDDB;
     STA.W ExtraSamusXSubDisplacement                                     ;A8CDDE;
@@ -9008,7 +8997,6 @@ Instruction_Robot_FacingLeft_MoveBackward_HandleWallOrFall:
 
   .notCollidedWithWall:
     JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A8CE18;
-    AND.W #$FFFF                                                         ;A8CE1C;
     BEQ .notTouchingSamusFromBelow                                       ;A8CE1F;
     LDA.W #$0000                                                         ;A8CE21;
     STA.W ExtraSamusXSubDisplacement                                     ;A8CE24;
@@ -9081,7 +9069,6 @@ Instruction_Robot_FacingLeft_MoveBackward_HandleHittingWall:
 
   .notCollidedWithWall:
     JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A8CEB3;
-    AND.W #$FFFF                                                         ;A8CEB7;
     BEQ .return                                                          ;A8CEBA;
     LDA.W #$0000                                                         ;A8CEBC;
     STA.W ExtraSamusXSubDisplacement                                     ;A8CEBF;
@@ -9125,7 +9112,6 @@ Instruction_Robot_FacingRight_MoveForward_HandleWallOrFall:
 
   .notCollidedWithWall:
     JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A8CEFD;
-    AND.W #$FFFF                                                         ;A8CF01;
     BEQ .notTouchingSamusFromBelow                                       ;A8CF04;
     LDA.W #$0000                                                         ;A8CF06;
     STA.W ExtraSamusXSubDisplacement                                     ;A8CF09;
@@ -9198,7 +9184,6 @@ Instruction_Robot_FacingRight_MoveForward_HandleHittingWall:
 
   .notCollidedWithWall:
     JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A8CF98;
-    AND.W #$FFFF                                                         ;A8CF9C;
     BEQ .return                                                          ;A8CF9F;
     LDA.W #$0000                                                         ;A8CFA1;
     STA.W ExtraSamusXSubDisplacement                                     ;A8CFA4;
@@ -9236,7 +9221,6 @@ Instruction_Robot_FacingRight_MoveBackward_HandleWallOrFall:
 
   .notCollidedWithWall:
     JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A8CFDE;
-    AND.W #$FFFF                                                         ;A8CFE2;
     BEQ .notTouchingSamusFromBelow                                       ;A8CFE5;
     LDA.W #$0000                                                         ;A8CFE7;
     STA.W ExtraSamusXSubDisplacement                                     ;A8CFEA;
@@ -9309,7 +9293,6 @@ Instruction_Robot_FacingRight_MoveBackward_HandleHittingWall:
 
   .notCollidedWithWall:
     JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A8D079;
-    AND.W #$FFFF                                                         ;A8D07D;
     BEQ .return                                                          ;A8D080;
     LDA.W #$0000                                                         ;A8D082;
     STA.W ExtraSamusXSubDisplacement                                     ;A8D085;
