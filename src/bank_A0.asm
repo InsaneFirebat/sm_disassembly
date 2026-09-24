@@ -5690,9 +5690,13 @@ DetermineDirectionOfSamusFromEnemy:
     RTL                                                                  ;A0AE42;
 
   .notLeftNorRight:
-    LDA.W #$0020                                                         ;A0AE43;
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy                              ;A0AE46;
-    BEQ .notAboveOrBelow                                                 ;A0AE4A;
+    LDY.B SamusXPosition
+    LDA.W Enemy.XPosition,X
+    TAX
+    JSL.L GetSignedYMinusX_A0B07D
+    LDX.B EnemyIndex
+    CMP.W #$0020
+    BPL .notAboveOrBelow
     LDY.W #$0004                                                         ;A0AE4C;
     LDA.B SamusYPosition
     SEC
@@ -10542,7 +10546,7 @@ EnemyHeaders_ShutterShootable:                                           ;A0D53F
     %powerBombReaction(PowerBombReaction_ShutterShootable_ShutterDestroyable_Kamer),
     %variantIndex(0),
     %enemyTouch(EnemyTouch_ShutterShootable_ShutterDestroyable_Kamer),
-    %enemyShot(EnemyShot_ShutterShootable_Kamer),
+    %enemyShot(EnemyTouch_ShutterShootable_ShutterDestroyable_Kamer),
     %spritemap(0),
     %tileData(Tiles_Shutter),
     %layer(5),
@@ -10638,7 +10642,7 @@ EnemyHeaders_Kamer:                                                      ;A0D5FF
     %powerBombReaction(PowerBombReaction_ShutterShootable_ShutterDestroyable_Kamer),
     %variantIndex(0),
     %enemyTouch(EnemyTouch_ShutterShootable_ShutterDestroyable_Kamer),
-    %enemyShot(EnemyShot_ShutterShootable_Kamer),
+    %enemyShot(EnemyTouch_ShutterShootable_ShutterDestroyable_Kamer),
     %spritemap(0),
     %tileData(Tiles_Kamer),
     %layer(5),
