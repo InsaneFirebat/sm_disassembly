@@ -13398,7 +13398,6 @@ Spritemap_Ridley_FacingRight_Torso:
 
 ;;; $EFB1: Initialisation AI - enemy $E1FF (Ceres steam) ;;;
 InitAI_CeresSteam:
-    LDX.B EnemyIndex                                                     ;A6EFB1;
     STZ.W Enemy.GFXOffset,X                                              ;A6EFB4;
     LDA.W Enemy.properties,X                                             ;A6EFB7;
     ORA.W #$2000                                                         ;A6EFBA;
@@ -13422,6 +13421,8 @@ InitAI_CeresSteam:
     STA.W Enemy.instList,X                                               ;A6EFEB;
     LDA.W InitAI_CeresSteam_initialFunctionPointers,Y                    ;A6EFEE;
     STA.W Steam.function,X                                               ;A6EFF1;
+    LDA.W #$7FFF
+    STA.W Enemy.health,X
 
   .return:
     RTL                                                                  ;A6EFF4;
@@ -13447,9 +13448,6 @@ InitAI_CeresSteam_initialFunctionPointers:
 
 ;;; $F00D: Main AI - enemy $E1FF (Ceres steam) ;;;
 MainAI_CeresSteam:
-    LDX.B EnemyIndex                                                     ;A6F00D;
-    LDA.W #$7FFF                                                         ;A6F010;
-    STA.W Enemy.health,X                                                 ;A6F013;
     JMP.W (Steam.function,X)                                             ;A6F016;
 
 
@@ -13460,7 +13458,6 @@ Func_CeresSteam_CalculateGraphicalOffsetInRotatingElevRoom:
     LDA.W Enemy.YPosition,X                                              ;A6F01E;
     STA.B DP_Temp14                                                      ;A6F021;
     JSL.L Calculate_CeresSteamPosition_InRotatingElevatorRoom            ;A6F023;
-    LDX.B EnemyIndex                                                     ;A6F027;
     LDA.B DP_Temp12                                                      ;A6F02A;
     SEC                                                                  ;A6F02C;
     SBC.W Enemy.XPosition,X                                              ;A6F02D;
@@ -13470,15 +13467,6 @@ Func_CeresSteam_CalculateGraphicalOffsetInRotatingElevRoom:
     SBC.W Enemy.YPosition,X                                              ;A6F037;
     STA.L EnemySpawnData.graphicalYOffset,X                              ;A6F03A;
     RTL                                                                  ;A6F03E;
-
-
-;;; $F03F: Enemy touch - enemy $E1FF (Ceres steam) ;;;
-EnemyTouch_CeresSteam:
-    LDX.B EnemyIndex                                                     ;A6F03F;
-    LDA.W #$7FFF                                                         ;A6F042;
-    STA.W Enemy.health,X                                                 ;A6F045;
-    JSL.L NormalEnemyTouchAI                                             ;A6F048;
-    RTL                                                                  ;A6F04C;
 
 
 ;;; $F04D: Instruction list - Ceres steam - up ;;;
@@ -13788,121 +13776,121 @@ Hitbox_CeresSteam_Nothing:
 Hitbox_CeresSteam_Up_0:
     dw $0001                                                             ;A6F25C;
     dw $FFF8,$FFF0,$0007,$FFFF
-    dw EnemyTouch_CeresSteam                                             ;A6F266;
+    dw Common_NormalEnemyTouchAI
     dw RTL_A6804C                                                        ;A6F268;
 
 Hitbox_CeresSteam_Up_1:
     dw $0001                                                             ;A6F26A;
     dw $FFF8,$FFE9,$0007,$FFFE
-    dw EnemyTouch_CeresSteam                                             ;A6F274;
+    dw Common_NormalEnemyTouchAI
     dw RTL_A6804C                                                        ;A6F276;
 
 Hitbox_CeresSteam_Up_2:
     dw $0001                                                             ;A6F278;
     dw $FFF8,$FFE0,$0007,$FFF8
-    dw EnemyTouch_CeresSteam                                             ;A6F282;
+    dw Common_NormalEnemyTouchAI
     dw RTL_A6804C                                                        ;A6F284;
 
 Hitbox_CeresSteam_Up_3:
     dw $0001                                                             ;A6F286;
     dw $FFF8,$FFD8,$0007,$FFF0
-    dw EnemyTouch_CeresSteam                                             ;A6F290;
+    dw Common_NormalEnemyTouchAI
     dw RTL_A6804C                                                        ;A6F292;
 
 Hitbox_CeresSteam_Up_4:
     dw $0001                                                             ;A6F294;
     dw $FFF8,$FFD8,$0006,$FFE8
-    dw EnemyTouch_CeresSteam                                             ;A6F29E;
+    dw Common_NormalEnemyTouchAI
     dw RTL_A6804C                                                        ;A6F2A0;
 
 Hitbox_CeresSteam_Left_0:
     dw $0001                                                             ;A6F2A2;
     dw $FFF0,$FFF8,$FFFF,$0007
-    dw EnemyTouch_CeresSteam                                             ;A6F2AC;
+    dw Common_NormalEnemyTouchAI
     dw RTL_A6804C                                                        ;A6F2AE;
 
 Hitbox_CeresSteam_Left_1:
     dw $0001                                                             ;A6F2B0;
     dw $FFE8,$FFF8,$FFFE,$0007
-    dw EnemyTouch_CeresSteam                                             ;A6F2BA;
+    dw Common_NormalEnemyTouchAI
     dw RTL_A6804C                                                        ;A6F2BC;
 
 Hitbox_CeresSteam_Left_2:
     dw $0001                                                             ;A6F2BE;
     dw $FFE0,$FFF9,$FFF7,$0007
-    dw EnemyTouch_CeresSteam                                             ;A6F2C8;
+    dw Common_NormalEnemyTouchAI
     dw RTL_A6804C                                                        ;A6F2CA;
 
 Hitbox_CeresSteam_Left_3:
     dw $0001                                                             ;A6F2CC;
     dw $FFD8,$FFF7,$FFEF,$0005
-    dw EnemyTouch_CeresSteam                                             ;A6F2D6;
+    dw Common_NormalEnemyTouchAI
     dw RTL_A6804C                                                        ;A6F2D8;
 
 Hitbox_CeresSteam_Left_4:
     dw $0001                                                             ;A6F2DA;
     dw $FFD8,$FFF5,$FFE6,$0002
-    dw EnemyTouch_CeresSteam                                             ;A6F2E4;
+    dw Common_NormalEnemyTouchAI
     dw RTL_A6804C                                                        ;A6F2E6;
 
 Hitbox_CeresSteam_Down_0:
     dw $0001                                                             ;A6F2E8;
     dw $FFF8,$0000,$0007,$000E
-    dw EnemyTouch_CeresSteam                                             ;A6F2F2;
+    dw Common_NormalEnemyTouchAI
     dw RTL_A6804C                                                        ;A6F2F4;
 
 Hitbox_CeresSteam_Down_1:
     dw $0001                                                             ;A6F2F6;
     dw $FFF8,$0000,$0007,$0017
-    dw EnemyTouch_CeresSteam                                             ;A6F300;
+    dw Common_NormalEnemyTouchAI
     dw RTL_A6804C                                                        ;A6F302;
 
 Hitbox_CeresSteam_Down_2:
     dw $0001                                                             ;A6F304;
     dw $FFF8,$0008,$0007,$001F
-    dw EnemyTouch_CeresSteam                                             ;A6F30E;
+    dw Common_NormalEnemyTouchAI
     dw RTL_A6804C                                                        ;A6F310;
 
 Hitbox_CeresSteam_Down_3:
     dw $0001                                                             ;A6F312;
     dw $FFF8,$000F,$0007,$0027
-    dw EnemyTouch_CeresSteam                                             ;A6F31C;
+    dw Common_NormalEnemyTouchAI
     dw RTL_A6804C                                                        ;A6F31E;
 
 Hitbox_CeresSteam_Down_4:
     dw $0001                                                             ;A6F320;
     dw $FFF8,$0017,$0006,$0026
-    dw EnemyTouch_CeresSteam                                             ;A6F32A;
+    dw Common_NormalEnemyTouchAI
     dw RTL_A6804C                                                        ;A6F32C;
 
 Hitbox_CeresSteam_Right_0:
     dw $0001                                                             ;A6F32E;
     dw $0000,$FFF8,$000F,$0007
-    dw EnemyTouch_CeresSteam                                             ;A6F338;
+    dw Common_NormalEnemyTouchAI
     dw RTL_A6804C                                                        ;A6F33A;
 
 Hitbox_CeresSteam_Right_1:
     dw $0001                                                             ;A6F33C;
     dw $0001,$FFF8,$0017,$0007
-    dw EnemyTouch_CeresSteam                                             ;A6F346;
+    dw Common_NormalEnemyTouchAI
     dw RTL_A6804C                                                        ;A6F348;
 
 Hitbox_CeresSteam_Right_2:
     dw $0001                                                             ;A6F34A;
     dw $0009,$FFF8,$001F,$0007
-    dw EnemyTouch_CeresSteam                                             ;A6F354;
+    dw Common_NormalEnemyTouchAI
     dw RTL_A6804C                                                        ;A6F356;
 
 Hitbox_CeresSteam_Right_3:
     dw $0001                                                             ;A6F358;
     dw $0012,$FFF7,$0026,$0005
-    dw EnemyTouch_CeresSteam                                             ;A6F362;
+    dw Common_NormalEnemyTouchAI
     dw RTL_A6804C                                                        ;A6F364;
 
 Hitbox_CeresSteam_Right_4:
     dw $0001                                                             ;A6F366;
     dw $0019,$FFF5,$0028,$0003
-    dw EnemyTouch_CeresSteam                                             ;A6F370;
+    dw Common_NormalEnemyTouchAI
     dw RTL_A6804C                                                        ;A6F372;
 
 

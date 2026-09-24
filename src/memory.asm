@@ -18,8 +18,8 @@ DP_Temp0A: skip 1 ; $0A
 DP_Temp0B: skip 1 ; $0B
 DP_Temp0C: skip 2 ; $0C
 DP_Temp0E: skip 2 ; $0E
-RandomNumberSeed: skip 2 ; $05E5 
-DP_Temp12: skip 1 ; $12 must be here, because X is garbage from $82E912
+RandomNumberSeed: skip 2 ; $05E5
+DP_Temp12: skip 1 ; $12
 DP_Temp13: skip 1 ; $13
 DP_Temp14: skip 1 ; $14
 DP_Temp15: skip 1 ; $15

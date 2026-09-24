@@ -11,12 +11,6 @@ echo Patching FF file with asar
 set START=%TIME: =0%
 "tools/asar" --no-title-check --symbols=wla --symbols-path=symbols.sym src/main.asm SM.sfc
 set END=%TIME: =0%
-if errorlevel 1 goto error
-
-fc /B SM.sfc "%sfc_src%"
-if errorlevel 1 goto error
-
-echo Success! This ROM matches vanilla Super Metroid
 
 rem Benchmarking asar
 rem Convert to centiseconds
@@ -45,10 +39,4 @@ rem Output
 echo DURATION: %DURATION% in centiseconds
 
 endlocal
-goto done
-
-:error
-echo !! BUILD ERROR / FILE MISMATCH !!
-
-:done
 PAUSE

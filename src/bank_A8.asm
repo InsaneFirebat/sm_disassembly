@@ -3671,7 +3671,6 @@ InitAI_YappingMaw:
 
 ;;; $A211: Main AI - enemy $E7BF (yapping maw) ;;;
 MainAI_YappingMaw:
-    LDX.B EnemyIndex                                                     ;A8A211;
     LDA.L YappingMaw.intangibilityTimer,X                                ;A8A214;
     DEC                                                                  ;A8A218;
     STA.L YappingMaw.intangibilityTimer,X                                ;A8A219;
@@ -4468,7 +4467,7 @@ EnemyShot_YappingMaw:
 
 ;;; $A835: Frozen AI - enemy $E7BF (yapping maw) ;;;
 FrozenAI_YappingMaw:
-    JSL.L CommonA8_NormalEnemyFrozenAI                                   ;A8A835;
+    JSL.L NormalEnemyFrozenAI
     LDA.L YappingMaw.bodySegment0ProjectileIndex,X                       ;A8A839;
     TAY                                                                  ;A8A83D;
     JSR.W SetYappingMawBodySegmentFrozenPalette                          ;A8A83E;

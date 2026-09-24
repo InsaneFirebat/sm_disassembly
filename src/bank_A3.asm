@@ -385,13 +385,13 @@ Instruction_CommonA3_DisableOffScreenProcessing:
 
 ;;; $8187: Common enemy speeds - linearly increasing ;;;
 CommonA3EnemySpeeds_LinearlyIncreasing:
-  .speed                                                                 ;A08187;
+  .speed                                                                 ;A38187;
 skip 2
-  .subspeed                                                              ;A08189;
+  .subspeed                                                              ;A38189;
 skip 2
-  .negatedSpeed                                                          ;A0818B;
+  .negatedSpeed                                                          ;A3818B;
 skip 2
-  .negatedSubspeed                                                       ;A0818D;
+  .negatedSubspeed                                                       ;A3818D;
 skip -6
 
 !i = 0
@@ -8906,7 +8906,7 @@ Instruction_Yard_HidingInstListInY:
 
 ;;; $CC48: Instruction - set enemy direction to [[Y]] ;;;
 Instruction_Yard_DirectionInY:
-    PHY                                                                  ;A3CC48;
+    STY.B DP_Temp12
     LDA.W $0000,Y                                                        ;A3CC49;
     STA.L Yard.direction,X                                               ;A3CC4C;
     ASL                                                                  ;A3CC50;
@@ -8915,7 +8915,7 @@ Instruction_Yard_DirectionInY:
     TAY                                                                  ;A3CC53;
     LDA.W YardDirectionData_airborneFacingDirection,Y                    ;A3CC54;
     STA.L Enemy.var2,X                                                   ;A3CC57;
-    PLY                                                                  ;A3CC5B;
+    LDY.B DP_Temp12
     INY                                                                  ;A3CC5C;
     INY                                                                  ;A3CC5D;
     RTL                                                                  ;A3CC5E;
@@ -8954,25 +8954,6 @@ Instruction_Yard_GoBack4BytesIfHidingOr50PercentChance:
     SBC.W #$0006                                                         ;A3CC8D;
     TAY                                                                  ;A3CC90;
     RTL                                                                  ;A3CC91;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $CC92: Unused. Instruction - make yard face Samus ;;;
-UNUSED_Instruction_Yard_A3CC92:
-; Wild NOP appears!
-    NOP                                                                  ;A3CC92;
-    PHY                                                                  ;A3CC93;
-    JSL.L UNUSED_MakeYardFaceSamus_A3D315                                ;A3CC94;
-    BCC .notTurningAround                                                ;A3CC98;
-    PLY                                                                  ;A3CC9A;
-    LDA.W Enemy.instList,X                                               ;A3CC9B;
-    TAY                                                                  ;A3CC9E;
-    RTL                                                                  ;A3CC9F;
-
-  .notTurningAround:
-    PLY                                                                  ;A3CCA0;
-    RTL                                                                  ;A3CCA1;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $CCA2: Yard crawling speeds ;;;
@@ -9150,7 +9131,7 @@ YardCrawlingMovementFunctions:
 
 ;;; $CDE2: Initialisation AI - enemy $DBBF (yard) ;;;
 InitAI_Yard:
-    LDX.B EnemyIndex                                                     ;A3CDE2;
+    TYX
     LDA.W #RTL_A3CF5F                                                    ;A3CDE5;
     STA.W Yard.movementFunction,X                                        ;A3CDE8;
     LDA.W #Spritemap_Common_Nothing                                      ;A3CDEB;
@@ -9174,11 +9155,9 @@ InitAI_Yard:
     LDA.W #$0000                                                         ;A3CE19;
     STA.L Yard.behavior,X                                                ;A3CE1C;
     LDA.W Yard.crawlingSpeedTableIndex,X                                 ;A3CE20;
-    STA.L Yard.idleCrawlingSpeedTableIndex,X                             ;A3CE23; fallthrough to SetYardCrawlingVelocities
-
+    STA.L Yard.idleCrawlingSpeedTableIndex,X                             ;A3CE23;
 
 ;;; $CE27: Set yard crawling velocities ;;;
-SetYardCrawlingVelocities:
 ;; Parameters:
 ;;     Y: Direction * 8
     LDA.W YardCrawlingVelocitySigns_X,Y                                  ;A3CE27;
@@ -9205,57 +9184,58 @@ SetYardCrawlingVelocities:
     RTL                                                                  ;A3CE56;
 
 
-;;; $CE57: Set yard crawling movement function ;;;
-SetYardCrawlingMovementFunction:
-    LDA.L Yard.direction,X                                               ;A3CE57;
-    ASL                                                                  ;A3CE5B;
-    TAY                                                                  ;A3CE5C;
-    LDA.W YardCrawlingMovementFunctions,Y                                ;A3CE5D;
-    STA.W Yard.movementFunction,X                                        ;A3CE60;
-    RTL                                                                  ;A3CE63;
-
-
 ;;; $CE64: Main AI - enemy $DBBF (yard) ;;;
 MainAI_Yard:
-    LDX.B EnemyIndex                                                     ;A3CE64;
-    JSR.W DropYardIfSuperMissileQuake                                    ;A3CE67;
-    JSR.W HandleYardHiding                                               ;A3CE6A;
-    JSR.W DetermineIfYardHitboxIsSolidToSamus                            ;A3CE6D;
-    JMP.W (Yard.movementFunction,X)                                      ;A3CE70;
-
-
 ;;; $CE73: Drop yard if super missile quake ;;;
-DropYardIfSuperMissileQuake:
     LDA.L Yard.behavior,X                                                ;A3CE73;
     CMP.W #$0003                                                         ;A3CE77;
-    BEQ .return                                                          ;A3CE7A;
+    BEQ .handledSuperQuake
     CMP.W #$0004                                                         ;A3CE7C;
-    BEQ .return                                                          ;A3CE7F;
+    BEQ .handledSuperQuake
     CMP.W #$0005                                                         ;A3CE81;
-    BEQ .return                                                          ;A3CE84;
+    BEQ .handledSuperQuake
     LDA.W EarthquakeTimer                                                ;A3CE86;
     CMP.W #$001E                                                         ;A3CE89;
-    BNE .return                                                          ;A3CE8C;
+    BNE .handledSuperQuake
     LDA.W EarthquakeType                                                 ;A3CE8E;
     CMP.W #$0014                                                         ;A3CE91;
-    BNE .return                                                          ;A3CE94;
-    JSR.W DropYard                                                       ;A3CE96;
+    BNE .handledSuperQuake
+;;; $D164: Drop yard ;;;
+    LDA.L Yard.behavior,X
+    CMP.W #$0003
+    BEQ .handledSuperQuake
+    LDA.W #$0003
+    STA.L Yard.behavior,X
+    LDA.W #Function_Yard_Movement_Airborne
+    STA.W Yard.movementFunction,X
+    LDA.W Yard.airborneFacingDirection,X
+    ASL
+    ASL
+    TAY
+    LDA.W DropYard_airbornePointers,Y
+    STA.W Enemy.instList,X
+    LDA.W DropYard_hidingPointers,Y
+    STA.W Yard.hidingInstList,X
+    STZ.W Enemy.loopCounter,X
+    LDA.W #$0000
+    STA.L Yard.airborneXSubVelocity,X
+    STA.L Yard.airborneXVelocity,X
+    STA.L Yard.airborneYSubVelocity,X
+    STA.L Yard.airborneYVelocity,X
+    INC
+    STA.W Enemy.instTimer,X
 
-  .return:
-    RTS                                                                  ;A3CE99;
-
-
+  .handledSuperQuake:
 ;;; $CE9A: Handle yard hiding ;;;
-HandleYardHiding:
     LDA.L Yard.behavior,X                                                ;A3CE9A;
     CMP.W #$0001                                                         ;A3CE9E;
-    BEQ .return1                                                         ;A3CEA1;
+    BEQ .handledHiding
     CMP.W #$0003                                                         ;A3CEA3;
-    BEQ .return1                                                         ;A3CEA6;
+    BEQ .handledHiding
     CMP.W #$0004                                                         ;A3CEA8;
-    BEQ .return1                                                         ;A3CEAB;
+    BEQ .handledHiding
     CMP.W #$0005                                                         ;A3CEAD;
-    BEQ .return1                                                         ;A3CEB0;
+    BEQ .handledHiding
     LDA.W Enemy.YPosition,X                                              ;A3CEB2;
     SEC                                                                  ;A3CEB5;
     SBC.B SamusYPosition                                                 ;A3CEB6;
@@ -9278,7 +9258,7 @@ HandleYardHiding:
 
 +   LDA.L Yard.behavior,X                                                ;A3CEDE;
     CMP.W #$0002                                                         ;A3CEE2;
-    BEQ .return0                                                         ;A3CEE5;
+    BEQ .handledHiding
     LDA.W Yard.hidingInstList,X                                          ;A3CEE7;
     CMP.W #RTL_A3CF5F                                                    ;A3CEEA;
     BEQ .crawl                                                           ;A3CEED;
@@ -9291,19 +9271,12 @@ HandleYardHiding:
     LDA.W #$0002                                                         ;A3CF01;
     STA.L Yard.behavior,X                                                ;A3CF04;
 
-  .return0:
-    RTS                                                                  ;A3CF08;
-
   .crawl:
     LDA.W #$0000                                                         ;A3CF09;
     STA.L Yard.behavior,X                                                ;A3CF0C;
 
-  .return1:
-    RTS                                                                  ;A3CF10;
-
-
+  .handledHiding:
 ;;; $CF11: Determine if yard hitbox is solid to Samus ;;;
-DetermineIfYardHitboxIsSolidToSamus:
     LDA.W Yard.movementFunction,X                                        ;A3CF11;
     CMP.W #Function_Yard_Movement_Airborne                               ;A3CF14;
     BEQ .notSolid                                                        ;A3CF17;
@@ -9326,20 +9299,19 @@ DetermineIfYardHitboxIsSolidToSamus:
     BNE .notSolid                                                        ;A3CF3F;
     LDA.W Yard.movementFunction,X                                        ;A3CF41;
     CMP.W #RTL_A3CF5F                                                    ;A3CF44;
-    BEQ .solid                                                           ;A3CF47;
-    BRA .notSolid                                                        ;A3CF49;
+    BNE .notSolid
 
   .solid:
     LDA.W Enemy.properties,X                                             ;A3CF4B;
     ORA.W #$8000                                                         ;A3CF4E;
     STA.W Enemy.properties,X                                             ;A3CF51;
-    RTS                                                                  ;A3CF54;
+    JMP.W (Yard.movementFunction,X)
 
   .notSolid:
     LDA.W Enemy.properties,X                                             ;A3CF55;
     AND.W #$7FFF                                                         ;A3CF58;
     STA.W Enemy.properties,X                                             ;A3CF5B;
-    RTS                                                                  ;A3CF5E;
+    JMP.W (Yard.movementFunction,X)
 
 
 ;;; $CF5F: RTL ;;;
@@ -9356,7 +9328,22 @@ Function_Yard_Movement_Hiding:
     STZ.B DP_Temp12                                                      ;A3CF69;
     STZ.B DP_Temp14                                                      ;A3CF6B;
     LDA.W Yard.crawlingXVelocity,X                                       ;A3CF6D;
-    JSR.W SignedMath_A3CF8F                                              ;A3CF70;
+;;; $CF8F: $14.$12 = ±[A] / 100h + 7 * sgn([A]) ;;;
+    BPL +
+    DEC.B DP_Temp14
+
++   STA.B DP_Temp13
+    LDA.B DP_Temp14
+    BPL .add7
+    SEC
+    SBC.W #$0007
+    BRA +
+
+  .add7:
+    CLC
+    ADC.W #$0007
+
++   STA.B DP_Temp14
     JSL.L CheckForHorizontalSolidBlockCollision                          ;A3CF73;
     BCC .noCollision                                                     ;A3CF77;
     RTL                                                                  ;A3CF79;
@@ -9365,35 +9352,54 @@ Function_Yard_Movement_Hiding:
     STZ.B DP_Temp12                                                      ;A3CF7A;
     STZ.B DP_Temp14                                                      ;A3CF7C;
     LDA.W Yard.crawlingYVelocity,X                                       ;A3CF7E;
-    JSR.W SignedMath_A3CF8F                                              ;A3CF81;
-    JSL.L CheckForVerticalSolidBlockCollision                            ;A3CF84;
-    BCC .noCollision                                                     ;A3CF88;
-    RTL                                                                  ;A3CF8A;
+;;; $CF8F: $14.$12 = ±[A] / 100h + 7 * sgn([A]) ;;;
+    BPL +
+    DEC.B DP_Temp14
+
++   STA.B DP_Temp13
+    LDA.B DP_Temp14
+    BPL ..add7
+    SEC
+    SBC.W #$0007
+    BRA +
+
+  ..add7:
+    CLC
+    ADC.W #$0007
+
++   STA.B DP_Temp14
+    JSL.L CheckForVerticalSolidBlockCollision
+    BCC .noCollision
+    RTL
 
   .noCollision:
-    JSR.W DropYard                                                       ;A3CF8B;
+;;; $D164: Drop yard ;;;
+    LDA.L Yard.behavior,X
+    CMP.W #$0003
+    BEQ .return
+    LDA.W #$0003
+    STA.L Yard.behavior,X
+    LDA.W #Function_Yard_Movement_Airborne
+    STA.W Yard.movementFunction,X
+    LDA.W Yard.airborneFacingDirection,X
+    ASL
+    ASL
+    TAY
+    LDA.W DropYard_airbornePointers,Y
+    STA.W Enemy.instList,X
+    LDA.W DropYard_hidingPointers,Y
+    STA.W Yard.hidingInstList,X
+    STZ.W Enemy.loopCounter,X
+    LDA.W #$0000
+    STA.L Yard.airborneXSubVelocity,X
+    STA.L Yard.airborneXVelocity,X
+    STA.L Yard.airborneYSubVelocity,X
+    STA.L Yard.airborneYVelocity,X
+    INC
+    STA.W Enemy.instTimer,X
+
+  .return:
     RTL                                                                  ;A3CF8E;
-
-
-;;; $CF8F: $14.$12 = ±[A] / 100h + 7 * sgn([A]) ;;;
-SignedMath_A3CF8F:
-; Requires $14.$12 to be set to 0.0 first
-    BPL +                                                                ;A3CF8F;
-    DEC.B DP_Temp14                                                      ;A3CF91;
-
-+   STA.B DP_Temp13                                                      ;A3CF93;
-    LDA.B DP_Temp14                                                      ;A3CF95;
-    BPL .add7                                                            ;A3CF97;
-    SEC                                                                  ;A3CF99;
-    SBC.W #$0007                                                         ;A3CF9A;
-    BRA +                                                                ;A3CF9D;
-
-  .add7:
-    CLC                                                                  ;A3CF9F;
-    ADC.W #$0007                                                         ;A3CFA0;
-
-+   STA.B DP_Temp14                                                      ;A3CFA3;
-    RTS                                                                  ;A3CFA5;
 
 
 ;;; $CFA6: Yard movement function - crawling - upside up - moving left ;;;
@@ -9413,7 +9419,7 @@ Function_Yard_Movement_Crawling_UpsideUp_MovingLeft:
 ;;; $CFB7: Yard movement function - crawling - upside left - moving down ;;;
 Function_Yard_Movement_Crawling_UpsideLeft_MovingDown:
     LDY.W #YardTurnData_upsideLeft_movingDown                            ;A3CFB7;
-    JMP.W YardCrawlingMovement_Vertical                                  ;A3CFBA;
+    BRA YardCrawlingMovement_Vertical
 
 
 ;;; $CFBD: Yard movement function - crawling - upside down - moving right ;;;
@@ -9433,7 +9439,7 @@ Function_Yard_Movement_Crawling_UpsideDown_MovingRight:
 ;;; $CFCE: Yard movement function - crawling - upside right - moving up ;;;
 Function_Yard_Movement_Crawling_UpsideRight_MovingUp:
     LDY.W #YardTurnData_upsideRight_movingUp                             ;A3CFCE;
-    JMP.W YardCrawlingMovement_Vertical                                  ;A3CFD1;
+    BRA YardCrawlingMovement_Vertical
 
 
 ;;; $CFD4: Yard movement function - crawling - upside up - moving right ;;;
@@ -9453,7 +9459,7 @@ Function_Yard_Movement_Crawling_UpsideUp_MovingRight:
 ;;; $CFE5: Yard movement function - crawling - upside right - moving down ;;;
 Function_Yard_Movement_Crawling_UpsideRight_MovingDown:
     LDY.W #YardTurnData_upsideRight_movingDown                           ;A3CFE5;
-    JMP.W YardCrawlingMovement_Vertical                                  ;A3CFE8;
+    BRA YardCrawlingMovement_Vertical
 
 
 ;;; $CFEB: Yard movement function - crawling - upside down - moving left ;;;
@@ -9472,15 +9478,21 @@ Function_Yard_Movement_Crawling_UpsideDown_MovingLeft:
 
 ;;; $CFFC: Yard movement function - crawling - upside left - moving up ;;;
 Function_Yard_Movement_Crawling_UpsideLeft_MovingUp:
-    LDY.W #YardTurnData_upsideLeft_movingUp                              ;A3CFFC;
-    JMP.W YardCrawlingMovement_Vertical                                  ;A3CFFF;
+    LDY.W #YardTurnData_upsideLeft_movingUp                              ;A3CFFC; fallthrough to YardCrawlingMovement_Vertical
 
 
 ;;; $D002: Yard crawling movement - vertical ;;;
 YardCrawlingMovement_Vertical:
 ;; Parameters:
 ;;     Y: Pointer to turn data entry (see YardTurnData)
-    JSR.W MoveYardAheadForOutsideTurnCheck                               ;A3D002;
+    LDA.W Enemy.XPosition,X
+    CLC
+    ADC.W $0000,Y
+    STA.W Enemy.XPosition,X
+    LDA.W Enemy.YPosition,X
+    CLC
+    ADC.W $0002,Y
+    STA.W Enemy.YPosition,X
     STZ.B DP_Temp12                                                      ;A3D005;
     STZ.B DP_Temp14                                                      ;A3D007;
     LDA.W Yard.crawlingXVelocity,X                                       ;A3D009;
@@ -9500,24 +9512,50 @@ YardCrawlingMovement_Vertical:
     PHY                                                                  ;A3D01C;
     JSL.L MoveEnemyRightBy_14_12_ProcessSlopes                           ;A3D01D;
     PLY                                                                  ;A3D021;
-    JSR.W MoveYardBackForOutsideTurnCheck                                ;A3D022;
+    PHP
+    LDA.W Enemy.XPosition,X
+    SEC
+    SBC.W $0000,Y
+    STA.W Enemy.XPosition,X
+    LDA.W Enemy.YPosition,X
+    SEC
+    SBC.W $0002,Y
+    STA.W Enemy.YPosition,X
+    PLP
     BCC .outsideTurn                                                     ;A3D025;
     LDA.W #$0000                                                         ;A3D027;
     STA.W Yard.consequtiveTurnCounter,X                                  ;A3D02A;
     PHY                                                                  ;A3D02D;
     JSL.L AlignEnemyYPositionWithNonSquareSlope                          ;A3D02E;
     PLY                                                                  ;A3D032;
-    JSR.W HandleTurnTransitionDisabling                                  ;A3D033;
-    STZ.B DP_Temp12                                                      ;A3D036;
+;;; $D124: Handle turn transition disabling ;;;
+    BCS .resetTurnTransitionDisableCounter
+    LDA.L Yard.turnTransitionDisableCounter,X
+    INC
+    CMP.W #$0010
+    BCS .enableTurnTransition
+    STA.L Yard.turnTransitionDisableCounter,X
+    BRA +
+
+  .resetTurnTransitionDisableCounter:
+    LDA.W #$0001
+    STA.L Yard.turnTransitionDisableFlag,X
+    DEC
+    STA.L Yard.turnTransitionDisableCounter,X
+    BRA +
+
+  .enableTurnTransition:
+    LDA.W #$0000
+    STA.L Yard.turnTransitionDisableFlag,X
+
++   STZ.B DP_Temp12                                                      ;A3D036;
     STZ.B DP_Temp14                                                      ;A3D038;
     LDA.W Yard.crawlingYVelocity,X                                       ;A3D03A;
     BPL +                                                                ;A3D03D;
     DEC.B DP_Temp14                                                      ;A3D03F;
 
 +   STA.B DP_Temp13                                                      ;A3D041;
-    PHY                                                                  ;A3D043;
     JSL.L MoveEnemyDownBy_14_12                                          ;A3D044;
-    PLY                                                                  ;A3D048;
     BCS .insideTurn                                                      ;A3D049;
     RTL                                                                  ;A3D04B;
 
@@ -9527,7 +9565,13 @@ YardCrawlingMovement_Vertical:
     INC                                                                  ;A3D052;
     STA.W Yard.crawlingXVelocity,X                                       ;A3D053;
     LDA.W $0006,Y                                                        ;A3D056;
-    JSR.W SetYardInstList_DisableTurnTransition                          ;A3D059;
+;;; $D14C: Set enemy instruction list and disable turn transition ;;;
+    STA.W Enemy.instList,X
+    LDA.W #$0001
+    STA.W Enemy.instTimer,X
+    STA.L Yard.turnTransitionDisableFlag,X
+    DEC
+    STA.L Yard.turnTransitionDisableCounter,X
     RTL                                                                  ;A3D05C;
 
   .outsideTurn:
@@ -9536,7 +9580,32 @@ YardCrawlingMovement_Vertical:
     STA.W Yard.consequtiveTurnCounter,X                                  ;A3D061;
     CMP.W #$0004                                                         ;A3D064;
     BMI .lessThan4Turns                                                  ;A3D067;
-    JSR.W DropYard                                                       ;A3D069;
+;;; $D164: Drop yard ;;;
+    LDA.L Yard.behavior,X
+    CMP.W #$0003
+    BEQ .return
+    LDA.W #$0003
+    STA.L Yard.behavior,X
+    LDA.W #Function_Yard_Movement_Airborne
+    STA.W Yard.movementFunction,X
+    LDA.W Yard.airborneFacingDirection,X
+    ASL
+    ASL
+    TAY
+    LDA.W DropYard_airbornePointers,Y
+    STA.W Enemy.instList,X
+    LDA.W DropYard_hidingPointers,Y
+    STA.W Yard.hidingInstList,X
+    STZ.W Enemy.loopCounter,X
+    LDA.W #$0000
+    STA.L Yard.airborneXSubVelocity,X
+    STA.L Yard.airborneXVelocity,X
+    STA.L Yard.airborneYSubVelocity,X
+    STA.L Yard.airborneYVelocity,X
+    INC
+    STA.W Enemy.instTimer,X
+
+  .return:
     RTL                                                                  ;A3D06C;
 
   .lessThan4Turns:
@@ -9545,7 +9614,13 @@ YardCrawlingMovement_Vertical:
     INC                                                                  ;A3D073;
     STA.W Yard.crawlingYVelocity,X                                       ;A3D074;
     LDA.W $0004,Y                                                        ;A3D077;
-    JSR.W SetYardInstList_DisableTurnTransition                          ;A3D07A;
+;;; $D14C: Set enemy instruction list and disable turn transition ;;;
+    STA.W Enemy.instList,X
+    LDA.W #$0001
+    STA.W Enemy.instTimer,X
+    STA.L Yard.turnTransitionDisableFlag,X
+    DEC
+    STA.L Yard.turnTransitionDisableCounter,X
     RTL                                                                  ;A3D07D;
 
 
@@ -9553,7 +9628,14 @@ YardCrawlingMovement_Vertical:
 YardCrawlingMovement_Horizontal:
 ;; Parameters:
 ;;     Y: Pointer to turn data entry (see YardTurnData)
-    JSR.W MoveYardAheadForOutsideTurnCheck                               ;A3D07E;
+    LDA.W Enemy.XPosition,X
+    CLC
+    ADC.W $0000,Y
+    STA.W Enemy.XPosition,X
+    LDA.W Enemy.YPosition,X
+    CLC
+    ADC.W $0002,Y
+    STA.W Enemy.YPosition,X
     STZ.B DP_Temp12                                                      ;A3D081;
     STZ.B DP_Temp14                                                      ;A3D083;
     LDA.W Yard.crawlingYVelocity,X                                       ;A3D085;
@@ -9570,10 +9652,17 @@ YardCrawlingMovement_Horizontal:
     INC                                                                  ;A3D095;
 
 +   STA.B DP_Temp14                                                      ;A3D096;
-    PHY                                                                  ;A3D098;
     JSL.L MoveEnemyDownBy_14_12                                          ;A3D099;
-    PLY                                                                  ;A3D09D;
-    JSR.W MoveYardBackForOutsideTurnCheck                                ;A3D09E;
+    PHP
+    LDA.W Enemy.XPosition,X
+    SEC
+    SBC.W $0000,Y
+    STA.W Enemy.XPosition,X
+    LDA.W Enemy.YPosition,X
+    SEC
+    SBC.W $0002,Y
+    STA.W Enemy.YPosition,X
+    PLP
     BCC .outsideTurn                                                     ;A3D0A1;
     LDA.W #$0000                                                         ;A3D0A3;
     STA.W Yard.consequtiveTurnCounter,X                                  ;A3D0A6;
@@ -9589,7 +9678,25 @@ YardCrawlingMovement_Horizontal:
     PLY                                                                  ;A3D0BB;
     BCS .insideTurn                                                      ;A3D0BC;
     JSL.L AlignEnemyYPositionWithNonSquareSlope                          ;A3D0BE;
-    JSR.W HandleTurnTransitionDisabling                                  ;A3D0C2;
+;;; $D124: Handle turn transition disabling ;;;
+    BCS .resetTurnTransitionDisableCounter
+    LDA.L Yard.turnTransitionDisableCounter,X
+    INC
+    CMP.W #$0010
+    BCS .enableTurnTransition
+    STA.L Yard.turnTransitionDisableCounter,X
+    RTL
+
+  .resetTurnTransitionDisableCounter:
+    LDA.W #$0001
+    STA.L Yard.turnTransitionDisableFlag,X
+    DEC
+    STA.L Yard.turnTransitionDisableCounter,X
+    RTL
+
+  .enableTurnTransition:
+    LDA.W #$0000
+    STA.L Yard.turnTransitionDisableFlag,X
     RTL                                                                  ;A3D0C5;
 
   .insideTurn:
@@ -9598,7 +9705,13 @@ YardCrawlingMovement_Horizontal:
     INC                                                                  ;A3D0CC;
     STA.W Yard.crawlingYVelocity,X                                       ;A3D0CD;
     LDA.W $0006,Y                                                        ;A3D0D0;
-    JSR.W SetYardInstList_DisableTurnTransition                          ;A3D0D3;
+;;; $D14C: Set enemy instruction list and disable turn transition ;;;
+    STA.W Enemy.instList,X
+    LDA.W #$0001
+    STA.W Enemy.instTimer,X
+    STA.L Yard.turnTransitionDisableFlag,X
+    DEC
+    STA.L Yard.turnTransitionDisableCounter,X
     RTL                                                                  ;A3D0D6;
 
   .outsideTurn:
@@ -9607,7 +9720,32 @@ YardCrawlingMovement_Horizontal:
     STA.W Yard.consequtiveTurnCounter,X                                  ;A3D0DB;
     CMP.W #$0004                                                         ;A3D0DE;
     BMI .lessThan4Turns                                                  ;A3D0E1;
-    JSR.W DropYard                                                       ;A3D0E3;
+;;; $D164: Drop yard ;;;
+    LDA.L Yard.behavior,X
+    CMP.W #$0003
+    BEQ .return
+    LDA.W #$0003
+    STA.L Yard.behavior,X
+    LDA.W #Function_Yard_Movement_Airborne
+    STA.W Yard.movementFunction,X
+    LDA.W Yard.airborneFacingDirection,X
+    ASL
+    ASL
+    TAY
+    LDA.W DropYard_airbornePointers,Y
+    STA.W Enemy.instList,X
+    LDA.W DropYard_hidingPointers,Y
+    STA.W Yard.hidingInstList,X
+    STZ.W Enemy.loopCounter,X
+    LDA.W #$0000
+    STA.L Yard.airborneXSubVelocity,X
+    STA.L Yard.airborneXVelocity,X
+    STA.L Yard.airborneYSubVelocity,X
+    STA.L Yard.airborneYVelocity,X
+    INC
+    STA.W Enemy.instTimer,X
+
+  .return:
     RTL                                                                  ;A3D0E6;
 
   .lessThan4Turns:
@@ -9616,111 +9754,18 @@ YardCrawlingMovement_Horizontal:
     INC                                                                  ;A3D0ED;
     STA.W Yard.crawlingXVelocity,X                                       ;A3D0EE;
     LDA.W $0004,Y                                                        ;A3D0F1;
-    JSR.W SetYardInstList_DisableTurnTransition                          ;A3D0F4;
-    RTL                                                                  ;A3D0F7;
-
-
-;;; $D0F8: Move enemy ahead for outside turn check ;;;
-MoveYardAheadForOutsideTurnCheck:
-;; Parameters:
-;;     Y: Pointer to turn data entry (see YardTurnData)
-    LDA.W Enemy.XPosition,X                                              ;A3D0F8;
-    CLC                                                                  ;A3D0FB;
-    ADC.W $0000,Y                                                        ;A3D0FC;
-    STA.W Enemy.XPosition,X                                              ;A3D0FF;
-    LDA.W Enemy.YPosition,X                                              ;A3D102;
-    CLC                                                                  ;A3D105;
-    ADC.W $0002,Y                                                        ;A3D106;
-    STA.W Enemy.YPosition,X                                              ;A3D109;
-    RTS                                                                  ;A3D10C;
-
-
-;;; $D10D: Move enemy back from outside turn check ;;;
-MoveYardBackForOutsideTurnCheck:
-;; Parameters:
-;;     Y: Pointer to turn data entry (see YardTurnData)
-; Important that the carry flag is preserved here
-    PHP                                                                  ;A3D10D;
-    LDA.W Enemy.XPosition,X                                              ;A3D10E;
-    SEC                                                                  ;A3D111;
-    SBC.W $0000,Y                                                        ;A3D112;
-    STA.W Enemy.XPosition,X                                              ;A3D115;
-    LDA.W Enemy.YPosition,X                                              ;A3D118;
-    SEC                                                                  ;A3D11B;
-    SBC.W $0002,Y                                                        ;A3D11C;
-    STA.W Enemy.YPosition,X                                              ;A3D11F;
-    PLP                                                                  ;A3D122;
-    RTS                                                                  ;A3D123;
-
-
-;;; $D124: Handle turn transition disabling ;;;
-HandleTurnTransitionDisabling:
-;; Parameters:
-;;     Carry: Set if position was adjusted by slope, otherwise clear
-    BCS .resetTurnTransitionDisableCounter                               ;A3D124;
-    LDA.L Yard.turnTransitionDisableCounter,X                            ;A3D126;
-    INC                                                                  ;A3D12A;
-    CMP.W #$0010                                                         ;A3D12B;
-    BCS .enableTurnTransition                                            ;A3D12E;
-    STA.L Yard.turnTransitionDisableCounter,X                            ;A3D130;
-    RTS                                                                  ;A3D134;
-
-  .resetTurnTransitionDisableCounter:
-    LDA.W #$0001                                                         ;A3D135;
-    STA.L Yard.turnTransitionDisableFlag,X                               ;A3D138;
-    LDA.W #$0000                                                         ;A3D13C;
-    STA.L Yard.turnTransitionDisableCounter,X                            ;A3D13F;
-    RTS                                                                  ;A3D143;
-
-  .enableTurnTransition:
-    LDA.W #$0000                                                         ;A3D144;
-    STA.L Yard.turnTransitionDisableFlag,X                               ;A3D147;
-    RTS                                                                  ;A3D14B;
-
-
 ;;; $D14C: Set enemy instruction list and disable turn transition ;;;
-SetYardInstList_DisableTurnTransition:
-    STA.W Enemy.instList,X                                               ;A3D14C;
-    LDA.W #$0001                                                         ;A3D14F;
-    STA.W Enemy.instTimer,X                                              ;A3D152;
-    LDA.W #$0001                                                         ;A3D155;
-    STA.L Yard.turnTransitionDisableFlag,X                               ;A3D158;
-    LDA.W #$0000                                                         ;A3D15C;
-    STA.L Yard.turnTransitionDisableCounter,X                            ;A3D15F;
-    RTS                                                                  ;A3D163;
+    STA.W Enemy.instList,X
+    LDA.W #$0001
+    STA.W Enemy.instTimer,X
+    STA.L Yard.turnTransitionDisableFlag,X
+    DEC
+    STA.L Yard.turnTransitionDisableCounter,X
+    RTL                                                                  ;A3D0F7;
 
 
 ;;; $D164: Drop yard ;;;
 DropYard:
-    PHY                                                                  ;A3D164;
-    LDA.L Yard.behavior,X                                                ;A3D165;
-    CMP.W #$0003                                                         ;A3D169;
-    BEQ .return                                                          ;A3D16C;
-    LDA.W #$0003                                                         ;A3D16E;
-    STA.L Yard.behavior,X                                                ;A3D171;
-    LDA.W #Function_Yard_Movement_Airborne                               ;A3D175;
-    STA.W Yard.movementFunction,X                                        ;A3D178;
-    LDA.W Yard.airborneFacingDirection,X                                 ;A3D17B;
-    ASL                                                                  ;A3D17E;
-    ASL                                                                  ;A3D17F;
-    TAY                                                                  ;A3D180;
-    LDA.W .airbornePointers,Y                                            ;A3D181;
-    STA.W Enemy.instList,X                                               ;A3D184;
-    LDA.W .hidingPointers,Y                                              ;A3D187;
-    STA.W Yard.hidingInstList,X                                          ;A3D18A;
-    LDA.W #$0001                                                         ;A3D18D;
-    STA.W Enemy.instTimer,X                                              ;A3D190;
-    STZ.W Enemy.loopCounter,X                                            ;A3D193;
-    LDA.W #$0000                                                         ;A3D196;
-    STA.L Yard.airborneXSubVelocity,X                                    ;A3D199;
-    STA.L Yard.airborneXVelocity,X                                       ;A3D19D;
-    STA.L Yard.airborneYSubVelocity,X                                    ;A3D1A1;
-    STA.L Yard.airborneYVelocity,X                                       ;A3D1A5;
-
-  .return:
-    PLY                                                                  ;A3D1A9;
-    RTS                                                                  ;A3D1AA;
-
   .airbornePointers:
     dw InstList_Yard_Airborne_FacingLeft_0                               ;A3D1AB;
 
@@ -9778,8 +9823,6 @@ Function_Yard_Movement_Airborne:
     EOR.W #$FFFF                                                         ;A3D21A;
     INC                                                                  ;A3D21D;
     STA.L Yard.airborneXVelocity,X                                       ;A3D21E;
-    LDA.W #$0001                                                         ;A3D222;
-    STA.L ExtraEnemy8000,X                                               ;A3D225;
     LDA.W #$0070                                                         ;A3D229;
     JSL.L QueueSound_Lib2_Max3                                           ;A3D22C;
 
@@ -9817,8 +9860,6 @@ Function_Yard_Movement_Airborne:
     EOR.W #$FFFF                                                         ;A3D27D;
     INC                                                                  ;A3D280;
     STA.L Yard.airborneYVelocity,X                                       ;A3D281;
-    LDA.W #$0000                                                         ;A3D285;
-    STA.L ExtraEnemy8000,X                                               ;A3D288;
     RTL                                                                  ;A3D28C;
 
   .land:
@@ -9829,7 +9870,7 @@ Function_Yard_Movement_Airborne:
     STA.L Yard.airborneYSubVelocity,X                                    ;A3D29C;
     STA.W Yard.consequtiveTurnCounter,X                                  ;A3D2A0;
     STA.L Yard.turnTransitionDisableCounter,X                            ;A3D2A3;
-    LDA.W #$0001                                                         ;A3D2A7;
+    INC
     STA.L Yard.turnTransitionDisableFlag,X                               ;A3D2AA;
     LDA.L Yard.behavior,X                                                ;A3D2AE;
     CMP.W #$0003                                                         ;A3D2B2;
@@ -9839,7 +9880,15 @@ Function_Yard_Movement_Airborne:
     LDA.W #$0008                                                         ;A3D2BE;
     STA.W Yard.crawlingSpeedTableIndex,X                                 ;A3D2C1;
     JSL.L MakeYardFaceSamusHorizontally                                  ;A3D2C4;
-    JSR.W SetYardAirborneInstList                                        ;A3D2C8;
+;;; $D2FA: Set yard airborne instruction list ;;;
+    LDA.W Yard.airborneFacingDirection,X
+    ASL
+    ASL
+    TAY
+    LDA.W .airbornePointers,Y
+    STA.W Enemy.instList,X
+    LDA.W .hidingPointers,Y
+    STA.W Yard.hidingInstList,X
     BRA +                                                                ;A3D2CB;
 
   .dropped:
@@ -9860,19 +9909,6 @@ Function_Yard_Movement_Airborne:
     STZ.W Enemy.loopCounter,X                                            ;A3D2F6;
     RTL                                                                  ;A3D2F9;
 
-
-;;; $D2FA: Set yard airborne instruction list ;;;
-SetYardAirborneInstList:
-    LDA.W Yard.airborneFacingDirection,X                                 ;A3D2FA;
-    ASL                                                                  ;A3D2FD;
-    ASL                                                                  ;A3D2FE;
-    TAY                                                                  ;A3D2FF;
-    LDA.W .airbornePointers,Y                                            ;A3D300;
-    STA.W Enemy.instList,X                                               ;A3D303;
-    LDA.W .hidingPointers,Y                                              ;A3D306;
-    STA.W Yard.hidingInstList,X                                          ;A3D309;
-    RTS                                                                  ;A3D30C;
-
   .airbornePointers:
     dw InstList_Yard_Airborne_FacingLeft_0                               ;A3D30D;
 
@@ -9880,36 +9916,6 @@ SetYardAirborneInstList:
     dw InstList_Yard_Hidden_UpsideUp_MovingLeft                          ;A3D30F;
     dw InstList_Yard_Airborne_FacingRight_0                              ;A3D311;
     dw InstList_Yard_Hidden_UpsideUp_MovingRight                         ;A3D313;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $D315: Unused. Make yard face Samus ;;;
-UNUSED_MakeYardFaceSamus_A3D315:
-;; Returns:
-;;     Carry: Set if yard was turned around
-    LDA.L Yard.turnTransitionDisableFlag,X                               ;A3D315;
-    BEQ .turningEnabled                                                  ;A3D319;
-    CLC                                                                  ;A3D31B;
-    RTL                                                                  ;A3D31C;
-
-  .turningEnabled:
-    LDA.L Yard.direction,X                                               ;A3D31D;
-    CMP.W #$0004                                                         ;A3D321;
-    BCS MakeYardFaceSamusHorizontally                                    ;A3D324;
-    BIT.W #$0001                                                         ;A3D326;
-    BNE .movingDown                                                      ;A3D329;
-    LDA.W Enemy.YPosition,X                                              ;A3D32B;
-    CMP.B SamusYPosition                                                 ;A3D32E;
-    BCC TurnYardAround                                                   ;A3D331;
-    CLC                                                                  ;A3D333;
-    RTL                                                                  ;A3D334;
-
-  .movingDown:
-    LDA.W Enemy.YPosition,X                                              ;A3D335;
-    CMP.B SamusYPosition                                                 ;A3D338;
-    BCS TurnYardAround                                                   ;A3D33B;
-    RTL                                                                  ;A3D33D;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $D33E: Make yard face Samus horizontally ;;;
@@ -9964,32 +9970,72 @@ TurnYardAround:
     STA.W Yard.hidingInstList,X                                          ;A3D38D;
     LDA.W YardDirectionData_airborneFacingDirection,Y                    ;A3D390;
     STA.W Yard.airborneFacingDirection,X                                 ;A3D393;
-    JSL.L SetYardCrawlingVelocities                                      ;A3D396;
-    JSL.L SetYardCrawlingMovementFunction                                ;A3D39A;
+;;; $CE27: Set yard crawling velocities ;;;
+    LDA.W YardCrawlingVelocitySigns_X,Y
+    STA.B DP_Temp12
+    LDA.W YardCrawlingVelocitySigns_X+2,Y
+    STA.B DP_Temp14
+    LDA.W YardCrawlingVelocitySigns_Y,Y
+    STA.B DP_Temp16
+    LDA.W YardCrawlingVelocitySigns_Y+2,Y
+    STA.B DP_Temp18
+    LDA.W Yard.crawlingSpeedTableIndex,X
+    ASL
+    TAY
+    LDA.W YardCrawlingSpeeds,Y
+    EOR.B DP_Temp12
+    CLC
+    ADC.B DP_Temp14
+    STA.W Yard.crawlingXVelocity,X
+    LDA.W YardCrawlingSpeeds,Y
+    EOR.B DP_Temp16
+    CLC
+    ADC.B DP_Temp18
+    STA.W Yard.crawlingYVelocity,X
+    LDA.L Yard.direction,X
+    ASL
+    TAY
+    LDA.W YardCrawlingMovementFunctions,Y
+    STA.W Yard.movementFunction,X
     LDA.W #$0001                                                         ;A3D39E;
     STA.L Yard.turnTransitionDisableFlag,X                               ;A3D3A1;
-    LDA.W #$0000                                                         ;A3D3A5;
+    DEC
     STA.L Yard.turnTransitionDisableCounter,X                            ;A3D3A8;
-    SEC                                                                  ;A3D3AC;
-    RTL                                                                  ;A3D3AD;
 
   .failed:
-    CLC                                                                  ;A3D3AE;
     RTL                                                                  ;A3D3AF;
 
 
 ;;; $D3B0: Enemy touch - enemy $DBBF (yard) ;;;
 EnemyTouch_Yard:
-    LDX.B EnemyIndex                                                     ;A3D3B0;
+    TYX
     LDA.L Yard.behavior,X                                                ;A3D3B3;
     CMP.W #$0001                                                         ;A3D3B7;
     BNE .notAggressiveCrawling                                           ;A3D3BA;
     LDA.W Yard.movementFunction,X                                        ;A3D3BC;
     CMP.W #RTL_A3CF5F                                                    ;A3D3BF;
     BEQ .notAggressiveCrawling                                           ;A3D3C2;
-    JSR.W CheckIfSamusIsDirectingTowardsYard                             ;A3D3C4;
-    BCC .notAggressiveCrawling                                           ;A3D3C7;
-    BRA .notKicked                                                       ;A3D3C9;
+
+
+;;; $D421: Check if player is directing towards enemy ;;;
+    LDA.W Yard.airborneFacingDirection,X
+    AND.W #$0001
+    STA.B DP_Temp14
+    LDA.B DP_Controller1Input
+    AND.W #$0300
+    XBA
+    DEC
+    STA.B DP_Temp12
+    BNE .notPressingRight
+    LDA.B DP_Temp14
+    BNE .notAggressiveCrawling
+
+  .gotoNotKicked
+    JMP.W .notKicked
+
+  .notPressingRight:
+    LDA.B DP_Temp14
+    BNE .gotoNotKicked
 
   .notAggressiveCrawling:
     LDA.W Yard.movementFunction,X                                        ;A3D3CB;
@@ -9999,25 +10045,64 @@ EnemyTouch_Yard:
     BEQ .notKicked                                                       ;A3D3D6;
 
   .kicked:
-    JSR.W KickYardIntoAir                                                ;A3D3D8;
-    LDA.W Yard.movementFunction,X                                        ;A3D3DB;
-    CMP.W #Function_Yard_Movement_Airborne                               ;A3D3DE;
-    BNE .returnUpper                                                     ;A3D3E1;
-    LDA.W #$0070                                                         ;A3D3E3;
-    JSL.L QueueSound_Lib2_Max3                                           ;A3D3E6;
+;;; $D49F: Kick yard into air ;;;
+    LDA.W #$0004
+    STA.L Yard.behavior,X
+    LDA.W #Function_Yard_Movement_Airborne
+    STA.W Yard.movementFunction,X
+    LDA.W Yard.airborneFacingDirection,X
+    ASL
+    ASL
+    TAY
+    LDA.W .airbornePointers,Y
+    STA.W Enemy.instList,X
+    LDA.W .hidingPointers,Y
+    STA.W Yard.hidingInstList,X
+    LDA.W #$0001
+    STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
+    LDA.W CameraXSubSpeed
+    STA.L Yard.airborneXSubVelocity,X
+    LDA.W CameraXSpeed
+    STA.L Yard.airborneXVelocity,X
+    CMP.W #$0010
+    BCC +
+    LDA.W #$000F
 
-  .returnUpper:
-    RTL                                                                  ;A3D3EA;
++   ASL
+    ASL
+    TAY
+    LDA.W .YSubVelocity,Y
+    STA.L Yard.airborneYSubVelocity,X
+    LDA.W .YVelocity,Y
+    STA.L Yard.airborneYVelocity,X
+    LDA.W PoseXDirection
+    BIT.W #$0004
+    BEQ +
+    LDA.L Yard.airborneXSubVelocity,X
+    EOR.W #$FFFF
+    INC
+    STA.L Yard.airborneXSubVelocity,X
+    LDA.L Yard.airborneXVelocity,X
+    EOR.W #$FFFF
+    INC
+    STA.L Yard.airborneXVelocity,X
+
++   LDA.W Yard.movementFunction,X                                        ;A3D3DB;
+    CMP.W #Function_Yard_Movement_Airborne                               ;A3D3DE;
+    BNE .return
+    LDA.W #$0070                                                         ;A3D3E3;
+    JML QueueSound_Lib2_Max3
 
   .notKicked:
     LDA.W Yard.movementFunction,X                                        ;A3D3EB;
     CMP.W #RTL_A3CF5F                                                    ;A3D3EE;
-    BEQ .returnLower                                                     ;A3D3F1;
+    BEQ .return                                                          ;A3D3F1;
     LDA.L Yard.behavior,X                                                ;A3D3F3;
     CMP.W #$0004                                                         ;A3D3F7;
-    BEQ .returnLower                                                     ;A3D3FA;
+    BEQ .return                                                          ;A3D3FA;
     CMP.W #$0003                                                         ;A3D3FC;
-    BEQ .returnLower                                                     ;A3D3FF;
+    BEQ .return                                                          ;A3D3FF;
     JSL.L CommonA3_NormalEnemyTouchAI                                    ;A3D401;
     LDA.L Yard.idleCrawlingSpeedTableIndex,X                             ;A3D405;
     STA.W Yard.crawlingSpeedTableIndex,X                                 ;A3D409;
@@ -10029,152 +10114,8 @@ EnemyTouch_Yard:
     LDA.W #$0000                                                         ;A3D419;
     STA.L Yard.behavior,X                                                ;A3D41C;
 
-  .returnLower:
-    RTL                                                                  ;A3D420;
-
-
-;;; $D421: Check if player is directing towards enemy ;;;
-CheckIfSamusIsDirectingTowardsYard:
-;; Returns:
-;;     Carry: Set if player is directing towards enemy, clear otherwise
-
-; Return carry clear if pressing right and enemy is "facing" right, or not pressing right and enemy is "facing" left
-    LDA.B DP_Controller1Input                                            ;A3D421;
-    AND.W #$0300                                                         ;A3D423;
-    XBA                                                                  ;A3D426;
-    DEC                                                                  ;A3D427;
-    STA.B DP_Temp12                                                      ;A3D428;
-    LDA.W Yard.airborneFacingDirection,X                                 ;A3D42A;
-    AND.W #$0001                                                         ;A3D42D;
-    STA.B DP_Temp14                                                      ;A3D430;
-    LDA.B DP_Temp12                                                      ;A3D432;
-    BNE .notPressingRight                                                ;A3D434;
-    LDA.B DP_Temp14                                                      ;A3D436;
-    BEQ .towardsYard                                                     ;A3D438;
-    BRA .awayFromYard                                                    ;A3D43A;
-
-  .notPressingRight:
-    LDA.B DP_Temp14                                                      ;A3D43C;
-    BEQ .awayFromYard                                                    ;A3D43E;
-    BRA .towardsYard                                                     ;A3D440;
-
-  .awayFromYard:
-    CLC                                                                  ;A3D442;
-    RTS                                                                  ;A3D443;
-
-  .towardsYard:
-    SEC                                                                  ;A3D444;
-    RTS                                                                  ;A3D445;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $D446: Unused. Check if enemy is moving the direction Samus is facing ;;;
-UNUSED_CheckIfYardIsMovingTheDirectionSamusIsFacing_A3D446:
-;; Returns:
-;;     Carry: Clear if enemy is moving the direction Samus is facing, set otherwise
-    LDA.W Yard.crawlingXVelocity,X                                       ;A3D446;
-    BPL .positiveXVelocity                                               ;A3D449;
-    LDA.W PoseXDirection                                                 ;A3D44B;
-    AND.W #$00FF                                                         ;A3D44E;
-    CMP.W #$0008                                                         ;A3D451;
-    BNE .movingDirectionSamusFacing                                      ;A3D454;
-    BRA .movingOppositeDirection                                         ;A3D456;
-
-  .positiveXVelocity:
-    LDA.W PoseXDirection                                                 ;A3D458;
-    AND.W #$00FF                                                         ;A3D45B;
-    CMP.W #$0004                                                         ;A3D45E;
-    BNE .movingDirectionSamusFacing                                      ;A3D461;
-    BRA .movingOppositeDirection                                         ;A3D463;
-
-  .movingDirectionSamusFacing:
-    CLC                                                                  ;A3D465;
-    RTS                                                                  ;A3D466;
-
-  .movingOppositeDirection:
-    SEC                                                                  ;A3D467;
-    RTS                                                                  ;A3D468;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
-;;; $D469: Enemy shot - enemy $DBBF (yard) ;;;
-EnemyShot_Yard:
-    LDX.B EnemyIndex                                                     ;A3D469;
-    LDA.B CollisionIndex                                                 ;A3D46C;
-    ASL                                                                  ;A3D46F;
-    TAY                                                                  ;A3D470;
-    LDA.W SamusProjectile_Types,Y                                        ;A3D471;
-    AND.W #$FF00                                                         ;A3D474;
-    CMP.W #$0300                                                         ;A3D477;
-    BEQ .normalShotAI                                                    ;A3D47A;
-    CMP.W #$0500                                                         ;A3D47C;
-    BNE .shot                                                            ;A3D47F;
-
-  .normalShotAI:
-    JSL.L CommonA3_NormalEnemyShotAI                                     ;A3D481;
-    RTL                                                                  ;A3D485;
-
-  .shot:
-    LDA.L Yard.behavior,X                                                ;A3D486;
-    CMP.W #$0003                                                         ;A3D48A;
-    BEQ .playSFX                                                         ;A3D48D;
-    CMP.W #$0004                                                         ;A3D48F;
-    BEQ .playSFX                                                         ;A3D492;
-    JSR.W ShootYardIntoAir                                               ;A3D494;
-
-  .playSFX:
-    LDA.W #$0070                                                         ;A3D497;
-    JSL.L QueueSound_Lib2_Max3                                           ;A3D49A;
-    RTL                                                                  ;A3D49E;
-
-
-;;; $D49F: Kick yard into air ;;;
-KickYardIntoAir:
-; Note the fixed point negation operation at $D4F6 is off by 1.0 when the low word is zero
-    LDA.W #$0004                                                         ;A3D49F;
-    STA.L Yard.behavior,X                                                ;A3D4A2;
-    LDA.W #Function_Yard_Movement_Airborne                               ;A3D4A6;
-    STA.W Yard.movementFunction,X                                        ;A3D4A9;
-    LDA.W Yard.airborneFacingDirection,X                                 ;A3D4AC;
-    ASL                                                                  ;A3D4AF;
-    ASL                                                                  ;A3D4B0;
-    TAY                                                                  ;A3D4B1;
-    LDA.W .airbornePointers,Y                                            ;A3D4B2;
-    STA.W Enemy.instList,X                                               ;A3D4B5;
-    LDA.W .hidingPointers,Y                                              ;A3D4B8;
-    STA.W Yard.hidingInstList,X                                          ;A3D4BB;
-    LDA.W #$0001                                                         ;A3D4BE;
-    STA.W Enemy.instTimer,X                                              ;A3D4C1;
-    STZ.W Enemy.loopCounter,X                                            ;A3D4C4;
-    LDA.W CameraXSubSpeed                                                ;A3D4C7;
-    STA.L Yard.airborneXSubVelocity,X                                    ;A3D4CA;
-    LDA.W CameraXSpeed                                                   ;A3D4CE;
-    STA.L Yard.airborneXVelocity,X                                       ;A3D4D1;
-    CMP.W #$0010                                                         ;A3D4D5;
-    BCC +                                                                ;A3D4D8;
-    LDA.W #$000F                                                         ;A3D4DA;
-
-+   ASL                                                                  ;A3D4DD;
-    ASL                                                                  ;A3D4DE;
-    TAY                                                                  ;A3D4DF;
-    LDA.W .YSubVelocity,Y                                                ;A3D4E0;
-    STA.L Yard.airborneYSubVelocity,X                                    ;A3D4E3;
-    LDA.W .YVelocity,Y                                                   ;A3D4E7;
-    STA.L Yard.airborneYVelocity,X                                       ;A3D4EA;
-    LDA.W PoseXDirection                                                 ;A3D4EE;
-    BIT.W #$0004                                                         ;A3D4F1;
-    BEQ .return                                                          ;A3D4F4;
-    LDA.L Yard.airborneXSubVelocity,X                                    ;A3D4F6;
-    EOR.W #$FFFF                                                         ;A3D4FA;
-    INC                                                                  ;A3D4FD;
-    STA.L Yard.airborneXSubVelocity,X                                    ;A3D4FE;
-    LDA.L Yard.airborneXVelocity,X                                       ;A3D502;
-    EOR.W #$FFFF                                                         ;A3D506;
-    INC                                                                  ;A3D509;
-    STA.L Yard.airborneXVelocity,X                                       ;A3D50A;
-
   .return:
-    RTS                                                                  ;A3D50E;
+    RTL                                                                  ;A3D420;
 
   .airbornePointers:
     dw InstList_Yard_Airborne_FacingLeft_0                               ;A3D50F;
@@ -10195,9 +10136,36 @@ KickYardIntoAir:
     dw $0000,$FFF9, $A000,$FFF9, $4000,$FFF9, $0000,$FFF8
 
 
+;;; $D469: Enemy shot - enemy $DBBF (yard) ;;;
+EnemyShot_Yard:
+    TYX
+    LDA.B CollisionIndex                                                 ;A3D46C;
+    ASL                                                                  ;A3D46F;
+    TAY                                                                  ;A3D470;
+    LDA.W SamusProjectile_Types,Y                                        ;A3D471;
+    AND.W #$FF00                                                         ;A3D474;
+    CMP.W #$0300                                                         ;A3D477;
+    BEQ .normalShotAI                                                    ;A3D47A;
+    CMP.W #$0500                                                         ;A3D47C;
+    BNE .shot                                                            ;A3D47F;
+
+  .normalShotAI:
+    JML CommonA3_NormalEnemyShotAI
+
+  .playSFX:
+    LDA.W #$0070
+    JML QueueSound_Lib2_Max3
+
+  .shot:
+    LDA.L Yard.behavior,X                                                ;A3D486;
+    CMP.W #$0003                                                         ;A3D48A;
+    BEQ .playSFX                                                         ;A3D48D;
+    CMP.W #$0004                                                         ;A3D48F;
+    BEQ .playSFX                                                         ;A3D492; fallthrough to ShootYardIntoAir
+
+
 ;;; $D557: Shoot yard into air ;;;
 ShootYardIntoAir:
-    PHY                                                                  ;A3D557;
     LDA.W #$0005                                                         ;A3D558;
     STA.L Yard.behavior,X                                                ;A3D55B;
     LDA.W #Function_Yard_Movement_Airborne                               ;A3D55F;
@@ -10221,15 +10189,15 @@ ShootYardIntoAir:
     BNE .SamusFacingRight                                                ;A3D590;
     LDA.W #$FFFF                                                         ;A3D592;
     STA.L Yard.airborneXVelocity,X                                       ;A3D595;
-    BRA .return                                                          ;A3D599;
+    RTS
 
   .SamusFacingRight:
     LDA.W #$0001                                                         ;A3D59B;
     STA.L Yard.airborneXVelocity,X                                       ;A3D59E;
 
   .return:
-    PLY                                                                  ;A3D5A2;
-    RTS                                                                  ;A3D5A3;
+    LDA.W #$0070
+    JML QueueSound_Lib2_Max3
 
   .airbornePointers:
     dw InstList_Yard_Airborne_FacingLeft_0                               ;A3D5A4;
@@ -11512,36 +11480,35 @@ HZoomerInitialInstListPointers:
 ;;; $E043: Initialisation AI - enemy $DC3F (Wrecked Ship orange zoomer) ;;;
 InitAI_HZoomer:
 ; Not sure why the devs didn't use the common init AI $E67A like the other creepy crawlies
-    LDX.B EnemyIndex                                                     ;A3E043;
-    LDA.W Enemy.instList,X                                               ;A3E046;
+    LDA.W Enemy.instList,Y
     AND.W #$0003                                                         ;A3E049;
     ASL                                                                  ;A3E04C;
-    TAY                                                                  ;A3E04D;
-    LDA.W HZoomerInitialInstListPointers,Y                               ;A3E04E;
-    STA.W Enemy.instList,X                                               ;A3E051;
+    TAX
+    LDA.W HZoomerInitialInstListPointers,X
+    STA.W Enemy.instList,Y
     LDA.W #.return                                                       ;A3E054;
-    STA.W Crawler.function,X                                             ;A3E057;
-    LDA.W Enemy.init0,X                                                  ;A3E05A;
+    STA.W Crawler.function,Y
+    LDA.W Enemy.init0,Y
     ASL                                                                  ;A3E05D;
-    TAY                                                                  ;A3E05E;
-    LDA.W CrawlersSpeedTable,Y                                           ;A3E05F;
-    STA.W Crawler.XVelocity,X                                            ;A3E062;
-    STA.W Crawler.YVelocity,X                                            ;A3E065;
-    LDA.W Enemy.properties,X                                             ;A3E068;
+    TAX
+    LDA.W CrawlersSpeedTable,X
+    STA.W Crawler.XVelocity,Y
+    STA.W Crawler.YVelocity,Y
+    LDA.W Enemy.properties,Y
     AND.W #$0003                                                         ;A3E06B;
     BNE +                                                                ;A3E06E;
-    LDA.W Crawler.XVelocity,X                                            ;A3E070;
+    LDA.W Crawler.XVelocity,Y
     EOR.W #$FFFF                                                         ;A3E073;
     INC                                                                  ;A3E076;
-    STA.W Crawler.XVelocity,X                                            ;A3E077;
+    STA.W Crawler.XVelocity,Y
     RTL                                                                  ;A3E07A;
 
 +   CMP.W #$0002                                                         ;A3E07B;
     BNE .return                                                          ;A3E07E;
-    LDA.W Crawler.YVelocity,X                                            ;A3E080;
+    LDA.W Crawler.YVelocity,Y
     EOR.W #$FFFF                                                         ;A3E083;
     INC                                                                  ;A3E086;
-    STA.W Crawler.YVelocity,X                                            ;A3E087;
+    STA.W Crawler.YVelocity,Y
 
   .return:
     RTL                                                                  ;A3E08A;
@@ -11549,7 +11516,6 @@ InitAI_HZoomer:
 
 ;;; $E08B: Main AI - enemy $DC3F (Wrecked Ship orange zoomer) ;;;
 MainAI_HZoomer:
-    LDX.B EnemyIndex                                                     ;A3E08B;
     JMP.W (Crawler.function,X)                                           ;A3E08E;
 
 
@@ -11599,14 +11565,14 @@ Function_HZoomer_CrawlingVertically:
     STA.B DP_Temp13                                                      ;A3E0E1;
     JSL.L MoveEnemyDownBy_14_12                                          ;A3E0E3;
     BCS .insideTurn                                                      ;A3E0E7;
-    LDX.B EnemyIndex                                                     ;A3E0E9;
     LDA.B SamusYPosition                                                 ;A3E0EC;
     SEC                                                                  ;A3E0EF;
     SBC.W Enemy.YPosition,X                                              ;A3E0F0;
     BPL .SamusRightOfZHoomer                                             ;A3E0F3;
     LDA.W Crawler.YVelocity,X                                            ;A3E0F5;
-    BMI .return                                                          ;A3E0F8;
-    BRA .negateY                                                         ;A3E0FA;
+    BPL .negateY
+    STA.W Crawler.YVelocity,X
+    RTL
 
   .SamusRightOfZHoomer:
     LDA.W Crawler.YVelocity,X                                            ;A3E0FC;
@@ -11718,8 +11684,9 @@ Function_HZoomer_CrawlingHorizontally:
     SBC.W Enemy.XPosition,X                                              ;A3E1C7;
     BPL .SamusToTheRight                                                 ;A3E1CA;
     LDA.W Crawler.XVelocity,X                                            ;A3E1CC;
-    BMI .return                                                          ;A3E1CF;
-    BRA .negate                                                          ;A3E1D1;
+    BPL .negate
+    STA.W Crawler.XVelocity,X
+    RTL
 
   .SamusToTheRight:
     LDA.W Crawler.XVelocity,X                                            ;A3E1D3;
@@ -11859,7 +11826,7 @@ InitialInstListPointers_Crawlers:
 
 ;;; $E2D4: Initialisation AI - enemy $DC7F (zeela) ;;;
 InitAI_Zeela:
-    LDX.B EnemyIndex                                                     ;A3E2D4;
+    TYX
     LDA.W Enemy.instList,X                                               ;A3E2D7;
     AND.W #$0003                                                         ;A3E2DA;
     ASL                                                                  ;A3E2DD;
@@ -12092,7 +12059,7 @@ Palette_Sova:
 
 ;;; $E59C: Initialisation AI - enemy $DCBF (sova) ;;;
 InitAI_Sova:
-    LDX.B EnemyIndex                                                     ;A3E59C;
+    TYX
     LDA.W Enemy.instList,X                                               ;A3E59F;
     AND.W #$0003                                                         ;A3E5A2;
     ASL                                                                  ;A3E5A5;
@@ -12169,7 +12136,7 @@ Instruction_Crawlers_FunctionInY:
 
 ;;; $E669: Initialisation AI - enemy $DCFF/$DD3F (zoomer / stone zoomer) ;;;
 InitAI_Zoomer_MZoomer:
-    LDX.B EnemyIndex                                                     ;A3E669;
+    TYX
     LDA.W Enemy.instList,X                                               ;A3E66C;
     AND.W #$0003                                                         ;A3E66F;
     ASL                                                                  ;A3E672;
@@ -12220,7 +12187,6 @@ InitAI_Crawlers_Common:
 
 ;;; $E6C2: Main AI - enemy $D77F/$D7BF/$DABF/$DC7F/$DCBF/$DCFF/$DD3F (sciser / zero / viola / zeela / zoomer) ;;;
 MainAI_Crawlers:
-    LDX.B EnemyIndex                                                     ;A3E6C2;
     JMP.W (Crawler.function,X)                                           ;A3E6C5;
 
 
@@ -12410,6 +12376,7 @@ Function_Crawlers_CrawlingHorizontally:
     LDA.W #$0000                                                         ;A3E82C;
     STA.L Crawler.consecutiveTurnCounter,X                               ;A3E82F;
     JSR.W AdjustEnemyXVelocityForSlopes                                  ;A3E833;
+    LDX.B EnemyIndex
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A3E836;
     BCS .insideTurn                                                      ;A3E83A;
     JSL.L AlignEnemyYPositionWithNonSquareSlope                          ;A3E83C;
@@ -12468,8 +12435,6 @@ Function_Crawlers_CrawlingHorizontally:
 
 ;;; $E8A5: Adjust enemy X velocity for slopes ;;;
 AdjustEnemyXVelocityForSlopes:
-    LDA.W Enemy.XPosition,X                                              ;A3E8A5;
-    STA.B DP_Temp2E
     LDA.W Enemy.YPosition,X                                              ;A3E8A9;
     BIT.W Crawler.YVelocity,X                                            ;A3E8AC;
     BPL .negativeYVelocity                                               ;A3E8AF;
@@ -12483,8 +12448,24 @@ AdjustEnemyXVelocityForSlopes:
     DEC                                                                  ;A3E8BB;
 
   .positiveYVelocity:
-    JSL.L CalculateTheBlockContainingAPixelPosition                      ;A3E8BD;
-    LDA.W CurrentBlockIndex                                              ;A3E8C1;
+;;; $BB70: Calculate the block containing a pixel position ;;;
+    LSR
+    LSR
+    LSR
+    LSR
+    SEP #$20
+    STA.W $4202
+    LDA.B RoomWidthBlocks
+    STA.W $4203
+    REP #$20
+    LDA.W Enemy.XPosition,X
+    LSR
+    LSR
+    LSR
+    LSR
+    CLC
+    ADC.W $4216
+    STA.W CurrentBlockIndex
     ASL                                                                  ;A3E8C4;
     TAX                                                                  ;A3E8C5;
     LDA.L LevelData,X                                                    ;A3E8C6;
@@ -12637,7 +12618,7 @@ BombedOffVelocities:
 
 ;;; $EA4F: Initialisation AI - enemy $DD7F (metroid) ;;;
 InitAI_Metroid:
-    LDX.B EnemyIndex                                                     ;A3EA4F;
+    TYX
     LDA.W #InstList_Metroid_ChasingSamus                                 ;A3EA52;
     STA.W Enemy.instList,X                                               ;A3EA55;
     LDA.W Enemy.palette,X                                                ;A3EA58;
@@ -12652,7 +12633,6 @@ InitAI_Metroid:
     JSL.L Create_Sprite_Object                                           ;A3EA6F;
     LDA.B DP_Temp12                                                      ;A3EA73;
     STA.L Metroid.electricitySpriteObjectIndex,X                         ;A3EA75;
-    LDX.B EnemyIndex                                                     ;A3EA79;
     LDA.W Enemy.palette,X                                                ;A3EA7C;
     ORA.W Enemy.GFXOffset,X                                              ;A3EA7F;
     STA.B DP_Temp18                                                      ;A3EA82;
@@ -12672,34 +12652,18 @@ InitAI_Metroid:
 
 ;;; $EAA5: Instruction - play Metroid draining Samus ;;;
 Instruction_Metroid_PlayDrainingSamusSFX:
-    PHX                                                                  ;A3EAA5;
-    PHY                                                                  ;A3EAA6;
     LDA.W #$0050                                                         ;A3EAA7;
-    JSL.L QueueSound_Lib2_Max6                                           ;A3EAAA;
-    PLY                                                                  ;A3EAAE;
-    PLX                                                                  ;A3EAAF;
-    RTL                                                                  ;A3EAB0;
+    JML QueueSound_Lib2_Max6
 
 
 ;;; $EAB1: Instruction - play random Metroid cry ;;;
 Instruction_Metroid_PlayRandomMetroidSFX:
-    PHX                                                                  ;A3EAB1;
-    PHY                                                                  ;A3EAB2;
     JSL.L GenerateRandomNumber                                           ;A3EAB3;
     AND.W #$0007                                                         ;A3EAB7;
     ASL                                                                  ;A3EABA;
     TAX                                                                  ;A3EABB;
     LDA.W .SFX,X                                                         ;A3EABC;
-    JSL.L QueueSound_Lib2_Max6                                           ;A3EABF;
-    PLY                                                                  ;A3EAC3;
-    PLX                                                                  ;A3EAC4;
-    RTL                                                                  ;A3EAC5;
-
-if !FEATURE_KEEP_UNREFERENCED
-  .unused:
-; Unused. 180..250 in steps of 10, unsure of significance
-    dw $00B4,$00BE,$00C8,$00D2,$00DC,$00E6,$00F0,$00FA                   ;A3EAC6;
-endif ; !FEATURE_KEEP_UNREFERENCED
+    JML QueueSound_Lib2_Max6
 
   .SFX:
     dw $0050,$0058,$005A,$0050,$0058,$005A,$0058,$005A                   ;A3EAD6;
@@ -12707,8 +12671,7 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ;;; $EAE6: Frozen AI - enemy $DD7F (metroid) ;;;
 FrozenAI_Metroid:
-    JSL.L CommonA3_NormalEnemyFrozenAI                                   ;A3EAE6;
-    LDX.B EnemyIndex                                                     ;A3EAEA;
+    JSL.L NormalEnemyFrozenAI
     LDA.W Metroid.bombedOffSamusCooldownTimer,X                          ;A3EAED;
     BEQ .timerExpired                                                    ;A3EAF0;
     DEC.W Metroid.bombedOffSamusCooldownTimer,X                          ;A3EAF2;
@@ -12724,7 +12687,7 @@ FrozenAI_Metroid:
     STA.L SpriteObjects_DisableFlags,X                                   ;A3EB0A;
     LDA.W #InstList_SpriteObject_32_MetroidElectricity                   ;A3EB0E;
     STA.L SpriteObjects_InstListPointers,X                               ;A3EB11;
-    LDX.B EnemyIndex                                                     ;A3EB15;
+    TYX
     LDA.L Metroid.shellSpriteObjectIndex,X                               ;A3EB18;
     TAX                                                                  ;A3EB1C;
     LDA.W #$0C00                                                         ;A3EB1D;
@@ -12739,36 +12702,31 @@ FrozenAI_Metroid:
 ;;; $EB33: Hurt AI - enemy $DD7F (metroid) ;;;
 HurtAI_Metroid:
 ; Synch flashing with sprite objects
-    LDX.B EnemyIndex                                                     ;A3EB33;
     LDA.W Enemy.flashTimer,X                                             ;A3EB39;
     BIT.W #$0002                                                         ;A3EB3C;
     BEQ .flash                                                           ;A3EB3F;
-    LDA.W Enemy.palette,X                                                ;A3EB41;
-    STA.B DP_Temp12                                                      ;A3EB44;
-    LDX.B EnemyIndex                                                     ;A3EB46;
     LDA.L Metroid.electricitySpriteObjectIndex,X                         ;A3EB49;
     TAX                                                                  ;A3EB4D;
     LDA.L SpriteObjects_VRAMIndices,X                                    ;A3EB4E;
     AND.W #$F1FF                                                         ;A3EB52;
-    ORA.B DP_Temp12                                                      ;A3EB55;
+    ORA.W Enemy.palette,Y
     STA.L SpriteObjects_VRAMIndices,X                                    ;A3EB57;
-    LDX.B EnemyIndex                                                     ;A3EB5B;
+    TYX
     LDA.L Metroid.shellSpriteObjectIndex,X                               ;A3EB5E;
     TAX                                                                  ;A3EB62;
     LDA.L SpriteObjects_VRAMIndices,X                                    ;A3EB63;
     AND.W #$F1FF                                                         ;A3EB67;
-    ORA.B DP_Temp12                                                      ;A3EB6A;
+    ORA.W Enemy.palette,Y
     STA.L SpriteObjects_VRAMIndices,X                                    ;A3EB6C;
     RTL                                                                  ;A3EB70;
 
   .flash:
-    LDX.B EnemyIndex                                                     ;A3EB71;
     LDA.L Metroid.electricitySpriteObjectIndex,X                         ;A3EB74;
     TAX                                                                  ;A3EB78;
     LDA.L SpriteObjects_VRAMIndices,X                                    ;A3EB79;
     AND.W #$F1FF                                                         ;A3EB7D;
     STA.L SpriteObjects_VRAMIndices,X                                    ;A3EB80;
-    LDX.B EnemyIndex                                                     ;A3EB84;
+    TYX
     LDA.L Metroid.shellSpriteObjectIndex,X                               ;A3EB87;
     TAX                                                                  ;A3EB8B;
     LDA.L SpriteObjects_VRAMIndices,X                                    ;A3EB8C;
@@ -12779,7 +12737,6 @@ HurtAI_Metroid:
 
 ;;; $EB98: Main AI - enemy $DD7F (metroid) ;;;
 MainAI_Metroid:
-    LDX.B EnemyIndex                                                     ;A3EB98;
     LDA.B SamusYPosition                                                 ;A3EB9B;
     SEC                                                                  ;A3EB9E;
     SBC.W #$0008                                                         ;A3EB9F;
@@ -12833,7 +12790,7 @@ MainAI_Metroid:
 Function_Metroid_0_ChaseSamus:
 ;; Parameter:
 ;;     Temp_TargetYPosition: [Samus Y position] - 8
-    LDX.B EnemyIndex                                                     ;A3EC11;
+    TYX
     STZ.B DP_Temp12                                                      ;A3EC14;
     STZ.B DP_Temp14                                                      ;A3EC16;
     LDA.W Enemy.YPosition,X                                              ;A3EC18;
@@ -12875,15 +12832,12 @@ Function_Metroid_0_ChaseSamus:
     STA.B DP_Temp12                                                      ;A3EC5D;
     LDA.W Metroid.YVelocity,X                                            ;A3EC5F;
     STA.B DP_Temp14                                                      ;A3EC62;
-    LDX.B EnemyIndex                                                     ;A3EC64;
     JSL.L MoveEnemyDownBy_14_12                                          ;A3EC67;
     BCC .notCollidedWithBlock                                            ;A3EC6B;
-    LDX.B EnemyIndex                                                     ;A3EC6D;
     STZ.W Metroid.YSubVelocity,X                                         ;A3EC70;
     STZ.W Metroid.YVelocity,X                                            ;A3EC73;
 
   .notCollidedWithBlock:
-    LDX.B EnemyIndex                                                     ;A3EC76;
     STZ.B DP_Temp12                                                      ;A3EC79;
     STZ.B DP_Temp14                                                      ;A3EC7B;
     LDA.W Enemy.XPosition,X                                              ;A3EC7D;
@@ -12925,10 +12879,8 @@ Function_Metroid_0_ChaseSamus:
     STA.B DP_Temp12                                                      ;A3ECC2;
     LDA.W Metroid.XVelocity,X                                            ;A3ECC4;
     STA.B DP_Temp14                                                      ;A3ECC7;
-    LDX.B EnemyIndex                                                     ;A3ECC9;
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A3ECCC;
     BCC .return                                                          ;A3ECD0;
-    LDX.B EnemyIndex                                                     ;A3ECD2;
     STZ.W Metroid.XSubVelocity,X                                         ;A3ECD5;
     STZ.W Metroid.XVelocity,X                                            ;A3ECD8;
 
@@ -12987,14 +12939,11 @@ Function_Metroid_1_LatchOntoSamus:
     LDX.B EnemyIndex                                                     ;A3ED23;
     JSL.L MoveEnemyDownBy_14_12                                          ;A3ED26;
     BCC .notCollidedWithBlock                                            ;A3ED2A;
-    LDX.B EnemyIndex                                                     ;A3ED2C;
     STZ.W Metroid.YSubVelocity,X                                         ;A3ED2F;
     STZ.W Metroid.YVelocity,X                                            ;A3ED32;
 
   .notCollidedWithBlock:
-    LDX.B EnemyIndex                                                     ;A3ED35;
     STZ.B DP_Temp12                                                      ;A3ED38;
-    STZ.B DP_Temp14                                                      ;A3ED3A;
     LDA.B SamusXPosition                                                 ;A3ED3C;
     SEC                                                                  ;A3ED3F;
     SBC.W Enemy.XPosition,X                                              ;A3ED40;
@@ -13031,10 +12980,8 @@ Function_Metroid_1_LatchOntoSamus:
     STA.W Metroid.XSubVelocity,X                                         ;A3ED74;
     LDA.B DP_Temp14                                                      ;A3ED77;
     STA.W Metroid.XVelocity,X                                            ;A3ED79;
-    LDX.B EnemyIndex                                                     ;A3ED7C;
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A3ED7F;
     BCC .return                                                          ;A3ED83;
-    LDX.B EnemyIndex                                                     ;A3ED85;
     STZ.W Metroid.XSubVelocity,X                                         ;A3ED88;
     STZ.W Metroid.XVelocity,X                                            ;A3ED8B;
 

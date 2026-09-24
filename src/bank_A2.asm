@@ -384,13 +384,13 @@ Instruction_CommonA2_DisableOffScreenProcessing:
 
 ;;; $8187: Common enemy speeds - linearly increasing ;;;
 CommonA2EnemySpeeds_LinearlyIncreasing:
-  .speed                                                                 ;A08187;
+  .speed                                                                 ;A28187;
 skip 2
-  .subspeed                                                              ;A08189;
+  .subspeed                                                              ;A28189;
 skip 2
-  .negatedSpeed                                                          ;A0818B;
+  .negatedSpeed                                                          ;A2818B;
 skip 2
-  .negatedSubspeed                                                       ;A0818D;
+  .negatedSubspeed                                                       ;A2818D;
 skip -6
 
 !i = 0
@@ -9605,6 +9605,7 @@ EnemyTouch_Oum_HurtsSamus:
 
 ;;; $D38C: Enemy touch - oum - doesn't hurt Samus ;;;
 EnemyTouch_Oum_DoesNotHurtSamus:
+    TYX
     JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A2D38C;
     BNE .return                                                          ;A2D390;
     LDA.B SamusXPosition                                                 ;A2D395;

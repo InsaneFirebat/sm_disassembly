@@ -543,7 +543,6 @@ A_Y_16bit_UnsignedMultiplication:
 ;              = ac + (bc + ad) * 100h + bd * 10000h
 ; However, (bc + ad) can overflow 10000h (e.g. C0h * C0h + C0h * C0h = 12000h)
 ; and the carry isn't propagated to the calculation of bd (instruction $832D should be removed).
-    PHX                                                                  ;8082D6;
     STA.W Multiplier16bitA                                               ;8082D7; Let Multiplier16bitA = a + b * 100h
     STY.W Multiplier16bitB                                               ;8082DA; Let Multiplier16bitB = c + d * 100h
     STZ.W MultiplicationResult                                           ;8082DD;
@@ -579,11 +578,9 @@ A_Y_16bit_UnsignedMultiplication:
     NOP                                                                  ;808328;
     NOP                                                                  ;808329;
     LDA.W MultiplicationResult+2                                         ;80832A; Result += bd * 10000h
-    CLC                                                                  ;80832D;
     ADC.W $4216                                                          ;80832E;
     STA.W MultiplicationResult+2                                         ;808331;
     REP #$30                                                             ;808334;
-    PLX                                                                  ;808336;
     RTL                                                                  ;808337;
 
 

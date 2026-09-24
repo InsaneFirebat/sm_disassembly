@@ -385,13 +385,13 @@ Instruction_CommonB3_DisableOffScreenProcessing:
 
 ;;; $8187: Common enemy speeds - linearly increasing ;;;
 CommonB3EnemySpeeds_LinearlyIncreasing:
-  .speed                                                                 ;A08187;
+  .speed                                                                 ;B38187;
 skip 2
-  .subspeed                                                              ;A08189;
+  .subspeed                                                              ;B38189;
 skip 2
-  .negatedSpeed                                                          ;A0818B;
+  .negatedSpeed                                                          ;B3818B;
 skip 2
-  .negatedSubspeed                                                       ;A0818D;
+  .negatedSubspeed                                                       ;B3818D;
 skip -6
 
 !i = 0
@@ -839,7 +839,7 @@ InstListPointers_Zebbo:
 
 ;;; $883B: Initialisation AI - enemy $F193/$F1D3 (zeb / zebbo) ;;;
 InitAI_Zeb_Zebbo:
-    LDX.B EnemyIndex                                                     ;B3883B;
+    TYX
     LDA.W Enemy.XPosition,X                                              ;B3883E;
     STA.W Zeb.spawnXPosition,X                                           ;B38841;
     LDA.W Enemy.YPosition,X                                              ;B38844;
@@ -867,19 +867,31 @@ InitAI_Zeb_Zebbo:
 
 ;;; $887A: Main AI - enemy $F193/$F1D3 (zeb / zebbo) ;;;
 MainAI_Zeb_Zebbo:
-    LDX.B EnemyIndex                                                     ;B3887A;
     JMP.W (Zeb.function,X)                                               ;B3887D;
 
 
 ;;; $8880: Zeb/zebbo function - wait until on screen ;;;
 Function_Zeb_Zebbo_WaitUntilOnScreen:
-    LDX.B EnemyIndex                                                     ;B38880;
-    JSL.L CheckIfEnemyCenterIsOnScreen                                   ;B38883;
-    BNE .return                                                          ;B38887;
+    LDA.W Enemy.XPosition,X
+    CMP.B Layer1XPosition
+    BMI .offScreen
+    LDA.B Layer1XPosition
+    CLC
+    ADC.W #$0100
+    CMP.W Enemy.XPosition,X
+    BMI .offScreen
+    LDA.W Enemy.YPosition,X
+    CMP.B Layer1YPosition
+    BMI .offScreen
+    LDA.B Layer1YPosition
+    CLC
+    ADC.W #$0100
+    CMP.W Enemy.YPosition,X
+    BMI .offScreen
     LDA.W #Function_Zeb_Zebbo_WaitForSamusToGetNear                      ;B38889;
     STA.W Zeb.function,X                                                 ;B3888C;
 
-  .return:
+  .offScreen:
     RTL                                                                  ;B3888F;
 
 
@@ -928,7 +940,24 @@ Function_Zeb_Zebbo_WaitForSamusToGetNear:
     LDA.W #$0000                                                         ;B388D9;
 
 +   STA.W Zeb.instListTableIndex,X                                       ;B388DC;
-    JSR.W Set_Zeb_Zebbo_InstList                                         ;B388DF;
+    CMP.L Zeb.previousInstListTableIndex,X
+    BEQ .return
+    STA.L Zeb.previousInstListTableIndex,X
+    ASL
+    TAY
+    LDA.W Enemy.init0,X
+    BNE .zebbo
+    LDA.W InstListPointers_Zeb,Y
+    BRA .storeInstList
+
+  .zebbo:
+    LDA.W InstListPointers_Zebbo,Y
+
+  .storeInstList:
+    STA.W Enemy.instList,X
+    LDA.W #$0001
+    STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
     RTL                                                                  ;B388E2;
 
 
@@ -946,15 +975,32 @@ Function_Zeb_Zebbo_Rising:
     BMI .return                                                          ;B388FD;
     LDA.W Enemy.YPosition,X                                              ;B388FF;
     CMP.B SamusYPosition                                                 ;B38902;
-    BCC .targetHeight                                                    ;B38905;
-    BRA .return                                                          ;B38907;
+    BCS .return
 
   .targetHeight:
     LDA.W Zeb.instListTableIndex,X                                       ;B38909;
     ORA.W #$0001                                                         ;B3890C;
     STA.W Zeb.instListTableIndex,X                                       ;B3890F;
-    JSR.W Set_Zeb_Zebbo_InstList                                         ;B38912;
-    LDA.W #Function_Zeb_Zebbo_Shooting                                   ;B38915;
+    CMP.L Zeb.previousInstListTableIndex,X
+    BEQ +
+    STA.L Zeb.previousInstListTableIndex,X
+    ASL
+    TAY
+    LDA.W Enemy.init0,X
+    BNE .zebbo
+    LDA.W InstListPointers_Zeb,Y
+    BRA .storeInstList
+
+  .zebbo:
+    LDA.W InstListPointers_Zebbo,Y
+
+  .storeInstList:
+    STA.W Enemy.instList,X
+    LDA.W #$0001
+    STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
+
++   LDA.W #Function_Zeb_Zebbo_Shooting                                   ;B38915;
     STA.W Zeb.function,X                                                 ;B38918;
 
   .return:
@@ -984,8 +1030,19 @@ Function_Zeb_Zebbo_Shooting:
     STA.W Enemy.XPosition,X                                              ;B38946;
 
   .checkOnScreen:
-    JSL.L CheckIfEnemyIsHorizontallyOffScreen                            ;B38949;
-    BCS .respawn                                                         ;B3894D;
+;;; $C18E: Check if enemy is horizontally off-screen ;;;
+    LDA.W Enemy.XPosition,X
+    BMI .respawn
+    CLC
+    ADC.W Enemy.XHitboxRadius,X
+    SEC
+    SBC.B Layer1XPosition
+    BMI .respawn
+    SEC
+    SBC.W #$0100
+    SEC
+    SBC.W Enemy.XHitboxRadius,X
+    BPL .respawn
     RTL                                                                  ;B3894F;
 
   .respawn:
@@ -996,8 +1053,26 @@ Function_Zeb_Zebbo_Shooting:
     STA.W Enemy.YPosition,X                                              ;B3895C;
     STA.W Enemy.YSubPosition,X                                           ;B3895F;
     STZ.W Zeb.instListTableIndex,X                                       ;B38962;
-    JSR.W Set_Zeb_Zebbo_InstList                                         ;B38965;
-    LDA.W Enemy.properties,X                                             ;B38968;
+    LDA.W Zeb.previousInstListTableIndex,X
+    BEQ +
+    LDA.W #$0000
+    STA.L Zeb.previousInstListTableIndex,X
+    TAY
+    LDA.W Enemy.init0,X
+    BNE .zebbo
+    LDA.W InstListPointers_Zeb,Y
+    BRA .storeInstList
+
+  .zebbo:
+    LDA.W InstListPointers_Zebbo,Y
+
+  .storeInstList:
+    STA.W Enemy.instList,X
+    LDA.W #$0001
+    STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
+
++   LDA.W Enemy.properties,X                                             ;B38968;
     ORA.W #$0100                                                         ;B3896B;
     STA.W Enemy.properties,X                                             ;B3896E;
     LDA.W #$0030                                                         ;B38971;
@@ -1017,32 +1092,6 @@ Function_Zeb_Zebbo_SpawnDelay:
     LDA.W #Function_Zeb_Zebbo_WaitForSamusToGetNear                      ;B38984;
     STA.W Zeb.function,X                                                 ;B38987;
     RTL                                                                  ;B3898A;
-
-
-;;; $898B: Set zeb/zebbo instruction list ;;;
-Set_Zeb_Zebbo_InstList:
-    LDX.B EnemyIndex                                                     ;B3898B;
-    LDA.W Zeb.instListTableIndex,X                                       ;B3898E;
-    CMP.L Zeb.previousInstListTableIndex,X                               ;B38991;
-    BEQ .return                                                          ;B38995;
-    STA.L Zeb.previousInstListTableIndex,X                               ;B38997;
-    ASL                                                                  ;B3899B;
-    TAY                                                                  ;B3899C;
-    LDA.W Enemy.init0,X                                                  ;B3899D;
-    BNE .zebbo                                                           ;B389A0;
-    LDA.W InstListPointers_Zeb,Y                                         ;B389A2;
-    BRA +                                                                ;B389A5;
-
-  .zebbo:
-    LDA.W InstListPointers_Zebbo,Y                                       ;B389A7;
-
-+   STA.W Enemy.instList,X                                               ;B389AA;
-    LDA.W #$0001                                                         ;B389AD;
-    STA.W Enemy.instTimer,X                                              ;B389B0;
-    STZ.W Enemy.loopCounter,X                                            ;B389B3;
-
-  .return:
-    RTS                                                                  ;B389B6;
 
 
 ;;; $89B7: Spritemaps - zeb ;;;
@@ -1243,7 +1292,7 @@ InstList_Gamet_FacingRight_Shooting:
 
 ;;; $8B61: Initialisation AI - enemy $F213 (gamet) ;;;
 InitAI_Gamet:
-    LDX.B EnemyIndex                                                     ;B38B61;
+    TYX
     LDA.W Enemy.XPosition,X                                              ;B38B64;
     STA.W Gamet.spawnXPosition,X                                         ;B38B67;
     LDA.W Enemy.YPosition,X                                              ;B38B6A;
@@ -1270,17 +1319,27 @@ InitAI_Gamet:
 
 ;;; $8B9E: Main AI - enemy $F213 (gamet) ;;;
 MainAI_Gamet:
-    LDX.B EnemyIndex                                                     ;B38B9E;
     JSR.W (Gamet.function,X)                                             ;B38BA1;
-    JSR.W ResetEnemyIfOffScreen                                          ;B38BA4;
-    RTL                                                                  ;B38BA7;
-
-
 ;;; $8BA8: Reset enemy if off-screen ;;;
-ResetEnemyIfOffScreen:
-    LDX.B EnemyIndex                                                     ;B38BA8;
-    JSL.L CheckIfEnemyCenterIsOnScreen                                   ;B38BAB;
-    BEQ .return                                                          ;B38BAF;
+;;; $AD70: Check if enemy center is on screen or not ;;;
+    LDA.W Enemy.XPosition,X
+    CMP.B Layer1XPosition
+    BMI .offScreen
+    LDA.B Layer1XPosition
+    CLC
+    ADC.W #$0100
+    CMP.W Enemy.XPosition,X
+    BMI .offScreen
+    LDA.W Enemy.YPosition,X
+    CMP.B Layer1YPosition
+    BMI .offScreen
+    LDA.B Layer1YPosition
+    CLC
+    ADC.W #$0100
+    CMP.W Enemy.YPosition,X
+    BPL .return
+
+  .offScreen
     LDA.W Enemy.properties,X                                             ;B38BB1;
     ORA.W #$0100                                                         ;B38BB4;
     STA.W Enemy.properties,X                                             ;B38BB7;
@@ -1292,27 +1351,23 @@ ResetEnemyIfOffScreen:
     STA.W Enemy.YPosition,X                                              ;B38BC9;
 
   .return:
-    RTS                                                                  ;B38BCC;
+    RTL
 
 
 ;;; $8BCD: Gamet function - wait until everyone's ready ;;;
 Function_Gamet_WaitUntilAllReady:
-    LDX.B EnemyIndex                                                     ;B38BCD;
     LDA.W Enemy.init1,X                                                  ;B38BD0;
     AND.W #$00FF                                                         ;B38BD3;
     BEQ .return                                                          ;B38BD6;
-    LDA.W Enemy[1].var0,X                                                ;B38BD8;
-    CMP.W #Function_Gamet_WaitUntilAllReady                              ;B38BDB;
-    BNE .return                                                          ;B38BDE;
-    LDA.W Enemy[2].var0,X                                                ;B38BE0;
-    CMP.W #Function_Gamet_WaitUntilAllReady                              ;B38BE3;
-    BNE .return                                                          ;B38BE6;
-    LDA.W Enemy[3].var0,X                                                ;B38BE8;
-    CMP.W #Function_Gamet_WaitUntilAllReady                              ;B38BEB;
-    BNE .return                                                          ;B38BEE;
-    LDA.W Enemy[4].var0,X                                                ;B38BF0;
-    CMP.W #Function_Gamet_WaitUntilAllReady                              ;B38BF3;
-    BNE .return                                                          ;B38BF6;
+    LDA.W #Function_Gamet_WaitUntilAllReady
+    CMP.W Enemy[1].var0,X
+    BNE .return
+    CMP.W Enemy[2].var0,X
+    BNE .return
+    CMP.W Enemy[3].var0,X
+    BNE .return
+    CMP.W Enemy[4].var0,X
+    BNE .return
     LDA.W #Function_Gamet_WaitForSamusToGetNear                          ;B38BF8;
     STA.W Gamet.function,X                                               ;B38BFB;
 
@@ -1322,11 +1377,17 @@ Function_Gamet_WaitUntilAllReady:
 
 ;;; $8BFF: Gamet function - wait for Samus to get near ;;;
 Function_Gamet_WaitForSamusToGetNear:
-    LDX.B EnemyIndex                                                     ;B38BFF;
     LDA.W Enemy.init1,X                                                  ;B38C02;
     AND.W #$00FF                                                         ;B38C05;
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy                              ;B38C08;
-    BEQ .return                                                          ;B38C0C;
+;;; $AF0B: Is Samus within [A] pixel columns of enemy ;;;
+    STA.W Temp_Threshold
+    LDY.B SamusXPosition
+    LDA.W Enemy.XPosition,X
+    TAX
+    JSL.L GetSignedYMinusX_A0B07D
+    LDX.B EnemyIndex
+    CMP.W Temp_Threshold
+    BPL .return
     LDA.W Enemy.YPosition,X                                              ;B38C0E;
     CMP.B SamusYPosition                                                 ;B38C11;
     BMI .return                                                          ;B38C14;
@@ -1344,7 +1405,10 @@ Function_Gamet_WaitForSamusToGetNear:
     STA.W Enemy[2].instList,X                                            ;B38C31;
     STA.W Enemy[3].instList,X                                            ;B38C34;
     STA.W Enemy[4].instList,X                                            ;B38C37;
-    BRA .setupFormation                                                  ;B38C3A;
+    BRA SetupGametFormation
+
+  .return:
+    RTS
 
   .facingRight:
     LDA.W #InstList_Gamet_FacingRight_Rising                             ;B38C3C;
@@ -1353,13 +1417,6 @@ Function_Gamet_WaitForSamusToGetNear:
     STA.W Enemy[2].instList,X                                            ;B38C45;
     STA.W Enemy[3].instList,X                                            ;B38C48;
     STA.W Enemy[4].instList,X                                            ;B38C4B;
-
-  .setupFormation:
-    JSR.W SetupGametFormation                                            ;B38C4E;
-
-  .return:
-    RTS                                                                  ;B38C51;
-
 
 ;;; $8C52: Set up Gamet formation ;;;
 SetupGametFormation:
@@ -1394,7 +1451,6 @@ SetupGametFormation:
 
 ;;; $8CA6: Gamet function - rising ;;;
 Function_Gamet_Rising:
-    LDX.B EnemyIndex                                                     ;B38CA6;
     LDA.W Enemy.properties,X                                             ;B38CA9;
     AND.W #$FEFF                                                         ;B38CAC;
     STA.W Enemy.properties,X                                             ;B38CAF;
@@ -1426,7 +1482,7 @@ Function_Gamet_Rising:
     BPL .facingRight                                                     ;B38CEE;
     LDA.W #InstList_Gamet_FacingLeft_Rising                              ;B38CF0;
     STA.W Enemy.instList,X                                               ;B38CF3;
-    BRA .return                                                          ;B38CF6;
+    RTS
 
   .facingRight:
     LDA.W #InstList_Gamet_FacingRight_Rising                             ;B38CF8;
@@ -1438,7 +1494,6 @@ Function_Gamet_Rising:
 
 ;;; $8CFF: Gamet function - move to formation - center ;;;
 Function_Gamet_MoveToFormation_Center:
-    LDX.B EnemyIndex                                                     ;B38CFF;
     INC.W Gamet.shootDelayTimer,X                                        ;B38D02;
     LDA.W #Function_Gamet_ShootDelay                                     ;B38D05;
     STA.W Gamet.function,X                                               ;B38D08;
@@ -1447,7 +1502,6 @@ Function_Gamet_MoveToFormation_Center:
 
 ;;; $8D0C: Gamet function - move to formation - upper middle ;;;
 Function_Gamet_MoveToFormation_UpperMiddle:
-    LDX.B EnemyIndex                                                     ;B38D0C;
     INC.W Gamet.shootDelayTimer,X                                        ;B38D0F;
     LDA.W #regional($0080, $00A0)                                        ;B38D12;
     TAY                                                                  ;B38D15;
@@ -1480,7 +1534,6 @@ Function_Gamet_MoveToFormation_UpperMiddle:
 
 ;;; $8D4E: Gamet function - move to formation - top ;;;
 Function_Gamet_MoveToFormation_Top:
-    LDX.B EnemyIndex                                                     ;B38D4E;
     INC.W Gamet.shootDelayTimer,X                                        ;B38D51;
     LDA.W #regional($0080, $00A0)                                        ;B38D54;
     TAY                                                                  ;B38D57;
@@ -1513,7 +1566,6 @@ Function_Gamet_MoveToFormation_Top:
 
 ;;; $8D90: Gamet function - move to formation - lower middle ;;;
 Function_Gamet_MoveToFormation_LowerMiddle:
-    LDX.B EnemyIndex                                                     ;B38D90;
     INC.W Gamet.shootDelayTimer,X                                        ;B38D93;
     LDA.W #regional($0080, $00A0)                                        ;B38D96;
     TAY                                                                  ;B38D99;
@@ -1546,7 +1598,6 @@ Function_Gamet_MoveToFormation_LowerMiddle:
 
 ;;; $8DD2: Gamet function - move to formation - bottom ;;;
 Function_Gamet_MoveToFormation_Bottom:
-    LDX.B EnemyIndex                                                     ;B38DD2;
     INC.W Gamet.shootDelayTimer,X                                        ;B38DD5;
     LDA.W #regional($0080, $00A0)                                        ;B38DD8;
     TAY                                                                  ;B38DDB;
@@ -1579,7 +1630,6 @@ Function_Gamet_MoveToFormation_Bottom:
 
 ;;; $8E14: Gamet function - shooting left ;;;
 Function_Gamet_ShootingLeft:
-    LDX.B EnemyIndex                                                     ;B38E14;
     LDA.W Gamet.XSpeedTableIndex,X                                       ;B38E17;
     TAY                                                                  ;B38E1A;
     LDA.W Enemy.XSubPosition,X                                           ;B38E1B;
@@ -1598,7 +1648,6 @@ Function_Gamet_ShootingLeft:
 
 ;;; $8E35: Gamet function - shooting right ;;;
 Function_Gamet_ShootingRight:
-    LDX.B EnemyIndex                                                     ;B38E35;
     LDA.W Gamet.XSpeedTableIndex,X                                       ;B38E38;
     TAY                                                                  ;B38E3B;
     LDA.W Enemy.XSubPosition,X                                           ;B38E3C;
@@ -1615,19 +1664,11 @@ Function_Gamet_ShootingRight:
     RTS                                                                  ;B38E55;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $8E56: Unused. RTS ;;;
-UNUSED_LoadEnemyIndex_B38E56:
-    LDX.B EnemyIndex                                                     ;B38E56;
-    RTS                                                                  ;B38E59;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $8E5A: Gamet function - shoot delay ;;;
 Function_Gamet_ShootDelay:
-    LDX.B EnemyIndex                                                     ;B38E5A;
-    INC.W Gamet.shootDelayTimer,X                                        ;B38E5D;
     LDA.W Gamet.shootDelayTimer,X                                        ;B38E60;
+    INC
+    STA.W Gamet.shootDelayTimer,X
     CMP.L Gamet.shootDelay,X                                             ;B38E63;
     BMI .return                                                          ;B38E67;
     STZ.W Gamet.shootDelayTimer,X                                        ;B38E69;
@@ -1649,16 +1690,6 @@ Function_Gamet_ShootDelay:
 
   .return:
     RTS                                                                  ;B38E93;
-
-
-;;; $8E94: RTL ;;;
-RTL_B38E94:
-    RTL                                                                  ;B38E94;
-
-
-;;; $8E95: RTL ;;;
-RTL_B38E95:
-    RTL                                                                  ;B38E95;
 
 
 ;;; $8E96: Spritemaps ;;;
@@ -1751,7 +1782,7 @@ InstList_Geega_FacingRight_Shooting:
 
 ;;; $8F4C: Initialisation AI - enemy $F253 (geega) ;;;
 InitAI_Geega:
-    LDX.B EnemyIndex                                                     ;B38F4C;
+    TYX
     LDA.W Enemy.XPosition,X                                              ;B38F4F;
     STA.L Geega.spawnXPosition,X                                         ;B38F52;
     LDA.W Enemy.YPosition,X                                              ;B38F56;
@@ -1790,14 +1821,11 @@ InitAI_Geega:
 
 ;;; $8FAE: Main AI - enemy $F253 (geega) ;;;
 MainAI_Geega:
-    LDX.B EnemyIndex                                                     ;B38FAE;
-    JSR.W (Geega.function,X)                                             ;B38FB1;
-    RTL                                                                  ;B38FB4;
+    JMP.W (Geega.function,X)                                             ;B38FB1;
 
 
 ;;; $8FB5: Geega function - wait for Samus to get near ;;;
 Function_Geega_WaitForSamusToGetNear:
-    LDX.B EnemyIndex                                                     ;B38FB5;
     LDA.W Enemy.init0,X                                                  ;B38FB8;
     BNE .leftwards                                                       ;B38FBB;
     LDA.B SamusXPosition
@@ -1816,9 +1844,13 @@ Function_Geega_WaitForSamusToGetNear:
     CMP.W #$FF40                                                         ;B38FD0;
     BMI .return                                                          ;B38FD3;
 
-+   LDA.W #$0030                                                         ;B38FD5;
-    JSL.L IsSamusWithingAPixelRowsOfEnemy                                ;B38FD8;
-    BEQ .return                                                          ;B38FDC;
++   LDY.B SamusYPosition
+    LDA.W Enemy.YPosition,X
+    TAX
+    JSL.L GetSignedYMinusX_A0B07D
+    LDX.B EnemyIndex
+    CMP.W #$0030
+    BPL .return
     LDA.W Enemy.properties,X                                             ;B38FDE;
     AND.W #$FEFF                                                         ;B38FE1;
     STA.W Enemy.properties,X                                             ;B38FE4;
@@ -1828,7 +1860,7 @@ Function_Geega_WaitForSamusToGetNear:
     STA.W Geega.function,X                                               ;B38FF1;
 
   .return:
-    RTS                                                                  ;B38FF4;
+    RTL
 
 
 ;;; $8FF5: Geega function - shoot delay ;;;
@@ -1843,27 +1875,53 @@ Function_Geega_ShootDelay:
     LDA.W #$0001                                                         ;B39001;
     STA.W Enemy.instTimer,X                                              ;B39004;
     STZ.W Enemy.loopCounter,X                                            ;B39007;
+    LDA.W Enemy.init0,X
+    BEQ .facingRight
     LDA.W #InstList_Geega_FacingLeft_Rising                              ;B3900A;
     STA.W Enemy.instList,X                                               ;B3900D;
     LDA.W #Function_Geega_ShootingLeft                                   ;B39010;
     STA.W Geega.function,X                                               ;B39013;
-    LDA.W Enemy.init0,X                                                  ;B39016;
-    BNE .return                                                          ;B39019;
+    RTL
+
+  .facingRight:
     LDA.W #InstList_Geega_FacingRight_Rising                             ;B3901B;
     STA.W Enemy.instList,X                                               ;B3901E;
     LDA.W #Function_Geega_ShootingRight                                  ;B39021;
     STA.W Geega.function,X                                               ;B39024;
-
-  .return:
-    RTS                                                                  ;B39027;
+    RTL
 
 
 ;;; $9028: Geega function - shooting left ;;;
 Function_Geega_ShootingLeft:
-    LDX.B EnemyIndex                                                     ;B39028;
-    JSR.W MoveGeegaLeft                                                  ;B3902B;
-    JSL.L CheckIfEnemyCenterIsOnScreen                                   ;B3902E;
-    BEQ .onScreen                                                        ;B39032;
+    LDA.W Enemy.XSubPosition,X
+    CLC
+    ADC.L Geega.leftSubVelocity,X
+    BCC +
+    INC.W Enemy.XPosition,X
+
++   STA.W Enemy.XSubPosition,X
+    LDA.W Enemy.XPosition,X
+    CLC
+    ADC.L Geega.leftVelocity,X
+    STA.W Enemy.XPosition,X
+;;; $AD70: Check if enemy center is on screen or not ;;;
+    LDX.B EnemyIndex
+    LDA.W Enemy.XPosition,X
+    CMP.B Layer1XPosition
+    BPL .onScreen
+    LDA.B Layer1XPosition
+    CLC
+    ADC.W #$0100
+    CMP.W Enemy.XPosition,X
+    BPL .onScreen
+    LDA.W Enemy.YPosition,X
+    CMP.B Layer1YPosition
+    BPL .onScreen
+    LDA.B Layer1YPosition
+    CLC
+    ADC.W #$0100
+    CMP.W Enemy.YPosition,X
+    BPL .onScreen
     LDA.L Geega.spawnXPosition,X                                         ;B39034;
     STA.W Enemy.XPosition,X                                              ;B39038;
     LDA.L Geega.spawnYPosition,X                                         ;B3903B;
@@ -1877,7 +1935,7 @@ Function_Geega_ShootingLeft:
     LDA.W Enemy.properties,X                                             ;B39055;
     ORA.W #$0100                                                         ;B39058;
     STA.W Enemy.properties,X                                             ;B3905B;
-    BRA .return                                                          ;B3905E;
+    RTL
 
   .onScreen:
     LDA.L Geega.dipDisableFlag,X                                         ;B39060;
@@ -1895,40 +1953,47 @@ Function_Geega_ShootingLeft:
     STA.W Geega.YSpeedTableIndex,X                                       ;B39081;
     LDA.W #$0001                                                         ;B39084;
     STA.W Geega.dipDirection,X                                           ;B39087;
-    LDA.W Enemy.XPosition,X                                              ;B3908A;
-    STA.L ExtraEnemy7800+8,X                                             ;B3908D;
-    LDA.W #$0001                                                         ;B39091;
     STA.W Enemy.instTimer,X                                              ;B39094;
     STZ.W Enemy.loopCounter,X                                            ;B39097;
     LDA.W #InstList_Geega_FacingLeft_Shooting                            ;B3909A;
     STA.W Enemy.instList,X                                               ;B3909D;
 
   .return:
-    RTS                                                                  ;B390A0;
-
-
-;;; $90A1: Move geega left ;;;
-MoveGeegaLeft:
-    LDA.W Enemy.XSubPosition,X                                           ;B390A1;
-    CLC                                                                  ;B390A4;
-    ADC.L Geega.leftSubVelocity,X                                        ;B390A5;
-    BCC +                                                                ;B390A9;
-    INC.W Enemy.XPosition,X                                              ;B390AB;
-
-+   STA.W Enemy.XSubPosition,X                                           ;B390AE;
-    LDA.W Enemy.XPosition,X                                              ;B390B1;
-    CLC                                                                  ;B390B4;
-    ADC.L Geega.leftVelocity,X                                           ;B390B5;
-    STA.W Enemy.XPosition,X                                              ;B390B9;
-    RTS                                                                  ;B390BC;
+    RTL
 
 
 ;;; $90BD: Geega function - shooting right ;;;
 Function_Geega_ShootingRight:
-    LDX.B EnemyIndex                                                     ;B390BD;
-    JSR.W MoveGeegaRight                                                 ;B390C0;
-    JSL.L CheckIfEnemyCenterIsOnScreen                                   ;B390C3;
-    BEQ .onScreen                                                        ;B390C7;
+    LDA.W Enemy.var1,X
+    TAY
+    LDA.W Enemy.XSubPosition,X
+    CLC
+    ADC.L Geega.rightSubVelocity,X
+    BCC +
+    INC.W Enemy.XPosition,X
+
++   STA.W Enemy.XSubPosition,X
+    LDA.W Enemy.XPosition,X
+    CLC
+    ADC.L Geega.rightVelocity,X
+    STA.W Enemy.XPosition,X
+    LDX.B EnemyIndex
+    LDA.W Enemy.XPosition,X
+    CMP.B Layer1XPosition
+    BPL .onScreen
+    LDA.B Layer1XPosition
+    CLC
+    ADC.W #$0100
+    CMP.W Enemy.XPosition,X
+    BPL .onScreen
+    LDA.W Enemy.YPosition,X
+    CMP.B Layer1YPosition
+    BPL .onScreen
+    LDA.B Layer1YPosition
+    CLC
+    ADC.W #$0100
+    CMP.W Enemy.YPosition,X
+    BPL .onScreen
     LDA.L Geega.spawnXPosition,X                                         ;B390C9;
     STA.W Enemy.XPosition,X                                              ;B390CD;
     LDA.L Geega.spawnYPosition,X                                         ;B390D0;
@@ -1942,7 +2007,7 @@ Function_Geega_ShootingRight:
     LDA.W Enemy.properties,X                                             ;B390EA;
     ORA.W #$0100                                                         ;B390ED;
     STA.W Enemy.properties,X                                             ;B390F0;
-    BRA .return                                                          ;B390F3;
+    RTL
 
   .onScreen:
     LDA.L Geega.dipDisableFlag,X                                         ;B390F5;
@@ -1962,41 +2027,33 @@ Function_Geega_ShootingRight:
     STA.W Geega.YSpeedTableIndex,X                                       ;B3911A;
     LDA.W #$0001                                                         ;B3911D;
     STA.W Geega.dipDirection,X                                           ;B39120;
-    LDA.W Enemy.XPosition,X                                              ;B39123;
-    STA.L ExtraEnemy7800+8,X                                             ;B39126;
-    LDA.W #$0001                                                         ;B3912A;
     STA.W Enemy.instTimer,X                                              ;B3912D;
     STZ.W Enemy.loopCounter,X                                            ;B39130;
     LDA.W #InstList_Geega_FacingRight_Shooting                           ;B39133;
     STA.W Enemy.instList,X                                               ;B39136;
 
   .return:
-    RTS                                                                  ;B39139;
-
-
-;;; $913A: Move geega right ;;;
-MoveGeegaRight:
-    LDA.W Enemy.var1,X                                                   ;B3913A;
-    TAY                                                                  ;B3913D;
-    LDA.W Enemy.XSubPosition,X                                           ;B3913E;
-    CLC                                                                  ;B39141;
-    ADC.L Geega.rightSubVelocity,X                                       ;B39142;
-    BCC +                                                                ;B39146;
-    INC.W Enemy.XPosition,X                                              ;B39148;
-
-+   STA.W Enemy.XSubPosition,X                                           ;B3914B;
-    LDA.W Enemy.XPosition,X                                              ;B3914E;
-    CLC                                                                  ;B39151;
-    ADC.L Geega.rightVelocity,X                                          ;B39152;
-    STA.W Enemy.XPosition,X                                              ;B39156;
-    RTS                                                                  ;B39159;
+    RTL
 
 
 ;;; $915A: Geega function - dipping left ;;;
 Function_Geega_DippingLeft:
-    LDX.B EnemyIndex                                                     ;B3915A;
-    JSL.L CheckIfEnemyCenterIsOnScreen                                   ;B3915D;
-    BEQ .onScreen                                                        ;B39161;
+    LDA.W Enemy.XPosition,X
+    CMP.B Layer1XPosition
+    BPL .onScreen
+    LDA.B Layer1XPosition
+    CLC
+    ADC.W #$0100
+    CMP.W Enemy.XPosition,X
+    BPL .onScreen
+    LDA.W Enemy.YPosition,X
+    CMP.B Layer1YPosition
+    BPL .onScreen
+    LDA.B Layer1YPosition
+    CLC
+    ADC.W #$0100
+    CMP.W Enemy.YPosition,X
+    BPL .onScreen
     LDA.L Geega.spawnXPosition,X                                         ;B39163;
     STA.W Enemy.XPosition,X                                              ;B39167;
     LDA.L Geega.spawnYPosition,X                                         ;B3916A;
@@ -2007,7 +2064,7 @@ Function_Geega_DippingLeft:
     STA.W Geega.function,X                                               ;B3917A;
     LDA.W #$0000                                                         ;B3917D;
     STA.L Geega.dipDisableFlag,X                                         ;B39180;
-    LDA.W #$0001                                                         ;B39184;
+    INC
     STA.W Enemy.instTimer,X                                              ;B39187;
     STZ.W Enemy.loopCounter,X                                            ;B3918A;
     LDA.W #InstList_Geega_FacingLeft_Rising                              ;B3918D;
@@ -2015,40 +2072,102 @@ Function_Geega_DippingLeft:
     LDA.W Enemy.properties,X                                             ;B39193;
     ORA.W #$0100                                                         ;B39196;
     STA.W Enemy.properties,X                                             ;B39199;
-    JMP.W .return                                                        ;B3919C;
+    RTL
 
   .onScreen:
-    JSR.W MoveGeegaLeft                                                  ;B3919F;
+    LDA.W Enemy.XSubPosition,X
+    CLC
+    ADC.L Geega.leftSubVelocity,X
+    BCC +
+    INC.W Enemy.XPosition,X
+
++   STA.W Enemy.XSubPosition,X
+    LDA.W Enemy.XPosition,X
+    CLC
+    ADC.L Geega.leftVelocity,X
+    STA.W Enemy.XPosition,X
     LDA.W Geega.dipDirection,X                                           ;B391A2;
     BNE .moveDown                                                        ;B391A5;
-    JSR.W MoveGeegaUp                                                    ;B391A7;
-    LDA.W Enemy.YPosition,X                                              ;B391AA;
+;;; $9256: Move geega up ;;;
+    LDA.W Geega.YSpeedTableIndex,X
+    INC
+    STA.W Geega.YSpeedTableIndex,X
+    ASL
+    ASL
+    ASL
+    TAY
+    LDA.W Enemy.YSubPosition,X
+    CLC
+    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing+4,Y
+    BCC +
+    INC.W Enemy.YPosition,X
+
++   STA.W Enemy.YSubPosition,X
+    LDA.W Enemy.YPosition,X
+    CLC
+    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing+6,Y
+    STA.W Enemy.YPosition,X
     CMP.L Geega.spawnYPosition,X                                         ;B391AD;
     BPL .return                                                          ;B391B1;
     LDA.W #$0001                                                         ;B391B3;
     STA.L Geega.dipDisableFlag,X                                         ;B391B6;
     STA.W Geega.dipDirection,X                                           ;B391BA;
-    LDA.W #Function_Geega_ShootingLeft                                   ;B391BD;
-    STA.W Geega.function,X                                               ;B391C0;
-    LDA.W #$0001                                                         ;B391C3;
     STA.W Enemy.instTimer,X                                              ;B391C6;
     STZ.W Enemy.loopCounter,X                                            ;B391C9;
+    LDA.W #Function_Geega_ShootingLeft
+    STA.W Geega.function,X
     LDA.W #InstList_Geega_FacingLeft_Rising                              ;B391CC;
     STA.W Enemy.instList,X                                               ;B391CF;
-    BRA .return                                                          ;B391D2;
+    RTL
 
   .moveDown:
-    JSR.W MoveGeegaDown                                                  ;B391D4;
+    DEC.W Geega.YSpeedTableIndex,X
+    BPL +
+    STZ.W Geega.YSpeedTableIndex,X
+    STZ.W Geega.dipDirection,X
+    RTL
+
++   LDA.W Geega.YSpeedTableIndex,X
+    ASL
+    ASL
+    ASL
+    TAY
+    LDA.W Enemy.YSubPosition,X
+    CLC
+    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing,Y
+    BCC +
+    INC.W Enemy.YPosition,X
+
++   STA.W Enemy.YSubPosition,X
+    LDA.W Enemy.YPosition,X
+    CLC
+    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y
+    STA.W Enemy.YPosition,X
 
   .return:
-    RTS                                                                  ;B391D7;
+    RTL
 
 
 ;;; $91D8: Geega function - dipping right ;;;
 Function_Geega_DippingRight:
-    LDX.B EnemyIndex                                                     ;B391D8;
-    JSL.L CheckIfEnemyCenterIsOnScreen                                   ;B391DB;
-    BEQ .onScreen                                                        ;B391DF;
+;;; $AD70: Check if enemy center is on screen or not ;;;
+    LDX.B EnemyIndex
+    LDA.W Enemy.XPosition,X
+    CMP.B Layer1XPosition
+    BPL .onScreen
+    LDA.B Layer1XPosition
+    CLC
+    ADC.W #$0100
+    CMP.W Enemy.XPosition,X
+    BPL .onScreen
+    LDA.W Enemy.YPosition,X
+    CMP.B Layer1YPosition
+    BPL .onScreen
+    LDA.B Layer1YPosition
+    CLC
+    ADC.W #$0100
+    CMP.W Enemy.YPosition,X
+    BPL .onScreen
     LDA.L Geega.spawnXPosition,X                                         ;B391E1;
     STA.W Enemy.XPosition,X                                              ;B391E5;
     LDA.L Geega.spawnYPosition,X                                         ;B391E8;
@@ -2059,7 +2178,7 @@ Function_Geega_DippingRight:
     STA.W Geega.function,X                                               ;B391F8;
     LDA.W #$0000                                                         ;B391FB;
     STA.L Geega.dipDisableFlag,X                                         ;B391FE;
-    LDA.W #$0001                                                         ;B39202;
+    INC
     STA.W Enemy.instTimer,X                                              ;B39205;
     STZ.W Enemy.loopCounter,X                                            ;B39208;
     LDA.W #InstList_Geega_FacingRight_Rising                             ;B3920B;
@@ -2067,95 +2186,82 @@ Function_Geega_DippingRight:
     LDA.W Enemy.properties,X                                             ;B39211;
     ORA.W #$0100                                                         ;B39214;
     STA.W Enemy.properties,X                                             ;B39217;
-    JMP.W .return                                                        ;B3921A;
+    RTL
 
   .onScreen:
-    JSR.W MoveGeegaRight                                                 ;B3921D;
+    LDA.W Enemy.var1,X
+    TAY
+    LDA.W Enemy.XSubPosition,X
+    CLC
+    ADC.L Geega.rightSubVelocity,X
+    BCC +
+    INC.W Enemy.XPosition,X
+
++   STA.W Enemy.XSubPosition,X
+    LDA.W Enemy.XPosition,X
+    CLC
+    ADC.L Geega.rightVelocity,X
+    STA.W Enemy.XPosition,X
     LDA.W Geega.dipDirection,X                                           ;B39220;
     BNE .moveDown                                                        ;B39223;
-    JSR.W MoveGeegaUp                                                    ;B39225;
-    LDA.L Geega.spawnYPosition,X                                         ;B39228;
-    CMP.W Enemy.YPosition,X                                              ;B3922C;
-    BMI .return                                                          ;B3922F;
+;;; $9256: Move geega up ;;;
+    LDA.W Geega.YSpeedTableIndex,X
+    INC
+    STA.W Geega.YSpeedTableIndex,X
+    ASL
+    ASL
+    ASL
+    TAY
+    LDA.W Enemy.YSubPosition,X
+    CLC
+    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing+4,Y
+    BCC +
+    INC.W Enemy.YPosition,X
+
++   STA.W Enemy.YSubPosition,X
+    LDA.W Enemy.YPosition,X
+    CLC
+    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing+6,Y
+    STA.W Enemy.YPosition,X
+    CMP.L Geega.spawnYPosition,X
+    BPL .return
     LDA.W #$0001                                                         ;B39231;
     STA.L Geega.dipDisableFlag,X                                         ;B39234;
     STA.W Geega.dipDirection,X                                           ;B39238;
-    LDA.W #$0001                                                         ;B3923B;
     STA.W Enemy.instTimer,X                                              ;B3923E;
     STZ.W Enemy.loopCounter,X                                            ;B39241;
     LDA.W #InstList_Geega_FacingRight_Rising                             ;B39244;
     STA.W Enemy.instList,X                                               ;B39247;
     LDA.W #Function_Geega_ShootingRight                                  ;B3924A;
     STA.W Geega.function,X                                               ;B3924D;
-    BRA .return                                                          ;B39250;
+    RTL
 
   .moveDown:
-    JSR.W MoveGeegaDown                                                  ;B39252;
+    DEC.W Geega.YSpeedTableIndex,X
+    BPL +
+    STZ.W Geega.YSpeedTableIndex,X
+    STZ.W Geega.dipDirection,X
+    RTL
+
++   LDA.W Geega.YSpeedTableIndex,X
+    ASL
+    ASL
+    ASL
+    TAY
+    LDA.W Enemy.YSubPosition,X
+    CLC
+    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing,Y
+    BCC +
+    INC.W Enemy.YPosition,X
+
++   STA.W Enemy.YSubPosition,X
+    LDA.W Enemy.YPosition,X
+    CLC
+    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y
+    STA.W Enemy.YPosition,X
 
   .return:
-    RTS                                                                  ;B39255;
-
-
-;;; $9256: Move geega up ;;;
-MoveGeegaUp:
-    INC.W Geega.YSpeedTableIndex,X                                       ;B39256;
-    LDA.W Geega.YSpeedTableIndex,X                                       ;B39259;
-    ASL                                                                  ;B3925C;
-    ASL                                                                  ;B3925D;
-    ASL                                                                  ;B3925E;
-    TAY                                                                  ;B3925F;
-    LDA.W Enemy.YSubPosition,X                                           ;B39260;
-    CLC                                                                  ;B39263;
-    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing+4,Y                  ;B39264;
-    BCC +                                                                ;B39267;
-    INC.W Enemy.YPosition,X                                              ;B39269;
-
-+   STA.W Enemy.YSubPosition,X                                           ;B3926C;
-    LDA.W Enemy.YPosition,X                                              ;B3926F;
-    CLC                                                                  ;B39272;
-    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing+6,Y                  ;B39273;
-    STA.W Enemy.YPosition,X                                              ;B39276;
-    RTS                                                                  ;B39279;
-
-
-;;; $927A: Move geega down ;;;
-MoveGeegaDown:
-    DEC.W Geega.YSpeedTableIndex,X                                       ;B3927A;
-    BPL +                                                                ;B3927D;
-    LDA.W #$0000                                                         ;B3927F;
-    STA.W Geega.YSpeedTableIndex,X                                       ;B39282;
-    STA.W Geega.dipDirection,X                                           ;B39285;
-    BRA .return                                                          ;B39288;
-
-+   LDA.W Geega.YSpeedTableIndex,X                                       ;B3928A;
-    ASL                                                                  ;B3928D;
-    ASL                                                                  ;B3928E;
-    ASL                                                                  ;B3928F;
-    TAY                                                                  ;B39290;
-    LDA.W Enemy.YSubPosition,X                                           ;B39291;
-    CLC                                                                  ;B39294;
-    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing,Y                    ;B39295;
-    BCC +                                                                ;B39298;
-    INC.W Enemy.YPosition,X                                              ;B3929A;
-
-+   STA.W Enemy.YSubPosition,X                                           ;B3929D;
-    LDA.W Enemy.YPosition,X                                              ;B392A0;
-    CLC                                                                  ;B392A3;
-    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y                  ;B392A4;
-    STA.W Enemy.YPosition,X                                              ;B392A7;
-
-  .return:
-    RTS                                                                  ;B392AA;
-
-
-;;; $92AB: RTL ;;;
-RTL_B392AB:
-    RTL                                                                  ;B392AB;
-
-
-;;; $92AC: RTL ;;;
-RTL_B392AC:
-    RTL                                                                  ;B392AC;
+    RTL
 
 
 ;;; $92AD: Spritemaps ;;;
@@ -4619,7 +4725,7 @@ BotwoonMovementData_Visible_TopToTop:
     db $01,$00, $01,$00, $01,$00, $01,$00, $01,$00, $01,$00, $01,$00, $01,$00 ;B3C9B0;
     db $01,$00, $00,$01, $01,$00, $01,$00, $01,$00, $80,$00              ; B3C9C0;
 
-BotwoonMovementData_Visible_RightToLeft: 
+BotwoonMovementData_Visible_RightToLeft:
     db $FF,$00, $00,$FF, $FF,$00, $00,$FF, $FF,$00, $FF,$FF, $FF,$00, $00,$FF ;B3C9CC;
     db $FF,$00, $00,$FF, $FF,$00, $FF,$00, $00,$FF, $FF,$00, $00,$FF, $FF,$00 ;B3C9DC;
     db $FF,$00, $00,$FF, $FF,$00, $00,$FF, $FF,$00, $FF,$00, $00,$FF, $FF,$00 ;B3C9EC;

@@ -1633,11 +1633,6 @@ Calculate_CeresSteamPosition_InRotatingElevatorRoom:
 ;      $14: Y position
 
 ; This should be the only one of these functions, the others could just call this one >_<;
-    PHP                                                                  ;8B8B66;
-    PHB                                                                  ;8B8B67;
-    PHK                                                                  ;8B8B68;
-    PLB                                                                  ;8B8B69;
-    REP #$30                                                             ;8B8B6A;
     LDA.B DP_Temp12                                                      ;8B8B6C;
     SEC                                                                  ;8B8B6E;
     SBC.B DP_Mode7TransOriginX                                           ;8B8B6F;
@@ -1702,8 +1697,6 @@ Calculate_CeresSteamPosition_InRotatingElevatorRoom:
     SEC                                                                  ;8B8BE1;
     SBC.B DP_Temp1A                                                      ;8B8BE2;
     STA.B DP_Temp14                                                      ;8B8BE4;
-    PLB                                                                  ;8B8BE6;
-    PLP                                                                  ;8B8BE7;
     RTL                                                                  ;8B8BE8;
 
 
@@ -5657,7 +5650,7 @@ endif
     DEX                                                                  ;8BA57A;
     BPL .loopSamusHead                                                   ;8BA57B;
 if !PAL != 0
-    LDA.W AltText  
+    LDA.W AltText
     BNE .altText
     LDX.W #$00FE
 
@@ -5777,7 +5770,7 @@ CinematicFunction_Intro_PlayGalaxyIsAtPeaceMusic:
     LDA.W #CinematicFunction_Intro_WaitForMusicQueue_WaitFor240Frames    ;8BA632;
     STA.W CinematicFunction                                              ;8BA635;
 if !PAL != 0
-    LDA.W AltText  
+    LDA.W AltText
     BNE .return
     LDX.W #$00FE
 
@@ -5802,7 +5795,7 @@ CinematicFunction_Intro_WaitForMusicQueue_WaitFor240Frames:
     LDA.W #$00F0                                                         ;8BA645;
     STA.W CinematicFunctionTimer                                         ;8BA648;
 if !PAL != 0
-    LDA.W AltText  
+    LDA.W AltText
     BNE .return
     LDX.B VRAMWriteStack
     LDA.W #$0100
@@ -6869,7 +6862,7 @@ if !PAL == 0
     PLY                                                                  ;8BB0A9;
     PLB                                                                  ;8BB0AA;
     RTS                                                                  ;8BB0AB;
-  
+
   .defaultLanguage:
 else
     PLB
@@ -7081,7 +7074,7 @@ if !PAL == 0
     PLY                                                                  ;8BB1D0;
     PLB                                                                  ;8BB1D1;
     RTS                                                                  ;8BB1D2;
-    
+
   .defaultLanguage:
 else
     PLB

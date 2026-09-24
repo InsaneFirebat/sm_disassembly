@@ -2529,8 +2529,6 @@ endif
 
 ;;; $957E: Normal enemy frozen AI ;;;
 NormalEnemyFrozenAI:
-    PHX                                                                  ;A0957E;
-    LDX.B EnemyIndex                                                     ;A09580;
     STZ.W Enemy.flashTimer,X                                             ;A09583;
     LDA.W Enemy.freezeTimer,X                                            ;A09586;
     BEQ .unsetFrozenAI                                                   ;A09589;
@@ -2538,18 +2536,15 @@ NormalEnemyFrozenAI:
     LDA.W EquippedBeams                                                  ;A0958E;
     AND.W #$0002                                                         ;A09591;
     BEQ .unsetFrozenAI                                                   ;A09594;
-    LDA.W #$0001                                                         ;A09596;
-    BRA .return                                                          ;A09599;
+    RTL
 
   .unsetFrozenAI:
     LDA.W Enemy.AI,X                                                     ;A0959B;
     AND.W #$FFFB                                                         ;A0959E;
     STA.W Enemy.AI,X                                                     ;A095A1;
-    STA.W Enemy.freezeTimer,X                                            ;A095A4;
-    LDA.W #$0000                                                         ;A095A7;
+    STZ.W Enemy.freezeTimer,X                                            ;A095A4;
 
   .return:
-    PLX                                                                  ;A095AB;
     RTL                                                                  ;A095AC;
 
 
@@ -7941,34 +7936,6 @@ CalculateAngleOfXYOffset_TopLeftUpperOctant:
     RTS                                                                  ;A0C18D;
 
 
-;;; $C18E: Check if enemy is horizontally off-screen ;;;
-CheckIfEnemyIsHorizontallyOffScreen:
-;; Parameters:
-;;     X: Enemy index
-;; Returns:
-;;     A/carry: Set if off-screen, clear otherwise
-    LDA.W Enemy.XPosition,X                                              ;A0C18E;
-    BMI .offScreen                                                       ;A0C191;
-    CLC                                                                  ;A0C193;
-    ADC.W Enemy.XHitboxRadius,X                                          ;A0C194;
-    SEC                                                                  ;A0C197;
-    SBC.B Layer1XPosition                                                ;A0C198;
-    BMI .offScreen                                                       ;A0C19B;
-    SEC                                                                  ;A0C19D;
-    SBC.W #$0100                                                         ;A0C19E;
-    SEC                                                                  ;A0C1A1;
-    SBC.W Enemy.XHitboxRadius,X                                          ;A0C1A2;
-    BPL .offScreen                                                       ;A0C1A5;
-    LDA.W #$0000                                                         ;A0C1A7;
-    CLC                                                                  ;A0C1AA;
-    RTL                                                                  ;A0C1AB;
-
-  .offScreen:
-    LDA.W #$0001                                                         ;A0C1AC;
-    SEC                                                                  ;A0C1AF;
-    RTL                                                                  ;A0C1B0;
-
-
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $C1B1: Unused. Check if enemy is vertically off-screen ;;;
 UNUSED_CheckIfEnemyIsVerticallyOffScreen_A0C1B1:
@@ -8207,11 +8174,8 @@ EnemyBlockCollisionReaction_Vertical_Slope:
     LDA.L BTS,X                                                          ;A0C31C;
     AND.W #$001F                                                         ;A0C320;
     CMP.W #$0005                                                         ;A0C323;
-    BCS .nonSquare                                                       ;A0C326;
-    JMP.W EnemyBlockCollisionReaction_Vertical_Slope_Square              ;A0C328;
-
-  .nonSquare:
-    JMP.W EnemyBlockCollisionReaction_Vertical_Slope_NonSquare           ;A0C32B;
+    BCC EnemyBlockCollisionReaction_Horizontal_Slope_Square
+    JMP.W EnemyBlockCollisionReaction_Vertical_Slope_NonSquare
 
 
 ;;; $C32E: Enemy block collision reaction - horizontal - slope - square ;;;
@@ -9268,7 +9232,6 @@ AlignEnemyYPositionWithNonSquareSlope:
     SEC                                                                  ;A0C93A;
     SBC.W Enemy.YHitboxRadius,Y                                          ;A0C93B;
     JSL.L CalculateTheBlockContainingAPixelPosition                      ;A0C93F;
-    LDA.W CurrentBlockIndex                                              ;A0C943;
     ASL                                                                  ;A0C946;
     TAX                                                                  ;A0C947;
     LDA.L LevelData,X                                                    ;A0C948;
@@ -12059,7 +12022,7 @@ EnemyHeaders_Steam:                                                      ;A0E1FF
     %deathAnimation(0),
     %powerBombReaction(0),
     %variantIndex(0),
-    %enemyTouch(EnemyTouch_CeresSteam),
+    %enemyTouch(Common_NormalEnemyTouchAI),
     %enemyShot(RTL_A6804C),
     %spritemap(0),
     %tileData(EnemyHeaders_CeresDoor),
