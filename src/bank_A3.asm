@@ -1021,6 +1021,8 @@ Function_Metaree_Idling:
 
 +   LDA.W #Function_Metaree_PrepareToLaunchAttack                        ;A389A5;
     STA.W Metaree.function,X                                             ;A389A8;
+
+  .return:
     RTL                                                                  ;A389AB;
 
 
@@ -10800,6 +10802,7 @@ Spritemap_Yard_67:
     %spritemapEntry(1, $43F8, $FA, 0, 1, 2, 0, $108)
 
 
+if !FEATURE_KEEP_UNREFERENCED
 ;;; $DA9C: Palette - enemy $DBFF (reflec) ;;;
 Palette_Reflec:
     dw $3800,$7FBD,$5EB5,$1884,$0800,$777B,$5EB5,$45EF                   ;A3DA9C;
@@ -11419,6 +11422,7 @@ Spritemap_Reflec_FacingDownLeft:
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $106)
     %spritemapEntry(1, $1EA, $FD, 1, 0, 2, 0, $11A)
     %spritemapEntry(1, $1F2, $05, 1, 0, 2, 0, $10B)
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $DFA2: Palette - enemy $DC3F (Wrecked Ship orange zoomer) ;;;

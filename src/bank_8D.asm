@@ -3715,6 +3715,7 @@ EnemyProjSpritemaps_CacatacSpikes_9:
     dw $0001                                                             ;8DA947;
     %spritemapEntry(0, $1FC, $FC, 1, 1, 3, 0, $11B)
 
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjSpritemaps_StokeProjectile_0_8DA94E:
     dw $0001                                                             ;8DA94E;
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $11E)
@@ -3754,6 +3755,7 @@ UNUSED_EnemyProjSpritemaps_6_8DA986:
 UNUSED_EnemyProjSpritemaps_7_8DA98D:
     dw $0001                                                             ;8DA98D;
     %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $12E)
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjSpritemaps_SporeSpawnsStalk:
     dw $0001                                                             ;8DA994;

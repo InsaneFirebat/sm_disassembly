@@ -14354,6 +14354,7 @@ EnemyProjectile_Cacatac:                                                 ;86DAFE
     %shotList(InstList_EnemyProjectile_Delete))
 
 
+if !FEATURE_KEEP_UNREFERENCED
 ;;; $DB0C: Instruction list - mini-Crocomire projectile ;;;
 UNUSED_InstList_EnemyProjectile_StokeProjectile_86DB0B:
     dw $0010,UNUSED_EnemyProjSpritemaps_StokeProjectile_0_8DA94E         ;86DB0C;
@@ -14469,6 +14470,7 @@ UNUSED_Delete_EnemyProjectile_IfOffScreen_86DBB6:
 
   .return:
     RTS                                                                  ;86DBC1;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $DBC2: Check if enemy projectile is off screen ;;;
@@ -14503,6 +14505,7 @@ CheckIf_EnemyProjectile_IsOffScreen_duplicate_again:
     RTS                                                                  ;86DBF1;
 
 
+if !FEATURE_KEEP_UNREFERENCED
 ;;; $DBF2: Enemy projectile - mini-Crocomire projectile ;;;
 UNUSED_EnemyProjectile_Stoke_86DBF2:                                     ;86DBF2;
     %EnemyProjectile(\
@@ -14513,6 +14516,7 @@ UNUSED_EnemyProjectile_Stoke_86DBF2:                                     ;86DBF2
     %properties($0005),
     %hitList(0),
     %shotList(InstList_EnemyProjectile_Delete))
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $DC00: (Shot) instruction list - enemy projectile $DE88 (spore spawner) ;;;

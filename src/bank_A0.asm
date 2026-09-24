@@ -11266,6 +11266,7 @@ EnemyHeaders_Yard:                                                       ;A0DBBF
     %vulnerabilities(EnemyVulnerabilities_Viola_Yard_HZoomer_Zeela_Sova_Zoomer),
     %name(EnemyName_Yard))
 
+if !FEATURE_KEEP_UNREFERENCED
 EnemyHeaders_Reflec:                                                     ;A0DBFF;
     %EnemyHeader(\
     %tileDataSize($0600),
@@ -11297,6 +11298,7 @@ EnemyHeaders_Reflec:                                                     ;A0DBFF
     %drops(EnemyDropChances_Reflec),
     %vulnerabilities(EnemyVulnerabilities_Indestructible),
     %name(EnemyName_Reflec))
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyHeaders_HZoomer:                                                    ;A0DC3F;
     %EnemyHeader(\

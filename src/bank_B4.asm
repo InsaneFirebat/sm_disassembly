@@ -726,7 +726,9 @@ EnemySetName_WarehouseETank:
     db "BL2_11 "                                                         ;B48506;
 
 EnemySets_WarehouseETank:
+if !FEATURE_KEEP_UNREFERENCED
     dw EnemyHeaders_Reflec,$0001                                         ;B4850D;
+endif ; !FEATURE_KEEP_UNREFERENCED
     dw EnemyHeaders_Beetom,$0002                                         ;B48511;
     dw $FFFF
     db $00                                                               ;B48517;
@@ -988,7 +990,9 @@ EnemySetName_RedKihunterShaft:
 
 EnemySets_RedKihunterShaft:
     dw EnemyHeaders_KihunterRed,$0001                                    ;B486FD;
+if !FEATURE_KEEP_UNREFERENCED
     dw EnemyHeaders_Reflec,$0002                                         ;B48701;
+endif ; !FEATURE_KEEP_UNREFERENCED
     dw $FFFF
     db $00                                                               ;B48707;
 
@@ -4532,7 +4536,7 @@ Debug_Spritemap_Addresses:
     dw DebugSpritemaps_61_EnemyNames_PUROMI                              ;B4A2C3;
     dw DebugSpritemaps_62_EnemyNames_PUU                                 ;B4A2C5;
     dw DebugSpritemaps_63_EnemyNames_PUYO                                ;B4A2C7;
-    dw DebugSpritemaps_64_EnemyNames_REFLEC                              ;B4A2C9;
+    dw $0000 ; Reflec
     dw DebugSpritemaps_65_EnemyNames_RINKA                               ;B4A2CB;
     dw DebugSpritemaps_66_EnemyNames_RIO                                 ;B4A2CD;
     dw DebugSpritemaps_67_EnemyNames_RIPPER1                             ;B4A2CF;
@@ -4550,7 +4554,7 @@ Debug_Spritemap_Addresses:
     dw DebugSpritemaps_73_EnemyNames_SPA                                 ;B4A2E7;
     dw DebugSpritemaps_74_EnemyNames_SQUEEWPT                            ;B4A2E9;
     dw DebugSpritemaps_75_EnemyNames_SSIDE                               ;B4A2EB;
-    dw DebugSpritemaps_76_EnemyNames_STOKE                               ;B4A2ED;
+    dw $0000 ; Stoke
     dw DebugSpritemaps_77_EnemyNames_TOGE                                ;B4A2EF;
     dw DebugSpritemaps_78_EnemyNames_VIOLA                               ;B4A2F1;
     dw DebugSpritemaps_79_EnemyNames_WAVER                               ;B4A2F3;
@@ -5784,6 +5788,7 @@ DebugSpritemaps_63_EnemyNames_PUYO:
     %spritemapEntry(0, $1E8, $E0, 0, 0, 3, 0, $C6)
     %spritemapEntry(0, $1E0, $E0, 0, 0, 3, 0, $C1)
 
+if !FEATURE_KEEP_UNREFERENCED
 DebugSpritemaps_64_EnemyNames_REFLEC:
     dw $0006                                                             ;B4B56F;
     %spritemapEntry(0, $08, $E0, 0, 0, 3, 0, $B2)
@@ -5792,6 +5797,7 @@ DebugSpritemaps_64_EnemyNames_REFLEC:
     %spritemapEntry(0, $1F0, $E0, 0, 0, 3, 0, $B5)
     %spritemapEntry(0, $1E8, $E0, 0, 0, 3, 0, $B4)
     %spritemapEntry(0, $1E0, $E0, 0, 0, 3, 0, $C3)
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DebugSpritemaps_65_EnemyNames_RINKA:
     dw $0005                                                             ;B4B58F;
@@ -5940,6 +5946,7 @@ DebugSpritemaps_75_EnemyNames_SSIDE:
     %spritemapEntry(0, $1E8, $E0, 0, 0, 3, 0, $C4)
     %spritemapEntry(0, $1E0, $E0, 0, 0, 3, 0, $C4)
 
+if !FEATURE_KEEP_UNREFERENCED
 DebugSpritemaps_76_EnemyNames_STOKE:
     dw $0005                                                             ;B4B791;
     %spritemapEntry(0, $00, $E0, 0, 0, 3, 0, $B4)
@@ -5947,6 +5954,7 @@ DebugSpritemaps_76_EnemyNames_STOKE:
     %spritemapEntry(0, $1F0, $E0, 0, 0, 3, 0, $C0)
     %spritemapEntry(0, $1E8, $E0, 0, 0, 3, 0, $C5)
     %spritemapEntry(0, $1E0, $E0, 0, 0, 3, 0, $C4)
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DebugSpritemaps_77_EnemyNames_TOGE:
     dw $0004                                                             ;B4B7AC;
@@ -9651,10 +9659,12 @@ EnemyName_Puyo:
     dw DebugEnemyPopulationData_Puyo                                     ;B4E05D;
     dw $0033                                                             ;B4E05F;
 
+if !FEATURE_KEEP_UNREFERENCED
 EnemyName_Reflec:
     db "REFLEC    "                                                      ;B4E061;
     dw DebugEnemyPopulationData_Reflec                                   ;B4E06B;
     dw $0034                                                             ;B4E06D;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyName_Rinka:
     db "RINKA     "                                                      ;B4E06F;
@@ -9741,10 +9751,12 @@ EnemyName_Sidehopper:
     dw DebugEnemyPopulationData_Sidehopper                               ;B4E159;
     dw $0045                                                             ;B4E15B;
 
+if !FEATURE_KEEP_UNREFERENCED
 EnemyName_Stoke:
     db "STOKE     "                                                      ;B4E15D;
     dw DebugEnemyPopulationData_Stoke                                    ;B4E167;
     dw $0046                                                             ;B4E169;
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyName_Owtch:
     db "TOGE      "                                                      ;B4E16B;
@@ -10711,6 +10723,7 @@ DebugEnemyPopulationData_Puyo:                                           ;B4E85C
     %speedParams($0003, $000A))
     dw $FFFF : db $01
 
+if !FEATURE_KEEP_UNREFERENCED
 DebugEnemyPopulationData_Reflec:                                         ;B4E86F;
     %EnemyPopulations(\
     %enemyID(EnemyHeaders_Reflec),
@@ -10721,6 +10734,7 @@ DebugEnemyPopulationData_Reflec:                                         ;B4E86F
     %extraProperties($0000),
     %speedParams($0000, $0000))
     dw $FFFF : db $00
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DebugEnemyPopulationData_Rinka:                                          ;B4E882;
     %EnemyPopulations(\
@@ -10918,6 +10932,7 @@ DebugEnemyPopulationData_Sidehopper:                                     ;B4E9C2
     %speedParams($0001, $0000))
     dw $FFFF : db $01
 
+if !FEATURE_KEEP_UNREFERENCED
 DebugEnemyPopulationData_Stoke:                                          ;B4E9D5;
     %EnemyPopulations(\
     %enemyID(EnemyHeaders_Stoke),
@@ -10928,6 +10943,7 @@ DebugEnemyPopulationData_Stoke:                                          ;B4E9D5
     %extraProperties($0000),
     %speedParams($0000, $0001))
     dw $FFFF : db $01
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 DebugEnemyPopulationData_Owtch:                                          ;B4E9E8;
     %EnemyPopulations(\
@@ -11735,8 +11751,10 @@ EnemyDropChances_Tripper_Kamer2:
 EnemyDropChances_Metaree:
     db $50,$19,$50,$3C,$05,$05                                           ;B4F314; 31.4%   9.8%  31.4%  23.5%   2.0%   2.0%
 
+if !FEATURE_KEEP_UNREFERENCED
 EnemyDropChances_Reflec:
     db $3C,$3C,$3C,$3C,$0F,$00                                           ;B4F31A; 23.5%  23.5%  23.5%  23.5%   5.9%
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyDropChances_Boyon:
     db $14,$0A,$55,$82,$05,$05                                           ;B4F320;  7.8%   3.9%  33.3%  51.0%   2.0%   2.0%
@@ -11815,8 +11833,10 @@ EnemyDropChances_PirateMagentaNinja:
 EnemyDropChances_PirateMagentaWalking:
     db $32,$78,$50,$00,$05,$00                                           ;B4F3B0; 19.6%  47.1%  31.4%          2.0%
 
+if !FEATURE_KEEP_UNREFERENCED
 EnemyDropChances_Stoke:
     db $50,$50,$50,$05,$05,$05                                           ;B4F3B6; 31.4%  31.4%  31.4%   2.0%   2.0%   2.0%
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyDropChances_MamaTurtle_BabyTurtle:
     db $50,$50,$50,$05,$05,$05                                           ;B4F3BC; 31.4%  31.4%  31.4%   2.0%   2.0%   2.0%

@@ -32,9 +32,11 @@ Tiles_Fireflea:
 incbin "../data/Tiles_Fireflea.bin" ; $600 bytes
 
 
+if !FEATURE_KEEP_UNREFERENCED
 ;;; $AE00: Tiles - enemy $DBFF (reflec) ;;;
 Tiles_Reflec:
 incbin "../data/Tiles_Reflec.bin" ; $600 bytes
+endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $B400: Tiles - enemy $DBBF (yard) ;;;
