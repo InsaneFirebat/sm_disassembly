@@ -664,7 +664,6 @@ InstListPointers_Waver:
 
 ;;; $86E3: Instruction - set spin finished flag ;;;
 Instruction_Waver_SetSpinFinishedFlag:
-    LDX.B EnemyIndex                                                     ;A386E3;
     LDA.W #$0001                                                         ;A386E6;
     STA.W Waver.spinFinishedFlag,X                                       ;A386E9;
     RTL                                                                  ;A386EC;
@@ -672,31 +671,17 @@ Instruction_Waver_SetSpinFinishedFlag:
 
 ;;; $86ED: Initialisation AI - enemy $D63F (waver) ;;;
 InitAI_Waver:
-    LDX.B EnemyIndex                                                     ;A386ED;
-    LDA.W #regional($0180, $01D0)                                        ;A386F0;
-    AND.W #$FF00                                                         ;A386F3;
-    XBA                                                                  ;A386F6;
+    TYX
+    LDA.W #$0001
     STA.W Waver.XVelocity,X                                              ;A386F7;
-    LDA.W #regional($0180, $01D0)                                        ;A386FA;
-    AND.W #$00FF                                                         ;A386FD;
-    XBA                                                                  ;A38700;
+    LDA.W #regional($8000, $D000)
     STA.W Waver.XSubVelocity,X                                           ;A38701;
     LDA.W Enemy.init0,X                                                  ;A38704;
     AND.W #$0001                                                         ;A38707;
     BNE .facingLeft                                                      ;A3870A;
-    LDA.W #regional($0180, $01D0)                                        ;A3870C;
-    EOR.W #$FFFF                                                         ;A3870F;
-    INC                                                                  ;A38712;
-    AND.W #$FF00                                                         ;A38713;
-    XBA                                                                  ;A38716;
-    JSL.L Sign_Extend_A                                                  ;A38717;
+    LDA.W #$FFFE
     STA.W Waver.XVelocity,X                                              ;A3871B;
-    LDA.W #regional($0180, $1D0)                                         ;A3871E;
-    EOR.W #$FFFF                                                         ;A38721;
-    INC                                                                  ;A38724;
-    AND.W #$00FF                                                         ;A38725;
-    XBA                                                                  ;A38728;
-    JSL.L Sign_Extend_A                                                  ;A38729;
+    LDA.W #regional($8000, $3000)
     STA.W Waver.XSubVelocity,X                                           ;A3872D;
 
   .facingLeft:
@@ -708,13 +693,23 @@ InitAI_Waver:
     LDA.W Enemy.init0,X                                                  ;A3873F;
     AND.W #$0001                                                         ;A38742;
     STA.W Waver.newInstListIndex,X                                       ;A38745;
-    JSR.W SetWaverInstList                                               ;A38748;
+    CMP.W Waver.instListIndex,X
+    BEQ .return
+    STA.W Waver.instListIndex,X
+    ASL
+    TAY
+    LDA.W InstListPointers_Waver,Y
+    STA.W Enemy.instList,X
+    LDA.W #$0001
+    STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
+
+  .return:
     RTL                                                                  ;A3874B;
 
 
 ;;; $874C: Main AI - enemy $D63F (waver) ;;;
 MainAI_Waver:
-    LDX.B EnemyIndex                                                     ;A3874C;
     LDA.W Waver.XSubVelocity,X                                           ;A3874F;
     STA.B DP_Temp12                                                      ;A38752;
     LDA.W Waver.XVelocity,X                                              ;A38754;
@@ -740,8 +735,17 @@ MainAI_Waver:
     EOR.W #$0001                                                         ;A38787;
     AND.W #$0001                                                         ;A3878A;
     STA.W Waver.newInstListIndex,X                                       ;A3878D;
-    JSR.W SetWaverInstList                                               ;A38790;
-    JMP.W .merge                                                         ;A38793;
+    CMP.W Waver.instListIndex,X
+    BEQ .merge
+    STA.W Waver.instListIndex,X
+    ASL
+    TAY
+    LDA.W InstListPointers_Waver,Y
+    STA.W Enemy.instList,X
+    LDA.W #$0001
+    STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
+    BRA .merge
 
   .noWallCollision:
     LDA.W #$0004                                                         ;A38796;
@@ -753,7 +757,6 @@ MainAI_Waver:
     STZ.B DP_Temp12                                                      ;A387A8;
     JSL.L MoveEnemyDownBy_14_12                                          ;A387AA;
     BCC .noBlockCollision                                                ;A387AE;
-    LDX.B EnemyIndex                                                     ;A387B0;
     LDA.W Waver.angle,X                                                  ;A387B3;
     CLC                                                                  ;A387B6;
     ADC.W #$0080                                                         ;A387B7;
@@ -762,14 +765,12 @@ MainAI_Waver:
     BRA .merge                                                           ;A387C0;
 
   .noBlockCollision:
-    LDX.B EnemyIndex                                                     ;A387C2;
     LDA.W Waver.angle,X                                                  ;A387C5;
     CLC                                                                  ;A387C8;
     ADC.W #$0002                                                         ;A387C9;
     STA.W Waver.angle,X                                                  ;A387CC;
 
   .merge:
-    LDX.B EnemyIndex                                                     ;A387CF;
     LDA.W Waver.angle,X                                                  ;A387D2;
     AND.W #$007F                                                         ;A387D5;
     CMP.W #$0038                                                         ;A387D8;
@@ -777,7 +778,16 @@ MainAI_Waver:
     LDA.W Waver.newInstListIndex,X                                       ;A387DD;
     ORA.W #$0002                                                         ;A387E0;
     STA.W Waver.newInstListIndex,X                                       ;A387E3;
-    JSR.W SetWaverInstList                                               ;A387E6;
+    CMP.W Waver.instListIndex,X
+    BEQ .notSpinning
+    STA.W Waver.instListIndex,X
+    ASL
+    TAY
+    LDA.W InstListPointers_Waver,Y
+    STA.W Enemy.instList,X
+    LDA.W #$0001
+    STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
 
   .notSpinning:
     LDA.W Waver.spinFinishedFlag,X                                       ;A387E9;
@@ -786,29 +796,19 @@ MainAI_Waver:
     LDA.W Waver.newInstListIndex,X                                       ;A387F1;
     AND.W #$0001                                                         ;A387F4;
     STA.W Waver.newInstListIndex,X                                       ;A387F7;
-    JSR.W SetWaverInstList                                               ;A387FA;
+    CMP.W Waver.instListIndex,X
+    BEQ .return
+    STA.W Waver.instListIndex,X
+    ASL
+    TAY
+    LDA.W InstListPointers_Waver,Y
+    STA.W Enemy.instList,X
+    LDA.W #$0001
+    STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
 
   .return:
     RTL                                                                  ;A387FD;
-
-
-;;; $87FE: Set waver instruction list ;;;
-SetWaverInstList:
-    LDX.B EnemyIndex                                                     ;A387FE;
-    LDA.W Waver.newInstListIndex,X                                       ;A38801;
-    CMP.W Waver.instListIndex,X                                          ;A38804;
-    BEQ .return                                                          ;A38807;
-    STA.W Waver.instListIndex,X                                          ;A38809;
-    ASL                                                                  ;A3880C;
-    TAY                                                                  ;A3880D;
-    LDA.W InstListPointers_Waver,Y                                       ;A3880E;
-    STA.W Enemy.instList,X                                               ;A38811;
-    LDA.W #$0001                                                         ;A38814;
-    STA.W Enemy.instTimer,X                                              ;A38817;
-    STZ.W Enemy.loopCounter,X                                            ;A3881A;
-
-  .return:
-    RTS                                                                  ;A3881D;
 
 
 ;;; $881E: Spritemaps - waver ;;;
@@ -936,7 +936,6 @@ InstListPointers_Metaree:
 
 ;;; $8956: Instruction - set attack ready flag ;;;
 Instruction_Metaree_SetAttackReadyFlag:
-    LDX.B EnemyIndex                                                     ;A38956;
     LDA.W #$0001                                                         ;A38959;
     STA.W Enemy.var4,X                                                   ;A3895C;
     RTL                                                                  ;A3895F;
@@ -944,7 +943,7 @@ Instruction_Metaree_SetAttackReadyFlag:
 
 ;;; $8960: Initialisation AI - enemy $D67F (metaree) ;;;
 InitAI_Metaree:
-    LDX.B EnemyIndex                                                     ;A38960;
+    TYX
     STZ.W Metaree.newInstListIndex,X                                     ;A38963;
     STZ.W Metaree.instListIndex,X                                        ;A38966;
     STZ.W Enemy.var4,X                                                   ;A38969;
@@ -957,7 +956,6 @@ InitAI_Metaree:
 
 ;;; $8979: Main AI - enemy $D67F (metaree) ;;;
 MainAI_Metaree:
-    LDX.B EnemyIndex                                                     ;A38979;
     JMP.W (Metaree.function,X)                                           ;A3897C;
 
 
@@ -985,42 +983,45 @@ Function_Metaree_Idling:
 
 +   CMP.W #$0048                                                         ;A38997;
     BCS .return                                                          ;A3899A;
-    JSR.W DetermineMetareeYVelocity                                      ;A3899C;
-    INC.W Metaree.newInstListIndex,X                                     ;A3899F;
-    JSR.W SetMetareeInstListPointer                                      ;A389A2;
-    LDA.W #Function_Metaree_PrepareToLaunchAttack                        ;A389A5;
-    STA.W Metaree.function,X                                             ;A389A8;
-
-  .return:
-    RTL                                                                  ;A389AB;
-
-
 ;;; $89AC: Determine metaree Y velocity ;;;
-DetermineMetareeYVelocity:
 ; This subroutine assumes SamusYPosition >= Enemy.YPosition
 ; If this is not the case, then due to the unsigned nature of division,
 ; the resulting enemy velocity will be some large value (~AAh) that makes the metaree shoot off-screen in an instant and/or hit the ground from many tiles away
-    LDA.B SamusYPosition                                                 ;A389AC;
-    SEC                                                                  ;A389AF;
-    SBC.W Enemy.YPosition,X                                              ;A389B0;
-    STA.W $4204                                                          ;A389B3;
-    SEP #$20                                                             ;A389B6;
-    LDA.B #regional($18, $12)                                            ;A389B8;
-    STA.W $4206                                                          ;A389BA;
-    REP #$20                                                             ;A389BD;
-    NOP                                                                  ;A389BF;
-    NOP                                                                  ;A389C0;
-    NOP                                                                  ;A389C1;
-    NOP                                                                  ;A389C2;
-    NOP                                                                  ;A389C3;
-    NOP                                                                  ;A389C4;
-    NOP                                                                  ;A389C5;
-    LDA.W $4214                                                          ;A389C6;
-    AND.W #$00FF                                                         ;A389C9;
-    CLC                                                                  ;A389CC;
-    ADC.W #$0004                                                         ;A389CD;
-    STA.W Metaree.YVelocity,X                                            ;A389D0;
-    RTS                                                                  ;A389D3;
+    LDA.B SamusYPosition
+    SEC
+    SBC.W Enemy.YPosition,X
+    STA.W $4204
+    SEP #$20
+    LDA.B #regional($18, $12)
+    STA.W $4206
+    REP #$20
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    LDA.W $4214
+    AND.W #$00FF
+    CLC
+    ADC.W #$0004
+    STA.W Metaree.YVelocity,X
+    LDA.W Metaree.newInstListIndex,X
+    INC
+    STA.W Metaree.newInstListIndex,X
+    CMP.W Metaree.instListIndex,X
+    BEQ +
+    STA.W Metaree.instListIndex,X
+    ASL
+    TAY
+    LDA.W InstListPointers_Metaree,Y
+    STA.W Enemy.instList,X
+    LDA.W #$0001
+    STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
+
++   LDA.W #Function_Metaree_PrepareToLaunchAttack                        ;A389A5;
+    STA.W Metaree.function,X                                             ;A389A8;
+    RTL                                                                  ;A389AB;
 
 
 ;;; $89D4: Metaree function - prepare to launch attack ;;;
@@ -1029,9 +1030,21 @@ Function_Metaree_PrepareToLaunchAttack:
     BEQ .return                                                          ;A389D7;
     STZ.W Metaree.attackReadyFlag,X                                      ;A389D9;
     LDX.B EnemyIndex                                                     ;A389DC;
-    INC.W Metaree.newInstListIndex,X                                     ;A389DF;
-    JSR.W SetMetareeInstListPointer                                      ;A389E2;
-    LDA.W #Function_Metaree_LaunchedAttack                               ;A389E5;
+    LDA.W Metaree.newInstListIndex,X
+    INC
+    STA.W Metaree.newInstListIndex,X
+    CMP.W Metaree.instListIndex,X
+    BEQ +
+    STA.W Metaree.instListIndex,X
+    ASL
+    TAY
+    LDA.W InstListPointers_Metaree,Y
+    STA.W Enemy.instList,X
+    LDA.W #$0001
+    STA.W Enemy.instTimer,X
+    STZ.W Enemy.loopCounter,X
+
++   LDA.W #Function_Metaree_LaunchedAttack                               ;A389E5;
     STA.W Metaree.function,X                                             ;A389E8;
     LDA.W #$005B                                                         ;A389EB;
     JSL.L QueueSound_Lib2_Max6                                           ;A389EE;
@@ -1042,7 +1055,6 @@ Function_Metaree_PrepareToLaunchAttack:
 
 ;;; $89F3: Metaree function - launched attack ;;;
 Function_Metaree_LaunchedAttack:
-    LDX.B EnemyIndex                                                     ;A389F3;
     LDA.W #regional($0015, $000D)                                        ;A389F6;
     STA.W Metaree.burrowTimer,X                                          ;A389F9;
     LDA.W Metaree.YVelocity,X                                            ;A389FC;
@@ -1051,26 +1063,26 @@ Function_Metaree_LaunchedAttack:
     LDA.W Enemy.properties,X                                             ;A38A03;
     ORA.W #$0003                                                         ;A38A06;
     STA.W Enemy.properties,X                                             ;A38A09;
-    JSL.L CheckForVerticalSolidBlockCollision_SkreeMetaree               ;A38A0F;
+    JSR.W CheckForVerticalSolidBlockCollision_SkreeMetaree
     BCS .collision                                                       ;A38A13;
     LDA.W Enemy.YPosition,X                                              ;A38A18;
     CLC                                                                  ;A38A1B;
     ADC.W Metaree.YVelocity,X                                            ;A38A1C;
     STA.W Enemy.YPosition,X                                              ;A38A1F;
     LDA.W #$0002                                                         ;A38A22;
-    STA.W Temp_XVelocity                                                 ;A38A25;
+    STA.B DP_Temp1C
     LDA.W Enemy.XPosition,X                                              ;A38A28;
     CMP.B SamusXPosition                                                 ;A38A2B;
     BMI .steerLeft                                                       ;A38A2E;
     LDA.W #$FFFE                                                         ;A38A30;
-    STA.W Temp_XVelocity                                                 ;A38A33;
+    STA.B DP_Temp1C
 
   .steerLeft:
     LDA.W Enemy.XPosition,X                                              ;A38A36;
     CLC                                                                  ;A38A39;
-    ADC.W Temp_XVelocity                                                 ;A38A3A;
+    ADC.B DP_Temp1C
     STA.W Enemy.XPosition,X                                              ;A38A3D;
-    BRA .return                                                          ;A38A40;
+    RTL
 
   .collision:
     LDA.W #$0001                                                         ;A38A45;
@@ -1079,16 +1091,12 @@ Function_Metaree_LaunchedAttack:
     LDA.W #Function_Metaree_Burrowing                                    ;A38A4E;
     STA.W Metaree.function,X                                             ;A38A51;
     LDA.W #$005C                                                         ;A38A54;
-    JSL.L QueueSound_Lib2_Max6                                           ;A38A57;
-
-  .return:
-    RTL                                                                  ;A38A5B;
+    JML QueueSound_Lib2_Max6
 
 
 ;;; $8A5C: Metaree function - burrowing ;;;
 Function_Metaree_Burrowing:
 ; I have no idea why .delete does any of those three assignments
-    LDX.B EnemyIndex                                                     ;A38A5C;
     DEC.W Metaree.burrowTimer,X                                          ;A38A5F;
     BEQ .delete                                                          ;A38A62;
     LDA.W Metaree.burrowTimer,X                                          ;A38A64;
@@ -1102,7 +1110,6 @@ Function_Metaree_Burrowing:
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A38A80;
     LDY.W #EnemyProjectile_MetalSkreeParticles_UpLeft                    ;A38A84;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A38A87;
-    LDX.B EnemyIndex
 
   .timerNot8:
     INC.W Enemy.YPosition,X                                              ;A38A8E;
@@ -1113,25 +1120,6 @@ Function_Metaree_Burrowing:
     ORA.W #$0200                                                         ;A38AAB;
     STA.W Enemy.properties,X                                             ;A38AAE;
     RTL                                                                  ;A38AB1;
-
-
-;;; $8AB2: Set metaree instruction list pointer ;;;
-SetMetareeInstListPointer:
-    LDX.B EnemyIndex                                                     ;A38AB2;
-    LDA.W Metaree.newInstListIndex,X                                     ;A38AB5;
-    CMP.W Metaree.instListIndex,X                                        ;A38AB8;
-    BEQ .return                                                          ;A38ABB;
-    STA.W Metaree.instListIndex,X                                        ;A38ABD;
-    ASL                                                                  ;A38AC0;
-    TAY                                                                  ;A38AC1;
-    LDA.W InstListPointers_Metaree,Y                                     ;A38AC2;
-    STA.W Enemy.instList,X                                               ;A38AC5;
-    LDA.W #$0001                                                         ;A38AC8;
-    STA.W Enemy.instTimer,X                                              ;A38ACB;
-    STZ.W Enemy.loopCounter,X                                            ;A38ACE;
-
-  .return:
-    RTS                                                                  ;A38AD1;
 
 
 ;;; $8AD2: Unused ;;;
@@ -1160,20 +1148,13 @@ UNUSED_Metaree_Data_A38B04:
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
-;;; $8B0E: RTL ;;;
-RTL_A38B0E:
-    RTL                                                                  ;A38B0E;
-
-
 ;;; $8B0F: Enemy shot - enemy $D67F (metaree) ;;;
 EnemyShot_Metaree:
-    LDX.B EnemyIndex                                                     ;A38B0F;
     LDA.W Enemy.GFXOffset,X                                              ;A38B12;
     STA.W Temp_MetareeParticleVRAMTilesIndex                             ;A38B15;
     LDA.W Enemy.palette,X                                                ;A38B18;
     STA.W Temp_MetareeParticlePaletteIndex                               ;A38B1B;
     JSL.L CommonA3_NormalEnemyShotAI                                     ;A38B1E;
-    LDX.B EnemyIndex                                                     ;A38B22;
     LDA.W Enemy.health,X                                                 ;A38B25;
     BNE .return                                                          ;A38B28;
     LDA.W Temp_MetareeParticleVRAMTilesIndex                             ;A38B2D;
@@ -1189,7 +1170,6 @@ EnemyShot_Metaree:
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A38B50;
     LDY.W #EnemyProjectile_MetalSkreeParticles_UpLeft                    ;A38B54;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A38B57;
-    LDX.B EnemyIndex                                                     ;A38B5B;
     STZ.W Enemy.GFXOffset,X                                              ;A38B5E;
     STZ.W Enemy.palette,X                                                ;A38B61;
 
@@ -2246,16 +2226,16 @@ ElevatorAI_0_LeavingRoom:
     JSL.L QueueSound_Lib3_Max6                                           ;A39558;
     LDA.W #$0032                                                         ;A3955C;
     JSL.L QueueSound_Lib1_Max6                                           ;A3955F;
-    JSL.L MakeSamusFaceForward                                        
-    LDA.W #SamusNewStateHandler_RidingElevator                        
-    STA.W NewStateHandler                                             
-    LDA.W #SamusMovementHandler_Normal                                
-    STA.W MovementHandler                                             
-    LDA.W #SamusDisplayHandler_UsingElevator                          
-    STA.W DrawingHandler                                              
-    LDA.W #SamusPoseInputHandler_Normal                               
-    STA.W PoseInputHandler                                            
-    STZ.W BombJumpDirection                                           
+    JSL.L MakeSamusFaceForward
+    LDA.W #SamusNewStateHandler_RidingElevator
+    STA.W NewStateHandler
+    LDA.W #SamusMovementHandler_Normal
+    STA.W MovementHandler
+    LDA.W #SamusDisplayHandler_UsingElevator
+    STA.W DrawingHandler
+    LDA.W #SamusPoseInputHandler_Normal
+    STA.W PoseInputHandler
+    STZ.W BombJumpDirection
     LDA.W #$FFFF
     STA.W ProspectivePose
     STA.W SpecialProspectivePose
@@ -8285,7 +8265,7 @@ Function_Skree_LaunchedAttack:
     LDA.W Enemy.properties,X                                             ;A3C726;
     ORA.W #$0003                                                         ;A3C729;
     STA.W Enemy.properties,X                                             ;A3C72C;
-    JSL.L CheckForVerticalSolidBlockCollision_SkreeMetaree               ;A3C732;
+    JSR.W CheckForVerticalSolidBlockCollision_SkreeMetaree
     BCS .collision                                                       ;A3C736;
     LDA.W Enemy.YPosition,X                                              ;A3C73B;
     CLC                                                                  ;A3C73E;
@@ -11129,7 +11109,7 @@ EnemyShot_Reflec:
 
     ; 1: Up-right diagonal
     dw .upRightDiagonal_Up    ; Up, facing right
-    dw $0000                  ; Up-right               
+    dw $0000                  ; Up-right
     dw .upRightDiagonal_Right ; Right
     dw $0000                  ; Down-right
     dw .upRightDiagonal_Down  ; Down, facing right
@@ -11142,7 +11122,7 @@ EnemyShot_Reflec:
 
     ; 2: Horizontal
     dw $0000                          ; Up, facing right
-    dw .horizontal_UpRight_UpLeft     ; Up-right               
+    dw .horizontal_UpRight_UpLeft     ; Up-right
     dw $0000                          ; Right
     dw .horizontal_DownRight_DownLeft ; Down-right
     dw $0000                          ; Down, facing right
@@ -11155,7 +11135,7 @@ EnemyShot_Reflec:
 
     ; 3: Down-right diagonal
     dw .downRightDiagonal_Up    ; Up, facing right
-    dw $0000                    ; Up-right               
+    dw $0000                    ; Up-right
     dw .downRightDiagonal_Right ; Right
     dw $0000                    ; Down-right
     dw .downRightDiagonal_Down  ; Down, facing right
@@ -13639,3 +13619,127 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 Freespace_BankA3_F311:                                                   ;A3F311;
 ; $CEF bytes
+
+
+;;; $BF8A: Check for vertical "solid" block collision ;;;
+CheckForVerticalSolidBlockCollision_SkreeMetaree:
+;; Parameters:
+;;     A: Bit 0 = direction. Clear = up, set = down
+;;     X: Enemy index
+;;     $14.$12: Distance to check for collision (unsigned)
+;; Returns:
+;;     Carry: Set if collision, clear otherwise
+
+; Used by skree/metaree. Only used for downwards direction
+    STA.B DP_Temp1C                                                      ;A0BF8A;
+    LDA.W Enemy.XPosition,X                                              ;A0BF96;
+    SEC                                                                  ;A0BF99;
+    SBC.W Enemy.XHitboxRadius,X                                          ;A0BF9A;
+    AND.W #$FFF0                                                         ;A0BF9D;
+    STA.B DP_Temp1A                                                      ;A0BFA0;
+    LDA.W Enemy.XPosition,X                                              ;A0BFA2;
+    CLC                                                                  ;A0BFA5;
+    ADC.W Enemy.XHitboxRadius,X                                          ;A0BFA6;
+    DEC                                                                  ;A0BFA9;
+    SEC                                                                  ;A0BFAA;
+    SBC.B DP_Temp1A                                                      ;A0BFAB;
+    LSR                                                                  ;A0BFAD;
+    LSR                                                                  ;A0BFAE;
+    LSR                                                                  ;A0BFAF;
+    LSR                                                                  ;A0BFB0;
+    STA.B DP_Temp1A                                                      ;A0BFB1;
+    LDA.B DP_Temp1C                                                      ;A0BFB3;
+    LSR                                                                  ;A0BFB5;
+    BCC .zero1C                                                          ;A0BFB6;
+    LDA.W Enemy.YSubPosition,X                                           ;A0BFB8;
+    CLC                                                                  ;A0BFBB;
+    ADC.B DP_Temp12                                                      ;A0BFBC;
+    STA.B DP_Temp16                                                      ;A0BFBE;
+    LDA.W Enemy.YPosition,X                                              ;A0BFC0;
+    ADC.B DP_Temp14                                                      ;A0BFC3;
+    STA.B DP_Temp18                                                      ;A0BFC5;
+    CLC                                                                  ;A0BFC7;
+    ADC.W Enemy.YHitboxRadius,X                                          ;A0BFC8;
+    DEC                                                                  ;A0BFCB;
+    BRA +                                                                ;A0BFCC;
+
+  .zero1C:
+    LDA.W Enemy.YSubPosition,X                                           ;A0BFCE;
+    SEC                                                                  ;A0BFD1;
+    SBC.B DP_Temp12                                                      ;A0BFD2;
+    STA.B DP_Temp16                                                      ;A0BFD4;
+    LDA.W Enemy.YPosition,X                                              ;A0BFD6;
+    SBC.B DP_Temp14                                                      ;A0BFD9;
+    STA.B DP_Temp18                                                      ;A0BFDB;
+    SEC                                                                  ;A0BFDD;
+    SBC.W Enemy.YHitboxRadius,X                                          ;A0BFDE;
+
++   STA.B DP_Temp22                                                      ;A0BFE1;
+    LSR                                                                  ;A0BFE3;
+    LSR                                                                  ;A0BFE4;
+    LSR                                                                  ;A0BFE5;
+    LSR                                                                  ;A0BFE6;
+    SEP #$20                                                             ;A0BFE7;
+    STA.W $4202                                                          ;A0BFE9;
+    LDA.B RoomWidthBlocks                                                ;A0BFEC;
+    STA.W $4203                                                          ;A0BFEF;
+    REP #$20                                                             ;A0BFF2;
+    LDA.W Enemy.XPosition,X                                              ;A0BFF4;
+    SEC                                                                  ;A0BFF7;
+    SBC.W Enemy.XHitboxRadius,X                                          ;A0BFF8;
+    LSR                                                                  ;A0BFFB;
+    LSR                                                                  ;A0BFFC;
+    LSR                                                                  ;A0BFFD;
+    LSR                                                                  ;A0BFFE;
+    CLC                                                                  ;A0BFFF;
+    ADC.W $4216                                                          ;A0C000;
+    ASL                                                                  ;A0C003;
+    TAX                                                                  ;A0C004;
+
+  .loop:
+    LDA.L LevelData,X                                                    ;A0C005;
+    BMI +                                                                ;A0C009;
+    INX                                                                  ;A0C00B;
+    INX                                                                  ;A0C00C;
+    DEC.B DP_Temp1A                                                      ;A0C00D;
+    BPL .loop                                                            ;A0C00F;
+    LDX.B EnemyIndex
+    CLC                                                                  ;A0C012;
+    RTS
+
++   LDX.B EnemyIndex
+    STZ.B DP_Temp12                                                      ;A0C016;
+    LDA.B DP_Temp1C                                                      ;A0C018;
+    LSR                                                                  ;A0C01A;
+    BCC .movingUp                                                        ;A0C01B;
+    LDA.B DP_Temp22                                                      ;A0C01D;
+    AND.W #$FFF0                                                         ;A0C01F;
+    SEC                                                                  ;A0C022;
+    SBC.W Enemy.YHitboxRadius,X                                          ;A0C023;
+    SBC.W Enemy.YPosition,X                                              ;A0C026;
+    BPL +                                                                ;A0C029;
+    STZ.B DP_Temp14                                                      ;A0C02E;
+    SEC                                                                  ;A0C030;
+    RTS
+
++   STA.B DP_Temp14                                                      ;A0C02E;
+    SEC                                                                  ;A0C030;
+    RTS
+
+  .movingUp:
+    LDA.B DP_Temp22                                                      ;A0C033;
+    ORA.W #$000F                                                         ;A0C035;
+    SEC                                                                  ;A0C038;
+    ADC.W Enemy.YHitboxRadius,X                                          ;A0C039;
+    SEC                                                                  ;A0C03C;
+    SBC.W Enemy.YPosition,X                                              ;A0C03D;
+    BMI +                                                                ;A0C040;
+    STZ.B DP_Temp14                                                      ;A0C049;
+    SEC                                                                  ;A0C04B;
+    RTS
+
++   EOR.W #$FFFF                                                         ;A0C045;
+    INC                                                                  ;A0C048;
+    STA.B DP_Temp14                                                      ;A0C049;
+    SEC                                                                  ;A0C04B;
+    RTS
