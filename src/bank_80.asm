@@ -2164,7 +2164,6 @@ NMI:
     LDX.B #$03
     STX.W $420B
 ; Transfer Samus tiles to VRAM
-    PHB
     LDX.B #SamusTopTiles_Set0_CBEE>>16
     PHX
     PLB
@@ -2239,7 +2238,7 @@ NMI:
   .doneSamusTiles:
 ; Process animated tiles object VRAM transfers
     LDA.W AnimatedTilesObject_Enable
-    BPL .doneAnimatedTiles
+    BPL .HUDTilemap
     LDX.B #.doneSamusTiles>>16
     PHX
     PLB
@@ -2270,8 +2269,24 @@ NMI:
     DEX
     BPL .loopAnimatedTiles
 
-  .doneAnimatedTiles:
-    PLB
+  .HUDTilemap:
+; Custom HUD tilemap transfer
+    LDX.B NMI_HUDTransfer
+    BEQ .updateIO
+    LDA.W #$1801
+    STA.W $4310
+    LDA.W #$5820
+    STA.W $2116
+    LDA.W #HUDTilemap
+    STA.W $4312
+    LDX.B #HUDTilemap>>16
+    STX.W $4314
+    LDA.W #$00C0
+    STA.W $4315
+    LDX.B #$02
+    STX.W $420B
+    STZ.B NMI_HUDTransfer
+  .updateIO
 ; Update IO registers
     LDX.B DP_IRQAutoJoy
     STX.W $4200
@@ -3667,23 +3682,8 @@ HandleHUDTilemap_PausedAndRunning:
   .highlight:
     LDA.W AutoCancelHUDItemIndex                                         ;809CA4;
     JSR.W ToggleHUDItemHighlight                                         ;809CA7;
-    LDX.B VRAMWriteStack                                                 ;809CAA;
-    LDA.W #$00C0                                                         ;809CAD;
-    STA.B VRAMWrite.size,X                                               ;809CB0;
-    INX                                                                  ;809CB2;
-    INX                                                                  ;809CB3;
-    LDA.W #HUDTilemap                                                    ;809CB4;
-    STA.B VRAMWrite.size,X                                               ;809CB7;
-    INX                                                                  ;809CB9;
-    INX                                                                  ;809CBA;
-    LDA.W #HUDTilemap>>16                                                ;809CBB;
-    STA.B VRAMWrite.size,X                                               ;809CBE;
-    INX                                                                  ;809CC0;
-    LDA.W #$5820                                                         ;809CC1;
-    STA.B VRAMWrite.size,X                                               ;809CC4;
-    INX                                                                  ;809CC6;
-    INX                                                                  ;809CC7;
-    STX.B VRAMWriteStack                                                 ;809CC8;
+    LDA.W #$0001
+    STA.B NMI_HUDTransfer
     PLB                                                                  ;809CCB;
     RTL                                                                  ;809CCD;
 
