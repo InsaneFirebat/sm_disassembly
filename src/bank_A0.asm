@@ -2532,7 +2532,8 @@ NormalEnemyFrozenAI:
     STZ.W Enemy.flashTimer,X                                             ;A09583;
     LDA.W Enemy.freezeTimer,X                                            ;A09586;
     BEQ .unsetFrozenAI                                                   ;A09589;
-    DEC.W Enemy.freezeTimer,X                                            ;A0958B;
+    DEC
+    STA.W Enemy.freezeTimer,X
     LDA.W EquippedBeams                                                  ;A0958E;
     AND.W #$0002                                                         ;A09591;
     BEQ .unsetFrozenAI                                                   ;A09594;

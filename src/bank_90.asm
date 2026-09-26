@@ -369,7 +369,7 @@ AnimateSamus_FX_Acid:
     ADC.W #$180*!SPF*$100
     STA.W PeriodicSubDamage                                              ;908240;
     LDA.W PeriodicDamage                                                 ;908243;
-    ADC.W $0001
+    ADC.W #$0001
     STA.W PeriodicDamage                                                 ;908249; fallthrough to AnimateSamus_SubmergedInLavaAcid
 
 
