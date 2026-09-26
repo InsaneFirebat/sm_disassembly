@@ -5664,7 +5664,7 @@ endif
     DEX                                                                  ;8BA57A;
     BPL .loopSamusHead                                                   ;8BA57B;
 if !PAL != 0
-    LDA.W AltText  
+    LDA.W AltText
     BNE .altText
     LDX.W #$00FE
 
@@ -5784,7 +5784,7 @@ CinematicFunction_Intro_PlayGalaxyIsAtPeaceMusic:
     LDA.W #CinematicFunction_Intro_WaitForMusicQueue_WaitFor240Frames    ;8BA632;
     STA.W CinematicFunction                                              ;8BA635;
 if !PAL != 0
-    LDA.W AltText  
+    LDA.W AltText
     BNE .return
     LDX.W #$00FE
 
@@ -5809,7 +5809,7 @@ CinematicFunction_Intro_WaitForMusicQueue_WaitFor240Frames:
     LDA.W #$00F0                                                         ;8BA645;
     STA.W CinematicFunctionTimer                                         ;8BA648;
 if !PAL != 0
-    LDA.W AltText  
+    LDA.W AltText
     BNE .return
     LDX.W VRAMWriteStack
     LDA.W #$0100
@@ -6879,7 +6879,7 @@ if !PAL == 0
     PLY                                                                  ;8BB0A9;
     PLB                                                                  ;8BB0AA;
     RTS                                                                  ;8BB0AB;
-  
+
   .defaultLanguage:
 else
     PLB
@@ -7092,7 +7092,7 @@ if !PAL == 0
     PLY                                                                  ;8BB1D0;
     PLB                                                                  ;8BB1D1;
     RTS                                                                  ;8BB1D2;
-    
+
   .defaultLanguage:
 else
     PLB

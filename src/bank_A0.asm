@@ -487,16 +487,16 @@ CommonEnemySpeeds_QuadraticallyIncreasing:
 ; Generate the table with this python code
 ;     def triangle(n):
 ;         return n * (n + 1) // 2
-;     
+;
 ;     for t in range(95):
 ;         T = triangle(t)
-;     
+;
 ;         T_low = T & 0xFF
 ;         T_high = T >> 8
-;         
+;
 ;         v_frac = T_low * 0x109 & 0xFFFF # Truncated
 ;         v_whole = T_high
-;         
+;
 ;         print(f'{t}: {v_whole:X}.{v_frac:04X}h')
 
 ; The PAL table is a tad better, but still with anomalous inaccuracies

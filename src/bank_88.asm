@@ -6939,7 +6939,7 @@ IndirectHDMATable_LavaAcidBG2_Yscroll:
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1A
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1C
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1E
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable    
+    db $81 : dw LavaAcidBG2YScrollHDMADataTable
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+2
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+4
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+6
@@ -6955,7 +6955,7 @@ IndirectHDMATable_LavaAcidBG2_Yscroll:
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1A
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1C
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1E
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable    
+    db $81 : dw LavaAcidBG2YScrollHDMADataTable
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+2
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+4
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+6
@@ -6971,7 +6971,7 @@ IndirectHDMATable_LavaAcidBG2_Yscroll:
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1A
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1C
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1E
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable    
+    db $81 : dw LavaAcidBG2YScrollHDMADataTable
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+2
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+4
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+6
@@ -6987,7 +6987,7 @@ IndirectHDMATable_LavaAcidBG2_Yscroll:
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1A
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1C
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1E
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable    
+    db $81 : dw LavaAcidBG2YScrollHDMADataTable
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+2
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+4
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+6
@@ -7003,7 +7003,7 @@ IndirectHDMATable_LavaAcidBG2_Yscroll:
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1A
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1C
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1E
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable    
+    db $81 : dw LavaAcidBG2YScrollHDMADataTable
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+2
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+4
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+6
@@ -7019,7 +7019,7 @@ IndirectHDMATable_LavaAcidBG2_Yscroll:
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1A
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1C
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1E
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable    
+    db $81 : dw LavaAcidBG2YScrollHDMADataTable
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+2
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+4
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+6
@@ -7035,7 +7035,7 @@ IndirectHDMATable_LavaAcidBG2_Yscroll:
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1A
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1C
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1E
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable    
+    db $81 : dw LavaAcidBG2YScrollHDMADataTable
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+2
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+4
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+6
@@ -7051,7 +7051,7 @@ IndirectHDMATable_LavaAcidBG2_Yscroll:
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1A
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1C
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1E
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable    
+    db $81 : dw LavaAcidBG2YScrollHDMADataTable
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+2
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+4
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+6
@@ -7067,7 +7067,7 @@ IndirectHDMATable_LavaAcidBG2_Yscroll:
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1A
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1C
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1E
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable    
+    db $81 : dw LavaAcidBG2YScrollHDMADataTable
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+2
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+4
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+6
@@ -7083,7 +7083,7 @@ IndirectHDMATable_LavaAcidBG2_Yscroll:
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1A
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1C
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1E
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable    
+    db $81 : dw LavaAcidBG2YScrollHDMADataTable
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+2
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+4
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+6
@@ -7099,7 +7099,7 @@ IndirectHDMATable_LavaAcidBG2_Yscroll:
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1A
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1C
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1E
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable    
+    db $81 : dw LavaAcidBG2YScrollHDMADataTable
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+2
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+4
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+6
@@ -7115,7 +7115,7 @@ IndirectHDMATable_LavaAcidBG2_Yscroll:
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1A
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1C
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1E
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable    
+    db $81 : dw LavaAcidBG2YScrollHDMADataTable
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+2
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+4
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+6
@@ -7131,7 +7131,7 @@ IndirectHDMATable_LavaAcidBG2_Yscroll:
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1A
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1C
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1E
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable    
+    db $81 : dw LavaAcidBG2YScrollHDMADataTable
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+2
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+4
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+6
@@ -7147,7 +7147,7 @@ IndirectHDMATable_LavaAcidBG2_Yscroll:
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1A
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1C
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1E
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable    
+    db $81 : dw LavaAcidBG2YScrollHDMADataTable
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+2
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+4
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+6
@@ -7163,7 +7163,7 @@ IndirectHDMATable_LavaAcidBG2_Yscroll:
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1A
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1C
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1E
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable    
+    db $81 : dw LavaAcidBG2YScrollHDMADataTable
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+2
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+4
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+6
@@ -7179,7 +7179,7 @@ IndirectHDMATable_LavaAcidBG2_Yscroll:
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1A
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1C
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+$1E
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable    
+    db $81 : dw LavaAcidBG2YScrollHDMADataTable
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+2
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+4
     db $81 : dw LavaAcidBG2YScrollHDMADataTable+6
@@ -7863,7 +7863,7 @@ IndirectHDMATable_WaterBG3XScroll_1:
     db $81 : dw WaterBG3XScrollHDMADataTable+$1A
     db $81 : dw WaterBG3XScrollHDMADataTable+$1C
     db $81 : dw WaterBG3XScrollHDMADataTable+$1E
-    db $81 : dw WaterBG3XScrollHDMADataTable    
+    db $81 : dw WaterBG3XScrollHDMADataTable
     db $81 : dw WaterBG3XScrollHDMADataTable+2
     db $81 : dw WaterBG3XScrollHDMADataTable+4
     db $81 : dw WaterBG3XScrollHDMADataTable+6
@@ -7879,7 +7879,7 @@ IndirectHDMATable_WaterBG3XScroll_1:
     db $81 : dw WaterBG3XScrollHDMADataTable+$1A
     db $81 : dw WaterBG3XScrollHDMADataTable+$1C
     db $81 : dw WaterBG3XScrollHDMADataTable+$1E
-    db $81 : dw WaterBG3XScrollHDMADataTable    
+    db $81 : dw WaterBG3XScrollHDMADataTable
     db $81 : dw WaterBG3XScrollHDMADataTable+2
     db $81 : dw WaterBG3XScrollHDMADataTable+4
     db $81 : dw WaterBG3XScrollHDMADataTable+6
@@ -7895,7 +7895,7 @@ IndirectHDMATable_WaterBG3XScroll_1:
     db $81 : dw WaterBG3XScrollHDMADataTable+$1A
     db $81 : dw WaterBG3XScrollHDMADataTable+$1C
     db $81 : dw WaterBG3XScrollHDMADataTable+$1E
-    db $81 : dw WaterBG3XScrollHDMADataTable    
+    db $81 : dw WaterBG3XScrollHDMADataTable
     db $81 : dw WaterBG3XScrollHDMADataTable+2
     db $81 : dw WaterBG3XScrollHDMADataTable+4
     db $81 : dw WaterBG3XScrollHDMADataTable+6
@@ -7911,7 +7911,7 @@ IndirectHDMATable_WaterBG3XScroll_1:
     db $81 : dw WaterBG3XScrollHDMADataTable+$1A
     db $81 : dw WaterBG3XScrollHDMADataTable+$1C
     db $81 : dw WaterBG3XScrollHDMADataTable+$1E
-    db $81 : dw WaterBG3XScrollHDMADataTable    
+    db $81 : dw WaterBG3XScrollHDMADataTable
     db $81 : dw WaterBG3XScrollHDMADataTable+2
     db $81 : dw WaterBG3XScrollHDMADataTable+4
     db $81 : dw WaterBG3XScrollHDMADataTable+6
@@ -7927,7 +7927,7 @@ IndirectHDMATable_WaterBG3XScroll_1:
     db $81 : dw WaterBG3XScrollHDMADataTable+$1A
     db $81 : dw WaterBG3XScrollHDMADataTable+$1C
     db $81 : dw WaterBG3XScrollHDMADataTable+$1E
-    db $81 : dw WaterBG3XScrollHDMADataTable    
+    db $81 : dw WaterBG3XScrollHDMADataTable
     db $81 : dw WaterBG3XScrollHDMADataTable+2
     db $81 : dw WaterBG3XScrollHDMADataTable+4
     db $81 : dw WaterBG3XScrollHDMADataTable+6
@@ -7943,7 +7943,7 @@ IndirectHDMATable_WaterBG3XScroll_1:
     db $81 : dw WaterBG3XScrollHDMADataTable+$1A
     db $81 : dw WaterBG3XScrollHDMADataTable+$1C
     db $81 : dw WaterBG3XScrollHDMADataTable+$1E
-    db $81 : dw WaterBG3XScrollHDMADataTable    
+    db $81 : dw WaterBG3XScrollHDMADataTable
     db $81 : dw WaterBG3XScrollHDMADataTable+2
     db $81 : dw WaterBG3XScrollHDMADataTable+4
     db $81 : dw WaterBG3XScrollHDMADataTable+6
@@ -7959,7 +7959,7 @@ IndirectHDMATable_WaterBG3XScroll_1:
     db $81 : dw WaterBG3XScrollHDMADataTable+$1A
     db $81 : dw WaterBG3XScrollHDMADataTable+$1C
     db $81 : dw WaterBG3XScrollHDMADataTable+$1E
-    db $81 : dw WaterBG3XScrollHDMADataTable    
+    db $81 : dw WaterBG3XScrollHDMADataTable
     db $81 : dw WaterBG3XScrollHDMADataTable+2
     db $81 : dw WaterBG3XScrollHDMADataTable+4
     db $81 : dw WaterBG3XScrollHDMADataTable+6
@@ -7975,7 +7975,7 @@ IndirectHDMATable_WaterBG3XScroll_1:
     db $81 : dw WaterBG3XScrollHDMADataTable+$1A
     db $81 : dw WaterBG3XScrollHDMADataTable+$1C
     db $81 : dw WaterBG3XScrollHDMADataTable+$1E
-    db $81 : dw WaterBG3XScrollHDMADataTable    
+    db $81 : dw WaterBG3XScrollHDMADataTable
     db $81 : dw WaterBG3XScrollHDMADataTable+2
     db $81 : dw WaterBG3XScrollHDMADataTable+4
     db $81 : dw WaterBG3XScrollHDMADataTable+6
@@ -7991,7 +7991,7 @@ IndirectHDMATable_WaterBG3XScroll_1:
     db $81 : dw WaterBG3XScrollHDMADataTable+$1A
     db $81 : dw WaterBG3XScrollHDMADataTable+$1C
     db $81 : dw WaterBG3XScrollHDMADataTable+$1E
-    db $81 : dw WaterBG3XScrollHDMADataTable    
+    db $81 : dw WaterBG3XScrollHDMADataTable
     db $81 : dw WaterBG3XScrollHDMADataTable+2
     db $81 : dw WaterBG3XScrollHDMADataTable+4
     db $81 : dw WaterBG3XScrollHDMADataTable+6
@@ -8007,7 +8007,7 @@ IndirectHDMATable_WaterBG3XScroll_1:
     db $81 : dw WaterBG3XScrollHDMADataTable+$1A
     db $81 : dw WaterBG3XScrollHDMADataTable+$1C
     db $81 : dw WaterBG3XScrollHDMADataTable+$1E
-    db $81 : dw WaterBG3XScrollHDMADataTable    
+    db $81 : dw WaterBG3XScrollHDMADataTable
     db $81 : dw WaterBG3XScrollHDMADataTable+2
     db $81 : dw WaterBG3XScrollHDMADataTable+4
     db $81 : dw WaterBG3XScrollHDMADataTable+6
@@ -8023,7 +8023,7 @@ IndirectHDMATable_WaterBG3XScroll_1:
     db $81 : dw WaterBG3XScrollHDMADataTable+$1A
     db $81 : dw WaterBG3XScrollHDMADataTable+$1C
     db $81 : dw WaterBG3XScrollHDMADataTable+$1E
-    db $81 : dw WaterBG3XScrollHDMADataTable    
+    db $81 : dw WaterBG3XScrollHDMADataTable
     db $81 : dw WaterBG3XScrollHDMADataTable+2
     db $81 : dw WaterBG3XScrollHDMADataTable+4
     db $81 : dw WaterBG3XScrollHDMADataTable+6
@@ -8039,7 +8039,7 @@ IndirectHDMATable_WaterBG3XScroll_1:
     db $81 : dw WaterBG3XScrollHDMADataTable+$1A
     db $81 : dw WaterBG3XScrollHDMADataTable+$1C
     db $81 : dw WaterBG3XScrollHDMADataTable+$1E
-    db $81 : dw WaterBG3XScrollHDMADataTable    
+    db $81 : dw WaterBG3XScrollHDMADataTable
     db $81 : dw WaterBG3XScrollHDMADataTable+2
     db $81 : dw WaterBG3XScrollHDMADataTable+4
     db $81 : dw WaterBG3XScrollHDMADataTable+6
@@ -8055,7 +8055,7 @@ IndirectHDMATable_WaterBG3XScroll_1:
     db $81 : dw WaterBG3XScrollHDMADataTable+$1A
     db $81 : dw WaterBG3XScrollHDMADataTable+$1C
     db $81 : dw WaterBG3XScrollHDMADataTable+$1E
-    db $81 : dw WaterBG3XScrollHDMADataTable    
+    db $81 : dw WaterBG3XScrollHDMADataTable
     db $81 : dw WaterBG3XScrollHDMADataTable+2
     db $81 : dw WaterBG3XScrollHDMADataTable+4
     db $81 : dw WaterBG3XScrollHDMADataTable+6
@@ -8071,7 +8071,7 @@ IndirectHDMATable_WaterBG3XScroll_1:
     db $81 : dw WaterBG3XScrollHDMADataTable+$1A
     db $81 : dw WaterBG3XScrollHDMADataTable+$1C
     db $81 : dw WaterBG3XScrollHDMADataTable+$1E
-    db $81 : dw WaterBG3XScrollHDMADataTable    
+    db $81 : dw WaterBG3XScrollHDMADataTable
     db $81 : dw WaterBG3XScrollHDMADataTable+2
     db $81 : dw WaterBG3XScrollHDMADataTable+4
     db $81 : dw WaterBG3XScrollHDMADataTable+6
@@ -8087,7 +8087,7 @@ IndirectHDMATable_WaterBG3XScroll_1:
     db $81 : dw WaterBG3XScrollHDMADataTable+$1A
     db $81 : dw WaterBG3XScrollHDMADataTable+$1C
     db $81 : dw WaterBG3XScrollHDMADataTable+$1E
-    db $81 : dw WaterBG3XScrollHDMADataTable    
+    db $81 : dw WaterBG3XScrollHDMADataTable
     db $81 : dw WaterBG3XScrollHDMADataTable+2
     db $81 : dw WaterBG3XScrollHDMADataTable+4
     db $81 : dw WaterBG3XScrollHDMADataTable+6
@@ -8103,7 +8103,7 @@ IndirectHDMATable_WaterBG3XScroll_1:
     db $81 : dw WaterBG3XScrollHDMADataTable+$1A
     db $81 : dw WaterBG3XScrollHDMADataTable+$1C
     db $81 : dw WaterBG3XScrollHDMADataTable+$1E
-    db $81 : dw WaterBG3XScrollHDMADataTable    
+    db $81 : dw WaterBG3XScrollHDMADataTable
     db $81 : dw WaterBG3XScrollHDMADataTable+2
     db $81 : dw WaterBG3XScrollHDMADataTable+4
     db $81 : dw WaterBG3XScrollHDMADataTable+6
@@ -8119,7 +8119,7 @@ IndirectHDMATable_WaterBG3XScroll_1:
     db $81 : dw WaterBG3XScrollHDMADataTable+$1A
     db $81 : dw WaterBG3XScrollHDMADataTable+$1C
     db $81 : dw WaterBG3XScrollHDMADataTable+$1E
-    db $81 : dw WaterBG3XScrollHDMADataTable    
+    db $81 : dw WaterBG3XScrollHDMADataTable
     db $81 : dw WaterBG3XScrollHDMADataTable+2
     db $81 : dw WaterBG3XScrollHDMADataTable+4
     db $81 : dw WaterBG3XScrollHDMADataTable+6
@@ -8135,7 +8135,7 @@ IndirectHDMATable_WaterBG3XScroll_1:
     db $81 : dw WaterBG3XScrollHDMADataTable+$1A
     db $81 : dw WaterBG3XScrollHDMADataTable+$1C
     db $81 : dw WaterBG3XScrollHDMADataTable+$1E
-    db $81 : dw WaterBG3XScrollHDMADataTable    
+    db $81 : dw WaterBG3XScrollHDMADataTable
     db $81 : dw WaterBG3XScrollHDMADataTable+2
     db $81 : dw WaterBG3XScrollHDMADataTable+4
     db $81 : dw WaterBG3XScrollHDMADataTable+6
@@ -8151,7 +8151,7 @@ IndirectHDMATable_WaterBG3XScroll_1:
     db $81 : dw WaterBG3XScrollHDMADataTable+$1A
     db $81 : dw WaterBG3XScrollHDMADataTable+$1C
     db $81 : dw WaterBG3XScrollHDMADataTable+$1E
-    db $81 : dw WaterBG3XScrollHDMADataTable    
+    db $81 : dw WaterBG3XScrollHDMADataTable
     db $81 : dw WaterBG3XScrollHDMADataTable+2
     db $81 : dw WaterBG3XScrollHDMADataTable+4
     db $81 : dw WaterBG3XScrollHDMADataTable+6
@@ -8167,7 +8167,7 @@ IndirectHDMATable_WaterBG3XScroll_1:
     db $81 : dw WaterBG3XScrollHDMADataTable+$1A
     db $81 : dw WaterBG3XScrollHDMADataTable+$1C
     db $81 : dw WaterBG3XScrollHDMADataTable+$1E
-    db $81 : dw WaterBG3XScrollHDMADataTable    
+    db $81 : dw WaterBG3XScrollHDMADataTable
     db $81 : dw WaterBG3XScrollHDMADataTable+2
     db $81 : dw WaterBG3XScrollHDMADataTable+4
     db $81 : dw WaterBG3XScrollHDMADataTable+6
@@ -8183,7 +8183,7 @@ IndirectHDMATable_WaterBG3XScroll_1:
     db $81 : dw WaterBG3XScrollHDMADataTable+$1A
     db $81 : dw WaterBG3XScrollHDMADataTable+$1C
     db $81 : dw WaterBG3XScrollHDMADataTable+$1E
-    db $81 : dw WaterBG3XScrollHDMADataTable    
+    db $81 : dw WaterBG3XScrollHDMADataTable
     db $81 : dw WaterBG3XScrollHDMADataTable+2
     db $81 : dw WaterBG3XScrollHDMADataTable+4
     db $81 : dw WaterBG3XScrollHDMADataTable+6
@@ -8199,7 +8199,7 @@ IndirectHDMATable_WaterBG3XScroll_1:
     db $81 : dw WaterBG3XScrollHDMADataTable+$1A
     db $81 : dw WaterBG3XScrollHDMADataTable+$1C
     db $81 : dw WaterBG3XScrollHDMADataTable+$1E
-    db $81 : dw WaterBG3XScrollHDMADataTable    
+    db $81 : dw WaterBG3XScrollHDMADataTable
     db $81 : dw WaterBG3XScrollHDMADataTable+2
     db $81 : dw WaterBG3XScrollHDMADataTable+4
     db $81 : dw WaterBG3XScrollHDMADataTable+6
@@ -8215,7 +8215,7 @@ IndirectHDMATable_WaterBG3XScroll_1:
     db $81 : dw WaterBG3XScrollHDMADataTable+$1A
     db $81 : dw WaterBG3XScrollHDMADataTable+$1C
     db $81 : dw WaterBG3XScrollHDMADataTable+$1E
-    db $81 : dw WaterBG3XScrollHDMADataTable    
+    db $81 : dw WaterBG3XScrollHDMADataTable
     db $81 : dw WaterBG3XScrollHDMADataTable+2
     db $81 : dw WaterBG3XScrollHDMADataTable+4
     db $81 : dw WaterBG3XScrollHDMADataTable+6
@@ -8231,7 +8231,7 @@ IndirectHDMATable_WaterBG3XScroll_1:
     db $81 : dw WaterBG3XScrollHDMADataTable+$1A
     db $81 : dw WaterBG3XScrollHDMADataTable+$1C
     db $81 : dw WaterBG3XScrollHDMADataTable+$1E
-    db $81 : dw WaterBG3XScrollHDMADataTable    
+    db $81 : dw WaterBG3XScrollHDMADataTable
     db $81 : dw WaterBG3XScrollHDMADataTable+2
     db $81 : dw WaterBG3XScrollHDMADataTable+4
     db $81 : dw WaterBG3XScrollHDMADataTable+6
@@ -8247,7 +8247,7 @@ IndirectHDMATable_WaterBG3XScroll_1:
     db $81 : dw WaterBG3XScrollHDMADataTable+$1A
     db $81 : dw WaterBG3XScrollHDMADataTable+$1C
     db $81 : dw WaterBG3XScrollHDMADataTable+$1E
-    db $81 : dw WaterBG3XScrollHDMADataTable    
+    db $81 : dw WaterBG3XScrollHDMADataTable
     db $81 : dw WaterBG3XScrollHDMADataTable+2
     db $81 : dw WaterBG3XScrollHDMADataTable+4
     db $81 : dw WaterBG3XScrollHDMADataTable+6
@@ -8263,7 +8263,7 @@ IndirectHDMATable_WaterBG3XScroll_1:
     db $81 : dw WaterBG3XScrollHDMADataTable+$1A
     db $81 : dw WaterBG3XScrollHDMADataTable+$1C
     db $81 : dw WaterBG3XScrollHDMADataTable+$1E
-    db $81 : dw WaterBG3XScrollHDMADataTable    
+    db $81 : dw WaterBG3XScrollHDMADataTable
     db $81 : dw WaterBG3XScrollHDMADataTable+2
     db $81 : dw WaterBG3XScrollHDMADataTable+4
     db $81 : dw WaterBG3XScrollHDMADataTable+6
@@ -8279,7 +8279,7 @@ IndirectHDMATable_WaterBG3XScroll_1:
     db $81 : dw WaterBG3XScrollHDMADataTable+$1A
     db $81 : dw WaterBG3XScrollHDMADataTable+$1C
     db $81 : dw WaterBG3XScrollHDMADataTable+$1E
-    db $81 : dw WaterBG3XScrollHDMADataTable    
+    db $81 : dw WaterBG3XScrollHDMADataTable
     db $81 : dw WaterBG3XScrollHDMADataTable+2
     db $81 : dw WaterBG3XScrollHDMADataTable+4
     db $81 : dw WaterBG3XScrollHDMADataTable+6
@@ -8295,7 +8295,7 @@ IndirectHDMATable_WaterBG3XScroll_1:
     db $81 : dw WaterBG3XScrollHDMADataTable+$1A
     db $81 : dw WaterBG3XScrollHDMADataTable+$1C
     db $81 : dw WaterBG3XScrollHDMADataTable+$1E
-    db $81 : dw WaterBG3XScrollHDMADataTable    
+    db $81 : dw WaterBG3XScrollHDMADataTable
     db $81 : dw WaterBG3XScrollHDMADataTable+2
     db $81 : dw WaterBG3XScrollHDMADataTable+4
     db $81 : dw WaterBG3XScrollHDMADataTable+6
@@ -8311,7 +8311,7 @@ IndirectHDMATable_WaterBG3XScroll_1:
     db $81 : dw WaterBG3XScrollHDMADataTable+$1A
     db $81 : dw WaterBG3XScrollHDMADataTable+$1C
     db $81 : dw WaterBG3XScrollHDMADataTable+$1E
-    db $81 : dw WaterBG3XScrollHDMADataTable    
+    db $81 : dw WaterBG3XScrollHDMADataTable
     db $81 : dw WaterBG3XScrollHDMADataTable+2
     db $81 : dw WaterBG3XScrollHDMADataTable+4
     db $81 : dw WaterBG3XScrollHDMADataTable+6
@@ -8327,7 +8327,7 @@ IndirectHDMATable_WaterBG3XScroll_1:
     db $81 : dw WaterBG3XScrollHDMADataTable+$1A
     db $81 : dw WaterBG3XScrollHDMADataTable+$1C
     db $81 : dw WaterBG3XScrollHDMADataTable+$1E
-    db $81 : dw WaterBG3XScrollHDMADataTable    
+    db $81 : dw WaterBG3XScrollHDMADataTable
     db $81 : dw WaterBG3XScrollHDMADataTable+2
     db $81 : dw WaterBG3XScrollHDMADataTable+4
     db $81 : dw WaterBG3XScrollHDMADataTable+6
@@ -8343,7 +8343,7 @@ IndirectHDMATable_WaterBG3XScroll_1:
     db $81 : dw WaterBG3XScrollHDMADataTable+$1A
     db $81 : dw WaterBG3XScrollHDMADataTable+$1C
     db $81 : dw WaterBG3XScrollHDMADataTable+$1E
-    db $81 : dw WaterBG3XScrollHDMADataTable    
+    db $81 : dw WaterBG3XScrollHDMADataTable
     db $81 : dw WaterBG3XScrollHDMADataTable+2
     db $81 : dw WaterBG3XScrollHDMADataTable+4
     db $81 : dw WaterBG3XScrollHDMADataTable+6

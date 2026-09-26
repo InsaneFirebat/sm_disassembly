@@ -53,7 +53,7 @@ if !PAL == 0
     JSR.W LoadIntroSubtitleTiles                                         ;8BB547;
     JSR.W TransferSubtitleTilesToVRAM                                    ;8BB54A;
 else
-    LDA.W AltText  
+    LDA.W AltText
     BNE .French
     LDA.W #IntroSubtitleTilemaps_German_Page1_Subpage1
     STA.B DP_Temp00
@@ -98,8 +98,8 @@ PreInstruction_LoadIntroSubtitlePage1_Subpage2:
     STA.B DP_Temp12
     JSR.W LoadIntroSubtitleTilemapTopRow
     LDA.W #$003C
-    STA.W CinematicSpriteObject_IntroSubtitleTimer 
-    
+    STA.W CinematicSpriteObject_IntroSubtitleTimer
+
   .return
     RTS
 
@@ -132,7 +132,7 @@ if !PAL == 0
     JSR.W LoadIntroSubtitleTiles                                         ;8BB57D;
     JSR.W TransferSubtitleTilesToVRAM                                    ;8BB580;
 else
-    LDA.W AltText  
+    LDA.W AltText
     BNE .French
     LDA.W #IntroSubtitleTilemaps_German_Page2_Subpage1
     STA.B DP_Temp00
@@ -140,7 +140,7 @@ else
     STA.B DP_Temp12
     JSR.W LoadIntroSubtitleTilemapTopRow
     BRA .return
-    
+
   .French
     LDA.W #IntroSubtitleTilemaps_French_Page2
     STA.B DP_Temp00
@@ -214,7 +214,7 @@ if !PAL == 0
     JSR.W LoadIntroSubtitleTiles                                         ;8BB5E6;
     JSR.W TransferSubtitleTilesToVRAM                                    ;8BB5E9;
 else
-    LDA.W AltText  
+    LDA.W AltText
     BNE .French
     LDA.W #IntroSubtitleTilemaps_German_Page3_Subpage1
     STA.B DP_Temp00
@@ -222,7 +222,7 @@ else
     STA.B DP_Temp12
     JSR.W LoadIntroSubtitleTilemapTopRow
     BRA .return
-    
+
   .French
     LDA.W #IntroSubtitleTilemaps_French_Page3
     STA.B DP_Temp00
@@ -296,7 +296,7 @@ if !PAL == 0
     JSR.W LoadIntroSubtitleTiles                                         ;8BB64F;
     JSR.W TransferSubtitleTilesToVRAM                                    ;8BB652;
 else
-    LDA.W AltText  
+    LDA.W AltText
     BNE .French
     LDA.W #IntroSubtitleTilemaps_German_Page4_Subpage1
     STA.B DP_Temp00
@@ -304,7 +304,7 @@ else
     STA.B DP_Temp12
     JSR.W LoadIntroSubtitleTilemapTopRow
     BRA .return
-    
+
   .French
     LDA.W #IntroSubtitleTilemaps_French_Page4_Subpage1
     STA.B DP_Temp00
@@ -339,7 +339,7 @@ if !PAL == 0
     JSR.W LoadIntroSubtitleTiles                                         ;8BB67D;
     JSR.W TransferSubtitleTilesToVRAM                                    ;8BB680;
 else
-    LDA.W AltText  
+    LDA.W AltText
     BNE .French
     LDA.W #IntroSubtitleTilemaps_German_Page4_Subpage2
     STA.B DP_Temp00
@@ -347,7 +347,7 @@ else
     STA.B DP_Temp12
     JSR.W LoadIntroSubtitleTilemapTopRow
     BRA .merge
-    
+
   .French:
     LDA.W #IntroSubtitleTilemaps_French_Page4_Subpage2_top
     STA.B DP_Temp00
@@ -359,7 +359,7 @@ else
     LDA.W #$0080
     STA.B DP_Temp12
     JSR.W LoadIntroSubtitleTilemapBottomRow
-  
+
   .merge
 endif
     LDA.W #$003C                                                         ;8BB683;
@@ -395,7 +395,7 @@ if !PAL == 0
     JSR.W LoadIntroSubtitleTiles                                         ;8BB6B8;
     JSR.W TransferSubtitleTilesToVRAM                                    ;8BB6BB;
 else
-    LDA.W AltText  
+    LDA.W AltText
     BNE .French
     LDA.W #IntroSubtitleTilemaps_German_Page5_Subpage1
     STA.B DP_Temp00
@@ -403,7 +403,7 @@ else
     STA.B DP_Temp12
     JSR.W LoadIntroSubtitleTilemapTopRow
     BRA .return
-    
+
   .French
     LDA.W #IntroSubtitleTilemaps_French_Page5
     STA.B DP_Temp00
@@ -469,7 +469,7 @@ if !PAL == 0
     JSR.W LoadIntroSubtitleTiles                                         ;8BB703;
     JSR.W TransferSubtitleTilesToVRAM                                    ;8BB706;
 else
-    LDA.W AltText  
+    LDA.W AltText
     BNE .French
     LDA.W #IntroSubtitleTilemaps_German_Page6
     STA.B DP_Temp00
@@ -477,7 +477,7 @@ else
     STA.B DP_Temp12
     JSR.W LoadIntroSubtitleTilemapTopRow
     BRA .return
-    
+
   .French
     LDA.W #IntroSubtitleTilemaps_French_Page6
     STA.B DP_Temp00
