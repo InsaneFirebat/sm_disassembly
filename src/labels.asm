@@ -38,9 +38,9 @@ EnemyProjectiles:
   .initialInstList: skip 2 ; 4: Initial instruction list
   .XRadius: skip 2 ; 6: X radius
   .YRadius: skip 2 ; 8: Y radius
-  .properties: skip 2 ; Ah: Properties 
-  .hitInstList: skip 2 ; Ch: Hit instruction list 
-  .shotInstList: skip 2 ; Eh: Shot instruction list 
+  .properties: skip 2 ; Ah: Properties
+  .hitInstList: skip 2 ; Ch: Hit instruction list
+  .shotInstList: skip 2 ; Eh: Shot instruction list
 
 
 org $8C0000

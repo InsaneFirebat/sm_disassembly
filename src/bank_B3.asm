@@ -4619,7 +4619,7 @@ BotwoonMovementData_Visible_TopToTop:
     db $01,$00, $01,$00, $01,$00, $01,$00, $01,$00, $01,$00, $01,$00, $01,$00 ;B3C9B0;
     db $01,$00, $00,$01, $01,$00, $01,$00, $01,$00, $80,$00              ; B3C9C0;
 
-BotwoonMovementData_Visible_RightToLeft: 
+BotwoonMovementData_Visible_RightToLeft:
     db $FF,$00, $00,$FF, $FF,$00, $00,$FF, $FF,$00, $FF,$FF, $FF,$00, $00,$FF ;B3C9CC;
     db $FF,$00, $00,$FF, $FF,$00, $FF,$00, $00,$FF, $FF,$00, $00,$FF, $FF,$00 ;B3C9DC;
     db $FF,$00, $00,$FF, $FF,$00, $00,$FF, $FF,$00, $FF,$00, $00,$FF, $FF,$00 ;B3C9EC;

@@ -11127,7 +11127,7 @@ EnemyShot_Reflec:
 
     ; 1: Up-right diagonal
     dw .upRightDiagonal_Up    ; Up, facing right
-    dw $0000                  ; Up-right               
+    dw $0000                  ; Up-right
     dw .upRightDiagonal_Right ; Right
     dw $0000                  ; Down-right
     dw .upRightDiagonal_Down  ; Down, facing right
@@ -11140,7 +11140,7 @@ EnemyShot_Reflec:
 
     ; 2: Horizontal
     dw $0000                          ; Up, facing right
-    dw .horizontal_UpRight_UpLeft     ; Up-right               
+    dw .horizontal_UpRight_UpLeft     ; Up-right
     dw $0000                          ; Right
     dw .horizontal_DownRight_DownLeft ; Down-right
     dw $0000                          ; Down, facing right
@@ -11153,7 +11153,7 @@ EnemyShot_Reflec:
 
     ; 3: Down-right diagonal
     dw .downRightDiagonal_Up    ; Up, facing right
-    dw $0000                    ; Up-right               
+    dw $0000                    ; Up-right
     dw .downRightDiagonal_Right ; Right
     dw $0000                    ; Down-right
     dw .downRightDiagonal_Down  ; Down, facing right

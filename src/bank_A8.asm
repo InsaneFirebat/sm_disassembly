@@ -10259,7 +10259,7 @@ Negate_1E_1C_A8DAF6:
 ; Actual result is as follows:
 ;     If [$1E].[$1C] = 0.0:
 ;         Return
-;     
+;
 ;     If [$1C] != 0:
 ;         $1E = -[$1E].[$1C]
 ;     Else:

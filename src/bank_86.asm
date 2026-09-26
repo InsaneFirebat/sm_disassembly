@@ -6644,10 +6644,10 @@ InitAI_EnemyProjectile_BombTorizoLowHealthExplosion:
 ;       |     |     |
   .Xoffsets:                                                               ;86A859;
     dw $0000,$000C,$FFF4
-    dw $0000,$0010,$FFF0                               
+    dw $0000,$0010,$FFF0
   .Yoffsets:                                                               ;86A865;
     dw $FFF8,$FFF8,$FFF8
-    dw $FFEC,$FFEC,$FFEC                               
+    dw $FFEC,$FFEC,$FFEC
 
 
 ;;; $A871: Initialisation AI - enemy projectile $A9AF (torizo death explosion) ;;;

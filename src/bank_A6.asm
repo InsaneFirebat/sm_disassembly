@@ -7361,7 +7361,7 @@ SelfDestructSequenceFunction_8_JapaneseTextAppears:
     INC.W RidleyCeres.misc1                                              ;A6C0FA;
     INC.W RidleyCeres.misc1                                              ;A6C0FD;
 if !PAL != 0
-    LDA.W AltText  
+    LDA.W AltText
     BNE +
     JSL.L QueueCeresEscapeSubtitleTilemapTransfers_DefaultLanguage
     BRA SelfDestructSequenceFunction_A_TypingSelfDestructSequenceText
@@ -7688,7 +7688,7 @@ HandleTypewriterText:
 
 if !PAL != 0
 QueueZebesEscapeSubtitleTilemapTransfers:
-    LDA.W AltText  
+    LDA.W AltText
     BNE .French
 
     LDX.W #TypewriterZebesEscapeSubtitleTilemapTransfer_German
@@ -7991,19 +7991,19 @@ else
     dw $0200                   ; Size
     dl Tiles_EscapeTimerText_1 ; Source address
     dw $1900                   ; VRAM address
-                               
+
     dw $0200                   ; Size
     dl Tiles_EscapeTimerText_2 ; Source address
     dw $1A00                   ; VRAM address
-                               
+
     dw $0200                   ; Size
     dl Tiles_EscapeTimerText_3 ; Source address
     dw $1B00                   ; VRAM address
-                               
+
     dw $0100                   ; Size
     dl Tiles_EscapeTimerText_4 ; Source address
     dw $1C00                   ; VRAM address
-    
+
     dw $0100                   ; Size
     dl Tiles_EscapeTimerText_5 ; Source address
     dw $1D00                   ; VRAM address
