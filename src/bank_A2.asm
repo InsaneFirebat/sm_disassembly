@@ -3849,7 +3849,7 @@ InitAI_ShipBottomEntrance:
     CLC                                                                  ;A2A717;
     ADC.W #$0017                                                         ;A2A718;
     STA.W Enemy.YPosition,X                                              ;A2A71B;
-    BRA .merge                                                           ;A2A71E;
+    RTL
 
   .notLandingOnZebes:
     LDA.W Enemy.YPosition,X                                              ;A2A720;
@@ -3858,7 +3858,7 @@ InitAI_ShipBottomEntrance:
     STA.W Enemy.YPosition,X                                              ;A2A727;
     LDA.W #regional($0047, $0039)                                        ;A2A72A;
     STA.W ShipBottomEntrance.hoverSFXTimer,X                             ;A2A72D;
-    BRA .merge                                                           ;A2A730;
+    RTL
 
   .entrancePad:
     LDA.W Enemy[-2].YPosition,X                                          ;A2A732;
@@ -3866,17 +3866,13 @@ InitAI_ShipBottomEntrance:
     STA.W Enemy.YPosition,X                                              ;A2A736;
     LDA.W GameState                                                      ;A2A739;
     CMP.W #$0028                                                         ;A2A73C;
-    BNE .merge                                                           ;A2A73F;
+    BNE .return
     LDA.W DemoSet                                                        ;A2A741;
-    BNE .merge                                                           ;A2A744;
+    BNE .return
     LDA.W #$0001                                                         ;A2A746;
     STA.W Enemy.instTimer,X                                              ;A2A749;
     LDA.W #InstList_ShipEntrancePad_Opening_0                            ;A2A74C;
     STA.W Enemy.instList,X                                               ;A2A74F;
-
-  .merge:
-    LDA.W #InitAI_ShipBottomEntrance_return
-    STA.W ShipBottomEntrance.YVelocity,X                                 ;A2A755;
 
   .return:
     RTL                                                                  ;A2A758;
@@ -7454,12 +7450,12 @@ Function_Holtz_Flames:
 ;;; $C771: Holtz function - idle ;;;
 Function_Holtz_Idle:
     AND.W #$0101                                                         ;A2C774;
-    BEQ .quarterChancestayIdle                                           ;A2C777;
+    BEQ .quarterChanceStayIdle                                           ;A2C777;
     LDA.W #$0070                                                         ;A2C779;
     JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA                 ;A2C77C;
     BCC .triggered                                                       ;A2C780;
 
-  .quarterChancestayIdle:
+  .quarterChanceStayIdle:
     LDA.W #$0000                                                         ;A2C782;
     STA.L Holtz.animationFinishedFlag,X                                  ;A2C785;
     LDA.W #InstList_Holtz_Idle_0                                         ;A2C789;
@@ -8136,7 +8132,7 @@ InitAI_Oum:
     STA.L Oum.instListIndex,X                                            ;A2CCE4;
     STA.L Oum.animationFinishedFlag,X                                    ;A2CCE8;
     STA.L Oum.attackAllowingRotationFlag,X                               ;A2CCEC;
-    STA.L ExtraEnemy7800+$14,X                                           ;A2CCF0;
+    STA.L ExtraEnemy7800+$14,X                                           ;A2CCF0; >.<
     LDA.W #$0003                                                         ;A2CCF4;
     STA.W Oum.bounceCounter,X                                            ;A2CCF7;
     LDA.W #$0080                                                         ;A2CCFA;
@@ -10160,7 +10156,7 @@ InitAI_Dragon:
     LDA.W #$0000                                                         ;A2E609;
     STA.L Dragon.animationFinishedFlag,X                                 ;A2E60C;
     LDA.W Enemy.init0,X                                                  ;A2E610;
-    BEQ .idle                                                            ;A2E613;
+    BEQ .notWings                                                        ;A2E613;
     LDA.W #$0002                                                         ;A2E615;
     STA.L Dragon.newInstListIndex,X                                      ;A2E618;
     STA.L Dragon.instListIndex,X                                         ;A2E61C;
@@ -10173,7 +10169,7 @@ InitAI_Dragon:
     STA.W Dragon.function,X                                              ;A2E632;
     RTL                                                                  ;A2E635;
 
-  .idle:
+  .notWings:
     STA.L Dragon.newInstListIndex,X                                      ;A2E639;
     STA.L Dragon.instListIndex,X                                         ;A2E63D;
     LDA.W #InstList_Dragon_Idle_FacingLeft                               ;A2E641;
@@ -10620,9 +10616,9 @@ InitAI_ShutterGrowing:
 
   .functionPointers:
     dw Function_ShutterGrowing_Initial_Downwards_WaitForTimer            ;A2EA4E;
-    dw Func_ShutterGrowing_Initial_Downwards_WaitForSamusToGetNear       ;A2EA50;
+    dw Function_ShutterGrowing_Initial_Downwards_WaitForSamusToGetNear   ;A2EA50;
     dw Function_ShutterGrowing_Initial_Upwards_WaitForTimer              ;A2EA52;
-    dw Func_ShutterGrowing_Initial_Upwards_WaitForSamusToGetNear         ;A2EA54;
+    dw Function_ShutterGrowing_Initial_Upwards_WaitForSamusToGetNear     ;A2EA54;
 
   .YSpeed:
     dw $0000                                                             ;A2EA56;
@@ -10676,7 +10672,7 @@ Function_ShutterGrowing_Initial_Upwards_WaitForTimer:
 
 
 ;;; $EAD1: Growing shutter function - initial - upwards - wait for Samus to get near ;;;
-Func_ShutterGrowing_Initial_Upwards_WaitForSamusToGetNear:
+Function_ShutterGrowing_Initial_Upwards_WaitForSamusToGetNear:
     LDY.B SamusXPosition
     LDA.W Enemy.XPosition,X
     TAX
@@ -10713,7 +10709,7 @@ Func_ShutterGrowing_Initial_Upwards_WaitForSamusToGetNear:
 
 
 ;;; $EAE7: Growing shutter function - initial - downwards - wait for Samus to get near ;;;
-Func_ShutterGrowing_Initial_Downwards_WaitForSamusToGetNear:
+Function_ShutterGrowing_Initial_Downwards_WaitForSamusToGetNear:
     LDY.B SamusXPosition
     LDA.W Enemy.XPosition,X
     TAX
@@ -11565,8 +11561,8 @@ InitialHorizontalShutterFunctionPointers:
     dw Function_HorizontalShutter_Initial_WaitForTimer                   ;A2F107;
     dw Function_HorizontalShutter_Initial_WaitForSamusToGetNear          ;A2F109;
     dw Function_HorizontalShutter_Initial_Activate                       ;A2F10B;
-    dw Function_HorizontalShutter_Initial_Nothing                        ;A2F10D;
-    dw Function_HorizontalShutter_Initial_Nothing                        ;A2F10F;
+    dw Function_HorizontalShutter_Initial_ReturnEnemyIndex               ;A2F10D;
+    dw Function_HorizontalShutter_Initial_ReturnEnemyIndex               ;A2F10F;
 
 
 ;;; $F111: Initialisation AI - enemy $D57F (horizontal shutter) ;;;
@@ -11717,7 +11713,7 @@ Function_HorizontalShutter_Initial_WaitForSamusToGetNear:
 
 
 ;;; $F25B: Initial horizontal shutter function - nothing ;;;
-Function_HorizontalShutter_Initial_Nothing:
+Function_HorizontalShutter_Initial_ReturnEnemyIndex:
     TYX
     RTS                                                                  ;A2F25E;
 

@@ -3436,17 +3436,12 @@ Instruction_YappingMaw_OffsetSamusDown:
 
 ;;; $A133: Instruction - queue yapping maw sound effect if on screen ;;;
 Instruction_YappingMaw_QueueSFXIfOnScreen:
-    PHY                                                                  ;A8A133;
-    PHX                                                                  ;A8A134;
-    LDX.B EnemyIndex                                                     ;A8A135;
-    LDA.L ExtraEnemy8000+$2C,X                                           ;A8A138;
+    LDA.L YappingMaw.offScreenFlag,X                                     ;A8A138;
     BNE .return                                                          ;A8A13C;
     LDA.W #$002F                                                         ;A8A13E;
     JSL.L QueueSound_Lib2_Max6                                           ;A8A141;
 
   .return:
-    PLX                                                                  ;A8A145;
-    PLY                                                                  ;A8A146;
     RTL                                                                  ;A8A147;
 
 
@@ -3531,7 +3526,7 @@ MainAI_YappingMaw:
     DEC                                                                  ;A8A218;
     STA.L YappingMaw.intangibilityTimer,X                                ;A8A219;
     JSL.L CheckIfEnemyCenterIsOnScreen                                   ;A8A21D;
-    STA.L ExtraEnemy8000+$2C,X                                           ;A8A221;
+    STA.L YappingMaw.offScreenFlag,X                                     ;A8A221;
     JSR.W (YappingMaw.function,X)                                        ;A8A225;
     JSR.W SetBodySegmentPosition_3                                       ;A8A228;
     JSR.W SetBodySegmentPosition_2                                       ;A8A22B;

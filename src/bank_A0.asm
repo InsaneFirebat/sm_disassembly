@@ -3241,7 +3241,7 @@ Enemy_vs_Bomb_CollisionHandling_ExtendedSpritemap:
 
 
 ;;; $9E9A: Enemy / grapple beam collision detection ;;;
-EnemyGrappleBeamCollisionDetection:
+Enemy_vs_GrappleBeam_CollisionDetection:
 ;; Returns:
 ;;     A: Grapple reaction index
 ;;     {

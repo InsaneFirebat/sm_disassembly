@@ -8879,7 +8879,7 @@ HZoomerInitialInstListPointers:
 
 ;;; $E043: Initialisation AI - enemy $DC3F (Wrecked Ship orange zoomer) ;;;
 InitAI_HZoomer:
-; Not sure why the devs didn't use the common init AI $E67A like the other creepy crawlies
+; Not sure why the devs didn't use InitAI_Crawlers_Common like the other creepy crawlies
     LDA.W Enemy.instList,Y
     AND.W #$0003                                                         ;A3E049;
     ASL                                                                  ;A3E04C;
@@ -8993,10 +8993,10 @@ Function_HZoomer_CrawlingVertically:
     STA.W Crawler.XVelocity,X                                            ;A3E110;
     LDY.W #InstList_HZoomer_UpsideUp_0                                   ;A3E113;
     LDA.W Crawler.YVelocity,X                                            ;A3E119;
-    BPL ..keepUp                                                         ;A3E11C;
+    BPL .keepUp                                                          ;A3E11C;
     LDY.W #InstList_HZoomer_UpsideDown_0                                 ;A3E11E;
 
-  ..keepUp:
+  .keepUp:
     TYA                                                                  ;A3E121;
     STA.W Enemy.instList,X                                               ;A3E122;
     LDA.W #$0001                                                         ;A3E125;
@@ -9022,10 +9022,10 @@ Function_HZoomer_CrawlingVertically:
     STA.W Crawler.YVelocity,X                                            ;A3E14F;
     LDY.W #InstList_HZoomer_UpsideUp_0                                   ;A3E152;
     LDA.W Crawler.YVelocity,X                                            ;A3E155;
-    BPL .keepUp                                                          ;A3E158;
+    BPL ..keepUp                                                         ;A3E158;
     LDY.W #InstList_HZoomer_UpsideDown_0                                 ;A3E15A;
 
-  .keepUp:
+  ..keepUp:
     TYA                                                                  ;A3E15D;
     STA.W Enemy.instList,X                                               ;A3E15E;
     LDA.W #$0001                                                         ;A3E161;
@@ -9529,14 +9529,14 @@ InitAI_Crawlers_Common:
   .skipSpeedTable:
     LDA.W Enemy.properties,X                                             ;A3E69F;
     AND.W #$0003                                                         ;A3E6A2;
-    BNE .properties                                                      ;A3E6A5;
+    BNE .invertY                                                         ;A3E6A5;
     LDA.W Crawler.XVelocity,X                                            ;A3E6A7;
     EOR.W #$FFFF                                                         ;A3E6AA;
     INC                                                                  ;A3E6AD;
     STA.W Crawler.XVelocity,X                                            ;A3E6AE;
     RTL                                                                  ;A3E6B1;
 
-  .properties:
+  .invertY:
     CMP.W #$0002                                                         ;A3E6B2;
     BNE .return                                                          ;A3E6B5;
     LDA.W Crawler.YVelocity,X                                            ;A3E6B7;

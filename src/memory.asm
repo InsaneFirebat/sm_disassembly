@@ -3179,7 +3179,8 @@ skip 2
   .SamusYOffset: skip 2 ; $7E8026
   .instListTableIndex: skip 2 ; $7E8028
   .intangibilityTimer: skip 2 ; $7E802A
-skip $7D4
+  .offScreenFlag: skip 2 ; $7E802C
+skip $7D2
   .bodySegment0ProjectileIndex: skip 2 ; $7E8800
   .bodySegment1ProjectileIndex: skip 2 ; $7E8802
   .bodySegment2ProjectileIndex: skip 2 ; $7E8804

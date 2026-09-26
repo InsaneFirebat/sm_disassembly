@@ -2367,7 +2367,7 @@ InstList_Botwoon_Spit_AimingUpRight:
 
 ;;; $941F: Instruction list - spit - aiming up (facing right) ;;;
 InstList_Botwoon_Spit_AimingUp_FacingRight:
-    dw $0020*!FPS,Spritemaps_Botwoon_MouthClosed_Priority2_AimUp_FacingRight;B3941F;
+    dw $0020*!FPS,Spritemaps_Botwoon_MouthClosed_Priority2_AimUp_FacingRight ;B3941F;
     dw Instruction_Botwoon_EnemyRadius_8x10_duplicate_again2             ;B39423;
     dw Instruction_Botwoon_QueueSpitSFX                                  ;B39425;
     dw Instruction_Botwoon_SetSpittingFlag                               ;B39427;
@@ -2395,7 +2395,7 @@ InstList_Botwoon_Hidden_AimingDownLeft:
 
 ;;; $944D: Instruction list - hidden - aiming down (facing right) ;;;
 InstList_Botwoon_Hidden_AimingDown_FacingRight:
-    dw $0001,Spritemaps_Botwoon_MouthClosed_Priority0_AimDown_FacingRight;B3944D;
+    dw $0001,Spritemaps_Botwoon_MouthClosed_Priority0_AimDown_FacingRight ;B3944D;
     dw Instruction_Common_Sleep                                          ;B39451;
 
 

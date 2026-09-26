@@ -11038,7 +11038,7 @@ Setup_GenericGrappleBlock_ResetOverflow:
 ;; Returns:
 ;;     Carry: Set. Unconditional collision
 ;;     Overflow: Clear. Cancel grapple beam
-    REP #$40                                                             ;84CFD1;
+    REP #$40                                                             ;84CFD1; clear overflow
     SEC                                                                  ;84CFD3;
     RTS                                                                  ;84CFD4;
 
