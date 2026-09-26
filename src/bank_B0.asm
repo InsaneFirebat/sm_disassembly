@@ -4,9 +4,11 @@
 org $B08000
 
 
+if !DEBUG
 ;;; $8000: Debug. Tiles - palette viewer ;;;
 Tiles_Debug_PaletteViewer:
 incbin "../data/Tiles_Debug_PaletteViewer.bin" ; $1000 bytes
+endif
 
 
 if !FEATURE_KEEP_UNREFERENCED

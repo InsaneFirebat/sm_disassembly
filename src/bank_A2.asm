@@ -4602,7 +4602,7 @@ InitAI_ShipBottomEntrance:
 
   .merge:
     LDA.W #RTL_A2A7D7                                                    ;A2A752;
-    STA.W ShipBottomEntrance.function,X                                  ;A2A755;
+    STA.W ShipBottomEntrance.function,X                                  ;A2A755; >.<
     RTL                                                                  ;A2A758;
 
 
@@ -8537,12 +8537,12 @@ Function_Holtz_Flames:
 Function_Holtz_Idle:
     LDA.W RandomNumberSeed                                               ;A2C771;
     AND.W #$0101                                                         ;A2C774;
-    BEQ .quarterChancestayIdle                                           ;A2C777;
+    BEQ .quarterChanceStayIdle                                           ;A2C777;
     LDA.W #$0070                                                         ;A2C779;
     JSL.L CheckIfXDistanceBetweenEnemyAndSamusIsAtLeastA                 ;A2C77C;
     BCC .triggered                                                       ;A2C780;
 
-  .quarterChancestayIdle:
+  .quarterChanceStayIdle:
     LDA.W #$0000                                                         ;A2C782;
     STA.L Holtz.animationFinishedFlag,X                                  ;A2C785;
     LDA.W #InstList_Holtz_Idle_0                                         ;A2C789;
@@ -9195,7 +9195,7 @@ InitAI_Oum:
     STA.L Oum.instListIndex,X                                            ;A2CCE4;
     STA.L Oum.animationFinishedFlag,X                                    ;A2CCE8;
     STA.L Oum.attackAllowingRotationFlag,X                               ;A2CCEC;
-    STA.L ExtraEnemy7800+$14,X                                           ;A2CCF0;
+    STA.L ExtraEnemy7800+$14,X                                           ;A2CCF0; >.<
     LDA.W #$0003                                                         ;A2CCF4;
     STA.W Oum.bounceCounter,X                                            ;A2CCF7;
     LDA.W #$0080                                                         ;A2CCFA;
@@ -9212,16 +9212,16 @@ InitAI_Oum:
 ;;; $CD13: Main AI - enemy $D37F (oum) ;;;
 MainAI_Oum:
     LDX.W EnemyIndex                                                     ;A2CD13;
-    JSR.W CheckIfTouchingSamus_UpdatePreviousPositions                   ;A2CD16;
+    JSR.W Oum_CheckIfTouchingSamus_UpdatePreviousPositions               ;A2CD16;
     JSR.W (Oum.function,X)                                               ;A2CD19;
-    JSR.W HandlePushingSamus                                             ;A2CD1C;
+    JSR.W HandleOumPushingSamus                                          ;A2CD1C;
     JSR.W StopIfSamusIsPressingTowardsOum                                ;A2CD1F;
     RTL                                                                  ;A2CD22;
 
 
 ;;; $CD23: Check if touching Samus and update previous position ;;;
-CheckIfTouchingSamus_UpdatePreviousPositions:
-    JSR.W CheckIfTouchingSamus                                           ;A2CD23;
+Oum_CheckIfTouchingSamus_UpdatePreviousPositions:
+    JSR.W Oum_CheckIfTouchingSamus                                       ;A2CD23;
     LDA.W Enemy.XPosition,X                                              ;A2CD26;
     STA.L Oum.previousXPosition,X                                        ;A2CD29;
     LDA.W Enemy.YPosition,X                                              ;A2CD2D;
@@ -9230,7 +9230,7 @@ CheckIfTouchingSamus_UpdatePreviousPositions:
 
 
 ;;; $CD35: Handle pushing Samus ;;;
-HandlePushingSamus:
+HandleOumPushingSamus:
     LDA.W #$0000                                                         ;A2CD35;
     STA.L Oum.stopFlag,X                                                 ;A2CD38;
     JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A2CD3C;
@@ -9597,7 +9597,7 @@ SetOumInstList:
 
 
 ;;; $CFFF: Check if touching Samus ;;;
-CheckIfTouchingSamus:
+Oum_CheckIfTouchingSamus:
     LDX.W EnemyIndex                                                     ;A2CFFF;
     LDA.W #$0000                                                         ;A2D002;
     STA.L Oum.touchingSamusFlag,X                                        ;A2D005;
@@ -11324,7 +11324,7 @@ InitAI_Dragon:
     LDA.W #$0000                                                         ;A2E609;
     STA.L Dragon.animationFinishedFlag,X                                 ;A2E60C;
     LDA.W Enemy.init0,X                                                  ;A2E610;
-    BEQ .idle                                                            ;A2E613;
+    BEQ .notWings                                                        ;A2E613;
     LDA.W #$0002                                                         ;A2E615;
     STA.L Dragon.newInstListIndex,X                                      ;A2E618;
     STA.L Dragon.instListIndex,X                                         ;A2E61C;
@@ -11337,7 +11337,7 @@ InitAI_Dragon:
     STA.W Dragon.function,X                                              ;A2E632;
     RTL                                                                  ;A2E635;
 
-  .idle:
+  .notWings:
     LDA.W #$0000                                                         ;A2E636;
     STA.L Dragon.newInstListIndex,X                                      ;A2E639;
     STA.L Dragon.instListIndex,X                                         ;A2E63D;
@@ -11800,9 +11800,9 @@ InitAI_ShutterGrowing:
 
   .functionPointers:
     dw Function_ShutterGrowing_Initial_Downwards_WaitForTimer            ;A2EA4E;
-    dw Func_ShutterGrowing_Initial_Downwards_WaitForSamusToGetNear       ;A2EA50;
+    dw Function_ShutterGrowing_Initial_Downwards_WaitForSamusToGetNear   ;A2EA50;
     dw Function_ShutterGrowing_Initial_Upwards_WaitForTimer              ;A2EA52;
-    dw Func_ShutterGrowing_Initial_Upwards_WaitForSamusToGetNear         ;A2EA54;
+    dw Function_ShutterGrowing_Initial_Upwards_WaitForSamusToGetNear     ;A2EA54;
 
   .YSpeed:
     dw $0000                                                             ;A2EA56;
@@ -11825,19 +11825,20 @@ MainAI_ShutterGrowing:
 ;;; $EABD: Growing shutter function - initial - upwards - wait for timer ;;;
 Function_ShutterGrowing_Initial_Upwards_WaitForTimer:
     LDA.W Enemy.init0,X                                                  ;A2EABD;
-    BEQ +                                                                ;A2EAC0;
+    BEQ .timerExpired                                                    ;A2EAC0;
     DEC                                                                  ;A2EAC2;
     STA.W Enemy.init0,X                                                  ;A2EAC3;
     RTS                                                                  ;A2EAC6;
 
-+   JSR.W PlayGateOpeningClosingSFXIfOnScreen                            ;A2EAC7;
+  .timerExpired:
+    JSR.W PlayGateOpeningClosingSFXIfOnScreen                            ;A2EAC7;
     LDA.W #Function_ShutterGrowing_Growing_Upwards                       ;A2EACA;
     STA.W ShutterGrowing.function,X                                      ;A2EACD;
     RTS                                                                  ;A2EAD0;
 
 
 ;;; $EAD1: Growing shutter function - initial - upwards - wait for Samus to get near ;;;
-Func_ShutterGrowing_Initial_Upwards_WaitForSamusToGetNear:
+Function_ShutterGrowing_Initial_Upwards_WaitForSamusToGetNear:
     LDA.W Enemy.init0,X                                                  ;A2EAD1;
     JSL.L IsSamusWithinAPixelColumnsOfEnemy                              ;A2EAD4;
     AND.W #$FFFF                                                         ;A2EAD8;
@@ -11851,7 +11852,7 @@ Func_ShutterGrowing_Initial_Upwards_WaitForSamusToGetNear:
 
 
 ;;; $EAE7: Growing shutter function - initial - downwards - wait for Samus to get near ;;;
-Func_ShutterGrowing_Initial_Downwards_WaitForSamusToGetNear:
+Function_ShutterGrowing_Initial_Downwards_WaitForSamusToGetNear:
     LDA.W Enemy.init0,X                                                  ;A2EAE7;
     JSL.L IsSamusWithinAPixelColumnsOfEnemy                              ;A2EAEA;
     AND.W #$FFFF                                                         ;A2EAEE;
@@ -11867,12 +11868,13 @@ Func_ShutterGrowing_Initial_Downwards_WaitForSamusToGetNear:
 ;;; $EAFD: Growing shutter function - initial - downwards - wait for timer ;;;
 Function_ShutterGrowing_Initial_Downwards_WaitForTimer:
     LDA.W Enemy.init0,X                                                  ;A2EAFD;
-    BEQ +                                                                ;A2EB00;
+    BEQ .timerExpired                                                    ;A2EB00;
     DEC                                                                  ;A2EB02;
     STA.W Enemy.init0,X                                                  ;A2EB03;
     RTS                                                                  ;A2EB06;
 
-+   JSR.W PlayGateOpeningClosingSFXIfOnScreen                            ;A2EB07;
+  .timerExpired:
+    JSR.W PlayGateOpeningClosingSFXIfOnScreen                            ;A2EB07;
     LDA.W #Function_ShutterGrowing_Growing_Downwards                     ;A2EB0A;
     STA.W ShutterGrowing.function,X                                      ;A2EB0D;
     RTS                                                                  ;A2EB10;
@@ -12437,11 +12439,11 @@ ActivateKamer:
 ;;; $EF5A: Play gate opening/closing sound effect if on-screen ;;;
 PlayGateOpeningClosingSFXIfOnScreen:
     JSL.L CheckIfEnemyCenterIsOnScreen                                   ;A2EF5A;
-    BNE .return                                                          ;A2EF5E;
+    BNE .offScreen                                                       ;A2EF5E;
     LDA.W #$000E                                                         ;A2EF60;
     JSL.L QueueSound_Lib3_Max6                                           ;A2EF63;
 
-  .return:
+  .offScreen:
     RTS                                                                  ;A2EF67;
 
 
@@ -12668,8 +12670,8 @@ InitialHorizontalShutterFunctionPointers:
     dw Function_HorizontalShutter_Initial_WaitForTimer                   ;A2F107;
     dw Function_HorizontalShutter_Initial_WaitForSamusToGetNear          ;A2F109;
     dw Function_HorizontalShutter_Initial_Activate                       ;A2F10B;
-    dw Function_HorizontalShutter_Initial_Nothing                        ;A2F10D;
-    dw Function_HorizontalShutter_Initial_Nothing                        ;A2F10F;
+    dw Function_HorizontalShutter_Initial_ReturnEnemyIndex               ;A2F10D;
+    dw Function_HorizontalShutter_Initial_ReturnEnemyIndex               ;A2F10F;
 
 
 ;;; $F111: Initialisation AI - enemy $D57F (horizontal shutter) ;;;
@@ -12829,7 +12831,7 @@ Function_HorizontalShutter_Initial_Activate:
 
 
 ;;; $F25B: Initial horizontal shutter function - nothing ;;;
-Function_HorizontalShutter_Initial_Nothing:
+Function_HorizontalShutter_Initial_ReturnEnemyIndex:
     LDX.W EnemyIndex                                                     ;A2F25B;
     RTS                                                                  ;A2F25E;
 
@@ -12876,7 +12878,7 @@ Function_HorizontalShutter_MovingLeft:
     STA.W ExtraSamusXSubDisplacement                                     ;A2F2B4;
     LDA.W ShutterHorizShootable.leftVelocity,X                           ;A2F2B7;
     STA.W ExtraSamusXDisplacement                                        ;A2F2BA;
-    JSR.W EjectSamusIfPressingRight                                      ;A2F2BD;
+    JSR.W Shutter_EjectSamusIfPressingRight                              ;A2F2BD;
 
   .notMovingSamus:
     LDA.L ShutterHorizShootable.minimumXPosition,X                       ;A2F2C0;
@@ -12925,7 +12927,7 @@ Function_HorizontalShutter_MovingRight:
     STA.W ExtraSamusXSubDisplacement                                     ;A2F326;
     LDA.W ShutterHorizShootable.rightVelocity,X                          ;A2F329;
     STA.W ExtraSamusXDisplacement                                        ;A2F32C;
-    JSR.W EjectSamusIfPressingLeft                                       ;A2F32F;
+    JSR.W Shutter_EjectSamusIfPressingLeft                               ;A2F32F;
 
   .notMovingSamus:
     LDA.W Enemy.XPosition,X                                              ;A2F332;
@@ -12947,7 +12949,7 @@ Function_HorizontalShutter_MovingRight:
 
 
 ;;; $F356: Eject Samus if pressing right ;;;
-EjectSamusIfPressingRight:
+Shutter_EjectSamusIfPressingRight:
     LDA.L ShutterHorizShootable.movingSamusFlag,X                        ;A2F356;
     BEQ .return                                                          ;A2F35A;
     LDA.B DP_Controller1Input                                            ;A2F35C;
@@ -12964,7 +12966,7 @@ EjectSamusIfPressingRight:
 
 
 ;;; $F371: Eject Samus if pressing left ;;;
-EjectSamusIfPressingLeft:
+Shutter_EjectSamusIfPressingLeft:
     LDA.L ShutterHorizShootable.movingSamusFlag,X                        ;A2F371;
     BEQ .return                                                          ;A2F375;
     LDA.B DP_Controller1Input                                            ;A2F377;

@@ -6884,11 +6884,11 @@ Instruction_PLM_GotoY_EnableMovementIfSamusMissilesAreFull:
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $AED6: Instruction list - PLM $B6F7 (unused) ;;;
-InstList_PLM_Nothing_84AED6:
+UNUSED_InstList_PLM_Nothing_84AED6:
 ; Unknown. 4 frame animation loop of 1x2 spike air blocks, tile numbers don't match any tilesets
     dw Instruction_PLM_Delete                                            ;84AED6;
 
-InstList_PLM_Nothing_84AED8:
+UNUSED_InstList_PLM_Nothing_84AED8:
     dw $0010,UNUSED_DrawInst_84A255                                      ;84AED8;
     dw $0010,UNUSED_DrawInst_84A25D                                      ;84AEDC;
     dw $0010,UNUSED_DrawInst_84A265                                      ;84AEE0;
@@ -6906,7 +6906,7 @@ InstList_PLM_Nothing_84AED8:
     dw $0012,UNUSED_DrawInst_84A265                                      ;84AF10;
     dw $0012,UNUSED_DrawInst_84A26D                                      ;84AF14;
     dw Instruction_PLM_GotoY                                             ;84AF18;
-    dw InstList_PLM_Nothing_84AED8                                       ;84AF1A;
+    dw UNUSED_InstList_PLM_Nothing_84AED8                                ;84AF1A;
 
 
 ;;; $AF1C: Instruction list - PLM $B6FB (unused) ;;;
@@ -6914,7 +6914,7 @@ InstList_PLM_Nothing_84AF1C:
 ; 2x2 version of $B6F7
     dw Instruction_PLM_Delete                                            ;84AF1C;
 
-InstList_PLM_Nothing_84AF1E:
+UNUSED_InstList_PLM_Nothing_84AF1E:
     dw $0010,UNUSED_DrawInst_84A275                                      ;84AF1E;
     dw $0010,UNUSED_DrawInst_84A285                                      ;84AF22;
     dw $0010,UNUSED_DrawInst_84A295                                      ;84AF26;
@@ -6932,7 +6932,7 @@ InstList_PLM_Nothing_84AF1E:
     dw $0012,UNUSED_DrawInst_84A295                                      ;84AF56;
     dw $0012,UNUSED_DrawInst_84A2A5                                      ;84AF5A;
     dw Instruction_PLM_GotoY                                             ;84AF5E;
-    dw InstList_PLM_Nothing_84AF1E                                       ;84AF60;
+    dw UNUSED_InstList_PLM_Nothing_84AF1E                                ;84AF60;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
@@ -8503,7 +8503,7 @@ if !FEATURE_KEEP_UNREFERENCED
 PLMEntries_nothing_84B6F7:
 ; Unused. Unknown. 4 frame animation loop of 1x2 spike air blocks, tile numbers don't match any tilesets
     dw Setup_DeactivatePLM                                               ;84B6F7;
-    dw InstList_PLM_Nothing_84AED6                                       ;84B6F9;
+    dw UNUSED_InstList_PLM_Nothing_84AED6                                ;84B6F9;
 
 PLMEntries_nothing_84B6FB:
 ; Unused. 2x2 version of $B6F7
@@ -12532,8 +12532,8 @@ Setup_GenericGrappleBlock_SetOverflow:
 ;; Returns:
 ;;     Carry: Set. Unconditional collision
 ;;     Overflow: Set. Connect grapple beam
-    SEP #$40                                                             ;84CFCD; >.< SEP #$41
-    SEC                                                                  ;84CFCF;
+    SEP #$40                                                             ;84CFCD; set overflow
+    SEC                                                                  ;84CFCF; >.<
     RTS                                                                  ;84CFD0;
 
 
@@ -12542,7 +12542,7 @@ Setup_GenericGrappleBlock_ResetOverflow:
 ;; Returns:
 ;;     Carry: Set. Unconditional collision
 ;;     Overflow: Clear. Cancel grapple beam
-    REP #$40                                                             ;84CFD1; >.< SEP #$41
+    REP #$40                                                             ;84CFD1; clear overflow
     SEC                                                                  ;84CFD3;
     RTS                                                                  ;84CFD4;
 
@@ -12937,7 +12937,7 @@ PLMEntries_CrumbleLowerNorfairChozoRoomPlug:
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $D117: Setup - PLM $D127 (unused. Shot block) ;;;
-Setup_UnusedShotBlock:
+UNUSED_Setup_UnusedShotBlock_84D117:
     LDX.W PLM_BlockIndices,Y                                             ;84D117;
     LDA.W #$C000                                                         ;84D11A;
     JSR.W Write_Level_Data_Block_Type_and_BTS                            ;84D11D;
@@ -12953,7 +12953,7 @@ InstList_PLM_UnusedShotBlock:
 ;;; $D127: Unused. PLM entry - shot block ;;;
 PLMEntries_UnusedShotBlock:
 ; Unused. Shot block
-    dw Setup_UnusedShotBlock                                             ;84D127;
+    dw UNUSED_Setup_UnusedShotBlock_84D117                               ;84D127;
     dw InstList_PLM_UnusedShotBlock                                      ;84D129;
 
 
@@ -13465,7 +13465,7 @@ UNUSED_Instruction_PLM_FXBaseYPosition_2D2_84D489:
 
 
 ;;; $D490: Instruction list - PLM $D708 (unused. Lower Norfair 2x2 chozo shot block) ;;;
-InstList_PLM_UnusedLowerNorfair2x2ChozoShotBlock_84D490:
+UNUSED_InstList_PLM_UnusedLowerNorfair2x2ChozoShotBlock_84D490:
     dw Instruction_PLM_GotoY_ifRoomArg_ChozoBlockDestroyed               ;84D490;
     dw InstList_PLM_UnusedLowerNorfair2x2ChozoShotBlock_84D4B8           ;84D492;
     dw Instruction_PLM_LinkInstruction_Y                                 ;84D494;
@@ -13750,7 +13750,7 @@ Setup_Collision_WreckedShipChozoHandTrigger:
 
 if !FEATURE_KEEP_UNREFERENCED
 ;;; $D67F: Setup - PLM $D700 (unused. Wrecked Ship 3x4 chozo bomb block) ;;;
-Setup_UnusedWreckedShip3x4ChozoBombBlock:
+UNUSED_Setup_UnusedWreckedShip3x4ChozoBombBlock_84D67F:
 ;; Parameters:
 ;;     Y: PLM index
 
@@ -13762,7 +13762,7 @@ Setup_UnusedWreckedShip3x4ChozoBombBlock:
 
 
 ;;; $D689: Setup - PLM $D704 (unused. Alternate Lower Norfair chozo hand) ;;;
-Setup_UnusedAlternateLowerNorfairChozoHand:
+UNUSED_Setup_UnusedAlternateLowerNorfairChozoHand_84D689:
 ;; Parameters:
 ;;     Y: PLM index
 
@@ -13774,7 +13774,7 @@ Setup_UnusedAlternateLowerNorfairChozoHand:
 
 
 ;;; $D693: Setup - PLM $D708 (unused. Lower Norfair 2x2 chozo shot block) ;;;
-Setup_UnusedLowerNorfair2x2ChozoShotBlock:
+UNUSED_Setup_UnusedLowerNorfair2x2ChozoShotBlock_84D693:
 ;; Parameters:
 ;;     Y: PLM index
 
@@ -13885,18 +13885,18 @@ PLMEntries_BlockSlopeAccessForWreckedShipChozo:
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_PLMEntries_WreckedShip3x4ChozoShotBlock_84D700:
 ; Unused. Wrecked Ship 3x4 chozo bomb block
-    dw Setup_UnusedWreckedShip3x4ChozoBombBlock                          ;84D700;
+    dw UNUSED_Setup_UnusedWreckedShip3x4ChozoBombBlock_84D67F            ;84D700;
     dw UNUSED_InstList_PLM_WreckedShip3x4ChozoBombBlock_84D426           ;84D702;
 
 UNUSED_PLMEntries_AltLowerNorfairChozoHand_84D704:
 ; Unused. Alternate Lower Norfair chozo hand
-    dw Setup_UnusedAlternateLowerNorfairChozoHand                        ;84D704;
+    dw UNUSED_Setup_UnusedAlternateLowerNorfairChozoHand_84D689          ;84D704;
     dw UNUSED_InstList_PLM_AlternateLowerNorfairChozoHand_84D44E         ;84D706;
 
 UNUSED_PLMEntries_LowerNorfair2x2ChozoShotBlock_84D708:
 ; Unused. Lower Norfair 2x2 chozo shot block
-    dw Setup_UnusedLowerNorfair2x2ChozoShotBlock                         ;84D708;
-    dw InstList_PLM_UnusedLowerNorfair2x2ChozoShotBlock_84D490           ;84D70A;
+    dw UNUSED_Setup_UnusedLowerNorfair2x2ChozoShotBlock_84D693           ;84D708;
+    dw UNUSED_InstList_PLM_UnusedLowerNorfair2x2ChozoShotBlock_84D490    ;84D70A;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 PLMEntries_NoobTube:
