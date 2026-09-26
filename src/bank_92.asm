@@ -2736,13 +2736,6 @@ UNUSED_Debug_SamusSpritemap_1_9290F4:
     %spritemapEntry(0, $1E8, $E8, 0, 0, 3, 0, $138)
     %spritemapEntry(0, $1E0, $E8, 0, 0, 3, 0, $145)
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_929173:
-; Unused
-    dw $0001                                                             ;929173;
-    %spritemapEntry(0, $00, $00, 0, 0, 3, 5, $5F)
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 SamusTileViewer_SamusTopHalf:
 ; Samus tile viewer - Samus top half
     dw $0010                                                             ;92917A;
@@ -9885,12 +9878,6 @@ SamusBottomTiles_Set1_D342:
 ; D8h: Facing left-   crystal flash ending - frame 5
     dl SamusTiles_Bottom_Set1_Entry1C : dw $00C0,$0080                   ;92D342;
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_SamusBottomTiles_Set1_92D349:
-; Unused
-    dl SamusTiles_Bottom_Set1_Entry1D : dw $0080,$0080                   ;92D349;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 SamusBottomTiles_Set1_D350:
 ; E9h: Facing left-   Samus drained - crouching/falling - frames 8..Bh
 ; E9h: Facing left-   Samus drained - crouching/falling - frame 1Ah
@@ -9994,12 +9981,6 @@ SamusBottomTiles_Set2_D39D:
 ; 61h: Unused - frames Ah..Bh
 ; B2h: Facing clockwise   -   grapple - in air - frames Ah..Bh
     dl SamusTiles_Bottom_Set2_Entry9 : dw $00C0,$0040                    ;92D39D;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_SamusBottomTiles_Set2_92D3A4:
-; Unused
-    dl SamusTiles_Bottom_Set2_EntryA : dw $00A0,$0080                    ;92D3A4;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusBottomTiles_Set2_D3AB:
 ; 5Dh: Unused - frame 40h
@@ -10109,12 +10090,6 @@ SamusBottomTiles_Set2_D3F8:
 ; B2h: Facing clockwise   -   grapple - in air - frames 2Ah..2Bh
     dl SamusTiles_Bottom_Set2_Entry16 : dw $0080,$0080                   ;92D3F8;
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_SamusBottomTiles_Set2_92D3FF:
-; Unused
-    dl SamusTiles_Bottom_Set2_Entry17 : dw $0080,$0080                   ;92D3FF;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 
 ;;; $D406: Samus bottom tiles - set 4 (facing clockwise - grappling - in air - upside down) ;;;
 SamusBottomTiles_Set4_D406:
@@ -10207,20 +10182,6 @@ SamusBottomTiles_Set4_D445:
 ; B2h: Facing clockwise   -   grapple - in air - frames 1Ah..1Bh
     dl SamusTiles_Bottom_Set4_Entry9 : dw $00C0,$0040                    ;92D445;
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_SamusBottomTiles_Set4_92D44C:
-; Unused
-    dl SamusTiles_Bottom_Set4_EntryA : dw $00A0,$0080                    ;92D44C;
-
-UNUSED_SamusBottomTiles_Set4_92D453:
-; Unused
-    dl SamusTiles_Bottom_Set4_EntryB : dw $0080,$0080                    ;92D453;
-
-UNUSED_SamusBottomTiles_Set4_92D45A:
-; Unused
-    dl SamusTiles_Bottom_Set4_EntryC : dw $0080,$0080                    ;92D45A;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 SamusBottomTiles_Set4_D461:
 ; 5Dh: Unused - frames 27h..29h
 ; 5Eh: Unused - frames 27h..29h
@@ -10308,12 +10269,6 @@ SamusBottomTiles_Set4_D499:
 ; B2h: Facing clockwise   -   grapple - in air - frames 3Ah..3Bh
     dl SamusTiles_Bottom_Set4_Entry15 : dw $0080,$0080                   ;92D499;
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_SamusBottomTiles_Set4_92D4A0:
-; Unused
-    dl SamusTiles_Bottom_Set4_Entry16 : dw $0080,$0080                   ;92D4A0;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 
 ;;; $D4A7: Samus bottom tiles - set 5 (facing anticlockwise - grappling - in air - upside up) ;;;
 SamusBottomTiles_Set5_D4A7:
@@ -10365,12 +10320,6 @@ SamusBottomTiles_Set5_D4E6:
 ; 62h: Unused - frames 15h..16h
 ; B3h: Facing anticlockwise - grapple - in air - frames 15h..16h
     dl SamusTiles_Bottom_Set5_Entry9 : dw $00C0,$0040                    ;92D4E6;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_SamusBottomTiles_Set5_92D4ED:
-; Unused
-    dl SamusTiles_Bottom_Set5_EntryA : dw $00A0,$0080                    ;92D4ED;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusBottomTiles_Set5_D4F4:
 ; 62h: Unused - frame 40h
@@ -12691,41 +12640,6 @@ PlaySamusFanfare:
     PLP                                                                  ;92ED77;
     CLC                                                                  ;92ED78;
     RTL                                                                  ;92ED79;
-
-
-if !DEBUG
-;;; $ED7A: Debug. Samus tile viewer ;;;
-Debug_SamusTileViewer:
-    PHP                                                                  ;92ED7A;
-    PHB                                                                  ;92ED7B;
-    PHK                                                                  ;92ED7C;
-    PLB                                                                  ;92ED7D;
-    REP #$30                                                             ;92ED7E;
-    LDA.W #$0182                                                         ;92ED80;
-    LDX.W #$0040                                                         ;92ED83;
-    LDY.W #$0040                                                         ;92ED86;
-    JSL.L AddSamusSpritemapToOAM                                         ;92ED89;
-    LDA.W #$0182                                                         ;92ED8D;
-    INC                                                                  ;92ED90;
-    LDX.W #$00C0                                                         ;92ED91;
-    LDY.W #$0040                                                         ;92ED94;
-    JSL.L AddSamusSpritemapToOAM                                         ;92ED97;
-    LDA.W #$0182                                                         ;92ED9B;
-    INC                                                                  ;92ED9E;
-    INC                                                                  ;92ED9F;
-    LDX.W #$0080                                                         ;92EDA0;
-    LDY.W #$0060                                                         ;92EDA3;
-    JSL.L AddSamusSpritemapToOAM                                         ;92EDA6;
-    LDA.W #$0182                                                         ;92EDAA;
-    CLC                                                                  ;92EDAD;
-    ADC.W #$0003                                                         ;92EDAE;
-    LDX.W #$0080                                                         ;92EDB1;
-    LDY.W #$0050                                                         ;92EDB4;
-    JSL.L AddSamusSpritemapToOAM                                         ;92EDB7;
-    PLB                                                                  ;92EDBB;
-    PLP                                                                  ;92EDBC;
-    RTL                                                                  ;92EDBD;
-endif
 
 
 ;;; $EDBE: Draw Samus' suit exploding ;;;

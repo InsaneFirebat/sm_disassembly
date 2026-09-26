@@ -821,48 +821,6 @@ Initialise_Special_Effects_for_New_Room:
     RTL                                                                  ;8883E1;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $83E2: Unused. Spawn HDMA object on HDMA channel 2 ;;;
-UNUSED_SpawnHDMAObject_Slot0_Channel4_Index20_8883E2:
-;; Parameters:
-;;     [[S] + 1] + 1: HDMA control
-;;     [[S] + 1] + 2: HDMA target
-;;     [[S] + 1] + 3: HDMA object instruction list pointer
-;; Returns:
-;;     Carry: Clear
-;;     A: HDMA object index
-    PHP                                                                  ;8883E2;
-    PHB                                                                  ;8883E3;
-    REP #$20                                                             ;8883E4;
-    LDA.W #$0400                                                         ;8883E6;
-    STA.B DP_Temp12                                                      ;8883E9;
-    LDA.W #$0020                                                         ;8883EB;
-    STA.B DP_Temp14                                                      ;8883EE;
-    LDX.W #$0000                                                         ;8883F0;
-    JMP.W SpawnHDMAObject_SlotX_Hardcoded                                ;8883F3;
-
-
-;;; $83F6: Unused. Spawn HDMA object on HDMA channel 6 ;;;
-UNUSED_SpawnHDMAObject_Slot8_Channel40_Index60_8883F6:
-;; Parameters:
-;;     [[S] + 1] + 1: HDMA control
-;;     [[S] + 1] + 2: HDMA target
-;;     [[S] + 1] + 3: HDMA object instruction list pointer
-;; Returns:
-;;     Carry: Clear
-;;     A: HDMA object index
-    PHP                                                                  ;8883F6;
-    PHB                                                                  ;8883F7;
-    REP #$20                                                             ;8883F8;
-    LDA.W #$4000                                                         ;8883FA;
-    STA.B DP_Temp12                                                      ;8883FD;
-    LDA.W #$0060                                                         ;8883FF;
-    STA.B DP_Temp14                                                      ;888402;
-    LDX.W #$0008                                                         ;888404;
-    JMP.W SpawnHDMAObject_SlotX_Hardcoded                                ;888407;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $840A: Spawn HDMA object on HDMA channel 7 ;;;
 SpawnHDMAObject_SlotA_Channel80_Index70:
 ;; Parameters:
@@ -1180,64 +1138,6 @@ Instruction_HDMAObject_PreInstructionInY:
     RTS                                                                  ;888583;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $8584: Unused. Instruction - clear pre-instruction ;;;
-UNUSED_Instruction_HDMAObject_ClearPreInstruction_888584:
-;; Parameters:
-;;     X: HDMA object index
-    LDA.W #.return                                                       ;888584;
-    STA.W HDMAObject_PreInstructions,X                                   ;888587;
-
-  .return:
-    RTS                                                                  ;88858A;
-
-
-;;; $858B: Unused. Instruction - call function [[Y]] ;;;
-UNUSED_Instruction_HDMAObject_CallFunctionY_88858B:
-;; Parameters:
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    LDA.W $0000,Y                                                        ;88858B;
-    STA.B DP_Temp12                                                      ;88858E;
-    PHX                                                                  ;888590;
-    PHY                                                                  ;888591;
-    PEA.W .return-1                                                      ;888592;
-    JMP.W (DP_Temp12)                                                    ;888595;
-
-  .return:
-    PLY                                                                  ;888598;
-    PLX                                                                  ;888599;
-    INY                                                                  ;88859A;
-    INY                                                                  ;88859B;
-    RTS                                                                  ;88859C;
-
-
-;;; $859D: Unused. Instruction - call function [[Y]] with A = [[Y] + 2] ;;;
-UNUSED_Instruction_HDMAObject_CallFunctionYWithA_88859D:
-;; Parameters:
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    LDA.W $0000,Y                                                        ;88859D;
-    STA.B DP_Temp12                                                      ;8885A0;
-    LDA.W $0002,Y                                                        ;8885A2;
-    PHX                                                                  ;8885A5;
-    PHY                                                                  ;8885A6;
-    PEA.W .return-1                                                      ;8885A7;
-    JMP.W (DP_Temp12)                                                    ;8885AA;
-
-  .return:
-    PLY                                                                  ;8885AD;
-    PLX                                                                  ;8885AE;
-    INY                                                                  ;8885AF;
-    INY                                                                  ;8885B0;
-    INY                                                                  ;8885B1;
-    INY                                                                  ;8885B2;
-    RTS                                                                  ;8885B3;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $85B4: Instruction - call external function [[Y]] ;;;
 Instruction_HDMAObject_CallExternalFunctionInY:
 ;; Parameters:
@@ -1263,34 +1163,6 @@ Instruction_HDMAObject_CallExternalFunctionInY:
     JML.W [DP_Temp12]                                                    ;8885CA;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $85CD: Unused. Instruction - call external function [[Y]] with A = [[Y] + 3] ;;;
-UNUSED_Instruction_HDMAObject_CallExternalFuncYWithA_8885CD:
-;; Parameters:
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    LDA.W $0000,Y                                                        ;8885CD;
-    STA.B DP_Temp12                                                      ;8885D0;
-    LDA.W $0001,Y                                                        ;8885D2;
-    STA.B DP_Temp13                                                      ;8885D5;
-    LDA.W $0003,Y                                                        ;8885D7;
-    PHX                                                                  ;8885DA;
-    PHY                                                                  ;8885DB;
-    JSL.L .externalFunction                                              ;8885DC;
-    PLY                                                                  ;8885E0;
-    PLX                                                                  ;8885E1;
-    TYA                                                                  ;8885E2;
-    CLC                                                                  ;8885E3;
-    ADC.W #$0005                                                         ;8885E4;
-    TAY                                                                  ;8885E7;
-    RTS                                                                  ;8885E8;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;8885E9;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $85EC: Instruction - go to [[Y]] ;;;
 Instruction_HDMAObject_GotoY:
 ;; Parameters:
@@ -1300,127 +1172,6 @@ Instruction_HDMAObject_GotoY:
     LDA.W $0000,Y                                                        ;8885EC;
     TAY                                                                  ;8885EF;
     RTS                                                                  ;8885F0;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $85F1: Unused. Instruction - go to [Y] + ±[[Y]] ;;;
-UNUSED_Instruction_HDMAObject_GotoY_Y_8885F1:
-;; Parameters:
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    STY.B DP_Temp12                                                      ;8885F1;
-    DEY                                                                  ;8885F3;
-    LDA.W $0000,Y                                                        ;8885F4;
-    XBA                                                                  ;8885F7;
-    BMI .highByte                                                        ;8885F8;
-    AND.W #$00FF                                                         ;8885FA;
-    BRA +                                                                ;8885FD;
-
-  .highByte:
-    ORA.W #$FF00                                                         ;8885FF;
-
-+   CLC                                                                  ;888602;
-    ADC.B DP_Temp12                                                      ;888603;
-    TAY                                                                  ;888605;
-    RTS                                                                  ;888606;
-
-
-;;; $8607: Unused. Instruction - decrement timer and go to [[Y]] if non-zero ;;;
-UNUSED_Instruction_HDMAObject_DecTimer_GotoY_IfNonZero_888607:
-;; Parameters:
-;;     X: HDMA object index
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    DEC.W HDMAObject_Timers,X                                            ;888607;
-    BNE Instruction_HDMAObject_GotoY                                     ;88860A;
-    INY                                                                  ;88860C;
-    INY                                                                  ;88860D;
-    RTS                                                                  ;88860E;
-
-
-;;; $860F: Unused. Instruction - decrement timer and go to [Y] + ±[[Y]] if non-zero ;;;
-UNUSED_Instruction_HDMAObject_DecTimer_GotoYIfNonZero_88860F:
-;; Parameters:
-;;     X: HDMA object index
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    DEC.W HDMAObject_Timers,X                                            ;88860F;
-    BNE UNUSED_Instruction_HDMAObject_GotoY_Y_8885F1                     ;888612;
-    INY                                                                  ;888614;
-    RTS                                                                  ;888615;
-
-
-;;; $8616: Unused. Instruction - timer = [[Y]] ;;;
-UNUSED_Instruction_HDMAObject_TimerInY_888616:
-;; Parameters:
-;;     X: HDMA object index
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    SEP #$20                                                             ;888616;
-    LDA.W $0000,Y                                                        ;888618;
-    STA.W HDMAObject_Timers,X                                            ;88861B;
-    REP #$20                                                             ;88861E;
-    INY                                                                  ;888620;
-    RTS                                                                  ;888621;
-
-
-;;; $8622: Unused. Instruction - HDMA control = [[Y]] ;;;
-UNUSED_Instruction_HDMAObject_HDMAControlInY_888622:
-;; Parameters:
-;;     X: HDMA object index
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    PHX                                                                  ;888622;
-    LDA.W HDMAObject_ChannelIndicesBanks,X                               ;888623;
-    AND.W #$00FF                                                         ;888626;
-    TAX                                                                  ;888629;
-    SEP #$20                                                             ;88862A;
-    LDA.W $0000,Y                                                        ;88862C;
-    STA.W $4300,X                                                        ;88862F;
-    REP #$20                                                             ;888632;
-    PLX                                                                  ;888634;
-    INY                                                                  ;888635;
-    RTS                                                                  ;888636;
-
-
-;;; $8637: Unused. Instruction - HDMA target = [[Y]] ;;;
-UNUSED_Instruction_HDMAObject_HDMATargetInY:
-;; Parameters:
-;;     X: HDMA object index
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    PHX                                                                  ;888637;
-    LDA.W HDMAObject_ChannelIndicesBanks,X                               ;888638;
-    AND.W #$00FF                                                         ;88863B;
-    TAX                                                                  ;88863E;
-    SEP #$20                                                             ;88863F;
-    LDA.W $0000,Y                                                        ;888641;
-    STA.W $4301,X                                                        ;888644;
-    REP #$20                                                             ;888647;
-    PLX                                                                  ;888649;
-    INY                                                                  ;88864A;
-    RTS                                                                  ;88864B;
-
-
-;;; $864C: Unused. Instruction - HDMA table pointer = [[Y]] ;;;
-UNUSED_Instruction_HDMAObject_HDMATablePointerInY_88864C:
-;; Parameters:
-;;     X: HDMA object index
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    LDA.W $0000,Y                                                        ;88864C;
-    STA.W HDMAObject_TablePointers,X                                     ;88864F;
-    INY                                                                  ;888652;
-    INY                                                                  ;888653;
-    RTS                                                                  ;888654;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $8655: Instruction - HDMA table bank = [[Y]] ;;;
@@ -1461,20 +1212,6 @@ Instruction_HDMAObject_IndirectHDMATableBank:
     PLX                                                                  ;88867C;
     INY                                                                  ;88867D;
     RTS                                                                  ;88867E;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $867F: Unused. Instruction - skip next instruction ;;;
-UNUSED_Instruction_HDMAObject_SkipNextInstruction_88867F:
-;; Parameters:
-;;     X: HDMA object index
-;;     Y: Pointer to after this instruction
-;; Returns:
-;;     Y: Pointer to next instruction
-    INY                                                                  ;88867F;
-    INY                                                                  ;888680;
-    RTS                                                                  ;888681;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $8682: Instruction - sleep ;;;
@@ -2909,135 +2646,6 @@ Calculate_PowerBombPreExplosion_HDMAObjectTablePointers:
     RTL                                                                  ;888FB9;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $8FBA: Unused. Calculate power bomb related HDMA data tables - scaled - power bomb is left of screen ;;;
-UNUSED_CalcPowerBombRelatedHDMATables_Scaled_Left_888FBA:
-; Clone of Calculate_PowerBombExplo_HDMADataTables_Scaled_LeftOfScreen
-    LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A226,Y             ;888FBA;
-    STA.W $4203                                                          ;888FBD;
-    NOP                                                                  ;888FC0;
-    NOP                                                                  ;888FC1;
-    NOP                                                                  ;888FC2;
-    LDA.W $4217                                                          ;888FC3;
-    STA.B DP_Temp14                                                      ;888FC6;
-    LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A206,Y             ;888FC8;
-    STA.W $4203                                                          ;888FCB;
-    NOP                                                                  ;888FCE;
-    LDA.W SamusProjectile_PowerBombPositionOnScreen                      ;888FCF;
-    CLC                                                                  ;888FD2;
-    ADC.W $4217                                                          ;888FD3;
-    BCS +                                                                ;888FD6;
-    LDA.B #$00                                                           ;888FD8;
-    XBA                                                                  ;888FDA;
-    LDA.B #$FF                                                           ;888FDB;
-    BRA .loop                                                            ;888FDD;
-
-+   XBA                                                                  ;888FDF;
-    LDA.B #$00                                                           ;888FE0;
-
-  .loop:
-    STA.L PowerBombExplosionWindow2LeftHDMADataTable,X                   ;888FE2;
-    XBA                                                                  ;888FE6;
-    STA.L PowerBombExplosionWindow2RightHDMADataTable,X                  ;888FE7;
-    XBA                                                                  ;888FEB;
-    CPX.B DP_Temp14                                                      ;888FEC;
-    BEQ .next                                                            ;888FEE;
-    DEX                                                                  ;888FF0;
-    JMP.W .loop                                                          ;888FF1;
-
-  .next:
-    INY                                                                  ;888FF4;
-    BPL UNUSED_CalcPowerBombRelatedHDMATables_Scaled_Left_888FBA         ;888FF5;
-    RTS                                                                  ;888FF7;
-
-
-;;; $8FF8: Unused. Calculate power bomb related HDMA data tables - scaled - power bomb is on screen ;;;
-UNUSED_CalcPBRelatedHDMADataTables_Scaled_OnScreen_888FF8:
-; Clone of Calculate_PowerBombExplosion_HDMADataTables_Scaled_OnScreen
-    LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A226,Y             ;888FF8;
-    STA.W $4203                                                          ;888FFB;
-    NOP                                                                  ;888FFE;
-    NOP                                                                  ;888FFF;
-    NOP                                                                  ;889000;
-    LDA.W $4217                                                          ;889001;
-    STA.B DP_Temp14                                                      ;889004;
-    LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A206,Y             ;889006;
-    STA.W $4203                                                          ;889009;
-    NOP                                                                  ;88900C;
-    LDA.W SamusProjectile_PowerBombPositionOnScreen                      ;88900D;
-    CLC                                                                  ;889010;
-    ADC.W $4217                                                          ;889011;
-    BCC +                                                                ;889014;
-    LDA.B #$FF                                                           ;889016;
-
-+   XBA                                                                  ;889018;
-    LDA.W SamusProjectile_PowerBombPositionOnScreen                      ;889019;
-    SEC                                                                  ;88901C;
-    SBC.W $4217                                                          ;88901D;
-    BCS .loop                                                            ;889020;
-    LDA.B #$00                                                           ;889022;
-
-  .loop:
-    STA.L PowerBombExplosionWindow2LeftHDMADataTable,X                   ;889024;
-    XBA                                                                  ;889028;
-    STA.L PowerBombExplosionWindow2RightHDMADataTable,X                  ;889029;
-    XBA                                                                  ;88902D;
-    CPX.B DP_Temp14                                                      ;88902E;
-    BEQ .next                                                            ;889030;
-    DEX                                                                  ;889032;
-    JMP.W .loop                                                          ;889033;
-
-  .next:
-    INY                                                                  ;889036;
-    BPL UNUSED_CalcPBRelatedHDMADataTables_Scaled_OnScreen_888FF8        ;889037;
-    RTS                                                                  ;889039;
-
-
-;;; $903A: Unused. Calculate power bomb related HDMA data tables - scaled - power bomb is right of screen ;;;
-UNUSED_CalPBRelatedHDMADataTables_Scaled_OnScreen_88903A:
-; Clone of Calculate_PowerBombExplo_HDMADataTables_Scaled_RightOfScreen
-    LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A226,Y             ;88903A;
-    STA.W $4203                                                          ;88903D;
-    NOP                                                                  ;889040;
-    NOP                                                                  ;889041;
-    NOP                                                                  ;889042;
-    LDA.W $4217                                                          ;889043;
-    STA.B DP_Temp14                                                      ;889046;
-    LDA.W PowerBomb_ShapeDefinitionTiles_Optimization_A206,Y             ;889048;
-    STA.W $4203                                                          ;88904B;
-    NOP                                                                  ;88904E;
-    LDA.W SamusProjectile_PowerBombPositionOnScreen                      ;88904F;
-    SEC                                                                  ;889052;
-    SBC.W $4217                                                          ;889053;
-    BCC .lowByteFF                                                       ;889056;
-    LDA.B #$FF                                                           ;889058;
-    XBA                                                                  ;88905A;
-    LDA.B #$00                                                           ;88905B;
-    BRA +                                                                ;88905D;
-
-  .lowByteFF:
-    XBA                                                                  ;88905F;
-    LDA.B #$FF                                                           ;889060;
-
-+   XBA                                                                  ;889062;
-
-  .loop:
-    STA.L PowerBombExplosionWindow2LeftHDMADataTable,X                   ;889063;
-    XBA                                                                  ;889067;
-    STA.L PowerBombExplosionWindow2RightHDMADataTable,X                  ;889068;
-    XBA                                                                  ;88906C;
-    CPX.B DP_Temp14                                                      ;88906D;
-    BEQ .next                                                            ;88906F;
-    DEX                                                                  ;889071;
-    JMP.W .loop                                                          ;889072;
-
-  .next:
-    INY                                                                  ;889075;
-    BPL UNUSED_CalPBRelatedHDMADataTables_Scaled_OnScreen_88903A         ;889076;
-    RTS                                                                  ;889078;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $9079: Power bomb pre-explosion colours ;;;
 PowerBomb_PreExplosion_Colors:
 ; Indexed by [power bomb pre-explosion radius] / 800h
@@ -3065,36 +2673,6 @@ PowerBomb_PreExplosion_Colors:
     db $18,$18,$08
     db $16,$16,$06
     db $14,$14,$04
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $90A9: Unused. Power bomb explosion related colours ;;;
-UNUSED_PowerBomb_ExplosionRelated_Colors_8890A9:
-; These might have been used for the after-glow in earlier development
-    db $13,$13,$0F                                                       ;8890A9;
-    db $11,$11,$0E
-    db $0F,$0F,$0D
-    db $0D,$0D,$0C
-    db $0B,$0B,$0B
-    db $0A,$0A,$0A
-    db $09,$09,$09
-    db $08,$08,$08
-    db $07,$07,$07
-    db $06,$06,$06
-    db $05,$05,$05
-    db $04,$04,$04
-    db $03,$03,$03
-    db $02,$02,$02
-    db $01,$01,$01
-    db $00,$00,$00
-
-
-;;; $90D9: Unused ;;;
-UNUSED_PowerBombColors_8890D9:
-; There's no (non-pre) explosion parallel to this constant (as there is for initial speed and acceleration),
-; so I can't even speculate what this might have been for
-    dw $0001                                                             ;8890D9;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $90DB: Power bomb pre-explosion initial radius speed ;;;
@@ -3771,85 +3349,6 @@ PreInstruction_CrystalFlash_2_AfterGlow:
     INC.W HDMAObject_InstListPointers,X                                  ;88A3B0;
     INC.W HDMAObject_InstListPointers,X                                  ;88A3B3;
     RTL                                                                  ;88A3B6;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $A3B7: Unused. Calculate crystal flash HDMA data tables - pre-scaled - power bomb is left of screen ;;;
-UNUSED_CalcCrystalFlashHDMADataTables_PreScaled_Left_88A3B7:
-; Clone of Calc_PowerBombExplo_HDMADataTables_PreScaled_LeftOfScreen
-    LDA.W SamusProjectile_PowerBombPositionOnScreen                      ;88A3B7;
-    CLC                                                                  ;88A3BA;
-    ADC.W $0000,Y                                                        ;88A3BB;
-    BCS +                                                                ;88A3BE;
-    LDA.B #$00                                                           ;88A3C0;
-    STA.L PowerBombExplosionWindow2RightHDMADataTable,X                  ;88A3C2;
-    INC                                                                  ;88A3C6;
-    STA.L PowerBombExplosionWindow2LeftHDMADataTable,X                   ;88A3C7;
-    BRA .loop                                                            ;88A3CB;
-
-+   STA.L PowerBombExplosionWindow2RightHDMADataTable,X                  ;88A3CD;
-    LDA.B #$00                                                           ;88A3D1;
-    STA.L PowerBombExplosionWindow2LeftHDMADataTable,X                   ;88A3D3;
-
-  .loop:
-    INY                                                                  ;88A3D7;
-    INX                                                                  ;88A3D8;
-    CPX.W #$00C0                                                         ;88A3D9;
-    BNE UNUSED_CalcCrystalFlashHDMADataTables_PreScaled_Left_88A3B7      ;88A3DC;
-    RTS                                                                  ;88A3DE;
-
-
-;;; $A3DF: Unused. Calculate crystal flash HDMA data tables - pre-scaled - power bomb is on screen ;;;
-UNUSED_Calc_CF_HDMADataTables_PreScaled_OnScreen_88A3DF:
-; Clone of Calculate_PowerBombExplo_HDMADataTables_PreScaled_OnScreen
-    LDA.W $0000,Y                                                        ;88A3DF;
-    BEQ .return                                                          ;88A3E2;
-    CLC                                                                  ;88A3E4;
-    ADC.W SamusProjectile_PowerBombPositionOnScreen                      ;88A3E5;
-    BCC +                                                                ;88A3E8;
-    LDA.B #$FF                                                           ;88A3EA;
-
-+   STA.L PowerBombExplosionWindow2RightHDMADataTable,X                  ;88A3EC;
-    LDA.W SamusProjectile_PowerBombPositionOnScreen                      ;88A3F0;
-    SEC                                                                  ;88A3F3;
-    SBC.W $0000,Y                                                        ;88A3F4;
-    BCS +                                                                ;88A3F7;
-    LDA.B #$00                                                           ;88A3F9;
-
-+   STA.L PowerBombExplosionWindow2LeftHDMADataTable,X                   ;88A3FB;
-    INY                                                                  ;88A3FF;
-    INX                                                                  ;88A400;
-    CPX.W #$00C0                                                         ;88A401;
-    BNE UNUSED_Calc_CF_HDMADataTables_PreScaled_OnScreen_88A3DF          ;88A404;
-
-  .return:
-    RTS                                                                  ;88A406;
-
-
-;;; $A407: Unused. Calculate crystal flash HDMA data tables - pre-scaled - power bomb is right of screen ;;;
-UNUSED_Calc_CF_HDMADataTables_PreScaled_RightOfScreen_88A407:
-; Clone of Calc_PowerBombExplo_HDMADataTables_PreScaled_RightOfScreen
-    LDA.W SamusProjectile_PowerBombPositionOnScreen                      ;88A407;
-    SEC                                                                  ;88A40A;
-    SBC.W $0000,Y                                                        ;88A40B;
-    BCC +                                                                ;88A40E;
-    LDA.B #$FF                                                           ;88A410;
-    STA.L PowerBombExplosionWindow2LeftHDMADataTable,X                   ;88A412;
-    DEC                                                                  ;88A416;
-    STA.L PowerBombExplosionWindow2RightHDMADataTable,X                  ;88A417;
-    BRA .next                                                            ;88A41B;
-
-+   STA.L PowerBombExplosionWindow2LeftHDMADataTable,X                   ;88A41D;
-    LDA.B #$FF                                                           ;88A421;
-    STA.L PowerBombExplosionWindow2RightHDMADataTable,X                  ;88A423;
-
-  .next:
-    INY                                                                  ;88A427;
-    INX                                                                  ;88A428;
-    CPX.W #$00C0                                                         ;88A429;
-    BNE UNUSED_Calc_CF_HDMADataTables_PreScaled_RightOfScreen_88A407     ;88A42C;
-    RTS                                                                  ;88A42E;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $A42F: Calculate crystal flash HDMA object table pointers ;;;
@@ -4577,14 +4076,6 @@ Damage_Samus_IfSheIsInTheTopRow:
     RTS                                                                  ;88A8D9;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $A8DA: Unused table ;;;
-UNUSED_Table_88A8DA:
-; Looks like the format of FXType_22_RepeatingBG3StripsTable below
-    dw $0000,$0010,$0020,$0020,$0010,$0030,$0040                         ;88A8DA;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $A8E8: FX type 22h repeating BG3 strips table ;;;
 FXType_22_RepeatingBG3StripsTable:
 ; This table defines sections of repeating strips of BG3
@@ -5200,43 +4691,6 @@ PreInstruction_Fireflea_BG3XScroll:
     RTL                                                                  ;88B11D;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $B11E: Unused. Spawn expanding and contracting effect HDMA object ;;;
-UNUSED_Spawn_ExpandingContractingEffect_HDMAObject_88B11E:
-; Causes an expanding and contracting effect, see "expanding message box.asm"
-; The RAM used here is the same as used for the message box animation,
-; usage looks similar too (HDMA table of $85:8363, $05A2..A7 of $85:82B8),
-; so this is not unlikely an early version of the message box animation
-    PHP                                                                  ;88B11E;
-    REP #$30                                                             ;88B11F;
-    STZ.W ContractingFlag                                                ;88B121;
-    STZ.W ExpandContract_HDMATableUpdateCounter                          ;88B124;
-    LDA.W #$0080                                                         ;88B127;
-    STA.W ExpandContract_DestTop                                         ;88B12A;
-    STA.W ExpandContract_SrcTop                                          ;88B12D;
-    LDA.W #$007F                                                         ;88B130;
-    STA.W ExpandContract_DestBottom                                      ;88B133;
-    STA.W ExpandContract_SrcBottom                                       ;88B136;
-    LDA.W #$2000                                                         ;88B139;
-    STA.W ExpandContract_ExpansionFactor                                 ;88B13C;
-    LDA.W #$00FF                                                         ;88B13F;
-    STA.L ExpandingContractingEffectBG2YScrollIndirectHDMATable          ;88B142;
-    LDA.W #ExpandingContractingEffectBG2YScrollIndirectHDMADataTable     ;88B146;
-    STA.L ExpandingContractingEffectBG2YScrollIndirectHDMATable+1        ;88B149;
-    LDA.W #$00E1                                                         ;88B14D;
-    STA.L ExpandingContractingEffectBG2YScrollIndirectHDMATable+3        ;88B150;
-    LDA.W #ExpandingContractingEffectBG2YScrollIndirectHDMADataTable+$FE ;88B154;
-    STA.L ExpandingContractingEffectBG2YScrollIndirectHDMATable+4        ;88B157;
-    LDA.W #$0000                                                         ;88B15B;
-    STA.L ExpandingContractingEffectBG2YScrollIndirectHDMATable+6        ;88B15E;
-    JSL.L Spawn_HDMAObject                                               ;88B162;
-    db $42,$10                                                           ;88B166;
-    dw InstList_ExpandingContractingEffect_BG2YScroll_0                  ;88B168;
-    PLP                                                                  ;88B16A;
-    RTL                                                                  ;88B16B;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $B16C: Instruction list - expanding and contracting effect BG2 Y scroll ;;;
 InstList_ExpandingContractingEffect_BG2YScroll_0:
     dw Instruction_HDMAObject_HDMATableBank : db $7E                     ;88B16C;
@@ -5727,17 +5181,6 @@ PreInstruction_LavaAcid_BG3YScroll:
     STA.W HDMAObject_TablePointers,X                                     ;88B489;
     PLB                                                                  ;88B48C;
     RTL                                                                  ;88B48D;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $B48E: Unused ;;;
-UNUSED_WaveDisplacementTable_88B48E:
-; Wave displacement table. Same as the data at Setup_LavaAcid_BG2YScrollDataTable_VerticallyWavy_waveDisplacementTable
-    dw $0000,$0001,$0001,$0000,$0000,$FFFF,$FFFF,$0000                   ;88B48E;
-    dw $0000,$0001,$0001,$0000,$0000,$FFFF,$FFFF,$0000                   ;88B49E;
-    dw $0000,$0001,$0001,$0000,$0000,$FFFF,$FFFF,$0000                   ;88B4AE;
-    dw $0000,$0001,$0001,$0000,$0000,$FFFF,$FFFF,$0000                   ;88B4BE;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $B4CE: Instruction - HDMA object phase decrease timer = 1 ;;;
@@ -6584,271 +6027,6 @@ IndirectHDMATable_LavaAcid_BG3Yscroll:
     db $60 : dw LavaAcidBG3YScrollHDMADataTable+2
     db $60 : dw LavaAcidBG3YScrollHDMADataTable+2
     db $00
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $BDB1: Unused. Indirect HDMA table ;;;
-UNUSED_IndirectHDMATable_88BDB1:
-; $7E:9C44 is set to [BG2 Y scroll] by the lava/acid BG2 Y scroll pre-instruction,
-; it's possible that this was the upper half of the following table, and this allowed for the wavy effect to be limited to,
-; say, in the acid/lava or just above it
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2                                                    ;88BDB1;
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-    db $81 : dw LavaAcidBG2YScrollHDMADataTable-2
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $C0B1: Indirect HDMA table - lava/acid BG2 Y scroll ;;;
@@ -9301,16 +8479,6 @@ Instruction_HDMAObjectBG3XVelocity:
     dw $FA00,$0600,$FC00,$0400                                           ;88D992;
 
 
-;;; $D99A: Unused. Indirect HDMA table ;;;
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_IndirectHDMATable_88D99A:
-; Looks like a more space-efficient version of IndirectHDMATable_BG3Scroll
-    db $1F : dw $CAD8                                                    ;88D99A;
-    db $81 : dw $CADC
-    db $00
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $D9A1: Pre-instruction - rain BG3 scroll ;;;
 PreInstruction_RainBG3Scroll:
 ;; Parameters:
@@ -9402,16 +8570,6 @@ InstList_Spores_BG3_Xscroll_1:
     dw InstList_Spores_BG3_Xscroll_1                                     ;88DA3E;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $DA40: Unused. Indirect HDMA table ;;;
-UNUSED_IndirectHDMATable_88DA40:
-; Looks like a more space-efficient version of IndirectHDMATable_BG3Scroll
-    db $1F : dw $CAD8                                                    ;88DA40;
-    db $81 : dw $CADC
-    db $00
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $DA47: Pre-instruction - spores BG3 X scroll ;;;
 PreInstruction_Spores_BG3_Xsscroll:
 ;; Parameters:
@@ -9465,64 +8623,6 @@ PreInstruction_Spores_BG3_Xsscroll:
     RTL                                                                  ;88DA9E;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $DA9F: Unused. Handle spores waviness ;;;
-UNUSED_HandleSporesWaviness_88DA9F:
-;; Parameters:
-;;     X: HDMA object index
-;;     $12: X position of screen on Samus??
-;;     $14: Y position of screen on FX?
-
-; The above routine $DA47 does store values to $12 and $14 that it doesn't use itself,
-; however those values don't look right for the usage here, and this routine doesn't PLB before returning,
-; which the above routine would need. So I don't think this is an unused section of that routine
-    DEC.W HDMAObject_Var1,X                                              ;88DA9F;
-    BNE .setupLoop                                                       ;88DAA2;
-    LDA.W #$000A                                                         ;88DAA4;
-    STA.W HDMAObject_Var1,X                                              ;88DAA7;
-    LDA.W HDMAObject_Var0,X                                              ;88DAAA;
-    INC                                                                  ;88DAAD;
-    INC                                                                  ;88DAAE;
-    AND.W #$001F                                                         ;88DAAF;
-    STA.W HDMAObject_Var0,X                                              ;88DAB2;
-
-  .setupLoop:
-    LDA.W HDMAObject_Var0,X                                              ;88DAB5;
-    TAX                                                                  ;88DAB8;
-    LDY.B #$1E                                                           ;88DAB9;
-
-  .loop:
-    LDA.B DP_Temp12                                                      ;88DABB;
-    CLC                                                                  ;88DABD;
-    ADC.B SamusXPosition                                                 ;88DABE;
-    ADC.W .waveDisplacementTable,Y                                       ;88DAC1;
-    STA.L WaterBG3XScrollHDMADataTable,X                                 ;88DAC4;
-    TXA                                                                  ;88DAC8;
-    DEC                                                                  ;88DAC9;
-    DEC                                                                  ;88DACA;
-    AND.W #$001F                                                         ;88DACB;
-    TAX                                                                  ;88DACE;
-    DEY                                                                  ;88DACF;
-    DEY                                                                  ;88DAD0;
-    BPL .loop                                                            ;88DAD1;
-    LDX.W HDMAObject_Index                                               ;88DAD3;
-    LDA.W #$FFF0                                                         ;88DAD6;
-    TRB.B DP_Temp14                                                      ;88DAD9;
-    LDA.B DP_Temp14                                                      ;88DADB;
-    ASL                                                                  ;88DADD;
-    CLC                                                                  ;88DADE;
-    ADC.B DP_Temp14                                                      ;88DADF;
-    ADC.W #IndirectHDMATable_WaterBG3XScroll_1                           ;88DAE1;
-    STA.W HDMAObject_TablePointers,X                                     ;88DAE4;
-    RTL                                                                  ;88DAE7;
-
-  .waveDisplacementTable:
-; Same as WaveDisplacementTable_Water
-    dw $0000,$0001,$0001,$0000,$0000,$FFFF,$FFFF,$0000                   ;88DAE8;
-    dw $0000,$0001,$0001,$0000,$0000,$FFFF,$FFFF,$0000                   ;88DAF8;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $DB08: FX type Ch: fog ;;;
 FXType_C_Fog:
     SEP #$20                                                             ;88DB08;
@@ -9552,16 +8652,6 @@ InstList_Fog_BG3_Scroll_1:
 ;;; $DB2E: RTS ;;;
 RTS_88DB2E:
     RTS                                                                  ;88DB2E;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $DB2F: Unused. Indirect HDMA table ;;;
-UNUSED_IndirectHDMATable_88DB2F:
-; Looks like a more space-efficient version of IndirectHDMATable_BG3Scroll
-    db $1F : dw $CAD8                                                    ;88DB2F;
-    db $81 : dw $CADC
-    db $00
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $DB36: Pre-instruction - fog BG3 scroll ;;;
@@ -9954,44 +9044,6 @@ FXType_2C_CeresHaze:
     RTL                                                                  ;88DDE1;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $DDE2: Unused. Set Ceres haze pre-instruction for no fade ;;;
-UNUSED_Set_CeresHaze_PreInstruction_for_NoFade_88DDE2:
-    LDA.W #UNUSED_PreInst_CeresHaze_ColorMathSubScnBackdropColor_NoFade  ;88DDE2;
-    STA.W HDMAObject_PreInstructions,X                                   ;88DDE5; fallthrough to UNUSED_PreInst_CeresHaze_ColorMathSubScnBackdropColor_NoFade
-
-
-;;; $DDE8: Unused. Pre-instruction - Ceres haze colour math subscreen backdrop colour - no fade ;;;
-UNUSED_PreInst_CeresHaze_ColorMathSubScnBackdropColor_NoFade:
-;; Parameters:
-;;     X: HDMA object index
-
-; I assume this routine was used before they realised they needed to handle door transition fade
-    LDY.B #$20                                                           ;88DDE8;
-    STY.B DP_ColorMathSubScreenBackdropColor0                            ;88DDEA;
-    LDY.B #$40                                                           ;88DDEC;
-    STY.B DP_ColorMathSubScreenBackdropColor1                            ;88DDEE;
-    LDY.B #$80                                                           ;88DDF0;
-    STY.B DP_ColorMathSubScreenBackdropColor2                            ;88DDF2;
-    LDA.W #$002C                                                         ;88DDF4;
-    STA.W LayerBlending_Config                                           ;88DDF7;
-    SEP #$20                                                             ;88DDFA;
-    PHX                                                                  ;88DDFC;
-    LDA.W HDMAObject_Var1,X                                              ;88DDFD;
-    ORA.B #$0F                                                           ;88DE00;
-    LDX.B #$0F                                                           ;88DE02;
-
-  .loop:
-    STA.L HazeColorMathSubscreenBackdropColorHDMADataTable,X             ;88DE04;
-    DEC                                                                  ;88DE08;
-    DEX                                                                  ;88DE09;
-    BPL .loop                                                            ;88DE0A;
-    PLX                                                                  ;88DE0C;
-    REP #$20                                                             ;88DE0D;
-    RTL                                                                  ;88DE0F;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $DE10: Pre-instruction - Ceres haze colour math subscreen backdrop colour - Ceres Ridley alive ;;;
 PreInst_CeresHaze_ColorMathSubScnBackdropColor_RidleyIsAlive:
 ;; Parameters:
@@ -10201,24 +9253,6 @@ Spawn_DraygonMainScreenLayers_HDMAObject:
     RTL                                                                  ;88DF3C;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $DF3D: Unused ;;;
-UNUSED_SpawnHDMAObject_88DF3D:
-    JSL.L Spawn_HDMAObject                                               ;88DF3D;
-    db $00,$2C                                                           ;88DF41;
-    dw InstList_DraygonMainScreenLayers_DraygonAroundTop                 ;88DF43;
-    RTL                                                                  ;88DF45;
-
-
-;;; $DF46: Unused ;;;
-UNUSED_SpawnHDMAObject_88DF46:
-    JSL.L Spawn_HDMAObject                                               ;88DF46;
-    db $02,$12                                                           ;88DF4A;
-    dw UNUSED_InstList_BG3_Yscroll_0_88DF77                              ;88DF4C;
-    RTL                                                                  ;88DF4E;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $DF4F: Instruction list - Draygon main screen layers - initial ;;;
 InstList_DraygonMainScreenLayers_Initial:
     dw Instruction_HDMAObject_HDMATableBank : db $88                     ;88DF4F;
@@ -10251,24 +9285,6 @@ InstList_DraygonMainScreenLayers_DraygonAroundTop:
 InstList_DraygonMainScreenLayers_DraygonOffScreen:
     dw $0001,HDMATable_DraygonMainScreenLayers_DraygonOffScreen          ;88DF71;
     dw Instruction_HDMAObject_Sleep                                      ;88DF75;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $DF77: Instruction list - unused BG3 Y scroll ;;;
-UNUSED_InstList_BG3_Yscroll_0_88DF77:
-    dw Instruction_HDMAObject_HDMATableBank : db $88                     ;88DF77;
-    dw Instruction_HDMAObject_IndirectHDMATableBank : db $88             ;88DF7A;
-    dw Instruction_HDMAObject_CallExternalFunctionInY                    ;88DF7D;
-    dl RTL_88DF92                                                        ;88DF7F;
-    dw Instruction_HDMAObject_PreInstructionInY                          ;88DF82;
-    dl RTL_88DF93                                                        ;88DF84;
-
-UNUSED_InstList_BG3_Yscroll_1_88DF87:
-    dw $0001,UNUSED_HDMATable_BG3_Yscroll                                ;88DF87;
-    dw Instruction_HDMAObject_GotoY                                      ;88DF8B;
-    dw UNUSED_InstList_BG3_Yscroll_1_88DF87                              ;88DF8D;
-    dw Instruction_HDMAObject_Sleep                                      ;88DF8F;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $DF91: RTL ;;;
@@ -10375,15 +9391,6 @@ HDMATable_DraygonMainScreenLayers_DraygonOffScreen:                      ;88E01A
     db $1F,$04 ;         BG3
     db $81,$11 ; BG1/        sprites
     db $00
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $E01F: HDMA table - unused BG3 Y scroll ;;;
-UNUSED_HDMATable_BG3_Yscroll:
-    db $40 : dw $0000                                                    ;88E01F;
-    db $81 : dw $0020
-    db $00
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $E026: Pre-instruction - varia suit pickup ;;;

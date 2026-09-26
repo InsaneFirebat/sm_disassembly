@@ -201,50 +201,6 @@ Instruction_CommonA6_CallFunctionInY_WithA:
     RTL                                                                  ;A680B4;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $80B5: Unused. Instruction - call external function [[Y]] ;;;
-UNUSED_Instruction_CommonA6_CallExternalFunctionInY_A680B5:
-    LDA.W $0000,Y                                                        ;A680B5;
-    STA.B DP_Temp12                                                      ;A680B8;
-    LDA.W $0001,Y                                                        ;A680BA;
-    STA.B DP_Temp13                                                      ;A680BD;
-    PHX                                                                  ;A680BF;
-    PHY                                                                  ;A680C0;
-    JSL.L .externalFunction                                              ;A680C1;
-    PLY                                                                  ;A680C5;
-    PLX                                                                  ;A680C6;
-    INY                                                                  ;A680C7;
-    INY                                                                  ;A680C8;
-    INY                                                                  ;A680C9;
-    RTL                                                                  ;A680CA;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;A680CB;
-
-
-;;; $80CE: Unused. Instruction - call external function [[Y]] with A = [[Y] + 3] ;;;
-UNUSED_Inst_CommonA6_CallExternalFunctionInY_WithA_A680CE:
-    LDA.W $0000,Y                                                        ;A680CE;
-    STA.B DP_Temp12                                                      ;A680D1;
-    LDA.W $0001,Y                                                        ;A680D3;
-    STA.B DP_Temp13                                                      ;A680D6;
-    LDA.W $0003,Y                                                        ;A680D8;
-    PHX                                                                  ;A680DB;
-    PHY                                                                  ;A680DC;
-    JSL.L .externalFunction                                              ;A680DD;
-    PLY                                                                  ;A680E1;
-    PLX                                                                  ;A680E2;
-    TYA                                                                  ;A680E3;
-    CLC                                                                  ;A680E4;
-    ADC.W #$0005                                                         ;A680E5;
-    TAY                                                                  ;A680E8;
-    RTL                                                                  ;A680E9;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;A680EA;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $80ED: Instruction - go to [[Y]] ;;;
 Instruction_CommonA6_GotoY:
     LDA.W $0000,Y                                                        ;A680ED;
@@ -1054,27 +1010,6 @@ MoveBoulderHorizontally:
     ADC.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y                  ;A68A16;
     STA.W Enemy.XPosition,X                                              ;A68A19;
     RTS                                                                  ;A68A1C;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $8A1D: Unused. Move boulder horizontally with linear speed table ;;;
-UNUSED_MoveBoulderHorizontallyWithLinearSpeedTable_A68A1D:
-;; Parameters:
-;;     Y: Linear speed table index
-    LDX.B EnemyIndex                                                     ;A68A1D;
-    LDA.W Enemy.XSubPosition,X                                           ;A68A20;
-    CLC                                                                  ;A68A23;
-    ADC.W CommonEnemySpeeds_LinearlyIncreasing+2,Y                       ;A68A24;
-    BCC +                                                                ;A68A27;
-    INC.W Enemy.XPosition,X                                              ;A68A29;
-
-+   STA.W Enemy.XSubPosition,X                                           ;A68A2C;
-    LDA.W Enemy.XPosition,X                                              ;A68A2F;
-    CLC                                                                  ;A68A32;
-    ADC.W CommonEnemySpeeds_LinearlyIncreasing,Y                         ;A68A33;
-    STA.W Enemy.XPosition,X                                              ;A68A36;
-    RTS                                                                  ;A68A39;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $8A3A: Move boulder vertically ;;;
@@ -2908,14 +2843,6 @@ InstList_MiniKraid_FireSpit_FacingLeft:
     dw InstList_MiniKraid_ChooseAction                                   ;A699F2;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $99F4: Unused. Instruction list - standing - facing left ;;;
-UNUSED_InstList_MiniKraid_Standing_FacingLeft_A699F4:
-    dw $7FFF,Spritemap_MiniKraid_FiringSpit_FacingLeft_0                 ;A699F4;
-    dw Instruction_Common_Sleep                                          ;A699F8;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $99FA: Instruction list - choose action ;;;
 InstList_MiniKraid_ChooseAction_duplicate_again2:
     dw Instruction_MiniKraid_ChooseAction                                ;A699FA;
@@ -2958,14 +2885,6 @@ InstList_MiniKraid_FireSpit_FacingRight:
     dw regional($0008, $0007),Spritemap_MiniKraid_FiringSpit_FacingRight_1 ;A69A3A;
     dw Instruction_Common_GotoY                                          ;A69A3E;
     dw InstList_MiniKraid_ChooseAction_duplicate_again2                  ;A69A40;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $9A42: Unused. Instruction list - standing - facing right ;;;
-UNUSED_InstList_MiniKraid_Standing_FacingRight_A69A42:
-    dw $7FFF,Spritemap_MiniKraid_FiringSpit_FacingRight_0                ;A69A42;
-    dw Instruction_Common_Sleep                                          ;A69A46;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $9A48: Fake Kraid spit velocity table ;;;
@@ -3222,19 +3141,6 @@ Instruction_MiniKraid_FireSpitRight:
     LDY.W #$0008                                                         ;A69C03;
     LDA.W #$0004                                                         ;A69C06;
     BRA FireMiniKraidSpit_Common                                         ;A69C09;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $9C0B: Unused. Fake Kraid power bomb reaction ;;;
-UNUSED_PowerBombReaction_MiniKraid_A69C0B:
-    LDX.B EnemyIndex                                                     ;A69C0B;
-    LDA.W Enemy.XPosition,X                                              ;A69C0E;
-    STA.L EnemyProjectileData_SpecialDeathItemDropXOriginPosition        ;A69C11;
-    LDA.W Enemy.YPosition,X                                              ;A69C15;
-    STA.L EnemyProjectileData_SpecialDeathItemDropYOriginPosition        ;A69C18;
-    JSL.L NormalEnemyPowerBombAI_NoDeathCheck_External                   ;A69C1C;
-    BRA Reaction_MiniKraid_Common                                        ;A69C20;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $9C22: Enemy touch - enemy $E0FF (fake Kraid) ;;;
@@ -3539,20 +3445,6 @@ Spritemap_MiniKraid_FiringSpit_FacingRight_2:
     %spritemapEntry(1, $0D, $0F, 0, 1, 2, 0, $160)
     %spritemapEntry(1, $1FD, $FF, 0, 1, 2, 0, $142)
     %spritemapEntry(1, $0D, $FF, 0, 1, 2, 0, $140)
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_MiniKraid_A6A0E0:
-    dw $0001                                                             ;A6A0E0;
-    %spritemapEntry(0, $1FD, $FD, 0, 0, 2, 0, $11F)
-
-UNUSED_Spritemap_MiniKraid_A6A0E7:
-    dw $0001                                                             ;A6A0E7;
-    %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 0, $10F)
-
-UNUSED_Spritemap_MiniKraid_A6A0EE:
-    dw $0001                                                             ;A6A0EE;
-    %spritemapEntry(0, $1FC, $FC, 0, 1, 2, 0, $10F)
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $A0F5: Initialisation AI - enemy $E13F/$E17F (Ridley) ;;;
@@ -5286,25 +5178,6 @@ MainAI_Ridley:
     RTL                                                                  ;A6B26E;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $B26F: Unused. Grab Samus if grabbable ;;;
-UNUSED_Ridley_GrabSamusIfGrabbable_A6B26F:
-    LDA.L Ridley.intangibilityTimer                                      ;A6B26F;
-    ORA.L Ridley.holdingSamus                                            ;A6B273;
-    BNE .return                                                          ;A6B277;
-    LDX.W #$0004                                                         ;A6B279;
-    LDY.W #$0004                                                         ;A6B27C;
-    JSR.W CheckForSamusCollisionWithRidleyFeet                           ;A6B27F;
-    BCS .collision                                                       ;A6B282;
-
-  .return:
-    RTS                                                                  ;A6B284;
-
-  .collision:
-    JMP.W GrabSamus                                                      ;A6B285;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $B288: Ridley grabbed Samus movement hurt AI lag time ;;;
 RidleyGrabbedSamusMovementHurtAILagTime:
 ; When hurt AI is active, if Samus is grabbed, this number of frames must pass before Samus' position is updated
@@ -5775,14 +5648,6 @@ Function_Ridley_Swoop_Ascending_Decelerate:
 
 +   STY.W Ridley.function                                                ;A6B5BA;
     RTS                                                                  ;A6B5BD;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $B5BE: Unused ;;;
-UNUSED_PossiblyAngleDeltas_A6B5BE:
-; Possibly used to be the angle deltas for Function_Ridley_Swoop_Descending_AimingDown
-    dw $FFE0,$0000,$0020                                                 ;A6B5BE;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $B5C4: Ridley action - hover ;;;
@@ -6625,12 +6490,6 @@ Function_Ridley_GrabbedSamus_RisingToRoomMiddle:
     LDA.W #$0040                                                         ;A6BC21;
     STA.W Ridley.functionTimer                                           ;A6BC24;
     RTS                                                                  ;A6BC27;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_A6BC28:
-    dw $00B0,$0000,$0050                                                 ;A6BC28;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $BC2E: Ridley function - grabbed Samus - release Samus ;;;
@@ -7746,28 +7605,6 @@ TypewriterCeresEscapeSubtitleTilemapTransfer_Japanese:
     dw $52EA                                                             ;A6C3D2; VRAM address
 
     dw $0000                                                             ;A6C3D4; Zero terminator
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_TypewriterCeresEscapeJapanTextTilemapTransfer_A6C3D6:
-; Unused. Same as above, but for BG2
-    dw $0018                                                             ;A6C3D6; Size
-    dl TypewriterCeresEscapeSubtitleTilemapTransfer_Japanese_Line0_Row0  ;A6C3D8; Source address
-    dw $4A8A                                                             ;A6C3DB; VRAM address
-
-    dw $0018                                                             ;A6C3DD; Size
-    dl TypewriterCeresEscapeSubtitleTilemapTransfer_Japanese_Line0_Row1  ;A6C3DF; Source address
-    dw $4AAA                                                             ;A6C3E2; VRAM address
-
-    dw $0016                                                             ;A6C3E4; Size
-    dl TypewriterCeresEscapeSubtitleTilemapTransfer_Japanese_Line1_Row0  ;A6C3E6; Source address
-    dw $4ACA                                                             ;A6C3E9; VRAM address
-
-    dw $0016                                                             ;A6C3EB; Size
-    dl TypewriterCeresEscapeSubtitleTilemapTransfer_Japanese_Line1_Row1  ;A6C3ED; Source address
-    dw $4AEA                                                             ;A6C3F0; VRAM address
-
-    dw $0000                                                             ;A6C3F2; Zero terminator
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $C3F4: Japanese "self destruct sequence" text tilemaps ;;;
@@ -9989,14 +9826,6 @@ SetRidleyTailSegmentsVariableFromList:
     RTS                                                                  ;A6D3D3;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $D3D4: Unused. Ridley tail segment active flags = 0 ;;;
-UNUSED_SetRidleyTailSegmentActiveFlagsToZero_A6D3D4:
-    LDA.W #$0000                                                         ;A6D3D4;
-    BRA RidleyTailSegmentActiveFlagsInA                                  ;A6D3D7;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $D3D9: Ridley tail segment active flags = 8000h ;;;
 SetAllTailPartsToMoving:
     LDA.W #$8000                                                         ;A6D3D9; fallthrough to RidleyTailSegmentActiveFlagsInA
@@ -10043,30 +9872,6 @@ FlipRidleyTail:
     PLY                                                                  ;A6D42E;
     PLX                                                                  ;A6D42F;
     RTS                                                                  ;A6D430;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $D431: Unused. Check if all Ridley tail segments are active ;;;
-UNUSED_CheckIfAllTailSegmentsAreActive_A6D431:
-;; Returns:
-;;     Carry: Set if all tail segments are active, clear otherwise
-
-; Same as CheckIfAllRidleyTailSegmentsAreActive, but doesn't require DB = $7E
-    LDA.L RidleyTail.active                                              ;A6D431;
-    AND.L RidleyTail[1].active                                           ;A6D435;
-    AND.L RidleyTail[2].active                                           ;A6D439;
-    AND.L RidleyTail[3].active                                           ;A6D43D;
-    AND.L RidleyTail[4].active                                           ;A6D441;
-    AND.L RidleyTail[5].active                                           ;A6D445;
-    AND.L RidleyTail[6].active                                           ;A6D449;
-    BNE .allPartsMoving                                                  ;A6D44D;
-    CLC                                                                  ;A6D44F;
-    RTS                                                                  ;A6D450;
-
-  .allPartsMoving:
-    SEC                                                                  ;A6D451;
-    RTS                                                                  ;A6D452;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $D453: Deal suit-adjusted enemy damage to Samus ;;;
@@ -10572,166 +10377,6 @@ CeresRidleyXAcceleration:
 ;;; $D712: Ceres Ridley inertia table ;;;
 CeresRidleyInertiaTable:
     db $10,$0F,$0E,$0D,$0C,$0B,$0A,$09,$08,$07,$06,$05,$04,$03,$02,$01   ;A6D712;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $D722: Unused. Simple Ridley acceleration ;;;
-UNUSED_SimpleRidleyAcceleration_A6D722:
-;; Parameters:
-;;     X: 0. Enemy index
-;;     $12: Target X position
-;;     $14: Target Y position
-;; Returns:
-;;     Carry: Set if reached target, otherwise clear
-    LDA.W #$0200                                                         ;A6D722;
-    STA.B DP_Temp16                                                      ;A6D725;
-    STZ.B DP_Temp1C                                                      ;A6D727;
-    JSR.W UNUSED_SimpleRidleyXAcceleration_A6D798                        ;A6D729;
-    JSR.W UNUSED_SimpleRidleyYAcceleration_A6D734                        ;A6D72C;
-    LSR.B DP_Temp1C                                                      ;A6D72F;
-    LSR.B DP_Temp1C                                                      ;A6D731;
-    RTS                                                                  ;A6D733;
-
-
-;;; $D734: Unused. Simple Ridley Y acceleration ;;;
-UNUSED_SimpleRidleyYAcceleration_A6D734:
-;; Parameters:
-;;     X: 0. Enemy index
-;;     $14: Target Y position
-;;     $16: Acceleration. Unit 1/100h px/frame²
-;;     $1C: Axial target reached counter
-;; Returns:
-;;     $1C: Axial target reached counter
-
-; Called by UNUSED_SimpleRidleyAcceleration_A6D722
-    LDA.W Enemy.YPosition,X                                              ;A6D734;
-    SEC                                                                  ;A6D737;
-    SBC.B DP_Temp14                                                      ;A6D738;
-    BPL .moveUp                                                          ;A6D73A;
-    LDA.W Ridley.YVelocity,X                                             ;A6D73C;
-    CLC                                                                  ;A6D73F;
-    ADC.B DP_Temp16                                                      ;A6D740;
-    CMP.W #$0500                                                         ;A6D742;
-    BMI +                                                                ;A6D745;
-    LDA.W #$0500                                                         ;A6D747;
-
-+   STA.W Ridley.YVelocity,X                                             ;A6D74A;
-    AND.W #$FF00                                                         ;A6D74D;
-    XBA                                                                  ;A6D750;
-    BPL +                                                                ;A6D751;
-    ORA.W #$FF00                                                         ;A6D753;
-
-+   CLC                                                                  ;A6D756;
-    ADC.W Enemy.YPosition,X                                              ;A6D757;
-    CMP.B DP_Temp14                                                      ;A6D75A;
-    BMI .returnUpper                                                     ;A6D75C;
-    STZ.W Ridley.YVelocity,X                                             ;A6D75E;
-    LDA.B DP_Temp14                                                      ;A6D761;
-    STA.W Enemy.YPosition,X                                              ;A6D763;
-    INC.B DP_Temp1C                                                      ;A6D766;
-
-  .returnUpper:
-    RTS                                                                  ;A6D768;
-
-  .moveUp:
-    LDA.W Ridley.YVelocity,X                                             ;A6D769;
-    SEC                                                                  ;A6D76C;
-    SBC.B DP_Temp16                                                      ;A6D76D;
-    CMP.W #$FB00                                                         ;A6D76F;
-    BPL +                                                                ;A6D772;
-    LDA.W #$FB00                                                         ;A6D774;
-
-+   STA.W Ridley.YVelocity,X                                             ;A6D777;
-    AND.W #$FF00                                                         ;A6D77A;
-    XBA                                                                  ;A6D77D;
-    BPL +                                                                ;A6D77E;
-    ORA.W #$FF00                                                         ;A6D780;
-
-+   CLC                                                                  ;A6D783;
-    ADC.W Enemy.YPosition,X                                              ;A6D784;
-    CMP.B DP_Temp14                                                      ;A6D787;
-    BEQ +                                                                ;A6D789;
-    BPL .returnLower                                                     ;A6D78B;
-
-+   STZ.W Ridley.YVelocity,X                                             ;A6D78D;
-    LDA.B DP_Temp14                                                      ;A6D790;
-    STA.W Enemy.YPosition,X                                              ;A6D792;
-    INC.B DP_Temp1C                                                      ;A6D795;
-
-  .returnLower:
-    RTS                                                                  ;A6D797;
-
-
-;;; $D798: Unused. Simple Ridley X acceleration ;;;
-UNUSED_SimpleRidleyXAcceleration_A6D798:
-;; Parameters:
-;;     X: 0. Enemy index
-;;     $12: Target X position
-;;     $16: Acceleration. Unit 1/100h px/frame²
-;;     $1C: Axial target reached counter
-;; Returns:
-;;     $1C: Axial target reached counter
-
-; Called by UNUSED_SimpleRidleyAcceleration_A6D722
-    LDA.W Enemy.XPosition,X                                              ;A6D798;
-    SEC                                                                  ;A6D79B;
-    SBC.B DP_Temp12                                                      ;A6D79C;
-    BPL .moveLeft                                                        ;A6D79E;
-    EOR.W #$FFFF                                                         ;A6D7A0;
-    INC                                                                  ;A6D7A3;
-    LDA.W Ridley.XVelocity,X                                             ;A6D7A4;
-    CLC                                                                  ;A6D7A7;
-    ADC.B DP_Temp16                                                      ;A6D7A8;
-    CMP.W #$0500                                                         ;A6D7AA;
-    BMI +                                                                ;A6D7AD;
-    LDA.W #$0500                                                         ;A6D7AF;
-
-+   STA.W Ridley.XVelocity,X                                             ;A6D7B2;
-    AND.W #$FF00                                                         ;A6D7B5;
-    XBA                                                                  ;A6D7B8;
-    BPL +                                                                ;A6D7B9;
-    ORA.W #$FF00                                                         ;A6D7BB;
-
-+   CLC                                                                  ;A6D7BE;
-    ADC.W Enemy.XPosition,X                                              ;A6D7BF;
-    CMP.B DP_Temp12                                                      ;A6D7C2;
-    BMI .returnUpper                                                     ;A6D7C4;
-    STZ.W Ridley.XVelocity,X                                             ;A6D7C6;
-    LDA.B DP_Temp12                                                      ;A6D7C9;
-    STA.W Enemy.XPosition,X                                              ;A6D7CB;
-    INC.B DP_Temp1C                                                      ;A6D7CE;
-
-  .returnUpper:
-    RTS                                                                  ;A6D7D0;
-
-  .moveLeft:
-    LDA.W Ridley.XVelocity,X                                             ;A6D7D1;
-    SEC                                                                  ;A6D7D4;
-    SBC.B DP_Temp16                                                      ;A6D7D5;
-    CMP.W #$FB00                                                         ;A6D7D7;
-    BPL +                                                                ;A6D7DA;
-    LDA.W #$FB00                                                         ;A6D7DC;
-
-+   STA.W Ridley.XVelocity,X                                             ;A6D7DF;
-    AND.W #$FF00                                                         ;A6D7E2;
-    XBA                                                                  ;A6D7E5;
-    BPL +                                                                ;A6D7E6;
-    ORA.W #$FF00                                                         ;A6D7E8;
-
-+   CLC                                                                  ;A6D7EB;
-    ADC.W Enemy.XPosition,X                                              ;A6D7EC;
-    CMP.B DP_Temp12                                                      ;A6D7EF;
-    BEQ +                                                                ;A6D7F1;
-    BPL .returnLower                                                     ;A6D7F3;
-
-+   STZ.W Ridley.XVelocity,X                                             ;A6D7F5;
-    LDA.B DP_Temp12                                                      ;A6D7F8;
-    STA.W Enemy.XPosition,X                                              ;A6D7FA;
-    INC.B DP_Temp1C                                                      ;A6D7FD;
-
-  .returnLower:
-    RTS                                                                  ;A6D7FF;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $D800: Calculate swoop velocities ;;;
@@ -11417,21 +11062,6 @@ Spritemap_RidleyTail_Small:
     dw $0001                                                             ;A6DC9E;
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 0, $1E4)
 
-if !FEATURE_KEEP_UNREFERENCED
-; Unused
-UNUSED_Spritemap_RidleyTail_Large_A6DCA5:
-    dw $0001                                                             ;A6DCA5;
-    %spritemapEntry(1, $43F8, $F8, 0, 1, 3, 0, $1E0)
-
-UNUSED_Spritemap_RidleyTail_Medium_A6DCAC:
-    dw $0001                                                             ;A6DCAC;
-    %spritemapEntry(1, $43F8, $F8, 0, 1, 3, 0, $1E2)
-
-UNUSED_Spritemap_RidleyTail_Small_A6DCB3:
-    dw $0001                                                             ;A6DCB3;
-    %spritemapEntry(1, $43F8, $F8, 0, 1, 3, 0, $1E4)
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 
 ;;; $DCBA: Ridley tail tip spritemap pointers ;;;
 RidleyTailTipSpritemapPointers:
@@ -11715,35 +11345,6 @@ CheckForProjectileCollisionWithRectangle:
     RTS                                                                  ;A6DF07;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $DF08: Unused. Determine reflected projectile direction ;;;
-UNUSED_DetermineReflectedProjectileDirection_A6DF08:
-;; Parameters:
-;;     Y: Projectile index
-
-; Same code as ninja space pirate EnemyShot_SpacePirate_GoldNinjaIsInvincible_reflect
-    LDA.W SamusProjectile_Directions,Y                                   ;A6DF08;
-    AND.W #$000F                                                         ;A6DF0B;
-    CMP.W #$0007                                                         ;A6DF0E;
-    BNE .notFacingLeft                                                   ;A6DF11;
-    LDA.W #$0001                                                         ;A6DF13;
-    BRA .merge                                                           ;A6DF16;
-
-  .notFacingLeft:
-    CMP.W #$0002                                                         ;A6DF18;
-    BNE .notLeftOrRight                                                  ;A6DF1B;
-    LDA.W #$0008                                                         ;A6DF1D;
-    BRA .merge                                                           ;A6DF20;
-
-  .notLeftOrRight:
-    LDA.W #$0005                                                         ;A6DF22;
-
-  .merge:
-    STA.W SamusProjectile_Directions,Y                                   ;A6DF25;
-    RTS                                                                  ;A6DF28;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $DF29: Check for Samus collision with rectangle ;;;
 CheckForSamusCollisionWithRectangle:
 ;; Parameters:
@@ -11791,36 +11392,6 @@ CheckForSamusCollisionWithRectangle:
 ;;; $DF59: Enemy touch - Ridley ;;;
 EnemyTouch_Ridley:
     JML NormalEnemyTouchAI_NoDeathCheck_External                         ;A6DF59;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $DF60: Unused. Hurt Samus (external) ;;;
-UNUSED_HurtSamusExternal_A6DF60:
-    JSR.W UNUSED_HurtSamus_A6DF66                                        ;A6DF60;
-    RTL                                                                  ;A6DF63;
-
-
-;;; $DF66: Unused. Hurt Samus ;;;
-UNUSED_HurtSamus_A6DF66:
-; Called by unused routine UNUSED_HurtSamusExternal_A6DF60
-; Clone of HurtSamus_A9B5E1
-    JSL.L DealSuitAdjustedEnemyDamageToSamus                             ;A6DF66;
-    LDA.W #$0060                                                         ;A6DF6A;
-    STA.W SamusInvincibilityTimer                                        ;A6DF6D;
-    LDA.W #$0005                                                         ;A6DF70;
-    STA.W SamusKnockbackTimer                                            ;A6DF73;
-    LDY.W #$0000                                                         ;A6DF76;
-    LDX.B EnemyIndex                                                     ;A6DF79;
-    LDA.B SamusXPosition                                                 ;A6DF7C;
-    SEC                                                                  ;A6DF7F;
-    SBC.W Enemy.XPosition,X                                              ;A6DF80;
-    BMI .left                                                            ;A6DF83;
-    INY                                                                  ;A6DF85;
-
-  .left:
-    STY.W KnockbackXDirection                                            ;A6DF86;
-    RTS                                                                  ;A6DF89;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $DF8A: Enemy shot - enemy $E13F/$E17F (Ridley) ;;;
@@ -11902,65 +11473,6 @@ RidleyTail_vs_Samus_CollisionHandling:
     RTS                                                                  ;A6E01A;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $E01B: Unused. Slow down Ridley based on projectile damage ;;;
-UNUSED_SlowDownRidleyBasedOnProjectileDamage_A6E01B:
-; Similar to EnemyShot_BabyMetroid
-    LDX.B EnemyIndex                                                     ;A6E01B;
-    LDA.W SamusProjectile_XPositions                                     ;A6E01E;
-    SEC                                                                  ;A6E021;
-    SBC.W Enemy.XPosition,X                                              ;A6E022;
-    STA.B DP_Temp12                                                      ;A6E025;
-    LDA.W SamusProjectile_YPositions                                     ;A6E027;
-    SEC                                                                  ;A6E02A;
-    SBC.W Enemy.YPosition,X                                              ;A6E02B;
-    STA.B DP_Temp14                                                      ;A6E02E;
-    JSL.L CalculateAngleOf_12_14_Offset                                  ;A6E030;
-    SEC                                                                  ;A6E034;
-    SBC.W #$0080                                                         ;A6E035;
-    EOR.W #$FFFF                                                         ;A6E038;
-    INC                                                                  ;A6E03B;
-    CLC                                                                  ;A6E03C;
-    ADC.W #$0080                                                         ;A6E03D;
-    AND.W #$00FF                                                         ;A6E040;
-    STA.B DP_Temp12                                                      ;A6E043;
-    LDA.B CollisionIndex                                                 ;A6E045;
-    ASL                                                                  ;A6E048;
-    TAX                                                                  ;A6E049;
-    LDA.W SamusProjectile_Damages,X                                      ;A6E04A;
-    ASL                                                                  ;A6E04D;
-    ASL                                                                  ;A6E04E;
-    CMP.W #$0300                                                         ;A6E04F;
-    BCC +                                                                ;A6E052;
-    LDA.W #$0300                                                         ;A6E054;
-
-+   PHA                                                                  ;A6E057;
-    JSL.L CalculateXVelocityFromSpeedAndAngle                            ;A6E058;
-    STA.B DP_Temp12                                                      ;A6E05C;
-    LDX.B EnemyIndex                                                     ;A6E05E;
-    EOR.W Ridley.XVelocity,X                                             ;A6E061;
-    BPL +                                                                ;A6E064;
-    LDA.B DP_Temp12                                                      ;A6E066;
-    CLC                                                                  ;A6E068;
-    ADC.W Ridley.XVelocity,X                                             ;A6E069;
-    STA.W Ridley.XVelocity,X                                             ;A6E06C;
-
-+   PLA                                                                  ;A6E06F;
-    JSL.L CalculateYVelocityFromSpeedAndAngle                            ;A6E070;
-    STA.B DP_Temp12                                                      ;A6E074;
-    LDX.B EnemyIndex                                                     ;A6E076;
-    EOR.W Ridley.YVelocity,X                                             ;A6E079;
-    BPL .return                                                          ;A6E07C;
-    LDA.B DP_Temp12                                                      ;A6E07E;
-    CLC                                                                  ;A6E080;
-    ADC.W Ridley.YVelocity,X                                             ;A6E081;
-    STA.W Ridley.YVelocity,X                                             ;A6E084;
-
-  .return:
-    RTS                                                                  ;A6E087;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $E088: Ridley tail / projectile collision handling ;;;
 RidleyTail_vs_Projectile_CollisionHandling:
     LDA.W Enemy.properties                                               ;A6E088;
@@ -11989,50 +11501,7 @@ RidleyTail_vs_Projectile_CollisionHandling:
     BCS .collision                                                       ;A6E0BF;
     RTS                                                                  ;A6E0C1;
 
-if !FEATURE_KEEP_UNREFERENCED
-; Unused / RTS'd out
-    LDA.L RidleyTail[4].XPosition                                        ;A6E0C2;
-    STA.B DP_Temp12                                                      ;A6E0C6;
-    LDA.L RidleyTail[4].YPosition                                        ;A6E0C8;
-    STA.B DP_Temp14                                                      ;A6E0CC;
-    JSR.W CheckForProjectileCollisionWithRectangle                       ;A6E0CE;
-    BCS .collision                                                       ;A6E0D1;
-    LDA.W #$000B                                                         ;A6E0D3;
-    STA.B DP_Temp16                                                      ;A6E0D6;
-    STA.B DP_Temp18                                                      ;A6E0D8;
-    LDA.L RidleyTail[3].XPosition                                        ;A6E0DA;
-    STA.B DP_Temp12                                                      ;A6E0DE;
-    LDA.L RidleyTail[3].YPosition                                        ;A6E0E0;
-    STA.B DP_Temp14                                                      ;A6E0E4;
-    JSR.W CheckForProjectileCollisionWithRectangle                       ;A6E0E6;
-    BCS .collision                                                       ;A6E0E9;
-    LDA.L RidleyTail[2].XPosition                                        ;A6E0EB;
-    STA.B DP_Temp12                                                      ;A6E0EF;
-    LDA.L RidleyTail[2].YPosition                                        ;A6E0F1;
-    STA.B DP_Temp14                                                      ;A6E0F5;
-    JSR.W CheckForProjectileCollisionWithRectangle                       ;A6E0F7;
-    BCS .collision                                                       ;A6E0FA;
-    LDA.W #$000D                                                         ;A6E0FC;
-    STA.B DP_Temp16                                                      ;A6E0FF;
-    STA.B DP_Temp18                                                      ;A6E101;
-    LDA.L RidleyTail[1].XPosition                                        ;A6E103;
-    STA.B DP_Temp12                                                      ;A6E107;
-    LDA.L RidleyTail[1].YPosition                                        ;A6E109;
-    STA.B DP_Temp14                                                      ;A6E10D;
-    JSR.W CheckForProjectileCollisionWithRectangle                       ;A6E10F;
-    BCS .collision                                                       ;A6E112;
-    LDA.L RidleyTail.XPosition                                           ;A6E114;
-    STA.B DP_Temp12                                                      ;A6E118;
-    LDA.L RidleyTail.YPosition                                           ;A6E11A;
-    STA.B DP_Temp14                                                      ;A6E11E;
-    JSR.W CheckForProjectileCollisionWithRectangle                       ;A6E120;
-    BCS .collision                                                       ;A6E123;
-    RTS                                                                  ;A6E125;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
-;;; $E126:  ;;;
-.collision:
+  .collision:
     LDA.W SamusProjectile_XPositions,Y                                   ;A6E126;
     STA.B DP_Temp12                                                      ;A6E129;
     LDA.W SamusProjectile_YPositions,Y                                   ;A6E12B;
@@ -12088,13 +11557,6 @@ Palette_Ridley_InitialAdditionalPalettes:
 ; Sprite palette 2
     dw $3800,$6B5A,$5652,$28E7,$1863,$62B5,$4A10,$396B                   ;A6E1CF;
     dw $3129,$43FF,$0113,$000F,$175C,$0299,$01D6,$3BE0                   ;A6E1DF;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Palette_Ridley_A6E1EF:
-; Same colors as baby metroid UNUSED_Palette_BabyMetroid_Initial_A6E18F
-; Sprite palette 3
-    dw $3800                                                             ;A6E1EF;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 Palette_BabyMetroidCutscene_EndOfInstList:
     dw $6BF5,$06E1,$0641,$05A1,$5E5F,$183F,$1014,$080A                   ;A6E1F1;
@@ -12229,38 +11691,6 @@ Instruction_Ridley_GotoY:
     RTL                                                                  ;A6E4ED;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $E4EE: Unused. Instruction - go to [[Y]] if holding Samus, else go to [[Y] + 2] ;;;
-UNUSED_Instruction_RidleyCeres_GotoYIfHoldingSamus_A6E4EE:
-;; Parameters:
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-
-; Used by unused instruction list UNUSED_InstList_RidleyCeres_FacingLeft_LowerFeet_A6E5A0
-    LDA.L Ridley.holdingSamus                                            ;A6E4EE;
-    BNE Instruction_Ridley_GotoY                                         ;A6E4F2;
-    INY                                                                  ;A6E4F4;
-    INY                                                                  ;A6E4F5;
-    BRA Instruction_Ridley_GotoY                                         ;A6E4F6;
-
-
-;;; $E4F8: Unused. Instruction - go to [[Y]] if not holding Samus ;;;
-UNUSED_Instruction_RidleyCeres_GotoYIfNotHoldingSamus_A6E4F8:
-;; Parameters:
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-
-; Used by unused instruction list UNUSED_InstList_RidleyCeres_FacingLeft_LowerFeet_A6E5A0
-    LDA.L Ridley.holdingSamus                                            ;A6E4F8;
-    BEQ Instruction_Ridley_GotoY                                         ;A6E4FC;
-    INY                                                                  ;A6E4FE;
-    INY                                                                  ;A6E4FF;
-    RTL                                                                  ;A6E500;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $E501: Instruction - Ridley feet distance index = [[Y]] ;;;
 Instruction_RidleyCeres_RidleyFeetDistanceIndexInY:
 ;; Parameters:
@@ -12352,109 +11782,6 @@ UNUSED_InstList_RidleyCeres_FacingRight_Lunging_A6E576:
     dw Instruction_RidleyCeres_RidleyFeetDistanceIndexInY,$0000          ;A6E596;
     dw $0004,ExtendedSpritemap_Ridley_FacingRight                        ;A6E598;
     dw Instruction_Common_Sleep                                          ;A6E59E;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $E5A0: Unused. Instruction list - lower feet ;;;
-; Stops lowering if holding Samus
-UNUSED_InstList_RidleyCeres_FacingLeft_LowerFeet_A6E5A0:
-    dw Instruction_Ridley_GotoYIfNotFacingLeft                           ;A6E5A0;
-    dw UNUSED_InstList_RidleyCeres_FacingRight_A6E5FE                    ;A6E5A2;
-    dw Instruction_RidleyCeres_RidleyFeetDistanceIndexInY,$0000          ;A6E5A4;
-    dw $0002,ExtendedSpritemap_Ridley_FacingLeft                         ;A6E5A6;
-    dw UNUSED_Instruction_RidleyCeres_GotoYIfNotHoldingSamus_A6E4F8      ;A6E5AC;
-    dw UNUSED_InstList_RidleyCeres_FacingLeft_HoldingBaby_A6E5B2         ;A6E5AE;
-    dw Instruction_Common_Sleep                                          ;A6E5B0;
-
-UNUSED_InstList_RidleyCeres_FacingLeft_HoldingBaby_A6E5B2:
-    dw Instruction_RidleyCeres_RidleyFeetDistanceIndexInY,$0002          ;A6E5B2;
-    dw $0003,ExtendedSpritemap_Ridley_FacingLeft_LegsHalfExtended        ;A6E5B4;
-    dw UNUSED_Instruction_RidleyCeres_GotoYIfNotHoldingSamus_A6E4F8      ;A6E5BA;
-    dw UNUSED_InstList_RidleyCeres_FacingLeft_HoldingBaby_A6E5C8         ;A6E5BC;
-
-UNUSED_InstList_RidleyCeres_FacingLeft_HoldingBaby_A6E5BE:
-    dw $0001,ExtendedSpritemap_Ridley_FacingLeft_LegsHalfExtended        ;A6E5BE;
-    dw UNUSED_Instruction_RidleyCeres_GotoYIfHoldingSamus_A6E4EE         ;A6E5C2;
-    dw UNUSED_InstList_RidleyCeres_FacingLeft_HoldingBaby_A6E5BE         ;A6E5C4;
-    dw UNUSED_InstList_RidleyCeres_FacingLeft_HoldingBaby_A6E5F4         ;A6E5C6;
-
-UNUSED_InstList_RidleyCeres_FacingLeft_HoldingBaby_A6E5C8:
-    dw Instruction_RidleyCeres_RidleyFeetDistanceIndexInY,$0004          ;A6E5C8;
-    dw $0004,ExtendedSpritemap_Ridley_FacingLeft_LegsExtended            ;A6E5CA;
-    dw UNUSED_Instruction_RidleyCeres_GotoYIfNotHoldingSamus_A6E4F8      ;A6E5D0;
-    dw UNUSED_InstList_RidleyCeres_FacingLeft_HoldingBaby_A6E5DE         ;A6E5D2;
-
-UNUSED_InstList_RidleyCeres_FacingLeft_HoldingBaby_A6E5D4:
-    dw $0001,ExtendedSpritemap_Ridley_FacingLeft_LegsExtended            ;A6E5D4;
-    dw UNUSED_Instruction_RidleyCeres_GotoYIfHoldingSamus_A6E4EE         ;A6E5D8;
-    dw UNUSED_InstList_RidleyCeres_FacingLeft_HoldingBaby_A6E5D4         ;A6E5DA;
-    dw UNUSED_InstList_RidleyCeres_FacingLeft_HoldingBaby_A6E5DE         ;A6E5DC;
-
-UNUSED_InstList_RidleyCeres_FacingLeft_HoldingBaby_A6E5DE:
-    dw Instruction_RidleyCeres_RidleyFeetDistanceIndexInY,$0002          ;A6E5DE;
-    dw $0003,ExtendedSpritemap_Ridley_FacingLeft_LegsHalfExtended        ;A6E5E0;
-    dw UNUSED_Instruction_RidleyCeres_GotoYIfNotHoldingSamus_A6E4F8      ;A6E5E6;
-    dw UNUSED_InstList_RidleyCeres_FacingLeft_HoldingBaby_A6E5F4         ;A6E5E8;
-
-UNUSED_InstList_RidleyCeres_FacingLeft_HoldingBaby_A6E5EA:
-    dw $0001,ExtendedSpritemap_Ridley_FacingLeft_LegsHalfExtended        ;A6E5EA;
-    dw UNUSED_Instruction_RidleyCeres_GotoYIfHoldingSamus_A6E4EE         ;A6E5EE;
-    dw UNUSED_InstList_RidleyCeres_FacingLeft_HoldingBaby_A6E5EA         ;A6E5F0;
-    dw UNUSED_InstList_RidleyCeres_FacingLeft_HoldingBaby_A6E5F4         ;A6E5F2;
-
-UNUSED_InstList_RidleyCeres_FacingLeft_HoldingBaby_A6E5F4:
-    dw Instruction_RidleyCeres_RidleyFeetDistanceIndexInY,$0000          ;A6E5F4;
-    dw $0002,ExtendedSpritemap_Ridley_FacingLeft                         ;A6E5F6;
-    dw Instruction_Common_Sleep                                          ;A6E5FC;
-
-UNUSED_InstList_RidleyCeres_FacingRight_A6E5FE:
-    dw Instruction_RidleyCeres_RidleyFeetDistanceIndexInY,$0000          ;A6E5FE;
-    dw $0002,ExtendedSpritemap_Ridley_FacingRight                        ;A6E600;
-    dw UNUSED_Instruction_RidleyCeres_GotoYIfNotHoldingSamus_A6E4F8      ;A6E606;
-    dw UNUSED_InstList_RidleyCeres_FacingRight_HoldingBaby_A6E60C        ;A6E608;
-    dw Instruction_Common_Sleep                                          ;A6E60A;
-
-UNUSED_InstList_RidleyCeres_FacingRight_HoldingBaby_A6E60C:
-    dw Instruction_RidleyCeres_RidleyFeetDistanceIndexInY,$0002          ;A6E60C;
-    dw $0003,ExtendedSpritemap_Ridley_FacingRight_LegsHalfExtended       ;A6E60E;
-    dw UNUSED_Instruction_RidleyCeres_GotoYIfNotHoldingSamus_A6E4F8      ;A6E614;
-    dw UNUSED_InstList_RidleyCeres_FacingRight_HoldingBaby_A6E622        ;A6E616;
-
-UNUSED_InstList_RidleyCeres_FacingRight_HoldingBaby_A6E618:
-    dw $0001,ExtendedSpritemap_Ridley_FacingRight_LegsHalfExtended       ;A6E618;
-    dw UNUSED_Instruction_RidleyCeres_GotoYIfHoldingSamus_A6E4EE         ;A6E61C;
-    dw UNUSED_InstList_RidleyCeres_FacingRight_HoldingBaby_A6E618        ;A6E61E;
-    dw UNUSED_InstList_RidleyCeres_FacingRight_HoldingBaby_A6E64E        ;A6E620;
-
-UNUSED_InstList_RidleyCeres_FacingRight_HoldingBaby_A6E622:
-    dw Instruction_RidleyCeres_RidleyFeetDistanceIndexInY,$0004          ;A6E622;
-    dw $0004,ExtendedSpritemap_Ridley_FacingRight_LegsExtended           ;A6E624;
-    dw UNUSED_Instruction_RidleyCeres_GotoYIfNotHoldingSamus_A6E4F8      ;A6E62A;
-    dw UNUSED_InstList_RidleyCeres_FacingRight_HoldingBaby_A6E638        ;A6E62C;
-
-UNUSED_InstList_RidleyCeres_FacingRight_HoldingBaby_A6E62E:
-    dw $0001,ExtendedSpritemap_Ridley_FacingLeft_LegsExtended            ;A6E62E;
-    dw UNUSED_Instruction_RidleyCeres_GotoYIfHoldingSamus_A6E4EE         ;A6E632;
-    dw UNUSED_InstList_RidleyCeres_FacingRight_HoldingBaby_A6E62E        ;A6E634;
-    dw UNUSED_InstList_RidleyCeres_FacingRight_HoldingBaby_A6E638        ;A6E636;
-
-UNUSED_InstList_RidleyCeres_FacingRight_HoldingBaby_A6E638:
-    dw Instruction_RidleyCeres_RidleyFeetDistanceIndexInY,$0002          ;A6E638;
-    dw $0003,ExtendedSpritemap_Ridley_FacingRight_LegsHalfExtended       ;A6E63A;
-    dw UNUSED_Instruction_RidleyCeres_GotoYIfNotHoldingSamus_A6E4F8      ;A6E640;
-    dw UNUSED_InstList_RidleyCeres_FacingRight_HoldingBaby_A6E64E        ;A6E642;
-
-UNUSED_InstList_RidleyCeres_FacingRight_HoldingBaby_A6E644:
-    dw $0001,ExtendedSpritemap_Ridley_FacingLeft_LegsHalfExtended        ;A6E644;
-    dw UNUSED_Instruction_RidleyCeres_GotoYIfHoldingSamus_A6E4EE         ;A6E648;
-    dw UNUSED_InstList_RidleyCeres_FacingRight_HoldingBaby_A6E644        ;A6E64A;
-    dw UNUSED_InstList_RidleyCeres_FacingRight_HoldingBaby_A6E64E        ;A6E64C;
-
-UNUSED_InstList_RidleyCeres_FacingRight_HoldingBaby_A6E64E:
-    dw Instruction_RidleyCeres_RidleyFeetDistanceIndexInY,$0000          ;A6E64E;
-    dw $0002,ExtendedSpritemap_Ridley_FacingRight                        ;A6E650;
-    dw Instruction_Common_Sleep                                          ;A6E656;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $E658: Instruction list - retrieve baby metroid ;;;
@@ -12663,38 +11990,6 @@ InstList_Ridley_FacingRight_Fireballing_1:
     dw Instruction_Ridley_ClearRoaringFlag                               ;A6E820;
     dw $0001,ExtendedSpritemap_Ridley_FacingRight                        ;A6E822;
     dw Instruction_Common_Sleep                                          ;A6E826;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $E828: Unused. Spawn unused enemy projectiles ;;;
-UNUSED_SpawnUnusedEnemyProjectiles_A6E828:
-; From UNUSED_EnemyProjectile_Ridley_869634:
-;     Enemy projectile $9634 seems to be a version of the fireball that has no afterburn
-;     It's fired at one of 4 down-left angles, the angle and its spawn position depend on enemy 0
-;     It's possible that it was intended to use UNUSED_InstList_EnemyProjectile_86958C, which uses 8x8 sprites
-;     Hard to guess what this must have been for, but I would guess an abandoned version of Ceres Ridley's fireballs
-    LDA.W #$0000                                                         ;A6E828;
-    JSL.L UNUSED_SpawnUnusedEnemyProjectile_A6E840                       ;A6E82B;
-    LDA.W #$0001                                                         ;A6E82F;
-    JSL.L UNUSED_SpawnUnusedEnemyProjectile_A6E840                       ;A6E832;
-    LDA.W #$0002                                                         ;A6E836;
-    JSL.L UNUSED_SpawnUnusedEnemyProjectile_A6E840                       ;A6E839;
-    LDA.W #$0003                                                         ;A6E83D; fallthrough to UNUSED_SpawnUnusedEnemyProjectile_A6E840
-
-
-;;; $E840: Unused. Spawn unused enemy projectile ;;;
-UNUSED_SpawnUnusedEnemyProjectile_A6E840:
-;; Parameters:
-;;     A: Angle. Unit pi/12 radians. 0 = left, positive = anticlockwise. Range 0..3
-
-; Called by UNUSED_SpawnUnusedEnemyProjectiles_A6E828
-    STA.W Enemy.init0                                                    ;A6E840;
-    PHY                                                                  ;A6E843;
-    LDY.W #UNUSED_EnemyProjectile_Ridley_869634                          ;A6E844;
-    JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A6E847;
-    PLY                                                                  ;A6E84B;
-    RTL                                                                  ;A6E84C;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $E84D: Instruction - calculate fireball X/Y velocities ;;;
@@ -13080,22 +12375,6 @@ Hitbox_Ridley_FacingLeft_Torso:
     dw EnemyTouch_Ridley                                                 ;A6EB71;
     dw EnemyShot_Ridley                                                  ;A6EB73;
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Hitbox_Ridley_FacingLeft_Torso_A6EB75:
-; duplicate of Hitbox_Ridley_FacingLeft_Torso
-    dw $0001                                                             ;A6EB75;
-    dw $FFF0,$FFEC,$000C,$0015
-    dw EnemyTouch_Ridley                                                 ;A6EB7F;
-    dw EnemyShot_Ridley                                                  ;A6EB81;
-
-UNUSED_Hitbox_Ridley_FacingLeft_Torso_A6EB83:
-; duplicate of Hitbox_Ridley_FacingLeft_Torso
-    dw $0001                                                             ;A6EB83;
-    dw $FFF0,$FFEC,$000C,$0015
-    dw EnemyTouch_Ridley                                                 ;A6EB8D;
-    dw EnemyShot_Ridley                                                  ;A6EB8F;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 Hitbox_Ridley_FacingForward:
     dw $0002                                                             ;A6EB91;
     dw $FFF0,$FFE0,$0010,$0022
@@ -13161,22 +12440,6 @@ Hitbox_Ridley_FacingRight_Torso:
     dw $FFF3,$FFEA,$000E,$0015
     dw EnemyTouch_Ridley                                                 ;A6EC3B;
     dw EnemyShot_Ridley                                                  ;A6EC3D;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Hitbox_Ridley_FacingRight_Torso_A6EC3F:
-; duplicate of Hitbox_Ridley_FacingRight_Torso
-    dw $0001                                                             ;A6EC3F;
-    dw $FFF3,$FFEA,$000E,$0015
-    dw EnemyTouch_Ridley                                                 ;A6EC49;
-    dw EnemyShot_Ridley                                                  ;A6EC4B;
-
-UNUSED_Hitbox_Ridley_FacingRight_Torso_A6EC4D:
-; duplicate of Hitbox_Ridley_FacingRight_Torso
-    dw $0001                                                             ;A6EC4D;
-    dw $FFF3,$FFEA,$000E,$0015
-    dw EnemyTouch_Ridley                                                 ;A6EC57;
-    dw EnemyShot_Ridley                                                  ;A6EC59;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $EC5B: Ridley spritemaps ;;;

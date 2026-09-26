@@ -3715,48 +3715,6 @@ EnemyProjSpritemaps_CacatacSpikes_9:
     dw $0001                                                             ;8DA947;
     %spritemapEntry(0, $1FC, $FC, 1, 1, 3, 0, $11B)
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_EnemyProjSpritemaps_StokeProjectile_0_8DA94E:
-    dw $0001                                                             ;8DA94E;
-    %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $11E)
-
-UNUSED_EnemyProjSpritemaps_StokeProjectile_1_8DA955:
-    dw $0001                                                             ;8DA955;
-    %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $11D)
-
-UNUSED_EnemyProjSpritemaps_0_8DA95C:
-    dw $0001                                                             ;8DA95C;
-    %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 0, $126)
-
-UNUSED_EnemyProjSpritemaps_1_8DA963:
-    dw $0001                                                             ;8DA963;
-    %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 0, $128)
-
-UNUSED_EnemyProjSpritemaps_2_8DA96A:
-    dw $0001                                                             ;8DA96A;
-    %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 0, $10C)
-
-UNUSED_EnemyProjSpritemaps_3_8DA971:
-    dw $0001                                                             ;8DA971;
-    %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 0, $10E)
-
-UNUSED_EnemyProjSpritemaps_4_8DA978:
-    dw $0001                                                             ;8DA978;
-    %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 0, $12C)
-
-UNUSED_EnemyProjSpritemaps_5_8DA97F:
-    dw $0001                                                             ;8DA97F;
-    %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $13E)
-
-UNUSED_EnemyProjSpritemaps_6_8DA986:
-    dw $0001                                                             ;8DA986;
-    %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $12F)
-
-UNUSED_EnemyProjSpritemaps_7_8DA98D:
-    dw $0001                                                             ;8DA98D;
-    %spritemapEntry(0, $1FC, $FC, 0, 0, 3, 0, $12E)
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 EnemyProjSpritemaps_SporeSpawnsStalk:
     dw $0001                                                             ;8DA994;
     %spritemapEntry(1, $1F8, $F8, 0, 0, 3, 1, $140)
@@ -6601,19 +6559,6 @@ Instruction_PaletteFXObject_ColorIndex_Plus12:
     RTS                                                                  ;8DC5C5;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $C5C6: Unused. Instruction - colour index += 1Eh ;;;
-UNUSED_Instruction_PaletteFXObject_ColorIndex_Plus1E_8DC5C6:
-    TXA                                                                  ;8DC5C6;
-    CLC                                                                  ;8DC5C7;
-    ADC.W #$001E                                                         ;8DC5C8;
-    TAX                                                                  ;8DC5CB;
-    INY                                                                  ;8DC5CC;
-    INY                                                                  ;8DC5CD;
-    RTS                                                                  ;8DC5CE;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $C5CF: Instruction - delete ;;;
 Instruction_Delete_8DC5CF:
     STZ.W PaletteFXObject_IDs,X                                          ;8DC5CF;
@@ -6630,85 +6575,11 @@ Instruction_PaletteFXObject_PreInstructionInY:
     RTS                                                                  ;8DC5DC;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $C5DD: Unused. Instruction - clear pre-instruction ;;;
-UNUSED_Inst_PaletteFXObject_ClearPreInstruction_8DC5DD:
-    LDA.W #.return                                                       ;8DC5DD;
-    STA.W PaletteFXObject_PreInstructions,X                              ;8DC5E0;
-
-  .return:
-    RTS                                                                  ;8DC5E3;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $C5E4: Unused. Instruction - call external function [[Y]] ;;;
-UNUSED_Inst_PaletteFXObject_CallExternalFunctionInY_8DC5E4:
-    LDA.W $0000,Y                                                        ;8DC5E4;
-    STA.B DP_Temp12                                                      ;8DC5E7;
-    LDA.W $0001,Y                                                        ;8DC5E9;
-    STA.B DP_Temp13                                                      ;8DC5EC;
-    PHY                                                                  ;8DC5EE;
-    JSL.L .externalFunction                                              ;8DC5EF;
-    PLY                                                                  ;8DC5F3;
-    LDX.W PaletteFXObject_Index                                          ;8DC5F4;
-    INY                                                                  ;8DC5F7;
-    INY                                                                  ;8DC5F8;
-    INY                                                                  ;8DC5F9;
-    RTS                                                                  ;8DC5FA;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;8DC5FB;
-
-
-;;; $C5FE: Unused. Instruction - call external function [[Y]] with A = [[Y] + 3] ;;;
-UNUSED_Inst_PaletteFXObject_CallExternalFuncInYWithA_8DC5FE:
-    LDA.W $0000,Y                                                        ;8DC5FE;
-    STA.B DP_Temp12                                                      ;8DC601;
-    LDA.W $0001,Y                                                        ;8DC603;
-    STA.B DP_Temp13                                                      ;8DC606;
-    LDA.W $0003,Y                                                        ;8DC608;
-    PHY                                                                  ;8DC60B;
-    JSL.L .externalFunction                                              ;8DC60C;
-    PLY                                                                  ;8DC610;
-    LDX.W PaletteFXObject_Index                                          ;8DC611;
-    TYA                                                                  ;8DC614;
-    CLC                                                                  ;8DC615;
-    ADC.W #$0005                                                         ;8DC616;
-    TAY                                                                  ;8DC619;
-    RTS                                                                  ;8DC61A;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;8DC61B;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $C61E: Instruction - go to [[Y]] ;;;
 Instruction_PaletteFXObject_GotoY:
     LDA.W $0000,Y                                                        ;8DC61E;
     TAY                                                                  ;8DC621;
     RTS                                                                  ;8DC622;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $C623: Unused. Instruction - go to [Y] + ±[[Y]] ;;;
-UNUSED_Instruction_PaletteFXObject_GotoYPlusY_8DC623:
-    STY.B DP_Temp12                                                      ;8DC623;
-    DEY                                                                  ;8DC625;
-    LDA.W $0000,Y                                                        ;8DC626;
-    XBA                                                                  ;8DC629;
-    BMI .highByte                                                        ;8DC62A;
-    AND.W #$00FF                                                         ;8DC62C;
-    BRA +                                                                ;8DC62F;
-
-  .highByte:
-    ORA.W #$FF00                                                         ;8DC631;
-
-+   CLC                                                                  ;8DC634;
-    ADC.B DP_Temp12                                                      ;8DC635;
-    TAY                                                                  ;8DC637;
-    RTS                                                                  ;8DC638;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $C639: Instruction - decrement timer and go to [[Y]] if non-zero ;;;
@@ -6718,16 +6589,6 @@ Instruction_PaletteFXObject_DecrementTimer_GotoYIfNonZero:
     INY                                                                  ;8DC63E;
     INY                                                                  ;8DC63F;
     RTS                                                                  ;8DC640;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $C641: Unused. Instruction - decrement timer and go to [Y] + ±[[Y]] if non-zero ;;;
-UNUSED_Inst_PaletteFXObject_DecTimer_GotoYIfNonZero_8DC641:
-    DEC.W PaletteFXObject_Timers,X                                       ;8DC641;
-    BNE UNUSED_Instruction_PaletteFXObject_GotoYPlusY_8DC623             ;8DC644;
-    INY                                                                  ;8DC646;
-    RTS                                                                  ;8DC647;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $C648: Instruction - timer = [[Y]] ;;;
@@ -6754,25 +6615,6 @@ Instruction_PaletteFXObject_ColorIndexInY:
     RTS                                                                  ;8DC65D;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $C65E: Unused. Instruction - queue music track [[Y]] ;;;
-UNUSED_Instruction_PaletteFXObject_QueueMusicTrackInY_8DC65E:
-    LDA.W $0000,Y                                                        ;8DC65E;
-    AND.W #$00FF                                                         ;8DC661;
-    JSL.L QueueMusicDataOrTrack_8FrameDelay                              ;8DC664;
-    INY                                                                  ;8DC668;
-    RTS                                                                  ;8DC669;
-
-
-;;; $C66A: Unused. Instruction - queue sound [[Y]], sound library 1, max queued sounds allowed = 6 ;;;
-UNUSED_Inst_PaletteFXObject_QueueSoundInY_Lib1_Max6_8DC66A:
-    LDA.W $0000,Y                                                        ;8DC66A;
-    JSL.L QueueSound_Lib1_Max6                                           ;8DC66D;
-    INY                                                                  ;8DC671;
-    RTS                                                                  ;8DC672;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $C673: Instruction - queue sound [[Y]], sound library 2, max queued sounds allowed = 6 ;;;
 UNUSED_Inst_PaletteFXObject_QueueSoundInY_Lib2_Max6_8DC673:
     LDA.W $0000,Y                                                        ;8DC673;
@@ -6781,27 +6623,9 @@ UNUSED_Inst_PaletteFXObject_QueueSoundInY_Lib2_Max6_8DC673:
     RTS                                                                  ;8DC67B;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $C67C: Unused. Instruction - queue sound [[Y]], sound library 3, max queued sounds allowed = 6 ;;;
-UNUSED_Inst_PaletteFXObject_QueueSoundInY_Lib3_Max6_8DC67C:
-    LDA.W $0000,Y                                                        ;8DC67C;
-    JSL.L QueueSound_Lib3_Max6                                           ;8DC67F;
-    INY                                                                  ;8DC683;
-    RTS                                                                  ;8DC684;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $C685: RTS ;;;
 RTS_8DC685:
     RTS                                                                  ;8DC685;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $C686: Unused ;;;
-UNUSED_8DC686:
-; Looks like garbage data
-    dw $1000,$C690,$C595,$C61E,$C686,$0180,$0000,$0000                   ;8DC686;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $C696: Instruction list - palette FX object $E194 (fade in Super Metroid title logo) ;;;
@@ -7664,47 +7488,6 @@ InstList_PaletteFXObject_HyperBeam_1:
     dw InstList_PaletteFXObject_HyperBeam_1
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $D9D0: Instruction list - palette FX object $E1EC (unused) ;;;
-UNUSED_InstList_PaletteFXObject_8DD9D0:
-    dw Instruction_PaletteFXObject_ColorIndexInY,$00A0                   ;8DD9D0;
-    dw $0002
-    dw $7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF
-    dw Instruction_PaletteFXObject_Done
-    dw $0002
-    dw $739C,$77BD,$73BD,$73BD,$739C,$77BD,$73BD,$73BD,$73BD,$77BC,$77BC,$77BC,$77BD,$77BD,$77BD,$77BD
-    dw Instruction_PaletteFXObject_Done
-    dw $0002
-    dw $6B5A,$6F9C,$6B7B,$6B7B,$6B5A,$6F7B,$6B7B,$6B7B,$6B7B,$6F9A,$6F7A,$6F7A,$6F7B,$6F7B,$6F7B,$739C
-    dw Instruction_PaletteFXObject_Done
-    dw $0002
-    dw $6318,$675A,$635A,$6339,$6318,$675A,$635A,$6339,$6339,$6758,$6758,$6738,$6739,$6739,$6739,$6B5A
-    dw Instruction_PaletteFXObject_Done
-    dw $0002
-    dw $5AD6,$6339,$5B18,$5AF7,$5AD6,$5F18,$5B18,$5AF8,$5AF7,$5F36,$5F16,$5EF6,$62F7,$5EF7,$5EF7,$6739
-    dw Instruction_PaletteFXObject_Done
-    dw $0002
-    dw $5294,$5AF7,$52D7,$52B5,$5294,$56F7,$52D7,$52D6,$52B6,$5AF4,$56D4,$56B4,$5AD6,$56B5,$56B5,$5EF7
-    dw Instruction_PaletteFXObject_Done
-    dw $0002
-    dw $4A52,$52D6,$4AB5,$4A73,$4A52,$4EB5,$4AB5,$4A94,$4A74,$52D2,$4EB2,$4E72,$5294,$4E73,$4E73,$5AD6
-    dw Instruction_PaletteFXObject_Done
-    dw $0002
-    dw $4210,$4A94,$4274,$4231,$4210,$4694,$4273,$4252,$4232,$4A90,$4670,$4630,$4A52,$4631,$4631,$5294
-    dw Instruction_PaletteFXObject_Done
-    dw $0002
-    dw $39CE,$4673,$3A32,$39F0,$39CE,$3E52,$3A32,$3A11,$3A10,$426E,$3E2E,$3E0E,$4610,$41EF,$3DEF,$4E73
-    dw Instruction_PaletteFXObject_Done
-    dw $0002
-    dw $318C,$3E31,$3211,$31AE,$318C,$3631,$3210,$31CF,$31CE,$3A2C,$360C,$35CC,$3DCE,$39AD,$35AD,$4631
-    dw Instruction_PaletteFXObject_Done
-    dw $0002
-    dw $294A,$3610,$29CF,$296C,$294A,$2DEF,$29CF,$29AD,$298D,$360A,$2DCA,$2D8A,$35AD,$316B,$2D6B,$4210
-    dw Instruction_PaletteFXObject_Done
-    dw Instruction_Delete_8DC5CF
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $DB62: Instruction list - palette FX object $E1F4 (Samus loading - power suit) ;;;
 InstList_PaletteFXObject_SamusLoading_PowerSuit_0:
     dw Instruction_PaletteFXObject_ColorIndexInY,$0180                   ;8DDB62;
@@ -7923,13 +7706,6 @@ PaletteFXObjects_FadeInSuperMetroidTitleLogo:
     dw RTS_8DC685                                                        ;8DE194;
     dw InstList_PaletteFXObject_FadeInSuperMetroidTitleLogo              ;8DE196;
 
-if !FEATURE_KEEP_UNREFERENCED
-PaletteFXObjects_FadeInNintendoBootLogoForUnusedCode:
-; Fade in Nintendo boot logo (for unused code)
-    dw RTS_8DC685                                                        ;8DE198;
-    dw InstList_PaletteFXObject_FadeInNintendoBootLogo                   ;8DE19A;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 PaletteFXObjects_FadeInNintendoCopyright:
 ; Fade in Nintendo copyright
     dw RTS_8DC685                                                        ;8DE19C;
@@ -8029,12 +7805,6 @@ PaletteFXObjects_WidePartOfZebesExplosion_Background:
 ; Wide part of Zebes explosion - background
     dw RTS_8DC685                                                        ;8DE1E8;
     dw InstList_PaletteFXObject_WidePartOfZebesExplosion_Background      ;8DE1EA;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_PaletteFXObjects_8DE1EC:
-    dw RTS_8DC685                                                        ;8DE1EC;
-    dw UNUSED_InstList_PaletteFXObject_8DD9D0                            ;8DE1EE;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 PaletteFXObjects_HyperBeam:
 ; Hyper beam
@@ -8651,21 +8421,6 @@ InstList_PaletteFXObject_WreckedShip1_1:
     dw InstList_PaletteFXObject_WreckedShip1_1
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $EB2A: Unused. Pre-instruction - wait until area boss is dead ;;;
-UNUSED_PreInstruction_PaletteFXObject_WaitUntilAreBossIsDead:
-    LDA.W #$0001                                                         ;8DEB2A;
-    JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA                   ;8DEB2D;
-    BCS .return                                                          ;8DEB31;
-    PLA                                                                  ;8DEB33;
-    LDA.W #$0001                                                         ;8DEB34;
-    STA.W PaletteFXObject_InstructionTimers,X                            ;8DEB37;
-
-  .return:
-    RTS                                                                  ;8DEB3A;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $EB3B: Instruction list - palette FX object $F765 (Crateria 1 - lightning) ;;;
 InstList_PaletteFXObject_Crateria1_0:
 ; Lightning (BG1/2 palette 5 colours 4..Bh)
@@ -8740,85 +8495,6 @@ PreInst_PaletteFXObject_RestartCrateria1IfSamusIsntLowEnough:
 
   .return:
     RTS                                                                  ;8DEC6D;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $EC6E: Instruction list - palette FX object $F769 (unused. Dark lightning) ;;;
-UNUSED_InstList_PaletteFXObject_DarkLightning_0_8DEC6E:
-    dw Instruction_PaletteFXObject_PreInstructionInY                     ;8DEC6E;
-    dw UNUSED_PreInst_PalFXObj_RestartDarkLightningIfSamus_8DED84        ;8DEC70;
-    dw Instruction_PaletteFXObject_ColorIndexInY,$0082                   ;8DEC72;
-
-UNUSED_InstList_PaletteFXObject_DarkLightning_1_8DEC76:
-    dw $00F0                                                             ;8DEC76;
-    dw $262B,$1548,$08E5,$1594,$14ED,$10A9,$0C86
-    dw Instruction_PaletteFXObject_Done
-    dw Instruction_PaletteFXObject_TimerInY : db $02
-
-UNUSED_InstList_PaletteFXObject_DarkLightning_2_8DEC8B:
-    dw $0002
-    dw $1186,$00A3,$0040,$00EF,$0048,$0004,$0001
-    dw Instruction_PaletteFXObject_Done
-    dw $0001
-    dw $00E1,$0000,$0000,$004A,$0003,$0000,$0000
-    dw Instruction_PaletteFXObject_Done
-    dw $0001
-    dw $0040,$0000,$0000,$0005,$0000,$0000,$0000
-    dw Instruction_PaletteFXObject_Done
-    dw $0001
-    dw $0000,$0000,$0000,$0000,$0000,$0000,$0000
-    dw Instruction_PaletteFXObject_Done
-    dw $0001
-    dw $0040,$0000,$0000,$0005,$0000,$0000,$0000
-    dw Instruction_PaletteFXObject_Done
-    dw $0001
-    dw $00E1,$0000,$0000,$004A,$0003,$0000,$0000
-    dw Instruction_PaletteFXObject_Done
-    dw $0002
-    dw $1186,$00A3,$0040,$00EF,$0048,$0004,$0001
-    dw Instruction_PaletteFXObject_Done
-    dw Instruction_PaletteFXObject_DecrementTimer_GotoYIfNonZero
-    dw UNUSED_InstList_PaletteFXObject_DarkLightning_2_8DEC8B
-    dw $00F0
-    dw $262B,$1548,$08E5,$1594,$14ED,$10A9,$0C86
-    dw Instruction_PaletteFXObject_Done
-    dw $00F0
-    dw $262B,$1548,$08E5,$1594,$14ED,$10A9,$0C86
-    dw Instruction_PaletteFXObject_Done
-    dw Instruction_PaletteFXObject_TimerInY : db $01
-
-UNUSED_InstList_PaletteFXObject_DarkLightning_3_8DED34:
-    dw $0001                                                             ;8DED34;
-    dw $0000,$0000,$0000,$0000,$0000,$0000,$0000
-    dw Instruction_PaletteFXObject_Done
-    dw $0001
-    dw $0040,$0000,$0000,$0005,$0000,$0000,$0000
-    dw Instruction_PaletteFXObject_Done
-    dw $0001
-    dw $00E1,$0000,$0000,$004A,$0003,$0000,$0000
-    dw Instruction_PaletteFXObject_Done
-    dw $0002
-    dw $1186,$00A3,$0040,$00EF,$0048,$0004,$0001
-    dw Instruction_PaletteFXObject_Done
-    dw Instruction_PaletteFXObject_DecrementTimer_GotoYIfNonZero
-    dw UNUSED_InstList_PaletteFXObject_DarkLightning_3_8DED34
-    dw Instruction_PaletteFXObject_GotoY
-    dw UNUSED_InstList_PaletteFXObject_DarkLightning_1_8DEC76
-
-
-;;; $ED84: Pre-instruction - restart dark lightning instruction list if Samus isn't low enough ;;;
-UNUSED_PreInst_PalFXObj_RestartDarkLightningIfSamus_8DED84:
-    LDA.B SamusYPosition                                                 ;8DED84;
-    CMP.W #$0380                                                         ;8DED87;
-    BCS .return                                                          ;8DED8A;
-    LDA.W #$0001                                                         ;8DED8C;
-    STA.W PaletteFXObject_InstructionTimers,X                            ;8DED8F;
-    LDA.W #UNUSED_InstList_PaletteFXObject_DarkLightning_1_8DEC76        ;8DED92;
-    STA.W PaletteFXObject_InstListPointers,X                             ;8DED95;
-
-  .return:
-    RTS                                                                  ;8DED98;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $ED99: Instruction list - palette FX object $F775 (Brinstar 1 - blue background spores) ;;;
@@ -9661,24 +9337,10 @@ PaletteFXObjects_Crateria1_Lightning:
     dw RTS_8DC685                                                        ;8DF765;
     dw InstList_PaletteFXObject_Crateria1_0                              ;8DF767;
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_PaletteFXObjects_DarkLightning_8DF769:
-; Unused. Dark lightning
-    dw RTS_8DC685                                                        ;8DF769;
-    dw UNUSED_InstList_PaletteFXObject_DarkLightning_0_8DEC6E            ;8DF76B;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 PaletteFXObjects_WreckedShip1_GreenLights:
 ; Wrecked Ship 1 - green lights
     dw RTS_8DC685                                                        ;8DF76D;
     dw InstList_PaletteFXObject_WreckedShip1_0                           ;8DF76F;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_PaletteFXObjects_WreckedShip1_GreenLights_dup_8DF771:
-; Unused clone of Wrecked Ship 1
-    dw RTS_8DC685                                                        ;8DF771;
-    dw InstList_PaletteFXObject_WreckedShip1_0                           ;8DF773;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 PaletteFXObjects_Brinstar1_BlueBackgroundSpores:
 ; Brinstar 1 - blue background spores

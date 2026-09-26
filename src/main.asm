@@ -6,23 +6,7 @@ math pri on
 ; Build options
 ; -------------
 
-; Defaults will build vanilla NTSC Super Metroid
-
-!FEATURE_KEEP_UNREFERENCED ?= 0
-
-if !FEATURE_KEEP_UNREFERENCED
-print "KEEP UNREFERENCED ASSEMBLY"
-else
-print "REMOVE UNREFERENCED ASSEMBLY"
-endif
-
-!DEBUG ?= 0
-
-if !DEBUG
-print "DEBUG FEATURES ENABLED"
-else
-print "DEBUG FEATURES REMOVED"
-endif
+; Defaults will build optimized NTSC Super Metroid
 
 !PAL ?= 0
 
@@ -35,11 +19,6 @@ print "NTSC VERSION"
 !FPS = 1
 !SPF = 1
 endif
-
-; Fixes labels to their vanilla asm locations using the %anchor macros. Useful
-; to prevent unrelated things from moving around, which would bloat IPS patches
-; or break pointers in SMART for example.
-!ANCHOR_LABELS ?= 1
 
 incsrc macros.asm ; All macros are defined here
 incsrc labels.asm ; Labels that don't point directly to ROM/RAM

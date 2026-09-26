@@ -1,29 +1,6 @@
 
 ; "Mode 7 object" instructions and pre-instructions for intro subtitles
 
-if !PAL == 0
-if !FEATURE_KEEP_UNREFERENCED
-;;; $B4EB: Unused. Instruction - load Japanese intro text - non-existent ;;;
-UNUSED_Instruction_LoadIntroSubtitle_NonExistent:
-; Used by UNUSED_Mode7Objects_8BD43D
-    PHY                                                                  ;8BB4EB;
-    JSL.L Disable_CinematicBGTilemap_Updates                             ;8BB4EC;
-    LDA.L Palettes_Intro_nonExistentIntroText1                           ;8BB4F0;
-    STA.L Palettes_BG3P4HighlightedHUDItemBackgroundOutline              ;8BB4F4;
-    LDA.L Palettes_Intro_nonExistentIntroText2                           ;8BB4F8;
-    STA.L Palettes_BG3P4HighlightedHUDItemBackground                     ;8BB4FC;
-    LDA.L Palettes_Intro_nonExistentIntroText3                           ;8BB500;
-    STA.L Palettes_BG3P4HighlightedHUDItemOutline                        ;8BB504;
-    LDY.W #InstList_Mode7Object_Page1                                    ;8BB508;
-    JSR.W LoadIntroSubtitleTiles                                         ;8BB50B;
-    LDY.W #InstList_Mode7Object_Page1                                    ;8BB50E;
-    JSR.W LoadIntroSubtitleTiles                                         ;8BB511;
-    JSR.W TransferSubtitleTilesToVRAM                                    ;8BB514;
-    PLY                                                                  ;8BB517;
-    RTS                                                                  ;8BB518;
-endif ; !FEATURE_KEEP_UNREFERENCED
-endif
-
 
 ;;; $B519: Instruction - enable cinematic BG tilemap updates ;;;
 Instruction_EnableCinematicBGTilemapUpdates:

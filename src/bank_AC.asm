@@ -54,13 +54,6 @@ Tiles_Chozo:
 incbin "../data/Tiles_Chozo.bin" ; $1200 bytes
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $D000: Tiles - enemy $CEFF (mini-Crocomire) ;;;
-Tiles_Stoke:
-incbin "../data/Tiles_Stoke.bin" ; $400 bytes
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $D400: Tiles - enemy $CF3F/$CF7F (tatori / mini-tatori) ;;;
 Tiles_MamaTurtle_BabyTurtle:
 incbin "../data/Tiles_MamaTurtle_BabyTurtle.bin" ; $C00 bytes

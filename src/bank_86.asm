@@ -262,33 +262,6 @@ Instruction_EnemyProjectile_CallExternalFunctionInY:
     JML.W [DP_Temp12]                                                    ;868188;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $818B: Unused. Instruction - call external function [[Y]] with 2 byte parameter [[Y] + 3] ;;;
-UNUSED_Inst_EnemyProjectile_CallExternalFuncWith2ByteParam:
-;; Parameters:
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    LDA.W $0000,Y                                                        ;86818B;
-    STA.B DP_Temp12                                                      ;86818E;
-    LDA.W $0001,Y                                                        ;868190;
-    STA.B DP_Temp13                                                      ;868193;
-    LDA.W $0003,Y                                                        ;868195;
-    PHY                                                                  ;868198;
-    JSL.L .externalFunction                                              ;868199;
-    PLY                                                                  ;86819D;
-    LDX.B EnemyProjectile_Index                                          ;86819E;
-    TYA                                                                  ;8681A1;
-    CLC                                                                  ;8681A2;
-    ADC.W #$0005                                                         ;8681A3;
-    TAY                                                                  ;8681A6;
-    RTS                                                                  ;8681A7;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;8681A8;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $81AB: Instruction - go to [[Y]] ;;;
 Instruction_EnemyProjectile_GotoY:
 ;; Parameters:
@@ -335,21 +308,6 @@ Instruction_EnemyProjectile_DecrementTimer_GotoYIfNonZero:
     INY                                                                  ;8681CB;
     INY                                                                  ;8681CC;
     RTS                                                                  ;8681CD;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $81CE: Unused. Instruction - decrement timer and go to [Y] + ±[[Y]] if non-zero ;;;
-UNUSED_Inst_EnemyProj_DecrementTimer_GotoY_YIfNonZero_8681CE:
-;; Parameters:
-;;     X: Enemy projectile index
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    DEC.W EnemyProjectile_Timers,X                                       ;8681CE;
-    BNE Instruction_EnemyProjectile_GotoY_Y                              ;8681D1;
-    INY                                                                  ;8681D3;
-    RTS                                                                  ;8681D4;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $81D5: Instruction - timer = [[Y]] ;;;
@@ -457,18 +415,6 @@ Instruction_EnemyProjectile_Properties_AndY:
     RTS                                                                  ;868247;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $8248: Unused. Instruction - enable collision with Samus projectiles ;;;
-UNUSED_Inst_EnemyProj_EnableCollisionWithSamusProj_868248:
-;; Parameters:
-;;     X: Enemy projectile index
-    LDA.W EnemyProjectile_Properties,X                                   ;868248;
-    ORA.W #$8000                                                         ;86824B;
-    STA.W EnemyProjectile_Properties,X                                   ;86824E;
-    RTS                                                                  ;868251;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $8252: Instruction - disable collision with Samus projectiles ;;;
 Instruction_EnemyProjectile_DisableCollisionWIthSamusProj:
 ;; Parameters:
@@ -489,38 +435,6 @@ Instruction_EnemyProjectile_DisableCollisionWithSamus:
     RTS                                                                  ;868265;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $8266: Unused. Instruction - enable collision with Samus ;;;
-UNUSED_Inst_EnemyProjectile_EnableCollisionWithSamus_868266:
-;; Parameters:
-;;     X: Enemy projectile index
-    LDA.W EnemyProjectile_Properties,X                                   ;868266;
-    AND.W #$DFFF                                                         ;868269;
-    STA.W EnemyProjectile_Properties,X                                   ;86826C;
-    RTS                                                                  ;86826F;
-
-
-;;; $8270: Unused. Instruction - set to not die on contact ;;;
-UNUSED_Inst_EnemyProjectile_SetToNotDieOnContact_868270:
-;; Parameters:
-;;     X: Enemy projectile index
-    LDA.W EnemyProjectile_Properties,X                                   ;868270;
-    ORA.W #$4000                                                         ;868273;
-    STA.W EnemyProjectile_Properties,X                                   ;868276;
-    RTS                                                                  ;868279;
-
-
-;;; $827A: Unused. Instruction - set to die on contact ;;;
-UNUSED_Instruction_EnemyProjectile_SetToDieOnContact_86827A:
-;; Parameters:
-;;     X: Enemy projectile index
-    LDA.W EnemyProjectile_Properties,X                                   ;86827A;
-    AND.W #$BFFF                                                         ;86827D;
-    STA.W EnemyProjectile_Properties,X                                   ;868280;
-    RTS                                                                  ;868283;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $8284: Instruction - set high priority ;;;
 Instruction_EnemyProjectile_SetHighPriority:
 ;; Parameters:
@@ -529,18 +443,6 @@ Instruction_EnemyProjectile_SetHighPriority:
     ORA.W #$1000                                                         ;868287;
     STA.W EnemyProjectile_Properties,X                                   ;86828A;
     RTS                                                                  ;86828D;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $828E: Unused. Instruction - set low priority ;;;
-UNUSED_Instruction_EnemyProjectile_SetLowPriority_86828E:
-;; Parameters:
-;;     X: Enemy projectile index
-    LDA.W EnemyProjectile_Properties,X                                   ;86828E;
-    AND.W #$EFFF                                                         ;868291;
-    STA.W EnemyProjectile_Properties,X                                   ;868294;
-    RTS                                                                  ;868297;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $8298: Instruction - X radius = [[Y]], Y radius = [[Y] + 1] ;;;
@@ -555,16 +457,6 @@ Instruction_EnemyProjectile_XYRadiusInY:
     INY                                                                  ;86829E;
     INY                                                                  ;86829F;
     RTS                                                                  ;8682A0;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $82A1: Unused. Instruction - X radius = 0, Y radius = 0 ;;;
-UNUSED_Instruction_EnemyProjectile_XYRadius_0:
-;; Parameters:
-;;     X: Enemy projectile index
-    STZ.W EnemyProjectile_Radii,X                                        ;8682A1;
-    RTS                                                                  ;8682A4;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $82A5: Instruction - calculate direction towards Samus ;;;
@@ -594,65 +486,6 @@ Instruction_EnemyProjectile_CalculateDirectionTowardsSamus:
     TYX                                                                  ;8682D2;
     PLY                                                                  ;8682D3;
     RTS                                                                  ;8682D4;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $82D5: Unused. Instruction - write [[Y] + 4] colours from [[Y]] to colour index [[Y] + 2] ;;;
-UNUSED_Inst_EnemyProj_WriteColorsFromYToColorIndex_8682D5:
-;; Parameters:
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    PHY                                                                  ;8682D5;
-    PHX                                                                  ;8682D6;
-    LDX.W $0002,Y                                                        ;8682D7;
-    LDA.W $0004,Y                                                        ;8682DA;
-    AND.W #$00FF                                                         ;8682DD;
-    STA.B DP_Temp12                                                      ;8682E0;
-    LDA.W $0000,Y                                                        ;8682E2;
-    TAY                                                                  ;8682E5;
-
-  .loop:
-    LDA.W $0000,Y                                                        ;8682E6;
-    STA.L Palettes,X                                                     ;8682E9;
-    INY                                                                  ;8682ED;
-    INY                                                                  ;8682EE;
-    INX                                                                  ;8682EF;
-    INX                                                                  ;8682F0;
-    DEC.B DP_Temp12                                                      ;8682F1;
-    BPL .loop                                                            ;8682F3;
-    PLX                                                                  ;8682F5;
-    PLA                                                                  ;8682F6;
-    CLC                                                                  ;8682F7;
-    ADC.W #$0005                                                         ;8682F8;
-    TAY                                                                  ;8682FB;
-    RTS                                                                  ;8682FC;
-
-
-;;; $82FD: Unused. Instruction - queue music track [[Y]] ;;;
-UNUSED_Instruction_EnemyProjectile_QueueMusicTrackInY:
-;; Parameters:
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    LDA.W $0000,Y                                                        ;8682FD;
-    AND.W #$00FF                                                         ;868300;
-    JSL.L QueueMusicDataOrTrack_8FrameDelay                              ;868303;
-    INY                                                                  ;868307;
-    RTS                                                                  ;868308;
-
-
-;;; $8309: Unused. Instruction - queue sound [[Y]], sound library 1, max queued sounds allowed = 6 ;;;
-UNUSED_Inst_EnemyProjectile_QueueSoundInY_Lib1_Max6_868309:
-;; Parameters:
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    LDA.W $0000,Y                                                        ;868309;
-    JSL.L QueueSound_Lib1_Max6                                           ;86830C;
-    INY                                                                  ;868310;
-    RTS                                                                  ;868311;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $8312: Instruction - queue sound [[Y]], sound library 2, max queued sounds allowed = 6 ;;;
@@ -689,116 +522,6 @@ Instruction_EnemyProjectile_QueueSoundInY_Lib1_Max15:
     JSL.L QueueSound                                                     ;868327;
     INY                                                                  ;86832B;
     RTS                                                                  ;86832C;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $832D: Unused. Instruction - queue sound [[Y]], sound library 2, max queued sounds allowed = 15 ;;;
-UNUSED_Inst_EnemyProjectile_QueueSoundInY_Lib2_Max15_86832D:
-;; Parameters:
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    LDA.W $0000,Y                                                        ;86832D;
-    JSL.L QueueSound_Lib2_Max15                                          ;868330;
-    INY                                                                  ;868334;
-    RTS                                                                  ;868335;
-
-
-;;; $8336: Unused. Instruction - queue sound [[Y]], sound library 3, max queued sounds allowed = 15 ;;;
-UNUSED_Inst_EnemyProjectile_QueueSoundInY_Lib3_Max15_868336:
-;; Parameters:
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    LDA.W $0000,Y                                                        ;868336;
-    JSL.L QueueSound_Lib3_Max15                                          ;868339;
-    INY                                                                  ;86833D;
-    RTS                                                                  ;86833E;
-
-
-;;; $833F: Unused. Instruction - queue sound [[Y]], sound library 1, max queued sounds allowed = 3 ;;;
-UNUSED_Inst_EnemyProjectile_QueueSoundInY_Lib1_Max3_86833F:
-;; Parameters:
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    LDA.W $0000,Y                                                        ;86833F;
-    JSL.L QueueSound_Lib1_Max3                                           ;868342;
-    INY                                                                  ;868346;
-    RTS                                                                  ;868347;
-
-
-;;; $8348: Unused. Instruction - queue sound [[Y]], sound library 2, max queued sounds allowed = 3 ;;;
-UNUSED_Inst_EnemyProjectile_QueueSoundInY_Lib2_Max3_868348:
-;; Parameters:
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    LDA.W $0000,Y                                                        ;868348;
-    JSL.L QueueSound_Lib2_Max3                                           ;86834B;
-    INY                                                                  ;86834F;
-    RTS                                                                  ;868350;
-
-
-;;; $8351: Unused. Instruction - queue sound [[Y]], sound library 3, max queued sounds allowed = 3 ;;;
-UNUSED_Inst_EnemyProjectile_QueueSoundInY_Lib3_Max3_868351:
-;; Parameters:
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    LDA.W $0000,Y                                                        ;868351;
-    JSL.L QueueSound_Lib3_Max3                                           ;868354;
-    INY                                                                  ;868358;
-    RTS                                                                  ;868359;
-
-
-;;; $835A: Unused. Instruction - queue sound [[Y]], sound library 1, max queued sounds allowed = 9 ;;;
-UNUSED_Inst_EnemyProjectile_QueueSoundInY_Lib1_Max9_86835A:
-;; Parameters:
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    LDA.W $0000,Y                                                        ;86835A;
-    JSL.L QueueSound_Lib1_Max9                                           ;86835D;
-    INY                                                                  ;868361;
-    RTS                                                                  ;868362;
-
-
-;;; $8363: Unused. Instruction - queue sound [[Y]], sound library 2, max queued sounds allowed = 9 ;;;
-UNUSED_Inst_EnemyProjectile_QueueSoundInY_Lib2_Max9_868363:
-;; Parameters:
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    LDA.W $0000,Y                                                        ;868363;
-    JSL.L QueueSound_Lib2_Max9                                           ;868366;
-    INY                                                                  ;86836A;
-    RTS                                                                  ;86836B;
-
-
-;;; $836C: Unused. Instruction - queue sound [[Y]], sound library 3, max queued sounds allowed = 9 ;;;
-UNUSED_Inst_EnemyProjectile_QueueSoundInY_Lib1_Max9_86836C:
-;; Parameters:
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    LDA.W $0000,Y                                                        ;86836C;
-    JSL.L QueueSound_Lib3_Max9                                           ;86836F;
-    INY                                                                  ;868373;
-    RTS                                                                  ;868374;
-
-
-;;; $8375: Unused. Instruction - queue sound [[Y]], sound library 1, max queued sounds allowed = 1 ;;;
-UNUSED_Inst_EnemyProjectile_QueueSoundInY_Lib1_Max1_868375:
-;; Parameters:
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    LDA.W $0000,Y                                                        ;868375;
-    JSL.L QueueSound_Lib1_Max1                                           ;868378;
-    INY                                                                  ;86837C;
-    RTS                                                                  ;86837D;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $837E: Instruction - queue sound [[Y]], sound library 2, max queued sounds allowed = 1 ;;;
@@ -1004,15 +727,6 @@ RTS_8684FB:
 ;;; $84FC: Instruction list - delete ;;;
 InstList_EnemyProjectile_Delete:
     dw Instruction_EnemyProjectile_Delete                                ;8684FC;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $84FE: Unused. Instruction list - blank spritemap ;;;
-UNUSED_InstList_EnemyProjectile_BlankSpritemap:
-    dw $1000,EnemyProjSpritemaps_Blank_Default                           ;8684FE;
-    dw Instruction_EnemyProjectile_GotoY                                 ;868502;
-    dw UNUSED_InstList_EnemyProjectile_BlankSpritemap                    ;868504;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $8506: Enemy projectile block collision - horizontal extension ;;;
@@ -1935,93 +1649,6 @@ Move_EnemyProjectile_Vertically:
     RTS                                                                  ;868A38;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $8A39: Initialisation AI - enemy projectile $8AAF ;;;
-UNUSED_EnemyProjectile_868A39:
-;; Parameters:
-;;     Y: Enemy projectile index
-    JSL.L GenerateRandomNumber                                           ;868A39;
-    LDX.B EnemyIndex                                                     ;868A3D;
-    LDA.W Enemy.YPosition,X                                              ;868A40;
-    CLC                                                                  ;868A43;
-    ADC.W #$000C                                                         ;868A44;
-    STA.W EnemyProjectile_YPositions,Y                                   ;868A47;
-    ADC.W #$0048                                                         ;868A4A;
-    STA.W EnemyProjectile_Timers,Y                                       ;868A4D;
-    LDA.W Enemy.var3,X                                                   ;868A50;
-    STA.W EnemyProjectile_YVelocity,Y                                    ;868A53;
-    LDA.B RandomNumberSeed                                               ;868A56;
-    AND.W #$001F                                                         ;868A59;
-    SEC                                                                  ;868A5C;
-    SBC.W #$0010                                                         ;868A5D;
-    CLC                                                                  ;868A60;
-    ADC.W Enemy.XPosition,X                                              ;868A61;
-    STA.W EnemyProjectile_XPositions,Y                                   ;868A64;
-    LDA.W EnemyProjectile_YVelocity+1,Y                                  ;868A67;
-    AND.W #$0006                                                         ;868A6A;
-    TAX                                                                  ;868A6D;
-    LDA.W .pointers,X                                                    ;868A6E;
-    STA.W EnemyProjectile_InstListPointers,Y                             ;868A71;
-    RTS                                                                  ;868A74;
-
-  .pointers:
-; Garbage instruction list pointers
-    dw UNUSED_EnemyProjectile_868A39                                     ;868A75;
-    dw UNUSED_EnemyProjectile_868A39                                     ;868A77;
-    dw UNUSED_EnemyProjectile_868A39                                     ;868A79;
-    dw UNUSED_EnemyProjectile_868A39                                     ;868A7B;
-
-
-;;; $8A7D: Pre-instruction - enemy projectile $8AAF ;;;
-UNUSED_PreInstruction_EnemyProjectile_868A7D:
-;; Parameters:
-;;     X: Enemy projectile index
-    LDA.W EnemyProjectile_YVelocity-1,X                                  ;868A7D;
-    AND.W #$FF00                                                         ;868A80;
-    STA.B DP_Temp14                                                      ;868A83;
-    LDA.W EnemyProjectile_YVelocity,X                                    ;868A85;
-    XBA                                                                  ;868A88;
-    BPL +                                                                ;868A89;
-    ORA.W #$FF00                                                         ;868A8B;
-    BRA .storeYVelocity                                                  ;868A8E;
-
-+   AND.W #$00FF                                                         ;868A90;
-
-  .storeYVelocity:
-    STA.B DP_Temp12                                                      ;868A93;
-    LDA.W EnemyProjectile_YSubPositions,X                                ;868A95;
-    CLC                                                                  ;868A98;
-    ADC.B DP_Temp14                                                      ;868A99;
-    STA.W EnemyProjectile_YSubPositions,X                                ;868A9B;
-    LDA.W EnemyProjectile_YPositions,X                                   ;868A9E;
-    ADC.B DP_Temp12                                                      ;868AA1;
-    STA.W EnemyProjectile_YPositions,X                                   ;868AA3;
-    CMP.W EnemyProjectile_Timers,X                                       ;868AA6;
-    BCC .return                                                          ;868AA9;
-    STZ.W EnemyProjectile_ID,X                                           ;868AAB;
-
-  .return:
-    RTS                                                                  ;868AAE;
-
-
-;;; $8AAF: Unused. Enemy projectile ;;;
-UNUSED_EnemyProjectile_868AAF:                                           ;868AAF;
-; There's no way of knowing what this enemy projectile might have been (especially with the garbage instruction lists)
-; It has no hitbox and falls 48h pixels at a constant velocity (initialised to Enemy.var3),
-; so my best guess would have to be a sweat drop (a la eye door) or falling debris (a la Ceres pre elevator hall)
-
-; Initial instruction list ignored
-    %EnemyProjectile(\
-    %initAI(UNUSED_EnemyProjectile_868A39),
-    %preInst(UNUSED_PreInstruction_EnemyProjectile_868A7D),
-    %instList(UNUSED_EnemyProjectile_868A39),
-    %radius(0, 0),
-    %properties($0002),
-    %hitList(0),
-    %shotList(InstList_EnemyProjectile_Delete))
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $8ABD: Instruction list - enemy projectile $8BC2/$8BD0/$8BDE/$8BEC (skree particle) ;;;
 InstList_SkreeParticle:
     dw $0010,EnemyProjSpritemaps_SkreeParticle                           ;868ABD;
@@ -2254,14 +1881,6 @@ EnemyProjectile_MetalSkreeParticles_UpLeft:                              ;868C24
     %shotList(InstList_EnemyProjectile_Delete))
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $8C32: Unused. Instruction list ;;;
-UNUSED_InstList_Draygon_868C32:
-    dw $0010,UNUSED_EnemyProjSpritemaps_Draygon_8D8A0F                   ;868C32;
-    dw Instruction_EnemyProjectile_Sleep                                 ;868C36;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $8C38: Touch instruction list - enemy projectile $8E50 (Draygon goop) ;;;
 InstList_EnemyProjectile_DraygonGoop_Touch:
     dw Instruction_DraygonGoop_SamusCollision                            ;868C38;
@@ -2307,23 +1926,6 @@ Instruction_SpawnEnemyDropsWIthDraygonEyeDropChances:
     RTS                                                                  ;868C7D;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $8C7E: Unused. Instruction list ;;;
-UNUSED_InstList_Draygon_868C7E:
-    dw $0004,UNUSED_EnemyProjSpritemaps_Draygon_0_8D8A32                 ;868C7E;
-    dw $0006,UNUSED_EnemyProjSpritemaps_Draygon_1_8D8A39                 ;868C82;
-    dw $0008,UNUSED_EnemyProjSpritemaps_Draygon_2_8D8A40                 ;868C86;
-    dw $0018,UNUSED_EnemyProjSpritemaps_Draygon_3_8D8A47                 ;868C8A;
-    dw $0018,UNUSED_EnemyProjSpritemaps_Draygon_4_8D8A4E                 ;868C8E;
-    dw $0018,UNUSED_EnemyProjSpritemaps_Draygon_5_8D8A55                 ;868C92;
-    dw $0018,UNUSED_EnemyProjSpritemaps_Draygon_6_8D8A5C                 ;868C96;
-    dw $0018,UNUSED_EnemyProjSpritemaps_Draygon_3_8D8A47                 ;868C9A;
-    dw Instruction_EnemyProjectile_GotoY                                 ;868C9E;
-    dw UNUSED_InstList_Draygon_868C7E                                    ;868CA0;
-    dw Instruction_EnemyProjectile_Sleep                                 ;868CA2;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $8CA4: Instruction list - enemy projectile $8E5E (Draygon's wall turret projectile) ;;;
 InstList_EnemyProjectile_DraygonsWallTurretProjectile_0:
     dw $0005,EnemyProjSpritemaps_DrayTurretProj_DustCloud_Explosion_0    ;868CA4;
@@ -2359,17 +1961,6 @@ Instruction_SetPreInst_DraygonsWallTurretProjectile_Fired:
     LDA.W #PreInstruction_EnemyProj_DraygonsWallTurretProjectile_Fired   ;868CF6;
     STA.W EnemyProjectile_PreInstructions,X                              ;868CF9;
     RTS                                                                  ;868CFC;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $8CFD: Unused. Pre-instruction = $8DCA (Draygon goop - stuck to Samus) ;;;
-UNUSED_Inst_PreInstruction_DraygonGoop_StuckToSamus_868CFD:
-;; Parameters:
-;;     X: Enemy projectile index
-    LDA.W #PreInstruction_DraygonGoop_StuckToSamus                       ;868CFD;
-    STA.W EnemyProjectile_PreInstructions,X                              ;868D00;
-    RTS                                                                  ;868D03;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $8D04: Initialisation AI - enemy projectile $8E50 (Draygon goop) ;;;
@@ -2430,17 +2021,6 @@ InitAI_EnemyProjectile_DraygonsWallTurretProjectile:
 ;;; $8D54: RTS ;;;
 RTS_868D54:
     RTS                                                                  ;868D54;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $8D55: Unused. Delete enemy projectile [Y] ;;;
-UNUSED_Delete_EnemyProjectile_Y_868D55:
-;; Parameters:
-;;     Y: Enemy projectile index
-    LDA.W #$0000                                                         ;868D55;
-    STA.W EnemyProjectile_ID,Y                                           ;868D58;
-    RTS                                                                  ;868D5B;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $8D5C: Delete enemy projectile if power bombed ;;;
@@ -2617,169 +2197,6 @@ EnemyProjectile_DraygonWallTurret:                                       ;868E5E
     %hitList(0),
     %shotList(InstList_EnemyProj_MiscDust_3_SmallExplosion))
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_EnemyProjectile_Draygon_868E6C:                                   ;868E6C;
-; This enemy projectile is a partially coded, small sprite with a fairly short animation loop that travels towards Draygon
-; It doesn't collide with Samus, but it is shootable
-; Uses the last row of evir tiles ($B1:9400), though I doubt those are the correct graphics for this enemy projectile
-    %EnemyProjectile(\
-    %initAI(UNUSED_InitAI_EnemyProjectile_Draygon_868E7A),
-    %preInst(UNUSED_PreInstruction_EnemyProjectile_Draygon_868E99),
-    %instList(InstList_EnemyProjectile_DraygonsWallTurretProjectile_0),
-    %radius(8, 8),
-    %properties($7000),
-    %hitList(0),
-    %shotList(InstList_EnemyProj_MiscDust_3_SmallExplosion))
-
-
-;;; $8E7A: Initialisation AI - enemy projectile $8E6C ;;;
-UNUSED_InitAI_EnemyProjectile_Draygon_868E7A:
-;; Parameters:
-;;     Y: Enemy projectile index
-;;     $12: X position
-;;     $14: Y position
-    PHX                                                                  ;868E7A;
-    LDA.W #$03F0                                                         ;868E7B;
-    STA.W EnemyProjectile_GraphicsIndices,Y                              ;868E7E;
-    LDA.B DP_Temp12                                                      ;868E81;
-    STA.W EnemyProjectile_XPositions,Y                                   ;868E83;
-    LDA.B DP_Temp14                                                      ;868E86;
-    STA.W EnemyProjectile_YPositions,Y                                   ;868E88;
-    LDA.W #UNUSED_InstList_EnemyProjectile_Draygon_868EDF                ;868E8B;
-    STA.W EnemyProjectile_InstListPointers,Y                             ;868E8E;
-    LDA.W #$0001                                                         ;868E91;
-    STA.W EnemyProjectile_InstructionTimers,Y                            ;868E94;
-    PLX                                                                  ;868E97;
-    RTS                                                                  ;868E98;
-
-
-;;; $8E99: Pre-instruction - enemy projectile $8E6C ;;;
-UNUSED_PreInstruction_EnemyProjectile_Draygon_868E99:
-;; Parameters:
-;;     X: Enemy projectile index
-    LDA.W Enemy.XPosition                                                ;868E99;
-    SEC                                                                  ;868E9C;
-    SBC.B DP_Temp12                                                      ;868E9D;
-    STA.B DP_Temp12                                                      ;868E9F;
-    LDA.W Enemy.YPosition                                                ;868EA1;
-    SEC                                                                  ;868EA4;
-    SBC.B DP_Temp14                                                      ;868EA5;
-    STA.B DP_Temp14                                                      ;868EA7;
-    JSL.L CalculateAngleOf_12_14_Offset                                  ;868EA9;
-    EOR.W #$00FF                                                         ;868EAD;
-    INC                                                                  ;868EB0;
-    CLC                                                                  ;868EB1;
-    ADC.W #$0040                                                         ;868EB2;
-    AND.W #$00FF                                                         ;868EB5;
-    STA.L EnemyProjectileAngles,X                                        ;868EB8;
-    STA.B DP_Temp12                                                      ;868EBC;
-    LDA.W #$0001                                                         ;868EBE;
-    STA.B DP_Temp14                                                      ;868EC1;
-    JSL.L Do_Some_Math_With_Sine_Cosine_Terrible_Label_Name              ;868EC3; ($16.$18, $1A.$1C) = ([$14] * |cos([$12] * pi / 80h)|, [$14] * |sin([$12] * pi / 80h)|)
-    LDA.B DP_Temp16                                                      ;868EC7;
-    STA.W EnemyProjectile_XVelocity,X                                    ;868EC9;
-    LDA.B DP_Temp18                                                      ;868ECC;
-    STA.W EnemyProjectile_Var0,X                                         ;868ECE;
-    LDA.B DP_Temp1A                                                      ;868ED1;
-    STA.W EnemyProjectile_YVelocity,X                                    ;868ED3;
-    LDA.B DP_Temp1C                                                      ;868ED6;
-    STA.W EnemyProjectile_Var1,X                                         ;868ED8;
-    JSR.W Move_EnemyProjectile_AccordingToAngleAndSpeed                  ;868EDB;
-    RTS                                                                  ;868EDE;
-
-
-;;; $8EDF: Instruction list - enemy projectile $8E6C ;;;
-UNUSED_InstList_EnemyProjectile_Draygon_868EDF:
-    dw $0005,UNUSED_EnemyProjSpritemaps_Draygon_0_8D8967                 ;868EDF;
-    dw $0005,UNUSED_EnemyProjSpritemaps_Draygon_1_8D896E                 ;868EE3;
-    dw $0005,UNUSED_EnemyProjSpritemaps_Draygon_0_8D8967                 ;868EE7;
-    dw $0005,UNUSED_EnemyProjSpritemaps_Draygon_2_8D8975                 ;868EEB;
-    dw Instruction_EnemyProjectile_GotoY                                 ;868EEF;
-    dw UNUSED_InstList_EnemyProjectile_Draygon_868EDF                    ;868EF1;
-
-
-;;; $8EF3: Unused. Instruction list ;;;
-UNUSED_InstList_EnemyProjectile_868EF3:
-    dw $0005,UNUSED_EnemyProjSpritemaps_0_8D897C                         ;868EF3;
-    dw $0005,UNUSED_EnemyProjSpritemaps_1_8D8983                         ;868EF7;
-    dw $0005,UNUSED_EnemyProjSpritemaps_0_8D897C                         ;868EFB;
-    dw $0005,UNUSED_EnemyProjSpritemaps_2_8D898A                         ;868EFF;
-    dw Instruction_EnemyProjectile_GotoY                                 ;868F03;
-    dw UNUSED_InstList_EnemyProjectile_868EF3                            ;868F05;
-
-
-;;; $8F07: Unused. Instruction list ;;;
-UNUSED_InstList_EnemyProjectile_868F07:
-    dw $0005,UNUSED_EnemyProjSpritemaps_0_8D8991                         ;868F07;
-    dw $0005,UNUSED_EnemyProjSpritemaps_1_8D8998                         ;868F0B;
-    dw $0005,UNUSED_EnemyProjSpritemaps_0_8D8991                         ;868F0F;
-    dw $0005,UNUSED_EnemyProjSpritemaps_2_8D899F                         ;868F13;
-    dw Instruction_EnemyProjectile_GotoY                                 ;868F17;
-    dw UNUSED_InstList_EnemyProjectile_868F07                            ;868F19;
-
-
-;;; $8F1B: Unused. Instruction list ;;;
-UNUSED_InstList_EnemyProjectile_868F1B:
-    dw $0005,UNUSED_EnemyProjSpritemaps_0_8D89A6                         ;868F1B;
-    dw $0005,UNUSED_EnemyProjSpritemaps_1_8D89AD                         ;868F1F;
-    dw $0005,UNUSED_EnemyProjSpritemaps_0_8D89A6                         ;868F23;
-    dw $0005,UNUSED_EnemyProjSpritemaps_2_8D89B4                         ;868F27;
-    dw Instruction_EnemyProjectile_GotoY                                 ;868F2B;
-    dw UNUSED_InstList_EnemyProjectile_868F1B                            ;868F2D;
-
-
-;;; $8F2F: Unused. Instruction list ;;;
-UNUSED_InstList_EnemyProjectile_868F2F:
-    dw $0005,UNUSED_EnemyProjSpritemaps_0_8D89BB                         ;868F2F;
-    dw $0005,UNUSED_EnemyProjSpritemaps_1_8D89C2                         ;868F33;
-    dw $0005,UNUSED_EnemyProjSpritemaps_0_8D89BB                         ;868F37;
-    dw $0005,UNUSED_EnemyProjSpritemaps_2_8D89C9                         ;868F3B;
-    dw Instruction_EnemyProjectile_GotoY                                 ;868F3F;
-    dw UNUSED_InstList_EnemyProjectile_868F2F                            ;868F41;
-
-
-;;; $8F43: Unused. Instruction list ;;;
-UNUSED_InstList_EnemyProjectile_868F43:
-    dw $0005,UNUSED_EnemyProjSpritemaps_0_8D89D0                         ;868F43;
-    dw $0005,UNUSED_EnemyProjSpritemaps_1_8D89D7                         ;868F47;
-    dw $0005,UNUSED_EnemyProjSpritemaps_0_8D89D0                         ;868F4B;
-    dw $0005,UNUSED_EnemyProjSpritemaps_2_8D89DE                         ;868F4F;
-    dw Instruction_EnemyProjectile_GotoY                                 ;868F53;
-    dw UNUSED_InstList_EnemyProjectile_868F43                            ;868F55;
-
-
-;;; $8F57: Unused. Instruction list ;;;
-UNUSED_InstList_EnemyProjectile_868F57:
-    dw $0005,UNUSED_EnemyProjSpritemaps_0_8D89E5                         ;868F57;
-    dw $0005,UNUSED_EnemyProjSpritemaps_1_8D89EC                         ;868F5B;
-    dw $0005,UNUSED_EnemyProjSpritemaps_0_8D89E5                         ;868F5F;
-    dw $0005,UNUSED_EnemyProjSpritemaps_2_8D89F3                         ;868F63;
-    dw Instruction_EnemyProjectile_GotoY                                 ;868F67;
-    dw UNUSED_InstList_EnemyProjectile_868F57                            ;868F69;
-
-
-;;; $8F6B: Unused. Instruction list ;;;
-UNUSED_InstList_EnemyProjectile_868F6B:
-    dw $0005,UNUSED_EnemyProjSpritemaps_0_8D89FA                         ;868F6B;
-    dw $0005,UNUSED_EnemyProjSpritemaps_1_8D8A01                         ;868F6F;
-    dw $0005,UNUSED_EnemyProjSpritemaps_0_8D89FA                         ;868F73;
-    dw $0005,UNUSED_EnemyProjSpritemaps_2_8D8A08                         ;868F77;
-    dw Instruction_EnemyProjectile_GotoY                                 ;868F7B;
-    dw UNUSED_InstList_EnemyProjectile_868F6B                            ;868F7D;
-
-
-;;; $8F7F: Unused. Instruction list pointers ;;;
-UNUSED_EnemyProjectile_InstListPointers_868F7F:
-    dw UNUSED_InstList_EnemyProjectile_Draygon_868EDF                    ;868F7F;
-    dw UNUSED_InstList_EnemyProjectile_868EF3                            ;868F81;
-    dw UNUSED_InstList_EnemyProjectile_868F07                            ;868F83;
-    dw UNUSED_InstList_EnemyProjectile_868F1B                            ;868F85;
-    dw UNUSED_InstList_EnemyProjectile_868F2F                            ;868F87;
-    dw UNUSED_InstList_EnemyProjectile_868F43                            ;868F89;
-    dw UNUSED_InstList_EnemyProjectile_868F57                            ;868F8B;
-    dw UNUSED_InstList_EnemyProjectile_868F6B                            ;868F8D;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 
 ;;; $8F8F: Enemy projectiles - Crocomire ;;;
 EnemyProjectile_CrocomiresProjectile:                                    ;868F8F;
@@ -2801,33 +2218,6 @@ EnemyProjectile_CrocomireBridgeCrumbling:                                ;868F9D
     %properties($8000),
     %hitList(0),
     %shotList(InstList_EnemyProjectile_Delete))
-
-
-;;; $8FAB: Unused. Instruction list - Crocomire's projectile - part 1/3 ;;;
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_InstList_EnemyProj_CrocomiresProjectile_Part1_868FAB:
-    dw $0005*!FPS,EnemyProjSpritemaps_CrocomiresProjectile_0             ;868FAB;
-    dw $0005*!FPS,EnemyProjSpritemaps_CrocomiresProjectile_1             ;868FAF;
-    dw Instruction_EnemyProjectile_GotoY                                 ;868FB3;
-    dw UNUSED_InstList_EnemyProj_CrocomiresProjectile_Part1_868FAB       ;868FB5;
-
-
-;;; $8FB7: Unused. Instruction list - Crocomire's projectile - part 2/3 ;;;
-UNUSED_InstList_EnemyProj_CrocomiresProjectile_Part2_868FB7:
-    dw $0005*!FPS,EnemyProjSpritemaps_CrocomiresProjectile_2             ;868FB7;
-    dw $0005*!FPS,EnemyProjSpritemaps_CrocomiresProjectile_3             ;868FBB;
-    dw Instruction_EnemyProjectile_GotoY                                 ;868FBF;
-    dw UNUSED_InstList_EnemyProj_CrocomiresProjectile_Part2_868FB7       ;868FC1;
-
-
-;;; $8FC3: Unused. Instruction list ;;;
-UNUSED_InstList_EnemyProj_OldCrocomiresProjectile_868FC3:
-; Might have been an old version of Crocomire's projectile that uses enemy graphics
-    dw $0005*!FPS,UNUSED_EnemyProjSpritemaps_OldCrocomiresProjectile_0_8D8082 ;868FC3;
-    dw $0005*!FPS,UNUSED_EnemyProjSpritemaps_OldCrocomiresProjectile_1_8D8098 ;868FC7;
-    dw Instruction_EnemyProjectile_GotoY                                 ;868FCB;
-    dw UNUSED_InstList_EnemyProj_OldCrocomiresProjectile_868FC3          ;868FCD;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $8FCF: Instruction list - enemy projectile $8F8F (Crocomire's projectile) ;;;
@@ -2854,17 +2244,6 @@ InstList_EnemyProjectile_CrocomireSpikeWallPieces:
     dw $7FFF,EnemyProjSpritemaps_CrocomiresSpikeWallPieces               ;868FF3;
     dw Instruction_EnemyProjectile_GotoY                                 ;868FF7;
     dw InstList_EnemyProjectile_CrocomireSpikeWallPieces                 ;868FF9;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $8FFB: Unused. Instruction list ;;;
-UNUSED_InstList_EnemyProj_CrocomireBridgeCrumbling_868FFB:
-; Referenced by unused routine UNUSED_MoveEnemyProjectileUpFor6FramesThenDelete_86922F
-; Looks vaguely related to Crocomire bridge crumbling
-    dw $0002*!FPS,UNUSED_EnemyProjSpritemaps_CrocomireBridgeCrumbling_0_8D8132 ;868FFB;
-    dw $0002,UNUSED_EnemyProjSpritemaps_CrocomireBridgeCrumbling_1_8D813E ;868FFF;
-    dw $7FFF,UNUSED_EnemyProjSpritemaps_CrocomireBridgeCrumbling_2_8D815E ;869003;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $9007: Shot instruction list - enemy projectile $8F8F (Crocomire's projectile) ;;;
@@ -3116,46 +2495,6 @@ PreInstruction_EnemyProjectile_CrocomireSpikeWallPieces:
     dw $0001,$0001                                                       ;86922B;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $922F: Unused. Move enemy projectile up for 6 frames and then delete ;;;
-UNUSED_MoveEnemyProjectileUpFor6FramesThenDelete_86922F:
-;; Parameters:
-;;     X: Enemy projectile index
-    LDA.W SamusProjectile_XPositions,X                                   ;86922F;
-    LDA.W #$0001                                                         ;869232;
-    STA.W EnemyProjectile_InstructionTimers,X                            ;869235;
-    LDA.W #UNUSED_InstList_EnemyProj_CrocomireBridgeCrumbling_868FFB     ;869238;
-    STA.W EnemyProjectile_InstListPointers,X                             ;86923B;
-    LDA.W #UNUSED_PreInstruction_EnemyProjectile_MovingUp_869259         ;86923E;
-    STA.W EnemyProjectile_PreInstructions,X                              ;869241;
-    LDA.W #$0000                                                         ;869244;
-    STA.W EnemyProjectile_XVelocity,X                                    ;869247;
-    LDA.W #$0002                                                         ;86924A;
-    STA.W EnemyProjectile_YVelocity,X                                    ;86924D;
-    LDA.W #$0006                                                         ;869250;
-    STA.W EnemyProjectile_Var0,X                                         ;869253;
-    STA.W EnemyProjectile_Var1,X                                         ;869256; fallthrough to UNUSED_PreInstruction_EnemyProjectile_MovingUp_869259
-
-
-;;; $9259: Unused. Pre-instruction - moving up ;;;
-UNUSED_PreInstruction_EnemyProjectile_MovingUp_869259:
-;; Parameters:
-;;     X: Enemy projectile index
-    LDA.W EnemyProjectile_YPositions,X                                   ;869259;
-    SEC                                                                  ;86925C;
-    SBC.W EnemyProjectile_YVelocity,X                                    ;86925D;
-    STA.W EnemyProjectile_YPositions,X                                   ;869260;
-    LDA.W EnemyProjectile_Var0,X                                         ;869263;
-    DEC                                                                  ;869266;
-    STA.W EnemyProjectile_Var0,X                                         ;869267;
-    BNE .return                                                          ;86926A;
-    STZ.W EnemyProjectile_ID,X                                           ;86926C;
-
-  .return:
-    RTS                                                                  ;86926F;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $9270: Instruction - spawn enemy drops with Crocomire's drop chances ;;;
 Instruction_SpawnEnemyDropsWithCrocomiresDropChances:
 ;; Parameters:
@@ -3314,72 +2653,6 @@ Set_RidleysFireball_Afterburn_Damage:
     RTS                                                                  ;86934C;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $934D: Initialisation AI - enemy projectile $9634 (unused) ;;;
-UNUSED_InitAI_EnemyProj_RidleysFireball_Afterburn_86934D:
-;; Parameters:
-;;     Y: Enemy projectile index
-    LDA.W #$0000                                                         ;86934D;
-    STA.W EnemyProjectile_Var0,Y                                         ;869350;
-    STA.W EnemyProjectile_Var1,Y                                         ;869353;
-    LDA.W Enemy.XPosition                                                ;869356;
-    CLC                                                                  ;869359;
-    ADC.W #$FFE3                                                         ;86935A;
-    STA.W EnemyProjectile_XPositions,Y                                   ;86935D;
-    LDA.W Enemy.YPosition                                                ;869360;
-    CLC                                                                  ;869363;
-    ADC.W #$FFDD                                                         ;869364;
-    STA.W EnemyProjectile_YPositions,Y                                   ;869367;
-    LDA.W #$0A00                                                         ;86936A;
-    STA.W EnemyProjectile_GraphicsIndices,Y                              ;86936D;
-    LDA.W Enemy.init0                                                    ;869370;
-    ASL                                                                  ;869373;
-    TAX                                                                  ;869374;
-    LDA.W .Xvelocity,X                                                   ;869375;
-    STA.W EnemyProjectile_XVelocity,Y                                    ;869378;
-    LDA.W .Yvelocity,X                                                   ;86937B;
-    STA.W EnemyProjectile_YVelocity,Y                                    ;86937E;
-    RTS                                                                  ;869381;
-
-  .Xvelocity:
-    dw $FE00,$FE10,$FE44,$FE96                                           ;869382;
-
-  .Yvelocity:
-    dw $0000,$0088,$00FC,$016A                                           ;86938A;
-
-
-;;; $9392: Pre-instruction - enemy projectile $9634 (unused) ;;;
-UNUSED_PreInst_EnemyProj_RidleyFireball_Afterburn_869392:
-;; Parameters:
-;;     X: Enemy projectile index
-    LDA.W EnemyProjectile_Var0,X                                         ;869392;
-    CMP.W #$0008                                                         ;869395;
-    BCS .greaterThan8                                                    ;869398;
-    INC.W EnemyProjectile_Var0,X                                         ;86939A;
-    RTS                                                                  ;86939D;
-
-  .greaterThan8:
-    JSR.W Move_EnemyProjectile_AccordingToVelocity                       ;86939E;
-    JSR.W Move_EnemyProjectile_Vertically                                ;8693A1;
-    BCS .collision                                                       ;8693A4;
-    RTS                                                                  ;8693A6;
-
-  .collision:
-    LDA.W #InstList_EnemyProjectile_Afterburn_Final                      ;8693A7;
-    STA.W EnemyProjectile_InstListPointers,X                             ;8693AA;
-    INC.W EnemyProjectile_Var0,X                                         ;8693AD;
-    LDA.W #$0001                                                         ;8693B0;
-    STA.W EnemyProjectile_InstructionTimers,X                            ;8693B3;
-    STZ.W EnemyProjectile_XVelocity,X                                    ;8693B6;
-    STZ.W EnemyProjectile_YVelocity,X                                    ;8693B9;
-    LDA.W #$0A00                                                         ;8693BC;
-    STA.W EnemyProjectile_GraphicsIndices,X                              ;8693BF;
-    LDA.W #$002B                                                         ;8693C2;
-    JSL.L QueueSound_Lib2_Max6                                           ;8693C5;
-    RTS                                                                  ;8693C9;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $93CA: Initialisation AI - enemy projectile $9642 (Ridley's fireball) ;;;
 InitAI_EnemyProjectile_RidleyFireball:
 ;; Parameters:
@@ -3456,48 +2729,6 @@ PreInstruction_EnemyProjectile_RidleyFireball:
 
   .return:
     RTS                                                                  ;869441;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $9442: Unused. Do fireball damage to Samus and turn into smoke ;;;
-UNUSED_DoFireballDamageToSamus_TurnIntoSmoke_869442:
-;; Parameters:
-;;     X: Enemy projectile index
-    LDA.W #UNUSED_InstList_Smoke_86945F                                  ;869442;
-    STA.W EnemyProjectile_InstListPointers,X                             ;869445;
-    LDA.W #$0001                                                         ;869448;
-    STA.W EnemyProjectile_InstructionTimers,X                            ;86944B;
-    LDA.W #$0003                                                         ;86944E;
-    LDY.W AreaIndex                                                      ;869451;
-    CPY.W #$0002                                                         ;869454;
-    BNE .gotoHurtSamus                                                   ;869457;
-    LDA.W #$003C                                                         ;869459;
-
-  .gotoHurtSamus:
-    JMP.W Hurt_Samus                                                     ;86945C;
-
-
-;;; $945F: Unused. Instruction list - smoke ;;;
-UNUSED_InstList_Smoke_86945F:
-; Used by unused routine UNUSED_DoFireballDamageToSamus_TurnIntoSmoke_869442
-    dw UNUSED_Instruction_DisableCollisionsWithSamus_869475              ;86945F;
-    dw Instruction_EnemyProjectile_ClearPreInstruction                   ;869461;
-    dw $0008,EnemyProjSpritemaps_Common_Smoke_0                          ;869463;
-    dw $0008,EnemyProjSpritemaps_Common_Smoke_1                          ;869467;
-    dw $0008,EnemyProjSpritemaps_Common_Smoke_2                          ;86946B;
-    dw $0008,EnemyProjSpritemaps_Common_Smoke_3                          ;86946F;
-    dw Instruction_EnemyProjectile_Delete                                ;869473;
-
-
-;;; $9475: Unused. Instruction - disable collisions with Samus ;;;
-UNUSED_Instruction_DisableCollisionsWithSamus_869475:
-;; Parameters:
-;;     X: Enemy projectile index
-    LDA.W EnemyProjectile_Properties,X                                   ;869475;
-    ORA.W #$2000                                                         ;869478;
-    STA.W EnemyProjectile_Properties,X                                   ;86947B;
-    RTS                                                                  ;86947E;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $947F: Initialisation AI - enemy projectile $9650/$965E (afterburn - center) ;;;
@@ -3630,46 +2861,6 @@ PreInstruction_EnemyProjectile_VerticalAfterburn:
     RTS                                                                  ;869536;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $9537: Pre-instruction - enemy projectile $96A4/$96B2 (unused. Proto horizontal afterburn - right/left) ;;;
-UNUSED_PreInstruction_ProtoHorizontalAfterburn_869537:
-;; Parameters:
-;;     X: Enemy projectile index
-    JSR.W Move_EnemyProjectile_Horizontally                              ;869537;
-    BCC .return                                                          ;86953A;
-    STZ.W EnemyProjectile_ID,X                                           ;86953C;
-
-  .return:
-    RTS                                                                  ;86953F;
-
-
-;;; $9540: Pre-instruction - enemy projectile $96C0 (unused. Proto vertical afterburn - up) ;;;
-UNUSED_PreInstruction_ProtoVerticalAfterburn_Up_869540:
-;; Parameters:
-;;     X: Enemy projectile index
-    JSR.W Move_EnemyProjectile_Vertically                                ;869540;
-    BCC .return                                                          ;869543;
-    STZ.W EnemyProjectile_ID,X                                           ;869545;
-
-  .return:
-    RTS                                                                  ;869548;
-
-
-;;; $9549: Pre-instruction - enemy projectile $96CE (unused. Proto vertical afterburn - down) ;;;
-UNUSED_PreInstruction_ProtoVerticalAfterburn_Down_869549:
-;; Parameters:
-;;     X: Enemy projectile index
-
-; Clone of UNUSED_PreInstruction_ProtoVerticalAfterburn_Up_869540
-    JSR.W Move_EnemyProjectile_Vertically                                ;869549;
-    BCC .return                                                          ;86954C;
-    STZ.W EnemyProjectile_ID,X                                           ;86954E;
-
-  .return:
-    RTS                                                                  ;869551;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $9552: Instruction list - enemy projectile $9634/$9642 (Ridley's fireball) ;;;
 InstList_EnemyProjectile_RidleysFireball_0:
 ; Doesn't really make sense to use this instruction list with UNUSED_EnemyProjectile_Ridley_869634
@@ -3697,20 +2888,6 @@ InstList_EnemyProjectile_Afterburn_Final:
     dw $0005,EnemyProjSpritemaps_RidleysFireball_MBBombExplosion_3       ;869582;
     dw $0005,EnemyProjSpritemaps_RidleysFireball_MBBombExplosion_4       ;869586;
     dw Instruction_EnemyProjectile_Delete                                ;86958A;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $958C: Unused. Instruction list ;;;
-UNUSED_InstList_EnemyProjectile_86958C:
-; References graphics not in Ridley or Mother Brain's VRAM
-; But looks like an 8x8 px² version of the InstList_EnemyProjectile_RidleysFireball_1 loop
-    dw $0002,UNUSED_EnemyProjSpritemaps_0_8D80AE                         ;86958C;
-    dw $0002,UNUSED_EnemyProjSpritemaps_1_8D80B5                         ;869590;
-    dw $0002,UNUSED_EnemyProjSpritemaps_2_8D80BC                         ;869594;
-    dw $0002,UNUSED_EnemyProjSpritemaps_3_8D80C3                         ;869598;
-    dw Instruction_EnemyProjectile_GotoY                                 ;86959C;
-    dw UNUSED_InstList_EnemyProjectile_86958C                            ;86959E;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $95A0: Instruction list - enemy projectile $9650 (horizontal afterburn - center) ;;;
@@ -3801,7 +2978,6 @@ Instruction_SpawnNext_Afterburn_EnemyProjectile:
     RTS                                                                  ;869633;
 
 
-if !FEATURE_KEEP_UNREFERENCED
 ;;; $9634: Enemy projectiles - Ridley / afterburn ;;;
 ; Enemy projectile $9634 seems to be a version of the fireball that has no afterburn
 ; It's fired at one of 4 down-left angles, the angle and its spawn position depend on enemy 0
@@ -3811,17 +2987,6 @@ if !FEATURE_KEEP_UNREFERENCED
 ; Enemy projectiles $96A4/B2/C0/CE are just the same as $966C/7A/88/96 except they instantly delete themselves on collision instead of playing the $9574 animation
 
 ; Note that Mother Brain's bombs also spawn the afterburn, not just Ridley's fireballs
-UNUSED_EnemyProjectile_Ridley_869634:                                    ;869634;
-    %EnemyProjectile(\
-    %initAI(UNUSED_InitAI_EnemyProj_RidleysFireball_Afterburn_86934D),
-    %preInst(UNUSED_PreInst_EnemyProj_RidleyFireball_Afterburn_869392),
-    %instList(InstList_EnemyProjectile_RidleysFireball_0),
-    %radius(6, 6),
-    %properties($1003),
-    %hitList(0),
-    %shotList(InstList_EnemyProjectile_Delete))
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 EnemyProjectile_RidleysFireball:                                         ;869642;
     %EnemyProjectile(\
     %initAI(InitAI_EnemyProjectile_RidleyFireball),
@@ -3891,48 +3056,6 @@ EnemyProjectile_RidleyVerticalAfterburn_Down:                            ;869696
     %properties($5003),
     %hitList(0),
     %shotList(InstList_EnemyProjectile_Delete))
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_EnemyProjectile_RidleyProtoHorizontalAfterburn_8696A4:            ;8696A4;
-    %EnemyProjectile(\
-    %initAI(InitAI_EnemyProjectile_HorizontalAfterburn_Right),
-    %preInst(UNUSED_PreInstruction_ProtoHorizontalAfterburn_869537),
-    %instList(InstList_EnemyProjectile_Afterburn),
-    %radius(6, 6),
-    %properties($5003),
-    %hitList(0),
-    %shotList(InstList_EnemyProjectile_Delete))
-
-UNUSED_EnemyProjectile_RidleyProtoHorizontalAfterburn_8696B2:            ;8696B2;
-    %EnemyProjectile(\
-    %initAI(InitAI_EnemyProjectile_HorizontalAfterburn_Left),
-    %preInst(UNUSED_PreInstruction_ProtoHorizontalAfterburn_869537),
-    %instList(InstList_EnemyProjectile_Afterburn),
-    %radius(6, 6),
-    %properties($5003),
-    %hitList(0),
-    %shotList(InstList_EnemyProjectile_Delete))
-
-UNUSED_EnemyProjectile_RidleyProtoVerticalAfterburn_8696C0:              ;8696C0;
-    %EnemyProjectile(\
-    %initAI(InitAI_EnemyProjectile_VerticalAfterburn_Up),
-    %preInst(UNUSED_PreInstruction_ProtoVerticalAfterburn_Up_869540),
-    %instList(InstList_EnemyProjectile_Afterburn),
-    %radius(6, 6),
-    %properties($5003),
-    %hitList(0),
-    %shotList(InstList_EnemyProjectile_Delete))
-
-UNUSED_EnemyProjectile_RidleyProtoVerticalAfterburn_8696CE:              ;8696CE;
-    %EnemyProjectile(\
-    %initAI(InitAI_EnemyProjectile_VerticalAfterburn_Down),
-    %preInst(UNUSED_PreInstruction_ProtoVerticalAfterburn_Down_869549),
-    %instList(InstList_EnemyProjectile_Afterburn),
-    %radius(6, 6),
-    %properties($5003),
-    %hitList(0),
-    %shotList(InstList_EnemyProjectile_Delete))
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $96DC: Initialisation AI - enemy projectile $9734/$9742 (Ceres falling debris) ;;;
@@ -6043,16 +5166,6 @@ InstList_EnemyProj_BombTorizoLowHealthDrool_HitFloor:
     dw Instruction_EnemyProjectile_Delete                                ;86A49C;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $A49E: Instruction list - enemy projectile $A977 ;;;
-UNUSED_InstList_EnemyProjectile_BombTorizo_86A49E:
-    dw Instruction_EnemyProjectile_Properties_OrY,$3000                  ;86A49E;
-    dw $0024,UNUSED_EnemyProjSpritemaps_BombTorizoLowHealthDrool_0_8D8C54 ;86A4A0;
-    dw Instruction_EnemyProjectile_GotoY                                 ;86A4A6;
-    dw InstList_EnemyProj_BombTorizoLowHealthDrool_HitFloor              ;86A4A8;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $A4AA: Instruction list - enemy projectile $A985 (Bomb Torizo explosive swipe) ;;;
 InstList_EnemyProjectile_BombTorizoExplosionSwipe:
     dw Instruction_EnemyProjectile_QueueSoundInY_Lib2_Max1 : db $26      ;86A4AA;
@@ -6349,36 +5462,6 @@ InitAI_EnemyProjectile_BombTorizoInitialDrool:
     RTS                                                                  ;86A6C6;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $A6C7: Initialisation AI - enemy projectile $A977 ;;;
-UNUSED_InitAI_EnemyProjectile_BombTorizo_86A6C7:
-;; Parameters:
-;;     Y: Enemy projectile index
-    LDA.W #$0000                                                         ;86A6C7;
-    STA.W EnemyProjectile_GraphicsIndices,Y                              ;86A6CA;
-    LDX.B PLM_Index                                                      ;86A6CD;
-    JSL.L Calculate_PLM_Block_Coordinates                                ;86A6D0;
-    LDA.W PLM_XBlock                                                     ;86A6D4;
-    ASL                                                                  ;86A6D7;
-    ASL                                                                  ;86A6D8;
-    ASL                                                                  ;86A6D9;
-    ASL                                                                  ;86A6DA;
-    STA.W EnemyProjectile_XPositions,Y                                   ;86A6DB;
-    LDA.W PLM_YBlock                                                     ;86A6DE;
-    ASL                                                                  ;86A6E1;
-    ASL                                                                  ;86A6E2;
-    ASL                                                                  ;86A6E3;
-    ASL                                                                  ;86A6E4;
-    SEC                                                                  ;86A6E5;
-    SBC.W #$0004                                                         ;86A6E6;
-    STA.W EnemyProjectile_YPositions,Y                                   ;86A6E9;
-    LDA.W #$0000                                                         ;86A6EC;
-    STA.W EnemyProjectile_XSubPositions,Y                                ;86A6EF;
-    STA.W EnemyProjectile_YSubPositions,Y                                ;86A6F2;
-    RTS                                                                  ;86A6F5;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $A6F6: Initialisation AI - enemy projectile $A985 (Bomb Torizo explosive swipe) ;;;
 InitAI_EnemyProjectile_BombTorizoExplosiveSwipe:
 ;; Parameters:
@@ -6651,49 +5734,6 @@ RTS_86A919:
     RTS                                                                  ;86A919;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-if !DEBUG
-;;; $A91A: Unused. Debug. Move enemy projectile with controller 2 ;;;
-UNUSED_Debug_MoveEnemyProjectileWithController2:
-;; Parameters:
-;;     X: Enemy projectile index
-    STZ.W EnemyProjectile_XVelocity,X                                    ;86A91A;
-    LDA.B DP_Controller2Input                                            ;86A91D;
-    BIT.W #$0100                                                         ;86A91F;
-    BEQ .checkLeft                                                       ;86A922;
-    LDA.W #$0100                                                         ;86A924;
-    STA.W EnemyProjectile_XVelocity,X                                    ;86A927;
-
-  .checkLeft:
-    LDA.B DP_Controller2Input                                            ;86A92A;
-    BIT.W #$0200                                                         ;86A92C;
-    BEQ .moveHorizontally                                                ;86A92F;
-    LDA.W #$FF00                                                         ;86A931;
-    STA.W EnemyProjectile_XVelocity,X                                    ;86A934;
-
-  .moveHorizontally:
-    JSR.W Move_EnemyProjectile_Horizontally                              ;86A937;
-    STZ.W EnemyProjectile_YVelocity,X                                    ;86A93A;
-    LDA.B DP_Controller2Input                                            ;86A93D;
-    BIT.W #$0400                                                         ;86A93F;
-    BEQ .checkUp                                                         ;86A942;
-    LDA.W #$0100                                                         ;86A944;
-    STA.W EnemyProjectile_YVelocity,X                                    ;86A947;
-
-  .checkUp:
-    LDA.B DP_Controller2Input                                            ;86A94A;
-    BIT.W #$0800                                                         ;86A94C;
-    BEQ .moveVertically                                                  ;86A94F;
-    LDA.W #$FF00                                                         ;86A951;
-    STA.W EnemyProjectile_YVelocity,X                                    ;86A954;
-
-  .moveVertically:
-    JSR.W Move_EnemyProjectile_Vertically                                ;86A957;
-    RTS                                                                  ;86A95A;
-endif
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $A95B: Enemy projectiles - torizo ;;;
 EnemyProjectile_BombTorizoContinuousDrool:                               ;86A95B;
     %EnemyProjectile(\
@@ -6714,18 +5754,6 @@ EnemyProjectile_BombTorizoInitialDrool:                                  ;86A969
     %properties($2000),
     %hitList(0),
     %shotList(InstList_EnemyProjectile_Delete))
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_EnemyProjectile_BombTorizo_86A977:                                ;86A977;
-    %EnemyProjectile(\
-    %initAI(UNUSED_InitAI_EnemyProjectile_BombTorizo_86A6C7),
-    %preInst(PreInst_EnemyProjectile_BombTorizoChozoBreaking_Falling),
-    %instList(UNUSED_InstList_EnemyProjectile_BombTorizo_86A49E),
-    %radius(0, 0),
-    %properties($3000),
-    %hitList(0),
-    %shotList(InstList_EnemyProjectile_Delete))
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjectile_BombTorizoExplosiveSwipe:                                ;86A985;
     %EnemyProjectile(\
@@ -6766,133 +5794,6 @@ EnemyProjectile_BombTorizoDeathExplosion:                                ;86A9AF
     %properties($3000),
     %hitList(0),
     %shotList(InstList_EnemyProjectile_Delete))
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $A9BD: Tiles ;;;
-UNUSED_EnemyProjectile_Graphics_QuestionMark_86A9BD:
-incbin "../data/Tiles_EnemyProj_QuestionMark.bin" ; $80 bytes
-
-
-;;; $AA3D: Initialisation AI - enemy projectile $AB07 ;;;
-UNUSED_InitAI_EnemyProjectile_QuestionMark_86AA3D:
-;; Parameters:
-;;     Y: Enemy projectile index
-    LDX.B VRAMWriteStack                                                 ;86AA3D;
-    LDA.W #$0040                                                         ;86AA40;
-    STA.B VRAMWrite.size,X                                               ;86AA43;
-    LDA.W #UNUSED_EnemyProjectile_Graphics_QuestionMark_86A9BD           ;86AA45;
-    STA.B VRAMWrite.src,X                                                ;86AA48;
-    LDA.W #UNUSED_EnemyProjectile_Graphics_QuestionMark_86A9BD>>16       ;86AA4A;
-    STA.B VRAMWrite.src+2,X                                              ;86AA4D;
-    LDA.W #$6E00                                                         ;86AA4F;
-    STA.B VRAMWrite.dest,X                                               ;86AA52;
-    TXA                                                                  ;86AA54;
-    CLC                                                                  ;86AA55;
-    ADC.W #$0007                                                         ;86AA56;
-    TAX
-    LDA.W #$0040                                                         ;86AA5F;
-    STA.B VRAMWrite.size,X                                               ;86AA62;
-    LDA.W #UNUSED_EnemyProjectile_Graphics_QuestionMark_86A9BD+$40       ;86AA64;
-    STA.B VRAMWrite.src,X                                                ;86AA67;
-    LDA.W #UNUSED_EnemyProjectile_Graphics_QuestionMark_86A9BD>>16       ;86AA69;
-    STA.B VRAMWrite.src+2,X                                              ;86AA6C;
-    LDA.W #$6F00                                                         ;86AA6E;
-    STA.B VRAMWrite.dest,X                                               ;86AA71;
-    TXA                                                                  ;86AA73;
-    CLC                                                                  ;86AA74;
-    ADC.W #$0007                                                         ;86AA75;
-    STA.B VRAMWriteStack                                                 ;86AA78;
-    LDA.B SamusXPosition                                                 ;86AA7B;
-    STA.W EnemyProjectile_XPositions,Y                                   ;86AA7E;
-    LDA.B SamusYPosition                                                 ;86AA81;
-    SEC                                                                  ;86AA84;
-    SBC.W #$0024                                                         ;86AA85;
-    STA.W EnemyProjectile_YPositions,Y                                   ;86AA88;
-    RTS                                                                  ;86AA8B;
-
-
-;;; $AA8C: Pre-instruction - enemy projectile $AB07 ;;;
-UNUSED_PreInstruction_EnemyProjectile_QuestionMark:
-;; Parameters:
-;;     X: Enemy projectile index
-    STZ.B DP_Temp12                                                      ;86AA8C;
-    STZ.B DP_Temp14                                                      ;86AA8E;
-    LDA.B SamusXPosition                                                 ;86AA90;
-    SEC                                                                  ;86AA93;
-    SBC.W EnemyProjectile_XPositions,X                                   ;86AA94;
-    BPL +                                                                ;86AA9A;
-    DEC.B DP_Temp14                                                      ;86AA9C;
-
-+   ASL
-    ASL
-    ASL
-    STA.B DP_Temp13                                                      ;86AA9E;
-    LDA.B DP_Temp12                                                      ;86AAA0;
-    CLC                                                                  ;86AAA2;
-    ADC.W EnemyProjectile_XSubPositions,X                                ;86AAA3;
-    STA.W EnemyProjectile_XSubPositions,X                                ;86AAA6;
-    LDA.B DP_Temp14                                                      ;86AAA9;
-    ADC.W EnemyProjectile_XPositions,X                                   ;86AAAB;
-    STA.W EnemyProjectile_XPositions,X                                   ;86AAAE;
-    STZ.B DP_Temp12                                                      ;86AAB1;
-    STZ.B DP_Temp14                                                      ;86AAB3;
-    LDA.B SamusYPosition                                                 ;86AAB5;
-    SEC                                                                  ;86AAB8;
-    SBC.W #$0024                                                         ;86AAB9;
-    SEC                                                                  ;86AABC;
-    SBC.W EnemyProjectile_YPositions,X                                   ;86AABD;
-    ASL                                                                  ;86AAC0;
-    ASL                                                                  ;86AAC1;
-    ASL                                                                  ;86AAC2;
-    BPL +                                                                ;86AAC3;
-    DEC.B DP_Temp14                                                      ;86AAC5;
-
-+   STA.B DP_Temp13                                                      ;86AAC7;
-    LDA.B DP_Temp12                                                      ;86AAC9;
-    CLC                                                                  ;86AACB;
-    ADC.W EnemyProjectile_YSubPositions,X                                ;86AACC;
-    STA.W EnemyProjectile_YSubPositions,X                                ;86AACF;
-    LDA.B DP_Temp14                                                      ;86AAD2;
-    ADC.W EnemyProjectile_YPositions,X                                   ;86AAD4;
-    STA.W EnemyProjectile_YPositions,X                                   ;86AAD7;
-    RTS                                                                  ;86AADA;
-
-
-;;; $AADB: Instruction list - enemy projectile $AB07 ;;;
-UNUSED_InstList_EnemyProjectile_QuestionMark_0_86AADB:
-    dw Instruction_EnemyProjectile_QueueSoundInY_Lib3_Max6 : db $09      ;86AADB;
-    dw $012C,UNUSED_EnemyProjSpritemaps_QuestionMark_8D8C4D              ;86AADE;
-    dw Instruction_EnemyProjectile_TimerInY,$0018                        ;86AAE2;
-
-UNUSED_InstList_EnemyProjectile_QuestionMark_1_86AAE6:
-    dw $0002,UNUSED_EnemyProjSpritemaps_QuestionMark_8D8C4D              ;86AAE6;
-    dw $0002,EnemyProjSpritemaps_Blank_Default                           ;86AAEA;
-    dw Instruction_EnemyProjectile_DecrementTimer_GotoYIfNonZero         ;86AAEE;
-    dw UNUSED_InstList_EnemyProjectile_QuestionMark_1_86AAE6             ;86AAF0;
-
-
-;;; $AAF2: Shot instruction list - enemy projectile $AB07 ;;;
-UNUSED_InstList_EnemyProjectile_Shot_QuestionMark_86AAF2:
-    dw Instruction_EnemyProjectile_QueueSoundInY_Lib2_Max6 : db $0D      ;86AAF2;
-    dw $0008,EnemyProjSpritemaps_Common_Smoke_0                          ;86AAF5;
-    dw $0008,EnemyProjSpritemaps_Common_Smoke_1                          ;86AAF9;
-    dw $0008,EnemyProjSpritemaps_Common_Smoke_2                          ;86AAFD;
-    dw $0008,EnemyProjSpritemaps_Common_Smoke_3                          ;86AB01;
-    dw Instruction_EnemyProjectile_Delete                                ;86AB05;
-
-
-;;; $AB07: Unused. Enemy projectile $AB07 ;;;
-UNUSED_EnemyProjectile_QuestionMark_86AB07:                              ;86AB07;
-    %EnemyProjectile(\
-    %initAI(UNUSED_InitAI_EnemyProjectile_QuestionMark_86AA3D),
-    %preInst(UNUSED_PreInstruction_EnemyProjectile_QuestionMark),
-    %instList(UNUSED_InstList_EnemyProjectile_QuestionMark_0_86AADB),
-    %radius(0, 0),
-    %properties($B000),
-    %hitList(0),
-    %shotList(UNUSED_InstList_EnemyProjectile_Shot_QuestionMark_86AAF2))
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $AB15: Instruction list - torizo chozo orbs - leftwards ;;;
@@ -7049,55 +5950,6 @@ InitAI_EnemyProjectile_BombTorizoChozoOrbs:
   .left:
     dw InstList_EnemyProjectile_TorizoChozoOrbs_Left                     ;86AC12;
     dw $FFE5,$FE70,$FFD8,$FE60                                           ;86AC14;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $AC1C: Unused. Initialise torizo chozo orb to target Samus ;;;
-UNUSED_InitializeTorizoChozoOrbToTargetSamus:
-;; Parameters:
-;;     Y: Enemy projectile index
-    JSL.L GenerateRandomNumber                                           ;86AC1C;
-    LDX.B EnemyIndex                                                     ;86AC20;
-    JSL.L CalculateAngleOfSamusFromEnemy                                 ;86AC23;
-    STA.B DP_Temp12                                                      ;86AC27;
-    LDA.B RandomNumberSeed                                               ;86AC29;
-    AND.W #$000F                                                         ;86AC2C;
-    SEC                                                                  ;86AC2F;
-    SBC.W #$0008                                                         ;86AC30;
-    CLC                                                                  ;86AC33;
-    ADC.B DP_Temp12                                                      ;86AC34;
-    ASL                                                                  ;86AC36;
-    TAX                                                                  ;86AC37;
-    LDA.L SineCosineTables_8bitSine_SignExtended,X                       ;86AC38;
-    ASL                                                                  ;86AC3C;
-    STA.W EnemyProjectile_XVelocity,Y                                    ;86AC3D;
-    LDA.L SineCosineTables_NegativeCosine_SignExtended,X                 ;86AC40;
-    ASL                                                                  ;86AC44;
-    STA.W EnemyProjectile_YVelocity,Y                                    ;86AC45;
-    LDX.B EnemyIndex                                                     ;86AC48;
-    LDA.W Enemy.YPosition,X                                              ;86AC4B;
-    CLC                                                                  ;86AC4E;
-    ADC.W #$FFD8                                                         ;86AC4F;
-    STA.W EnemyProjectile_YPositions,Y                                   ;86AC52;
-    BIT.W Enemy.init0,X                                                  ;86AC55;
-    BMI .facingRight                                                     ;86AC58;
-    LDA.W Enemy.XPosition,X                                              ;86AC5A;
-    CLC                                                                  ;86AC5D;
-    ADC.W #$FFE5                                                         ;86AC5E;
-    STA.W EnemyProjectile_XPositions,Y                                   ;86AC61;
-    LDA.W #InstList_EnemyProjectile_TorizoChozoOrbs_Left                 ;86AC64;
-    STA.W EnemyProjectile_InstListPointers,Y                             ;86AC67;
-    RTS                                                                  ;86AC6A;
-
-  .facingRight:
-    LDA.W Enemy.XPosition,X                                              ;86AC6B;
-    CLC                                                                  ;86AC6E;
-    ADC.W #$001B                                                         ;86AC6F;
-    STA.W EnemyProjectile_XPositions,Y                                   ;86AC72;
-    LDA.W #InstList_EnemyProjectile_TorizoChozoOrbs_Right                ;86AC75;
-    STA.W EnemyProjectile_InstListPointers,Y                             ;86AC78;
-    RTS                                                                  ;86AC7B;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $AC7C: Initialisation AI - enemy projectile $AD7A (Golden Torizo's chozo orbs) ;;;
@@ -7268,52 +6120,6 @@ EnemyProjectile_GoldenTorizoChozoOrbs:                                   ;86AD7A
     %shotList(InstList_EnemyProjectile_Shot_TorizoChozoOrbs))
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $AD88: Unused. Instruction list ;;;
-UNUSED_InstList_EnemyProjectile_86AD88:
-    dw Instruction_EnemyProjectile_PreInstructionInY                     ;86AD88;
-    dw PreInstruction_EnemyProjectile_TorizoSonicBoom                    ;86AD8A;
-    dw UNUSED_Instruction_EnemyProj_MoveHorizontally_GotoY_86AD92        ;86AD8C;
-    dw InstList_EnemyProjectile_TorizoSonicBoom_MovingLeft               ;86AD8E;
-    dw InstList_EnemyProjectile_TorizoSonicBoom_MovingRight              ;86AD90;
-
-
-;;; $AD92: Instruction - move horizontally and go to [[Y]] or [[Y] + 2] ;;;
-UNUSED_Instruction_EnemyProj_MoveHorizontally_GotoY_86AD92:
-;; Parameters:
-;;     X: Enemy projectile index
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-
-; Used by UNUSED_InstList_EnemyProjectile_86AD88
-    STZ.B DP_Temp12                                                      ;86AD92;
-    STZ.B DP_Temp14                                                      ;86AD94;
-    LDA.W EnemyProjectile_XVelocity,X                                    ;86AD96;
-    BPL +                                                                ;86AD99;
-    DEC.B DP_Temp14                                                      ;86AD9B;
-
-+   STA.B DP_Temp13                                                      ;86AD9D;
-    LDA.W EnemyProjectile_XSubPositions,X                                ;86AD9F;
-    CLC                                                                  ;86ADA2;
-    ADC.B DP_Temp12                                                      ;86ADA3;
-    STA.W EnemyProjectile_XSubPositions,X                                ;86ADA5;
-    LDA.W EnemyProjectile_XPositions,X                                   ;86ADA8;
-    ADC.B DP_Temp14                                                      ;86ADAB;
-    STA.W EnemyProjectile_XPositions,X                                   ;86ADAD;
-    LDA.W EnemyProjectile_XVelocity,X                                    ;86ADB0;
-    BPL .greaterThan0                                                    ;86ADB3;
-    LDA.W $0000,Y                                                        ;86ADB5;
-    TAY                                                                  ;86ADB8;
-    RTS                                                                  ;86ADB9;
-
-  .greaterThan0:
-    LDA.W $0002,Y                                                        ;86ADBA;
-    TAY                                                                  ;86ADBD;
-    RTS                                                                  ;86ADBE;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $ADBF: Instruction list - torizo sonic boom - fired leftwards ;;;
 InstList_EnemyProjectile_TorizoSonicBoom_FiredLeft:
     dw Instruction_EnemyProjectile_QueueSoundInY_Lib2_Max6 : db $48      ;86ADBF;
@@ -7479,21 +6285,6 @@ InstList_EnemyProj_WreckedShipChozoSpikeClearingFootsteps:
     dw Instruction_EnemyProjectile_Delete                                ;86AEDA;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $AEDC: Instruction list - enemy projectile $AF76 (unused. Spike clearing explosions) ;;;
-UNUSED_InstList_EnemyProj_SpikeClearingExplosions_86AEDC:
-    dw Instruction_MoveRandomlyWithinXRadius_YRadius                     ;86AEDC;
-    db $0F,$00,$0F,$03                                                   ;86AEDE;
-    dw $0005,EnemyProjSpritemaps_Common_BigExplosion_0                   ;86AEE2;
-    dw $0005,EnemyProjSpritemaps_Common_BigExplosion_1                   ;86AEE6;
-    dw $0005,EnemyProjSpritemaps_Common_BigExplosion_2                   ;86AEEA;
-    dw $0005,EnemyProjSpritemaps_Common_BigExplosion_3                   ;86AEEE;
-    dw $0005,EnemyProjSpritemaps_Common_BigExplosion_4                   ;86AEF2;
-    dw $0005,EnemyProjSpritemaps_Common_BigExplosion_5                   ;86AEF6;
-    dw Instruction_EnemyProjectile_Delete                                ;86AEFA;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $AEFC: Initialisation AI - enemy projectile $AF68/$AF76 (Wrecked Ship chozo spike clearing footsteps / spike clearing explosions) ;;;
 InitAI_EnemyProj_WreckedShipChozoSpikeClearingFootsteps:
 ;; Parameters:
@@ -7578,18 +6369,6 @@ EnemyProjectile_WreckedShipChozoSpikeClearingFootsteps:                  ;86AF68
     %properties($3000),
     %hitList(0),
     %shotList(InstList_EnemyProjectile_Delete))
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_EnemyProjectile_SpikeClearingExplosions_86AF76:                   ;86AF76;
-    %EnemyProjectile(\
-    %initAI(InitAI_EnemyProj_WreckedShipChozoSpikeClearingFootsteps),
-    %preInst(RTS_8684FB),
-    %instList(UNUSED_InstList_EnemyProj_SpikeClearingExplosions_86AEDC),
-    %radius(0, 0),
-    %properties($3000),
-    %hitList(0),
-    %shotList(InstList_EnemyProjectile_Delete))
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyProjectile_TourianStatueDustClouds:                                 ;86AF84;
     %EnemyProjectile(\
@@ -7918,31 +6697,6 @@ InstList_EnemyProjectile_GoldenTorizoEgg_Hatched_Right_1:
     dw $0006,EnemyProjSpritemaps_GoldenTorizoEgg_11                      ;86B179;
     dw Instruction_EnemyProjectile_GotoY                                 ;86B17D;
     dw InstList_EnemyProjectile_GoldenTorizoEgg_Hatched_Right_1          ;86B17F;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $B181: Unused. Instruction list - break ;;;
-UNUSED_InstList_EnemyProjectile_Break_86B181:
-    dw UNUSED_Instruction_EnemyProjectile_GotoBreak_86B183               ;86B181;
-
-
-;;; $B183: Unused. Instruction - go to break ;;;
-UNUSED_Instruction_EnemyProjectile_GotoBreak_86B183:
-;; Parameters:
-;;     X: Enemy projectile index
-;; Returns:
-;;     Y: Pointer to next instruction
-
-; Used by UNUSED_InstList_EnemyProjectile_Break_86B181
-    LDA.W EnemyProjectile_Var0,X                                         ;86B183;
-    BMI .facingRight                                                     ;86B186;
-    LDY.W #InstList_EnemyProjectile_GoldenTorizoEgg_Break_FacingLeft     ;86B188;
-    RTS                                                                  ;86B18B;
-
-  .facingRight:
-    LDY.W #InstList_EnemyProjectile_GoldenTorizoEgg_Break_FacingRight    ;86B18C;
-    RTS                                                                  ;86B18F;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $B190: Instruction list - Golden Torizo egg - break - facing left ;;;
@@ -8361,21 +7115,6 @@ EnemyProjectile_GoldenTorizoEyeBeam:                                     ;86B428
     %shotList(InstList_EnemyProjectile_Delete))
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $B436: Unused. Instruction - reset position ;;;
-UNUSED_Instruction_ResetPosition_86B436:
-;; Parameters:
-;;     X: Enemy projectile index
-
-; Clone of Instruction_EnemyProjectile_Torizo_ResetPosition
-    LDA.W EnemyProjectile_Var0,X                                         ;86B436;
-    STA.W EnemyProjectile_XPositions,X                                   ;86B439;
-    LDA.W EnemyProjectile_Var1,X                                         ;86B43C;
-    STA.W EnemyProjectile_YPositions,X                                   ;86B43F;
-    RTS                                                                  ;86B442;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $B443: Instruction list - enemy projectile $B4B1 (old Tourian escape shaft fake wall explosion) ;;;
 InstList_EnemyProj_OldTourianEscapeShaftFakeWallExplosion_0:
     dw Instruction_EnemyProjectile_ClearPreInstruction                   ;86B443;
@@ -8394,42 +7133,6 @@ InstList_EnemyProj_OldTourianEscapeShaftFakeWallExplosion_1:
     dw Instruction_EnemyProjectile_DecrementTimer_GotoYIfNonZero         ;86B46A;
     dw InstList_EnemyProj_OldTourianEscapeShaftFakeWallExplosion_1       ;86B46C;
     dw Instruction_EnemyProjectile_Delete                                ;86B46E;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $B470: Unused. Instruction list ;;;
-UNUSED_InstList_EnemyProjectile_86B470:
-    dw Instruction_EnemyProjectile_QueueSoundInY_Lib2_Max6 : db $24      ;86B470;
-    dw $0008,EnemyProjSpritemaps_Common_Smoke_0                          ;86B473;
-    dw $0008,EnemyProjSpritemaps_Common_Smoke_1                          ;86B477;
-    dw $0008,EnemyProjSpritemaps_Common_Smoke_2                          ;86B47B;
-    dw $0008,EnemyProjSpritemaps_Common_Smoke_3                          ;86B47F;
-    dw Instruction_EnemyProjectile_DecrementTimer_GotoYIfNonZero         ;86B483;
-    dw InstList_EnemyProj_OldTourianEscapeShaftFakeWallExplosion_1       ;86B485;
-    dw Instruction_EnemyProjectile_Delete                                ;86B487;
-
-
-;;; $B489: Unused. Instruction - go to [[Y]] with probability 1/4 ;;;
-UNUSED_Instruction_GotoY_Probability_1_4:
-;; Parameters:
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-
-; Clone of Instruction_EnemyProjectile_GotoY_Probability_1_4
-    JSL.L GenerateRandomNumber                                           ;86B489;
-    AND.W #$C000                                                         ;86B48D;
-    CMP.W #$C000                                                         ;86B490;
-    BEQ .gotoY                                                           ;86B493;
-    INY                                                                  ;86B495;
-    INY                                                                  ;86B496;
-    RTS                                                                  ;86B497;
-
-  .gotoY:
-    LDA.W $0000,Y                                                        ;86B498;
-    TAY                                                                  ;86B49B;
-    RTS                                                                  ;86B49C;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $B49D: Initialisation AI - enemy projectile $B4B1 (old Tourian escape shaft fake wall explosion) ;;;
@@ -8864,21 +7567,6 @@ EnemyProjectile_EyeDoorSweat:                                            ;86B751
     %properties($0004),
     %hitList(0),
     %shotList(InstList_EnemyProjectile_Delete))
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $B75F: Unused. Colours ;;;
-UNUSED_Colors_86B75F:                                                    ;86B75F;
-; "5294, 39CE, 2108, 2484" is colours Bh..Eh of lots of sprite palette 5s (common sprites)
-    dw $5294,$39CE,$2108,$2484 ; (14h, 14h, 14h), (Eh, Eh, Eh), (8, 8, 8), (4, 4, 9)
-    dw $35AD,$2529,$14A5,$1842 ; ( Dh,  Dh,  Dh), ( 9,  9,  9), (5, 5, 5), (2, 2, 6)
-    dw $2108,$1084,$14A5,$1842 ; (  8,   8,   8), ( 4,  4,  4), (5, 5, 5), (2, 2, 6)
-    dw $0C63,$0421,$0842,$0000 ; (  3,   3,   3), ( 1,  1,  1), (2, 2, 2), (0, 0, 0)
-    dw $5294,$39CE,$2108,$2484
-    dw $5294,$39CE,$2108,$2484
-    dw $5294,$39CE,$2108,$2484
-    dw $5294,$39CE,$2108,$2484
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $B79F: Instruction list - delete ;;;
@@ -9407,99 +8095,9 @@ EnemyProjectile_TourianStatueBaseDecoration:                             ;86BABE
     %shotList(InstList_EnemyProjectile_Delete))
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $BACC: Instruction list - enemy projectile $BB50 - parameter 0 ;;;
-UNUSED_InstList_EnemyProjectile_Parameter0_86BACC:
-    dw $0002,UNUSED_EnemyProjSpritemaps_0_8D9268                         ;86BACC;
-    dw $0002,UNUSED_EnemyProjSpritemaps_1_8D926F                         ;86BAD0;
-    dw $0002,UNUSED_EnemyProjSpritemaps_2_8D9276                         ;86BAD4;
-    dw $0002,UNUSED_EnemyProjSpritemaps_3_8D927D                         ;86BAD8;
-    dw $0002,UNUSED_EnemyProjSpritemaps_4_8D9284                         ;86BADC;
-    dw $0002,UNUSED_EnemyProjSpritemaps_5_8D928B                         ;86BAE0;
-    dw $0002,UNUSED_EnemyProjSpritemaps_6_8D9292                         ;86BAE4;
-    dw Instruction_EnemyProjectile_Delete                                ;86BAE8;
-
-
-;;; $BAEA: Instruction list - enemy projectile $BB50 - parameter 1 ;;;
-UNUSED_InstList_EnemyProjectile_Parameter1_86BAEA:
-    dw $0002,UNUSED_EnemyProjSpritemaps_7_8D9299                         ;86BAEA;
-    dw $0002,UNUSED_EnemyProjSpritemaps_8_8D92A0                         ;86BAEE;
-    dw $0002,UNUSED_EnemyProjSpritemaps_9_8D92A7                         ;86BAF2;
-    dw $0002,UNUSED_EnemyProjSpritemaps_A_8D92AE                         ;86BAF6;
-    dw $0002,UNUSED_EnemyProjSpritemaps_B_8D92B5                         ;86BAFA;
-    dw $0002,UNUSED_EnemyProjSpritemaps_C_8D92BC                         ;86BAFE;
-    dw $0002,UNUSED_EnemyProjSpritemaps_D_8D92C3                         ;86BB02;
-    dw Instruction_EnemyProjectile_Delete                                ;86BB06;
-
-
-;;; $BB08: Instruction list - enemy projectile $BB50 - parameter 2 ;;;
-UNUSED_InstList_EnemyProjectile_Parameter2_86BB08:
-    dw $0002,UNUSED_EnemyProjSpritemaps_E_8D92CA                         ;86BB08;
-    dw $0002,UNUSED_EnemyProjSpritemaps_E_8D92CA                         ;86BB0C;
-    dw $0002,UNUSED_EnemyProjSpritemaps_F_8D92D6                         ;86BB10;
-    dw $0002,UNUSED_EnemyProjSpritemaps_10_8D92E2                        ;86BB14;
-    dw $0002,UNUSED_EnemyProjSpritemaps_12_8D92FA                        ;86BB18;
-    dw Instruction_EnemyProjectile_Delete                                ;86BB1C;
-
-
-;;; $BB1E: Instruction list pointers ;;;
-UNUSED_InstList_Pointers_86BB1E:
-    dw UNUSED_InstList_EnemyProjectile_Parameter0_86BACC                 ;86BB1E;
-    dw UNUSED_InstList_EnemyProjectile_Parameter1_86BAEA                 ;86BB20;
-    dw UNUSED_InstList_EnemyProjectile_Parameter2_86BB08                 ;86BB22;
-
-
-;;; $BB24: Unused. Random buggy code ;;;
-UNUSED_RandomBuggyCode_86BB24:
-; This code makes no sense
-    PHY                                                                  ;86BB24;
-    LDY.W UNUSED_EnemyProjectile_86BB50                                  ;86BB25;
-    LDA.W #$0000                                                         ;86BB28;
-    STA.W EnemyProjectile_InstListPointers,Y                             ;86BB2B;
-    PLY                                                                  ;86BB2E;
-    RTS                                                                  ;86BB2F;
-
-
-;;; $BB30: Initialisation AI - enemy projectile $BB50 ;;;
-UNUSED_InitAI_EnemyProjectile_86BB30:
-;; Parameters:
-;;     Y: Enemy projectile index
-
-; Ceres Ridley is the only enemy that uses both $7E:8022 and $7E:8024, but it uses them as flags
-; So there's no way of knowing what enemy was supposed to spawn this projectile (if any)
-    LDX.B EnemyIndex                                                     ;86BB30;
-    LDA.L $7E8022,X                                                      ;86BB33; ?
-    STA.W EnemyProjectile_XPositions,Y                                   ;86BB37;
-    LDA.L $7E8024,X                                                      ;86BB3A; ?
-    STA.W EnemyProjectile_YPositions,Y                                   ;86BB3E;
-    PHY                                                                  ;86BB41;
-    LDA.W EnemyProjectile_InitParam0                                     ;86BB42;
-    ASL                                                                  ;86BB45;
-    TAY                                                                  ;86BB46;
-    LDA.W UNUSED_InstList_Pointers_86BB1E,Y                              ;86BB47;
-    PLY                                                                  ;86BB4A;
-    STA.W EnemyProjectile_InstListPointers,Y                             ;86BB4B;
-    RTS                                                                  ;86BB4E;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $BB4F: RTS. Pre-instruction - enemy projectile $BB50 ;;;
 RTS_86BB4F:
     RTS                                                                  ;86BB4F;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $BB50: Unused. Enemy projectile $BB50 ;;;
-UNUSED_EnemyProjectile_86BB50:                                           ;86BB50;
-    %EnemyProjectile(\
-    %initAI(UNUSED_InitAI_EnemyProjectile_86BB30),
-    %preInst(RTS_86BB4F),
-    %instList(UNUSED_InstList_EnemyProjectile_Parameter0_86BACC),
-    %radius(0, 0),
-    %properties($0000),
-    %hitList($7000),
-    %shotList(InstList_EnemyProjectile_Delete))
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $BB5E: Instruction list - enemy projectile $BBC7 (fire arc body) ;;;
@@ -11325,12 +9923,6 @@ InitAI_EnemyProjectile_MotherBrainRedBeam_Fired:
     STA.W EarthquakeType                                                 ;86C759;
     RTS                                                                  ;86C75C;
 
-if !FEATURE_KEEP_UNREFERENCED
-  .unused:
-; Guessing that [enemy projectile EnemyProjectile_Var0] was used to index this table at one point
-    dw $0002,$FFFE,$0002,$FFFE,$FFFE,$0002,$FFFE,$0002                   ;86C75D;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 
 ;;; $C76D: RTS. Pre-instruction - enemy projectile $CB67/$CB75 (Mother Brain's hand beam) ;;;
 RTS_86C76D:
@@ -11527,14 +10119,6 @@ Instruction_EnemyProj_MotherBrainsDrool_MoveDownCPixels:
     RTS                                                                  ;86C8DA;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $C8DB: Unused. Instruction list ;;;
-UNUSED_InstList_EnemyProjectile_MotherBrainsDrool_86C8DB:
-    dw $000A,EnemyProjSpritemaps_MotherBrainsDrool_2                     ;86C8DB;
-    dw Instruction_EnemyProjectile_Sleep                                 ;86C8DF;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $C8E1: Instruction list - Mother Brain's drool - hit floor ;;;
 InstList_EnemyProjectile_MotherBrainsDrool_HitFloor:
     dw Instruction_EnemyProjectile_ClearPreInstruction                   ;86C8E1;
@@ -11719,22 +10303,6 @@ InstList_EnemyProj_MotherBrainExplodedEscapeDoorParticle:
     dw $0004,EnemyProjSpritemaps_MotherBrainExplodedEscapeDoorParticles_7 ;86CA3E;
     dw Instruction_EnemyProjectile_GotoY                                 ;86CA42;
     dw InstList_EnemyProj_MotherBrainExplodedEscapeDoorParticle          ;86CA44;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $CA46: Unused. Instruction list ;;;
-UNUSED_InstList_86CA46:
-    dw $0001,UNUSED_EnemyProjSpritemaps_0_8D96D3                         ;86CA46;
-    dw $0001,UNUSED_EnemyProjSpritemaps_1_8D96DA                         ;86CA4A;
-    dw $0001,UNUSED_EnemyProjSpritemaps_2_8D96E1                         ;86CA4E;
-    dw $0001,UNUSED_EnemyProjSpritemaps_3_8D96E8                         ;86CA52;
-    dw $0003,UNUSED_EnemyProjSpritemaps_4_8D96EF                         ;86CA56;
-    dw $0003,UNUSED_EnemyProjSpritemaps_5_8D96F6                         ;86CA5A;
-    dw $0004,UNUSED_EnemyProjSpritemaps_6_8D96FD                         ;86CA5E;
-    dw $0004,UNUSED_EnemyProjSpritemaps_7_8D9704                         ;86CA62;
-    dw Instruction_EnemyProjectile_GotoY                                 ;86CA66;
-    dw UNUSED_InstList_86CA46                                            ;86CA68;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $CA6A: Initialisation AI - enemy projectile $CB2F (Mother Brain's purple breath - big) ;;;
@@ -12037,13 +10605,6 @@ MotherBrainsTubeFallingFunction_Falling:
 
   .return:
     RTS                                                                  ;86CC32;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $CC33: Unused ;;;
-UNUSED_86CC33:
-    dw $FF00,$0100, $0100,$0000, $FF00,$FF00, $0100,$0000                ;86CC33;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $CC43: Instruction list - enemy projectile $CC5B (Mother Brain's top-right tube falling) ;;;
@@ -14354,125 +12915,6 @@ EnemyProjectile_Cacatac:                                                 ;86DAFE
     %shotList(InstList_EnemyProjectile_Delete))
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $DB0C: Instruction list - mini-Crocomire projectile ;;;
-UNUSED_InstList_EnemyProjectile_StokeProjectile_86DB0B:
-    dw $0010,UNUSED_EnemyProjSpritemaps_StokeProjectile_0_8DA94E         ;86DB0C;
-    dw $0010,UNUSED_EnemyProjSpritemaps_StokeProjectile_1_8DA955         ;86DB10;
-    dw Instruction_EnemyProjectile_GotoY                                 ;86DB14;
-    dw UNUSED_InstList_EnemyProjectile_StokeProjectile_86DB0B            ;86DB16;
-
-
-;;; $DB18: Initialisation AI - mini-Crocomire projectile ;;;
-UNUSED_InitAI_EnemyProjectile_StokeProjectile_86DB18:
-;; Parameters:
-;;     Y: Enemy projectile index
-;;     EnemyProjectile_InitParam0: Direction. 0 = left, otherwise = right
-    LDX.B EnemyIndex                                                     ;86DB18;
-    LDA.W #UNUSED_InstList_EnemyProjectile_StokeProjectile_86DB0B        ;86DB1B;
-    STA.W EnemyProjectile_InstListPointers,Y                             ;86DB1E;
-    LDA.W #UNUSED_EnemyProjectile_StokeProjectile_MoveLeft_86DB62        ;86DB21;
-    STA.W EnemyProjectile_Var0,Y                                         ;86DB24;
-    LDA.W EnemyProjectile_InitParam0                                     ;86DB27;
-    BEQ .move                                                            ;86DB2A;
-    LDA.W #UNUSED_EnemyProjectile_StokeProjectile_MoveRight_86DB8C       ;86DB2C;
-    STA.W EnemyProjectile_Var0,Y                                         ;86DB2F;
-
-  .move:
-    LDA.W Enemy.XPosition,X                                              ;86DB32;
-    STA.W EnemyProjectile_XPositions,Y                                   ;86DB35;
-    LDA.W Enemy.XSubPosition,X                                           ;86DB38;
-    STA.W EnemyProjectile_XSubPositions,Y                                ;86DB3B;
-    LDA.W Enemy.YPosition,X                                              ;86DB3E;
-    CLC                                                                  ;86DB41;
-    ADC.W #$0002                                                         ;86DB42;
-    STA.W EnemyProjectile_YPositions,Y                                   ;86DB45;
-    LDA.W Enemy.YSubPosition,X                                           ;86DB48;
-    STA.W EnemyProjectile_YSubPositions,Y                                ;86DB4B;
-    LDA.W #$FF00                                                         ;86DB4E;
-    STA.W EnemyProjectile_YVelocity,Y                                    ;86DB51;
-    LDA.W #$0100                                                         ;86DB54;
-    STA.W EnemyProjectile_XVelocity,Y                                    ;86DB57;
-    RTS                                                                  ;86DB5A;
-
-
-;;; $DB5B: Pre-instruction - mini-Crocomire projectile ;;;
-UNUSED_PreInstruction_EnemyProjectile_StokeProjectile_86DB5B:
-;; Parameters:
-;;     X: Enemy projectile index
-    JSR.W (EnemyProjectile_Var0,X)                                       ;86DB5B;
-    JSR.W UNUSED_Delete_EnemyProjectile_IfOffScreen_86DBB6               ;86DB5E;
-    RTS                                                                  ;86DB61;
-
-
-;;; $DB62: Mini-Crocomire projectile function - move left ;;;
-UNUSED_EnemyProjectile_StokeProjectile_MoveLeft_86DB62:
-;; Parameters:
-;;     X: Enemy projectile index
-    LDA.W EnemyProjectile_YVelocity,X                                    ;86DB62;
-    AND.W #$FF00                                                         ;86DB65;
-    XBA                                                                  ;86DB68;
-    JSL.L Sign_Extend_A                                                  ;86DB69;
-    CLC                                                                  ;86DB6D;
-    ADC.W EnemyProjectile_XPositions,X                                   ;86DB6E;
-    STA.W EnemyProjectile_XPositions,X                                   ;86DB71;
-    LDA.W EnemyProjectile_YVelocity,X                                    ;86DB74;
-    AND.W #$00FF                                                         ;86DB77;
-    XBA                                                                  ;86DB7A;
-    CLC                                                                  ;86DB7B;
-    ADC.W EnemyProjectile_XSubPositions,X                                ;86DB7C;
-    STA.W EnemyProjectile_XSubPositions,X                                ;86DB7F;
-    BCC .return                                                          ;86DB82;
-    LDA.W EnemyProjectile_XPositions,X                                   ;86DB84;
-    INC                                                                  ;86DB87;
-    STA.W EnemyProjectile_XPositions,X                                   ;86DB88;
-
-  .return:
-    RTS                                                                  ;86DB8B;
-
-
-;;; $DB8C: Mini-Crocomire projectile function - move right ;;;
-UNUSED_EnemyProjectile_StokeProjectile_MoveRight_86DB8C:
-;; Parameters:
-;;     X: Enemy projectile index
-    LDA.W EnemyProjectile_XVelocity,X                                    ;86DB8C;
-    AND.W #$FF00                                                         ;86DB8F;
-    XBA                                                                  ;86DB92;
-    JSL.L Sign_Extend_A                                                  ;86DB93;
-    CLC                                                                  ;86DB97;
-    ADC.W EnemyProjectile_XPositions,X                                   ;86DB98;
-    STA.W EnemyProjectile_XPositions,X                                   ;86DB9B;
-    LDA.W EnemyProjectile_XVelocity,X                                    ;86DB9E;
-    AND.W #$00FF                                                         ;86DBA1;
-    XBA                                                                  ;86DBA4;
-    CLC                                                                  ;86DBA5;
-    ADC.W EnemyProjectile_XSubPositions,X                                ;86DBA6;
-    STA.W EnemyProjectile_XSubPositions,X                                ;86DBA9;
-    BCC .return                                                          ;86DBAC;
-    LDA.W EnemyProjectile_XPositions,X                                   ;86DBAE;
-    INC                                                                  ;86DBB1;
-    STA.W EnemyProjectile_XPositions,X                                   ;86DBB2;
-
-  .return:
-    RTS                                                                  ;86DBB5;
-
-
-;;; $DBB6: Delete enemy projectile if off screen ;;;
-UNUSED_Delete_EnemyProjectile_IfOffScreen_86DBB6:
-;; Parameters:
-;;     X: Enemy projectile index
-
-; Clone of Delete_EnemyProjectile_IfOffScreen
-    JSR.W CheckIf_EnemyProjectile_IsOffScreen_duplicate_again            ;86DBB6;
-    BEQ .return                                                          ;86DBB9;
-    LDA.W #$0000                                                         ;86DBBB;
-    STA.W EnemyProjectile_ID,X                                           ;86DBBE;
-
-  .return:
-    RTS                                                                  ;86DBC1;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $DBC2: Check if enemy projectile is off screen ;;;
 CheckIf_EnemyProjectile_IsOffScreen_duplicate_again:
 ;; Parameters:
@@ -14503,20 +12945,6 @@ CheckIf_EnemyProjectile_IsOffScreen_duplicate_again:
   .returnOffScreen:
     LDA.W #$0001                                                         ;86DBEE;
     RTS                                                                  ;86DBF1;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $DBF2: Enemy projectile - mini-Crocomire projectile ;;;
-UNUSED_EnemyProjectile_Stoke_86DBF2:                                     ;86DBF2;
-    %EnemyProjectile(\
-    %initAI(UNUSED_InitAI_EnemyProjectile_StokeProjectile_86DB18),
-    %preInst(UNUSED_PreInstruction_EnemyProjectile_StokeProjectile_86DB5B),
-    %instList(UNUSED_InstList_EnemyProjectile_StokeProjectile_86DB0B),
-    %radius(2, 2),
-    %properties($0005),
-    %hitList(0),
-    %shotList(InstList_EnemyProjectile_Delete))
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $DC00: (Shot) instruction list - enemy projectile $DE88 (spore spawner) ;;;
@@ -14648,21 +13076,6 @@ InitAI_EnemyProjectile_SporeSpawnsStalk:
 
   .data:
     dw $FFC0,$FFC8,$FFD0,$FFD8,$FFE0                                     ;86DCB9;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $DCC3: Unused. Alternate Spore Spawn stalk initialisation AI ;;;
-UNUSED_InitAI_EnemyProjectile_SporeSpawnsStalk_86DCC3:
-; Spawns 20h px above the highest Spore Spawn stalk
-; Could maybe be an abandoned version of the breaking of the ceiling, but I'm going with the unused stalk guess
-    LDA.W Enemy.YPosition                                                ;86DCC3;
-    CLC                                                                  ;86DCC6;
-    ADC.W #$FFA0                                                         ;86DCC7;
-    STA.W EnemyProjectile_YPositions,Y                                   ;86DCCA;
-    LDA.W Enemy.XPosition                                                ;86DCCD;
-    STA.W EnemyProjectile_XPositions,Y                                   ;86DCD0;
-    RTS                                                                  ;86DCD3;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $DCD4: Initialisation AI - enemy projectile $DE88 (spore spawner) ;;;
@@ -14969,30 +13382,6 @@ Delete_EnemyProjectile_ifOffScreen_duplicate_again:
 
   .return:
     RTS                                                                  ;86DF9F;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $DFA0: Unused. Check if enemy projectile is horizontally off screen ;;;
-UNUSED_CheckIf_EnemyProj_isHorizontallyOffScreen_86DFA0:
-;; Parameters:
-;;     X: Enemy projectile index
-;; Returns:
-;;     A: 1 if off-screen, 0 otherwise
-    LDA.W EnemyProjectile_XPositions,X                                   ;86DFA0;
-    CMP.B Layer1XPosition                                                ;86DFA3;
-    BMI .returnOffScreen                                                 ;86DFA6;
-    LDA.B Layer1XPosition                                                ;86DFA8;
-    CLC                                                                  ;86DFAB;
-    ADC.W #$0100                                                         ;86DFAC;
-    CMP.W EnemyProjectile_XPositions,X                                   ;86DFAF;
-    BMI .returnOffScreen                                                 ;86DFB2;
-    LDA.W #$0000                                                         ;86DFB4;
-    RTS                                                                  ;86DFB7;
-
-  .returnOffScreen:
-    LDA.W #$0001                                                         ;86DFB8;
-    RTS                                                                  ;86DFBB;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $DFBC: Enemy projectiles - namihe/fune fireball ;;;
@@ -16211,18 +14600,6 @@ PlaceAndAim_DraygonsWallTurretProjectile:
     RTS                                                                  ;86E7FA;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $E7FB: Unused. Instruction list - body segment - up (facing left) ;;;
-UNUSED_InstList_EnemyProj_BotwoonsBody_UpFacingLeft_86E7FB:
-    dw $0008,EnemyProjSpritemaps_BotwoonsBody_UpFacingLeft_0             ;86E7FB;
-    dw $0008,EnemyProjSpritemaps_BotwoonsBody_UpFacingLeft_1             ;86E7FF;
-    dw $0008,EnemyProjSpritemaps_BotwoonsBody_UpFacingLeft_2             ;86E803;
-    dw $0008,EnemyProjSpritemaps_BotwoonsBody_UpFacingLeft_3             ;86E807;
-    dw Instruction_EnemyProjectile_GotoY                                 ;86E80B;
-    dw UNUSED_InstList_EnemyProj_BotwoonsBody_UpFacingLeft_86E7FB        ;86E80D;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $E80F: Instruction list - body segment - up-left ;;;
 InstList_EnemyProjectile_BotwoonsBody_UpLeft:
     dw $0008,EnemyProjSpritemaps_BotwoonsBody_0                          ;86E80F;
@@ -16251,18 +14628,6 @@ InstList_EnemyProjectile_BotwoonsBody_DownLeft:
     dw $0008,EnemyProjSpritemaps_BotwoonsBody_B                          ;86E843;
     dw Instruction_EnemyProjectile_GotoY                                 ;86E847;
     dw InstList_EnemyProjectile_BotwoonsBody_DownLeft                    ;86E849;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $E84B: Unused. Instruction list - body segment - down (facing left) ;;;
-UNUSED_InstList_EnemyProj_BotwoonsBody_DownFacingLeft_86E84B:
-    dw $0008,UNUSED_EnemyProjSpritemap_BotwoonsBody_DownFacingLeft_8DB682 ;86E84B;
-    dw $0008,UNUSED_EnemyProjSpritemap_BotwoonsBody_DownFacingLeft_8DB689 ;86E84F;
-    dw $0008,UNUSED_EnemyProjSpritemap_BotwoonsBody_DownFacingLeft_8DB690 ;86E853;
-    dw $0008,UNUSED_EnemyProjSpritemap_BotwoonsBody_DownFacingLeft_8DB697 ;86E857;
-    dw Instruction_EnemyProjectile_GotoY                                 ;86E85B;
-    dw UNUSED_InstList_EnemyProj_BotwoonsBody_DownFacingLeft_86E84B      ;86E85D;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $E85F: Instruction list - body segment - down (facing right) ;;;
@@ -16367,156 +14732,6 @@ InstList_EnemyProjectile_BotwoonsTail_UpRight:
 InstList_EnemyProjectile_BotwoonsBodyTail_Hidden:
     dw $0001,EnemyProjSpritemaps_BotwoonsBody_28                         ;86E8F3;
     dw Instruction_EnemyProjectile_Sleep                                 ;86E8F7;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $E8F9: Unused. Instruction list ;;;
-UNUSED_InstList_EnemyProjectile_BotwoonsBodyTail_86E8F9:
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_0_8DB762        ;86E8F9;
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_1_8DB769        ;86E8FD;
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_2_8DB770        ;86E901;
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_3_8DB777        ;86E905;
-    dw Instruction_EnemyProjectile_GotoY                                 ;86E909;
-    dw UNUSED_InstList_EnemyProjectile_BotwoonsBodyTail_86E8F9           ;86E90B;
-
-
-;;; $E90D: Unused. Instruction list ;;;
-UNUSED_InstList_EnemyProjectile_BotwoonsBodyTail_86E90D:
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_4_8DB77E        ;86E90D;
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_5_8DB785        ;86E911;
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_6_8DB78C        ;86E915;
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_7_8DB793        ;86E919;
-    dw Instruction_EnemyProjectile_GotoY                                 ;86E91D;
-    dw UNUSED_InstList_EnemyProjectile_BotwoonsBodyTail_86E90D           ;86E91F;
-
-
-;;; $E921: Unused. Instruction list ;;;
-UNUSED_InstList_EnemyProjectile_BotwoonsBodyTail_86E921:
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_8_8DB79A        ;86E921;
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_9_8DB7A1        ;86E925;
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_A_8DB7A8        ;86E929;
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_B_8DB7AF        ;86E92D;
-    dw Instruction_EnemyProjectile_GotoY                                 ;86E931;
-    dw UNUSED_InstList_EnemyProjectile_BotwoonsBodyTail_86E921           ;86E933;
-
-
-;;; $E935: Unused. Instruction list ;;;
-UNUSED_InstList_EnemyProjectile_BotwoonsBodyTail_86E935:
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_C_8DB7B6        ;86E935;
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_D_8DB7BD        ;86E939;
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_E_8DB7C4        ;86E93D;
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_F_8DB7CB        ;86E941;
-    dw Instruction_EnemyProjectile_GotoY                                 ;86E945;
-    dw UNUSED_InstList_EnemyProjectile_BotwoonsBodyTail_86E935           ;86E947;
-
-
-;;; $E949: Unused. Instruction list ;;;
-UNUSED_InstList_EnemyProjectile_BotwoonsBodyTail_86E949:
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_10_8DB7D2       ;86E949;
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_11_8DB7D9       ;86E94D;
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_12_8DB7E0       ;86E951;
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_13_8DB7E7       ;86E955;
-    dw Instruction_EnemyProjectile_GotoY                                 ;86E959;
-    dw UNUSED_InstList_EnemyProjectile_BotwoonsBodyTail_86E949           ;86E95B;
-
-
-;;; $E95D: Unused. Instruction list ;;;
-UNUSED_InstList_EnemyProjectile_BotwoonsBodyTail_86E95D:
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_14_8DB7EE       ;86E95D;
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_15_8DB7F5       ;86E961;
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_16_8DB7FC       ;86E965;
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_17_8DB803       ;86E969;
-    dw Instruction_EnemyProjectile_GotoY                                 ;86E96D;
-    dw UNUSED_InstList_EnemyProjectile_BotwoonsBodyTail_86E95D           ;86E96F;
-
-
-;;; $E971: Unused. Instruction list ;;;
-UNUSED_InstList_EnemyProjectile_BotwoonsBodyTail_86E971:
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_18_8DB80A       ;86E971;
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_19_8DB811       ;86E975;
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_1A_8DB818       ;86E979;
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_1B_8DB81F       ;86E97D;
-    dw Instruction_EnemyProjectile_GotoY                                 ;86E981;
-    dw UNUSED_InstList_EnemyProjectile_BotwoonsBodyTail_86E971           ;86E983;
-
-
-;;; $E985: Unused. Instruction list ;;;
-UNUSED_InstList_EnemyProjectile_BotwoonsBodyTail_86E985:
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_1C_8DB826       ;86E985;
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_1D_8DB82D       ;86E989;
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_1E_8DB834       ;86E98D;
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_1F_8DB83B       ;86E991;
-    dw Instruction_EnemyProjectile_GotoY                                 ;86E995;
-    dw UNUSED_InstList_EnemyProjectile_BotwoonsBodyTail_86E985           ;86E997;
-
-
-;;; $E999: Unused. Instruction list ;;;
-UNUSED_InstList_EnemyProjectile_BotwoonsBodyTail_86E999:
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_20_8DB842       ;86E999;
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_21_8DB849       ;86E99D;
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_22_8DB850       ;86E9A1;
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_23_8DB857       ;86E9A5;
-    dw Instruction_EnemyProjectile_GotoY                                 ;86E9A9;
-    dw UNUSED_InstList_EnemyProjectile_BotwoonsBodyTail_86E999           ;86E9AB;
-
-
-;;; $E9AD: Unused. Instruction list ;;;
-UNUSED_InstList_EnemyProjectile_BotwoonsBodyTail_86E9AD:
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_24_8DB85E       ;86E9AD;
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_25_8DB865       ;86E9B1;
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_26_8DB86C       ;86E9B5;
-    dw $0008,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_27_8DB873       ;86E9B9;
-    dw Instruction_EnemyProjectile_GotoY                                 ;86E9BD;
-    dw UNUSED_InstList_EnemyProjectile_BotwoonsBodyTail_86E9AD           ;86E9BF;
-
-
-;;; $E9C1: Unused. Instruction list ;;;
-UNUSED_InstList_EnemyProjectile_BotwoonsBodyTail_86E9C1:
-    dw $0001,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_28_8DB87A       ;86E9C1;
-    dw Instruction_EnemyProjectile_Sleep                                 ;86E9C5;
-
-
-;;; $E9C7: Unused. Instruction list ;;;
-UNUSED_InstList_EnemyProjectile_BotwoonsBodyTail_86E9C7:
-    dw $0001,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_29_8DB881       ;86E9C7;
-    dw Instruction_EnemyProjectile_Sleep                                 ;86E9CB;
-
-
-;;; $E9CD: Unused. Instruction list ;;;
-UNUSED_InstList_EnemyProjectile_BotwoonsBodyTail_86E9CD:
-    dw $0001,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_2A_8DB888       ;86E9CD;
-    dw Instruction_EnemyProjectile_Sleep                                 ;86E9D1;
-
-
-;;; $E9D3: Unused. Instruction list ;;;
-UNUSED_InstList_EnemyProjectile_BotwoonsBodyTail_86E9D3:
-    dw $0001,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_2B_8DB88F       ;86E9D3;
-    dw Instruction_EnemyProjectile_Sleep                                 ;86E9D7;
-
-
-;;; $E9D9: Unused. Instruction list ;;;
-UNUSED_InstList_EnemyProjectile_BotwoonsBodyTail_86E9D9:
-    dw $0001,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_2C_8DB896       ;86E9D9;
-    dw Instruction_EnemyProjectile_Sleep                                 ;86E9DD;
-
-
-;;; $E9DF: Unused. Instruction list ;;;
-UNUSED_InstList_EnemyProjectile_BotwoonsBodyTail_86E9DF:
-    dw $0001,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_2D_8DB89D       ;86E9DF;
-    dw Instruction_EnemyProjectile_Sleep                                 ;86E9E3;
-
-
-;;; $E9E5: Unused. Instruction list ;;;
-UNUSED_InstList_EnemyProjectile_BotwoonsBodyTail_86E9E5:
-    dw $0001,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_2E_8DB8A4       ;86E9E5;
-    dw Instruction_EnemyProjectile_Sleep                                 ;86E9E9;
-
-
-;;; $E9EB: Unused. Instruction list ;;;
-UNUSED_InstList_EnemyProjectile_BotwoonsBodyTail_86E9EB:
-    dw $0001,UNUSED_EnemyProjSpritemaps_BotwoonsBodyTail_2F_8DB8AB       ;86E9EB;
-    dw Instruction_EnemyProjectile_Sleep                                 ;86E9EF;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $E9F1: Botwoon's body instruction list table ;;;
@@ -17097,19 +15312,6 @@ InstList_EnemyProjectile_EnemyDeathExplosion_SmallExplosion:
     dw Instruction_EnemyProjectile_Delete                                ;86ED85;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $ED87: Unused. Instruction list - delete ;;;
-UNUSED_InstList_EnemyProj_EnemyDeathExplo_GotoDelete_86ED87:
-    dw Instruction_EnemyProjectile_GotoY                                 ;86ED87;
-    dw InstList_EnemyProjectile_Delete                                   ;86ED89;
-
-
-;;; $ED8B: Unused. Instruction list - delete ;;;
-UNUSED_InstList_EnemyProj_EnemyDeathExplosion_Delete_86ED8B:
-    dw Instruction_EnemyProjectile_Delete                                ;86ED8B;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $ED8D: Instruction list - pickup - small health ;;;
 InstList_EnemyProjectile_Pickup_SmallEnergy:
     dw $0008,EnemyProjSpritemaps_Pickup_EnemyDeathExplosion_4            ;86ED8D;
@@ -17139,19 +15341,6 @@ InstList_EnemyProjectile_Pickup_Missiles:
     dw Instruction_EnemyProjectile_GotoY                                 ;86EDC1;
     dw InstList_EnemyProjectile_Pickup_Missiles                          ;86EDC3;
     dw Instruction_EnemyProjectile_Sleep                                 ;86EDC5;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $EDC7: Unused. Instruction list - pickup - bombs ;;;
-UNUSED_InstList_EnemyProjectile_Pickup_Bombs_86EDC7:
-    dw $0005,UNUSED_EnemyProjSpritemaps_Pickup_Bombs_0_8DC0C9            ;86EDC7;
-    dw $0005,UNUSED_EnemyProjSpritemaps_Pickup_Bombs_1_8DC0D0            ;86EDCB;
-    dw $0005,UNUSED_EnemyProjSpritemaps_Pickup_Bombs_2_8DC0D7            ;86EDCF;
-    dw $0005,UNUSED_EnemyProjSpritemaps_Pickup_Bombs_3_8DC0DE            ;86EDD3;
-    dw Instruction_EnemyProjectile_GotoY                                 ;86EDD7;
-    dw UNUSED_InstList_EnemyProjectile_Pickup_Bombs_86EDC7               ;86EDD9;
-    dw Instruction_EnemyProjectile_Sleep                                 ;86EDDB;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $EDDD: Instruction list - pickup - super missiles ;;;
@@ -17194,31 +15383,6 @@ InstList_EnemyProj_EnemyDeathExplosion_KilledBySamusContact:
     dw $0002,EnemyProjSpritemaps_EnemyDeathExplosion_15                  ;86EE3D;
     dw Instruction_EnemyProjectile_EnemyDeathExplosion_BecomePickup      ;86EE41;
     dw Instruction_EnemyProjectile_Delete                                ;86EE43;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $EE45: Unused. Instruction list - enemy death explosion ;;;
-UNUSED_InstList_EnemyProj_EnemyDeathExplo_KillContact_86EE45:
-    dw $0002,UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_0_8DB8E5 ;86EE45;
-    dw $0002,UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_1_8DB8F6 ;86EE49;
-    dw $0002,UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_2_8DB907 ;86EE4D;
-    dw $0002,UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_3_8DB92C ;86EE51;
-    dw $0002,UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_4_8DB951 ;86EE55;
-    dw $0002,UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_5_8DB976 ;86EE59;
-    dw $0002,UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_6_8DB99B ;86EE5D;
-    dw Instruction_EnemyProj_EDeathExplo_QueueContactKilledSoundFX       ;86EE61;
-    dw $0002,UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_7_8DB9B1 ;86EE63;
-    dw $0002,UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_8_8DB9C7 ;86EE67;
-    dw $0002,UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_9_8DB9DD ;86EE6B;
-    dw $0002,UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_A_8DB9F3 ;86EE6F;
-    dw $0002,UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_B_8DBA09 ;86EE73;
-    dw $0002,UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_C_8DBA1F ;86EE77;
-    dw $0002,UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_D_8DBA35 ;86EE7B;
-    dw $0002,UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_E_8DBA4B ;86EE7F;
-    dw $0002,UNUSED_EnemyProjSpritemaps_EDeathExplo_KillContact_F_8DBA61 ;86EE83;
-    dw Instruction_EnemyProjectile_EnemyDeathExplosion_BecomePickup      ;86EE87;
-    dw Instruction_EnemyProjectile_Delete                                ;86EE89;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $EE8B: Instruction - queue enemy killed sound effect ;;;

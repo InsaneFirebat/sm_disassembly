@@ -18,90 +18,9 @@ SamusPalettes_DeathSequence_YellowFlash:
     dw $03FF,$03FF,$03FF,$03FF,$03FF,$03FF,$03FF,$03FF                   ;9B9420;
     dw $03FF,$03FF,$03FF,$03FF,$03FF,$03FF,$03FF,$03FF                   ;9B9430;
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_SamusPalettes_9B9440:
-    dw $3800,$02FF,$0217,$0150,$0089,$00BB,$3A9F,$2A19                   ;9B9440;
-    dw $1DB4,$114F,$090B,$3BE0,$033F,$021B,$010E,$0074                   ;9B9450;
-
-UNUSED_SamusPalettes_9B9460:
-    dw $3800,$1B1F,$1A78,$19D3,$192D,$155B,$46DF,$3A7A                   ;9B9460;
-    dw $2E16,$25D2,$1D8E,$5FE0,$13BF,$129B,$0192,$00F8                   ;9B9470;
-
-UNUSED_SamusPalettes_9B9480:
-    dw $3800,$3B5F,$3AFA,$3A77,$3A13,$21BB,$573F,$4EFB                   ;9B9480;
-    dw $4AB9,$4276,$3E54,$6FE8,$13FF,$231B,$0216,$017C                   ;9B9490;
-
-UNUSED_SamusPalettes_9B94A0:
-    dw $3800,$5B9F,$5B7C,$5B3B,$5AF8,$365B,$6B7F,$677D                   ;9B94A0;
-    dw $635B,$5F3A,$5B19,$7FF4,$53FF,$339F,$333F,$2A9F                   ;9B94B0;
-
-UNUSED_SamusPalettes_9B94C0:
-    dw $3800,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF                   ;9B94C0;
-    dw $7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF                   ;9B94D0;
-
-UNUSED_SamusPalettes_9B94E0:
-    dw $7D00,$7D00,$7D00,$7D00,$7D00,$7D00,$7D00,$7D00                   ;9B94E0;
-    dw $7D00,$7D00,$7D00,$7D00,$7D00,$7D00,$7D00,$7D00                   ;9B94F0;
-
-UNUSED_SamusPalettes_9B9500:
-; Used by unused routine UNUSED_SetSamusPaletteToSolidWhite_91DD4C, test palette perhaps
-    dw $3800,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF                   ;9B9500;
-    dw $7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF,$7FFF                   ;9B9510;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 SamusPalettes_VariaSuit:
     dw $0000,$0108,$02FF,$1405,$3BE0,$21A8,$579F,$4AD2                   ;9B9520;
     dw $3A4E,$00BB,$01BE,$008E,$0252,$1104,$0074,$000D                   ;9B9530;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_SamusPalettes_9B9540:
-    dw $14E0,$00CE,$421F,$1405,$3BE0,$21A8,$579F,$4AD2                   ;9B9540;
-    dw $3A4E,$00BB,$5914,$30AA,$0216,$1104,$0074,$000D                   ;9B9550;
-
-UNUSED_SamusPalettes_9B9560:
-    dw $2003,$28CE,$6E1F,$3C05,$63E0,$49A8,$7F9F,$72D2                   ;9B9560;
-    dw $624E,$28BB,$7D14,$58AA,$2A16,$3904,$2874,$280D                   ;9B9570;
-
-UNUSED_SamusPalettes_9B9580:
-    dw $2003,$516E,$7EBF,$64A5,$7FE0,$7248,$7FFF,$7F72                   ;9B9580;
-    dw $7EEE,$555B,$7DB4,$7D4A,$52B6,$61A4,$5114,$50AD                   ;9B9590;
-
-UNUSED_SamusPalettes_9B95A0:
-    dw $0000,$52AE,$7FFF,$65E5,$7FE0,$7388,$7FFF,$7FF2                   ;9B95A0;
-    dw $7FEE,$569B,$7EF4,$7E8A,$53F6,$62E4,$5254,$51ED                   ;9B95B0;
-
-UNUSED_SamusPalettes_9B95C0:
-    dw $3800,$00CE,$421F,$1405,$3BE0,$21A8,$579F,$4AD2                   ;9B95C0;
-    dw $3A4E,$00BB,$5914,$30AA,$0216,$1104,$0074,$000D                   ;9B95D0;
-
-UNUSED_SamusPalettes_9B95E0:
-    dw $3800,$1618,$575F,$294F,$4FEA,$36F2,$6BFF,$5FFC                   ;9B95E0;
-    dw $4798,$15FF,$6E5E,$45F4,$175F,$264E,$15BE,$1557                   ;9B95F0;
-
-UNUSED_SamusPalettes_9B9600:
-    dw $3800,$02DE,$43FF,$1615,$3BF0,$23B8,$57FF,$4BFF                   ;9B9600;
-    dw $3BFE,$02BF,$5B1F,$32BA,$03FF,$1314,$027F,$021D                   ;9B9610;
-
-UNUSED_SamusPalettes_9B9620:
-    dw $3800,$2BFF,$6BFF,$3F5F,$63FA,$4BFF,$7FFF,$73FF                   ;9B9620;
-    dw $63FF,$2BFF,$7FFF,$5BFF,$2BFF,$3BFE,$2BBF,$2B5F                   ;9B9630;
-
-UNUSED_SamusPalettes_9B9640:
-    dw $3800,$00CE,$421F,$1405,$3BE0,$21A8,$579F,$4AD2                   ;9B9640;
-    dw $3A4E,$00BB,$5914,$30AA,$0216,$1104,$0074,$000D                   ;9B9650;
-
-UNUSED_SamusPalettes_9B9660:
-    dw $3800,$020E,$435F,$1545,$43E0,$22E8,$57FF,$4BF2                   ;9B9660;
-    dw $3B8E,$01FB,$5A54,$31EA,$0356,$1244,$01B4,$014D                   ;9B9670;
-
-UNUSED_SamusPalettes_9B9680:
-    dw $3800,$034E,$43FF,$1685,$4FE0,$23E8,$57FF,$4BF2                   ;9B9680;
-    dw $3BEE,$033B,$5B94,$332A,$03F6,$1384,$02F4,$028D                   ;9B9690;
-
-UNUSED_SamusPalettes_9B96A0:
-    dw $3800,$2BEE,$6BFF,$3FC5,$63E0,$4BE8,$7FFF,$73F2                   ;9B96A0;
-    dw $63EE,$2BFB,$7FF4,$5BEA,$2BF6,$3BE4,$2BF4,$2BED                   ;9B96B0;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusPalettes_CrystalFlash_0:
 ; Crystal flash Samus. Colours 0..9 = Samus colours, Ah..Fh = bubble colours
@@ -146,24 +65,6 @@ SamusPalettes_CrystalFlash_5:
 
 SamusPalettes_CrystalFlash_5_bubble:
     dw $7FFF,$77BF,$6F7F,$6B5F,$673F,$7FFF                               ;9B9774;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_SamusPalettes_9B9780:
-    dw $0000,$00CE,$421F,$1405,$3BE0,$21A8,$579F,$4AD2                   ;9B9780;
-    dw $3A4E,$00BB,$5914,$30AA,$0216,$1104,$0074,$000D                   ;9B9790;
-
-UNUSED_SamusPalettes_9B97A0:
-    dw $0000,$21D6,$56BF,$28AA,$4FE5,$364D,$63BF,$5B36                   ;9B97A0;
-    dw $52D4,$155C,$65B8,$454F,$16B9,$25A9,$1518,$14B2                   ;9B97B0;
-
-UNUSED_SamusPalettes_9B97C0:
-    dw $0000,$2E39,$6B5F,$4170,$67EB,$4F13,$73DF,$6F9B                   ;9B97C0;
-    dw $6779,$2E1E,$727B,$5E15,$2F5C,$3E6F,$2DDB,$2D78                   ;9B97D0;
-
-UNUSED_SamusPalettes_9B97E0:
-    dw $0000,$42DE,$7FFF,$5615,$7BF0,$63B8,$7FFF,$7FFF                   ;9B97E0;
-    dw $7BFE,$42BF,$7F1F,$72BA,$43FF,$5314,$427F,$421D                   ;9B97F0;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 SamusPalettes_GravitySuit:
     dw $3800,$0108,$421F,$1405,$3BE0,$21A8,$579F,$4AD2                   ;9B9800;
@@ -1493,18 +1394,6 @@ Handle_Death_Animation_Flashing:
 
   .end:
     JSR.W FinishDeathAnimationFlashing                                   ;9BB498;
-if !DEBUG
-    LDA.B DP_Controller2Input                                            ;9BB49B;
-    AND.W #$00B0                                                         ;9BB49D;
-    CMP.W #$00B0                                                         ;9BB4A0;
-    BNE .debug                                                           ;9BB4A3;
-    LDA.W #$0001                                                         ;9BB4A5;
-    STA.W DebugDeathAnimationFlag                                        ;9BB4A8;
-    BRA .returnFlashingEnded                                             ;9BB4AB;
-
-  .debug:
-    STZ.W DebugDeathAnimationFlag                                        ;9BB4AD;
-endif
 
   .returnFlashingEnded:
     LDA.W #$0001                                                         ;9BB4B0;
@@ -1758,10 +1647,6 @@ HandleDeathSequenceWhiteOut:
     REP #$30                                                             ;9BB711;
     LDA.W #Palettes>>8&$FF00                                             ;9BB713;
     STA.B DP_Temp01                                                      ;9BB716;
-if !DEBUG
-    LDA.W DebugDeathAnimationFlag                                        ;9BB718;
-    BNE .return                                                          ;9BB71B;
-endif
     LDA.W DeathAnimation_Index                                           ;9BB71D;
     BEQ .return                                                          ;9BB720;
     LDA.W DeathAnimation_Counter                                         ;9BB722;
@@ -2255,50 +2140,6 @@ HandleConnectingGrapple_Crouching_AimingLeft:
     LDA.W #$00B5                                                         ;9BBA29;
     STA.W SpecialProspectivePose                                         ;9BBA2C;
     BRA HandleConnectingGrapple_StuckInPlace                             ;9BBA2F;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $BA31: Unused. Handle connecting grapple - in air - aiming right ;;;
-UNUSED_HandleConnectingGrapple_InAir_AimingRight_9BBA31:
-    LDA.W #$00AC                                                         ;9BBA31;
-    STA.W SpecialProspectivePose                                         ;9BBA34;
-    BRA HandleConnectingGrapple_StuckInPlace                             ;9BBA37;
-
-
-;;; $BA39: Unused. Handle connecting grapple - in air - aiming down-right ;;;
-UNUSED_HandleConnectingGrapple_InAir_AimingDownRight_9BBA39:
-    LDA.W #$00B0                                                         ;9BBA39;
-    STA.W SpecialProspectivePose                                         ;9BBA3C;
-    BRA HandleConnectingGrapple_StuckInPlace                             ;9BBA3F;
-
-
-;;; $BA41: Unused. Handle connecting grapple - in air - aiming down, facing right ;;;
-UNUSED_HandleConnectingGrapple_InAir_AimingDown_FaceR_9BBA41:
-    LDA.W #$00AE                                                         ;9BBA41;
-    STA.W SpecialProspectivePose                                         ;9BBA44;
-    BRA HandleConnectingGrapple_StuckInPlace                             ;9BBA47;
-
-
-;;; $BA49: Unused. Handle connecting grapple - in air - aiming down, facing left ;;;
-UNUSED_HandleConnectingGrapple_InAir_AimingDown_FaceL_9BBA49:
-    LDA.W #$00AF                                                         ;9BBA49;
-    STA.W SpecialProspectivePose                                         ;9BBA4C;
-    BRA HandleConnectingGrapple_StuckInPlace                             ;9BBA4F;
-
-
-;;; $BA51: Unused. Handle connecting grapple - in air - aiming down-left ;;;
-UNUSED_HandleConnectingGrapple_InAir_AimingDownLeft_9BBA51:
-    LDA.W #$00B1                                                         ;9BBA51;
-    STA.W SpecialProspectivePose                                         ;9BBA54;
-    BRA HandleConnectingGrapple_StuckInPlace                             ;9BBA57;
-
-
-;;; $BA59: Unused. Handle connecting grapple - in air - aiming left ;;;
-UNUSED_HandleConnectingGrapple_InAir_AimingLeft_9BBA59:
-    LDA.W #$00AD                                                         ;9BBA59;
-    STA.W SpecialProspectivePose                                         ;9BBA5C;
-    BRA HandleConnectingGrapple_StuckInPlace                             ;9BBA5F;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $BA61: Handle connecting grapple - swinging ;;;
@@ -3248,13 +3089,6 @@ GrappleBeamFireVelocityTable:
     dw $F40C,$F784,$0000,$087C,$0BF4,$0BF4,$087C,$0000,$F784,$F40C
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $C103: Unused ;;;
-UNUSED_9BC103:
-    db $80                                                               ;9BC103;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $C104: Grapple beam fire angles ;;;
 GrappleBeamFireAngles:                                                   ;9BC104;
 ;        _______________________________________________________ 0: Up, facing right
@@ -3565,13 +3399,6 @@ GrappleBeamSpecialAngles:
     dw GrappleBeamFunction_WallGrab                                      ;9BC482;
     dw $8D80,$00B9,$0008,$0010                                           ;9BC484;
     dw GrappleBeamFunction_WallGrab                                      ;9BC48C;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $C48E: Unused ;;;
-UNUSED_9BC48E:
-    db $20,$3A                                                           ;9BC48E;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $C490: Grapple beam handler ;;;

@@ -201,50 +201,6 @@ Instruction_CommonA3_CallFunctionInY_WithA:
     RTL                                                                  ;A380B4;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $80B5: Unused. Instruction - call external function [[Y]] ;;;
-UNUSED_Instruction_CommonA3_CallExternalFunctionInY_A380B5:
-    LDA.W $0000,Y                                                        ;A380B5;
-    STA.B DP_Temp12                                                      ;A380B8;
-    LDA.W $0001,Y                                                        ;A380BA;
-    STA.B DP_Temp13                                                      ;A380BD;
-    PHX                                                                  ;A380BF;
-    PHY                                                                  ;A380C0;
-    JSL.L .externalFunction                                              ;A380C1;
-    PLY                                                                  ;A380C5;
-    PLX                                                                  ;A380C6;
-    INY                                                                  ;A380C7;
-    INY                                                                  ;A380C8;
-    INY                                                                  ;A380C9;
-    RTL                                                                  ;A380CA;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;A380CB;
-
-
-;;; $80CE: Unused. Instruction - call external function [[Y]] with A = [[Y] + 3] ;;;
-UNUSED_Inst_CommonA3_CallExternalFunctionInY_WithA_A380CE:
-    LDA.W $0000,Y                                                        ;A380CE;
-    STA.B DP_Temp12                                                      ;A380D1;
-    LDA.W $0001,Y                                                        ;A380D3;
-    STA.B DP_Temp13                                                      ;A380D6;
-    LDA.W $0003,Y                                                        ;A380D8;
-    PHX                                                                  ;A380DB;
-    PHY                                                                  ;A380DC;
-    JSL.L .externalFunction                                              ;A380DD;
-    PLY                                                                  ;A380E1;
-    PLX                                                                  ;A380E2;
-    TYA                                                                  ;A380E3;
-    CLC                                                                  ;A380E4;
-    ADC.W #$0005                                                         ;A380E5;
-    TAY                                                                  ;A380E8;
-    RTL                                                                  ;A380E9;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;A380EA;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $80ED: Instruction - go to [[Y]] ;;;
 Instruction_CommonA3_GotoY:
     LDA.W $0000,Y                                                        ;A380ED;
@@ -959,16 +915,6 @@ MainAI_Metaree:
     JMP.W (Metaree.function,X)                                           ;A3897C;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $897F: Unused. Metaree function pointers ;;;
-UNUSED_FunctionPointers_Metaree_A3897F:
-    dw Function_Metaree_Idling                                           ;A3897F;
-    dw Function_Metaree_PrepareToLaunchAttack                            ;A38981;
-    dw Function_Metaree_LaunchedAttack                                   ;A38983;
-    dw Function_Metaree_Burrowing                                        ;A38985;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $8987: Metaree function - idling ;;;
 Function_Metaree_Idling:
 ; BUG: This routine fails to check if the metaree is above Samus before activating it
@@ -1124,32 +1070,6 @@ Function_Metaree_Burrowing:
     RTL                                                                  ;A38AB1;
 
 
-;;; $8AD2: Unused ;;;
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Metaree_DataPointers_A38AD2:
-    dw UNUSED_Metaree_Data_A38ADC                                        ;A38AD2;
-    dw UNUSED_Metaree_Data_A38AE6                                        ;A38AD4;
-    dw UNUSED_Metaree_Data_A38AF0                                        ;A38AD6;
-    dw UNUSED_Metaree_Data_A38AFA                                        ;A38AD8;
-    dw UNUSED_Metaree_Data_A38B04                                        ;A38ADA;
-
-UNUSED_Metaree_Data_A38ADC:
-    dw $0001,$0000,$FFFE,$0008,$000C                                     ;A38ADC;
-
-UNUSED_Metaree_Data_A38AE6:
-    dw $0001,$0000,$FFFC,$0008,$0008                                     ;A38AE6;
-
-UNUSED_Metaree_Data_A38AF0:
-    dw $0001,$0004,$0000,$0002,$000C                                     ;A38AF0;
-
-UNUSED_Metaree_Data_A38AFA:
-    dw $0001,$0000,$0000,$0008,$0008                                     ;A38AFA;
-
-UNUSED_Metaree_Data_A38B04:
-    dw $0001,$FFFC,$0000,$0002,$000C                                     ;A38B04;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $8B0F: Enemy shot - enemy $D67F (metaree) ;;;
 EnemyShot_Metaree:
     LDA.W Enemy.GFXOffset,X                                              ;A38B12;
@@ -1293,14 +1213,6 @@ InstList_Fireflea:
 
 
 ;;; $8D03: Fireflea data ;;;
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Fireflea_Data_A38D03:
-    dw $1000,$2000,$4000,$6000,$8000,$A000,$C000,$E000                   ;A38D03;
-
-UNUSED_Fireflea_Data_A38D13:
-    dw $0001,$2001,$4001,$6001,$8001                                     ;A38D13;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 FirefleaMovementRadii:
 ; Movement radii. Indexed by [enemy parameter 2 high] * 2
     dw $0008,$0010,$0018,$0020,$0028,$0030,$0038,$0040                   ;A38D1D;
@@ -2457,14 +2369,6 @@ InitAI_Sciser:
     JMP.W InitAI_Crawlers_Common                                         ;A396FA;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $96FD: Unused. RTL ;;;
-UNUSED_GetEnemyIndex_A396FD:
-    LDX.B EnemyIndex                                                     ;A396FD;
-    RTL                                                                  ;A39700;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $9701: Unused. RTL ;;;
 RTL_A39701:
     RTL                                                                  ;A39701;
@@ -2719,14 +2623,6 @@ InitAI_Zero:
     LDA.W InitialInstListPointers_Zero,Y                                 ;A3994C;
     STA.W Enemy.instList,X                                               ;A3994F;
     JMP.W InitAI_Crawlers_Common                                         ;A39952;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $9955: Unused. RTL ;;;
-UNUSED_GetEnemyIndex_A39955:
-    LDX.B EnemyIndex                                                     ;A39955;
-    RTL                                                                  ;A39958;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $9959: Unused. RTL ;;;
@@ -3712,34 +3608,6 @@ CalculateMovingForwardSpeeds:
     LDA.B DP_Temp1C                                                      ;A3A1A9;
     STA.L Sbug.movingForwardYSubSpeed,X                                  ;A3A1AB;
     RTS                                                                  ;A3A1AF;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $A1B0: Unused. Calculate moving forward velocities ;;;
-UNUSED_CalculateMovingForwardVelocities_A3A1B0:
-; Not sure why, but moving forward calculations are done with CalculateMovingForwardSpeeds instead
-    LDA.W Enemy.init0,X                                                  ;A3A1B0;
-    AND.W #$00FF                                                         ;A3A1B3;
-    STA.W Temp_Radius                                                    ;A3A1B6;
-    LDA.W Enemy.init0+1,X                                                ;A3A1B9;
-    AND.W #$00FF                                                         ;A3A1BC;
-    JSL.L EightBitCosineMultiplication_A0B0B2                            ;A3A1BF;
-    LDA.W Temp_Velocity                                                  ;A3A1C3;
-    STA.L Sbug.movingForwardXSpeed,X                                     ;A3A1C6;
-    LDA.W Temp_SubVelocity                                               ;A3A1CA;
-    STA.L Sbug.movingForwardXSubSpeed,X                                  ;A3A1CD;
-    LDA.W Enemy.init0,X                                                  ;A3A1D1;
-    AND.W #$00FF                                                         ;A3A1D4;
-    STA.W Temp_Radius                                                    ;A3A1D7;
-    LDA.W Enemy.init0+1,X                                                ;A3A1DA;
-    AND.W #$00FF                                                         ;A3A1DD;
-    JSL.L EightBitNegativeSineMultiplication_A0B0C6                      ;A3A1E0;
-    LDA.W Temp_Velocity                                                  ;A3A1E4;
-    STA.L Sbug.movingForwardYSpeed,X                                     ;A3A1E7;
-    LDA.W Temp_SubVelocity                                               ;A3A1EB;
-    STA.L Sbug.movingForwardYSubSpeed,X                                  ;A3A1EE;
-    RTS                                                                  ;A3A1F2;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $A1F3: Calculate moving left velocities ;;;
@@ -6186,20 +6054,6 @@ SetZoaInstList:
     RTS                                                                  ;A3B556;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $B557: RTL ;;;
-UNUSED_GetEnemyIndex_A3B557:
-    LDX.B EnemyIndex                                                     ;A3B557;
-    RTL                                                                  ;A3B55A;
-
-
-;;; $B55B: RTL ;;;
-UNUSED_GetEnemyIndex_A3B55B:
-    LDX.B EnemyIndex                                                     ;A3B55B;
-    RTL                                                                  ;A3B55E;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $B55F: Zoa spritemaps ;;;
 Spritemap_Zoa_0:
     dw $0001                                                             ;A3B55F;
@@ -6306,28 +6160,6 @@ InstList_Viola_Normal:
     dw InstList_Viola_Normal                                             ;A3B629;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $B62B: Unused. Instruction list - viola - X flipped ;;;
-UNUSED_InstList_Viola_XFlipped_A3B62B:
-    dw $0006,UNUSED_Spritemap_Viola_XFlipped_A3B6C1                      ;A3B62B;
-    dw $0006,UNUSED_Spritemap_Viola_XFlipped_A3B6C8                      ;A3B62F;
-    dw $0006,UNUSED_Spritemap_Viola_XFlipped_A3B6CF                      ;A3B633;
-    dw $0006,UNUSED_Spritemap_Viola_XFlipped_A3B6D6                      ;A3B637;
-    dw $0006,UNUSED_Spritemap_Viola_XFlipped_A3B6DD                      ;A3B63B;
-    dw $0006,UNUSED_Spritemap_Viola_XFlipped_A3B6E4                      ;A3B63F;
-    dw $0006,UNUSED_Spritemap_Viola_XFlipped_A3B6EB                      ;A3B643;
-    dw $0006,UNUSED_Spritemap_Viola_XFlipped_A3B6F2                      ;A3B647;
-    dw $0006,UNUSED_Spritemap_Viola_XFlipped_A3B6EB                      ;A3B64B;
-    dw $0006,UNUSED_Spritemap_Viola_XFlipped_A3B6E4                      ;A3B64F;
-    dw $0006,UNUSED_Spritemap_Viola_XFlipped_A3B6DD                      ;A3B653;
-    dw $0006,UNUSED_Spritemap_Viola_XFlipped_A3B6D6                      ;A3B657;
-    dw $0006,UNUSED_Spritemap_Viola_XFlipped_A3B6CF                      ;A3B65B;
-    dw $0006,UNUSED_Spritemap_Viola_XFlipped_A3B6C8                      ;A3B65F;
-    dw Instruction_Common_GotoY                                          ;A3B663;
-    dw UNUSED_InstList_Viola_XFlipped_A3B62B                             ;A3B665;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $B667: Viola initial instruction list pointers ;;;
 InitialInstListPointers_Viola:
 ; Indexed by [enemy initialisation parameter] * 2
@@ -6383,50 +6215,6 @@ Spritemap_Viola_Normal_6:
 Spritemap_Viola_Normal_7:
     dw $0001                                                             ;A3B6BA;
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $10E)
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_Viola_XFlipped_A3B6C1:
-    dw $0001                                                             ;A3B6C1;
-    %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $100)
-
-UNUSED_Spritemap_Viola_XFlipped_A3B6C8:
-    dw $0001                                                             ;A3B6C8;
-    %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $102)
-
-UNUSED_Spritemap_Viola_XFlipped_A3B6CF:
-    dw $0001                                                             ;A3B6CF;
-    %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $104)
-
-UNUSED_Spritemap_Viola_XFlipped_A3B6D6:
-    dw $0001                                                             ;A3B6D6;
-    %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $106)
-
-UNUSED_Spritemap_Viola_XFlipped_A3B6DD:
-    dw $0001                                                             ;A3B6DD;
-    %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $108)
-
-UNUSED_Spritemap_Viola_XFlipped_A3B6E4:
-    dw $0001                                                             ;A3B6E4;
-    %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $10A)
-
-UNUSED_Spritemap_Viola_XFlipped_A3B6EB:
-    dw $0001                                                             ;A3B6EB;
-    %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $10C)
-
-UNUSED_Spritemap_Viola_XFlipped_A3B6F2:
-    dw $0001                                                             ;A3B6F2;
-    %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $10E)
-
-
-;;; $B6F9: Unused. Crash if enemy initialisation parameter is non-zero ;;;
-UNUSED_CrashIfEnemyInitParamIsNonZero_A3B6F9:
-    LDX.B EnemyIndex                                                     ;A3B6F9;
-    LDA.W Enemy.instList,X                                               ;A3B6FC;
-
-  .crash:
-    BNE .crash                                                           ;A3B6FF;
-    RTL                                                                  ;A3B701;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $B702: Palette - enemy $DB3F (bang) ;;;
@@ -6768,29 +6556,6 @@ InstList_Bang_Electricity_Growth3_4_Growing:
     dw $0004,Spritemap_Bang_Electricity_Growth3_4_Growing_B              ;A3BA34;
     dw Instruction_Common_GotoY                                          ;A3BA38;
     dw InstList_Bang_Electricity_Growth3_4_Growing                       ;A3BA3A;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $BA3C: Unused. Instruction list - electricity - growing ;;;
-UNSUED_InstList_Bang_Electricity_Growing_A3BA3C:
-; Probably intended to be growth level 4 - growing
-    dw $0002,UNUSED_Spritemap_Bang_Electricity_A3C5AE                    ;A3BA3C;
-    dw $0003,UNUSED_Spritemap_Bang_Electricity_A3C5BA                    ;A3BA40;
-    dw $0004,UNUSED_Spritemap_Bang_Electricity_A3C5C6                    ;A3BA44;
-    dw $0002,Spritemap_Common_Nothing                                    ;A3BA48;
-    dw $0004,UNUSED_Spritemap_Bang_Electricity_A3C5D2                    ;A3BA4C;
-    dw $0002,UNUSED_Spritemap_Bang_Electricity_A3C5DE                    ;A3BA50;
-    dw $0003,UNUSED_Spritemap_Bang_Electricity_A3C5EA                    ;A3BA54;
-    dw $0002,UNUSED_Spritemap_Bang_Electricity_A3C5F6                    ;A3BA58;
-    dw $0004,UNUSED_Spritemap_Bang_Electricity_A3C602                    ;A3BA5C;
-    dw $0003,UNUSED_Spritemap_Bang_Electricity_A3C60E                    ;A3BA60;
-    dw $000A,Spritemap_Common_Nothing                                    ;A3BA64;
-    dw $0003,UNUSED_Spritemap_Bang_Electricity_A3C61A                    ;A3BA68;
-    dw $0002,UNUSED_Spritemap_Bang_Electricity_A3C626                    ;A3BA6C;
-    dw $0004,UNUSED_Spritemap_Bang_Electricity_A3C632                    ;A3BA70;
-    dw Instruction_Common_GotoY                                          ;A3BA74;
-    dw UNSUED_InstList_Bang_Electricity_Growing_A3BA3C                   ;A3BA76;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $BA78: Instruction - queue acquired suit sound effect ;;;
@@ -7949,30 +7714,6 @@ Spritemap_Bang_Growth4_Idling_7:
     %spritemapEntry(1, $4200, $F1, 0, 0, 3, 0, $142)
     %spritemapEntry(1, $43F0, $F1, 0, 0, 3, 0, $140)
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_Bang_Growth4_Idling_A3C485:
-    dw $0001                                                             ;A3C485;
-    %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 0, $12E)
-
-UNUSED_Spritemap_Bang_Growth4_Idling_A3C48C:
-    dw $0004                                                             ;A3C48C;
-    %spritemapEntry(1, $43F0, $FF, 1, 1, 3, 0, $146)
-    %spritemapEntry(1, $4200, $FF, 1, 0, 3, 0, $146)
-    %spritemapEntry(1, $4200, $F1, 0, 0, 3, 0, $146)
-    %spritemapEntry(1, $43F0, $F1, 0, 0, 3, 0, $144)
-
-UNUSED_Spritemap_Bang_Growth4_Idling_A3C4A2:
-    dw $0001                                                             ;A3C4A2;
-    %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 0, $14E)
-
-UNUSED_Spritemap_Bang_Growth4_Idling_A3C4A9:
-    dw $0004                                                             ;A3C4A9;
-    %spritemapEntry(1, $43F0, $FF, 1, 1, 3, 0, $14A)
-    %spritemapEntry(1, $4200, $FF, 1, 0, 3, 0, $14A)
-    %spritemapEntry(1, $4200, $F1, 0, 0, 3, 0, $14A)
-    %spritemapEntry(1, $43F0, $F1, 0, 0, 3, 0, $148)
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 Spritemap_Bang_Growth4_Idling_8:
     dw $0001                                                             ;A3C4BF;
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 0, $10E)
@@ -8065,68 +7806,6 @@ Spritemap_Bang_Growth4_Growing_A:
     dw $0001                                                             ;A3C5A7;
     %spritemapEntry(1, $43F8, $F8, 0, 0, 3, 0, $16C)
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_Bang_Electricity_A3C5AE:
-    dw $0002                                                             ;A3C5AE;
-    %spritemapEntry(0, $06, $FC, 0, 0, 3, 0, $164)
-    %spritemapEntry(0, $1F5, $F5, 0, 0, 3, 0, $161)
-
-UNUSED_Spritemap_Bang_Electricity_A3C5BA:
-    dw $0002                                                             ;A3C5BA;
-    %spritemapEntry(0, $06, $FC, 0, 0, 3, 0, $165)
-    %spritemapEntry(0, $1F5, $F5, 0, 0, 3, 0, $162)
-
-UNUSED_Spritemap_Bang_Electricity_A3C5C6:
-    dw $0002                                                             ;A3C5C6;
-    %spritemapEntry(0, $06, $FC, 0, 0, 3, 0, $166)
-    %spritemapEntry(0, $1F5, $F5, 0, 0, 3, 0, $163)
-
-UNUSED_Spritemap_Bang_Electricity_A3C5D2:
-    dw $0002                                                             ;A3C5D2;
-    %spritemapEntry(0, $03, $F5, 0, 1, 3, 0, $161)
-    %spritemapEntry(0, $1F2, $FD, 0, 0, 3, 0, $164)
-
-UNUSED_Spritemap_Bang_Electricity_A3C5DE:
-    dw $0002                                                             ;A3C5DE;
-    %spritemapEntry(0, $03, $F5, 0, 1, 3, 0, $162)
-    %spritemapEntry(0, $1F2, $FD, 0, 0, 3, 0, $165)
-
-UNUSED_Spritemap_Bang_Electricity_A3C5EA:
-    dw $0002                                                             ;A3C5EA;
-    %spritemapEntry(0, $1F2, $FD, 0, 0, 3, 0, $166)
-    %spritemapEntry(0, $03, $F5, 0, 1, 3, 0, $163)
-
-UNUSED_Spritemap_Bang_Electricity_A3C5F6:
-    dw $0002                                                             ;A3C5F6;
-    %spritemapEntry(0, $1FA, $05, 0, 0, 3, 0, $176)
-    %spritemapEntry(0, $1FC, $F3, 0, 0, 3, 0, $174)
-
-UNUSED_Spritemap_Bang_Electricity_A3C602:
-    dw $0002                                                             ;A3C602;
-    %spritemapEntry(0, $1FA, $05, 0, 0, 3, 0, $175)
-    %spritemapEntry(0, $1FC, $F3, 0, 0, 3, 0, $175)
-
-UNUSED_Spritemap_Bang_Electricity_A3C60E:
-    dw $0002                                                             ;A3C60E;
-    %spritemapEntry(0, $1FB, $05, 0, 0, 3, 0, $174)
-    %spritemapEntry(0, $1FC, $F3, 0, 0, 3, 0, $176)
-
-UNUSED_Spritemap_Bang_Electricity_A3C61A:
-    dw $0002                                                             ;A3C61A;
-    %spritemapEntry(0, $03, $03, 0, 0, 3, 0, $163)
-    %spritemapEntry(0, $1F5, $03, 0, 1, 3, 0, $161)
-
-UNUSED_Spritemap_Bang_Electricity_A3C626:
-    dw $0002                                                             ;A3C626;
-    %spritemapEntry(0, $03, $03, 0, 0, 3, 0, $162)
-    %spritemapEntry(0, $1F5, $03, 0, 1, 3, 0, $162)
-
-UNUSED_Spritemap_Bang_Electricity_A3C632:
-    dw $0002                                                             ;A3C632;
-    %spritemapEntry(0, $03, $03, 0, 0, 3, 0, $161)
-    %spritemapEntry(0, $1F5, $03, 0, 1, 3, 0, $163)
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 
 ;;; $C63E: Palette - enemy $DB7F (skree) ;;;
 Palette_Skree:
@@ -8206,16 +7885,6 @@ InitAI_Skree:
 MainAI_Skree:
     LDX.B EnemyIndex                                                     ;A3C6C7;
     JMP.W (Skree.function,X)                                             ;A3C6CA;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $C6CD: Unused. Skree function pointers ;;;
-UNUSED_FunctionPointers_Skree_A3C6CD:
-    dw Function_Skree_Idling                                             ;A3C6CD;
-    dw Function_Skree_PrepareToLaunchAttack                              ;A3C6CF;
-    dw Function_Skree_LaunchedAttack                                     ;A3C6D1;
-    dw Function_Skree_Burrowing                                          ;A3C6D3;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $C6D5: Skree function - idling ;;;
@@ -10521,13 +10190,6 @@ Spritemap_Yard_3F:
     dw $0001                                                             ;A3D87D;
     %spritemapEntry(1, $43F8, $F8, 1, 0, 2, 0, $126)
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_Yard_A3D884:
-    dw $0002                                                             ;A3D884;
-    %spritemapEntry(1, $43FB, $F6, 0, 0, 2, 0, $120)
-    %spritemapEntry(1, $43F5, $F8, 0, 0, 2, 0, $100)
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 Spritemap_Yard_40:
     dw $0002                                                             ;A3D890;
     %spritemapEntry(1, $43F5, $F8, 0, 0, 2, 0, $128)
@@ -10542,13 +10204,6 @@ Spritemap_Yard_42:
     dw $0002                                                             ;A3D8A8;
     %spritemapEntry(1, $43FA, $FA, 1, 1, 2, 0, $124)
     %spritemapEntry(1, $43F8, $F6, 1, 1, 2, 0, $108)
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_Yard_A3D8B4:
-    dw $0002                                                             ;A3D8B4;
-    %spritemapEntry(1, $43FA, $FB, 1, 1, 2, 0, $124)
-    %spritemapEntry(1, $43F8, $F5, 1, 1, 2, 0, $108)
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Yard_43:
     dw $0002                                                             ;A3D8C0;
@@ -10565,13 +10220,6 @@ Spritemap_Yard_45:
     %spritemapEntry(1, $43F6, $FA, 1, 1, 2, 0, $120)
     %spritemapEntry(1, $43FA, $F8, 1, 1, 2, 0, $100)
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_Yard_A3D8E4:
-    dw $0002                                                             ;A3D8E4;
-    %spritemapEntry(1, $43F5, $FA, 1, 1, 2, 0, $120)
-    %spritemapEntry(1, $43FB, $F8, 1, 1, 2, 0, $100)
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 Spritemap_Yard_46:
     dw $0002                                                             ;A3D8F0;
     %spritemapEntry(1, $43FB, $F8, 1, 1, 2, 0, $128)
@@ -10586,13 +10234,6 @@ Spritemap_Yard_48:
     dw $0002                                                             ;A3D908;
     %spritemapEntry(1, $43F6, $F6, 0, 0, 2, 0, $124)
     %spritemapEntry(1, $43F8, $FA, 0, 0, 2, 0, $108)
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_Yard_A3D914:
-    dw $0002                                                             ;A3D914;
-    %spritemapEntry(1, $43F6, $F5, 0, 0, 2, 0, $124)
-    %spritemapEntry(1, $43F8, $FB, 0, 0, 2, 0, $108)
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Yard_49:
     dw $0002                                                             ;A3D920;
@@ -10645,13 +10286,6 @@ Spritemap_Yard_53:
     %spritemapEntry(1, $43F7, $F8, 0, 0, 2, 0, $124)
     %spritemapEntry(1, $43F8, $FA, 0, 0, 2, 0, $108)
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_Yard_A3D990:
-    dw $0002                                                             ;A3D990;
-    %spritemapEntry(1, $43F5, $F6, 0, 1, 2, 0, $120)
-    %spritemapEntry(1, $43FB, $F8, 0, 1, 2, 0, $100)
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 Spritemap_Yard_54:
     dw $0002                                                             ;A3D99C;
     %spritemapEntry(1, $43FB, $F8, 0, 1, 2, 0, $128)
@@ -10666,13 +10300,6 @@ Spritemap_Yard_56:
     dw $0002                                                             ;A3D9B4;
     %spritemapEntry(1, $43F6, $FA, 1, 0, 2, 0, $124)
     %spritemapEntry(1, $43F8, $F6, 1, 0, 2, 0, $108)
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_Yard_A3D9C0:
-    dw $0002                                                             ;A3D9C0;
-    %spritemapEntry(1, $43F6, $FB, 1, 0, 2, 0, $124)
-    %spritemapEntry(1, $43F8, $F5, 1, 0, 2, 0, $108)
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Yard_57:
     dw $0002                                                             ;A3D9CC;
@@ -10689,13 +10316,6 @@ Spritemap_Yard_59:
     %spritemapEntry(1, $43FA, $FA, 1, 0, 2, 0, $120)
     %spritemapEntry(1, $43F6, $F8, 1, 0, 2, 0, $100)
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_Yard_A3D9F0:
-    dw $0002                                                             ;A3D9F0;
-    %spritemapEntry(1, $43FB, $FA, 1, 0, 2, 0, $120)
-    %spritemapEntry(1, $43F5, $F8, 1, 0, 2, 0, $100)
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 Spritemap_Yard_5A:
     dw $0002                                                             ;A3D9FC;
     %spritemapEntry(1, $43F5, $F8, 1, 0, 2, 0, $128)
@@ -10710,13 +10330,6 @@ Spritemap_Yard_5C:
     dw $0002                                                             ;A3DA14;
     %spritemapEntry(1, $43FA, $F6, 0, 1, 2, 0, $124)
     %spritemapEntry(1, $43F8, $FA, 0, 1, 2, 0, $108)
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_Yard_A3DA20:
-    dw $0002                                                             ;A3DA20;
-    %spritemapEntry(1, $43FA, $F5, 0, 1, 2, 0, $124)
-    %spritemapEntry(1, $43F8, $FB, 0, 1, 2, 0, $108)
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Yard_5D:
     dw $0002                                                             ;A3DA2C;
@@ -10768,629 +10381,6 @@ Spritemap_Yard_67:
     dw $0002                                                             ;A3DA90;
     %spritemapEntry(1, $43F9, $F8, 0, 1, 2, 0, $124)
     %spritemapEntry(1, $43F8, $FA, 0, 1, 2, 0, $108)
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $DA9C: Palette - enemy $DBFF (reflec) ;;;
-Palette_Reflec:
-    dw $3800,$7FBD,$5EB5,$1884,$0800,$777B,$5EB5,$45EF                   ;A3DA9C;
-    dw $2D29,$241F,$1C17,$142F,$0C47,$06E1,$6BF5,$05A1                   ;A3DAAC;
-
-
-;;; $DABC: Reflec palette cycle colours ;;;
-ReflecPaletteCycleColors:                                                ;A3DABC;
-    dw $241F,$1C17,$142F,$0C47
-    dw $211F,$18D8,$10B1,$086A
-    dw $221F,$1999,$1113,$08AD
-    dw $1EFF,$163A,$0D95,$04D0
-    dw $1BFF,$12FB,$09F7,$00F3
-    dw $1BFF,$12FB,$09F7,$00F3
-    dw $1EFF,$163A,$0D95,$04D0
-    dw $221F,$1999,$1113,$08AD
-    dw $211F,$18D8,$10B1,$086A
-    dw $241F,$1C17,$142F,$0C47
-
-
-;;; $DB0C: Enemy graphics drawn hook - reflec - periodically cycle between palettes ;;;
-EnemyGraphicsDrawnHook_Reflec_PeriodicallyCyclePalettes:
-    LDA.W DoorTransitionFlagEnemiesPause                                 ;A3DB0C;
-    BNE .return                                                          ;A3DB0F;
-    LDA.W EnemyPaletteCycle_Timer                                        ;A3DB11;
-    DEC                                                                  ;A3DB14;
-    STA.W EnemyPaletteCycle_Timer                                        ;A3DB15;
-    BNE .return                                                          ;A3DB18;
-    LDA.W #$0010                                                         ;A3DB1A;
-    STA.W EnemyPaletteCycle_Timer                                        ;A3DB1D;
-    LDA.W EnemyPaletteCycle_PaletteIndex                                 ;A3DB20;
-    TAX                                                                  ;A3DB23;
-    LDA.W EnemyPaletteCycle_ColorSetIndex                                ;A3DB24;
-    ASL                                                                  ;A3DB27;
-    ASL                                                                  ;A3DB28;
-    ASL                                                                  ;A3DB29;
-    TAY                                                                  ;A3DB2A;
-    LDA.W #$0004                                                         ;A3DB2B;
-    STA.W RemainingEnemySpritemapEntries                                 ;A3DB2E;
-
-  .loop:
-    LDA.W ReflecPaletteCycleColors,Y                                     ;A3DB31;
-    STA.L Palettes_SpriteP0+$12,X                                        ;A3DB34;
-    INY                                                                  ;A3DB38;
-    INY                                                                  ;A3DB39;
-    INX                                                                  ;A3DB3A;
-    INX                                                                  ;A3DB3B;
-    DEC.W RemainingEnemySpritemapEntries                                 ;A3DB3C;
-    BNE .loop                                                            ;A3DB3F;
-    LDA.W EnemyPaletteCycle_ColorSetIndex                                ;A3DB41;
-    INC                                                                  ;A3DB44;
-    AND.W #$0007                                                         ;A3DB45;
-    STA.W EnemyPaletteCycle_ColorSetIndex                                ;A3DB48;
-
-  .return:
-    RTL                                                                  ;A3DB4B;
-
-
-;;; $DB4C: Instruction list - facing left ;;;
-InstList_Reflec_FacingLeft:
-    dw Instruction_Reflec_Param2InY,$0000                                ;A3DB4C;
-    dw $0040,Spritemap_Reflec_FacingLeft                                 ;A3DB4E;
-    dw Instruction_Common_GotoY                                          ;A3DB54;
-    dw InstList_Reflec_FacingLeft                                        ;A3DB56;
-
-
-;;; $DB58: Instruction list - facing up-left ;;;
-InstList_Reflec_FacingUpLeft:
-    dw Instruction_Reflec_Param2InY,$0001                                ;A3DB58;
-    dw $0040,Spritemap_Reflec_FacingUpLeft                               ;A3DB5A;
-    dw Instruction_Common_GotoY                                          ;A3DB60;
-    dw InstList_Reflec_FacingUpLeft                                      ;A3DB62;
-
-
-;;; $DB64: Instruction list - facing up ;;;
-InstList_Reflec_FacingUp:
-    dw Instruction_Reflec_Param2InY,$0002                                ;A3DB64;
-    dw $0040,Spritemap_Reflec_FacingUp                                   ;A3DB66;
-    dw Instruction_Common_Sleep                                          ;A3DB6C;
-
-
-;;; $DB6E: Instruction list - facing up-right ;;;
-InstList_Reflec_FacingUpRight:
-    dw Instruction_Reflec_Param2InY,$0003                                ;A3DB6E;
-    dw $0040,Spritemap_Reflec_FacingUpRight                              ;A3DB70;
-    dw Instruction_Common_Sleep                                          ;A3DB76;
-
-
-;;; $DB78: Instruction list - facing right ;;;
-InstList_Reflec_FacingRight:
-    dw Instruction_Reflec_Param2InY,$0000                                ;A3DB78;
-    dw $0040,Spritemap_Reflec_FacingRight                                ;A3DB7A;
-    dw Instruction_Common_Sleep                                          ;A3DB80;
-
-
-;;; $DB82: Instruction list - facing down-right ;;;
-InstList_Reflec_FacingDownRight:
-    dw Instruction_Reflec_Param2InY,$0001                                ;A3DB82;
-    dw $0040,Spritemap_Reflec_FacingDownRight                            ;A3DB84;
-    dw Instruction_Common_Sleep                                          ;A3DB8A;
-
-
-;;; $DB8C: Instruction list - facing down ;;;
-InstList_Reflec_FacingDown:
-    dw Instruction_Reflec_Param2InY,$0002                                ;A3DB8C;
-    dw $0040,Spritemap_Reflec_FacingDown                                 ;A3DB8E;
-    dw Instruction_Common_Sleep                                          ;A3DB94;
-
-
-;;; $DB96: Instruction list - facing down-left ;;;
-InstList_Reflec_FacingDownLeft:
-    dw Instruction_Reflec_Param2InY,$0003                                ;A3DB96;
-    dw $0040,Spritemap_Reflec_FacingDownLeft                             ;A3DB98;
-    dw Instruction_Common_Sleep                                          ;A3DB9E;
-
-
-;;; $DBA0: Instruction list - health reached zero - facing left ;;;
-InstList_Reflec_ZeroHealth_FacingLeft:
-    dw Instruction_Reflec_Param2InY,$0000                                ;A3DBA0;
-    dw $0001,Spritemap_Reflec_FacingLeft                                 ;A3DBA2;
-    dw Instruction_Common_Sleep                                          ;A3DBA8;
-
-
-;;; $DBAA: Instruction list - health reached zero - facing up-left ;;;
-InstList_Reflec_ZeroHealth_FacingUpLeft:
-    dw Instruction_Reflec_Param2InY,$0001                                ;A3DBAA;
-    dw $0001,Spritemap_Reflec_FacingUpLeft                               ;A3DBAC;
-    dw Instruction_Common_Sleep                                          ;A3DBB2;
-
-
-;;; $DBB4: Instruction list - health reached zero - facing up ;;;
-InstList_Reflec_ZeroHealth_FacingUp:
-    dw Instruction_Reflec_Param2InY,$0002                                ;A3DBB4;
-    dw $0001,Spritemap_Reflec_FacingUp                                   ;A3DBB6;
-    dw Instruction_Common_Sleep                                          ;A3DBBC;
-
-
-;;; $DBBE: Instruction list - health reached zero - facing up-right ;;;
-InstList_Reflec_ZeroHealth_FacingUpRight:
-    dw Instruction_Reflec_Param2InY,$0003                                ;A3DBBE;
-    dw $0001,Spritemap_Reflec_FacingUpRight                              ;A3DBC0;
-    dw Instruction_Common_Sleep                                          ;A3DBC6;
-
-
-;;; $DBC8: Instruction - enemy reflection axis = [[Y]] ;;;
-Instruction_Reflec_Param2InY:
-    PHY                                                                  ;A3DBC8;
-    LDA.W $0000,Y                                                        ;A3DBC9;
-    STA.W Reflect.reflectionAxis,X                                       ;A3DBCC;
-    PLY                                                                  ;A3DBCF;
-    INY                                                                  ;A3DBD0;
-    INY                                                                  ;A3DBD1;
-    RTL                                                                  ;A3DBD2;
-
-
-;;; $DBD3: Initialisation AI - enemy $DBFF (reflec) ;;;
-InitAI_Reflec:
-    LDX.B EnemyIndex                                                     ;A3DBD3;
-    LDA.W Enemy.properties,X                                             ;A3DBD6;
-    ORA.W #$1000                                                         ;A3DBD9;
-    STA.W Enemy.properties,X                                             ;A3DBDC;
-    LDA.W Enemy.init0,X                                                  ;A3DBDF;
-    ASL                                                                  ;A3DBE2;
-    TAY                                                                  ;A3DBE3;
-    LDA.W .pointers,Y                                                    ;A3DBE4;
-    STA.W Enemy.instList,X                                               ;A3DBE7;
-    LDA.W #EnemyGraphicsDrawnHook_Reflec_PeriodicallyCyclePalettes       ;A3DBEA;
-    STA.W EnemyGraphicsDrawnHook                                         ;A3DBED;
-    LDA.W #EnemyGraphicsDrawnHook_Reflec_PeriodicallyCyclePalettes>>16   ;A3DBF0;
-    STA.W EnemyGraphicsDrawnHook+2                                       ;A3DBF3;
-    LDA.W Enemy.palette,X                                                ;A3DBF6;
-    ASL                                                                  ;A3DBF9;
-    ASL                                                                  ;A3DBFA;
-    ASL                                                                  ;A3DBFB;
-    ASL                                                                  ;A3DBFC;
-    AND.W #$FF00                                                         ;A3DBFD;
-    XBA                                                                  ;A3DC00;
-    STA.W EnemyPaletteCycle_PaletteIndex                                 ;A3DC01;
-    LDA.W #$0010                                                         ;A3DC04;
-    STA.W EnemyPaletteCycle_Timer                                        ;A3DC07;
-    RTL                                                                  ;A3DC0A;
-
-  .pointers:
-    dw InstList_Reflec_FacingLeft                                        ;A3DC0B;
-    dw InstList_Reflec_FacingUpLeft                                      ;A3DC0D;
-    dw InstList_Reflec_FacingUp                                          ;A3DC0F;
-    dw InstList_Reflec_FacingUpRight                                     ;A3DC11;
-    dw InstList_Reflec_FacingRight                                       ;A3DC13;
-    dw InstList_Reflec_FacingDownRight                                   ;A3DC15;
-    dw InstList_Reflec_FacingDown                                        ;A3DC17;
-    dw InstList_Reflec_FacingDownLeft                                    ;A3DC19;
-
-
-;;; $DC1B: RTL. Main AI - enemy $DBFF (reflec) ;;;
-RTL_A3DC1B:
-    RTL                                                                  ;A3DC1B;
-
-
-;;; $DC1C: Enemy shot - enemy $DBFF (reflec) ;;;
-EnemyShot_Reflec:
-    LDX.B EnemyIndex                                                     ;A3DC1C;
-    LDA.B CollisionIndex                                                 ;A3DC1F;
-    ASL                                                                  ;A3DC22;
-    TAY                                                                  ;A3DC23;
-    LDA.W #$000A                                                         ;A3DC24;
-    STA.W Enemy.invincibilityTimer,X                                     ;A3DC27;
-    LDA.W Reflect.reflectionAxis,X                                       ;A3DC2A;
-    ASL                                                                  ;A3DC2D;
-    ASL                                                                  ;A3DC2E;
-    ASL                                                                  ;A3DC2F;
-    ASL                                                                  ;A3DC30;
-    ASL                                                                  ;A3DC31;
-    STA.W Temp_ReflectionIndex                                           ;A3DC32;
-    LDA.W SamusProjectile_Directions,Y                                   ;A3DC35;
-    AND.W #$000F                                                         ;A3DC38;
-    ASL                                                                  ;A3DC3B;
-    CLC                                                                  ;A3DC3C;
-    ADC.W Temp_ReflectionIndex                                           ;A3DC3D;
-    TAX                                                                  ;A3DC40;
-    STA.W Temp_ReflectionIndex                                           ;A3DC41;
-    LDA.W .reflectedDirectionTable,X                                     ;A3DC44;
-    CMP.W #$8000                                                         ;A3DC47;
-    BEQ +                                                                ;A3DC4A;
-    LDA.W .reflectedDirectionTable,X                                     ;A3DC4C;
-    BMI .executeFunction                                                 ;A3DC4F;
-    BRA .skipFunction                                                    ;A3DC51;
-
-  .executeFunction:
-    JSR.W (.reflectedDirectionTable_offsetNegatives,X)                   ;A3DC53;
-    LDX.W Temp_ReflectionIndex                                           ;A3DC56;
-    LDA.W .reflectedDirectionTable,X                                     ;A3DC59;
-    EOR.W #$FFFF                                                         ;A3DC5C;
-    INC                                                                  ;A3DC5F;
-
-  .skipFunction:
-    STA.W SamusProjectile_Directions,Y                                   ;A3DC60;
-    LDA.W SamusProjectile_Types,Y                                        ;A3DC63;
-    AND.W #$7FFF                                                         ;A3DC66;
-    STA.W SamusProjectile_Types,Y                                        ;A3DC69;
-    STY.B DP_Temp14                                                      ;A3DC6C;
-    JSL.L ProjectileReflection                                           ;A3DC6E;
-    LDA.W #$0057                                                         ;A3DC72;
-    JSL.L QueueSound_Lib2_Max6                                           ;A3DC75;
-    RTL                                                                  ;A3DC79;
-
-+   LDA.W SamusProjectile_Directions,Y                                   ;A3DC7A;
-    ORA.W #$0010                                                         ;A3DC7D;
-    STA.W SamusProjectile_Directions,Y                                   ;A3DC80;
-    LDA.W Enemy.health,X                                                 ;A3DC83;
-    BEQ .return                                                          ;A3DC86;
-    JSL.L CommonA3_NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic     ;A3DC88;
-    LDA.W Enemy.health,X                                                 ;A3DC8C;
-    BNE .return                                                          ;A3DC8F;
-    LDA.W Reflect.reflectionAxis,X                                       ;A3DC91;
-    ASL                                                                  ;A3DC94;
-    TAY                                                                  ;A3DC95;
-    LDA.W .pointers,Y                                                    ;A3DC96;
-    STA.W Enemy.instList,X                                               ;A3DC99;
-    LDA.W #$0001                                                         ;A3DC9C;
-    STA.W Enemy.instTimer,X                                              ;A3DC9F;
-    STZ.W Enemy.loopCounter,X                                            ;A3DCA2;
-
-  .return:
-    RTL                                                                  ;A3DCA5;
-
-  .pointers:
-; Instruction lists for when health reaches zero...
-    dw InstList_Reflec_ZeroHealth_FacingLeft                             ;A3DCA6;
-    dw InstList_Reflec_ZeroHealth_FacingUpLeft                           ;A3DCA8;
-    dw InstList_Reflec_ZeroHealth_FacingUp                               ;A3DCAA;
-    dw InstList_Reflec_ZeroHealth_FacingUpRight                          ;A3DCAC;
-
-  .reflectedDirectionTable:                                              ;A3DCAE;
-; Reflected direction table
-; 8000h = no reflected projectile
-; Negative = reflection projectile position is offset
-;        _______________________________________________________ Up, facing right
-;       |      _________________________________________________ Up-right
-;       |     |      ___________________________________________ Right
-;       |     |     |      _____________________________________ Down-right
-;       |     |     |     |      _______________________________ Down, facing right
-;       |     |     |     |     |      _________________________ Down, facing left
-;       |     |     |     |     |     |      ___________________ Down-left
-;       |     |     |     |     |     |     |      _____________ Left
-;       |     |     |     |     |     |     |     |      _______ Up-left
-;       |     |     |     |     |     |     |     |     |      _ Up, facing left
-;       |     |     |     |     |     |     |     |     |     |
-    dw $8000,$FFF8,$0007,$FFFA,$8000,$8000,$FFFD,$0002,$FFFF,$8000, $0000,$0000,$0000,$0000,$0000,$0000 ; 0: Vertical
-    dw $FFFE,$8000,$FFF7,$0008,$FFF9,$FFF9,$8000,$FFFB,$0003,$FFFE, $0000,$0000,$0000,$0000,$0000,$0000 ; 1: Up-right diagonal
-    dw $0004,$FFFD,$8000,$FFFF,$0000,$0009,$FFF8,$8000,$FFFA,$0005, $0000,$0000,$0000,$0000,$0000,$0000 ; 2: Horizontal
-    dw $FFF9,$0006,$FFFC,$8000,$FFFE,$FFFE,$0001,$FFF7,$8000,$FFF9, $0000,$0000,$0000,$0000,$0000,$0000 ; 3: Down-right diagonal
-
-  .reflectedDirectionTable_offsetNegatives:                              ;A3DD2E;
-; Offset function for negative entries of above table
-    ; 0: Vertical
-    dw $0000                       ; Up, facing right
-    dw .vertical_UpRight_DownRight ; Up-right
-    dw $0000                       ; Right
-    dw .vertical_UpRight_DownRight ; Down-right
-    dw $0000                       ; Down, facing right
-    dw $0000                       ; Down, facing left
-    dw .vertical_UpLeft_DownLeft   ; Down-left
-    dw $0000                       ; Left
-    dw .vertical_UpLeft_DownLeft   ; Up-left
-    dw $0000                       ; Up, facing left
-    dw $0000,$0000,$0000,$0000,$0000,$0000
-
-    ; 1: Up-right diagonal
-    dw .upRightDiagonal_Up    ; Up, facing right
-    dw $0000                  ; Up-right
-    dw .upRightDiagonal_Right ; Right
-    dw $0000                  ; Down-right
-    dw .upRightDiagonal_Down  ; Down, facing right
-    dw .upRightDiagonal_Down  ; Down, facing left
-    dw $0000                  ; Down-left
-    dw .upRightDiagonal_Left  ; Left
-    dw $0000                  ; Up-left
-    dw .upRightDiagonal_Up    ; Up, facing left
-    dw $0000,$0000,$0000,$0000,$0000,$0000
-
-    ; 2: Horizontal
-    dw $0000                          ; Up, facing right
-    dw .horizontal_UpRight_UpLeft     ; Up-right
-    dw $0000                          ; Right
-    dw .horizontal_DownRight_DownLeft ; Down-right
-    dw $0000                          ; Down, facing right
-    dw $0000                          ; Down, facing left
-    dw .horizontal_DownRight_DownLeft ; Down-left
-    dw $0000                          ; Left
-    dw .horizontal_UpRight_UpLeft     ; Up-left
-    dw $0000                          ; Up, facing left
-    dw $0000,$0000,$0000,$0000,$0000,$0000
-
-    ; 3: Down-right diagonal
-    dw .downRightDiagonal_Up    ; Up, facing right
-    dw $0000                    ; Up-right
-    dw .downRightDiagonal_Right ; Right
-    dw $0000                    ; Down-right
-    dw .downRightDiagonal_Down  ; Down, facing right
-    dw .downRightDiagonal_Down  ; Down, facing left
-    dw $0000                    ; Down-left
-    dw .downRightDiagonal_Left  ; Left
-    dw $0000                    ; Up-left
-    dw .downRightDiagonal_Up    ; Up, facing left
-    dw $0000,$0000,$0000,$0000,$0000,$0000
-
-
-;;; $DDAE: Reflection offset function - vertical - up-right / down-right ;;;
-  .vertical_UpRight_DownRight:
-    LDX.B EnemyIndex                                                     ;A3DDAE;
-    LDA.W Enemy.XPosition,X                                              ;A3DDB1;
-    SEC                                                                  ;A3DDB4;
-    SBC.W #$0008                                                         ;A3DDB5;
-    STA.W Temp_Position                                                  ;A3DDB8;
-    LDA.W SamusProjectile_XPositions,Y                                   ;A3DDBB;
-    CLC                                                                  ;A3DDBE;
-    ADC.W SamusProjectile_XRadii,Y                                       ;A3DDBF;
-    CMP.W Temp_Position                                                  ;A3DDC2;
-    BPL ..return1                                                        ;A3DDC5;
-    LDA.W #$0000                                                         ;A3DDC7;
-    RTS                                                                  ;A3DDCA;
-
-  ..return1:
-    LDA.W #$0001                                                         ;A3DDCB;
-    RTS                                                                  ;A3DDCE;
-
-
-;;; $DDCF: Reflection offset function - vertical - up-left / down-left ;;;
-  .vertical_UpLeft_DownLeft:
-    LDX.B EnemyIndex                                                     ;A3DDCF;
-    LDA.W Enemy.XPosition,X                                              ;A3DDD2;
-    CLC                                                                  ;A3DDD5;
-    ADC.W #$0008                                                         ;A3DDD6;
-    STA.W Temp_Position                                                  ;A3DDD9;
-    LDA.W SamusProjectile_XPositions,Y                                   ;A3DDDC;
-    SEC                                                                  ;A3DDDF;
-    SBC.W SamusProjectile_XRadii,Y                                       ;A3DDE0;
-    CMP.W Temp_Position                                                  ;A3DDE3;
-    BMI ..return1                                                        ;A3DDE6;
-    LDA.W #$0000                                                         ;A3DDE8;
-    RTS                                                                  ;A3DDEB;
-
-  ..return1:
-    LDA.W #$0001                                                         ;A3DDEC;
-    RTS                                                                  ;A3DDEF;
-
-
-;;; $DDF0: Reflection offset function - up-right diagonal - up ;;;
-  .upRightDiagonal_Up:
-    LDX.B EnemyIndex                                                     ;A3DDF0;
-    LDA.W Enemy.XPosition,X                                              ;A3DDF3;
-    STA.W Temp_Position                                                  ;A3DDF6;
-    LDA.W SamusProjectile_XPositions,Y                                   ;A3DDF9;
-    CLC                                                                  ;A3DDFC;
-    ADC.W SamusProjectile_XRadii,Y                                       ;A3DDFD;
-    CMP.W Temp_Position                                                  ;A3DE00;
-    BMI ..return1                                                        ;A3DE03;
-    LDA.W #$0000                                                         ;A3DE05;
-    RTS                                                                  ;A3DE08;
-
-  ..return1:
-    LDA.W #$0001                                                         ;A3DE09;
-    RTS                                                                  ;A3DE0C;
-
-
-;;; $DE0D: Reflection offset function - up-right diagonal - right ;;;
-  .upRightDiagonal_Right:
-    LDX.B EnemyIndex                                                     ;A3DE0D;
-    LDA.W Enemy.YPosition,X                                              ;A3DE10;
-    STA.W Temp_Position                                                  ;A3DE13;
-    LDA.W SamusProjectile_YPositions,Y                                   ;A3DE16;
-    SEC                                                                  ;A3DE19;
-    SBC.W SamusProjectile_YRadii,Y                                       ;A3DE1A;
-    CMP.W Temp_Position                                                  ;A3DE1D;
-    BPL ..return1                                                        ;A3DE20;
-    LDA.W #$0000                                                         ;A3DE22;
-    RTS                                                                  ;A3DE25;
-
-  ..return1:
-    LDA.W #$0001                                                         ;A3DE26;
-    RTS                                                                  ;A3DE29;
-
-
-;;; $DE2A: Reflection offset function - up-right diagonal - down ;;;
-  .upRightDiagonal_Down:
-    LDX.B EnemyIndex                                                     ;A3DE2A;
-    LDA.W Enemy.XPosition,X                                              ;A3DE2D;
-    STA.W Temp_Position                                                  ;A3DE30;
-    LDA.W SamusProjectile_XPositions,Y                                   ;A3DE33;
-    SEC                                                                  ;A3DE36;
-    SBC.W SamusProjectile_XRadii,Y                                       ;A3DE37;
-    CMP.W Temp_Position                                                  ;A3DE3A;
-    BPL ..return1                                                        ;A3DE3D;
-    LDA.W #$0000                                                         ;A3DE3F;
-    RTS                                                                  ;A3DE42;
-
-  ..return1:
-    LDA.W #$0001                                                         ;A3DE43;
-    RTS                                                                  ;A3DE46;
-
-
-;;; $DE47: Reflection offset function - up-right diagonal - left ;;;
-  .upRightDiagonal_Left:
-    LDX.B EnemyIndex                                                     ;A3DE47;
-    LDA.W Enemy.YPosition,X                                              ;A3DE4A;
-    STA.W Temp_Position                                                  ;A3DE4D;
-    LDA.W SamusProjectile_YPositions,Y                                   ;A3DE50;
-    CLC                                                                  ;A3DE53;
-    ADC.W SamusProjectile_YRadii,Y                                       ;A3DE54;
-    CMP.W Temp_Position                                                  ;A3DE57;
-    BMI ..return1                                                        ;A3DE5A;
-    LDA.W #$0000                                                         ;A3DE5C;
-    RTS                                                                  ;A3DE5F;
-
-  ..return1:
-    LDA.W #$0001                                                         ;A3DE60;
-    RTS                                                                  ;A3DE63;
-
-
-;;; $DE64: Reflection offset function - horizontal - up-right / up-left ;;;
-  .horizontal_UpRight_UpLeft:
-    LDX.B EnemyIndex                                                     ;A3DE64;
-    LDA.W Enemy.YPosition,X                                              ;A3DE67;
-    CLC                                                                  ;A3DE6A;
-    ADC.W #$0008                                                         ;A3DE6B;
-    STA.W Temp_Position                                                  ;A3DE6E;
-    LDA.W SamusProjectile_YPositions,Y                                   ;A3DE71;
-    SEC                                                                  ;A3DE74;
-    SBC.W SamusProjectile_YRadii,Y                                       ;A3DE75;
-    CMP.W Temp_Position                                                  ;A3DE78;
-    BMI ..return1                                                        ;A3DE7B;
-    LDA.W #$0000                                                         ;A3DE7D;
-    RTS                                                                  ;A3DE80;
-
-  ..return1:
-    LDA.W #$0001                                                         ;A3DE81;
-    RTS                                                                  ;A3DE84;
-
-
-;;; $DE85: Reflection offset function - horizontal - down-right / down-left ;;;
-  .horizontal_DownRight_DownLeft:
-    LDX.B EnemyIndex                                                     ;A3DE85;
-    LDA.W Enemy.YPosition,X                                              ;A3DE88;
-    SEC                                                                  ;A3DE8B;
-    SBC.W #$0008                                                         ;A3DE8C;
-    STA.W Temp_Position                                                  ;A3DE8F;
-    LDA.W SamusProjectile_YPositions,Y                                   ;A3DE92;
-    CLC                                                                  ;A3DE95;
-    ADC.W SamusProjectile_YRadii,Y                                       ;A3DE96;
-    CMP.W Temp_Position                                                  ;A3DE99;
-    BPL ..return1                                                        ;A3DE9C;
-    LDA.W #$0000                                                         ;A3DE9E;
-    RTS                                                                  ;A3DEA1;
-
-  ..return1:
-    LDA.W #$0001                                                         ;A3DEA2;
-    RTS                                                                  ;A3DEA5;
-
-
-;;; $DEA6: Reflection offset function - down-right diagonal - up ;;;
-  .downRightDiagonal_Up:
-    LDX.B EnemyIndex                                                     ;A3DEA6;
-    LDA.W Enemy.XPosition,X                                              ;A3DEA9;
-    STA.W Temp_Position                                                  ;A3DEAC;
-    LDA.W SamusProjectile_XPositions,Y                                   ;A3DEAF;
-    SEC                                                                  ;A3DEB2;
-    SBC.W SamusProjectile_XRadii,Y                                       ;A3DEB3;
-    CMP.W Temp_Position                                                  ;A3DEB6;
-    BMI ..return1                                                        ;A3DEB9;
-    LDA.W #$0000                                                         ;A3DEBB;
-    RTS                                                                  ;A3DEBE;
-
-  ..return1:
-    LDA.W #$0001                                                         ;A3DEBF;
-    RTS                                                                  ;A3DEC2;
-
-
-;;; $DEC3: Reflection offset function - down-right diagonal - right ;;;
-  .downRightDiagonal_Right:
-    LDX.B EnemyIndex                                                     ;A3DEC3;
-    LDA.W Enemy.YPosition,X                                              ;A3DEC6;
-    STA.W Temp_Position                                                  ;A3DEC9;
-    LDA.W SamusProjectile_YPositions,Y                                   ;A3DECC;
-    CLC                                                                  ;A3DECF;
-    ADC.W SamusProjectile_YRadii,Y                                       ;A3DED0;
-    CMP.W Temp_Position                                                  ;A3DED3;
-    BPL ..return0                                                        ;A3DED6;
-    LDA.W #$0001                                                         ;A3DED8;
-    RTS                                                                  ;A3DEDB;
-
-  ..return0:
-    LDA.W #$0000                                                         ;A3DEDC;
-    RTS                                                                  ;A3DEDF;
-
-
-;;; $DEE0: Reflection offset function - down-right diagonal - down ;;;
-  .downRightDiagonal_Down:
-    LDX.B EnemyIndex                                                     ;A3DEE0;
-    LDA.W Enemy.XPosition,X                                              ;A3DEE3;
-    STA.W Temp_Position                                                  ;A3DEE6;
-    LDA.W SamusProjectile_XPositions,Y                                   ;A3DEE9;
-    SEC                                                                  ;A3DEEC;
-    SBC.W SamusProjectile_XRadii,Y                                       ;A3DEED;
-    CMP.W Temp_Position                                                  ;A3DEF0;
-    BMI ..return1                                                        ;A3DEF3;
-    LDA.W #$0000                                                         ;A3DEF5;
-    RTS                                                                  ;A3DEF8;
-
-  ..return1:
-    LDA.W #$0001                                                         ;A3DEF9;
-    RTS                                                                  ;A3DEFC;
-
-
-;;; $DEFD: Reflection offset function - down-right diagonal - left ;;;
-  .downRightDiagonal_Left:
-    LDX.B EnemyIndex                                                     ;A3DEFD;
-    LDA.W Enemy.YPosition,X                                              ;A3DF00;
-    STA.W Temp_Position                                                  ;A3DF03;
-    LDA.W SamusProjectile_YPositions,Y                                   ;A3DF06;
-    SEC                                                                  ;A3DF09;
-    SBC.W SamusProjectile_YRadii,Y                                       ;A3DF0A;
-    CMP.W Temp_Position                                                  ;A3DF0D;
-    BPL ..return1                                                        ;A3DF10;
-    LDA.W #$0000                                                         ;A3DF12;
-    RTS                                                                  ;A3DF15;
-
-  ..return1:
-    LDA.W #$0001                                                         ;A3DF16;
-    RTS                                                                  ;A3DF19;
-
-
-;;; $DF1A: Reflec spritemaps ;;;
-Spritemap_Reflec_FacingLeft:
-    dw $0003                                                             ;A3DF1A;
-    %spritemapEntry(1, $1F0, $00, 0, 1, 2, 0, $10E)
-    %spritemapEntry(1, $1F0, $F0, 0, 0, 2, 0, $10D)
-    %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $100)
-
-Spritemap_Reflec_FacingUpLeft:
-    dw $0003                                                             ;A3DF2B;
-    %spritemapEntry(1, $1EA, $F3, 0, 0, 2, 0, $11A)
-    %spritemapEntry(1, $1F2, $EB, 0, 0, 2, 0, $10B)
-    %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $102)
-
-Spritemap_Reflec_FacingUp:
-    dw $0003                                                             ;A3DF3C;
-    %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $104)
-    %spritemapEntry(1, $00, $F1, 1, 0, 2, 0, $118)
-    %spritemapEntry(1, $1F0, $F1, 0, 0, 2, 0, $108)
-
-Spritemap_Reflec_FacingUpRight:
-    dw $0003                                                             ;A3DF4D;
-    %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $106)
-    %spritemapEntry(1, $06, $F3, 0, 1, 2, 0, $11A)
-    %spritemapEntry(1, $1FE, $EB, 0, 1, 2, 0, $10B)
-
-Spritemap_Reflec_FacingRight:
-    dw $0003                                                             ;A3DF5E;
-    %spritemapEntry(1, $00, $00, 0, 0, 2, 0, $10E)
-    %spritemapEntry(1, $00, $F0, 0, 1, 2, 0, $10D)
-    %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $100)
-
-Spritemap_Reflec_FacingDownRight:
-    dw $0003                                                             ;A3DF6F;
-    %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $102)
-    %spritemapEntry(1, $06, $FD, 1, 1, 2, 0, $11A)
-    %spritemapEntry(1, $1FE, $05, 1, 1, 2, 0, $10B)
-
-Spritemap_Reflec_FacingDown:
-    dw $0003                                                             ;A3DF80;
-    %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $104)
-    %spritemapEntry(1, $00, $FF, 0, 0, 2, 0, $118)
-    %spritemapEntry(1, $1F0, $FF, 1, 0, 2, 0, $108)
-
-Spritemap_Reflec_FacingDownLeft:
-    dw $0003                                                             ;A3DF91;
-    %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $106)
-    %spritemapEntry(1, $1EA, $FD, 1, 0, 2, 0, $11A)
-    %spritemapEntry(1, $1F2, $05, 1, 0, 2, 0, $10B)
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $DFA2: Palette - enemy $DC3F (Wrecked Ship orange zoomer) ;;;
@@ -11872,43 +10862,6 @@ Spritemap_Crawlers_UpsideUp_FacingRight_4:
     %spritemapEntry(0, $1F6, $00, 0, 0, 2, 0, $128)
     %spritemapEntry(1, $00, $F8, 0, 0, 2, 0, $102)
     %spritemapEntry(1, $1F0, $F8, 0, 0, 2, 0, $100)
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_Crawlers_UpsideUp_FacingLeft_A3E356:
-    dw $0004                                                             ;A3E356;
-    %spritemapEntry(0, $1F5, $00, 0, 1, 2, 0, $121)
-    %spritemapEntry(0, $01, $00, 0, 1, 2, 0, $120)
-    %spritemapEntry(1, $1EF, $F8, 0, 1, 2, 0, $102)
-    %spritemapEntry(1, $1FF, $F8, 0, 1, 2, 0, $100)
-
-UNUSED_Spritemap_Crawlers_UpsideUp_FacingLeft_A3E36C:
-    dw $0004                                                             ;A3E36C;
-    %spritemapEntry(0, $1F5, $00, 0, 1, 2, 0, $123)
-    %spritemapEntry(0, $01, $00, 0, 1, 2, 0, $122)
-    %spritemapEntry(1, $1EF, $F7, 0, 1, 2, 0, $102)
-    %spritemapEntry(1, $1FF, $F7, 0, 1, 2, 0, $100)
-
-UNUSED_Spritemap_Crawlers_UpsideUp_FacingLeft_A3E382:
-    dw $0004                                                             ;A3E382;
-    %spritemapEntry(0, $1F5, $00, 0, 1, 2, 0, $125)
-    %spritemapEntry(0, $01, $00, 0, 1, 2, 0, $124)
-    %spritemapEntry(1, $1FF, $F7, 0, 0, 2, 0, $102)
-    %spritemapEntry(1, $1EF, $F7, 0, 0, 2, 0, $100)
-
-UNUSED_Spritemap_Crawlers_UpsideUp_FacingLeft_A3E398:
-    dw $0004                                                             ;A3E398;
-    %spritemapEntry(0, $1F5, $00, 0, 1, 2, 0, $127)
-    %spritemapEntry(0, $01, $00, 0, 1, 2, 0, $126)
-    %spritemapEntry(1, $1FF, $F7, 0, 0, 2, 0, $102)
-    %spritemapEntry(1, $1EF, $F7, 0, 0, 2, 0, $100)
-
-UNUSED_Spritemap_Crawlers_UpsideUp_FacingLeft_A3E3AE:
-    dw $0004                                                             ;A3E3AE;
-    %spritemapEntry(0, $1F5, $00, 0, 1, 2, 0, $129)
-    %spritemapEntry(0, $01, $00, 0, 1, 2, 0, $128)
-    %spritemapEntry(1, $1EF, $F8, 0, 1, 2, 0, $102)
-    %spritemapEntry(1, $1FF, $F8, 0, 1, 2, 0, $100)
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Crawlers_UpsideLeft_0:
     dw $0004                                                             ;A3E3C4;
@@ -13348,47 +12301,6 @@ PowerBombReaction_Metroid:
 
 
 ;;; $F071: Metroid spritemaps ;;;
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_Metroid_Shell_A3F071:
-    dw $000A                                                             ;A3F071;
-    %spritemapEntry(0, $10, $04, 0, 1, 2, 0, $130)
-    %spritemapEntry(0, $10, $FC, 0, 1, 2, 0, $120)
-    %spritemapEntry(0, $10, $F4, 0, 1, 2, 0, $110)
-    %spritemapEntry(0, $1E8, $04, 0, 0, 2, 0, $130)
-    %spritemapEntry(0, $1E8, $FC, 0, 0, 2, 0, $120)
-    %spritemapEntry(0, $1E8, $F4, 0, 0, 2, 0, $110)
-    %spritemapEntry(1, $00, $FC, 0, 1, 2, 0, $121)
-    %spritemapEntry(1, $00, $EC, 0, 0, 2, 0, $103)
-    %spritemapEntry(1, $1F0, $FC, 0, 0, 2, 0, $121)
-    %spritemapEntry(1, $1F0, $EC, 0, 0, 2, 0, $101)
-
-UNUSED_Spritemap_Metroid_Shell_A3F0A5:
-    dw $000A                                                             ;A3F0A5;
-    %spritemapEntry(0, $10, $FC, 0, 1, 2, 0, $12A)
-    %spritemapEntry(0, $10, $04, 0, 1, 2, 0, $13A)
-    %spritemapEntry(0, $10, $F4, 0, 0, 2, 0, $11F)
-    %spritemapEntry(0, $1E8, $04, 0, 0, 2, 0, $13A)
-    %spritemapEntry(0, $1E8, $FC, 0, 0, 2, 0, $12A)
-    %spritemapEntry(0, $1E8, $F4, 0, 0, 2, 0, $11A)
-    %spritemapEntry(1, $00, $EC, 0, 0, 2, 0, $10D)
-    %spritemapEntry(1, $00, $FC, 0, 1, 2, 0, $12B)
-    %spritemapEntry(1, $1F0, $FC, 0, 0, 2, 0, $12B)
-    %spritemapEntry(1, $1F0, $EC, 0, 0, 2, 0, $10B)
-
-UNUSED_Spritemap_Metroid_Shell_A3F0D9:
-    dw $000A                                                             ;A3F0D9;
-    %spritemapEntry(0, $1E8, $FC, 0, 0, 2, 0, $125)
-    %spritemapEntry(0, $10, $04, 0, 1, 2, 0, $135)
-    %spritemapEntry(0, $10, $FC, 0, 1, 2, 0, $125)
-    %spritemapEntry(0, $10, $F4, 0, 1, 2, 0, $115)
-    %spritemapEntry(0, $1E8, $04, 0, 0, 2, 0, $135)
-    %spritemapEntry(0, $1E8, $F4, 0, 0, 2, 0, $115)
-    %spritemapEntry(1, $00, $FC, 0, 1, 2, 0, $126)
-    %spritemapEntry(1, $00, $EC, 0, 0, 2, 0, $108)
-    %spritemapEntry(1, $1F0, $FC, 0, 0, 2, 0, $126)
-    %spritemapEntry(1, $1F0, $EC, 0, 0, 2, 0, $106)
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 Spritemap_Metroid_Insides_0:
     dw $0008                                                             ;A3F10D;
     %spritemapEntry(0, $10, $00, 0, 1, 2, 0, $160)
@@ -13430,142 +12342,6 @@ Spritemap_Metroid_Insides_3:
     %spritemapEntry(1, $00, $F0, 0, 1, 2, 0, $14A)
     %spritemapEntry(1, $1F0, $00, 0, 0, 2, 0, $16A)
     %spritemapEntry(1, $1F0, $F0, 0, 0, 2, 0, $14A)
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_Metroid_Electricity_A3F1AB:
-    dw $0003                                                             ;A3F1AB;
-    %spritemapEntry(0, $00, $EC, 0, 0, 2, 0, $17C)
-    %spritemapEntry(0, $1F8, $FC, 0, 0, 2, 0, $14D)
-    %spritemapEntry(0, $1F0, $FC, 0, 0, 2, 0, $14C)
-
-UNUSED_Spritemap_Metroid_Electricity_A3F1BC:
-    dw $0003                                                             ;A3F1BC;
-    %spritemapEntry(0, $00, $EC, 0, 0, 2, 0, $17D)
-    %spritemapEntry(0, $1F8, $FC, 0, 0, 2, 0, $15D)
-    %spritemapEntry(0, $1F0, $FC, 0, 0, 2, 0, $15C)
-
-UNUSED_Spritemap_Metroid_Electricity_A3F1CD:
-    dw $0003                                                             ;A3F1CD;
-    %spritemapEntry(0, $00, $EC, 0, 0, 2, 0, $17E)
-    %spritemapEntry(0, $1F8, $FC, 0, 0, 2, 0, $16D)
-    %spritemapEntry(0, $1F0, $FC, 0, 0, 2, 0, $16C)
-
-UNUSED_Spritemap_Metroid_Electricity_A3F1DE:
-    dw $0004                                                             ;A3F1DE;
-    %spritemapEntry(0, $08, $FC, 0, 0, 2, 0, $14F)
-    %spritemapEntry(0, $00, $FC, 0, 0, 2, 0, $14E)
-    %spritemapEntry(0, $1F8, $F4, 0, 0, 2, 0, $13D)
-    %spritemapEntry(0, $1F8, $EC, 0, 0, 2, 0, $12D)
-
-UNUSED_Spritemap_Metroid_Electricity_A3F1F4:
-    dw $0004                                                             ;A3F1F4;
-    %spritemapEntry(0, $08, $FC, 0, 0, 2, 0, $15F)
-    %spritemapEntry(0, $00, $FC, 0, 0, 2, 0, $15E)
-    %spritemapEntry(0, $1F8, $F4, 0, 0, 2, 0, $13E)
-    %spritemapEntry(0, $1F8, $EC, 0, 0, 2, 0, $12E)
-
-UNUSED_Spritemap_Metroid_Electricity_A3F20A:
-    dw $0004                                                             ;A3F20A;
-    %spritemapEntry(0, $08, $FC, 0, 0, 2, 0, $16F)
-    %spritemapEntry(0, $00, $FC, 0, 0, 2, 0, $16E)
-    %spritemapEntry(0, $1F8, $F4, 0, 0, 2, 0, $13F)
-    %spritemapEntry(0, $1F8, $EC, 0, 0, 2, 0, $12F)
-
-UNUSED_Spritemap_Metroid_Electricity_A3F220:
-    dw $0003                                                             ;A3F220;
-    %spritemapEntry(0, $08, $FC, 0, 0, 2, 0, $14D)
-    %spritemapEntry(0, $00, $FC, 0, 0, 2, 0, $14C)
-    %spritemapEntry(0, $1F8, $EC, 0, 1, 2, 0, $17C)
-
-UNUSED_Spritemap_Metroid_Electricity_A3F231:
-    dw $0003                                                             ;A3F231;
-    %spritemapEntry(0, $08, $FC, 0, 0, 2, 0, $15D)
-    %spritemapEntry(0, $00, $FC, 0, 0, 2, 0, $15C)
-    %spritemapEntry(0, $1F8, $EC, 0, 1, 2, 0, $17D)
-
-UNUSED_Spritemap_Metroid_Electricity_A3F242:
-    dw $0003                                                             ;A3F242;
-    %spritemapEntry(0, $08, $FC, 0, 0, 2, 0, $16D)
-    %spritemapEntry(0, $00, $FC, 0, 0, 2, 0, $16C)
-    %spritemapEntry(0, $1F8, $EC, 0, 1, 2, 0, $17E)
-
-UNUSED_Spritemap_Metroid_Electricity_A3F253:
-    dw $0004                                                             ;A3F253;
-    %spritemapEntry(0, $1F8, $FC, 0, 0, 2, 0, $14F)
-    %spritemapEntry(0, $1F0, $FC, 0, 0, 2, 0, $14E)
-    %spritemapEntry(0, $00, $F4, 0, 1, 2, 0, $13D)
-    %spritemapEntry(0, $00, $EC, 0, 1, 2, 0, $12D)
-
-UNUSED_Spritemap_Metroid_Electricity_A3F269:
-    dw $0004                                                             ;A3F269;
-    %spritemapEntry(0, $1F8, $FC, 0, 0, 2, 0, $16F)
-    %spritemapEntry(0, $1F0, $FC, 0, 0, 2, 0, $16E)
-    %spritemapEntry(0, $00, $F4, 0, 1, 2, 0, $13E)
-    %spritemapEntry(0, $00, $EC, 0, 1, 2, 0, $12E)
-
-UNUSED_Spritemap_Metroid_Electricity_A3F27F:
-    dw $0004                                                             ;A3F27F;
-    %spritemapEntry(0, $1F8, $FC, 0, 0, 2, 0, $15F)
-    %spritemapEntry(0, $1F0, $FC, 0, 0, 2, 0, $15E)
-    %spritemapEntry(0, $00, $F4, 0, 1, 2, 0, $13F)
-    %spritemapEntry(0, $00, $EC, 0, 1, 2, 0, $12F)
-
-UNUSED_Spritemap_Metroid_Electricity_A3F295:
-    dw $0002                                                             ;A3F295;
-    %spritemapEntry(0, $1F8, $FC, 0, 0, 2, 0, $14D)
-    %spritemapEntry(0, $1F0, $FC, 0, 0, 2, 0, $14C)
-
-UNUSED_Spritemap_Metroid_Electricity_A3F2A1:
-    dw $0001                                                             ;A3F2A1;
-    %spritemapEntry(0, $1F0, $FC, 0, 0, 2, 0, $15C)
-
-UNUSED_Spritemap_Metroid_Electricity_A3F2A8:
-    dw $0002                                                             ;A3F2A8;
-    %spritemapEntry(0, $1F8, $FC, 0, 0, 2, 0, $16D)
-    %spritemapEntry(0, $1F0, $FC, 0, 0, 2, 0, $16C)
-
-UNUSED_Spritemap_Metroid_Electricity_A3F2B4:
-    dw $0002                                                             ;A3F2B4;
-    %spritemapEntry(0, $1F8, $F4, 0, 0, 2, 0, $13D)
-    %spritemapEntry(0, $1F8, $EC, 0, 0, 2, 0, $12D)
-
-UNUSED_Spritemap_Metroid_Electricity_A3F2C0:
-    dw $0002                                                             ;A3F2C0;
-    %spritemapEntry(0, $1F8, $F4, 0, 0, 2, 0, $13E)
-    %spritemapEntry(0, $1F8, $EC, 0, 0, 2, 0, $12E)
-
-UNUSED_Spritemap_Metroid_Electricity_A3F2CC:
-    dw $0002                                                             ;A3F2CC;
-    %spritemapEntry(0, $1F8, $F4, 0, 0, 2, 0, $13F)
-    %spritemapEntry(0, $1F8, $EC, 0, 0, 2, 0, $12F)
-
-UNUSED_Spritemap_Metroid_Electricity_A3F2D8:
-    dw $0002                                                             ;A3F2D8;
-    %spritemapEntry(0, $08, $FC, 0, 0, 2, 0, $14D)
-    %spritemapEntry(0, $00, $FC, 0, 0, 2, 0, $14C)
-
-UNUSED_Spritemap_Metroid_Electricity_A3F2E4:
-    dw $0002                                                             ;A3F2E4;
-    %spritemapEntry(0, $08, $FC, 0, 0, 2, 0, $15D)
-    %spritemapEntry(0, $00, $FC, 0, 0, 2, 0, $15C)
-
-UNUSED_Spritemap_Metroid_Electricity_A3F2F0:
-    dw $0002                                                             ;A3F2F0;
-    %spritemapEntry(0, $08, $FC, 0, 0, 2, 0, $16D)
-    %spritemapEntry(0, $00, $FC, 0, 0, 2, 0, $16C)
-
-UNUSED_Spritemap_Metroid_Electricity_A3F2FC:
-    dw $0001                                                             ;A3F2FC;
-    %spritemapEntry(0, $00, $EC, 0, 0, 2, 0, $17C)
-
-UNUSED_Spritemap_Metroid_Electricity_A3F303:
-    dw $0001                                                             ;A3F303;
-    %spritemapEntry(0, $00, $EC, 0, 0, 2, 0, $17D)
-
-UNUSED_Spritemap_Metroid_Electricity_A3F30A:
-    dw $0001                                                             ;A3F30A;
-    %spritemapEntry(0, $00, $EC, 0, 0, 2, 0, $17E)
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Freespace_BankA3_F311:                                                   ;A3F311;

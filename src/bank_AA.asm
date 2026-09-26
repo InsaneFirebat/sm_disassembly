@@ -201,50 +201,6 @@ Instruction_CommonAA_CallFunctionInY_WithA:
     RTL                                                                  ;AA80B4;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $80B5: Unused. Instruction - call external function [[Y]] ;;;
-UNUSED_Instruction_CommonAA_CallExternalFunctionInY_AA80B5:
-    LDA.W $0000,Y                                                        ;AA80B5;
-    STA.B DP_Temp12                                                      ;AA80B8;
-    LDA.W $0001,Y                                                        ;AA80BA;
-    STA.B DP_Temp13                                                      ;AA80BD;
-    PHX                                                                  ;AA80BF;
-    PHY                                                                  ;AA80C0;
-    JSL.L .externalFunction                                              ;AA80C1;
-    PLY                                                                  ;AA80C5;
-    PLX                                                                  ;AA80C6;
-    INY                                                                  ;AA80C7;
-    INY                                                                  ;AA80C8;
-    INY                                                                  ;AA80C9;
-    RTL                                                                  ;AA80CA;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;AA80CB;
-
-
-;;; $80CE: Unused. Instruction - call external function [[Y]] with A = [[Y] + 3] ;;;
-UNUSED_Inst_CommonAA_CallExternalFunctionInY_WithA_AA80CE:
-    LDA.W $0000,Y                                                        ;AA80CE;
-    STA.B DP_Temp12                                                      ;AA80D1;
-    LDA.W $0001,Y                                                        ;AA80D3;
-    STA.B DP_Temp13                                                      ;AA80D6;
-    LDA.W $0003,Y                                                        ;AA80D8;
-    PHX                                                                  ;AA80DB;
-    PHY                                                                  ;AA80DC;
-    JSL.L .externalFunction                                              ;AA80DD;
-    PLY                                                                  ;AA80E1;
-    PLX                                                                  ;AA80E2;
-    TYA                                                                  ;AA80E3;
-    CLC                                                                  ;AA80E4;
-    ADC.W #$0005                                                         ;AA80E5;
-    TAY                                                                  ;AA80E8;
-    RTL                                                                  ;AA80E9;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;AA80EA;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $80ED: Instruction - go to [[Y]] ;;;
 Instruction_CommonAA_GotoY:
     LDA.W $0000,Y                                                        ;AA80ED;
@@ -681,16 +637,6 @@ ExtendedSpritemap_Torizo_Blank:
     dw Spritemap_Torizo_Blank                                            ;AA87D6;
     dw Hitboxes_Torizo_Blank                                             ;AA87D8;
 
-
-;;; $87DA: Torizo hitboxes ;;;
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Hitboxes_Torizo_AA87DA:
-    dw $0001                                                             ;AA87DA;
-    dw $FFF5,$FFD6,$000A,$0003
-    dw EnemyTouch_Torizo                                                 ;AA87E4;
-    dw EnemyShot_Torizo_Normal                                           ;AA87E6;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_0:
     dw $0001                                                             ;AA87E8;
     dw $FFF0,$FFE5,$0010,$001B
@@ -745,68 +691,20 @@ Hitboxes_Torizo_StandUp_SitDown_FacingLeft_8:
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_9:
     dw $0000                                                             ;AA885A;
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA885C:
-    dw $0001                                                             ;AA885C;
-    dw $FFF0,$0027,$FFFF,$0037
-    dw EnemyTouch_Torizo                                                 ;AA8866;
-    dw RTL_AAC9C1                                                        ;AA8868;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_A:
     dw $0000                                                             ;AA886A;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA886C:
-    dw $0001                                                             ;AA886C;
-    dw $FFE0,$0029,$FFF3,$0040
-    dw EnemyTouch_Torizo                                                 ;AA8876;
-    dw RTL_AAC9C1                                                        ;AA8878;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_B:
     dw $0000                                                             ;AA887A;
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA887C:
-    dw $0001                                                             ;AA887C;
-    dw $FFD8,$001C,$FFEC,$0030
-    dw EnemyTouch_Torizo                                                 ;AA8886;
-    dw RTL_AAC9C1                                                        ;AA8888;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_C:
     dw $0000                                                             ;AA888A;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA888C:
-    dw $0001                                                             ;AA888C;
-    dw $FFC8,$0009,$FFEB,$0014
-    dw EnemyTouch_Torizo                                                 ;AA8896;
-    dw RTL_AAC9C1                                                        ;AA8898;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_D:
     dw $0000                                                             ;AA889A;
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA889C:
-    dw $0001                                                             ;AA889C;
-    dw $FFD3,$FFF3,$FFE5,$0003
-    dw EnemyTouch_Torizo                                                 ;AA88A6;
-    dw RTL_AAC9C1                                                        ;AA88A8;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_E:
     dw $0000                                                             ;AA88AA;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA88AC:
-    dw $0001                                                             ;AA88AC;
-    dw $FFE3,$FFDB,$FFF0,$FFF1
-    dw EnemyTouch_Torizo                                                 ;AA88B6;
-    dw RTL_AAC9C1                                                        ;AA88B8;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_F:
     dw $0000                                                             ;AA88BA;
@@ -814,68 +712,20 @@ Hitboxes_Torizo_StandUp_SitDown_FacingLeft_F:
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_10:
     dw $0000                                                             ;AA88BC;
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA88BE:
-    dw $0001                                                             ;AA88BE;
-    dw $FFEF,$0028,$0000,$0039
-    dw EnemyTouch_Torizo                                                 ;AA88C8;
-    dw RTL_AAC9C1                                                        ;AA88CA;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_11:
     dw $0000                                                             ;AA88CC;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA88CE:
-    dw $0001                                                             ;AA88CE;
-    dw $FFE6,$0021,$FFF4,$0032
-    dw EnemyTouch_Torizo                                                 ;AA88D8;
-    dw RTL_AAC9C1                                                        ;AA88DA;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_12:
     dw $0000                                                             ;AA88DC;
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA88DE:
-    dw $0001                                                             ;AA88DE;
-    dw $FFDD,$0018,$FFEA,$0025
-    dw EnemyTouch_Torizo                                                 ;AA88E8;
-    dw RTL_AAC9C1                                                        ;AA88EA;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_13:
     dw $0000                                                             ;AA88EC;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA88EE:
-    dw $0001                                                             ;AA88EE;
-    dw $FFCA,$0008,$FFE9,$0012
-    dw EnemyTouch_Torizo                                                 ;AA88F8;
-    dw RTL_AAC9C1                                                        ;AA88FA;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_14:
     dw $0000                                                             ;AA88FC;
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA88FE:
-    dw $0001                                                             ;AA88FE;
-    dw $FFD3,$FFF3,$FFE3,$0000
-    dw EnemyTouch_Torizo                                                 ;AA8908;
-    dw RTL_AAC9C1                                                        ;AA890A;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_15:
     dw $0000                                                             ;AA890C;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA890E:
-    dw $0001                                                             ;AA890E;
-    dw $FFE4,$FFDA,$FFEF,$FFEE
-    dw EnemyTouch_Torizo                                                 ;AA8918;
-    dw RTL_AAC9C1                                                        ;AA891A;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_16:
     dw $0001                                                             ;AA891C;
@@ -888,14 +738,6 @@ Hitboxes_Torizo_StandUp_SitDown_FacingLeft_17:
     dw $FFEE,$FFDB,$0007,$0012
     dw EnemyTouch_Torizo                                                 ;AA8934;
     dw EnemyShot_Torizo_Normal                                           ;AA8936;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA8938:
-    dw $0001                                                             ;AA8938;
-    dw $FFF5,$FFD6,$000A,$0007
-    dw EnemyTouch_Torizo                                                 ;AA8942;
-    dw EnemyShot_Torizo_Normal                                           ;AA8944;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 Hitboxes_Torizo_StandUp_SitDown_FacingRight_0:
     dw $0001                                                             ;AA8946;
@@ -1183,16 +1025,6 @@ Spritemaps_Torizo_A:
 Spritemaps_Torizo_B:
     dw $0001                                                             ;AA8C1E;
     %spritemapEntry(0, $1FC, $FC, 0, 1, 2, 5, $16A)
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemaps_Torizo_AA8C25:
-    dw $0001                                                             ;AA8C25;
-    %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 5, $12E)
-
-UNUSED_Spritemaps_Torizo_AA8C2C:
-    dw $0001                                                             ;AA8C2C;
-    %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 1, $104)
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemaps_Torizo_C:
     dw $001A                                                             ;AA8C33;
@@ -1861,17 +1693,6 @@ Spritemaps_Torizo_2F:
     %spritemapEntry(1, $1FE, $D9, 0, 0, 2, 1, $102)
     %spritemapEntry(1, $1EE, $D9, 0, 0, 2, 1, $100)
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemaps_Torizo_AA9766:
-    dw $0006                                                             ;AA9766;
-    %spritemapEntry(1, $00, $0C, 0, 0, 2, 1, $142)
-    %spritemapEntry(1, $1F0, $0C, 0, 0, 2, 1, $140)
-    %spritemapEntry(1, $00, $FC, 0, 0, 2, 1, $122)
-    %spritemapEntry(1, $1F0, $FC, 0, 0, 2, 1, $120)
-    %spritemapEntry(1, $00, $EC, 0, 0, 2, 1, $102)
-    %spritemapEntry(1, $1F0, $EC, 0, 0, 2, 1, $100)
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 Spritemaps_Torizo_30:
     dw $0004                                                             ;AA9786;
     %spritemapEntry(0, $1EC, $F4, 0, 1, 2, 1, $1CB)
@@ -1915,97 +1736,6 @@ Spritemaps_Torizo_35:
     %spritemapEntry(1, $1F0, $F4, 0, 1, 2, 1, $1C6)
     %spritemapEntry(1, $00, $F4, 0, 1, 2, 1, $1C4)
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemaps_Torizo_AA980F:
-    dw $0013                                                             ;AA980F;
-    %spritemapEntry(0, $1F5, $10, 0, 0, 2, 1, $14C)
-    %spritemapEntry(0, $03, $10, 0, 1, 2, 1, $14C)
-    %spritemapEntry(0, $1FC, $F8, 0, 1, 2, 1, $15F)
-    %spritemapEntry(0, $1F8, $D0, 0, 0, 2, 1, $19F)
-    %spritemapEntry(0, $1F5, $20, 0, 0, 2, 1, $1DF)
-    %spritemapEntry(0, $1F5, $18, 0, 0, 2, 1, $1CF)
-    %spritemapEntry(0, $1F5, $08, 0, 0, 2, 1, $19E)
-    %spritemapEntry(0, $1F6, $00, 0, 0, 2, 1, $1DE)
-    %spritemapEntry(0, $1F7, $F8, 0, 0, 2, 1, $1CE)
-    %spritemapEntry(1, $1F0, $E8, 0, 0, 2, 1, $1E6)
-    %spritemapEntry(1, $1F0, $D8, 0, 0, 2, 1, $1E4)
-    %spritemapEntry(0, $00, $D0, 0, 1, 2, 1, $19F)
-    %spritemapEntry(0, $03, $20, 0, 1, 2, 1, $1DF)
-    %spritemapEntry(0, $03, $18, 0, 1, 2, 1, $1CF)
-    %spritemapEntry(0, $03, $08, 0, 1, 2, 1, $19E)
-    %spritemapEntry(0, $02, $00, 0, 1, 2, 1, $1DE)
-    %spritemapEntry(0, $01, $F8, 0, 1, 2, 1, $1CE)
-    %spritemapEntry(1, $00, $E8, 0, 1, 2, 1, $1E6)
-    %spritemapEntry(1, $00, $D8, 0, 1, 2, 1, $1E4)
-
-UNUSED_Spritemaps_Torizo_AA9870:
-    dw $001B                                                             ;AA9870;
-    %spritemapEntry(0, $00, $F0, 0, 1, 2, 1, $1DC)
-    %spritemapEntry(0, $00, $E8, 0, 1, 2, 1, $1CC)
-    %spritemapEntry(0, $1F8, $F0, 0, 0, 2, 1, $1DC)
-    %spritemapEntry(0, $1F8, $E8, 0, 0, 2, 1, $1CC)
-    %spritemapEntry(0, $03, $10, 0, 1, 2, 1, $14C)
-    %spritemapEntry(0, $1F5, $10, 0, 0, 2, 1, $14C)
-    %spritemapEntry(0, $1F0, $E0, 0, 0, 2, 1, $1F4)
-    %spritemapEntry(0, $1F0, $D8, 0, 0, 2, 1, $1E4)
-    %spritemapEntry(0, $00, $E0, 0, 1, 2, 1, $1DD)
-    %spritemapEntry(0, $00, $D8, 0, 1, 2, 1, $1CD)
-    %spritemapEntry(0, $1F8, $E0, 0, 0, 2, 1, $1DD)
-    %spritemapEntry(0, $1F8, $D8, 0, 0, 2, 1, $1CD)
-    %spritemapEntry(0, $08, $E0, 0, 1, 2, 1, $1F4)
-    %spritemapEntry(0, $08, $D8, 0, 1, 2, 1, $1E4)
-    %spritemapEntry(0, $1FC, $F8, 0, 1, 2, 1, $15F)
-    %spritemapEntry(0, $1F5, $20, 0, 0, 2, 1, $1DF)
-    %spritemapEntry(0, $1F5, $18, 0, 0, 2, 1, $1CF)
-    %spritemapEntry(0, $1F5, $08, 0, 0, 2, 1, $19E)
-    %spritemapEntry(0, $1F6, $00, 0, 0, 2, 1, $1DE)
-    %spritemapEntry(0, $1F7, $F8, 0, 0, 2, 1, $1CE)
-    %spritemapEntry(1, $1F0, $E8, 0, 0, 2, 1, $1E6)
-    %spritemapEntry(0, $03, $20, 0, 1, 2, 1, $1DF)
-    %spritemapEntry(0, $03, $18, 0, 1, 2, 1, $1CF)
-    %spritemapEntry(0, $03, $08, 0, 1, 2, 1, $19E)
-    %spritemapEntry(0, $02, $00, 0, 1, 2, 1, $1DE)
-    %spritemapEntry(0, $01, $F8, 0, 1, 2, 1, $1CE)
-    %spritemapEntry(1, $00, $E8, 0, 1, 2, 1, $1E6)
-
-UNUSED_Spritemaps_Torizo_AA98F9:
-    dw $0001                                                             ;AA98F9;
-    %spritemapEntry(0, $1FC, $FC, 0, 1, 2, 5, $170)
-
-UNUSED_Spritemaps_Torizo_AA9900:
-    dw $0001                                                             ;AA9900;
-    %spritemapEntry(0, $1FC, $FC, 0, 1, 2, 5, $163)
-
-UNUSED_Spritemaps_Torizo_AA9907:
-    dw $0001                                                             ;AA9907;
-    %spritemapEntry(0, $1FC, $FC, 0, 1, 2, 5, $167)
-
-UNUSED_Spritemaps_Torizo_AA990E:
-    dw $0001                                                             ;AA990E;
-    %spritemapEntry(0, $1FC, $FC, 0, 1, 2, 5, $16A)
-
-UNUSED_Spritemaps_Torizo_AA9915:
-    dw $0001                                                             ;AA9915;
-    %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 3, $12C)
-
-UNUSED_Spritemaps_Torizo_AA991C:
-    dw $0001                                                             ;AA991C;
-    %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 5, $12E)
-
-UNUSED_Spritemaps_Torizo_AA9923:
-    dw $0001                                                             ;AA9923;
-    %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 1, $104)
-
-UNUSED_Spritemaps_Torizo_AA992A:
-    dw $0006                                                             ;AA992A;
-    %spritemapEntry(0, $1F8, $08, 1, 1, 2, 5, $152)
-    %spritemapEntry(0, $00, $08, 1, 0, 2, 5, $152)
-    %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 5, $192)
-    %spritemapEntry(0, $1F8, $F0, 0, 0, 2, 5, $182)
-    %spritemapEntry(0, $00, $F8, 0, 1, 2, 5, $192)
-    %spritemapEntry(0, $00, $F0, 0, 1, 2, 5, $182)
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 Spritemaps_Torizo_36:
     dw $001A                                                             ;AA994A;
     %spritemapEntry(0, $0F, $FA, 0, 1, 2, 1, $1FB)
@@ -2034,14 +1764,6 @@ Spritemaps_Torizo_36:
     %spritemapEntry(1, $1E8, $F6, 0, 1, 2, 1, $122)
     %spritemapEntry(1, $1F8, $F6, 0, 1, 2, 1, $120)
     %spritemapEntry(1, $1E8, $E6, 0, 1, 2, 1, $102)
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemaps_Torizo_UnusedEntry_AA99CE:
-; Missing count
-    dw $81F8                                                             ;AA99CE;
-    db $E6                                                               ;AA99D0;
-    dw $6300                                                             ;AA99D1;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemaps_Torizo_37:
     dw $001A                                                             ;AA99D3;
@@ -2217,32 +1939,6 @@ Spritemaps_Torizo_3C:
     %spritemapEntry(1, $02, $E9, 0, 1, 2, 1, $120)
     %spritemapEntry(1, $1F2, $D9, 0, 1, 2, 1, $102)
     %spritemapEntry(1, $02, $D9, 0, 1, 2, 1, $100)
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemaps_Torizo_AA9CF0:
-    dw $0002                                                             ;AA9CF0;
-    %spritemapEntry(0, $1F8, $FC, 0, 0, 2, 5, $180)
-    %spritemapEntry(0, $00, $FC, 0, 1, 2, 5, $180)
-
-UNUSED_Spritemaps_Torizo_AA9CFC:
-    dw $0004                                                             ;AA9CFC;
-    %spritemapEntry(0, $1F8, $00, 0, 0, 2, 5, $190)
-    %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 5, $180)
-    %spritemapEntry(0, $00, $00, 0, 1, 2, 5, $190)
-    %spritemapEntry(0, $00, $F8, 0, 1, 2, 5, $180)
-
-UNUSED_Spritemaps_Torizo_AA9D12:
-    dw $0003                                                             ;AA9D12;
-    %spritemapEntry(1, $1F8, $F4, 0, 1, 2, 5, $180)
-    %spritemapEntry(0, $1F8, $04, 0, 0, 2, 5, $199)
-    %spritemapEntry(0, $00, $04, 0, 1, 2, 5, $199)
-
-UNUSED_Spritemaps_Torizo_AA9D23:
-    dw $0003                                                             ;AA9D23;
-    %spritemapEntry(0, $00, $06, 0, 1, 2, 5, $180)
-    %spritemapEntry(0, $1F8, $06, 0, 0, 2, 5, $180)
-    %spritemapEntry(1, $1F8, $F2, 0, 0, 2, 5, $12E)
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemaps_Torizo_3D:
     dw $0016                                                             ;AA9D34;
@@ -2706,25 +2402,6 @@ Spritemaps_Torizo_59:
     %spritemapEntry(1, $02, $E9, 0, 1, 2, 1, $120)
     %spritemapEntry(1, $1F2, $D9, 0, 1, 2, 1, $102)
     %spritemapEntry(1, $02, $D9, 0, 1, 2, 1, $100)
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemaps_Torizo_AAA4C6:
-    dw $0006                                                             ;AAA4C6;
-    %spritemapEntry(1, $1F0, $0C, 0, 1, 2, 1, $142)
-    %spritemapEntry(1, $00, $0C, 0, 1, 2, 1, $140)
-    %spritemapEntry(1, $1F0, $FC, 0, 1, 2, 1, $122)
-    %spritemapEntry(1, $00, $FC, 0, 1, 2, 1, $120)
-    %spritemapEntry(1, $1F0, $EC, 0, 1, 2, 1, $102)
-    %spritemapEntry(1, $00, $EC, 0, 1, 2, 1, $100)
-
-
-;;; $A4E6: Torizo extended spritemaps ;;;
-UNUSED_ExtendedSpritemaps_Torizo_AAA4E6:
-    dw $0001                                                             ;AAA4E6;
-    dw $0000,$0000
-    dw Spritemaps_Torizo_7                                               ;AAA4EC;
-    dw UNUSED_Hitboxes_Torizo_AA87DA                                     ;AAA4EE;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 ExtendedSpritemaps_Torizo_FacingScreen_Turning_Dodging:
     dw $0001                                                             ;AAA4F0;
@@ -3308,20 +2985,6 @@ ExtSpritemap_Torizo_SonicBoom_Swipe_FaceLeft_LeftFootFwd_3:
     dw Spritemaps_Torizo_2A                                              ;AAA9FA;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingLeft_15                     ;AAA9FC;
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_ExtendedSpritemaps_Torizo_AAA9FE:
-    dw $0001                                                             ;AAA9FE;
-    dw $0000,$0008
-    dw Spritemaps_Torizo_6                                               ;AAAA04;
-    dw UNUSED_Hitboxes_Torizo_AA87DA                                     ;AAAA06;
-
-UNUSED_ExtendedSpritemaps_Torizo_AAAA08:
-    dw $0001                                                             ;AAAA08;
-    dw $0000,$0008
-    dw Spritemaps_Torizo_7                                               ;AAAA0E;
-    dw UNUSED_Hitboxes_Torizo_AA87DA                                     ;AAAA10;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0:
     dw $0001                                                             ;AAAA12;
     dw $0000,$0000
@@ -3372,32 +3035,6 @@ ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_6:
     dw $0000,$0000                                                       ;AAAA68;
     dw Spritemaps_Torizo_12                                              ;AAAA6C;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingLeft_6                      ;AAAA6E;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_ExtendedSpritemaps_Torizo_AAAA70:
-    dw $0001                                                             ;AAAA70;
-    dw $0000,$0000
-    dw Spritemaps_Torizo_8                                               ;AAAA76;
-    dw Hitboxes_Torizo_Blank                                             ;AAAA78;
-
-UNUSED_ExtendedSpritemaps_Torizo_AAAA7A:
-    dw $0001                                                             ;AAAA7A;
-    dw $0000,$0000
-    dw Spritemaps_Torizo_9                                               ;AAAA80;
-    dw Hitboxes_Torizo_Blank                                             ;AAAA82;
-
-UNUSED_ExtendedSpritemaps_Torizo_AAAA84:
-    dw $0001                                                             ;AAAA84;
-    dw $0000,$0000
-    dw Spritemaps_Torizo_A                                               ;AAAA8A;
-    dw Hitboxes_Torizo_Blank                                             ;AAAA8C;
-
-UNUSED_ExtendedSpritemaps_Torizo_AAAA8E:
-    dw $0001                                                             ;AAAA8E;
-    dw $0000,$0000
-    dw Spritemaps_Torizo_B                                               ;AAAA94;
-    dw Hitboxes_Torizo_Blank                                             ;AAAA96;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 ExtendedSpritemaps_Torizo_WalkingRight_LeftLegMoving_0:
     dw $0004                                                             ;AAAA98;
@@ -4850,35 +4487,6 @@ InstList_Torizo_FacingLeft_Faceless_Walking_LeftLegMoving:
     dw InstList_Torizo_FacingLeft_Faceless_Walking_RightLegMoving        ;AABD8E;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $BD90: Unused. Instruction list - stand up - facing right ;;;
-UNUSED_InstList_Torizo_FacingRight_StandUp_AABD90:
-    dw Instruction_Torizo_SetSteppedRightWithLeftFootState               ;AABD90;
-    dw $0001                                                             ;AABD92;
-    dw ExtendedSpritemap_Torizo_Blank                                    ;AABD94;
-    dw Instruction_Torizo_FunctionInY                                    ;AABD96;
-    dw Function_Torizo_WakeWhenBombTorizoChozoFinishesCrumbling          ;AABD98;
-    dw Instruction_Common_Sleep                                          ;AABD9A;
-    dw Instruction_Torizo_FunctionInY                                    ;AABD9C;
-    dw Function_Torizo_SimpleMovement                                    ;AABD9E;
-    dw $0020,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_0     ;AABDA0;
-    dw Instruction_Torizo_StandingUpMovement_IndexInY,$0010              ;AABDA4;
-    dw $0010,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_1     ;AABDA6;
-    dw Instruction_Torizo_StandingUpMovement_IndexInY,$0012              ;AABDAC;
-    dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_2     ;AABDAE;
-    dw Instruction_Torizo_StandingUpMovement_IndexInY,$0014              ;AABDB4;
-    dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_3     ;AABDB6;
-    dw Instruction_Torizo_StandingUpMovement_IndexInY,$0016              ;AABDBC;
-    dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_4     ;AABDBE;
-    dw Instruction_Torizo_StandingUpMovement_IndexInY,$0018              ;AABDC4;
-    dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_5     ;AABDC6;
-    dw Instruction_Torizo_StandingUpMovement_IndexInY,$001A              ;AABDCC;
-    dw $0008,ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_6     ;AABDCE;
-    dw Instruction_Common_GotoY                                          ;AABDD4;
-    dw InstList_Torizo_FacingRight_Walking_RightLegMoving                ;AABDD6;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $BDD8: Instruction list - turning right ;;;
 InstList_Torizo_FacingRight_TurningRight:
     dw Instruction_Torizo_FunctionInY                                    ;AABDD8;
@@ -6034,21 +5642,6 @@ MainAI_BombTorizo:
 ;;; $C6AB: RTS ;;;
 RTS_AAC6AB:
     RTS                                                                  ;AAC6AB;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $C6AC: Unused ;;;
-UNUSED_Torizo_AAC6AC:
-    JSR.W HandleFalling                                                  ;AAC6AC;
-    LDA.W #$0600                                                         ;AAC6AF;
-    JSL.L Advance_GradualColorChange_ofPalettesInA_Denominator_C         ;AAC6B2;
-    BCS .return                                                          ;AAC6B6;
-    LDA.W #RTS_AAC6AB                                                    ;AAC6B8;
-    STA.W Torizo.function,X                                              ;AAC6BB;
-
-  .return:
-    RTS                                                                  ;AAC6BE;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $C6BF: Torizo function - simple movement ;;;
@@ -8998,11 +8591,6 @@ ShaktoolPieceData:
   .zero:
     dw $0000,$0000,$0000,$0000,$0000,$0000,$0000                         ;AADEF7;
 
-if !FEATURE_KEEP_UNREFERENCED
-  .unused:
-    dw $0000,$0000,$0002,$0004,$0006,$0008,$000A                         ;AADF05;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
   .headBobInstListPointer:
     dw InstList_Shaktool_SawHand_HeadBob_PrimaryPiece                    ;AADF13; Initially right saw hand (primary piece)
     dw InstList_Shaktool_ArmPiece_HeadBob_Back                           ;AADF15; Initially rightmost arm piece
@@ -10067,81 +9655,6 @@ Spritemaps_Chozo_10:
     %spritemapEntry(1, $43FC, $D7, 0, 0, 2, 1, $102)
     %spritemapEntry(1, $43EC, $D7, 0, 0, 2, 1, $100)
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemaps_Chozo_11_AAEE85:
-    dw $002A                                                             ;AAEE85;
-    %spritemapEntry(1, $43E0, $98, 0, 0, 2, 1, $144)
-    %spritemapEntry(1, $4242, $98, 0, 0, 2, 1, $14A)
-    %spritemapEntry(1, $4232, $A0, 0, 0, 2, 1, $158)
-    %spritemapEntry(1, $4232, $98, 0, 0, 2, 1, $148)
-    %spritemapEntry(1, $4222, $A0, 0, 0, 2, 1, $15C)
-    %spritemapEntry(1, $4222, $98, 0, 0, 2, 1, $14C)
-    %spritemapEntry(1, $4202, $98, 0, 0, 2, 1, $14E)
-    %spritemapEntry(1, $4212, $A0, 0, 0, 2, 1, $156)
-    %spritemapEntry(1, $4212, $98, 0, 0, 2, 1, $146)
-    %spritemapEntry(1, $4201, $B8, 0, 0, 2, 2, $14E)
-    %spritemapEntry(1, $4211, $C0, 0, 0, 2, 2, $156)
-    %spritemapEntry(1, $4211, $B8, 0, 0, 2, 2, $146)
-    %spritemapEntry(1, $4241, $B8, 0, 0, 2, 2, $14A)
-    %spritemapEntry(1, $4231, $C0, 0, 0, 2, 2, $158)
-    %spritemapEntry(1, $4231, $B8, 0, 0, 2, 2, $148)
-    %spritemapEntry(1, $4221, $C0, 0, 0, 2, 2, $15C)
-    %spritemapEntry(1, $4221, $B8, 0, 0, 2, 2, $14C)
-    %spritemapEntry(1, $43D8, $F0, 0, 0, 2, 2, $177)
-    %spritemapEntry(1, $43C8, $F0, 0, 0, 2, 2, $175)
-    %spritemapEntry(1, $43B8, $F0, 0, 0, 2, 2, $173)
-    %spritemapEntry(1, $43A0, $F0, 0, 0, 2, 2, $170)
-    %spritemapEntry(1, $43A8, $F0, 0, 0, 2, 2, $171)
-    %spritemapEntry(1, $43D8, $E0, 0, 0, 2, 1, $177)
-    %spritemapEntry(1, $43C8, $E0, 0, 0, 2, 1, $175)
-    %spritemapEntry(1, $43B8, $E0, 0, 0, 2, 1, $173)
-    %spritemapEntry(1, $43A8, $E0, 0, 0, 2, 1, $171)
-    %spritemapEntry(1, $43A0, $E0, 0, 0, 2, 1, $170)
-    %spritemapEntry(1, $43D0, $A0, 0, 0, 2, 1, $152)
-    %spritemapEntry(1, $43D0, $98, 0, 0, 2, 1, $142)
-    %spritemapEntry(1, $43B0, $A0, 0, 1, 2, 1, $152)
-    %spritemapEntry(1, $43B0, $98, 0, 1, 2, 1, $142)
-    %spritemapEntry(1, $43C0, $A0, 0, 0, 2, 1, $150)
-    %spritemapEntry(1, $43C0, $98, 0, 0, 2, 1, $140)
-    %spritemapEntry(1, $43A0, $98, 0, 1, 2, 1, $144)
-    %spritemapEntry(1, $43A1, $B8, 0, 1, 2, 2, $144)
-    %spritemapEntry(1, $43B0, $B8, 0, 1, 2, 2, $142)
-    %spritemapEntry(1, $43B0, $C0, 0, 1, 2, 2, $152)
-    %spritemapEntry(1, $43D0, $C0, 0, 0, 2, 2, $152)
-    %spritemapEntry(1, $43C0, $C0, 0, 0, 2, 2, $150)
-    %spritemapEntry(1, $43E0, $B8, 0, 0, 2, 2, $144)
-    %spritemapEntry(1, $43D0, $B8, 0, 0, 2, 2, $142)
-    %spritemapEntry(1, $43C0, $B8, 0, 0, 2, 2, $140)
-
-UNUSED_Spritemaps_Chozo_12_AAEF59:
-    dw $0019                                                             ;AAEF59;
-    %spritemapEntry(1, $4238, $88, 0, 0, 2, 1, $10D)
-    %spritemapEntry(1, $4240, $80, 0, 0, 2, 1, $10B)
-    %spritemapEntry(0, $3E, $EF, 0, 0, 2, 1, $139)
-    %spritemapEntry(1, $4236, $DF, 0, 0, 2, 1, $12C)
-    %spritemapEntry(1, $4246, $E7, 0, 0, 2, 1, $12A)
-    %spritemapEntry(1, $4220, $DB, 0, 0, 2, 1, $12A)
-    %spritemapEntry(1, $4210, $DB, 0, 0, 2, 1, $128)
-    %spritemapEntry(1, $4245, $C8, 0, 0, 2, 1, $126)
-    %spritemapEntry(0, $45, $C0, 0, 0, 2, 1, $11F)
-    %spritemapEntry(1, $4235, $C0, 0, 0, 2, 1, $124)
-    %spritemapEntry(1, $4211, $C0, 0, 0, 2, 1, $120)
-    %spritemapEntry(0, $21, $C0, 0, 0, 2, 1, $10F)
-    %spritemapEntry(1, $4221, $C8, 0, 0, 2, 1, $122)
-    %spritemapEntry(1, $43B7, $BD, 0, 0, 2, 1, $14C)
-    %spritemapEntry(1, $43B7, $C5, 0, 0, 2, 1, $15C)
-    %spritemapEntry(1, $4399, $D7, 0, 0, 2, 1, $150)
-    %spritemapEntry(1, $4399, $CF, 0, 0, 2, 1, $140)
-    %spritemapEntry(1, $43DA, $CA, 0, 0, 2, 1, $170)
-    %spritemapEntry(1, $43E2, $CA, 0, 0, 2, 1, $171)
-    %spritemapEntry(1, $43F1, $A8, 0, 0, 2, 1, $108)
-    %spritemapEntry(1, $43F9, $A8, 0, 0, 2, 1, $109)
-    %spritemapEntry(1, $43F9, $98, 0, 0, 2, 1, $106)
-    %spritemapEntry(1, $43E9, $98, 0, 0, 2, 1, $104)
-    %spritemapEntry(1, $43F9, $88, 0, 0, 2, 1, $102)
-    %spritemapEntry(1, $43E9, $88, 0, 0, 2, 1, $100)
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 Spritemaps_Chozo_13:
     dw $0012                                                             ;AAEFD8;
     %spritemapEntry(0, $1FE, $DF, 0, 1, 2, 1, $17D)
@@ -10223,206 +9736,6 @@ Spritemaps_Chozo_16:
     %spritemapEntry(1, $4204, $E7, 0, 1, 2, 1, $104)
     %spritemapEntry(1, $43F4, $D7, 0, 1, 2, 1, $102)
     %spritemapEntry(1, $4204, $D7, 0, 1, 2, 1, $100)
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemaps_Chozo_17_AAF13E:
-    dw $0015                                                             ;AAF13E;
-    %spritemapEntry(0, $1E0, $F9, 0, 0, 2, 1, $11F)
-    %spritemapEntry(1, $43E8, $ED, 0, 0, 2, 1, $126)
-    %spritemapEntry(0, $1FA, $DF, 0, 0, 2, 1, $179)
-    %spritemapEntry(1, $43E9, $1B, 0, 0, 2, 1, $171)
-    %spritemapEntry(1, $43E1, $1B, 0, 0, 2, 1, $170)
-    %spritemapEntry(1, $43EE, $10, 0, 0, 2, 1, $158)
-    %spritemapEntry(1, $43EE, $08, 0, 0, 2, 1, $148)
-    %spritemapEntry(1, $43F4, $FD, 0, 0, 2, 1, $144)
-    %spritemapEntry(1, $43F4, $F7, 0, 0, 2, 1, $108)
-    %spritemapEntry(1, $43FC, $F7, 0, 0, 2, 1, $109)
-    %spritemapEntry(1, $4210, $15, 0, 0, 2, 2, $175)
-    %spritemapEntry(1, $4204, $09, 0, 0, 2, 2, $14E)
-    %spritemapEntry(1, $43FB, $FD, 0, 1, 2, 2, $142)
-    %spritemapEntry(1, $43FB, $05, 0, 1, 2, 2, $152)
-    %spritemapEntry(1, $43D8, $E9, 0, 0, 2, 1, $12C)
-    %spritemapEntry(1, $43ED, $EC, 0, 0, 2, 1, $10D)
-    %spritemapEntry(1, $43F5, $E4, 0, 0, 2, 1, $10B)
-    %spritemapEntry(1, $43FC, $E7, 0, 0, 2, 1, $106)
-    %spritemapEntry(1, $43EC, $E7, 0, 0, 2, 1, $104)
-    %spritemapEntry(1, $43FC, $D7, 0, 0, 2, 1, $102)
-    %spritemapEntry(1, $43EC, $D7, 0, 0, 2, 1, $100)
-
-UNUSED_Spritemaps_Chozo_18_AAF1A9:
-    dw $0016                                                             ;AAF1A9;
-    %spritemapEntry(0, $1E0, $F8, 0, 0, 2, 1, $11F)
-    %spritemapEntry(1, $43E8, $EC, 0, 0, 2, 1, $126)
-    %spritemapEntry(0, $1FA, $DE, 0, 0, 2, 1, $17A)
-    %spritemapEntry(1, $43EC, $1C, 0, 0, 2, 1, $171)
-    %spritemapEntry(1, $43E4, $1C, 0, 0, 2, 1, $170)
-    %spritemapEntry(1, $43F1, $11, 0, 0, 2, 1, $158)
-    %spritemapEntry(1, $43F1, $09, 0, 0, 2, 1, $148)
-    %spritemapEntry(1, $43F7, $04, 0, 0, 2, 1, $152)
-    %spritemapEntry(1, $43F7, $FC, 0, 0, 2, 1, $142)
-    %spritemapEntry(1, $43F4, $F6, 0, 0, 2, 1, $108)
-    %spritemapEntry(1, $43FC, $F6, 0, 0, 2, 1, $109)
-    %spritemapEntry(1, $4209, $16, 0, 0, 2, 2, $175)
-    %spritemapEntry(1, $43FC, $09, 0, 0, 2, 2, $14E)
-    %spritemapEntry(1, $43F9, $04, 0, 0, 2, 2, $150)
-    %spritemapEntry(1, $43F9, $FC, 0, 0, 2, 2, $140)
-    %spritemapEntry(1, $43D8, $E8, 0, 0, 2, 1, $12C)
-    %spritemapEntry(1, $43ED, $EB, 0, 0, 2, 1, $10D)
-    %spritemapEntry(1, $43F5, $E3, 0, 0, 2, 1, $10B)
-    %spritemapEntry(1, $43FC, $E6, 0, 0, 2, 1, $106)
-    %spritemapEntry(1, $43EC, $E6, 0, 0, 2, 1, $104)
-    %spritemapEntry(1, $43FC, $D6, 0, 0, 2, 1, $102)
-    %spritemapEntry(1, $43EC, $D6, 0, 0, 2, 1, $100)
-
-UNUSED_Spritemaps_Chozo_19_AAF219:
-    dw $0016                                                             ;AAF219;
-    %spritemapEntry(1, $43E8, $EB, 0, 0, 2, 1, $126)
-    %spritemapEntry(0, $1E0, $F7, 0, 0, 2, 1, $11F)
-    %spritemapEntry(0, $1FA, $DD, 0, 0, 2, 1, $17B)
-    %spritemapEntry(1, $43FA, $1E, 0, 0, 2, 1, $171)
-    %spritemapEntry(1, $43F2, $1E, 0, 0, 2, 1, $170)
-    %spritemapEntry(1, $43FA, $13, 0, 0, 2, 1, $15C)
-    %spritemapEntry(1, $43FA, $0B, 0, 0, 2, 1, $14C)
-    %spritemapEntry(1, $43FD, $17, 0, 0, 2, 2, $173)
-    %spritemapEntry(1, $43F9, $03, 0, 0, 2, 1, $150)
-    %spritemapEntry(1, $43F9, $FB, 0, 0, 2, 1, $140)
-    %spritemapEntry(1, $43FA, $08, 0, 0, 2, 2, $14E)
-    %spritemapEntry(1, $43F4, $F5, 0, 0, 2, 1, $108)
-    %spritemapEntry(1, $43FC, $F5, 0, 0, 2, 1, $109)
-    %spritemapEntry(1, $43F7, $03, 0, 0, 2, 2, $152)
-    %spritemapEntry(1, $43F7, $FB, 0, 0, 2, 2, $142)
-    %spritemapEntry(1, $43D8, $E7, 0, 0, 2, 1, $12C)
-    %spritemapEntry(1, $43ED, $EA, 0, 0, 2, 1, $10D)
-    %spritemapEntry(1, $43F5, $E2, 0, 0, 2, 1, $10B)
-    %spritemapEntry(1, $43FC, $E5, 0, 0, 2, 1, $106)
-    %spritemapEntry(1, $43EC, $E5, 0, 0, 2, 1, $104)
-    %spritemapEntry(1, $43FC, $D5, 0, 0, 2, 1, $102)
-    %spritemapEntry(1, $43EC, $D5, 0, 0, 2, 1, $100)
-
-UNUSED_Spritemaps_Chozo_1A_AAF289:
-    dw $0016                                                             ;AAF289;
-    %spritemapEntry(0, $1E0, $F8, 0, 0, 2, 1, $11F)
-    %spritemapEntry(1, $43E8, $EC, 0, 0, 2, 1, $126)
-    %spritemapEntry(0, $1FA, $DE, 0, 0, 2, 1, $17C)
-    %spritemapEntry(1, $4201, $1D, 0, 0, 2, 1, $171)
-    %spritemapEntry(1, $43F9, $1D, 0, 0, 2, 1, $170)
-    %spritemapEntry(1, $4201, $12, 0, 0, 2, 1, $156)
-    %spritemapEntry(1, $4201, $0A, 0, 0, 2, 1, $146)
-    %spritemapEntry(1, $43FB, $04, 0, 1, 2, 1, $152)
-    %spritemapEntry(1, $43FB, $FC, 0, 1, 2, 1, $142)
-    %spritemapEntry(1, $43F2, $1B, 0, 0, 2, 2, $173)
-    %spritemapEntry(1, $43F3, $10, 0, 0, 2, 2, $156)
-    %spritemapEntry(1, $43F3, $08, 0, 0, 2, 2, $146)
-    %spritemapEntry(1, $43F4, $F6, 0, 0, 2, 1, $108)
-    %spritemapEntry(1, $43FC, $F6, 0, 0, 2, 1, $109)
-    %spritemapEntry(1, $43F4, $FC, 0, 0, 2, 2, $144)
-    %spritemapEntry(1, $43D8, $E8, 0, 0, 2, 1, $12C)
-    %spritemapEntry(1, $43ED, $EB, 0, 0, 2, 1, $10D)
-    %spritemapEntry(1, $43F5, $E3, 0, 0, 2, 1, $10B)
-    %spritemapEntry(1, $43FC, $E6, 0, 0, 2, 1, $106)
-    %spritemapEntry(1, $43EC, $E6, 0, 0, 2, 1, $104)
-    %spritemapEntry(1, $43FC, $D6, 0, 0, 2, 1, $102)
-    %spritemapEntry(1, $43EC, $D6, 0, 0, 2, 1, $100)
-
-UNUSED_Spritemaps_Chozo_1B_AAF2F9:
-    dw $0015                                                             ;AAF2F9;
-    %spritemapEntry(1, $43E8, $ED, 0, 0, 2, 1, $126)
-    %spritemapEntry(0, $1E0, $F9, 0, 0, 2, 1, $11F)
-    %spritemapEntry(0, $1FA, $DF, 0, 0, 2, 1, $179)
-    %spritemapEntry(1, $4210, $15, 0, 0, 2, 1, $175)
-    %spritemapEntry(1, $4204, $09, 0, 0, 2, 1, $14E)
-    %spritemapEntry(1, $43FB, $05, 0, 1, 2, 1, $152)
-    %spritemapEntry(1, $43FB, $FD, 0, 1, 2, 1, $142)
-    %spritemapEntry(1, $43F4, $F7, 0, 0, 2, 1, $108)
-    %spritemapEntry(1, $43FC, $F7, 0, 0, 2, 1, $109)
-    %spritemapEntry(1, $43E1, $1B, 0, 0, 2, 2, $170)
-    %spritemapEntry(1, $43E9, $1B, 0, 0, 2, 2, $171)
-    %spritemapEntry(1, $43EE, $10, 0, 0, 2, 2, $158)
-    %spritemapEntry(1, $43EE, $08, 0, 0, 2, 2, $148)
-    %spritemapEntry(1, $43F4, $FD, 0, 0, 2, 2, $144)
-    %spritemapEntry(1, $43D8, $E9, 0, 0, 2, 1, $12C)
-    %spritemapEntry(1, $43ED, $EC, 0, 0, 2, 1, $10D)
-    %spritemapEntry(1, $43F5, $E4, 0, 0, 2, 1, $10B)
-    %spritemapEntry(1, $43FC, $E7, 0, 0, 2, 1, $106)
-    %spritemapEntry(1, $43EC, $E7, 0, 0, 2, 1, $104)
-    %spritemapEntry(1, $43FC, $D7, 0, 0, 2, 1, $102)
-    %spritemapEntry(1, $43EC, $D7, 0, 0, 2, 1, $100)
-
-UNUSED_Spritemaps_Chozo_1C_AAF364:
-    dw $0016                                                             ;AAF364;
-    %spritemapEntry(0, $1E0, $F8, 0, 0, 2, 1, $11F)
-    %spritemapEntry(1, $43E8, $EC, 0, 0, 2, 1, $126)
-    %spritemapEntry(0, $1FA, $DE, 0, 0, 2, 1, $17A)
-    %spritemapEntry(1, $4209, $16, 0, 0, 2, 1, $175)
-    %spritemapEntry(1, $43FC, $09, 0, 0, 2, 1, $14E)
-    %spritemapEntry(1, $43F9, $04, 0, 0, 2, 1, $150)
-    %spritemapEntry(1, $43F9, $FC, 0, 0, 2, 1, $140)
-    %spritemapEntry(1, $43D8, $E8, 0, 0, 2, 1, $12C)
-    %spritemapEntry(1, $43F5, $E3, 0, 0, 2, 1, $10B)
-    %spritemapEntry(1, $43ED, $EB, 0, 0, 2, 1, $10D)
-    %spritemapEntry(1, $43F4, $F6, 0, 0, 2, 1, $108)
-    %spritemapEntry(1, $43FC, $F6, 0, 0, 2, 1, $109)
-    %spritemapEntry(1, $43FC, $E6, 0, 0, 2, 1, $106)
-    %spritemapEntry(1, $43EC, $E6, 0, 0, 2, 1, $104)
-    %spritemapEntry(1, $43FC, $D6, 0, 0, 2, 1, $102)
-    %spritemapEntry(1, $43EC, $D6, 0, 0, 2, 1, $100)
-    %spritemapEntry(1, $43E4, $1C, 0, 0, 2, 2, $170)
-    %spritemapEntry(1, $43EC, $1C, 0, 0, 2, 2, $171)
-    %spritemapEntry(1, $43F1, $11, 0, 0, 2, 2, $158)
-    %spritemapEntry(1, $43F1, $09, 0, 0, 2, 2, $148)
-    %spritemapEntry(1, $43F7, $04, 0, 0, 2, 2, $152)
-    %spritemapEntry(1, $43F7, $FC, 0, 0, 2, 2, $142)
-
-UNUSED_Spritemaps_Chozo_1D_AAF3D4:
-    dw $0016                                                             ;AAF3D4;
-    %spritemapEntry(1, $43E8, $EB, 0, 0, 2, 1, $126)
-    %spritemapEntry(0, $1E0, $F7, 0, 0, 2, 1, $11F)
-    %spritemapEntry(0, $1FA, $DD, 0, 0, 2, 1, $17B)
-    %spritemapEntry(1, $43FD, $17, 0, 0, 2, 1, $173)
-    %spritemapEntry(1, $43FA, $08, 0, 0, 2, 1, $14E)
-    %spritemapEntry(1, $43F7, $03, 0, 0, 2, 1, $152)
-    %spritemapEntry(1, $43F7, $FB, 0, 0, 2, 1, $142)
-    %spritemapEntry(1, $43F2, $1E, 0, 0, 2, 2, $170)
-    %spritemapEntry(1, $43FA, $1E, 0, 0, 2, 2, $171)
-    %spritemapEntry(1, $43FA, $13, 0, 0, 2, 2, $15C)
-    %spritemapEntry(1, $43FA, $0B, 0, 0, 2, 2, $14C)
-    %spritemapEntry(1, $43F9, $03, 0, 0, 2, 2, $150)
-    %spritemapEntry(1, $43F9, $FB, 0, 0, 2, 2, $140)
-    %spritemapEntry(1, $43D8, $E7, 0, 0, 2, 1, $12C)
-    %spritemapEntry(1, $43ED, $EA, 0, 0, 2, 1, $10D)
-    %spritemapEntry(1, $43F5, $E2, 0, 0, 2, 1, $10B)
-    %spritemapEntry(1, $43F4, $F5, 0, 0, 2, 1, $108)
-    %spritemapEntry(1, $43FC, $F5, 0, 0, 2, 1, $109)
-    %spritemapEntry(1, $43FC, $E5, 0, 0, 2, 1, $106)
-    %spritemapEntry(1, $43EC, $E5, 0, 0, 2, 1, $104)
-    %spritemapEntry(1, $43FC, $D5, 0, 0, 2, 1, $102)
-    %spritemapEntry(1, $43EC, $D5, 0, 0, 2, 1, $100)
-
-UNUSED_Spritemaps_Chozo_1E_AAF444:
-    dw $0016                                                             ;AAF444;
-    %spritemapEntry(0, $1E0, $F8, 0, 0, 2, 1, $11F)
-    %spritemapEntry(1, $43E8, $EC, 0, 0, 2, 1, $126)
-    %spritemapEntry(0, $1FA, $DE, 0, 0, 2, 1, $17C)
-    %spritemapEntry(1, $43F2, $1B, 0, 0, 2, 1, $173)
-    %spritemapEntry(1, $43F3, $10, 0, 0, 2, 1, $156)
-    %spritemapEntry(1, $43F3, $08, 0, 0, 2, 1, $146)
-    %spritemapEntry(1, $43F4, $FC, 0, 0, 2, 1, $144)
-    %spritemapEntry(1, $43F9, $1D, 0, 0, 2, 2, $170)
-    %spritemapEntry(1, $4201, $1D, 0, 0, 2, 2, $171)
-    %spritemapEntry(1, $4201, $12, 0, 0, 2, 2, $156)
-    %spritemapEntry(1, $4201, $0A, 0, 0, 2, 2, $146)
-    %spritemapEntry(1, $43F4, $F6, 0, 0, 2, 1, $108)
-    %spritemapEntry(1, $43FC, $F6, 0, 0, 2, 1, $109)
-    %spritemapEntry(1, $43FB, $FC, 0, 1, 2, 2, $142)
-    %spritemapEntry(1, $43FB, $04, 0, 1, 2, 2, $152)
-    %spritemapEntry(1, $43D8, $E8, 0, 0, 2, 1, $12C)
-    %spritemapEntry(1, $43ED, $EB, 0, 0, 2, 1, $10D)
-    %spritemapEntry(1, $43F5, $E3, 0, 0, 2, 1, $10B)
-    %spritemapEntry(1, $43FC, $E6, 0, 0, 2, 1, $106)
-    %spritemapEntry(1, $43EC, $E6, 0, 0, 2, 1, $104)
-    %spritemapEntry(1, $43FC, $D6, 0, 0, 2, 1, $102)
-    %spritemapEntry(1, $43EC, $D6, 0, 0, 2, 1, $100)
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemaps_Chozo_1F:
     dw $0012                                                             ;AAF4B4;
@@ -10528,81 +9841,6 @@ Spritemaps_Chozo_23:
     %spritemapEntry(1, $4204, $E7, 0, 1, 2, 1, $104)
     %spritemapEntry(1, $43F4, $D7, 0, 1, 2, 1, $102)
     %spritemapEntry(1, $4204, $D7, 0, 1, 2, 1, $100)
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemaps_Chozo_24_AAF680:
-    dw $002A                                                             ;AAF680;
-    %spritemapEntry(1, $43E0, $98, 0, 0, 2, 1, $144)
-    %spritemapEntry(1, $4242, $98, 0, 0, 2, 1, $14A)
-    %spritemapEntry(1, $4232, $A0, 0, 0, 2, 1, $158)
-    %spritemapEntry(1, $4232, $98, 0, 0, 2, 1, $148)
-    %spritemapEntry(1, $4222, $A0, 0, 0, 2, 1, $15C)
-    %spritemapEntry(1, $4222, $98, 0, 0, 2, 1, $14C)
-    %spritemapEntry(1, $4202, $98, 0, 0, 2, 1, $14E)
-    %spritemapEntry(1, $4212, $A0, 0, 0, 2, 1, $156)
-    %spritemapEntry(1, $4212, $98, 0, 0, 2, 1, $146)
-    %spritemapEntry(1, $4201, $B8, 0, 0, 2, 2, $14E)
-    %spritemapEntry(1, $4211, $C0, 0, 0, 2, 2, $156)
-    %spritemapEntry(1, $4211, $B8, 0, 0, 2, 2, $146)
-    %spritemapEntry(1, $4241, $B8, 0, 0, 2, 2, $14A)
-    %spritemapEntry(1, $4231, $C0, 0, 0, 2, 2, $158)
-    %spritemapEntry(1, $4231, $B8, 0, 0, 2, 2, $148)
-    %spritemapEntry(1, $4221, $C0, 0, 0, 2, 2, $15C)
-    %spritemapEntry(1, $4221, $B8, 0, 0, 2, 2, $14C)
-    %spritemapEntry(1, $43D8, $F0, 0, 0, 2, 2, $177)
-    %spritemapEntry(1, $43C8, $F0, 0, 0, 2, 2, $175)
-    %spritemapEntry(1, $43B8, $F0, 0, 0, 2, 2, $173)
-    %spritemapEntry(1, $43A0, $F0, 0, 0, 2, 2, $170)
-    %spritemapEntry(1, $43A8, $F0, 0, 0, 2, 2, $171)
-    %spritemapEntry(1, $43D8, $E0, 0, 0, 2, 1, $177)
-    %spritemapEntry(1, $43C8, $E0, 0, 0, 2, 1, $175)
-    %spritemapEntry(1, $43B8, $E0, 0, 0, 2, 1, $173)
-    %spritemapEntry(1, $43A8, $E0, 0, 0, 2, 1, $171)
-    %spritemapEntry(1, $43A0, $E0, 0, 0, 2, 1, $170)
-    %spritemapEntry(1, $43D0, $A0, 0, 0, 2, 1, $152)
-    %spritemapEntry(1, $43D0, $98, 0, 0, 2, 1, $142)
-    %spritemapEntry(1, $43B0, $A0, 0, 1, 2, 1, $152)
-    %spritemapEntry(1, $43B0, $98, 0, 1, 2, 1, $142)
-    %spritemapEntry(1, $43C0, $A0, 0, 0, 2, 1, $150)
-    %spritemapEntry(1, $43C0, $98, 0, 0, 2, 1, $140)
-    %spritemapEntry(1, $43A0, $98, 0, 1, 2, 1, $144)
-    %spritemapEntry(1, $43A1, $B8, 0, 1, 2, 2, $144)
-    %spritemapEntry(1, $43B0, $B8, 0, 1, 2, 2, $142)
-    %spritemapEntry(1, $43B0, $C0, 0, 1, 2, 2, $152)
-    %spritemapEntry(1, $43D0, $C0, 0, 0, 2, 2, $152)
-    %spritemapEntry(1, $43C0, $C0, 0, 0, 2, 2, $150)
-    %spritemapEntry(1, $43E0, $B8, 0, 0, 2, 2, $144)
-    %spritemapEntry(1, $43D0, $B8, 0, 0, 2, 2, $142)
-    %spritemapEntry(1, $43C0, $B8, 0, 0, 2, 2, $140)
-
-UNUSED_Spritemaps_Chozo_25_AAF754:
-    dw $0019                                                             ;AAF754;
-    %spritemapEntry(1, $4238, $88, 0, 0, 2, 1, $10D)
-    %spritemapEntry(1, $4240, $80, 0, 0, 2, 1, $10B)
-    %spritemapEntry(0, $3E, $EF, 0, 0, 2, 1, $139)
-    %spritemapEntry(1, $4236, $DF, 0, 0, 2, 1, $12C)
-    %spritemapEntry(1, $4246, $E7, 0, 0, 2, 1, $12A)
-    %spritemapEntry(1, $4220, $DB, 0, 0, 2, 1, $12A)
-    %spritemapEntry(1, $4210, $DB, 0, 0, 2, 1, $128)
-    %spritemapEntry(1, $4245, $C8, 0, 0, 2, 1, $126)
-    %spritemapEntry(0, $45, $C0, 0, 0, 2, 1, $11F)
-    %spritemapEntry(1, $4235, $C0, 0, 0, 2, 1, $124)
-    %spritemapEntry(1, $4211, $C0, 0, 0, 2, 1, $120)
-    %spritemapEntry(0, $21, $C0, 0, 0, 2, 1, $10F)
-    %spritemapEntry(1, $4221, $C8, 0, 0, 2, 1, $122)
-    %spritemapEntry(1, $43B7, $BD, 0, 0, 2, 1, $14C)
-    %spritemapEntry(1, $43B7, $C5, 0, 0, 2, 1, $15C)
-    %spritemapEntry(1, $4399, $D7, 0, 0, 2, 1, $150)
-    %spritemapEntry(1, $4399, $CF, 0, 0, 2, 1, $140)
-    %spritemapEntry(1, $43DA, $CA, 0, 0, 2, 1, $170)
-    %spritemapEntry(1, $43E2, $CA, 0, 0, 2, 1, $171)
-    %spritemapEntry(1, $43F1, $A8, 0, 0, 2, 1, $108)
-    %spritemapEntry(1, $43F9, $A8, 0, 0, 2, 1, $109)
-    %spritemapEntry(1, $43F9, $98, 0, 0, 2, 1, $106)
-    %spritemapEntry(1, $43E9, $98, 0, 0, 2, 1, $104)
-    %spritemapEntry(1, $43F9, $88, 0, 0, 2, 1, $102)
-    %spritemapEntry(1, $43E9, $88, 0, 0, 2, 1, $100)
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 Freespace_BankAA_F7D3:                                                   ;AAF7D3;

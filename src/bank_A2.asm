@@ -200,50 +200,6 @@ Instruction_CommonA2_CallFunctionInY_WithA:
     RTL                                                                  ;A280B4;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $80B5: Unused. Instruction - call external function [[Y]] ;;;
-UNUSED_Instruction_CommonA2_CallExternalFunctionInY_A280B5:
-    LDA.W $0000,Y                                                        ;A280B5;
-    STA.B DP_Temp12                                                      ;A280B8;
-    LDA.W $0001,Y                                                        ;A280BA;
-    STA.B DP_Temp13                                                      ;A280BD;
-    PHX                                                                  ;A280BF;
-    PHY                                                                  ;A280C0;
-    JSL.L .externalFunction                                              ;A280C1;
-    PLY                                                                  ;A280C5;
-    PLX                                                                  ;A280C6;
-    INY                                                                  ;A280C7;
-    INY                                                                  ;A280C8;
-    INY                                                                  ;A280C9;
-    RTL                                                                  ;A280CA;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;A280CB;
-
-
-;;; $80CE: Unused. Instruction - call external function [[Y]] with A = [[Y] + 3] ;;;
-UNUSED_Inst_CommonA2_CallExternalFunctionInY_WithA_A280CE:
-    LDA.W $0000,Y                                                        ;A280CE;
-    STA.B DP_Temp12                                                      ;A280D1;
-    LDA.W $0001,Y                                                        ;A280D3;
-    STA.B DP_Temp13                                                      ;A280D6;
-    LDA.W $0003,Y                                                        ;A280D8;
-    PHX                                                                  ;A280DB;
-    PHY                                                                  ;A280DC;
-    JSL.L .externalFunction                                              ;A280DD;
-    PLY                                                                  ;A280E1;
-    PLX                                                                  ;A280E2;
-    TYA                                                                  ;A280E3;
-    CLC                                                                  ;A280E4;
-    ADC.W #$0005                                                         ;A280E5;
-    TAY                                                                  ;A280E8;
-    RTL                                                                  ;A280E9;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;A280EA;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $80ED: Instruction - go to [[Y]] ;;;
 Instruction_CommonA2_GotoY:
     LDA.W $0000,Y                                                        ;A280ED;
@@ -891,18 +847,6 @@ Instruction_Boyon_StartBounce:
     JML QueueSound_Lib2_Max6
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $88D8: RTL ;;;
-RTL_A288D8:
-    RTL                                                                  ;A288D8;
-
-
-;;; $88D9: RTL ;;;
-RTL_A288D9:
-    RTL                                                                  ;A288D9;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $88DA: Spritemaps - boyon ;;;
 Spritemap_Boyon_Idle_0:
     dw $0001                                                             ;A288DA;
@@ -931,341 +875,6 @@ Spritemap_Boyon_Bouncing_2:
 Spritemap_Boyon_Bouncing_3:
     dw $0001                                                             ;A28904;
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $10C)
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_Boyon_A2890B:
-    dw $0001                                                             ;A2890B;
-    %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $10E)
-
-
-;;; $8912: Palette - enemy $CEFF (mini-Crocomire) ;;;
-Palette_Stoke:
-    dw $3800,$3DB3,$292E,$1486,$1840,$3D92,$38CA,$1C61                   ;A28912;
-    dw $24A7,$24A7,$2063,$1840,$0800,$0000,$0000,$0000                   ;A28922;
-
-
-;;; $8932: Instruction list - moving left ;;;
-InstList_Stoke_MovingLeft_0:
-    dw Instruction_Stoke_SetMovingLeft                                   ;A28932;
-
-InstList_Stoke_MovingLeft_1:
-    dw $0008,Spritemap_Stoke_MovingLeft_0                                ;A28934;
-    dw $0010,Spritemap_Stoke_MovingLeft_1                                ;A28938;
-    dw $0008,Spritemap_Stoke_MovingLeft_2                                ;A2893C;
-    dw $0008,Spritemap_Stoke_MovingLeft_3                                ;A28940;
-    dw Instruction_Common_GotoY                                          ;A28944;
-    dw InstList_Stoke_MovingLeft_1                                       ;A28946;
-
-
-;;; $8948: Instruction list - attacking left ;;;
-InstList_Stoke_AttackingLeft:
-    dw $0010,Spritemap_Stoke_MovingLeft_2                                ;A28948;
-    dw Instruction_Stoke_SpawnProjectileWithDirectionInY,$0000           ;A2894C;
-    dw $0010,Spritemap_Stoke_AttackingLeft                               ;A28950;
-    dw Instruction_Common_GotoY                                          ;A28954;
-    dw InstList_Stoke_MovingLeft_0                                       ;A28956;
-
-
-;;; $8958: Instruction list - moving right ;;;
-InstList_Stoke_MovingRight_0:
-    dw Instruction_Stoke_SetMovingRight                                  ;A28958;
-
-InstList_Stoke_MovingRight_1:
-    dw $0008,Spritemap_Stoke_MovingRight_0                               ;A2895A;
-    dw $0010,Spritemap_Stoke_MovingRight_1                               ;A2895E;
-    dw $0008,Spritemap_Stoke_MovingRight_2                               ;A28962;
-    dw $0008,Spritemap_Stoke_MovingRight_3                               ;A28966;
-    dw Instruction_Common_GotoY                                          ;A2896A;
-    dw InstList_Stoke_MovingRight_1                                      ;A2896C;
-
-
-;;; $896E: Instruction list - attacking right ;;;
-InstList_Stoke_AttackingRight:
-    dw $0010,Spritemap_Stoke_MovingRight_2                               ;A2896E;
-    dw Instruction_Stoke_SpawnProjectileWithDirectionInY,$0001           ;A28972;
-    dw $0010,Spritemap_Stoke_AttackingRight                              ;A28976;
-    dw Instruction_Common_GotoY                                          ;A2897A;
-    dw InstList_Stoke_MovingRight_0                                      ;A2897C;
-
-
-;;; $897E: Instruction - spawn mini-Crocomire projectile with direction [[Y]] ;;;
-Instruction_Stoke_SpawnProjectileWithDirectionInY:
-    PHY                                                                  ;A2897E;
-    LDA.W $0000,Y                                                        ;A2897F;
-    LDX.B EnemyIndex                                                     ;A28982;
-    LDY.W #UNUSED_EnemyProjectile_Stoke_86DBF2                           ;A28985;
-    JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A28988;
-    PLY                                                                  ;A2898C;
-    INY                                                                  ;A2898D;
-    INY                                                                  ;A2898E;
-    RTL                                                                  ;A2898F;
-
-
-;;; $8990: Instruction - set moving left ;;;
-Instruction_Stoke_SetMovingLeft:
-    LDX.B EnemyIndex                                                     ;A28990;
-    LDA.W #Function_Stoke_MovingLeft                                     ;A28993;
-    STA.W Stoke.function,X                                               ;A28996;
-    STZ.W Stoke.direction,X                                              ;A28999;
-    RTL                                                                  ;A2899C;
-
-
-;;; $899D: Instruction - set moving right ;;;
-Instruction_Stoke_SetMovingRight:
-    LDX.B EnemyIndex                                                     ;A2899D;
-    LDA.W #Function_Stoke_MovingRight                                    ;A289A0;
-    STA.W Stoke.function,X                                               ;A289A3;
-    LDA.W #$0001                                                         ;A289A6;
-    STA.W Stoke.direction,X                                              ;A289A9;
-    RTL                                                                  ;A289AC;
-
-
-;;; $89AD: Initialisation AI - enemy $CEFF (mini-Crocomire) ;;;
-InitAI_Stoke:
-    LDX.B EnemyIndex                                                     ;A289AD;
-    LDA.W #Spritemap_Common_Nothing                                      ;A289B0;
-    STA.W Enemy.spritemap,X                                              ;A289B3;
-    LDA.W Enemy.init1,X                                                  ;A289B6;
-    ASL                                                                  ;A289B9;
-    ASL                                                                  ;A289BA;
-    ASL                                                                  ;A289BB;
-    TAY                                                                  ;A289BC;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing,Y                         ;A289BD;
-    STA.W Stoke.rightVelocity,X                                          ;A289C0;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+2,Y                       ;A289C3;
-    STA.W Stoke.rightSubVelocity,X                                       ;A289C6;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+4,Y                       ;A289C9;
-    STA.W Stoke.leftVelocity,X                                           ;A289CC;
-    LDA.W CommonEnemySpeeds_LinearlyIncreasing+6,Y                       ;A289CF;
-    STA.W Stoke.leftSubVelocity,X                                        ;A289D2;
-    JSR.W SetStokeMovingLeftInstList                                     ;A289D5;
-    LDA.W #Function_Stoke_MovingLeft                                     ;A289D8;
-    STA.W Stoke.function,X                                               ;A289DB;
-    LDA.W Enemy.init0,X                                                  ;A289DE;
-    STA.W Stoke.direction,X                                              ;A289E1;
-    BEQ .return                                                          ;A289E4;
-    JSR.W SetStokeMovingRightInstList                                    ;A289E6;
-    LDA.W #Function_Stoke_MovingRight                                    ;A289E9;
-    STA.W Stoke.function,X                                               ;A289EC;
-
-  .return:
-    RTL                                                                  ;A289EF;
-
-
-;;; $89F0: Main AI - enemy $CEFF (mini-Crocomire) ;;;
-MainAI_Stoke:
-    LDX.B EnemyIndex                                                     ;A289F0;
-    JSR.W (Stoke.function,X)                                             ;A289F3;
-    RTL                                                                  ;A289F6;
-
-
-;;; $89F7: Set mini-Crocomire moving left instruction list ;;;
-SetStokeMovingLeftInstList:
-    LDX.B EnemyIndex                                                     ;A289F7;
-    LDA.W #$0001                                                         ;A289FA;
-    STA.W Enemy.instTimer,X                                              ;A289FD;
-    STZ.W Enemy.loopCounter,X                                            ;A28A00;
-    LDA.W #InstList_Stoke_MovingLeft_0                                   ;A28A03;
-    STA.W Enemy.instList,X                                               ;A28A06;
-    RTS                                                                  ;A28A09;
-
-
-;;; $8A0A: Set mini-Crocomire attacking left instruction list ;;;
-SetStokeAttackingLeftInstList:
-    LDX.B EnemyIndex                                                     ;A28A0A;
-    LDA.W #$0001                                                         ;A28A0D;
-    STA.W Enemy.instTimer,X                                              ;A28A10;
-    STZ.W Enemy.loopCounter,X                                            ;A28A13;
-    LDA.W #InstList_Stoke_AttackingLeft                                  ;A28A16;
-    STA.W Enemy.instList,X                                               ;A28A19;
-    RTS                                                                  ;A28A1C;
-
-
-;;; $8A1D: Set mini-Crocomire moving right instruction list ;;;
-SetStokeMovingRightInstList:
-    LDX.B EnemyIndex                                                     ;A28A1D;
-    LDA.W #$0001                                                         ;A28A20;
-    STA.W Enemy.instTimer,X                                              ;A28A23;
-    STZ.W Enemy.loopCounter,X                                            ;A28A26;
-    LDA.W #InstList_Stoke_MovingRight_0                                  ;A28A29;
-    STA.W Enemy.instList,X                                               ;A28A2C;
-    RTS                                                                  ;A28A2F;
-
-
-;;; $8A30: Set mini-Crocomire attacking right instruction list ;;;
-SetStokeAttackingRightInstList:
-    LDX.B EnemyIndex                                                     ;A28A30;
-    LDA.W #$0001                                                         ;A28A33;
-    STA.W Enemy.instTimer,X                                              ;A28A36;
-    STZ.W Enemy.loopCounter,X                                            ;A28A39;
-    LDA.W #InstList_Stoke_AttackingRight                                 ;A28A3C;
-    STA.W Enemy.instList,X                                               ;A28A3F;
-    RTS                                                                  ;A28A42;
-
-
-;;; $8A43: Mini-Crocomire function - moving left ;;;
-Function_Stoke_MovingLeft:
-    LDX.B EnemyIndex                                                     ;A28A43;
-    LDA.W Stoke.leftVelocity,X                                           ;A28A46;
-    STA.B DP_Temp14                                                      ;A28A49;
-    LDA.W Stoke.leftSubVelocity,X                                        ;A28A4B;
-    STA.B DP_Temp12                                                      ;A28A4E;
-    JSR.W StokeMovement                                                  ;A28A50;
-    JSR.W DecideWhetherToAttack                                          ;A28A53;
-    BCC .return                                                          ;A28A56;
-    JSR.W SetStokeAttackingLeftInstList                                  ;A28A58;
-
-  .return:
-    RTS                                                                  ;A28A5B;
-
-
-;;; $8A5C: Mini-Crocomire function - moving right ;;;
-Function_Stoke_MovingRight:
-    LDX.B EnemyIndex                                                     ;A28A5C;
-    LDA.W Stoke.rightVelocity,X                                          ;A28A5F;
-    STA.B DP_Temp14                                                      ;A28A62;
-    LDA.W Stoke.rightSubVelocity,X                                       ;A28A64;
-    STA.B DP_Temp12                                                      ;A28A67;
-    JSR.W StokeMovement                                                  ;A28A69;
-    JSR.W DecideWhetherToAttack                                          ;A28A6C;
-    BCC .return                                                          ;A28A6F;
-    JSR.W SetStokeAttackingRightInstList                                 ;A28A71;
-
-  .return:
-    RTS                                                                  ;A28A74;
-
-
-;;; $8A75: RTS ;;;
-RTS_A28A75:
-    RTS                                                                  ;A28A75;
-
-
-;;; $8A76: Mini-Crocomire movement ;;;
-StokeMovement:
-;; Parameters:
-;;     $14.$12: X velocity
-    LDX.B EnemyIndex                                                     ;A28A76;
-    JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A28A79;
-    BCC .notCollidedWithWall                                             ;A28A7D;
-    JSR.W TurnStokeAround                                                ;A28A7F;
-    BRA .return                                                          ;A28A82;
-
-  .notCollidedWithWall:
-    LDA.W #$0002                                                         ;A28A84;
-    STA.B DP_Temp14                                                      ;A28A87;
-    STZ.B DP_Temp12                                                      ;A28A89;
-    JSL.L CheckForVerticalSolidBlockCollision                            ;A28A8B;
-    BCS .return                                                          ;A28A8F;
-    JSR.W TurnStokeAround                                                ;A28A91;
-
-  .return:
-    RTS                                                                  ;A28A94;
-
-
-;;; $8A95: Turn mini-Crocomire around ;;;
-TurnStokeAround:
-    LDX.B EnemyIndex                                                     ;A28A95;
-    JSR.W SetStokeMovingLeftInstList                                     ;A28A98;
-    LDA.W Stoke.direction,X                                              ;A28A9B;
-    EOR.W #$0001                                                         ;A28A9E;
-    BEQ .return                                                          ;A28AA1;
-    JSR.W SetStokeMovingRightInstList                                    ;A28AA3;
-
-  .return:
-    RTS                                                                  ;A28AA6;
-
-
-;;; $8AA7: Decide whether to attack ;;;
-DecideWhetherToAttack:
-;; Returns:
-;;     Carry: Set if decided attack, clear otherwise
-    LDX.B EnemyIndex                                                     ;A28AA7;
-    JSL.L GenerateRandomNumber                                           ;A28AAA;
-    LDA.B RandomNumberSeed                                               ;A28AAE;
-    CLC                                                                  ;A28AB1;
-    ADC.W Enemy.frameCounter,X                                           ;A28AB2;
-    AND.W #$00FF                                                         ;A28AB5;
-    CMP.W #$0002                                                         ;A28AB8;
-    BPL .returnNoAttack                                                  ;A28ABB;
-    LDA.W #RTS_A28A75                                                    ;A28ABD;
-    STA.W Stoke.function,X                                               ;A28AC0;
-    SEC                                                                  ;A28AC3;
-    BRA .return                                                          ;A28AC4;
-
-  .returnNoAttack:
-    CLC                                                                  ;A28AC6;
-
-  .return:
-    RTS                                                                  ;A28AC7;
-
-
-;;; $8AC8: RTL ;;;
-RTL_A28AC8:
-    RTL                                                                  ;A28AC8;
-
-
-;;; $8AC9: RTL ;;;
-RTL_A28AC9:
-    RTL                                                                  ;A28AC9;
-
-
-;;; $8ACA: Spritemaps - mini-Crocomire ;;;
-Spritemap_Stoke_MovingLeft_0:
-    dw $0002                                                             ;A28ACA;
-    %spritemapEntry(1, $43FE, $F8, 0, 0, 2, 0, $101)
-    %spritemapEntry(1, $43F6, $F8, 0, 0, 2, 0, $100)
-
-Spritemap_Stoke_MovingLeft_1:
-    dw $0003                                                             ;A28AD6;
-    %spritemapEntry(0, $1FE, $F0, 0, 0, 2, 0, $10F)
-    %spritemapEntry(1, $43FE, $F8, 0, 0, 2, 0, $104)
-    %spritemapEntry(1, $43F6, $F8, 0, 0, 2, 0, $103)
-
-Spritemap_Stoke_MovingLeft_2:
-    dw $0002                                                             ;A28AE7;
-    %spritemapEntry(1, $43F6, $F8, 0, 0, 2, 0, $106)
-    %spritemapEntry(1, $43FE, $F8, 0, 0, 2, 0, $101)
-
-Spritemap_Stoke_MovingLeft_3:
-    dw $0002                                                             ;A28AF3;
-    %spritemapEntry(1, $43FE, $F8, 0, 0, 2, 0, $101)
-    %spritemapEntry(1, $43F6, $F8, 0, 0, 2, 0, $108)
-
-Spritemap_Stoke_AttackingLeft:
-    dw $0004                                                             ;A28AFF;
-    %spritemapEntry(0, $1FE, $F0, 0, 0, 2, 0, $10E)
-    %spritemapEntry(0, $1F6, $F0, 0, 0, 2, 0, $10D)
-    %spritemapEntry(1, $43FE, $F8, 0, 0, 2, 0, $10B)
-    %spritemapEntry(1, $43F6, $F8, 0, 0, 2, 0, $10A)
-
-Spritemap_Stoke_MovingRight_0:
-    dw $0002                                                             ;A28B15;
-    %spritemapEntry(1, $43F2, $F8, 0, 1, 2, 0, $101)
-    %spritemapEntry(1, $43FA, $F8, 0, 1, 2, 0, $100)
-
-Spritemap_Stoke_MovingRight_1:
-    dw $0003                                                             ;A28B21;
-    %spritemapEntry(0, $1FA, $F0, 0, 1, 2, 0, $10F)
-    %spritemapEntry(1, $43F2, $F8, 0, 1, 2, 0, $104)
-    %spritemapEntry(1, $43FA, $F8, 0, 1, 2, 0, $103)
-
-Spritemap_Stoke_MovingRight_2:
-    dw $0002                                                             ;A28B32;
-    %spritemapEntry(1, $43FA, $F8, 0, 1, 2, 0, $106)
-    %spritemapEntry(1, $43F2, $F8, 0, 1, 2, 0, $101)
-
-Spritemap_Stoke_MovingRight_3:
-    dw $0002                                                             ;A28B3E;
-    %spritemapEntry(1, $43F2, $F8, 0, 1, 2, 0, $101)
-    %spritemapEntry(1, $43FA, $F8, 0, 1, 2, 0, $108)
-
-Spritemap_Stoke_AttackingRight:
-    dw $0004                                                             ;A28B4A;
-    %spritemapEntry(0, $1FA, $F0, 0, 1, 2, 0, $10E)
-    %spritemapEntry(0, $02, $F0, 0, 1, 2, 0, $10D)
-    %spritemapEntry(1, $43F2, $F8, 0, 1, 2, 0, $10B)
-    %spritemapEntry(1, $43FA, $F8, 0, 1, 2, 0, $10A)
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $8B60: Palette - enemy $CF3F/$CF7F (tatori) ;;;
@@ -1314,18 +923,6 @@ InstList_BabyTurtle_Spinning:
     dw Instruction_BabyTurtle_Set_Spinning_Stoppable                     ;A28BE8;
     dw Instruction_Common_GotoY                                          ;A28BEA;
     dw InstList_BabyTurtle_Spinning                                      ;A28BEC;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $8BEE: Unused. Instruction list ;;;
-UNUSED_InstList_A28BEE:
-    dw $0010,Spritemap_MamaTurtle_FacingLeft_3                           ;A28BEE;
-    dw $0010,Spritemap_MamaTurtle_FacingLeft_4                           ;A28BF2;
-    dw $0010,Spritemap_MamaTurtle_FacingLeft_5                           ;A28BF6;
-    dw $0010,Spritemap_MamaTurtle_FacingLeft_6                           ;A28BFA;
-    dw Instruction_Common_GotoY                                          ;A28BFE;
-    dw UNUSED_InstList_A28BEE                                            ;A28C00;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 InstList_MamaTurtle_Spinning:
@@ -1413,38 +1010,6 @@ InstList_BabyTurtle_CrawlingRight:
     dw $000A,Spritemap_BabyTurtle_FacingRight_10                         ;A28CBA;
     dw $000A,Spritemap_BabyTurtle_FacingRight_11                         ;A28CBE;
     dw Instruction_BabyTurtle_LoopOrTurnAroundIfMovedTooFar              ;A28CC2;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $8CC4: Unused. Instruction list ;;;
-UNUSED_InstList_A28CC4:
-    dw $0005,Spritemap_BabyTurtle_FacingRight_12                         ;A28CC4;
-    dw $0005,Spritemap_BabyTurtle_FacingRight_13                         ;A28CC8;
-    dw $0005,Spritemap_BabyTurtle_FacingRight_14                         ;A28CCC;
-    dw $0005,Spritemap_BabyTurtle_FacingRight_15                         ;A28CD0;
-    dw Instruction_Common_GotoY                                          ;A28CD4;
-    dw UNUSED_InstList_A28CC4                                            ;A28CD6;
-
-
-;;; $8CD8: Unused. Instruction list ;;;
-UNUSED_InstList_A28CD8:
-    dw $0010,Spritemap_MamaTurtle_FacingRight_C                          ;A28CD8;
-    dw $0010,Spritemap_MamaTurtle_FacingRight_D                          ;A28CDC;
-    dw $0010,Spritemap_MamaTurtle_FacingRight_E                          ;A28CE0;
-    dw $0010,Spritemap_MamaTurtle_FacingRight_F                          ;A28CE4;
-    dw Instruction_Common_GotoY                                          ;A28CE8;
-    dw UNUSED_InstList_A28CD8                                            ;A28CEA;
-
-
-;;; $8CEC: Unused. Instruction list ;;;
-UNUSED_InstList_A28CEC:
-    dw $0005,Spritemap_MamaTurtle_FacingRight_9                          ;A28CEC;
-    dw $0005,Spritemap_MamaTurtle_FacingRight_11                         ;A28CF0;
-    dw $0005,Spritemap_MamaTurtle_FacingRight_10                         ;A28CF4;
-    dw $0005,Spritemap_MamaTurtle_FacingRight_11                         ;A28CF8;
-    dw Instruction_Common_GotoY                                          ;A28CFC;
-    dw UNUSED_InstList_A28CEC                                            ;A28CFE;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $8D00: Instruction list - tatori - facing right - enter shell ;;;
@@ -2561,21 +2126,6 @@ Spritemap_MamaTurtle_FacingLeft_8:
     %spritemapEntry(1, $43F0, $00, 0, 0, 2, 0, $10E)
     %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 0, $10C)
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_MamaTurtle_FacingLeft_A296FF:
-    dw $000A                                                             ;A296FF;
-    %spritemapEntry(0, $00, $08, 0, 1, 2, 0, $15F)
-    %spritemapEntry(0, $00, $00, 0, 1, 2, 0, $15E)
-    %spritemapEntry(0, $1F8, $08, 0, 0, 2, 0, $15F)
-    %spritemapEntry(0, $1F8, $00, 0, 0, 2, 0, $15E)
-    %spritemapEntry(1, $4206, $00, 0, 1, 2, 0, $140)
-    %spritemapEntry(1, $43EA, $00, 0, 0, 2, 0, $140)
-    %spritemapEntry(1, $4200, $FA, 0, 1, 2, 0, $10E)
-    %spritemapEntry(1, $43F0, $FA, 0, 0, 2, 0, $10E)
-    %spritemapEntry(1, $4200, $EA, 0, 1, 2, 0, $10C)
-    %spritemapEntry(1, $43F0, $EA, 0, 0, 2, 0, $10C)
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 Spritemap_BabyTurtle_FacingRight_B:
     dw $0001                                                             ;A29733;
     %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 0, $104)
@@ -2737,21 +2287,6 @@ Spritemap_MamaTurtle_FacingRight_11:
     %spritemapEntry(1, $43F0, $F0, 0, 0, 2, 0, $10C)
     %spritemapEntry(1, $4200, $00, 0, 1, 2, 0, $10E)
     %spritemapEntry(1, $4200, $F0, 0, 1, 2, 0, $10C)
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_MamaTurtle_FacingRight_A29959:
-    dw $000A                                                             ;A29959;
-    %spritemapEntry(0, $1F8, $08, 0, 0, 2, 0, $15F)
-    %spritemapEntry(0, $1F8, $00, 0, 0, 2, 0, $15E)
-    %spritemapEntry(0, $00, $08, 0, 1, 2, 0, $15F)
-    %spritemapEntry(0, $00, $00, 0, 1, 2, 0, $15E)
-    %spritemapEntry(1, $43EA, $00, 0, 0, 2, 0, $140)
-    %spritemapEntry(1, $4206, $00, 0, 1, 2, 0, $140)
-    %spritemapEntry(1, $43F0, $FA, 0, 0, 2, 0, $10E)
-    %spritemapEntry(1, $4200, $FA, 0, 1, 2, 0, $10E)
-    %spritemapEntry(1, $43F0, $EA, 0, 0, 2, 0, $10C)
-    %spritemapEntry(1, $4200, $EA, 0, 1, 2, 0, $10C)
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $998D: Palette - enemy $CFBF (puyo) ;;;
@@ -4417,38 +3952,6 @@ MainAI_ShipTop:
     db $10,$01
 
 
-if !FEATURE_KEEP_UNREFERENCED
-if !DEBUG
-;;; $A7D8: Unused. Gunship function - rise to Y position 80h and then descend ;;;
-UNUSED_Function_Ship_RiseToYPosition80_Descend:
-; Probably a little debug function for testing the landing sequence
-    LDA.B SamusYPosition                                                 ;A2A7D8;
-    SEC                                                                  ;A2A7DB;
-    SBC.W #$0008                                                         ;A2A7DC;
-    STA.B SamusYPosition                                                 ;A2A7DF;
-    LDA.W Enemy[2].YPosition,X                                           ;A2A7E2;
-    SEC                                                                  ;A2A7E5;
-    SBC.W #$0008                                                         ;A2A7E6;
-    STA.W Enemy[2].YPosition,X                                           ;A2A7E9;
-    LDA.W Enemy[1].YPosition,X                                           ;A2A7EC;
-    SEC                                                                  ;A2A7EF;
-    SBC.W #$0008                                                         ;A2A7F0;
-    STA.W Enemy[1].YPosition,X                                           ;A2A7F3;
-    LDA.W Enemy.YPosition,X                                              ;A2A7F6;
-    SEC                                                                  ;A2A7F9;
-    SBC.W #$0008                                                         ;A2A7FA;
-    STA.W Enemy.YPosition,X                                              ;A2A7FD;
-    CMP.W #$0080                                                         ;A2A800;
-    BPL .return                                                          ;A2A803;
-    LDA.W #Function_Ship_LandingOnZebes_Descending                       ;A2A805;
-    STA.W ShipTop.function,X                                             ;A2A808;
-
-  .return:
-    RTL                                                                  ;A2A80B;
-endif
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $A80C: Gunship function - landing on Zebes - descending ;;;
 Function_Ship_LandingOnZebes_Descending:
     LDA.W Enemy.YPosition,X                                              ;A2A80C;
@@ -4797,30 +4300,21 @@ Function_Ship_SamusEntered_LiftoffOrRestoreSamusEnergyAmmo:
     LDA.W PowerBombs                                                     ;A2AAE7;
     CMP.W MaxPowerBombs                                                  ;A2AAEA;
     BMI .return                                                          ;A2AAED;
-    BRA .continue                                                        ;A2AAEF;
-
-if !DEBUG
-    LDA.B DP_Controller2Input                                            ;A2AAF1;
-    BIT.W #$8000                                                         ;A2AAF3;
-    BEQ .continue                                                        ;A2AAF6;
-endif
-
-  .liftoff:
-    LDA.W #Function_Ship_Liftoff_LoadDustCloudTiles                      ;A2AAF8;
-    STA.W ShipTop.function,X                                             ;A2AAFB;
-    STZ.W Enemy[1].var5,X                                                ;A2AAFE;
-    STZ.W Enemy[1].var4,X                                                ;A2AB01;
-    STZ.W ShipLiftoffTransferIndex                                       ;A2AB04;
-    LDA.W #RTS_90E90E
-    STA.W DrawingHandler
-    RTL                                                                  ;A2AB17;
-
-  .continue:
     LDA.W #Function_Ship_SamusEntered_HandleSaveConfirmation             ;A2AB18;
     STA.W ShipTop.function,X                                             ;A2AB1B;
 
   .return:
     RTL                                                                  ;A2AB1E;
+
+  .liftoff:
+    LDA.W #Function_Ship_Liftoff_LoadDustCloudTiles
+    STA.W ShipTop.function,X
+    STZ.W Enemy[1].var5,X
+    STZ.W Enemy[1].var4,X
+    STZ.W ShipLiftoffTransferIndex
+    LDA.W #RTS_90E90E
+    STA.W DrawingHandler
+    RTL
 
 
 ;;; $AB1F: Gunship function - Samus entered - handle save confirmation ;;;
@@ -5305,17 +4799,6 @@ InstList_Mellow_Mella_Menu:
     dw InstList_Mellow_Mella_Menu                                        ;A2B025;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $B027: Unused. Old movement data? ;;;
-UNUSED_OldMovementData_A2B027:
-    dw $0002,$FFFC,$FFFE,$0004,$0002,$FFFE,$0002,$0004                   ;A2B027;
-    dw $0002,$FFFE,$FFFE,$0002,$FFFC,$FFFE,$0002,$0002                   ;A2B037;
-    dw $FFFE,$FFFE,$0004,$0002,$FFFC,$FFFE,$0002,$FFFE                   ;A2B047;
-    dw $FFFC,$FFFE,$0002,$0002,$FFFE,$0004,$0002,$FFFE                   ;A2B057;
-    dw $FFFE,$0002                                                       ;A2B067;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $B06B: Initialisation AI - enemy $D0FF/$D13F/$D17F (flies) ;;;
 InitAI_Mellow_Mella_Menu:
     TYX
@@ -5668,70 +5151,6 @@ InstList_Multiviola:
     dw InstList_Multiviola                                               ;A2B316;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $B318: Unused. Instruction list ;;;
-UNUSED_InstList_Multiviola_A2B318:
-; The spritemaps here have no associated graphics
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B4E2                          ;A2B318;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B31C;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B4E2                          ;A2B320;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B324;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B4E9                          ;A2B328;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B32C;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B4E9                          ;A2B330;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B334;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B4F0                          ;A2B338;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B33C;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B4F0                          ;A2B340;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B344;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B4F7                          ;A2B348;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B34C;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B4F7                          ;A2B350;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B354;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B4F0                          ;A2B358;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B35C;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B4F0                          ;A2B360;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B364;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B4E9                          ;A2B368;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B36C;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B4E9                          ;A2B370;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B374;
-    dw Instruction_Common_GotoY                                          ;A2B378;
-    dw UNUSED_InstList_Multiviola_A2B318                                 ;A2B37A;
-
-
-;;; $B37C: Unused. Instruction list ;;;
-UNUSED_InstList_Multiviola_A2B37C:
-; The spritemaps here have no associated graphics
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B4FE                          ;A2B37C;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B380;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B4FE                          ;A2B384;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B388;
-    dw $0002,UNUSED_Spritemap_Multiviola_B2B505                          ;A2B38C;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B390;
-    dw $0002,UNUSED_Spritemap_Multiviola_B2B505                          ;A2B394;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B398;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B50C                          ;A2B39C;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B3A0;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B50C                          ;A2B3A4;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B3A8;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B513                          ;A2B3AC;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B3B0;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B513                          ;A2B3B4;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B3B8;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B50C                          ;A2B3BC;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B3C0;
-    dw $0002,UNUSED_Spritemap_Multiviola_A2B50C                          ;A2B3C4;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B3C8;
-    dw $0002,UNUSED_Spritemap_Multiviola_B2B505                          ;A2B3CC;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B3D0;
-    dw $0002,UNUSED_Spritemap_Multiviola_B2B505                          ;A2B3D4;
-    dw $0001,Spritemap_Common_Nothing                                    ;A2B3D8;
-    dw Instruction_Common_GotoY                                          ;A2B3DC;
-    dw UNUSED_InstList_Multiviola_A2B37C                                 ;A2B3DE;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $B3E0: Initialisation AI - enemy $D1BF (multiviola) ;;;
 InitAI_Multiviola:
 ; Everything but the instruction list pointer assignment is done in the main AI, making it completely redundant to do here
@@ -5858,42 +5277,6 @@ Spritemap_Multiviola_7:
     dw $0001                                                             ;A2B4DB;
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $10E)
 
-; Unused instruction list. Tile numbers in these spritemaps are past the end of multiviola tile data
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_Multiviola_A2B4E2:
-    dw $0001                                                             ;A2B4E2;
-    %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $120)
-
-UNUSED_Spritemap_Multiviola_A2B4E9:
-    dw $0001                                                             ;A2B4E9;
-    %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $122)
-
-UNUSED_Spritemap_Multiviola_A2B4F0:
-    dw $0001                                                             ;A2B4F0;
-    %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $124)
-
-UNUSED_Spritemap_Multiviola_A2B4F7:
-    dw $0001                                                             ;A2B4F7;
-    %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $126)
-
-; Unused instruction list. Tile numbers in these spritemaps are past the end of multiviola tile data
-UNUSED_Spritemap_Multiviola_A2B4FE:
-    dw $0001                                                             ;A2B4FE;
-    %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $128)
-
-UNUSED_Spritemap_Multiviola_B2B505:
-    dw $0001                                                             ;A2B505;
-    %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $12A)
-
-UNUSED_Spritemap_Multiviola_A2B50C:
-    dw $0001                                                             ;A2B50C;
-    %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $12C)
-
-UNUSED_Spritemap_Multiviola_A2B513:
-    dw $0001                                                             ;A2B513;
-    %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $12E)
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 
 ;;; $B51A: Instruction list - polyp ;;;
 InstList_Polyp:
@@ -5990,18 +5373,6 @@ Function_Polyp_Cooldown:
 
   .return:
     RTL
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $B5F9: RTL ;;;
-RTL_A2B5F9:
-    RTL                                                                  ;A2B5F9;
-
-
-;;; $B5FA: RTL ;;;
-RTL_A2B5FA:
-    RTL                                                                  ;A2B5FA;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $B5FB: Spritemap - polyp ;;;
@@ -6363,26 +5734,6 @@ DecrementRinkaCounter:
     RTS                                                                  ;A2B89B;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $B89C: Unused ;;;
-UNUSED_Rinka_A2B89C:
-    LDA.W NumberOfTimesMainEnemyRoutineExecuted                          ;A2B89C;
-    AND.W #$0003                                                         ;A2B89F;
-    CMP.W Enemy.init0,X                                                  ;A2B8A2;
-    BNE .setAsIntangible                                                 ;A2B8A5;
-    LDA.W Enemy.properties,X                                             ;A2B8A7;
-    AND.W #$FBFF                                                         ;A2B8AA;
-    STA.W Enemy.properties,X                                             ;A2B8AD;
-    RTS                                                                  ;A2B8B0;
-
-  .setAsIntangible:
-    LDA.W Enemy.properties,X                                             ;A2B8B1;
-    ORA.W #$0400                                                         ;A2B8B4;
-    STA.W Enemy.properties,X                                             ;A2B8B7;
-    RTS                                                                  ;A2B8BA;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $B8BB: Mark rinka spawn point available ;;;
 MarkRinkaSpawnPointAvailable:
     LDA.W Enemy.init0,X                                                  ;A2B8BB;
@@ -6536,23 +5887,6 @@ ContactReaction_Rinka_Common:
     RTL                                                                  ;A2B9A1;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $B9A2: Unused. Instruction - go to [[Y]] if [rinka counter] >= 3 ;;;
-UNUSED_Instruction_Rinka_GotoYIfCounterGreaterThan2_A2B9A2:
-    LDA.L MotherBrainBody.RinkaCounter                                   ;A2B9A2;
-    CMP.W #$0003                                                         ;A2B9A6;
-    BPL .gotoY                                                           ;A2B9A9;
-    INY                                                                  ;A2B9AB;
-    INY                                                                  ;A2B9AC;
-    RTL                                                                  ;A2B9AD;
-
-  .gotoY:
-    LDA.W $0000,Y                                                        ;A2B9AE;
-    TAY                                                                  ;A2B9B1;
-    RTL                                                                  ;A2B9B2;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $B9B3: Instruction - set enemy as intangible and invisible ;;;
 Instruction_Rinka_SetAsIntangibleAndInvisible:
     LDA.W Enemy.properties,X                                             ;A2B9B3;
@@ -6652,64 +5986,6 @@ Palette_Polyp_Rinka:
 Palette_Rio:
     dw $3800,$2FFF,$1AF7,$014A,$0063,$275A,$0EB5,$0210                   ;A2BA7B;
     dw $01CE,$03E0,$02E0,$0200,$0100,$7F00,$6DE0,$54E0                   ;A2BA8B;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $BA9B: Unused. Instruction list ;;;
-UNUSED_InstList_Rio_Idle_A2BB9B:
-; Clone of InstList_Rio_Idle
-    dw $0004,Spritemap_Rio_0                                             ;A2BA9B;
-    dw $0004,Spritemap_Rio_1                                             ;A2BA9F;
-    dw $0004,Spritemap_Rio_0                                             ;A2BAA3;
-    dw $0004,Spritemap_Rio_1                                             ;A2BAA7;
-    dw $0004,Spritemap_Rio_0                                             ;A2BAAB;
-    dw $0004,Spritemap_Rio_1                                             ;A2BAAF;
-    dw $0004,Spritemap_Rio_0                                             ;A2BAB3;
-    dw $0004,Spritemap_Rio_1                                             ;A2BAB7;
-    dw $0004,Spritemap_Rio_2                                             ;A2BABB;
-    dw $0004,Spritemap_Rio_3                                             ;A2BABF;
-    dw $0004,Spritemap_Rio_2                                             ;A2BAC3;
-    dw $0004,Spritemap_Rio_3                                             ;A2BAC7;
-    dw Instruction_Common_GotoY                                          ;A2BACB;
-    dw UNUSED_InstList_Rio_Idle_A2BB9B                                   ;A2BACD;
-
-
-;;; $BACF: Unused. Instruction list ;;;
-UNUSED_InstList_Rio_Swooping_A2BACF:
-; Combination of the two swooping instruction lists
-    dw $0003,Spritemap_Rio_2                                             ;A2BACF;
-    dw $0003,Spritemap_Rio_3                                             ;A2BAD3;
-    dw $0003,Spritemap_Rio_4                                             ;A2BAD7;
-    dw $0003,Spritemap_Rio_5                                             ;A2BADB;
-    dw $0003,Spritemap_Rio_6                                             ;A2BADF;
-    dw $0003,Spritemap_Rio_7                                             ;A2BAE3;
-    dw $0003,Spritemap_Rio_6                                             ;A2BAE7;
-    dw $0003,Spritemap_Rio_7                                             ;A2BAEB;
-    dw $0003,Spritemap_Rio_6                                             ;A2BAEF;
-    dw $0003,Spritemap_Rio_7                                             ;A2BAF3;
-    dw $0003,Spritemap_Rio_6                                             ;A2BAF7;
-    dw $0003,Spritemap_Rio_7                                             ;A2BAFB;
-    dw $0003,Spritemap_Rio_6                                             ;A2BAFF;
-    dw $0003,Spritemap_Rio_7                                             ;A2BB03;
-    dw $0003,Spritemap_Rio_6                                             ;A2BB07;
-    dw $0003,Spritemap_Rio_7                                             ;A2BB0B;
-    dw $0003,Spritemap_Rio_6                                             ;A2BB0F;
-    dw $0003,Spritemap_Rio_7                                             ;A2BB13;
-    dw $0003,Spritemap_Rio_6                                             ;A2BB17;
-    dw $0003,Spritemap_Rio_7                                             ;A2BB1B;
-    dw $0003,Spritemap_Rio_6                                             ;A2BB1F;
-    dw $0003,Spritemap_Rio_7                                             ;A2BB23;
-    dw $0003,Spritemap_Rio_6                                             ;A2BB27;
-    dw $0003,Spritemap_Rio_7                                             ;A2BB2B;
-    dw $0003,Spritemap_Rio_6                                             ;A2BB2F;
-    dw $0003,Spritemap_Rio_7                                             ;A2BB33;
-    dw $0003,Spritemap_Rio_6                                             ;A2BB37;
-    dw $0003,Spritemap_Rio_7                                             ;A2BB3B;
-    dw $0003,Spritemap_Rio_6                                             ;A2BB3F;
-    dw $0003,Spritemap_Rio_7                                             ;A2BB43;
-    dw Instruction_Common_GotoY                                          ;A2BB47;
-    dw UNUSED_InstList_Rio_Swooping_A2BACF                               ;A2BB49;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $BB4B: Instruction list - idle ;;;
@@ -7492,12 +6768,6 @@ GerutaConstants:
   .swoopYSpeeds:
 ; Swoop Y speeds
     dw $0700,$05C0                                                       ;A2C1C1;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_GerutaConstants_maybeLeftoverSwoopXSpeed_A2C1C7:
-; Unused. Probably leftover swoop X speed
-    dw $0100                                                             ;A2C1C7;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $C1C9: Instruction - set enemy finished swoop start animation flag ;;;
@@ -10415,22 +9685,6 @@ InstList_GRipper_MovingRight:
     dw InstList_GRipper_MovingRight                                      ;A2E1C1;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $E1C3: Unused. Instruction list - frozen - facing left ;;;
-UNUSED_InstList_GRipper_FacingLeft_A2E1C3:
-    dw $0010,Spritemap_GRipper_Ripper2_Frozen_FacingLeft                 ;A2E1C3;
-    dw Instruction_Common_GotoY                                          ;A2E1C7;
-    dw UNUSED_InstList_GRipper_FacingLeft_A2E1C3                         ;A2E1C9;
-
-
-;;; $E1CB: Unused. Instruction list - frozen - facing right ;;;
-UNUSED_InstList_GRipper_FacingRight_A2E1CB:
-    dw $0010,Spritemap_GRipper_Ripper2_Frozen_FacingRight                ;A2E1CB;
-    dw Instruction_Common_GotoY                                          ;A2E1CF;
-    dw UNUSED_InstList_GRipper_FacingRight_A2E1CB                        ;A2E1D1;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $E1D3: Initialisation AI - enemy $D3FF (gripper) ;;;
 InitAI_GRipper:
     TYX
@@ -10550,22 +9804,6 @@ InstList_Ripper2_MovingLeft:
     dw $0007,Spritemap_GRipper_Ripper2_MovingRight_2                     ;A2E300;
     dw Instruction_Common_GotoY                                          ;A2E304;
     dw InstList_Ripper2_MovingLeft                                       ;A2E306;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $E308: Unused. Instruction list - frozen - facing left ;;;
-UNUSED_InstList_Ripper2_FacingLeft_A2E308:
-    dw $0010,Spritemap_GRipper_Ripper2_Frozen_FacingLeft                 ;A2E308;
-    dw Instruction_Common_GotoY                                          ;A2E30C;
-    dw UNUSED_InstList_Ripper2_FacingLeft_A2E308                         ;A2E30E;
-
-
-;;; $E310: Unused. Instruction list - frozen - facing right ;;;
-UNUSED_InstList_Ripper2_FacingRight_A2E310:
-    dw $0010,Spritemap_GRipper_Ripper2_Frozen_FacingRight                ;A2E310;
-    dw Instruction_Common_GotoY                                          ;A2E314;
-    dw UNUSED_InstList_Ripper2_FacingRight_A2E310                        ;A2E316;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $E318: Initialisation AI - enemy $D43F (ripper ii) ;;;
@@ -11320,24 +10558,6 @@ InstList_Shutter_GrowthLevel3:
     dw Instruction_Common_Sleep                                          ;A2E9AE;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $E9B0: Unused. Instruction list - shrinking loop ;;;
-UNUSED_InstList_Shutter_ShrinkingLoop_A2E9B0:
-; Debug/demo use probably
-; Goes through all the vertical shutter spritemaps, including 8px offset sizes that are otherwise unused
-    dw $0004,Spritemap_Shutters_40px                                     ;A2E9B0;
-    dw $0004,UNUSED_Spritemap_Shutters_38px_A2ED85                       ;A2E9B4;
-    dw $0004,Spritemap_Shutters_30px                                     ;A2E9B8;
-    dw $0004,UNUSED_Spritemap_Shutters_28px_A2ED63                       ;A2E9BC;
-    dw $0004,Spritemap_Shutters_20px                                     ;A2E9C0;
-    dw $0004,UNUSED_Spritemap_Shutters_18px_A2ED4B                       ;A2E9C4;
-    dw $0004,Spritemap_Shutters_10px                                     ;A2E9C8;
-    dw $0004,UNUSED_Spritemap_Shutters_8px_A2ED38                        ;A2E9CC;
-    dw Instruction_Common_GotoY                                          ;A2E9D0;
-    dw UNUSED_InstList_Shutter_ShrinkingLoop_A2E9B0                      ;A2E9D2;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $E9D4: Instruction list - horizontal shutter ;;;
 InstList_ShutterHorizontal:
     dw $0001,Spritemap_Shutters_Horizontal                               ;A2E9D4;
@@ -11843,51 +11063,20 @@ Function_ShutterGrowing_Growing_Upwards_GrowthLevel3:
 
 
 ;;; $ED38: Shutters spritemaps ;;;
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_Shutters_8px_A2ED38:
-    dw $0002                                                             ;A2ED38;
-    %spritemapEntry(0, $00, $FC, 0, 0, 2, 0, $101)
-    %spritemapEntry(0, $1F8, $FC, 0, 0, 2, 0, $100)
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 Spritemap_Shutters_10px:
     dw $0001                                                             ;A2ED44;
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $100)
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_Shutters_18px_A2ED4B:
-    dw $0002                                                             ;A2ED4B;
-    %spritemapEntry(1, $43F8, $FC, 0, 0, 2, 0, $100)
-    %spritemapEntry(1, $43F8, $F4, 0, 0, 2, 0, $100)
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Shutters_20px:
     dw $0002                                                             ;A2ED57;
     %spritemapEntry(1, $43F8, $00, 0, 0, 2, 0, $100)
     %spritemapEntry(1, $43F8, $F0, 0, 0, 2, 0, $100)
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_Shutters_28px_A2ED63:
-    dw $0003                                                             ;A2ED63;
-    %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $100)
-    %spritemapEntry(1, $43F8, $04, 0, 0, 2, 0, $100)
-    %spritemapEntry(1, $43F8, $EC, 0, 0, 2, 0, $100)
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 Spritemap_Shutters_30px:
     dw $0003                                                             ;A2ED74;
     %spritemapEntry(1, $43F8, $08, 0, 0, 2, 0, $100)
     %spritemapEntry(1, $43F8, $F8, 0, 0, 2, 0, $100)
     %spritemapEntry(1, $43F8, $E8, 0, 0, 2, 0, $100)
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_Shutters_38px_A2ED85:
-    dw $0004                                                             ;A2ED85;
-    %spritemapEntry(1, $43F8, $0C, 0, 0, 2, 0, $100)
-    %spritemapEntry(1, $43F8, $00, 0, 0, 2, 0, $100)
-    %spritemapEntry(1, $43F8, $F0, 0, 0, 2, 0, $100)
-    %spritemapEntry(1, $43F8, $E4, 0, 0, 2, 0, $100)
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Shutters_40px:
     dw $0004                                                             ;A2ED9B;

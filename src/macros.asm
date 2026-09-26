@@ -96,12 +96,7 @@ macro EnemyHeader(tileDataSize, palette, health, damage, width, height, bank, hu
     <drops>
   .vulnerabilities
     <vulnerabilities>
-  .name
-if !DEBUG
-    <name>
-else
     dw $0000
-endif
 endmacro
 
 macro tileDataSize(arg)

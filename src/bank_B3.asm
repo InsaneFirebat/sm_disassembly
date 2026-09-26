@@ -201,50 +201,6 @@ Instruction_CommonB3_CallFunctionInY_WithA:
     RTL                                                                  ;B380B4;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $80B5: Unused. Instruction - call external function [[Y]] ;;;
-UNUSED_Instruction_CommonB3_CallExternalFunctionInY_B380B5:
-    LDA.W $0000,Y                                                        ;B380B5;
-    STA.B DP_Temp12                                                      ;B380B8;
-    LDA.W $0001,Y                                                        ;B380BA;
-    STA.B DP_Temp13                                                      ;B380BD;
-    PHX                                                                  ;B380BF;
-    PHY                                                                  ;B380C0;
-    JSL.L .externalFunction                                              ;B380C1;
-    PLY                                                                  ;B380C5;
-    PLX                                                                  ;B380C6;
-    INY                                                                  ;B380C7;
-    INY                                                                  ;B380C8;
-    INY                                                                  ;B380C9;
-    RTL                                                                  ;B380CA;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;B380CB;
-
-
-;;; $80CE: Unused. Instruction - call external function [[Y]] with A = [[Y] + 3] ;;;
-UNUSED_Inst_CommonB3_CallExternalFunctionInY_WithA_B380CE:
-    LDA.W $0000,Y                                                        ;B380CE;
-    STA.B DP_Temp12                                                      ;B380D1;
-    LDA.W $0001,Y                                                        ;B380D3;
-    STA.B DP_Temp13                                                      ;B380D6;
-    LDA.W $0003,Y                                                        ;B380D8;
-    PHX                                                                  ;B380DB;
-    PHY                                                                  ;B380DC;
-    JSL.L .externalFunction                                              ;B380DD;
-    PLY                                                                  ;B380E1;
-    PLX                                                                  ;B380E2;
-    TYA                                                                  ;B380E3;
-    CLC                                                                  ;B380E4;
-    ADC.W #$0005                                                         ;B380E5;
-    TAY                                                                  ;B380E8;
-    RTL                                                                  ;B380E9;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;B380EA;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $80ED: Instruction - go to [[Y]] ;;;
 Instruction_CommonB3_GotoY:
     LDA.W $0000,Y                                                        ;B380ED;
@@ -635,35 +591,6 @@ UNUSED_InstList_SpinningTurtleEye_Initial_B386A7:
     dw UNUSED_InstList_SpinningTurtleEye_Initial_B386A7                  ;B386C9;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $86CB: Unused. Instruction list ;;;
-UNUSED_InstList_SpinningTurtleEye_B386CB:
-    dw $0008,UNUSED_Spritemaps_SpinningTurtleEye_8_B3874C                ;B386CB;
-    dw $0008,UNUSED_Spritemaps_SpinningTurtleEye_9_B38753                ;B386CF;
-    dw $0008,UNUSED_Spritemaps_SpinningTurtleEye_A_B3875A                ;B386D3;
-    dw Instruction_Common_GotoY                                          ;B386D7;
-    dw UNUSED_InstList_SpinningTurtleEye_B386CB                          ;B386D9;
-
-
-;;; $86DB: Unused. Instruction list ;;;
-UNUSED_InstList_SpinningTurtleEye_B386DB:
-    dw $0008,UNUSED_Spritemaps_SpinningTurtleEye_B_B38761                ;B386DB;
-    dw $0008,UNUSED_Spritemaps_SpinningTurtleEye_C_B38768                ;B386DF;
-    dw $0008,UNUSED_Spritemaps_SpinningTurtleEye_D_B3876F                ;B386E3;
-    dw Instruction_Common_GotoY                                          ;B386E7;
-    dw UNUSED_InstList_SpinningTurtleEye_B386DB                          ;B386E9;
-
-
-;;; $86EB: Unused. Instruction list ;;;
-UNUSED_InstList_SpinningTurtleEye_B386EB:
-    dw $0008,UNUSED_Spritemaps_SpinningTurtleEye_E_B38776                ;B386EB;
-    dw $0008,UNUSED_Spritemaps_SpinningTurtleEye_F_B3877D                ;B386EF;
-    dw $0008,UNUSED_Spritemaps_SpinningTurtleEye_10_B38784               ;B386F3;
-    dw Instruction_Common_GotoY                                          ;B386F7;
-    dw UNUSED_InstList_SpinningTurtleEye_B386EB                          ;B386F9;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $86FB: Initialisation AI - enemy $F153 (unused spinning turtle eye) ;;;
 UNUSED_InitAI_SpinningTurtleEye_B386FB:
     LDX.B EnemyIndex                                                     ;B386FB;
@@ -723,44 +650,6 @@ UNUSED_Spritemaps_SpinningTurtleEye_6_B3873E:
 UNUSED_Spritemaps_SpinningTurtleEye_7_B38745:
     dw $0001                                                             ;B38745;
     %spritemapEntry(0, $1F8, $F8, 1, 1, 3, 1, $103)
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemaps_SpinningTurtleEye_8_B3874C:
-    dw $0001                                                             ;B3874C;
-    %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 1, $104)
-
-UNUSED_Spritemaps_SpinningTurtleEye_9_B38753:
-    dw $0001                                                             ;B38753;
-    %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 1, $105)
-
-UNUSED_Spritemaps_SpinningTurtleEye_A_B3875A:
-    dw $0001                                                             ;B3875A;
-    %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 1, $106)
-
-UNUSED_Spritemaps_SpinningTurtleEye_B_B38761:
-    dw $0001                                                             ;B38761;
-    %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 1, $107)
-
-UNUSED_Spritemaps_SpinningTurtleEye_C_B38768:
-    dw $0001                                                             ;B38768;
-    %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 1, $108)
-
-UNUSED_Spritemaps_SpinningTurtleEye_D_B3876F:
-    dw $0001                                                             ;B3876F;
-    %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 1, $109)
-
-UNUSED_Spritemaps_SpinningTurtleEye_E_B38776:
-    dw $0001                                                             ;B38776;
-    %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 1, $10A)
-
-UNUSED_Spritemaps_SpinningTurtleEye_F_B3877D:
-    dw $0001                                                             ;B3877D;
-    %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 1, $10B)
-
-UNUSED_Spritemaps_SpinningTurtleEye_10_B38784:
-    dw $0001                                                             ;B38784;
-    %spritemapEntry(0, $1F8, $F8, 0, 0, 3, 1, $10C)
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $878B: Palette - enemy $F193 (zeb) ;;;
@@ -2314,24 +2203,6 @@ Spritemaps_Geega_B:
     %spritemapEntry(1, $43F8, $F8, 0, 1, 2, 0, $10A)
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $9301: Unused. Spritemap pointers ;;;
-UNUSED_SpritemapPointers_Geega_B39301:
-    dw Spritemaps_Geega_0                                                ;B39301;
-    dw Spritemaps_Geega_1                                                ;B39303;
-    dw Spritemaps_Geega_2                                                ;B39305;
-    dw Spritemaps_Geega_3                                                ;B39307;
-    dw Spritemaps_Geega_4                                                ;B39309;
-    dw Spritemaps_Geega_5                                                ;B3930B;
-    dw Spritemaps_Geega_6                                                ;B3930D;
-    dw Spritemaps_Geega_7                                                ;B3930F;
-    dw Spritemaps_Geega_8                                                ;B39311;
-    dw Spritemaps_Geega_9                                                ;B39313;
-    dw Spritemaps_Geega_A                                                ;B39315;
-    dw Spritemaps_Geega_B                                                ;B39317;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $9319: Palette - enemy $F293 (Botwoon) ;;;
 Palette_Botwoon:
     dw $0000,$27E9,$1A66,$1585,$0CA3,$3F9C,$2E97,$1D72                   ;B39319;
@@ -2454,18 +2325,6 @@ InstList_Botwoon_Spit_AimingDownLeft:
     dw Instruction_Common_Sleep                                          ;B393CD;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $93CF: Unused. Instruction list - spit - aiming down (facing left) ;;;
-UNUSED_InstList_Botwoon_Spit_AimingDown_FacingLeft_B393CF:
-    dw $0020*!FPS,Spritemaps_Botwoon_MouthClosed_Priority2_AimDown_FacingLeft;B393CF;
-    dw Instruction_Botwoon_EnemyRadius_8x10_duplicate                    ;B393D3;
-    dw Instruction_Botwoon_QueueSpitSFX                                  ;B393D5;
-    dw Instruction_Botwoon_SetSpittingFlag                               ;B393D7;
-    dw $0010,Spritemaps_Botwoon_MouthOpen_Priority2_AimingDown_FacingLeft;B393D9;
-    dw Instruction_Common_Sleep                                          ;B393DD;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $93DF: Instruction list - spit - aiming down (facing right) ;;;
 InstList_Botwoon_Spit_AimingDown_FacingRight:
     dw $0020*!FPS,Spritemaps_Botwoon_MouthClosed_Priority2_AimDown_FacingRight;B393DF;
@@ -2516,14 +2375,6 @@ InstList_Botwoon_Spit_AimingUp_FacingRight:
     dw Instruction_Common_Sleep                                          ;B3942D;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $942F: Unused. Instruction list - hidden - aiming up (facing left) ;;;
-UNUSED_InstList_Botwoon_Hidden_AimingUp_FacingLeft_B3942F:
-    dw $0001,Spritemaps_Botwoon_MouthClosed_Priority0_AimingUp_FacingLeft;B3942F;
-    dw Instruction_Common_Sleep                                          ;B39433;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $9435: Instruction list - hidden - aiming up-left ;;;
 InstList_Botwoon_Hidden_AimingUpLeft:
     dw $0001,Spritemaps_Botwoon_MouthClosed_Priority0_AimingUpLeft       ;B39435;
@@ -2540,14 +2391,6 @@ InstList_Botwoon_Hidden_AimingLeft:
 InstList_Botwoon_Hidden_AimingDownLeft:
     dw $0001,Spritemaps_Botwoon_MouthClosed_Priority0_AimingDownLeft     ;B39441;
     dw Instruction_Common_Sleep                                          ;B39445;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $9447: Unused. Instruction list - hidden - aiming down (facing left) ;;;
-UNUSED_InstList_Botwoon_Hidden_AimingDown_FacingLeft_B39447:
-    dw $0001,Spritemaps_Botwoon_MouthClosed_Priority0_AimDown_FacingLeft ;B39447;
-    dw Instruction_Common_Sleep                                          ;B3944B;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $944D: Instruction list - hidden - aiming down (facing right) ;;;
@@ -2875,51 +2718,6 @@ MainAI_Botwoon:
     RTL                                                                  ;B39674;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $9675:  ;;;
-UNUSED_Data_B39675:
-    dw $FFFF,$00FF,$01FF                                                 ;B39675;
-
-
-;;; $967B: Unused ;;;
-UNUSED_SpeedTable_Random_B3967B:
-    LDA.L Botwoon.speedTableIndex,X                                      ;B3967B;
-    ASL                                                                  ;B3967F;
-    TAY                                                                  ;B39680;
-    LDA.W UNUSED_Data_B39675,Y                                           ;B39681;
-    STA.B DP_Temp12                                                      ;B39684;
-    JSL.L GenerateRandomNumber                                           ;B39686;
-    AND.B DP_Temp12                                                      ;B3968A;
-    BNE .return                                                          ;B3968C;
-    LDA.W #$0001                                                         ;B3968E;
-    STA.L ExtraEnemy8000+$1C,X                                           ;B39691;
-
-  .return:
-    RTS                                                                  ;B39695;
-
-
-;;; $9696: Unused ;;;
-UNUSED_Botwoon_MaybeSpitting_B39396:
-    LDX.B EnemyIndex                                                     ;B39696;
-    LDA.L Botwoon.deathFlag,X                                            ;B39699;
-    BNE +                                                                ;B3969D;
-    LDA.L ExtraEnemy8000+$1C,X                                           ;B3969F;
-    BEQ +                                                                ;B396A3;
-    LDA.L Botwoon.headHiddenFlag,X                                       ;B396A5;
-    BNE +                                                                ;B396A9;
-    LDA.L Botwoon.spitTimer,X                                            ;B396AB;
-    BNE +                                                                ;B396AF;
-    LDA.W #Function_Botwoon_Head_Spitting_SetAngleAndShow                ;B396B1;
-    STA.W Botwoon.headFunction,X                                         ;B396B4;
-    LDA.W #$0018*!FPS                                                    ;B396B7;
-    STA.L Botwoon.spitTimer,X                                            ;B396BA;
-
-+   LDA.W #$0000                                                         ;B396BE;
-    STA.L ExtraEnemy8000+$1C,X                                           ;B396C1;
-    RTS                                                                  ;B396C5;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $96C6: Botwoon death check ;;;
 BotwoonDeathCheck:
     LDX.B EnemyIndex                                                     ;B396C6;
@@ -2947,26 +2745,6 @@ SetBotwoonAsIntangible:
     ORA.W #$0400                                                         ;B396F8;
     STA.W Enemy.properties                                               ;B396FB;
     RTS                                                                  ;B396FE;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $96FF: Unused. Set Botwoon body enemy projectiles as intangible ;;;
-UNUSED_SetBotwoonBodyProjectilesAsIntangible_B396FF:
-    LDY.W #$0022                                                         ;B396FF;
-
-  .loop:
-    TYX                                                                  ;B39702;
-    LDA.W EnemyProjectile_Properties,Y                                   ;B39703;
-    ORA.W #$2000                                                         ;B39706;
-    STA.W EnemyProjectile_Properties,Y                                   ;B39709;
-    LDA.W #$0002                                                         ;B3970C;
-    STA.L EnemyProjectileData_CollisionOptions,X                         ;B3970F;
-    DEY                                                                  ;B39713;
-    DEY                                                                  ;B39714;
-    CPY.W #$000A                                                         ;B39715;
-    BPL .loop                                                            ;B39718;
-    RTS                                                                  ;B3971A;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $971B: Botwoon health-based palettes ;;;
@@ -5464,62 +5242,6 @@ Spritemaps_Botwoon_MouthClosed_Priority0_AimUp_FacingRight:
     %spritemapEntry(1, $1F8, $F7, 0, 1, 0, 0, $122)
     %spritemapEntry(1, $1F8, $E7, 0, 1, 0, 0, $120)
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemaps_Botwoon_MouthOpen_Prio0_UpFaceLeft_B3E499:
-    dw $0002                                                             ;B3E499;
-    %spritemapEntry(1, $1F8, $F8, 0, 0, 0, 0, $126)
-    %spritemapEntry(1, $1F8, $E8, 0, 0, 0, 0, $124)
-
-UNUSED_Spritemaps_Botwoon_MouthOpen_Prio0_UpLeft_B3E4A5:
-    dw $0003                                                             ;B3E4A5;
-    %spritemapEntry(0, $1F0, $00, 0, 0, 0, 0, $1A6)
-    %spritemapEntry(1, $1F8, $F8, 0, 0, 0, 0, $186)
-    %spritemapEntry(1, $1F0, $F0, 0, 0, 0, 0, $184)
-
-UNUSED_Spritemaps_Botwoon_MouthOpen_Prio0_Left_B3E4B6:
-    dw $0002                                                             ;B3E4B6;
-    %spritemapEntry(1, $1FC, $F8, 0, 0, 0, 0, $182)
-    %spritemapEntry(1, $1EC, $F8, 0, 0, 0, 0, $180)
-
-UNUSED_Spritemaps_Botwoon_MouthOpen_Prio0_DownLeft_B3E4C2:
-    dw $0003                                                             ;B3E4C2;
-    %spritemapEntry(0, $00, $09, 0, 0, 0, 0, $1A7)
-    %spritemapEntry(1, $1F8, $F9, 0, 0, 0, 0, $18A)
-    %spritemapEntry(1, $1F0, $01, 0, 0, 0, 0, $188)
-
-UNUSED_Spritemap_Botwoon_MouthOpen_Prio0_DownFaceLeft_B3E4D3:
-    dw $0002                                                             ;B3E4D3;
-    %spritemapEntry(1, $1F8, $09, 0, 0, 0, 0, $18E)
-    %spritemapEntry(1, $1F8, $F9, 0, 0, 0, 0, $18C)
-
-UNUSED_Spritemap_Botwoon_MouthOpen_Pri0_DownFaceRight_B3E4DF:
-    dw $0002                                                             ;B3E4DF;
-    %spritemapEntry(1, $1F8, $09, 0, 1, 0, 0, $18E)
-    %spritemapEntry(1, $1F8, $F9, 0, 1, 0, 0, $18C)
-
-UNUSED_Spritemaps_Botwoon_MouthOpen_Prio0_DownRight_B3E4EB:
-    dw $0003                                                             ;B3E4EB;
-    %spritemapEntry(0, $1F8, $09, 0, 1, 0, 0, $1A7)
-    %spritemapEntry(1, $1F8, $F9, 0, 1, 0, 0, $18A)
-    %spritemapEntry(1, $00, $01, 0, 1, 0, 0, $188)
-
-UNUSED_Spritemaps_Botwoon_MouthOpen_Prio0_Right_B3E4FC:
-    dw $0002                                                             ;B3E4FC;
-    %spritemapEntry(1, $1F4, $F8, 0, 1, 0, 0, $182)
-    %spritemapEntry(1, $04, $F8, 0, 1, 0, 0, $180)
-
-UNUSED_Spritemaps_Botwoon_MouthOpen_Prio0_UpRight_B3E508:
-    dw $0003                                                             ;B3E508;
-    %spritemapEntry(0, $08, $00, 0, 1, 0, 0, $1A6)
-    %spritemapEntry(1, $1F8, $F8, 0, 1, 0, 0, $186)
-    %spritemapEntry(1, $00, $F0, 0, 1, 0, 0, $184)
-
-UNUSED_Spritemaps_Botwoon_MouthOpen_Prio0_UpFaceRight_B3E519:
-    dw $0002                                                             ;B3E519;
-    %spritemapEntry(1, $1F8, $F8, 0, 1, 0, 0, $126)
-    %spritemapEntry(1, $1F8, $E8, 0, 1, 0, 0, $124)
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 
 ;;; $E525: Palette - enemy $F2D3 (escape etecoon) ;;;
 Palette_EtecoonEscape:
@@ -5650,40 +5372,6 @@ Instruction_EtecoonEscape_XPositionPlusY:
     INY                                                                  ;B3E61A;
     INY                                                                  ;B3E61B;
     RTL                                                                  ;B3E61C;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $E61D: Unused. Instruction list ;;;
-UNUSED_InstList_EtecoonEscape_B3E61D:
-    dw $0001,Spritemaps_EtecoonEscape_6                                  ;B3E61D;
-    dw Instruction_Common_Sleep                                          ;B3E621;
-
-
-;;; $E623: Unused. Instruction list ;;;
-UNUSED_InstList_EtecoonEscape_B3E623:
-    dw $000C,Spritemaps_EtecoonEscape_7                                  ;B3E623;
-    dw $000C,Spritemaps_EtecoonEscape_8                                  ;B3E627;
-    dw $0006,Spritemaps_EtecoonEscape_9                                  ;B3E62B;
-    dw $000C,Spritemaps_EtecoonEscape_8                                  ;B3E62F;
-    dw $000C,Spritemaps_EtecoonEscape_7                                  ;B3E633;
-    dw Instruction_Common_Sleep                                          ;B3E637;
-
-
-;;; $E639: Unused. Instruction list ;;;
-UNUSED_InstList_EtecoonEscape_B3E639:
-    dw $0001,Spritemaps_EtecoonEscape_A                                  ;B3E639;
-    dw Instruction_Common_Sleep                                          ;B3E63D;
-
-
-;;; $E63F: Unused. Instruction list ;;;
-UNUSED_InstList_EtecoonEscape_B3E63F:
-    dw $000C,Spritemaps_EtecoonEscape_B                                  ;B3E63F;
-    dw $000C,Spritemaps_EtecoonEscape_C                                  ;B3E643;
-    dw $0006,Spritemaps_EtecoonEscape_D                                  ;B3E647;
-    dw $000C,Spritemaps_EtecoonEscape_C                                  ;B3E64B;
-    dw $000C,Spritemaps_EtecoonEscape_B                                  ;B3E64F;
-    dw Instruction_Common_Sleep                                          ;B3E653;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $E655: Main AI - enemy $F2D3 (escape etecoon) ;;;

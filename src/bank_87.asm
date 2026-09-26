@@ -118,158 +118,6 @@ Instruction_AnimatedTilesObject_GotoY:
     RTS                                                                  ;8780BB;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $80BC: Unused. Instruction - go to [Y] + ±[[Y]] ;;;
-UNUSED_Instruction_AnimatedTilesObject_GotoYPlusY_8780BC:
-;; Parameters:
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    STY.W AnimatedTilesObject_Instruction                                ;8780BC;
-    DEY                                                                  ;8780BF;
-    LDA.W $0000,Y                                                        ;8780C0;
-    XBA                                                                  ;8780C3;
-    BMI .highByte                                                        ;8780C4;
-    AND.W #$00FF                                                         ;8780C6;
-    BRA +                                                                ;8780C9;
-
-  .highByte:
-    ORA.W #$FF00                                                         ;8780CB;
-
-+   CLC                                                                  ;8780CE;
-    ADC.W AnimatedTilesObject_Instruction                                ;8780CF;
-    TAY                                                                  ;8780D2;
-    RTS                                                                  ;8780D3;
-
-
-;;; $80D4: Unused. Instruction - decrement timer and go to [[Y]] if non-zero ;;;
-UNUSED_Inst_AnimTilesObject_DecTimer_GotoYIfNonZero_8780D4:
-;; Parameters:
-;;     X: Animated tiles object index
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    DEC.W AnimatedTilesObject_Timers,X                                   ;8780D4;
-    BNE Instruction_AnimatedTilesObject_GotoY                            ;8780D7;
-    INY                                                                  ;8780D9;
-    INY                                                                  ;8780DA;
-    RTS                                                                  ;8780DB;
-
-
-;;; $80DC: Unused. Instruction - decrement timer and go to [Y] + ±[[Y]] if non-zero ;;;
-UNUSED_Inst_AnimTilesObject_DecTimer_GotoYPlusYIfNon0_8780DC:
-;; Parameters:
-;;     X: Animated tiles object index
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    DEC.W AnimatedTilesObject_Timers,X                                   ;8780DC;
-    BNE UNUSED_Instruction_AnimatedTilesObject_GotoYPlusY_8780BC         ;8780DF;
-    INY                                                                  ;8780E1;
-    RTS                                                                  ;8780E2;
-
-
-;;; $80E3: Unused. Instruction - timer = [[Y]] ;;;
-UNUSED_Instruction_AnimatedTilesObject_TimerInY_8780E3:
-;; Parameters:
-;;     X: Animated tiles object index
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    SEP #$20                                                             ;8780E3;
-    LDA.W $0000,Y                                                        ;8780E5;
-    STA.W AnimatedTilesObject_Timers,X                                   ;8780E8;
-    REP #$20                                                             ;8780EB;
-    INY                                                                  ;8780ED;
-    RTS                                                                  ;8780EE;
-
-
-;;; $80EF: Unused. RTS ;;;
-UNUSED_RTS_8780EF:
-    RTS                                                                  ;8780EF;
-
-
-;;; $80F0: Unused. Instruction - queue music track [[Y]] ;;;
-UNUSED_Instruction_AnimatedTilesObject_QueueMusicTrackInY:
-;; Parameters:
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    LDA.W $0000,Y                                                        ;8780F0;
-    AND.W #$00FF                                                         ;8780F3;
-    JSL.L QueueMusicDataOrTrack_8FrameDelay                              ;8780F6;
-    INY                                                                  ;8780FA;
-    RTS                                                                  ;8780FB;
-
-
-;;; $80FC: Unused. Instruction - queue sound [[Y]], sound library 1, max queued sounds allowed = 6 ;;;
-UNUSED_Inst_AnimTilesObject_QueueSoundInY_Lib1_Max6_8780FC:
-    LDA.W $0000,Y                                                        ;8780FC;
-    AND.W #$00FF                                                         ;8780FF;
-    JSL.L QueueSound_Lib1_Max6                                           ;878102;
-    INY                                                                  ;878106;
-    RTS                                                                  ;878107;
-
-
-;;; $8108: Unused. Instruction - queue sound [[Y]], sound library 2, max queued sounds allowed = 6 ;;;
-UNUSED_Inst_AnimTilesObject_QueueSoundInY_Lib2_Max6_878108:
-;; Parameters:
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    LDA.W $0000,Y                                                        ;878108;
-    AND.W #$00FF                                                         ;87810B;
-    JSL.L QueueSound_Lib2_Max6                                           ;87810E;
-    INY                                                                  ;878112;
-    RTS                                                                  ;878113;
-
-
-;;; $8114: Unused. Instruction - queue sound [[Y]], sound library 3, max queued sounds allowed = 6 ;;;
-UNUSED_Inst_AnimTilesObject_QueueSoundInY_Lib3_Max6_878114:
-;; Parameters:
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    LDA.W $0000,Y                                                        ;878114;
-    AND.W #$00FF                                                         ;878117;
-    JSL.L QueueSound_Lib3_Max6                                           ;87811A;
-    INY                                                                  ;87811E;
-    RTS                                                                  ;87811F;
-
-
-;;; $8120: Unused. Instruction - go to [[Y] + 1] if any of the boss bits [[Y]] are set ;;;
-UNUSED_Inst_AnimTilesObject_GotoYIfBossBitsInYSet_878120:
-;; Parameters:
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    LDA.W $0000,Y                                                        ;878120;
-    INY                                                                  ;878123;
-    AND.W #$00FF                                                         ;878124;
-    JSL.L CheckIfBossBitsForCurrentAreaMatchAnyBitsInA                   ;878127;
-    BCC .notSet                                                          ;87812B;
-    JMP.W Instruction_AnimatedTilesObject_GotoY                          ;87812D;
-
-  .notSet:
-    INY                                                                  ;878130;
-    INY                                                                  ;878131;
-    RTS                                                                  ;878132;
-
-
-;;; $8133: Unused. Instruction - set the boss bits [[Y]] ;;;
-UNUSED_Instruction_AnimatedTilesObject_SetBossBitsY_878133:
-;; Parameters:
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    LDA.W $0000,Y                                                        ;878133;
-    AND.W #$00FF                                                         ;878136;
-    JSL.L SetBossBitsInAForCurrentArea                                   ;878139;
-    INY                                                                  ;87813D;
-    RTS                                                                  ;87813E;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $813F: Instruction - go to [[Y] + 2] if the event [[Y]] is set ;;;
 Instruction_AnimatedTilesObject_GotoYIfEventYSet:
 ;; Parameters:
@@ -296,22 +144,6 @@ Instruction_AnimatedTilesObject_SetEventY:
     INY                                                                  ;878157;
     INY                                                                  ;878158;
     RTS                                                                  ;878159;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $815A: Unused. Instruction - lock Samus ;;;
-UNUSED_Instruction_AnimatedTilesObject_LockSamus_87815A:
-    LDA.W #$0000                                                         ;87815A;
-    JSL.L Run_Samus_Command                                              ;87815D;
-    RTS                                                                  ;878161;
-
-
-UNUSED_Instruction_AnimatedTilesObject_UnlockSamus_878162:
-;;; $8162: Unused. Instruction - unlock Samus ;;;
-    LDA.W #$0001                                                         ;878162;
-    JSL.L Run_Samus_Command                                              ;878165;
-    RTS                                                                  ;878169;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $816A: Instruction list - animated tiles object $8251 (all areas 1 - vertical spikes) ;;;
@@ -468,13 +300,6 @@ UNUSED_AnimatedTilesObjects_FX_unusedCrateriaLava_0_878263:
 ; Crateria 8 - unused Crateria lava
     dw UNUSED_InstList_AnimatedTilesObject_CrateriaLava_8781A6           ;878263;
     dw $00C0,$0A00                                                       ;878265;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_AnimatedTilesObjects_FX_unusedCrateriaLava_1_878269:
-; Unused. Crateria lava
-    dw UNUSED_InstList_AnimatedTilesObject_CrateriaLava_8781A6           ;878269;
-    dw $00C0,$0640                                                       ;87826B;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 AnimatedTilesObjects_FX_wreckedShipScreen:
 ; Wrecked Ship 10h - Wrecked Ship screen
@@ -973,13 +798,6 @@ AnimatedTiles_WreckedShipScreen_2:
 incbin "../data/AnimatedTiles_WreckedShipScreen_2.bin" ; $80 bytes
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $9064: Unused. "X" ;;;
-UNUSED_AnimatedTiles_X_879064:
-incbin "../data/AnimatedTiles_X_879064.bin" ; $100 bytes
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $9164: Maridia 8 - Maridia sand falling ;;;
 AnimatedTiles_MaridiaSandFalling_0:
 incbin "../data/AnimatedTiles_MaridiaSandFalling_0.bin" ; $20 bytes
@@ -1006,13 +824,6 @@ incbin "../data/AnimatedTiles_MaridiaSandCeiling_2.bin" ; $40 bytes
 
 AnimatedTiles_MaridiaSandCeiling_3:
 incbin "../data/AnimatedTiles_MaridiaSandCeiling_3.bin" ; $40 bytes
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $92E4: Unused. "X" ;;;
-UNUSED_AnimatedTiles_X_8792E4:
-incbin "../data/AnimatedTiles_X_8792E4.bin" ; $80 bytes
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $9364: Phantoon statue ;;;
@@ -1110,13 +921,6 @@ incbin "../data/AnimatedTiles_HorizontalSpikes_1.bin" ; $80 bytes
 
 AnimatedTiles_HorizontalSpikes_2:
 incbin "../data/AnimatedTiles_HorizontalSpikes_2.bin" ; $80 bytes
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $9F04: Unused. "X" ;;;
-UNUSED_AnimatedTiles_X_879F04:
-incbin "../data/AnimatedTiles_X_879F04.bin" ; $660 bytes
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $A564: Lava ;;;

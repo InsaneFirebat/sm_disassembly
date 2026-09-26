@@ -201,50 +201,6 @@ Instruction_CommonA9_CallFunctionInY_WithA:
     RTL                                                                  ;A980B4;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $80B5: Unused. Instruction - call external function [[Y]] ;;;
-UNUSED_Instruction_CommonA9_CallExternalFunctionInY_A980B5:
-    LDA.W $0000,Y                                                        ;A980B5;
-    STA.B DP_Temp12                                                      ;A980B8;
-    LDA.W $0001,Y                                                        ;A980BA;
-    STA.B DP_Temp13                                                      ;A980BD;
-    PHX                                                                  ;A980BF;
-    PHY                                                                  ;A980C0;
-    JSL.L .externalFunction                                              ;A980C1;
-    PLY                                                                  ;A980C5;
-    PLX                                                                  ;A980C6;
-    INY                                                                  ;A980C7;
-    INY                                                                  ;A980C8;
-    INY                                                                  ;A980C9;
-    RTL                                                                  ;A980CA;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;A980CB;
-
-
-;;; $80CE: Unused. Instruction - call external function [[Y]] with A = [[Y] + 3] ;;;
-UNUSED_Inst_CommonA9_CallExternalFunctionInY_WithA_A980CE:
-    LDA.W $0000,Y                                                        ;A980CE;
-    STA.B DP_Temp12                                                      ;A980D1;
-    LDA.W $0001,Y                                                        ;A980D3;
-    STA.B DP_Temp13                                                      ;A980D6;
-    LDA.W $0003,Y                                                        ;A980D8;
-    PHX                                                                  ;A980DB;
-    PHY                                                                  ;A980DC;
-    JSL.L .externalFunction                                              ;A980DD;
-    PLY                                                                  ;A980E1;
-    PLX                                                                  ;A980E2;
-    TYA                                                                  ;A980E3;
-    CLC                                                                  ;A980E4;
-    ADC.W #$0005                                                         ;A980E5;
-    TAY                                                                  ;A980E8;
-    RTL                                                                  ;A980E9;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;A980EA;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $80ED: Instruction - go to [[Y]] ;;;
 Instruction_CommonA9_GotoY:
     LDA.W $0000,Y                                                        ;A980ED;
@@ -2702,16 +2658,6 @@ Instruction_MotherBrainBody_MoveBodyUpBy12_ScrollRightBy2:
     JMP.W MoveMotherBrainBodyDownByA_ScrollLeftByX                       ;A995D1;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $95D4: Unused. Instruction - scroll Mother Brain body right by 2px ;;;
-UNUSED_Instruction_MotherBrainBody_MoveBodyRightBy2_A995D4:
-    PHX                                                                  ;A995D4;
-    LDX.W #$FFFE                                                         ;A995D5;
-    LDA.W #$0000                                                         ;A995D8;
-    JMP.W MoveMotherBrainBodyDownByA_ScrollLeftByX                       ;A995DB;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $95DE: Instruction - move Mother Brain body down by 12px, scroll it left by 4px ;;;
 Instruction_MotherBrainBody_MoveBodyDownBy12_ScrollLeftBy4:
     PHX                                                                  ;A995DE;
@@ -3536,14 +3482,6 @@ InstList_MotherBrainHead_InitialDummy:
     dw Instruction_Common_Sleep                                          ;A99C17;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $9C19: Unused. Instruction list - Mother Brain brain ;;;
-UNUSED_InstList_MotherBrainHead_A99C19:
-    dw $0008,Spritemaps_MotherBrain_2                                    ;A99C19;
-    dw $0004,Spritemaps_MotherBrain_1                                    ;A99C1D;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $9C21: Instruction list - Mother Brain brain - initial ;;;
 InstList_MotherBrainHead_Initial:
     dw $0004,Spritemaps_MotherBrain_0                                    ;A99C21;
@@ -3604,15 +3542,6 @@ InstList_MotherBrainHead_FiringRainbowBeam:
     dw InstList_MotherBrainHead_FiringRainbowBeam                        ;A99C7D;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $9C7F: Unused. Instruction list - Mother Brain brain ;;;
-UNUSED_InstList_MotherBrainHead_A99C7F:
-    dw $0001,Spritemaps_MotherBrain_8                                    ;A99C7F;
-    dw Instruction_MotherBrain_GotoX                                     ;A99C83;
-    dw UNUSED_InstList_MotherBrainHead_A99C7F                            ;A99C85;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $9C87: Instruction list - Mother Brain brain - neutral - phase 2 ;;;
 ; Includes firing hand beam (which is done by body)
 InstList_MotherBrainHead_Neutral_Phase2_0:
@@ -3660,22 +3589,6 @@ InstList_MotherBrainHead_Neutral_Phase3_1:
     dw Instruction_MotherBrain_GotoX                                     ;A99CDF;
     dw InstList_MotherBrainHead_Neutral_Phase3_0                         ;A99CE1;
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_InstList_MotherBrainHead_Neutral_Phase3_A99CE3:
-; Unused branch
-    dw $0004,Spritemaps_MotherBrain_8                                    ;A99CE3;
-    dw $0004,Spritemaps_MotherBrain_9                                    ;A99CE7;
-    dw $0002,Spritemaps_MotherBrain_A                                    ;A99CEB;
-    dw Instruction_MotherBrainHead_QueueSoundX_Lib2_Max6,$006F           ;A99CEF;
-    dw $0002,Spritemaps_MotherBrain_A                                    ;A99CF1;
-    dw $0002,Spritemaps_MotherBrain_A                                    ;A99CF7;
-    dw $0002,Spritemaps_MotherBrain_A                                    ;A99CFB;
-    dw $0002,Spritemaps_MotherBrain_A                                    ;A99CFF;
-    dw $0004,Spritemaps_MotherBrain_9                                    ;A99D03;
-    dw $0004,Spritemaps_MotherBrain_8                                    ;A99D07;
-    dw Instruction_MotherBrainHead_GotoNeutralPhase3                     ;A99D0B;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 
 ;;; $9D0D: Instruction - likely go to $9CD1 ;;;
 Instruction_MotherBrainHead_MaybeGotoNeutralPhase3:
@@ -3685,15 +3598,7 @@ Instruction_MotherBrainHead_MaybeGotoNeutralPhase3:
 ; If $9D16 were a BCC, Mother Brain would do a cry sound effect occasionally whilst Shitroid makes its final stand
     LDA.B RandomNumberSeed                                               ;A99D0D;
     AND.W #$0FFF                                                         ;A99D10;
-    CMP.W #$0F40                                                         ;A99D13;
-    BRA +                                                                ;A99D16;
-
-if !FEATURE_KEEP_UNREFERENCED
-    LDX.W #UNUSED_InstList_MotherBrainHead_Neutral_Phase3_A99CE3         ;A99D18;
-    RTS                                                                  ;A99D1B;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-+   CMP.W #$0EC0                                                         ;A99D1C;
+    CMP.W #$0EC0                                                         ;A99D1C;
     BCS Instruction_MotherBrainHead_GotoNeutralPhase3_return             ;A99D1F; fallthrough to Instruction_MotherBrainHead_GotoNeutralPhase3
 
 
@@ -4410,62 +4315,6 @@ UNUSED_ExtendedSpritemap_MotherBrainBrain_A9A320:
     dw Spritemaps_MotherBrain_0                                          ;A9A326;
     dw Hitbox_MotherBrainBody_0                                          ;A9A328;
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_ExtendedSpritemap_MotherBrainBrain_A9A32A:
-    dw $0001                                                             ;A9A32A;
-    dw $0000,$0000
-    dw Spritemaps_MotherBrain_1                                          ;A9A330;
-    dw Hitbox_MotherBrainBody_0                                          ;A9A332;
-
-UNUSED_ExtendedSpritemap_MotherBrainBrain_A9A334:
-    dw $0001                                                             ;A9A334;
-    dw $0000,$0000
-    dw Spritemaps_MotherBrain_2                                          ;A9A33A;
-    dw Hitbox_MotherBrainBody_0                                          ;A9A33C;
-
-UNUSED_ExtendedSpritemap_MotherBrainBrain_A9A33E:
-    dw $0001                                                             ;A9A33E;
-    dw $0000,$0000
-    dw Spritemaps_MotherBrain_3                                          ;A9A344;
-    dw Hitbox_MotherBrainBody_0                                          ;A9A346;
-
-UNUSED_ExtendedSpritemap_MotherBrainBrain_A9A348:
-    dw $0001                                                             ;A9A348;
-    dw $0000,$0000
-    dw Spritemaps_MotherBrain_4                                          ;A9A34E;
-    dw Hitbox_MotherBrainBody_0                                          ;A9A350;
-
-UNUSED_ExtendedSpritemap_MotherBrainBrain_A9A352:
-    dw $0001                                                             ;A9A352;
-    dw $0000,$0000
-    dw Spritemaps_MotherBrain_6                                          ;A9A358;
-    dw Hitbox_MotherBrainBody_1                                          ;A9A35A;
-
-UNUSED_ExtendedSpritemap_MotherBrainBrain_A9A35C:
-    dw $0001                                                             ;A9A35C;
-    dw $0000,$0000
-    dw Spritemaps_MotherBrain_7                                          ;A9A362;
-    dw Hitbox_MotherBrainBody_1                                          ;A9A364;
-
-UNUSED_ExtendedSpritemap_MotherBrainBrain_A9A366:
-    dw $0001                                                             ;A9A366;
-    dw $0000,$0000
-    dw Spritemaps_MotherBrain_8                                          ;A9A36C;
-    dw Hitbox_MotherBrainBody_1                                          ;A9A36E;
-
-UNUSED_ExtendedSpritemap_MotherBrainBrain_A9A370:
-    dw $0001                                                             ;A9A370;
-    dw $0000,$0000
-    dw Spritemaps_MotherBrain_9                                          ;A9A376;
-    dw Hitbox_MotherBrainBody_1                                          ;A9A378;
-
-UNUSED_ExtendedSpritemap_MotherBrainBrain_A9A37A:
-    dw $0001                                                             ;A9A37A;
-    dw $0000,$0000
-    dw Spritemaps_MotherBrain_A                                          ;A9A380;
-    dw Hitbox_MotherBrainBody_1                                          ;A9A382;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 ExtendedSpritemap_MotherBrainBrain_DeathBeamMode_0:
     dw $0009                                                             ;A9A384;
     dw $0012,$003A
@@ -4901,52 +4750,9 @@ Spritemaps_MotherBrain_14:
     %spritemapEntry(1, $1FC, $04, 0, 0, 2, 3, $157)
     %spritemapEntry(1, $04, $FC, 0, 0, 2, 3, $148)
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemaps_MotherBrain_A9A8D5:
-    dw $0006                                                             ;A9A8D5;
-    %spritemapEntry(1, $1D, $03, 0, 0, 2, 3, $15E)
-    %spritemapEntry(1, $1D, $0B, 0, 0, 2, 3, $16E)
-    %spritemapEntry(1, $0D, $0B, 0, 0, 2, 3, $162)
-    %spritemapEntry(1, $0D, $FB, 0, 0, 2, 3, $160)
-    %spritemapEntry(1, $1FD, $03, 0, 0, 2, 3, $16C)
-    %spritemapEntry(1, $1FD, $FB, 0, 0, 2, 3, $15C)
-
-UNUSED_Spritemaps_MotherBrain_A9A8F5:
-    dw $0008                                                             ;A9A8F5;
-    %spritemapEntry(0, $28, $00, 1, 0, 2, 3, $177)
-    %spritemapEntry(0, $28, $F8, 0, 0, 2, 3, $177)
-    %spritemapEntry(1, $18, $00, 1, 0, 2, 3, $143)
-    %spritemapEntry(1, $18, $F0, 0, 0, 2, 3, $143)
-    %spritemapEntry(1, $10, $00, 1, 0, 2, 3, $142)
-    %spritemapEntry(1, $00, $00, 1, 0, 2, 3, $140)
-    %spritemapEntry(1, $10, $F0, 0, 0, 2, 3, $142)
-    %spritemapEntry(1, $00, $F0, 0, 0, 2, 3, $140)
-
-UNUSED_Spritemaps_MotherBrain_A9A91F:
-    dw $0006                                                             ;A9A91F;
-    %spritemapEntry(1, $1D, $ED, 1, 0, 2, 3, $15E)
-    %spritemapEntry(1, $1D, $E5, 1, 0, 2, 3, $16E)
-    %spritemapEntry(1, $0D, $E5, 1, 0, 2, 3, $162)
-    %spritemapEntry(1, $0D, $F5, 1, 0, 2, 3, $160)
-    %spritemapEntry(1, $1FD, $ED, 1, 0, 2, 3, $16C)
-    %spritemapEntry(1, $1FD, $F5, 1, 0, 2, 3, $15C)
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 Spritemaps_MotherBrain_15:
     dw $0001                                                             ;A9A93F;
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 3, $164)
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemaps_MotherBrain_A9A946:
-    dw $0002                                                             ;A9A946;
-    %spritemapEntry(1, $1F8, $10, 0, 0, 2, 3, $188)
-    %spritemapEntry(1, $1F8, $00, 0, 0, 2, 3, $145)
-
-UNUSED_Spritemaps_MotherBrain_A9A952:
-    dw $0002                                                             ;A9A952;
-    %spritemapEntry(1, $1F3, $10, 0, 0, 2, 3, $18A)
-    %spritemapEntry(1, $1F7, $00, 0, 0, 2, 3, $181)
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemaps_MotherBrain_16:
     dw $0004                                                             ;A9A95E;
@@ -4976,22 +4782,6 @@ ExtendedTilemaps_MotherBrain_0:                                          ;A9A98A
     dw $2280,$000A, $2338,$31E8,$31E9,$31EA,$31EB,$31EC,$31ED,$2338,$2338,$2338
     dw $22C0,$0004, $2338,$2338,$31EE,$31EF
     dw $FFFF
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_ExtendedTilemaps_MotherBrain_A9AA4E:                              ;A9AA4E;
-    dw $FFFE
-    dw $2084,$0002, $2338,$2338
-    dw $20C2,$0003, $2338,$2338,$2338
-    dw $2102,$0003, $2338,$2338,$2338
-    dw $2140,$000A, $2338,$2338,$2338,$2338,$2338,$2338,$2338,$2338,$2338,$2338
-    dw $2180,$0007, $2338,$2338,$2338,$2338,$2338,$2338,$2338
-    dw $21C0,$0008, $2338,$2338,$2338,$2338,$2338,$2338,$2338,$2338
-    dw $2200,$0008, $2338,$2338,$2338,$2338,$2338,$2338,$2338,$2338
-    dw $2240,$0007, $2338,$2338,$2338,$2338,$2338,$2338,$2338
-    dw $2282,$0006, $2338,$2338,$2338,$2338,$2338,$2338
-    dw $22C4,$0002, $2338,$2338
-    dw $FFFF
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 ExtendedTilemaps_MotherBrain_1:                                          ;A9AAEA;
     dw $FFFE
@@ -7056,14 +6846,6 @@ AimMotherBrainRainbowBeam:
     RTS                                                                  ;A9BBAF;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $BBB0: Calculate Mother Brain rainbow beam HDMA tables ;;;
-UNUSED_CalculateMotherBrainRainbowBeamHDMATables_long_A9BBB0:
-    JSL.L Calculate_MotherBrain_RainbowBeam_HDMATables                   ;A9BBB0;
-    RTS                                                                  ;A9BBB4;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $BBB5: Move Samus towards wall due to rainbow beam ;;;
 MoveSamusTowardsWallDueToRainbowBeam:
 ;; Returns:
@@ -8053,38 +7835,6 @@ Function_MotherBrainBody_Walking_RetreatSlowly:
     JMP.W SetMotherBrainWalkingFunctionToTryToInchForward                ;A9C2E2;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $C2E5: Unused. Mother Brain walking function - crouch ;;;
-UNUSED_Function_MotherBrainBody_Walking_Crouch_A9C2E5:
-    JSR.W MakeMotherBrainCrouch                                          ;A9C2E5;
-    BCC .return                                                          ;A9C2E8;
-    LDA.W #UNUSED_Function_MotherBrainBody_Walking_Crouching_A9C2F9      ;A9C2EA;
-    STA.L MotherBrainBody.walkingFunction                                ;A9C2ED;
-    LDA.W #$0040                                                         ;A9C2F1;
-    STA.L MotherBrainBody.crouchTimer                                    ;A9C2F4;
-
-  .return:
-    RTS                                                                  ;A9C2F8;
-
-
-;;; $C2F9: Unused. Mother Brain walking function - crouching ;;;
-UNUSED_Function_MotherBrainBody_Walking_Crouching_A9C2F9:
-    LDA.L MotherBrainBody.crouchTimer                                    ;A9C2F9;
-    DEC                                                                  ;A9C2FD;
-    STA.L MotherBrainBody.crouchTimer                                    ;A9C2FE;
-    BPL UNUSED_Function_MotherBrainBody_Walking_Crouch_A9C2E5_return     ;A9C302;
-    LDA.W #UNUSED_Function_MotherBrainBody_Walking_StandUp_A9C30B        ;A9C304;
-    STA.L MotherBrainBody.walkingFunction                                ;A9C307; fallthrough to UNUSED_Function_MotherBrainBody_Walking_StandUp_A9C30B
-
-
-;;; $C30B: Unused. Mother Brain walking function - stand up ;;;
-UNUSED_Function_MotherBrainBody_Walking_StandUp_A9C30B:
-    JSR.W MakeMotherBrainStandUp                                         ;A9C30B;
-    BCC UNUSED_Function_MotherBrainBody_Walking_Crouch_A9C2E5_return     ;A9C30E;
-    LDA.W #$00C0                                                         ;A9C310; fallthrough to SetMotherBrainWalkingFunctionToTryToInchForward
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $C313: Set Mother Brain walking function to try to inch forward ;;;
 SetMotherBrainWalkingFunctionToTryToInchForward:
     STA.L MotherBrainBody.walkCounter                                    ;A9C313;
@@ -8288,25 +8038,6 @@ GetSineMathInA_A9C46C:
     LDA.L $002135                                                        ;A9C488;
     PLX                                                                  ;A9C48C;
     RTL                                                                  ;A9C48D;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $C48E: Unused. Enemy X position += [A] / 100h ;;;
-UNUSED_AddADividedBy100ToEnemyXPosition_A9C48E:
-    SEP #$20                                                             ;A9C48E;
-    CLC                                                                  ;A9C490;
-    ADC.W Enemy.XSubPosition+1,X                                         ;A9C491;
-    STA.W Enemy.XSubPosition+1,X                                         ;A9C494;
-    REP #$20                                                             ;A9C497;
-    AND.W #$FF00                                                         ;A9C499;
-    XBA                                                                  ;A9C49C;
-    BPL +                                                                ;A9C49D;
-    ORA.W #$FF00                                                         ;A9C49F;
-
-+   ADC.W Enemy.XPosition,X                                              ;A9C4A2;
-    STA.W Enemy.XPosition,X                                              ;A9C4A5;
-    RTS                                                                  ;A9C4A8;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $C4A9: Enemy Y position += [A] / 100h ;;;
@@ -8565,30 +8296,6 @@ MakeMotherBrainWalkForwards:
     dw InstList_MotherBrainBody_WalkingForwards_Medium                   ;A9C624;
     dw InstList_MotherBrainBody_WalkingForwards_Slow                     ;A9C626;
     dw InstList_MotherBrainBody_WalkingForwards_ReallySlow               ;A9C628;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $C62A: Unused. Make Mother Brain walk backwards ;;;
-UNUSED_MakeMotherBrainWalkBackwards_A9C62A:
-; Allows her to go back further than MakeMotherBrainWalkBackwards does
-    CMP.W Enemy.XPosition                                                ;A9C62A;
-    BPL .returnCarrySet                                                  ;A9C62D;
-    LDA.L MotherBrainBody.pose                                           ;A9C62F;
-    BNE .returnCarryClear                                                ;A9C633;
-    LDA.W Enemy.XPosition                                                ;A9C635;
-    CMP.W #$0010                                                         ;A9C638;
-    BMI .returnCarrySet                                                  ;A9C63B;
-    LDA.W MakeMotherBrainWalkBackwards_pointers,Y                        ;A9C63D;
-    JSR.W SetMotherBrainBodyInstList                                     ;A9C640;
-
-  .returnCarryClear:
-    CLC                                                                  ;A9C643;
-    RTS                                                                  ;A9C644;
-
-  .returnCarrySet:
-    SEC                                                                  ;A9C645;
-    RTS                                                                  ;A9C646;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $C647: Make Mother Brain walk backwards ;;;
@@ -10128,32 +9835,6 @@ UNSUED_SetInvalidRoomPaletteInstructionList_A9D151:
     LDA.W #$0001                                                         ;A9D158;
     STA.L MotherBrainBody.roomPaletteInstructionTimer                    ;A9D15B;
     RTS                                                                  ;A9D15F;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $D160: Unused. Handle Mother Brain's palette ;;;
-UNUSED_HandleMotherBrainsPalette_A9D160:
-    LDA.W #MotherBrainBody.roomPaletteInstListPointer                    ;A9D160;
-    JSR.W HandleRoomPaletteInstList                                      ;A9D163;
-    BCC .return                                                          ;A9D166;
-    PHY                                                                  ;A9D168;
-    LDX.W #$0082                                                         ;A9D169;
-    LDA.W #$000D                                                         ;A9D16C;
-    JSL.L WriteAColorsFromYtoColorIndexX                                 ;A9D16F;
-    PLY                                                                  ;A9D173;
-    LDX.W #$0122                                                         ;A9D174;
-    LDA.W #$000D                                                         ;A9D177;
-    JSL.L WriteAColorsFromYtoColorIndexX                                 ;A9D17A;
-    LDX.W #$0168                                                         ;A9D17E;
-    LDA.W #$0005                                                         ;A9D181;
-    JSL.L WriteAColorsFromYtoColorIndexX                                 ;A9D184;
-    LDX.W #$017C                                                         ;A9D188;
-    LDA.W $0000,Y                                                        ;A9D18B;
-    STA.W $0000,X                                                        ;A9D18E;
-
-  .return:
-    RTS                                                                  ;A9D191;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $D192: Handle room palette instruction list ;;;
@@ -14213,27 +13894,6 @@ Spritemap_CorpseSkree_2:
     %spritemapEntry(1, $43F4, $04, 0, 0, 3, 0, $12E)
     %spritemapEntry(1, $43F4, $F4, 0, 0, 3, 0, $10E)
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_Corpse_A9EDF7:
-    dw $000A                                                             ;A9EDF7;
-    %spritemapEntry(0, $0C, $FC, 0, 0, 2, 7, $10C)
-    %spritemapEntry(0, $14, $FC, 0, 0, 2, 7, $10D)
-    %spritemapEntry(0, $04, $FC, 0, 0, 2, 7, $10B)
-    %spritemapEntry(0, $1F4, $FC, 0, 0, 2, 7, $10D)
-    %spritemapEntry(0, $1EC, $FC, 0, 0, 2, 7, $10C)
-    %spritemapEntry(0, $1E4, $FC, 0, 0, 2, 7, $10B)
-    %spritemapEntry(0, $08, $FC, 0, 0, 2, 7, $106)
-    %spritemapEntry(0, $00, $FC, 0, 0, 2, 7, $105)
-    %spritemapEntry(0, $1F8, $FC, 0, 0, 2, 7, $101)
-    %spritemapEntry(0, $1F0, $FC, 0, 0, 2, 7, $100)
-
-UNUSED_Spritemap_Corpse_A9EE2B:
-    dw $0003                                                             ;A9EE2B;
-    %spritemapEntry(0, $04, $FA, 0, 0, 2, 7, $10D)
-    %spritemapEntry(0, $1FC, $FA, 0, 0, 2, 7, $10C)
-    %spritemapEntry(0, $1F4, $FA, 0, 0, 2, 7, $10B)
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 Spritemap_CorpseSidehopper_Alive_0:
     dw $0007                                                             ;A9EE3C;
     %spritemapEntry(0, $00, $EC, 0, 0, 2, 0, $171)
@@ -14267,22 +13927,6 @@ Spritemap_CorpseSidehopper_Alive_2:
     %spritemapEntry(0, $00, $E3, 0, 0, 2, 0, $171)
     %spritemapEntry(0, $1F8, $E3, 0, 0, 2, 0, $170)
     %spritemapEntry(1, $43F8, $EB, 0, 0, 2, 0, $180)
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $EEBF: Unused. A = [Y] / [A] ;;;
-UNUSED_GetYDividedByA_A9EEBF:
-    STY.W $4204                                                          ;A9EEBF;
-    SEP #$20                                                             ;A9EEC2;
-    STA.W $4206                                                          ;A9EEC4;
-    REP #$20                                                             ;A9EEC7;
-    XBA                                                                  ;A9EEC9;
-    XBA                                                                  ;A9EECA;
-    NOP                                                                  ;A9EECB;
-    NOP                                                                  ;A9EECC;
-    LDA.W $4214                                                          ;A9EECD;
-    RTS                                                                  ;A9EED0;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $EED1: Check for enemy collision with enemy ;;;

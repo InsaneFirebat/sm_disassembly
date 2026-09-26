@@ -1325,13 +1325,6 @@ AddSpritemapToOAM_WithBaseTileNumber_NoOffScreen:
     RTL                                                                  ;818B20;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $8B21: Unused. RTL ;;;
-RTL_818B21:
-    RTL                                                                  ;818B21;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $8B22: Add spritemap to OAM with base tile number - Y origin on-screen ;;;
 AddSpritemapToOAM_WithBaseTileNumber_8B22:
 ;; Parameters:
@@ -1646,31 +1639,6 @@ AddSpritemapToOAM_WithBaseTileNumber_Offscreen_8C7F:
     RTL                                                                  ;818CF3;
 
 
-if !DEBUG
-;;; $8CF4: Debug game over menu ;;;
-Debug_GameOverMenu:
-; Game state 1Dh
-    REP #$30                                                             ;818CF4;
-    PHB                                                                  ;818CF6;
-    PHK                                                                  ;818CF7;
-    PLB                                                                  ;818CF8;
-    LDA.W PauseMenu_MenuIndex                                            ;818CF9;
-    ASL                                                                  ;818CFC;
-    TAX                                                                  ;818CFD;
-    JSR.W (.pointers,X)                                                  ;818CFE;
-    PLB                                                                  ;818D01;
-    RTL                                                                  ;818D02;
-
-  .pointers:
-    dw Debug_GameOverMenu_Index0_FadeOut_ConfigureGraphicsForMenu        ;818D03;
-    dw Debug_GameOverMenu_Index1_Initialise                              ;818D05;
-    dw Debug_GameOverMenu_Index24_FadeIn                                 ;818D07;
-    dw DebugGameOverMenu_Index3_Main                                     ;818D09;
-    dw Debug_GameOverMenu_Index24_FadeIn                                 ;818D0B;
-    dw DebugGameOverMenu_Index5_Continue                                 ;818D0D;
-endif
-
-
 ;;; $8D0F: (Debug) game over menu - index 0: fade out and configure graphics for menu ;;;
 Debug_GameOverMenu_Index0_FadeOut_ConfigureGraphicsForMenu:
     REP #$30                                                             ;818D0F;
@@ -1716,53 +1684,6 @@ Debug_GameOverMenu_Index0_FadeOut_ConfigureGraphicsForMenu:
     JSR.W LoadMenuPalettes                                               ;818D66;
     INC.W PauseMenu_MenuIndex                                            ;818D69;
     RTS                                                                  ;818D6C;
-
-
-if !DEBUG
-;;; $8D6D: Debug game over menu - index 1: initialise ;;;
-Debug_GameOverMenu_Index1_Initialise:
-    REP #$30                                                             ;818D6D;
-    LDA.W #$0000                                                         ;818D6F;
-    JSL.L QueueMusicDataOrTrack_8FrameDelay                              ;818D72;
-    LDA.W #$FF03                                                         ;818D76;
-    JSL.L QueueMusicDataOrTrack_8FrameDelay                              ;818D79;
-    SEP #$20                                                             ;818D7D;
-    LDA.B #$11                                                           ;818D7F;
-    STA.B DP_MainScreenLayers                                            ;818D81;
-    REP #$30                                                             ;818D83;
-    LDA.W #Debug_GameOverMenu_VRAMTransferDefinitions                    ;818D85;
-    STA.B DP_Temp00                                                      ;818D88;
-    LDA.W #$0081                                                         ;818D8A;
-    STA.B DP_Temp02                                                      ;818D8D;
-    JSL.L LoadDebugGameOverMenuTilemap                                   ;818D8F;
-    JSL.L ClearForceBlankAndWaitForNMI                                   ;818D93;
-    INC.W PauseMenu_MenuIndex                                            ;818D97;
-    STZ.W ScreenFadeDelay                                                ;818D9A;
-    STZ.W ScreenFadeCounter                                              ;818D9D;
-    STZ.W GameOverMenuSelectionIndex                                     ;818DA0;
-    RTS                                                                  ;818DA3;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $8DA4: Unused ;;;
-UNUSED_818DA4:
-    dw $000F                                                             ;818DA4;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
-;;; $8DA6: Debug game over menu - index 2/4: fade in ;;;
-Debug_GameOverMenu_Index24_FadeIn:
-    REP #$30                                                             ;818DA6;
-    JSL.L HandleFadingIn                                                 ;818DA8;
-    LDA.B DP_Brightness                                                  ;818DAC;
-    AND.W #$000F                                                         ;818DAE;
-    CMP.W #$000F                                                         ;818DB1;
-    BNE .return                                                          ;818DB4;
-    INC.W PauseMenu_MenuIndex                                            ;818DB6;
-
-  .return:
-    RTS                                                                  ;818DB9;
-endif
 
 
 ;;; $8DBA: Map VRAM for menu ;;;
@@ -1860,226 +1781,6 @@ LoadMenuPalettes:
     CPX.W #$0200                                                         ;818E79;
     BMI .loop                                                            ;818E7C;
     RTS                                                                  ;818E7E;
-
-
-if !DEBUG
-;;; $8E7F: Load debug game over menu tilemap ;;;
-LoadDebugGameOverMenuTilemap:
-;; Parameters:
-;;     $00: Pointer to VRAM transfer definitions ($81:8EE1)
-    LDX.W #$0000                                                         ;818E7F;
-    LDA.W #$000F                                                         ;818E82;
-
-  .loopClear:
-    STA.L DebugGameOverMenuTilemap,X                                     ;818E85;
-    INX                                                                  ;818E89;
-    INX                                                                  ;818E8A;
-    CPX.W #$0800                                                         ;818E8B;
-    BMI .loopClear                                                       ;818E8E;
-    LDX.B VRAMWriteStack                                                 ;818E90;
-    LDA.W #$0800                                                         ;818E93;
-    STA.B VRAMWrite.size,X                                               ;818E96;
-    LDA.W #$3800                                                         ;818E98;
-    STA.B VRAMWrite.src,X                                                ;818E9B;
-    LDA.W #$007E                                                         ;818E9D;
-    STA.B VRAMWrite.src+2,X                                              ;818EA0;
-    LDA.B DP_BG1TilemapAddrSize                                          ;818EA2;
-    AND.W #$00FC                                                         ;818EA4;
-    XBA                                                                  ;818EA7;
-    STA.B VRAMWrite.dest,X                                               ;818EA8;
-    TXA                                                                  ;818EAA;
-    CLC                                                                  ;818EAB;
-    ADC.W #$0007                                                         ;818EAC;
-    STA.B VRAMWriteStack                                                 ;818EAF;
-    LDX.B VRAMWriteStack                                                 ;818EB2;
-    LDY.W #$0000                                                         ;818EB5;
-
-  .loop:
-    LDA.B [DP_Temp00],Y                                                  ;818EB8;
-    CMP.W #$FFFF                                                         ;818EBA;
-    BEQ .return                                                          ;818EBD;
-    STA.B VRAMWrite.size,X                                               ;818EBF;
-    INY                                                                  ;818EC1;
-    INY                                                                  ;818EC2;
-    LDA.B [DP_Temp00],Y                                                  ;818EC3;
-    STA.B VRAMWrite.src,X                                                ;818EC5;
-    INY                                                                  ;818EC7;
-    INY                                                                  ;818EC8;
-    LDA.B [DP_Temp00],Y                                                  ;818EC9;
-    STA.B VRAMWrite.src+2,X                                              ;818ECB;
-    INY                                                                  ;818ECD;
-    INY                                                                  ;818ECE;
-    LDA.B [DP_Temp00],Y                                                  ;818ECF;
-    STA.B VRAMWrite.dest,X                                               ;818ED1;
-    TXA                                                                  ;818ED3;
-    CLC                                                                  ;818ED4;
-    ADC.W #$0007                                                         ;818ED5;
-    TAX                                                                  ;818ED8;
-    INY                                                                  ;818ED9;
-    INY                                                                  ;818EDA;
-    BRA .loop                                                            ;818EDB;
-
-  .return:
-    STX.B VRAMWriteStack                                                 ;818EDD;
-    RTL                                                                  ;818EE0;
-
-
-;;; $8EE1: Debug game over menu VRAM transfer definitions ;;;
-Debug_GameOverMenu_VRAMTransferDefinitions:
-;                        __________________ Size (or FFFFh terminator)
-;                       |     _____________ Source address
-;                       |    |       ______ Padding byte for source bank
-;                       |    |      |   ___ Destination VRAM address
-;                       |    |      |  |
-; '            GAME QUIT           '
-    dw $0040                                                             ;818EE1; Size (or FFFFh terminator)
-    dl Tilemap_DebugGameOverMenu_gameQuit                                ;818EE3; Source address
-    db $00                                                               ;818EE6; Padding byte for source bank
-    dw $5140                                                             ;818EE7; Destination VRAM address
-
-; '        WOULD YOU PLAY ?        '
-    dw $0040                                                             ;818EE9; Size (or FFFFh terminator)
-    dl Tilemap_DebugGameOverMenu_wouldYouPlay                            ;818EEB; Source address
-    db $00                                                               ;818EEE; Padding byte for source bank
-    dw $5180                                                             ;818EEF; Destination VRAM address
-
-; '            END                 '
-    dw $0040                                                             ;818EF1; Size (or FFFFh terminator)
-    dl Tilemap_DebugGameOverMenu_end                                     ;818EF3; Source address
-    db $00                                                               ;818EF6; Padding byte for source bank
-    dw $51E0                                                             ;818EF7; Destination VRAM address
-
-; '            CONTINUE            '
-    dw $0040                                                             ;818EF9; Size (or FFFFh terminator)
-    dl Tilemap_DebugGameOverMenu_continue                                ;818EFB; Source address
-    db $00                                                               ;818EFE; Padding byte for source bank
-    dw $5220                                                             ;818EFF; Destination VRAM address
-    dw $FFFF                                                             ;818F01; Terminator
-
-
-;;; $8F03: Debug game over menu tilemaps ;;;
-Tilemap_DebugGameOverMenu:
-  .gameQuit:
-; '            GAME QUIT           '
-    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F                   ;818F03;
-    dw $000F,$000F,$000F,$000F,$0070,$006A,$0076,$006E                   ;818F13;
-    dw $000F,$007A,$007E,$0072,$007D,$000F,$000F,$000F                   ;818F23;
-    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F                   ;818F33;
-
-  .wouldYouPlay:
-; '        WOULD YOU PLAY ?        '
-    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F                   ;818F43;
-    dw $0080,$0078,$007E,$0075,$006D,$000F,$0082,$0078                   ;818F53;
-    dw $007E,$000F,$0079,$0075,$006A,$0082,$000F,$0085                   ;818F63;
-    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F                   ;818F73;
-
-  .end:
-; '            END                 '
-    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F                   ;818F83;
-    dw $000F,$000F,$000F,$000F,$006E,$0077,$006D,$000F                   ;818F93;
-    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F                   ;818FA3;
-    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F                   ;818FB3;
-
-  .continue:
-; '            CONTINUE            '
-    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F                   ;818FC3;
-    dw $000F,$000F,$000F,$000F,$006C,$0078,$0077,$007D                   ;818FD3;
-    dw $0072,$0077,$007E,$006E,$000F,$000F,$000F,$000F                   ;818FE3;
-    dw $000F,$000F,$000F,$000F,$000F,$000F,$000F,$000F                   ;818FF3;
-
-
-;;; $9003: Debug game over menu - index 3: main ;;;
-DebugGameOverMenu_Index3_Main:
-    REP #$30                                                             ;819003;
-    LDA.B DP_Controller1New                                              ;819005;
-    BIT.W #$2000                                                         ;819007;
-    BNE .toggleSelection                                                 ;81900A;
-    BIT.W #$0800                                                         ;81900C;
-    BNE .toggleSelection                                                 ;81900F;
-    BIT.W #$0400                                                         ;819011;
-    BNE .toggleSelection                                                 ;819014;
-    BIT.W #$9080                                                         ;819016;
-    BEQ .noChange                                                        ;819019;
-    LDA.W GameOverMenuSelectionIndex                                     ;81901B;
-    BNE +                                                                ;81901E;
-    LDA.W SaveSlotSelected                                               ;819020;
-    JSL.L SaveToSRAM                                                     ;819023;
-    JML SoftReset                                                        ;819027;
-
-+   INC.W PauseMenu_MenuIndex                                            ;81902B;
-    RTS                                                                  ;81902E;
-
-  .toggleSelection:
-    LDA.W GameOverMenuSelectionIndex                                     ;81902F;
-    EOR.W #$0001                                                         ;819032;
-    STA.W GameOverMenuSelectionIndex                                     ;819035;
-
-  .noChange:
-    LDX.W #$7800                                                         ;819038;
-    LDA.W GameOverMenuSelectionIndex                                     ;81903B;
-    BEQ +                                                                ;81903E;
-    LDX.W #$8800                                                         ;819040;
-
-+   TXA                                                                  ;819043;
-    ORA.W #$0028                                                         ;819044;
-    LDX.B OAMStack                                                       ;819047;
-    STA.W OAMLow,X                                                       ;81904A;
-    LDA.W #$00B6                                                         ;81904D;
-    STA.W OAMLow+2,X                                                     ;819050;
-    INX                                                                  ;819053;
-    INX                                                                  ;819054;
-    INX                                                                  ;819055;
-    INX                                                                  ;819056;
-    STX.B OAMStack                                                       ;819057;
-    RTS                                                                  ;81905A;
-
-
-;;; $905B: Restore palettes and regular IO registers from debug game over menu ;;;
-RestorePalettesAndIORegistersFromDebugGameOverMenu:
-; The restoring of IO registers here has no effect, due to the ensuing unpause code calling $82:8E19, which sets the IO registers to the pause menu backup
-; The restoring of the palettes is also redundant, due to the unpause code
-    LDX.W #$0000                                                         ;81905B;
-
-  .loopPalettes:
-    LDA.L BackupOfPalettesDuringMenu,X                                   ;81905E;
-    STA.L Palettes,X                                                     ;819062;
-    INX                                                                  ;819066;
-    INX                                                                  ;819067;
-    CPX.W #$0200                                                         ;819068;
-    BMI .loopPalettes                                                    ;81906B;
-    LDX.W #$0000                                                         ;81906D;
-
-  .loopIORegisters:
-    LDA.L BackupOfRegularIORegistersDuringGameOverMenu,X                 ;819070;
-    STA.B DP_Brightness,X                                                ;819074;
-    INX                                                                  ;819076;
-    INX                                                                  ;819077;
-    CPX.W #$0036                                                         ;819078;
-    BMI .loopIORegisters                                                 ;81907B;
-    RTS                                                                  ;81907D;
-
-
-;;; $907E: Debug game over menu - index 5: continue ;;;
-DebugGameOverMenu_Index5_Continue:
-    SEP #$30                                                             ;81907E;
-    LDA.B #$00                                                           ;819080;
-    STA.W $2116                                                          ;819082;
-    LDA.B #$40                                                           ;819085;
-    STA.W $2117                                                          ;819087;
-    LDA.B #$80                                                           ;81908A;
-    STA.W $2115                                                          ;81908C;
-    JSL.L SetupHDMATransfer                                              ;81908F;
-    db $01,$01,$18                                                       ;819093;
-    dl Tiles_Standard_BG3                                                ;819096;
-    dw $2000                                                             ;819099;
-    LDA.B #$02                                                           ;81909B;
-    STA.W $420B                                                          ;81909D;
-    REP #$30                                                             ;8190A0;
-    LDA.W #$0010                                                         ;8190A2;
-    STA.W GameState                                                      ;8190A5;
-    STZ.W GameOverMenuSelectionIndex                                     ;8190A8;
-    JMP.W RestorePalettesAndIORegistersFromDebugGameOverMenu             ;8190AB;
-endif
 
 
 ;;; $90AE: Game over menu ;;;
@@ -2651,13 +2352,6 @@ Initialise_FileSelectMenu_FileCopy:
     STZ.W TitleMenu_FileCopySrcFileClearSlot                             ;81958A;
     STZ.W TitleMenu_FileCopyDestSlot                                     ;81958D;
     RTS                                                                  ;819590;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $9591: Unused. REP #$30 ;;;
-UNUSED_REP30_819591:
-    REP #$30                                                             ;819591;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $9593: Set initial file copy/clear menu selection ;;;
@@ -4465,13 +4159,6 @@ FileSelectMap_Index1_GameOptionsToAreaSelectMap_FadeOut:
     RTS                                                                  ;81A3D0;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $A3D1: Unused. REP #$30 ;;;
-UNUSED_REP30_81A3D1:
-    REP #$30                                                             ;81A3D1;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $A3D3: Load active area map foreground colours ;;;
 LoadActiveAreaMapForegroundColors:
 ;; Parameters:
@@ -4939,23 +4626,6 @@ FileSelectMap_Index6_AreaSelectMap:
 ;      This means pressing up/left/down/right/select the same frame as B/A/start negates the B/A/start input
     REP #$30                                                             ;81A800;
     LDA.B DP_Controller1New                                              ;81A802;
-if !DEBUG
-    BIT.W #$0A00                                                         ;81A804;
-    BEQ .checkSelectDownRight                                            ;81A807;
-    LDA.W Debug_Enable                                                   ;81A809;
-    BEQ .checkB                                                          ;81A80C;
-    JMP.W .debug                                                         ;81A80E;
-
-  .checkSelectDownRight
-    BIT.W #$2500                                                         ;81A811;
-    BEQ .checkB                                                          ;81A814;
-    LDA.W Debug_Enable                                                   ;81A816;
-    BEQ .checkB                                                          ;81A819;
-    JMP.W .debugNext                                                     ;81A81B;
-endif
-
-  .checkB:
-    LDA.B DP_Controller1New                                              ;81A802;
     BIT.W #$8000                                                         ;81A81E;
     BEQ .checkStartA                                                     ;81A821;
     LDA.W #$0016                                                         ;81A823;
@@ -4971,51 +4641,6 @@ endif
 
   .JMP_DrawAreaSelectMapLabels:
     JMP.W DrawAreaSelectMapLabels                                        ;81A83B;
-
-if !DEBUG
-  .debug:
-    LDA.B DP_Temp16                                                      ;81A840;
-    STA.B DP_Temp18                                                      ;81A842;
-    LDA.W FileSelectMapAreaIndex                                         ;81A844;
-    JSR.W A_equals_A_Minus_1_Mod_6                                       ;81A847;
-    JSR.W Debug_Check_FileSelectMapArea_CanBeSelected                    ;81A84A;
-    BNE .selected                                                        ;81A84D;
-    LDA.B DP_Temp1C                                                      ;81A84F;
-    JSR.W A_equals_A_Minus_1_Mod_6                                       ;81A851;
-    JSR.W Debug_Check_FileSelectMapArea_CanBeSelected                    ;81A854;
-    BNE .selected                                                        ;81A857;
-    LDA.B DP_Temp1C                                                      ;81A859;
-    JSR.W A_equals_A_Minus_1_Mod_6                                       ;81A85B;
-    JSR.W Debug_Check_FileSelectMapArea_CanBeSelected                    ;81A85E;
-    BEQ .JMP_DrawAreaSelectMapLabels                                     ;81A861;
-
-  .selected:
-    LDA.W #$0037                                                         ;81A863;
-    JSL.L QueueSound_Lib1_Max6                                           ;81A866;
-    JSR.W Switch_Active_FileSelectMapArea                                ;81A86A;
-    JMP.W DrawAreaSelectMapLabels                                        ;81A86D;
-
-  .debugNext:
-    LDA.W #$0006                                                         ;81A870;
-    STA.B DP_Temp16                                                      ;81A873;
-    LDA.W FileSelectMapAreaIndex                                         ;81A875;
-    STA.B DP_Temp1C                                                      ;81A878;
-
-  .loop:
-    LDA.B DP_Temp1C                                                      ;81A87A;
-    JSR.W A_equals_A_Plus_1_Mod_6                                        ;81A87C;
-    JSR.W Debug_Check_FileSelectMapArea_CanBeSelected                    ;81A87F;
-    BNE .switch                                                          ;81A882;
-    DEC.B DP_Temp16                                                      ;81A884;
-    BNE .loop                                                            ;81A886;
-    JMP.W DrawAreaSelectMapLabels                                        ;81A888;
-
-  .switch:
-    JSR.W Switch_Active_FileSelectMapArea                                ;81A88B;
-    LDA.W #$0037                                                         ;81A88E;
-    JSL.L QueueSound_Lib1_Max6                                           ;81A891;
-    JMP.W DrawAreaSelectMapLabels                                        ;81A895;
-endif
 
 
 ;;; $A898: A = ([A] - 1) % 6 ;;;
@@ -5043,139 +4668,11 @@ A_equals_A_Plus_1_Mod_6:
 ;;; $A8A9: Select file select map area ;;;
 Select_FileSelectMap_Area:
     INC.W PauseMenu_MenuIndex                                            ;81A8A9;
-if !DEBUG
-    LDA.W Debug_Enable                                                   ;81A8AC;
-    BNE .debugEnabled                                                    ;81A8AF;
-endif
     LDA.L SRAMMirror_AreaIndex                                           ;81A8B1;
     STA.W AreaIndex                                                      ;81A8B5;
     LDA.L SRAMMirror_SaveStationIndex                                    ;81A8B8;
     STA.W LoadStationIndex                                               ;81A8BC;
-    JMP.W FileSelectMap_Index6_AreaSelectMap_JMP_DrawAreaSelectMapLabels ;81A8BF;
-
-if !DEBUG
-  .debugEnabled:
-    LDA.W FileSelectMapAreaIndex                                         ;81A8C2;
-    ASL                                                                  ;81A8C5;
-    TAX                                                                  ;81A8C6;
-    LDA.W FileSelectMapArea_IndexTable,X                                 ;81A8C7;
-    STA.W AreaIndex                                                      ;81A8CA;
-    ASL                                                                  ;81A8CD;
-    TAX                                                                  ;81A8CE;
-    LDA.L SRAMMirror_UsedSaveStationsElevators,X                         ;81A8CF;
-    STA.B DP_Temp12                                                      ;81A8D3;
-    LDX.W #$0000                                                         ;81A8D5;
-    LDA.W #MapIcon_PositionTablePointers>>16                             ;81A8D8;
-    STA.B DP_Temp02                                                      ;81A8DB;
-    LDA.W #MapIcon_PositionTablePointers_savePoints                      ;81A8DD;
-    STA.B DP_Temp00                                                      ;81A8E0;
-    LDA.W AreaIndex                                                      ;81A8E2;
-    ASL                                                                  ;81A8E5;
-    TAY                                                                  ;81A8E6;
-    LDA.B [DP_Temp00],Y                                                  ;81A8E7;
-    BEQ .crash                                                           ;81A8E9;
-    STA.B DP_Temp00                                                      ;81A8EB;
-    LDA.W #$0010                                                         ;81A8ED;
-    STA.B DP_Temp14                                                      ;81A8F0;
-
-  .loopSavesElevators:
-    LSR.B DP_Temp12                                                      ;81A8F2;
-    BCC +                                                                ;81A8F4;
-    TXA                                                                  ;81A8F6;
-    ASL                                                                  ;81A8F7;
-    ASL                                                                  ;81A8F8;
-    TAY                                                                  ;81A8F9;
-    LDA.B [DP_Temp00],Y                                                  ;81A8FA;
-    CMP.W #$FFFE                                                         ;81A8FC;
-    BEQ +                                                                ;81A8FF;
-    CMP.W #$FFFF                                                         ;81A901;
-    BNE .found                                                           ;81A904;
-    LDX.W #$FFFF                                                         ;81A906;
-
-+   INX                                                                  ;81A909;
-    DEC.B DP_Temp14                                                      ;81A90A;
-    BNE .loopSavesElevators                                              ;81A90C;
-    LDA.W #$0008                                                         ;81A90E;
-
-  .loopDebugSavePoints:
-    TXA                                                                  ;81A911;
-    ASL                                                                  ;81A912;
-    ASL                                                                  ;81A913;
-    TAY                                                                  ;81A914;
-    LDA.B [DP_Temp00],Y                                                  ;81A915;
-    CMP.W #$FFFE                                                         ;81A917;
-    BEQ +                                                                ;81A91A;
-    CMP.W #$FFFF                                                         ;81A91C;
-    BNE .found                                                           ;81A91F;
-    LDX.W #$FFFF                                                         ;81A921;
-
-+   INX                                                                  ;81A924;
-    DEC.B DP_Temp14                                                      ;81A925;
-    BNE .loopDebugSavePoints                                             ;81A927;
-
-  .crash:
-    BRK #$FE                                                             ;81A929;
-
-  .found:
-    STX.W LoadStationIndex                                               ;81A92B;
-    JMP.W FileSelectMap_Index6_AreaSelectMap_JMP_DrawAreaSelectMapLabels ;81A92E;
-
-
-;;; $A931: Debug. Check if file select map area can be selected ;;;
-Debug_Check_FileSelectMapArea_CanBeSelected:
-;; Parameters:
-;;     A: File select map area index
-;; Returns:
-;;     Zero: Clear if used save station or elevator in area, or if area has debug elevator markers (which they all do); otherwise set
-
-; Always returns zero clear
-    STA.B DP_Temp1C                                                      ;81A931;
-    ASL                                                                  ;81A933;
-    TAX                                                                  ;81A934;
-    LDA.W FileSelectMapArea_IndexTable,X                                 ;81A935;
-    ASL                                                                  ;81A938;
-    TAX                                                                  ;81A939;
-    LDA.L SRAMMirror_UsedSaveStationsElevators,X                         ;81A93A;
-    BNE .return                                                          ;81A93E;
-    PHB                                                                  ;81A940;
-    LDA.W #MapIcon_PositionTablePointers>>8&$FF00                        ;81A941;
-    PHA                                                                  ;81A944;
-    PLB                                                                  ;81A945;
-    PLB                                                                  ;81A946;
-    LDA.L MapIcon_PositionTablePointers_savePoints,X                     ;81A947;
-    CLC                                                                  ;81A94B;
-    ADC.W #$0040                                                         ;81A94C;
-    TAX                                                                  ;81A94F;
-    LDA.W $0000,X                                                        ;81A950;
-    PLB                                                                  ;81A953;
-    CMP.W #$FFFF                                                         ;81A954;
-
-  .return:
-    RTS                                                                  ;81A957;
-
-
-;;; $A958: Debug. Switch active file select map area ;;;
-Switch_Active_FileSelectMapArea:
-    LDA.W FileSelectMapAreaIndex                                         ;81A958;
-    ASL                                                                  ;81A95B;
-    TAX                                                                  ;81A95C;
-    LDA.W FileSelectMapArea_IndexTable,X                                 ;81A95D;
-    TAX                                                                  ;81A960;
-    JSR.W LoadInactiveAreaMapForegroundColors                            ;81A961;
-    LDA.B DP_Temp1C                                                      ;81A964;
-    STA.W FileSelectMapAreaIndex                                         ;81A966;
-    ASL                                                                  ;81A969;
-    TAX                                                                  ;81A96A;
-    LDA.W FileSelectMapArea_IndexTable,X                                 ;81A96B;
-    TAX                                                                  ;81A96E;
-    JSR.W LoadActiveAreaMapForegroundColors                              ;81A96F;
-    LDA.W FileSelectMapAreaIndex                                         ;81A972;
-    ASL                                                                  ;81A975;
-    TAX                                                                  ;81A976;
-    LDA.W FileSelectMapArea_IndexTable,X                                 ;81A977;
-    TAY                                                                  ;81A97A;
-    JMP.W Load_AreaSelect_BackgroundTilemap                              ;81A97B;
-endif
+    JMP.W DrawAreaSelectMapLabels
 
 
 ;;; $A97E: Draw area select map labels ;;;
@@ -5227,13 +4724,6 @@ DrawAreaSelectMapLabels:
     TAX                                                                  ;81A9D5;
     DEC.B DP_Temp1E                                                      ;81A9D6;
     BNE .loopSavePoints                                                  ;81A9D8;
-if !DEBUG
-    LDA.W Debug_Enable                                                   ;81A9DA;
-    BEQ .PLBNext                                                         ;81A9DD;
-    LDA.W $0000,X                                                        ;81A9DF;
-    CMP.W #$FFFF                                                         ;81A9E2;
-    BEQ .PLBNext                                                         ;81A9E5;
-endif
 
   .foundUsedSavePoint:
     PLB                                                                  ;81A9E7;
@@ -5673,13 +5163,6 @@ FileSelectMap_IndexA_RoomSelectMap:
     JSR.W Handle_FileSelectMap_ScrollArrows                              ;81AD85;
     JSL.L MapScrolling                                                   ;81AD88;
     JSL.L Display_Map_Elevator_Destinations                              ;81AD8C;
-if !DEBUG
-    LDA.W Debug_Enable                                                   ;81AD90;
-    BEQ +                                                                ;81AD93;
-    LDA.B DP_Controller2New                                              ;81AD95;
-    BIT.W #$2000                                                         ;81AD97;
-    BNE .debug                                                           ;81AD9A;
-endif
 
 +   LDA.B DP_Controller1New                                              ;81AD9C;
     BIT.W #$8000                                                         ;81AD9E;
@@ -5717,160 +5200,6 @@ endif
     LDA.W #$003C                                                         ;81ADD8;
     JSL.L QueueSound_Lib1_Max6                                           ;81ADDB;
     RTS                                                                  ;81ADDF;
-
-if !DEBUG
-  .debug:
-    LDA.W #$0038                                                         ;81ADE0;
-    JSL.L QueueSound_Lib1_Max6                                           ;81ADE3;
-    PHB                                                                  ;81ADE7;
-    SEP #$20                                                             ;81ADE8;
-    LDA.B #MapIcon_PositionTablePointers>>16                             ;81ADEA;
-    STA.B DP_Temp02                                                      ;81ADEC;
-    PHA                                                                  ;81ADEE;
-    PLB                                                                  ;81ADEF;
-    REP #$20                                                             ;81ADF0;
-    LDA.W AreaIndex                                                      ;81ADF2;
-    ASL                                                                  ;81ADF5;
-    TAX                                                                  ;81ADF6;
-    LDA.L SRAMMirror_UsedSaveStationsElevators,X                         ;81ADF7;
-    STA.B DP_Temp18                                                      ;81ADFB;
-    LDA.W LoadStationIndex                                               ;81ADFD;
-
-  .loopIndex:
-    LSR.B DP_Temp18                                                      ;81AE00;
-    DEC                                                                  ;81AE02;
-    BPL .loopIndex                                                       ;81AE03;
-    LDA.W AreaIndex                                                      ;81AE05;
-    ASL                                                                  ;81AE08;
-    CLC                                                                  ;81AE09;
-    ADC.W #MapIcon_PositionTablePointers_savePoints                      ;81AE0A;
-    TAX                                                                  ;81AE0D;
-    LDA.W $0000,X                                                        ;81AE0E;
-    BEQ .crash                                                           ;81AE11;
-    STA.B DP_Temp00                                                      ;81AE13;
-    LDA.W LoadStationIndex                                               ;81AE15;
-    ASL                                                                  ;81AE18;
-    ASL                                                                  ;81AE19;
-    TAY                                                                  ;81AE1A;
-    LDA.B [DP_Temp00],Y                                                  ;81AE1B;
-    STA.B DP_Temp12                                                      ;81AE1D;
-    INY                                                                  ;81AE1F;
-    INY                                                                  ;81AE20;
-    LDA.B [DP_Temp00],Y                                                  ;81AE21;
-    STA.B DP_Temp14                                                      ;81AE23;
-    LDA.W LoadStationIndex                                               ;81AE25;
-    CMP.W #$0010                                                         ;81AE28;
-    BPL .debugSavePoints                                                 ;81AE2B;
-    BRA .savesElevators                                                  ;81AE2D;
-
-  .crash:
-    BRK #$FE
-
-  .loopSavesElevators:
-    LSR.B DP_Temp18                                                      ;81AE2F;
-    BCC .savesElevators                                                  ;81AE31;
-    LDA.W LoadStationIndex                                               ;81AE33;
-    ASL                                                                  ;81AE36;
-    ASL                                                                  ;81AE37;
-    TAY                                                                  ;81AE38;
-    LDA.B [DP_Temp00],Y                                                  ;81AE39;
-    CMP.W #$FFFE                                                         ;81AE3B;
-    BEQ .savesElevators                                                  ;81AE3E;
-    CMP.W #$FFFF                                                         ;81AE40;
-    BNE .found                                                           ;81AE43;
-
-  .savesElevators:
-    INC.W LoadStationIndex                                               ;81AE45;
-    LDA.W LoadStationIndex                                               ;81AE48;
-    CMP.W #$0010                                                         ;81AE4B;
-    BMI .loopSavesElevators                                              ;81AE4E;
-
-  .loopDebugSavePoints:
-    LDA.W LoadStationIndex                                               ;81AE50;
-    ASL                                                                  ;81AE53;
-    ASL                                                                  ;81AE54;
-    TAY                                                                  ;81AE55;
-    LDA.B [DP_Temp00],Y                                                  ;81AE56;
-    CMP.W #$FFFF                                                         ;81AE58;
-    BEQ .finishedDebugSavePoints                                         ;81AE5B;
-    CMP.W #$FFFE                                                         ;81AE5D;
-    BNE .found                                                           ;81AE60;
-
-  .debugSavePoints:
-    INC.W LoadStationIndex                                               ;81AE62;
-    BRA .loopDebugSavePoints                                             ;81AE65;
-
-  .finishedDebugSavePoints:
-    STZ.W LoadStationIndex                                               ;81AE67;
-    LDA.W AreaIndex                                                      ;81AE6A;
-    ASL                                                                  ;81AE6D;
-    TAX                                                                  ;81AE6E;
-    LDA.L SRAMMirror_UsedSaveStationsElevators,X                         ;81AE6F;
-    STA.B DP_Temp18                                                      ;81AE73;
-    BRA .loopSavesElevators                                              ;81AE75;
-
-  .found:
-    LDA.W LoadStationIndex                                               ;81AE77;
-    ASL                                                                  ;81AE7A;
-    ASL                                                                  ;81AE7B;
-    TAY                                                                  ;81AE7C;
-    LDA.B [DP_Temp00],Y                                                  ;81AE7D;
-    CMP.B DP_BG1XScroll                                                  ;81AE7F;
-    BMI +                                                                ;81AE81;
-    SEC                                                                  ;81AE83;
-    SBC.W #$0100                                                         ;81AE84;
-    CMP.B DP_BG1XScroll                                                  ;81AE87;
-    BMI .noXScroll                                                       ;81AE89;
-
-+   LDA.B [DP_Temp00],Y                                                  ;81AE8B;
-    SEC                                                                  ;81AE8D;
-    SBC.B DP_Temp12                                                      ;81AE8E;
-    CLC                                                                  ;81AE90;
-    ADC.B DP_BG1XScroll                                                  ;81AE91;
-    BPL +                                                                ;81AE93;
-    LDA.W #$0000                                                         ;81AE95;
-    BRA .storeXScroll                                                    ;81AE98;
-
-+   CMP.W MapScroll_MinX                                                 ;81AE9A;
-    BMI .storeXScroll                                                    ;81AE9D;
-    LDA.W MapScroll_MinX                                                 ;81AE9F;
-
-  .storeXScroll:
-    STA.B DP_BG1XScroll                                                  ;81AEA2;
-
-  .noXScroll:
-    INY                                                                  ;81AEA4;
-    INY                                                                  ;81AEA5;
-    LDA.B [DP_Temp00],Y                                                  ;81AEA6;
-    CMP.B DP_BG1YScroll                                                  ;81AEA8;
-    BMI +                                                                ;81AEAA;
-    SEC                                                                  ;81AEAC;
-    SBC.W #$00A1                                                         ;81AEAD;
-    CMP.B DP_BG1YScroll                                                  ;81AEB0;
-    BMI .return                                                          ;81AEB2;
-
-+   LDA.B [DP_Temp00],Y                                                  ;81AEB4;
-    SEC                                                                  ;81AEB6;
-    SBC.B DP_Temp14                                                      ;81AEB7;
-    CLC                                                                  ;81AEB9;
-    ADC.B DP_BG1YScroll                                                  ;81AEBA;
-    CMP.W MapScroll_MinY                                                 ;81AEBC;
-    BMI +                                                                ;81AEBF;
-    LDA.W MapScroll_MinY                                                 ;81AEC1;
-
-+   STA.B DP_BG1YScroll                                                  ;81AEC4;
-
-  .return:
-    PLB                                                                  ;81AEC6;
-    RTS                                                                  ;81AEC7;
-endif
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $AEC8: Unused. REP #$30 ;;;
-UNUSED_REP30_81AEC8:
-    REP #$30                                                             ;81AEC8;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $AECA: Handle file select map scroll arrows ;;;

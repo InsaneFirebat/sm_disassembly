@@ -4,19 +4,6 @@
 org $B08000
 
 
-;;; $8000: Debug. Tiles - palette viewer ;;;
-Tiles_Debug_PaletteViewer:
-incbin "../data/Tiles_Debug_PaletteViewer.bin" ; $1000 bytes
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $9000: Unused. Tiles - solid colour ;;;
-UNUSED_Tiles_SolidColor_B09000:
-; Unknown bits-per-pixel
-incbin "../data/UNUSED_Tiles_SolidColor_B09000.bin" ; $400 bytes
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $9400: Tiles - enemy $E13F (Ridley) ;;;
 Tiles_Ridley_0:
 incbin "../data/Tiles_Ridley_0.bin" ; $440 bytes

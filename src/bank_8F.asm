@@ -1233,12 +1233,6 @@ PLMPopulation_FastPillarsSetup:                                          ;8F8EBA
     %PLMPopEntry(PLMEntries_rightwardsExtension, $08, $1B, $8000)
     dw $0000
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_PLMPopulation_8FB3EE:
-; Room $B3E1, state $B3EE: PLM
-    dw $0000                                                             ;8F8ED4;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 PLMPopulation_MickeyMouse:                                               ;8F8ED6;
 ; Room $B40A, state $B417: PLM
     %PLMPopEntry(PLMEntries_ScrollPLM, $30, $16, RoomPLM_MickeyMouse_0)
@@ -5138,14 +5132,6 @@ RoomDoors_Statues:
 RoomScrolls_Statues:
     db $01,$00                                                           ;8FA697;
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_RoomPLM_8FA699:
-    db $00,$02, $01,$01, $80                                             ;8FA699;
-
-UNUSED_RoomPLM_8FA69E:
-    db $01,$02, $80                                                      ;8FA69E;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 RoomHeader_WarehouseEntrance:                                            ;8FA6A1;
     %RoomHeader(\
     %room($34),
@@ -5632,11 +5618,6 @@ RoomScrolls_CrocomireSpeedway:
     db $02,$02,$02,$02,$00,$00,$00,$00,$00,$02,$00,$00,$00,$00,$00,$02   ;8FA964;
     db $02,$02,$02,$02,$02,$00,$02                                       ;8FA974;
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_RoomPLM_8FA97B:
-    db $19,$02, $26,$02, $80                                             ;8FA97B;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 RoomPLM_CrocomireSpeedway_0:
     db $19,$02, $25,$02, $26,$02, $80                                    ;8FA980;
 
@@ -5696,14 +5677,6 @@ RoomDoors_Crocomire:
 
 RoomScrolls_Crocomire:
     db $00,$00,$01,$01,$01,$01,$01,$01                                   ;8FA9D7;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_RoomPLM_8FA9DF:
-    db $01,$01, $80                                                      ;8FA9DF;
-
-UNUSED_RoomPLM_8FA9E2:
-    db $00,$01, $80                                                      ;8FA9E2;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 RoomHeader_HiJumpBoots:                                                  ;8FA9E5;
     %RoomHeader(\
@@ -6305,22 +6278,6 @@ RoomState_SpeedBooster:                                                  ;8FAD28
     %PLMPop(PLMPopulation_SpeedBooster),
     %libraryBG(LibBG_Norfair_9_A_SmallPatternBrownPurple_Bright),
     %setupASM(RTS_8F91F6))
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_RoomState_8FAD42:
-    dl LevelData_SpeedBooster                                            ;8FAD42;
-    db $09,$00,$03                                                       ;8FAD45;
-    dw FXHeader_SpeedBooster                                             ;8FAD48;
-    dw EnemyPopulations_SpeedBooster                                     ;8FAD4A;
-    dw EnemySets_SpeedBooster                                            ;8FAD4C;
-    db $C1,$C1                                                           ;8FAD4E;
-    dw $0000                                                             ;8FAD50;
-    dw $0000                                                             ;8FAD52;
-    dw $0000                                                             ;8FAD54;
-    dw PLMPopulation_SpeedBooster                                        ;8FAD56;
-    dw LibBG_Norfair_9_A_SmallPatternBrownPurple_Bright                  ;8FAD58;
-    dw RTS_8F91F6                                                        ;8FAD5A;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 RoomDoors_SpeedBooster:
     dw Door_SpeedBooster_0                                               ;8FAD5C;
@@ -7184,11 +7141,6 @@ RoomDoors_AcidStatue:
 RoomScrolls_AcidStatue:
     db $02,$02,$00,$01,$01,$00,$00,$00,$00                               ;8FB210;
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_RoomPLM_8FB219:
-    db $03,$01, $04,$01, $06,$00, $07,$00, $08,$00, $80                  ;8FB219;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 RoomPLM_AcidStatue_0:
     db $03,$02, $04,$02, $06,$02, $07,$02, $80                           ;8FB224;
 
@@ -7477,38 +7429,6 @@ RoomPLM_FastPillarsSetup_0:
 
 RoomPLM_FastPillarsSetup_2:
     db $01,$02, $02,$01, $80                                             ;8FB3DC;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_RoomHeader_8FB3E1:
-    %RoomHeader(\
-    %room($3D),
-    %area(2),
-    %positions($1A, $0B),
-    %dimensions(1, 1),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(UNUSED_RoomDoors_8FB408))
-    %stateChecks(0)
-
-UNUSED_RoomState_8FB3EE:                                                 ;8FB3EE;
-    %StateHeader(\
-    %levelData(UNUSED_LevelData_C8F40B),
-    %tileset(9),
-    %music(0, 0),
-    %FX(UNUSED_FXHeader_8387EC),
-    %enemyPop(UNUSED_EnemyPopulations_8FB3EE_A1AD06),
-    %enemySet(UNUSED_EnemySets_State8FB3EE_B48899),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(0),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(UNUSED_PLMPopulation_8FB3EE),
-    %libraryBG(LibBG_Norfair_9_HorizontalPatternBrick),
-    %setupASM(RTS_8F91F7))
-
-UNUSED_RoomDoors_8FB408:
-    dw UNUSED_Door_83991E                                                ;8FB408;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 RoomHeader_MickeyMouse:                                                  ;8FB40A;
     %RoomHeader(\
@@ -8136,14 +8056,6 @@ LibBG_Crocomire_State1:                                                  ;8FB858
     dw $0002 : dl $7E2000 : dw $4800,$1000
     dw $0000
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_LibBG_Brinstar_1A_Kraid_Lower_8FB863:                             ;8FB863;
-    dw $0004 : dl Background_Brinstar_1A_Kraid_Lower_1 : dw $4000
-    dw $0002 : dl BG2Tilemap : dw $4800,$0800
-    dw $0002 : dl BG2Tilemap : dw $4C00,$0800
-    dw $0000
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 LibBG_Crateria_0_VerticalPatternRocks:                                   ;8FB87E;
     dw $0004 : dl Background_Crateria_0_VerticalPatternRocks : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
@@ -8401,20 +8313,6 @@ LibBG_Brinstar_6_SmallPattern_Variety_0:                                 ;8FBAF4
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_LibBG_Brinstar_6_SmallPattern_Variety_1_8FBB0F:                   ;8FBB0F;
-    dw $0004 : dl Background_Brinstar_6_SmallPattern_Variety_1 : dw $4000
-    dw $0002 : dl BG2Tilemap : dw $4800,$0800
-    dw $0002 : dl BG2Tilemap : dw $4C00,$0800
-    dw $0000
-
-UNUSED_LibBG_Brinstar_6_SmallPattern_Variety_2_8FBB2A:                   ;8FBB2A;
-    dw $0004 : dl Background_Brinstar_6_SmallPattern_Variety_2 : dw $4000
-    dw $0002 : dl BG2Tilemap : dw $4800,$0800
-    dw $0002 : dl BG2Tilemap : dw $4C00,$0800
-    dw $0000
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 LibBG_Brinstar_6_DarkPattern:                                            ;8FBB45;
     dw $0004 : dl Background_Brinstar_6_DarkPattern : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
@@ -8432,20 +8330,6 @@ LibBG_Brinstar_7_WideVerticalTower_Brick_0:                              ;8FBB7B
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_LibBG_Brinstar_7_WideVerticalTower_Brick_1_8FBB96:                ;8FBB96;
-    dw $0004 : dl Background_Brinstar_7_WideVerticalTower_Brick_1 : dw $4000
-    dw $0002 : dl BG2Tilemap : dw $4800,$0800
-    dw $0002 : dl BG2Tilemap : dw $4C00,$0800
-    dw $0000
-
-UNUSED_LibBG_Brinstar_7_WideVerticalTower_Brick_2_8FBBB1:                ;8FBBB1;
-    dw $0004 : dl Background_Brinstar_7_WideVerticalTower_Brick_2 : dw $4000
-    dw $0002 : dl BG2Tilemap : dw $4800,$0800
-    dw $0002 : dl BG2Tilemap : dw $4C00,$0800
-    dw $0000
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 LibBG_Brinstar_7_VerticalTower:                                          ;8FBBCC;
     dw $0004 : dl Background_Brinstar_7_VerticalTower : dw $4000
@@ -8465,14 +8349,6 @@ LibBG_Brinstar_7_VerticalBrick_0:                                        ;8FBC02
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_LibBG_Brinstar_7_VerticalBrick_1_8FBC1D:                          ;8FBC1D;
-    dw $0004 : dl Background_Brinstar_7_VerticalBrick_1 : dw $4000
-    dw $0002 : dl BG2Tilemap : dw $4800,$0800
-    dw $0002 : dl BG2Tilemap : dw $4C00,$0800
-    dw $0000
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 LibBG_Brinstar_7_MechanicalRoom_SpikeFloor:                              ;8FBC38;
     dw $0004 : dl Background_Brinstar_7_MechanicalRoom_SpikeFloor : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$0800
@@ -8491,32 +8367,10 @@ LibBG_Brinstar_7_NarrowVerticalTower_Brick_Vines_0:                      ;8FBC6E
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_LibBG_Brin_7_NarrowVerticalTower_Brick_Vines_1_8FBC89:            ;8FBC89;
-    dw $0004 : dl Background_Brinstar_7_NarrowVerticalTower_Brick_Vines_1 : dw $4000
-    dw $0002 : dl BG2Tilemap : dw $4800,$0800
-    dw $0002 : dl BG2Tilemap : dw $4C00,$0800
-    dw $0000
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 LibBG_Brinstar_8_NarrowVerticalTower_Brick_Grey_0:                       ;8FBCA4;
     dw $0004 : dl Background_Brinstar_8_NarrowVerticalTower_Brick_Grey_0 : dw $4000
     dw $0002 : dl BG2Tilemap : dw $4800,$1000
     dw $0000
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_LibBG_Brin_8_NarrowVerticalTower_Brick_Grey_1_8FBCB6:             ;8FBCB6;
-    dw $0004 : dl Background_Brinstar_8_NarrowVerticalTower_Brick_Grey_1 : dw $4000
-    dw $0002 : dl BG2Tilemap : dw $4800,$0800
-    dw $0002 : dl BG2Tilemap : dw $4C00,$0800
-    dw $0000
-
-UNUSED_LibBG_Brin_8_NarrowVerticalTower_Brick_Grey_2_8FBCD1:             ;8FBCD1;
-    dw $0004 : dl Background_Brinstar_8_NarrowVerticalTower_Brick_Grey_2 : dw $4000
-    dw $0002 : dl BG2Tilemap : dw $4800,$0800
-    dw $0002 : dl BG2Tilemap : dw $4C00,$0800
-    dw $0000
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 LibBG_Brinstar_7_BlueGridBlocks:                                         ;8FBCEC;
     dw $0004 : dl Background_Brinstar_7_BlueGridBlocks : dw $4000
@@ -8797,14 +8651,6 @@ LibBG_Norfair_9_A_SmallPatternBrownPurple_0:                             ;8FBE5A
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_LibBG_Norfair_9_A_SmallPatternBrownPurple_1_8FBE75:               ;8FBE75;
-    dw $0004 : dl Background_Norfair_9_A_SmallPatternBrownPurple_1 : dw $4000
-    dw $0002 : dl BG2Tilemap : dw $4800,$0800
-    dw $0002 : dl BG2Tilemap : dw $4C00,$0800
-    dw $0000
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 LibBG_Norfair_9_HorizontalPatternBrick:                                  ;8FBE90;
 ; Room $B3E1, state $B3EE: Unused room
     dw $0004 : dl Background_Norfair_9_HorizontalPatternBrick : dw $4000
@@ -8968,19 +8814,6 @@ DoorASM_Scroll_A_Green:
     STA.L Scrolls+$A                                                     ;8FBFFF;
     REP #$30
     RTS                                                                  ;8FC004;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $C005: Unused. Door ASM: scroll 0 = blue, 2 = red ;;;
-UNUSED_DoorASM_Scroll_0_Blue_2_Red_8FC005:
-    SEP #$20                                                             ;8FC006;
-    LDA.B #$01                                                           ;8FC008;
-    STA.L Scrolls                                                        ;8FC00A;
-    LDA.B #$00                                                           ;8FC00E;
-    STA.L Scrolls+2                                                      ;8FC010;
-    REP #$30
-    RTS                                                                  ;8FC015;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $C016: Door ASM: scroll 0,2 = green ;;;
@@ -9320,19 +9153,6 @@ MainASM_ScrollScreenRightInDachoraRoom:
 
   .return:
     RTS                                                                  ;8FC208;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $C209: Unused. PLM metadata - Crateria / Brinstar / Norfair ;;;
-UNUSED_8FC209:                                                           ;8FC209;
-; See UNUSED_UnknownUnreferenced_8FE881 for the other areas
-    dw $0051 ; "Next" item / refill station index (50h is the last used one, see "Item PLMs.asm")
-    dw $0061 ; "Next" doorcap index (60h is the last used one, see "Door PLMs.asm")
-    dw $0001 ; ?
-    dw $0002 ; Number of save stations in Crateria
-    dw $0005 ; Number of save stations in Brinstar
-    dw $0006 ; Number of save stations in Norfair
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $C215: PLM populations ;;;
@@ -10230,20 +10050,6 @@ RoomPLM_BowlingAlley_0:
 RoomPLM_BowlingAlley_3:
     db $04,$00, $05,$02, $0B,$02, $10,$01, $11,$01, $80                  ;8FC9F1;
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_RoomPLM_8FC9FC:
-    db $05,$01, $80                                                      ;8FC9FC;
-
-UNUSED_RoomPLM_8FC9FF:
-    db $04,$01, $80                                                      ;8FC9FF;
-
-UNUSED_RoomPLM_8FCA02:
-    db $05,$00, $80                                                      ;8FCA02;
-
-UNUSED_RoomPLM_8FCA05:
-    db $04,$00, $80                                                      ;8FCA05;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 RoomHeader_WreckedShipEntrance:                                          ;8FCA08;
     %RoomHeader(\
     %room(1),
@@ -10343,17 +10149,6 @@ RoomDoors_Attic:
 
 RoomScrolls_Attic:
     db $02,$02,$02,$02,$02,$02,$02                                       ;8FCA9E;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_RoomPLM_8FCAA5:
-    db $00,$01, $80                                                      ;8FCAA5;
-
-UNUSED_RoomPLM_8FCAA8:
-    db $03,$01, $80                                                      ;8FCAA8;
-
-UNUSED_RoomPLM_8FCAAB:
-    db $03,$02, $80                                                      ;8FCAAB;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 RoomHeader_AssemblyLine:                                                 ;8FCAAE;
     %RoomHeader(\
@@ -10682,11 +10477,6 @@ RoomPLM_Basement_0:
 
 RoomPLM_Basement_1:
     db $03,$00, $80                                                      ;8FCCC5;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_RoomPLM_8FCCC8:
-    db $04,$00, $80                                                      ;8FCCC8;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 RoomHeader_WreckedShipMap:                                               ;8FCCCB;
     %RoomHeader(\
@@ -14214,14 +14004,6 @@ LibBG_WreckedShip_4_5_EntranceHall:                                      ;8FE117
     dw $0002 : dl BG2Tilemap : dw $4C00,$0800
     dw $0000
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_LibBG_WreckedShip_4_5_EntranceHall_1_8FE132:                      ;8FE132;
-    dw $0004 : dl Background_WreckedShip_4_5_EntranceHall_1 : dw $4000
-    dw $0002 : dl BG2Tilemap : dw $4800,$0800
-    dw $0002 : dl BG2Tilemap : dw $4C00,$0800
-    dw $0000
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 LibBG_WreckedShip_4_5_Columns_Tubes:                                     ;8FE14D;
 ; Room $CB8B, state $CB9D: Wrecked Ship flooded spikey hall
 ; Room $CB8B, state $CBB7: Wrecked Ship flooded spikey hall
@@ -14515,28 +14297,6 @@ DoorASM_Scroll_A_Red_B_Blue:
     RTS                                                                  ;8FE328;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $E329: Unused. Door ASM: scroll 10h = blue, 11h = red ;;;
-UNUSED_DoorASM_Scroll_4_Green_8FE329:
-    SEP #$20                                                             ;8FE32A;
-    LDA.B #$00                                                           ;8FE32C;
-    STA.L Scrolls+$11                                                    ;8FE32E;
-    LDA.B #$01                                                           ;8FE332;
-    STA.L Scrolls+$10                                                    ;8FE334;
-    REP #$20
-    RTS                                                                  ;8FE339;
-
-
-;;; $E33A: Unused. Door ASM: scroll 4 = green ;;;
-UNUSED_DoorASM_Scroll_4_Green_8FE33A:
-    SEP #$20                                                             ;8FE33B;
-    LDA.B #$02                                                           ;8FE33D;
-    STA.L Scrolls+4                                                      ;8FE33F;
-    REP #$20
-    RTS                                                                  ;8FE344;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $E345: Door ASM: scroll 0 = red, 4 = blue ;;;
 DoorASM_Scroll_0_Red_4_Blue_duplicate:
 ; Room $CEFB, door list index 2: Door
@@ -14617,17 +14377,6 @@ DoorASM_Scroll_4_Red_duplicate:
     STA.L Scrolls+4                                                      ;8FE3A8;
     REP #$20
     RTS                                                                  ;8FE3AD;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $E3AE: Unused. Door ASM: scroll 1 = red ;;;
-UNUSED_DoorASM_Scroll_1_Red_8FE3AE:
-    SEP #$20                                                             ;8FE3AF;
-    LDA.B #$00                                                           ;8FE3B1;
-    STA.L Scrolls+1                                                      ;8FE3B3;
-    REP #$20
-    RTS                                                                  ;8FE3B8;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $E3B9: Door ASM: scroll 4,7 = red ;;;
@@ -14946,24 +14695,6 @@ Use_StatePointer_inX:
     RTL                                                                  ;8FE5EA;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $E5EB: Unused. Room state check: door ;;;
-UNUSED_RoomStateCheck_Door_8FE5EB:
-    LDA.W $0000,X                                                        ;8FE5EB;
-    CMP.W DoorPointer                                                    ;8FE5EE;
-    BNE +                                                                ;8FE5F1;
-    LDA.W $0002,X                                                        ;8FE5F3;
-    TAX                                                                  ;8FE5F6;
-    JMP.W Use_StatePointer_inX                                           ;8FE5F7;
-
-+   INX                                                                  ;8FE5FA;
-    INX                                                                  ;8FE5FB;
-    INX                                                                  ;8FE5FC;
-    INX                                                                  ;8FE5FD;
-    RTS                                                                  ;8FE5FE;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $E5FF: Room state check: main area boss is dead ;;;
 RoomStateCheck_MainAreaBossIsDead:
     LDA.W #$0001                                                         ;8FE5FF;
@@ -15010,22 +14741,6 @@ RoomStateCheck_BossIsDead:
     RTS                                                                  ;8FE63F;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $E640: Unused. Room state check: morphball ;;;
-UNUSED_RoomStateCheck_Morphball_8FE640:
-    LDA.W CollectedItems                                                 ;8FE640;
-    AND.W #$0004                                                         ;8FE643;
-    BEQ +                                                                ;8FE646;
-    LDA.W $0000,X                                                        ;8FE648;
-    TAX                                                                  ;8FE64B;
-    JMP.W Use_StatePointer_inX                                           ;8FE64C;
-
-+   INX                                                                  ;8FE64F;
-    INX                                                                  ;8FE650;
-    RTS                                                                  ;8FE651;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $E652: Room state check: morphball and missiles ;;;
 RoomStateCheck_MorphballAndMissiles:
     LDA.W CollectedItems                                                 ;8FE652;
@@ -15053,22 +14768,6 @@ RoomStateCheck_PowerBombs:
 +   INX                                                                  ;8FE675;
     INX                                                                  ;8FE676;
     RTS                                                                  ;8FE677;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $E678: Unused. Room state check: speed booster ;;;
-UNUSED_RoomStateCheck_SpeedBooster_8FE678:
-    LDA.W CollectedItems                                                 ;8FE678;
-    AND.W #$2000                                                         ;8FE67B;
-    BEQ +                                                                ;8FE67E;
-    LDA.W $0000,X                                                        ;8FE680;
-    TAX                                                                  ;8FE683;
-    JMP.W Use_StatePointer_inX                                           ;8FE684;
-
-+   INX                                                                  ;8FE687;
-    INX                                                                  ;8FE688;
-    RTS                                                                  ;8FE689;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $E68A: Door closing PLMs ;;;
@@ -15323,77 +15022,6 @@ Music_Pointers:
     dl Music_TheGalaxyIsAtPeace                                          ;8FE823; 42h - "The galaxy is at peace"
     dl Music_BabyMetroid_BossFight2                                      ;8FE826; 45h - Shitroid (same as boss fight 2)
     dl Music_SamusTheme_UpperCrateria                                    ;8FE829; 48h - Samus theme (same as upper Crateria)
-
-
-;;; $E82C: Debug room ;;;
-RoomHeader_Debug:
-; Room $E82C: Header                                                     ;8FE82C;
-    %RoomHeader(\
-    %room(0),
-    %area(7),
-    %positions(0, 0),
-    %dimensions(6, 2),
-    %scrollers($70, $A0),
-    %CRE(0),
-    %doorList(RoomDoors_Debug))
-    %stateChecks(0)
-
-RoomState_Debug:                                                         ;8FE839;
-; Room $E82C, state $E839: Header
-    %StateHeader(\
-    %levelData(LevelData_DebugRoom),
-    %tileset($0B),
-    %music(0, 0),
-    %FX(FXHeader_Debug_MotherBrain_State2),
-    %enemyPop(EnemyPopulations_Debug),
-    %enemySet(EnemySets_Debug),
-    %layer2Scrolls($C1, $C1),
-    %scrollPointer(1),
-    %specialXray(0),
-    %mainASM(0),
-    %PLMPop(RoomPLM_Debug),
-    %libraryBG(LibBG_WreckedShip_4_5_EntranceHall),
-    %setupASM(0))
-
-RoomDoors_Debug:
-; Room $E82C: Door list
-    dw UNUSED_Door_Debug_0_83ABC4                                        ;8FE853;
-    dw UNUSED_Door_Debug_1_83ABCF                                        ;8FE855;
-    dw UNUSED_Door_Debug_2_83ABDA                                        ;8FE857;
-    dw UNUSED_Door_Debug_3_83ABE5                                        ;8FE859;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_LibraryBackground_8FE85B:                                         ;8FE85B;
-; Unused library background. Same as the library background LibBG_Crateria_0_Rocks used by rooms:
-;     Crateria mainstreet
-;     Landing site power bomb room
-;     Pre moat room
-;     East Crateria maze
-;     Moat
-; Except that this one additionally (incorrectly) loads the water FX tilemap
-    dw $0002 : dl FX_Layer3_Tilemaps_water : dw $5880,$0F00
-    dw $0004 : dl Background_Crateria_0_Rocks : dw $4000
-    dw $0002 : dl BG2Tilemap : dw $4800,$0800
-    dw $0002 : dl BG2Tilemap : dw $4C00,$0800
-    dw $0000
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-RoomPLM_Debug:
-; Room $E82C, state $E839: PLM
-    dw $0000                                                             ;8FE87F;
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $E881: Unused. PLM metadata - Wrecked Ship / Maridia / Tourian (/ Ceres?) ;;;
-UNUSED_UnknownUnreferenced_8FE881:                                       ;8FE881;
-; See UNUSED_8FC209 for the other areas
-    dw $009E ; "Next" item / refill station index (9Dh is the last used one, see "Item PLMs.asm" from bank logs)
-    dw $00AD ; "Next" doorcap index (ACh is the last used one, see "Door PLMs.asm" from bank logs)
-    dw $0081 ; ?
-    dw $0001 ; Number of save stations in Wrecked Ship
-    dw $0004 ; Number of save stations in Maridia
-    dw $0002 ; Number of save stations in Tourian
-    dw $0000 ; Number of save stations in Ceres?
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $E88F: Execute setup ASM ;;;

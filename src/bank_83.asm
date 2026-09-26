@@ -1842,22 +1842,6 @@ FXHeader_FastPillarsSetup:                                               ;8387DC
     %animTiles(0),
     %paletteBlend(0))
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_FXHeader_8387EC:                                                  ;8387EC;
-    %FXHeader(\
-    %door(0),
-    %baseY($FFFF),
-    %targetY($FFFF),
-    %velocity(0),
-    %timer(0),
-    %FXType(4),
-    %layerBlendConfig(2, $1E),
-    %liquidOptions(2),
-    %paletteFX($1F),
-    %animTiles(0),
-    %paletteBlend(0))
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 FXHeader_MickeyMouse:                                                    ;8387FC;
     %FXHeader(\
     %door(0),
@@ -5539,18 +5523,6 @@ Door_FastPillarsSetup_4:                                                 ;839912
     %spawnDistance($8000),
     %doorASM(0))
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Door_83991E:                                                      ;83991E;
-    %DoorHeader(\
-    %destination(RoomHeader_FastPillarsSetup),
-    %elevator(0),
-    %direction(5),
-    %doorPos($0E, 6),
-    %screenPos(0, 0),
-    %spawnDistance($8000),
-    %doorASM(0))
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 Door_MickeyMouse_0:                                                      ;83992A;
     %DoorHeader(\
     %destination(RoomHeader_FastPillarsSetup),
@@ -7411,22 +7383,6 @@ FXHeader_CeresRidley_State0:                                             ;83A15E
     %animTiles(0),
     %paletteBlend(0))
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_FXHeader_83A16E:                                                  ;83A16E;
-    %FXHeader(\
-    %door(0),
-    %baseY($FFFF),
-    %targetY($FFFF),
-    %velocity(0),
-    %timer(0),
-    %FXType($2A),
-    %layerBlendConfig(2, 2),
-    %liquidOptions(0),
-    %paletteFX(0),
-    %animTiles(0),
-    %paletteBlend(0))
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 FXHeader_FallingTile_State1:
     dw $FFFF                                                             ;83A17E;
 
@@ -8841,28 +8797,6 @@ Door_Colosseum_2:                                                        ;83A7F8
     %spawnDistance($8000),
     %doorASM(0))
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Door_83A804:                                                      ;83A804;
-    %DoorHeader(\
-    %destination(RoomHeader_HalfieClimb),
-    %elevator(0),
-    %direction(1),
-    %doorPos(0, 0),
-    %screenPos(0, 2),
-    %spawnDistance($8000),
-    %doorASM(0))
-
-UNUSED_Door_83A810:                                                      ;83A810;
-    %DoorHeader(\
-    %destination(RoomHeader_MaridiaMissileRefill),
-    %elevator(0),
-    %direction(4),
-    %doorPos(1, 6),
-    %screenPos(0, 0),
-    %spawnDistance($8000),
-    %doorASM(0))
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 Door_ThePrecious_MaridiaLoad11:                                          ;83A81C;
     %DoorHeader(\
     %destination(RoomHeader_ThePrecious),
@@ -9642,28 +9576,6 @@ Door_CeresRidley:                                                        ;83ABB8
     %screenPos(1, 0),
     %spawnDistance($8000),
     %doorASM(0))
-
-; These four doors appear to be missing the elevator properties byte
-UNUSED_Door_Debug_0_83ABC4:
-; Debug load station
-    dw RoomHeader_Debug                                                  ;83ABC4;
-    db $05,$00,$00,$01,$00,$00,$01                                       ;83ABC6;
-    dw $0000                                                             ;83ABCD;
-
-UNUSED_Door_Debug_1_83ABCF:
-    dw RoomHeader_Debug                                                  ;83ABCF;
-    db $05,$00,$00,$01,$01,$00,$01                                       ;83ABD1;
-    dw $0000                                                             ;83ABD8;
-
-UNUSED_Door_Debug_2_83ABDA:
-    dw RoomHeader_Debug                                                  ;83ABDA;
-    db $04,$00,$00,$00,$00,$00,$01                                       ;83ABDC;
-    dw $0000                                                             ;83ABE3;
-
-UNUSED_Door_Debug_3_83ABE5:
-    dw RoomHeader_Debug                                                  ;83ABE5;
-    db $04,$00,$00,$00,$01,$00,$01                                       ;83ABE7;
-    dw $0000                                                             ;83ABEE;
 
 FXType_Tilemap_Pointers:
 ; This table is too short, it's missing the entries for 28h/2Ah/2Ch (Ceres Ridley/elevator / haze)

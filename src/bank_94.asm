@@ -997,165 +997,6 @@ SamusBlockCollisionDetection_Horizontal_Slope_NonSquare:
     dw $6000,$0050 ; 1Fh: Unused. Lower third-width triangle
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $8606: Unused ;;;
-UNUSED_948606:
-;; Parameters:
-;;     X: Block index
-;;     $12: Distance to check for collision
-;;     $18: Target X position
-;; Returns:
-;;     Carry: Set if Samus collides with solid slope, clear otherwise
-;;     $12.$14: Adjusted distance to move Samus or distance to collision
-
-; This resembles $8000 adapted for block collision, or $86FE adapted for horizontal collision
-; I guess this was written before it was decided that non-square slopes shouldn't have solid horizontal collision
-; Looking at $86FE, I assume there's supposed to be a collision direction check here to branch to BRANCH_RIGHT
-    LDA.W CurrentBlockIndex                                              ;948606;
-    STA.W $4204                                                          ;948609;
-    SEP #$20                                                             ;94860C;
-    LDA.B RoomWidthBlocks                                                ;94860E;
-    STA.W $4206                                                          ;948611;
-    REP #$20                                                             ;948614;
-    LDA.B SamusXPosition                                                 ;948616;
-    LSR                                                                  ;948619;
-    LSR                                                                  ;94861A;
-    LSR                                                                  ;94861B;
-    LSR                                                                  ;94861C;
-    CMP.W $4216                                                          ;94861D;
-    BEQ .centerInBlock                                                   ;948620;
-    CLC                                                                  ;948622;
-    RTS                                                                  ;948623;
-
-  .centerInBlock:
-    LDA.B DP_Temp18                                                      ;948624;
-    SEC                                                                  ;948626;
-    SBC.W SamusXRadius                                                   ;948627;
-    AND.W #$000F                                                         ;94862A;
-    EOR.W #$000F                                                         ;94862D;
-    STA.W TargetLeftRightYOffset                                         ;948630;
-    LDA.L BTS,X                                                          ;948633;
-    AND.W #$001F                                                         ;948637;
-    ASL                                                                  ;94863A;
-    ASL                                                                  ;94863B;
-    ASL                                                                  ;94863C;
-    ASL                                                                  ;94863D;
-    STA.W SlopeCollisionDefinitionTableBaseIndex                         ;94863E;
-    LDA.L BTS-1,X                                                        ;948641;
-    ASL                                                                  ;948645;
-    BPL .gotoSolidShootableGrapple                                       ;948646;
-    LDA.L BTS-1,X                                                        ;948648;
-    BMI .blockBTSMSB                                                     ;94864C;
-    LDA.B SamusYPosition                                                 ;94864E;
-    BRA +                                                                ;948651;
-
-  .blockBTSMSB:
-    LDA.B SamusYPosition                                                 ;948653;
-    EOR.W #$000F                                                         ;948656;
-
-+   AND.W #$000F                                                         ;948659;
-    CLC                                                                  ;94865C;
-    ADC.W SlopeCollisionDefinitionTableBaseIndex                         ;94865D;
-    TAX                                                                  ;948660;
-    LDA.W SlopeDefinitions_SlopeLeftXOffsetByYPixel,X                    ;948661;
-    AND.W #$001F                                                         ;948664;
-    SEC                                                                  ;948667;
-    SBC.W TargetLeftRightYOffset                                         ;948668;
-    DEC                                                                  ;94866B;
-    BEQ +                                                                ;94866C;
-    BPL ..returnNoCollision                                              ;94866E;
-
-+   CLC                                                                  ;948670;
-    ADC.B DP_Temp12                                                      ;948671;
-    BPL +                                                                ;948673;
-    LDA.W #$0000                                                         ;948675;
-
-+   STA.B DP_Temp12                                                      ;948678;
-    STZ.B DP_Temp14                                                      ;94867A;
-    SEC                                                                  ;94867C;
-    RTS                                                                  ;94867D;
-
-  ..returnNoCollision:
-    CLC                                                                  ;94867E;
-    RTS                                                                  ;94867F;
-
-  .gotoSolidShootableGrapple:
-    JMP.W SamusBlockCollisionReaction_Horizontal_SolidShootableGrapple   ;948680;
-
-  .right:
-    LDA.W CurrentBlockIndex                                              ;948683;
-    STA.W $4204                                                          ;948686;
-    SEP #$20                                                             ;948689;
-    LDA.B RoomWidthBlocks                                                ;94868B;
-    STA.W $4206                                                          ;94868E;
-    REP #$20                                                             ;948691;
-    LDA.B SamusXPosition                                                 ;948693;
-    LSR                                                                  ;948696;
-    LSR                                                                  ;948697;
-    LSR                                                                  ;948698;
-    LSR                                                                  ;948699;
-    CMP.W $4216                                                          ;94869A;
-    BEQ ..centerInBlock                                                  ;94869D;
-    CLC                                                                  ;94869F;
-    RTS                                                                  ;9486A0;
-
-  ..centerInBlock:
-    LDA.B DP_Temp18                                                      ;9486A1;
-    CLC                                                                  ;9486A3;
-    ADC.W SamusXRadius                                                   ;9486A4;
-    DEC                                                                  ;9486A7;
-    AND.W #$000F                                                         ;9486A8;
-    STA.W TargetLeftRightYOffset                                         ;9486AB;
-    LDA.L BTS,X                                                          ;9486AE;
-    AND.W #$001F                                                         ;9486B2;
-    ASL                                                                  ;9486B5;
-    ASL                                                                  ;9486B6;
-    ASL                                                                  ;9486B7;
-    ASL                                                                  ;9486B8;
-    STA.W SlopeCollisionDefinitionTableBaseIndex                         ;9486B9;
-    LDA.L BTS-1,X                                                        ;9486BC;
-    ASL                                                                  ;9486C0;
-    BMI ..gotoSolidShootableGrapple                                      ;9486C1;
-    LDA.L BTS-1,X                                                        ;9486C3;
-    BMI ..blockBTSMSB                                                    ;9486C7;
-    LDA.B SamusYPosition                                                 ;9486C9;
-    BRA +                                                                ;9486CC;
-
-  ..blockBTSMSB:
-    LDA.B SamusYPosition                                                 ;9486CE;
-    EOR.W #$000F                                                         ;9486D1;
-
-+   AND.W #$000F                                                         ;9486D4;
-    CLC                                                                  ;9486D7;
-    ADC.W SlopeCollisionDefinitionTableBaseIndex                         ;9486D8;
-    TAX                                                                  ;9486DB;
-    LDA.W SlopeDefinitions_SlopeLeftXOffsetByYPixel,X                    ;9486DC;
-    AND.W #$001F                                                         ;9486DF;
-    SEC                                                                  ;9486E2;
-    SBC.W TargetLeftRightYOffset                                         ;9486E3;
-    DEC                                                                  ;9486E6;
-    BEQ +                                                                ;9486E7;
-    BPL ..returnNoCollision                                              ;9486E9;
-
-+   CLC                                                                  ;9486EB;
-    ADC.B DP_Temp12                                                      ;9486EC;
-    BPL +                                                                ;9486EE;
-    LDA.W #$0000                                                         ;9486F0;
-
-+   STA.B DP_Temp12                                                      ;9486F3;
-    STZ.B DP_Temp14                                                      ;9486F5;
-    SEC                                                                  ;9486F7;
-    RTS                                                                  ;9486F8;
-
-  ..returnNoCollision:
-    CLC                                                                  ;9486F9;
-    RTS                                                                  ;9486FA;
-
-  ..gotoSolidShootableGrapple:
-    JMP.W SamusBlockCollisionReaction_Horizontal_SolidShootableGrapple   ;9486FB;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $86FE: Samus block collision reaction - vertical - slope - non-square ;;;
 SamusBlockCollisionReaction_Vertical_Slope_NonSquare:
 ;; Parameters:
@@ -1449,13 +1290,6 @@ Align_SamusYPosition_WithNonSquareSlope:
   .return:
     PLB                                                                  ;948919;
     RTL                                                                  ;94891A;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $891B: Unused slope definition ;;;
-UNUSED_SlopeDefinitions_94891B:
-    db $0F,$0E,$0D,$0C,$0B,$0A,$09,$08,$07,$06,$05,$04,$03,$02,$01,$00   ;94891B;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $892B: Slope definitions (slope left X offset by Y pixel) ;;;
@@ -1756,29 +1590,6 @@ SquareSlopeDefinitions_Bank94:                                           ;948E54
     db $00,$00,$00,$80 ; 2: Quarter
     db $00,$80,$80,$80 ; 3: Three-quarters
     db $80,$80,$80,$80 ; 4: Whole
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $8E68: Unused. Determine Samus suit palette index ;;;
-UNUSED_DetermineSamusSuitPaletteIndex_948E68:
-;; Returns:
-;;     Y: 4 if gravity suit equipped, 2 if varia suit equipped, 0 otherwise
-
-; Basing this routine name on Determine_SamusSuitPalette_Index
-    LDY.W #$0004                                                         ;948E68;
-    LDA.W EquippedItems                                                  ;948E6B;
-    BIT.W #$0020                                                         ;948E6E;
-    BNE .return                                                          ;948E71;
-    DEY                                                                  ;948E73;
-    DEY                                                                  ;948E74;
-    BIT.W #$0001                                                         ;948E75;
-    BNE .return                                                          ;948E78;
-    DEY                                                                  ;948E7A;
-    DEY                                                                  ;948E7B;
-
-  .return:
-    RTS                                                                  ;948E7C;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $8E83: Samus block collision reaction - spike block - BTS 0 (generic spike) ;;;

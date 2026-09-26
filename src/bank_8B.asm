@@ -362,79 +362,6 @@ Setup_PPU_ZebesDestruction:
     RTS                                                                  ;8B8339;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $833A: Unused. Set up PPU for Zebes destruction space view ;;;
-UNUSED_Setup_PPU_ZebesDestructionSpaceView_8B833A:
-; Corresponds to the PPU setup done at $DA64 as part of
-;     $DA1A: Cinematic function - ending - Zebes destruction scene 2 - cross-fade to space view
-    PHP                                                                  ;8B833A;
-    SEP #$30                                                             ;8B833B;
-    LDA.B #$80                                                           ;8B833D;
-    STA.W $2100                                                          ;8B833F;
-    STA.B DP_Brightness                                                  ;8B8342;
-    LDA.B #$02                                                           ;8B8344;
-    STA.W $2101                                                          ;8B8346;
-    STA.B DP_SpriteSizeAddr                                              ;8B8349;
-    LDA.B #$01                                                           ;8B834B;
-    STA.W $2105                                                          ;8B834D;
-    STA.B DP_BGModeSize                                                  ;8B8350;
-    STZ.W $211A                                                          ;8B8352;
-    STZ.B DP_Mode7Settings                                               ;8B8355;
-    LDA.B #$70                                                           ;8B8357;
-    STA.B DP_BG1TilemapAddrSize                                          ;8B8359;
-    STA.W $2107                                                          ;8B835B;
-    LDA.B #$78                                                           ;8B835E;
-    STA.B DP_BG2TilemapAddrSize                                          ;8B8360;
-    STA.W $2108                                                          ;8B8362;
-    STZ.B DP_BG3TilemapAddrSize                                          ;8B8365;
-    STZ.W $2109                                                          ;8B8367;
-    STZ.B DP_BG4TilemapAddrSize                                          ;8B836A;
-    STZ.W $210A                                                          ;8B836C;
-    LDA.B #$44                                                           ;8B836F;
-    STA.B DP_BGTilesAddr                                                 ;8B8371;
-    STA.W $210B                                                          ;8B8373;
-    STZ.B DP_BGTilesAddr+1                                               ;8B8376;
-    STZ.W $210C                                                          ;8B8378;
-    LDA.B #$10                                                           ;8B837B;
-    STA.W $212C                                                          ;8B837D;
-    STA.B DP_MainScreenLayers                                            ;8B8380;
-    STZ.W $212D                                                          ;8B8382;
-    STZ.B DP_SubScreenLayers                                             ;8B8385;
-    STZ.W $212E                                                          ;8B8387;
-    STZ.B DP_WindowAreaMainScreen                                        ;8B838A;
-    STZ.W $2115                                                          ;8B838C;
-    STZ.W $2130                                                          ;8B838F;
-    STZ.B DP_NextGameplayColorMathA                                      ;8B8392;
-    STZ.W $2131                                                          ;8B8394;
-    STZ.B DP_NextGameplayColorMathB                                      ;8B8397;
-    LDA.B #$E0                                                           ;8B8399;
-    STA.W $2132                                                          ;8B839B;
-    STZ.B DP_ColorMathA                                                  ;8B839E;
-    STZ.B DP_ColorMathB                                                  ;8B83A0;
-    LDA.B #$20                                                           ;8B83A2;
-    STA.B DP_ColorMathSubScreenBackdropColor0                            ;8B83A4;
-    LDA.B #$40                                                           ;8B83A6;
-    STA.B DP_ColorMathSubScreenBackdropColor1                            ;8B83A8;
-    LDA.B #$80                                                           ;8B83AA;
-    STA.B DP_ColorMathSubScreenBackdropColor2                            ;8B83AC;
-    STZ.B DP_Mosaic                                                      ;8B83AE;
-    REP #$30                                                             ;8B83B0;
-    STZ.W CinematicBG1_XSubPosition                                      ;8B83B2;
-    STZ.W CinematicBG1_XPosition                                         ;8B83B5;
-    STZ.W CinematicBG1_YSubPosition                                      ;8B83B8;
-    STZ.W CinematicBG1_YPosition                                         ;8B83BB;
-    STZ.W CinematicBG1_XSubSpeed                                         ;8B83BE;
-    STZ.W CinematicBG1_XSpeed                                            ;8B83C1;
-    STZ.W CinematicBG1_YSubSpeed                                         ;8B83C4;
-    STZ.W CinematicBG1_YSpeed                                            ;8B83C7;
-    STZ.W LayerBlending_DefaultConfig                                    ;8B83CA;
-    STZ.B DP_BG2XScroll                                                  ;8B83CD;
-    STZ.B DP_BG2YScroll                                                  ;8B83CF;
-    PLP                                                                  ;8B83D1;
-    RTS                                                                  ;8B83D2;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $83D3: Set up PPU for credits ;;;
 Setup_PPU_Credits:
     PHP                                                                  ;8B83D3;
@@ -515,95 +442,6 @@ Setup_PPU_Credits:
     STZ.W CinematicBG1_YPosition                                        ;8B8483;
     PLP                                                                  ;8B8486;
     RTS                                                                  ;8B8487;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-if !DEBUG
-;;; $8488: Unused. Debug. Modify mode 7 transformation and BG1 position with controller ;;;
-UNUSED_ModifyMode7TransformAndBG1PosWithController_8B8488:
-    PHP                                                                  ;8B8488;
-    REP #$30                                                             ;8B8489;
-    LDA.B DP_Controller1Input                                            ;8B848B;
-    BIT.W #$0200                                                         ;8B848D;
-    BEQ .checkRight                                                      ;8B8490;
-    LDA.W CinematicBG1_XPosition                                         ;8B8492;
-    CLC                                                                  ;8B8495;
-    ADC.W #$0002                                                         ;8B8496;
-    STA.W CinematicBG1_XPosition                                         ;8B8499;
-
-  .checkRight:
-    LDA.B DP_Controller1Input                                            ;8B849C;
-    BIT.W #$0100                                                         ;8B849E;
-    BEQ .checkUp                                                         ;8B84A1;
-    LDA.W CinematicBG1_XPosition                                         ;8B84A3;
-    SEC                                                                  ;8B84A6;
-    SBC.W #$0002                                                         ;8B84A7;
-    STA.W CinematicBG1_XPosition                                         ;8B84AA;
-
-  .checkUp:
-    LDA.B DP_Controller1Input                                            ;8B84AD;
-    BIT.W #$0800                                                         ;8B84AF;
-    BEQ .checkDown                                                       ;8B84B2;
-    LDA.W CinematicBG1_YPosition                                         ;8B84B4;
-    CLC                                                                  ;8B84B7;
-    ADC.W #$0002                                                         ;8B84B8;
-    STA.W CinematicBG1_YPosition                                         ;8B84BB;
-
-  .checkDown:
-    LDA.B DP_Controller1Input                                            ;8B84BE;
-    BIT.W #$0400                                                         ;8B84C0;
-    BEQ .checkLR                                                         ;8B84C3;
-    LDA.W CinematicBG1_YPosition                                         ;8B84C5;
-    SEC                                                                  ;8B84C8;
-    SBC.W #$0002                                                         ;8B84C9;
-    STA.W CinematicBG1_YPosition                                         ;8B84CC;
-
-  .checkLR:
-    LDA.B DP_Controller1Input                                            ;8B84CF;
-    BIT.W #$0010                                                         ;8B84D1;
-    BNE .pressingR                                                       ;8B84D4;
-    BIT.W #$0020                                                         ;8B84D6;
-    BEQ .checkB                                                          ;8B84D9;
-    LDA.W Mode7TransformationAngle                                       ;8B84DB;
-    DEC                                                                  ;8B84DE;
-    AND.W #$00FF                                                         ;8B84DF;
-    STA.W Mode7TransformationAngle                                       ;8B84E2;
-    BRA .checkB                                                          ;8B84E5;
-
-  .pressingR:
-    LDA.W Mode7TransformationAngle                                       ;8B84E7;
-    INC                                                                  ;8B84EA;
-    AND.W #$00FF                                                         ;8B84EB;
-    STA.W Mode7TransformationAngle                                       ;8B84EE;
-
-  .checkB:
-    LDA.B DP_Controller1Input                                            ;8B84F1;
-    BIT.W #$8000                                                         ;8B84F3;
-    BNE .zoomOut                                                         ;8B84F6;
-    BIT.W #$0040                                                         ;8B84F8;
-    BNE .zoomIn                                                          ;8B84FB;
-    PLP                                                                  ;8B84FD;
-    RTS                                                                  ;8B84FE;
-
-  .zoomOut:
-    LDA.W Mode7TransformationZoomLevel                                   ;8B84FF;
-    CMP.W #$7000                                                         ;8B8502;
-    BPL .return                                                          ;8B8505;
-    INC                                                                  ;8B8507;
-    STA.W Mode7TransformationZoomLevel                                   ;8B8508;
-    BRA .return                                                          ;8B850B;
-
-  .zoomIn:
-    LDA.W Mode7TransformationZoomLevel                                   ;8B850D;
-    BEQ .return                                                          ;8B8510;
-    DEC                                                                  ;8B8512;
-    STA.W Mode7TransformationZoomLevel                                   ;8B8513;
-
-  .return:
-    PLP                                                                  ;8B8516;
-    RTS                                                                  ;8B8517;
-endif
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $8518: Handle mode 7 transformation matrix and BG1 position - no rotation ;;;
@@ -813,14 +651,6 @@ Multiplication_16bitUnsigned_8B85EE:
     RTS                                                                  ;8B8665;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $8666: Unused. Handle fading in ;;;
-UNUSED_Handle_Fading_In_8B8666:
-    JSL.L HandleFadingIn                                                 ;8B8666;
-    RTS                                                                  ;8B866A;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $866B: Activate title sequence blue light ;;;
 Activate_TileSequence_BlueLight:
     PHP                                                                  ;8B866B;
@@ -850,140 +680,6 @@ Deactivate_TileSequence_BlueLight:
     STA.B DP_ColorMathSubScreenBackdropColor2                            ;8B8693;
     REP #$20
     RTS                                                                  ;8B8696;
-
-
-if !DEBUG
-;;; $8697: Debug. Display version info ;;;
-Debug_DisplayVersionInfo:
-; Removing the RTS and the title screen shows:
-;     'Ver.02.02.21.30  00' on NTSC
-;     'Ver.03.30.10.00  00' on PAL
-
-; Last byte there is the game header version number
-; Also displays an 'S' if audio is disabled by $80:8008
-    RTS                                                                  ;8B8697;
-
-    PHP                                                                  ;8B8698;
-    REP #$30                                                             ;8B8699;
-    LDX.B OAMStack                                                       ;8B869B;
-    LDY.W #$0000                                                         ;8B869E;
-
-  .loopVersionString:
-    LDA.W .versionStringOAMEntryXpos,Y                                   ;8B86A1;
-    AND.W #$00FF                                                         ;8B86A4;
-    STA.W OAMLow,X                                                       ;8B86A7;
-    LDA.W #$00CC                                                         ;8B86AA;
-    STA.W OAMLow+1,X                                                     ;8B86AD;
-    PHY                                                                  ;8B86B0;
-    LDA.W Debug_VersionString,Y                                          ;8B86B1;
-    AND.W #$00FF                                                         ;8B86B4;
-    BEQ .done                                                            ;8B86B7;
-    CMP.W #$002E                                                         ;8B86B9;
-    BEQ .decimalPoint                                                    ;8B86BC;
-    SEC                                                                  ;8B86BE;
-    SBC.W #$0030                                                         ;8B86BF;
-    ASL                                                                  ;8B86C2;
-    TAY                                                                  ;8B86C3;
-    LDA.W .versionStringOAMEntryTileNumbersAttributes,Y                  ;8B86C4;
-    STA.W OAMLow+2,X                                                     ;8B86C7;
-    BRA .next                                                            ;8B86CA;
-
-  .decimalPoint:
-    LDA.W #$39F3                                                         ;8B86CC;
-    STA.W OAMLow+2,X                                                     ;8B86CF;
-
-  .next:
-    PLY                                                                  ;8B86D2;
-    TXA                                                                  ;8B86D3;
-    CLC                                                                  ;8B86D4;
-    ADC.W #$0004                                                         ;8B86D5;
-    TAX                                                                  ;8B86D8;
-    INY                                                                  ;8B86D9;
-    BRA .loopVersionString                                               ;8B86DA;
-
-  .done:
-    PLY                                                                  ;8B86DC;
-    STX.B OAMStack                                                       ;8B86DD;
-    LDA.L DebugConst_DisableAudio                                        ;8B86E0;
-    BEQ .versionNumber                                                   ;8B86E4;
-    LDA.W #$00B4                                                         ;8B86E6;
-    STA.W OAMLow,X                                                       ;8B86E9;
-    LDA.W #$00C4                                                         ;8B86EC;
-    STA.W OAMLow+1,X                                                     ;8B86EF;
-    LDA.W #$39E2                                                         ;8B86F2;
-    STA.W OAMLow+2,X                                                     ;8B86F5;
-    TXA                                                                  ;8B86F8;
-    CLC                                                                  ;8B86F9;
-    ADC.W #$0004                                                         ;8B86FA;
-    TAX                                                                  ;8B86FD;
-
-  .versionNumber:
-    LDA.L ROM_HEADER_version&$00FFFF                                     ;8B86FE;
-    PHA                                                                  ;8B8702;
-    AND.W #$000F                                                         ;8B8703;
-    ASL                                                                  ;8B8706;
-    STA.B DP_Temp12                                                      ;8B8707;
-    PLA                                                                  ;8B8709;
-    AND.W #$00F0                                                         ;8B870A;
-    LSR                                                                  ;8B870D;
-    LSR                                                                  ;8B870E;
-    LSR                                                                  ;8B870F;
-    TAY                                                                  ;8B8710;
-    LDA.W #$00E8                                                         ;8B8711;
-    STA.W OAMLow,X                                                       ;8B8714;
-    LDA.W #$00CC                                                         ;8B8717;
-    STA.W OAMLow+1,X                                                     ;8B871A;
-    LDA.W .versionStringOAMEntryTileNumbersAttributes,Y                  ;8B871D;
-    STA.W OAMLow+2,X                                                     ;8B8720;
-    LDA.W #$00F0                                                         ;8B8723;
-    STA.W OAMLow+4,X                                                     ;8B8726;
-    LDA.W #$00CC                                                         ;8B8729;
-    STA.W OAMLow+5,X                                                     ;8B872C;
-    LDY.B DP_Temp12                                                      ;8B872F;
-    LDA.W .versionStringOAMEntryTileNumbersAttributes,Y                  ;8B8731;
-    STA.W OAMLow+6,X                                                     ;8B8734;
-    TXA                                                                  ;8B8737;
-    CLC                                                                  ;8B8738;
-    ADC.W #$0008                                                         ;8B8739;
-    TAX                                                                  ;8B873C;
-    LDY.W #$0000                                                         ;8B873D;
-
-  .loopVer:
-    LDA.W .VerOAMEntryXpos,Y                                             ;8B8740;
-    STA.W OAMLow,X                                                       ;8B8743;
-    LDA.W #$00CC                                                         ;8B8746;
-    STA.W OAMLow+1,X                                                     ;8B8749;
-    LDA.W .VerOAMEntryTileNumbersAttributes,Y                            ;8B874C;
-    STA.W OAMLow+2,X                                                     ;8B874F;
-    TXA                                                                  ;8B8752;
-    CLC                                                                  ;8B8753;
-    ADC.W #$0004                                                         ;8B8754;
-    TAX                                                                  ;8B8757;
-    INY                                                                  ;8B8758;
-    INY                                                                  ;8B8759;
-    CPY.W #$0006                                                         ;8B875A;
-    BMI .loopVer                                                         ;8B875D;
-    STX.B OAMStack                                                       ;8B875F;
-    PLP                                                                  ;8B8762;
-    RTS                                                                  ;8B8763;
-
-  .versionStringOAMEntryXpos:
-; Version string OAM entry X positions
-    db $80,$88,$90,$98,$A0,$A8,$B0,$B8,$C0,$C8,$D0,$D8,$E0,$E8,$F0,$F8   ;8B8764;
-
-  .VerOAMEntryXpos:
-; 'Ver.' OAM entry X positions
-    dw $0074,$006C,$0064                                                 ;8B8774;
-
-  .VerOAMEntryTileNumbersAttributes:
-; 'Ver.' OAM entry tile numbers and attributes
-    dw $31F2,$31F1,$31F0                                                 ;8B877A;
-
-  .versionStringOAMEntryTileNumbersAttributes:
-; Version string ('0123456789ABCDEF') OAM entry tile numbers and attributes
-    dw $39F4,$39F5,$39F6,$39F7,$39F8,$39F9,$39FA,$39FB                   ;8B8780;
-    dw $39FC,$39FD,$39D0,$39D1,$39D2,$39D3,$39D4,$39D5                   ;8B8790;
-endif
 
 
 ;;; $87A0: Update 32x30 cinematic BG tilemap ;;;
@@ -1302,148 +998,6 @@ CinematicBGObjects_X_16_TilemapOffsetForTile_12_13:
     STA.W DP_Temp16                                                      ;8B8966;
     TAX                                                                  ;8B8969;
     RTS                                                                  ;8B896A;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $896B: Unused. Indirect instruction function - draw the [[Y] + 3] x [[Y] + 2] region with tilemap values at [Y] + 4 to mode 7 tilemap ;;;
-UNUSED_CinematicBGObjects_IndirectInstructionFunction_8B896B:
-;; Parameters:
-;;     X: Cinematic BG object index
-;;     Y: Pointer to instruction
-
-; Expects pushed Y, X and PSR
-    JSR.W UNUSED_CinematicBGObjects_Mode7TilemapOffsetForTile_8B8A2C     ;8B896B;
-    LDA.W $0002,Y                                                        ;8B896E;
-    AND.W #$00FF                                                         ;8B8971;
-    STA.W DP_Temp12                                                      ;8B8974;
-    LDA.W $0003,Y                                                        ;8B8977;
-    AND.W #$00FF                                                         ;8B897A;
-    STA.W DP_Temp14                                                      ;8B897D;
-    TYA                                                                  ;8B8980;
-    CLC                                                                  ;8B8981;
-    ADC.W #$0004                                                         ;8B8982;
-    TAY                                                                  ;8B8985;
-    LDX.B Mode7Stack                                                     ;8B8986;
-
-  .loop:
-    LDA.W #$0080                                                         ;8B8989;
-    STA.W Mode7Transfer.control,X                                        ;8B898C;
-    TYA                                                                  ;8B898F;
-    STA.W Mode7Transfer.src,X                                            ;8B8990;
-    LDA.W #$008B                                                         ;8B8993;
-    STA.W Mode7Transfer.src+2,X                                          ;8B8996;
-    LDA.W DP_Temp12                                                      ;8B8999;
-    STA.W Mode7Transfer.size,X                                           ;8B899C;
-    LDA.W DP_Temp16                                                      ;8B899F;
-    STA.W Mode7Transfer.dest,X                                           ;8B89A2;
-    LDA.W #$0000                                                         ;8B89A5;
-    STA.W Mode7Transfer.inc,X                                            ;8B89A8;
-    TXA                                                                  ;8B89AB;
-    CLC                                                                  ;8B89AC;
-    ADC.W #$0009                                                         ;8B89AD;
-    TAX                                                                  ;8B89B0;
-    TYA                                                                  ;8B89B1;
-    CLC                                                                  ;8B89B2;
-    ADC.W DP_Temp12                                                      ;8B89B3;
-    TAY                                                                  ;8B89B6;
-    LDA.W DP_Temp16                                                      ;8B89B7;
-    CLC                                                                  ;8B89BA;
-    ADC.W #$0080                                                         ;8B89BB;
-    STA.W DP_Temp16                                                      ;8B89BE;
-    DEC.W DP_Temp14                                                      ;8B89C1;
-    BEQ .return                                                          ;8B89C4;
-    BRA .loop                                                            ;8B89C6;
-
-  .return:
-    STX.B Mode7Stack                                                     ;8B89C8;
-    PLY                                                                  ;8B89CB;
-    PLX                                                                  ;8B89CC;
-    PLP                                                                  ;8B89CD;
-    RTS                                                                  ;8B89CE;
-
-
-;;; $89CF: Unused. Indirect instruction function - draw the [[Y] + 3] x [[Y] + 2] region with column-major tilemap values at [Y] + 4 to mode 7 tilemap ;;;
-UNUSED_CinematicBGObjects_IndirectInstructionFunction_8B89CF:
-;; Parameters:
-;;     X: Cinematic BG object index
-;;     Y: Pointer to instruction
-
-; Expects pushed Y, X and PSR
-    JSR.W UNUSED_CinematicBGObjects_Mode7TilemapOffsetForTile_8B8A2C     ;8B89CF;
-    LDA.W $0002,Y                                                        ;8B89D2;
-    AND.W #$00FF                                                         ;8B89D5;
-    STA.W DP_Temp12                                                      ;8B89D8;
-    LDA.W $0003,Y                                                        ;8B89DB;
-    AND.W #$00FF                                                         ;8B89DE;
-    STA.W DP_Temp14                                                      ;8B89E1;
-    TYA                                                                  ;8B89E4;
-    CLC                                                                  ;8B89E5;
-    ADC.W #$0004                                                         ;8B89E6;
-    TAY                                                                  ;8B89E9;
-    LDX.B Mode7Stack                                                     ;8B89EA;
-
-  .loop:
-    LDA.W #$0080                                                         ;8B89ED;
-    STA.W Mode7Transfer.control,X                                        ;8B89F0;
-    TYA                                                                  ;8B89F3;
-    STA.W Mode7Transfer.src,X                                            ;8B89F4;
-    LDA.W #$008B                                                         ;8B89F7;
-    STA.W Mode7Transfer.src+2,X                                          ;8B89FA;
-    LDA.W DP_Temp14                                                      ;8B89FD;
-    STA.W Mode7Transfer.size,X                                           ;8B8A00;
-    LDA.W DP_Temp16                                                      ;8B8A03;
-    STA.W Mode7Transfer.dest,X                                           ;8B8A06;
-    LDA.W #$0002                                                         ;8B8A09;
-    STA.W Mode7Transfer.inc,X                                            ;8B8A0C;
-    TXA                                                                  ;8B8A0F;
-    CLC                                                                  ;8B8A10;
-    ADC.W #$0009                                                         ;8B8A11;
-    TAX                                                                  ;8B8A14;
-    TYA                                                                  ;8B8A15;
-    CLC                                                                  ;8B8A16;
-    ADC.W DP_Temp14                                                      ;8B8A17;
-    TAY                                                                  ;8B8A1A;
-    INC.W DP_Temp16                                                      ;8B8A1B;
-    DEC.W DP_Temp12                                                      ;8B8A1E;
-    BEQ .return                                                          ;8B8A21;
-    BRA .loop                                                            ;8B8A23;
-
-  .return:
-    STX.B Mode7Stack                                                     ;8B8A25;
-    PLY                                                                  ;8B8A28;
-    PLX                                                                  ;8B8A29;
-    PLP                                                                  ;8B8A2A;
-    RTS                                                                  ;8B8A2B;
-
-
-;;; $8A2C: Unused. $16 = mode 7 tilemap offset for tile ([$12], [$13]) ;;;
-UNUSED_CinematicBGObjects_Mode7TilemapOffsetForTile_8B8A2C:
-;; Parameters:
-;;     $12: Tile X
-;;     $13: Tile Y
-;; Returns:
-;;     $16: Tilemap offset (in octets). [$13] * 80h + [$12]
-
-; Uses the multiplication registers for some reason
-; Only called by unused routines
-    LDA.W DP_Temp12                                                      ;8B8A2C;
-    AND.W #$00FF                                                         ;8B8A2F;
-    STA.W DP_Temp14                                                      ;8B8A32;
-    SEP #$20                                                             ;8B8A35;
-    LDA.B #$80                                                           ;8B8A37;
-    STA.W $4202                                                          ;8B8A39;
-    LDA.W DP_Temp13                                                      ;8B8A3C;
-    STA.W $4203                                                          ;8B8A3F;
-    NOP                                                                  ;8B8A42;
-    NOP                                                                  ;8B8A43;
-    NOP                                                                  ;8B8A44;
-    REP #$20                                                             ;8B8A45;
-    LDA.W $4216                                                          ;8B8A47;
-    CLC                                                                  ;8B8A4A;
-    ADC.W DP_Temp14                                                      ;8B8A4B;
-    STA.W DP_Temp16                                                      ;8B8A4E;
-    RTS                                                                  ;8B8A51;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $8A52: Calculate position of Samus in rotating elevator room ;;;
@@ -2164,107 +1718,6 @@ DrawIntroSprites:
 
   .return:
     RTS                                                                  ;8B8E51;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $8E52: Unused. Calculate X/Y components of radius [A] angle [Y] ;;;
-UNUSED_CalculateXYComponentsOfRadiusAAngleY_8B8E52:
-;; Parameters:
-;;     A: Radius
-;;     Y: Angle * 2. Origin = up, positive direction = clockwise
-;; Returns:
-;;     $14: X component of radius
-;;     $16: Y component of radius
-
-; Clone of Calculate_XY_ComponentsOf_RadiusA_AngleY
-    PHP                                                                  ;8B8E52;
-    REP #$30                                                             ;8B8E53;
-    PHX                                                                  ;8B8E55;
-    STA.B DP_Temp18                                                      ;8B8E56;
-    TYA                                                                  ;8B8E58;
-    STA.B DP_Temp1A                                                      ;8B8E59;
-    CMP.W #$0080                                                         ;8B8E5B;
-    BPL +                                                                ;8B8E5E;
-    ASL                                                                  ;8B8E60;
-    TAX                                                                  ;8B8E61;
-    JSR.W UNUSED_Math_8B8EA3                                             ;8B8E62;
-    BRA .storeXComponent                                                 ;8B8E65;
-
-+   SEC                                                                  ;8B8E67;
-    SBC.W #$0080                                                         ;8B8E68;
-    AND.W #$00FF                                                         ;8B8E6B;
-    ASL                                                                  ;8B8E6E;
-    TAX                                                                  ;8B8E6F;
-    JSR.W UNUSED_Math_8B8EA3                                             ;8B8E70;
-    EOR.W #$FFFF                                                         ;8B8E73;
-    INC                                                                  ;8B8E76;
-
-  .storeXComponent:
-    STA.B DP_Temp14                                                      ;8B8E77;
-    LDA.B DP_Temp1A                                                      ;8B8E79;
-    SEC                                                                  ;8B8E7B;
-    SBC.W #$0040                                                         ;8B8E7C;
-    AND.W #$00FF                                                         ;8B8E7F;
-    CMP.W #$0080                                                         ;8B8E82;
-    BPL +                                                                ;8B8E85;
-    ASL                                                                  ;8B8E87;
-    TAX                                                                  ;8B8E88;
-    JSR.W UNUSED_Math_8B8EA3                                             ;8B8E89;
-    BRA .storeYComponent                                                 ;8B8E8C;
-
-+   SEC                                                                  ;8B8E8E;
-    SBC.W #$0080                                                         ;8B8E8F;
-    AND.W #$00FF                                                         ;8B8E92;
-    ASL                                                                  ;8B8E95;
-    TAX                                                                  ;8B8E96;
-    JSR.W UNUSED_Math_8B8EA3                                             ;8B8E97;
-    EOR.W #$FFFF                                                         ;8B8E9A;
-    INC                                                                  ;8B8E9D;
-
-  .storeYComponent:
-    STA.B DP_Temp16                                                      ;8B8E9E;
-    PLX                                                                  ;8B8EA0;
-    PLP                                                                  ;8B8EA1;
-    RTS                                                                  ;8B8EA2;
-
-
-;;; $8EA3: A = [$18] * sin([X] / 2 * pi / 80h) ;;;
-UNUSED_Math_8B8EA3:
-;; Parameters:
-;;     X: Angle * 2
-;;     $18: Radius
-;; Returns:
-;;     A: Sine component
-
-; Clone of DoSomeMathWithSineAndPi_869BF3
-; Only called by above unused routine
-    SEP #$20                                                             ;8B8EA3;
-    LDA.L SineCosineTables_8bitSine_SignExtended,X                       ;8B8EA5;
-    STA.W $4202                                                          ;8B8EA9;
-    LDA.B DP_Temp18                                                      ;8B8EAC;
-    STA.W $4203                                                          ;8B8EAE;
-    NOP                                                                  ;8B8EB1;
-    NOP                                                                  ;8B8EB2;
-    NOP                                                                  ;8B8EB3;
-    REP #$20                                                             ;8B8EB4;
-    LDA.W $4216                                                          ;8B8EB6;
-    XBA                                                                  ;8B8EB9;
-    AND.W #$00FF                                                         ;8B8EBA;
-    STA.B DP_Temp12                                                      ;8B8EBD;
-    SEP #$20                                                             ;8B8EBF;
-    LDA.L SineCosineTables_8bitSine_SignExtended+1,X                     ;8B8EC1;
-    STA.W $4202                                                          ;8B8EC5;
-    LDA.B DP_Temp18                                                      ;8B8EC8;
-    STA.W $4203                                                          ;8B8ECA;
-    NOP                                                                  ;8B8ECD;
-    NOP                                                                  ;8B8ECE;
-    NOP                                                                  ;8B8ECF;
-    REP #$20                                                             ;8B8ED0;
-    LDA.W $4216                                                          ;8B8ED2;
-    CLC                                                                  ;8B8ED5;
-    ADC.B DP_Temp12                                                      ;8B8ED6;
-    RTS                                                                  ;8B8ED8;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $8ED9: Move unused sprites off-screen ;;;
@@ -3002,22 +2455,6 @@ CinematicSpriteObject_Instruction_Delete:
     RTS                                                                  ;8B9441;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $9442: Unused. Instruction - sleep ;;;
-UNUSED_CinematicSpriteObject_Instruction_Sleep_8B9442:
-;; Parameters:
-;;     X: Cinematic sprite object index
-;;     Y: Pointer to after this instruction
-    REP #$30                                                             ;8B9442;
-    DEY                                                                  ;8B9444;
-    DEY                                                                  ;8B9445;
-    TYA                                                                  ;8B9446;
-    STA.W CinematicSpriteObject_InstListPointers,X                       ;8B9447;
-    PLA                                                                  ;8B944A;
-    RTS                                                                  ;8B944B;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $944C: Instruction - pre-instruction = [[Y]] ;;;
 CinematicSpriteObject_Instruction_PreInstructionY:
 ;; Parameters:
@@ -3031,20 +2468,6 @@ CinematicSpriteObject_Instruction_PreInstructionY:
     INY                                                                  ;8B9454;
     INY                                                                  ;8B9455;
     RTS                                                                  ;8B9456;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $9457: Unused. Instruction - clear pre-instruction ;;;
-UNUSED_CinematicSpriteObject_Inst_ClearPreInstruction_8B9457:
-;; Parameters:
-;;     X: Cinematic sprite object index
-    REP #$30                                                             ;8B9457;
-    LDA.W #.return                                                       ;8B9459;
-    STA.W CinematicSpriteObject_PreInstructions,X                        ;8B945C;
-
-  .return:
-    RTS                                                                  ;8B945F;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $9460: Unused. Instruction - call external function [[Y]] ;;;
@@ -3097,32 +2520,6 @@ CinematicSpriteObject_Inst_CallExternalFunctionYWithA_8B947E:
     JML.W [DP_Temp12]                                                    ;8B949F;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $94A2: Unused. Instruction - go to [Y] + ±[[Y]] ;;;
-UNUSED_CinematicSpriteObject_Inst_GotoY_8B94A2:
-;; Parameters:
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    REP #$30                                                             ;8B94A2;
-    STY.W DP_Temp12                                                      ;8B94A4;
-    DEY                                                                  ;8B94A7;
-    LDA.W $0000,Y                                                        ;8B94A8;
-    XBA                                                                  ;8B94AB;
-    BMI .highByte                                                        ;8B94AC;
-    AND.W #$00FF                                                         ;8B94AE;
-    BRA +                                                                ;8B94B1;
-
-  .highByte:
-    ORA.W #$FF00                                                         ;8B94B3;
-
-+   CLC                                                                  ;8B94B6;
-    ADC.W DP_Temp12                                                      ;8B94B7;
-    TAY                                                                  ;8B94BA;
-    RTS                                                                  ;8B94BB;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $94BC: Instruction - go to [[Y]] ;;;
 CinematicSpriteObject_Instruction_GotoY:
 ;; Parameters:
@@ -3150,22 +2547,6 @@ CinematicSpriteObject_Inst_DecrementTimer_GotoYIfNonZero:
     RTS                                                                  ;8B94CC;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $94CD: Unused. Instruction - decrement timer and go to [Y] + ±[[Y]] if non-zero ;;;
-UNUSED_CinematicSpriteObject_Inst_DecTimer_GotoY_8B94CD:
-;; Parameters:
-;;     X: Cinematic sprite object index
-;;     Y: Pointer to instruction arguments
-;; Returns:
-;;     Y: Pointer to next instruction
-    REP #$30                                                             ;8B94CD;
-    DEC.W CinematicSpriteObject_Timers,X                                 ;8B94CF;
-    BNE UNUSED_CinematicSpriteObject_Inst_GotoY_8B94A2                   ;8B94D2;
-    INY                                                                  ;8B94D4;
-    RTS                                                                  ;8B94D5;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $94D6: Instruction - timer = [[Y]] ;;;
 CinematicSpriteObject_Instruction_TimerInY:
 ;; Parameters:
@@ -3179,14 +2560,6 @@ CinematicSpriteObject_Instruction_TimerInY:
     INY                                                                  ;8B94DE;
     INY                                                                  ;8B94DF;
     RTS                                                                  ;8B94E0;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $94E1: Unused. RTS ;;;
-UNUSED_REP30RTS_8B94E1:
-    REP #$30                                                             ;8B94E1;
-    RTS                                                                  ;8B94E3;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $94E4: Spawn mode 7 object ;;;
@@ -3296,28 +2669,6 @@ Mode7Objects_Instruction_Delete:
     STZ.W Mode7Object_InstListPointers,X                                 ;8B956D;
     PLA                                                                  ;8B9570;
     RTS                                                                  ;8B9571;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $9572: Unused. Instruction - pre-instruction = [[Y]] ;;;
-UNUSED_Mode7Objects_Instruction_PreInstructionY_8B9572:
-    REP #$30                                                             ;8B9572;
-    LDA.W $0000,Y                                                        ;8B9574;
-    STA.W Mode7Object_PreInstructions,X                                  ;8B9577;
-    INY                                                                  ;8B957A;
-    INY                                                                  ;8B957B;
-    RTS                                                                  ;8B957C;
-
-
-;;; $957D: Unused. Instruction - clear pre-instruction ;;;
-UNUSED_Mode7Objects_Instruction_ClearPreInstruction_8B957D:
-    REP #$30                                                             ;8B957D;
-    LDA.W #.return                                                       ;8B957F;
-    STA.W Mode7Object_PreInstructions,X                                  ;8B9582;
-
-  .return:
-    RTS                                                                  ;8B9585;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $9586: Instruction - go to [[Y]] ;;;
@@ -3567,145 +2918,12 @@ CinematicBGObject_Instruction_Delete:
     RTS                                                                  ;8B96A2;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $96A3: Unused. Instruction - sleep ;;;
-UNUSED_CinematicBGObject_Instruction_Sleep_8B96A3:
-    REP #$30                                                             ;8B96A3;
-    DEY                                                                  ;8B96A5;
-    DEY                                                                  ;8B96A6;
-    TYA                                                                  ;8B96A7;
-    STA.W CinematicBGObject_InstListPointers,X                           ;8B96A8;
-    PLA                                                                  ;8B96AB;
-    PLB                                                                  ;8B96AC;
-    RTS                                                                  ;8B96AD;
-
-
-;;; $96AE: Unused. Instruction - pre-instruction = [[Y]] ;;;
-UNUSED_CinematicBGObject_Instruction_PreInstructionY_8B96AE:
-    REP #$30                                                             ;8B96AE;
-    LDA.W $0000,Y                                                        ;8B96B0;
-    STA.W CinematicBGObject_PreInstructions,X                            ;8B96B3;
-    INY                                                                  ;8B96B6;
-    INY                                                                  ;8B96B7;
-    RTS                                                                  ;8B96B8;
-
-
-;;; $96B9: Unused. Instruction - clear pre-instruction ;;;
-UNUSED_CinematicBGObject_Inst_ClearPreInstruction_8B96B9:
-    REP #$30                                                             ;8B96B9;
-    LDA.W #.return                                                       ;8B96BB;
-    STA.W CinematicBGObject_PreInstructions,X                            ;8B96BE;
-
-  .return:
-    RTS                                                                  ;8B96C1;
-
-
-;;; $96C2: Unused. Instruction - call external function [[Y]] ;;;
-UNUSED_CinematicBGObjects_Inst_CallExternalFunction_8B96C2:
-    REP #$30                                                             ;8B96C2;
-    LDA.W $0000,Y                                                        ;8B96C4;
-    STA.W DP_Temp12                                                      ;8B96C7;
-    LDA.W $0001,Y                                                        ;8B96CA;
-    STA.W DP_Temp13                                                      ;8B96CD;
-    PHY                                                                  ;8B96D0;
-    JSL.L .externalFunction                                              ;8B96D1;
-    PLY                                                                  ;8B96D5;
-    LDX.W CinematicBGObject_Index                                        ;8B96D6;
-    INY                                                                  ;8B96D9;
-    INY                                                                  ;8B96DA;
-    INY                                                                  ;8B96DB;
-    RTS                                                                  ;8B96DC;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;8B96DD;
-
-
-;;; $96E0: Unused. Instruction - call external function [[Y]] with A = [[Y] + 3] ;;;
-UNUSED_CinematicBGObjects_Inst_CallExternalFunction_8B96E0:
-    REP #$30                                                             ;8B96E0;
-    LDA.W $0000,Y                                                        ;8B96E2;
-    STA.W DP_Temp12                                                      ;8B96E5;
-    LDA.W $0001,Y                                                        ;8B96E8;
-    STA.W DP_Temp13                                                      ;8B96EB;
-    LDA.W $0003,Y                                                        ;8B96EE;
-    PHY                                                                  ;8B96F1;
-    JSL.L .externalFunction                                              ;8B96F2;
-    PLY                                                                  ;8B96F6;
-    LDX.W CinematicBGObject_Index                                        ;8B96F7;
-    TYA                                                                  ;8B96FA;
-    CLC                                                                  ;8B96FB;
-    ADC.W #$0005                                                         ;8B96FC;
-    TAY                                                                  ;8B96FF;
-    RTS                                                                  ;8B9700;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;8B9701;
-
-
-;;; $9704: Unused. Instruction - go to [Y] + ±[[Y]] ;;;
-UNUSED_CinematicBGObjects_Inst_GotoY_8B9704:
-    REP #$30                                                             ;8B9704;
-    STY.W DP_Temp12                                                      ;8B9706;
-    DEY                                                                  ;8B9709;
-    LDA.W $0000,Y                                                        ;8B970A;
-    XBA                                                                  ;8B970D;
-    BMI .highByte                                                        ;8B970E;
-    AND.W #$00FF                                                         ;8B9710;
-    BRA +                                                                ;8B9713;
-
-  .highByte:
-    ORA.W #$FF00                                                         ;8B9715;
-
-+   CLC                                                                  ;8B9718;
-    ADC.W DP_Temp12                                                      ;8B9719;
-    TAY                                                                  ;8B971C;
-    RTS                                                                  ;8B971D;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $971E: Instruction - go to [[Y]] ;;;
 CinematicBGObject_Instruction_GotoY:
     REP #$30                                                             ;8B971E;
     LDA.W $0000,Y                                                        ;8B9720;
     TAY                                                                  ;8B9723;
     RTS                                                                  ;8B9724;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $9725: Unused. Instruction - decrement timer and go to [[Y]] if non-zero ;;;
-UNUSED_CinematicBGObjects_Inst_DecrementTimer_GotoY_8B9724:
-    REP #$30                                                             ;8B9725;
-    DEC.W CinematicBGObject_Timers,X                                     ;8B9727;
-    BNE CinematicBGObject_Instruction_GotoY                              ;8B972A;
-    INY                                                                  ;8B972C;
-    INY                                                                  ;8B972D;
-    RTS                                                                  ;8B972E;
-
-
-;;; $972F: Unused. Instruction - decrement timer and go to [Y] + ±[[Y]] if non-zero ;;;
-UNUSED_CinematicBGObjects_Inst_DecrementTimer_GotoY_8B972F:
-    REP #$30                                                             ;8B972F;
-    DEC.W CinematicBGObject_Timers,X                                     ;8B9731;
-    BNE UNUSED_CinematicBGObjects_Inst_GotoY_8B9704                      ;8B9734;
-    INY                                                                  ;8B9736;
-    RTS                                                                  ;8B9737;
-
-
-;;; $9738: Unused. Instruction - timer = [[Y]] ;;;
-UNUSED_CinematicBGObjects_Inst_TimerInY_8B9738:
-    REP #$30                                                             ;8B9738;
-    LDA.W $0000,Y                                                        ;8B973A;
-    STA.W CinematicBGObject_Timers,X                                     ;8B973D;
-    INY                                                                  ;8B9740;
-    INY                                                                  ;8B9741;
-    RTS                                                                  ;8B9742;
-
-
-;;; $9743: Unused. RTS ;;;
-UNUSED_REP30RTS_8B9743:
-    REP #$30                                                             ;8B9743;
-    RTS                                                                  ;8B9745;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $9746: Draw cinematic sprite objects - intro/title sequence ;;;
@@ -4301,19 +3519,6 @@ InitFunction_CinematicSpriteObject_SuperMetroidLogoImmediate:
     RTS                                                                  ;8B9B2C;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $9B2D: Initialisation function - cinematic sprite object $A11F (unused. Nintendo boot logo - immediate) ;;;
-InitFunction_CinematicSpriteObject_UnusedNintendoBootLogoImm:
-    LDA.W #$0080                                                         ;8B9B2D;
-    STA.W CinematicSpriteObject_XPositions,Y                             ;8B9B30;
-    LDA.W #$0051                                                         ;8B9B33;
-    STA.W CinematicSpriteObject_YPositions,Y                             ;8B9B36;
-    LDA.W #$0000                                                         ;8B9B39;
-    STA.W CinematicSpriteObject_PaletteIndices,Y                         ;8B9B3C;
-    RTS                                                                  ;8B9B3F;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $9B40: Initialisation function - cinematic sprite object $A125 (Nintendo copyright - immediate) ;;;
 InitFunc_CinematicSpriteObject_NintendoCopyrightImmediate:
     LDA.W #$0080                                                         ;8B9B40;
@@ -4508,14 +3713,6 @@ PreInstruction_CinematicSpriteObject_1994ScrollingText:
     LDA.W #RTS_8B93D9                                                    ;8B9CD7;
     STA.W CinematicSpriteObject_PreInstructions,X                        ;8B9CDA;
     RTS                                                                  ;8B9CDD;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $9CDE: Unused. REP #$20 ;;;
-UNUSED_REP20RTS_8B9CDE:
-    REP #$20                                                             ;8B9CDE;
-    RTS                                                                  ;8B9CE0;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $9CE1: Instruction - trigger title sequence scene 0 ;;;
@@ -4772,21 +3969,6 @@ Instruction_FadeInNintendoCopyright:
     RTS                                                                  ;8B9ED5;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $9ED6: Initialisation function - cinematic sprite object $A10D (unused. Nintendo boot logo - fade in) ;;;
-InitFunc_CinematicSpriteObject_UnusedNintendoBootLogo_FadeIn:
-    LDA.W #$0080                                                         ;8B9ED6;
-    STA.W CinematicSpriteObject_XPositions,Y                             ;8B9ED9;
-    LDA.W #$0051                                                         ;8B9EDC;
-    STA.W CinematicSpriteObject_YPositions,Y                             ;8B9EDF;
-    LDA.W #$0200                                                         ;8B9EE2;
-    STA.W CinematicSpriteObject_PaletteIndices,Y                         ;8B9EE5;
-    LDY.W #PaletteFXObjects_FadeInNintendoBootLogoForUnusedCode          ;8B9EE8;
-    JSL.L Spawn_PaletteFXObject                                          ;8B9EEB;
-    RTS                                                                  ;8B9EEF;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $9EF0: Instruction - use palette 0 and fade in Nintendo copyright ;;;
 Instruction_UsePalette0_FadeInNintendoCopyright:
     LDA.W #$0000                                                         ;8B9EF0;
@@ -4851,17 +4033,11 @@ CinematicFunction_TitleScreen:
     STA.W ScreenFadeCounter                                              ;8B9F4B;
 
   .merge:
-if !DEBUG
-    JSR.W Debug_DisplayVersionInfo                                       ;8B9F4E;
-endif
     RTS                                                                  ;8B9F51;
 
 
 ;;; $9F52: Cinematic function - title sequence - transition to file select menu ;;;
 CinematicFunction_TransitionToFileSelectMenu:
-if !DEBUG
-    JSR.W Debug_DisplayVersionInfo                                       ;8B9F52;
-endif
     JSR.W AdvanceSlowScreenFadeOut                                       ;8B9F55;
     BCC .return                                                          ;8B9F58;
     SEP #$20
@@ -4914,9 +4090,6 @@ endif
 
 ;;; $9FAE: Cinematic function - title sequence - transition to demos ;;;
 CinematicFunction_TransitionToDemos:
-if !DEBUG
-    JSR.W Debug_DisplayVersionInfo                                       ;8B9FAE;
-endif
     JSR.W AdvanceSlowScreenFadeOut                                       ;8B9FB1;
     BCC .return                                                          ;8B9FB4;
     SEP #$20
@@ -5082,21 +4255,6 @@ InstList_CinematicSpriteObject_SuperMetroidTitleLogo_Immediate:
     dw InstList_CinematicSpriteObject_SuperMetroidTitleLogo_Immediate    ;8BA0D1;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $A0D3: Instruction list - cinematic sprite object $A10D (unused. Nintendo boot logo - fade in) ;;;
-InstList_CinematicSpriteObject_UnusedNintendoBootLogo_FadeIn:
-    dw $0020,TitleSequenceSpritemaps_NintendoBootLogo                    ;8BA0D3;
-    dw Instruction_UsePalette0_FadeInNintendoCopyright                   ;8BA0D7;
-
-
-;;; $A0D9: Instruction list - cinematic sprite object $A11F (unused. Nintendo boot logo - immediate) ;;;
-InstList_CinematicSpriteObject_UnusedNintendoBootLogo_Immediate:
-    dw $0001,TitleSequenceSpritemaps_NintendoBootLogo                    ;8BA0D9;
-    dw CinematicSpriteObject_Instruction_GotoY                           ;8BA0DD;
-    dw InstList_CinematicSpriteObject_UnusedNintendoBootLogo_Immediate   ;8BA0DF;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $A0E1: Instruction list - cinematic sprite object $A113 (Nintendo copyright - fade in) ;;;
 InstList_CinematicSpriteObject_NintendoCopyright_FadeIn:
     dw $0020,TitleSequenceSpritemaps_NintendoCopyright                   ;8BA0E1;
@@ -5132,12 +4290,6 @@ CinematicSpriteObjectDefinitions_TitleSequence:
     dw InitFunc_CinematicSpriteObject_SuperMetroidTitleLogo_FadeIn       ;8BA107; Initialisation function
     dw RTS_8B93D9                                                        ;8BA109; Pre-instruction
     dw InstList_CinematicSpriteObject_SuperMetroidTitleLogo_FadeIn       ;8BA10B; Instruction list
-if !FEATURE_KEEP_UNREFERENCED
-  .UnusedNintendoBootLogo_FadeIn:
-    dw InitFunc_CinematicSpriteObject_UnusedNintendoBootLogo_FadeIn      ;8BA10D; Initialisation function
-    dw RTS_8B93D9                                                        ;8BA10F; Pre-instruction
-    dw InstList_CinematicSpriteObject_UnusedNintendoBootLogo_FadeIn      ;8BA111; Instruction list
-endif ; !FEATURE_KEEP_UNREFERENCED
   .NintendoCopyright_FadeIn:
     dw InitFunc_CinematicSpriteObject_NintendoCopyright_FadeIn           ;8BA113; Initialisation function
     dw RTS_8B93D9                                                        ;8BA115; Pre-instruction
@@ -5146,12 +4298,6 @@ endif ; !FEATURE_KEEP_UNREFERENCED
     dw InitFunction_CinematicSpriteObject_SuperMetroidLogoImmediate      ;8BA119; Initialisation function
     dw RTS_8B93D9                                                        ;8BA11B; Pre-instruction
     dw InstList_CinematicSpriteObject_SuperMetroidTitleLogo_Immediate    ;8BA11D; Instruction list
-if !FEATURE_KEEP_UNREFERENCED
-  .UnusedNintendoBootLogoImm:
-    dw InitFunction_CinematicSpriteObject_UnusedNintendoBootLogoImm      ;8BA11F; Initialisation function
-    dw RTS_8B93D9                                                        ;8BA121; Pre-instruction
-    dw InstList_CinematicSpriteObject_UnusedNintendoBootLogo_Immediate   ;8BA123; Instruction list
-endif ; !FEATURE_KEEP_UNREFERENCED
   .NintendoCopyrightImmediate:
     dw InitFunc_CinematicSpriteObject_NintendoCopyrightImmediate         ;8BA125; Initialisation function
     dw RTS_8B93D9                                                        ;8BA127; Pre-instruction
@@ -7512,22 +6658,6 @@ PreInstruction_CinematicBGObject_SamusBlinking:
     RTS                                                                  ;8BB4DB;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $B4DC: Unused ;;;
-UNUSED_CinematicBGObject_8BB4DC:
-;; Parameters:
-;;     X: Cinematic BG object index
-    LDA.W CinematicSpriteObject_InstListPointers+$1E                     ;8BB4DC;
-    CMP.W #InstList_IntroTextCaret_Blink                                 ;8BB4DF;
-    BMI .return                                                          ;8BB4E2;
-    LDA.W #$0001                                                         ;8BB4E4;
-    STA.W CinematicBGObject_InstructionTimers,X                          ;8BB4E7;
-
-  .return:
-    RTS                                                                  ;8BB4EA;
-endif
-
-
 if !PAL == 0 ; moved to later
 incsrc "bank_8B_a.asm"
 endif
@@ -8738,19 +7868,6 @@ CinematicFunction_FlyToCeres_FlyingIntoCeres:
     RTS                                                                  ;8BC082;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $C083: Initialisation function - cinematic sprite object $CE97 (unused. Space colony text) ;;;
-UNUSED_InitFunc_CinematicSpriteObject_SpaceColonyText_8BC083:
-    LDA.W #$007C                                                         ;8BC083;
-    STA.W CinematicSpriteObject_XPositions,Y                             ;8BC086;
-    LDA.W #$00BA                                                         ;8BC089;
-    STA.W CinematicSpriteObject_YPositions,Y                             ;8BC08C;
-    LDA.W #$0000                                                         ;8BC08F;
-    STA.W CinematicSpriteObject_PaletteIndices,Y                         ;8BC092;
-    RTS                                                                  ;8BC095;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $C096: Instruction - skip next instruction if English text ;;;
 Instruction_SkipNextInstructionIfDefaultLanguage:
     LDA.W AltText                                                        ;8BC096;
@@ -8772,19 +7889,6 @@ Instruction_FinishFlyToCeres:
     STA.W ScreenFadeDelay                                                ;8BC0AB;
     STA.W ScreenFadeCounter                                              ;8BC0AE;
     RTS                                                                  ;8BC0B1;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $C0B2: Initialisation function - cinematic sprite object $CE9D (unused. Space colony Japanese text) ;;;
-UNUSED_InitFunc_CineSpriteObject_SpaceColonySubtitle_8BC0B2:
-    LDA.W #$007C                                                         ;8BC0B2;
-    STA.W CinematicSpriteObject_XPositions,Y                             ;8BC0B5;
-    LDA.W #$00CC                                                         ;8BC0B8;
-    STA.W CinematicSpriteObject_YPositions,Y                             ;8BC0BB;
-    LDA.W #$0000                                                         ;8BC0BE;
-    STA.W CinematicSpriteObject_PaletteIndices,Y                         ;8BC0C1;
-    RTS                                                                  ;8BC0C4;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $C0C5: Cinematic function - fly to Ceres - finish ;;;
@@ -9748,19 +8852,6 @@ PreInstruction_Zebes_SlideSceneAway:
     RTS                                                                  ;8BC896;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $C897: Initialisation function - cinematic sprite object $CEA9 (unused. Zebes stars 1) ;;;
-UNUSED_InitFunction_CinematicSpriteObject_ZebesStars1_8BC897:
-    LDA.W #$0080                                                         ;8BC897;
-    STA.W CinematicSpriteObject_XPositions,Y                             ;8BC89A;
-    LDA.W #$007F                                                         ;8BC89D;
-    STA.W CinematicSpriteObject_YPositions,Y                             ;8BC8A0;
-    LDA.W #$0800                                                         ;8BC8A3;
-    STA.W CinematicSpriteObject_PaletteIndices,Y                         ;8BC8A6;
-    RTS                                                                  ;8BC8A9;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $C8AA: Pre-instruction - cinematic sprite object $CEA9/$CF09 (Zebes stars 5) ;;;
 PreInstruction_CinematicSpriteObject_ZebesStars5:
     LDA.W CinematicFunction                                              ;8BC8AA;
@@ -10296,54 +9387,11 @@ InstList_CinematicSpriteObject_CeresPurpleSpaceVortext:
     dw InstList_CinematicSpriteObject_CeresPurpleSpaceVortext            ;8BCC61;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $CC63: Unused. Instruction list - cinematic sprite object $CE97 (space colony text) ;;;
-UNUSED_InstList_CinematicSpriteObject_SpaceColonyText_8BCC63:
-; CinematicSpriteObjectDefinitions_SpaceColony is used instead
-    dw $0100,$0000                                                       ;8BCC63;
-    dw $000A,UNUSED_SpaceSpritemaps_S_8C92AA                             ;8BCC67;
-    dw $000A,UNUSED_SpaceSpritemaps_SP_8C92B1                            ;8BCC6B;
-    dw $000A,UNUSED_SpaceSpritemaps_SPA_8C92BD                           ;8BCC6F;
-    dw $000A,UNUSED_SpaceSpritemaps_SPAC_8C92CE                          ;8BCC73;
-    dw $000A,UNUSED_SpaceSpritemaps_SPACE_8C92E4                         ;8BCC77;
-    dw $000A,UNUSED_SpaceSpritemaps_SPACEC_8C92FF                        ;8BCC7B;
-    dw $000A,UNUSED_SpaceSpritemaps_SPACECO_8C931F                       ;8BCC7F;
-    dw $000A,UNUSED_SpaceSpritemaps_SPACECOL_8C9344                      ;8BCC83;
-    dw $000A,UNUSED_SpaceSpritemaps_SPACECOLO_9C936E                     ;8BCC87;
-    dw $000A,UNUSED_SpaceSpritemaps_SPACECOLON_8C939D                    ;8BCC8B;
-    dw $000A,UNUSED_SpaceSpritemaps_SPACECOLONY_8C921F                   ;8BCC8F;
-    dw Instruction_SkipNextInstructionIfDefaultLanguage                  ;8BCC93;
-    dw $0080,UNUSED_SpaceSpritemaps_SPACECOLONY_8C921F                   ;8BCC95;
-    dw Instruction_FinishFlyToCeres                                      ;8BCC99;
-
-UNUSED_InstList_CinematicSpriteObject_SpaceColonyText_8BCC9B:
-    dw $0001,UNUSED_SpaceSpritemaps_SPACECOLONY_8C921F                   ;8BCC9B;
-    dw CinematicSpriteObject_Instruction_GotoY                           ;8BCC9F;
-    dw UNUSED_InstList_CinematicSpriteObject_SpaceColonyText_8BCC9B      ;8BCCA1;
-
-
-;;; $CCA3: Unused. Instruction list - cinematic sprite object $CE9D (space colony Japanese text) ;;;
-UNUSED_InstList_CineSpriteObject_SpaceColonySubtitle_8BCCA3:
-    dw $000A,UNUSED_SpaceSpritemaps_Subtitle_SPACECOLONY_8C9258          ;8BCCA3;
-    dw CinematicSpriteObject_Instruction_GotoY                           ;8BCCA7;
-    dw UNUSED_InstList_CineSpriteObject_SpaceColonySubtitle_8BCCA3       ;8BCCA9;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $CCAB: Instruction list - cinematic sprite object $CEA3 (Zebes) ;;;
 InstList_CinematicSpriteObject_Zebes:
     dw $000A,SpaceSpritemaps_Zebes                                       ;8BCCAB;
     dw CinematicSpriteObject_Instruction_GotoY                           ;8BCCAF;
     dw InstList_CinematicSpriteObject_Zebes                              ;8BCCB1;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $CCB3: Instruction list - cinematic sprite object $CEA9 (Zebes stars 1) ;;;
-InstList_CinematicSpriteObject_ZebesStars1:
-    dw $000A,UNUSED_SpaceSpritemaps_ZebesStars1_8C96CB                   ;8BCCB3;
-    dw CinematicSpriteObject_Instruction_GotoY                           ;8BCCB7;
-    dw InstList_CinematicSpriteObject_ZebesStars1                        ;8BCCB9;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $CCBB: Instruction list - cinematic sprite object $CEAF (planet Zebes text) ;;;
@@ -10643,29 +9691,10 @@ CinematicSpriteObjectDefinitions_CeresPurpleSpaceVortex:
     dw PreInstruction_CinematicSpriteObject_CeresPurpleSpaceVortex       ;8BCE93; Pre-instruction
     dw InstList_CinematicSpriteObject_CeresPurpleSpaceVortext            ;8BCE95; Instruction list
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_CinematicSpriteObjectDefs_SpaceColonyText_8BCE97:
-    dw UNUSED_InitFunc_CinematicSpriteObject_SpaceColonyText_8BC083      ;8BCE97; Initialisation function
-    dw RTS_8B93D9                                                        ;8BCE99; Pre-instruction
-    dw UNUSED_InstList_CinematicSpriteObject_SpaceColonyText_8BCC63      ;8BCE9B; Instruction list
-
-UNUSED_CinematicSpriteObjectDefs_SpaceColonySubtitle_8BCE9D:
-    dw UNUSED_InitFunc_CineSpriteObject_SpaceColonySubtitle_8BC0B2       ;8BCE9D; Initialisation function
-    dw RTS_8B93D9                                                        ;8BCE9F; Pre-instruction
-    dw UNUSED_InstList_CineSpriteObject_SpaceColonySubtitle_8BCCA3       ;8BCEA1; Instruction list
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 CinematicSpriteObjectDefinitions_Zebes:
     dw InitFunction_CinematicSpriteObject_Zebes                          ;8BCEA3; Initialisation function
     dw PreInstruction_CinematicSpriteObject_Zebes                        ;8BCEA5; Pre-instruction
     dw InstList_CinematicSpriteObject_Zebes                              ;8BCEA7; Instruction list
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_CinematicSpriteObjectDefinitions_ZebesStars1_8BCEA9:
-    dw UNUSED_InitFunction_CinematicSpriteObject_ZebesStars1_8BC897      ;8BCEA9; Initialisation function
-    dw PreInstruction_CinematicSpriteObject_ZebesStars5                  ;8BCEAB; Pre-instruction
-    dw InstList_CinematicSpriteObject_ZebesStars1                        ;8BCEAD; Instruction list
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 CinematicSpriteObjectDefinitions_PlanetZebesText:
     dw InitFunction_CinematicSpriteObject_PlanetZebesText                ;8BCEAF; Initialisation function
@@ -10828,13 +9857,6 @@ CinematicSpriteObjectDefinitions_SpaceColony:
     dw RTS_8B93D9                                                        ;8BCF69; Initialisation function
     dw RTS_8B93D9                                                        ;8BCF6B; Pre-instruction
     dw CinematicBGObjectInstLists_SpaceColony                            ;8BCF6D; Instruction list (bank $8C)
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_CinematicSpriteObjectDefs_IntroTextPage1_8BCF6F:
-    dw RTS_8B93D9                                                        ;8BCF6F; Initialisation function
-    dw RTS_8B93D9                                                        ;8BCF71; Pre-instruction
-    dw CinematicBGObjectInstLists_IntroTextPage1                         ;8BCF73; Instruction list (bank $8C)
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ; Format:
@@ -11296,20 +10318,6 @@ InstList_Mode7Object_Page6:
     dw Mode7Objects_Instruction_Delete                                   ;8BD3F3;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $D3F5: Instruction list - mode 7 object $D43D (unused, broken) ;;;
-UNUSED_InstList_Mode7Object_D43D_8BD3F5:
-if !PAL == 0
-    dw UNUSED_Instruction_LoadIntroSubtitle_NonExistent                  ;8BD3F5;
-else
-    dw Instruction_EnableCinematicBGTilemapUpdates
-endif
-    dw $0001,Mode7_Transfer_Data                                         ;8BD3F7;
-    dw Instruction_EnableCinematicBGTilemapUpdates                       ;8BD3FB;
-    dw Mode7Objects_Instruction_Delete                                   ;8BD3FD;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $D3FF: Mode 7 transfer data - dummy ;;;
 Mode7_Transfer_Data:
     db $00,$00                                                           ;8BD3FF;
@@ -11372,13 +10380,6 @@ Mode7Objects_IntroSubtitle_Page6:
     dw RTS_8B93D9                                                        ;8BD437; Initialisation function
     dw RTS_8B93D9                                                        ;8BD439; Pre-instruction
     dw InstList_Mode7Object_Page6                                        ;8BD43B; Instruction list pointer
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Mode7Objects_8BD43D:
-    dw RTS_8B93D9                                                        ;8BD43D; Initialisation function
-    dw RTS_8B93D9                                                        ;8BD43F; Pre-instruction
-    dw UNUSED_InstList_Mode7Object_D43D_8BD3F5                           ;8BD441; Instruction list pointer
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $D443: Game state 27h (ending and credits) ;;;
@@ -15954,17 +14955,6 @@ CinematicBGObjectDefinitions_PostCredits_ItemPercentage:
     dw RTS_8B93D9                                                        ;8BF74E; Initialisation function
     dw RTS_8B93D9                                                        ;8BF750; Pre-instruction
     dw CinematicBGObjectInstLists_Ending_ItemPercentage                  ;8BF752; Instruction list (bank $8C)
-
-
-if !DEBUG
-;;; $F754: Debug. Version string ;;;
-Debug_VersionString:
-if !PAL == 0
-    db "02.02.21.30", $00                                                ;8BF754;
-else
-    db "03.30.10.00", $00
-endif
-endif
 
 
 Freespace_Bank8B_F760:                                                   ;8BF760;

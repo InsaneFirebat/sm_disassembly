@@ -9,14 +9,6 @@ Tiles_Oum:
 incbin "../data/Tiles_Oum.bin" ; $800 bytes
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $8800: Unused. Tiles ;;;
-UNUSED_Tiles_Gravy_AF8800:
-; Gravy?
-incbin "../data/UNUSED_Tiles_Gravy_AF8800.bin" ; $A00 bytes
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $9200: Tiles - enemy $D67F (metaree) ;;;
 Tiles_Metaree:
 incbin "../data/Tiles_Metaree.bin" ; $600 bytes
@@ -30,13 +22,6 @@ incbin "../data/Tiles_Bang.bin" ; $1000 bytes
 ;;; $A800: Tiles - enemy $D6BF (fireflea) ;;;
 Tiles_Fireflea:
 incbin "../data/Tiles_Fireflea.bin" ; $600 bytes
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $AE00: Tiles - enemy $DBFF (reflec) ;;;
-Tiles_Reflec:
-incbin "../data/Tiles_Reflec.bin" ; $600 bytes
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $B400: Tiles - enemy $DBBF (yard) ;;;

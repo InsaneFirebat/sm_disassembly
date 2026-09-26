@@ -2478,40 +2478,6 @@ Samus_X_Movement:
     RTS                                                                  ;908E74;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $8E75: Unused ;;;
-UNUSED_SamusMovement_908E75:
-; Seems vaguely close to falling X movement, Samus_Morphed_Falling_Movement in particular
-    PHP                                                                  ;908E75;
-    REP #$30                                                             ;908E76;
-    JSR.W Determine_SamusXSpeedTable_EntryPointer                        ;908E78;
-    JSR.W CalculateSamusXBaseSpeed_DecelerationDisallowed                ;908E7B;
-    LDA.W SamusXAccelerationMode                                         ;908E7E;
-    BNE .decelerating                                                    ;908E81;
-    LDA.B DP_Controller1Input                                            ;908E83;
-    BIT.W #$0100                                                         ;908E85;
-    BNE +                                                                ;908E88;
-    BIT.W #$0200                                                         ;908E8A;
-    BNE +                                                                ;908E8D;
-    STZ.B DP_Temp12                                                      ;908E8F;
-    STZ.B DP_Temp14                                                      ;908E91;
-    STZ.W SamusXBaseSpeed                                                ;908E93;
-    STZ.W SamusXBaseSubSpeed                                             ;908E96;
-    STZ.W SamusSolidCollisionFlag                                        ;908E99;
-    BRA .return                                                          ;908E9C;
-
-+   LDA.W #$0002                                                         ;908E9E;
-    STA.W SamusXAccelerationMode                                         ;908EA1;
-
-  .decelerating:
-    JSR.W MoveSamus_Horizontally                                         ;908EA4;
-
-  .return:
-    PLP                                                                  ;908EA7;
-    RTS                                                                  ;908EA8;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $8EA9: Move Samus horizontally ;;;
 MoveSamus_Horizontally:
 ;; Parameters:
@@ -3172,23 +3138,6 @@ Simple_Samus_Y_Movement_duplicate:
     RTS                                                                  ;9092D5;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $92D6: Unused ;;;
-UNUSED_MoveSamus_9092D6:
-;; Parameters:
-;;     $12: Samus Y velocity
-    PHP                                                                  ;9092D6;
-    REP #$30                                                             ;9092D7;
-    LDA.B SamusYPosition                                                 ;9092DB;
-    CLC                                                                  ;9092DE;
-    ADC.B DP_Temp12                                                      ;9092DF;
-    STA.B SamusYPosition                                                 ;9092E1;
-    STA.W SamusPreviousYPosition                                         ;9092E4;
-    PLP                                                                  ;9092E7;
-    RTS                                                                  ;9092E8;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $9348: Move Samus horizontally with zero base X speed ;;;
 MoveSamus_HorizontallyWithZeroBaseXSpeed:
     STZ.B DP_Temp12                                                      ;909348;
@@ -3488,18 +3437,6 @@ ScrollingFinishedHook_SporeSpawnFight:
 
   .return:
     RTS                                                                  ;909594;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $9595: Unused. Camera X speed = 0.0 ;;;
-UNUSED_CameraXSpeed_0_909595:
-    PHP                                                                  ;909595;
-    REP #$30                                                             ;909596;
-    STZ.W CameraXSubSpeed                                                ;909598;
-    STZ.W CameraXSpeed                                                   ;90959B;
-    PLP                                                                  ;90959E;
-    RTS                                                                  ;90959F;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $95A0: Handle horizontal scrolling ;;;
@@ -4927,13 +4864,6 @@ UNUSED_SamusMovement_7_90A32D:
     STZ.W SamusSolidVerticalCollisionResult                              ;90A330;
     PLP                                                                  ;90A333;
     RTS                                                                  ;90A334;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $A335: Unused ;;;
-UNUSED_90A335:
-    dw $001E                                                             ;90A335;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $A337: Samus movement handler - normal ;;;
@@ -7675,35 +7605,6 @@ SuperMissileLink_HorizontalBlockCollisionDetection:
     RTS                                                                  ;90B4A5;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $B4A6: Unused. Clear linked super missile if super missile explosion ;;;
-UNUSED_ClearLinkedSuperMissileIfSuperMissileExplosion_90B4A6:
-;; Parameters:
-;;     X: Projectile index
-    PHP                                                                  ;90B4A6;
-    REP #$30                                                             ;90B4A7;
-    LDA.W SamusProjectile_Variables,X                                    ;90B4A9;
-    BIT.W #$FF00                                                         ;90B4AC;
-    BNE .initialized                                                     ;90B4AF;
-    PLP                                                                  ;90B4B1;
-    RTL                                                                  ;90B4B2;
-
-  .initialized:
-    AND.W #$00FF                                                         ;90B4B3;
-    TAY                                                                  ;90B4B6;
-    LDA.W SamusProjectile_Types,X                                        ;90B4B7;
-    AND.W #$0F00                                                         ;90B4BA;
-    CMP.W #$0800                                                         ;90B4BD;
-    BNE .return                                                          ;90B4C0;
-    TYX                                                                  ;90B4C2;
-    JSL.L Clear_Projectile                                               ;90B4C3;
-
-  .return:
-    PLP                                                                  ;90B4C7;
-    RTL                                                                  ;90B4C8;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $B4C9: Instruction list - beam trail - empty ;;;
 InstList_BeamTrail_Empty:
     dw $0000                                                             ;90B4C9;
@@ -9594,12 +9495,6 @@ ProjectileCooldowns:
     db $1E ; Ah: Plasma + ice
     db $1E ; Bh: Plasma + ice + wave
     db $00,$00,$00,$00
-
-if !FEATURE_KEEP_UNREFERENCED
-  .unusedPadding:
-; Useless padding?
-    db $00,$00,$00,$00,$00,$00                                           ;90C274;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
   .NonBeamProjectiles:                                                   ;90C27A;
     db $00
@@ -12137,62 +12032,6 @@ ProjectilePreInstruction_SpeedEcho:
     RTS                                                                  ;90D524;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $D525: Unused ;;;
-UNUSED_GrappleBeam_90D525:
-; Looks like this is supposed to make Samus extend and contract her grapple beam in a loop for the duration of GrappleWalljumpTimer
-; No idea what this would hypothetically be used for
-; This is the only place where GrappleBeam_EndAngle and $0CFC aren't mirrors of each other
-    LDA.B DP_Controller1Input                                            ;90D525;
-    BIT.W ShotBinding                                                    ;90D527;
-    BNE .holdingShot                                                     ;90D52A;
-
-  .cancel:
-    LDA.W #GrappleBeamFunction_HitNothing_Cancel                         ;90D52C;
-    STA.W GrappleBeam_Function                                           ;90D52F;
-    RTS                                                                  ;90D532;
-
-  .holdingShot:
-    LDA.W GrappleWalljumpTimer                                           ;90D533;
-    DEC                                                                  ;90D536;
-    STA.W GrappleWalljumpTimer                                           ;90D537;
-    BEQ .cancel                                                          ;90D53A;
-    BMI .cancel                                                          ;90D53C;
-    LDA.W GrappleBeam_LengthDelta                                        ;90D53E;
-    BMI .continue                                                        ;90D541;
-    LDA.W GrappleBeam_Length                                             ;90D543;
-    CLC                                                                  ;90D546;
-    ADC.W GrappleBeam_LengthDelta                                        ;90D547;
-    STA.W GrappleBeam_Length                                             ;90D54A;
-    CMP.W #$0060                                                         ;90D54D;
-    BMI .continue                                                        ;90D550;
-    LDA.W #$0010                                                         ;90D552;
-    EOR.W #$FFFF                                                         ;90D555;
-    INC                                                                  ;90D558;
-    STA.W GrappleBeam_LengthDelta                                        ;90D559;
-    LDA.W GrappleBeam_EndAngle                                           ;90D573;
-    XBA                                                                  ;90D576;
-    AND.W #$00FF                                                         ;90D577;
-    TAY                                                                  ;90D57A;
-    LDA.W GrappleBeam_Length                                             ;90D57B;
-    JSR.W Math_90CC39                                                    ;90D57E;
-    LDA.W GrappleBeam_StartXPosition                                     ;90D581;
-    CLC                                                                  ;90D584;
-    ADC.B DP_Temp14                                                      ;90D585;
-    STA.W GrappleBeam_EndXPosition                                       ;90D587;
-    LDA.W GrappleBeam_StartYPosition                                     ;90D58A;
-    CLC                                                                  ;90D58D;
-    ADC.B DP_Temp16                                                      ;90D58E;
-    STA.W GrappleBeam_EndYPosition                                       ;90D590;
-    LDA.W GrappleBeam_EndAngle                                           ;90D593;
-    CLC                                                                  ;90D596;
-    ADC.W #$0800                                                         ;90D597;
-    STA.W GrappleBeam_EndAngle                                           ;90D59A;
-    JSL.L UpdateGrappleBeamStartPositionDuringGrappleFire                ;90D59D;
-    RTS                                                                  ;90D5A1;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $D5A2: Crystal flash ;;;
 CrystalFlash:
 ;; Returns:
@@ -13362,16 +13201,6 @@ SamusIsHit_Interruption:
 ; This is why Samus can land immediately when knockback finishes and not need to fall for a frame first
     LDA.W SamusKnockbackTimer                                            ;90DDEC;
     BEQ .knockbackTimerZero                                              ;90DDEF;
-if !DEBUG
-    LDA.W DebugInvincibility                                             ;90DDF1;
-    CMP.W #$0007                                                         ;90DDF4;
-    BMI .notInvincible                                                   ;90DDF7;
-    STZ.W SamusInvincibilityTimer                                        ;90DDF9;
-    STZ.W SamusKnockbackTimer                                            ;90DDFC;
-    RTS
-endif
-
-  .notInvincible:
     LDA.W TimeIsFrozenFlag                                               ;90DE01;
     BNE .returnUpper                                                     ;90DE04;
     LDA.W KnockbackDirection                                             ;90DE06;
@@ -14246,128 +14075,6 @@ ReleaseSamusFromDraygon:
     RTS                                                                  ;90E359;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $E35A: Unused ;;;
-UNUSED_90E35A:
-    PHP                                                                  ;90E35A;
-    PHB                                                                  ;90E35B;
-    PHK                                                                  ;90E35C;
-    PLB                                                                  ;90E35D;
-    REP #$30                                                             ;90E35E;
-    LDA.W #$00C5                                                         ;90E360;
-    STA.W SpecialProspectivePose                                         ;90E363;
-    STZ.W SpecialProspectivePoseChangeCommand                            ;90E366;
-    LDA.W #RTS_90E90E                                                    ;90E369;
-    STA.W MovementHandler                                                ;90E36C;
-    LDA.W #RTS_90E37E                                                    ;90E36F;
-    STA.W HackHandler                                                    ;90E372;
-    LDA.W #RTS_90EBF2                                                    ;90E375;
-    STA.W DrawingHandler                                                 ;90E378;
-    PLB                                                                  ;90E37B;
-    PLP                                                                  ;90E37C;
-    RTL                                                                  ;90E37D;
-
-
-;;; $E37E: RTS ;;;
-RTS_90E37E:
-    RTS                                                                  ;90E37E;
-
-
-;;; $E37F: Unused. Push morph ball Samus out of Ceres Ridley's way ;;;
-UNUSED_PushMorphBallSamusOutOfCeresRidleysWay_90E37F:
-; This might well be a different kind of unused Samus movement, perhaps an unused Draygon action,
-; the code is just quite similar to the Ceres Ridley stuff
-    PHP                                                                  ;90E37F;
-    PHB                                                                  ;90E380;
-    PHK                                                                  ;90E381;
-    PLB                                                                  ;90E382;
-    REP #$30                                                             ;90E383;
-    LDA.W #$0003                                                         ;90E385;
-    STA.W SamusYSpeed                                                    ;90E388;
-    STZ.W SamusYSubSpeed                                                 ;90E38B;
-    LDA.W #$0001                                                         ;90E38E;
-    STA.W PushDirection                                                  ;90E391;
-    LDA.W #UNUSED_SamusTimerHackHandler_PushMorphBallCeresRidley_90E3A3  ;90E394;
-    STA.W HackHandler                                                    ;90E397;
-    LDA.W #SamusDrawingHandler_Default                                   ;90E39A;
-    STA.W DrawingHandler                                                 ;90E39D;
-    PLB                                                                  ;90E3A0;
-    PLP                                                                  ;90E3A1;
-    RTL                                                                  ;90E3A2;
-
-
-;;; $E3A3: Unused. Timer / Samus hack handler - pushing morph ball Samus out of Ceres Ridley's way ;;;
-UNUSED_SamusTimerHackHandler_PushMorphBallCeresRidley_90E3A3:
-    JSR.W MoveSamus_Horizontally_PushedByCeresRidley                     ;90E3A3;
-    LDA.W SamusSolidCollisionFlag                                        ;90E3A6;
-    BNE .disable                                                         ;90E3A9;
-    JSR.W MoveSamus_Vertically_PushedByCeresRidley                       ;90E3AB;
-    LDA.W SamusSolidCollisionFlag                                        ;90E3AE;
-    BEQ .return                                                          ;90E3B1;
-
-  .disable:
-    LDA.W #SamusMovementHandler_Normal                                   ;90E3B3;
-    STA.W MovementHandler                                                ;90E3B6;
-    LDA.W #RTS_90E90E                                                    ;90E3B9;
-    STA.W HackHandler                                                    ;90E3BC;
-    STZ.W PushDirection                                                  ;90E3BF;
-    JSR.W HandleKnockbackVerticalCollision                               ;90E3C2;
-    LDA.W #$0041                                                         ;90E3C5;
-    STA.W SpecialProspectivePose                                         ;90E3C8;
-    STZ.W SpecialProspectivePoseChangeCommand                            ;90E3CB;
-
-  .return:
-    RTS                                                                  ;90E3CE;
-
-
-;;; $E3CF: Unused. Set Samus special falling ;;;
-UNUSED_SetSamusSpecialFalling_90E3CF:
-    PHP                                                                  ;90E3CF;
-    PHB                                                                  ;90E3D0;
-    PHK                                                                  ;90E3D1;
-    PLB                                                                  ;90E3D2;
-    REP #$30                                                             ;90E3D3;
-    LDA.W PoseXDirection                                                 ;90E3D5;
-    AND.W #$00FF                                                         ;90E3D8;
-    CMP.W #$0004                                                         ;90E3DB;
-    BEQ .facingLeft                                                      ;90E3DE;
-    LDA.W #$0029                                                         ;90E3E0;
-    STA.W SpecialProspectivePose                                         ;90E3E3;
-    BRA +                                                                ;90E3E6;
-
-  .facingLeft:
-    LDA.W #$002A                                                         ;90E3E8;
-    STA.W SpecialProspectivePose                                         ;90E3EB;
-
-+   STZ.W SpecialProspectivePoseChangeCommand                            ;90E3EE;
-    LDA.W #RTS_90E90E                                                    ;90E3F1;
-    STA.W MovementHandler                                                ;90E3F4;
-    LDA.W #UNUSED_SamusTimerHackHandler_SpecialFalling_90E41B            ;90E3F7;
-    STA.W HackHandler                                                    ;90E3FA;
-    PLB                                                                  ;90E3FD;
-    PLP                                                                  ;90E3FE;
-    RTL                                                                  ;90E3FF;
-
-
-;;; $E400: Unused. Clear Samus special falling ;;;
-UNUSED_ClearSamusSpecialFalling_90E400:
-    PHP                                                                  ;90E400;
-    PHB                                                                  ;90E401;
-    PHK                                                                  ;90E402;
-    PLB                                                                  ;90E403;
-    REP #$30                                                             ;90E404;
-    STZ.W SamusYSubSpeed                                                 ;90E406;
-    STZ.W SamusYSpeed                                                    ;90E409;
-    LDA.W #SamusMovementHandler_Normal                                   ;90E40C;
-    STA.W MovementHandler                                                ;90E40F;
-    LDA.W #RTS_90E90E                                                    ;90E412;
-    STA.W HackHandler                                                    ;90E415;
-    PLB                                                                  ;90E418;
-    PLP                                                                  ;90E419;
-    RTL                                                                  ;90E41A;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $E41B: Unused. Timer / Samus hack handler - special falling ;;;
 UNUSED_SamusTimerHackHandler_SpecialFalling_90E41B:
 ; Looks like a cut-down version of SamusMovement_Falling
@@ -14918,9 +14625,6 @@ SamusNewStateHandler_Normal:
     PHB                                                                  ;90E726;
     PHK                                                                  ;90E727;
     PLB                                                                  ;90E728;
-if !DEBUG
-    JSR.W DebugCommandHandler                                            ;90E72B;
-endif
     STZ.W ContactDamageIndex                                             ;90E72E;
     JSR.W Execute_SamusMovementHandler                                   ;90E731;
     JSL.L Update_Minimap                                                 ;90E734;
@@ -14936,97 +14640,6 @@ endif
     PLB                                                                  ;90E756;
     RTL                                                                  ;90E758;
 
-if !DEBUG
-; Handle demo recorder
-    LDA.W SamusPlacementMode                                             ;90E759; Demo recorder. Remove the three instructions above and set DebugConst_DemoRecorder at $808002 to enable
-    BNE +                                                                ;90E75C;
-    LDA.W TimeIsFrozenFlag                                               ;90E75E;
-    BNE +                                                                ;90E761;
-    JSR.W DemoRecorder_MoveSamusWithControlPad                           ;90E763;
-
-+   LDA.L DebugConst_DemoRecorder                                        ;90E766;
-    BEQ .debugMode                                                       ;90E76A;
-    JSL.L RecordDemoInputFrame                                           ;90E76C;
-    JSL.L Pause_Terminate_Reset_DemoRecorder                             ;90E770;
-
-  .debugMode:
-    JSL.L Debug_HandleSelectL_B                                          ;90E774;
-    BIT.W Debug_Options                                                  ;90E778;
-    BPL .togglePlacementMode                                             ;90E77B;
-    JSR.W DemoRecorder_DisplaySamusPositionAsAmmoIfMorphed               ;90E77D;
-
-  .togglePlacementMode:
-    JSR.W HandleSamusPlacementModeToggles                                ;90E780;
-    PLB                                                                  ;90E783;
-    PLP                                                                  ;90E784;
-    RTL                                                                  ;90E785;
-
-
-;;; $E786: Handle Samus placement mode toggles ;;;
-HandleSamusPlacementModeToggles:
-    PHP                                                                  ;90E786;
-    REP #$30                                                             ;90E787;
-    LDA.B DP_Controller2New                                              ;90E789;
-    BIT.W #$8000                                                         ;90E78B;
-    BEQ .pressedB                                                        ;90E78E;
-    LDA.W SamusPlacementMode                                             ;90E790;
-    BEQ .enabled                                                         ;90E793;
-    LDA.W #RTS_90E90E                                                    ;90E795;
-    STA.W DrawingHandler                                                 ;90E798;
-    STZ.W SamusPlacementMode                                             ;90E79B;
-    BRA .return                                                          ;90E79E;
-
-  .enabled:
-    LDA.W #$0001                                                         ;90E7A0;
-    STA.W SamusPlacementMode                                             ;90E7A3;
-    LDA.W #SamusDrawingHandler_Default                                   ;90E7A6;
-    STA.W DrawingHandler                                                 ;90E7A9;
-    BRA .return                                                          ;90E7AC;
-
-  .pressedB:
-    LDA.W SamusPlacementMode                                             ;90E7AE;
-    BNE .return                                                          ;90E7B1;
-    LDA.B DP_Controller2New                                              ;90E7B3;
-    BIT.W #$0080                                                         ;90E7B5;
-    BEQ .return                                                          ;90E7B8;
-    LDA.W #$8000
-    TRB.W EnemyProjectile_Enable
-    LDA.W #$0001                                                         ;90E7BE;
-    STA.W TimeIsFrozenFlag                                               ;90E7C1;
-    LDA.W #RTL_90E8CD                                                    ;90E7C4;
-    STA.W CurrentStateHandler                                            ;90E7C7;
-    LDA.W #SamusNewStateHandler_Debug                                    ;90E7CA;
-    STA.W NewStateHandler                                                ;90E7CD;
-
-  .return:
-    PLP                                                                  ;90E7D0;
-    RTS                                                                  ;90E7D1;
-
-
-;;; $E7D2: Samus new state handler - debug ;;;
-SamusNewStateHandler_Debug:
-    PHP                                                                  ;90E7D2;
-    PHB                                                                  ;90E7D3;
-    PHK                                                                  ;90E7D4;
-    PLB                                                                  ;90E7D5;
-    REP #$30                                                             ;90E7D6;
-    LDA.B DP_Controller2New                                              ;90E7D8;
-    BIT.W #$0080                                                         ;90E7DA;
-    BEQ .return                                                          ;90E7DD;
-    LDA.W #SamusCurrentStateHandler_Normal                               ;90E7DF;
-    STA.W CurrentStateHandler                                            ;90E7E2;
-    LDA.W #SamusNewStateHandler_Normal                                   ;90E7E5;
-    STA.W NewStateHandler                                                ;90E7E8;
-    LDA.W #$8000
-    TSB.W EnemyProjectile_Enable
-    STZ.W TimeIsFrozenFlag                                               ;90E7EF;
-
-  .return:
-    PLB                                                                  ;90E7F2;
-    PLP                                                                  ;90E7F3;
-    RTL                                                                  ;90E7F4;
-endif
-
 
 ;;; $E7F5: Samus new state handler - title demo ;;;
 SamusNewStateHandler_TitleDemo:
@@ -15041,9 +14654,6 @@ SamusNewStateHandler_TitleDemo:
     JSL.L SetProspectiveSamusPoseAccordingToSolidVerticalCollision_PSP   ;90E80B;
     JSL.L UpdateSamusPose                                                ;90E80F;
     JSL.L HandleSamusPalette                                             ;90E813;
-if !DEBUG
-    JSR.W DebugCommandHandler                                            ;90E817;
-endif
     LDA.W BackupController1InputDemo                                     ;90E81A;
     STA.B DP_Controller1Input                                            ;90E81D;
     LDA.W BackupController1NewDemo                                       ;90E81F;
@@ -15094,14 +14704,6 @@ SamusNewStateHandler_SamusAppearance:
     STA.W SamusPreviousYPosition                                         ;90E880;
     JSL.L PlaySamusFanfare                                               ;90E883;
     BCC .return                                                          ;90E887;
-if !DEBUG
-    LDA.W DebugInvincibility                                             ;90E889;
-    CMP.W #$0007                                                         ;90E88C;
-    BMI .disableInvincibility                                            ;90E88F;
-    LDA.B DP_Controller2Input                                            ;90E891;
-    BIT.W #$8000                                                         ;90E893;
-    BNE .keepInvincibility                                               ;90E896;
-endif
 
   .disableInvincibility:
     STZ.W DebugInvincibility                                             ;90E898;
@@ -15466,21 +15068,11 @@ HandleSamus_AutoJumpTimer_HurtFlashCounter_PrevInputEnergy:
     STA.W PreviousController1NewDrawing                                  ;90EAD4;
     LDA.W Energy                                                         ;90EAD7;
     CMP.W PreviousEnergyHurtCheck                                        ;90EADA;
-    BPL .setPreviousEnergy                                               ;90EADD;
+    BPL .setPreviousEnergy
     LDA.W HurtFlashCounter                                               ;90EADF;
-    BNE .debugInvincibility                                              ;90EAE2;
+    BNE .setPreviousEnergy
     LDA.W #$0001                                                         ;90EAE4;
     STA.W HurtFlashCounter                                               ;90EAE7;
-
-  .debugInvincibility:
-if !DEBUG
-    LDA.W DebugInvincibility                                             ;90EAEA;
-    CMP.W #$0007                                                         ;90EAED;
-    BMI .setPreviousEnergy                                               ;90EAF0;
-    LDA.W PreviousEnergyHurtCheck                                        ;90EAF2;
-    STA.W Energy                                                         ;90EAF5;
-    BRA .return                                                          ;90EAF8;
-endif
 
   .setPreviousEnergy:
     LDA.W Energy                                                         ;90EAFA;
@@ -15630,31 +15222,6 @@ SamusDisplayHandler_ShinesparkCrashCircle:
     DEX                                                                  ;90EBFF;
     BPL .loop                                                            ;90EC00;
     RTS                                                                  ;90EC02;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $EC03: Unused ;;;
-UNUSED_SamusDisplayHandler_DrawSamusEchoes_90EC03:
-; Looks like leftover code for a previous implementation of either the shinespark crash or some such
-; Note how this routine is similar to $EBF3, but also note that $87BD does the loop for both echoes itself,
-; so presumably $87BD used to be like $88BA and then things got refactored
-    JSR.W SamusDrawingHandler_Default                                    ;90EC03;
-    LDX.W #$0002                                                         ;90EC06;
-
-  .loop:
-    PHX                                                                  ;90EC09;
-    JSR.W DrawSamusEchoes                                                ;90EC0A;
-    PLX                                                                  ;90EC0D;
-    DEX                                                                  ;90EC0E;
-    DEX                                                                  ;90EC0F;
-    BPL .loop                                                            ;90EC10;
-    RTS                                                                  ;90EC12;
-
-
-;;; $EC13: RTS ;;;
-RTS_90EC13:
-    RTS                                                                  ;90EC13;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $EC14: Samus display handler - using elevator ;;;
@@ -15826,93 +15393,6 @@ DemoRecorder_MoveSamusWithControlPad:
 ;;; $ED1E: RTS ;;;
 RTS_90ED1E:
     RTS                                                                  ;90ED1E;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $ED1F: Unused. Waste time ;;;
-UNUSED_WasteTime_90ED1F:
-    LDX.W #$00C8                                                         ;90ED1F;
-
-  .loop:
-    DEX                                                                  ;90ED22;
-    BPL .loop                                                            ;90ED23;
-    RTS                                                                  ;90ED25;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
-if !DEBUG
-;;; $ED26: Demo recorder - display Samus position as ammo if morphed ;;;
-DemoRecorder_DisplaySamusPositionAsAmmoIfMorphed:
-    LDA.W MovementType                                                   ;90ED26;
-    AND.W #$00FF                                                         ;90ED29;
-    TAX                                                                  ;90ED2C;
-    LDA.W .poses,X                                                       ;90ED2D;
-    AND.W #$00FF                                                         ;90ED30;
-    BEQ .return                                                          ;90ED33;
-    LDA.B SamusXPosition                                                 ;90ED35;
-    LSR                                                                  ;90ED38;
-    LSR                                                                  ;90ED39;
-    LSR                                                                  ;90ED3A;
-    LSR                                                                  ;90ED3B;
-    STA.W Missiles                                                       ;90ED3C;
-    STA.W MaxMissiles                                                    ;90ED3F;
-    LDA.B SamusYPosition                                                 ;90ED42;
-    LSR                                                                  ;90ED45;
-    LSR                                                                  ;90ED46;
-    LSR                                                                  ;90ED47;
-    LSR                                                                  ;90ED48;
-    STA.W SuperMissiles                                                  ;90ED49;
-    STA.W MaxSuperMissiles                                               ;90ED4C;
-
-  .return:
-    RTS                                                                  ;90ED4F;
-
-  .poses:                                                                ;90ED50;
-    db $00 ;  0: Standing
-    db $00 ;  1: Running
-    db $00 ;  2: Normal jumping
-    db $00 ;  3: Spin jumping
-    db $01 ; *4: Morph ball - on ground
-    db $00 ;  5: Crouching
-    db $00 ;  6: Falling
-    db $01 ; *7: Unused
-    db $01 ; *8: Morph ball - falling
-    db $01 ; *9: Unused
-    db $00 ;  Ah: Knockback / crystal flash ending
-    db $00 ;  Bh: Unused
-    db $00 ;  Ch: Unused
-    db $00 ;  Dh: Unused
-    db $00 ;  Eh: Turning around - on ground
-    db $00 ;  Fh: Crouching/standing/morphing/unmorphing transition
-    db $00 ;  10h: Moonwalking
-    db $01 ; *11h: Spring ball - on ground
-    db $01 ; *12h: Spring ball - in air
-    db $01 ; *13h: Spring ball - falling
-    db $00 ;  14h: Wall jumping
-    db $00 ;  15h: Ran into a wall
-    db $00 ;  16h: Grappling
-    db $00 ;  17h: Turning around - jumping
-    db $00 ;  18h: Turning around - falling
-    db $00 ;  19h: Damage boost
-    db $00 ;  1Ah: Grabbed by Draygon
-    db $00 ;  1Bh: Shinespark / crystal flash / drained by metroid / damaged by MB's attacks
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $ED6C: Unused. Display game time as ammo ;;;
-UNUSED_DisplayGameTimeAsAmmo_90ED6C:
-    LDA.W IGTHours                                                       ;90ED6C;
-    STA.W Missiles                                                       ;90ED6F;
-    STA.W MaxMissiles                                                    ;90ED72;
-    LDA.W IGTMinutes                                                     ;90ED75;
-    STA.W SuperMissiles                                                  ;90ED78;
-    STA.W MaxSuperMissiles                                               ;90ED7B;
-    LDA.W IGTSeconds                                                     ;90ED7E;
-    STA.W PowerBombs                                                     ;90ED81;
-    STA.W MaxPowerBombs                                                  ;90ED84;
-    RTS                                                                  ;90ED87;
-endif ; !FEATURE_KEEP_UNREFERENCED
-endif ;!DEBUG
 
 
 ;;; $ED88: Footstep graphics ;;;
@@ -16144,14 +15624,6 @@ UpdateSamusEchoPosition:
     RTS                                                                  ;90EF1B;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $EF1C: Unused ;;;
-UNUSED_PossiblyFootStepGraphicOffsets_90EF1C:
-; Best guess is footstep graphic offsets from Samus' position
-    dw $000C,$0010                                                       ;90EF1C;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $EF22: Post grapple collision detection ;;;
 PostGrappleCollisionDetection:
     PHP                                                                  ;90EF22;
@@ -16182,153 +15654,6 @@ PostGrappleCollisionDetection:
   .return:
     PLP                                                                  ;90EF5C;
     RTL                                                                  ;90EF5D;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $EF5E: Unused. Fire unknown projectile 27h ;;;
-UNUSED_FireUnknownProjectile27_90EF5E:
-    LDA.W #RTS_90E90E                                                    ;90EF5E;
-    STA.W MovementHandler                                                ;90EF61;
-    LDA.W #SamusCurrentStateHandler_SamusIsLocked                        ;90EF64;
-    STA.W CurrentStateHandler                                            ;90EF67;
-    LDA.W #$FFFF                                                         ;90EF6A;
-    STA.W ProspectivePose                                                ;90EF6D;
-    STA.W SpecialProspectivePose                                         ;90EF70;
-    STA.W SuperSpecialProspectivePose                                    ;90EF73;
-    STZ.W ProspectivePoseChangeCommand                                   ;90EF76;
-    STZ.W SpecialProspectivePoseChangeCommand                            ;90EF79;
-    STZ.W SuperSpecialProspectivePoseChangeCommand                       ;90EF7C;
-    LDX.W #$0006                                                         ;90EF7F;
-
-  .loop:
-    LDA.W #$8027                                                         ;90EF82;
-    STA.W SamusProjectile_Types,X                                        ;90EF85;
-    STZ.W SamusProjectile_Directions,X                                   ;90EF88;
-    LDA.W #UNUSED_ProjectilePreInstruction_UnknownProjectile27_90EFD3    ;90EF8B;
-    STA.W SamusProjectile_PreInstructions,X                              ;90EF8E;
-    STZ.W SamusProjectile_YVelocities,X                                  ;90EF91;
-    STZ.W SamusProjectile_XVelocities,X                                  ;90EF94;
-    STZ.W SamusProjectile_Variables,X                                    ;90EF97;
-    STZ.W SamusProjectile_XSubPositions,X                                ;90EF9A;
-    STZ.W SamusProjectile_YSubPositions,X                                ;90EF9D;
-    LDA.B SamusXPosition                                                 ;90EFA0;
-    CLC                                                                  ;90EFA3;
-    ADC.W .XOffsets,X                                                    ;90EFA4;
-    STA.W SamusProjectile_XPositions,X                                   ;90EFA7;
-    LDA.B SamusYPosition                                                 ;90EFAA;
-    CLC                                                                  ;90EFAD;
-    ADC.W .YOffsets,X                                                    ;90EFAE;
-    STA.W SamusProjectile_YPositions,X                                   ;90EFB1;
-    JSL.L Initialize_ShinesparkEcho_or_SpazerSBATrailProjectile          ;90EFB4;
-    DEX                                                                  ;90EFB8;
-    DEX                                                                  ;90EFB9;
-    BPL .loop                                                            ;90EFBA;
-    LDA.W #$0004                                                         ;90EFBC;
-    STA.W SamusProjectile_ProjectileCounter                              ;90EFBF;
-    RTS                                                                  ;90EFC2;
-
-; Indexed by projectile index
-  .XOffsets:
-; X offsets from Samus
-    dw $0080,$0080,$FF80,$FF80                                           ;90EFC3;
-
-  .YOffsets:
-; Y offsets from Samus
-    dw $FF80,$0080,$0080,$FF80                                           ;90EFCB;
-
-
-;;; $EFD3: Projectile pre-instruction - unknown projectile 27h ;;;
-UNUSED_ProjectilePreInstruction_UnknownProjectile27_90EFD3:
-;; Parameters:
-;;     Y: Projectile index
-
-; Shinespark beam code(?)
-    LDA.W SamusProjectile_XPositions,X                                   ;90EFD3;
-    CLC                                                                  ;90EFD6;
-    ADC.W .XVelocities,X                                                 ;90EFD7;
-    STA.W SamusProjectile_XPositions,X                                   ;90EFDA;
-    LDA.W SamusProjectile_YPositions,X                                   ;90EFDD;
-    CLC                                                                  ;90EFE0;
-    ADC.W .YVelocities,X                                                 ;90EFE1;
-    STA.W SamusProjectile_YPositions,X                                   ;90EFE4;
-    CMP.B SamusYPosition                                                 ;90EFE7;
-    BNE .return                                                          ;90EFEA;
-    LDA.W SamusProjectile_Variables,X                                    ;90EFEC;
-    CMP.W #$0001                                                         ;90EFEF;
-    BNE .not1                                                            ;90EFF2;
-    CPX.W #$0006                                                         ;90EFF4;
-    BNE .clear                                                           ;90EFF7;
-    LDA.W #UNUSED_SamusMovementHandler_90F04B                            ;90EFF9;
-    STA.W MovementHandler                                                ;90EFFC;
-
-  .clear:
-    JSL.L Clear_Projectile                                               ;90EFFF;
-    RTS                                                                  ;90F003;
-
-  .not1:
-    INC.W SamusProjectile_Variables,X                                    ;90F004;
-    LDA.W #$00B4                                                         ;90F007;
-    STA.W SpecialPaletteTimer                                            ;90F00A;
-    LDA.W #$0001                                                         ;90F00D;
-    STA.W SpecialSamusPaletteType                                        ;90F010;
-    STZ.W SpecialSamusPaletteFrame                                       ;90F013;
-    LDA.B SamusXPosition                                                 ;90F016;
-    CLC                                                                  ;90F019;
-    ADC.W .XOffsets,X                                                    ;90F01A;
-    STA.W SamusProjectile_XPositions,X                                   ;90F01D;
-    LDA.B SamusYPosition                                                 ;90F020;
-    CLC                                                                  ;90F023;
-    ADC.W .YOffsets,X                                                    ;90F024;
-    STA.W SamusProjectile_YPositions,X                                   ;90F027;
-
-  .return:
-    RTS                                                                  ;90F02A;
-
-; Indexed by projectile index
-  .XVelocities:
-    dw $FFFC,$FFFC,$0004,$0004                                           ;90F02B;
-  .YVelocities:
-    dw $0004,$FFFC,$FFFC,$0004                                           ;90F033;
-  .XOffsets:
-    dw $0080,$0080,$FF80,$FF80                                           ;90F03B;
-  .YOffsets:
-    dw $FF80,$0080,$0080,$FF80                                           ;90F043;
-
-
-;;; $F04B: Samus movement handler - unused ;;;
-UNUSED_SamusMovementHandler_90F04B:
-; Shinespark beam related?
-    LDA.W SpecialPaletteTimer                                            ;90F04B;
-    BNE .return                                                          ;90F04E;
-    LDA.W #$0006                                                         ;90F050;
-    STA.W SpecialSamusPaletteFrame                                       ;90F053;
-    LDA.W #$0001                                                         ;90F056;
-    STA.W CommonPaletteTimer                                             ;90F059;
-    STA.W DemoInput_Timer                                                ;90F05C;
-    LDA.W #$000A                                                         ;90F05F;
-    STA.W SpecialSamusPaletteType                                        ;90F062;
-    LDA.W #$0078                                                         ;90F065;
-    STA.W SpecialPaletteTimer                                            ;90F068;
-    LDA.W #UNUSED_SamusMovementHandler_90F072                            ;90F06B;
-    STA.W MovementHandler                                                ;90F06E;
-
-  .return:
-    RTS                                                                  ;90F071;
-
-
-;;; $F072: Samus movement handler - unused ;;;
-UNUSED_SamusMovementHandler_90F072:
-; Shinespark beam related?
-    LDA.W SpecialPaletteTimer                                            ;90F072;
-    BNE .return                                                          ;90F075;
-    LDA.W #SamusCurrentStateHandler_Normal                               ;90F077;
-    STA.W CurrentStateHandler                                            ;90F07A;
-    LDA.W #SamusMovementHandler_Normal                                   ;90F07D;
-    STA.W MovementHandler                                                ;90F080;
-
-  .return:
-    RTS                                                                  ;90F083;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $F084: Run Samus command ;;;
@@ -17234,100 +16559,6 @@ SamusCommand_1F_KillGrappleBeam:
     RTS                                                                  ;90F506;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $F507: Unused ;;;
-UNUSED_ResumeSounds_90F507:
-; Similar to SamusCommand_1E_ResumeSoundsAfterPowerBombExplosion, except this routine doesn't play spin jump sound if spin jumping
-    LDA.W MovementType                                                   ;90F507;
-    AND.W #$00FF                                                         ;90F50A;
-    CMP.W #$0003                                                         ;90F50D;
-    BEQ .return                                                          ;90F510;
-    CMP.W #$0014                                                         ;90F512;
-    BEQ .return                                                          ;90F515;
-    LDA.B DP_Controller1Input                                            ;90F517;
-    BIT.W ShotBinding                                                    ;90F519;
-    BEQ .return                                                          ;90F51C;
-    LDA.W SamusProjectile_FlareCounter                                   ;90F51E;
-    CMP.W #$0010                                                         ;90F521;
-    BMI .return                                                          ;90F524;
-    LDA.W #$0041                                                         ;90F526;
-    JSL.L QueueSound_Lib1_Max9                                           ;90F529;
-
-  .return:
-    CLC                                                                  ;90F52D;
-    RTS                                                                  ;90F52E;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
-if !DEBUG
-;;; $F52F: Debug command handler ;;;
-DebugCommandHandler:
-; RTS'd out as you can see
-    RTS                                                                  ;90F52F;
-    JMP.W (DebugCommandPointer)                                          ;90F530;
-
-
-;;; $F533: RTS ;;;
-RTS_90F533:
-    RTS                                                                  ;90F533;
-
-
-;;; $F534: RTS ;;;
-RTS_90F534:
-    RTS                                                                  ;90F534;
-
-
-;;; $F535: Debug command handler - give Samus a shinespark if Y is newly pressed ;;;
-DebugCommandHandler_GiveSamusAShinesparkIfYNewlyPressed:
-    LDA.B DP_Controller1New                                              ;90F535;
-    BIT.W #$4000                                                         ;90F537;
-    BEQ .return                                                          ;90F53A;
-    LDA.W #$00B4                                                         ;90F53C;
-    STA.W SpecialPaletteTimer                                            ;90F53F;
-    LDA.W #$0001                                                         ;90F542;
-    STA.W SpecialSamusPaletteType                                        ;90F545;
-    STZ.W SpecialSamusPaletteFrame                                       ;90F548;
-
-  .return:
-    RTS                                                                  ;90F54B;
-
-
-;;; $F54C: Debug command handler - disable rainbow Samus and stand her up if controller 2 Y is newly pressed ;;;
-DebugCommandHandler_DisableRainbowSamus_StandHerUp:
-    LDA.B DP_Controller2New                                              ;90F54C;
-    BIT.W #$4000                                                         ;90F54E;
-    BEQ .return                                                          ;90F551;
-    STZ.W SuperSpecialPaletteFlags
-    STZ.W SpecialSamusPaletteFrame
-    STZ.W CommonPaletteTimer
-    STZ.W SamusChargePaletteIndex
-    JSL.L LoadSamusSuitPalette
-    LDA.W #$0001
-    STA.W SamusAnimationFrameTimer
-    LDA.W #$000D
-    STA.W SamusAnimationFrame
-    LDA.W #RTS_90F534                                                    ;90F55A;
-    STA.W DebugCommandPointer                                            ;90F55D;
-
-  .return:
-    RTS                                                                  ;90F560;
-
-
-;;; $F561: Debug command handler - release Samus from drained pose if Y newly pressed ;;;
-DebugCommandHandler_ReleaseSamusFromDrainedPoseIfYNewlyPress:
-    LDA.B DP_Controller1New                                              ;90F561;
-    BIT.W #$4000                                                         ;90F563;
-    BEQ .return                                                          ;90F566;
-    LDA.W #RTS_90F534                                                    ;90F568;
-    STA.W DebugCommandPointer                                            ;90F56B;
-    LDA.W #$0002                                                         ;90F56E;
-    JSL.L DrainedSamusController                                         ;90F571;
-
-  .return:
-    RTS                                                                  ;90F575;
-endif
-
-
 ;;; $F576: Handle unspin sound effects, cancelling echo sound and setting time up game state ;;;
 Handle_UnspinSFX_CancellingEchoSound_SettingTimeUpGameState:
 ; Also enables debug invincibility if debug mode is enabled and controller 2 newly presses A whilst L + R is pressed
@@ -17361,58 +16592,29 @@ Handle_UnspinSFX_CancellingEchoSound_SettingTimeUpGameState:
     CMP.W #$0003                                                         ;90F5AE;
     BEQ .spinJumping                                                     ;90F5B1;
     CMP.W #$0014                                                         ;90F5B3;
-    BNE .checkDebug                                                      ;90F5B6;
+    BNE .noDebug
 
   .spinJumping:
     LDA.W MovementType                                                   ;90F5B8;
     AND.W #$00FF                                                         ;90F5BB;
     CMP.W #$0003                                                         ;90F5BE;
-    BEQ .checkDebug                                                      ;90F5C1;
+    BEQ .noDebug
     CMP.W #$0014                                                         ;90F5C3;
-    BEQ .checkDebug                                                      ;90F5C6;
+    BEQ .noDebug
     LDA.W #$0032                                                         ;90F5C8;
     JSL.L QueueSound                                                     ;90F5CB;
     LDA.W SamusProjectile_FlareCounter                                   ;90F5CF;
     CMP.W #$0010                                                         ;90F5D2;
-    BMI .checkDebug                                                      ;90F5D5;
+    BMI .noDebug
     LDA.B DP_Controller1Input                                            ;90F5D7;
     BIT.W ShotBinding                                                    ;90F5D9;
-    BEQ .checkDebug                                                      ;90F5DC;
+    BEQ .noDebug
 
   .negative:
     LDA.W #$0001                                                         ;90F5DE;
     STA.W ResumeChargingBeamSFXFlag                                      ;90F5E1;
 
-  .checkDebug:
-if !DEBUG
-    LDA.W Debug_Enable                                                   ;90F5E4;
-    BEQ .debugEnd                                                        ;90F5E7;
-    LDA.W Pose                                                           ;90F5E9;
-    BEQ .checkInputs                                                     ;90F5EC;
-    CMP.W #$009B                                                         ;90F5EE;
-    BEQ .checkInputs                                                     ;90F5F1;
-    LDA.W DebugInvincibility                                             ;90F5F3;
-    CMP.W #$0007                                                         ;90F5F6;
-    BMI .resetInvincibility                                              ;90F5F9;
-    RTS                                                                  ;90F5FC;
-
-  .checkInputs:
-    LDA.B DP_Controller2Input                                            ;90F5FD;
-    AND.W #$0030                                                         ;90F5FF;
-    CMP.W #$0030                                                         ;90F602;
-    BNE .debugEnd                                                        ;90F605;
-    LDA.B DP_Controller2New                                              ;90F607;
-    BIT.W #$0080                                                         ;90F609;
-    BEQ .debugEnd                                                        ;90F60C;
-    LDA.W #$0007                                                         ;90F60E;
-    STA.W DebugInvincibility                                             ;90F611;
-    BRA .debugEnd                                                        ;90F614;
-
-  .resetInvincibility:
-    STZ.W DebugInvincibility                                             ;90F616;
-endif
-
-  .debugEnd:
+  .noDebug:
     LDA.W #$000E                                                         ;90F619;
     JSL.L CheckIfEvent_inA_HasHappened                                   ;90F61C;
     BCC .return                                                          ;90F620;

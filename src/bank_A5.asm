@@ -201,50 +201,6 @@ Instruction_CommonA5_CallFunctionInY_WithA:
     RTL                                                                  ;A580B4;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $80B5: Unused. Instruction - call external function [[Y]] ;;;
-UNUSED_Instruction_CommonA5_CallExternalFunctionInY_A580B5:
-    LDA.W $0000,Y                                                        ;A580B5;
-    STA.B DP_Temp12                                                      ;A580B8;
-    LDA.W $0001,Y                                                        ;A580BA;
-    STA.B DP_Temp13                                                      ;A580BD;
-    PHX                                                                  ;A580BF;
-    PHY                                                                  ;A580C0;
-    JSL.L .externalFunction                                              ;A580C1;
-    PLY                                                                  ;A580C5;
-    PLX                                                                  ;A580C6;
-    INY                                                                  ;A580C7;
-    INY                                                                  ;A580C8;
-    INY                                                                  ;A580C9;
-    RTL                                                                  ;A580CA;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;A580CB;
-
-
-;;; $80CE: Unused. Instruction - call external function [[Y]] with A = [[Y] + 3] ;;;
-UNUSED_Inst_CommonA5_CallExternalFunctionInY_WithA_A580CE:
-    LDA.W $0000,Y                                                        ;A580CE;
-    STA.B DP_Temp12                                                      ;A580D1;
-    LDA.W $0001,Y                                                        ;A580D3;
-    STA.B DP_Temp13                                                      ;A580D6;
-    LDA.W $0003,Y                                                        ;A580D8;
-    PHX                                                                  ;A580DB;
-    PHY                                                                  ;A580DC;
-    JSL.L .externalFunction                                              ;A580DD;
-    PLY                                                                  ;A580E1;
-    PLX                                                                  ;A580E2;
-    TYA                                                                  ;A580E3;
-    CLC                                                                  ;A580E4;
-    ADC.W #$0005                                                         ;A580E5;
-    TAY                                                                  ;A580E8;
-    RTL                                                                  ;A580E9;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;A580EA;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $80ED: Instruction - go to [[Y]] ;;;
 Instruction_CommonA5_GotoY:
     LDA.W $0000,Y                                                        ;A580ED;
@@ -896,29 +852,6 @@ Function_DraygonBody_SwoopRight_Descending:
     LDA.W #Function_DraygonBody_SwoopRight_Apex                          ;A588FA;
     STA.W DraygonBody.function                                           ;A588FD;
     RTS                                                                  ;A58900;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $8901: Unused.  ;;;
-UNUSED_Draygon_FireGoop_A58901:
-; Fire goop?
-    LDA.B NMI_FrameCounter                                               ;A58901;
-    AND.W #$000F                                                         ;A58904;
-    BNE .return                                                          ;A58907;
-    LDA.W #InstList_DraygonBody_FacingLeft_FireGoop                      ;A58909;
-    STA.W Enemy.instList                                                 ;A5890C;
-    LDA.L DraygonBody.facingDirection                                    ;A5890F;
-    BEQ .keepLeft                                                        ;A58913;
-    LDA.W #InstList_DraygonBody_FacingRight_FireGoop                     ;A58915;
-    STA.W Enemy.instList                                                 ;A58918;
-
-  .keepLeft:
-    LDA.W #$0001                                                         ;A5891B;
-    STA.W Enemy.instTimer                                                ;A5891E;
-
-  .return:
-    RTS                                                                  ;A58921;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $8922: Draygon body function - swoop right - apex ;;;
@@ -2145,171 +2078,6 @@ EnemyGraphicsDrawnHook_Draygon_SetBG2XYScroll:
     RTL                                                                  ;A59366;
 
 
-if !DEBUG
-;;; $9367: Unused. Debug. Draygon controller 2 input handling ;;;
-Debug_DraygonController2InputHandling:
-    LDX.W #$0000                                                         ;A59367;
-    LDA.B DP_Controller2Input                                            ;A5936A;
-    BIT.W #$0040                                                         ;A5936C;
-    BEQ .notPressingX                                                    ;A5936F;
-    JSL.L Debug_MoveDraygonWithDpad_Fast                                 ;A59371;
-    BRA +                                                                ;A59375;
-
-  .notPressingX:
-    JSL.L Debug_MoveDraygonWithDpad_Slow                                 ;A59377;
-
-+   LDX.W #$0000                                                         ;A5937B;
-    LDA.B DP_Controller2New                                              ;A5937E;
-    BIT.W #$4000                                                         ;A59380;
-    BEQ .fireGoopEnd                                                     ;A59383;
-    LDY.W #InstList_DraygonBody_FacingLeft_FireGoop                      ;A59385;
-    LDA.L DraygonBody.facingDirection,X                                  ;A59388;
-    BEQ .keepLeft                                                        ;A5938C;
-    LDY.W #InstList_DraygonBody_FacingRight_FireGoop                     ;A5938E;
-
-  .keepLeft:
-    STY.W Enemy.instList                                                 ;A59391;
-    LDA.W #$0001                                                         ;A59394;
-    STA.W Enemy.instTimer                                                ;A59397;
-    RTL
-
-  .fireGoopEnd:
-    BIT.W #$8000                                                         ;A5939C;
-    BEQ .tailWhipEnd                                                     ;A5939F;
-    LDY.W #InstList_DraygonTail_FacingLeft_FakeTailWhip                  ;A593A1;
-    LDA.L DraygonBody.facingDirection,X                                  ;A593A4;
-    BEQ ..keepLeft                                                       ;A593A8;
-    LDY.W #Debug_InstList_DraygonTail_FacingRight_FakeTailWhip           ;A593AA;
-
-  ..keepLeft:
-    STY.W Enemy[2].instList                                              ;A593AD;
-    LDA.W #$0001                                                         ;A593B0;
-    STA.W Enemy[2].instTimer                                             ;A593B3;
-    RTL
-
-  .tailWhipEnd:
-    BIT.W #$0080                                                         ;A593B8;
-    BEQ .return                                                          ;A593BB;
-    LDY.W #Debug_InstList_DraygonArms_FacingLeft_FakeGrab                ;A593BD;
-    LDA.L DraygonBody.facingDirection,X                                  ;A593C0;
-    BEQ ..keepLeft                                                       ;A593C4;
-    LDY.W #Debug_InstList_DraygonArms_FacingRight_FakeGrab               ;A593C6;
-
-  ..keepLeft:
-    STY.W Enemy[3].instList                                              ;A593C9;
-    LDA.W #$0001                                                         ;A593CC;
-    STA.W Enemy[3].instTimer                                             ;A593CF;
-
-  .return:
-    RTL                                                                  ;A593D9;
-
-
-;;; $93DA: Debug. Move Draygon with d-pad - slow ;;;
-Debug_MoveDraygonWithDpad_Slow:
-    LDA.B DP_Controller2Input                                            ;A593DA;
-    BIT.W #$0200                                                         ;A593DC;
-    BEQ .notPressingLeft                                                 ;A593DF;
-    DEC.W Enemy.XPosition                                                ;A593E1;
-    CMP.W DebugPreviousController2InputCrocomire                         ;A593E4;
-    BEQ .notPressingLeft                                                 ;A593E7;
-    STA.W DebugPreviousController2InputCrocomire                         ;A593E9;
-    LDY.W #InstList_DraygonBody_FacingLeft_Reset                         ;A593EC;
-    LDA.W #$0000                                                         ;A593EF;
-    STA.L DraygonBody.facingDirection                                    ;A593F2;
-    BRA +                                                                ;A593F6;
-
-  .notPressingLeft:
-    BIT.W #$0100                                                         ;A593F8;
-    BEQ .noHorizontalMovement                                            ;A593FB;
-    INC.W Enemy.XPosition                                                ;A593FD;
-    CMP.W DebugPreviousController2InputCrocomire                         ;A59400;
-    BEQ .noHorizontalMovement                                            ;A59403;
-    STA.W DebugPreviousController2InputCrocomire                         ;A59405;
-    LDY.W #InstList_DraygonBody_FacingRight_Reset                        ;A59408;
-    LDA.W #$0001                                                         ;A5940B;
-    STA.L DraygonBody.facingDirection                                    ;A5940E;
-
-+   STY.W Enemy.instList                                                 ;A59412;
-    LDA.W #$0001                                                         ;A59415;
-    STA.W Enemy.instTimer                                                ;A59418;
-
-  .noHorizontalMovement:
-    LDA.B DP_Controller2Input                                            ;A5941B;
-    BIT.W #$0800                                                         ;A5941D;
-    BEQ .notPressingUp                                                   ;A59420;
-    DEC.W Enemy.YPosition                                                ;A59422;
-    RTL
-
-  .notPressingUp:
-    BIT.W #$0400                                                         ;A59427;
-    BEQ .return                                                          ;A5942A;
-    INC.W Enemy.YPosition                                                ;A5942C;
-
-  .return:
-    RTL                                                                  ;A5942F;
-
-
-;;; $9430: Debug. Move Draygon with d-pad - fast ;;;
-Debug_MoveDraygonWithDpad_Fast:
-    LDA.B DP_Controller2Input                                            ;A59430;
-    BIT.W #$0200                                                         ;A59432;
-    BEQ .noPressingLeft                                                  ;A59435;
-    LDA.W Enemy.XPosition                                                ;A59437;
-    SEC                                                                  ;A5943A;
-    SBC.W #$0004                                                         ;A5943B;
-    STA.W Enemy.XPosition                                                ;A5943E;
-    LDA.B DP_Controller2Input                                            ;A59441;
-    CMP.W DebugPreviousController2InputCrocomire                         ;A59443;
-    BEQ .noPressingLeft                                                  ;A59446;
-    STA.W DebugPreviousController2InputCrocomire                         ;A59448;
-    LDY.W #InstList_DraygonBody_FacingLeft_Reset                         ;A5944B;
-    LDA.W #$0000                                                         ;A5944E;
-    STA.L DraygonBody.facingDirection                                    ;A59451;
-    BRA +                                                                ;A59455;
-
-  .noPressingLeft:
-    BIT.W #$0100                                                         ;A59457;
-    BEQ .noHorizontalMovement                                            ;A5945A;
-    LDA.W Enemy.XPosition                                                ;A5945C;
-    CLC                                                                  ;A5945F;
-    ADC.W #$0004                                                         ;A59460;
-    STA.W Enemy.XPosition                                                ;A59463;
-    LDA.B DP_Controller2Input                                            ;A59466;
-    CMP.W DebugPreviousController2InputCrocomire                         ;A59468;
-    BEQ .noHorizontalMovement                                            ;A5946B;
-    STA.W DebugPreviousController2InputCrocomire                         ;A5946D;
-    LDY.W #InstList_DraygonBody_FacingRight_Reset                        ;A59470;
-    LDA.W #$0001                                                         ;A59473;
-    STA.L DraygonBody.facingDirection                                    ;A59476;
-
-+   STY.W Enemy.instList                                                 ;A5947A;
-    LDA.W #$0001                                                         ;A5947D;
-    STA.W Enemy.instTimer                                                ;A59480;
-
-  .noHorizontalMovement:
-    LDA.B DP_Controller2Input                                            ;A59483;
-    BIT.W #$0800                                                         ;A59485;
-    BEQ .notPressingUp                                                   ;A59488;
-    LDA.W Enemy.YPosition                                                ;A5948A;
-    SEC                                                                  ;A5948D;
-    SBC.W #$0004                                                         ;A5948E;
-    STA.W Enemy.YPosition                                                ;A59491;
-    BRA .return                                                          ;A59494;
-
-  .notPressingUp:
-    BIT.W #$0400                                                         ;A59496;
-    BEQ .return                                                          ;A59499;
-    INC.W Enemy.YPosition                                                ;A5949B;
-    LDA.W Enemy.YPosition                                                ;A5949E;
-    CLC                                                                  ;A594A1;
-    ADC.W #$0004                                                         ;A594A2;
-    STA.W Enemy.YPosition                                                ;A594A5;
-
-  .return:
-    RTL                                                                  ;A594A8;
-endif
-
-
 ;;; $94A9: Move Samus with Draygon ;;;
 MoveSamusWithDraygon:
     LDY.W #$0008                                                         ;A594A9;
@@ -2360,49 +2128,6 @@ Instruction_Draygon_SetInstList_Body_Eye_Tail_Arms:
     ADC.W #$0008                                                         ;A59508;
     TAY                                                                  ;A5950B;
     RTL                                                                  ;A5950C;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $950D: Unused. Draygon instruction list pointers ;;;
-Unused_DraygonInstListPointers_A5950D:
-; Not an exhaustive list of pointers. Assuming they were used for some unknown debug purpose
-    ; Draygon arms
-    dw InstList_DraygonArms_FacingLeft_Idle_0                            ;A5950D;
-    dw InstList_DraygonArms_FacingLeft_NearSwoopApex                     ;A5950F;
-    dw UNUSED_InstList_DraygonArms_A59805                                ;A59511;
-    dw InstList_DraygonArms_FacingRight_Idle_0                           ;A59513;
-    dw InstList_DraygonArms_FacingRight_NearSwoopApex                    ;A59515;
-    dw UNUSED_InstList_DraygonArms_A59BF8                                ;A59517;
-    dw $0000                                                             ;A59519;
-    ; Draygon body
-    dw InstList_DraygonBody_FacingLeft_Idle                              ;A5951B;
-    dw InstList_DraygonArms_FacingLeft_Dying                             ;A5951D;
-    dw UNUSED_InstList_DraygonBody_A5987B                                ;A5951F;
-    dw InstList_DraygonBody_FacingLeft_FireGoop                          ;A59521;
-    dw InstList_DraygonBody_FacingRight_Idle                             ;A59523;
-    dw InstList_DraygonArms_FacingRight_Dying_0                          ;A59525;
-    dw UNUSED_InstList_DraygonBody_A59C70                                ;A59527;
-    dw InstList_DraygonBody_FacingRight_FireGoop                         ;A59529;
-    dw $0000                                                             ;A5952B;
-    ; Draygon eye
-    dw InstList_DraygonEye_FacingLeft_Idle                               ;A5952D;
-    dw InstList_DraygonEye_FacingLeft_LookingLeft                        ;A5952F;
-    dw InstList_DraygonEye_FacingLeft_LookingRight                       ;A59531;
-    dw InstList_DraygonEye_FacingLeft_LookingUp                          ;A59533;
-    dw InstList_DraygonEye_FacingLeft_LookingDown                        ;A59535;
-    dw InstList_DraygonEye_FacingRight_Idle                              ;A59537;
-    dw InstList_DraygonEye_FacingRight_LookingRight                      ;A59539;
-    dw InstList_DraygonEye_FacingRight_LookingLeft                       ;A5953B;
-    dw InstList_DraygonEye_FacingRight_LookingUp                         ;A5953D;
-    dw InstList_DraygonEye_FacingRight_LookingDown                       ;A5953F;
-    dw $0000                                                             ;A59541;
-    ; Draygon tail
-    dw InstList_DraygonTail_FacingLeft_Idle_0                            ;A59543;
-    dw InstList_DraygonTail_FacingLeft_FakeTailWhip                      ;A59545;
-    dw InstList_DraygonTail_FacingRight_Idle_0                           ;A59547;
-    dw Debug_InstList_DraygonTail_FacingRight_FakeTailWhip               ;A59549;
-    dw $0000                                                             ;A5954B;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $954D: Hurt AI - enemy $DE3F (Draygon) ;;;
@@ -2751,16 +2476,6 @@ InstList_DraygonArms_FacingLeft_Idle_1:
     dw Instruction_Common_Sleep                                          ;A59803;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $9805: Unused. Instruction list - Draygon arms ;;;
-UNUSED_InstList_DraygonArms_A59805:
-    dw $0001,ExtendedSpritemap_Draygon_1D                                ;A59805;
-    dw $0001,ExtendedSpritemap_Draygon_1C                                ;A59809;
-    dw $0040,ExtendedSpritemap_Draygon_1B                                ;A5980D;
-    dw Instruction_Common_Sleep                                          ;A59811;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $9813: Instruction list - Draygon arms - facing left - near swoop apex ;;;
 InstList_DraygonArms_FacingLeft_NearSwoopApex:
     dw $0001,ExtendedSpritemap_Draygon_1B                                ;A59813;
@@ -2805,16 +2520,6 @@ InstList_DraygonArms_FacingLeft_Dying:
     dw $0005,ExtendedSpritemap_Draygon_D                                 ;A59873;
     dw Instruction_Common_GotoY                                          ;A59877;
     dw InstList_DraygonBody_Dying_0                                      ;A59879;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $987B: Unused. Instruction list - Draygon body ;;;
-UNUSED_InstList_DraygonBody_A5987B:
-    dw $0005,ExtendedSpritemap_Draygon_C                                 ;A5987B;
-    dw $0005,ExtendedSpritemap_Draygon_B                                 ;A5987F;
-    dw $0005,ExtendedSpritemap_Draygon_A                                 ;A59883;
-    dw Instruction_Common_Sleep                                          ;A59887;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $9889: Instruction list - Draygon body - facing left - idle ;;;
@@ -3176,16 +2881,6 @@ InstList_DraygonArms_FacingRight_Idle_1:
     dw Instruction_Common_Sleep                                          ;A59BF6;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $9BF8: Unused. Instruction list - Draygon arms ;;;
-UNUSED_InstList_DraygonArms_A59BF8:
-    dw $0001,ExtendedSpritemap_Draygon_4D                                ;A59BF8;
-    dw $0001,ExtendedSpritemap_Draygon_4C                                ;A59BFC;
-    dw $0040,ExtendedSpritemap_Draygon_4B                                ;A59C00;
-    dw Instruction_Common_Sleep                                          ;A59C04;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $9C06: Instruction list - Draygon arms - facing right - near swoop apex ;;;
 InstList_DraygonArms_FacingRight_NearSwoopApex:
     dw $0001,ExtendedSpritemap_Draygon_4B                                ;A59C06;
@@ -3233,16 +2928,6 @@ InstList_DraygonArms_FacingRight_Dying_0:
 
 InstList_DraygonBody_FacingRight_Dying_1:
     dw Instruction_Common_Sleep                                          ;A59C6E;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $9C70: Unused. Instruction list - Draygon body ;;;
-UNUSED_InstList_DraygonBody_A59C70:
-    dw $0005,ExtendedSpritemap_Draygon_3C                                ;A59C70;
-    dw $0005,ExtendedSpritemap_Draygon_3B                                ;A59C74;
-    dw $0005,ExtendedSpritemap_Draygon_3A                                ;A59C78;
-    dw Instruction_Common_Sleep                                          ;A59C7C;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $9C7E: Instruction list - Draygon body - facing right - idle ;;;
@@ -3305,16 +2990,6 @@ InstList_DraygonEye_FacingRight_Idle:
     dw Instruction_Draygon_FunctionInY                                   ;A59D06;
     dw Function_DraygonEye_FacingLeft                                    ;A59D08;
     dw Instruction_Common_Sleep                                          ;A59D0A;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $9D0C: Unused. Instruction list - Draygon eye ;;;
-UNUSED_InstList_DraygonEye_A59D0C:
-    dw $0015,ExtendedSpritemap_Draygon_42                                ;A59D0C;
-    dw $0005,ExtendedSpritemap_Draygon_43                                ;A59D10;
-    dw $0005,ExtendedSpritemap_Draygon_44                                ;A59D14;
-    dw $000A,ExtendedSpritemap_Draygon_45                                ;A59D18;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $9D1C: Instruction list - Draygon eye - facing right - dying ;;;
@@ -3856,11 +3531,6 @@ HandleDraygonFightIntroDance:
 ; Movement latency for each evir sprite object (each evir moves 80h bytes later in the movement table than the next)
 MovementLatencyForEachEvirSpriteObject:
     dw $FC80,$FD00,$FD80,$FE00                                           ;A5A19F;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_MovementLatencyForEachEvirSpriteObject_A5A1A7:
-    dw $FE80,$FF00,$FF80,$0000                                           ;A5A1A7;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $A1AF: Death sequence evir subspeeds ;;;
@@ -6605,144 +6275,6 @@ RTL_A5C5C6:
     RTL                                                                  ;A5C5C6;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $C5C7: Unused Draygon fight intro dance data ;;;
-UNUSED_DraygonFightIntroDanceData_KeikoLove_A5C5C7:
-    db $01,$FF, $01,$00, $00,$FF, $01,$00, $01,$FF, $01,$00, $00,$FF, $01,$00 ;A5C5C7;
-    db $01,$FF, $01,$00, $00,$FF, $01,$00, $01,$FF, $00,$FF, $01,$00, $01,$FF ;A5C5D7;
-    db $01,$FF, $01,$FF, $01,$FF, $00,$FF, $01,$00, $00,$FF, $01,$FF, $00,$FF ;A5C5E7;
-    db $01,$00, $00,$FF, $01,$FF, $00,$FF, $00,$FF, $01,$00, $00,$FF, $00,$FF ;A5C5F7;
-    db $00,$FF, $01,$FF, $00,$FF, $00,$FF, $00,$FF, $00,$FF, $00,$FF, $00,$FE ;A5C607;
-    db $00,$FF, $00,$FF, $00,$FF, $00,$FF, $00,$FE, $FF,$FF, $00,$FF, $00,$FF ;A5C617;
-    db $00,$FE, $FF,$FF, $00,$FF, $00,$FF, $FF,$FF, $00,$FF, $00,$FF, $FF,$FF ;A5C627;
-    db $00,$FF, $FF,$FF, $00,$FF, $00,$FF, $FF,$00, $00,$FF, $FF,$00, $00,$FF ;A5C637;
-    db $FF,$00, $FF,$00, $FF,$01, $00,$01, $FF,$00, $00,$01, $FF,$01, $00,$01 ;A5C647;
-    db $00,$01, $00,$01, $FF,$01, $00,$01, $00,$01, $00,$01, $FF,$01, $00,$01 ;A5C657;
-    db $00,$01, $00,$02, $00,$01, $00,$01, $FF,$01, $00,$01, $00,$01, $00,$01 ;A5C667;
-    db $00,$01, $00,$01, $00,$01, $00,$01, $00,$01, $00,$01, $01,$01, $00,$01 ;A5C677;
-    db $00,$01, $00,$01, $00,$01, $00,$01, $00,$01, $00,$01, $00,$01, $00,$01 ;A5C687;
-    db $00,$01, $01,$00, $00,$01, $00,$01, $00,$01, $00,$01, $00,$01, $00,$01 ;A5C697;
-    db $00,$01, $00,$01, $00,$01, $00,$01, $01,$01, $00,$01, $00,$01, $00,$01 ;A5C6A7;
-    db $00,$01, $00,$01, $00,$01, $00,$01, $00,$02, $00,$01, $00,$01, $00,$01 ;A5C6B7;
-    db $00,$01, $00,$01, $00,$02, $00,$01, $00,$01, $00,$01, $00,$02, $00,$01 ;A5C6C7;
-    db $00,$01, $00,$01, $00,$01, $00,$01, $00,$01, $00,$01, $00,$01, $00,$01 ;A5C6D7;
-    db $00,$01, $00,$01, $00,$01, $00,$01, $00,$01, $00,$FF, $01,$FF, $00,$FF ;A5C6E7;
-    db $00,$FF, $00,$FF, $00,$FF, $00,$FF, $00,$FF, $01,$FF, $00,$FF, $00,$FF ;A5C6F7;
-    db $00,$FE, $00,$FF, $00,$FF, $01,$FF, $00,$FE, $00,$FF, $00,$FF, $00,$FF ;A5C707;
-    db $00,$FE, $01,$FF, $00,$FF, $00,$FF, $00,$FF, $00,$FE, $01,$FF, $00,$FF ;A5C717;
-    db $00,$FF, $00,$FF, $01,$FF, $00,$FF, $01,$FF, $00,$FF, $01,$FF, $01,$FF ;A5C727;
-    db $01,$00, $00,$FF, $01,$00, $01,$00, $01,$00, $01,$FF, $01,$00, $01,$00 ;A5C737;
-    db $01,$01, $01,$00, $01,$01, $01,$00, $01,$01, $01,$01, $00,$01, $01,$01 ;A5C747;
-    db $00,$01, $01,$00, $00,$01, $00,$01, $00,$01, $01,$02, $00,$01, $00,$01 ;A5C757;
-    db $FF,$01, $00,$01, $00,$01, $00,$01, $FF,$01, $00,$01, $FF,$01, $00,$01 ;A5C767;
-    db $FF,$01, $FF,$01, $FF,$01, $FF,$00, $FF,$01, $FF,$00, $FF,$00, $FF,$00 ;A5C777;
-    db $FF,$00, $FF,$00, $FF,$FF, $FF,$00, $FF,$FF, $FF,$00, $FF,$FF, $00,$01 ;A5C787;
-    db $01,$01, $01,$01, $01,$01, $00,$01, $01,$01, $01,$01, $01,$01, $01,$00 ;A5C797;
-    db $01,$01, $01,$01, $01,$01, $02,$01, $01,$00, $00,$01, $01,$00, $01,$01 ;A5C7A7;
-    db $01,$00, $01,$00, $01,$01, $01,$00, $01,$00, $01,$00, $01,$00, $01,$00 ;A5C7B7;
-    db $01,$00, $01,$00, $01,$00, $01,$00, $01,$00, $01,$00, $01,$00, $02,$00 ;A5C7C7;
-    db $01,$00, $02,$FF, $01,$00, $02,$00, $01,$00, $02,$FF, $01,$00, $02,$00 ;A5C7D7;
-    db $01,$FF, $02,$00, $01,$00, $01,$FF, $02,$00, $01,$FF, $01,$00, $01,$FF ;A5C7E7;
-    db $02,$FF, $01,$00, $01,$FF, $01,$FF, $01,$FF, $01,$00, $00,$FF, $01,$FF ;A5C7F7;
-    db $01,$FF, $01,$FE, $00,$FF, $01,$FF, $01,$FF, $00,$FF, $00,$FE, $01,$FF ;A5C807;
-    db $00,$FE, $00,$FF, $01,$FF, $00,$FE, $00,$FF, $00,$FE, $00,$FE, $00,$FF ;A5C817;
-    db $00,$FE, $00,$FF, $00,$FE, $FF,$FE, $00,$FF, $00,$FE, $FF,$FE, $00,$FF ;A5C827;
-    db $00,$FE, $FF,$FE, $FF,$FE, $00,$FF, $FF,$FE, $FF,$FE, $00,$FE, $FF,$FF ;A5C837;
-    db $FF,$FE, $FF,$FF, $FF,$FE, $FF,$FF, $00,$FF, $FF,$FE, $FF,$FF, $FF,$FF ;A5C847;
-    db $FF,$FF, $FF,$00, $FF,$FF, $FF,$00, $FF,$FF, $FF,$00, $FF,$00, $FF,$00 ;A5C857;
-    db $FF,$01, $FF,$00, $FF,$01, $FF,$01, $FF,$01, $FF,$02, $FF,$01, $00,$01 ;A5C867;
-    db $FF,$02, $FF,$01, $00,$02, $FF,$01, $FF,$02, $00,$02, $FF,$01, $00,$02 ;A5C877;
-    db $00,$02, $FF,$02, $00,$01, $00,$02, $FF,$02, $00,$02, $00,$01, $00,$02 ;A5C887;
-    db $00,$01, $00,$02, $00,$02, $00,$01, $00,$02, $00,$01, $01,$02, $00,$01 ;A5C897;
-    db $00,$01, $01,$02, $00,$01, $01,$02, $00,$01, $01,$01, $00,$01, $01,$02 ;A5C8A7;
-    db $01,$01, $00,$01, $01,$01, $01,$01, $01,$01, $01,$01, $01,$01, $01,$01 ;A5C8B7;
-    db $01,$01, $01,$01, $02,$00, $01,$01, $01,$01, $01,$01, $02,$00, $01,$01 ;A5C8C7;
-    db $01,$00, $02,$01, $01,$00, $01,$01, $02,$00, $01,$00, $02,$01, $01,$00 ;A5C8D7;
-    db $02,$00, $01,$00, $01,$00, $02,$00, $01,$00, $02,$00, $01,$00, $02,$00 ;A5C8E7;
-    db $01,$00, $01,$00, $02,$00, $01,$FF, $01,$00, $02,$00, $01,$00, $01,$FF ;A5C8F7;
-    db $01,$00, $01,$FF, $01,$00, $01,$FF, $01,$00, $01,$FF, $01,$FF, $01,$FF ;A5C907;
-    db $00,$FF, $01,$FF, $00,$FF, $00,$FF, $01,$FE, $00,$FF, $00,$FF, $00,$FF ;A5C917;
-    db $00,$FE, $00,$FF, $00,$FE, $00,$FF, $00,$FE, $00,$FF, $00,$FE, $00,$FF ;A5C927;
-    db $00,$FE, $00,$FE, $00,$FF, $00,$FE, $00,$FE, $00,$FE, $00,$FF, $00,$FE ;A5C937;
-    db $00,$FE, $00,$FF, $00,$FE, $00,$FE, $00,$FF, $00,$FE, $00,$FE, $00,$FF ;A5C947;
-    db $00,$FE, $00,$FF, $00,$FF, $00,$FE, $00,$FF, $00,$FF, $00,$FF, $01,$FF ;A5C957;
-    db $00,$FF, $00,$FF, $00,$FF, $00,$01, $00,$01, $00,$01, $00,$01, $00,$01 ;A5C967;
-    db $00,$01, $00,$01, $00,$01, $01,$02, $00,$01, $00,$02, $00,$01, $00,$02 ;A5C977;
-    db $00,$01, $00,$02, $FF,$01, $00,$02, $00,$02, $00,$02, $00,$01, $00,$02 ;A5C987;
-    db $00,$02, $00,$01, $00,$02, $00,$02, $00,$02, $00,$01, $00,$02, $00,$01 ;A5C997;
-    db $00,$02, $FF,$01, $00,$02, $00,$01, $00,$02, $00,$01, $01,$01, $00,$01 ;A5C9A7;
-    db $00,$02, $00,$01, $00,$01, $01,$01, $00,$01, $00,$01, $01,$01, $01,$01 ;A5C9B7;
-    db $01,$01, $01,$01, $01,$00, $01,$01, $01,$00, $01,$01, $01,$00, $02,$00 ;A5C9C7;
-    db $01,$01, $01,$00, $02,$00, $01,$01, $01,$FF, $01,$00, $00,$FF, $01,$00 ;A5C9D7;
-    db $01,$FF, $01,$00, $00,$FF, $01,$00, $01,$FF, $01,$00, $00,$FF, $01,$00 ;A5C9E7;
-    db $01,$FF, $00,$FF, $01,$00, $01,$FF, $01,$FF, $01,$FF, $01,$FF, $00,$FF ;A5C9F7;
-    db $01,$00, $00,$FF, $01,$FF, $00,$FF, $01,$00, $00,$FF, $01,$FF, $00,$FF ;A5CA07;
-    db $00,$FF, $01,$00, $00,$FF, $00,$FF, $00,$FF, $01,$FF, $00,$FF, $00,$FF ;A5CA17;
-    db $00,$FF, $00,$FF, $00,$FF, $00,$FE, $00,$FF, $00,$FF, $00,$FF, $00,$FF ;A5CA27;
-    db $00,$FE, $FF,$FF, $00,$FF, $00,$FF, $00,$FE, $FF,$FF, $00,$FF, $00,$FF ;A5CA37;
-    db $FF,$FF, $00,$FF, $00,$FF, $FF,$FF, $00,$FF, $FF,$FF, $00,$FF, $00,$FF ;A5CA47;
-    db $FF,$00, $00,$FF, $FF,$00, $00,$FF, $FF,$00, $FF,$00, $FF,$01, $00,$01 ;A5CA57;
-    db $FF,$00, $00,$01, $FF,$01, $00,$01, $00,$01, $00,$01, $FF,$01, $00,$01 ;A5CA67;
-    db $00,$01, $00,$01, $FF,$01, $00,$01, $00,$01, $00,$02, $00,$01, $00,$01 ;A5CA77;
-    db $FF,$01, $00,$01, $00,$01, $00,$01, $00,$01, $00,$01, $00,$01, $00,$01 ;A5CA87;
-    db $00,$01, $00,$01, $01,$01, $00,$01, $00,$01, $00,$01, $00,$01, $00,$01 ;A5CA97;
-    db $00,$01, $00,$01, $00,$01, $00,$01, $00,$01, $01,$00, $00,$01, $00,$01 ;A5CAA7;
-    db $00,$01, $00,$01, $00,$01, $00,$01, $00,$01, $00,$01, $00,$01, $00,$01 ;A5CAB7;
-    db $01,$01, $00,$01, $00,$01, $00,$01, $00,$01, $00,$01, $00,$01, $00,$01 ;A5CAC7;
-    db $00,$02, $00,$01, $00,$01, $00,$01, $00,$01, $00,$01, $00,$02, $00,$01 ;A5CAD7;
-    db $00,$01, $00,$01, $00,$02, $00,$01, $00,$01, $00,$01, $00,$01, $00,$01 ;A5CAE7;
-    db $00,$01, $00,$01, $00,$01, $00,$01, $00,$01, $00,$01, $00,$01, $00,$01 ;A5CAF7;
-    db $00,$01, $00,$FF, $01,$FF, $00,$FF, $00,$FF, $00,$FF, $00,$FF, $00,$FF ;A5CB07;
-    db $00,$FF, $01,$FF, $00,$FF, $00,$FF, $00,$FE, $00,$FF, $00,$FF, $01,$FF ;A5CB17;
-    db $00,$FE, $00,$FF, $00,$FF, $00,$FF, $00,$FE, $01,$FF, $00,$FF, $00,$FF ;A5CB27;
-    db $00,$FF, $00,$FE, $01,$FF, $00,$FF, $00,$FF, $00,$FF, $01,$FF, $00,$FF ;A5CB37;
-    db $01,$FF, $00,$FF, $01,$FF, $01,$FF, $01,$00, $00,$FF, $01,$00, $01,$00 ;A5CB47;
-    db $01,$00, $01,$FF, $01,$00, $01,$00, $01,$01, $01,$00, $01,$01, $01,$00 ;A5CB57;
-    db $01,$01, $01,$01, $00,$01, $01,$01, $00,$01, $01,$00, $00,$01, $00,$01 ;A5CB67;
-    db $00,$01, $01,$02, $00,$01, $00,$01, $FF,$01, $00,$01, $00,$01, $00,$01 ;A5CB77;
-    db $FF,$01, $00,$01, $FF,$01, $00,$01, $FF,$01, $FF,$01, $FF,$01, $FF,$00 ;A5CB87;
-    db $FF,$01, $FF,$00, $FF,$00, $FF,$00, $FF,$00, $FF,$00, $FF,$FF, $FF,$00 ;A5CB97;
-    db $FF,$FF, $FF,$00, $FF,$FF, $00,$01, $01,$01, $01,$01, $01,$01, $00,$01 ;A5CBA7;
-    db $01,$01, $01,$01, $01,$01, $01,$00, $01,$01, $01,$01, $01,$01, $02,$01 ;A5CBB7;
-    db $01,$00, $00,$01, $01,$00, $01,$01, $01,$00, $01,$00, $01,$01, $01,$00 ;A5CBC7;
-    db $01,$00, $01,$00, $01,$00, $01,$00, $01,$00, $01,$00, $01,$00, $01,$00 ;A5CBD7;
-    db $01,$00, $01,$00, $01,$00, $01,$FF, $01,$FF, $00,$FF, $01,$00, $01,$FF ;A5CBE7;
-    db $00,$FF, $01,$00, $01,$FF, $00,$FF, $01,$00, $00,$FF, $01,$FF, $01,$FF ;A5CBF7;
-    db $01,$FF, $01,$FF, $00,$FF, $01,$FF, $00,$FF, $01,$FF, $01,$FF, $00,$FF ;A5CC07;
-    db $01,$FF, $01,$FF, $00,$FF, $01,$FF, $00,$FF, $01,$FF, $01,$FF, $00,$FF ;A5CC17;
-    db $01,$FE, $01,$FF, $00,$FF, $01,$FE, $00,$FF, $01,$FF, $00,$FF, $01,$FE ;A5CC27;
-    db $01,$FF, $00,$FF, $00,$FE, $01,$FF, $00,$FF, $01,$FF, $00,$FF, $00,$FE ;A5CC37;
-    db $00,$FF, $01,$FF, $00,$FF, $00,$FF, $00,$FF, $00,$FF, $00,$FF, $00,$FF ;A5CC47;
-    db $00,$FF, $FF,$00, $00,$FF, $FF,$FF, $FF,$00, $FF,$00, $FF,$00, $FF,$00 ;A5CC57;
-    db $FF,$00, $00,$01, $FF,$00, $FF,$01, $FF,$00, $FF,$01, $FF,$00, $FF,$01 ;A5CC67;
-    db $FF,$01, $FF,$00, $FF,$01, $FF,$01, $FF,$01, $FF,$01, $FF,$01, $FF,$01 ;A5CC77;
-    db $FF,$01, $00,$01, $FF,$01, $00,$01, $FF,$01, $00,$01, $00,$01, $FF,$01 ;A5CC87;
-    db $00,$01, $00,$01, $00,$01, $00,$01, $FF,$01, $00,$01, $00,$01, $00,$01 ;A5CC97;
-    db $00,$01, $00,$01, $00,$01, $00,$01, $00,$01, $00,$01, $00,$01, $00,$01 ;A5CCA7;
-    db $00,$01, $00,$01, $01,$01, $00,$01, $00,$01, $00,$01, $00,$01, $01,$01 ;A5CCB7;
-    db $00,$01, $00,$01, $01,$01, $00,$01, $00,$01, $01,$01, $00,$01, $00,$01 ;A5CCC7;
-    db $01,$01, $00,$01, $01,$01, $01,$01, $00,$01, $01,$01, $00,$01, $01,$01 ;A5CCD7;
-    db $01,$01, $01,$01, $01,$00, $01,$01, $01,$00, $01,$00, $01,$00, $01,$FF ;A5CCE7;
-    db $01,$00, $01,$FF, $01,$00, $01,$FF, $00,$FF, $01,$00, $01,$FF, $01,$FF ;A5CCF7;
-    db $01,$FF, $00,$FF, $01,$FF, $01,$FF, $00,$FF, $01,$FF, $01,$FE, $00,$FF ;A5CD07;
-    db $01,$FF, $00,$FF, $01,$FF, $00,$FF, $01,$FF, $01,$FF, $00,$FF, $00,$FF ;A5CD17;
-    db $01,$FF, $00,$FF, $00,$FF, $00,$FF, $01,$FF, $00,$FF, $00,$FF, $00,$FF ;A5CD27;
-    db $01,$FF, $00,$FF, $00,$FF, $00,$FF, $00,$FF, $00,$FF, $01,$FF, $00,$FF ;A5CD37;
-    db $00,$FF, $00,$FF, $00,$FF, $00,$FF, $00,$FF, $00,$FF, $00,$FF, $00,$FF ;A5CD47;
-    db $00,$FF, $00,$FE, $00,$FF, $00,$FF, $FF,$FF, $00,$FF, $00,$FF, $FF,$FF ;A5CD57;
-    db $FF,$FF, $00,$FF, $FF,$FF, $FF,$FF, $FF,$FF, $00,$FF, $FF,$00, $FF,$FF ;A5CD67;
-    db $FF,$00, $FF,$FF, $FF,$00, $FF,$00, $FF,$00, $FF,$00, $FF,$00, $FF,$01 ;A5CD77;
-    db $FF,$00, $FF,$01, $FF,$01, $FF,$01, $FF,$00, $FF,$01, $00,$01, $FF,$02 ;A5CD87;
-    db $00,$01, $00,$01, $00,$01, $00,$01, $01,$01, $01,$01, $01,$00, $01,$01 ;A5CD97;
-    db $01,$00, $01,$00, $02,$00, $01,$00, $01,$00, $01,$00, $01,$00, $01,$00 ;A5CDA7;
-    db $01,$FF, $01,$00, $01,$00, $01,$FF, $01,$00, $01,$00, $01,$FF, $01,$00 ;A5CDB7;
-    db $01,$FF, $01,$00, $01,$FF, $01,$FF, $01,$FF, $01,$00, $01,$FF, $01,$00 ;A5CDC7;
-    db $01,$FF, $01,$FF, $01,$00, $01,$FF, $01,$00, $01,$FF, $01,$00, $01,$FF ;A5CDD7;
-    db $01,$00, $00,$FF, $01,$00, $01,$FF, $01,$00, $01,$FF, $01,$00, $01,$FF ;A5CDE7;
-    db $01,$00, $01,$FF, $01,$FF, $01,$00, $01,$FF, $01,$00, $01,$FF, $01,$00 ;A5CDF7;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $CE07: Draygon fight intro dance data ;;;
 DraygonFightIntroDanceData_KeikoLove:
 ; The Keiko love dance
@@ -7030,76 +6562,6 @@ DraygonFightIntroDanceData_KeikoLove_EvirsAlreadyDeleted:
     db $FF,$02, $00,$03, $00,$02, $00,$02, $00,$03, $00,$02, $01,$02, $01,$02 ;A5DF27;
     db $01,$02, $00,$02, $02,$02, $01,$01, $01,$02, $01,$02, $02,$02, $02,$01 ;A5DF37;
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_DraygonFightIntroDanceData_KeikoLove_A5DF47:
-    db $01,$02, $02,$02, $02,$01, $01,$02, $02,$02, $02,$01, $02,$02, $02,$01 ;A5DF47;
-    db $02,$02, $02,$02, $02,$01, $02,$02, $01,$02, $02,$01, $02,$02, $02,$02 ;A5DF57;
-    db $01,$01, $02,$02, $01,$02, $02,$02, $01,$02, $02,$01, $01,$02, $02,$02 ;A5DF67;
-    db $01,$02, $02,$01, $01,$02, $02,$02, $01,$01, $02,$01, $02,$02, $02,$01 ;A5DF77;
-    db $01,$01, $02,$01, $02,$01, $02,$01, $03,$01, $02,$00, $02,$01, $00,$FF ;A5DF87;
-    db $00,$FE, $00,$FF, $01,$FF, $00,$FF, $00,$FE, $00,$FF, $00,$FF, $01,$FE ;A5DF97;
-    db $00,$FF, $00,$FF, $00,$FE, $00,$FF, $01,$FF, $00,$FE, $00,$FF, $00,$FF ;A5DFA7;
-    db $01,$FE, $00,$FF, $00,$FE, $01,$FF, $00,$FF, $00,$FE, $01,$FF, $00,$FE ;A5DFB7;
-    db $00,$FF, $01,$FE, $00,$FF, $01,$FE, $00,$FF, $01,$FE, $00,$FF, $01,$FE ;A5DFC7;
-    db $01,$FE, $00,$FF, $01,$FE, $00,$FF, $01,$FE, $01,$FE, $01,$FE, $01,$FF ;A5DFD7;
-    db $00,$FE, $01,$FE, $01,$FE, $01,$FF, $01,$FE, $01,$FE, $01,$FE, $01,$FE ;A5DFE7;
-    db $01,$FE, $01,$FE, $01,$FF, $02,$FE, $01,$FF, $01,$FF, $01,$FF, $01,$FF ;A5DFF7;
-    db $01,$00, $01,$00, $01,$01, $01,$01, $00,$01, $01,$02, $00,$01, $00,$02 ;A5E007;
-    db $01,$02, $00,$02, $00,$02, $00,$02, $00,$02, $00,$01, $00,$02, $00,$02 ;A5E017;
-    db $00,$01, $00,$02, $FF,$02, $00,$01, $00,$02, $00,$01, $FF,$02, $00,$01 ;A5E027;
-    db $00,$02, $00,$01, $FF,$01, $00,$02, $00,$01, $FF,$02, $00,$01, $00,$01 ;A5E037;
-    db $FF,$02, $00,$01, $00,$02, $00,$01, $00,$02, $00,$01, $00,$02, $00,$01 ;A5E047;
-    db $00,$02, $00,$02, $00,$01, $00,$02, $00,$02, $01,$02, $00,$02, $01,$02 ;A5E057;
-    db $00,$01, $01,$02, $00,$02, $01,$02, $01,$01, $00,$02, $01,$01, $01,$02 ;A5E067;
-    db $01,$01, $00,$01, $01,$01, $01,$01, $01,$00, $01,$01, $01,$00, $01,$00 ;A5E077;
-    db $01,$00, $01,$FF, $01,$FF, $01,$00, $01,$FF, $01,$FE, $00,$FF, $01,$FF ;A5E087;
-    db $01,$FE, $01,$FF, $01,$FE, $00,$FE, $01,$FE, $01,$FE, $01,$FE, $00,$FE ;A5E097;
-    db $01,$FD, $00,$FE, $01,$FE, $01,$FD, $00,$FE, $01,$FD, $00,$FE, $00,$FE ;A5E0A7;
-    db $01,$FD, $00,$FE, $01,$FD, $00,$FE, $00,$FD, $01,$FE, $00,$FE, $00,$FD ;A5E0B7;
-    db $00,$FE, $01,$FE, $00,$FE, $00,$FE, $00,$FE, $01,$FE, $00,$FE, $00,$FF ;A5E0C7;
-    db $00,$FE, $00,$FF, $01,$FF, $00,$FF, $00,$FF, $00,$FF, $01,$FF, $00,$FF ;A5E0D7;
-    db $01,$00, $00,$01, $01,$00, $00,$01, $00,$01, $01,$01, $00,$01, $01,$02 ;A5E0E7;
-    db $00,$01, $01,$02, $00,$01, $00,$02, $01,$02, $00,$02, $00,$01, $01,$02 ;A5E0F7;
-    db $00,$02, $00,$01, $01,$02, $00,$02, $00,$01, $00,$02, $00,$01, $00,$02 ;A5E107;
-    db $01,$01, $00,$02, $00,$01, $00,$02, $00,$01, $00,$02, $00,$01, $01,$02 ;A5E117;
-    db $00,$01, $00,$02, $00,$01, $00,$02, $01,$01, $00,$02, $00,$01, $01,$02 ;A5E127;
-    db $00,$01, $00,$02, $01,$01, $00,$02, $01,$01, $00,$02, $01,$01, $01,$02 ;A5E137;
-    db $00,$01, $01,$01, $01,$02, $01,$01, $01,$01, $01,$01, $01,$01, $01,$01 ;A5E147;
-    db $02,$01, $01,$01, $01,$01, $01,$01, $02,$00, $01,$01, $02,$01, $01,$01 ;A5E157;
-    db $02,$00, $02,$00, $02,$00, $01,$00, $02,$00, $02,$00, $01,$00, $02,$00 ;A5E167;
-    db $02,$00, $02,$00, $01,$00, $02,$00, $01,$00, $02,$00, $02,$00, $01,$FF ;A5E177;
-    db $02,$00, $01,$00, $02,$FF, $01,$00, $02,$FF, $01,$00, $01,$FF, $02,$FF ;A5E187;
-    db $01,$FF, $01,$FF, $01,$FF, $01,$FF, $01,$FF, $02,$FF, $01,$FF, $01,$FF ;A5E197;
-    db $01,$FF, $01,$FE, $01,$FF, $01,$FF, $00,$FE, $01,$FF, $01,$FE, $01,$FF ;A5E1A7;
-    db $01,$FE, $01,$FF, $01,$FE, $01,$FF, $01,$FE, $00,$FF, $01,$FE, $01,$FF ;A5E1B7;
-    db $01,$FE, $01,$FF, $01,$FE, $01,$FF, $01,$FE, $00,$FF, $01,$FE, $01,$FF ;A5E1C7;
-    db $01,$FE, $01,$FF, $00,$FE, $01,$FF, $01,$FE, $00,$FF, $01,$FE, $00,$FF ;A5E1D7;
-    db $01,$FE, $00,$FF, $00,$FE, $01,$FF, $00,$FE, $00,$FE, $00,$FF, $00,$FE ;A5E1E7;
-    db $00,$FF, $00,$FE, $FF,$FE, $00,$FF, $00,$FE, $FF,$FE, $00,$FE, $FF,$FF ;A5E1F7;
-    db $FF,$FE, $FF,$FE, $FF,$FF, $FF,$FE, $FF,$FE, $FF,$FF, $FF,$FE, $FF,$FF ;A5E207;
-    db $FF,$FF, $FF,$FE, $FE,$FF, $FF,$FF, $FF,$FF, $FE,$FF, $FF,$00, $FF,$FF ;A5E217;
-    db $FE,$FF, $FF,$00, $FF,$00, $FE,$00, $FF,$00, $FF,$01, $FF,$00, $FE,$01 ;A5E227;
-    db $FF,$00, $FF,$01, $FF,$01, $FF,$01, $FE,$01, $FF,$02, $FF,$01, $FF,$02 ;A5E237;
-    db $FF,$01, $FF,$02, $FF,$01, $FF,$02, $00,$02, $FF,$01, $FF,$02, $FF,$02 ;A5E247;
-    db $00,$02, $FF,$02, $FF,$02, $00,$01, $FF,$02, $00,$02, $00,$02, $FF,$01 ;A5E257;
-    db $00,$02, $00,$02, $00,$01, $00,$02, $00,$02, $00,$01, $00,$02, $00,$01 ;A5E267;
-    db $00,$02, $00,$02, $00,$01, $00,$02, $01,$01, $00,$02, $00,$01, $01,$02 ;A5E277;
-    db $00,$02, $01,$01, $00,$02, $01,$01, $00,$02, $01,$01, $00,$02, $01,$01 ;A5E287;
-    db $00,$02, $01,$01, $01,$02, $00,$02, $01,$01, $01,$02, $01,$01, $00,$02 ;A5E297;
-    db $01,$01, $01,$02, $01,$01, $01,$02, $01,$01, $01,$01, $01,$02, $01,$01 ;A5E2A7;
-    db $01,$01, $01,$01, $01,$01, $01,$01, $01,$01, $02,$01, $01,$01, $01,$01 ;A5E2B7;
-    db $01,$01, $02,$00, $01,$01, $02,$01, $01,$00, $02,$01, $01,$00, $02,$00 ;A5E2C7;
-    db $01,$01, $02,$00, $01,$00, $02,$00, $02,$00, $01,$00, $02,$00, $02,$00 ;A5E2D7;
-    db $02,$00, $01,$00, $02,$00, $02,$00, $01,$00, $02,$00, $02,$00, $01,$FF ;A5E2E7;
-    db $02,$00, $02,$00, $02,$00, $01,$00, $02,$00, $02,$FF, $01,$00, $02,$00 ;A5E2F7;
-    db $01,$00, $02,$00, $02,$FF, $01,$00, $02,$00, $02,$00, $01,$00, $02,$00 ;A5E307;
-    db $01,$FF, $02,$00, $01,$00, $02,$00, $02,$00, $01,$00, $02,$00, $01,$FF ;A5E317;
-    db $02,$00, $02,$00, $01,$00, $02,$00, $01,$00, $02,$00, $02,$00, $01,$00 ;A5E327;
-    db $02,$00, $01,$00, $02,$00, $02,$00, $01,$00, $02,$00, $01,$00, $02,$00 ;A5E337;
-    db $02,$00, $01,$00, $02,$00, $02,$00, $01,$00, $02,$00, $01,$00, $02,$00 ;A5E347;
-    db $02,$00                                                           ;A5E357;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 
 ;;; $E359: Palette - enemy $DF3F/$DF7F (Spore Spawn) ;;;
 Palette_SporeSpawn:
@@ -7379,23 +6841,6 @@ InstList_SporeSpawn_DeathSequence_2:
     dw Instruction_Common_Sleep                                          ;A5E80F;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $E811: Unused. Instruction - Spore Spawn max X radius = [[Y]], angle delta = [[Y] + 2], angle = [[Y] + 4] ;;;
-UNUSED_Instruction_SporeSpawn_SetMaxXRadiusAndAngles_A5E811:
-    LDA.W $0000,Y                                                        ;A5E811;
-    STA.L SporeSpawn.maxXRadius                                          ;A5E814;
-    LDA.W $0002,Y                                                        ;A5E818;
-    STA.L SporeSpawn.angleDelta                                          ;A5E81B;
-    LDA.W $0004,Y                                                        ;A5E81F;
-    STA.L SporeSpawn.angle                                               ;A5E822;
-    TYA                                                                  ;A5E826;
-    CLC                                                                  ;A5E827;
-    ADC.W #$0006                                                         ;A5E828;
-    TAY                                                                  ;A5E82B;
-    RTL                                                                  ;A5E82C;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $E82D: Instruction - Spore Spawn max X radius = [[Y]], angle delta = [[Y] + 2] ;;;
 Instruction_SporeSpawn_SetMaxXRadiusAndAngleDelta:
     LDA.W $0000,Y                                                        ;A5E82D;
@@ -7407,48 +6852,6 @@ Instruction_SporeSpawn_SetMaxXRadiusAndAngleDelta:
     INY                                                                  ;A5E83D;
     INY                                                                  ;A5E83E;
     RTL                                                                  ;A5E83F;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $E840: Unused. Instruction - Spore Spawn max X radius = [[Y]] ;;;
-UNUSED_Instruction_SporeSpawn_MaxXRadiusInY_A5E840:
-    LDA.W $0000,Y                                                        ;A5E840;
-    STA.L SporeSpawn.maxXRadius                                          ;A5E843;
-    INY                                                                  ;A5E847;
-    INY                                                                  ;A5E848;
-    RTL                                                                  ;A5E849;
-
-
-;;; $E84A: Unused. Instruction - Spore Spawn angle delta = [[Y]] ;;;
-UNUSED_Instruction_SporeSpawn_AngleDeltaInY_A5E84A:
-    LDA.W $0000,Y                                                        ;A5E84A;
-    STA.L SporeSpawn.angleDelta                                          ;A5E84D;
-    INY                                                                  ;A5E851;
-    INY                                                                  ;A5E852;
-    RTL                                                                  ;A5E853;
-
-
-;;; $E854: Unused. Instruction - Spore Spawn max X radius += [[Y]] ;;;
-UNUSED_Instruction_SporeSpawn_MaxXRadiusPlusY_A5E854:
-    LDA.L SporeSpawn.maxXRadius                                          ;A5E854;
-    CLC                                                                  ;A5E858;
-    ADC.W $0000,Y                                                        ;A5E859;
-    STA.L SporeSpawn.maxXRadius                                          ;A5E85C;
-    INY                                                                  ;A5E860;
-    INY                                                                  ;A5E861;
-    RTL                                                                  ;A5E862;
-
-
-;;; $E863: Unused. Instruction - Spore Spawn angle delta += [[Y]] ;;;
-UNUSED_Instruction_SporeSpawn_AngleDeltaPlusY_A5E863:
-    LDA.L SporeSpawn.angleDelta                                          ;A5E863;
-    CLC                                                                  ;A5E867;
-    ADC.W $0000,Y                                                        ;A5E868;
-    STA.L SporeSpawn.angleDelta                                          ;A5E86B;
-    INY                                                                  ;A5E86F;
-    INY                                                                  ;A5E870;
-    RTL                                                                  ;A5E871;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $E872: Instruction - spore generation flag = [[Y]] ;;;
@@ -8336,50 +7739,6 @@ ExtendedSpritemap_SporeSpawn_Closed_Closing_Opening_7:
     dw $0000,$0000                                                       ;A5EEEF;
     dw Spritemap_SporeSpawn_D                                            ;A5EEF3;
     dw Hitbox_SporeSpawn_D                                               ;A5EEF5;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_ExtendedSpritemap_SporeSpawn_A5EEF7:
-    dw $0001                                                             ;A5EEF7;
-    dw $0000,$0000
-    dw Spritemap_SporeSpawn_F                                            ;A5EEFD;
-    dw Hitbox_SporeSpawn_F                                               ;A5EEFF;
-
-UNUSED_ExtendedSpritemap_SporeSpawn_A5EF01:
-    dw $0001                                                             ;A5EF01;
-    dw $0000,$0000
-    dw Spritemap_SporeSpawn_10                                           ;A5EF07;
-    dw Hitbox_SporeSpawn_10                                              ;A5EF09;
-
-UNUSED_ExtendedSpritemap_SporeSpawn_A5EF0B:
-    dw $0001                                                             ;A5EF0B;
-    dw $0000,$0000
-    dw Spritemap_SporeSpawn_11                                           ;A5EF11;
-    dw Hitbox_SporeSpawn_11                                              ;A5EF13;
-
-UNUSED_ExtendedSpritemap_SporeSpawn_A5EF15:
-    dw $0001                                                             ;A5EF15;
-    dw $0000,$0000
-    dw Spritemap_SporeSpawn_12                                           ;A5EF1B;
-    dw Hitbox_SporeSpawn_12                                              ;A5EF1D;
-
-UNUSED_ExtendedSpritemap_SporeSpawn_A5EF1F:
-    dw $0001                                                             ;A5EF1F;
-    dw $0000,$0000
-    dw Spritemap_SporeSpawn_13                                           ;A5EF25;
-    dw Hitbox_SporeSpawn_13                                              ;A5EF27;
-
-UNUSED_ExtendedSpritemap_SporeSpawn_A5EF29:
-    dw $0001                                                             ;A5EF29;
-    dw $0000,$0000
-    dw Spritemap_SporeSpawn_14                                           ;A5EF2F;
-    dw Hitbox_SporeSpawn_13                                              ;A5EF31;
-
-UNUSED_ExtendedSpritemap_SporeSpawn_A5EF33:
-    dw $0001                                                             ;A5EF33;
-    dw $0000,$0000
-    dw Spritemap_SporeSpawn_E                                            ;A5EF39;
-    dw Hitbox_SporeSpawn_E                                               ;A5EF3B;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 ExtendedSpritemap_SporeSpawn_FullyOpen_0:
     dw $0002                                                             ;A5EF3D;

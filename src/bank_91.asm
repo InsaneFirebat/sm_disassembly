@@ -633,217 +633,6 @@ Instruction_DemoInputObject_TimerInY:
     INY                                                                  ;918462;
     RTS                                                                  ;918463;
 
-if !DEBUG
-;;; $8464: Record demo input frame ;;;
-RecordDemoInputFrame:
-; Controller 2 Y enables recording
-    PHP                                                                  ;918464;
-    PHB                                                                  ;918465;
-    PHK                                                                  ;918466;
-    PLB                                                                  ;918467;
-    REP #$30                                                             ;918468;
-    LDA.W DemoInput_RecordedDuration                                     ;91846A;
-    AND.W #$7FFF                                                         ;91846D;
-    STA.W Temp_DemoRecorderFrameCounter                                  ;918470;
-    LDA.W #$00E0                                                         ;918473;
-    STA.W Temp_DemoRecorderFrameCounterXPosition                         ;918476;
-    LDA.W #$0038                                                         ;918479;
-    STA.W Temp_DemoRecorderFrameCounterYPosition                         ;91847C;
-    JSR.W Draw_RecordedDemoDuration                                      ;91847F;
-    LDA.W DemoInput_RecordedDuration                                     ;918482;
-    BMI .return                                                          ;918485;
-    BNE .record                                                          ;918487;
-    LDA.B DP_Controller2New                                              ;918489;
-    BIT.W #$4000                                                         ;91848B;
-    BEQ .return                                                          ;91848E;
-
-  .record:
-    LDA.W DemoInput_RecordedDuration                                     ;918490;
-    ASL                                                                  ;918493;
-    ASL                                                                  ;918494;
-    STA.B DP_Temp12                                                      ;918495;
-    ASL                                                                  ;918497;
-    ADC.B DP_Temp12                                                      ;918498;
-    TAX                                                                  ;91849A;
-    LDA.B DP_Controller1Input                                            ;91849B;
-    STA.L DemoRecorder_input,X                                           ;91849D;
-    LDA.B DP_Controller1New                                              ;9184A1;
-    STA.L DemoRecorder_new,X                                             ;9184A3;
-    LDA.B Layer1XPosition                                                ;9184A7;
-    STA.L DemoRecorder_layer1X,X                                         ;9184AA;
-    LDA.B Layer1YPosition                                                ;9184AE;
-    STA.L DemoRecorder_layer1Y,X                                         ;9184B1;
-    LDA.B SamusXPosition                                                 ;9184B5;
-    STA.L DemoRecorder_SamusX,X                                          ;9184B8;
-    LDA.B SamusYPosition                                                 ;9184BC;
-    STA.L DemoRecorder_SamusY,X                                          ;9184BF;
-    LDA.W DemoInput_RecordedDuration                                     ;9184C3;
-    INC                                                                  ;9184C6;
-    CMP.W #$0A00                                                         ;9184C7;
-    BNE .cappedAtA00                                                     ;9184CA;
-    LDA.W #$0000                                                         ;9184CC;
-
-  .cappedAtA00:
-    STA.W DemoInput_RecordedDuration                                     ;9184CF;
-
-  .return:
-    PLB                                                                  ;9184D2;
-    PLP                                                                  ;9184D3;
-    RTL                                                                  ;9184D4;
-
-
-;;; $84D5: Pause/terminate/reset demo recorder ;;;
-Pause_Terminate_Reset_DemoRecorder:
-; Controller 2 X pauses/terminates demo recorder
-; Controller 2 A resets demo recorder
-    PHP                                                                  ;9184D5;
-    PHB                                                                  ;9184D6;
-    PHK                                                                  ;9184D7;
-    PLB                                                                  ;9184D8;
-    REP #$30                                                             ;9184D9;
-    LDA.B DP_Controller2New                                              ;9184DB;
-    BIT.W #$0040                                                         ;9184DD;
-    BEQ .checkA                                                          ;9184E0;
-    LDA.W DemoInput_RecordedDuration                                     ;9184E2;
-    ASL                                                                  ;9184E5;
-    ASL                                                                  ;9184E6;
-    STA.B DP_Temp12                                                      ;9184E7;
-    ASL                                                                  ;9184E9;
-    ADC.B DP_Temp12                                                      ;9184EA;
-    TAX                                                                  ;9184EC;
-    LDA.W #$FFFF                                                         ;9184ED;
-    STA.L DemoRecorder_input,X                                           ;9184F0;
-    STA.L DemoRecorder_new,X                                             ;9184F4;
-    STA.L DemoRecorder_layer1X,X                                         ;9184F8;
-    STA.L DemoRecorder_layer1Y,X                                         ;9184FC;
-    STA.L DemoRecorder_SamusX,X                                          ;918500;
-    STA.L DemoRecorder_SamusY,X                                          ;918504;
-    LDA.W DoorBTS                                                        ;918508;
-    STA.L DemoRecorder_doorBTS                                           ;91850B;
-    LDA.W AreaIndex                                                      ;91850F;
-    STA.L DemoRecorder_area                                              ;918512;
-    LDA.W DemoInput_RecordedDuration                                     ;918516;
-    ORA.W #$8000                                                         ;918519;
-    STA.W DemoInput_RecordedDuration                                     ;91851C;
-
-  .checkA:
-    LDA.B DP_Controller2New                                              ;91851F;
-    BIT.W #$0080                                                         ;918521;
-    BEQ .return                                                          ;918524;
-    LDA.W #$0000                                                         ;918526;
-    STA.W DemoInput_RecordedDuration                                     ;918529;
-
-  .return:
-    PLB                                                                  ;91852C;
-    PLP                                                                  ;91852D;
-    RTL                                                                  ;91852E;
-
-
-;;; $852F: Draw recorded demo duration ;;;
-Draw_RecordedDemoDuration:
-;; Parameters:
-;;     Temp_DemoRecorderFrameCounterXPosition: X position
-;;     Temp_DemoRecorderFrameCounterYPosition: Y position
-;;     Temp_DemoRecorderFrameCounter: Recorded demo duration
-    LDA.W Temp_DemoRecorderFrameCounterXPosition                         ;91852F;
-    CLC                                                                  ;918532;
-    ADC.W #$0000                                                         ;918533;
-    STA.B DP_Temp14                                                      ;918536;
-    LDA.W Temp_DemoRecorderFrameCounterYPosition                         ;918538;
-    CLC                                                                  ;91853B;
-    ADC.W #$0000                                                         ;91853C;
-    STA.B DP_Temp12                                                      ;91853F;
-    LDA.W #$0A00                                                         ;918541;
-    STA.B DP_Temp26                                                      ;918544;
-    LDA.W Temp_DemoRecorderFrameCounter                                  ;918546;
-    AND.W #$F000                                                         ;918549;
-    XBA                                                                  ;91854C;
-    LSR                                                                  ;91854D;
-    LSR                                                                  ;91854E;
-    LSR                                                                  ;91854F;
-    LSR                                                                  ;918550;
-    CLC                                                                  ;918551;
-    ADC.W #$0004                                                         ;918552;
-    JSL.L Add_Debug_Spritemap_to_OAM                                     ;918555;
-    LDA.W Temp_DemoRecorderFrameCounterXPosition                         ;918559;
-    CLC                                                                  ;91855C;
-    ADC.W #$0008                                                         ;91855D;
-    STA.B DP_Temp14                                                      ;918560;
-    LDA.W Temp_DemoRecorderFrameCounterYPosition                         ;918562;
-    CLC                                                                  ;918565;
-    ADC.W #$0000                                                         ;918566;
-    STA.B DP_Temp12                                                      ;918569;
-    LDA.W #$0A00                                                         ;91856B;
-    STA.B DP_Temp26                                                      ;91856E;
-    LDA.W Temp_DemoRecorderFrameCounter                                  ;918570;
-    AND.W #$0F00                                                         ;918573;
-    XBA                                                                  ;918576;
-    CLC                                                                  ;918577;
-    ADC.W #$0004                                                         ;918578;
-    JSL.L Add_Debug_Spritemap_to_OAM                                     ;91857B;
-    LDA.W Temp_DemoRecorderFrameCounterXPosition                         ;91857F;
-    CLC                                                                  ;918582;
-    ADC.W #$0010                                                         ;918583;
-    STA.B DP_Temp14                                                      ;918586;
-    LDA.W Temp_DemoRecorderFrameCounterYPosition                         ;918588;
-    CLC                                                                  ;91858B;
-    ADC.W #$0000                                                         ;91858C;
-    STA.B DP_Temp12                                                      ;91858F;
-    LDA.W #$0A00                                                         ;918591;
-    STA.B DP_Temp26                                                      ;918594;
-    LDA.W Temp_DemoRecorderFrameCounter                                  ;918596;
-    AND.W #$00F0                                                         ;918599;
-    LSR                                                                  ;91859C;
-    LSR                                                                  ;91859D;
-    LSR                                                                  ;91859E;
-    LSR                                                                  ;91859F;
-    CLC                                                                  ;9185A0;
-    ADC.W #$0004                                                         ;9185A1;
-    JSL.L Add_Debug_Spritemap_to_OAM                                     ;9185A4;
-    LDA.W Temp_DemoRecorderFrameCounterXPosition                         ;9185A8;
-    CLC                                                                  ;9185AB;
-    ADC.W #$0018                                                         ;9185AC;
-    STA.B DP_Temp14                                                      ;9185AF;
-    LDA.W #$0A00                                                         ;9185B1;
-    STA.B DP_Temp26                                                      ;9185B4;
-    LDA.W Temp_DemoRecorderFrameCounterYPosition                         ;9185B6;
-    CLC                                                                  ;9185B9;
-    ADC.W #$0000                                                         ;9185BA;
-    STA.B DP_Temp12                                                      ;9185BD;
-    LDA.W Temp_DemoRecorderFrameCounter                                  ;9185BF;
-    AND.W #$000F                                                         ;9185C2;
-    CLC                                                                  ;9185C5;
-    ADC.W #$0004                                                         ;9185C6;
-    JSL.L Add_Debug_Spritemap_to_OAM                                     ;9185C9;
-    RTS                                                                  ;9185CD;
-endif
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $85CE: Instruction list - demo input - demo input object $8778 ;;;
-UNUSED_InstList_DemoInput_JumpLeft_GiveControlBack_9185CE:               ;9185CE;
-; For UNUSED_DemoInputObject_Intro_JumpLeft_GiveControlBack_918778
-    dw $001E,$0000,$0000 ;
-    dw $0001,$0200,$0200 ;       <
-    dw $001A,$0200,$0000 ;       <
-    dw $0001,$0280,$0080 ;       < A
-    dw $0034,$0280,$0000 ;       < A
-    dw $001E,$0200,$0000 ;       <
-    dw $0049,$0000,$0000
-    dw UNUSED_Inst_EndDemoInput_GiveControlBackToPlayer_9185FC
-    dw Instruction_DemoInputObject_Delete
-
-
-;;; $85FC: Instruction - end demo input and give control back to player ;;;
-UNUSED_Inst_EndDemoInput_GiveControlBackToPlayer_9185FC:
-    LDA.W #SamusCurrentStateHandler_Normal                               ;9185FC;
-    STA.W CurrentStateHandler                                            ;9185FF;
-    LDA.W #SamusNewStateHandler_Normal                                   ;918602;
-    STA.W NewStateHandler                                                ;918605;
-    JSL.L Disable_DemoInput                                              ;918608;
-    RTS                                                                  ;91860C;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 
 ;;; $860D: Instruction list - demo input - baby metroid discovery - running left ;;;
 InstList_DemoInput_BabyMetroidDiscovery_RunningLeft_0:                   ;91860D;
@@ -930,52 +719,6 @@ InstList_DemoInput_OldMotherBrainFight:                                  ;918694
     dw $0046,$0000,$0000 ;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $86B8: Instruction list - demo input - demo input object $878A ;;;
-UNUSED_InstList_DemoInput_OldMotherBrainFight_9186B8:                    ;9186B8;
-    dw $0014,$0000,$0000 ;
-    dw $0001,$0200,$0200 ;       <
-    dw $0007,$0200,$0000 ;       <
-    dw $0001,$0280,$0080 ;       < A
-    dw $0007,$0280,$0000 ;       < A
-    dw $0004,$0200,$0000 ;       <
-    dw $003C,$0000,$0000 ;
-    dw $0001,$0040,$0040 ;          X
-    dw $0028,$0040,$0000 ;          X
-    dw $0001,$0040,$0040 ;          X
-    dw $0013,$0040,$0000 ;          X
-    dw Instruction_EndDemoInputWithSamusFacingLeft
-    dw Instruction_DemoInputObject_Delete
-
-
-;;; $86FE: Unused. End demo input with Samus facing left ;;;
-UNUSED_Instruction_EndDemoInputWithSamusFacingLeft_9186FE:
-; Clone of Instruction_EndDemoInputWithSamusFacingLeft
-    PHX                                                                  ;9186FE;
-    PHY                                                                  ;9186FF;
-    LDA.W #SamusCurrentStateHandler_SamusIsLocked                        ;918700;
-    STA.W CurrentStateHandler                                            ;918703;
-    LDA.W #$0002                                                         ;918706;
-    STA.W Pose                                                           ;918709;
-    JSL.L InitializeSamusPose_1                                          ;91870C;
-    JSL.L Set_Samus_AnimationFrame_if_PoseChanged                        ;918710;
-    LDA.W PreviousPose                                                   ;918714;
-    STA.W LastDifferentPose                                              ;918717;
-    LDA.W PreviousPoseXDirection                                         ;91871A;
-    STA.W LastDifferentPoseXDirection                                    ;91871D;
-    LDA.W Pose                                                           ;918720;
-    STA.W PreviousPose                                                   ;918723;
-    LDA.W PoseXDirection                                                 ;918726;
-    STA.W PreviousPoseXDirection                                         ;918729;
-    JSL.L Disable_DemoInput                                              ;91872C;
-    LDA.W #RTS_90E90E                                                    ;918730;
-    STA.W PoseInputHandler                                               ;918733;
-    PLY                                                                  ;918736;
-    PLX                                                                  ;918737;
-    RTS                                                                  ;918738;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $8739: Instruction - end demo input with Samus facing left ;;;
 Instruction_EndDemoInputWithSamusFacingLeft:
     PHX                                                                  ;918739;
@@ -1002,26 +745,12 @@ Instruction_EndDemoInputWithSamusFacingLeft:
     RTS                                                                  ;918773;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $8774: Unused. Instruction list - demo input - delete ;;;
-UNUSED_InstList_DemoInput_Delete_918774:
-    dw Instruction_DemoInputObject_Delete                                ;918774;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $8776: Instruction list - demo input - delete ;;;
 InstList_DemoInput_Delete:
     dw Instruction_DemoInputObject_Delete                                ;918776;
 
 
 ;;; $8778: Demo input objects - intro ;;;
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_DemoInputObject_Intro_JumpLeft_GiveControlBack_918778:
-    dw RTS_9183BF                                                        ;918778; Initialisation (RTS)
-    dw RTS_9183BF                                                        ;91877A; Pre-instruction
-    dw UNUSED_InstList_DemoInput_JumpLeft_GiveControlBack_9185CE         ;91877C; Pointer to input instruction list
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 DemoInputObjects_Intro_BabyMetroidDiscovery:
     dw RTS_9183BF                                                        ;91877E; Initialisation (RTS)
     dw PreInstruction_DemoInput_BabyMetroidDiscovery_RunningLeft         ;918780; Pre-instruction
@@ -1031,13 +760,6 @@ DemoInputObjects_Intro_OldMotherBrainFight:
     dw RTS_9183BF                                                        ;918784; Initialisation (RTS)
     dw RTS_9183BF                                                        ;918786; Pre-instruction
     dw InstList_DemoInput_OldMotherBrainFight                            ;918788; Pointer to input instruction list
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_DemoInputObjects_Intro_OldMotherBrainFight_91878A:
-    dw RTS_9183BF                                                        ;91878A; Initialisation (RTS)
-    dw RTS_9183BF                                                        ;91878C; Pre-instruction
-    dw UNUSED_InstList_DemoInput_OldMotherBrainFight_9186B8              ;91878E; Pointer to input instruction list
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $8790: Load demo data ;;;
@@ -1999,39 +1721,6 @@ InstList_DemoInput_BrinstarDiagonalRoom:                                 ;919560
     dw Instruction_DemoInputObject_Delete
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $95BC: Instruction list - demo input - unused ;;;
-UNUSED_InstList_DemoInput_9195BC:                                        ;9195BC;
-    dw regional($0029, $0021),$0000,$0000 ;
-    dw $0001,                 $0200,$0200 ;       <
-    dw regional($0018, $0013),$0200,$0000 ;       <
-    dw regional($0011, $000E),$0000,$0000 ;
-    dw $0001,                 $0080,$0080 ;         A
-    dw regional($0018, $0013),$0080,$0000 ;         A
-    dw $0001,                 $0280,$0200 ;       < A
-    dw regional($0005, $0004),$0280,$0000 ;       < A
-    dw regional($0010, $000D),$0200,$0000 ;       <
-    dw regional($0020, $001A),$0000,$0000 ;
-    dw $0001,                 $0080,$0080 ;         A
-    dw regional($0009, $0007),$0080,$0000 ;         A
-    dw $0001,                 $0280,$0200 ;       < A
-    dw regional($0015, $0011),$0280,$0000 ;       < A
-    dw regional($0016, $0012),$0200,$0000 ;       <
-    dw regional($0014, $0010),$0000,$0000 ;
-    dw $0001,                 $0100,$0100 ;        >
-    dw regional($0007, $0006),$0100,$0000 ;        >
-    dw $0001,                 $0180,$0080 ;        >A
-    dw regional($0018, $0013),$0180,$0000 ;        >A
-    dw regional($001D, $0017),$0100,$0000 ;        >
-    dw regional($0010, $000D),$0000,$0000 ;
-    dw $0001,                 $0400,$0400 ;      v
-    dw regional($0005, $0004),$0400,$0000 ;      v
-    dw $0001,                 $0600,$0200 ;      v<
-    dw regional($0096, $0078),$0000,$0000 ;
-    dw Instruction_DemoInputObject_Delete
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $965A: Instruction list - demo input - pre Spore Spawn hall ;;;
 InstList_DemoInput_PreSporeSpawnHall:                                    ;91965A;
 if !PAL == 0
@@ -2559,13 +2248,6 @@ DemoInputObjects_Title_BrinstarDiagonalRoom:
     dw RTS_9183BF                                                        ;919EA0; Initialisation (RTS)
     dw PreInstruction_DemoInput_Normal                                   ;919EA2; Pre-instruction (ends demo controller input)
     dw InstList_DemoInput_BrinstarDiagonalRoom                           ;919EA4; Pointer to input instruction list
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_DemoInputObjects_Title_919EA6:
-    dw RTS_9183BF                                                        ;919EA6; Initialisation (RTS)
-    dw PreInstruction_DemoInput_Normal                                   ;919EA8; Pre-instruction (ends demo controller input)
-    dw UNUSED_InstList_DemoInput_9195BC                                  ;919EAA; Pointer to input instruction list
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 DemoInputObjects_Title_PreSporeSpawnHall:
     dw RTS_9183BF                                                        ;919EAC; Initialisation (RTS)
@@ -3444,45 +3126,9 @@ UNUSED_TransitionTable_47_91A7F4:
     dw $FFFF                                                             ;91A7F4;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $A7F6: Unused ;;;
-UNUSED_TransitionTable_PossiblyPartOfAbove_91A7F6:                       ;91A7F6;
-; Possibly no-op'd sections of the above?
-    dw $0080,$0000,$004B
-    dw $0400,$0000,$0035
-    dw $0000,$0210,$0078
-    dw $0000,$0220,$0076
-    dw $0000,$0240,$004A
-    dw $0000,$0100,$0009
-    dw $0000,$0200,$0025
-    dw $0000,$0800,$0003
-    dw $0000,$0010,$0005
-    dw $0000,$0020,$0007
-    dw $FFFF
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $A834: Transition table - entry 48 ;;;
 UNUSED_TransitionTable_48_91A834:
     dw $FFFF                                                             ;91A834;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $A836: Unused ;;;
-UNUSED_TransitionTable_PossiblyPartOfAbove_91A836:                       ;91A836;
-; Possibly no-op'd sections of the above?
-    dw $0080,$0000,$004C
-    dw $0400,$0000,$0036
-    dw $0000,$0120,$0077
-    dw $0000,$0110,$0075
-    dw $0000,$0140,$0049
-    dw $0000,$0200,$000A
-    dw $0000,$0100,$0026
-    dw $0000,$0800,$0004
-    dw $0000,$0010,$0006
-    dw $0000,$0020,$0008
-    dw $FFFF
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $A874: Transition table - entry 49/75/77 ;;;
@@ -3531,25 +3177,6 @@ TransitionTable_54_FacingLeft_Knockback:                                 ;91A8EC
 ; 54: Facing left - knockback
     dw $0000,$0180,$004F
     dw $FFFF
-
-
-;;; $A8F4: Unused ;;;
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_TransitionTable_91A8F4:
-    dw $FFFF                                                             ;91A8F4;
-
-
-UNUSED_TransitionTable_91A8F6:
-    dw $FFFF                                                             ;91A8F6;
-
-
-UNUSED_TransitionTable_91A8F8:
-    dw $FFFF                                                             ;91A8F8;
-
-
-UNUSED_TransitionTable_91A8FA:
-    dw $FFFF                                                             ;91A8FA;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $A8FC: Transition table - entry 5B ;;;
@@ -4403,17 +4030,6 @@ else
     db $02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$FF
 endif
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_AnimationDelays_91B215:                                           ;91B215;
-; Unused. Not a subanimation of the above, just looks like a slower version
-if !PAL == 0
-    db $04,$04,$04,$04,$04,$04,$03,$04,$04,$03,$FF
-else
-    db $03,$03,$03,$03,$03,$03,$03,$03,$03,$03,$FF
-endif
-    db $0A,$FF
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 AnimationDelays_03_04_85_86:                                             ;91B222;
 ; 3: Facing right - aiming up
 ; 4: Facing left-   aiming up
@@ -4727,14 +4343,6 @@ AnimationDelays_53_54:                                                   ;91B36A
 ; 54h: Facing left-   knockback
     db regional($02, $01)
     db $10, $FE,$01
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_AnimationDelays_91B36E:                                           ;91B36E;
-; Unused. Not a subanimation of the above
-    db $06,$06,$06,$08,$FF
-    db $08,$08,$FF
-    db $0A,$FF
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 AnimationDelays_Various_91B378:                                          ;91B378;
 ; 1Dh: Facing right - morph ball - no springball - on ground
@@ -11405,40 +11013,6 @@ RTS_91DD31:
     RTS                                                                  ;91DD31;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $DD32: Unused ;;;
-UNUSED_91DD32:                                                           ;91DD32;
-; 12 bytes of 1, 14 bytes of 0
-    db $01,$00,$00
-    db $01,$00,$00
-    db $01,$00,$00
-    db $01
-    db $01,$00
-    db $01,$00
-    db $01,$00
-    db $01,$00
-    db $01,$00
-    db $01,$00
-    db $01,$00
-    db $01,$00
-
-
-;;; $DD4C: Unused. Set Samus palette to $9B:9500 ;;;
-UNUSED_SetSamusPaletteToSolidWhite_91DD4C:
-; For testing perhaps, palette is solid white
-    PHP                                                                  ;91DD4C;
-    PHB                                                                  ;91DD4D;
-    PHK                                                                  ;91DD4E;
-    PLB                                                                  ;91DD4F;
-    REP #$30                                                             ;91DD50;
-    LDX.W #UNUSED_SamusPalettes_9B9500                                   ;91DD52;
-    JSR.W Load20BytesOfSamusPaletteInX                                   ;91DD55;
-    PLB                                                                  ;91DD58;
-    PLP                                                                  ;91DD59;
-    RTL                                                                  ;91DD5A;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $DD5B: Samus palette = 20h bytes from $9B:[X] ;;;
 Load20BytesOfSamusPaletteInX:
 ;; Parameters:
@@ -11746,10 +11320,6 @@ InitializeSamus:
     PHK                                                                  ;91E00F;
     PLB                                                                  ;91E010;
     REP #$30                                                             ;91E011;
-if !DEBUG
-    LDA.W DebugInvincibility                                             ;91E013;
-    STA.B DP_Temp12                                                      ;91E016;
-endif
     LDX.W #EndSamusRAM-1                                                 ;91E018;
     SEP #$20                                                             ;91E01B;
     LDA.B #$00                                                           ;91E01D;
@@ -11793,10 +11363,6 @@ endif
     STZ.W SuperSpecialProspectivePoseChangeCommand                       ;91E07D;
     LDA.W #SamusPoseInputHandler_Normal                                  ;91E080;
     STA.W PoseInputHandler                                               ;91E083;
-if !DEBUG
-    LDA.B DP_Temp12                                                      ;91E086;
-    STA.W DebugInvincibility                                             ;91E088;
-endif
 
   .demo:
     LDA.W #$FFFF                                                         ;91E08B;
@@ -11816,10 +11382,6 @@ endif
 
 +   LDA.W #SamusMovementHandler_Normal                                   ;91E0AD;
     STA.W MovementHandler                                                ;91E0B0;
-if !DEBUG
-    LDA.W #RTS_90F534                                                    ;91E0B3;
-    STA.W DebugCommandPointer                                            ;91E0B6;
-endif
     LDA.W #$0032                                                         ;91E0B9;
     STA.W PreviousEnergyHurtCheck                                        ;91E0BC;
     LDA.W #$0601                                                         ;91E0BF;
@@ -11874,9 +11436,6 @@ endif
     STZ.W SamusInvincibilityTimer                                        ;91E14D;
     STZ.W SamusKnockbackTimer                                            ;91E150;
     STZ.W HurtFlashCounter                                               ;91E153;
-if !DEBUG
-    STZ.W DebugInvincibility                                             ;91E156;
-endif
     LDA.W GameState                                                      ;91E159;
     CMP.W #$0028                                                         ;91E15C;
     BNE .notDemo                                                         ;91E15F;
@@ -12139,80 +11698,6 @@ Set_NonXray_SamusPose:
     TSB.W AnimatedTilesObject_Enable
     TSB.W PaletteFXObject_Enable
     RTL                                                                  ;91E354;
-
-
-if !DEBUG
-;;; $E355: Debug. Handle debug mode select + L + B ;;;
-Debug_HandleSelectL_B:
-; Give ammo, all items, switch to next beam configuration, toggle Samus tile viewer
-    PHP                                                                  ;91E355;
-    REP #$30                                                             ;91E356;
-    LDA.W Debug_InputL                                                   ;91E358;
-    AND.W #$8000                                                         ;91E35B;
-    BNE .checkTileViewer                                                 ;91E35E;
-    JMP.W .handledInput                                                  ;91E360;
-
-  .checkTileViewer:
-    LDA.W DebugSamusTileViewerFlag                                       ;91E363;
-    BEQ .toggleOn                                                        ;91E366;
-    JMP.W .toggleOff                                                     ;91E368;
-
-  .toggleOn:
-    LDA.W #$0001                                                         ;91E36B;
-    STA.W DebugSamusTileViewerFlag                                       ;91E36E;
-    LDA.W EquippedBeams                                                  ;91E371;
-    INC                                                                  ;91E374;
-    STA.W EquippedBeams                                                  ;91E375;
-    AND.W #$0FFF                                                         ;91E378;
-    CMP.W #$000C                                                         ;91E37B;
-    BMI +                                                                ;91E37E;
-    LDA.W EquippedBeams                                                  ;91E380;
-    AND.W #$F000                                                         ;91E383;
-    STA.W EquippedBeams                                                  ;91E386;
-
-+   JSL.L Update_Beam_Tiles_and_Palette                                  ;91E389;
-    LDA.W #$F33F                                                         ;91E38D; Same extra bit (10) as GT Code
-    STA.W CollectedItems                                                 ;91E390;
-    STA.W EquippedItems                                                  ;91E393;
-    LDA.W #$0384                                                         ;91E396;
-    STA.W MaxMissiles                                                    ;91E399;
-    STA.W Missiles                                                       ;91E39C;
-    LDA.W #$005A                                                         ;91E39F;
-    STA.W MaxSuperMissiles                                               ;91E3A2;
-    STA.W SuperMissiles                                                  ;91E3A5;
-    LDA.W #$005A                                                         ;91E3A8;
-    STA.W MaxPowerBombs                                                  ;91E3AB;
-    STA.W PowerBombs                                                     ;91E3AE;
-    LDA.W #$044B                                                         ;91E3B1;
-    STA.W MaxEnergy                                                      ;91E3B4;
-    STA.W Energy                                                         ;91E3B7;
-    LDA.W #$01F3                                                         ;91E3BA;
-    STA.W ReserveEnergy                                                  ;91E3BD;
-    STZ.W ReserveMissiles                                                ;91E3C0;
-    LDA.W #$100F                                                         ;91E3C3;
-    STA.W CollectedBeams                                                 ;91E3C6;
-    LDA.W EquippedBeams                                                  ;91E3C9;
-    ORA.W #$1000                                                         ;91E3CC;
-    STA.W EquippedBeams                                                  ;91E3CF;
-    JSL.L AddGrappleToHUDTilemap                                         ;91E3D2;
-    JSL.L AddXrayToHUDTilemap                                            ;91E3D6;
-    JSL.L AddMissilesToHUDTilemap                                        ;91E3DA;
-    JSL.L AddSuperMissilesToHUDTilemap                                   ;91E3DE;
-    JSL.L AddPowerBombsToHUDTilemap                                      ;91E3E2;
-    BRA .handledInput                                                    ;91E3E6;
-
-  .toggleOff:
-    STZ.W DebugSamusTileViewerFlag                                       ;91E3E8;
-
-  .handledInput:
-    LDA.W DebugSamusTileViewerFlag                                       ;91E3EB;
-    BEQ .return                                                          ;91E3EE;
-    JSL.L Debug_SamusTileViewer                                          ;91E3F0;
-
-  .return:
-    PLP                                                                  ;91E3F4;
-    RTL                                                                  ;91E3F5;
-endif
 
 
 ;;; $E3F6: Make Samus face forward ;;;
@@ -13331,53 +12816,6 @@ ProspectivePoseCmd_8_KillRunSpeed:
     STZ.W SamusXExtraRunSpeed                                            ;91EC95;
     JSL.L KillYSpeedIfStartedFalling                                     ;91EC98;
     RTS                                                                  ;91EC9C;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $EC9D: Unused ;;;
-UNUSED_91EC9D:
-    LDA.W MovementType                                                   ;91EC9D;
-    AND.W #$00FF                                                         ;91ECA0;
-    TAX                                                                  ;91ECA3;
-    LDA.W .data,X                                                        ;91ECA4;
-    AND.W #$00FF                                                         ;91ECA7;
-    BNE +                                                                ;91ECAA;
-    RTS                                                                  ;91ECAC;
-
-+   LDA.W #$0004                                                         ;91ECAD;
-    STA.W SamusAnimationFrameTimer                                       ;91ECB0;
-    RTS                                                                  ;91ECB3;
-
-  .data:                                                                 ;91ECB4;
-    db $00 ; 0: Standing
-    db $00 ; 1: Running
-    db $02 ; 2: Normal jumping
-    db $00 ; 3: Spin jumping
-    db $00 ; 4: Morph ball - on ground
-    db $00 ; 5: Crouching
-    db $00 ; 6: Falling
-    db $00 ; 7: Unused
-    db $00 ; 8: Morph ball - falling
-    db $00 ; 9: Unused
-    db $00 ; Ah: Knockback / crystal flash ending
-    db $00 ; Bh: Unused
-    db $00 ; Ch: Unused
-    db $00 ; Dh: Unused
-    db $00 ; Eh: Turning around - on ground
-    db $00 ; Fh: Crouching/standing/morphing/unmorphing transition
-    db $00 ; 10h: Moonwalking
-    db $00 ; 11h: Spring ball - on ground
-    db $00 ; 12h: Spring ball - in air
-    db $00 ; 13h: Spring ball - falling
-    db $00 ; 14h: Wall jumping
-    db $00 ; 15h: Ran into a wall
-    db $00 ; 16h: Grappling
-    db $00 ; 17h: Turning around - jumping
-    db $00 ; 18h: Turning around - falling
-    db $02 ; 19h: Damage boost
-    db $00 ; 1Ah: Grabbed by Draygon
-    db $00 ; 1Bh: Shinespark / crystal flash / drained by metroid / damaged by MB's attacks
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $ECD0: Prospective pose change command 2 - stop ;;;

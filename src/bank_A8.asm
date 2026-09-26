@@ -201,50 +201,6 @@ Instruction_CommonA8_CallFunctionInY_WithA:
     RTL                                                                  ;A880B4;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $80B5: Unused. Instruction - call external function [[Y]] ;;;
-UNUSED_Instruction_CommonA8_CallExternalFunctionInY_A880B5:
-    LDA.W $0000,Y                                                        ;A880B5;
-    STA.B DP_Temp12                                                      ;A880B8;
-    LDA.W $0001,Y                                                        ;A880BA;
-    STA.B DP_Temp13                                                      ;A880BD;
-    PHX                                                                  ;A880BF;
-    PHY                                                                  ;A880C0;
-    JSL.L .externalFunction                                              ;A880C1;
-    PLY                                                                  ;A880C5;
-    PLX                                                                  ;A880C6;
-    INY                                                                  ;A880C7;
-    INY                                                                  ;A880C8;
-    INY                                                                  ;A880C9;
-    RTL                                                                  ;A880CA;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;A880CB;
-
-
-;;; $80CE: Unused. Instruction - call external function [[Y]] with A = [[Y] + 3] ;;;
-UNUSED_Inst_CommonA8_CallExternalFunctionInY_WithA_A880CE:
-    LDA.W $0000,Y                                                        ;A880CE;
-    STA.B DP_Temp12                                                      ;A880D1;
-    LDA.W $0001,Y                                                        ;A880D3;
-    STA.B DP_Temp13                                                      ;A880D6;
-    LDA.W $0003,Y                                                        ;A880D8;
-    PHX                                                                  ;A880DB;
-    PHY                                                                  ;A880DC;
-    JSL.L .externalFunction                                              ;A880DD;
-    PLY                                                                  ;A880E1;
-    PLX                                                                  ;A880E2;
-    TYA                                                                  ;A880E3;
-    CLC                                                                  ;A880E4;
-    ADC.W #$0005                                                         ;A880E5;
-    TAY                                                                  ;A880E8;
-    RTL                                                                  ;A880E9;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;A880EA;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $80ED: Instruction - go to [[Y]] ;;;
 Instruction_CommonA8_GotoY:
     LDA.W $0000,Y                                                        ;A880ED;
@@ -1300,20 +1256,6 @@ Spritemap_Evir_5:
     %spritemapEntry(0, $1FE, $10, 0, 0, 2, 0, $126)
     %spritemapEntry(0, $1FE, $08, 0, 0, 2, 0, $125)
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_Evir_A88C73:
-    dw $0009                                                             ;A88C73;
-    %spritemapEntry(1, $1FE, $FB, 0, 0, 2, 0, $106)
-    %spritemapEntry(1, $1EE, $FB, 0, 0, 2, 0, $104)
-    %spritemapEntry(1, $1FE, $EB, 0, 0, 2, 0, $102)
-    %spritemapEntry(1, $1EE, $EB, 0, 0, 2, 0, $100)
-    %spritemapEntry(1, $02, $FB, 0, 0, 2, 0, $108)
-    %spritemapEntry(1, $01, $01, 0, 0, 2, 0, $108)
-    %spritemapEntry(1, $1FF, $07, 0, 0, 2, 0, $10C)
-    %spritemapEntry(0, $1FE, $10, 0, 0, 2, 0, $126)
-    %spritemapEntry(0, $1FE, $08, 0, 0, 2, 0, $125)
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 Spritemap_Evir_6:
     dw $0005                                                             ;A88CA2;
     %spritemapEntry(0, $00, $F8, 0, 0, 2, 0, $123)
@@ -1352,26 +1294,6 @@ Spritemap_Evir_A:
     %spritemapEntry(0, $1FE, $F4, 0, 0, 2, 0, $124)
     %spritemapEntry(0, $00, $F8, 0, 0, 2, 0, $124)
     %spritemapEntry(0, $02, $FC, 0, 0, 2, 0, $124)
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_Evir_A88D24:
-    dw $0006                                                             ;A88D24;
-    %spritemapEntry(0, $1FE, $F4, 0, 0, 2, 0, $123)
-    %spritemapEntry(0, $1F6, $F4, 0, 0, 2, 0, $122)
-    %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 0, $122)
-    %spritemapEntry(0, $00, $F8, 0, 0, 2, 0, $123)
-    %spritemapEntry(0, $02, $FC, 0, 0, 2, 0, $123)
-    %spritemapEntry(0, $1FA, $FC, 0, 0, 2, 0, $122)
-
-UNUSED_Spritemap_Evir_A88D44:
-    dw $0006                                                             ;A88D44;
-    %spritemapEntry(0, $1FE, $F4, 0, 0, 2, 0, $121)
-    %spritemapEntry(0, $1F6, $F4, 0, 0, 2, 0, $120)
-    %spritemapEntry(0, $00, $F8, 0, 0, 2, 0, $121)
-    %spritemapEntry(0, $1F8, $F8, 0, 0, 2, 0, $120)
-    %spritemapEntry(0, $02, $FC, 0, 0, 2, 0, $121)
-    %spritemapEntry(0, $1FA, $FC, 0, 0, 2, 0, $120)
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Evir_B:
     dw $0004                                                             ;A88D64;
@@ -1456,20 +1378,6 @@ Spritemap_Evir_12:
     %spritemapEntry(0, $1FA, $10, 0, 1, 2, 0, $126)
     %spritemapEntry(0, $1FA, $08, 0, 1, 2, 0, $125)
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_Evir_A88E9B:
-    dw $0009                                                             ;A88E9B;
-    %spritemapEntry(1, $1F2, $FB, 0, 1, 2, 0, $106)
-    %spritemapEntry(1, $02, $FB, 0, 1, 2, 0, $104)
-    %spritemapEntry(1, $1F2, $EB, 0, 1, 2, 0, $102)
-    %spritemapEntry(1, $02, $EB, 0, 1, 2, 0, $100)
-    %spritemapEntry(1, $1EE, $FB, 0, 1, 2, 0, $108)
-    %spritemapEntry(1, $1EF, $01, 0, 1, 2, 0, $108)
-    %spritemapEntry(1, $1F1, $07, 0, 1, 2, 0, $10C)
-    %spritemapEntry(0, $1FA, $10, 0, 1, 2, 0, $126)
-    %spritemapEntry(0, $1FA, $08, 0, 1, 2, 0, $125)
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 Spritemap_Evir_13:
     dw $0005                                                             ;A88ECA;
     %spritemapEntry(0, $1F8, $F8, 0, 1, 2, 0, $123)
@@ -1508,26 +1416,6 @@ Spritemap_Evir_17:
     %spritemapEntry(0, $1F6, $FC, 0, 1, 2, 0, $124)
     %spritemapEntry(0, $1F8, $F8, 0, 1, 2, 0, $124)
     %spritemapEntry(0, $1FA, $F4, 0, 1, 2, 0, $124)
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_Evir_A88F4C:
-    dw $0006                                                             ;A88F4C;
-    %spritemapEntry(0, $1FA, $F4, 0, 1, 2, 0, $123)
-    %spritemapEntry(0, $02, $F4, 0, 1, 2, 0, $122)
-    %spritemapEntry(0, $1F8, $F8, 0, 1, 2, 0, $123)
-    %spritemapEntry(0, $00, $F8, 0, 1, 2, 0, $122)
-    %spritemapEntry(0, $1F6, $FC, 0, 1, 2, 0, $123)
-    %spritemapEntry(0, $1FE, $FC, 0, 1, 2, 0, $122)
-
-UNUSED_Spritemap_Evir_A88F6C:
-    dw $0006                                                             ;A88F6C;
-    %spritemapEntry(0, $1FA, $F4, 0, 1, 2, 0, $121)
-    %spritemapEntry(0, $02, $F4, 0, 1, 2, 0, $120)
-    %spritemapEntry(0, $00, $F8, 0, 1, 2, 0, $120)
-    %spritemapEntry(0, $1F8, $F8, 0, 1, 2, 0, $121)
-    %spritemapEntry(0, $1F6, $FC, 0, 1, 2, 0, $121)
-    %spritemapEntry(0, $1FE, $FC, 0, 1, 2, 0, $120)
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $8F8C: Palette - enemy $E6BF (morph ball eye) ;;;
@@ -2629,24 +2517,6 @@ Palette_Coven:
     dw $1DCE,$01DF,$001F,$0018,$000A,$06B9,$00EA,$0045                   ;A899BC;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $99CC: Unused. Black palettes ;;;
-UNUSED_Coven_BlackPalettes_A899CC:
-    dw $3800,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;A899CC;
-    dw $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;A899DC;
-    dw $3800,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;A899EC;
-    dw $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;A899FC;
-    dw $3800,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;A89A0C;
-    dw $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;A89A1C;
-    dw $3800,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;A89A2C;
-    dw $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;A89A3C;
-    dw $3800,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;A89A4C;
-    dw $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;A89A5C;
-    dw $3800,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;A89A6C;
-    dw $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;A89A7C;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $9A8C: Instruction list - coven ;;;
 InstList_Coven:
     dw regional($0010, $000D),Spritemap_Coven_0                          ;A89A8C;
@@ -3483,13 +3353,6 @@ YappingMawSamusOffsets_X_UpRight:
 YappingMawSamusOffsets_Y_UpRight:
     dw $FFF8                                                             ;A8A0AD;
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_YappingMawSamusOffsets_X_Right_A8A0AF:
-    dw $0010                                                             ;A8A0AF;
-UNUSED_YappingMawSamusOffsets_Y_Right_A8A0B1:
-    dw $0000                                                             ;A8A0B1;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 YappingMawSamusOffsets_X_DownRight:
     dw $0008                                                             ;A8A0B3;
 YappingMawSamusOffsets_Y_DownRight:
@@ -3504,13 +3367,6 @@ YappingMawSamusOffsets_X_DownLeft:
     dw $FFF8                                                             ;A8A0BB;
 YappingMawSamusOffsets_Y_DownLeft:
     dw $0008                                                             ;A8A0BD;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_YappingMawSamusOffsets_X_Left_A8A0BF:
-    dw $FFF0                                                             ;A8A0BF;
-UNUSED_YappingMawSamusOffsets_Y_Left_A8A0C1:
-    dw $0000                                                             ;A8A0C1;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 YappingMawSamusOffsets_X_UpLeft:
     dw $FFF8                                                             ;A8A0C3;
@@ -5257,18 +5113,6 @@ Instruction_Magdollite_ShiftLeft8Pixels_Up4Pixels_Left_dup:
     RTL                                                                  ;A8AF31;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $AF32: Unused. Set hand throw position ;;;
-UNUSED_Magdollite_RestoreXYPositions_A8AF32:
-    LDX.B EnemyIndex                                                     ;A8AF32;
-    LDA.L Magdollite.throwXPosition,X                                    ;A8AF35;
-    STA.W Enemy.XPosition,X                                              ;A8AF39;
-    LDA.L Magdollite.throwYPosition,X                                    ;A8AF3C;
-    STA.W Enemy.YPosition,X                                              ;A8AF40;
-    RTL                                                                  ;A8AF43;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $AF44: Instruction - reset cooldown timer ;;;
 Instruction_Magdollite_SetCooldownTimerTo100:
     LDX.B EnemyIndex                                                     ;A8AF44;
@@ -5982,12 +5826,6 @@ Spritemap_Magdollite_FacingLeft_WidePillarSection:
     dw $0001                                                             ;A8B4C1;
     %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $10E)
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_Magdollite_Blank_A8B4C8:
-    dw $0001                                                             ;A8B4C8;
-    %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $10C)
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 Spritemap_Magdollite_FacingLeft_Head_PokingOutOfLava:
     dw $0003                                                             ;A8B4CF;
     %spritemapEntry(0, $04, $FC, 0, 0, 2, 0, $128)
@@ -6040,22 +5878,9 @@ Spritemap_Magdollite_FacingRight_Hand_FingersCurled:
     %spritemapEntry(1, $1F0, $F8, 0, 1, 2, 0, $102)
     %spritemapEntry(1, $00, $F8, 0, 1, 2, 0, $100)
 
-if  !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_Magdollite_FacingRight_PillarCap_A8B55E:
-    dw $0002                                                             ;A8B55E;
-    %spritemapEntry(0, $1F8, $FC, 0, 1, 2, 0, $125)
-    %spritemapEntry(0, $00, $FC, 0, 1, 2, 0, $124)
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 Spritemap_Magdollite_FacingRight_WidePillarSection:
     dw $0001                                                             ;A8B56A;
     %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $10E)
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_Magdollite_FacingRight_NarrowPillar_A8B571:
-    dw $0001                                                             ;A8B571;
-    %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $10C)
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_Magdollite_FacingRight_Head_PokingOutOfLava:
     dw $0003                                                             ;A8B578;
@@ -6136,15 +5961,6 @@ Palette_Beetom:
     dw $1DCE,$1CDF,$4FE0,$3B20,$2A20,$1097,$6BDF,$042E                   ;A8B66E;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $B67E: Unused. Beetom eye colours ;;;
-UNUSED_BeetomEyeColors_A8B67E:
-; Colours Ah..Ch
-    dw $4FE0,$3B20,$2A20,$3BE0,$2680,$1580,$2740,$11E0                   ;A8B67E;
-    dw $00E0,$12A0,$0140,$0040                                           ;A8B68E;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $B696: Instruction list - crawling - facing left ;;;
 InstList_Beetom_Crawling_FacingLeft_0:
     dw Instruction_Common_DisableOffScreenProcessing                     ;A8B696;
@@ -6166,16 +5982,6 @@ InstList_Beetom_Hop_FacingLeft:
     dw $0004,Spritemap_Beetom_3                                          ;A8B6B6;
     dw $0001,Spritemap_Beetom_0                                          ;A8B6BA;
     dw Instruction_Common_Sleep                                          ;A8B6BE;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $B6C0: Unused. Instruction list - small hop - facing left ;;;
-UNUSED_InstList_Beetom_SmallHop_FacingLeft_A8B6C0:
-    dw Instruction_Common_EnableOffScreenProcessing                      ;A8B6C0;
-    dw $0004,Spritemap_Beetom_3                                          ;A8B6C2;
-    dw $0001,Spritemap_Beetom_0                                          ;A8B6C6;
-    dw Instruction_Common_Sleep                                          ;A8B6CA;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $B6CC: Instruction list - draining Samus - facing left ;;;
@@ -6216,16 +6022,6 @@ InstList_Beetom_Hop_FacingRight:
     dw $0004,Spritemap_Beetom_E                                          ;A8B712;
     dw $0001,Spritemap_Beetom_B                                          ;A8B716;
     dw Instruction_Common_Sleep                                          ;A8B71A;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $B71C: Unused. Instruction list - small hop - facing right ;;;
-UNUSED_InstList_Beetom_SmallHop_FacingRight_A8B71C:
-    dw Instruction_Common_EnableOffScreenProcessing                      ;A8B71C;
-    dw $0004,Spritemap_Beetom_E                                          ;A8B71E;
-    dw $0001,Spritemap_Beetom_B                                          ;A8B722;
-    dw Instruction_Common_Sleep                                          ;A8B726;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $B728: Instruction list - draining Samus - facing right ;;;
@@ -10528,11 +10324,6 @@ InstList_Alcoon_FacingRight_Airborne_LookingForward:
 AlcoonConstants_XThresholdToEmerge:
     dw $0050                                                             ;A8DCC7;
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_AlcoonConstants_A8DCC9:
-    dw $0040                                                             ;A8DCC9;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 AlcoonConstants_XThresholdToHide:
     dw $0070                                                             ;A8DCCB;
 
@@ -10963,14 +10754,6 @@ RTL_A8DF9C:
     RTL                                                                  ;A8DF9C;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $DF9D: Unused. Normal enemy shot AI ;;;
-UNUSED_NormalEnemyShotAI_A8DF9D:
-    JSL.L NormalEnemyShotAI                                              ;A8DF9D;
-    RTL                                                                  ;A8DFA1;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $DFA2: Alcoon spritemaps ;;;
 Spritemap_Alcoon_FacingLeft_FrontFootForward:
     dw $0006                                                             ;A8DFA2;
@@ -11144,48 +10927,11 @@ Spritemap_Alcoon_FacingRight_LookingUp:
     %spritemapEntry(1, $1F8, $08, 0, 1, 2, 0, $108)
     %spritemapEntry(1, $1F8, $F8, 0, 1, 2, 0, $10A)
 
-; Unused. X flipped version of the alcoon fireball enemy projectile
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_Alcoon_FireballProjectile_0_A8E214:
-    dw $0001                                                             ;A8E214;
-    %spritemapEntry(0, $1FC, $FC, 0, 1, 2, 0, $12C)
-
-UNUSED_Spritemap_Alcoon_FireballProjectile_1_A8E21B:
-    dw $0001                                                             ;A8E21B;
-    %spritemapEntry(0, $1FC, $FC, 1, 1, 2, 0, $12D)
-
-UNUSED_Spritemap_Alcoon_FireballProjectile_2_A8E222:
-    dw $0001                                                             ;A8E222;
-    %spritemapEntry(0, $1FC, $FC, 1, 0, 2, 0, $12C)
-
-UNUSED_Spritemap_Alcoon_FireballProjectile_3_A8E229:
-    dw $0001                                                             ;A8E229;
-    %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 0, $12D)
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 
 ;;; $E230: Palette - enemy $E9FF (atomic) ;;;
 Palette_Atomic:
     dw $3800,$7FFF,$56E0,$3180,$18C0,$6BC0,$5EC0,$4A20                   ;A8E230;
     dw $35A0,$7FFF,$039C,$0237,$00D1,$03FF,$0237,$00D1                   ;A8E240;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $E250: Palettes - atomic ;;;
-UNUSED_Palettes_Atomic_A8E250:
-    dw $3800,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;A8E250;
-    dw $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;A8E260;
-    dw $3800,$7FFF,$6A40,$44E0,$2C20,$7F20,$7220,$5D80                   ;A8E270;
-    dw $4900,$03FF,$001F,$0016,$000E,$03FF,$0237,$00D1                   ;A8E280;
-    dw $3800,$3F57,$2E4D,$00E2,$0060,$3AB0,$220B,$1166                   ;A8E290;
-    dw $0924,$435A,$3694,$15AD,$0508,$03FF,$0237,$00D1                   ;A8E2A0;
-    dw $3800,$7FFF,$6A40,$44E0,$2C20,$7F20,$7220,$5D80                   ;A8E2B0;
-    dw $4900,$7FFF,$039C,$0237,$00D1,$03FF,$0237,$00D1                   ;A8E2C0;
-    dw $3800,$02FF,$01BF,$000F,$0008,$01BF,$011B,$00BA                   ;A8E2D0;
-    dw $0011,$7FFF,$039C,$0237,$00D1,$03FF,$0237,$00D1                   ;A8E2E0;
-    dw $3800,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;A8E2F0;
-    dw $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;A8E300;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $E310: Instruction list - spinning up-right ;;;
@@ -11386,20 +11132,6 @@ Function_Atomic_MoveRight:
   .done:
     STA.W Enemy.XSubPosition,X                                           ;A8E47D;
     RTS                                                                  ;A8E480;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $E481: Unused. RTL ;;;
-UNUSED_Atomic_GetEnemyIndex_A8E481:
-    LDX.B EnemyIndex                                                     ;A8E481;
-    RTL                                                                  ;A8E484;
-
-
-;;; $E485: Unused. RTL ;;;
-UNUSED_Atomic_GetEnemyIndex_A8E485:
-    LDX.B EnemyIndex                                                     ;A8E485;
-    RTL                                                                  ;A8E488;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $E489: Spritemaps - atomic ;;;
@@ -12059,36 +11791,10 @@ InstList_KihunterWings_FacingRight:
     dw InstList_KihunterWings_FacingRight                                ;A8EA6C;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $EA6E: Unused. Instruction list - ki-hunter wings - falling - X flipped ;;;
-UNUSED_InstList_KihunterWings_Falling_XFlipped_A8EA6E:
-    dw $0010*!FPS,UNUSED_Spritemap_KihunterWings_Falling_XFlipped_A8EBDF ;A8EA6E;
-    dw Instruction_Common_GotoY                                          ;A8EA72;
-    dw UNUSED_InstList_KihunterWings_Falling_XFlipped_A8EA6E             ;A8EA74;
-
-
-;;; $EA76: Unused. Instruction list - ki-hunter wings - falling - X flipped ;;;
-UNUSED_InstList_KihunterWings_Falling_XFlipped_A8EA76:
-; Spritemap UNUSED_Spritemap_KihunterWings_Falling_XFlipped_A8EBEB is a clone of Spritemap_Kihunter_6, so this instruction list is a clone of UNUSED_InstList_KihunterWings_Falling_XFlipped_A8EA6E
-    dw $0010*!FPS,UNUSED_Spritemap_KihunterWings_Falling_XFlipped_A8EBEB ;A8EA76;
-    dw Instruction_Common_GotoY                                          ;A8EA7A;
-    dw UNUSED_InstList_KihunterWings_Falling_XFlipped_A8EA76             ;A8EA7C;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $EA7E: Instruction list - ki-hunter wings - falling ;;;
 InstList_KihunterWings_Falling:
     dw $0001,Spritemap_KihunterWings_Falling                             ;A8EA7E;
     dw Instruction_Common_Sleep                                          ;A8EA82;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $EA84: Unused. Instruction list - ki-hunter wings - falling ;;;
-UNUSED_InstList_KihunterWings_Falling_A8EA84:
-; Spritemap UNUSED_Spritemap_KihunterWings_Falling_A8ECB4 is a clone of Spritemap_KihunterWings_Falling, so this instruction list is a clone of InstList_KihunterWings_Falling
-    dw $0001,UNUSED_Spritemap_KihunterWings_Falling_A8ECB4               ;A8EA84;
-    dw Instruction_Common_Sleep                                          ;A8EA88;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $EA8A: Instruction list - ki-hunter - hop - facing left ;;;

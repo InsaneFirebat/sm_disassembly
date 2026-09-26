@@ -866,11 +866,6 @@ EnemyPopulations_CrateriaMap:
 ; Room $9994, state $99A1
     dw $FFFF : db $00                                                    ;A185A9;
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_EnemyPopulations_A185AC:
-    dw $FFFF : db $00                                                    ;A185AC;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 EnemyPopulations_FinalMissile_1:
 ; Room $9A90, state $9ABC
     dw $FFFF : db $00                                                    ;A185AF;
@@ -895,11 +890,6 @@ EnemyPopulations_Climb_2:
     %extraProperties($0004),
     %speedParams($0000, $0000))
     dw $FFFF : db $02                                                    ;A185D2;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_EnemyPopulations_A185D5:
-    dw $FFFF : db $00                                                    ;A185D5;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyPopulations_CrateriaSave:
 ; Room $93D5, state $93E2
@@ -1071,11 +1061,6 @@ EnemyPopulations_WestOcean:
     %extraProperties($0000),
     %speedParams($0001, $0010))
     dw $FFFF : db $07                                                    ;A186F4;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_EnemyPopulations_A186F7:
-    dw $FFFF : db $00                                                    ;A186F7;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyPopulations_Parlor_0:
 ; Room $92FD, state $9314
@@ -1330,11 +1315,6 @@ EnemyPopulations_CrateriaSuper:
     %extraProperties($0000),
     %speedParams($0103, $0020))
     dw $FFFF : db $00                                                    ;A188B0;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_EnemyPopulations_A188B3:
-    dw $FFFF : db $00                                                    ;A188B3;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyPopulations_PreBowling:
 ; Room $968F, state $969C
@@ -3394,11 +3374,6 @@ EnemyPopulations_RedBrinstarSave:
 ; Room $A734, state $A741
     dw $FFFF : db $00                                                    ;A19669;
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_EnemyPopulations_A1966C:
-    dw $FFFF : db $00                                                    ;A1966C;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 EnemyPopulations_BlueBrinstarETank_0:
 ; Room $9F64, state $9F76
     %EnemyPopulations(\
@@ -3749,19 +3724,6 @@ EnemyPopulations_WarehouseETank:
     %extraProperties($0000),
     %speedParams($0000, $0000))
     dw $FFFF : db $04                                                    ;A198CE;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_EnemyPopulations_A198D1:
-    %EnemyPopulations(\
-    %enemyID(EnemyHeaders_Elevator),
-    %XPosition($0080),
-    %YPosition($00A0),
-    %initParam($0000),
-    %properties($2C00),
-    %extraProperties($0000),
-    %speedParams($0000, $0140))
-    dw $FFFF : db $00                                                    ;A198E1;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyPopulations_WarehouseEntrance:
 ; Room $A6A1, state $A6AE
@@ -6749,12 +6711,6 @@ EnemyPopulations_MagdolliteTunnel:
     %extraProperties($0000),
     %speedParams($0030, $0002))
     dw $FFFF : db $03                                                    ;A1AD05;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_EnemyPopulations_8FB3EE_A1AD06:
-; Room $B3E1, state $B3EE
-    dw $FFFF : db $00                                                    ;A1AD06;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyPopulations_LavaDive:
 ; Room $AF14, state $AF21
@@ -15350,82 +15306,6 @@ EnemyPopulations_Seaweed:
 EnemyPopulations_TourianRecharge:
 ; Room $DD2E, state $DD3B
     dw $FFFF : db $00                                                    ;A1E70B;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_EnemyPopulations_A1E70E:
-    %EnemyPopulations(\
-    %enemyID(EnemyHeaders_CorpseZoomer),
-    %XPosition($00F0),
-    %YPosition($0040),
-    %initParam($0000),
-    %properties($A000),
-    %extraProperties($0000),
-    %speedParams($0000, $0000))
-
-    %EnemyPopulations(\
-    %enemyID(EnemyHeaders_CorpseZoomer),
-    %XPosition($0298),
-    %YPosition($00C8),
-    %initParam($0000),
-    %properties($A000),
-    %extraProperties($0000),
-    %speedParams($0002, $0000))
-
-    %EnemyPopulations(\
-    %enemyID(EnemyHeaders_CorpseZoomer),
-    %XPosition($0108),
-    %YPosition($0036),
-    %initParam($0000),
-    %properties($A000),
-    %extraProperties($0000),
-    %speedParams($0004, $0000))
-
-    %EnemyPopulations(\
-    %enemyID(EnemyHeaders_CorpseRipper),
-    %XPosition($0320),
-    %YPosition($00A8),
-    %initParam($0000),
-    %properties($A000),
-    %extraProperties($0000),
-    %speedParams($0000, $0000))
-
-    %EnemyPopulations(\
-    %enemyID(EnemyHeaders_CorpseRipper),
-    %XPosition($00C2),
-    %YPosition($00C8),
-    %initParam($0000),
-    %properties($A000),
-    %extraProperties($0000),
-    %speedParams($0002, $0000))
-
-    %EnemyPopulations(\
-    %enemyID(EnemyHeaders_CorpseSkree),
-    %XPosition($0380),
-    %YPosition($0047),
-    %initParam($0000),
-    %properties($A000),
-    %extraProperties($0000),
-    %speedParams($0000, $0000))
-
-    %EnemyPopulations(\
-    %enemyID(EnemyHeaders_CorpseSkree),
-    %XPosition($0260),
-    %YPosition($0047),
-    %initParam($0000),
-    %properties($A000),
-    %extraProperties($0000),
-    %speedParams($0002, $0000))
-
-    %EnemyPopulations(\
-    %enemyID(EnemyHeaders_CorpseSkree),
-    %XPosition($0180),
-    %YPosition($0047),
-    %initParam($0000),
-    %properties($A000),
-    %extraProperties($0000),
-    %speedParams($0004, $0000))
-    dw $FFFF : db $00                                                    ;A1E78E;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 EnemyPopulations_UpperTourianSave:
 ; Room $DF1B, state $DF28

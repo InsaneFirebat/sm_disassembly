@@ -201,50 +201,6 @@ Instruction_CommonA7_CallFunctionInY_WithA:
     RTL                                                                  ;A780B4;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $80B5: Unused. Instruction - call external function [[Y]] ;;;
-UNUSED_Instruction_CommonA7_CallExternalFunctionInY_A780B5:
-    LDA.W $0000,Y                                                        ;A780B5;
-    STA.B DP_Temp12                                                      ;A780B8;
-    LDA.W $0001,Y                                                        ;A780BA;
-    STA.B DP_Temp13                                                      ;A780BD;
-    PHX                                                                  ;A780BF;
-    PHY                                                                  ;A780C0;
-    JSL.L .externalFunction                                              ;A780C1;
-    PLY                                                                  ;A780C5;
-    PLX                                                                  ;A780C6;
-    INY                                                                  ;A780C7;
-    INY                                                                  ;A780C8;
-    INY                                                                  ;A780C9;
-    RTL                                                                  ;A780CA;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;A780CB;
-
-
-;;; $80CE: Unused. Instruction - call external function [[Y]] with A = [[Y] + 3] ;;;
-UNUSED_Inst_CommonA7_CallExternalFunctionInY_WithA_A780CE:
-    LDA.W $0000,Y                                                        ;A780CE;
-    STA.B DP_Temp12                                                      ;A780D1;
-    LDA.W $0001,Y                                                        ;A780D3;
-    STA.B DP_Temp13                                                      ;A780D6;
-    LDA.W $0003,Y                                                        ;A780D8;
-    PHX                                                                  ;A780DB;
-    PHY                                                                  ;A780DC;
-    JSL.L .externalFunction                                              ;A780DD;
-    PLY                                                                  ;A780E1;
-    PLX                                                                  ;A780E2;
-    TYA                                                                  ;A780E3;
-    CLC                                                                  ;A780E4;
-    ADC.W #$0005                                                         ;A780E5;
-    TAY                                                                  ;A780E8;
-    RTL                                                                  ;A780E9;
-
-  .externalFunction:
-    JML.W [DP_Temp12]                                                    ;A780EA;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $80ED: Instruction - go to [[Y]] ;;;
 Instruction_CommonA7_GotoY:
     LDA.W $0000,Y                                                        ;A780ED;
@@ -621,15 +577,6 @@ Palette_Kraid:
     dw $2608,$1DA6,$1125,$08C5,$0003,$6318,$7FFF,$0000                   ;A78697;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $86A7: Unused. Palette ;;;
-UNUSED_Palette_Kraid_A786A7:
-; Clone of Palette_Kraid
-    dw $3800,$559D,$1816,$100D,$4B9F,$3F37,$36D0,$2E69                   ;A786A7;
-    dw $2608,$1DA6,$1125,$08C5,$0003,$6318,$7FFF,$0000                   ;A786B7;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $86C7: Kraid room background palette ;;;
 Palette_KraidRoomBackground:
 ; BG palette 6
@@ -857,71 +804,6 @@ InstList_KraidFoot_KraidIsBig_WalkingBackwards_1:
     dw InstList_KraidFoot_KraidIsBig_WalkingBackwards_0                  ;A7893B;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $893D: Unused. Instruction list - Kraid foot - walking backwards - fast ;;;
-UNUSED_InstList_KraidFoot_WalkingBackwards_Fast_A7893D:
-    dw Instruction_Kraid_NOP_A7B633                                      ;A7893D;
-    dw UNUSED_Instruction_Kraid_MoveRight_A7B683                         ;A7893F;
-    dw $0004*!FPS,ExtendedSpritemap_KraidFoot_22                         ;A78941;
-    dw UNUSED_Instruction_Kraid_MoveRight_A7B683                         ;A78945;
-    dw $0001,ExtendedSpritemap_KraidFoot_20                              ;A78947;
-    dw UNUSED_Instruction_Kraid_MoveRight_A7B683                         ;A7894B;
-    dw $0001,ExtendedSpritemap_KraidFoot_1E                              ;A7894D;
-    dw UNUSED_Instruction_Kraid_MoveRight_A7B683                         ;A78951;
-    dw $0001,ExtendedSpritemap_KraidFoot_1D                              ;A78953;
-    dw UNUSED_Instruction_Kraid_MoveRight_A7B683                         ;A78957;
-    dw $0001,ExtendedSpritemap_KraidFoot_1C                              ;A78959;
-    dw UNUSED_Instruction_Kraid_MoveRight_A7B683                         ;A7895D;
-    dw $0001,ExtendedSpritemap_KraidFoot_1B                              ;A7895F;
-    dw UNUSED_Instruction_Kraid_MoveRight_A7B683                         ;A78963;
-    dw $0001,ExtendedSpritemap_KraidFoot_1A                              ;A78965;
-    dw Instruction_Kraid_DecrementYPosition                              ;A78969;
-    dw UNUSED_Instruction_Kraid_MoveRight_A7B683                         ;A7896B;
-    dw $0001,ExtendedSpritemap_KraidFoot_19                              ;A7896D;
-    dw Instruction_Kraid_DecrementYPosition                              ;A78971;
-    dw UNUSED_Instruction_Kraid_MoveRight_A7B683                         ;A78973;
-    dw $0001,ExtendedSpritemap_KraidFoot_18                              ;A78975;
-    dw Instruction_Kraid_DecrementYPosition                              ;A78979;
-    dw UNUSED_Instruction_Kraid_MoveRight_A7B683                         ;A7897B;
-    dw $0001,ExtendedSpritemap_KraidFoot_17                              ;A7897D;
-    dw Instruction_Kraid_DecrementYPosition                              ;A78981;
-    dw UNUSED_Instruction_Kraid_MoveRight_A7B683                         ;A78983;
-    dw $0001,ExtendedSpritemap_KraidFoot_16                              ;A78985;
-    dw Instruction_Kraid_IncrementYPosition_SetScreenShaking             ;A78989;
-    dw UNUSED_Instruction_Kraid_MoveRight_A7B683                         ;A7898B;
-    dw $0001,ExtendedSpritemap_KraidFoot_15                              ;A7898D;
-    dw Instruction_Kraid_IncrementYPosition_SetScreenShaking             ;A78991;
-    dw UNUSED_Instruction_Kraid_MoveRight_A7B683                         ;A78993;
-    dw $0001,ExtendedSpritemap_KraidFoot_14                              ;A78995;
-    dw Instruction_Kraid_IncrementYPosition_SetScreenShaking             ;A78999;
-    dw UNUSED_Instruction_Kraid_MoveRight_A7B683                         ;A7899B;
-    dw $0001,ExtendedSpritemap_KraidFoot_13                              ;A7899D;
-    dw Instruction_Kraid_IncrementYPosition_SetScreenShaking             ;A789A1;
-    dw Instruction_Kraid_QueueSFX76_Lib2_Max6                            ;A789A3;
-    dw $0001,ExtendedSpritemap_KraidFoot_12                              ;A789A5;
-    dw Instruction_Kraid_NOP_A7B633                                      ;A789A9;
-    dw $0014*!FPS,ExtendedSpritemap_KraidFoot_11                         ;A789AB;
-    dw $0004,ExtendedSpritemap_KraidFoot_10                              ;A789AF;
-    dw $0004*!FPS,ExtendedSpritemap_KraidFoot_F                          ;A789B3;
-    dw $0004*!FPS,ExtendedSpritemap_KraidFoot_E                          ;A789B7;
-    dw $0004*!FPS,ExtendedSpritemap_KraidFoot_D                          ;A789BB;
-    dw $0004,ExtendedSpritemap_KraidFoot_C                               ;A789BF;
-    dw $0004*!FPS,ExtendedSpritemap_KraidFoot_B                          ;A789C3;
-    dw $0004*!FPS,ExtendedSpritemap_KraidFoot_A                          ;A789C7;
-    dw $0004*!FPS,ExtendedSpritemap_KraidFoot_9                          ;A789CB;
-    dw $0001,ExtendedSpritemap_KraidFoot_8                               ;A789CF;
-    dw $0001,ExtendedSpritemap_KraidFoot_7                               ;A789D3;
-    dw $0001,ExtendedSpritemap_KraidFoot_6                               ;A789D7;
-    dw $0001,ExtendedSpritemap_KraidFoot_5                               ;A789DB;
-    dw $0001,ExtendedSpritemap_KraidFoot_4                               ;A789DF;
-    dw $0001,ExtendedSpritemap_KraidFoot_3                               ;A789E3;
-    dw $0001,ExtendedSpritemap_KraidFoot_2                               ;A789E7;
-    dw $0001,ExtendedSpritemap_KraidFoot_1                               ;A789EB;
-    dw Instruction_Common_GotoY                                          ;A789EF;
-    dw UNUSED_InstList_KraidFoot_WalkingBackwards_Fast_A7893D            ;A789F1;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $89F3: Instruction list - Kraid arm - normal ;;;
 InstList_KraidArm_Normal_0:
     dw $0006*!FPS,ExtendedSpritemap_KraidArm_General_0                   ;A789F3;
@@ -1047,172 +929,6 @@ InstList_KraidNail:
     dw InstList_KraidNail                                                ;A78B2C;
 
 
-;;; $8B2E: Unused. Extended spritemaps - Kraid arm ;;;
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_ExtendedSpritemap_KraidArm_A78B2E:
-    dw $0002                                                             ;A78B2E;
-    dw $0000,$0000
-    dw Spritemap_KraidArm_General_A                                      ;A78B34;
-    dw Hitbox_KraidArm_F                                                 ;A78B36;
-    dw $FFF7,$FFF6                                                       ;A78B38;
-    dw Spritemap_KraidArm_General_0                                      ;A78B3C;
-    dw Hitbox_KraidArm_0                                                 ;A78B3E;
-
-UNUSED_ExtendedSpritemap_KraidArm_A78B40:
-    dw $0002                                                             ;A78B40;
-    dw $FFF9,$FFF8
-    dw Spritemap_KraidArm_General_1                                      ;A78B46;
-    dw Hitbox_KraidArm_1                                                 ;A78B48;
-    dw $0001,$0000                                                       ;A78B4A;
-    dw Spritemap_KraidArm_General_A                                      ;A78B4E;
-    dw Hitbox_KraidArm_F                                                 ;A78B50;
-
-UNUSED_ExtendedSpritemap_KraidArm_A78B52:
-    dw $0002                                                             ;A78B52;
-    dw $FFF8,$FFF8
-    dw Spritemap_KraidArm_General_2                                      ;A78B58;
-    dw Hitbox_KraidArm_2                                                 ;A78B5A;
-    dw $0000,$0000                                                       ;A78B5C;
-    dw Spritemap_KraidArm_General_A                                      ;A78B60;
-    dw Hitbox_KraidArm_F                                                 ;A78B62;
-
-UNUSED_ExtendedSpritemap_KraidArm_A78B64:
-    dw $0002                                                             ;A78B64;
-    dw $FFF8,$FFF8
-    dw Spritemap_KraidArm_General_3                                      ;A78B6A;
-    dw Hitbox_KraidArm_3                                                 ;A78B6C;
-    dw $0000,$0000                                                       ;A78B6E;
-    dw Spritemap_KraidArm_General_A                                      ;A78B72;
-    dw Hitbox_KraidArm_F                                                 ;A78B74;
-
-UNUSED_ExtendedSpritemap_KraidArm_A78B76:
-    dw $0002                                                             ;A78B76;
-    dw $FFF6,$0001
-    dw Spritemap_KraidArm_General_1                                      ;A78B7C;
-    dw Hitbox_KraidArm_1                                                 ;A78B7E;
-    dw $0000,$0000                                                       ;A78B80;
-    dw Spritemap_KraidArm_General_7                                      ;A78B84;
-    dw Hitbox_KraidArm_8                                                 ;A78B86;
-
-UNUSED_ExtendedSpritemap_KraidArm_A78B88:
-    dw $0002                                                             ;A78B88;
-    dw $FFF6,$0000
-    dw Spritemap_KraidArm_General_2                                      ;A78B8E;
-    dw Hitbox_KraidArm_2                                                 ;A78B90;
-    dw $0000,$0000                                                       ;A78B92;
-    dw Spritemap_KraidArm_General_7                                      ;A78B96;
-    dw Hitbox_KraidArm_8                                                 ;A78B98;
-
-UNUSED_ExtendedSpritemap_KraidArm_A78B9A:
-    dw $0002                                                             ;A78B9A;
-    dw $FFF6,$0000
-    dw Spritemap_KraidArm_General_3                                      ;A78BA0;
-    dw Hitbox_KraidArm_3                                                 ;A78BA2;
-    dw $0000,$0000                                                       ;A78BA4;
-    dw Spritemap_KraidArm_General_7                                      ;A78BA8;
-    dw Hitbox_KraidArm_8                                                 ;A78BAA;
-
-UNUSED_ExtendedSpritemap_KraidArm_A78BAC:
-    dw $0002                                                             ;A78BAC;
-    dw $FFF6,$0000
-    dw Spritemap_KraidArm_General_4                                      ;A78BB2;
-    dw Hitbox_KraidArm_4                                                 ;A78BB4;
-    dw $0000,$0000                                                       ;A78BB6;
-    dw Spritemap_KraidArm_General_7                                      ;A78BBA;
-    dw Hitbox_KraidArm_8                                                 ;A78BBC;
-
-UNUSED_ExtendedSpritemap_KraidArm_A78BBE:
-    dw $0002                                                             ;A78BBE;
-    dw $FFFA,$0006
-    dw Spritemap_KraidArm_General_2                                      ;A78BC4;
-    dw Hitbox_KraidArm_2                                                 ;A78BC6;
-    dw $0000,$0000                                                       ;A78BC8;
-    dw Spritemap_KraidArm_General_8                                      ;A78BCC;
-    dw Hitbox_KraidArm_9                                                 ;A78BCE;
-
-UNUSED_ExtendedSpritemap_KraidArm_A78BD0:
-    dw $0002                                                             ;A78BD0;
-    dw $FFFA,$0006
-    dw Spritemap_KraidArm_General_3                                      ;A78BD6;
-    dw Hitbox_KraidArm_3                                                 ;A78BD8;
-    dw $0000,$0000                                                       ;A78BDA;
-    dw Spritemap_KraidArm_General_8                                      ;A78BDE;
-    dw Hitbox_KraidArm_9                                                 ;A78BE0;
-
-UNUSED_ExtendedSpritemap_KraidArm_A78BE2:
-    dw $0002                                                             ;A78BE2;
-    dw $FFF8,$0006
-    dw Spritemap_KraidArm_General_4                                      ;A78BE8;
-    dw Hitbox_KraidArm_4                                                 ;A78BEA;
-    dw $0000,$0000                                                       ;A78BEC;
-    dw Spritemap_KraidArm_General_8                                      ;A78BF0;
-    dw Hitbox_KraidArm_9                                                 ;A78BF2;
-
-UNUSED_ExtendedSpritemap_KraidArm_A78BF4:
-    dw $0002                                                             ;A78BF4;
-    dw $FFF8,$0006
-    dw Spritemap_KraidArm_General_5                                      ;A78BFA;
-    dw Hitbox_KraidArm_5                                                 ;A78BFC;
-    dw $0000,$0000                                                       ;A78BFE;
-    dw Spritemap_KraidArm_General_8                                      ;A78C02;
-    dw Hitbox_KraidArm_9                                                 ;A78C04;
-
-UNUSED_ExtendedSpritemap_KraidArm_A78C06:
-    dw $0002                                                             ;A78C06;
-    dw $0001,$000A
-    dw Spritemap_KraidArm_General_3                                      ;A78C0C;
-    dw Hitbox_KraidArm_3                                                 ;A78C0E;
-    dw $0000,$0000                                                       ;A78C10;
-    dw Spritemap_KraidArm_General_9                                      ;A78C14;
-    dw Hitbox_KraidArm_A                                                 ;A78C16;
-
-UNUSED_ExtendedSpritemap_KraidArm_A78C18:
-    dw $0002                                                             ;A78C18;
-    dw $0000,$000A
-    dw Spritemap_KraidArm_General_4                                      ;A78C1E;
-    dw Hitbox_KraidArm_4                                                 ;A78C20;
-    dw $0000,$0000                                                       ;A78C22;
-    dw Spritemap_KraidArm_General_9                                      ;A78C26;
-    dw Hitbox_KraidArm_A                                                 ;A78C28;
-
-UNUSED_ExtendedSpritemap_KraidArm_A78C2A:
-    dw $0002                                                             ;A78C2A;
-    dw $FFFF,$000C
-    dw Spritemap_KraidArm_General_5                                      ;A78C30;
-    dw Hitbox_KraidArm_5                                                 ;A78C32;
-    dw $0000,$0000                                                       ;A78C34;
-    dw Spritemap_KraidArm_General_9                                      ;A78C38;
-    dw Hitbox_KraidArm_A                                                 ;A78C3A;
-
-UNUSED_ExtendedSpritemap_KraidArm_A78C3C:
-    dw $0002                                                             ;A78C3C;
-    dw $0000,$000B
-    dw Spritemap_KraidArm_General_6                                      ;A78C42;
-    dw Hitbox_KraidArm_6                                                 ;A78C44;
-    dw $0000,$0000                                                       ;A78C46;
-    dw Spritemap_KraidArm_General_9                                      ;A78C4A;
-    dw Hitbox_KraidArm_A                                                 ;A78C4C;
-
-UNUSED_ExtendedSpritemap_KraidArm_A78C4E:
-    dw $0001                                                             ;A78C4E;
-    dw $0000,$0000
-    dw Spritemap_KraidArm_General_D                                      ;A78C54;
-    dw Hitbox_KraidArm_12                                                ;A78C56;
-
-UNUSED_ExtendedSpritemap_KraidArm_A78C58:
-    dw $0001                                                             ;A78C58;
-    dw $0000,$0000
-    dw Spritemap_KraidArm_General_C                                      ;A78C5E;
-    dw Hitbox_KraidArm_11                                                ;A78C60;
-
-UNUSED_ExtendedSpritemap_KraidArm_A78C62:
-    dw $0001                                                             ;A78C62;
-    dw $0000,$0000
-    dw Spritemap_KraidArm_General_B                                      ;A78C68;
-    dw Hitbox_KraidArm_10                                                ;A78C6A;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $8C6C: Spritemap - Kraid lint - Kraid is big ;;;
 Spritemap_KraidLint_KraidIsBig:
     dw $0005                                                             ;A78C6C;
@@ -1221,58 +937,6 @@ Spritemap_KraidLint_KraidIsBig:
     %spritemapEntry(1, $1F4, $F8, 0, 0, 2, 0, $1A2)
     %spritemapEntry(1, $1E4, $F8, 0, 0, 2, 0, $1A0)
     %spritemapEntry(1, $04, $F8, 0, 0, 2, 0, $1A9)
-
-
-;;; $8C87: Unused. Extended spritemaps - Kraid foot ;;;
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_ExtendedSpritemap_KraidFoot_A78C87:
-    dw $0001                                                             ;A78C87;
-    dw $0000,$0000
-    dw UNUSED_Spritemap_KraidFoot_A794DA                                 ;A78C8D;
-    dw UNUSED_Hitbox_KraidFoot                                           ;A78C8F;
-
-UNUSED_ExtendedSpritemap_KraidFoot_A78C91:
-    dw $0002                                                             ;A78C91;
-    dw $0000,$0000
-    dw Spritemap_KraidFoot_0                                             ;A78C97;
-    dw UNUSED_Hitbox_KraidFoot                                           ;A78C99;
-    dw $000C,$0030                                                       ;A78C9B;
-    dw Spritemap_KraidFoot_4                                             ;A78C9F;
-    dw UNUSED_Hitbox_KraidFoot                                           ;A78CA1;
-
-UNUSED_ExtendedSpritemap_KraidFoot_A78CA3:
-    dw $0002                                                             ;A78CA3;
-    dw $0000,$0000
-    dw Spritemap_KraidFoot_1                                             ;A78CA9;
-    dw UNUSED_Hitbox_KraidFoot                                           ;A78CAB;
-    dw $0000,$0039                                                       ;A78CAD;
-    dw Spritemap_KraidFoot_4                                             ;A78CB1;
-    dw UNUSED_Hitbox_KraidFoot                                           ;A78CB3;
-
-UNUSED_ExtendedSpritemap_KraidFoot_A78CB5:
-    dw $0002                                                             ;A78CB5;
-    dw $0000,$0000
-    dw Spritemap_KraidFoot_2                                             ;A78CBB;
-    dw UNUSED_Hitbox_KraidFoot                                           ;A78CBD;
-    dw $FFF0,$003F                                                       ;A78CBF;
-    dw Spritemap_KraidFoot_4                                             ;A78CC3;
-    dw UNUSED_Hitbox_KraidFoot                                           ;A78CC5;
-
-UNUSED_ExtendedSpritemap_KraidFoot_A78CC7:
-    dw $0002                                                             ;A78CC7;
-    dw $0000,$0000
-    dw Spritemap_KraidFoot_3                                             ;A78CCD;
-    dw UNUSED_Hitbox_KraidFoot                                           ;A78CCF;
-    dw $FFDF,$003D                                                       ;A78CD1;
-    dw Spritemap_KraidFoot_4                                             ;A78CD5;
-    dw UNUSED_Hitbox_KraidFoot                                           ;A78CD7;
-
-UNUSED_ExtendedSpritemap_KraidFoot_A78CD9:
-    dw $0001                                                             ;A78CD9;
-    dw $0000,$0000
-    dw UNUSED_Spritemap_KraidFoot_A796CB                                 ;A78CDF;
-    dw UNUSED_Hitbox_KraidFoot_A79461                                    ;A78CE1;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $8CE3: Extended spritemaps - Kraid foot ;;;
@@ -1977,16 +1641,6 @@ Hitbox_KraidLint:
     dw RTL_A794B5                                                        ;A792C1;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $92C3: Unused. Hitbox - Kraid foot ;;;
-UNUSED_Hitbox_KraidFoot:
-    dw $0001                                                             ;A792C3;
-    dw $FFF8,$FFF8,$0007,$0007
-    dw EnemyTouch_KraidArm_KraidFoot_Normal                              ;A792CD;
-    dw RTL_A794B5                                                        ;A792CF;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $92D1: Hitboxes - Kraid arm ;;;
 Hitbox_KraidArm_0:
     dw $0002                                                             ;A792D1;
@@ -2141,16 +1795,6 @@ Hitbox_KraidFoot:
     dw RTL_A794B5                                                        ;A7945F;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $9461: Unused. Hitbox - Kraid foot ;;;
-UNUSED_Hitbox_KraidFoot_A79461:
-    dw $0001                                                             ;A79461;
-    dw $FFFE,$FFFD,$0002,$0003
-    dw EnemyTouch_KraidArm_KraidFoot_Normal                              ;A7946B;
-    dw RTL_A794B5                                                        ;A7946D;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $946F: Hitboxes - Kraid arm - dying / preparing to lunge forward ;;;
 Hitbox_KraidArm_Dying_PreparingToLungeForward_0:
     dw $0001                                                             ;A7946F;
@@ -2220,23 +1864,6 @@ EnemyShot_KraidArm:
     RTL                                                                  ;A794C3;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $94C4: Unused. Spritemap - Kraid lint ;;;
-UNUSED_Spritemap_KraidLint_A794C4:
-    dw $0004                                                             ;A794C4;
-    %spritemapEntry(0, $00, $08, 0, 0, 2, 0, $1C2)
-    %spritemapEntry(1, $1F0, $00, 0, 0, 2, 0, $1B0)
-    %spritemapEntry(1, $00, $F8, 0, 0, 2, 0, $1A2)
-    %spritemapEntry(1, $1F0, $F8, 0, 0, 2, 0, $1A0)
-
-
-;;; $94DA: Unused. Spritemap - Kraid foot ;;;
-UNUSED_Spritemap_KraidFoot_A794DA:
-    dw $0001                                                             ;A794DA;
-    %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $1A9)
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $94E1: Spritemaps - Kraid arm - general ;;;
 Spritemap_KraidArm_General_0:
     dw $0001                                                             ;A794E1;
@@ -2269,13 +1896,6 @@ Spritemap_KraidArm_General_6:
     dw $0001                                                             ;A7951A;
     %spritemapEntry(1, $1FD, $F4, 1, 1, 3, 0, $12A)
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_KraidArm_General_A79521:
-    dw $0002                                                             ;A79521;
-    %spritemapEntry(0, $1FC, $F2, 1, 1, 3, 0, $139)
-    %spritemapEntry(0, $1FC, $FA, 1, 1, 3, 0, $138)
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 Spritemap_KraidArm_General_7:
     dw $0002                                                             ;A7952D;
     %spritemapEntry(0, $1FA, $FC, 1, 1, 3, 0, $12E)
@@ -2289,26 +1909,6 @@ Spritemap_KraidArm_General_9:
     dw $0002                                                             ;A79540;
     %spritemapEntry(0, $1FC, $06, 1, 0, 3, 0, $13E)
     %spritemapEntry(0, $1FC, $FE, 0, 0, 3, 0, $13E)
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_KraidArm_General_A7954C:
-    dw $0001                                                             ;A7954C;
-    %spritemapEntry(1, $1FC, $FC, 0, 0, 3, 0, $12C)
-
-UNUSED_Spritemap_KraidArm_General_A79553:
-    dw $0002                                                             ;A79553;
-    %spritemapEntry(0, $06, $FC, 0, 1, 3, 0, $12E)
-    %spritemapEntry(0, $1FE, $FC, 0, 0, 3, 0, $12E)
-
-UNUSED_Spritemap_KraidArm_General_A7955F:
-    dw $0001                                                             ;A7955F;
-    %spritemapEntry(1, $1FC, $F4, 0, 1, 3, 0, $12C)
-
-UNUSED_Spritemap_KraidArm_General_A79566:
-    dw $0002                                                             ;A79566;
-    %spritemapEntry(0, $1FD, $FA, 1, 1, 3, 0, $13E)
-    %spritemapEntry(0, $1FD, $F2, 0, 1, 3, 0, $13E)
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 Spritemap_KraidArm_General_A:
     dw $0001                                                             ;A79572;
@@ -2402,18 +2002,6 @@ Spritemap_KraidFoot_4:
     %spritemapEntry(1, $00, $FC, 0, 0, 3, 0, $1D8)
     %spritemapEntry(1, $1F0, $FC, 0, 0, 3, 0, $1D6)
     %spritemapEntry(1, $1E0, $FC, 0, 0, 3, 0, $1D4)
-
-
-;;; $96C4: Unused. Spritemaps - Kraid foot ;;;
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_KraidFoot_A796C4:
-    dw $0001                                                             ;A796C4;
-    %spritemapEntry(1, $1F8, $F8, 0, 0, 2, 0, $1D0)
-
-UNUSED_Spritemap_KraidFoot_A796CB:
-    dw $0001                                                             ;A796CB;
-    %spritemapEntry(0, $1FC, $FC, 0, 0, 2, 0, $1D2)
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $96D2: Kraid instruction list - roar ;;;
@@ -2779,100 +2367,6 @@ Tilemap_KraidHead_3:
     dw $0338,$0338,$0338,$0338,$0338,$0338,$0338,$0338                   ;A7A3B8;
 
 
-;;; $A3C8: Unused. Extended spritemaps - Kraid arm ;;;
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_ExtendedSpritemap_KraidArm_A7A3C8:
-    dw $0002                                                             ;A7A3C8;
-    dw $0000,$0000
-    dw Spritemap_KraidArm_RisingSinking_A                                ;A7A3CE;
-    dw Hitbox_KraidArm_F                                                 ;A7A3D0;
-    dw $FFF7,$FFF6                                                       ;A7A3D2;
-    dw Spritemap_KraidArm_RisingSinking_0                                ;A7A3D6;
-    dw Hitbox_KraidArm_0                                                 ;A7A3D8;
-
-UNUSED_ExtendedSpritemap_KraidArm_A7A3DA:
-    dw $0002                                                             ;A7A3DA;
-    dw $FFF9,$FFF8
-    dw Spritemap_KraidArm_RisingSinking_1                                ;A7A3E0;
-    dw Hitbox_KraidArm_1                                                 ;A7A3E2;
-    dw $0001,$0000                                                       ;A7A3E4;
-    dw Spritemap_KraidArm_RisingSinking_A                                ;A7A3E8;
-    dw Hitbox_KraidArm_F                                                 ;A7A3EA;
-
-UNUSED_ExtendedSpritemap_KraidArm_A7A3EC:
-    dw $0002                                                             ;A7A3EC;
-    dw $FFF6,$0001
-    dw Spritemap_KraidArm_RisingSinking_1                                ;A7A3F2;
-    dw Hitbox_KraidArm_1                                                 ;A7A3F4;
-    dw $0000,$0000                                                       ;A7A3F6;
-    dw Spritemap_KraidArm_RisingSinking_7                                ;A7A3FA;
-    dw Hitbox_KraidArm_8                                                 ;A7A3FC;
-
-UNUSED_ExtendedSpritemap_KraidArm_A7A3FE:
-    dw $0002                                                             ;A7A3FE;
-    dw $FFF6,$0000
-    dw Spritemap_KraidArm_RisingSinking_2                                ;A7A404;
-    dw Hitbox_KraidArm_2                                                 ;A7A406;
-    dw $0000,$0000                                                       ;A7A408;
-    dw Spritemap_KraidArm_RisingSinking_7                                ;A7A40C;
-    dw Hitbox_KraidArm_8                                                 ;A7A40E;
-
-UNUSED_ExtendedSpritemap_KraidArm_A7A410:
-    dw $0002                                                             ;A7A410;
-    dw $FFF6,$0000
-    dw Spritemap_KraidArm_RisingSinking_3                                ;A7A416;
-    dw Hitbox_KraidArm_3                                                 ;A7A418;
-    dw $0000,$0000                                                       ;A7A41A;
-    dw Spritemap_KraidArm_RisingSinking_7                                ;A7A41E;
-    dw Hitbox_KraidArm_8                                                 ;A7A420;
-
-UNUSED_ExtendedSpritemap_KraidArm_A7A422:
-    dw $0002                                                             ;A7A422;
-    dw $FFFA,$0006
-    dw Spritemap_KraidArm_RisingSinking_3                                ;A7A428;
-    dw Hitbox_KraidArm_3                                                 ;A7A42A;
-    dw $0000,$0000                                                       ;A7A42C;
-    dw Spritemap_KraidArm_RisingSinking_8                                ;A7A430;
-    dw Hitbox_KraidArm_9                                                 ;A7A432;
-
-UNUSED_ExtendedSpritemap_KraidArm_A7A434:
-    dw $0002                                                             ;A7A434;
-    dw $FFF8,$0006
-    dw Spritemap_KraidArm_RisingSinking_4                                ;A7A43A;
-    dw Hitbox_KraidArm_4                                                 ;A7A43C;
-    dw $0000,$0000                                                       ;A7A43E;
-    dw Spritemap_KraidArm_RisingSinking_8                                ;A7A442;
-    dw Hitbox_KraidArm_9                                                 ;A7A444;
-
-UNUSED_ExtendedSpritemap_KraidArm_A7A446:
-    dw $0002                                                             ;A7A446;
-    dw $FFF8,$0006
-    dw Spritemap_KraidArm_RisingSinking_5                                ;A7A44C;
-    dw Hitbox_KraidArm_5                                                 ;A7A44E;
-    dw $0000,$0000                                                       ;A7A450;
-    dw Spritemap_KraidArm_RisingSinking_8                                ;A7A454;
-    dw Hitbox_KraidArm_9                                                 ;A7A456;
-
-UNUSED_ExtendedSpritemap_KraidArm_A7A458:
-    dw $0002                                                             ;A7A458;
-    dw $FFFF,$000C
-    dw Spritemap_KraidArm_RisingSinking_5                                ;A7A45E;
-    dw Hitbox_KraidArm_5                                                 ;A7A460;
-    dw $0000,$0000                                                       ;A7A462;
-    dw Spritemap_KraidArm_RisingSinking_9                                ;A7A466;
-    dw Hitbox_KraidArm_A                                                 ;A7A468;
-
-UNUSED_ExtendedSpritemap_KraidArm_A7A46A:
-    dw $0002                                                             ;A7A46A;
-    dw $0000,$000B
-    dw Spritemap_KraidArm_RisingSinking_6                                ;A7A470;
-    dw Hitbox_KraidArm_6                                                 ;A7A472;
-    dw $0000,$0000                                                       ;A7A474;
-    dw Spritemap_KraidArm_RisingSinking_9                                ;A7A478;
-    dw Hitbox_KraidArm_A                                                 ;A7A47A;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $A47C: Spritemaps - Kraid arm - rising/sinking ;;;
 Spritemap_KraidArm_RisingSinking_0:
     dw $0001                                                             ;A7A47C;
@@ -3023,21 +2517,6 @@ Spritemap_KraidLint_Initial:
     %spritemapEntry(1, $00, $08, 0, 0, 1, 0, $1A9)
 
 
-;;; $A5FA: Unused. Spritemaps - Kraid lint ;;;
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_KraidLint_A7A5FA:
-    dw $0004                                                             ;A7A5FA;
-    %spritemapEntry(0, $00, $08, 0, 0, 1, 0, $1C2)
-    %spritemapEntry(1, $1F0, $00, 0, 0, 1, 0, $1B0)
-    %spritemapEntry(1, $00, $F8, 0, 0, 1, 0, $1A2)
-    %spritemapEntry(1, $1F0, $F8, 0, 0, 1, 0, $1A0)
-
-UNUSED_Spritemap_KraidLint_A7A610:
-    dw $0001                                                             ;A7A610;
-    %spritemapEntry(1, $1F8, $F8, 0, 0, 1, 0, $1A9)
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $A617: Spritemaps - Kraid fingernail ;;;
 Spritemap_KraidNail_0:
     dw $0002                                                             ;A7A617;
@@ -3137,21 +2616,8 @@ if !PAL == 0
 KraidForwardsSpeed:
     dw $0003                                                             ;A7A91C;
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_KraidConstant_A7A91E:
-    dw $0005                                                             ;A7A91E;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 KraidBackwardsSpeed:
     dw $0003                                                             ;A7A920;
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_KraidBackwardsFastSpeed_A7A922:
-    dw $0004                                                             ;A7A922;
-
-UNUSED_KraidConstant_A7A924:
-    dw $0110                                                             ;A7A924;
-endif ; !FEATURE_KEEP_UNREFERENCED
 else
 KraidForwardsSpeed:
     dw $0003
@@ -3167,17 +2633,6 @@ KraidBackwardsFastSpeed:
 
 KraidBackwardsFastSubspeed:
     dw $0CCC
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_KraidBackwardsFastSpeed_A7A922:
-    dw $0004
-
-UNUSED_KraidBackwardsFastSubspeed:
-    dw $CCCC
-
-UNUSED_KraidConstant_A7A924:
-    dw $0110
-endif ; !FEATURE_KEEP_UNREFERENCED
 endif
 
 KraidLint:
@@ -3185,13 +2640,6 @@ KraidLint:
     dw $8000                                                             ;A7A926;
   .XSpeed:
     dw $0003                                                             ;A7A928;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $A92A: Unused. REP #$30 ;;;
-UNUSED_REP30_A7A92A:
-    REP #$30                                                             ;A7A92A;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $A92C: Check if Kraid has died ;;;
@@ -4419,122 +3867,6 @@ KraidBody_vs_Projectile_CollisionHandling:
     BRA .hit                                                             ;A7B267;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $B269: Unused. Handle projectile damage and sound ;;;
-UNUSED_HandleProjectileDamageAndSound:
-; This is like a cut-down or custom version of $A0:A6DE (handles beam damage, freezing, and sound) for enemy 0 (probably Kraid) specifically.
-; There's no freeze handling, bomb and power bomb vulnerabilities are swapped, and Enemy.var4 is a triple damage flag
-    PHX                                                                  ;A7B269;
-    PHY                                                                  ;A7B26A;
-    TXY                                                                  ;A7B26B;
-    LDX.B EnemyIndex                                                     ;A7B26C;
-    LDA.W SamusProjectile_Damages,Y                                      ;A7B26F;
-    STA.W EnemySpritemapEntryXPositionDuringCollision                    ;A7B272;
-    LDA.W SamusProjectile_Types,Y                                        ;A7B275;
-    STA.B DP_Temp12                                                      ;A7B278;
-    LDA.W SamusProjectile_Types,Y                                        ;A7B27A;
-    BIT.W #$0018                                                         ;A7B27D;
-    BEQ .notPlasmaOrCharge                                               ;A7B280;
-    LDA.W #$0010                                                         ;A7B282;
-    STA.W Enemy.invincibilityTimer                                       ;A7B285;
-
-  .notPlasmaOrCharge:
-    LDX.W Enemy.ID                                                       ;A7B288;
-    LDA.L EnemyHeaders_vulnerabilities,X                                 ;A7B28B;
-    BNE .vulnerabilities                                                 ;A7B28F;
-    LDA.W #EnemyVulnerabilities_Default                                  ;A7B291;
-
-  .vulnerabilities:
-    STA.B DP_Temp14                                                      ;A7B294;
-    LDA.B DP_Temp12                                                      ;A7B296;
-    BIT.W #$0F00                                                         ;A7B298;
-    BNE .notBeam                                                         ;A7B29B;
-    AND.W #$00FF                                                         ;A7B29D;
-    CLC                                                                  ;A7B2A0;
-    ADC.B DP_Temp14                                                      ;A7B2A1;
-    TAX                                                                  ;A7B2A3;
-    LDA.L EnemyVulnerabilities_power,X                                   ;A7B2A4;
-    BRA .determinedVulnerability                                         ;A7B2A8;
-
-  .notBeam:
-    AND.W #$0F00                                                         ;A7B2AA;
-    CMP.W #$0100                                                         ;A7B2AD;
-    BEQ .superMissile                                                    ;A7B2B0;
-    CMP.W #$0200                                                         ;A7B2B2;
-    BNE .missileEnd                                                      ;A7B2B5;
-
-  .superMissile:
-    XBA                                                                  ;A7B2B7;
-    CLC                                                                  ;A7B2B8;
-    ADC.B DP_Temp14                                                      ;A7B2B9;
-    TAX                                                                  ;A7B2BB;
-    LDA.L EnemyVulnerabilities_plasmaIceWave,X                           ;A7B2BC;
-    BRA .determinedVulnerability                                         ;A7B2C0;
-
-  .missileEnd:
-    CMP.W #$0300                                                         ;A7B2C2;
-    BNE .notPowerBomb                                                    ;A7B2C5;
-    LDX.B DP_Temp14                                                      ;A7B2C7;
-    LDA.L EnemyVulnerabilities_bomb,X                                    ;A7B2C9;
-    BRA .determinedVulnerability                                         ;A7B2CD;
-
-  .notPowerBomb:
-    CMP.W #$0500                                                         ;A7B2CF;
-    BNE .return                                                          ;A7B2D2;
-    LDX.B DP_Temp14                                                      ;A7B2D4;
-    LDA.L EnemyVulnerabilities_powerBomb,X                               ;A7B2D6;
-
-  .determinedVulnerability:
-    AND.W #$00FF                                                         ;A7B2DA;
-    STA.W Temp_DamageMultiplier                                          ;A7B2DD;
-    BEQ .return                                                          ;A7B2E0;
-    LDA.W EnemySpritemapEntryXPositionDuringCollision                    ;A7B2E2;
-    LSR                                                                  ;A7B2E5;
-    STA.W $4202                                                          ;A7B2E6;
-    SEP #$20                                                             ;A7B2E9;
-    LDA.W Temp_DamageMultiplier                                          ;A7B2EB;
-    STA.W $4203                                                          ;A7B2EE;
-    NOP                                                                  ;A7B2F1;
-    NOP                                                                  ;A7B2F2;
-    NOP                                                                  ;A7B2F3;
-    NOP                                                                  ;A7B2F4;
-    NOP                                                                  ;A7B2F5;
-    REP #$20                                                             ;A7B2F6;
-    LDA.W $4216                                                          ;A7B2F8;
-    BEQ .return                                                          ;A7B2FB;
-    STA.W EnemySpritemapEntryXPositionDuringCollision                    ;A7B2FD;
-    LDA.W Enemy.health                                                   ;A7B300;
-    SEC                                                                  ;A7B303;
-    SBC.W EnemySpritemapEntryXPositionDuringCollision                    ;A7B304;
-    LDA.W Enemy.health                                                   ;A7B307;
-    SEC                                                                  ;A7B30A;
-    SBC.W EnemySpritemapEntryXPositionDuringCollision                    ;A7B30B;
-    STA.W Enemy.health                                                   ;A7B30E;
-    LDA.W Enemy.var4                                                     ;A7B311;
-    BEQ .tripleDamageEnd                                                 ;A7B314;
-    LDA.W Enemy.health                                                   ;A7B316;
-    SEC                                                                  ;A7B319;
-    SBC.W EnemySpritemapEntryXPositionDuringCollision                    ;A7B31A;
-    SEC                                                                  ;A7B31D;
-    SBC.W EnemySpritemapEntryXPositionDuringCollision                    ;A7B31E;
-    BPL .storeHealth                                                     ;A7B321;
-    LDA.W #$0000                                                         ;A7B323;
-
-  .storeHealth:
-    STA.W Enemy.health                                                   ;A7B326;
-
-  .tripleDamageEnd:
-    LDX.W Enemy.ID                                                       ;A7B329;
-    LDA.L EnemyHeaders_cry,X                                             ;A7B32C;
-    JSL.L QueueSound_Lib2_Max6                                           ;A7B330;
-
-  .return:
-    PLY                                                                  ;A7B334;
-    PLX                                                                  ;A7B335;
-    RTS                                                                  ;A7B336;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $B337: Kraid palette handling ;;;
 KraidPaletteHandling:
     PHX                                                                  ;A7B337;
@@ -4827,49 +4159,6 @@ endif
     PLY                                                                  ;A7B680;
     PLX                                                                  ;A7B681;
     RTL                                                                  ;A7B682;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $B683: Unused. Instruction - move Kraid right ;;;
-UNUSED_Instruction_Kraid_MoveRight_A7B683:
-    PHX                                                                  ;A7B683;
-    PHY                                                                  ;A7B684;
-    LDA.W Enemy.XPosition                                                ;A7B685;
-    CMP.W #$0140                                                         ;A7B688;
-    BMI .leftScreen                                                      ;A7B68B;
-    LDA.L Kraid.targetXPosition                                          ;A7B68D;
-    DEC                                                                  ;A7B691;
-    STA.L Kraid.targetXPosition                                          ;A7B692;
-    BNE .return                                                          ;A7B696;
-
-  .leftScreen:
-    LDX.W #$0000                                                         ;A7B698;
-if !PAL == 0
-    STZ.B DP_Temp12                                                      ;A7B69B;
-    LDA.W UNUSED_KraidBackwardsFastSpeed_A7A922                          ;A7B69D;
-else
-    LDA.W UNUSED_KraidBackwardsFastSubspeed
-    STA.B DP_Temp12
-    LDA.W UNUSED_KraidBackwardsFastSpeed_A7A922
-endif
-    STA.B DP_Temp14                                                      ;A7B6A0;
-    JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A7B6A2;
-    BCS .collision                                                       ;A7B6A6;
-
-  .return:
-    PLY                                                                  ;A7B6A8;
-    PLX                                                                  ;A7B6A9;
-    RTL                                                                  ;A7B6AA;
-
-  .collision:
-    LDA.W #$0000                                                         ;A7B6AB;
-    STA.W EarthquakeType                                                 ;A7B6AE;
-    LDA.W #$0007                                                         ;A7B6B1;
-    STA.W EarthquakeTimer                                                ;A7B6B4;
-    LDA.W Enemy.XPosition                                                ;A7B6B7;
-    STA.W Enemy[5].XPosition                                             ;A7B6BA;
-    BRA .return                                                          ;A7B6BD;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $B6BF: Kraid function - Kraid shot - initialise Kraid eye glowing ;;;
@@ -5617,55 +4906,6 @@ Function_KraidMainLoop_AttackingWithMouthOpen:
     dw -$0400*!SPF,-$03C0*!SPF,-$04C0*!SPF,-$0480*!SPF,-$04C0*!SPF,-$0400*!SPF,-$0480*!SPF,-$03C0*!SPF ;A7BC65;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $BC75: Unused. Lunge forward if Samus is not invincible ;;;
-UNUSED_KraidFoot_LungeForwardIfSamusIsNotInvincible_A7BC75:
-; Possibly an old Samus / Kraid foot collision reaction
-    LDA.W Enemy[5].instList                                              ;A7BC75;
-    CMP.W #InstList_KraidFoot_LungeForward_1                             ;A7BC78;
-    BMI .return                                                          ;A7BC7B;
-    LDA.W SamusInvincibilityTimer                                        ;A7BC7D;
-    BEQ .lunge                                                           ;A7BC80;
-    LDA.W #Function_KraidFoot_Phase2_WalkingBackward                     ;A7BC82;
-    STA.W Enemy[5].var0                                                  ;A7BC85;
-    LDA.B Layer1XPosition                                                ;A7BC88;
-    CLC                                                                  ;A7BC8B;
-    ADC.W #$0120                                                         ;A7BC8C;
-    CMP.W #$0120                                                         ;A7BC8F;
-    BMI +                                                                ;A7BC92;
-    LDA.W #$0120                                                         ;A7BC94;
-
-+   STA.L Kraid.targetXPosition                                          ;A7BC97;
-    LDA.W #$0001                                                         ;A7BC9B;
-    STA.W Enemy[5].instTimer                                             ;A7BC9E;
-    LDA.W #InstList_KraidFoot_KraidIsBig_WalkingBackwards_0              ;A7BCA1;
-    STA.W Enemy[5].instList                                              ;A7BCA4;
-
-  .return:
-    RTL                                                                  ;A7BCA7;
-
-  .lunge:
-    LDA.W #$0001                                                         ;A7BCA8;
-    STA.W Enemy[5].instTimer                                             ;A7BCAB;
-    LDA.W #InstList_KraidFoot_LungeForward_0                             ;A7BCAE;
-    STA.W Enemy[5].instList                                              ;A7BCB1;
-    RTL                                                                  ;A7BCB4;
-
-
-;;; $BCB5: Unused. Fire lint after [A] frames ;;;
-UNUSED_Kraid_FireLintAfterAFrames_A7BCB5:
-    STA.W Kraid.functionTimer,X                                          ;A7BCB5;
-    LDA.W #Function_KraidNail_HorizontallyAlignEnemyToKraid              ;A7BCB8;
-    STA.W Kraid.function,X                                               ;A7BCBB;
-    LDA.W #Function_KraidLint_FireLint                                   ;A7BCBE;
-    STA.L Kraid.nextFunction,X                                           ;A7BCC1;
-    LDA.W Enemy.properties,X                                             ;A7BCC5;
-    ORA.W #$0100                                                         ;A7BCC8;
-    STA.W Enemy.properties,X                                             ;A7BCCB;
-    RTS                                                                  ;A7BCCE;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $BCCF: Enemy touch - enemy $E43F (Kraid good fingernail) ;;;
 EnemyTouch_KraidNail:
     JSL.L NormalEnemyTouchAI                                             ;A7BCCF;
@@ -6165,89 +5405,6 @@ Function_Kraid_GetBig_ReleaseCamera:
     RTL                                                                  ;A7C0BC;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $C0BD: Unused. Crumble first section of Kraid's spike floor ;;;
-UNUSED_CrumbleFirstSectionOfKraidsSpikeFloor_A7C0BD:
-; Assuming PLMEntries_crumbleKraidSpikeBlocks used to be a PLM that only crumbled one block
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C0BD;
-    db $06,$1B                                                           ;A7C0C1;
-    dw PLMEntries_crumbleKraidSpikeBlocks                                ;A7C0C3;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C0C5;
-    db $07,$1B                                                           ;A7C0C9;
-    dw PLMEntries_crumbleKraidSpikeBlocks                                ;A7C0CB;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C0CD;
-    db $08,$1B                                                           ;A7C0D1;
-    dw PLMEntries_crumbleKraidSpikeBlocks                                ;A7C0D3;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C0D5;
-    db $09,$1B                                                           ;A7C0D9;
-    dw PLMEntries_crumbleKraidSpikeBlocks                                ;A7C0DB;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C0DD;
-    db $0A,$1B                                                           ;A7C0E1;
-    dw PLMEntries_crumbleKraidSpikeBlocks                                ;A7C0E3;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C0E5;
-    db $0B,$1B                                                           ;A7C0E9;
-    dw PLMEntries_crumbleKraidSpikeBlocks                                ;A7C0EB;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C0ED;
-    db $0C,$1B                                                           ;A7C0F1;
-    dw PLMEntries_crumbleKraidSpikeBlocks                                ;A7C0F3;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C0F5;
-    db $0D,$1B                                                           ;A7C0F9;
-    dw PLMEntries_crumbleKraidSpikeBlocks                                ;A7C0FB;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C0FD;
-    db $0E,$1B                                                           ;A7C101;
-    dw PLMEntries_crumbleKraidSpikeBlocks                                ;A7C103;
-    RTS                                                                  ;A7C105;
-
-
-;;; $C106: Unused. Crumble second section of Kraid's spike floor ;;;
-UNUSED_CrumbleFirstSectionOfKraidsSpikeFloor_A7C106:
-; Assuming PLMEntries_crumbleKraidSpikeBlocks used to be a PLM that only crumbled one block
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C106;
-    db $0F,$1B                                                           ;A7C10A;
-    dw PLMEntries_crumbleKraidSpikeBlocks                                ;A7C10C;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C10E;
-    db $10,$1B                                                           ;A7C112;
-    dw PLMEntries_crumbleKraidSpikeBlocks                                ;A7C114;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C116;
-    db $11,$1B                                                           ;A7C11A;
-    dw PLMEntries_crumbleKraidSpikeBlocks                                ;A7C11C;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C11E;
-    db $12,$1B                                                           ;A7C122;
-    dw PLMEntries_crumbleKraidSpikeBlocks                                ;A7C124;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C126;
-    db $13,$1B                                                           ;A7C12A;
-    dw PLMEntries_crumbleKraidSpikeBlocks                                ;A7C12C;
-    RTS                                                                  ;A7C12E;
-
-
-;;; $C12F: Unused. Crumble third section of Kraid's spike floor ;;;
-UNUSED_CrumbleFirstSectionOfKraidsSpikeFloor_A7C12F:
-; Assuming PLMEntries_crumbleKraidSpikeBlocks used to be a PLM that only crumbled one block
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C12F;
-    db $14,$1B                                                           ;A7C133;
-    dw PLMEntries_crumbleKraidSpikeBlocks                                ;A7C135;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C137;
-    db $15,$1B                                                           ;A7C13B;
-    dw PLMEntries_crumbleKraidSpikeBlocks                                ;A7C13D;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C13F;
-    db $16,$1B                                                           ;A7C143;
-    dw PLMEntries_crumbleKraidSpikeBlocks                                ;A7C145;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C147;
-    db $17,$1B                                                           ;A7C14B;
-    dw PLMEntries_crumbleKraidSpikeBlocks                                ;A7C14D;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C14F;
-    db $18,$1B                                                           ;A7C153;
-    dw PLMEntries_crumbleKraidSpikeBlocks                                ;A7C155;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C157;
-    db $19,$1B                                                           ;A7C15B;
-    dw PLMEntries_crumbleKraidSpikeBlocks                                ;A7C15D;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C15F;
-    db $1A,$1B                                                           ;A7C163;
-    dw PLMEntries_crumbleKraidSpikeBlocks                                ;A7C165;
-    RTS                                                                  ;A7C167;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $C168: Spawn PLM to clear the ceiling ;;;
 SpawnPLMToClearTheCeiling:
     JSL.L Spawn_Hardcoded_PLM                                            ;A7C168;
@@ -6262,62 +5419,6 @@ SpawnPLMToClearTheSpikes:
     db $05,$1B                                                           ;A7C175;
     dw PLMEntries_clearKraidSpikeBlocks                                  ;A7C177;
     RTS                                                                  ;A7C179;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $C17A: Unused. Clear some of the spikes ;;;
-UNUSED_ClearSomeOfTheSpikeBlocks_A7C17A:
-; Assuming PLMEntries_clearKraidSpikeBlocks used to be a PLM that only crumbled one block
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C17A;
-    db $0B,$1B                                                           ;A7C17E;
-    dw PLMEntries_clearKraidSpikeBlocks                                  ;A7C180;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C182;
-    db $0C,$1B                                                           ;A7C186;
-    dw PLMEntries_clearKraidSpikeBlocks                                  ;A7C188;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C18A;
-    db $0D,$1B                                                           ;A7C18E;
-    dw PLMEntries_clearKraidSpikeBlocks                                  ;A7C190;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C192;
-    db $0E,$1B                                                           ;A7C196;
-    dw PLMEntries_clearKraidSpikeBlocks                                  ;A7C198;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C19A;
-    db $0F,$1B                                                           ;A7C19E;
-    dw PLMEntries_clearKraidSpikeBlocks                                  ;A7C1A0;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C1A2;
-    db $10,$1B                                                           ;A7C1A6;
-    dw PLMEntries_clearKraidSpikeBlocks                                  ;A7C1A8;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C1AA;
-    db $11,$1B                                                           ;A7C1AE;
-    dw PLMEntries_clearKraidSpikeBlocks                                  ;A7C1B0;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C1B2;
-    db $12,$1B                                                           ;A7C1B6;
-    dw PLMEntries_clearKraidSpikeBlocks                                  ;A7C1B8;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C1BA;
-    db $13,$1B                                                           ;A7C1BE;
-    dw PLMEntries_clearKraidSpikeBlocks                                  ;A7C1C0;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C1C2;
-    db $14,$1B                                                           ;A7C1C6;
-    dw PLMEntries_clearKraidSpikeBlocks                                  ;A7C1C8;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C1CA;
-    db $15,$1B                                                           ;A7C1CE;
-    dw PLMEntries_clearKraidSpikeBlocks                                  ;A7C1D0;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C1D2;
-    db $16,$1B                                                           ;A7C1D6;
-    dw PLMEntries_clearKraidSpikeBlocks                                  ;A7C1D8;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C1DA;
-    db $17,$1B                                                           ;A7C1DE;
-    dw PLMEntries_clearKraidSpikeBlocks                                  ;A7C1E0;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C1E2;
-    db $18,$1B                                                           ;A7C1E6;
-    dw PLMEntries_clearKraidSpikeBlocks                                  ;A7C1E8;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C1EA;
-    db $19,$1B                                                           ;A7C1EE;
-    dw PLMEntries_clearKraidSpikeBlocks                                  ;A7C1F0;
-    JSL.L Spawn_Hardcoded_PLM                                            ;A7C1F2;
-    db $1A,$1B                                                           ;A7C1F6;
-    dw PLMEntries_clearKraidSpikeBlocks                                  ;A7C1F8;
-    RTS                                                                  ;A7C1FA;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $C1FB: Unpause hook - Kraid is dead ;;;
@@ -6607,54 +5708,6 @@ KraidDeath_FadeOutBackground:
 
   .return:
     RTL                                                                  ;A7C456;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $C457: Unused. Process Kraid instruction, except there's no ASM instructions ;;;
-UNUSED_ProcessKraidInstruction_WithNoASMInstructions_A7C457:
-    LDA.W Kraid.instructionTimer                                         ;A7C457;
-    BEQ .return                                                          ;A7C45A;
-    DEC.W Kraid.instructionTimer                                         ;A7C45C;
-    BNE .return                                                          ;A7C45F;
-    LDX.W Kraid.instListPointer                                          ;A7C461;
-    LDA.W $0000,X                                                        ;A7C464;
-    BPL .timer                                                           ;A7C467;
-    LDA.W #$0000                                                         ;A7C469;
-    STA.W Kraid.instructionTimer                                         ;A7C46C;
-    RTS                                                                  ;A7C46F;
-
-  .timer:
-    STA.W Kraid.instructionTimer                                         ;A7C470;
-    TXA                                                                  ;A7C473;
-    CLC                                                                  ;A7C474;
-    ADC.W #$0008                                                         ;A7C475;
-    STA.W Kraid.instListPointer                                          ;A7C478;
-    LDA.W $0002,X                                                        ;A7C47B;
-    TAY                                                                  ;A7C47E;
-    LDX.B VRAMWriteStack                                                 ;A7C47F;
-    LDA.W #$02C0                                                         ;A7C482;
-    STA.B VRAMWrite.size,X                                               ;A7C485;
-    INX                                                                  ;A7C487;
-    INX                                                                  ;A7C488;
-    STY.B VRAMWrite.size,X                                               ;A7C489;
-    INX                                                                  ;A7C48B;
-    INX                                                                  ;A7C48C;
-    SEP #$20                                                             ;A7C48D;
-    LDA.B #Tilemap_KraidHead_0>>16                                       ;A7C48F;
-    STA.B VRAMWrite.size,X                                               ;A7C491;
-    REP #$20                                                             ;A7C493;
-    INX                                                                  ;A7C495;
-    LDA.B DP_BG2TilemapAddrSize                                          ;A7C496;
-    AND.W #$00FC                                                         ;A7C498;
-    XBA                                                                  ;A7C49B;
-    STA.B VRAMWrite.size,X                                               ;A7C49C;
-    INX                                                                  ;A7C49E;
-    INX                                                                  ;A7C49F;
-    STX.B VRAMWriteStack                                                 ;A7C4A0;
-
-  .return:
-    RTS                                                                  ;A7C4A3;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $C4A4: Kraid death - update BG2 tilemap top half ;;;
@@ -7372,13 +6425,6 @@ Palette_Phantoon:
 
 
 ;;; $CA21: Palettes ;;;
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Palette_Phantoon_A7CA21:
-; Unused. Clone of Palette_Phantoon_HealthBased_7
-    dw $0000,$477B,$2E52,$00C6,$0063,$3AB5,$2210,$116B                   ;A7CA21;
-    dw $0508,$7FFF,$36B5,$19AD,$0929,$381D,$1814,$000A                   ;A7CA31;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 Palette_Phantoon_FadeOutTarget:
 ; Fade out target palette
     dw $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;A7CA41;
@@ -7471,18 +6517,6 @@ InstList_Phantoon_Eye_Open:
     dw Instruction_Common_CallFunctionInY                                ;A7CC63;
     dw SetupEyeOpenPhantoonState                                         ;A7CC65;
     dw Instruction_Common_Sleep                                          ;A7CC67;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $CC69: Unused. Instruction list - open (ignoring Samus) ;;;
-UNUSED_InstList_Phantoon_Eye_Open_IgnoringSamus_A7CC69:
-    dw $000A,ExtendedSpritemap_Phantoon_Eye_Opening                      ;A7CC69;
-    dw $000A,ExtendedSpritemap_Phantoon_Eye_OpeningClosing               ;A7CC6D;
-    dw $0001,ExtendedSpritemap_Phantoon_Eye_Open                         ;A7CC71;
-    dw Instruction_Common_CallFunctionInY                                ;A7CC75;
-    dw PlayPhantoonMaterializationSFX                                    ;A7CC77;
-    dw Instruction_Common_Sleep                                          ;A7CC79;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $CC7B: Instruction list - eye - closed ;;;
@@ -7670,13 +6704,6 @@ Phantoon_ReverseFigure8_SpeedCaps_Stage1Max:
     dw regional($FFF9, $FFF8)                                            ;A7CD8B;
 Phantoon_ReverseFigure8_SpeedCaps_Stage2Min:
     dw $0000                                                             ;A7CD8D;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $CD8F: Unused ;;;
-UNUSED_Phantoon_A7CD8F:
-    dw $8000,$0000,$000B,$8000,$0000,$FFF5                               ;A7CD8F;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $CD9B: Wavy Phantoon constants ;;;
@@ -8797,23 +7824,6 @@ Function_Phantoon_FightIntro_WavyFadeIn:
 
   .return:
     RTS                                                                  ;A7D580;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $D581: Unused ;;;
-UNUSED_Function_Phantoon_FightIntro_A7D581:
-    LDX.W #$01FE                                                         ;A7D581;
-    LDA.W #$0000                                                         ;A7D584;
-
-  .loop:
-    STA.L WavyPhantoonBG2XScrollHDMADataTable,X                          ;A7D587;
-    DEX                                                                  ;A7D58B;
-    DEX                                                                  ;A7D58C;
-    BPL .loop                                                            ;A7D58D;
-    LDA.W #Function_Phantoon_FightIntro_PickFirstPattern                 ;A7D58F;
-    STA.W Phantoon.function,X                                            ;A7D592;
-    RTS                                                                  ;A7D595;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $D596: Phantoon function - fight intro - pick first pattern ;;;
@@ -10235,38 +9245,6 @@ ExtendedSpritemap_Phantoon_Eyeball_LookingUpRight:
     dw ExtendedTilemap_Phantoon_Eyeball_LookingUpRight                   ;A7DF79;
     dw Hitbox_Phantoon_0                                                 ;A7DF7B;
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_ExtendedSpritemap_Phantoon_Tentacles_A7DF7D:
-; Unused clone of ExtendedSpritemap_Phantoon_Tentacles_0
-    dw $0002                                                             ;A7DF7D;
-    dw $0000,$0000
-    dw ExtendedTilemap_Phantoon_Tentacle_Left_0                          ;A7DF83;
-    dw Hitbox_Phantoon_0                                                 ;A7DF85;
-    dw $0000,$0000                                                       ;A7DF87;
-    dw ExtendedTilemap_Phantoon_Tentacle_Right_0                         ;A7DF8B;
-    dw Hitbox_Phantoon_0                                                 ;A7DF8D;
-
-UNUSED_ExtendedSpritemap_Phantoon_Tentacles_A7DF8F:
-; Unused clone of ExtendedSpritemap_Phantoon_Tentacles_1
-    dw $0002                                                             ;A7DF8F;
-    dw $0000,$0000
-    dw ExtendedTilemap_Phantoon_Tentacle_Left_1                          ;A7DF95;
-    dw Hitbox_Phantoon_0                                                 ;A7DF97;
-    dw $0000,$0000                                                       ;A7DF99;
-    dw ExtendedTilemap_Phantoon_Tentacle_Right_1                         ;A7DF9D;
-    dw Hitbox_Phantoon_0                                                 ;A7DF9F;
-
-UNUSED_ExtendedSpritemap_Phantoon_Tentacles_A7DFA1:
-; Unused clone of ExtendedSpritemap_Phantoon_Tentacles_2
-    dw $0002                                                             ;A7DFA1;
-    dw $0000,$0000
-    dw ExtendedTilemap_Phantoon_Tentacle_Left_2                          ;A7DFA7;
-    dw Hitbox_Phantoon_0                                                 ;A7DFA9;
-    dw $0000,$0000                                                       ;A7DFAB;
-    dw ExtendedTilemap_Phantoon_Tentacle_Right_2                         ;A7DFAF;
-    dw Hitbox_Phantoon_0                                                 ;A7DFB1;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 ExtendedSpritemap_Phantoon_Tentacles_0:
     dw $0002                                                             ;A7DFB3;
     dw $0000,$0000
@@ -10312,14 +9290,6 @@ ExtendedSpritemap_Phantoon_Mouth_SpawningFlame_1:
     dw ExtendedTilemap_Phantoon_Mouth_2                                  ;A7E003;
     dw Hitbox_Phantoon_0                                                 ;A7E005;
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_ExtendedSpritemap_Phantoon_Mouth_SpawningFlame_A7E007:
-    dw $0001                                                             ;A7E007;
-    dw $0000,$0000
-    dw ExtendedTilemap_Phantoon_Mouth_0                                  ;A7E00D;
-    dw Hitbox_Phantoon_0                                                 ;A7E00F;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 
 ;;; $E011: RTL. Initialisation AI - enemy $E53F/$E57F (Phantoon) ;;;
 RTL_A7E011:
@@ -10327,14 +9297,6 @@ RTL_A7E011:
 
 
 ;;; $E012: Hitboxes ;;;
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Hitbox_Phantoon_A7E012:
-    dw $0001                                                             ;A7E012;
-    dw $FFF7,$FFF0,$0008,$0010
-    dw EnemyTouch_Phantoon                                               ;A7E01C;
-    dw EnemyShot_Phantoon                                                ;A7E01E;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 Hitbox_Phantoon_0:
     dw $0001                                                             ;A7E020;
     dw $0000,$0000,$0000,$0000
@@ -10367,29 +9329,6 @@ Hitbox_Phantoon_2:
 
 
 ;;; $E07A: Spritemaps / extended tilemaps ;;;
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_Spritemap_PhantoonFlame_A7E07A:
-    dw $0002                                                             ;A7E07A;
-    %spritemapEntry(1, $1F8, $00, 0, 0, 2, 0, $106)
-    %spritemapEntry(1, $1F8, $F0, 0, 0, 2, 0, $100)
-
-UNUSED_Spritemap_PhantoonFlame_A7E086:
-    dw $0002                                                             ;A7E086;
-    %spritemapEntry(1, $1F8, $00, 0, 0, 2, 0, $108)
-    %spritemapEntry(1, $1F8, $F0, 0, 0, 2, 0, $102)
-
-UNUSED_Spritemap_PhantoonFlame_A7E092:
-    dw $0002                                                             ;A7E092;
-    %spritemapEntry(1, $1F8, $00, 0, 0, 2, 0, $10A)
-    %spritemapEntry(1, $1F8, $F0, 0, 0, 2, 0, $104)
-
-UNUSED_Spritemap_PhantoonFlame_A7E09E:
-    dw $0002                                                             ;A7E09E;
-    %spritemapEntry(1, $00, $F8, 0, 1, 2, 0, $10C)
-    %spritemapEntry(1, $1F0, $F8, 0, 0, 2, 0, $10C)
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ExtendedTilemap_Phantoon_Body:                                           ;A7E0AA;
     dw $FFFE
     dw $2000,$000A,$2338,$2338,$2338,$3D32,$3D33,$7D33,$7D32,$2338,$2338,$2338
@@ -11918,14 +10857,6 @@ InstList_Dachora_Blinking_FacingLeft:
     dw InstList_Dachora_Blinking_FacingLeft                              ;A7F3EF;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $F3F1: Unused. Instruction list - charge shinespark - facing left ;;;
-UNUSED_InstList_Dachora_ChargeShinespark_FacingLeft_A7F3F1:
-    dw $0001,Spritemap_Dachora_6                                         ;A7F3F1;
-    dw Instruction_Common_Sleep                                          ;A7F3F5;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $F3F7: Instruction list - echo - facing left ;;;
 InstList_Dachora_Echo_FacingLeft:
     dw $000A,Spritemap_Dachora_7                                         ;A7F3F7;
@@ -12274,20 +11205,6 @@ Function_Dachora_RunningLeft:
     CMP.W #$0060                                                         ;A7F63D;
     BMI .stop                                                            ;A7F640;
     RTL                                                                  ;A7F642;
-
-if !FEATURE_KEEP_UNREFERENCED
-; Unused branch
-    LDA.W UNUSED_DachoraConstants_maxXDistanceFromSamusToStop_A7F4CB     ;A7F643; dead code
-    JSL.L IsSamusWithinAPixelColumnsOfEnemy                              ;A7F646;
-    TAY                                                                  ;A7F64A;
-    BNE .stop                                                            ;A7F64B;
-    LDA.W #InstList_Dachora_Idling_FacingRight                           ;A7F64D;
-    STA.W Enemy.instList,X                                               ;A7F650;
-    LDA.W #Function_Dachora_WaitForSamusToBeNear                         ;A7F653;
-    STA.W Dachora.function,X                                             ;A7F656;
-    STZ.W Dachora.paletteAnimationTimer,X                                ;A7F659;
-    BRA .merge                                                           ;A7F65C;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $F65E: Dachora function - running right ;;;

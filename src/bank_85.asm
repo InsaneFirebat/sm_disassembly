@@ -295,13 +295,6 @@ Initialise_MessageBox:
     RTS                                                                  ;858257;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $8258: Unused. REP #$30 ;;;
-UNUSED_REP30_858258:
-    REP #$30                                                             ;858258;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $825A: Write large message box tilemap ;;;
 Write_Large_MessageBox_Tilemap:
     LDX.W #$0000                                                         ;85825A;

@@ -670,11 +670,6 @@ incbin "../data/LevelData_Kraid.bin" ; $26D bytes
 LevelData_StatuesHallway:
 incbin "../data/LevelData_StatuesHallway.bin" ; $4EA bytes
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_LevelData_C6DD77:
-incbin "../data/UNUSED_LevelData_C6DD77.bin" ; $169 bytes
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 LevelData_WarehouseEntrance:
 incbin "../data/LevelData_WarehouseEntrance.bin" ; $475 bytes
 
@@ -822,11 +817,6 @@ incbin "../data/LevelData_RedPirateShaft.bin" ; $36E bytes
 LevelData_AcidStatue:
 incbin "../data/LevelData_AcidStatue.bin" ; $8D6 bytes
 
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_LevelData_C8CDA9:
-incbin "../data/UNUSED_LevelData_C8CDA9.bin" ; $7F3 bytes
-endif ; !FEATURE_KEEP_UNREFERENCED
-
 LevelData_MainHall:
 incbin "../data/LevelData_MainHall.bin" ; $B01 bytes
 
@@ -844,11 +834,6 @@ incbin "../data/LevelData_LNFarming.bin" ; $251 bytes
 
 LevelData_FastPillarsSetup:
 incbin "../data/LevelData_FastPillarsSetup.bin" ; $3EC bytes
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_LevelData_C8F40B:
-incbin "../data/UNUSED_LevelData_C8F40B.bin" ; $180 bytes
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 LevelData_MickeyMouse:
 incbin "../data/LevelData_MickeyMouse.bin" ; $73A bytes
@@ -1143,11 +1128,6 @@ incbin "../data/LevelData_SaveStation_BothDoors.bin" ; $30B bytes
 
 LevelData_RefillStation_LeftSideDoor:
 incbin "../data/LevelData_RefillStation_LeftSideDoor.bin" ; $302 bytes
-
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_LevelData_CEA503:
-incbin "../data/UNUSED_LevelData_CEA503.bin" ; $320 bytes
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 LevelData_RefillStation_RightSideDoor:
 incbin "../data/LevelData_RefillStation_RightSideDoor.bin" ; $30E bytes

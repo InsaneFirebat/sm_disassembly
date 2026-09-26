@@ -4,22 +4,6 @@
 org $808000
 
 
-if !DEBUG
-;;; $8000: Debug constants ;;;
-DebugConst:
-  .RegionSRAM:
-    dw $0000 ; Skip NTSC/PAL and SRAM mapping check ($85F6)
-  .DemoRecorder:
-    dw $0000 ; Demo recorder ($90:E759)
-  .DebugMode:
-    dw $0000 ; Debug mode, written to Debug_Enable on boot
-  .DebugScrolling:
-    dw $0000 ; Debug scrolling ($82:8B44: game state 8 - main gameplay)
-  .DisableAudio:
-    dw $0000 ; Disable audio (UploadToAPU_long)
-endif
-
-
 ;;; $800A: Upload to APU (hardcoded parameter) ;;;
 UploadToAPU_Hardcoded:
 ;; Parameter:
@@ -51,13 +35,6 @@ UploadToAPU_long:
 UploadToAPU:
 ;; Parameter
 ;;     $00: APU data pointer
-if !DEBUG
-    LDA.L DebugConst_DisableAudio                                        ;808028;
-    BEQ .upload                                                          ;80802C; If [DebugConst_DisableAudio] != 0:
-    RTS                                                                  ;80802E; Return
-endif
-
-  .upload:
     PHB                                                                  ;808030;
     REP #$30                                                             ;808031;
     LDA.W #$FFFF                                                         ;808033;
@@ -324,31 +301,6 @@ SetBossBitsInAForCurrentArea:
     REP #$20
     PLX                                                                  ;8081BE;
     RTL                                                                  ;8081BF;
-
-
-;;; $81C0: Unused. Clear boss bits in A for current area ;;;
-if !FEATURE_KEEP_UNREFERENCED
-UNUSED_ClearBossBitsInAForCurrentArea_8081C0:
-;; Parameter:
-;;     A: Boss bits
-;;         1: Area boss (Kraid, Phantoon, Draygon, both Ridleys)
-;;         2: Area mini-boss (Spore Spawn, Botwoon, Crocomire, Mother Brain)
-;;         4: Area torizo (Bomb Torizo, Golden Torizo)
-    PHX                                                                  ;8081C0;
-    PHY                                                                  ;8081C1;
-    PHP                                                                  ;8081C2;
-    SEP #$20                                                             ;8081C3;
-    EOR.B #$FF                                                           ;8081C5;
-    STA.W Bitmask                                                        ;8081C7;
-    LDX.W AreaIndex                                                      ;8081CA;
-    LDA.L SRAMMirror_Boss,X                                              ;8081CD;
-    AND.W Bitmask                                                        ;8081D1;
-    STA.L SRAMMirror_Boss,X                                              ;8081D4;
-    PLP                                                                  ;8081D8;
-    PLY                                                                  ;8081D9;
-    PLX                                                                  ;8081DA;
-    RTL                                                                  ;8081DB;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $81DC: Checks if the boss bits for the current area match any bits in A ;;;
@@ -631,95 +583,6 @@ ClearForceBlankAndWaitForNMI:
     STA.B DP_Brightness                                                  ;80838C;
     REP #$20
     JML WaitForNMI
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $8395: Unused. Update CGRAM ;;;
-UNUSED_UpdateCGRAM_808395:
-; This routine is subsumed by $933A (update OAM & CGRAM)
-    PHP                                                                  ;808395;
-    SEP #$10                                                             ;808396;
-    REP #$20                                                             ;808398;
-    LDA.W #$2200                                                         ;80839A;
-    STA.W $4310                                                          ;80839D;
-    LDA.W #$C000                                                         ;8083A0;
-    STA.W $4312                                                          ;8083A3;
-    LDX.B #$7E                                                           ;8083A6;
-    STX.W $4314                                                          ;8083A8;
-    LDA.W #$0200                                                         ;8083AB;
-    STA.W $4315                                                          ;8083AE;
-    LDX.B #$00                                                           ;8083B1;
-    STX.W $2121                                                          ;8083B3;
-    LDX.B #$02                                                           ;8083B6;
-    STX.W $420B                                                          ;8083B8;
-    PLP                                                                  ;8083BB;
-    RTL                                                                  ;8083BC;
-
-
-;;; $83BD: Unused. Write [Y] bytes of [A] to $00:0000 + [X] - 8-bit ;;;
-UNUSED_WriteYBytesOfATo_000000_X_8bit_8083BD:
-;; Parameters:
-;;     A: Fill value
-;;     X: Destination address. Range $0000..1FFF for WRAM writes
-;;     Y: Size
-    PHP                                                                  ;8083BD;
-    PHB                                                                  ;8083BE;
-    PHK                                                                  ;8083BF;
-    PLB                                                                  ;8083C0;
-    SEP #$20                                                             ;8083C1;
-    REP #$10                                                             ;8083C3;
-
-  .loop:
-    STA.L $000000,X                                                      ;8083C5;
-    INX                                                                  ;8083C9;
-    DEY                                                                  ;8083CA;
-    BNE .loop                                                            ;8083CB;
-    PLB                                                                  ;8083CD;
-    PLP                                                                  ;8083CE;
-    RTL                                                                  ;8083CF;
-
-
-;;; $83D0: Unused. Write [Y] bytes of [A] to $00:0000 + [X] - 16-bit ;;;
-UNUSED_WriteYBytesOfATo_000000_X_16bit_8083D0:
-;; Parameters:
-;;     A: Fill value
-;;     X: Destination address. Range $0000..1FFF for WRAM writes
-;;     Y: Size
-    PHP                                                                  ;8083D0;
-    PHB                                                                  ;8083D1;
-    PHK                                                                  ;8083D2;
-    PLB                                                                  ;8083D3;
-    REP #$30                                                             ;8083D4;
-
-  .loop:
-    STA.L $000000,X                                                      ;8083D6;
-    INX                                                                  ;8083DA;
-    INX                                                                  ;8083DB;
-    DEY                                                                  ;8083DC;
-    DEY                                                                  ;8083DD;
-    BNE .loop                                                            ;8083DE;
-    PLB                                                                  ;8083E0;
-    PLP                                                                  ;8083E1;
-    RTL                                                                  ;8083E2;
-
-
-;;; $83E3: Unused. Write [Y] bytes of [A] to $7E:0000 + [X] - 8-bit ;;;
-UNUSED_WriteYBytesOfATo_7E0000_X_8bit_8083E3:
-;; Parameters:
-;;     A: Fill value
-;;     X: Destination address
-;;     Y: Size
-    SEP #$20                                                             ;8083E7;
-    REP #$10                                                             ;8083E9;
-
-  .loop:
-    STA.L LowRAM,X                                                       ;8083EB;
-    INX                                                                  ;8083EF;
-    DEY                                                                  ;8083F0;
-    BNE .loop                                                            ;8083F1;
-    REP #$30
-    RTL                                                                  ;8083F5;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $83F6: Write [Y] bytes of [A] to $7E:0000 + [X] - 16-bit ;;;
@@ -1034,10 +897,6 @@ CommonBootSection:
     STA.W APU_MusicQueueTimers+10                                        ;80854F;
     STA.W APU_MusicQueueTimers+12                                        ;808552;
     STA.W APU_MusicQueueTimers+14                                        ;808555;
-if !DEBUG
-    LDA.L DebugConst_DebugMode                                           ;808558;
-    STA.W Debug_Enable                                                   ;80855C; Mirror debug byte to RAM
-endif
     REP #$30                                                             ;808562;
     JSR.W DetermineNumberOfDemoSets                                      ;808564; Check for non-corrupt SRAM
     STZ.W DisableSounds                                                  ;808568; Enable sounds
@@ -1060,28 +919,6 @@ Crash_Handler:
 ;     $93:8163: Initialise shinespark echo or spazer SBA trail projectile
 ;     $93:81A4: Initialise SBA projectile
     JML Crash_Handler                                                    ;808573; Sit here and think about what you've done
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $8577: Unused. Block for [A] frames ;;;
-UNUSED_WaitAFrames_808577:
-;; Parameters:
-;;     A: Number of frames to block for (including the rest of this frame)
-    PHP                                                                  ;808577;
-    PHB                                                                  ;808578;
-    PHK                                                                  ;808579;
-    PLB                                                                  ;80857A;
-    SEP #$20                                                             ;80857B;
-    STA.W BlockFramesTimer                                               ;80857D;
-
-  .waitNMI:
-    JSL.L WaitForNMI                                                     ;808580;
-    DEC.W BlockFramesTimer                                               ;808584;
-    BNE .waitNMI                                                         ;808587;
-    PLB                                                                  ;808589;
-    PLP                                                                  ;80858A;
-    RTL                                                                  ;80858B;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $858C: Load map explored ;;;
@@ -1111,30 +948,6 @@ LoadMirrorOfCurrentAreasMapExplored:
     AND.W #$00FF                                                         ;8085AE;
     STA.W CurrentAreaMapCollectedFlag                                    ;8085B1;
     RTL                                                                  ;8085B5;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $85B6: Unused. Generic bitmasks ;;;
-UNUSED_Generic_Bitmasks:
-    dw $0001,$0002,$0004,$0008,$0010,$0020,$0040,$0080                   ;8085B6;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $88B4: Unused. Clear high RAM ;;;
-UNUSED_ClearHighRAM_8088B4:
-    REP #$30                                                             ;8088B4;
-    LDA.W #$0000                                                         ;8088B6;
-    LDX.W #$2000                                                         ;8088B9;
-    LDY.W #$E000                                                         ;8088BC; Clear $7E:2000..FFFF
-    JSL.L WriteYBytesOfATo_7E0000_X_16bit                                ;8088BF;
-    LDA.W #$0000                                                         ;8088C3;
-    TAX                                                                  ;8088C6;
-    LDY.W #$DFFE                                                         ;8088C7; Clear $7F:0000..DFFD
-    JSL.L WriteYBytesOfATo_7F0000_X_16bit                                ;8088CA;
-    SEP #$30                                                             ;8088CE;
-    RTS                                                                  ;8088D0;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $8924: Handle fading out ;;;
@@ -1774,33 +1587,6 @@ HandleMusicQueue:
     RTL                                                                  ;808FA2;
 
 
-if !FEATURE_KEEP_UNREFERENCED
-;;; $8FA3: Unused. Queue music data or music track, 16 frame delay, can overwrite old entries, doesn't check for demo ;;;
-UNUSED_QueueMusicDataOrTrack_808FA3:
-;; Parameter:
-;;     A: Music data / music track
-
-; If [A] is negative, the low byte is a music data index, otherwise [A] is a music track
-    PHP                                                                  ;808FA3;
-    REP #$30                                                             ;808FA4;
-    PHX                                                                  ;808FA6;
-    PHY                                                                  ;808FA7;
-    LDX.W APU_MusicQueueNextIndex                                        ;808FA8;
-    STA.W APU_MusicQueueEntries,X                                        ;808FAB;
-    LDA.W #$0010                                                         ;808FAE;
-    STA.W APU_MusicQueueTimers,X                                         ;808FB1;
-    INX                                                                  ;808FB4;
-    INX                                                                  ;808FB5;
-    TXA                                                                  ;808FB6;
-    AND.W #$000E                                                         ;808FB7;
-    STA.W APU_MusicQueueNextIndex                                        ;808FBA;
-    PLY                                                                  ;808FBD;
-    PLX                                                                  ;808FBE;
-    PLP                                                                  ;808FBF;
-    RTL                                                                  ;808FC0;
-endif ; !FEATURE_KEEP_UNREFERENCED
-
-
 ;;; $8FC1: Queue music data or music track, 8 frame delay, cannot set last queue entry ;;;
 QueueMusicDataOrTrack_8FrameDelay:
 ;; Parameter:
@@ -2327,128 +2113,7 @@ ReadControllerInput:
   .heldEnd:
     LDA.B DP_Controller1Input                                            ;80948C;
     STA.B DP_Controller1Prev                                             ;80948E;
-if !DEBUG
-    LDA.W Debug_Enable                                                   ;809490;
-    BNE .debug                                                           ;809493;
-endif
     RTL                                                                  ;809496;
-
-if !DEBUG
-  .debug:
-    LDA.W $421A                                                          ;809497;
-    STA.B DP_Controller2Input                                            ;80949A;
-    EOR.B DP_Controller2Prev                                             ;80949C;
-    AND.B DP_Controller2Input                                            ;80949E;
-    STA.B DP_Controller2New                                              ;8094A0;
-    LDA.B DP_Controller2Input                                            ;8094A4;
-    BEQ .unheld2                                                         ;8094A6;
-    CMP.B DP_Controller2Prev                                             ;8094A8;
-    BNE .unheld2                                                         ;8094AA;
-    DEC.B DP_Controller2AutoPressTimer                                   ;8094AC;
-    BNE .held2End                                                        ;8094AE;
-    LDA.B DP_Controller2Input                                            ;8094B0;
-    LDA.B DP_AutoPressSubsequentDelay                                    ;8094B4;
-    STA.B DP_Controller2AutoPressTimer                                   ;8094B6;
-    BRA .held2End                                                        ;8094B8;
-
-  .unheld2:
-    LDA.B DP_AutoPressInitialDelay                                       ;8094BA;
-    STA.B DP_Controller2AutoPressTimer                                   ;8094BC;
-
-  .held2End:
-    LDA.B DP_Controller2Input                                            ;8094BE;
-    STA.B DP_Controller2Prev                                             ;8094C0;
-    LDA.W APU_UploadingFlag                                              ;8094C2;
-    BNE .checkDebug                                                      ;8094C5;
-    LDA.B DP_Controller1Input                                            ;8094C7;
-    CMP.W #$3030                                                         ;8094C9;
-    BNE .checkDebug                                                      ;8094CC;
-    STZ.W DisableSounds                                                  ;8094CE;
-    JMP.W SoftReset                                                      ;8094D1;
-
-  .checkDebug:
-    LDA.W Debug_Enable                                                   ;8094D4;
-    BNE .debugEnabled                                                    ;8094D7;
-    STZ.W Debug_InputL                                                   ;8094D9;
-    STZ.W Debug_InputR                                                   ;8094DC;
-    LDA.W #$FFEF                                                         ;8094DF;
-    TRB.B DP_Controller2Input                                            ;8094E2;
-    TRB.B DP_Controller2New                                              ;8094E4;
-    RTL                                                                  ;8094E7;
-
-  .debugEnabled:
-    STZ.W Debug_InputL                                                   ;8094E8;
-    STZ.W Debug_InputR                                                   ;8094EB;
-    BIT.W Debug_Options                                                  ;8094EE;
-    BVC .debugInputEnabled                                               ;8094F1;
-    JMP.W .return                                                        ;8094F3;
-
-  .debugInputEnabled:
-    LDA.B DP_Controller1Input                                            ;8094F6;
-    AND.W #$2020                                                         ;8094F8;
-    CMP.W #$2020                                                         ;8094FB;
-    BNE .checkSelectR                                                    ;8094FE;
-    LDA.B DP_Controller1New                                              ;809500;
-    STA.W Debug_InputL                                                   ;809502;
-    STZ.B DP_Controller1Input                                            ;809505;
-    STZ.B DP_Controller1New                                              ;809507;
-
-  .checkSelectR:
-    LDA.B DP_Controller1Input                                            ;809509;
-    AND.W #$2010                                                         ;80950B;
-    CMP.W #$2010                                                         ;80950E;
-    BNE .checkToggleHUD                                                  ;809511;
-    LDA.B DP_Controller1New                                              ;809513;
-    STA.W Debug_InputR                                                   ;809515;
-    STZ.B DP_Controller1Input                                            ;80951B;
-    STZ.B DP_Controller1New                                              ;80951D;
-
-  .checkToggleHUD:
-    LDA.W Debug_InputR                                                   ;80951F;
-    BIT.W #$0080                                                         ;809522;
-    BEQ .checkAmmoSwap                                                   ;809525;
-    LDA.B DP_IRQAutoJoy                                                  ;809527;
-    EOR.W #$0030                                                         ;809529;
-    STA.B DP_IRQAutoJoy                                                  ;80952C;
-
-  .checkAmmoSwap:
-    LDA.W Debug_InputR                                                   ;80952E;
-    BIT.W #$8000                                                         ;809531;
-    BEQ .swapEnd                                                         ;809534;
-    LDA.W Debug_Options                                                  ;809536;
-    EOR.W #$8000                                                         ;809539;
-    STA.W Debug_Options                                                  ;80953C;
-    BPL .swapAmmo                                                        ;80953F;
-    LDA.W Missiles                                                       ;809541;
-    STA.W Debug_MissileSwap                                              ;809544;
-    LDA.W SuperMissiles                                                  ;809547;
-    STA.W Debug_SuperMissileSwap                                         ;80954A;
-    LDA.W PowerBombs                                                     ;80954D;
-    STA.W Debug_PowerBombSwap                                            ;809550;
-    STZ.W Missiles                                                       ;809553;
-    STZ.W SuperMissiles                                                  ;809556;
-    STZ.W PowerBombs                                                     ;809559;
-    BRA .swapEnd                                                         ;80955C;
-
-  .swapAmmo:
-    LDA.W Debug_MissileSwap                                              ;80955E;
-    STA.W Missiles                                                       ;809561;
-    LDA.W Debug_SuperMissileSwap                                         ;809564;
-    STA.W SuperMissiles                                                  ;809567;
-    LDA.W Debug_PowerBombSwap                                            ;80956A;
-    STA.W PowerBombs                                                     ;80956D;
-
-  .swapEnd:
-    LDA.W Debug_InputR                                                   ;809570;
-    BIT.W #$0040                                                         ;809573;
-    BEQ .return                                                          ;809576;
-    LDA.W Debug_Options                                                  ;809578;
-    EOR.W #$2000                                                         ;80957B;
-    STA.W Debug_Options                                                  ;80957E;
-
-  .return:
-    RTL                                                                  ;809582;
-endif
 
 
 ;;; $9583: NMI ;;;
@@ -3950,20 +3615,8 @@ HandleHUDTilemap_PausedAndRunning:
     BEQ .handlePowerBombs                                                ;809C21;
     STA.W PreviousSuperMissiles                                          ;809C23;
     LDX.W #$009C                                                         ;809C26;
-if !DEBUG
-    LDA.W Debug_Options                                                  ;809C29;
-    BIT.W #$1F40                                                         ;809C2C;
-    BNE .debugSuperMissiles                                              ;809C2F;
-endif
     LDA.W PreviousSuperMissiles                                          ;809C31;
     JSR.W DrawTwoHUDDigits                                               ;809C34;
-if !DEBUG
-    BRA .handlePowerBombs                                                ;809C37;
-
-  .debugSuperMissiles:
-    LDA.W PreviousSuperMissiles                                          ;809C39;
-    JSR.W DrawThreeHUDDigits                                             ;809C3C;
-endif
 
   .handlePowerBombs:
     LDA.W MaxPowerBombs                                                  ;809C3F;
@@ -4774,34 +4427,6 @@ DisplayViewablePartOfRoom:
     CPX.W #$0011                                                         ;80A1DC;
     BNE .loop                                                            ;80A1DF;
     RTS                                                                  ;80A1E2;
-
-
-if !FEATURE_KEEP_UNREFERENCED
-;;; $A1E3: Unused. Queue clearing of BG2 tilemap ;;;
-UNUSED_QueueClearingOfBG2Tilemap_80A1E3:
-    LDX.W #$0FFE                                                         ;80A1E3;
-    LDA.W #$0338                                                         ;80A1E6;
-
-  .loop:
-    STA.L BG2Tilemap,X                                                   ;80A1E9;
-    DEX                                                                  ;80A1ED;
-    DEX                                                                  ;80A1EE;
-    BPL .loop                                                            ;80A1EF;
-    LDX.B VRAMWriteStack                                                 ;80A1F1;
-    LDA.W #$1000                                                         ;80A1F4;
-    STA.B VRAMWrite.size,X                                               ;80A1F7;
-    LDA.W #BG2Tilemap                                                    ;80A1F9;
-    STA.B VRAMWrite.src,X                                                ;80A1FC;
-    LDA.W #BG2Tilemap>>16                                                ;80A1FE;
-    STA.B VRAMWrite.src+2,X                                              ;80A201;
-    LDA.W #$4800                                                         ;80A203;
-    STA.B VRAMWrite.dest,X                                               ;80A206;
-    TXA                                                                  ;80A208;
-    CLC                                                                  ;80A209;
-    ADC.W #$0007                                                         ;80A20A;
-    STA.B VRAMWriteStack                                                 ;80A20D;
-    RTL                                                                  ;80A210;
-endif ; !FEATURE_KEEP_UNREFERENCED
 
 
 ;;; $A211: Queue clearing of FX tilemap ;;;
@@ -5877,32 +5502,6 @@ HandleScrollZones_ScrollingUp:
 
   .return:
     RTL                                                                  ;80A9AB;
-
-
-if !DEBUG
-;;; $A9AC: Debug layer 1 position save/loading ;;;
-Debug_Layer1Position_Saving_Loading:
-    LDA.B DP_Controller2New                                              ;80A9AC;
-    AND.W #$0040                                                         ;80A9AE;
-    BEQ +                                                                ;80A9B1;
-    INC.W Debug_Layer1PositionFlag                                       ;80A9B3;
-
-+   LDA.W Debug_Layer1PositionFlag                                       ;80A9B6;
-    LSR                                                                  ;80A9B9;
-    BCC +                                                                ;80A9BA;
-    LDA.W Debug_Layer1X                                                  ;80A9BC;
-    STA.B Layer1XPosition                                                ;80A9BF;
-    LDA.W Debug_Layer1Y                                                  ;80A9C2;
-    STA.B Layer1YPosition                                                ;80A9C5;
-    RTL                                                                  ;80A9C8;
-
-
-+   LDA.B Layer1XPosition                                                ;80A9C9;
-    STA.W Debug_Layer1X                                                  ;80A9CC;
-    LDA.B Layer1YPosition                                                ;80A9CF;
-    STA.W Debug_Layer1Y                                                  ;80A9D2;
-    RTL                                                                  ;80A9D5;
-endif
 
 
 ;;; $A9D6: Update background data column ;;;
@@ -7914,9 +7513,6 @@ LoadStationListPointers:
     dw LoadStations_Maridia                                              ;80C4BD;
     dw LoadStations_Tourian                                              ;80C4BF;
     dw LoadStations_Ceres                                                ;80C4C1;
-if !DEBUG
-    dw LoadStations_Debug                                                ;80C4C3;
-endif
 
 
 ; Load station lists are indexed by LoadStationIndex
@@ -8537,161 +8133,6 @@ LoadStations_Ceres:
     dw RoomHeader_CeresElev                                              ;80CC0B;
     dw Door_FallingTile_0                                                ;80CC0D;
     dw $0000,$0000,$0000,$0040,$0000                                     ;80CC0F;
-
-
-if !DEBUG
-LoadStations_Debug:
-; Debug room (from ?)
-    dw RoomHeader_Debug                                                  ;80CC19;
-    dw UNUSED_Door_Debug_0_83ABC4                                        ;80CC1B;
-    dw $0000,$0000,$0000,$00B0,$0000                                     ;80CC1D;
-
-    dw RoomHeader_Debug                                                  ;80CC27;
-    dw UNUSED_Door_Debug_0_83ABC4                                        ;80CC29;
-    dw $0000,$0000,$0000,$00B0,$0000                                     ;80CC2B;
-
-    dw RoomHeader_Debug                                                  ;80CC35;
-    dw UNUSED_Door_Debug_0_83ABC4                                        ;80CC37;
-    dw $0000,$0000,$0000,$00B0,$0000                                     ;80CC39;
-
-    dw RoomHeader_Debug                                                  ;80CC43;
-    dw UNUSED_Door_Debug_0_83ABC4                                        ;80CC45;
-    dw $0000,$0000,$0000,$00B0,$0000                                     ;80CC47;
-
-    dw RoomHeader_Debug                                                  ;80CC51;
-    dw UNUSED_Door_Debug_0_83ABC4                                        ;80CC53;
-    dw $0000,$0000,$0000,$00B0,$0000                                     ;80CC55;
-
-    dw RoomHeader_Debug                                                  ;80CC5F;
-    dw UNUSED_Door_Debug_0_83ABC4                                        ;80CC61;
-    dw $0000,$0000,$0000,$00B0,$0000                                     ;80CC63;
-
-    dw RoomHeader_Debug                                                  ;80CC6D;
-    dw UNUSED_Door_Debug_0_83ABC4                                        ;80CC6F;
-    dw $0000,$0000,$0000,$00B0,$0000                                     ;80CC71;
-
-    dw RoomHeader_Debug                                                  ;80CC7B;
-    dw UNUSED_Door_Debug_0_83ABC4                                        ;80CC7D;
-    dw $0000,$0000,$0000,$00B0,$0000                                     ;80CC7F;
-
-    dw RoomHeader_Debug                                                  ;80CC89;
-    dw UNUSED_Door_Debug_0_83ABC4                                        ;80CC8B;
-    dw $0000,$0000,$0000,$00B0,$0000                                     ;80CC8D;
-
-    dw RoomHeader_Debug                                                  ;80CC97;
-    dw UNUSED_Door_Debug_0_83ABC4                                        ;80CC99;
-    dw $0000,$0000,$0000,$00B0,$0000                                     ;80CC9B;
-
-    dw RoomHeader_Debug                                                  ;80CCA5;
-    dw UNUSED_Door_Debug_0_83ABC4                                        ;80CCA7;
-    dw $0000,$0000,$0000,$00B0,$0000                                     ;80CCA9;
-
-    dw RoomHeader_Debug                                                  ;80CCB3;
-    dw UNUSED_Door_Debug_0_83ABC4                                        ;80CCB5;
-    dw $0000,$0000,$0000,$00B0,$0000                                     ;80CCB7;
-
-    dw RoomHeader_Debug                                                  ;80CCC1;
-    dw UNUSED_Door_Debug_0_83ABC4                                        ;80CCC3;
-    dw $0000,$0000,$0000,$00B0,$0000                                     ;80CCC5;
-
-    dw RoomHeader_Debug                                                  ;80CCCF;
-    dw UNUSED_Door_Debug_0_83ABC4                                        ;80CCD1;
-    dw $0000,$0000,$0000,$00B0,$0000                                     ;80CCD3;
-
-    dw RoomHeader_Debug                                                  ;80CCDD;
-    dw UNUSED_Door_Debug_0_83ABC4                                        ;80CCDF;
-    dw $0000,$0000,$0000,$00B0,$0000                                     ;80CCE1;
-
-    dw RoomHeader_Debug                                                  ;80CCEB;
-    dw UNUSED_Door_Debug_0_83ABC4                                        ;80CCED;
-    dw $0000,$0000,$0000,$00B0,$0000                                     ;80CCEF;
-
-    dw RoomHeader_Debug                                                  ;80CCF9;
-    dw UNUSED_Door_Debug_0_83ABC4                                        ;80CCFB;
-    dw $0000,$0000,$0000,$00B0,$0000                                     ;80CCFD;
-
-
-;;; $CD07: Debug. Set debug elevators as used ;;;
-SetDebugElevatorAsUsed:
-; Called if an elevator door has (elevator properties) & Fh != 0, which is never true, so this routine is unused/debug
-    PHP                                                                  ;80CD07;
-    PHB                                                                  ;80CD08;
-    PHK                                                                  ;80CD09;
-    PLB                                                                  ;80CD0A;
-    REP #$30                                                             ;80CD0B;
-    LDA.W AreaIndex                                                      ;80CD0D;
-    ASL                                                                  ;80CD10;
-    TAX                                                                  ;80CD11;
-    LDA.W ElevatorDoorProperties                                         ;80CD12;
-    AND.W #$000F                                                         ;80CD15;
-    DEC                                                                  ;80CD18;
-    ASL                                                                  ;80CD19;
-    ASL                                                                  ;80CD1A;
-    CLC                                                                  ;80CD1B;
-    ADC.W .elevatorBits,X                                                ;80CD1C;
-    TAY                                                                  ;80CD1F;
-    LDA.W #$0000                                                         ;80CD20;
-    SEP #$20                                                             ;80CD23;
-    LDA.W $0000,Y                                                        ;80CD25;
-    TAX                                                                  ;80CD28;
-    LDA.W $0001,Y                                                        ;80CD29;
-    ORA.L SRAMMirror_UsedSaveStationsElevators,X                         ;80CD2C;
-    STA.L SRAMMirror_UsedSaveStationsElevators,X                         ;80CD30;
-    LDA.W $0002,Y                                                        ;80CD34;
-    TAX                                                                  ;80CD37;
-    LDA.W $0003,Y                                                        ;80CD38;
-    ORA.L SRAMMirror_UsedSaveStationsElevators,X                         ;80CD3B;
-    STA.L SRAMMirror_UsedSaveStationsElevators,X                         ;80CD3F;
-    PLB                                                                  ;80CD43;
-    PLP                                                                  ;80CD44;
-    RTL                                                                  ;80CD45;
-
-  .elevatorBits:
-    dw ..crateria                                                        ;80CD46;
-    dw ..brinstar                                                        ;80CD48;
-    dw ..norfair                                                         ;80CD4A;
-    dw ..wreckedShip                                                     ;80CD4C;
-    dw ..maridia                                                         ;80CD4E;
-    dw ..tourian                                                         ;80CD50;
-
-;        _____________ Source area index
-;       |    _________ Source bit
-;       |   |    _____ Destination area index
-;       |   |   |    _ Destination bit
-;       |   |   |   |
-  ..crateria:
-; Crateria elevator bits
-    db $01,$01,$09,$01                                                   ;80CD52;
-    db $01,$02,$03,$04
-    db $01,$04,$03,$02
-    db $01,$08,$03,$01
-    db $01,$10,$0B,$01
-
-  ..brinstar:
-; Brinstar elevator bits
-    db $03,$01,$01,$08                                                   ;80CD66;
-    db $03,$02,$01,$04
-    db $03,$04,$01,$02
-    db $03,$08,$05,$01
-
-  ..norfair:
-; Norfair elevator bits
-    db $05,$01,$03,$08                                                   ;80CD76;
-    db $05,$02,$05,$04
-    db $05,$04,$05,$02
-
-  ..maridia:
-; Maridia elevator bits
-    db $09,$01,$01,$01                                                   ;80CD82;
-
-  ..tourian:
-; Tourian elevator bits
-    db $0B,$01,$01,$10                                                   ;80CD86;
-
-  ..wreckedShip:
-; Wrecked Ship elevator bits
-    db $00,$00,$00,$00                                                   ;80CD8A;
-endif
 
 
 Freespace_Bank80_CD8E:                                                   ;80CD8E;

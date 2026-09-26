@@ -109,21 +109,9 @@ DP_HDMAEnable: skip 1 ; $85
 DP_AutoPressInitialDelay: skip 2 ; $87
 DP_AutoPressSubsequentDelay: skip 2 ; $89
 DP_Controller1Input: skip 2 ; $8B
-if !DEBUG
-DP_Controller2Input: skip 2 ; $8D
-endif
 DP_Controller1New: skip 2 ; $8F
-if !DEBUG
-DP_Controller2New: skip 2 ; $91
-endif
 DP_Controller1Prev: skip 2 ; $97
-if !DEBUG
-DP_Controller2Prev: skip 2 ; $99
-endif
 DP_Controller1AutoPressTimer: skip 2 ; $A3
-if !DEBUG
-DP_Controller2AutoPressTimer: skip 2 ; $A5
-endif
 DP_NextIRQCmd: skip 2 ; $A7
 DP_RoomLoadIRQCmd: skip 2 ; $A9
 DP_IRQCmd: skip 2 ; $AB
