@@ -6515,7 +6515,7 @@ else
     dw IndirectInstructions_IntroText_Nothing
     dw Instruction_FinishFlyToCeres
     dw CinematicBGObject_Instruction_Delete
-    
+
   .defaultLanguage
     dw $0001
     db $08,$1A
@@ -6877,7 +6877,7 @@ InitialIntroSubtitleTilemap_DefaultLanguage_Subpage1:
     dw $108D,$002F,$1086,$1084,$1085,$1080,$108D,$1086
     dw $1084,$108D,$10A2,$1082,$1087,$1080,$1085,$10A3
     dw $106B,$002F,$002F,$002F,$002F,$002F,$002F,$002F
-    
+
 InitialIntroSubtitleTilemap_DefaultLanguage_Subpage2:
 ;  ES HERRSCHT WIEDER
 ; FRIEDEN IM UNIVERSUM...
