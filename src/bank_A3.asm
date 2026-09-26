@@ -688,25 +688,25 @@ Instruction_Waver_SetSpinFinishedFlag:
 ;;; $86ED: Initialisation AI - enemy $D63F (waver) ;;;
 InitAI_Waver:
     LDX.W EnemyIndex                                                     ;A386ED;
-    LDA.W #regional($0180, $01D0)                                        ;A386F0;
+    LDA.W #regional($0180, $01D0)                                        ;A386F0; >.<
     AND.W #$FF00                                                         ;A386F3;
     XBA                                                                  ;A386F6;
     STA.W Waver.XVelocity,X                                              ;A386F7;
-    LDA.W #regional($0180, $01D0)                                        ;A386FA;
+    LDA.W #regional($0180, $01D0)                                        ;A386FA; >.<
     AND.W #$00FF                                                         ;A386FD;
     XBA                                                                  ;A38700;
     STA.W Waver.XSubVelocity,X                                           ;A38701;
     LDA.W Enemy.init0,X                                                  ;A38704;
     AND.W #$0001                                                         ;A38707;
     BNE .facingLeft                                                      ;A3870A;
-    LDA.W #regional($0180, $01D0)                                        ;A3870C;
+    LDA.W #regional($0180, $01D0)                                        ;A3870C; >.<
     EOR.W #$FFFF                                                         ;A3870F;
     INC                                                                  ;A38712;
     AND.W #$FF00                                                         ;A38713;
     XBA                                                                  ;A38716;
     JSL.L Sign_Extend_A                                                  ;A38717;
     STA.W Waver.XVelocity,X                                              ;A3871B;
-    LDA.W #regional($0180, $1D0)                                         ;A3871E;
+    LDA.W #regional($0180, $01D0)                                        ;A3871E; >.<
     EOR.W #$FFFF                                                         ;A38721;
     INC                                                                  ;A38724;
     AND.W #$00FF                                                         ;A38725;
@@ -11525,7 +11525,7 @@ HZoomerInitialInstListPointers:
 
 ;;; $E043: Initialisation AI - enemy $DC3F (Wrecked Ship orange zoomer) ;;;
 InitAI_HZoomer:
-; Not sure why the devs didn't use the common init AI $E67A like the other creepy crawlies
+; Not sure why the devs didn't use InitAI_Crawlers_Common like the other creepy crawlies
     LDX.W EnemyIndex                                                     ;A3E043;
     LDA.W Enemy.instList,X                                               ;A3E046;
     AND.W #$0003                                                         ;A3E049;
@@ -11642,10 +11642,10 @@ Function_HZoomer_CrawlingVertically:
     LDY.W #InstList_HZoomer_UpsideUp_0                                   ;A3E113;
     LDY.W #InstList_HZoomer_UpsideUp_0                                   ;A3E116; >.<
     LDA.W Crawler.YVelocity,X                                            ;A3E119;
-    BPL ..keepUp                                                         ;A3E11C;
+    BPL .keepUp                                                          ;A3E11C;
     LDY.W #InstList_HZoomer_UpsideDown_0                                 ;A3E11E;
 
-  ..keepUp:
+  .keepUp:
     TYA                                                                  ;A3E121;
     STA.W Enemy.instList,X                                               ;A3E122;
     LDA.W #$0001                                                         ;A3E125;
@@ -11671,10 +11671,10 @@ Function_HZoomer_CrawlingVertically:
     STA.W Crawler.YVelocity,X                                            ;A3E14F;
     LDY.W #InstList_HZoomer_UpsideUp_0                                   ;A3E152;
     LDA.W Crawler.YVelocity,X                                            ;A3E155;
-    BPL .keepUp                                                          ;A3E158;
+    BPL ..keepUp                                                         ;A3E158;
     LDY.W #InstList_HZoomer_UpsideDown_0                                 ;A3E15A;
 
-  .keepUp:
+  ..keepUp:
     TYA                                                                  ;A3E15D;
     STA.W Enemy.instList,X                                               ;A3E15E;
     LDA.W #$0001                                                         ;A3E161;
@@ -12215,14 +12215,14 @@ InitAI_Crawlers_Common:
   .skipSpeedTable:
     LDA.W Enemy.properties,X                                             ;A3E69F;
     AND.W #$0003                                                         ;A3E6A2;
-    BNE .properties                                                      ;A3E6A5;
+    BNE .invertY                                                         ;A3E6A5;
     LDA.W Crawler.XVelocity,X                                            ;A3E6A7;
     EOR.W #$FFFF                                                         ;A3E6AA;
     INC                                                                  ;A3E6AD;
     STA.W Crawler.XVelocity,X                                            ;A3E6AE;
     RTL                                                                  ;A3E6B1;
 
-  .properties:
+  .invertY:
     CMP.W #$0002                                                         ;A3E6B2;
     BNE .return                                                          ;A3E6B5;
     LDA.W Crawler.YVelocity,X                                            ;A3E6B7;

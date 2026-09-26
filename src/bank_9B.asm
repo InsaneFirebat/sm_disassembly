@@ -3960,7 +3960,7 @@ GrappleBeamFunction_Firing:
     BRA .cancel                                                          ;9BC723; >.<
 
   .enemyCollisionCheck:
-    JSL.L EnemyGrappleBeamCollisionDetection                             ;9BC725;
+    JSL.L Enemy_vs_GrappleBeam_CollisionDetection                        ;9BC725;
     JSR.W ProcessEnemyGrappleBeamCollisionResult                         ;9BC729;
     BCC .blockCollisionCheck                                             ;9BC72C;
     TAY                                                                  ;9BC72E;
@@ -4023,7 +4023,7 @@ GrappleBeamFunction_Connected_LockedInPlace:
     RTS                                                                  ;9BC78B;
 
   .firing:
-    JSL.L EnemyGrappleBeamCollisionDetection                             ;9BC78C;
+    JSL.L Enemy_vs_GrappleBeam_CollisionDetection                        ;9BC78C;
     TAY                                                                  ;9BC790;
     BNE .returnCarryClear                                                ;9BC791;
     JSR.W CheckIfGrappleIsConnectedToBlock                               ;9BC793;
@@ -4077,7 +4077,7 @@ GrappleBeamFunction_Connected_Swinging:
     RTS                                                                  ;9BC7EF;
 
   .enemyCollision:
-    JSL.L EnemyGrappleBeamCollisionDetection                             ;9BC7F0;
+    JSL.L Enemy_vs_GrappleBeam_CollisionDetection                        ;9BC7F0;
     TAY                                                                  ;9BC7F4;
     BEQ .blockCollision                                                  ;9BC7F5;
     LDA.W GrappleBeam_Flags                                              ;9BC7F7;
