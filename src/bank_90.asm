@@ -8896,7 +8896,7 @@ ProjectileReflection:
 ;; Parameters:
 ;;     $14: Projectile index
 
-; Used by gold ninja space pirate, and unused enemies reflect and bang
+; Used by gold ninja space pirate
 ; Reflected projectile is non-damaging by default
 ; For a damaging projectile, the caller has to clear the MSB of projectile type
     PHP                                                                  ;90BE00;

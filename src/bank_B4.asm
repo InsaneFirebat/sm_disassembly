@@ -5641,10 +5641,6 @@ EnemyVulnerabilities_MiniKraid:
     db $82,$82,$82,$82,$82,$82,$82,$82,$82,$82,$82,$82                   ;B4EFFA;
     db $84,$84,$82,$82,$82,$82,$82,$02,$80,$80
 
-EnemyVulnerabilities_Bang:
-    db $02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02                   ;B4F010;
-    db $00,$00,$00,$00,$00,$00,$00,$02,$00,$00
-
 EnemyVulnerabilities_Kago:
     db $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00                   ;B4F026;
     db $00,$00,$00,$02,$00,$00,$00,$00,$00,$00
@@ -5918,9 +5914,6 @@ EnemyDropChances_Metroid:
 
 EnemyDropChances_Rinka:
     db $00,$00,$00,$FF,$00,$00                                           ;B4F374;                     100.0%
-
-EnemyDropChances_Bang:
-    db $2D,$50,$50,$1E,$0A,$0A                                           ;B4F380; 17.6%  31.4%  31.4%  11.8%   3.9%   3.9%
 
 EnemyDropChances_PirateGreyNinja:
     db $32,$78,$50,$00,$05,$00                                           ;B4F386; 19.6%  47.1%  31.4%          2.0%

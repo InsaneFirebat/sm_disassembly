@@ -14,11 +14,6 @@ Tiles_Metaree:
 incbin "../data/Tiles_Metaree.bin" ; $600 bytes
 
 
-;;; $9800: Tiles - enemy $DB3F (bang) ;;;
-Tiles_Bang:
-incbin "../data/Tiles_Bang.bin" ; $1000 bytes
-
-
 ;;; $A800: Tiles - enemy $D6BF (fireflea) ;;;
 Tiles_Fireflea:
 incbin "../data/Tiles_Fireflea.bin" ; $600 bytes

@@ -56,8 +56,8 @@ incsrc bank_9E.asm ; Samus graphics
 incsrc bank_9F.asm ; Samus graphics
 incsrc bank_A0.asm ; Enemy handlers
 incsrc bank_A1.asm ; Enemy populations
-incsrc bank_A2.asm ; Enemy AI: Boyon, Stoke, Mama Turtle, Baby Turtle, Puyo, Cacatac, Owtch, Ship, Mellow, Mella, Memu, Multiviola, Polyp, Rinka, Rio, Squeept, Geruta, Holtz, Oum, Choot, Gripper, Ripper II, Dragon, Shutters
-incsrc bank_A3.asm ; Enemy AI: Waver, Metaree, Fireflea, Skultera, Elevator, Sciser, Zero, Tripper, Sbug, Mochtroid, Sidehoppers, Zoa, Viola, Bang, Skree, Yard, Reflec, HZoomer, MZoomer, Zoomer, Zeela, Sova, Metroid
+incsrc bank_A2.asm ; Enemy AI: Boyon, Mama Turtle, Baby Turtle, Puyo, Cacatac, Owtch, Ship, Mellow, Mella, Memu, Multiviola, Polyp, Rinka, Rio, Squeept, Geruta, Holtz, Oum, Choot, Gripper, Ripper II, Dragon, Shutters
+incsrc bank_A3.asm ; Enemy AI: Waver, Metaree, Fireflea, Skultera, Elevator, Sciser, Zero, Tripper, Sbug, Mochtroid, Sidehoppers, Zoa, Viola, Skree, Yard, HZoomer, MZoomer, Zoomer, Zeela, Sova, Metroid
 incsrc bank_A4.asm ; Enemy AI: Crocomire
 incsrc bank_A5.asm ; Enemy AI: Draygon, Spore Spawn
 incsrc bank_A6.asm ; Enemy AI: Ridley, Boulder, Kzan, Hibashi, Puromi, MiniKraid, Steam, Ceres door, Zebetite

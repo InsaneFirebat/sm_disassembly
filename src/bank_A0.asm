@@ -3912,8 +3912,8 @@ Process_Enemy_PowerBomb_Interaction:
 EnemyDeath:
 ;; Parameter:
 ;;     A: Death animation. Range 0..4
-;;         0: Small explosion. Used by grapple killed, power bomb killed, refill candy, fire pillar, boulder, creepy crawlies, skree, Norfair fireball, fireflea, waver, rinka, polyp, fly, owtch, puyo, boyon, zebetite, bang
-;;         1: Killed by Samus contact. Also used by bang
+;;         0: Small explosion. Used by grapple killed, power bomb killed, refill candy, fire pillar, boulder, creepy crawlies, skree, Norfair fireball, fireflea, waver, rinka, polyp, fly, owtch, puyo, boyon, zebetite
+;;         1: Killed by Samus contact
 ;;         2: Normal explosion. Used by super missile killed default, atomic / robot / ghost, bull / floater / oum / yard / fish, fune, sidehopper, desgeega, mochtroid, slug, sciser, metaree, chute, rio, squeept, rio, cacatac
 ;;         3: Fake Kraid explosion
 ;;         4: Big explosion. Used by space pirates, Shaktool, ki-hunter, dragon, kago, yapping maw, evir, metroid, super-sidehopper/desgeega, tatori
@@ -9563,38 +9563,6 @@ EnemyHeaders_Respawn:                                                    ;A0DAFF
     %drops(0),
     %vulnerabilities(0),
     %name(0))
-
-EnemyHeaders_Bang:                                                       ;A0DB3F;
-    %EnemyHeader(\
-    %tileDataSize($1000),
-    %palette(Palette_Bang),
-    %health(10),
-    %damage(4),
-    %width(16),
-    %height(16),
-    %bank(InitAI_Bang>>16),
-    %hurtAITime(0),
-    %cry($0056),
-    %bossID(0),
-    %initAI(InitAI_Bang),
-    %parts(3),
-    %unused(0),
-    %mainAI(MainAI_Bang),
-    %grappleAI(Common_GrappleAI_CancelGrappleBeam),
-    %hurtAI(RTL_A3804C),
-    %frozenAI(Common_NormalEnemyFrozenAI),
-    %timeIsFrozen(0),
-    %deathAnimation(4),
-    %powerBombReaction(0),
-    %variantIndex(0),
-    %enemyTouch(Common_NormalEnemyTouchAI),
-    %enemyShot(EnemyShot_Bang),
-    %spritemap(0),
-    %tileData(Tiles_Bang),
-    %layer(5),
-    %drops(EnemyDropChances_Bang),
-    %vulnerabilities(EnemyVulnerabilities_Bang),
-    %name(EnemyName_Bang))
 
 EnemyHeaders_Skree:                                                      ;A0DB7F;
     %EnemyHeader(\
