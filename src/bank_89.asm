@@ -2165,7 +2165,7 @@ RoomMainASM_CeresElevatorShaft:
     dw $0001,$FFFC,$0100
     dw $0001,$FFFD,$0100
     dw $0001,$FFFE,$0100
-    dw $0001,$FFFF,$0100                        
+    dw $0001,$FFFF,$0100
 
   .initialEntry:
     dw $0001,$0000,$0100
@@ -2202,7 +2202,7 @@ RoomMainASM_CeresElevatorShaft:
     dw $0016,$001F,$00FE
     dw $0018,$0020,$00FE
     dw $001A,$0021,$00FE
-    dw $003C,$0022,$00FE                                          
+    dw $003C,$0022,$00FE
 
 
 Freespace_Bank89_AEFD:                                                   ;89AEFD;

@@ -5300,17 +5300,17 @@ UNUSED_AnimationDelays_3A_91B4DD:
 AnimationDelays_3B:
 ; 3Bh: Facing right - standing transition
     db regional($03, $02), $FD,$01                                       ;91B4E0;
-                                                                         
-AnimationDelays_3C:                                                      
-; 3Ch: Facing left-   standing transition                                
+
+AnimationDelays_3C:
+; 3Ch: Facing left-   standing transition
     db regional($03, $02), $FD,$02                                       ;91B4E3;
-                                                                         
-AnimationDelays_3D:                                                      
-; 3Dh: Facing right - unmorphing transition                              
+
+AnimationDelays_3D:
+; 3Dh: Facing right - unmorphing transition
     db regional($03, $02),regional($03, $02), $FD,$27                    ;91B4E6;
-                                                                         
-AnimationDelays_3E:                                                      
-; 3Eh: Facing left-   unmorphing transition                              
+
+AnimationDelays_3E:
+; 3Eh: Facing left-   unmorphing transition
     db regional($03, $02),regional($03, $02), $FD,$28                    ;91B4EA;
 
 UNUSED_AnimationDelays_3F_91B4EE:                                        ;91B4EE;
@@ -5327,56 +5327,56 @@ UNUSED_AnimationDelays_DC_91B504:                                        ;91B504
 
 UNUSED_AnimationDelays_DD_91B50E:
     db regional($03, $02),regional($03, $02),regional($03, $02), $FD,$01 ;91B50E;
-                                                                         
-UNUSED_AnimationDelays_DE_91B513:                                        
+
+UNUSED_AnimationDelays_DE_91B513:
     db regional($03, $02),regional($03, $02),regional($03, $02), $FD,$BA ;91B513;
-                                                                         
-AnimationDelays_F1:                                                      
-; F1h: Facing right - crouching transition - aiming up                   
+
+AnimationDelays_F1:
+; F1h: Facing right - crouching transition - aiming up
     db regional($03, $02), $FD,$85                                       ;91B518;
-                                                                         
-AnimationDelays_F2:                                                      
-; F2h: Facing left-   crouching transition - aiming up                   
+
+AnimationDelays_F2:
+; F2h: Facing left-   crouching transition - aiming up
     db regional($03, $02), $FD,$86                                       ;91B51B;
-                                                                         
-AnimationDelays_F3:                                                      
-; F3h: Facing right - crouching transition - aiming up-right             
+
+AnimationDelays_F3:
+; F3h: Facing right - crouching transition - aiming up-right
     db regional($03, $02), $FD,$71                                       ;91B51E;
-                                                                         
-AnimationDelays_F4:                                                      
-; F4h: Facing left-   crouching transition - aiming up-left              
+
+AnimationDelays_F4:
+; F4h: Facing left-   crouching transition - aiming up-left
     db regional($03, $02), $FD,$72                                       ;91B521;
-                                                                         
-AnimationDelays_F5:                                                      
-; F5h: Facing right - crouching transition - aiming down-right           
+
+AnimationDelays_F5:
+; F5h: Facing right - crouching transition - aiming down-right
     db regional($03, $02), $FD,$73                                       ;91B524;
-                                                                         
-AnimationDelays_F6:                                                      
-; F6h: Facing left-   crouching transition - aiming down-left            
+
+AnimationDelays_F6:
+; F6h: Facing left-   crouching transition - aiming down-left
     db regional($03, $02), $FD,$74                                       ;91B527;
-                                                                         
-AnimationDelays_F7:                                                      
-; F7h: Facing right - standing transition - aiming up                    
+
+AnimationDelays_F7:
+; F7h: Facing right - standing transition - aiming up
     db regional($03, $02), $FD,$03                                       ;91B52A;
-                                                                         
-AnimationDelays_F8:                                                      
-; F8h: Facing left-   standing transition - aiming up                    
+
+AnimationDelays_F8:
+; F8h: Facing left-   standing transition - aiming up
     db regional($03, $02), $FD,$04                                       ;91B52D;
-                                                                         
-AnimationDelays_F9:                                                      
-; F9h: Facing right - standing transition - aiming up-right              
+
+AnimationDelays_F9:
+; F9h: Facing right - standing transition - aiming up-right
     db regional($03, $02), $FD,$05                                       ;91B530;
-                                                                         
-AnimationDelays_FA:                                                      
-; FAh: Facing left-   standing transition - aiming up-left               
+
+AnimationDelays_FA:
+; FAh: Facing left-   standing transition - aiming up-left
     db regional($03, $02), $FD,$06                                       ;91B533;
-                                                                         
-AnimationDelays_FB:                                                      
-; FBh: Facing right - standing transition - aiming down-right            
+
+AnimationDelays_FB:
+; FBh: Facing right - standing transition - aiming down-right
     db regional($03, $02), $FD,$07                                       ;91B536;
-                                                                         
-AnimationDelays_FC:                                                      
-; FCh: Facing left-   standing transition - aiming down-left             
+
+AnimationDelays_FC:
+; FCh: Facing left-   standing transition - aiming down-left
     db regional($03, $02), $FD,$08                                       ;91B539;
 
 AnimationDelays_BE_F0:

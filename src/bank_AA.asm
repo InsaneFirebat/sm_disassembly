@@ -763,7 +763,7 @@ Hitboxes_Torizo_StandUp_SitDown_FacingLeft_9:
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA885C:
     dw $0001                                                             ;AA885C;
-    dw $FFF0,$0027,$FFFF,$0037                                     
+    dw $FFF0,$0027,$FFFF,$0037
     dw EnemyTouch_Torizo                                                 ;AA8866;
     dw RTL_AAC9C1                                                        ;AA8868;
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -774,7 +774,7 @@ Hitboxes_Torizo_StandUp_SitDown_FacingLeft_A:
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA886C:
     dw $0001                                                             ;AA886C;
-    dw $FFE0,$0029,$FFF3,$0040                                     
+    dw $FFE0,$0029,$FFF3,$0040
     dw EnemyTouch_Torizo                                                 ;AA8876;
     dw RTL_AAC9C1                                                        ;AA8878;
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -785,7 +785,7 @@ Hitboxes_Torizo_StandUp_SitDown_FacingLeft_B:
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA887C:
     dw $0001                                                             ;AA887C;
-    dw $FFD8,$001C,$FFEC,$0030                                     
+    dw $FFD8,$001C,$FFEC,$0030
     dw EnemyTouch_Torizo                                                 ;AA8886;
     dw RTL_AAC9C1                                                        ;AA8888;
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -796,7 +796,7 @@ Hitboxes_Torizo_StandUp_SitDown_FacingLeft_C:
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA888C:
     dw $0001                                                             ;AA888C;
-    dw $FFC8,$0009,$FFEB,$0014                                     
+    dw $FFC8,$0009,$FFEB,$0014
     dw EnemyTouch_Torizo                                                 ;AA8896;
     dw RTL_AAC9C1                                                        ;AA8898;
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -807,7 +807,7 @@ Hitboxes_Torizo_StandUp_SitDown_FacingLeft_D:
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA889C:
     dw $0001                                                             ;AA889C;
-    dw $FFD3,$FFF3,$FFE5,$0003                                     
+    dw $FFD3,$FFF3,$FFE5,$0003
     dw EnemyTouch_Torizo                                                 ;AA88A6;
     dw RTL_AAC9C1                                                        ;AA88A8;
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -818,7 +818,7 @@ Hitboxes_Torizo_StandUp_SitDown_FacingLeft_E:
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA88AC:
     dw $0001                                                             ;AA88AC;
-    dw $FFE3,$FFDB,$FFF0,$FFF1                                     
+    dw $FFE3,$FFDB,$FFF0,$FFF1
     dw EnemyTouch_Torizo                                                 ;AA88B6;
     dw RTL_AAC9C1                                                        ;AA88B8;
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -832,7 +832,7 @@ Hitboxes_Torizo_StandUp_SitDown_FacingLeft_10:
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA88BE:
     dw $0001                                                             ;AA88BE;
-    dw $FFEF,$0028,$0000,$0039                                     
+    dw $FFEF,$0028,$0000,$0039
     dw EnemyTouch_Torizo                                                 ;AA88C8;
     dw RTL_AAC9C1                                                        ;AA88CA;
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -843,7 +843,7 @@ Hitboxes_Torizo_StandUp_SitDown_FacingLeft_11:
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA88CE:
     dw $0001                                                             ;AA88CE;
-    dw $FFE6,$0021,$FFF4,$0032                                     
+    dw $FFE6,$0021,$FFF4,$0032
     dw EnemyTouch_Torizo                                                 ;AA88D8;
     dw RTL_AAC9C1                                                        ;AA88DA;
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -854,7 +854,7 @@ Hitboxes_Torizo_StandUp_SitDown_FacingLeft_12:
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA88DE:
     dw $0001                                                             ;AA88DE;
-    dw $FFDD,$0018,$FFEA,$0025                                     
+    dw $FFDD,$0018,$FFEA,$0025
     dw EnemyTouch_Torizo                                                 ;AA88E8;
     dw RTL_AAC9C1                                                        ;AA88EA;
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -865,7 +865,7 @@ Hitboxes_Torizo_StandUp_SitDown_FacingLeft_13:
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA88EE:
     dw $0001                                                             ;AA88EE;
-    dw $FFCA,$0008,$FFE9,$0012                                     
+    dw $FFCA,$0008,$FFE9,$0012
     dw EnemyTouch_Torizo                                                 ;AA88F8;
     dw RTL_AAC9C1                                                        ;AA88FA;
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -876,7 +876,7 @@ Hitboxes_Torizo_StandUp_SitDown_FacingLeft_14:
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA88FE:
     dw $0001                                                             ;AA88FE;
-    dw $FFD3,$FFF3,$FFE3,$0000                                     
+    dw $FFD3,$FFF3,$FFE3,$0000
     dw EnemyTouch_Torizo                                                 ;AA8908;
     dw RTL_AAC9C1                                                        ;AA890A;
 endif ; !FEATURE_KEEP_UNREFERENCED
@@ -887,76 +887,76 @@ Hitboxes_Torizo_StandUp_SitDown_FacingLeft_15:
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA890E:
     dw $0001                                                             ;AA890E;
-    dw $FFE4,$FFDA,$FFEF,$FFEE                                     
+    dw $FFE4,$FFDA,$FFEF,$FFEE
     dw EnemyTouch_Torizo                                                 ;AA8918;
     dw RTL_AAC9C1                                                        ;AA891A;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_16:
     dw $0001                                                             ;AA891C;
-    dw $FFEE,$FFDA,$0007,$0009                                     
+    dw $FFEE,$FFDA,$0007,$0009
     dw EnemyTouch_Torizo                                                 ;AA8926;
     dw EnemyShot_Torizo_Normal                                           ;AA8928;
 
 Hitboxes_Torizo_StandUp_SitDown_FacingLeft_17:
     dw $0001                                                             ;AA892A;
-    dw $FFEE,$FFDB,$0007,$0012                                     
+    dw $FFEE,$FFDB,$0007,$0012
     dw EnemyTouch_Torizo                                                 ;AA8934;
     dw EnemyShot_Torizo_Normal                                           ;AA8936;
 
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_Hitboxes_Torizo_StandUp_SitDown_FacingLeft_AA8938:
     dw $0001                                                             ;AA8938;
-    dw $FFF5,$FFD6,$000A,$0007                                     
+    dw $FFF5,$FFD6,$000A,$0007
     dw EnemyTouch_Torizo                                                 ;AA8942;
     dw EnemyShot_Torizo_Normal                                           ;AA8944;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 Hitboxes_Torizo_StandUp_SitDown_FacingRight_0:
     dw $0001                                                             ;AA8946;
-    dw $FFF1,$FFE5,$000D,$001B                                     
+    dw $FFF1,$FFE5,$000D,$001B
     dw EnemyTouch_Torizo                                                 ;AA8950;
     dw EnemyShot_Torizo_StandUp_SitDown                                  ;AA8952;
 
 Hitboxes_Torizo_StandUp_SitDown_FacingRight_1:
     dw $0001                                                             ;AA8954;
-    dw $FFF3,$FFE5,$000D,$001B                                     
+    dw $FFF3,$FFE5,$000D,$001B
     dw EnemyTouch_Torizo                                                 ;AA895E;
     dw EnemyShot_Torizo_StandUp_SitDown                                  ;AA8960;
 
 Hitboxes_Torizo_StandUp_SitDown_FacingRight_2:
     dw $0001                                                             ;AA8962;
-    dw $FFF2,$FFE0,$000D,$0021                                     
+    dw $FFF2,$FFE0,$000D,$0021
     dw EnemyTouch_Torizo                                                 ;AA896C;
     dw EnemyShot_Torizo_StandUp_SitDown                                  ;AA896E;
 
 Hitboxes_Torizo_StandUp_SitDown_FacingRight_3:
     dw $0001                                                             ;AA8970;
-    dw $FFF2,$FFDD,$000B,$0027                                     
+    dw $FFF2,$FFDD,$000B,$0027
     dw EnemyTouch_Torizo                                                 ;AA897A;
     dw EnemyShot_Torizo_StandUp_SitDown                                  ;AA897C;
 
 Hitboxes_Torizo_StandUp_SitDown_FacingRight_4:
     dw $0001                                                             ;AA897E;
-    dw $FFFA,$FFD6,$000D,$002F                                     
+    dw $FFFA,$FFD6,$000D,$002F
     dw EnemyTouch_Torizo                                                 ;AA8988;
     dw EnemyShot_Torizo_StandUp_SitDown                                  ;AA898A;
 
 Hitboxes_Torizo_StandUp_SitDown_FacingRight_5:
     dw $0001                                                             ;AA898C;
-    dw $FFF9,$FFD7,$000B,$002F                                     
+    dw $FFF9,$FFD7,$000B,$002F
     dw EnemyTouch_Torizo                                                 ;AA8996;
     dw EnemyShot_Torizo_StandUp_SitDown                                  ;AA8998;
 
 Hitboxes_Torizo_StandUp_SitDown_FacingRight_6:
     dw $0001                                                             ;AA899A;
-    dw $FFF8,$FFD7,$0016,$002F                                     
+    dw $FFF8,$FFD7,$0016,$002F
     dw EnemyTouch_Torizo                                                 ;AA89A4;
     dw EnemyShot_Torizo_StandUp_SitDown                                  ;AA89A6;
 
 Hitboxes_Torizo_StandUp_SitDown_FacingRight_7:
     dw $0001                                                             ;AA89A8;
-    dw $FFF6,$FFDA,$000D,$0017                                     
+    dw $FFF6,$FFDA,$000D,$0017
     dw EnemyTouch_Torizo                                                 ;AA89B2;
     dw EnemyShot_Torizo_Normal                                           ;AA89B4;
 
@@ -968,7 +968,7 @@ Hitboxes_Torizo_StandUp_SitDown_FacingRight_9:
 
 UNSUED_Hitboxes_Torizo_StandUp_SitDown_FacingRight_AA89BA:
     dw $0001                                                             ;AA89BA;
-    dw $0000,$002B,$0016,$0040                                     
+    dw $0000,$002B,$0016,$0040
     dw EnemyTouch_Torizo                                                 ;AA89C4;
     dw RTL_AAC9C1                                                        ;AA89C6;
 
@@ -977,7 +977,7 @@ Hitboxes_Torizo_StandUp_SitDown_FacingRight_A:
 
 UNSUED_Hitboxes_Torizo_StandUp_SitDown_FacingRight_AA89CA:
     dw $0001                                                             ;AA89CA;
-    dw $000A,$0026,$001F,$003C                                     
+    dw $000A,$0026,$001F,$003C
     dw EnemyTouch_Torizo                                                 ;AA89D4;
     dw RTL_AAC9C1                                                        ;AA89D6;
 
@@ -986,7 +986,7 @@ Hitboxes_Torizo_StandUp_SitDown_FacingRight_B:
 
 UNSUED_Hitboxes_Torizo_StandUp_SitDown_FacingRight_AA89DA:
     dw $0001                                                             ;AA89DA;
-    dw $0014,$0018,$0022,$0025                                     
+    dw $0014,$0018,$0022,$0025
     dw EnemyTouch_Torizo                                                 ;AA89E4;
     dw RTL_AAC9C1                                                        ;AA89E6;
 
@@ -995,7 +995,7 @@ Hitboxes_Torizo_StandUp_SitDown_FacingRight_C:
 
 UNSUED_Hitboxes_Torizo_StandUp_SitDown_FacingRight_AA89EA:
     dw $0001                                                             ;AA89EA;
-    dw $0015,$0008,$003B,$0014                                     
+    dw $0015,$0008,$003B,$0014
     dw EnemyTouch_Torizo                                                 ;AA89F4;
     dw RTL_AAC9C1                                                        ;AA89F6;
 
@@ -1004,7 +1004,7 @@ Hitboxes_Torizo_StandUp_SitDown_FacingRight_D:
 
 UNSUED_Hitboxes_Torizo_StandUp_SitDown_FacingRight_AA89FA:
     dw $0001                                                             ;AA89FA;
-    dw $0017,$FFF9,$002D,$0004                                     
+    dw $0017,$FFF9,$002D,$0004
     dw EnemyTouch_Torizo                                                 ;AA8A04;
     dw RTL_AAC9C1                                                        ;AA8A06;
 
@@ -1013,7 +1013,7 @@ Hitboxes_Torizo_StandUp_SitDown_FacingRight_E:
 
 UNSUED_Hitboxes_Torizo_StandUp_SitDown_FacingRight_AA8A0A:
     dw $0001                                                             ;AA8A0A;
-    dw $000F,$FFDB,$001C,$FFED                                     
+    dw $000F,$FFDB,$001C,$FFED
     dw EnemyTouch_Torizo                                                 ;AA8A14;
     dw RTL_AAC9C1                                                        ;AA8A16;
 
@@ -1025,7 +1025,7 @@ Hitboxes_Torizo_StandUp_SitDown_FacingRight_10:
 
 UNSUED_Hitboxes_Torizo_StandUp_SitDown_FacingRight_AA8A1C:
     dw $0001                                                             ;AA8A1C;
-    dw $FFFF,$0027,$000F,$003B                                     
+    dw $FFFF,$0027,$000F,$003B
     dw EnemyTouch_Torizo                                                 ;AA8A26;
     dw RTL_AAC9C1                                                        ;AA8A28;
 
@@ -1034,7 +1034,7 @@ Hitboxes_Torizo_StandUp_SitDown_FacingRight_11:
 
 UNSUED_Hitboxes_Torizo_StandUp_SitDown_FacingRight_AA8A2C:
     dw $0001                                                             ;AA8A2C;
-    dw $0009,$0023,$001A,$0034                                     
+    dw $0009,$0023,$001A,$0034
     dw EnemyTouch_Torizo                                                 ;AA8A36;
     dw RTL_AAC9C1                                                        ;AA8A38;
 
@@ -1043,7 +1043,7 @@ Hitboxes_Torizo_StandUp_SitDown_FacingRight_12:
 
 UNSUED_Hitboxes_Torizo_StandUp_SitDown_FacingRight_AA8A3C:
     dw $0001                                                             ;AA8A3C;
-    dw $0016,$0018,$0023,$0024                                     
+    dw $0016,$0018,$0023,$0024
     dw EnemyTouch_Torizo                                                 ;AA8A46;
     dw RTL_AAC9C1                                                        ;AA8A48;
 
@@ -1052,7 +1052,7 @@ Hitboxes_Torizo_StandUp_SitDown_FacingRight_13:
 
 UNSUED_Hitboxes_Torizo_StandUp_SitDown_FacingRight_AA8A4C:
     dw $0001                                                             ;AA8A4C;
-    dw $0016,$0007,$0034,$0012                                     
+    dw $0016,$0007,$0034,$0012
     dw EnemyTouch_Torizo                                                 ;AA8A56;
     dw RTL_AAC9C1                                                        ;AA8A58;
 
@@ -1061,7 +1061,7 @@ Hitboxes_Torizo_StandUp_SitDown_FacingRight_14:
 
 UNSUED_Hitboxes_Torizo_StandUp_SitDown_FacingRight_AA8A5C:
     dw $0001                                                             ;AA8A5C;
-    dw $0018,$FFF6,$002C,$0005                                     
+    dw $0018,$FFF6,$002C,$0005
     dw EnemyTouch_Torizo                                                 ;AA8A66;
     dw RTL_AAC9C1                                                        ;AA8A68;
 
@@ -1070,19 +1070,19 @@ Hitboxes_Torizo_StandUp_SitDown_FacingRight_15:
 
 UNSUED_Hitboxes_Torizo_StandUp_SitDown_FacingRight_AA8A6C:
     dw $0001                                                             ;AA8A6C;
-    dw $000F,$FFDA,$001C,$FFF1                                     
+    dw $000F,$FFDA,$001C,$FFF1
     dw EnemyTouch_Torizo                                                 ;AA8A76;
     dw RTL_AAC9C1                                                        ;AA8A78;
 
 Hitboxes_Torizo_StandUp_SitDown_FacingRight_16:
     dw $0001                                                             ;AA8A7A;
-    dw $FFF8,$FFDB,$000F,$000E                                     
+    dw $FFF8,$FFDB,$000F,$000E
     dw EnemyTouch_Torizo                                                 ;AA8A84;
     dw EnemyShot_Torizo_Normal                                           ;AA8A86;
 
 Hitboxes_Torizo_StandUp_SitDown_FacingRight_17:
     dw $0001                                                             ;AA8A88;
-    dw $FFF7,$FFD8,$0010,$0019                                     
+    dw $FFF7,$FFD8,$0010,$0019
     dw EnemyTouch_Torizo                                                 ;AA8A92;
     dw EnemyShot_Torizo_Normal                                           ;AA8A94;
 
@@ -2743,13 +2743,13 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 ExtendedSpritemaps_Torizo_FacingScreen_Turning_Dodging:
     dw $0001                                                             ;AAA4F0;
-    dw $0000,$0000                                                 
+    dw $0000,$0000
     dw Spritemaps_Torizo_6                                               ;AAA4F6;
     dw Hitboxes_Torizo_Blank                                             ;AAA4F8;
 
 ExtendedSpritemaps_Torizo_WalkingLeft_RightLegMoving_0:
     dw $0004                                                             ;AAA4FA;
-    dw $FFF1,$FFE2                                                 
+    dw $FFF1,$FFE2
     dw Spritemaps_Torizo_0                                               ;AAA500;
     dw Hitboxes_Torizo_Blank                                             ;AAA502;
     dw $FFFB,$FFE8                                                       ;AAA504;
@@ -2764,7 +2764,7 @@ ExtendedSpritemaps_Torizo_WalkingLeft_RightLegMoving_0:
 
 ExtendedSpritemaps_Torizo_WalkingLeft_RightLegMoving_1:
     dw $0004                                                             ;AAA51C;
-    dw $FFF1,$FFE2                                                 
+    dw $FFF1,$FFE2
     dw Spritemaps_Torizo_0                                               ;AAA522;
     dw Hitboxes_Torizo_Blank                                             ;AAA524;
     dw $FFFB,$FFE7                                                       ;AAA526;
@@ -2779,7 +2779,7 @@ ExtendedSpritemaps_Torizo_WalkingLeft_RightLegMoving_1:
 
 ExtendedSpritemaps_Torizo_WalkingLeft_RightLegMoving_2:
     dw $0004                                                             ;AAA53E;
-    dw $FFF1,$FFE1                                                 
+    dw $FFF1,$FFE1
     dw Spritemaps_Torizo_0                                               ;AAA544;
     dw Hitboxes_Torizo_Blank                                             ;AAA546;
     dw $FFFB,$FFE6                                                       ;AAA548;
@@ -2794,7 +2794,7 @@ ExtendedSpritemaps_Torizo_WalkingLeft_RightLegMoving_2:
 
 ExtendedSpritemaps_Torizo_WalkingLeft_RightLegMoving_3:
     dw $0004                                                             ;AAA560;
-    dw $FFF1,$FFE0                                                 
+    dw $FFF1,$FFE0
     dw Spritemaps_Torizo_0                                               ;AAA566;
     dw Hitboxes_Torizo_Blank                                             ;AAA568;
     dw $FFFB,$FFE7                                                       ;AAA56A;
@@ -2809,7 +2809,7 @@ ExtendedSpritemaps_Torizo_WalkingLeft_RightLegMoving_3:
 
 ExtendedSpritemaps_Torizo_WalkingLeft_RightLegMoving_4:
     dw $0004                                                             ;AAA582;
-    dw $FFF1,$FFE0                                                 
+    dw $FFF1,$FFE0
     dw Spritemaps_Torizo_0                                               ;AAA588;
     dw Hitboxes_Torizo_Blank                                             ;AAA58A;
     dw $FFFB,$FFE8                                                       ;AAA58C;
@@ -2824,7 +2824,7 @@ ExtendedSpritemaps_Torizo_WalkingLeft_RightLegMoving_4:
 
 ExtendedSpritemaps_Torizo_WalkingLeft_LeftLegMoving_0:
     dw $0004                                                             ;AAA5A4;
-    dw $FFF1,$FFE2                                                 
+    dw $FFF1,$FFE2
     dw Spritemaps_Torizo_0                                               ;AAA5AA;
     dw Hitboxes_Torizo_Blank                                             ;AAA5AC;
     dw $FFFB,$FFE8                                                       ;AAA5AE;
@@ -2839,7 +2839,7 @@ ExtendedSpritemaps_Torizo_WalkingLeft_LeftLegMoving_0:
 
 ExtendedSpritemaps_Torizo_WalkingLeft_LeftLegMoving_1:
     dw $0004                                                             ;AAA5C6;
-    dw $FFF1,$FFE1                                                 
+    dw $FFF1,$FFE1
     dw Spritemaps_Torizo_0                                               ;AAA5CC;
     dw Hitboxes_Torizo_Blank                                             ;AAA5CE;
     dw $FFFB,$FFE7                                                       ;AAA5D0;
@@ -2854,7 +2854,7 @@ ExtendedSpritemaps_Torizo_WalkingLeft_LeftLegMoving_1:
 
 ExtendedSpritemaps_Torizo_WalkingLeft_LeftLegMoving_2:
     dw $0004                                                             ;AAA5E8;
-    dw $FFF1,$FFE1                                                 
+    dw $FFF1,$FFE1
     dw Spritemaps_Torizo_0                                               ;AAA5EE;
     dw Hitboxes_Torizo_Blank                                             ;AAA5F0;
     dw $FFFB,$FFE6                                                       ;AAA5F2;
@@ -2869,7 +2869,7 @@ ExtendedSpritemaps_Torizo_WalkingLeft_LeftLegMoving_2:
 
 ExtendedSpritemaps_Torizo_WalkingLeft_LeftLegMoving_3:
     dw $0004                                                             ;AAA60A;
-    dw $FFF1,$FFE0                                                 
+    dw $FFF1,$FFE0
     dw Spritemaps_Torizo_0                                               ;AAA610;
     dw Hitboxes_Torizo_Blank                                             ;AAA612;
     dw $FFFB,$FFE7                                                       ;AAA614;
@@ -2884,7 +2884,7 @@ ExtendedSpritemaps_Torizo_WalkingLeft_LeftLegMoving_3:
 
 ExtendedSpritemaps_Torizo_WalkingLeft_LeftLegMoving_4:
     dw $0004                                                             ;AAA62C;
-    dw $FFF1,$FFE1                                                 
+    dw $FFF1,$FFE1
     dw Spritemaps_Torizo_0                                               ;AAA632;
     dw Hitboxes_Torizo_Blank                                             ;AAA634;
     dw $FFFB,$FFE8                                                       ;AAA636;
@@ -2899,7 +2899,7 @@ ExtendedSpritemaps_Torizo_WalkingLeft_LeftLegMoving_4:
 
 ExtendedSpritemaps_Torizo_Attacks_FaceLeft_RightFootForward:
     dw $0003                                                             ;AAA64E;
-    dw $FFF1,$FFE1                                                 
+    dw $FFF1,$FFE1
     dw Spritemaps_Torizo_0                                               ;AAA654;
     dw Hitboxes_Torizo_Blank                                             ;AAA656;
     dw $FFFC,$FFE7                                                       ;AAA658;
@@ -2911,7 +2911,7 @@ ExtendedSpritemaps_Torizo_Attacks_FaceLeft_RightFootForward:
 
 ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_0:
     dw $0003                                                             ;AAA668;
-    dw $FFF7,$FFE1                                                 
+    dw $FFF7,$FFE1
     dw Spritemaps_Torizo_1                                               ;AAA66E;
     dw Hitboxes_Torizo_Blank                                             ;AAA670;
     dw $FFFC,$FFE7                                                       ;AAA672;
@@ -2923,7 +2923,7 @@ ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_0:
 
 ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_1:
     dw $0003                                                             ;AAA682;
-    dw $FFF7,$FFE1                                                 
+    dw $FFF7,$FFE1
     dw Spritemaps_Torizo_2                                               ;AAA688;
     dw Hitboxes_Torizo_Blank                                             ;AAA68A;
     dw $FFFC,$FFE7                                                       ;AAA68C;
@@ -2935,7 +2935,7 @@ ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_1:
 
 ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_2:
     dw $0003                                                             ;AAA69C;
-    dw $FFF7,$FFE1                                                 
+    dw $FFF7,$FFE1
     dw Spritemaps_Torizo_3                                               ;AAA6A2;
     dw Hitboxes_Torizo_Blank                                             ;AAA6A4;
     dw $FFFC,$FFE7                                                       ;AAA6A6;
@@ -2947,7 +2947,7 @@ ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_2:
 
 ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_3:
     dw $0003                                                             ;AAA6B6;
-    dw $FFFC,$FFE7                                                 
+    dw $FFFC,$FFE7
     dw Spritemaps_Torizo_21                                              ;AAA6BC;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingLeft_D                      ;AAA6BE;
     dw $FFF7,$FFE1                                                       ;AAA6C0;
@@ -2959,7 +2959,7 @@ ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_3:
 
 ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_4:
     dw $0003                                                             ;AAA6D0;
-    dw $FFFC,$FFE7                                                 
+    dw $FFFC,$FFE7
     dw Spritemaps_Torizo_21                                              ;AAA6D6;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingLeft_D                      ;AAA6D8;
     dw $FFF7,$FFE1                                                       ;AAA6DA;
@@ -2971,7 +2971,7 @@ ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_RightFootForward_4:
 
 ExtendedSpritemaps_Torizo_Attacks_FaceLeft_LeftFootForward:
     dw $0003                                                             ;AAA6EA;
-    dw $FFF1,$FFE1                                                 
+    dw $FFF1,$FFE1
     dw Spritemaps_Torizo_0                                               ;AAA6F0;
     dw Hitboxes_Torizo_Blank                                             ;AAA6F2;
     dw $FFFC,$FFE7                                                       ;AAA6F4;
@@ -2983,7 +2983,7 @@ ExtendedSpritemaps_Torizo_Attacks_FaceLeft_LeftFootForward:
 
 ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_0:
     dw $0003                                                             ;AAA704;
-    dw $FFF7,$FFE1                                                 
+    dw $FFF7,$FFE1
     dw Spritemaps_Torizo_1                                               ;AAA70A;
     dw Hitboxes_Torizo_Blank                                             ;AAA70C;
     dw $FFFC,$FFE7                                                       ;AAA70E;
@@ -2995,7 +2995,7 @@ ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_0:
 
 ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_1:
     dw $0003                                                             ;AAA71E;
-    dw $FFF7,$FFE1                                                 
+    dw $FFF7,$FFE1
     dw Spritemaps_Torizo_2                                               ;AAA724;
     dw Hitboxes_Torizo_Blank                                             ;AAA726;
     dw $FFFC,$FFE7                                                       ;AAA728;
@@ -3007,7 +3007,7 @@ ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_1:
 
 ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_2:
     dw $0003                                                             ;AAA738;
-    dw $FFF7,$FFE1                                                 
+    dw $FFF7,$FFE1
     dw Spritemaps_Torizo_3                                               ;AAA73E;
     dw Hitboxes_Torizo_Blank                                             ;AAA740;
     dw $FFFC,$FFE7                                                       ;AAA742;
@@ -3019,7 +3019,7 @@ ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_2:
 
 ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_3:
     dw $0003                                                             ;AAA752;
-    dw $FFFC,$FFE7                                                 
+    dw $FFFC,$FFE7
     dw Spritemaps_Torizo_21                                              ;AAA758;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingLeft_D                      ;AAA75A;
     dw $FFF7,$FFE1                                                       ;AAA75C;
@@ -3031,7 +3031,7 @@ ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_3:
 
 ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_4:
     dw $0003                                                             ;AAA76C;
-    dw $FFFC,$FFE7                                                 
+    dw $FFFC,$FFE7
     dw Spritemaps_Torizo_21                                              ;AAA772;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingLeft_D                      ;AAA774;
     dw $FFF7,$FFE1                                                       ;AAA776;
@@ -3043,7 +3043,7 @@ ExtSpritemaps_Torizo_ChozoOrbs_FaceLeft_LeftFootForward_4:
 
 ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_0:
     dw $0003                                                             ;AAA786;
-    dw $FFF1,$FFE1                                                 
+    dw $FFF1,$FFE1
     dw Spritemaps_Torizo_0                                               ;AAA78C;
     dw Hitboxes_Torizo_Blank                                             ;AAA78E;
     dw $FFFC,$FFE7                                                       ;AAA790;
@@ -3055,7 +3055,7 @@ ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_0:
 
 ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_1:
     dw $0004                                                             ;AAA7A0;
-    dw $FFF1,$FFE1                                                 
+    dw $FFF1,$FFE1
     dw Spritemaps_Torizo_0                                               ;AAA7A6;
     dw Hitboxes_Torizo_Blank                                             ;AAA7A8;
     dw $FFFC,$FFE7                                                       ;AAA7AA;
@@ -3070,7 +3070,7 @@ ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_1:
 
 ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_2:
     dw $0004                                                             ;AAA7C2;
-    dw $FFFC,$FFE7                                                 
+    dw $FFFC,$FFE7
     dw Spritemaps_Torizo_1E                                              ;AAA7C8;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingLeft_A                      ;AAA7CA;
     dw $FFF1,$FFE1                                                       ;AAA7CC;
@@ -3085,7 +3085,7 @@ ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_2:
 
 ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_3:
     dw $0004                                                             ;AAA7E4;
-    dw $FFFC,$FFE7                                                 
+    dw $FFFC,$FFE7
     dw Spritemaps_Torizo_1E                                              ;AAA7EA;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingLeft_A                      ;AAA7EC;
     dw $FFF1,$FFE1                                                       ;AAA7EE;
@@ -3100,7 +3100,7 @@ ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_3:
 
 ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_4:
     dw $0004                                                             ;AAA806;
-    dw $FFFC,$FFE7                                                 
+    dw $FFFC,$FFE7
     dw Spritemaps_Torizo_1E                                              ;AAA80C;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingLeft_A                      ;AAA80E;
     dw $FFF1,$FFE1                                                       ;AAA810;
@@ -3115,7 +3115,7 @@ ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_4:
 
 ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_5:
     dw $0004                                                             ;AAA828;
-    dw $FFF1,$FFE1                                                 
+    dw $FFF1,$FFE1
     dw Spritemaps_Torizo_0                                               ;AAA82E;
     dw Hitboxes_Torizo_Blank                                             ;AAA830;
     dw $FFFC,$FFE7                                                       ;AAA832;
@@ -3130,7 +3130,7 @@ ExtSpritemap_Torizo_NonOrbAttacks_FaceLeft_LeftFootForward_5:
 
 ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_RightFootForward_0:
     dw $0004                                                             ;AAA84A;
-    dw $FFF1,$FFE1                                                 
+    dw $FFF1,$FFE1
     dw Spritemaps_Torizo_0                                               ;AAA850;
     dw Hitboxes_Torizo_Blank                                             ;AAA852;
     dw $FFFC,$FFE7                                                       ;AAA854;
@@ -3145,7 +3145,7 @@ ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_RightFootForward_0:
 
 ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_RightFootForward_1:
     dw $0004                                                             ;AAA86C;
-    dw $FFF1,$FFE1                                                 
+    dw $FFF1,$FFE1
     dw Spritemaps_Torizo_0                                               ;AAA872;
     dw Hitboxes_Torizo_Blank                                             ;AAA874;
     dw $FFFC,$FFE7                                                       ;AAA876;
@@ -3160,7 +3160,7 @@ ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_RightFootForward_1:
 
 ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_RightFootForward_2:
     dw $0004                                                             ;AAA88E;
-    dw $FFFC,$FFE7                                                 
+    dw $FFFC,$FFE7
     dw Spritemaps_Torizo_21                                              ;AAA894;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingLeft_D                      ;AAA896;
     dw $FFF1,$FFE1                                                       ;AAA898;
@@ -3175,7 +3175,7 @@ ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_RightFootForward_2:
 
 ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_RightFootForward_3:
     dw $0004                                                             ;AAA8B0;
-    dw $FFFC,$FFE7                                                 
+    dw $FFFC,$FFE7
     dw Spritemaps_Torizo_22                                              ;AAA8B6;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingLeft_E                      ;AAA8B8;
     dw $FFF1,$FFE1                                                       ;AAA8BA;
@@ -3190,7 +3190,7 @@ ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_RightFootForward_3:
 
 ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_0:
     dw $0003                                                             ;AAA8D2;
-    dw $FFF1,$FFE1                                                 
+    dw $FFF1,$FFE1
     dw Spritemaps_Torizo_0                                               ;AAA8D8;
     dw Hitboxes_Torizo_Blank                                             ;AAA8DA;
     dw $FFFC,$FFE7                                                       ;AAA8DC;
@@ -3202,7 +3202,7 @@ ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_0:
 
 ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_1:
     dw $0003                                                             ;AAA8EC;
-    dw $FFF1,$FFE1                                                 
+    dw $FFF1,$FFE1
     dw Spritemaps_Torizo_0                                               ;AAA8F2;
     dw Hitboxes_Torizo_Blank                                             ;AAA8F4;
     dw $FFFC,$FFE7                                                       ;AAA8F6;
@@ -3214,7 +3214,7 @@ ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_1:
 
 ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_2:
     dw $0003                                                             ;AAA906;
-    dw $FFFC,$FFE7                                                 
+    dw $FFFC,$FFE7
     dw Spritemaps_Torizo_20                                              ;AAA90C;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingLeft_C                      ;AAA90E;
     dw $FFF1,$FFE1                                                       ;AAA910;
@@ -3226,7 +3226,7 @@ ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_2:
 
 ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_3:
     dw $0003                                                             ;AAA920;
-    dw $FFFC,$FFE7                                                 
+    dw $FFFC,$FFE7
     dw Spritemaps_Torizo_21                                              ;AAA926;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingLeft_D                      ;AAA928;
     dw $FFF1,$FFE1                                                       ;AAA92A;
@@ -3238,7 +3238,7 @@ ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_3:
 
 ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_4:
     dw $0003                                                             ;AAA93A;
-    dw $FFFC,$FFE7                                                 
+    dw $FFFC,$FFE7
     dw Spritemaps_Torizo_22                                              ;AAA940;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingLeft_E                      ;AAA942;
     dw $FFF1,$FFE1                                                       ;AAA944;
@@ -3250,7 +3250,7 @@ ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_4:
 
 ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_5:
     dw $0004                                                             ;AAA954;
-    dw $FFF1,$FFE1                                                 
+    dw $FFF1,$FFE1
     dw Spritemaps_Torizo_0                                               ;AAA95A;
     dw Hitboxes_Torizo_Blank                                             ;AAA95C;
     dw $FFFC,$FFE7                                                       ;AAA95E;
@@ -3265,7 +3265,7 @@ ExtSpritemap_Torizo_NonOrbAttack_FaceLeft_LeftFootForward_5:
 
 ExtSpritemap_Torizo_SonicBoom_Swipe_FaceLeft_LeftFootFwd_0:
     dw $0004                                                             ;AAA976;
-    dw $FFF1,$FFE1                                                 
+    dw $FFF1,$FFE1
     dw Spritemaps_Torizo_0                                               ;AAA97C;
     dw Hitboxes_Torizo_Blank                                             ;AAA97E;
     dw $FFFC,$FFE7                                                       ;AAA980;
@@ -3280,7 +3280,7 @@ ExtSpritemap_Torizo_SonicBoom_Swipe_FaceLeft_LeftFootFwd_0:
 
 ExtSpritemap_Torizo_SonicBoom_Swipe_FaceLeft_LeftFootFwd_1:
     dw $0004                                                             ;AAA998;
-    dw $FFF1,$FFE1                                                 
+    dw $FFF1,$FFE1
     dw Spritemaps_Torizo_0                                               ;AAA99E;
     dw Hitboxes_Torizo_Blank                                             ;AAA9A0;
     dw $FFFC,$FFE7                                                       ;AAA9A2;
@@ -3295,7 +3295,7 @@ ExtSpritemap_Torizo_SonicBoom_Swipe_FaceLeft_LeftFootFwd_1:
 
 ExtSpritemap_Torizo_SonicBoom_Swipe_FaceLeft_LeftFootFwd_2:
     dw $0004                                                             ;AAA9BA;
-    dw $FFFC,$FFE7                                                 
+    dw $FFFC,$FFE7
     dw Spritemaps_Torizo_1D                                              ;AAA9C0;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingLeft_9                      ;AAA9C2;
     dw $FFF1,$FFE1                                                       ;AAA9C4;
@@ -3310,7 +3310,7 @@ ExtSpritemap_Torizo_SonicBoom_Swipe_FaceLeft_LeftFootFwd_2:
 
 ExtSpritemap_Torizo_SonicBoom_Swipe_FaceLeft_LeftFootFwd_3:
     dw $0004                                                             ;AAA9DC;
-    dw $FFFC,$FFE7                                                 
+    dw $FFFC,$FFE7
     dw Spritemaps_Torizo_1D                                              ;AAA9E2;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingLeft_9                      ;AAA9E4;
     dw $FFF1,$FFE1                                                       ;AAA9E6;
@@ -3326,44 +3326,44 @@ ExtSpritemap_Torizo_SonicBoom_Swipe_FaceLeft_LeftFootFwd_3:
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ExtendedSpritemaps_Torizo_AAA9FE:
     dw $0001                                                             ;AAA9FE;
-    dw $0000,$0008                                                 
+    dw $0000,$0008
     dw Spritemaps_Torizo_6                                               ;AAAA04;
     dw UNUSED_Hitboxes_Torizo_AA87DA                                     ;AAAA06;
 
 UNUSED_ExtendedSpritemaps_Torizo_AAAA08:
     dw $0001                                                             ;AAAA08;
-    dw $0000,$0008                                                 
+    dw $0000,$0008
     dw Spritemaps_Torizo_7                                               ;AAAA0E;
     dw UNUSED_Hitboxes_Torizo_AA87DA                                     ;AAAA10;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_0:
     dw $0001                                                             ;AAAA12;
-    dw $0000,$0000                                                 
+    dw $0000,$0000
     dw Spritemaps_Torizo_C                                               ;AAAA18;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingLeft_0                      ;AAAA1A;
 
 ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_1:
     dw $0001                                                             ;AAAA1C;
-    dw $0000,$0000                                                 
+    dw $0000,$0000
     dw Spritemaps_Torizo_D                                               ;AAAA22;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingLeft_1                      ;AAAA24;
 
 ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_2:
     dw $0001                                                             ;AAAA26;
-    dw $0000,$0000                                                 
+    dw $0000,$0000
     dw Spritemaps_Torizo_E                                               ;AAAA2C;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingLeft_2                      ;AAAA2E;
 
 ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_3:
     dw $0001                                                             ;AAAA30;
-    dw $0000,$0000                                                 
+    dw $0000,$0000
     dw Spritemaps_Torizo_E_miscount                                      ;AAAA36;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingLeft_3                      ;AAAA38;
 
 ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_4:
     dw $0002                                                             ;AAAA3A;
-    dw $FFFB,$FFE8                                                 
+    dw $FFFB,$FFE8
     dw Spritemaps_Torizo_1D                                              ;AAAA40;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingLeft_9                      ;AAAA42;
     dw $0000,$0000                                                       ;AAAA44;
@@ -3372,7 +3372,7 @@ ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_4:
 
 ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_5:
     dw $0002                                                             ;AAAA4C;
-    dw $FFFB,$FFE8                                                 
+    dw $FFFB,$FFE8
     dw Spritemaps_Torizo_1E                                              ;AAAA52;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingLeft_A                      ;AAAA54;
     dw $0000,$0000                                                       ;AAAA56;
@@ -3381,7 +3381,7 @@ ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_5:
 
 ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_6:
     dw $0002                                                             ;AAAA5E;
-    dw $FFFB,$FFE8                                                 
+    dw $FFFB,$FFE8
     dw Spritemaps_Torizo_1E                                              ;AAAA64;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingLeft_A                      ;AAAA66;
     dw $0000,$0000                                                       ;AAAA68;
@@ -3391,32 +3391,32 @@ ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingLeft_6:
 if !FEATURE_KEEP_UNREFERENCED
 UNUSED_ExtendedSpritemaps_Torizo_AAAA70:
     dw $0001                                                             ;AAAA70;
-    dw $0000,$0000                                                 
+    dw $0000,$0000
     dw Spritemaps_Torizo_8                                               ;AAAA76;
     dw Hitboxes_Torizo_Blank                                             ;AAAA78;
 
 UNUSED_ExtendedSpritemaps_Torizo_AAAA7A:
     dw $0001                                                             ;AAAA7A;
-    dw $0000,$0000                                                 
+    dw $0000,$0000
     dw Spritemaps_Torizo_9                                               ;AAAA80;
     dw Hitboxes_Torizo_Blank                                             ;AAAA82;
 
 UNUSED_ExtendedSpritemaps_Torizo_AAAA84:
     dw $0001                                                             ;AAAA84;
-    dw $0000,$0000                                                 
+    dw $0000,$0000
     dw Spritemaps_Torizo_A                                               ;AAAA8A;
     dw Hitboxes_Torizo_Blank                                             ;AAAA8C;
 
 UNUSED_ExtendedSpritemaps_Torizo_AAAA8E:
     dw $0001                                                             ;AAAA8E;
-    dw $0000,$0000                                                 
+    dw $0000,$0000
     dw Spritemaps_Torizo_B                                               ;AAAA94;
     dw Hitboxes_Torizo_Blank                                             ;AAAA96;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 ExtendedSpritemaps_Torizo_WalkingRight_LeftLegMoving_0:
     dw $0004                                                             ;AAAA98;
-    dw $000F,$FFE2                                                 
+    dw $000F,$FFE2
     dw Spritemaps_Torizo_30                                              ;AAAA9E;
     dw Hitboxes_Torizo_Blank                                             ;AAAAA0;
     dw $0005,$FFE8                                                       ;AAAAA2;
@@ -3431,7 +3431,7 @@ ExtendedSpritemaps_Torizo_WalkingRight_LeftLegMoving_0:
 
 ExtendedSpritemaps_Torizo_WalkingRight_LeftLegMoving_1:
     dw $0004                                                             ;AAAABA;
-    dw $000F,$FFE2                                                 
+    dw $000F,$FFE2
     dw Spritemaps_Torizo_30                                              ;AAAAC0;
     dw Hitboxes_Torizo_Blank                                             ;AAAAC2;
     dw $0005,$FFE7                                                       ;AAAAC4;
@@ -3446,7 +3446,7 @@ ExtendedSpritemaps_Torizo_WalkingRight_LeftLegMoving_1:
 
 ExtendedSpritemaps_Torizo_WalkingRight_LeftLegMoving_2:
     dw $0004                                                             ;AAAADC;
-    dw $000F,$FFE1                                                 
+    dw $000F,$FFE1
     dw Spritemaps_Torizo_30                                              ;AAAAE2;
     dw Hitboxes_Torizo_Blank                                             ;AAAAE4;
     dw $0005,$FFE6                                                       ;AAAAE6;
@@ -3461,7 +3461,7 @@ ExtendedSpritemaps_Torizo_WalkingRight_LeftLegMoving_2:
 
 ExtendedSpritemaps_Torizo_WalkingRight_LeftLegMoving_3:
     dw $0004                                                             ;AAAAFE;
-    dw $000F,$FFE0                                                 
+    dw $000F,$FFE0
     dw Spritemaps_Torizo_30                                              ;AAAB04;
     dw Hitboxes_Torizo_Blank                                             ;AAAB06;
     dw $0005,$FFE7                                                       ;AAAB08;
@@ -3476,7 +3476,7 @@ ExtendedSpritemaps_Torizo_WalkingRight_LeftLegMoving_3:
 
 ExtendedSpritemaps_Torizo_WalkingRight_LeftLegMoving_4:
     dw $0004                                                             ;AAAB20;
-    dw $000F,$FFE0                                                 
+    dw $000F,$FFE0
     dw Spritemaps_Torizo_30                                              ;AAAB26;
     dw Hitboxes_Torizo_Blank                                             ;AAAB28;
     dw $0005,$FFE8                                                       ;AAAB2A;
@@ -3491,7 +3491,7 @@ ExtendedSpritemaps_Torizo_WalkingRight_LeftLegMoving_4:
 
 ExtendedSpritemaps_Torizo_WalkingRight_RightLegMoving_0:
     dw $0004                                                             ;AAAB42;
-    dw $000F,$FFE2                                                 
+    dw $000F,$FFE2
     dw Spritemaps_Torizo_30                                              ;AAAB48;
     dw Hitboxes_Torizo_Blank                                             ;AAAB4A;
     dw $0005,$FFE8                                                       ;AAAB4C;
@@ -3506,7 +3506,7 @@ ExtendedSpritemaps_Torizo_WalkingRight_RightLegMoving_0:
 
 ExtendedSpritemaps_Torizo_WalkingRight_RightLegMoving_1:
     dw $0004                                                             ;AAAB64;
-    dw $000F,$FFE1                                                 
+    dw $000F,$FFE1
     dw Spritemaps_Torizo_30                                              ;AAAB6A;
     dw Hitboxes_Torizo_Blank                                             ;AAAB6C;
     dw $0005,$FFE7                                                       ;AAAB6E;
@@ -3521,7 +3521,7 @@ ExtendedSpritemaps_Torizo_WalkingRight_RightLegMoving_1:
 
 ExtendedSpritemaps_Torizo_WalkingRight_RightLegMoving_2:
     dw $0004                                                             ;AAAB86;
-    dw $000F,$FFE1                                                 
+    dw $000F,$FFE1
     dw Spritemaps_Torizo_30                                              ;AAAB8C;
     dw Hitboxes_Torizo_Blank                                             ;AAAB8E;
     dw $0005,$FFE6                                                       ;AAAB90;
@@ -3536,7 +3536,7 @@ ExtendedSpritemaps_Torizo_WalkingRight_RightLegMoving_2:
 
 ExtendedSpritemaps_Torizo_WalkingRight_RightLegMoving_3:
     dw $0004                                                             ;AAABA8;
-    dw $000F,$FFE0                                                 
+    dw $000F,$FFE0
     dw Spritemaps_Torizo_30                                              ;AAABAE;
     dw Hitboxes_Torizo_Blank                                             ;AAABB0;
     dw $0005,$FFE7                                                       ;AAABB2;
@@ -3551,7 +3551,7 @@ ExtendedSpritemaps_Torizo_WalkingRight_RightLegMoving_3:
 
 ExtendedSpritemaps_Torizo_WalkingRight_RightLegMoving_4:
     dw $0004                                                             ;AAABCA;
-    dw $000F,$FFE1                                                 
+    dw $000F,$FFE1
     dw Spritemaps_Torizo_30                                              ;AAABD0;
     dw Hitboxes_Torizo_Blank                                             ;AAABD2;
     dw $0005,$FFE8                                                       ;AAABD4;
@@ -3566,7 +3566,7 @@ ExtendedSpritemaps_Torizo_WalkingRight_RightLegMoving_4:
 
 ExtendedSpritemaps_Torizo_Attacks_FaceRight_LeftFootForward:
     dw $0003                                                             ;AAABEC;
-    dw $000F,$FFE1                                                 
+    dw $000F,$FFE1
     dw Spritemaps_Torizo_30                                              ;AAABF2;
     dw Hitboxes_Torizo_Blank                                             ;AAABF4;
     dw $0004,$FFE7                                                       ;AAABF6;
@@ -3578,7 +3578,7 @@ ExtendedSpritemaps_Torizo_Attacks_FaceRight_LeftFootForward:
 
 ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_0:
     dw $0003                                                             ;AAAC06;
-    dw $0009,$FFE1                                                 
+    dw $0009,$FFE1
     dw Spritemaps_Torizo_31                                              ;AAAC0C;
     dw Hitboxes_Torizo_Blank                                             ;AAAC0E;
     dw $0004,$FFE7                                                       ;AAAC10;
@@ -3590,7 +3590,7 @@ ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_0:
 
 ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_1:
     dw $0003                                                             ;AAAC20;
-    dw $0009,$FFE1                                                 
+    dw $0009,$FFE1
     dw Spritemaps_Torizo_32                                              ;AAAC26;
     dw Hitboxes_Torizo_Blank                                             ;AAAC28;
     dw $0004,$FFE7                                                       ;AAAC2A;
@@ -3602,7 +3602,7 @@ ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_1:
 
 ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_2:
     dw $0003                                                             ;AAAC3A;
-    dw $0009,$FFE1                                                 
+    dw $0009,$FFE1
     dw Spritemaps_Torizo_33                                              ;AAAC40;
     dw Hitboxes_Torizo_Blank                                             ;AAAC42;
     dw $0004,$FFE7                                                       ;AAAC44;
@@ -3614,7 +3614,7 @@ ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_2:
 
 ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_3:
     dw $0003                                                             ;AAAC54;
-    dw $0004,$FFE7                                                 
+    dw $0004,$FFE7
     dw Spritemaps_Torizo_4B                                              ;AAAC5A;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingRight_D                     ;AAAC5C;
     dw $0009,$FFE1                                                       ;AAAC5E;
@@ -3626,7 +3626,7 @@ ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_3:
 
 ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_4:
     dw $0003                                                             ;AAAC6E;
-    dw $0004,$FFE7                                                 
+    dw $0004,$FFE7
     dw Spritemaps_Torizo_4B                                              ;AAAC74;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingRight_D                     ;AAAC76;
     dw $0009,$FFE1                                                       ;AAAC78;
@@ -3638,7 +3638,7 @@ ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_LeftFootForward_4:
 
 ExtendedSpritemaps_Torizo_Attacks_FaceRight_RightFootForward:
     dw $0003                                                             ;AAAC88;
-    dw $000F,$FFE1                                                 
+    dw $000F,$FFE1
     dw Spritemaps_Torizo_30                                              ;AAAC8E;
     dw Hitboxes_Torizo_Blank                                             ;AAAC90;
     dw $0004,$FFE7                                                       ;AAAC92;
@@ -3650,7 +3650,7 @@ ExtendedSpritemaps_Torizo_Attacks_FaceRight_RightFootForward:
 
 ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_0:
     dw $0003                                                             ;AAACA2;
-    dw $0009,$FFE1                                                 
+    dw $0009,$FFE1
     dw Spritemaps_Torizo_31                                              ;AAACA8;
     dw Hitboxes_Torizo_Blank                                             ;AAACAA;
     dw $0004,$FFE7                                                       ;AAACAC;
@@ -3662,7 +3662,7 @@ ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_0:
 
 ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_1:
     dw $0003                                                             ;AAACBC;
-    dw $0009,$FFE1                                                 
+    dw $0009,$FFE1
     dw Spritemaps_Torizo_32                                              ;AAACC2;
     dw Hitboxes_Torizo_Blank                                             ;AAACC4;
     dw $0004,$FFE7                                                       ;AAACC6;
@@ -3674,7 +3674,7 @@ ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_1:
 
 ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_2:
     dw $0003                                                             ;AAACD6;
-    dw $0009,$FFE1                                                 
+    dw $0009,$FFE1
     dw Spritemaps_Torizo_33                                              ;AAACDC;
     dw Hitboxes_Torizo_Blank                                             ;AAACDE;
     dw $0004,$FFE7                                                       ;AAACE0;
@@ -3686,7 +3686,7 @@ ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_2:
 
 ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_3:
     dw $0003                                                             ;AAACF0;
-    dw $0004,$FFE7                                                 
+    dw $0004,$FFE7
     dw Spritemaps_Torizo_4B                                              ;AAACF6;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingRight_D                     ;AAACF8;
     dw $0009,$FFE1                                                       ;AAACFA;
@@ -3698,7 +3698,7 @@ ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_3:
 
 ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_4:
     dw $0003                                                             ;AAAD0A;
-    dw $0004,$FFE7                                                 
+    dw $0004,$FFE7
     dw Spritemaps_Torizo_4B                                              ;AAAD10;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingRight_D                     ;AAAD12;
     dw $0009,$FFE1                                                       ;AAAD14;
@@ -3710,7 +3710,7 @@ ExtSpritemaps_Torizo_ChozoOrbs_FaceRight_RightFootForward_4:
 
 ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_0:
     dw $0003                                                             ;AAAD24;
-    dw $000F,$FFE1                                                 
+    dw $000F,$FFE1
     dw Spritemaps_Torizo_30                                              ;AAAD2A;
     dw Hitboxes_Torizo_Blank                                             ;AAAD2C;
     dw $0004,$FFE7                                                       ;AAAD2E;
@@ -3722,7 +3722,7 @@ ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_0:
 
 ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_1:
     dw $0004                                                             ;AAAD3E;
-    dw $000F,$FFE1                                                 
+    dw $000F,$FFE1
     dw Spritemaps_Torizo_30                                              ;AAAD44;
     dw Hitboxes_Torizo_Blank                                             ;AAAD46;
     dw $0004,$FFE7                                                       ;AAAD48;
@@ -3737,7 +3737,7 @@ ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_1:
 
 ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_2:
     dw $0004                                                             ;AAAD60;
-    dw $0004,$FFE7                                                 
+    dw $0004,$FFE7
     dw Spritemaps_Torizo_48                                              ;AAAD66;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingRight_A                     ;AAAD68;
     dw $000F,$FFE1                                                       ;AAAD6A;
@@ -3752,7 +3752,7 @@ ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_2:
 
 ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_3:
     dw $0004                                                             ;AAAD82;
-    dw $0004,$FFE7                                                 
+    dw $0004,$FFE7
     dw Spritemaps_Torizo_48                                              ;AAAD88;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingRight_A                     ;AAAD8A;
     dw $000F,$FFE1                                                       ;AAAD8C;
@@ -3767,7 +3767,7 @@ ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_3:
 
 ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_4:
     dw $0004                                                             ;AAADA4;
-    dw $0004,$FFE7                                                 
+    dw $0004,$FFE7
     dw Spritemaps_Torizo_48                                              ;AAADAA;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingRight_A                     ;AAADAC;
     dw $000F,$FFE1                                                       ;AAADAE;
@@ -3782,7 +3782,7 @@ ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_4:
 
 ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_5:
     dw $0004                                                             ;AAADC6;
-    dw $000F,$FFE1                                                 
+    dw $000F,$FFE1
     dw Spritemaps_Torizo_30                                              ;AAADCC;
     dw Hitboxes_Torizo_Blank                                             ;AAADCE;
     dw $0004,$FFE7                                                       ;AAADD0;
@@ -3797,7 +3797,7 @@ ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_5:
 
 ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_6:
     dw $0004                                                             ;AAADE8;
-    dw $000F,$FFE1                                                 
+    dw $000F,$FFE1
     dw Spritemaps_Torizo_30                                              ;AAADEE;
     dw Hitboxes_Torizo_Blank                                             ;AAADF0;
     dw $0004,$FFE7                                                       ;AAADF2;
@@ -3812,7 +3812,7 @@ ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_6:
 
 ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_7:
     dw $0004                                                             ;AAAE0A;
-    dw $000F,$FFE1                                                 
+    dw $000F,$FFE1
     dw Spritemaps_Torizo_30                                              ;AAAE10;
     dw Hitboxes_Torizo_Blank                                             ;AAAE12;
     dw $0004,$FFE7                                                       ;AAAE14;
@@ -3827,7 +3827,7 @@ ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_7:
 
 ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_8:
     dw $0004                                                             ;AAAE2C;
-    dw $0004,$FFE7                                                 
+    dw $0004,$FFE7
     dw Spritemaps_Torizo_4B                                              ;AAAE32;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingRight_D                     ;AAAE34;
     dw $000F,$FFE1                                                       ;AAAE36;
@@ -3842,7 +3842,7 @@ ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_8:
 
 ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_9:
     dw $0004                                                             ;AAAE4E;
-    dw $0004,$FFE7                                                 
+    dw $0004,$FFE7
     dw Spritemaps_Torizo_4C                                              ;AAAE54;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingRight_E                     ;AAAE56;
     dw $000F,$FFE1                                                       ;AAAE58;
@@ -3857,7 +3857,7 @@ ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_LeftFootFwd_9:
 
 ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_0:
     dw $0003                                                             ;AAAE70;
-    dw $000F,$FFE1                                                 
+    dw $000F,$FFE1
     dw Spritemaps_Torizo_30                                              ;AAAE76;
     dw Hitboxes_Torizo_Blank                                             ;AAAE78;
     dw $0004,$FFE7                                                       ;AAAE7A;
@@ -3869,7 +3869,7 @@ ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_0:
 
 ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_1:
     dw $0003                                                             ;AAAE8A;
-    dw $000F,$FFE1                                                 
+    dw $000F,$FFE1
     dw Spritemaps_Torizo_30                                              ;AAAE90;
     dw Hitboxes_Torizo_Blank                                             ;AAAE92;
     dw $0004,$FFE7                                                       ;AAAE94;
@@ -3881,7 +3881,7 @@ ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_1:
 
 ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_2:
     dw $0003                                                             ;AAAEA4;
-    dw $0004,$FFE7                                                 
+    dw $0004,$FFE7
     dw Spritemaps_Torizo_4A                                              ;AAAEAA;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingRight_C                     ;AAAEAC;
     dw $000F,$FFE1                                                       ;AAAEAE;
@@ -3893,7 +3893,7 @@ ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_2:
 
 ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_3:
     dw $0003                                                             ;AAAEBE;
-    dw $0004,$FFE7                                                 
+    dw $0004,$FFE7
     dw Spritemaps_Torizo_4B                                              ;AAAEC4;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingRight_D                     ;AAAEC6;
     dw $000F,$FFE1                                                       ;AAAEC8;
@@ -3905,7 +3905,7 @@ ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_3:
 
 ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_4:
     dw $0003                                                             ;AAAED8;
-    dw $0004,$FFE7                                                 
+    dw $0004,$FFE7
     dw Spritemaps_Torizo_4C                                              ;AAAEDE;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingRight_E                     ;AAAEE0;
     dw $000F,$FFE1                                                       ;AAAEE2;
@@ -3917,7 +3917,7 @@ ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_4:
 
 ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_5:
     dw $0004                                                             ;AAAEF2;
-    dw $000F,$FFE1                                                 
+    dw $000F,$FFE1
     dw Spritemaps_Torizo_30                                              ;AAAEF8;
     dw Hitboxes_Torizo_Blank                                             ;AAAEFA;
     dw $0004,$FFE7                                                       ;AAAEFC;
@@ -3932,7 +3932,7 @@ ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_5:
 
 ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_6:
     dw $0004                                                             ;AAAF14;
-    dw $000F,$FFE1                                                 
+    dw $000F,$FFE1
     dw Spritemaps_Torizo_30                                              ;AAAF1A;
     dw Hitboxes_Torizo_Blank                                             ;AAAF1C;
     dw $0004,$FFE7                                                       ;AAAF1E;
@@ -3947,7 +3947,7 @@ ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_6:
 
 ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_7:
     dw $0004                                                             ;AAAF36;
-    dw $000F,$FFE1                                                 
+    dw $000F,$FFE1
     dw Spritemaps_Torizo_30                                              ;AAAF3C;
     dw Hitboxes_Torizo_Blank                                             ;AAAF3E;
     dw $0004,$FFE7                                                       ;AAAF40;
@@ -3962,7 +3962,7 @@ ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_7:
 
 ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_8:
     dw $0004                                                             ;AAAF58;
-    dw $0004,$FFE7                                                 
+    dw $0004,$FFE7
     dw Spritemaps_Torizo_47                                              ;AAAF5E;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingRight_9                     ;AAAF60;
     dw $000F,$FFE1                                                       ;AAAF62;
@@ -3977,7 +3977,7 @@ ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_8:
 
 ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_9:
     dw $0004                                                             ;AAAF7A;
-    dw $0004,$FFE7                                                 
+    dw $0004,$FFE7
     dw Spritemaps_Torizo_47                                              ;AAAF80;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingRight_9                     ;AAAF82;
     dw $000F,$FFE1                                                       ;AAAF84;
@@ -3992,31 +3992,31 @@ ExtSpritemap_Torizo_NonOrbAttacks_FaceRight_RightFootFwd_9:
 
 ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_0:
     dw $0001                                                             ;AAAF9C;
-    dw $0000,$0000                                                 
+    dw $0000,$0000
     dw Spritemaps_Torizo_36                                              ;AAAFA2;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingRight_0                     ;AAAFA4;
 
 ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_1:
     dw $0001                                                             ;AAAFA6;
-    dw $0000,$0000                                                 
+    dw $0000,$0000
     dw Spritemaps_Torizo_37                                              ;AAAFAC;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingRight_1                     ;AAAFAE;
 
 ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_2:
     dw $0001                                                             ;AAAFB0;
-    dw $0000,$0000                                                 
+    dw $0000,$0000
     dw Spritemaps_Torizo_38                                              ;AAAFB6;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingRight_2                     ;AAAFB8;
 
 ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_3:
     dw $0001                                                             ;AAAFBA;
-    dw $0000,$0000                                                 
+    dw $0000,$0000
     dw Spritemaps_Torizo_39                                              ;AAAFC0;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingRight_3                     ;AAAFC2;
 
 ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_4:
     dw $0002                                                             ;AAAFC4;
-    dw $0005,$FFE8                                                 
+    dw $0005,$FFE8
     dw Spritemaps_Torizo_47                                              ;AAAFCA;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingRight_9                     ;AAAFCC;
     dw $0000,$0000                                                       ;AAAFCE;
@@ -4025,7 +4025,7 @@ ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_4:
 
 ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_5:
     dw $0002                                                             ;AAAFD6;
-    dw $0005,$FFE8                                                 
+    dw $0005,$FFE8
     dw Spritemaps_Torizo_48                                              ;AAAFDC;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingRight_A                     ;AAAFDE;
     dw $0000,$0000                                                       ;AAAFE0;
@@ -4034,7 +4034,7 @@ ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_5:
 
 ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_6:
     dw $0002                                                             ;AAAFE8;
-    dw $0005,$FFE8                                                 
+    dw $0005,$FFE8
     dw Spritemaps_Torizo_48                                              ;AAAFEE;
     dw Hitboxes_Torizo_StandUp_SitDown_FacingRight_A                     ;AAAFF0;
     dw $0000,$0000                                                       ;AAAFF2;
@@ -4043,7 +4043,7 @@ ExtendedSpritemaps_Torizo_StandUp_SitDown_FacingRight_6:
 
 ExtendedSpritemaps_Torizo_Jumping_Falling_FacingLeft_0:
     dw $0003                                                             ;AAAFFA;
-    dw $FFF0,$FFE3                                                 
+    dw $FFF0,$FFE3
     dw Spritemaps_Torizo_0                                               ;AAB000;
     dw Hitboxes_Torizo_Blank                                             ;AAB002;
     dw $FFFC,$FFEA                                                       ;AAB004;
@@ -4055,7 +4055,7 @@ ExtendedSpritemaps_Torizo_Jumping_Falling_FacingLeft_0:
 
 ExtendedSpritemaps_Torizo_Jumping_Falling_FacingLeft_1:
     dw $0003                                                             ;AAB014;
-    dw $FFF0,$FFE2                                                 
+    dw $FFF0,$FFE2
     dw Spritemaps_Torizo_0                                               ;AAB01A;
     dw Hitboxes_Torizo_Blank                                             ;AAB01C;
     dw $FFFC,$FFE8                                                       ;AAB01E;
@@ -4067,7 +4067,7 @@ ExtendedSpritemaps_Torizo_Jumping_Falling_FacingLeft_1:
 
 ExtendedSpritemaps_Torizo_Jumping_Falling_FacingLeft_2:
     dw $0003                                                             ;AAB02E;
-    dw $FFF0,$FFE2                                                 
+    dw $FFF0,$FFE2
     dw Spritemaps_Torizo_0                                               ;AAB034;
     dw Hitboxes_Torizo_Blank                                             ;AAB036;
     dw $FFFD,$FFE8                                                       ;AAB038;
@@ -4079,7 +4079,7 @@ ExtendedSpritemaps_Torizo_Jumping_Falling_FacingLeft_2:
 
 ExtendedSpritemaps_Torizo_Jumping_Falling_FacingRight_0:
     dw $0003                                                             ;AAB048;
-    dw $000F,$FFE4                                                 
+    dw $000F,$FFE4
     dw Spritemaps_Torizo_30                                              ;AAB04E;
     dw Hitboxes_Torizo_Blank                                             ;AAB050;
     dw $0004,$FFEA                                                       ;AAB052;
@@ -4091,7 +4091,7 @@ ExtendedSpritemaps_Torizo_Jumping_Falling_FacingRight_0:
 
 ExtendedSpritemaps_Torizo_Jumping_Falling_FacingRight_1:
     dw $0003                                                             ;AAB062;
-    dw $000F,$FFE3                                                 
+    dw $000F,$FFE3
     dw Spritemaps_Torizo_30                                              ;AAB068;
     dw Hitboxes_Torizo_Blank                                             ;AAB06A;
     dw $0004,$FFE8                                                       ;AAB06C;
@@ -4103,7 +4103,7 @@ ExtendedSpritemaps_Torizo_Jumping_Falling_FacingRight_1:
 
 ExtendedSpritemaps_Torizo_Jumping_Falling_FacingRight_2:
     dw $0003                                                             ;AAB07C;
-    dw $000F,$FFE3                                                 
+    dw $000F,$FFE3
     dw Spritemaps_Torizo_30                                              ;AAB082;
     dw Hitboxes_Torizo_Blank                                             ;AAB084;
     dw $0003,$FFE8                                                       ;AAB086;
