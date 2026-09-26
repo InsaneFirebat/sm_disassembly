@@ -3100,14 +3100,14 @@ Function_Cacatac_MovingLeft:
     ADC.W Cacatac.leftVelocity,X                                         ;A29FD0;
     STA.W Enemy.XPosition,X                                              ;A29FD3;
     CMP.L Cacatac.minimumXPosition,X                                     ;A29FD6;
-    BPL .attack                                                          ;A29FDA;
+    BPL MaybeMakeCacatacAttack
     LDA.W #Function_Cacatac_MovingRight                                  ;A29FDC;
     STA.W Cacatac.function,X                                             ;A29FDF;
     LDA.W #$0001                                                         ;A29FE2;
     STA.W Cacatac.direction,X                                            ;A29FE5;
 
   .attack:
-    JMP.W MaybeMakeCacatacAttack
+    BRA MaybeMakeCacatacAttack
 
 
 ;;; $9FEC: Cacatac function - moving right ;;;
@@ -3124,13 +3124,10 @@ Function_Cacatac_MovingRight:
     ADC.W Cacatac.rightVelocity,X                                        ;A2A002;
     STA.W Enemy.XPosition,X                                              ;A2A005;
     CMP.L Cacatac.maximumXPosition,X                                     ;A2A008;
-    BMI .attack                                                          ;A2A00C;
+    BMI MaybeMakeCacatacAttack
     LDA.W #Function_Cacatac_MovingLeft                                   ;A2A00E;
     STA.W Cacatac.function,X                                             ;A2A011;
     STZ.W Cacatac.direction,X                                            ;A2A014;
-
-  .attack:
-    JMP.W MaybeMakeCacatacAttack
 
 
 ;;; $A01C: Maybe make cacatac attack ;;;
@@ -3151,6 +3148,7 @@ MaybeMakeCacatacAttack:
     LDA.W #$0001
     STA.W Enemy.instTimer,X
     STZ.W Enemy.loopCounter,X
+    RTL
 
   .keepUpsideUp:
     LDA.W #InstList_Cacatac_UpsideDown_Attacking
