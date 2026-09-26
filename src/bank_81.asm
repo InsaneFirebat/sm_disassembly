@@ -4962,9 +4962,9 @@ if !DEBUG
     LDA.W Debug_Enable                                                   ;81A816; <-- clobbers A >_<;
     BEQ .checkB                                                          ;81A819;
     JMP.W .debugNext                                                     ;81A81B;
-endif
 
   .checkB:
+endif
     BIT.W #$8000                                                         ;81A81E;
     BEQ .checkStartA                                                     ;81A821;
     LDA.W #$0016                                                         ;81A823;

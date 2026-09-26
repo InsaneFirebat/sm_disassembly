@@ -12081,9 +12081,7 @@ if !FEATURE_KEEP_UNREFERENCED
     RTS                                                                  ;A6E125;
 endif ; !FEATURE_KEEP_UNREFERENCED
 
-
-;;; $E126:  ;;;
-.collision:
+  .collision:
     LDA.W SamusProjectile_XPositions,Y                                   ;A6E126;
     STA.B DP_Temp12                                                      ;A6E129;
     LDA.W SamusProjectile_YPositions,Y                                   ;A6E12B;

@@ -3883,7 +3883,6 @@ Instruction_SpawnNext_Afterburn_EnemyProjectile:
     RTS                                                                  ;869633;
 
 
-if !FEATURE_KEEP_UNREFERENCED
 ;;; $9634: Enemy projectiles - Ridley / afterburn ;;;
 ; Enemy projectile $9634 seems to be a version of the fireball that has no afterburn
 ; It's fired at one of 4 down-left angles, the angle and its spawn position depend on enemy 0
@@ -3893,6 +3892,7 @@ if !FEATURE_KEEP_UNREFERENCED
 ; Enemy projectiles $96A4/B2/C0/CE are just the same as $966C/7A/88/96 except they instantly delete themselves on collision instead of playing the $9574 animation
 
 ; Note that Mother Brain's bombs also spawn the afterburn, not just Ridley's fireballs
+if !FEATURE_KEEP_UNREFERENCED
 UNUSED_EnemyProjectile_Ridley_869634:                                    ;869634;
     %EnemyProjectile(\
     %initAI(UNUSED_InitAI_EnemyProj_RidleysFireball_Afterburn_86934D),

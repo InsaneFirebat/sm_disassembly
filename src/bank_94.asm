@@ -1746,7 +1746,7 @@ SamusBlockCollisionReaction_Vertical_Slope_Square:
 
 ;;; $8E54: Square slope definitions ;;;
 SquareSlopeDefinitions_Bank94:                                           ;948E54;
-; Enemies use $A0:C435, enemy projectiles use $86:8729
+; Enemies use SquareSlopeDefinitions_BankA0, enemy projectiles use SquareSlopeDefinitions_Bank86
 ; 0 = air, 80h = solid
 ;        _____________ Top-left
 ;       |    _________ Top-right
