@@ -579,11 +579,11 @@ Spawn_PLM_to_CurrentBlockIndex:
 
 ;;; $85B4: PLM handler ;;;
 PLM_Handler:
-    PHB                                                                  ;8485B5;
-    PHK                                                                  ;8485B6;
-    PLB                                                                  ;8485B7;
     BIT.W PLM_Flag                                                       ;8485BA;
-    BPL .return                                                          ;8485BD;
+    BPL .returnFast
+    PHB
+    PHK
+    PLB
     STZ.W PLM_DrawTilemapIndex                                           ;8485BF;
     LDX.W #$004E                                                         ;8485C2;
 
@@ -601,6 +601,8 @@ PLM_Handler:
 
   .return:
     PLB                                                                  ;8485D7;
+
+  .returnFast:
     RTL                                                                  ;8485D9;
 
 
@@ -672,7 +674,7 @@ Process_PLM_Draw_Instruction:
     INX                                                                  ;84863F;
     DEC.B DP_Temp16                                                      ;848640;
     BNE .loopRow                                                         ;848642;
-    JMP.W .next                                                          ;848644;
+    BRA .next
 
   .column:
     AND.W #$00FF                                                         ;848647;

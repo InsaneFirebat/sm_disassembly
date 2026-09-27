@@ -3821,27 +3821,26 @@ Process_Enemy_PowerBomb_Interaction:
 ; This doesn't hold true if an enemy is killed by the power bomb (see e.g. $A3E6) >_>;
 ; For respawning enemies, $12 = 4000h in their enemy death, making power bombs effectively infinite wide for the remaining enemies that frame
 ; For non-respawning enemies, $12 = 0 in their enemy death, making power bombs effectively zero sized for the remaining enemies that frame
-    PHB                                                                  ;A0A306;
     LDA.W SamusProjectile_PowerBombExplosionRadius+1                     ;A0A30E;
     AND.W #$00FF                                                         ;A0A311;
-    STA.B DP_Temp12                                                      ;A0A314;
     BNE .hasRadius                                                       ;A0A316;
-    PLB                                                                  ;A0A318;
     RTL                                                                  ;A0A319;
 
   .hasRadius:
+    PHB
+    STA.B DP_Temp12
     LSR                                                                  ;A0A31A;
     ADC.B DP_Temp12                                                      ;A0A31B;
     LSR                                                                  ;A0A31D;
     STA.B DP_Temp14                                                      ;A0A31E;
     LDA.W #$07C0                                                         ;A0A320;
     STA.B EnemyIndex                                                     ;A0A323;
+    TAY
 
   .loop:
-    LDX.B EnemyIndex                                                     ;A0A326;
     LDA.W Enemy.invincibilityTimer,X                                     ;A0A329;
     BNE .next                                                            ;A0A32C;
-    LDA.W Enemy.ID,X                                                     ;A0A32E;
+    LDA.W Enemy.ID,Y
     BEQ .next                                                            ;A0A331;
     CMP.W #EnemyHeaders_Respawn                                          ;A0A333;
     BEQ .next                                                            ;A0A336;
@@ -3854,10 +3853,9 @@ Process_Enemy_PowerBomb_Interaction:
     LDA.L EnemyVulnerabilities_powerBomb,X                               ;A0A343;
     AND.W #$007F                                                         ;A0A347;
     BEQ .next                                                            ;A0A34A;
-    LDX.B EnemyIndex                                                     ;A0A34C;
     LDA.W SamusProjectile_PowerBombExplosionXPosition                    ;A0A34F;
     SEC                                                                  ;A0A352;
-    SBC.W Enemy.XPosition,X                                              ;A0A353;
+    SBC.W Enemy.XPosition,Y
     BPL +                                                                ;A0A356;
     EOR.W #$FFFF                                                         ;A0A358;
     INC                                                                  ;A0A35B;
@@ -3866,14 +3864,14 @@ Process_Enemy_PowerBomb_Interaction:
     BCS .next                                                            ;A0A35E;
     LDA.W SamusProjectile_PowerBombExplosionYPosition                    ;A0A360;
     SEC                                                                  ;A0A363;
-    SBC.W Enemy.YPosition,X                                              ;A0A364;
+    SBC.W Enemy.YPosition,Y
     BPL +                                                                ;A0A367;
     EOR.W #$FFFF                                                         ;A0A369;
     INC                                                                  ;A0A36C;
 
 +   CMP.B DP_Temp14                                                      ;A0A36D;
     BCS .next                                                            ;A0A36F;
-    LDA.W Enemy.ID,X                                                     ;A0A371;
+    LDA.W Enemy.ID,Y
     TAX                                                                  ;A0A374;
     LDA.L EnemyHeaders_powerBombReaction,X                               ;A0A375;
     BNE .enemyAI                                                         ;A0A379;
@@ -3882,23 +3880,24 @@ Process_Enemy_PowerBomb_Interaction:
   .enemyAI:
     STA.W EnemyAIPointer                                                 ;A0A37E;
     JSL.L .executeEnemyAI                                                ;A0A381;
-    LDX.B EnemyIndex                                                     ;A0A385;
-    LDA.W Enemy.properties,X                                             ;A0A388;
+    LDY.B EnemyIndex
+    LDA.W Enemy.properties,Y
     ORA.W #$0800                                                         ;A0A38B;
-    STA.W Enemy.properties,X                                             ;A0A38E;
+    STA.W Enemy.properties,Y
 
   .next:
-    LDA.B EnemyIndex                                                     ;A0A391;
+    TYA
     SEC                                                                  ;A0A394;
     SBC.W #$0040                                                         ;A0A395;
     STA.B EnemyIndex                                                     ;A0A398;
+    TAY
     BPL .loop                                                            ;A0A39B;
     PLB                                                                  ;A0A39D;
     RTL                                                                  ;A0A39E;
 
   .executeEnemyAI:
 ; Execute enemy AI
-    LDX.B EnemyIndex                                                     ;A0A39F;
+    TYX
     LDA.W Enemy.bank,X                                                   ;A0A3A2;
     STA.W EnemyAIPointer+2                                               ;A0A3A5;
     XBA                                                                  ;A0A3A8;

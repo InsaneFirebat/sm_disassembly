@@ -1144,21 +1144,66 @@ MainGameLoop:
   .loop:
     REP #$30                                                             ;828949;
     JSL.L HDMAObjectHandler_HandleMusicQueue                             ;82894B;
-    JSL.L GenerateRandomNumber                                           ;82894F;
-    JSL.L ClearHighOAM                                                   ;828953;
+;;; $8111: Generate random number ;;;
+    SEP #$20
+    LDA.B RandomNumberSeed
+    STA.W $4202
+    LDA.B #$05
+    STA.W $4203
+    NOP
+    REP #$20
+    LDA.W $4216
+    STA.B DP_Temp34
+    SEP #$20
+    LDA.B RandomNumberSeed+1
+    STA.W $4202
+    LDA.B #$05
+    STA.W $4203
+    XBA
+    NOP
+    LDA.W $4216
+    SEC
+    ADC.B DP_Temp34+1
+    STA.B DP_Temp34+1
+    REP #$20
+    LDA.B DP_Temp34
+    ADC.W #$0011
+    STA.B RandomNumberSeed
+;;; $8B1A: Clear high OAM ;;;
+    STZ.W OAMHigh+0
+    STZ.W OAMHigh+2
+    STZ.W OAMHigh+4
+    STZ.W OAMHigh+6
+    STZ.W OAMHigh+8
+    STZ.W OAMHigh+$A
+    STZ.W OAMHigh+$C
+    STZ.W OAMHigh+$E
+    STZ.W OAMHigh+$10
+    STZ.W OAMHigh+$12
+    STZ.W OAMHigh+$14
+    STZ.W OAMHigh+$16
+    STZ.W OAMHigh+$18
+    STZ.W OAMHigh+$1A
+    STZ.W OAMHigh+$1C
+    STZ.W OAMHigh+$1E
     STZ.B OAMStack                                                       ;828957;
     STZ.W SamusTiles_TopHalfFlag                                         ;82895A;
     STZ.W SamusTiles_TopHalfTilesDef                                     ;82895D;
     STZ.W SamusTiles_BottomHalfTilesDef                                  ;828960;
     LDA.W GameState                                                      ;828963;
-    AND.W #$00FF                                                         ;828966;
     ASL                                                                  ;828969;
     TAX                                                                  ;82896A;
     JSR.W (.gamemodes,X)                                                 ;82896B;
     JSL.L HandleSounds                                                   ;82896E;
     JSL.L Finalise_OAM                                                   ;828972;
-    JSL.L WaitForNMI                                                     ;82897A;
-    BRA .loop                                                            ;82897F;
+;;; $8338: Wait for NMI ;;;
+    INC.B NMI_Request
+
+  .wait:
+    WAI
+    LDA.B NMI_Request
+    BNE .wait
+    JMP.W .loop                                                          ;82897F;
 
   .gamemodes:
     dw GameState_0_ResetStart                                            ;828981;
@@ -1447,8 +1492,7 @@ GameState_8_MainGameplay:
     JSL.L PaletteFXObject_Handler                                        ;828B54;
     JSL.L SamusCurrentStateHandler                                       ;828B58;
     JSL.L Samus_Projectiles_Interaction_Handling                         ;828B61;
-
-+   JSL.L Main_Enemy_Routine                                             ;828B65;
+    JSL.L Main_Enemy_Routine                                             ;828B65;
     JSL.L SamusNewStateHandler                                           ;828B69;
     JSL.L Enemy_Projectile_Handler                                       ;828B6D;
     JSL.L PLM_Handler                                                    ;828B71;
@@ -1456,13 +1500,9 @@ GameState_8_MainGameplay:
     JSL.L EnemyProjectile_Samus_Collision_Handling                       ;828B7E;
     JSL.L Projectile_vs_Projectile_Collision_Handling                    ;828B82;
     JSL.L Process_Enemy_PowerBomb_Interaction                            ;828B86;
-
-+   JSL.L Main_Scrolling_Routine                                         ;828B8A;
-
-+   JSL.L Draw_Samus_Projectiles_Enemies_and_Enemy_Projectiles           ;828B98;
+    JSL.L Main_Scrolling_Routine                                         ;828B8A;
+    JSL.L Draw_Samus_Projectiles_Enemies_and_Enemy_Projectiles           ;828B98;
     JSL.L Handle_Queuing_Enemy_BG2_Tilemap_VRAM_Transfer                 ;828B9C;
-
-  .skipProcessing:
     JSL.L HandleHUDTilemap_PausedAndRunning                              ;828BA0;
     JSL.L Calc_Layer2Position_BGScrolls_UpdateBGGraphics_WhenScrolling   ;828BA4;
     JSL.L Execute_Room_Main_ASM                                          ;828BA8;

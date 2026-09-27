@@ -1783,11 +1783,13 @@ QueueSound_Lib1:
     RTL                                                                  ;809095;
 
   .queueFull:
-    JSR.W NOPRTS_8091A7                                                  ;809096;
     CMP.W APU_SoundQueueLib1,Y                                           ;809099;
     BCS .return                                                          ;80909C;
     STA.W APU_SoundQueueLib1,Y                                           ;80909E;
-    BRA .return                                                          ;8090A1;
+    PLP
+    PLY
+    PLX
+    RTL
 
 
 ;;; $90A3: Queue sound, sound library 2, max queued sounds allowed = 15 ;;;
@@ -1901,11 +1903,13 @@ QueueSound_Lib2:
     RTL                                                                  ;809117;
 
   .queueFull:
-    JSR.W NOPRTS_8091A7                                                  ;809118;
     CMP.W APU_SoundQueueLib2,Y                                           ;80911B;
     BCS .return                                                          ;80911E;
     STA.W APU_SoundQueueLib2,Y                                           ;809120;
-    BRA .return                                                          ;809123;
+    PLP
+    PLY
+    PLX
+    RTL
 
 
 ;;; $9125: Queue sound, sound library 3, max queued sounds allowed = 15 ;;;
@@ -2019,21 +2023,13 @@ QueueSound_Lib3:
     RTL                                                                  ;809199;
 
   .queueFull:
-    JSR.W NOPRTS_8091A7                                                  ;80919A;
     CMP.W APU_SoundQueueLib3,Y                                           ;80919D;
     BCS .return                                                          ;8091A0;
     STA.W APU_SoundQueueLib3,Y                                           ;8091A2;
-    BRA .return                                                          ;8091A5;
-
-
-;;; $91A7: NOP : RTS ;;;
-NOPRTS_8091A7:
-; Called by:
-;     $9051: Queue sound, sound library 1
-;     $90D3: Queue sound, sound library 2
-;     $9155: Queue sound, sound library 3
-    NOP                                                                  ;8091A7;
-    RTS                                                                  ;8091A8;
+    PLP
+    PLY
+    PLX
+    RTL
 
 
 ;;; $91A9: Set up a (H)DMA transfer ;;;

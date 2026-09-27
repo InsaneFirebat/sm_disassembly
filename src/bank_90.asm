@@ -1787,13 +1787,10 @@ Draw_Inanimate_Samus:
 
 ; Compared to Draw_Samus, this routine doesn't update SamusAnimationFrame/SpeedEcho_SamusBottomHalfSpritemapIndex for speed echo drawing,
 ; and doesn't have the checks for being invisible
-    PHP                                                                  ;908A00;
     PHB                                                                  ;908A01;
-    SEP #$20                                                             ;908A02;
-    LDA.B #SamusSpritemapTableIndices_TopHalf>>16                        ;908A04;
-    PHA                                                                  ;908A06;
+    PEA.W SamusSpritemapTableIndices_TopHalf>>8
+    PLB
     PLB                                                                  ;908A07;
-    REP #$30                                                             ;908A08;
     LDA.W Pose                                                           ;908A0A;
     ASL                                                                  ;908A0D;
     TAX                                                                  ;908A0E;
@@ -1824,7 +1821,6 @@ Draw_Inanimate_Samus:
   .setDefinitions:
     JSL.L Set_SamusTilesDefinitions_ForCurrentAnimation                  ;908A45;
     PLB                                                                  ;908A49;
-    PLP                                                                  ;908A4A;
     RTL                                                                  ;908A4B;
 
 
@@ -4884,7 +4880,7 @@ SamusMovementHandler_Normal:
   .pointers:
     dw SamusMovement_Standing                                            ;90A34B; 0: Standing
     dw SamusMovement_Running                                             ;90A34D; 1: Running
-    dw SamusMovement_Jumping                                             ;90A34F; 2: Normal jumping
+    dw Samus_Jumping_Movement                                                   ; 2: Normal jumping
     dw SamusMovement_SpinJumping                                         ;90A351; 3: Spin jumping
     dw SamusMovement_MorphBall_OnGround                                  ;90A353; 4: Morph ball - on ground
     dw SamusMovement_Crouching                                           ;90A355; 5: Crouching
@@ -4996,11 +4992,6 @@ SamusMovement_Running:
   .frames:
 ; Presumably these frames correspond to the points when Samus' foot hits the ground
     db $00,$00,$01,$00,$00,$00,$00,$01,$00,$00                           ;90A424;
-
-
-;;; $A42E: Samus movement - normal jumping ;;;
-SamusMovement_Jumping:
-    JMP.W Samus_Jumping_Movement
 
 
 ;;; $A436: Samus movement - spin jumping ;;;
@@ -5357,6 +5348,8 @@ SamusMovement_SpringBall_OnGround:
     STZ.W SamusXBaseSpeed                                                ;90A6D9;
     STZ.W SamusXBaseSubSpeed                                             ;90A6DC;
     STZ.W SamusXAccelerationMode                                         ;90A6DF;
+
+  .return:
     RTS
 
   .decelerating:
@@ -5364,9 +5357,6 @@ SamusMovement_SpringBall_OnGround:
     JSR.W Simple_Samus_Y_Movement                                        ;90A6E7;
     BCS .return                                                          ;90A6EA;
     JMP.W Samus_Y_Movement_NoSpeedCalculations
-
-  .return:
-    RTS                                                                  ;90A6F0;
 
 
 ;;; $A6F1: Samus movement - spring ball - in air ;;;
@@ -5497,21 +5487,24 @@ SamusMovement_Shinespark_CF_Drained_DamagedByMotherBrain:
 ;;; $A7E2: Disable mini-map and mark boss room map tiles as explored ;;;
 DisableMinimap_MarkBossRoomTilesExplored:
     PHB                                                                  ;90A7E3;
-    PHK                                                                  ;90A7E6;
-    PLB                                                                  ;90A7E7;
     LDA.W #$0001                                                         ;90A7E8;
     STA.W DisableMinimap                                                 ;90A7EB;
     LDA.W #$2C1F                                                         ;90A7EE;
     LDX.W #$0000                                                         ;90A7F4;
+    PEA.W HUDTilemap_Row1Minimap>>8
+    PLB
+    PLB
 
   .loop:
-    STA.L HUDTilemap_Row1Minimap,X                                       ;90A7F7;
-    STA.L HUDTilemap_Row2Minimap,X                                       ;90A7FB;
-    STA.L HUDTilemap_Row3Minimap,X                                       ;90A7FF;
+    STA.W HUDTilemap_Row1Minimap,X                                       ;90A7F7;
+    STA.W HUDTilemap_Row2Minimap,X                                       ;90A7FB;
+    STA.W HUDTilemap_Row3Minimap,X                                       ;90A7FF;
     INX                                                                  ;90A803;
     INX                                                                  ;90A804;
     CPX.W #$000A                                                         ;90A805;
     BMI .loop                                                            ;90A808;
+    PHK
+    PLB
     LDA.W BossID                                                         ;90A80A;
     LDX.W #$0014                                                         ;90A80D;
 

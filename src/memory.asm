@@ -141,9 +141,7 @@ SamusXPosition: skip 2 ; $0AF6
 SamusYPosition: skip 2 ; $0AFA
 Layer1XPosition: skip 2 ; $0911
 Layer1YPosition: skip 2 ; $0915
-warnpc $C1
-
-print pc, "..C0 free DP"
+print pc
 
 org $D0
 OAMStack: skip 2 ; $0590

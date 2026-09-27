@@ -1000,9 +1000,7 @@ HDMAObjectHandler_HandleMusicQueue:
 ; Also spawns power bombs that were set as pending due to Samus dying(?) or auto reserve tanks activating
 ; Also calls the layer blending handler
 ; Seriously, why is the music queue handler called here... >_<;
-    PHP                                                                  ;8884B9;
     PHB                                                                  ;8884BA;
-    REP #$30                                                             ;8884BB;
     JSL.L HandleMusicQueue                                               ;8884BD;
     LDA.W TimeIsFrozenFlag                                               ;8884C1;
     BNE +                                                                ;8884C4;
@@ -1044,17 +1042,11 @@ HDMAObjectHandler_HandleMusicQueue:
     CPX.B #$0C                                                           ;88850D;
     BNE .loop                                                            ;88850F;
     JSR.W LayerBlending_Handler                                          ;888511;
-    PLB                                                                  ;888514;
-    PLP                                                                  ;888515;
-    RTL                                                                  ;888516;
-
-; Nothing points here, devs might have misplaced their destination label for the HDMA objects disabled branch ($84EE)
-    STZ.B DP_HDMAEnable                                                  ;888517; dead code
 
   .return:
-    PLB                                                                  ;888519;
-    PLP                                                                  ;88851A;
-    RTL                                                                  ;88851B;
+    PLB                                                                  ;888514;
+    REP #$30
+    RTL                                                                  ;888516;
 
 
 ;;; $851C: HDMA object instruction handler ;;;
