@@ -55,6 +55,7 @@ DP_Temp33: skip 1 ; $33
 DP_Temp34: skip 2 ; $34
 DP_BlocksToUpdate: skip 3 ; $36
 DP_SamusTilesDefinition: skip 1 ; $3C
+DP_Temp44: skip 0
 DP_ReturnParam: skip 3 ; $44
 DP_DecompSrc: skip 3 ; $47
 DP_DecompVar: skip 2 ; $4A

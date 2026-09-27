@@ -1176,6 +1176,7 @@ Function_MamaTurtle_Asleep:
     LDA.W Enemy.properties
     ORA.W #$8000                                                         ;A28E4E;
     STA.W Enemy.properties
+    LDX.B EnemyIndex
     JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A28E54;
     BEQ .return                                                          ;A28E5B;
     LDA.W Enemy.YPosition
@@ -1481,11 +1482,6 @@ Function_MamaTurtle_Falling:
 
 ;;; $912E: Main AI - enemy $CF7F (mini-tatori) ;;;
 MainAI_BabyTurtle:
-    LDA.W BabyTurtle.turtleIndex,X                                       ;A29131;
-    TAX                                                                  ;A29134;
-    LDA.W #$0000                                                         ;A29135;
-    STA.L ExtraEnemy7800+$C,X                                            ;A29138;
-    LDX.B EnemyIndex                                                     ;A2913C;
     JMP.W (BabyTurtle.function,X)                                        ;A2913F;
 
 
@@ -1621,13 +1617,6 @@ Function_BabyTurtle_Spinning_Stoppable:
 
 ;;; $925E: Mini-tatori function - crawling - carrying Samus ;;;
 Function_BabyTurtle_Crawling_CarryingSamus:
-    LDA.W Enemy.YHitboxRadius,X                                          ;A29261;
-    STA.B DP_Temp20
-    LDA.W BabyTurtle.turtleIndex,X                                       ;A29265;
-    TAX                                                                  ;A29268;
-    LDA.B DP_Temp20
-    STA.L ExtraEnemy7800+$C,X                                            ;A2926A;
-    LDX.B EnemyIndex                                                     ;A2926E;
     JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A29271;
     BNE .return                                                          ;A29278;
     LDA.W #Function_BabyTurtle_Crawling_NotCarryingSamus                 ;A2927A;
@@ -1777,6 +1766,7 @@ MamaTurtle_vs_Samus_CollisionDetection:
 
 ;;; $9381: Instruction - mini-tatori - crawl ;;;
 Instruction_BabyTurtle_Crawl:
+    STY.B DP_Temp44
     LDA.W #$0000                                                         ;A29383;
     STA.B DP_Temp30                                                      ;A29386;
     JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A2938B;
@@ -1802,9 +1792,7 @@ Instruction_BabyTurtle_Crawl:
     LDA.W BabyTurtle.function,X                                          ;A293BD;
     CMP.W #Function_MamaTurtle_Asleep                                    ;A293C0;
     BNE .return                                                          ;A293C3;
-    LDA.W BabyTurtle.turtleIndex,X                                       ;A293C9;
-    TAX                                                                  ;A293CC;
-    LDA.W Enemy.XPosition,X                                              ;A293CD;
+    LDA.W Enemy.XPosition
     LDX.B EnemyIndex
     SEC                                                                  ;A293D1;
     SBC.W Enemy.XPosition,X                                              ;A293D2;
@@ -1840,6 +1828,8 @@ Instruction_BabyTurtle_Crawl:
     STA.W ExtraSamusYDisplacement                                        ;A29406;
 
   .return:
+    LDX.B EnemyIndex
+    LDY.B DP_Temp44
     RTL                                                                  ;A2940B;
 
   .notOnMama:
