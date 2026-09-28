@@ -3489,7 +3489,7 @@ InitAI_YappingMaw:
     STA.W YappingMaw.function,X                                          ;A8A1BD;
     LDA.W Enemy.palette,X                                                ;A8A1C0;
     AND.W #$0E00                                                         ;A8A1C3;
-    STA.L YappingMaw.initialPaletteIndex,X                               ;A8A1C6;
+    STA.W YappingMaw.initialPaletteIndex,X
     LDA.W #$0003                                                         ;A8A1CA;
     STA.L YappingMaw.bodySegmentIndex,X                                  ;A8A1CD;
 
@@ -4319,83 +4319,83 @@ EnemyShot_YappingMaw:
 ;;; $A835: Frozen AI - enemy $E7BF (yapping maw) ;;;
 FrozenAI_YappingMaw:
     JSL.L NormalEnemyFrozenAI
-    LDA.L YappingMaw.bodySegment0ProjectileIndex,X                       ;A8A839;
-    TAY                                                                  ;A8A83D;
-    JSR.W SetYappingMawBodySegmentFrozenPalette                          ;A8A83E;
-    LDA.L YappingMaw.bodySegment1ProjectileIndex,X                       ;A8A841;
-    TAY                                                                  ;A8A845;
-    JSR.W SetYappingMawBodySegmentFrozenPalette                          ;A8A846;
-    LDA.L YappingMaw.bodySegment2ProjectileIndex,X                       ;A8A849;
-    TAY                                                                  ;A8A84D;
-    JSR.W SetYappingMawBodySegmentFrozenPalette                          ;A8A84E;
-    LDA.L YappingMaw.bodySegment3ProjectileIndex,X                       ;A8A851;
-    TAY                                                                  ;A8A855;
-    JSR.W SetYappingMawBodySegmentFrozenPalette                          ;A8A856;
-    JSR.W SetYappingMawBaseFrozenPalette                                 ;A8A859;
-    RTL                                                                  ;A8A85C;
+    LDA.W Enemy.freezeTimer,X
+    BEQ .originalPalette
+    CMP.W #$005A
+    BMI .flashing
 
+  .freeze:
+    LDA.L YappingMaw.bodySegment0ProjectileIndex,X
+    TAY
+    LDA.W EnemyProjectile_GraphicsIndices,Y
+    AND.W #$F1FF
+    ORA.W #$0C00
+    STA.W EnemyProjectile_GraphicsIndices,Y
+    LDA.L YappingMaw.bodySegment1ProjectileIndex,X
+    TAY
+    LDA.W EnemyProjectile_GraphicsIndices,Y
+    AND.W #$F1FF
+    ORA.W #$0C00
+    STA.W EnemyProjectile_GraphicsIndices,Y
+    LDA.L YappingMaw.bodySegment2ProjectileIndex,X
+    TAY
+    LDA.W EnemyProjectile_GraphicsIndices,Y
+    AND.W #$F1FF
+    ORA.W #$0C00
+    STA.W EnemyProjectile_GraphicsIndices,Y
+    LDA.L YappingMaw.bodySegment3ProjectileIndex,X
+    TAY
+    LDA.W EnemyProjectile_GraphicsIndices,Y
+    AND.W #$F1FF
+    ORA.W #$0C00
+    STA.W EnemyProjectile_GraphicsIndices,Y
+    LDA.L YappingMaw.baseSpriteObjectIndex,X
+    TAX
+    LDA.L SpriteObjects_Palettes,X
+    AND.W #$F1FF
+    ORA.W #$0C00
+    STA.L SpriteObjects_Palettes,X
+    RTL
 
-;;; $A85D: Set yapping maw body segment frozen palette ;;;
-SetYappingMawBodySegmentFrozenPalette:
-;; Parameters:
-;;     Y: Enemy projectile index
-    LDA.W EnemyProjectile_GraphicsIndices,Y                              ;A8A860;
-    AND.W #$F1FF                                                         ;A8A863;
-    ORA.L YappingMaw.initialPaletteIndex,X                               ;A8A866;
-    STA.W EnemyProjectile_GraphicsIndices,Y                              ;A8A86A;
-    LDA.W Enemy.freezeTimer,X                                            ;A8A86D;
-    BEQ .return                                                          ;A8A870;
-    LDA.W EnemyProjectile_GraphicsIndices,Y                              ;A8A872;
-    AND.W #$F1FF                                                         ;A8A875;
-    ORA.W #$0C00                                                         ;A8A878;
-    STA.W EnemyProjectile_GraphicsIndices,Y                              ;A8A87B;
-    LDA.W Enemy.freezeTimer,X                                            ;A8A87E;
-    CMP.W #$005A                                                         ;A8A881;
-    BPL .return                                                          ;A8A884;
-    BIT.W #$0002                                                         ;A8A886;
-    BNE .return                                                          ;A8A889;
-    LDA.W EnemyProjectile_GraphicsIndices,Y                              ;A8A88B;
-    AND.W #$F1FF                                                         ;A8A88E;
-    ORA.L YappingMaw.initialPaletteIndex,X                               ;A8A891;
-    STA.W EnemyProjectile_GraphicsIndices,Y                              ;A8A895;
+  .flashing:
+    BIT.W #$0002
+    BNE .freeze
 
-  .return:
-    RTS                                                                  ;A8A898;
-
-
-;;; $A899: Set yapping maw base frozen palette ;;;
-SetYappingMawBaseFrozenPalette:
-    LDA.L YappingMaw.initialPaletteIndex,X                               ;A8A89C;
-    STA.B DP_Temp12                                                      ;A8A8A0;
-    LDA.L YappingMaw.baseSpriteObjectIndex,X                             ;A8A8A2;
-    STA.B DP_Temp14                                                      ;A8A8A6;
-    TAX                                                                  ;A8A8A8;
-    LDA.L SpriteObjects_Palettes,X                                       ;A8A8A9;
-    AND.W #$F1FF                                                         ;A8A8AD;
-    ORA.B DP_Temp12                                                      ;A8A8B0;
-    STA.L SpriteObjects_Palettes,X                                       ;A8A8B2;
-    LDX.B EnemyIndex                                                     ;A8A8B6;
-    LDA.W Enemy.freezeTimer,X                                            ;A8A8B9;
-    BEQ .return                                                          ;A8A8BC;
-    LDX.B DP_Temp14                                                      ;A8A8BE;
-    LDA.L SpriteObjects_Palettes,X                                       ;A8A8C0;
-    AND.W #$F1FF                                                         ;A8A8C4;
-    ORA.W #$0C00                                                         ;A8A8C7;
-    STA.L SpriteObjects_Palettes,X                                       ;A8A8CA;
-    LDX.B EnemyIndex                                                     ;A8A8CE;
-    LDA.W Enemy.freezeTimer,X                                            ;A8A8D1;
-    CMP.W #$005A                                                         ;A8A8D4;
-    BPL .return                                                          ;A8A8D7;
-    BIT.W #$0002                                                         ;A8A8D9;
-    BNE .return                                                          ;A8A8DC;
-    LDX.B DP_Temp14                                                      ;A8A8DE;
-    LDA.L SpriteObjects_Palettes,X                                       ;A8A8E0;
-    AND.W #$F1FF                                                         ;A8A8E4;
-    ORA.B DP_Temp12                                                      ;A8A8E7;
-    STA.L SpriteObjects_Palettes,X                                       ;A8A8E9;
-
-  .return:
-    RTS                                                                  ;A8A8ED;
+  .originalPalette:
+    LDA.L YappingMaw.bodySegment0ProjectileIndex,X
+    TAY
+    LDA.W EnemyProjectile_GraphicsIndices,Y
+    AND.W #$F1FF
+    ORA.L YappingMaw.initialPaletteIndex,X
+    STA.W EnemyProjectile_GraphicsIndices,Y
+    LDA.L YappingMaw.bodySegment1ProjectileIndex,X
+    TAY
+    LDA.W EnemyProjectile_GraphicsIndices,Y
+    AND.W #$F1FF
+    ORA.L YappingMaw.initialPaletteIndex,X
+    STA.W EnemyProjectile_GraphicsIndices,Y
+    LDA.L YappingMaw.bodySegment2ProjectileIndex,X
+    TAY
+    LDA.W EnemyProjectile_GraphicsIndices,Y
+    AND.W #$F1FF
+    ORA.L YappingMaw.initialPaletteIndex,X
+    STA.W EnemyProjectile_GraphicsIndices,Y
+    LDA.L YappingMaw.bodySegment3ProjectileIndex,X
+    TAY
+    LDA.W EnemyProjectile_GraphicsIndices,Y
+    AND.W #$F1FF
+    ORA.L YappingMaw.initialPaletteIndex,X
+    STA.W EnemyProjectile_GraphicsIndices,Y
+    LDA.L YappingMaw.baseSpriteObjectIndex,X
+    TAX
+    TAY
+    LDA.L SpriteObjects_Palettes,X
+    AND.W #$F1FF
+    LDX.B EnemyIndex
+    ORA.L YappingMaw.initialPaletteIndex,X
+    TYX
+    STA.L SpriteObjects_Palettes,X
+    RTL
 
 
 ;;; $A8EE: Yapping maw spritemaps ;;;

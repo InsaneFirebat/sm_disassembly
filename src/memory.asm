@@ -3139,7 +3139,7 @@ struct YappingMaw $0FA8
   .angle: skip 2 ; $0FAA
   .subAngle: skip 2 ; $0FAC
   .angularSpeedTableIndex: skip 2 ; $0FAE
-skip 2
+skip 2 ; $0FB0
   .proximity: skip 2 ; $0FB2
 skip $7DE84C
   .bodySegment1XOffset: skip 2 ; $7E7800
