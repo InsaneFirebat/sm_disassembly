@@ -4339,7 +4339,6 @@ FrozenAI_YappingMaw:
 SetYappingMawBodySegmentFrozenPalette:
 ;; Parameters:
 ;;     Y: Enemy projectile index
-    LDX.B EnemyIndex                                                     ;A8A85D;
     LDA.W EnemyProjectile_GraphicsIndices,Y                              ;A8A860;
     AND.W #$F1FF                                                         ;A8A863;
     ORA.L YappingMaw.initialPaletteIndex,X                               ;A8A866;
@@ -4366,7 +4365,6 @@ SetYappingMawBodySegmentFrozenPalette:
 
 ;;; $A899: Set yapping maw base frozen palette ;;;
 SetYappingMawBaseFrozenPalette:
-    LDX.B EnemyIndex                                                     ;A8A899;
     LDA.L YappingMaw.initialPaletteIndex,X                               ;A8A89C;
     STA.B DP_Temp12                                                      ;A8A8A0;
     LDA.L YappingMaw.baseSpriteObjectIndex,X                             ;A8A8A2;

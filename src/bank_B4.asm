@@ -2579,6 +2579,7 @@ Create_Sprite_Object:
     TAX
     LDA.L SpriteObjectInstLists,X
     STA.W SpriteObjects_InstructionsTimers,Y
+    STY.B DP_Temp12
 
   .return:
     PLB                                                                  ;B4BC7D;
