@@ -7564,6 +7564,7 @@ Function_Yard_Movement_Crawling_UpsideLeft_MovingUp:
 YardCrawlingMovement_Vertical:
 ;; Parameters:
 ;;     Y: Pointer to turn data entry (see YardTurnData)
+    STY.W DP_Temp44
     LDA.W Enemy.XPosition,X
     CLC
     ADC.W $0000,Y
@@ -7635,6 +7636,7 @@ YardCrawlingMovement_Vertical:
 
 +   STA.B DP_Temp13                                                      ;A3D041;
     JSL.L MoveEnemyDownBy_14_12                                          ;A3D044;
+    LDY.B DP_Temp44
     BCS .insideTurn                                                      ;A3D049;
     RTL                                                                  ;A3D04B;
 
@@ -7707,6 +7709,7 @@ YardCrawlingMovement_Vertical:
 YardCrawlingMovement_Horizontal:
 ;; Parameters:
 ;;     Y: Pointer to turn data entry (see YardTurnData)
+    STY.B DP_Temp44
     LDA.W Enemy.XPosition,X
     CLC
     ADC.W $0000,Y
@@ -7733,6 +7736,7 @@ YardCrawlingMovement_Horizontal:
 +   STA.B DP_Temp14                                                      ;A3D096;
     JSL.L MoveEnemyDownBy_14_12                                          ;A3D099;
     PHP
+    LDY.B DP_Temp44
     LDA.W Enemy.XPosition,X
     SEC
     SBC.W $0000,Y
@@ -8268,7 +8272,7 @@ ShootYardIntoAir:
     BNE .SamusFacingRight                                                ;A3D590;
     LDA.W #$FFFF                                                         ;A3D592;
     STA.L Yard.airborneXVelocity,X                                       ;A3D595;
-    RTS
+    RTL
 
   .SamusFacingRight:
     LDA.W #$0001                                                         ;A3D59B;
