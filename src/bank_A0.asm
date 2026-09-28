@@ -3838,7 +3838,7 @@ Process_Enemy_PowerBomb_Interaction:
     TAY
 
   .loop:
-    LDA.W Enemy.invincibilityTimer,X                                     ;A0A329;
+    LDA.W Enemy.invincibilityTimer,Y
     BNE .next                                                            ;A0A32C;
     LDA.W Enemy.ID,Y
     BEQ .next                                                            ;A0A331;
