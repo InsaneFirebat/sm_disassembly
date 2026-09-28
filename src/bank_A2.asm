@@ -1053,9 +1053,6 @@ InstList_BabyTurtle_FacingRight_LeaveShell:
 
 
 ;;; $8D50: Tatori data ;;;
-BabyTurtleConstants_travelDistance:
-    dw $0030                                                             ;A28D50; Max mini-tatori travel distance
-
 MamaTurtleConstants:
   .HoveringXAcceleration_subAcceleration:
     dw $F000                                                             ;A28D56; Hovering X acceleration
@@ -1363,8 +1360,11 @@ Function_MamaTurtle_Hovering:
     LDY.W #$0003
     LDA.W MamaTurtle.XVelocity
     BIT.W #$8000                                                         ;A29029;
-    BEQ .pullA
+    BEQ .pushY
     LDY.W #$FFFD
+
+  .pushY
+    STY.W DP_Temp20
 
   .pullA:
     LDA.B DP_Temp20
@@ -1896,7 +1896,7 @@ Instruction_MamaTurtle_RiseToHoverRightwards:
 ;;; $946B: Instruction - tatori - rise to hover leftwards, go to InstList_MamaTurtle_Spinning ;;;
 Instruction_MamaTurtle_RiseToHoverLeftwards:
     LDA.W #Function_MamaTurtle_RiseToHover                               ;A2946E;
-    STA.W MamaTurtle.function,X                                          ;A29471;
+    STA.W MamaTurtle.function
     LDA.W #$0001                                                         ;A29474;
     STA.W MamaTurtle.XVelocity
     LDA.W #$0010                                                         ;A2947A;
