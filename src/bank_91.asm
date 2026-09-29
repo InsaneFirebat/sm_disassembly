@@ -716,7 +716,19 @@ InstList_DemoInput_OldMotherBrainFight:                                  ;918694
     dw $0028,$0040,$0000 ;          X
     dw $0001,$0040,$0040 ;          X
     dw $001D,$0040,$0000 ;          X
-    dw $0046,$0000,$0000 ;
+    dw $005A,$0000,$0000 ;
+    dw $0001,$0200,$0200 ;       <
+    dw $0007,$0200,$0000 ;       <
+    dw $0001,$0280,$0080 ;       < A
+    dw $0007,$0280,$0000 ;       < A
+    dw $0004,$0200,$0000 ;       <
+    dw $003C,$0000,$0000 ;
+    dw $0001,$0040,$0040 ;          X
+    dw $0028,$0040,$0000 ;          X
+    dw $0001,$0040,$0040 ;          X
+    dw $0013,$0040,$0000 ;          X
+    dw Instruction_EndDemoInputWithSamusFacingLeft
+    dw Instruction_DemoInputObject_Delete
 
 
 ;;; $8739: Instruction - end demo input with Samus facing left ;;;
