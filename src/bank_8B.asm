@@ -1283,6 +1283,7 @@ PaletteCrossFading_DecomposePaletteDataForFading:
     LDA.B #FadingPalettes_Initial>>16                                    ;8B8C0D;
     PHA                                                                  ;8B8C0F;
     PLB                                                                  ;8B8C10;
+    REP #$30
     LDX.W #$0000                                                         ;8B8C13;
     LDY.W #$0100                                                         ;8B8C16;
 
