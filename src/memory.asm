@@ -1157,12 +1157,14 @@ EnemyIndexSamusCollidesLeft: skip 2 ; $182C
 EnemyIndexSamusCollidesRight: skip 2 ; $182E
 EnemyIndexSamusCollidesUp: skip 2 ; $1830
 EnemyIndexSamusCollidesDown: skip 2 ; $1832
-skip 8 ; $1834..3B
+skip 6 ; $1834..3B
 GlobalOffScreenEnemyProcessingFlag: skip 2 ; $183C
 EarthquakeType: skip 2 ; $183E
 EarthquakeTimer: skip 2 ; $1840
+EarthquakeYDisplacement: skip 2
+EarthquakeXDisplacement: skip 2
 NumberOfTimesRoomShakingExecuted: skip 2 ; $1842
-skip 2 ; $1844
+
 DebugEnemyIndex: skip 2 ; $1846
 LogIndex: skip 2 ; $1848
 skip $10 ; $184A..59
@@ -1566,6 +1568,7 @@ PostCreditsSuperMetroidIcon_Tilemap: skip $800 ; $7E8000..87FF
 org $7E7000
 EnemyTileData: ; $7E7000..97FF
 CRETiles: ; $7E7000..9FFF
+EnemySpawnData:
 
 struct EnemySpawnData $7E7000
 skip 6 ; $7E7000..04

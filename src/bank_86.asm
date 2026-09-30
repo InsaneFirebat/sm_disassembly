@@ -554,7 +554,6 @@ Draw_HighPriority_EnemyProjectile:
     PEA.W EnemyProjSpritemaps>>8&$FF00                                   ;868391;
     PLB                                                                  ;868394;
     PLB                                                                  ;868395;
-    JSR.W Get_Values_for_Screen_Shaking                                  ;868396;
     LDX.W #$0022                                                         ;868399;
 
   .loop:
@@ -580,7 +579,6 @@ Draw_LowPriority_EnemyProjectile:
     PEA.W EnemyProjSpritemaps>>8&$FF00                                   ;8683B5;
     PLB                                                                  ;8683B8;
     PLB                                                                  ;8683B9;
-    JSR.W Get_Values_for_Screen_Shaking                                  ;8683BA;
     LDX.W #$0022                                                         ;8683BD;
 
   .loop:
@@ -603,8 +601,8 @@ Draw_LowPriority_EnemyProjectile:
 Draw_EnemyProjectile:
 ;; Parameters:
 ;;     X: Enemy projectile index
-;;     $22: Y displacement (due to screen shaking)
-;;     $24: X displacement (due to screen shaking)
+;;     EarthquakeYDisplacement: Y displacement (due to screen shaking)
+;;     EarthquakeXDisplacement: X displacement (due to screen shaking)
     LDY.W EnemyProjectile_SpritemapPointers,X                            ;8683D6;
     LDA.W EnemyProjectile_GraphicsIndices,X                              ;8683D9;
     AND.W #$00FF                                                         ;8683DC;
@@ -616,7 +614,7 @@ Draw_EnemyProjectile:
     SEC                                                                  ;8683EC;
     SBC.B Layer1XPosition                                                ;8683ED;
     CLC                                                                  ;8683F0;
-    ADC.B DP_Temp24                                                      ;8683F1;
+    ADC.W EarthquakeXDisplacement
     STA.B DP_Temp14                                                      ;8683F3;
     CLC                                                                  ;8683F5;
     ADC.W #$0080                                                         ;8683F6;
@@ -626,7 +624,7 @@ Draw_EnemyProjectile:
     SEC                                                                  ;868401;
     SBC.B Layer1YPosition                                                ;868402;
     CLC                                                                  ;868405;
-    ADC.B DP_Temp22                                                      ;868406;
+    ADC.W EarthquakeYDisplacement
     STA.B DP_Temp12                                                      ;868408;
     BIT.W #$FF00                                                         ;86840A;
     BNE +                                                                ;86840D;
@@ -645,78 +643,6 @@ Draw_EnemyProjectile:
 
   .return:
     RTS                                                                  ;868426;
-
-
-;;; $8427: Get values for screen shaking ;;;
-Get_Values_for_Screen_Shaking:
-;; Returns:
-;;     $22: Y displacement
-;;     $24: X displacement
-    LDA.W EarthquakeTimer                                                ;868427;
-    BEQ .returnZero                                                      ;86842A;
-    LDA.W TimeIsFrozenFlag                                               ;86842C;
-    BNE .returnZero                                                      ;86842F;
-    LDA.W EarthquakeType                                                 ;868431;
-    CMP.W #$0024                                                         ;868434;
-    BPL .returnZero                                                      ;868437;
-    ASL                                                                  ;868439;
-    ASL                                                                  ;86843A;
-    TAX                                                                  ;86843B;
-    LDA.W EarthquakeTimer                                                ;86843C;
-    BIT.W #$0002                                                         ;86843F;
-    BEQ +                                                                ;868442;
-    LDA.L .horizontalX,X                                                 ;868444;
-    EOR.W #$FFFF                                                         ;868448;
-    INC                                                                  ;86844B;
-    STA.B DP_Temp24                                                      ;86844C;
-    LDA.L .horizontalY,X                                                 ;86844E;
-    EOR.W #$FFFF                                                         ;868452;
-    INC                                                                  ;868455;
-    STA.B DP_Temp22                                                      ;868456;
-    RTS                                                                  ;868458;
-
-
-+   LDA.L .horizontalX,X                                                 ;868459;
-    STA.B DP_Temp24                                                      ;86845D;
-    LDA.L .horizontalY,X                                                 ;86845F;
-    STA.B DP_Temp22                                                      ;868463;
-    RTS                                                                  ;868465;
-
-
-  .returnZero:
-    STZ.B DP_Temp22                                                      ;868466;
-    STZ.B DP_Temp24                                                      ;868468;
-    RTS                                                                  ;86846A;
-
-; [X displacement], [Y displacement]
-
-;        __________________________________ Horizontal shaking
-;       |             _____________________ Vertical shaking
-;       |            |             ________ Diagonal shaking
-;       |            |            |
-  .horizontalX:
-    dw $0000
-  .horizontalY:
-    dw       $0000
-  .verticalX:
-    dw              $0000
-  .verticalY:
-    dw                    $0000
-  .diagonalX:
-    dw                           $0000
-  .diagonalY:
-    dw                                 $0000 ;\
-    dw $0000,$0000, $0000,$0000, $0000,$0000 ;} BG1 only
-    dw $0000,$0000, $0000,$0000, $0000,$0000 ;/
-    dw $0000,$0000, $0000,$0000, $0000,$0000 ;\
-    dw $0000,$0000, $0000,$0000, $0000,$0000 ;} BG1 and BG2
-    dw $0000,$0000, $0000,$0000, $0000,$0000 ;/
-    dw $0001,$0000, $0000,$0001, $0001,$0001 ;\
-    dw $0002,$0000, $0000,$0002, $0002,$0002 ;} BG1, BG2 and enemies
-    dw $0003,$0000, $0000,$0003, $0003,$0003 ;/
-    dw $0001,$0000, $0000,$0001, $0001,$0001 ;\
-    dw $0002,$0000, $0000,$0002, $0002,$0002 ;} BG2 only and enemies
-    dw $0003,$0000, $0000,$0003, $0003,$0003 ;/
 
 
 ;;; $84FB: RTS ;;;

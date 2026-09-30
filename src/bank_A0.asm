@@ -739,6 +739,77 @@ SetAllActiveEnemiesToShakeHorizontallyFor2Frames:
     RTS                                                                  ;A0872C;
 
 
+;;; $8427: Get values for screen shaking ;;;
+Get_Values_for_Screen_Shaking:
+;; Returns:
+;;     EarthquakeYDisplacement: Y displacement
+;;     EarthquakeXDisplacement: X displacement
+; moved from bank $86
+    LDA.W EarthquakeTimer
+    BEQ .returnZero
+    LDA.W TimeIsFrozenFlag
+    BNE .returnZero
+    LDA.W EarthquakeType
+    CMP.W #$0024
+    BPL .returnZero
+    ASL
+    ASL
+    TAX
+    LDA.W EarthquakeTimer
+    BIT.W #$0002
+    BEQ +
+    LDA.L .horizontalX,X
+    EOR.W #$FFFF
+    INC
+    STA.W EarthquakeXDisplacement
+    LDA.L .horizontalY,X
+    EOR.W #$FFFF
+    INC
+    STA.W EarthquakeYDisplacement
+    RTS
+
++   LDA.L .horizontalX,X
+    STA.W EarthquakeXDisplacement
+    LDA.L .horizontalY,X
+    STA.W EarthquakeYDisplacement
+    RTS
+
+  .returnZero:
+    STZ.B DP_Temp22
+    STZ.B DP_Temp24
+    RTS
+
+; [X displacement], [Y displacement]
+
+;        __________________________________ Horizontal shaking
+;       |             _____________________ Vertical shaking
+;       |            |             ________ Diagonal shaking
+;       |            |            |
+  .horizontalX:
+    dw $0000
+  .horizontalY:
+    dw       $0000
+  .verticalX:
+    dw              $0000
+  .verticalY:
+    dw                    $0000
+  .diagonalX:
+    dw                           $0000
+  .diagonalY:
+    dw                                 $0000 ;\
+    dw $0000,$0000, $0000,$0000, $0000,$0000 ;} BG1 only
+    dw $0000,$0000, $0000,$0000, $0000,$0000 ;/
+    dw $0000,$0000, $0000,$0000, $0000,$0000 ;\
+    dw $0000,$0000, $0000,$0000, $0000,$0000 ;} BG1 and BG2
+    dw $0000,$0000, $0000,$0000, $0000,$0000 ;/
+    dw $0001,$0000, $0000,$0001, $0001,$0001 ;\
+    dw $0002,$0000, $0000,$0002, $0002,$0002 ;} BG1, BG2 and enemies
+    dw $0003,$0000, $0000,$0003, $0003,$0003 ;/
+    dw $0001,$0000, $0000,$0001, $0001,$0001 ;\
+    dw $0002,$0000, $0000,$0002, $0002,$0002 ;} BG2 only and enemies
+    dw $0003,$0000, $0000,$0003, $0003,$0003 ;/
+
+
 ;;; $872D: BG shake displacements ;;;
 BGShakeDisplacements:
 ; Enemy projectile shaking displacements are at $86:846B
@@ -770,6 +841,7 @@ Draw_Samus_Projectiles_Enemies_and_Enemy_Projectiles:
     PHB                                                                  ;A0884D;
     PHK
     PLB                                                                  ;A08852;
+    JSR.W Get_Values_for_Screen_Shaking
     JSL.L DrawSpriteObjects                                              ;A08855;
     JSL.L DrawBombsAndProjectileExplosions                               ;A08859;
     JSL.L Draw_HighPriority_EnemyProjectile                              ;A0885D;
