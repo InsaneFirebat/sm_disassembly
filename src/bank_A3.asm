@@ -707,7 +707,6 @@ MainAI_Waver:
     LDA.W #$0004                                                         ;A38796;
     STA.W Temp_Radius                                                    ;A38799;
     LDA.W Waver.angle,X                                                  ;A3879C;
-    AND.W #$00FF                                                         ;A3879F;
     JSL.L EightBitNegativeSineMultiplication_A0B0C6                      ;A387A2;
     STA.B DP_Temp14                                                      ;A387A6;
     STZ.B DP_Temp12                                                      ;A387A8;
@@ -1340,7 +1339,6 @@ MainAI_Fireflea:
     LDA.W Fireflea.radius,X                                              ;A38DF9;
     STA.W Temp_Radius                                                    ;A38DFC;
     LDA.W Enemy.var3,X                                                   ;A38DFF;
-    AND.W #$FF00                                                         ;A38E02;
     XBA                                                                  ;A38E05;
     JSL.L EightBitCosineMultiplication_A0B0B2                            ;A38E06;
     CLC                                                                  ;A38E0A;
@@ -1349,7 +1347,6 @@ MainAI_Fireflea:
     LDA.W Fireflea.radius,X                                              ;A38E11;
     STA.W Temp_Radius                                                    ;A38E14;
     LDA.W Enemy.var3,X                                                   ;A38E17;
-    AND.W #$FF00                                                         ;A38E1A;
     XBA                                                                  ;A38E1D;
     JSL.L EightBitNegativeSineMultiplication_A0B0C6                      ;A38E1E;
     CLC                                                                  ;A38E22;
@@ -3618,7 +3615,6 @@ CalculateMovingLeftVelocities:
     LDA.W Enemy.init0+1,X                                                ;A3A1FC;
     SEC                                                                  ;A3A1FF;
     SBC.W #$0020                                                         ;A3A200;
-    AND.W #$00FF                                                         ;A3A203;
     JSL.L EightBitCosineMultiplication_A0B0B2                            ;A3A206;
     LDA.W Temp_Velocity                                                  ;A3A20A;
     STA.L Sbug.movingLeftXVelocity,X                                     ;A3A20D;
@@ -3630,7 +3626,6 @@ CalculateMovingLeftVelocities:
     LDA.W Enemy.init0+1,X                                                ;A3A221;
     SEC                                                                  ;A3A224;
     SBC.W #$0020                                                         ;A3A225;
-    AND.W #$00FF                                                         ;A3A228;
     JSL.L EightBitNegativeSineMultiplication_A0B0C6                      ;A3A22B;
     LDA.W Temp_Velocity                                                  ;A3A22F;
     STA.L Sbug.movingLeftYVelocity,X                                     ;A3A232;
@@ -3647,7 +3642,6 @@ CalculateMovingRightVelocities:
     LDA.W Enemy.init0+1,X                                                ;A3A247;
     CLC                                                                  ;A3A24A;
     ADC.W #$0020                                                         ;A3A24B;
-    AND.W #$00FF                                                         ;A3A24E;
     JSL.L EightBitCosineMultiplication_A0B0B2                            ;A3A251;
     LDA.W Temp_Velocity                                                  ;A3A255;
     STA.L Sbug.movingRightXVelocity,X                                    ;A3A258;
@@ -3659,7 +3653,6 @@ CalculateMovingRightVelocities:
     LDA.W Enemy.init0+1,X                                                ;A3A26C;
     CLC                                                                  ;A3A26F;
     ADC.W #$0020                                                         ;A3A270;
-    AND.W #$00FF                                                         ;A3A273;
     JSL.L EightBitNegativeSineMultiplication_A0B0C6                      ;A3A276;
     LDA.W Temp_Velocity                                                  ;A3A27A;
     STA.L Sbug.movingRightYVelocity,X                                    ;A3A27D;
@@ -5997,7 +5990,7 @@ Function_Zoa_Shooting:
     ADC.B DP_Temp14
     STA.W Enemy.XPosition,X
     JSL.L CheckIfEnemyCenterIsOnScreen                                   ;A3B4EE;
-    BNE .offScreen                                                       ;A3B4F2;
+    BMI .offScreen
     JSR.W SetZoaInstList                                                 ;A3B4F4;
     RTL                                                                  ;A3B4F7;
 
@@ -6016,7 +6009,7 @@ Function_Zoa_Shooting:
     SBC.B DP_Temp14
     STA.W Enemy.XPosition,X
     JSL.L CheckIfEnemyCenterIsOnScreen                                   ;A3B50B;
-    BNE .offScreen                                                       ;A3B50F;
+    BMI .offScreen
     JSR.W SetZoaInstList                                                 ;A3B511;
     RTL                                                                  ;A3B514;
 

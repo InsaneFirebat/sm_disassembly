@@ -1652,9 +1652,21 @@ Main_Enemy_Routine:
   .notInvincible:
     LDA.W TimeIsFrozenFlag                                               ;A09036;
     BNE .checkParalyzed                                                  ;A0903C;
-    JSR.W EnemyCollisionHandling                                         ;A0903E;
-    LDX.B EnemyIndex                                                     ;A09041;
-    LDA.W Enemy.ID,X                                                     ;A09044;
+;;; $9758: Enemy collision handling ;;;
+    LDA.W Enemy.properties2,X                                          
+    BIT.W #$0004                                                       
+    BEQ .notExtendedSpritemap                                          
+    JSR.W Enemy_vs_Projectile_CollisionHandling_ExtendedSpritemap      
+    JSR.W Enemy_vs_Bomb_CollisionHandling_ExtendedSpritemap            
+    JSR.W Enemy_vs_Samus_CollisionHandling_ExtendedSpritemap
+    BRA +
+
+  .notExtendedSpritemap:
+    JSR.W Enemy_vs_Projectile_CollisionHandling                        
+    JSR.W Enemy_vs_Bomb_CollisionHandling                              
+    JSR.W Enemy_vs_Samus_CollisionHandling
+
++   LDA.W Enemy.ID,X                                                     ;A09044;
     BNE .checkParalyzed                                                  ;A09047;
     JMP.W .drawEnemyEnd                                                  ;A09049;
 
@@ -1740,9 +1752,29 @@ Main_Enemy_Routine:
     LDA.W Enemy.properties2,X                                            ;A090F2;
     BIT.W #$0004                                                         ;A090F5;
     BNE +                                                                ;A090F8;
-    JSL.L CheckIfEnemyIsOnScreen                                         ;A090FA;
-    BEQ +                                                                ;A090FE;
-    BRA .drawEnemyEnd                                                    ;A09100;
+;;; $ADE7: Check if enemy is on screen or not off screen ;;;
+    LDA.W Enemy.XPosition,X
+    CLC
+    ADC.W Enemy.XHitboxRadius,X
+    CMP.B Layer1XPosition
+    BMI .drawEnemyEnd
+    LDA.B Layer1XPosition
+    CLC
+    ADC.W #$0100
+    CLC
+    ADC.W Enemy.XHitboxRadius,X
+    CMP.W Enemy.XPosition,X
+    BMI .drawEnemyEnd
+    LDA.W Enemy.YPosition,X
+    CLC
+    ADC.W #$0008
+    CMP.B Layer1YPosition
+    BMI .drawEnemyEnd
+    LDA.B Layer1YPosition
+    CLC
+    ADC.W #$00F8
+    CMP.W Enemy.YPosition,X
+    BMI .drawEnemyEnd
 
 +   LDA.W Enemy.properties,X                                             ;A09105;
     BIT.W #$0300                                                         ;A09108;
@@ -1765,8 +1797,10 @@ Main_Enemy_Routine:
     AND.W #$FFFD                                                         ;A09136;
     STA.W Enemy.AI,X                                                     ;A09139;
 
-+   INC.W ActiveEnemyIndicesIndex                                        ;A0913C;
-    INC.W ActiveEnemyIndicesIndex                                        ;A0913F;
++   LDA.W ActiveEnemyIndicesIndex
+    INC
+    INC
+    STA.W ActiveEnemyIndicesIndex
     JMP.W .loop                                                          ;A09142;
 
   .return:
@@ -2312,21 +2346,6 @@ Handle_Queuing_Enemy_BG2_Tilemap_VRAM_Transfer:
   .clearTransferFlag:
     STZ.W RequestEnemyBG2TilemapTransferFlag                             ;A09754;
     RTL                                                                  ;A09757;
-
-
-;;; $9758: Enemy collision handling ;;;
-EnemyCollisionHandling:
-    LDA.W Enemy.properties2,X                                            ;A09764;
-    BIT.W #$0004                                                         ;A09767;
-    BEQ .notExtendedSpritemap                                            ;A0976A;
-    JSR.W Enemy_vs_Projectile_CollisionHandling_ExtendedSpritemap        ;A0976C;
-    JSR.W Enemy_vs_Bomb_CollisionHandling_ExtendedSpritemap              ;A0976F;
-    JMP.W Enemy_vs_Samus_CollisionHandling_ExtendedSpritemap
-
-  .notExtendedSpritemap:
-    JSR.W Enemy_vs_Projectile_CollisionHandling                          ;A09778;
-    JSR.W Enemy_vs_Bomb_CollisionHandling                                ;A0977B;
-    JMP.W Enemy_vs_Samus_CollisionHandling
 
 
 ;;; $9785: Samus / projectile interaction handling ;;;
@@ -4973,7 +4992,6 @@ CheckIfEnemyIsTouchingSamus:
 CheckIfEnemyCenterIsOnScreen:
 ;; Returns:
 ;;     A/zero: 0/set if enemy center is on screen, 1/clear otherwise
-    LDX.B EnemyIndex                                                     ;A0AD70;
     LDA.W Enemy.XPosition,X                                              ;A0AD73;
     CMP.B Layer1XPosition                                                ;A0AD76;
     BMI .offScreen                                                       ;A0AD79;
@@ -4989,51 +5007,9 @@ CheckIfEnemyCenterIsOnScreen:
     CLC                                                                  ;A0AD92;
     ADC.W #$0100                                                         ;A0AD93;
     CMP.W Enemy.YPosition,X                                              ;A0AD96;
-    BMI .offScreen                                                       ;A0AD99;
-    LDA.W #$0000                                                         ;A0AD9B;
-    RTL                                                                  ;A0AD9E;
 
   .offScreen:
-    LDA.W #$0001                                                         ;A0AD9F;
     RTL                                                                  ;A0ADA2;
-
-
-;;; $ADE7: Check if enemy is on screen or not off screen ;;;
-CheckIfEnemyIsOnScreen:
-;; Returns:
-;;     A/zero: 0/set if enemy center is on screen, 1/clear otherwise
-    PHX                                                                  ;A0ADE7;
-    LDX.B EnemyIndex                                                     ;A0ADE8;
-    LDA.W Enemy.XPosition,X                                              ;A0ADEB;
-    CLC                                                                  ;A0ADEE;
-    ADC.W Enemy.XHitboxRadius,X                                          ;A0ADEF;
-    CMP.B Layer1XPosition                                                ;A0ADF2;
-    BMI .offScreen                                                       ;A0ADF5;
-    LDA.B Layer1XPosition                                                ;A0ADF7;
-    CLC                                                                  ;A0ADFA;
-    ADC.W #$0100                                                         ;A0ADFB;
-    CLC                                                                  ;A0ADFE;
-    ADC.W Enemy.XHitboxRadius,X                                          ;A0ADFF;
-    CMP.W Enemy.XPosition,X                                              ;A0AE02;
-    BMI .offScreen                                                       ;A0AE05;
-    LDA.W Enemy.YPosition,X                                              ;A0AE07;
-    CLC                                                                  ;A0AE0A;
-    ADC.W #$0008                                                         ;A0AE0B;
-    CMP.B Layer1YPosition                                                ;A0AE0E;
-    BMI .offScreen                                                       ;A0AE11;
-    LDA.B Layer1YPosition                                                ;A0AE13;
-    CLC                                                                  ;A0AE16;
-    ADC.W #$00F8                                                         ;A0AE17;
-    CMP.W Enemy.YPosition,X                                              ;A0AE1A;
-    BMI .offScreen                                                       ;A0AE1D;
-    PLX                                                                  ;A0AE1F;
-    LDA.W #$0000                                                         ;A0AE20;
-    RTL                                                                  ;A0AE23;
-
-  .offScreen:
-    PLX                                                                  ;A0AE24;
-    LDA.W #$0001                                                         ;A0AE25;
-    RTL                                                                  ;A0AE28;
 
 
 ;;; $AE29: Determine direction of Samus from enemy ;;;
@@ -5186,8 +5162,6 @@ NegateA_A0B067:
 
 ;;; $B07D: A = |[Y] - [X]| ;;;
 GetSignedYMinusX_A0B07D:
-    PHX                                                                  ;A0B07D;
-    PHY                                                                  ;A0B07E;
     STX.W Temp_SamusPosition                                             ;A0B080;
     TYA                                                                  ;A0B083;
     SEC                                                                  ;A0B084;
@@ -5197,8 +5171,6 @@ GetSignedYMinusX_A0B07D:
     INC                                                                  ;A0B096;
 
 +   STA.W Temp_AbsoluteDifference                                        ;A0B09A;
-    PLY                                                                  ;A0B09D;
-    PLX                                                                  ;A0B09E;
     RTL                                                                  ;A0B09F;
 
 

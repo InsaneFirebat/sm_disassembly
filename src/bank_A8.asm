@@ -3376,60 +3376,54 @@ YappingMawSamusOffsets_Y_UpLeft:
 
 ;;; $A0C7: Instruction - offset Samus up-right ;;;
 Instruction_YappingMaw_OffsetSamusUpRight:
-    LDX.B EnemyIndex                                                     ;A8A0C7;
-    LDA.W YappingMawSamusOffsets_X_UpRight                               ;A8A0CA;
+    LDA.W #$0008
     STA.L YappingMaw.SamusXOffset,X                                      ;A8A0CD;
-    LDA.W YappingMawSamusOffsets_Y_UpRight                               ;A8A0D1;
+    LDA.W #$FFF8
     STA.L YappingMaw.SamusYOffset,X                                      ;A8A0D4;
     RTL                                                                  ;A8A0D8;
 
 
 ;;; $A0D9: Instruction - offset Samus up-left ;;;
 Instruction_YappingMaw_OffsetSamusUpLeft:
-    LDX.B EnemyIndex                                                     ;A8A0D9;
-    LDA.W YappingMawSamusOffsets_X_UpLeft                                ;A8A0DC;
+    LDA.W #$FFF8
     STA.L YappingMaw.SamusXOffset,X                                      ;A8A0DF;
-    LDA.W YappingMawSamusOffsets_Y_UpLeft                                ;A8A0E3;
+    LDA.W #$FFF8
     STA.L YappingMaw.SamusYOffset,X                                      ;A8A0E6;
     RTL                                                                  ;A8A0EA;
 
 
 ;;; $A0EB: Instruction - offset Samus down-right ;;;
 Instruction_YappingMaw_OffsetSamusDownRight:
-    LDX.B EnemyIndex                                                     ;A8A0EB;
-    LDA.W YappingMawSamusOffsets_X_DownRight                             ;A8A0EE;
+    LDA.W #$0008
     STA.L YappingMaw.SamusXOffset,X                                      ;A8A0F1;
-    LDA.W YappingMawSamusOffsets_Y_DownRight                             ;A8A0F5;
+    LDA.W #$0008
     STA.L YappingMaw.SamusYOffset,X                                      ;A8A0F8;
     RTL                                                                  ;A8A0FC;
 
 
 ;;; $A0FD: Instruction - offset Samus down-left ;;;
 Instruction_YappingMaw_OffsetSamusDownLeft:
-    LDX.B EnemyIndex                                                     ;A8A0FD;
-    LDA.W YappingMawSamusOffsets_X_DownLeft                              ;A8A100;
+    LDA.W #$FFF8
     STA.L YappingMaw.SamusXOffset,X                                      ;A8A103;
-    LDA.W YappingMawSamusOffsets_Y_DownLeft                              ;A8A107;
+    LDA.W #$0008
     STA.L YappingMaw.SamusYOffset,X                                      ;A8A10A;
     RTL                                                                  ;A8A10E;
 
 
 ;;; $A10F: Instruction - offset Samus up ;;;
 Instruction_YappingMaw_OffsetSamusUp:
-    LDX.B EnemyIndex                                                     ;A8A10F;
-    LDA.W YappingMawSamusOffsets_X_Up                                    ;A8A112;
+    LDA.W #$0000
     STA.L YappingMaw.SamusXOffset,X                                      ;A8A115;
-    LDA.W YappingMawSamusOffsets_Y_Up                                    ;A8A119;
+    LDA.W #$FFF0
     STA.L YappingMaw.SamusYOffset,X                                      ;A8A11C;
     RTL                                                                  ;A8A120;
 
 
 ;;; $A121: Instruction - offset Samus down ;;;
 Instruction_YappingMaw_OffsetSamusDown:
-    LDX.B EnemyIndex                                                     ;A8A121;
-    LDA.W YappingMawSamusOffsets_X_Down                                  ;A8A124;
+    LDA.W #$0000
     STA.L YappingMaw.SamusXOffset,X                                      ;A8A127;
-    LDA.W YappingMawSamusOffsets_Y_Down                                  ;A8A12B;
+    LDA.W #$0010
     STA.L YappingMaw.SamusYOffset,X                                      ;A8A12E;
     RTL                                                                  ;A8A132;
 
@@ -3439,7 +3433,7 @@ Instruction_YappingMaw_QueueSFXIfOnScreen:
     LDA.L YappingMaw.offScreenFlag,X                                     ;A8A138;
     BNE .return                                                          ;A8A13C;
     LDA.W #$002F                                                         ;A8A13E;
-    JSL.L QueueSound_Lib2_Max6                                           ;A8A141;
+    JML QueueSound_Lib2_Max6
 
   .return:
     RTL                                                                  ;A8A147;
@@ -3447,7 +3441,7 @@ Instruction_YappingMaw_QueueSFXIfOnScreen:
 
 ;;; $A148: Initialisation AI - enemy $E7BF (yapping maw) ;;;
 InitAI_YappingMaw:
-    LDX.B EnemyIndex                                                     ;A8A148;
+    TYX
     LDA.W Enemy.XPosition,X                                              ;A8A14B;
     STA.L YappingMaw.bodySegmentBaseXPosition,X                          ;A8A14E;
     LDA.W Enemy.YPosition,X                                              ;A8A152;
@@ -3466,23 +3460,27 @@ InitAI_YappingMaw:
     STA.W YappingMaw.proximity,X                                         ;A8A183;
     LDA.W #regional($0040, $0030)                                        ;A8A186;
     STA.W Enemy.var4,X                                                   ;A8A189;
-    LDA.W #InstList_YappingMaw_Attacking_FacingUp                        ;A8A18C;
-    STA.W Enemy.instList,X                                               ;A8A18F;
-    LDA.W #$0039                                                         ;A8A192;
-    STA.B DP_Temp24                                                      ;A8A195;
-    LDA.W #$0008                                                         ;A8A197;
-    STA.B DP_Temp22                                                      ;A8A19A;
-    LDA.W Enemy.init1,X                                                  ;A8A19C;
-    BNE .keepUp                                                          ;A8A19F;
+
+
+    LDA.W Enemy.init1,X
+    BNE .facingUp
     LDA.W #InstList_YappingMaw_Attacking_FacingDown                      ;A8A1A1;
     STA.W Enemy.instList,X                                               ;A8A1A4;
     LDA.W #$0038                                                         ;A8A1A7;
     STA.B DP_Temp24                                                      ;A8A1AA;
     LDA.W #$FFF8                                                         ;A8A1AC;
     STA.B DP_Temp22                                                      ;A8A1AF;
+    BRA +
 
-  .keepUp:
-    LDA.W #$0001                                                         ;A8A1B1;
+  .facingUp
+    LDA.W #InstList_YappingMaw_Attacking_FacingUp                        ;A8A18C;
+    STA.W Enemy.instList,X                                               ;A8A18F;
+    LDA.W #$0039                                                         ;A8A192;
+    STA.B DP_Temp24                                                      ;A8A195;
+    LDA.W #$0008                                                         ;A8A197;
+    STA.B DP_Temp22                                                      ;A8A19A;
+
++   LDA.W #$0001                                                         ;A8A1B1;
     STA.W Enemy.instTimer,X                                              ;A8A1B4;
     STZ.W Enemy.loopCounter,X                                            ;A8A1B7;
     LDA.W #Function_YappingMaw_Neutral                                   ;A8A1BA;
@@ -3494,10 +3492,8 @@ InitAI_YappingMaw:
     STA.L YappingMaw.bodySegmentIndex,X                                  ;A8A1CD;
 
   .loop:
-    LDX.B EnemyIndex                                                     ;A8A1D1;
     LDY.W #EnemyProjectile_YappingMawsBody                               ;A8A1D4;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A8A1D7;
-    LDX.B EnemyIndex                                                     ;A8A1DB;
     LDA.L YappingMaw.bodySegmentIndex,X                                  ;A8A1DE;
     DEC                                                                  ;A8A1E2;
     STA.L YappingMaw.bodySegmentIndex,X                                  ;A8A1E3;
@@ -3526,13 +3522,15 @@ MainAI_YappingMaw:
     DEC                                                                  ;A8A218;
     STA.L YappingMaw.intangibilityTimer,X                                ;A8A219;
     JSL.L CheckIfEnemyCenterIsOnScreen                                   ;A8A21D;
-    STA.L YappingMaw.offScreenFlag,X                                     ;A8A221;
-    JSR.W (YappingMaw.function,X)                                        ;A8A225;
-    JSR.W SetBodySegmentPosition_3                                       ;A8A228;
-    JSR.W SetBodySegmentPosition_2                                       ;A8A22B;
-    JSR.W SetBodySegmentPosition_1                                       ;A8A22E;
-    JSR.W SetBodySegmentPosition_0                                       ;A8A231;
-    RTL                                                                  ;A8A234;
+    BMI .offScreen
+    LDA.W #$0000
+    BRA +
+
+  .offScreen:
+    LDA.W #$0001
+
++   STA.L YappingMaw.offScreenFlag,X                                     ;A8A221;
+    JMP.W (YappingMaw.function,X)                                        ;A8A225;
 
 
 ;;; $A235: Yapping maw function - neutral ;;;
@@ -3623,12 +3621,12 @@ Function_YappingMaw_Neutral:
     STA.W YappingMaw.function,X                                          ;A8A280;
 
   .return:
-    RTS                                                                  ;A8A283;
+    JMP.W SetBodySegmentPosition
 
   .pointBlank:
     LDA.W #$0030                                                         ;A8A284;
     STA.L YappingMaw.intangibilityTimer,X                                ;A8A287;
-    RTS                                                                  ;A8A28B;
+    JMP.W SetBodySegmentPosition
 
 
 ;;; $A28C: Yapping maw function - attack ;;;
@@ -3659,17 +3657,26 @@ Function_YappingMaw_Attack:
     LDA.W #$0001                                                         ;A8A2C9;
     STA.L YappingMaw.aimingDownFlag,X                                    ;A8A2CC;
 
-+   JSR.W CalculateYappingMawOriginPosition                              ;A8A2D0;
+;;; $A310: Calculate yapping maw origin position ;;;
++   LDA.L YappingMaw.length,X
+    STA.W Temp_Radius
+    LDA.W #$0080
+    JSL.L Math_Cosine_A8A73E
+    STA.L YappingMaw.originXPosition,X
+    LDA.L YappingMaw.length,X
+    LSR
+    STA.W Temp_Radius
+    LDA.W #$0080
+    JSL.L Math_Sine_A8A742
+    STA.L YappingMaw.originYPosition,X
     LDA.L YappingMaw.targetAngleSMConvention,X                           ;A8A2D3;
     CLC                                                                  ;A8A2D7;
     ADC.W #$0010                                                         ;A8A2D8;
-    AND.W #$00FF                                                         ;A8A2DB;
+    AND.W #$00E0
     LSR                                                                  ;A8A2DE;
     LSR                                                                  ;A8A2DF;
     LSR                                                                  ;A8A2E0;
     LSR                                                                  ;A8A2E1;
-    LSR                                                                  ;A8A2E2;
-    ASL                                                                  ;A8A2E3;
     STA.L YappingMaw.instListTableIndex,X                                ;A8A2E4;
     TAY                                                                  ;A8A2E8;
     LDA.W InstListPointers_YappingMaw,Y                                  ;A8A2E9;
@@ -3686,118 +3693,88 @@ Function_YappingMaw_Attack:
     STA.L YappingMaw.SamusYOffset,X                                      ;A8A305;
     LDA.W #Function_YappingMaw_Attacking                                 ;A8A309;
     STA.W YappingMaw.function,X                                          ;A8A30C;
-    RTS                                                                  ;A8A30F;
-
-
-;;; $A310: Calculate yapping maw origin position ;;;
-CalculateYappingMawOriginPosition:
-    LDX.B EnemyIndex                                                     ;A8A310;
-    LDA.L YappingMaw.length,X                                            ;A8A313;
-    STA.W Temp_Radius                                                    ;A8A317;
-    LDA.W #$0080                                                         ;A8A31A;
-    JSL.L Math_Cosine_A8A73E                                             ;A8A31D;
-    STA.L YappingMaw.originXPosition,X                                   ;A8A321;
-    LDA.L YappingMaw.length,X                                            ;A8A325;
-    LSR                                                                  ;A8A329;
-    STA.W Temp_Radius                                                    ;A8A32A;
-    LDA.W #$0080                                                         ;A8A32D;
-    JSL.L Math_Sine_A8A742                                               ;A8A330;
-    STA.L YappingMaw.originYPosition,X                                   ;A8A334;
-    RTS                                                                  ;A8A338;
+    JMP.W SetBodySegmentPosition
 
 
 ;;; $A339: Calculate body segment 1 velocities ;;;
-CalculateBodySegment1Velocities:
-    LDX.B EnemyIndex                                                     ;A8A339;
+CalculateBodySegmentVelocities:
     LDA.L YappingMaw.bodySegment1XOffset,X                               ;A8A33C;
     STA.W Temp_Radius                                                    ;A8A340;
     LDA.W #$0000                                                         ;A8A343;
     JSL.L Math_Cosine_A8A73E                                             ;A8A346;
-    STA.L ExtraEnemy7800+$20,X                                           ;A8A34A;
+    STA.B DP_Temp12
     LDA.W #$0000                                                         ;A8A34E;
     JSL.L Math_Sine_A8A742                                               ;A8A351;
-    STA.L ExtraEnemy7800+$22,X                                           ;A8A355;
+    STA.B DP_Temp14
     LDA.L YappingMaw.targetAngleMathsConvention,X                        ;A8A359;
     JSL.L Math_Cosine_A8A73E                                             ;A8A35D;
     SEC                                                                  ;A8A361;
-    SBC.L ExtraEnemy7800+$20,X                                           ;A8A362;
+    SBC.B DP_Temp12
     STA.L YappingMaw.bodySegment1XVelocity,X                             ;A8A366;
     LDA.L YappingMaw.targetAngleMathsConvention,X                        ;A8A36A;
     JSL.L Math_Sine_A8A742                                               ;A8A36E;
     SEC                                                                  ;A8A372;
-    SBC.L ExtraEnemy7800+$22,X                                           ;A8A373;
+    SBC.B DP_Temp14
     STA.L YappingMaw.bodySegment1YVelocity,X                             ;A8A377;
-    RTS                                                                  ;A8A37B;
-
 
 ;;; $A37C: Calculate body segment 2 velocities ;;;
-CalculateBodySegment2Velocities:
-    LDX.B EnemyIndex                                                     ;A8A37C;
     LDA.L YappingMaw.bodySegment2XOffset,X                               ;A8A37F;
     STA.W Temp_Radius                                                    ;A8A383;
     LDA.W #$0000                                                         ;A8A386;
     JSL.L Math_Cosine_A8A73E                                             ;A8A389;
-    STA.L ExtraEnemy7800+$20,X                                           ;A8A38D;
+    STA.B DP_Temp12
     LDA.W #$0000                                                         ;A8A391;
     JSL.L Math_Sine_A8A742                                               ;A8A394;
-    STA.L ExtraEnemy7800+$22,X                                           ;A8A398;
+    STA.B DP_Temp14
     LDA.L YappingMaw.targetAngleMathsConvention,X                        ;A8A39C;
     JSL.L Math_Cosine_A8A73E                                             ;A8A3A0;
     SEC                                                                  ;A8A3A4;
-    SBC.L ExtraEnemy7800+$20,X                                           ;A8A3A5;
+    SBC.B DP_Temp12
     STA.L YappingMaw.bodySegment2XVelocity,X                             ;A8A3A9;
     LDA.L YappingMaw.targetAngleMathsConvention,X                        ;A8A3AD;
     JSL.L Math_Sine_A8A742                                               ;A8A3B1;
     SEC                                                                  ;A8A3B5;
-    SBC.L ExtraEnemy7800+$22,X                                           ;A8A3B6;
+    SBC.B DP_Temp14
     STA.L YappingMaw.bodySegment2YVelocity,X                             ;A8A3BA;
-    RTS                                                                  ;A8A3BE;
-
 
 ;;; $A3BF: Calculate body segment 3 velocities ;;;
-CalculateBodySegment3Velocities:
-    LDX.B EnemyIndex                                                     ;A8A3BF;
     LDA.L YappingMaw.bodySegment3XOffset,X                               ;A8A3C2;
     STA.W Temp_Radius                                                    ;A8A3C6;
     LDA.W #$0000                                                         ;A8A3C9;
     JSL.L Math_Cosine_A8A73E                                             ;A8A3CC;
-    STA.L ExtraEnemy7800+$20,X                                           ;A8A3D0;
+    STA.B DP_Temp12
     LDA.W #$0000                                                         ;A8A3D4;
     JSL.L Math_Sine_A8A742                                               ;A8A3D7;
-    STA.L ExtraEnemy7800+$22,X                                           ;A8A3DB;
+    STA.B DP_Temp14
     LDA.L YappingMaw.targetAngleMathsConvention,X                        ;A8A3DF;
     JSL.L Math_Cosine_A8A73E                                             ;A8A3E3;
     SEC                                                                  ;A8A3E7;
-    SBC.L ExtraEnemy7800+$20,X                                           ;A8A3E8;
+    SBC.B DP_Temp12
     STA.L YappingMaw.bodySegment3XVelocity,X                             ;A8A3EC;
     LDA.L YappingMaw.targetAngleMathsConvention,X                        ;A8A3F0;
     JSL.L Math_Sine_A8A742                                               ;A8A3F4;
     SEC                                                                  ;A8A3F8;
-    SBC.L ExtraEnemy7800+$22,X                                           ;A8A3F9;
+    SBC.B DP_Temp14
     STA.L YappingMaw.bodySegment3YVelocity,X                             ;A8A3FD;
-    RTS                                                                  ;A8A401;
-
 
 ;;; $A402: Calculate head segment velocities ;;;
-CalculateHeadSegmentVelocities:
-    LDX.B EnemyIndex                                                     ;A8A402;
     LDA.L YappingMaw.headSegmentXOffset,X                                ;A8A405;
     STA.W Temp_Radius                                                    ;A8A409;
     LDA.W #$0000                                                         ;A8A40C;
     JSL.L Math_Cosine_A8A73E                                             ;A8A40F;
-    STA.L ExtraEnemy7800+$20,X                                           ;A8A413;
+    STA.B DP_Temp12
     LDA.W #$0000                                                         ;A8A417;
     JSL.L Math_Sine_A8A742                                               ;A8A41A;
-    STA.L ExtraEnemy7800+$22,X                                           ;A8A41E;
+    STA.B DP_Temp14
     LDA.L YappingMaw.targetAngleMathsConvention,X                        ;A8A422;
     JSL.L Math_Cosine_A8A73E                                             ;A8A426;
     SEC                                                                  ;A8A42A;
-    SBC.L ExtraEnemy7800+$20,X                                           ;A8A42B;
+    SBC.B DP_Temp12
     STA.L YappingMaw.headSegmentXVelocity,X                              ;A8A42F;
     LDA.L YappingMaw.targetAngleMathsConvention,X                        ;A8A433;
     JSL.L Math_Sine_A8A742                                               ;A8A437;
     SEC                                                                  ;A8A43B;
-    SBC.L ExtraEnemy7800+$22,X                                           ;A8A43C;
+    SBC.B DP_Temp14
     STA.L YappingMaw.headSegmentYVelocity,X                              ;A8A440;
     RTS                                                                  ;A8A444;
 
@@ -3884,44 +3861,62 @@ Function_YappingMaw_Attacking:
     SEC                                                                  ;A8A51D;
     SBC.L YappingMaw.originYPosition,X                                   ;A8A51E;
     STA.L YappingMaw.headSegmentYOffset,X                                ;A8A522;
-    JSR.W CalculateBodySegment1Velocities                                ;A8A526;
-    JSR.W CalculateBodySegment2Velocities                                ;A8A529;
-    JSR.W CalculateBodySegment3Velocities                                ;A8A52C;
-    JSR.W CalculateHeadSegmentVelocities                                 ;A8A52F;
+    JSR.W CalculateBodySegmentVelocities
+    PHB
+    PEA.W YappingMaw.bodySegment1XOffset
+    PLB
+    PLB
     CLC                                                                  ;A8A532;
-    LDA.L YappingMaw.bodySegment1XOffset,X                               ;A8A533;
-    ADC.L YappingMaw.bodySegment1XVelocity,X                             ;A8A537;
-    STA.L YappingMaw.bodySegment1XOffset,X                               ;A8A53B;
-    LDA.L YappingMaw.bodySegment1YOffset,X                               ;A8A53F;
-    ADC.L YappingMaw.bodySegment1YVelocity,X                             ;A8A543;
-    STA.L YappingMaw.bodySegment1YOffset,X                               ;A8A547;
-    LDA.L YappingMaw.bodySegment2XOffset,X                               ;A8A54B;
-    ADC.L YappingMaw.bodySegment2XVelocity,X                             ;A8A54F;
-    STA.L YappingMaw.bodySegment2XOffset,X                               ;A8A553;
-    LDA.L YappingMaw.bodySegment2YOffset,X                               ;A8A557;
-    ADC.L YappingMaw.bodySegment2YVelocity,X                             ;A8A55B;
-    STA.L YappingMaw.bodySegment2YOffset,X                               ;A8A55F;
-    LDA.L YappingMaw.bodySegment3XOffset,X                               ;A8A563;
-    ADC.L YappingMaw.bodySegment3XVelocity,X                             ;A8A567;
-    STA.L YappingMaw.bodySegment3XOffset,X                               ;A8A56B;
-    LDA.L YappingMaw.bodySegment3YOffset,X                               ;A8A56F;
-    ADC.L YappingMaw.bodySegment3YVelocity,X                             ;A8A573;
-    STA.L YappingMaw.bodySegment3YOffset,X                               ;A8A577;
-    LDA.L YappingMaw.headSegmentXOffset,X                                ;A8A57B;
-    ADC.L YappingMaw.headSegmentXVelocity,X                              ;A8A57F;
-    STA.L YappingMaw.headSegmentXOffset,X                                ;A8A583;
-    LDA.L YappingMaw.headSegmentYOffset,X                                ;A8A587;
-    ADC.L YappingMaw.headSegmentYVelocity,X                              ;A8A58B;
-    STA.L YappingMaw.headSegmentYOffset,X                                ;A8A58F;
-    LDA.L YappingMaw.bodySegmentBaseXPosition,X                          ;A8A593;
+    LDA.W YappingMaw.bodySegment1XOffset,X                               ;A8A533;
+    ADC.W YappingMaw.bodySegment1XVelocity,X                             ;A8A537;
+    STA.W YappingMaw.bodySegment1XOffset,X                               ;A8A53B;
+    LDA.W YappingMaw.bodySegment1YOffset,X                               ;A8A53F;
+    ADC.W YappingMaw.bodySegment1YVelocity,X                             ;A8A543;
+    STA.W YappingMaw.bodySegment1YOffset,X                               ;A8A547;
+    LDA.W YappingMaw.bodySegment2XOffset,X                               ;A8A54B;
+    ADC.W YappingMaw.bodySegment2XVelocity,X                             ;A8A54F;
+    STA.W YappingMaw.bodySegment2XOffset,X                               ;A8A553;
+    LDA.W YappingMaw.bodySegment2YOffset,X                               ;A8A557;
+    ADC.W YappingMaw.bodySegment2YVelocity,X                             ;A8A55B;
+    STA.W YappingMaw.bodySegment2YOffset,X                               ;A8A55F;
+    LDA.W YappingMaw.bodySegment3XOffset,X                               ;A8A563;
+    ADC.W YappingMaw.bodySegment3XVelocity,X                             ;A8A567;
+    STA.W YappingMaw.bodySegment3XOffset,X                               ;A8A56B;
+    LDA.W YappingMaw.bodySegment3YOffset,X                               ;A8A56F;
+    ADC.W YappingMaw.bodySegment3YVelocity,X                             ;A8A573;
+    STA.W YappingMaw.bodySegment3YOffset,X                               ;A8A577;
+    LDA.W YappingMaw.headSegmentXOffset,X                                ;A8A57B;
+    ADC.W YappingMaw.headSegmentXVelocity,X                              ;A8A57F;
+    STA.W YappingMaw.headSegmentXOffset,X                                ;A8A583;
+    LDA.W YappingMaw.headSegmentYOffset,X                                ;A8A587;
+    ADC.W YappingMaw.headSegmentYVelocity,X                              ;A8A58B;
+    STA.W YappingMaw.headSegmentYOffset,X                                ;A8A58F;
+    LDA.W YappingMaw.bodySegmentBaseXPosition,X                          ;A8A593;
     CLC                                                                  ;A8A597;
-    ADC.L YappingMaw.headSegmentXOffset,X                                ;A8A598;
+    ADC.W YappingMaw.headSegmentXOffset,X                                ;A8A598;
     STA.W Enemy.XPosition,X                                              ;A8A59C;
-    LDA.L YappingMaw.bodySegmentBaseYPosition,X                          ;A8A59F;
+    LDA.W YappingMaw.bodySegmentBaseYPosition,X                          ;A8A59F;
     CLC                                                                  ;A8A5A3;
-    ADC.L YappingMaw.headSegmentYOffset,X                                ;A8A5A4;
+    ADC.W YappingMaw.headSegmentYOffset,X                                ;A8A5A4;
     STA.W Enemy.YPosition,X                                              ;A8A5A8;
-    JSR.W UpdateYappingMawAngularSpeed                                   ;A8A5AB;
+    PLB
+;;; $A63E: Update yapping maw angular speed ;;;
+    LDY.W YappingMaw.angularSpeedTableIndex,X
+    LDA.W YappingMaw.angle,X
+    CLC
+    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y
+    STA.W YappingMaw.angle,X
+    LDA.W YappingMaw.subAngle,X
+    CLC
+    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing,Y
+    BCC +
+    INC.W YappingMaw.angle,X
+
++   STA.W YappingMaw.subAngle,X
+    LDA.W YappingMaw.angularSpeedTableIndex,X
+    CLC
+    ADC.W #$0008
+    STA.W YappingMaw.angularSpeedTableIndex,X
     LDA.W YappingMaw.angle,X                                             ;A8A5AE;
     BMI .cooldown                                                        ;A8A5B4;
     CMP.W #$0080                                                         ;A8A5B6;
@@ -3981,7 +3976,7 @@ Function_YappingMaw_Attacking:
   .down:
     LDA.W #InstList_YappingMaw_Cooldown_FacingDown_0                     ;A8A62C;
     STA.W Enemy.instList,X                                               ;A8A62F;
-    RTS
+    JMP.W SetBodySegmentPosition
 
   .moveSamus:
     LDA.L YappingMaw.grabbingSamusFlag,X                                 ;A8A634;
@@ -3989,28 +3984,7 @@ Function_YappingMaw_Attacking:
     JMP.W MoveSamusWithYappingMawPincers
 
   .return:
-    RTS                                                                  ;A8A63D;
-
-
-;;; $A63E: Update yapping maw angular speed ;;;
-UpdateYappingMawAngularSpeed:
-    LDY.W YappingMaw.angularSpeedTableIndex,X                            ;A8A63E;
-    LDA.W YappingMaw.angle,X                                             ;A8A641;
-    CLC                                                                  ;A8A644;
-    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing+2,Y                  ;A8A645;
-    STA.W YappingMaw.angle,X                                             ;A8A648;
-    LDA.W YappingMaw.subAngle,X                                          ;A8A64B;
-    CLC                                                                  ;A8A64E;
-    ADC.W CommonEnemySpeeds_QuadraticallyIncreasing,Y                    ;A8A64F;
-    BCC +                                                                ;A8A652;
-    INC.W YappingMaw.angle,X                                             ;A8A654;
-
-+   STA.W YappingMaw.subAngle,X                                          ;A8A657;
-    LDA.W YappingMaw.angularSpeedTableIndex,X                            ;A8A65A;
-    CLC                                                                  ;A8A65D;
-    ADC.W #$0008                                                         ;A8A65E;
-    STA.W YappingMaw.angularSpeedTableIndex,X                            ;A8A661;
-    RTS                                                                  ;A8A664;
+    JMP.W SetBodySegmentPosition
 
 
 ;;; $A665: Move Samus with yapping maw pincers ;;;
@@ -4072,8 +4046,7 @@ MoveSamusWithYappingMawPincers:
     CLC                                                                  ;A8A67D;
     ADC.L YappingMaw.SamusYOffset,X                                      ;A8A67E;
     STA.B SamusYPosition                                                 ;A8A682;
-    JSL.L CapScrollingSpeed                                              ;A8A685;
-    RTS                                                                  ;A8A689;
+    JML CapScrollingSpeed
 
 
 ;;; $A68A: Yapping maw function - cooldown ;;;
@@ -4091,7 +4064,7 @@ Function_YappingMaw_Cooldown:
 ;      Eventually, the PC lands on $0001 and starts executing from WRAM where a crash is inevitable
     LDA.L YappingMaw.grabbingSamusFlag,X                                 ;A8A68D;
     BEQ .notGrabbingSamus                                                ;A8A691;
-    JSR.W MoveSamusWithYappingMawPincers                                 ;A8A693;
+    JSL.L MoveSamusWithYappingMawPincers
 
   .notGrabbingSamus:
     LDX.B EnemyIndex
@@ -4112,24 +4085,19 @@ Function_YappingMaw_Cooldown:
     STA.W YappingMaw.function,X                                          ;A8A6C0;
 
   .return:
-    RTS                                                                  ;A8A6C3;
+    JMP.W SetBodySegmentPosition
 
 
 ;;; $A6C4: Set body segment 0 position ;;;
-SetBodySegmentPosition_0:
-    LDX.B EnemyIndex                                                     ;A8A6C4;
+SetBodySegmentPosition:
     LDA.L YappingMaw.bodySegment0ProjectileIndex,X                       ;A8A6C7;
     TAY                                                                  ;A8A6CB;
     LDA.L YappingMaw.bodySegmentBaseXPosition,X                          ;A8A6CC;
     STA.W EnemyProjectile_XPositions,Y                                   ;A8A6D0;
     LDA.L YappingMaw.bodySegmentBaseYPosition,X                          ;A8A6D3;
     STA.W EnemyProjectile_YPositions,Y                                   ;A8A6D7;
-    RTS                                                                  ;A8A6DA;
-
 
 ;;; $A6DB: Set body segment 1 position ;;;
-SetBodySegmentPosition_1:
-    LDX.B EnemyIndex                                                     ;A8A6DB;
     LDA.L YappingMaw.bodySegment1ProjectileIndex,X                       ;A8A6DE;
     TAY                                                                  ;A8A6E2;
     LDA.L YappingMaw.bodySegmentBaseXPosition,X                          ;A8A6E3;
@@ -4140,12 +4108,8 @@ SetBodySegmentPosition_1:
     CLC                                                                  ;A8A6F3;
     ADC.L YappingMaw.bodySegment1YOffset,X                               ;A8A6F4;
     STA.W EnemyProjectile_YPositions,Y                                   ;A8A6F8;
-    RTS                                                                  ;A8A6FB;
-
 
 ;;; $A6FC: Set body segment 2 position ;;;
-SetBodySegmentPosition_2:
-    LDX.B EnemyIndex                                                     ;A8A6FC;
     LDA.L YappingMaw.bodySegment2ProjectileIndex,X                       ;A8A6FF;
     TAY                                                                  ;A8A703;
     LDA.L YappingMaw.bodySegmentBaseXPosition,X                          ;A8A704;
@@ -4156,12 +4120,8 @@ SetBodySegmentPosition_2:
     CLC                                                                  ;A8A714;
     ADC.L YappingMaw.bodySegment2YOffset,X                               ;A8A715;
     STA.W EnemyProjectile_YPositions,Y                                   ;A8A719;
-    RTS                                                                  ;A8A71C;
-
 
 ;;; $A71D: Set body segment 3 position ;;;
-SetBodySegmentPosition_3:
-    LDX.B EnemyIndex                                                     ;A8A71D;
     LDA.L YappingMaw.bodySegment3ProjectileIndex,X                       ;A8A720;
     TAY                                                                  ;A8A724;
     LDA.L YappingMaw.bodySegmentBaseXPosition,X                          ;A8A725;
@@ -4172,7 +4132,7 @@ SetBodySegmentPosition_3:
     CLC                                                                  ;A8A735;
     ADC.L YappingMaw.bodySegment3YOffset,X                               ;A8A736;
     STA.W EnemyProjectile_YPositions,Y                                   ;A8A73A;
-    RTS                                                                  ;A8A73D;
+    RTL
 
 
 ;;; $A73E: A = [$0E32] * cos([A] * pi / 80h) ;;;
@@ -4200,7 +4160,6 @@ Math_Sine_A8A742:
     AND.W #$00FF                                                         ;A8A74A;
     ASL                                                                  ;A8A74D;
     TAX                                                                  ;A8A74E;
-    PHP                                                                  ;A8A74F;
     STZ.B DP_Temp14                                                      ;A8A750;
     STZ.B DP_Temp16                                                      ;A8A752;
     LDA.L SineCosineTables_16bitSine,X                                   ;A8A754;
@@ -4220,9 +4179,8 @@ Math_Sine_A8A742:
     NOP                                                                  ;A8A772;
     NOP                                                                  ;A8A773;
     REP #$20                                                             ;A8A774;
-    LDA.W $4216                                                          ;A8A776;
-    AND.W #$FF00                                                         ;A8A779;
-    XBA                                                                  ;A8A77C;
+    LDA.W $4217
+    AND.W #$00FF
     ASL                                                                  ;A8A77D;
     STA.B DP_Temp16                                                      ;A8A77E;
     LDA.B DP_Temp14                                                      ;A8A780;
@@ -4237,20 +4195,20 @@ Math_Sine_A8A742:
 
 +   LDA.B DP_Temp16                                                      ;A8A792;
     LDX.B EnemyIndex                                                     ;A8A794;
-    PLP                                                                  ;A8A797;
+    REP #$20
     RTL                                                                  ;A8A798;
 
 
 ;;; $A799: Enemy touch - enemy $E7BF (yapping maw) ;;;
 EnemyTouch_YappingMaw:
-    LDX.B EnemyIndex                                                     ;A8A799;
+    TYX
     LDA.L YappingMaw.intangibilityTimer,X                                ;A8A79C;
     BPL .return                                                          ;A8A7A0;
     LDA.L YappingMaw.grabbingSamusFlag,X                                 ;A8A7A2;
     BNE .return                                                          ;A8A7A6;
     LDA.W #$0000                                                         ;A8A7A8;
     STA.L YappingMaw.intangibilityTimer,X                                ;A8A7AB;
-    LDA.W #$0001                                                         ;A8A7AF;
+    INC
     STA.L YappingMaw.grabbingSamusFlag,X                                 ;A8A7B2;
     LDA.W #RTS_90E90E                                                    ;A8A7B6;
     STA.W PoseInputHandler                                               ;A8A7B9;
@@ -4263,31 +4221,28 @@ EnemyTouch_YappingMaw:
 EnemyShot_YappingMaw:
 ; BUG: Yapping maw shinespark crash crash applies here too if a yapping maw is frozen or killed, see Function_YappingMaw_Cooldown
     JSL.L NormalEnemyShotAI                                              ;A8A7BD;
-    LDX.B EnemyIndex                                                     ;A8A7C1;
+    TXY
     LDA.W Enemy.health,X                                                 ;A8A7C4;
     BNE .alive                                                           ;A8A7C7;
-    LDA.L YappingMaw.bodySegment0ProjectileIndex,X                       ;A8A7C9;
-    TAY                                                                  ;A8A7CD;
-    LDA.W #$0000                                                         ;A8A7CE;
-    STA.W EnemyProjectile_ID,Y                                           ;A8A7D1;
-    LDA.L YappingMaw.bodySegment1ProjectileIndex,X                       ;A8A7D4;
-    TAY                                                                  ;A8A7D8;
-    LDA.W #$0000                                                         ;A8A7D9;
-    STA.W EnemyProjectile_ID,Y                                           ;A8A7DC;
-    LDA.L YappingMaw.bodySegment2ProjectileIndex,X                       ;A8A7DF;
-    TAY                                                                  ;A8A7E3;
-    LDA.W #$0000                                                         ;A8A7E4;
-    STA.W EnemyProjectile_ID,Y                                           ;A8A7E7;
-    LDA.L YappingMaw.bodySegment3ProjectileIndex,X                       ;A8A7EA;
-    TAY                                                                  ;A8A7EE;
-    LDA.W #$0000                                                         ;A8A7EF;
-    STA.W EnemyProjectile_ID,Y                                           ;A8A7F2;
-    PHX                                                                  ;A8A7F5;
-    LDA.L YappingMaw.baseSpriteObjectIndex,X                             ;A8A7F6;
+    PHB
+    PEA.W EnemyProjectile_ID
+    PLB
+    PLB
+    LDA.W YappingMaw.bodySegment0ProjectileIndex,Y
+    TAX
+    STZ.W EnemyProjectile_ID,X
+    LDA.W YappingMaw.bodySegment1ProjectileIndex,Y
+    TAX
+    STZ.W EnemyProjectile_ID,X
+    LDA.W YappingMaw.bodySegment2ProjectileIndex,Y
+    TAX
+    STZ.W EnemyProjectile_ID,X
+    LDA.W YappingMaw.bodySegment3ProjectileIndex,Y
+    TAX
+    STZ.W EnemyProjectile_ID,X
+    LDA.W YappingMaw.baseSpriteObjectIndex,Y
     TAX                                                                  ;A8A7FA;
-    LDA.W #$0000                                                         ;A8A7FB;
-    STA.L SpriteObjects_InstListPointers,X                               ;A8A7FE;
-    PLX                                                                  ;A8A802;
+    STZ.W SpriteObjects_InstListPointers,X
     LDA.W PoseInputHandler                                               ;A8A803;
     CMP.W #SamusPoseInputHandler_Demo                                    ;A8A806;
     BEQ .notDemo                                                         ;A8A809;
@@ -4295,9 +4250,10 @@ EnemyShot_YappingMaw:
     STA.W PoseInputHandler                                               ;A8A80E;
 
   .notDemo:
-    LDA.W #$0000                                                         ;A8A811;
-    STA.L YappingMaw.grabbingSamusFlag,X                                 ;A8A814;
-    BRA .return                                                          ;A8A818;
+    TYX
+    STZ.W YappingMaw.grabbingSamusFlag,X                                 ;A8A814;
+    PLB
+    RTL
 
   .alive:
     LDA.W Enemy.freezeTimer,X                                            ;A8A81A;
@@ -4933,16 +4889,12 @@ InstList_Magdollite_Slave2_PillarCap:
 
 ;;; $AE12: Instruction - queue sound [[Y]], sound library 2, max queued sounds allowed = 6, if enemy is on-screen ;;;
 Instruction_Magdollite_QueueSFXInY_Lib2_Max6_IfOnScreen:
-    PHX                                                                  ;A8AE12;
-    PHY                                                                  ;A8AE13;
     JSL.L CheckIfEnemyCenterIsOnScreen                                   ;A8AE14;
-    BNE .offScreen                                                       ;A8AE18;
+    BMI .offScreen
     LDA.W $0000,Y                                                        ;A8AE1A;
-    JSL.L QueueSound_Lib2_Max6                                           ;A8AE1D;
+    JML QueueSound_Lib2_Max6
 
   .offScreen:
-    PLY                                                                  ;A8AE21;
-    PLX                                                                  ;A8AE22;
     INY                                                                  ;A8AE23;
     INY                                                                  ;A8AE24;
     RTL                                                                  ;A8AE25;
@@ -4950,7 +4902,6 @@ Instruction_Magdollite_QueueSFXInY_Lib2_Max6_IfOnScreen:
 
 ;;; $AE26: Instruction - move head down 2px ;;;
 Instruction_Magdollite_MoveDown2Pixels:
-    LDX.B EnemyIndex                                                     ;A8AE26;
     INC.W Enemy.YPosition,X                                              ;A8AE29;
     INC.W Enemy.YPosition,X                                              ;A8AE2C;
     RTL                                                                  ;A8AE2F;
@@ -4958,7 +4909,6 @@ Instruction_Magdollite_MoveDown2Pixels:
 
 ;;; $AE30: Instruction - move head up 2px ;;;
 Instruction_Magdollite_MoveUp2Pixels:
-    LDX.B EnemyIndex                                                     ;A8AE30;
     DEC.W Enemy.YPosition,X                                              ;A8AE33;
     DEC.W Enemy.YPosition,X                                              ;A8AE36;
     RTL                                                                  ;A8AE39;
@@ -4966,7 +4916,6 @@ Instruction_Magdollite_MoveUp2Pixels:
 
 ;;; $AE3A: Instruction - set animation active flag ;;;
 Instruction_Magdollite_SetWaitingFlag:
-    LDX.B EnemyIndex                                                     ;A8AE3A;
     LDA.W #$0001                                                         ;A8AE3D;
     STA.L Magdollite.animationActiveFlag,X                               ;A8AE40;
     RTL                                                                  ;A8AE44;
@@ -4974,7 +4923,6 @@ Instruction_Magdollite_SetWaitingFlag:
 
 ;;; $AE45: Instruction - clear animation active flag ;;;
 Instruction_Magdollite_ResetWaitingFlag:
-    LDX.B EnemyIndex                                                     ;A8AE45;
     LDA.W #$0000                                                         ;A8AE48;
     STA.L Magdollite.animationActiveFlag,X                               ;A8AE4B;
     RTL                                                                  ;A8AE4F;
@@ -4982,7 +4930,6 @@ Instruction_Magdollite_ResetWaitingFlag:
 
 ;;; $AE50: Instruction - move head + arm up 1px ;;;
 Instruction_Magdollite_MoveBaseAndPillarUp1Pixel:
-    LDX.B EnemyIndex                                                     ;A8AE50;
     DEC.W Enemy.YPosition,X                                              ;A8AE53;
     DEC.W Enemy[1].YPosition,X                                           ;A8AE56;
     RTL                                                                  ;A8AE59;
@@ -4990,7 +4937,6 @@ Instruction_Magdollite_MoveBaseAndPillarUp1Pixel:
 
 ;;; $AE5A: Instruction - move head + arm down 1px ;;;
 Instruction_Magdollite_MoveBaseAndPillarDown1Pixel:
-    LDX.B EnemyIndex                                                     ;A8AE5A;
     INC.W Enemy.YPosition,X                                              ;A8AE5D;
     INC.W Enemy[1].YPosition,X                                           ;A8AE60;
     RTL                                                                  ;A8AE63;
@@ -4998,7 +4944,6 @@ Instruction_Magdollite_MoveBaseAndPillarDown1Pixel:
 
 ;;; $AE64: Instruction - set submerged head + arm position, make arm + hand visible ;;;
 Instruction_Magdollite_MoveDownBy18Pixels_SetSlavesAsVisible:
-    LDX.B EnemyIndex                                                     ;A8AE64;
     LDA.L Magdollite.YSpawnPosition,X                                    ;A8AE67;
     CLC                                                                  ;A8AE6B;
     ADC.W #$0018                                                         ;A8AE6C;
@@ -5015,7 +4960,6 @@ Instruction_Magdollite_MoveDownBy18Pixels_SetSlavesAsVisible:
 
 ;;; $AE88: Instruction - reset head + arm position ;;;
 Instruction_Magdollite_RestoreInitialYPositions:
-    LDX.B EnemyIndex                                                     ;A8AE88;
     LDA.L Magdollite.YSpawnPosition,X                                    ;A8AE8B;
     STA.W Enemy.YPosition,X                                              ;A8AE8F;
     STA.W Enemy[1].YPosition,X                                           ;A8AE92;
@@ -5024,7 +4968,6 @@ Instruction_Magdollite_RestoreInitialYPositions:
 
 ;;; $AE96: Instruction - set emerged head + arm position, make arm + hand invisible ;;;
 Instruction_Magdollite_MoveDown4Pixels_SetSlavesAsInvisible:
-    LDX.B EnemyIndex                                                     ;A8AE96;
     LDA.L Magdollite.YSpawnPosition,X                                    ;A8AE99;
     CLC                                                                  ;A8AE9D;
     ADC.W #$0004                                                         ;A8AE9E;
@@ -5042,7 +4985,6 @@ Instruction_Magdollite_MoveDown4Pixels_SetSlavesAsInvisible:
 ;;; $AEBA: Instruction - spawn magdollite lava enemy projectile ;;;
 Instruction_Magdollite_SpawnLavaProjectile:
     PHY                                                                  ;A8AEBA;
-    LDX.B EnemyIndex                                                     ;A8AEBB;
     LDY.W #EnemyProjectile_Magdollite                                    ;A8AEBE;
     LDA.W Magdollite.handDirection,X                                     ;A8AEC1;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A8AEC4;
@@ -5052,7 +4994,6 @@ Instruction_Magdollite_SpawnLavaProjectile:
 
 ;;; $AECA: Instruction - set open hand position - facing right ;;;
 Instruction_Magdollite_ShiftRight8Pixels_Up4Pixels_FaceRight:
-    LDX.B EnemyIndex                                                     ;A8AECA;
     LDA.L Magdollite.throwXPosition,X                                    ;A8AECD;
     CLC                                                                  ;A8AED1;
     ADC.W #$0008                                                         ;A8AED2;
@@ -5066,7 +5007,6 @@ Instruction_Magdollite_ShiftRight8Pixels_Up4Pixels_FaceRight:
 
 ;;; $AEE4: Instruction - set open hand position - facing left ;;;
 Instruction_Magdollite_ShiftLeft8Pixels_Up4Pixels_FacingLeft:
-    LDX.B EnemyIndex                                                     ;A8AEE4;
     LDA.L Magdollite.throwXPosition,X                                    ;A8AEE7;
     CLC                                                                  ;A8AEEB;
     ADC.W #$FFF8                                                         ;A8AEEC;
@@ -5080,7 +5020,6 @@ Instruction_Magdollite_ShiftLeft8Pixels_Up4Pixels_FacingLeft:
 
 ;;; $AEFE: Instruction - set closed hand position - facing right ;;;
 Instruction_Magdollite_ShiftRight8Pixels_Up4Pixels_Right_dup:
-    LDX.B EnemyIndex                                                     ;A8AEFE;
     LDA.L Magdollite.throwXPosition,X                                    ;A8AF01;
     CLC                                                                  ;A8AF05;
     ADC.W #$0008                                                         ;A8AF06;
@@ -5094,7 +5033,6 @@ Instruction_Magdollite_ShiftRight8Pixels_Up4Pixels_Right_dup:
 
 ;;; $AF18: Instruction - set closed hand position - facing left ;;;
 Instruction_Magdollite_ShiftLeft8Pixels_Up4Pixels_Left_dup:
-    LDX.B EnemyIndex                                                     ;A8AF18;
     LDA.L Magdollite.throwXPosition,X                                    ;A8AF1B;
     CLC                                                                  ;A8AF1F;
     ADC.W #$FFF8                                                         ;A8AF20;
@@ -5108,7 +5046,6 @@ Instruction_Magdollite_ShiftLeft8Pixels_Up4Pixels_Left_dup:
 
 ;;; $AF44: Instruction - reset cooldown timer ;;;
 Instruction_Magdollite_SetCooldownTimerTo100:
-    LDX.B EnemyIndex                                                     ;A8AF44;
     LDA.W #regional($0100, $00CC)                                        ;A8AF47;
     STA.L Magdollite.cooldownTimer,X                                     ;A8AF4A;
     RTL                                                                  ;A8AF4E;
@@ -5144,7 +5081,7 @@ MagdolliteYOffsetAimingAtSamus:
 
 ;;; $AF8B: Initialisation AI - enemy $E83F (magdollite) ;;;
 InitAI_Magdollite:
-    LDX.B EnemyIndex                                                     ;A8AF8B;
+    TYX
     LDA.W Enemy.init0,X                                                  ;A8AF8E;
     ASL                                                                  ;A8AF91;
     TAX                                                                  ;A8AF92;
@@ -13079,7 +13016,6 @@ Function_KihunterWings_Falling_DriftingLeft:
     STA.W Temp_Radius                                                    ;A8F7F9;
     LDA.W KihunterWings.arcAngle,X                                       ;A8F7FC;
     XBA                                                                  ;A8F7FF;
-    AND.W #$00FF                                                         ;A8F800;
     JSL.L EightBitNegativeSineMultiplication_A0B0C6                      ;A8F803;
     SEC                                                                  ;A8F807;
     SBC.L KihunterWings.leftArcCenterYOffset,X                           ;A8F808;
@@ -13091,7 +13027,6 @@ Function_KihunterWings_Falling_DriftingLeft:
     STA.W Temp_Radius                                                    ;A8F81A;
     LDA.W KihunterWings.arcAngle,X                                       ;A8F81D;
     XBA                                                                  ;A8F820;
-    AND.W #$00FF                                                         ;A8F821;
     JSL.L EightBitCosineMultiplication_A0B0B2                            ;A8F824;
     SEC                                                                  ;A8F828;
     SBC.L KihunterWings.leftArcCenterXOffset,X                           ;A8F829;
@@ -13121,15 +13056,13 @@ DetermineFallingKihunterWingsLeftArcCenterOffsets:
     LDA.W KihunterConstants_fallingWingsArcRadius                        ;A8F854;
     AND.W #$00FF                                                         ;A8F857;
     STA.W Temp_Radius                                                    ;A8F85A;
-    LDA.W #$E000                                                         ;A8F85D;
-    XBA                                                                  ;A8F860;
+    LDA.W #$00E0
     JSL.L EightBitCosineMultiplication_A0B0B2                            ;A8F861;
     STA.L KihunterWings.leftArcCenterXOffset,X                           ;A8F865;
     LDA.W KihunterConstants_fallingWingsArcRadius                        ;A8F869;
     AND.W #$00FF                                                         ;A8F86C;
     STA.W Temp_Radius                                                    ;A8F86F;
-    LDA.W #$E000                                                         ;A8F872;
-    XBA                                                                  ;A8F875;
+    LDA.W #$00E0
     JSL.L EightBitNegativeSineMultiplication_A0B0C6                      ;A8F876;
     STA.L KihunterWings.leftArcCenterYOffset,X                           ;A8F87A;
     RTS                                                                  ;A8F87E;
@@ -13141,15 +13074,13 @@ DetermineFallingKihunterWingsRightArcCenterOffsets:
     LDA.W KihunterConstants_fallingWingsArcRadius                        ;A8F882;
     AND.W #$00FF                                                         ;A8F885;
     STA.W Temp_Radius                                                    ;A8F888;
-    LDA.W #$A000                                                         ;A8F88B;
-    XBA                                                                  ;A8F88E;
+    LDA.W #$00A0
     JSL.L EightBitCosineMultiplication_A0B0B2                            ;A8F88F;
     STA.L KihunterWings.rightArcCenterXOffset,X                          ;A8F893;
     LDA.W KihunterConstants_fallingWingsArcRadius                        ;A8F897;
     AND.W #$00FF                                                         ;A8F89A;
     STA.W Temp_Radius                                                    ;A8F89D;
-    LDA.W #$A000                                                         ;A8F8A0;
-    XBA                                                                  ;A8F8A3;
+    LDA.W #$00A0
     JSL.L EightBitNegativeSineMultiplication_A0B0C6                      ;A8F8A4;
     STA.L KihunterWings.rightArcCenterYOffset,X                          ;A8F8A8;
     RTS                                                                  ;A8F8AC;
@@ -13174,7 +13105,6 @@ Function_KihunterWings_Falling_DriftingRight:
     STA.W Temp_Radius                                                    ;A8F8CB;
     LDA.W KihunterWings.arcAngle,X                                       ;A8F8CE;
     XBA                                                                  ;A8F8D1;
-    AND.W #$00FF                                                         ;A8F8D2;
     JSL.L EightBitNegativeSineMultiplication_A0B0C6                      ;A8F8D5;
     SEC                                                                  ;A8F8D9;
     SBC.L KihunterWings.rightArcCenterYOffset,X                          ;A8F8DA;
@@ -13191,7 +13121,6 @@ Function_KihunterWings_Falling_DriftingRight:
     STA.W Temp_Radius                                                    ;A8F8F7;
     LDA.W KihunterWings.arcAngle,X                                       ;A8F8FA;
     XBA                                                                  ;A8F8FD;
-    AND.W #$00FF                                                         ;A8F8FE;
     JSL.L EightBitCosineMultiplication_A0B0B2                            ;A8F901;
     SEC                                                                  ;A8F905;
     SBC.L KihunterWings.rightArcCenterXOffset,X                          ;A8F906;

@@ -2909,30 +2909,28 @@ MiniKraidSpitVelocityTable_rightward_Y2:
 
 ;;; $9A58: Initialisation AI - enemy $E0FF (fake Kraid) ;;;
 InitAI_MiniKraid:
-    LDX.B EnemyIndex                                                     ;A69A58;
+    TYX
     LDA.B RandomNumberSeed                                               ;A69A5B;
     AND.W #$0003                                                         ;A69A5E;
-    CLC                                                                  ;A69A61;
-    ADC.W #$0002                                                         ;A69A62;
+    INC
+    INC
     STA.W MiniKraid.stepCounter,X                                        ;A69A65;
     STA.W MiniKraid.spitTimer,X                                          ;A69A68;
-    CLC                                                                  ;A69A6B;
-    ADC.W #$0040                                                         ;A69A6C;
+    ORA.W #$0040
     STA.L MiniKraid.topSpikeTimer,X                                      ;A69A6F;
     CLC                                                                  ;A69A73;
     ADC.W #$0020                                                         ;A69A74;
     STA.L MiniKraid.middleSpikeTimer,X                                   ;A69A77;
-    CLC                                                                  ;A69A7B;
     ADC.W #$FFD0                                                         ;A69A7C;
     STA.L MiniKraid.bottomSpikeTimer,X                                   ;A69A7F;
     LDA.W #$0000                                                         ;A69A83;
     STA.L MiniKraid.spikeTimerIndex,X                                    ;A69A86;
-    LDA.W Enemy.properties,X                                             ;A69A8A;
-    ORA.W #$2000                                                         ;A69A8D;
-    STA.W Enemy.properties,X                                             ;A69A90;
-    LDA.W #$0001                                                         ;A69A93;
+    INC
     STA.W Enemy.instTimer,X                                              ;A69A96;
     STZ.W Enemy.loopCounter,X                                            ;A69A99;
+    LDA.W Enemy.properties,X
+    ORA.W #$2000
+    STA.W Enemy.properties,X
     LDA.W #$FFFC                                                         ;A69A9C;
     STA.W MiniKraid.XVelocity,X                                          ;A69A9F;
     STA.W MiniKraid.direction,X                                          ;A69AA2;
@@ -2954,7 +2952,6 @@ InitAI_MiniKraid:
 
 ;;; $9AC2: Main AI - enemy $E0FF (fake Kraid) ;;;
 MainAI_MiniKraid:
-    LDX.B EnemyIndex                                                     ;A69AC2;
     LDA.L MiniKraid.spikeTimerIndex,X                                    ;A69AC5;
     TAY                                                                  ;A69AC9;
     INC                                                                  ;A69ACA;
@@ -2963,16 +2960,13 @@ MainAI_MiniKraid:
     BMI +                                                                ;A69ACF;
     LDA.W #$0000                                                         ;A69AD1;
 
-+   STA.L MiniKraid.spikeTimerIndex,X                                    ;A69AD4;
-    JSR.W HandleMiniKraidSpike                                           ;A69AD8;
-    RTL                                                                  ;A69ADB;
++   STA.L MiniKraid.spikeTimerIndex,X                                    ;A69AD4; fallthrough to HandleMiniKraidSpike
 
 
 ;;; $9ADC: Handle fake Kraid spike ;;;
 HandleMiniKraidSpike:
 ;; Parameters:
 ;;     Y: Spike timer index
-    PHX                                                                  ;A69ADC;
     TYA                                                                  ;A69ADD;
     STX.B DP_Temp12                                                      ;A69ADE;
     CLC                                                                  ;A69AE0;
@@ -2982,8 +2976,7 @@ HandleMiniKraidSpike:
     BEQ .timerExpired                                                    ;A69AE8;
     DEC                                                                  ;A69AEA;
     STA.L MiniKraid.topSpikeTimer,X                                      ;A69AEB;
-    PLX                                                                  ;A69AEF;
-    RTS                                                                  ;A69AF0;
+    RTL
 
   .timerExpired:
     LDA.B RandomNumberSeed                                               ;A69AF1;
@@ -2992,7 +2985,7 @@ HandleMiniKraidSpike:
     ADC.W #$0010                                                         ;A69AF8;
     STA.L MiniKraid.topSpikeTimer,X                                      ;A69AFB;
     TYA                                                                  ;A69AFF;
-    PLX                                                                  ;A69B00;
+    LDX.B EnemyIndex
     STA.L MiniKraid.spikeIndex,X                                         ;A69B01;
     LDY.W #EnemyProjectile_MiniKraidSpikes_Left                          ;A69B05;
     LDA.W MiniKraid.direction,X                                          ;A69B08;
@@ -3002,18 +2995,17 @@ HandleMiniKraidSpike:
   .keepLeft:
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A69B10;
     JSL.L CheckIfEnemyCenterIsOnScreen                                   ;A69B14;
-    BNE .return                                                          ;A69B1C;
+    BMI .return
     LDA.W #$003F                                                         ;A69B1E;
-    JSL.L QueueSound_Lib2_Max6                                           ;A69B21;
+    JML QueueSound_Lib2_Max6
 
   .return:
-    RTS                                                                  ;A69B25;
+    RTL
 
 
 ;;; $9B26: Instruction - move ;;;
 Instruction_MiniKraid_Move:
     PHY                                                                  ;A69B26;
-    LDX.B EnemyIndex                                                     ;A69B27;
     LDA.W MiniKraid.spitTimer,X                                          ;A69B2A;
     BEQ +                                                                ;A69B2D;
     DEC.W MiniKraid.spitTimer,X                                          ;A69B2F;
@@ -3057,7 +3049,6 @@ Instruction_MiniKraid_Move:
 
 ;;; $9B74: Instruction - choose action ;;;
 Instruction_MiniKraid_ChooseAction:
-    LDX.B EnemyIndex                                                     ;A69B74;
     LDA.W MiniKraid.spitTimer,X                                          ;A69B77;
     BNE .step                                                            ;A69B7A;
     LDA.B RandomNumberSeed                                               ;A69B7C;
@@ -3092,11 +3083,10 @@ Instruction_MiniKraid_ChooseAction:
 
 ;;; $9BB2: Instruction - play fake Kraid cry ;;;
 Instruction_MiniKraid_PlayCrySFX:
-; Another AND instruction typo (see HandleMiniKraidSpike)
     JSL.L CheckIfEnemyCenterIsOnScreen                                   ;A69BB2;
-    BNE .return                                                          ;A69BBA;
+    BMI .return
     LDA.W #$0016                                                         ;A69BBC;
-    JSL.L QueueSound_Lib2_Max6                                           ;A69BBF;
+    JML QueueSound_Lib2_Max6
 
   .return:
     RTL                                                                  ;A69BC3;
@@ -3114,7 +3104,6 @@ FireMiniKraidSpit_Common:
 ;; Parameters:
 ;;     A: Spit X offset
 ;;     Y: Spit velocity table index
-    LDX.B EnemyIndex                                                     ;A69BCB;
     PHY                                                                  ;A69BCE;
     STA.L MiniKraid.spitXOffset,X                                        ;A69BD0;
     LDA.W MiniKraidSpitVelocityTable_leftward_X1,Y                       ;A69BD4;
@@ -3124,7 +3113,6 @@ FireMiniKraidSpit_Common:
     LDY.W #EnemyProjectile_MiniKraidSpit                                 ;A69BE2;
     JSL.L SpawnEnemyProjectileY_ParameterA_XGraphics                     ;A69BE5;
     PLY                                                                  ;A69BEA;
-    LDX.B EnemyIndex
     LDA.W MiniKraidSpitVelocityTable_leftward_X2,Y                       ;A69BEB;
     STA.L MiniKraid.spitXVelocity,X                                      ;A69BEE;
     LDA.W MiniKraidSpitVelocityTable_leftward_Y2,Y                       ;A69BF2;
@@ -3145,7 +3133,7 @@ Instruction_MiniKraid_FireSpitRight:
 
 ;;; $9C22: Enemy touch - enemy $E0FF (fake Kraid) ;;;
 EnemyTouch_MiniKraid:
-    LDX.B EnemyIndex                                                     ;A69C22;
+    TYX
     LDA.W Enemy.XPosition,X                                              ;A69C25;
     STA.L EnemyProjectileData_SpecialDeathItemDropXOriginPosition        ;A69C28;
     LDA.W Enemy.YPosition,X                                              ;A69C2C;
@@ -3158,7 +3146,6 @@ EnemyTouch_MiniKraid:
 EnemyShot_PowerBombReaction_MiniKraid:
 ; Bug: the power bomb reaction should be pointing to UNUSED_PowerBombReaction_MiniKraid_A69C0B
 ; When this routine is called for power bomb reaction, $A0:A6A7 is called with garbage for the projectile index (CollisionIndex)
-    LDX.B EnemyIndex                                                     ;A69C39;
     LDA.W Enemy.XPosition,X                                              ;A69C3C;
     STA.L EnemyProjectileData_SpecialDeathItemDropXOriginPosition        ;A69C3F;
     LDA.W Enemy.YPosition,X                                              ;A69C43;
@@ -3459,43 +3446,33 @@ InitAI_Ridley:
     RTL                                                                  ;A6A10D;
 
   .notDead:
-    PHB                                                                  ;A6A10E;
-    PEA.W RidleyTail.active>>16<<8|RidleyTail.active>>16                 ;A6A10F;
-    PLB                                                                  ;A6A112;
-    PLB                                                                  ;A6A113;
-    LDA.W #$0000                                                         ;A6A114;
-    LDX.W #$0FFE                                                         ;A6A117;
-
-  .loopClearExtraRAM:
-    STA.W Ridley.tailFunctionIndex,X                                     ;A6A11A;
-    DEX                                                                  ;A6A11D;
-    DEX                                                                  ;A6A11E;
-    BPL .loopClearExtraRAM                                               ;A6A11F;
-    PLB                                                                  ;A6A121;
     JSL.L DisableMinimap_MarkBossRoomTilesExplored                       ;A6A122;
-    STZ.W Enemy.init0                                                    ;A6A126;
-    STZ.W Enemy.init1                                                    ;A6A129;
     LDA.W #InstList_Ridley_FacingLeft_Initial                            ;A6A12C;
-    JSR.W SetRidleyInstList                                              ;A6A12F;
+    STA.W Enemy.instList
+    LDA.W #$0001
+    STA.W Enemy.instTimer
+    STA.L Ridley.ribsAnimationTimer
+    DEC
+    STA.L Ridley.fightMode
+    STA.L RidleyCeres.hitCounter
+    STA.W Enemy.loopCounter
     LDA.W #$0E00                                                         ;A6A132;
     STA.W Enemy.palette                                                  ;A6A135;
     STA.L Ridley.spritemapPaletteIndex                                   ;A6A138;
     LDA.W Enemy.properties2                                              ;A6A13C;
     ORA.W #$0004                                                         ;A6A13F;
     STA.W Enemy.properties2                                              ;A6A142;
-    LDA.W #$0000                                                         ;A6A145;
-    STA.L Ridley.fightMode                                               ;A6A148;
-    STA.L RidleyCeres.hitCounter                                         ;A6A14C;
-    STZ.W EarthquakeType                                                 ;A6A150;
-    STZ.W EarthquakeTimer                                                ;A6A153;
     JSR.W InitializeTailParts                                            ;A6A156;
-    JSR.W InitializeRidleyRibsAnimation                                  ;A6A159;
+    LDA.W #RidleyRibsAnimationTable
+    STA.L Ridley.ribsAnimationTablePointer
     LDA.W AreaIndex                                                      ;A6A15C;
     CMP.W #$0002                                                         ;A6A15F;
-    BEQ .norfair                                                         ;A6A162;
-    JMP.W .ceres                                                         ;A6A164;
+    BNE .ceres
 
   .norfair:
+    STA.L Ridley.facingDirection
+    DEC
+    STA.L Ridley.movementAnimationEnable
     LDA.W Enemy.properties                                               ;A6A167;
     ORA.W #$1400                                                         ;A6A16A;
     STA.W Enemy.properties                                               ;A6A16D;
@@ -3509,36 +3486,32 @@ InitAI_Ridley:
     STZ.W Ridley.YVelocity                                               ;A6A188;
     LDA.W #$0005                                                         ;A6A18B;
     STA.W Enemy.layer                                                    ;A6A18E;
-    LDA.W #$0001                                                         ;A6A191;
-    STA.L Ridley.movementAnimationEnable                                 ;A6A199;
     LDA.W #$0040                                                         ;A6A19D;
     STA.L Ridley.minYPosition                                            ;A6A1A0;
+    STA.L Ridley.minXPosition
     LDA.W #$01A0                                                         ;A6A1A4;
     STA.L Ridley.maxYPosition                                            ;A6A1A7;
-    LDA.W #$0040                                                         ;A6A1AB;
-    STA.L Ridley.minXPosition                                            ;A6A1AE;
     LDA.W #$00E0                                                         ;A6A1B2;
     STA.L Ridley.maxXPosition                                            ;A6A1B5;
-    LDA.W #$0002                                                         ;A6A1B9;
-    STA.L Ridley.facingDirection                                         ;A6A1BC;
     LDA.W #$0078                                                         ;A6A1C0;
     STA.L Ridley.tailDamage                                              ;A6A1C3;
     LDY.W #Palette_Ridley_InitialAdditionalPalettes                      ;A6A1C7;
     LDX.W #$0140                                                         ;A6A1CA;
     LDA.W #$0020                                                         ;A6A1CD;
     JSL.L WriteAColorsFromYToTargetColorIndexX                           ;A6A1D0;
-    LDX.W #$00E2                                                         ;A6A1D4;
-    LDX.W #$0000                                                         ;A6A1D7;
-    LDY.W #$000F                                                         ;A6A1DA;
-    LDA.W #$0000                                                         ;A6A1DD;
+    PHB
+    PEA.W TargetPalettes_BGP7>>8
+    PLB
+    PLB
+    LDX.W #$001E
 
   .loopClearPalettes:
-    STA.L TargetPalettes_BGP7+2,X                                        ;A6A1E0;
-    STA.L TargetPalettes_SpriteP7+2,X                                    ;A6A1E4;
-    INX                                                                  ;A6A1E8;
-    INX                                                                  ;A6A1E9;
-    DEY                                                                  ;A6A1EA;
-    BNE .loopClearPalettes                                               ;A6A1EB;
+    STZ.W TargetPalettes_BGP7+2,X
+    STZ.W TargetPalettes_SpriteP7+2,X
+    DEX
+    DEX
+    BPL .loopClearPalettes
+    PLB
     RTL                                                                  ;A6A1ED;
 
   .ceres:
@@ -3573,75 +3546,105 @@ InitAI_Ridley:
     LDX.W #$0140                                                         ;A6A248;
     LDA.W #$0020                                                         ;A6A24B;
     JSL.L WriteAColorsFromYToTargetColorIndexX                           ;A6A24E;
-    LDX.W #$01E2                                                         ;A6A252;
-    LDY.W #$000F                                                         ;A6A255;
-    LDA.W #$0000                                                         ;A6A258;
+    PHB
+    PEA.W TargetPalettes_BGP7>>8
+    PLB
+    PLB
+    LDX.W #$001E
 
   .loopClearSpritePalette7:
-    STA.L TargetPalettes_BGP0,X                                          ;A6A25B;
-    INX                                                                  ;A6A25F;
-    INX                                                                  ;A6A260;
-    DEY                                                                  ;A6A261;
+    STA.W TargetPalettes_SpriteP7+2,X
+    DEX
+    DEX
     BNE .loopClearSpritePalette7                                         ;A6A262;
     LDA.W #InstList_BabyMetroidCutscene_0                                ;A6A264;
-    STA.L RidleyCeres.BabyMetroidInstList                                ;A6A267;
-    LDA.W #$0001                                                         ;A6A26B;
-    STA.L RidleyCeres.BabyMetroidInstTimer                               ;A6A26E;
+    STA.W RidleyCeres.BabyMetroidInstList
     LDA.W #Function_BabyMetroid_HeldByRidley                             ;A6A272;
-    STA.L RidleyCeres.BabyMetroidFunction                                ;A6A275;
+    STA.W RidleyCeres.BabyMetroidFunction
     LDA.W #$0005                                                         ;A6A279;
-    STA.L RidleyCeres.wingAnimationFrame                                 ;A6A27C;
-    LDA.W #$0000                                                         ;A6A280;
-    JSL.L QueueMusicDataOrTrack_8FrameDelay                              ;A6A283;
-    RTL                                                                  ;A6A287;
+    STA.W RidleyCeres.wingAnimationFrame
+    LDA.W #$0001
+    STA.W RidleyCeres.BabyMetroidInstTimer
+    DEC
+    JML QueueMusicDataOrTrack_8FrameDelay
 
 
 ;;; $A288: Main AI - enemy $E13F (Ceres Ridley) ;;;
 MainAI_RidleyCeres:
-    LDA.W #$7FFF                                                         ;A6A288;
-    STA.W Enemy.health                                                   ;A6A28B;
-    PEA.W .manualReturn-1                                                ;A6A28E;
-    JMP.W (RidleyCeres.function)                                         ;A6A291;
-
-  .manualReturn:
+    LDX.W #$0000
+    JSR.W (RidleyCeres.function,X)
     LDA.W CeresStatus                                                    ;A6A294;
     BNE .return                                                          ;A6A297;
     LDA.L RidleyCeres.movementAnimationEnable                            ;A6A299;
     BEQ HandleBabyMetroidCapsule                                         ;A6A29D;
-    JSR.W RidleyHurtFlashHandling                                        ;A6A29F;
+;;; $D4DA: Ridley hurt flash handling ;;;
+    LDX.W #$0E00
+    LDA.W Enemy.flashTimer
+    BEQ .noFlash
+    DEC
+    BEQ .noFlash
+    LDA.W NumberOfTimesMainEnemyRoutineExecuted
+    INC
+    AND.W #$0002
+    BEQ .noFlash
+    LDX.W #$0000
+
+  .noFlash:
+    TXA
+    STA.L Ridley.spritemapPaletteIndex
     JSR.W MoveRidley                                                     ;A6A2A2;
-    JSR.W UpdateRidleyWingsAnimation                                     ;A6A2A5;
-    JSR.W RandomlyUpdateRidleyTailCurliness                              ;A6A2A8;
-    JSR.W HandleRidleyTail                                               ;A6A2AB;
-    JSR.W DetermineAndSetCeresRidleysColorPalette                        ;A6A2AE;
-    JSR.W HandleRidleyRibsAnimation                                      ;A6A2B1;
-    JSR.W DrawRidleyTail                                                 ;A6A2B4;
-    JSR.W DrawRidleyWings                                                ;A6A2B7;
+;;; $A2BD: Randomly update Ridley tail curliness ;;;
+; 1/100 chance of setting 7E:201E to 8-17 (all hex numbers)
+    LDA.B RandomNumberSeed
+    CMP.W #$FF00
+    BCC +
+    AND.W #$000F
+    ADC.W #$0007
+    STA.L Ridley.idealInterSegmentTailAngle
++   JSR.W HandleRidleyTail                                               ;A6A2AB;
+;;; $D4B5: Ceres Ridley health-based palette handling ;;;
+; Based on hit counter, strictly speaking
+    LDA.L Ridley.fightMode
+    BEQ .return
+    LDA.L RidleyCeres.hitCounter
+    CMP.W #$0032
+    BCC .return
+    LDY.W #$0000
+    CMP.W #$0046
+    BCC .paletteChosen
+    LDY.W #$0001
+    CMP.W #$005A
+    BCC .paletteChosen
+    LDY.W #$0002
+
+  .paletteChosen:
+    STY.B DP_Temp12
+    JSR.W LoadRidleyHealthBasedPalette
+    JSR.W DrawRidley
     BRA HandleBabyMetroidCapsule                                         ;A6A2BA;
 
   .return:
     RTL                                                                  ;A6A2BC;
 
 
-;;; $A2BD: Randomly update Ridley tail curliness ;;;
-RandomlyUpdateRidleyTailCurliness:
-; 1/100 chance of setting 7E:201E to 8-17 (all hex numbers)
-    LDA.B RandomNumberSeed                                               ;A6A2BD;
-    CMP.W #$FF00                                                         ;A6A2C0;
-    BCC .return                                                          ;A6A2C3;
-    AND.W #$000F                                                         ;A6A2C8;
-    ADC.W #$0007                                                         ;A6A2CB;
-    STA.L Ridley.idealInterSegmentTailAngle                              ;A6A2CE;
-
-  .return:
-    RTS                                                                  ;A6A2D2;
-
-
 ;;; $A2D3: Hurt AI - enemy $E13F (Ceres Ridley) ;;;
 HurtAI_RidleyCeres:
-    JSR.W RidleyHurtFlashHandling                                        ;A6A2D3;
-    JSR.W DrawRidleyTail                                                 ;A6A2D6;
-    JSR.W DrawRidleyWings                                                ;A6A2D9; fallthrough to HandleBabyMetroidCapsule
+;;; $D4DA: Ridley hurt flash handling ;;;
+    LDX.W #$0E00
+    LDA.W Enemy.flashTimer
+    BEQ .noFlash
+    DEC
+    BEQ .noFlash
+    LDA.W NumberOfTimesMainEnemyRoutineExecuted
+    INC
+    AND.W #$0002
+    BEQ .noFlash
+    LDX.W #$0000
+
+  .noFlash:
+    TXA
+    STA.L Ridley.spritemapPaletteIndex
+    JSR.W DrawRidley_wings                                                      ; fallthrough to HandleBabyMetroidCapsule
 
 
 ;;; $A2DC: Handle baby metroid ;;;
@@ -3858,7 +3861,11 @@ Function_Ridley_WaitToRoar:
     DEC.W Ridley.functionTimer                                           ;A6A455;
     BPL .return                                                          ;A6A458;
     LDA.W #InstList_Ridley_FacingLeft_OpeningRoar                        ;A6A45A;
-    JSR.W SetRidleyInstList                                              ;A6A45D;
+;;; $D467: Set Ridley instruction list ;;;
+    STA.W Enemy.instList
+    LDA.W #$0001
+    STA.W Enemy.instTimer
+    STZ.W Enemy.loopCounter
     STZ.W Ridley.functionTimer                                           ;A6A460;
     LDA.W #Function_Ridley_RoarBeforeFly                                 ;A6A463;
     STA.W Ridley.function                                                ;A6A466;
@@ -3902,7 +3909,11 @@ Function_Ridley_RoarBeforeFly:
   .merge:
     STZ.W Ridley.fadeInTimerIndex                                        ;A6A4B1;
     LDA.W #InstList_RidleyCeres_FacingLeft_TransitionToFlying            ;A6A4B4;
-    JSR.W SetRidleyInstList                                              ;A6A4B7;
+;;; $D467: Set Ridley instruction list ;;;
+    STA.W Enemy.instList
+    LDA.W #$0001
+    STA.W Enemy.instTimer
+    STZ.W Enemy.loopCounter
     LDA.W #$0008                                                         ;A6A4BA;
     STA.L Ridley.wingAnimationTimerDelta                                 ;A6A4BD;
     STA.L Ridley.wingAnimationTimer                                      ;A6A4C1;
@@ -4169,7 +4180,11 @@ Function_RidleyCeres_ShootFireballs_MoveToPosition:
     LDA.W Enemy.YPosition                                                ;A6A7C6;
     STA.L RidleyCeres.fireballBaseHoverYPosition                         ;A6A7C9;
     LDA.W #InstList_Ridley_FacingLeft_Fireballing_0                      ;A6A7CD;
-    JSR.W SetRidleyInstList                                              ;A6A7D0;
+;;; $D467: Set Ridley instruction list ;;;
+    STA.W Enemy.instList
+    LDA.W #$0001
+    STA.W Enemy.instTimer
+    STZ.W Enemy.loopCounter
     LDA.W #Function_RidleyCeres_ShootFireballs_Shooting                  ;A6A7D3;
     STA.W RidleyCeres.function                                           ;A6A7D6;
     LDA.W #$00E0                                                         ;A6A7D9;
@@ -4225,7 +4240,11 @@ Function_RidleyCeres_ShootFireballs_Shooting:
 ;;; $A83C: Ridley function - lunge - setup ;;;
 Function_RidleyCeres_Lunge_Setup:
     LDA.W #InstList_RidleyCeres_FacingLeft_Lunging                       ;A6A83C;
-    JSR.W SetRidleyInstList                                              ;A6A83F;
+;;; $D467: Set Ridley instruction list ;;;
+    STA.W Enemy.instList
+    LDA.W #$0001
+    STA.W Enemy.instTimer
+    STZ.W Enemy.loopCounter
     LDA.W #Function_RidleyCeres_Lunge_Main                               ;A6A842;
     STA.W RidleyCeres.function                                           ;A6A845;
     LDA.W #$0040                                                         ;A6A848;
@@ -5155,20 +5174,29 @@ MainAI_Ridley:
     STA.L Ridley.grabbedSamusMovementLagTimer                            ;A6B234;
     JSR.W HandleRidleySamusInteractionBit                                ;A6B238;
     JSR.W LungeIfPowerBombActiveAndNotHoldingSamus                       ;A6B23B;
-    PEA.W .manualReturn-1                                                ;A6B23E;
-    JMP.W (Ridley.function)                                              ;A6B241;
-
-  .manualReturn:
+    LDX.W #$0000
+    JMP.W (Ridley.function,X)
     LDA.L Ridley.movementAnimationEnable                                 ;A6B244;
     BEQ .notActiveNotHoldingSamus                                        ;A6B248;
-    JSR.W RidleyHurtFlashHandling                                        ;A6B24A;
+;;; $D4DA: Ridley hurt flash handling ;;;
+    LDX.W #$0E00
+    LDA.W Enemy.flashTimer
+    BEQ .noFlash
+    DEC
+    BEQ .noFlash
+    LDA.W NumberOfTimesMainEnemyRoutineExecuted
+    INC
+    AND.W #$0002
+    BEQ .noFlash
+    LDX.W #$0000
+
+  .noFlash:
+    TXA
+    STA.L Ridley.spritemapPaletteIndex
     JSR.W MoveRidley                                                     ;A6B24D;
-    JSR.W UpdateRidleyWingsAnimation                                     ;A6B250;
     JSR.W HandleRidleyTail                                               ;A6B253;
     JSR.W RidleyTail_vs_Projectile_CollisionHandling                     ;A6B256;
-    JSR.W DrawRidleyTail                                                 ;A6B259;
-    JSR.W DrawRidleyWings                                                ;A6B25C;
-    JSR.W HandleRidleyRibsAnimation                                      ;A6B25F;
+    JSR.W DrawRidley
     LDA.L Ridley.holdingSamus                                            ;A6B262;
     BEQ .notActiveNotHoldingSamus                                        ;A6B266;
     JSR.W MoveSamusWithRidleyFeet                                        ;A6B268;
@@ -5178,18 +5206,12 @@ MainAI_Ridley:
     RTL                                                                  ;A6B26E;
 
 
-;;; $B288: Ridley grabbed Samus movement hurt AI lag time ;;;
-RidleyGrabbedSamusMovementHurtAILagTime:
-; When hurt AI is active, if Samus is grabbed, this number of frames must pass before Samus' position is updated
-    dw $0008                                                             ;A6B288;
-
-
 ;;; $B28A: Time is frozen AI - enemy $E17F (Ridley) ;;;
 TimeIsFrozenAI_Ridley:
 ; The only time is frozen AI in the game!
     LDA.W #$0000                                                         ;A6B28A;
     STA.L Ridley.grabbedSamusMovementLagTimer                            ;A6B28D;
-    LDA.W #$0001                                                         ;A6B291;
+    INC
     STA.W Enemy.frameCounter                                             ;A6B294; fallthrough to HurtAI_Ridley
 
 
@@ -5200,32 +5222,43 @@ HurtAI_Ridley:
     BNE .noAI                                                            ;A6B29D;
     JSR.W HandleRidleySamusInteractionBit                                ;A6B29F;
     JSR.W LungeIfPowerBombActiveAndNotHoldingSamus                       ;A6B2A2;
-    PEA.W .manualReturn-1                                                ;A6B2A5;
-    JMP.W (Ridley.function)                                              ;A6B2A8;
+    LDX.W #$0000
+    JSR.W (Ridley.function,X)
 
   .manualReturn:
     LDA.L Ridley.movementAnimationEnable                                 ;A6B2AB;
     BEQ .movementAnimationDisabled                                       ;A6B2AF;
     JSR.W MoveRidley                                                     ;A6B2B1;
-    JSR.W UpdateRidleyWingsAnimation                                     ;A6B2B4;
     JSR.W HandleRidleyTail                                               ;A6B2B7;
 
   .noAI:
     JSR.W RidleyTail_vs_Projectile_CollisionHandling                     ;A6B2BA;
-    JSR.W RidleyHurtFlashHandling                                        ;A6B2BD;
-    JSR.W DrawRidleyTail                                                 ;A6B2C0;
-    JSR.W DrawRidleyWings                                                ;A6B2C3;
+;;; $D4DA: Ridley hurt flash handling ;;;
+    LDX.W #$0E00
+    LDA.W Enemy.flashTimer
+    BEQ .noFlash
+    DEC
+    BEQ .noFlash
+    LDA.W NumberOfTimesMainEnemyRoutineExecuted
+    INC
+    AND.W #$0002
+    BEQ .noFlash
+    LDX.W #$0000
+
+  .noFlash:
+    TXA
+    STA.L Ridley.spritemapPaletteIndex
+    JSR.W DrawRidley
     JSR.W NorfairRidleyHealthBasedPaletteHandling                        ;A6B2C6;
-    JSR.W HandleRidleyRibsAnimation                                      ;A6B2C9;
     LDA.L Ridley.grabbedSamusMovementLagTimer                            ;A6B2CC;
     CLC                                                                  ;A6B2D0;
     ADC.W #$0001                                                         ;A6B2D1;
-    CMP.W RidleyGrabbedSamusMovementHurtAILagTime                        ;A6B2D4;
+    CMP.W #$0008
     BMI +                                                                ;A6B2D7;
-    LDA.W RidleyGrabbedSamusMovementHurtAILagTime                        ;A6B2D9;
+    LDA.W #$0008
 
 +   STA.L Ridley.grabbedSamusMovementLagTimer                            ;A6B2DC;
-    CMP.W RidleyGrabbedSamusMovementHurtAILagTime                        ;A6B2E4;
+    CMP.W #$0008
     BMI .return                                                          ;A6B2E7;
 
   .movementAnimationDisabled:
@@ -5753,7 +5786,11 @@ RidleyHoverMovement:
     DEC                                                                  ;A6B67E;
     BEQ .returnSamusSpinJumping                                          ;A6B67F;
     LDA.W #InstList_Ridley_FacingLeft_Fireballing_0                      ;A6B681;
-    JSR.W SetRidleyInstList                                              ;A6B684;
+;;; $D467: Set Ridley instruction list ;;;
+    STA.W Enemy.instList
+    LDA.W #$0001
+    STA.W Enemy.instTimer
+    STZ.W Enemy.loopCounter
 
   .returnSamusSpinJumping:
     CLC                                                                  ;A6B687;
@@ -5835,7 +5872,10 @@ Function_Ridley_Pogo_Descending:
 ; Main tailbouncing
     JSR.W CheckIfSamusIsGrabbable                                        ;A6B70E;
     BCC .grabFailed                                                      ;A6B711;
-    JSR.W SetNeutralRidleyTail                                           ;A6B713;
+;;; $B84D: Set neutral Ridley tail ;;;
+    LDA.W #$0001
+    STA.L Ridley.tailFunctionIndex
+    STA.L Ridley.tailAngleDelta
     JMP.W RidleyGrabsSamusFromPogo                                       ;A6B716;
 
   .return:
@@ -5891,7 +5931,11 @@ Function_Ridley_Pogo_Descending:
     DEC                                                                  ;A6B7A2;
     BEQ .RidleyTurning                                                   ;A6B7A3;
     LDA.W #InstList_Ridley_FacingLeft_Fireballing_0                      ;A6B7A5;
-    JSR.W SetRidleyInstList                                              ;A6B7A8;
+;;; $D467: Set Ridley instruction list ;;;
+    STA.W Enemy.instList
+    LDA.W #$0001
+    STA.W Enemy.instTimer
+    STZ.W Enemy.loopCounter
 
   .RidleyTurning:
     LDA.W #$0000                                                         ;A6B7AB;
@@ -5923,7 +5967,10 @@ Function_Ridley_Pogo_Ascending:
     RTS                                                                  ;A6B7DC;
 
   .finishPogo:
-    JSR.W SetNeutralRidleyTail                                           ;A6B7DD;
+;;; $B84D: Set neutral Ridley tail ;;;
+    LDA.W #$0001
+    STA.L Ridley.tailFunctionIndex
+    STA.L Ridley.tailAngleDelta
     LDA.W #Function_Ridley_DecideAction                                  ;A6B7E0;
     STA.W Ridley.function                                                ;A6B7E3;
     RTS                                                                  ;A6B7E6;
@@ -5978,14 +6025,6 @@ CheckForTailCollisionWithFloor:
     RTS                                                                  ;A6B84C;
 
 
-;;; $B84D: Set neutral Ridley tail ;;;
-SetNeutralRidleyTail:
-    LDA.W #$0001                                                         ;A6B84D;
-    STA.L Ridley.tailFunctionIndex                                       ;A6B850;
-    STA.L Ridley.tailAngleDelta                                          ;A6B854;
-    RTS                                                                  ;A6B858;
-
-
 ;;; $B859: Check if Samus is grabbable ;;;
 CheckIfSamusIsGrabbable:
 ;; Returns:
@@ -6036,7 +6075,10 @@ RidleyGrabsSamusFromPogo:
     LDA.W #$FE00                                                         ;A6B897;
 
 +   STA.W Ridley.YVelocity                                               ;A6B89A;
-    JSR.W SetNeutralRidleyTail                                           ;A6B89D;
+;;; $B84D: Set neutral Ridley tail ;;;
+    LDA.W #$0001
+    STA.L Ridley.tailFunctionIndex
+    STA.L Ridley.tailAngleDelta
     LDA.W #Function_Ridley_GrabbedSamus_Setup                            ;A6B8A0;
     STA.W Ridley.function                                                ;A6B8A3;
     JMP.W Function_Ridley_GrabbedSamus_Setup                             ;A6B8A6;
@@ -6287,8 +6329,20 @@ RidleyLungeMissedSamus:
     LDA.L Ridley.deathLungeCounter                                       ;A6BA85;
     CMP.W #$000A                                                         ;A6BA89;
     BMI .notDead                                                         ;A6BA8C;
-    JSL.L StartNorfairRidleyDeathSequence                                ;A6BA8E;
-    LDA.W #Function_Ridley_DeathSequence_DeathRoar                       ;A6BA92;
+;;; $DFB7: Start Norfair Ridley death sequence ;;;
+    LDA.W Enemy.health
+    BNE +
+    LDA.L Ridley.fightMode
+    BMI +
+    LDA.W #$FFFF
+    STA.L Ridley.fightMode
+    LDA.W Enemy.properties
+    ORA.W #$0400
+    STA.W Enemy.properties
+    LDA.W #Function_Ridley_Dying_GrabbedSamus
+    STA.W Ridley.function
+
++   LDA.W #Function_Ridley_DeathSequence_DeathRoar                       ;A6BA92;
     STA.W Ridley.function                                                ;A6BA95;
     JMP.W Function_Ridley_DeathSequence_DeathRoar                        ;A6BA98;
 
@@ -6305,6 +6359,9 @@ RidleyLungeMissedSamus:
     LDA.W #$0001                                                         ;A6BAAF;
     STA.L Ridley.tailWhipRequest                                         ;A6BAB2;
     RTS                                                                  ;A6BAB6;
+
+  .bridge:
+    BRA RidleyLungeMissedSamus
 
 
 ;;; $BAB7: Ridley action / function - lunge ;;;
@@ -6338,7 +6395,7 @@ Function_Ridley_Action_Lunge:
     ADC.W #$0023                                                         ;A6BAEB;
     SEC                                                                  ;A6BAEE;
     SBC.B SamusYPosition                                                 ;A6BAEF;
-    BPL RidleyLungeMissedSamus                                           ;A6BAF2;
+    BPL RidleyLungeMissedSamus_bridge
     LDX.W #$FFF0                                                         ;A6BAF4;
     LDA.L Ridley.facingDirection                                         ;A6BAF7;
     BEQ .facingLeft                                                      ;A6BAFB;
@@ -6407,8 +6464,20 @@ Function_Ridley_Action_Lunge:
     JSR.W GrabSamus                                                      ;A6BB7F;
 
   .holdingSamus:
-    JSL.L StartNorfairRidleyDeathSequence                                ;A6BB82;
-    LDA.W #Function_Ridley_Dying_GrabbedSamus                            ;A6BB86;
+;;; $DFB7: Start Norfair Ridley death sequence ;;;
+    LDA.W Enemy.health
+    BNE +
+    LDA.L Ridley.fightMode
+    BMI +
+    LDA.W #$FFFF
+    STA.L Ridley.fightMode
+    LDA.W Enemy.properties
+    ORA.W #$0400
+    STA.W Enemy.properties
+    LDA.W #Function_Ridley_Dying_GrabbedSamus
+    STA.W Ridley.function
+
++   LDA.W #Function_Ridley_Dying_GrabbedSamus                            ;A6BB86;
     STA.W Ridley.function                                                ;A6BB89;
     JMP.W Function_Ridley_Dying_GrabbedSamus                             ;A6BB8C;
 
@@ -6583,8 +6652,29 @@ HandleRidleySamusInteractionBit:
     LDA.L Ridley.fightMode                                               ;A6BCB4;
     BMI .return                                                          ;A6BCB8;
     BEQ .noTangibilityUpdate                                             ;A6BCBA;
-    JSR.W CheckIfRidleyIsOnScreen                                        ;A6BCBC;
-    BCC .onScreen                                                        ;A6BCBF;
+;;; $DE7A: Check if Ridley is on screen ;;;
+;; Returns:
+;;     Carry: Clear if Ridley is on screen, set otherwise
+    LDA.W Enemy.YPosition
+    BMI .offScreen
+    CLC
+    ADC.W #$0020
+    SEC
+    SBC.B Layer1YPosition
+    BMI .offScreen
+    CMP.W #$0120
+    BPL .offScreen
+    LDA.W Enemy.XPosition
+    BMI .offScreen
+    CLC
+    ADC.W #$0020
+    SEC
+    SBC.B Layer1XPosition
+    BMI .offScreen
+    CMP.W #$0140
+    BMI .onScreen
+
+  .offScreen:
     LDA.W Enemy.properties                                               ;A6BCC1;
     ORA.W #$0400                                                         ;A6BCC4;
     STA.W Enemy.properties                                               ;A6BCC7;
@@ -6693,7 +6783,10 @@ LungeIfPowerBombActiveAndNotHoldingSamus:
     BEQ .return                                                          ;A6BD3C;
     LDA.L Ridley.holdingSamus                                            ;A6BD3E;
     BNE .return                                                          ;A6BD42;
-    JSR.W SetNeutralRidleyTail                                           ;A6BD44;
+;;; $B84D: Set neutral Ridley tail ;;;
+    LDA.W #$0001
+    STA.L Ridley.tailFunctionIndex
+    STA.L Ridley.tailAngleDelta
     LDY.W #Function_Ridley_Action_Lunge                                  ;A6BD47;
     STY.W Ridley.function                                                ;A6BD4A;
 
@@ -6788,7 +6881,11 @@ Function_RidleyCeres_FakeRetreat_Function_BabyMetroid_StartFalling:
     DEC.W RidleyCeres.functionTimer                                      ;A6BDF2;
     BPL Function_RidleyCeres_FakeRetreat_RetrieveBabyMetroid_return      ;A6BDF5;
     LDA.W #InstList_RidleyCeres_RetrieveBabyMetroid                      ;A6BDF7;
-    JSR.W SetRidleyInstList                                              ;A6BDFA;
+;;; $D467: Set Ridley instruction list ;;;
+    STA.W Enemy.instList
+    LDA.W #$0001
+    STA.W Enemy.instTimer
+    STZ.W Enemy.loopCounter
     LDA.W #Function_RidleyCeres_FakeRetreat_RetrieveBabyMetroid          ;A6BDFD;
     STA.W RidleyCeres.function                                           ;A6BE00; fallthrough to Function_RidleyCeres_FakeRetreat_RetrieveBabyMetroid
 
@@ -7843,7 +7940,11 @@ Function_Ridley_Dying_GrabbedSamus:
 ;;; $C53E: Ridley function - death sequence - death roar ;;;
 Function_Ridley_DeathSequence_DeathRoar:
     LDA.W #InstList_Ridley_FacingLeft_DeathRoar                          ;A6C53E;
-    JSR.W SetRidleyInstList                                              ;A6C541;
+;;; $D467: Set Ridley instruction list ;;;
+    STA.W Enemy.instList
+    LDA.W #$0001
+    STA.W Enemy.instTimer
+    STZ.W Enemy.loopCounter
     LDA.W #Function_Ridley_DeathSequence_MoveToDeathSpot                 ;A6C544;
     STA.W Ridley.function                                                ;A6C547;
     LDA.W #$0020                                                         ;A6C54A;
@@ -8605,24 +8706,66 @@ InstList_RidleyTailTip_PointingDownDownLeft:
 ;;; $CAF5: Handle Ridley tail ;;;
 HandleRidleyTail:
 ; Run Tail AI: Sound, control AI, X/Y positions, tail extension, hurt Samus
-    JSR.W HandleRidleyTailWhipSoundFX                                    ;A6CAF5;
-    LDA.L Ridley.tailFunctionIndex                                       ;A6CAF8;
+;;; $D2AA: Handle Ridley tail whip sound effect ;;;
+; Play swishing sound if tail is moving quickly
+    LDA.L Ridley.tailAngleDelta
+    CMP.W #$0008
+    BMI .noSFX
+    LDA.L Ridley.tailWhipSoundFXCounter
+    INC
+    STA.L Ridley.tailWhipSoundFXCounter
+    CMP.W #$0010
+    BMI +
+    LDA.L Ridley.roaring
+    BNE .noSFX
+    LDA.W #$0021
+    JSL.L QueueSound_Lib3_Max6
+
+  .noSFX:
+    LDA.W #$0000
+    STA.L Ridley.tailWhipSoundFXCounter
+
++   LDA.L Ridley.tailFunctionIndex                                       ;A6CAF8;
     ASL                                                                  ;A6CAFC;
     TAX                                                                  ;A6CAFD;
     JSR.W (.pointers,X)                                                  ;A6CAFE;
     PHB                                                                  ;A6CB01;
-    PEA.W RidleyTail.active>>16<<8|RidleyTail.active>>16                 ;A6CB02;
+    PEA.W RidleyTail.active>>8
     PLB                                                                  ;A6CB05;
     PLB                                                                  ;A6CB06;
     JSR.W CalculateRidleyTailSegmentPositions                            ;A6CB07;
     JSR.W UpdateRidleyTailSegmentDistances                               ;A6CB0A;
-    PLB                                                                  ;A6CB0D;
     LDA.W Enemy.properties                                               ;A6CB0E;
     AND.W #$0400                                                         ;A6CB11;
     ORA.W SamusInvincibilityTimer                                        ;A6CB14;
-    ORA.L Ridley.holdingSamus                                            ;A6CB17;
+    ORA.W Ridley.holdingSamus
+    PLB
     BNE .return                                                          ;A6CB1B;
-    JMP.W RidleyTail_vs_Samus_CollisionHandling                          ;A6CB1D;
+;;; $DFD9: Ridley tail / Samus collision handling ;;;
+; Tail/Samus interaction
+    LDA.W #$000E
+    STA.B DP_Temp16
+    STA.B DP_Temp18
+    LDA.L RidleyTail[6].XPosition
+    STA.B DP_Temp12
+    LDA.L RidleyTail[6].YPosition
+    STA.B DP_Temp14
+    JSR.W CheckForSamusCollisionWithRectangle
+    BCC .return
+    JSR.W Ridley_DealTailDamageToSamus
+    LDA.W #$0060
+    STA.W SamusInvincibilityTimer
+    LDA.W #$0005
+    STA.W SamusKnockbackTimer
+    LDY.W #$0000
+    LDA.B SamusXPosition
+    SEC
+    SBC.L RidleyTail[6].XPosition
+    BMI .knockbackDirection
+    INY
+
+  .knockbackDirection:
+    STY.W KnockbackXDirection
 
   .return:
     RTS                                                                  ;A6CB20;
@@ -9195,7 +9338,7 @@ CalculateRidleyTailSegmentPositions:
     STA.W RidleyTail[4].XPosition                                        ;A6CF1B;
     STA.W RidleyTail[5].XPosition                                        ;A6CF1E;
     STA.W RidleyTail[6].XPosition                                        ;A6CF21;
-    BRA .return                                                          ;A6CF24;
+    RTS
 
   .notFacingForward:
     LDA.W RidleyTail.XPosition                                           ;A6CF26;
@@ -9217,8 +9360,6 @@ CalculateRidleyTailSegmentPositions:
     CLC                                                                  ;A6CF4C;
     ADC.W RidleyTail[6].XOffset                                          ;A6CF4D;
     STA.W RidleyTail[6].XPosition                                        ;A6CF50;
-
-  .return:
     RTS                                                                  ;A6CF53;
 
   .XPositionOffsets:
@@ -9379,7 +9520,7 @@ UpdateRidleyTailSegmentDistances:
     LDA.W #$0500                                                         ;A6D084;
 
 +   STA.W RidleyTail[6].distance                                         ;A6D087;
-    BRA .return                                                          ;A6D08A;
+    RTS
 
   .segment6Shrink:
     LDA.W #$0500                                                         ;A6D08C;
@@ -9577,11 +9718,7 @@ SetRidleyTailWhipTarget:
     STA.B DP_Temp14                                                      ;A6D1DA;
 
   .targetDetermined:
-    PHB                                                                  ;A6D1DC;
-    PHK                                                                  ;A6D1DD;
-    PLB                                                                  ;A6D1DE;
     JSL.L CalculateAngleOf_12_14_Offset                                  ;A6D1DF;
-    PLB                                                                  ;A6D1E3;
     SEC                                                                  ;A6D1E4;
     SBC.W #$0080                                                         ;A6D1E5;
     EOR.W #$FFFF                                                         ;A6D1E8;
@@ -9705,54 +9842,43 @@ DetectMissileOrSuperMissileNearRidleyTail:
     RTS                                                                  ;A6D2A9;
 
 
-;;; $D2AA: Handle Ridley tail whip sound effect ;;;
-HandleRidleyTailWhipSoundFX:
-; Play swishing sound if tail is moving quickly
-    LDA.L Ridley.tailAngleDelta                                          ;A6D2AA;
-    CMP.W #$0008                                                         ;A6D2AE;
-    BMI .noSFX                                                           ;A6D2B1;
-    LDA.L Ridley.tailWhipSoundFXCounter                                  ;A6D2B3;
-    INC                                                                  ;A6D2B7;
-    STA.L Ridley.tailWhipSoundFXCounter                                  ;A6D2B8;
-    CMP.W #$0010                                                         ;A6D2BC;
-    BMI .return                                                          ;A6D2BF;
-    LDA.L Ridley.roaring                                                 ;A6D2C1;
-    BNE .noSFX                                                           ;A6D2C5;
-    LDA.W #$0021                                                         ;A6D2C7;
-    JSL.L QueueSound_Lib3_Max6                                           ;A6D2CA;
-
-  .noSFX:
-    LDA.W #$0000                                                         ;A6D2CE;
-    STA.L Ridley.tailWhipSoundFXCounter                                  ;A6D2D1;
-
-  .return:
-    RTS                                                                  ;A6D2D5;
-
-
 ;;; $D2D6: Initialise Ridley tail RAM ;;;
 InitializeTailParts:
 ; TODO: Need to check if any of these initial values are actually used
+    PHB
+    PEA.W RidleyTail.active>>8
+    PLB
+    PLB
+    LDA.W #$0000
+    LDX.W #$00FE
+
+  .loopClearExtraRAM:
+    STA.W Ridley.tailFunctionIndex,X
+    DEX
+    DEX
+    BPL .loopClearExtraRAM
     LDA.W #$0001                                                         ;A6D2D6;
-    STA.L Ridley.tailAngleDelta                                          ;A6D2D9;
+    STA.W Ridley.tailAngleDelta
     LDA.W #$3FF0                                                         ;A6D2DD;
-    STA.L Ridley.tailMinClockwiseAngle                                   ;A6D2E0;
+    STA.W Ridley.tailMinClockwiseAngle
     LDA.W #$4040                                                         ;A6D2E4;
-    STA.L Ridley.tailMaxCounterClockwiseAngle                            ;A6D2E7;
+    STA.W Ridley.tailMaxCounterClockwiseAngle
     LDA.W #$FFFF                                                         ;A6D2EB;
-    STA.L Ridley.tailWhipTargetClockwiseAngle                            ;A6D2EE;
-    STA.L Ridley.tailWhipTargetCounterClockwiseAngle                     ;A6D2F2;
+    STA.W Ridley.tailWhipTargetClockwiseAngle
+    STA.W Ridley.tailWhipTargetCounterClockwiseAngle
     LDA.W #$00F0                                                         ;A6D2F6;
-    STA.L Ridley.tailExtensionSpeed                                      ;A6D2F9;
+    STA.W Ridley.tailExtensionSpeed
     LDA.W #$0010                                                         ;A6D2FD;
-    STA.L Ridley.idealInterSegmentTailAngle                              ;A6D300;
+    STA.W Ridley.idealInterSegmentTailAngle
     INC                                                                  ;A6D304;
-    STA.L RidleyTail.staggerAngle                                        ;A6D305;
-    STA.L RidleyTail[1].staggerAngle                                     ;A6D309;
-    STA.L RidleyTail[2].staggerAngle                                     ;A6D30D;
-    STA.L RidleyTail[3].staggerAngle                                     ;A6D311;
-    STA.L RidleyTail[4].staggerAngle                                     ;A6D315;
-    STA.L RidleyTail[5].staggerAngle                                     ;A6D319;
-    STA.L RidleyTail[6].staggerAngle                                     ;A6D31D;
+    STA.W RidleyTail.staggerAngle
+    STA.W RidleyTail[1].staggerAngle
+    STA.W RidleyTail[2].staggerAngle
+    STA.W RidleyTail[3].staggerAngle
+    STA.W RidleyTail[4].staggerAngle
+    STA.W RidleyTail[5].staggerAngle
+    STA.W RidleyTail[6].staggerAngle
+    PLB
     LDX.W #.movementDirections                                           ;A6D321;
     LDY.W #RidleyTail.movementDirection                                  ;A6D324;
     JSR.W SetRidleyTailSegmentsVariableFromList                          ;A6D327;
@@ -9809,19 +9935,18 @@ SetRidleyTailSegmentsVariableFromList:
     STY.B DP_Temp12                                                      ;A6D3B9;
     LDY.W #$0000                                                         ;A6D3BB;
     LDA.W #$0007                                                         ;A6D3BE;
+    STA.B DP_Temp44
 
   .loop:
-    PHA                                                                  ;A6D3C1;
     LDA.W $0000,X                                                        ;A6D3C2;
     STA.B [DP_Temp12],Y                                                  ;A6D3C5;
     INX                                                                  ;A6D3C7;
     INX                                                                  ;A6D3C8;
-    TYA                                                                  ;A6D3C9;
-    CLC                                                                  ;A6D3CA;
-    ADC.W #$0014                                                         ;A6D3CB;
-    TAY                                                                  ;A6D3CE;
-    PLA                                                                  ;A6D3CF;
-    DEC                                                                  ;A6D3D0;
+    INY
+    INY
+    INY
+    INY
+    DEC.B DP_Temp44
     BNE .loop                                                            ;A6D3D1;
     RTS                                                                  ;A6D3D3;
 
@@ -9845,11 +9970,28 @@ RidleyTailSegmentActiveFlagsInA:
 
 ;;; $D3F9: Flip Ridley tail ;;;
 FlipRidleyTail:
-    PHX                                                                  ;A6D3F9;
     PHY                                                                  ;A6D3FA;
     LDX.W #InitializeTailParts_distances                                 ;A6D3FB;
     LDY.W #RidleyTail.distance                                           ;A6D3FE;
-    JSR.W SetRidleyTailSegmentsVariableFromList                          ;A6D401;
+;;; $D3B4: Set Ridley tail segments variable from list ;;;
+    LDA.W #$007E
+    STA.B DP_Temp14
+    STY.B DP_Temp12
+    LDY.W #$0000
+    LDA.W #$0007
+    STA.B DP_Temp44
+
+  .loopTailVariables:
+    LDA.W $0000,X
+    STA.B [DP_Temp12],Y
+    INX
+    INX
+    INY
+    INY
+    INY
+    INY
+    DEC.B DP_Temp44
+    BNE .loopTailVariables
     LDY.W #$0007                                                         ;A6D404;
     LDX.W #$0000                                                         ;A6D407;
 
@@ -9870,31 +10012,7 @@ FlipRidleyTail:
     DEY                                                                  ;A6D42B;
     BNE .loop                                                            ;A6D42C;
     PLY                                                                  ;A6D42E;
-    PLX                                                                  ;A6D42F;
     RTS                                                                  ;A6D430;
-
-
-;;; $D453: Deal suit-adjusted enemy damage to Samus ;;;
-DealSuitAdjustedEnemyDamageToSamus:
-; Only called by Mother Brain and UNUSED_HurtSamus_A6DF66
-    LDX.B EnemyIndex                                                     ;A6D453;
-    LDA.W Enemy.ID,X                                                     ;A6D456;
-    TAX                                                                  ;A6D459;
-    LDA.L EnemyHeaders_damage,X                                          ;A6D45A;
-    JSL.L Suit_Damage_Division                                           ;A6D45E;
-    JSL.L Deal_A_Damage_to_Samus                                         ;A6D462;
-    RTL                                                                  ;A6D466;
-
-
-;;; $D467: Set Ridley instruction list ;;;
-SetRidleyInstList:
-;; Parameters:
-;;     A: Instruction list
-    STA.W Enemy.instList                                                 ;A6D467;
-    LDA.W #$0001                                                         ;A6D46A;
-    STA.W Enemy.instTimer                                                ;A6D46D;
-    STZ.W Enemy.loopCounter                                              ;A6D470;
-    RTS                                                                  ;A6D473;
 
 
 ;;; $D474: Norfair Ridley health-based palette handling ;;;
@@ -9940,49 +10058,6 @@ LoadRidleyHealthBasedPalette:
 
   .return:
     RTS                                                                  ;A6D4B4;
-
-
-;;; $D4B5: Ceres Ridley health-based palette handling ;;;
-DetermineAndSetCeresRidleysColorPalette:
-; Based on hit counter, strictly speaking
-; Someone forgot to write a branch instruction after the CMP at $D4CF
-    LDA.L Ridley.fightMode                                               ;A6D4B5;
-    BEQ LoadRidleyHealthBasedPalette_return                              ;A6D4B9;
-    LDA.L RidleyCeres.hitCounter                                         ;A6D4BB;
-    CMP.W #$0032                                                         ;A6D4BF; 50
-    BCC LoadRidleyHealthBasedPalette_return                              ;A6D4C2;
-    LDY.W #$0000                                                         ;A6D4C4;
-    CMP.W #$0046                                                         ;A6D4C7; 70
-    BCC .paletteChosen                                                   ;A6D4CA;
-    LDY.W #$0001                                                         ;A6D4CC;
-    CMP.W #$005A                                                         ;A6D4CF; 90
-    BCC .paletteChosen
-    LDY.W #$0002                                                         ;A6D4D2;
-
-  .paletteChosen:
-    STY.B DP_Temp12                                                      ;A6D4D5;
-    JMP.W LoadRidleyHealthBasedPalette                                   ;A6D4D7;
-
-
-;;; $D4DA: Ridley hurt flash handling ;;;
-RidleyHurtFlashHandling:
-    PHX                                                                  ;A6D4DA;
-    LDX.W #$0E00                                                         ;A6D4DB;
-    LDA.W Enemy.flashTimer                                               ;A6D4DE;
-    BEQ .noFlash                                                         ;A6D4E1;
-    DEC                                                                  ;A6D4E3;
-    BEQ .noFlash                                                         ;A6D4E4;
-    LDA.W NumberOfTimesMainEnemyRoutineExecuted                          ;A6D4E6;
-    INC                                                                  ;A6D4E9;
-    AND.W #$0002                                                         ;A6D4EA;
-    BEQ .noFlash                                                         ;A6D4ED;
-    LDX.W #$0000                                                         ;A6D4EF;
-
-  .noFlash:
-    TXA                                                                  ;A6D4F2;
-    STA.L Ridley.spritemapPaletteIndex                                   ;A6D4F3;
-    PLX                                                                  ;A6D4F7;
-    RTS                                                                  ;A6D4F8;
 
 
 ;;; $D4F9: Check for collision with non-air block ;;;
@@ -10443,15 +10518,13 @@ CalculateSwoopVelocities:
 
 ;;; $D86B: Move Ridley ;;;
 MoveRidley:
-; Makes a vain attempt to use enemy index
     LDA.W #$0000                                                         ;A6D86B;
     STA.L Ridley.hitARoomBoundary                                        ;A6D86E;
-    LDX.B EnemyIndex                                                     ;A6D872;
-    LDA.W Ridley.XVelocity,X                                             ;A6D875;
+    LDA.W Ridley.XVelocity
     SEP #$20                                                             ;A6D878;
     CLC                                                                  ;A6D87A;
-    ADC.W Enemy.XSubPosition+1,X                                         ;A6D87B;
-    STA.W Enemy.XSubPosition+1,X                                         ;A6D87E;
+    ADC.W Enemy.XSubPosition+1
+    STA.W Enemy.XSubPosition+1
     REP #$20                                                             ;A6D881;
     AND.W #$FF00                                                         ;A6D883;
     XBA                                                                  ;A6D886;
@@ -10459,34 +10532,61 @@ MoveRidley:
     ORA.W #$FF00                                                         ;A6D889;
 
   .checkLeftWall:
-    ADC.W Enemy.XPosition,X                                              ;A6D88C;
+    ADC.W Enemy.XPosition
     CMP.L Ridley.minXPosition                                            ;A6D88F;
     BPL .checkRightWall                                                  ;A6D893;
-    JSR.W TriggerCeresRidleyEarthquakeIfMovingFastEnough                 ;A6D895;
-    LDA.L Ridley.minXPosition                                            ;A6D898;
-    STA.W Enemy.XPosition,X                                              ;A6D89C;
-    STZ.W Ridley.XVelocity,X                                             ;A6D89F;
+;;; $D914: Trigger Ceres Ridley earthquake if moving fast enough ;;;
+    LDA.W AreaIndex
+    CMP.W #$0002
+    BEQ +
+    LDA.W RidleyCeres.XVelocity
+    BPL .movingRight
+    EOR.W #$FFFF
+    INC
+
+  .movingRight:
+    STA.B DP_Temp12
+    LDA.W RidleyCeres.YVelocity
+    BPL .movingDown
+    EOR.W #$FFFF
+    INC
+
+  .movingDown:
+    CMP.B DP_Temp12
+    BCS .XSpeedGreater
+    LDA.B DP_Temp12
+
+  .XSpeedGreater:
+    CMP.W #$0280
+    BCC +
+    LDA.W #$0021
+    STA.W EarthquakeType
+    LDA.W #$000C
+    STA.W EarthquakeTimer
+
++   LDA.L Ridley.minXPosition                                            ;A6D898;
+    STA.W Enemy.XPosition
+    STZ.W Ridley.XVelocity
     LDA.W #$0001                                                         ;A6D8A2;
     STA.L Ridley.hitARoomBoundary                                        ;A6D8A5;
     BRA .getYSpeed                                                       ;A6D8A9;
 
-
   .checkRightWall:
     CMP.L Ridley.maxXPosition                                            ;A6D8AB;
     BMI +                                                                ;A6D8AF;
-    STZ.W Ridley.XVelocity,X                                             ;A6D8B1;
+    STZ.W Ridley.XVelocity
     LDA.W #$0002                                                         ;A6D8B4;
     STA.L Ridley.hitARoomBoundary                                        ;A6D8B7;
     LDA.L Ridley.maxXPosition                                            ;A6D8BB;
 
-+   STA.W Enemy.XPosition,X                                              ;A6D8BF;
++   STA.W Enemy.XPosition
 
   .getYSpeed:
-    LDA.W Ridley.YVelocity,X                                             ;A6D8C2;
+    LDA.W Ridley.YVelocity
     SEP #$20                                                             ;A6D8C5;
     CLC                                                                  ;A6D8C7;
-    ADC.W Enemy.YSubPosition+1,X                                         ;A6D8C8;
-    STA.W Enemy.YSubPosition+1,X                                         ;A6D8CB;
+    ADC.W Enemy.YSubPosition+1
+    STA.W Enemy.YSubPosition+1
     REP #$20                                                             ;A6D8CE;
     AND.W #$FF00                                                         ;A6D8D0;
     XBA                                                                  ;A6D8D3;
@@ -10518,41 +10618,6 @@ MoveRidley:
     RTS                                                                  ;A6D913;
 
 
-;;; $D914: Trigger Ceres Ridley earthquake if moving fast enough ;;;
-TriggerCeresRidleyEarthquakeIfMovingFastEnough:
-; Cause room shaking, only happens in Ceres. Has unreachable code for Norfair room shaking
-    LDA.W AreaIndex                                                      ;A6D914;
-    CMP.W #$0002                                                         ;A6D917;
-    BEQ .return                                                          ;A6D91A;
-    LDA.W RidleyCeres.XVelocity,X                                        ;A6D91C;
-    BPL .movingRight                                                     ;A6D91F;
-    EOR.W #$FFFF                                                         ;A6D921;
-    INC                                                                  ;A6D924;
-
-  .movingRight:
-    STA.B DP_Temp12                                                      ;A6D925;
-    LDA.W RidleyCeres.YVelocity,X                                        ;A6D927;
-    BPL .movingDown                                                      ;A6D92A;
-    EOR.W #$FFFF                                                         ;A6D92C;
-    INC                                                                  ;A6D92F;
-
-  .movingDown:
-    CMP.B DP_Temp12                                                      ;A6D930;
-    BCS .XSpeedGreater                                                   ;A6D932;
-    LDA.B DP_Temp12                                                      ;A6D934;
-
-  .XSpeedGreater:
-    CMP.W #$0280                                                         ;A6D936;
-    BCC .return                                                          ;A6D939;
-    LDA.W #$0021                                                         ;A6D943;
-    STA.W EarthquakeType                                                 ;A6D94B;
-    LDA.W #$000C                                                         ;A6D94E;
-    STA.W EarthquakeTimer                                                ;A6D951;
-
-  .return:
-    RTS                                                                  ;A6D954;
-
-
 ;;; $D955: Turn Ridley around if not facing room middle ;;;
 TurnRidleyAroundIfNotFacingRoomMiddle:
     LDA.L Ridley.facingDirection                                         ;A6D955;
@@ -10562,43 +10627,23 @@ TurnRidleyAroundIfNotFacingRoomMiddle:
     LDA.W Enemy.XPosition-1                                              ;A6D95E;
     BPL .return                                                          ;A6D961;
     LDA.W #InstList_Ridley_TurnFromRightToLeft                           ;A6D963;
-    BRA +                                                                ;A6D966;
+    STA.W Enemy.instList
+    LDA.W #$0002
+    STA.W Enemy.instTimer
+    STZ.W Enemy.loopCounter
+    RTS
 
   .facingLeft:
     LDA.W Enemy.XPosition-1                                              ;A6D968;
     BMI .return                                                          ;A6D96B;
     LDA.W #InstList_Ridley_TurnFromLeftToRight                           ;A6D96D;
-
-+   STA.W Enemy.instList                                                 ;A6D970;
+    STA.W Enemy.instList                                                 ;A6D970;
     LDA.W #$0002                                                         ;A6D973;
     STA.W Enemy.instTimer                                                ;A6D976;
     STZ.W Enemy.loopCounter                                              ;A6D979;
 
   .return:
     RTS                                                                  ;A6D97C;
-
-
-;;; $D97D: Update Ridley wings animation ;;;
-UpdateRidleyWingsAnimation:
-    JSR.W CalculateRidleyWingsAnimationTimer                             ;A6D97D;
-    LDA.L Ridley.wingAnimationTimer                                      ;A6D980;
-    SEC                                                                  ;A6D984;
-    SBC.L Ridley.wingAnimationTimerDelta                                 ;A6D985;
-    STA.L Ridley.wingAnimationTimer                                      ;A6D989;
-    BPL .return                                                          ;A6D98D;
-    LDA.W #$0020                                                         ;A6D98F;
-    STA.L Ridley.wingAnimationTimer                                      ;A6D992;
-    LDA.L Ridley.wingAnimationFrame                                      ;A6D996;
-    INC                                                                  ;A6D99A;
-    CMP.W #$000A                                                         ;A6D99B;
-    BCC .lessThanA                                                       ;A6D99E;
-    LDA.W #$0000                                                         ;A6D9A0;
-
-  .lessThanA:
-    STA.L Ridley.wingAnimationFrame                                      ;A6D9A3;
-
-  .return:
-    RTS                                                                  ;A6D9A7;
 
 
 ;;; $D9A8: Calculate Ridley wings animation timer ;;;
@@ -10638,8 +10683,8 @@ CalculateRidleyWingsAnimationTimer:
     LDA.W #$000E                                                         ;A6D9DB;
 
   .maxE:
-    TAX                                                                  ;A6D9DE;
-    LDA.W .wingFlapSpeeds,X                                              ;A6D9DF;
+    TAY
+    LDA.W .wingFlapSpeeds,Y
     BIT.W Ridley.YVelocity                                               ;A6D9E2;
     BMI .movingUp                                                        ;A6D9E5;
     LSR                                                                  ;A6D9E7;
@@ -10652,23 +10697,12 @@ CalculateRidleyWingsAnimationTimer:
     dw $000C,$000E,$0010,$0012,$001C,$0020,$0028,$0030                   ;A6D9ED;
 
 
-;;; $D9FD: Initialise Ridley ribs animation ;;;
-InitializeRidleyRibsAnimation:
-    LDA.W #RidleyRibsAnimationTable                                      ;A6D9FD;
-    STA.L Ridley.ribsAnimationTablePointer                               ;A6DA00;
-    LDA.W #$0001                                                         ;A6DA04;
-    STA.L Ridley.ribsAnimationTimer                                      ;A6DA07;
-
-  .return:
-    RTS                                                                  ;A6DA0B;
-
-
 ;;; $DA0C: Handle Ridley ribs animation ;;;
 HandleRidleyRibsAnimation:
     LDA.L Ridley.ribsAnimationTimer                                      ;A6DA0C;
     DEC                                                                  ;A6DA10;
     STA.L Ridley.ribsAnimationTimer                                      ;A6DA11;
-    BNE InitializeRidleyRibsAnimation_return                             ;A6DA15;
+    BNE .return
     LDA.L Ridley.ribsAnimationTablePointer                               ;A6DA17;
 
   .restart:
@@ -10705,6 +10739,8 @@ HandleRidleyRibsAnimation:
     CLC                                                                  ;A6DA68;
     ADC.W #$0006                                                         ;A6DA69;
     STA.L Ridley.ribsAnimationTablePointer                               ;A6DA6C;
+
+  .return:
     RTS                                                                  ;A6DA70;
 
 
@@ -10878,7 +10914,7 @@ DrawRidleyTail:
     STA.B DP_Temp12                                                      ;A6DBB7;
     LDA.L RidleyTail.YPosition                                           ;A6DBB9;
     STA.B DP_Temp14                                                      ;A6DBBD;
-    LDY.W #Spritemap_RidleyTail_Large                                    ;A6DBBF; fallthrough to GeneralPurposeRidleyDrawing
+    LDY.W #Spritemap_RidleyTail_Large                                    ;A6DBBF; fallthrough to AddRidleySpritemapToOAM
 
 
 ;;; $DBC2: Add Ridley spritemap to OAM ;;;
@@ -10888,66 +10924,7 @@ AddRidleySpritemapToOAM:
 ;;     $12: Spritemap Y origin
 ;;     $14: Spritemap X origin
     LDA.L Ridley.spritemapPaletteIndex                                   ;A6DBC2;
-    STA.B DP_Temp16                                                      ;A6DBC6;
-    JMP.W RidleyGeneralUseDrawing                                        ;A6DBC8;
-
-
-;;; $DBCB: Y = baby metroid spritemap pointer ;;;
-GetBabyMetroidSpritemapPointerInY:
-;; Parameters:
-;;     A: RidleyCeres.BabyMetroidInstList. RAM address of baby metroid instruction list pointer
-;; Returns:
-;;     Y: Spritemap pointer
-    STA.B DP_Temp00                                                      ;A6DBCB;
-    INC                                                                  ;A6DBCD;
-    INC                                                                  ;A6DBCE;
-    STA.B DP_Temp03                                                      ;A6DBCF;
-    SEP #$20                                                             ;A6DBD1;
-    LDA.B #$7E                                                           ;A6DBD3;
-    STA.B DP_Temp02                                                      ;A6DBD5;
-    STA.B DP_Temp05                                                      ;A6DBD7;
-    REP #$20                                                             ;A6DBD9;
-    LDA.B [DP_Temp00]                                                    ;A6DBDB;
-    BMI .pointer                                                         ;A6DBDD;
-    PLA                                                                  ;A6DBDF;
-    RTS                                                                  ;A6DBE0;
-
-  .pointer:
-    TAX                                                                  ;A6DBE1;
-    LDA.W $0000,X                                                        ;A6DBE2;
-    BMI .ASMInstruction                                                  ;A6DBE5;
-    CMP.B [DP_Temp03]                                                    ;A6DBE7;
-    BNE .tick                                                            ;A6DBE9;
-    INX                                                                  ;A6DBEB;
-    INX                                                                  ;A6DBEC;
-    INX                                                                  ;A6DBED;
-    INX                                                                  ;A6DBEE;
-
-  .loop:
-    LDA.W $0000,X                                                        ;A6DBEF;
-    BPL .specialInstruction                                              ;A6DBF2;
-
-  .ASMInstruction:
-    STA.B DP_Temp06                                                      ;A6DBF4;
-    INX                                                                  ;A6DBF6;
-    INX                                                                  ;A6DBF7;
-    PEA.W .loop-1                                                        ;A6DBF8;
-    JMP.W (DP_Temp06)                                                    ;A6DBFB;
-
-  .specialInstruction:
-    LDA.W #$0001                                                         ;A6DBFE;
-    STA.B [DP_Temp03]                                                    ;A6DC01;
-    TXA                                                                  ;A6DC03;
-    STA.B [DP_Temp00]                                                    ;A6DC04;
-    LDY.W $0002,X                                                        ;A6DC06;
-    RTS                                                                  ;A6DC09;
-
-  .tick:
-    LDA.B [DP_Temp03]                                                    ;A6DC0A;
-    INC                                                                  ;A6DC0C;
-    STA.B [DP_Temp03]                                                    ;A6DC0D;
-    LDY.W $0002,X                                                        ;A6DC0F;
-    RTS                                                                  ;A6DC12;
+    STA.B DP_Temp16                                                      ;A6DBC6; fallthrough to RidleyGeneralUseDrawing
 
 
 ;;; $DC13: Add spritemap to OAM ;;;
@@ -11047,6 +11024,241 @@ RidleyGeneralUseDrawing:
     BNE .loop                                                            ;A6DC8A;
     STX.B OAMStack                                                       ;A6DC8C;
     RTS                                                                  ;A6DC8F;
+
+
+;;; $DBCB: Y = baby metroid spritemap pointer ;;;
+GetBabyMetroidSpritemapPointerInY:
+;; Parameters:
+;;     A: RidleyCeres.BabyMetroidInstList. RAM address of baby metroid instruction list pointer
+;; Returns:
+;;     Y: Spritemap pointer
+    STA.B DP_Temp00                                                      ;A6DBCB;
+    INC                                                                  ;A6DBCD;
+    INC                                                                  ;A6DBCE;
+    STA.B DP_Temp03                                                      ;A6DBCF;
+    SEP #$20                                                             ;A6DBD1;
+    LDA.B #$7E                                                           ;A6DBD3;
+    STA.B DP_Temp02                                                      ;A6DBD5;
+    STA.B DP_Temp05                                                      ;A6DBD7;
+    REP #$20                                                             ;A6DBD9;
+    LDA.B [DP_Temp00]                                                    ;A6DBDB;
+    BMI .pointer                                                         ;A6DBDD;
+    PLA                                                                  ;A6DBDF;
+    RTS                                                                  ;A6DBE0;
+
+  .pointer:
+    TAX                                                                  ;A6DBE1;
+    LDA.W $0000,X                                                        ;A6DBE2;
+    BMI .ASMInstruction                                                  ;A6DBE5;
+    CMP.B [DP_Temp03]                                                    ;A6DBE7;
+    BNE .tick                                                            ;A6DBE9;
+    INX                                                                  ;A6DBEB;
+    INX                                                                  ;A6DBEC;
+    INX                                                                  ;A6DBED;
+    INX                                                                  ;A6DBEE;
+
+  .loop:
+    LDA.W $0000,X                                                        ;A6DBEF;
+    BPL .specialInstruction                                              ;A6DBF2;
+
+  .ASMInstruction:
+    STA.B DP_Temp06                                                      ;A6DBF4;
+    INX                                                                  ;A6DBF6;
+    INX                                                                  ;A6DBF7;
+    PEA.W .loop-1                                                        ;A6DBF8;
+    JMP.W (DP_Temp06)                                                    ;A6DBFB;
+
+  .specialInstruction:
+    LDA.W #$0001                                                         ;A6DBFE;
+    STA.B [DP_Temp03]                                                    ;A6DC01;
+    TXA                                                                  ;A6DC03;
+    STA.B [DP_Temp00]                                                    ;A6DC04;
+    LDY.W $0002,X                                                        ;A6DC06;
+    RTS                                                                  ;A6DC09;
+
+  .tick:
+    LDA.B [DP_Temp03]                                                    ;A6DC0A;
+    INC                                                                  ;A6DC0C;
+    STA.B [DP_Temp03]                                                    ;A6DC0D;
+    LDY.W $0002,X                                                        ;A6DC0F;
+    RTS                                                                  ;A6DC12;
+
+
+DrawRidley:
+;;; $DA0C: Handle Ridley ribs animation ;;;
+  .ribs:
+    LDA.L Ridley.ribsAnimationTimer
+    DEC
+    STA.L Ridley.ribsAnimationTimer
+    BNE .wings
+    LDA.L Ridley.ribsAnimationTablePointer
+
+  ..restart:
+    TAY
+    LDA.W $0000,Y
+    BPL ..timer
+    STA.L Ridley.ribsAnimationTablePointer
+    BRA ..restart
+
+  ..timer:
+    STA.L Ridley.ribsAnimationTimer
+    LDX.B VRAMWriteStack
+    LDA.W #Tiles_RidleysRibsAndClaws_0>>8&$FF00
+    STA.B VRAMWrite.src+1,X
+    STA.B VRAMWrite[1].src+1,X
+    LDA.W $0002,Y
+    STA.B VRAMWrite.src,X
+    LDA.W $0004,Y
+    STA.B VRAMWrite[1].src,X
+    LDA.W #$7220
+    STA.B VRAMWrite.dest,X
+    LDA.W #$7320
+    STA.B VRAMWrite[1].dest,X
+    LDA.W #$0040
+    STA.B VRAMWrite.size,X
+    STA.B VRAMWrite[1].size,X
+    TXA
+    CLC
+    ADC.W #$000E
+    STA.B VRAMWriteStack
+    TYA
+    CLC
+    ADC.W #$0006
+    STA.L Ridley.ribsAnimationTablePointer
+
+;;; $D97D: Update Ridley wings animation ;;;
+  .wings:
+    JSR.W CalculateRidleyWingsAnimationTimer
+    LDA.L Ridley.wingAnimationTimer
+    SEC
+    SBC.L Ridley.wingAnimationTimerDelta
+    STA.L Ridley.wingAnimationTimer
+    BPL ..draw
+    LDA.W #$0020
+    STA.L Ridley.wingAnimationTimer
+    LDA.L Ridley.wingAnimationFrame
+    INC
+    CMP.W #$000A
+    BCC ..lessThanA
+    LDA.W #$0000
+
+  ..lessThanA:
+    STA.L Ridley.wingAnimationFrame
+
+  ..draw:
+;;; $DAD8: Draw Ridley wings ;;;
+    LDA.L Ridley.facingDirection
+    BEQ ..facingLeft
+    DEC
+    BEQ .tail
+    LDA.W #$000A
+
+  ..facingLeft:
+    CLC
+    ADC.L Ridley.wingAnimationFrame
+    ASL
+    TAX
+    LDY.W .spritemapPointersLeft,X
+    LDA.L Ridley.spritemapPaletteIndex
+    STA.B DP_Temp16
+    LDA.W Enemy.XPosition
+    STA.B DP_Temp12
+    LDA.W Enemy.YPosition
+    STA.B DP_Temp14
+    JSR.W RidleyGeneralUseDrawing
+
+;;; $DB2A: Draw Ridley tail ;;;
+  .tail:
+    LDA.W Enemy.properties
+    AND.W #$0100
+    BEQ ..notInvisible
+    RTS
+
+  ..notInvisible:
+    LDA.L RidleyTail[6].XPosition
+    STA.B DP_Temp12
+    LDA.L RidleyTail[6].YPosition
+    STA.B DP_Temp14
+    LDA.L RidleyTail[6].angle
+    CLC
+    ADC.L RidleyTail[5].angle
+    CLC
+    ADC.W #$0008
+    AND.W #$00F0
+    LSR
+    LSR
+    LSR
+    TAX
+    LDY.W RidleyTailTipSpritemapPointers,X
+    JSR.W AddRidleySpritemapToOAM
+    LDA.L RidleyTail[5].YPosition
+    STA.B DP_Temp14
+    LDA.L RidleyTail[5].XPosition
+    STA.B DP_Temp12
+    LDY.W #Spritemap_RidleyTail_Small
+    JSR.W AddRidleySpritemapToOAM
+    LDA.L RidleyTail[4].XPosition
+    STA.B DP_Temp12
+    LDA.L RidleyTail[4].YPosition
+    STA.B DP_Temp14
+    LDY.W #Spritemap_RidleyTail_Small
+    JSR.W AddRidleySpritemapToOAM
+    LDA.L RidleyTail[3].XPosition
+    STA.B DP_Temp12
+    LDA.L RidleyTail[3].YPosition
+    STA.B DP_Temp14
+    LDY.W #Spritemap_RidleyTail_Medium
+    JSR.W AddRidleySpritemapToOAM
+    LDA.L RidleyTail[2].XPosition
+    STA.B DP_Temp12
+    LDA.L RidleyTail[2].YPosition
+    STA.B DP_Temp14
+    LDY.W #Spritemap_RidleyTail_Medium
+    JSR.W AddRidleySpritemapToOAM
+    LDA.L RidleyTail[1].XPosition
+    STA.B DP_Temp12
+    LDA.L RidleyTail[1].YPosition
+    STA.B DP_Temp14
+    LDY.W #Spritemap_RidleyTail_Large
+    JSR.W AddRidleySpritemapToOAM
+    LDA.L RidleyTail.XPosition
+    STA.B DP_Temp12
+    LDA.L RidleyTail.YPosition
+    STA.B DP_Temp14
+    LDY.W #Spritemap_RidleyTail_Large
+    JMP.W AddRidleySpritemapToOAM
+
+  .unclenched:
+    dw Tiles_Ridley_3                                                           ; Top tiles (bank $B0)
+    dw Tiles_Ridley_4                                                           ; Bottom tiles (bank $B0)
+
+  .clenched:
+    dw Tiles_RidleysRibsAndClaws_2                                              ; Top tiles (bank $B0)
+    dw Tiles_RidleysRibsAndClaws_5                                              ; Bottom tiles (bank $B0)
+
+  .spritemapPointersLeft:
+    dw Spritemap_RidleyWings_FacingLeft_FullyRaised
+    dw Spritemap_RidleyWings_FacingLeft_MostlyRaised
+    dw Spritemap_RidleyWings_FacingLeft_SlightlyRaised
+    dw Spritemap_RidleyWings_FacingLeft_SlightlyLowered
+    dw Spritemap_RidleyWings_FacingLeft_MostlyLowered
+    dw Spritemap_RidleyWings_FacingLeft_FullyLowered
+    dw Spritemap_RidleyWings_FacingLeft_MostlyLowered
+    dw Spritemap_RidleyWings_FacingLeft_SlightlyLowered
+    dw Spritemap_RidleyWings_FacingLeft_SlightlyRaised
+    dw Spritemap_RidleyWings_FacingLeft_MostlyRaised
+
+  .spritemapPointersRight:
+    dw Spritemap_RidleyWings_FacingRight_FullyRaised
+    dw Spritemap_RidleyWings_FacingRight_MostlyRaised
+    dw Spritemap_RidleyWings_FacingRight_SlightlyRaised
+    dw Spritemap_RidleyWings_FacingRight_SlightlyLowered
+    dw Spritemap_RidleyWings_FacingRight_MostlyLowered
+    dw Spritemap_RidleyWings_FacingRight_FullyLowered
+    dw Spritemap_RidleyWings_FacingRight_MostlyLowered
+    dw Spritemap_RidleyWings_FacingRight_SlightlyLowered
+    dw Spritemap_RidleyWings_FacingRight_SlightlyRaised
+    dw Spritemap_RidleyWings_FacingRight_MostlyRaised
 
 
 ;;; $DC90: Ridley tail spritemaps ;;;
@@ -11243,36 +11455,6 @@ Spritemap_RidleyWings_FacingRight_FullyLowered:
     %spritemapEntry(1, $43E4, $F7, 1, 1, 3, 0, $104)
 
 
-;;; $DE7A: Check if Ridley is on screen ;;;
-CheckIfRidleyIsOnScreen:
-;; Returns:
-;;     Carry: Clear if Ridley is on screen, set otherwise
-    LDA.W Enemy.YPosition                                                ;A6DE7A;
-    BMI .offScreen                                                       ;A6DE7D;
-    CLC                                                                  ;A6DE7F;
-    ADC.W #$0020                                                         ;A6DE80;
-    SEC                                                                  ;A6DE83;
-    SBC.B Layer1YPosition                                                ;A6DE84;
-    BMI .offScreen                                                       ;A6DE87;
-    CMP.W #$0120                                                         ;A6DE89;
-    BPL .offScreen                                                       ;A6DE8C;
-    LDA.W Enemy.XPosition                                                ;A6DE8E;
-    BMI .offScreen                                                       ;A6DE91;
-    CLC                                                                  ;A6DE93;
-    ADC.W #$0020                                                         ;A6DE94;
-    SEC                                                                  ;A6DE97;
-    SBC.B Layer1XPosition                                                ;A6DE98;
-    BMI .offScreen                                                       ;A6DE9B;
-    CMP.W #$0140                                                         ;A6DE9D;
-    BPL .offScreen                                                       ;A6DEA0;
-    CLC                                                                  ;A6DEA2;
-    RTS                                                                  ;A6DEA3;
-
-  .offScreen:
-    SEC                                                                  ;A6DEA4;
-    RTS                                                                  ;A6DEA5;
-
-
 ;;; $DEA6: Check for projectile collision with rectangle ;;;
 CheckForProjectileCollisionWithRectangle:
 ;; Parameters:
@@ -11422,24 +11604,6 @@ PowerBombReaction_Ridley:
     JML NormalEnemyPowerBombAI_NoDeathCheck_External                     ;A6DFB2;
 
 
-;;; $DFB7: Start Norfair Ridley death sequence ;;;
-StartNorfairRidleyDeathSequence:
-    LDA.W Enemy.health                                                   ;A6DFB7;
-    BNE .return                                                          ;A6DFBA;
-    LDA.L Ridley.fightMode                                               ;A6DFBC;
-    BMI .return                                                          ;A6DFC0;
-    LDA.W #$FFFF                                                         ;A6DFC2;
-    STA.L Ridley.fightMode                                               ;A6DFC5;
-    LDA.W Enemy.properties                                               ;A6DFC9;
-    ORA.W #$0400                                                         ;A6DFCC;
-    STA.W Enemy.properties                                               ;A6DFCF;
-    LDA.W #Function_Ridley_Dying_GrabbedSamus                            ;A6DFD2;
-    STA.W Ridley.function                                                ;A6DFD5;
-
-  .return:
-    RTL                                                                  ;A6DFD8;
-
-
 ;;; $DFD9: Ridley tail / Samus collision handling ;;;
 RidleyTail_vs_Samus_CollisionHandling:
 ; Tail/Samus interaction
@@ -11452,9 +11616,7 @@ RidleyTail_vs_Samus_CollisionHandling:
     STA.B DP_Temp14                                                      ;A6DFEA;
     JSR.W CheckForSamusCollisionWithRectangle                            ;A6DFEC;
     BCC .return                                                          ;A6DFEF;
-    LDA.L Ridley.tailDamage                                              ;A6DFF1;
-    JSL.L Suit_Damage_Division                                           ;A6DFF5;
-    JSL.L Deal_A_Damage_to_Samus                                         ;A6DFF9;
+    JSR.W Ridley_DealTailDamageToSamus
     LDA.W #$0060                                                         ;A6DFFD;
     STA.W SamusInvincibilityTimer                                        ;A6E000;
     LDA.W #$0005                                                         ;A6E003;
@@ -11471,6 +11633,55 @@ RidleyTail_vs_Samus_CollisionHandling:
 
   .return:
     RTS                                                                  ;A6E01A;
+
+
+Ridley_DealTailDamageToSamus:
+;;; $A45E: Suit damage division ;;;
+;;; $DF51: Deal [Ridley.tailDamage] damage to Samus ;;;
+    LDA.W TimeIsFrozenFlag
+    BNE .return
+    LDA.W EquippedItems
+    BIT.W #$0020
+    BNE .quarterDamage
+    LSR
+    BCC .fullDamage
+    LDA.L Ridley.tailDamage
+    LSR
+    STA.B DP_Temp12
+    LDA.W Energy
+    SEC
+    SBC.B DP_Temp12
+    STA.W Energy
+    BMI .killSamus
+    RTS
+
+  .fullDamage:
+    LDA.L Ridley.tailDamage
+    STA.B DP_Temp12
+    LDA.W Energy
+    SEC
+    SBC.B DP_Temp12
+    STA.W Energy
+    BMI .killSamus
+    RTS
+
+  .quarterDamage:
+    LDA.L Ridley.tailDamage
+    LSR
+    LSR
+    STA.B DP_Temp12
+    LDA.W Energy
+    SEC
+    SBC.B DP_Temp12
+    STA.W Energy
+    BMI .killSamus
+    RTS
+
+  .killSamus:
+    STZ.W Energy
+
+  .return:
+    RTS
 
 
 ;;; $E088: Ridley tail / projectile collision handling ;;;
@@ -11718,7 +11929,10 @@ Instruction_Ridley_SkipToNextInstruction:
 Instruction_Ridley_GotoYIfNotFacingLeft:
     LDA.L Ridley.facingDirection                                         ;A6E517;
     BEQ Instruction_Ridley_SkipToNextInstruction                         ;A6E51B;
-    BRA Instruction_Ridley_GotoY                                         ;A6E51D;
+;;; $E4E9: Instruction - go to [[Y]] ;;;
+    LDA.W $0000,Y
+    TAY
+    RTL
 
 
 ;;; $E51F: Instruction - move Ridley ([[Y]], [[Y] + 2]) pixels ;;;
@@ -14377,17 +14591,14 @@ HandleZebetitePaletteAnimation:
 
 ;;; $FDA7: Enemy touch - enemy $E27F (zebetites) ;;;
 EnemyTouch_Zebetite:
-    JSL.L NormalEnemyTouchAI_NoDeathCheck_External                       ;A6FDA7;
-    RTL                                                                  ;A6FDAB;
+    JML NormalEnemyTouchAI_NoDeathCheck_External
 
 
 ;;; $FDAC: Enemy shot - enemy $E27F (zebetites) ;;;
 EnemyShot_Zebetite:
 ; This code should probably check that the zebetite is a multipart one before doing this code with the other part
-    PHA                                                                  ;A6FDAC;
     LDA.W #$0009                                                         ;A6FDAD;
     JSL.L QueueSound_Lib3_Max6                                           ;A6FDB0;
-    PLA                                                                  ;A6FDB4;
     JSL.L NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External     ;A6FDB5;
     LDX.B EnemyIndex                                                     ;A6FDB9;
     LDY.W Zebetite.otherPartEnemyIndex,X                                 ;A6FDBC;

@@ -6081,8 +6081,7 @@ Function_Rio_WaitForSamusToGetNear:
 +   LDA.W #Function_Rio_Swoop_Descending                                 ;A2BC1B;
     STA.W Rio.function,X                                                 ;A2BC1E;
     JSL.L CheckIfEnemyCenterIsOnScreen                                   ;A2BC21;
-    AND.W #$FFFF                                                         ;A2BC25;
-    BNE .return                                                          ;A2BC28;
+    BMI .return
     LDA.W #$0065                                                         ;A2BC2A;
     JML QueueSound_Lib2_Max6
 

@@ -5949,7 +5949,12 @@ EnemyTouch_MotherBrainHead:
 
 ;;; $B5E1: Hurt Samus ;;;
 HurtSamus_A9B5E1:
-    JSL.L DealSuitAdjustedEnemyDamageToSamus                             ;A9B5E1;
+    LDX.B EnemyIndex
+    LDA.W Enemy.ID,X
+    TAX
+    LDA.L EnemyHeaders_damage,X
+    JSL.L Suit_Damage_Division
+    JSL.L Deal_A_Damage_to_Samus
     LDA.W #$0060                                                         ;A9B5E5;
     STA.W SamusInvincibilityTimer                                        ;A9B5E8;
     LDA.W #$0005                                                         ;A9B5EB;
