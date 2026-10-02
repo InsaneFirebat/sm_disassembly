@@ -975,6 +975,15 @@ ClearEnemyData_ProcessEnemySet:
 ;;; $8A9E: Initialise enemies ;;;
 Initialise_Enemies:
     PHB                                                                  ;A08A9F;
+; TODO: Remove BG3 drawing, NMI_Request juggling, and DMA in favor of per-enemy RAM initilization in InitAI
+    SEP #$20
+    LDA #$5A
+    STA $2109
+    STZ $2130
+    STZ $2131
+    LDA #$04
+    STA $212C
+    REP #$20
     LDX.B NMI_Request
     STZ.B NMI_Request
     LDA.W #EnemySpawnData

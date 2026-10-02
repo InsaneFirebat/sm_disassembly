@@ -10,4 +10,4 @@ Enemy assumptions:
 
 
 TODO and known issues:
-- DMA in Initialise_Enemies causes HUD to flash in some doors, move RAM clearing to InitAI_ to fix
+- move enemy RAM clearing to InitAI_
