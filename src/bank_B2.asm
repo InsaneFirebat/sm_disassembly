@@ -10847,7 +10847,7 @@ Instruction_PirateNinja_SetLeftDivekickJumpInitialYSpeed:
     LSR                                                                  ;B2F979;
     CLC                                                                  ;B2F97A;
     ADC.W PirateNinja.postsMidpointXPosition,X                           ;B2F97B;
-    STA.L ExtraEnemy7800+6,X                                             ;B2F97E;
+    STA.L PirateNinja.neverRead7806,X                                    ;B2F97E;
     PLY                                                                  ;B2F982;
     PLX                                                                  ;B2F983;
     RTL                                                                  ;B2F984;
@@ -10952,7 +10952,7 @@ Instruction_PirateNinja_SetRightDivekickJumpInitialYSpeed:
     LSR                                                                  ;B2FA4D;
     CLC                                                                  ;B2FA4E;
     ADC.W PirateNinja.leftPostXPosition,X                                ;B2FA4F;
-    STA.L ExtraEnemy7800+6,X                                             ;B2FA52;
+    STA.L PirateNinja.neverRead7806,X                                    ;B2FA52;
     PLY                                                                  ;B2FA56;
     PLX                                                                  ;B2FA57;
     RTL                                                                  ;B2FA58;

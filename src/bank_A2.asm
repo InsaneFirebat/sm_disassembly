@@ -2024,7 +2024,7 @@ MainAI_BabyTurtle:
     LDA.W BabyTurtle.turtleIndex,X                                       ;A29131;
     TAX                                                                  ;A29134;
     LDA.W #$0000                                                         ;A29135;
-    STA.L ExtraEnemy7800+$C,X                                            ;A29138;
+    STA.L MamaTurtle.neverRead780C,X                                     ;A29138;
     LDX.W EnemyIndex                                                     ;A2913C;
     JMP.W (BabyTurtle.function,X)                                        ;A2913F;
 
@@ -2193,7 +2193,7 @@ Function_BabyTurtle_Crawling_CarryingSamus:
     LDA.W BabyTurtle.turtleIndex,X                                       ;A29265;
     TAX                                                                  ;A29268;
     PLA                                                                  ;A29269;
-    STA.L ExtraEnemy7800+$C,X                                            ;A2926A;
+    STA.L MamaTurtle.neverRead780C,X                                     ;A2926A;
     LDX.W EnemyIndex                                                     ;A2926E;
     JSL.L CheckIfEnemyIsTouchingSamusFromBelow                           ;A29271;
     AND.W #$FFFF                                                         ;A29275;
@@ -6407,7 +6407,7 @@ SpawnMotherBrainsRoomRinka:
     TAY                                                                  ;A2B6B0;
     PHX                                                                  ;A2B6B1;
     TAX                                                                  ;A2B6B2;
-    LDA.L ExtraEnemy8800-2,X                                             ;A2B6B3;
+    LDA.L Rinka.tempSpawnPointAvailabilityTableIndex,X                   ;A2B6B3;
     LSR                                                                  ;A2B6B7;
     PLX                                                                  ;A2B6B8;
     BCS +                                                                ;A2B6B9;
@@ -6416,7 +6416,7 @@ SpawnMotherBrainsRoomRinka:
     PHX                                                                  ;A2B6BF;
     TAX                                                                  ;A2B6C0;
     LDA.W #$FFFF                                                         ;A2B6C1;
-    STA.L ExtraEnemy8800-2,X                                             ;A2B6C4;
+    STA.L Rinka.tempSpawnPointAvailabilityTableIndex,X                   ;A2B6C4;
     PLX                                                                  ;A2B6C8;
     RTS                                                                  ;A2B6C9;
 
@@ -6431,7 +6431,7 @@ SpawnMotherBrainsRoomRinka:
     BCS .next                                                            ;A2B6DB;
     PHX                                                                  ;A2B6DD;
     LDX.W MotherBrainsRoomRinkaSpawnData_spawnPointAvailabilityIndex,Y   ;A2B6DE;
-    LDA.L ExtraEnemy8800-2,X                                             ;A2B6E1;
+    LDA.L Rinka.tempSpawnPointAvailabilityTableIndex,X                   ;A2B6E1;
     LSR                                                                  ;A2B6E5;
     PLX                                                                  ;A2B6E6;
     BCC .found                                                           ;A2B6E7;
@@ -6446,7 +6446,6 @@ SpawnMotherBrainsRoomRinka:
     CPY.W #$0042                                                         ;A2B6EF;
     BMI .loopOnScreen                                                    ;A2B6F2;
     JMP.W .notFound                                                      ;A2B6F4;
-
     RTS                                                                  ;A2B6F7; >.<
 
   .found:
@@ -6459,7 +6458,7 @@ SpawnMotherBrainsRoomRinka:
     PHX                                                                  ;A2B70A;
     LDX.W MotherBrainsRoomRinkaSpawnData_spawnPointAvailabilityIndex,Y   ;A2B70B;
     LDA.W #$FFFF                                                         ;A2B70E;
-    STA.L ExtraEnemy8800-2,X                                             ;A2B711;
+    STA.L Rinka.tempSpawnPointAvailabilityTableIndex,X                   ;A2B711;
     TXA                                                                  ;A2B715;
     PLX                                                                  ;A2B716;
     STA.W Rinka.spawnPointAvailabilityTableIndex,X                       ;A2B717;
@@ -6471,7 +6470,7 @@ SpawnMotherBrainsRoomRinka:
   .loopAny:
     PHX                                                                  ;A2B71E;
     LDX.W MotherBrainsRoomRinkaSpawnData_spawnPointAvailabilityIndex,Y   ;A2B71F;
-    LDA.L ExtraEnemy8800-2,X                                             ;A2B722;
+    LDA.L Rinka.tempSpawnPointAvailabilityTableIndex,X                   ;A2B722;
     PLX                                                                  ;A2B726;
     LSR                                                                  ;A2B727;
     BCC .spawn                                                           ;A2B728;
@@ -6497,7 +6496,7 @@ SpawnMotherBrainsRoomRinka:
     PHX                                                                  ;A2B750;
     TAX                                                                  ;A2B751;
     LDA.W #$FFFF                                                         ;A2B752;
-    STA.L ExtraEnemy8800-2,X                                             ;A2B755;
+    STA.L Rinka.tempSpawnPointAvailabilityTableIndex,X                   ;A2B755;
     PLX                                                                  ;A2B759;
     RTS                                                                  ;A2B75A;
 
@@ -6700,7 +6699,7 @@ MarkRinkaSpawnPointAvailable:
     PHX                                                                  ;A2B8C5;
     TAX                                                                  ;A2B8C6;
     LDA.W #$0000                                                         ;A2B8C7;
-    STA.L ExtraEnemy8800-2,X                                             ;A2B8CA;
+    STA.L Rinka.tempSpawnPointAvailabilityTableIndex,X                   ;A2B8CA;
     PLX                                                                  ;A2B8CE;
     STA.W Rinka.spawnPointAvailabilityTableIndex,X                       ;A2B8CF;
 
@@ -9195,7 +9194,7 @@ InitAI_Oum:
     STA.L Oum.instListIndex,X                                            ;A2CCE4;
     STA.L Oum.animationFinishedFlag,X                                    ;A2CCE8;
     STA.L Oum.attackAllowingRotationFlag,X                               ;A2CCEC;
-    STA.L ExtraEnemy7800+$14,X                                           ;A2CCF0; >.<
+    STA.L Oum.neverRead7814,X                                            ;A2CCF0; >.<
     LDA.W #$0003                                                         ;A2CCF4;
     STA.W Oum.bounceCounter,X                                            ;A2CCF7;
     LDA.W #$0080                                                         ;A2CCFA;
@@ -12749,11 +12748,11 @@ InitializeHorizontalShutter:
     LDA.W #Function_HorizontalShutter_Initial                            ;A2F1C2;
     STA.W ShutterHorizShootable.function,X                               ;A2F1C5;
     LDA.W SamusXPosition                                                 ;A2F1C8;
-    STA.L ExtraEnemy7800+$2A,X                                           ;A2F1CB;
+    STA.L Shutters.neverRead782A,X                                       ;A2F1CB;
     LDA.W #$0000                                                         ;A2F1CF;
     STA.W Enemy.properties2,X                                            ;A2F1D2;
     STA.L Shutters.movingSamusFlag,X                                     ;A2F1D5;
-    STA.L ExtraEnemy7800+$16,X                                           ;A2F1D9;
+    STA.L Shutters.neverRead7816,X                                       ;A2F1D9;
     RTS                                                                  ;A2F1DD;
 
 
@@ -12783,9 +12782,9 @@ MainAI_ShutterHorizShootable:
     JSL.L PowerBombReaction_CommonReaction_HorizontalShutter             ;A2F211;
 
 +   LDA.W SamusXPosition                                                 ;A2F215;
-    STA.L ExtraEnemy7800+$2A,X                                           ;A2F218;
+    STA.L Shutters.neverRead782A,X                                       ;A2F218;
     LDA.W SamusXSubPosition                                              ;A2F21C;
-    STA.L ExtraEnemy7800+$2C,X                                           ;A2F21F;
+    STA.L Shutters.neverRead782C,X                                       ;A2F21F;
     RTL                                                                  ;A2F223;
 
 
