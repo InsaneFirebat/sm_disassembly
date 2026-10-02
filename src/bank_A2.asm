@@ -1054,9 +1054,9 @@ InstList_BabyTurtle_FacingRight_LeaveShell:
 
 ;;; $8D50: Tatori data ;;;
 MamaTurtleConstants:
-  .HoveringXAcceleration_subAcceleration:
+  .hoveringXAcceleration_subAcceleration:
     dw $F000                                                             ;A28D56; Hovering X acceleration
-  .HoveringXAcceleration_acceleration:
+  .hoveringXAcceleration_acceleration:
     dw       $FFFF                                                       ;A28D58; Moving left
     dw $1000,$0000                                                       ;A28D5A; Moving right
 
@@ -1318,9 +1318,9 @@ Function_MamaTurtle_RiseToHover:
     BPL +                                                                ;A28FC7;
     LDY.W #$0004                                                         ;A28FC9;
 
-+   LDA.W MamaTurtleConstants_HoveringXAcceleration_subAcceleration,Y    ;A28FCC;
++   LDA.W MamaTurtleConstants_hoveringXAcceleration_subAcceleration,Y    ;A28FCC;
     STA.L MamaTurtle.XSubAcceleration
-    LDA.W MamaTurtleConstants_HoveringXAcceleration_acceleration,Y       ;A28FD3;
+    LDA.W MamaTurtleConstants_hoveringXAcceleration_acceleration,Y       ;A28FD3;
     STA.L MamaTurtle.XAcceleration
     LDA.W #$0000                                                         ;A28FDA;
     STA.W MamaTurtle.XVelocity
@@ -1789,7 +1789,7 @@ Instruction_BabyTurtle_Crawl:
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A293B5;
     LDA.W BabyTurtle.turtleIndex,X                                       ;A293B9;
     TAX                                                                  ;A293BC;
-    LDA.W BabyTurtle.function,X                                          ;A293BD;
+    LDA.W MamaTurtle.function,X                                          ;A293BD;
     CMP.W #Function_MamaTurtle_Asleep                                    ;A293C0;
     BNE .return                                                          ;A293C3;
     LDA.W Enemy.XPosition

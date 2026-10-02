@@ -2194,7 +2194,7 @@ NMI:
 ; Process animated tiles object VRAM transfers
     LDA.W AnimatedTilesObject_Enable
     BPL .HUDTilemap
-    LDX.B #.doneSamusTiles>>16
+    LDX.B #AnimatedTiles>>16
     PHX
     PLB
     LDX.B #$0A
@@ -2205,7 +2205,7 @@ NMI:
     LDA.W AnimatedTilesObject_SrcAddr,X
     BEQ .nextAnimatedTiles
     STA.W $4302
-    LDY.B #$87
+    LDY.B #AnimatedTiles>>16
     STY.W $4304
     LDA.W #$1801
     STA.W $4300

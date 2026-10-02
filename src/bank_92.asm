@@ -525,9 +525,9 @@ SamusSpritemapTable:
     dw SamusSpritemaps_A088                                              ;9283CD;
     dw SamusSpritemaps_A0F6                                              ;9283CF;
     dw SamusSpritemaps_A088                                              ;9283D1;
-; Top half - 02: Facing left-   normal
+; Top half - 02: Facing left -  normal
 ; Top half - 48: Unused
-; Top half - 8A: Facing left-   ran into a wall
+; Top half - 8A: Facing left -  ran into a wall
 ; 01A3. Top half - A9: Unused
     dw SamusSpritemaps_A0B4                                              ;9283D3;
     dw SamusSpritemaps_A0CA                                              ;9283D5;
@@ -542,7 +542,7 @@ SamusSpritemapTable:
 ; 01AD. Top half - 03: Facing right - aiming up
     dw SamusSpritemaps_97B1                                              ;9283E7;
     dw SamusSpritemaps_97FF                                              ;9283E9;
-; 01AF. Top half - 04: Facing left-   aiming up
+; 01AF. Top half - 04: Facing left -  aiming up
     dw SamusSpritemaps_97C7                                              ;9283EB;
     dw SamusSpritemaps_981A                                              ;9283ED;
 ; Top half - 05: Facing right - aiming up-right
@@ -553,12 +553,12 @@ SamusSpritemapTable:
 ; 01B1. Top half - F9: Facing right - standing transition - aiming up-right
     dw SamusSpritemaps_97B1                                              ;9283EF;
     dw SamusSpritemaps_97B1                                              ;9283F1;
-; Top half - 06: Facing left-   aiming up-left
-; Top half - 58: Facing left-   normal jump transition - aiming up-left
-; Top half - D0: Facing left-   ran into a wall - aiming up-left
-; Top half - E3: Facing left-   landing from normal jump - aiming up-left
-; Top half - F4: Facing left-   crouching transition - aiming up-left
-; 01B3. Top half - FA: Facing left-   standing transition - aiming up-left
+; Top half - 06: Facing left -  aiming up-left
+; Top half - 58: Facing left -  normal jump transition - aiming up-left
+; Top half - D0: Facing left -  ran into a wall - aiming up-left
+; Top half - E3: Facing left -  landing from normal jump - aiming up-left
+; Top half - F4: Facing left -  crouching transition - aiming up-left
+; 01B3. Top half - FA: Facing left -  standing transition - aiming up-left
     dw SamusSpritemaps_97C7                                              ;9283F3;
     dw SamusSpritemaps_97C7                                              ;9283F5;
 ; Top half - 07: Facing right - aiming down-right
@@ -570,36 +570,36 @@ SamusSpritemapTable:
 ; 01B5. Top half - FB: Facing right - standing transition - aiming down-right
     dw SamusSpritemaps_9745                                              ;9283F7;
     dw SamusSpritemaps_9745                                              ;9283F9;
-; Top half - 08: Facing left-   aiming down-left
-; Top half - 5A: Facing left-   normal jump transition - aiming down-left
+; Top half - 08: Facing left -  aiming down-left
+; Top half - 5A: Facing left -  normal jump transition - aiming down-left
 ; Top half - AB: Unused
-; Top half - D2: Facing left-   ran into a wall - aiming down-left
-; Top half - E5: Facing left-   landing from normal jump - aiming down-left
-; Top half - F6: Facing left-   crouching transition - aiming down-left
-; 01B7. Top half - FC: Facing left-   standing transition - aiming down-left
+; Top half - D2: Facing left -  ran into a wall - aiming down-left
+; Top half - E5: Facing left -  landing from normal jump - aiming down-left
+; Top half - F6: Facing left -  crouching transition - aiming down-left
+; 01B7. Top half - FC: Facing left -  standing transition - aiming down-left
     dw SamusSpritemaps_9760                                              ;9283FB;
     dw SamusSpritemaps_9760                                              ;9283FD;
 ; 01B9. Top half - A4: Facing right - landing from normal jump
     dw SamusSpritemaps_9B6F                                              ;9283FF;
     dw SamusSpritemaps_9BAE                                              ;928401;
-; 01BB. Top half - A5: Facing left-   landing from normal jump
+; 01BB. Top half - A5: Facing left -  landing from normal jump
     dw SamusSpritemaps_9B80                                              ;928403;
     dw SamusSpritemaps_9BBF                                              ;928405;
 ; 01BD. Top half - A6: Facing right - landing from spin jump
     dw SamusSpritemaps_9BAE                                              ;928407;
     dw SamusSpritemaps_9B6F                                              ;928409;
     dw SamusSpritemaps_9BAE                                              ;92840B;
-; 01C0. Top half - A7: Facing left-   landing from spin jump
+; 01C0. Top half - A7: Facing left -  landing from spin jump
     dw SamusSpritemaps_9BBF                                              ;92840D;
     dw SamusSpritemaps_9B80                                              ;92840F;
     dw SamusSpritemaps_9BBF                                              ;928411;
-; 01C0. Top half - A7: Facing left-   landing from spin jump
+; 01C0. Top half - A7: Facing left -  landing from spin jump
     dw SamusSpritemaps_9C26                                              ;928413;
     dw SamusSpritemaps_9C0B                                              ;928415;
     dw SamusSpritemaps_977B                                              ;928417;
     dw SamusSpritemaps_9C41                                              ;928419;
     dw SamusSpritemaps_9C5C                                              ;92841B;
-; 01C0. Top half - A7: Facing left-   landing from spin jump
+; 01C0. Top half - A7: Facing left -  landing from spin jump
     dw SamusSpritemaps_9C92                                              ;92841D;
     dw SamusSpritemaps_9C77                                              ;92841F;
     dw SamusSpritemaps_9796                                              ;928421;
@@ -611,19 +611,19 @@ SamusSpritemapTable:
 ; 01CD. Top half - F7: Facing right - standing transition - aiming up
     dw SamusSpritemaps_97FF                                              ;928427;
     dw SamusSpritemaps_97FF                                              ;928429;
-; Top half - 56: Facing left-   normal jump transition - aiming up
-; Top half - E1: Facing left-   landing from normal jump - aiming up
-; Top half - F2: Facing left-   crouching transition - aiming up
-; 01CF. Top half - F8: Facing left-   standing transition - aiming up
+; Top half - 56: Facing left -  normal jump transition - aiming up
+; Top half - E1: Facing left -  landing from normal jump - aiming up
+; Top half - F2: Facing left -  crouching transition - aiming up
+; 01CF. Top half - F8: Facing left -  standing transition - aiming up
     dw SamusSpritemaps_981A                                              ;92842B;
     dw SamusSpritemaps_981A                                              ;92842D;
 ; 01D1. Top half - E6: Facing right - landing from normal jump - firing
     dw SamusSpritemaps_977B                                              ;92842F;
     dw SamusSpritemaps_977B                                              ;928431;
-; 01D3. Top half - E7: Facing left-   landing from normal jump - firing
+; 01D3. Top half - E7: Facing left -  landing from normal jump - firing
     dw SamusSpritemaps_9796                                              ;928433;
     dw SamusSpritemaps_9796                                              ;928435;
-; 01D5. Top half - 49: Facing left-   moonwalk
+; 01D5. Top half - 49: Facing left -  moonwalk
     dw SamusSpritemaps_9796                                              ;928437;
     dw SamusSpritemaps_9E48                                              ;928439;
     dw SamusSpritemaps_9E48                                              ;92843B;
@@ -637,7 +637,7 @@ SamusSpritemapTable:
     dw SamusSpritemaps_977B                                              ;928449;
     dw SamusSpritemaps_9E2D                                              ;92844B;
     dw SamusSpritemaps_9E2D                                              ;92844D;
-; 01E1. Top half - 75: Facing left-   moonwalk - aiming up-left
+; 01E1. Top half - 75: Facing left -  moonwalk - aiming up-left
     dw SamusSpritemaps_9872                                              ;92844F;
     dw SamusSpritemaps_9CFE                                              ;928451;
     dw SamusSpritemaps_9CFE                                              ;928453;
@@ -651,7 +651,7 @@ SamusSpritemapTable:
     dw SamusSpritemaps_9857                                              ;928461;
     dw SamusSpritemaps_9CE3                                              ;928463;
     dw SamusSpritemaps_9CE3                                              ;928465;
-; 01ED. Top half - 77: Facing left-   moonwalk - aiming down-left
+; 01ED. Top half - 77: Facing left -  moonwalk - aiming down-left
     dw SamusSpritemaps_9725                                              ;928467;
     dw SamusSpritemaps_9BEB                                              ;928469;
     dw SamusSpritemaps_9BEB                                              ;92846B;
@@ -801,7 +801,7 @@ SamusSpritemapTable:
 ; 0271. Top half - AE: Unused
     dw SamusSpritemaps_9705                                              ;92856F;
     dw SamusSpritemaps_9B17                                              ;928571;
-; Top half - 18: Facing left-   normal jump - aiming down
+; Top half - 18: Facing left -  normal jump - aiming down
 ; 0273. Top half - AF: Unused
     dw SamusSpritemaps_9725                                              ;928573;
     dw SamusSpritemaps_9B2D                                              ;928575;
@@ -809,39 +809,39 @@ SamusSpritemapTable:
 ; 0275. Top half - AC: Unused
     dw SamusSpritemaps_977B                                              ;928577;
     dw SamusSpritemaps_977B                                              ;928579;
-; Top half - 14: Facing left-   normal jump - not aiming - not moving - gun extended
+; Top half - 14: Facing left -  normal jump - not aiming - not moving - gun extended
 ; 0277. Top half - AD: Unused
     dw SamusSpritemaps_9796                                              ;92857B;
     dw SamusSpritemaps_9796                                              ;92857D;
 ; 0279. Top half - 15: Facing right - normal jump - aiming up
     dw SamusSpritemaps_97B1                                              ;92857F;
     dw SamusSpritemaps_97FF                                              ;928581;
-; 027B. Top half - 16: Facing left-   normal jump - aiming up
+; 027B. Top half - 16: Facing left -  normal jump - aiming up
     dw SamusSpritemaps_97C7                                              ;928583;
     dw SamusSpritemaps_981A                                              ;928585;
 ; 027D. Top half - 69: Facing right - normal jump - aiming up-right
     dw SamusSpritemaps_9857                                              ;928587;
     dw SamusSpritemaps_9857                                              ;928589;
-; 027F. Top half - 6A: Facing left-   normal jump - aiming up-left
+; 027F. Top half - 6A: Facing left -  normal jump - aiming up-left
     dw SamusSpritemaps_9872                                              ;92858B;
     dw SamusSpritemaps_9872                                              ;92858D;
 ; Top half - 6B: Facing right - normal jump - aiming down-right
 ; 0281. Top half - B0: Unused
     dw SamusSpritemaps_9705                                              ;92858F;
     dw SamusSpritemaps_9705                                              ;928591;
-; Top half - 6C: Facing left-   normal jump - aiming down-left
+; Top half - 6C: Facing left -  normal jump - aiming down-left
 ; 0283. Top half - B1: Unused
     dw SamusSpritemaps_9725                                              ;928593;
     dw SamusSpritemaps_9725                                              ;928595;
 ; 0285. Top half - 51: Facing right - normal jump - not aiming - moving forward
     dw SamusSpritemaps_977B                                              ;928597;
     dw SamusSpritemaps_977B                                              ;928599;
-; 0287. Top half - 52: Facing left-   normal jump - not aiming - moving forward
+; 0287. Top half - 52: Facing left -  normal jump - not aiming - moving forward
     dw SamusSpritemaps_9796                                              ;92859B;
     dw SamusSpritemaps_9796                                              ;92859D;
 ; 0289. Top half - 4B: Facing right - normal jump transition
     dw SamusSpritemaps_9B6F                                              ;92859F;
-; 028A. Top half - 4C: Facing left-   normal jump transition
+; 028A. Top half - 4C: Facing left -  normal jump transition
     dw SamusSpritemaps_9B80                                              ;9285A1;
 ; Top half - 4D: Facing right - normal jump - not aiming - not moving - gun not extended
 ; 028B. Top half - C7: Facing right - vertical shinespark windup
@@ -851,15 +851,15 @@ SamusSpritemapTable:
     dw SamusSpritemaps_9657                                              ;9285A9;
     dw SamusSpritemaps_9663                                              ;9285AB;
     dw SamusSpritemaps_97DD                                              ;9285AD;
-; Top half - 4E: Facing left-   normal jump - not aiming - not moving - gun not extended
-; 0291. Top half - C8: Facing left-   vertical shinespark windup
+; Top half - 4E: Facing left -  normal jump - not aiming - not moving - gun not extended
+; 0291. Top half - C8: Facing left -  vertical shinespark windup
     dw SamusSpritemaps_96E8                                              ;9285AF;
     dw SamusSpritemaps_96F4                                              ;9285B1;
     dw SamusSpritemaps_96E8                                              ;9285B3;
     dw SamusSpritemaps_96AE                                              ;9285B5;
     dw SamusSpritemaps_96BA                                              ;9285B7;
     dw SamusSpritemaps_97EE                                              ;9285B9;
-; 0297. Top half - 4F: Facing left-   damage boost
+; 0297. Top half - 4F: Facing left -  damage boost
     dw SamusSpritemaps_9BBF                                              ;9285BB;
     dw SamusSpritemaps_9BBF                                              ;9285BD;
     dw SamusSpritemaps_BB94                                              ;9285BF;
@@ -955,7 +955,7 @@ SamusSpritemapTable:
     dw SamusSpritemaps_BEBF                                              ;928667;
     dw SamusSpritemaps_BEBF                                              ;928669;
     dw SamusSpritemaps_BEBF                                              ;92866B;
-; 02F0. Top half - 84: Facing left-   wall jump
+; 02F0. Top half - 84: Facing left -  wall jump
     dw SamusSpritemaps_9A87                                              ;92866D;
     dw SamusSpritemaps_9BBF                                              ;92866F;
     dw $0000                                                             ;928671;
@@ -1022,7 +1022,7 @@ SamusSpritemapTable:
     dw SamusSpritemaps_9982                                              ;9286E7;
     dw SamusSpritemaps_99AE                                              ;9286E9;
 ; Top half - 5B: Unused
-; 032F. Top half - B8: Facing left-   grapple wall jump pose
+; 032F. Top half - B8: Facing left -  grapple wall jump pose
     dw SamusSpritemaps_9A1F                                              ;9286EB;
 ; Top half - 5C: Unused
 ; 0330. Top half - B9: Facing right - grapple wall jump pose
@@ -1177,7 +1177,7 @@ SamusSpritemapTable:
     dw $0000                                                             ;928803;
     dw SamusSpritemaps_9E63                                              ;928805;
     dw SamusSpritemaps_9BAE                                              ;928807;
-; 03BE. Top half - 2A: Facing left-   falling
+; 03BE. Top half - 2A: Facing left -  falling
     dw SamusSpritemaps_9BBF                                              ;928809;
     dw SamusSpritemaps_9E9E                                              ;92880B;
     dw SamusSpritemaps_9EB9                                              ;92880D;
@@ -1193,7 +1193,7 @@ SamusSpritemapTable:
     dw $0000                                                             ;92881F;
     dw SamusSpritemaps_977B                                              ;928821;
     dw SamusSpritemaps_977B                                              ;928823;
-; 03CC. Top half - 68: Facing left-   falling - gun extended
+; 03CC. Top half - 68: Facing left -  falling - gun extended
     dw SamusSpritemaps_9796                                              ;928825;
     dw SamusSpritemaps_9796                                              ;928827;
     dw SamusSpritemaps_9796                                              ;928829;
@@ -1205,21 +1205,21 @@ SamusSpritemapTable:
     dw SamusSpritemaps_97B1                                              ;928833;
     dw SamusSpritemaps_97FF                                              ;928835;
     dw SamusSpritemaps_97FF                                              ;928837;
-; 03D6. Top half - 2C: Facing left-   falling - aiming up
+; 03D6. Top half - 2C: Facing left -  falling - aiming up
     dw SamusSpritemaps_97C7                                              ;928839;
     dw SamusSpritemaps_981A                                              ;92883B;
     dw SamusSpritemaps_981A                                              ;92883D;
 ; 03D9. Top half - 2D: Facing right - falling - aiming down
     dw SamusSpritemaps_9705                                              ;92883F;
     dw SamusSpritemaps_9B17                                              ;928841;
-; 03DB. Top half - 2E: Facing left-   falling - aiming down
+; 03DB. Top half - 2E: Facing left -  falling - aiming down
     dw SamusSpritemaps_9725                                              ;928843;
     dw SamusSpritemaps_9B2D                                              ;928845;
 ; 03DD. Top half - 6D: Facing right - falling - aiming up-right
     dw SamusSpritemaps_9857                                              ;928847;
     dw SamusSpritemaps_9857                                              ;928849;
     dw SamusSpritemaps_9857                                              ;92884B;
-; 03E0. Top half - 6E: Facing left-   falling - aiming up-left
+; 03E0. Top half - 6E: Facing left -  falling - aiming up-left
     dw SamusSpritemaps_9872                                              ;92884D;
     dw SamusSpritemaps_9872                                              ;92884F;
     dw SamusSpritemaps_9872                                              ;928851;
@@ -1227,24 +1227,24 @@ SamusSpritemapTable:
     dw SamusSpritemaps_9705                                              ;928853;
     dw SamusSpritemaps_9705                                              ;928855;
     dw SamusSpritemaps_9705                                              ;928857;
-; 03E6. Top half - 70: Facing left-   falling - aiming down-left
+; 03E6. Top half - 70: Facing left -  falling - aiming down-left
     dw SamusSpritemaps_9725                                              ;928859;
     dw SamusSpritemaps_9725                                              ;92885B;
     dw SamusSpritemaps_9725                                              ;92885D;
 ; 03E9. Top half - 71: Facing right - crouching - aiming up-right
     dw SamusSpritemaps_97B1                                              ;92885F;
-; 03EA. Top half - 72: Facing left-   crouching - aiming up-left
+; 03EA. Top half - 72: Facing left -  crouching - aiming up-left
     dw SamusSpritemaps_97C7                                              ;928861;
 ; Top half - 73: Facing right - crouching - aiming down-right
 ; 03EB. Top half - B6: Unused
     dw SamusSpritemaps_9745                                              ;928863;
-; Top half - 74: Facing left-   crouching - aiming down-left
+; Top half - 74: Facing left -  crouching - aiming down-left
 ; 03EC. Top half - B7: Unused
     dw SamusSpritemaps_9760                                              ;928865;
 ; 03ED. Top half - 85: Facing right - crouching - aiming up
     dw SamusSpritemaps_97B1                                              ;928867;
     dw SamusSpritemaps_97FF                                              ;928869;
-; 03EF. Top half - 86: Facing left-   crouching - aiming up
+; 03EF. Top half - 86: Facing left -  crouching - aiming up
     dw SamusSpritemaps_97C7                                              ;92886B;
     dw SamusSpritemaps_981A                                              ;92886D;
 ; Top half - 27: Facing right - crouching
@@ -1258,7 +1258,7 @@ SamusSpritemapTable:
     dw SamusSpritemaps_A088                                              ;92887B;
     dw SamusSpritemaps_A0F6                                              ;92887D;
     dw SamusSpritemaps_A088                                              ;92887F;
-; Top half - 28: Facing left-   crouching
+; Top half - 28: Facing left -  crouching
 ; 03FA. Top half - B5: Unused
     dw SamusSpritemaps_A0B4                                              ;928881;
     dw SamusSpritemaps_A0CA                                              ;928883;
@@ -1272,23 +1272,23 @@ SamusSpritemapTable:
 ; Top half - 35: Facing right - crouching transition
 ; 0403. Top half - 3B: Facing right - standing transition
     dw SamusSpritemaps_977B                                              ;928893;
-; Top half - 36: Facing left-   crouching transition
-; 0404. Top half - 3C: Facing left-   standing transition
+; Top half - 36: Facing left -  crouching transition
+; 0404. Top half - 3C: Facing left -  standing transition
     dw SamusSpritemaps_9796                                              ;928895;
 ; Bottom half - 37: Facing right - morphing transition
 ; 0405. Top half - 37: Facing right - morphing transition
     dw SamusSpritemaps_BCDD                                              ;928897;
     dw SamusSpritemaps_BCCC                                              ;928899;
-; Bottom half - 38: Facing left-   morphing transition
-; 0407. Top half - 38: Facing left-   morphing transition
+; Bottom half - 38: Facing left -  morphing transition
+; 0407. Top half - 38: Facing left -  morphing transition
     dw SamusSpritemaps_BCB1                                              ;92889B;
     dw SamusSpritemaps_BCA0                                              ;92889D;
 ; Bottom half - 3D: Facing right - unmorphing transition
 ; 0409. Top half - 3D: Facing right - unmorphing transition
     dw SamusSpritemaps_BCCC                                              ;92889F;
     dw SamusSpritemaps_BCDD                                              ;9288A1;
-; Bottom half - 3E: Facing left-   unmorphing transition
-; 040B. Top half - 3E: Facing left-   unmorphing transition
+; Bottom half - 3E: Facing left -  unmorphing transition
+; 040B. Top half - 3E: Facing left -  unmorphing transition
     dw SamusSpritemaps_BCA0                                              ;9288A3;
     dw SamusSpritemaps_BCB1                                              ;9288A5;
 ; 040D. Top half - DB: Unused
@@ -1316,11 +1316,11 @@ SamusSpritemapTable:
     dw SamusSpritemaps_9998                                              ;9288BF;
     dw SamusSpritemaps_99E9                                              ;9288C1;
     dw SamusSpritemaps_9982                                              ;9288C3;
-; Top half - 26: Facing left-   turning - standing
-; Top half - 30: Facing left-   turning - jumping
-; Top half - 44: Facing left-   turning - crouching
-; Top half - 88: Facing left-   turning - falling
-; 041C. Top half - C0: Facing left-   moonwalking - turn/jump right
+; Top half - 26: Facing left -  turning - standing
+; Top half - 30: Facing left -  turning - jumping
+; Top half - 44: Facing left -  turning - crouching
+; Top half - 88: Facing left -  turning - falling
+; 041C. Top half - C0: Facing left -  moonwalking - turn/jump right
     dw SamusSpritemaps_9982                                              ;9288C5;
     dw SamusSpritemaps_99E9                                              ;9288C7;
     dw SamusSpritemaps_9998                                              ;9288C9;
@@ -1336,15 +1336,15 @@ SamusSpritemapTable:
     dw SamusSpritemaps_99CE                                              ;9288CB;
     dw SamusSpritemaps_993E                                              ;9288CD;
     dw SamusSpritemaps_99AE                                              ;9288CF;
-; Top half - 8C: Facing left-   turning - standing - aiming up
-; Top half - 90: Facing left-   turning - in air - aiming up
-; Top half - 94: Facing left-   turning - falling - aiming up
-; Top half - 98: Facing left-   turning - crouching - aiming up
-; Top half - 9D: Facing left-   turning - standing - aiming up-left
-; Top half - 9F: Facing left-   turning - in air - aiming up-left
-; Top half - A1: Facing left-   turning - falling - aiming up-left
-; Top half - A3: Facing left-   turning - crouching - aiming up-left
-; 0422. Top half - C2: Facing left-   moonwalking - turn/jump right - aiming up-left
+; Top half - 8C: Facing left -  turning - standing - aiming up
+; Top half - 90: Facing left -  turning - in air - aiming up
+; Top half - 94: Facing left -  turning - falling - aiming up
+; Top half - 98: Facing left -  turning - crouching - aiming up
+; Top half - 9D: Facing left -  turning - standing - aiming up-left
+; Top half - 9F: Facing left -  turning - in air - aiming up-left
+; Top half - A1: Facing left -  turning - falling - aiming up-left
+; Top half - A3: Facing left -  turning - crouching - aiming up-left
+; 0422. Top half - C2: Facing left -  moonwalking - turn/jump right - aiming up-left
     dw SamusSpritemaps_99AE                                              ;9288D1;
     dw SamusSpritemaps_993E                                              ;9288D3;
     dw SamusSpritemaps_99CE                                              ;9288D5;
@@ -1356,11 +1356,11 @@ SamusSpritemapTable:
     dw SamusSpritemaps_9AF7                                              ;9288D7;
     dw SamusSpritemaps_9954                                              ;9288D9;
     dw SamusSpritemaps_9AD7                                              ;9288DB;
-; Top half - 8E: Facing left-   turning - standing - aiming down-left
-; Top half - 92: Facing left-   turning - in air - aiming down/down-left
-; Top half - 96: Facing left-   turning - falling - aiming down/down-left
-; Top half - 9A: Facing left-   turning - crouching - aiming down/down-left
-; 0428. Top half - C4: Facing left-   moonwalking - turn/jump right - aiming down-left
+; Top half - 8E: Facing left -  turning - standing - aiming down-left
+; Top half - 92: Facing left -  turning - in air - aiming down/down-left
+; Top half - 96: Facing left -  turning - falling - aiming down/down-left
+; Top half - 9A: Facing left -  turning - crouching - aiming down/down-left
+; 0428. Top half - C4: Facing left -  moonwalking - turn/jump right - aiming down-left
     dw SamusSpritemaps_9AD7                                              ;9288DD;
     dw SamusSpritemaps_9954                                              ;9288DF;
     dw SamusSpritemaps_9AF7                                              ;9288E1;
@@ -1372,13 +1372,13 @@ SamusSpritemapTable:
     dw SamusSpritemaps_977B                                              ;9288E7;
 ; 042E. Top half - EF: Facing right - grabbed by Draygon - not moving - aiming down-right
     dw SamusSpritemaps_9705                                              ;9288E9;
-; 042F. Top half - BA: Facing left-   grabbed by Draygon - not moving - not aiming
+; 042F. Top half - BA: Facing left -  grabbed by Draygon - not moving - not aiming
     dw SamusSpritemaps_9BBF                                              ;9288EB;
-; 0430. Top half - BB: Facing left-   grabbed by Draygon - not moving - aiming up-left
+; 0430. Top half - BB: Facing left -  grabbed by Draygon - not moving - aiming up-left
     dw SamusSpritemaps_9872                                              ;9288ED;
-; 0431. Top half - BC: Facing left-   grabbed by Draygon - firing
+; 0431. Top half - BC: Facing left -  grabbed by Draygon - firing
     dw SamusSpritemaps_9796                                              ;9288EF;
-; 0432. Top half - BD: Facing left-   grabbed by Draygon - not moving - aiming down-left
+; 0432. Top half - BD: Facing left -  grabbed by Draygon - not moving - aiming down-left
     dw SamusSpritemaps_9725                                              ;9288F1;
 ; 0433. Top half - F0: Facing right - grabbed by Draygon - moving
     dw SamusSpritemaps_9663                                              ;9288F3;
@@ -1387,7 +1387,7 @@ SamusSpritemapTable:
     dw SamusSpritemaps_9691                                              ;9288F9;
     dw SamusSpritemaps_969D                                              ;9288FB;
     dw SamusSpritemaps_9657                                              ;9288FD;
-; 0439. Top half - BE: Facing left-   grabbed by Draygon - moving
+; 0439. Top half - BE: Facing left -  grabbed by Draygon - moving
     dw SamusSpritemaps_96BA                                              ;9288FF;
     dw SamusSpritemaps_96C6                                              ;928901;
     dw SamusSpritemaps_96AE                                              ;928903;
@@ -1396,11 +1396,11 @@ SamusSpritemapTable:
     dw SamusSpritemaps_96AE                                              ;928909;
 ; 043F. Top half - C9: Facing right - shinespark - horizontal
     dw SamusSpritemaps_9A93                                              ;92890B;
-; 0440. Top half - CA: Facing left-   shinespark - horizontal
+; 0440. Top half - CA: Facing left -  shinespark - horizontal
     dw SamusSpritemaps_9AAE                                              ;92890D;
 ; 0441. Top half - CD: Facing right - shinespark - diagonal
     dw SamusSpritemaps_9A93                                              ;92890F;
-; 0442. Top half - CE: Facing left-   shinespark - diagonal
+; 0442. Top half - CE: Facing left -  shinespark - diagonal
     dw SamusSpritemaps_9AAE                                              ;928911;
 ; 0443. Top half - D3: Facing right - crystal flash
     dw SamusSpritemaps_BCCC                                              ;928913;
@@ -1418,7 +1418,7 @@ SamusSpritemapTable:
     dw SamusSpritemaps_BCDD                                              ;92892B;
     dw SamusSpritemaps_BCDD                                              ;92892D;
     dw SamusSpritemaps_977B                                              ;92892F;
-; 0452. Top half - D4: Facing left-   crystal flash
+; 0452. Top half - D4: Facing left -  crystal flash
     dw SamusSpritemaps_BCA0                                              ;928931;
     dw SamusSpritemaps_BCB1                                              ;928933;
     dw SamusSpritemaps_C198                                              ;928935;
@@ -1441,7 +1441,7 @@ SamusSpritemapTable:
     dw SamusSpritemaps_977B                                              ;928955;
     dw SamusSpritemaps_98AD                                              ;928957;
     dw SamusSpritemaps_98AD                                              ;928959;
-; 0467. Top half - D8: Facing left-   crystal flash ending
+; 0467. Top half - D8: Facing left -  crystal flash ending
     dw SamusSpritemaps_BB16                                              ;92895B;
     dw SamusSpritemaps_BCA0                                              ;92895D;
     dw SamusSpritemaps_BCB1                                              ;92895F;
@@ -1464,7 +1464,7 @@ SamusSpritemapTable:
     dw $0000                                                             ;92897F;
     dw $0000                                                             ;928981;
     dw SamusSpritemaps_977B                                              ;928983;
-; 047C. Top half - E9: Facing left-   Samus drained - crouching
+; 047C. Top half - E9: Facing left -  Samus drained - crouching
     dw SamusSpritemaps_BCA0                                              ;928985;
     dw SamusSpritemaps_BCB1                                              ;928987;
     dw SamusSpritemaps_9892                                              ;928989;
@@ -1504,7 +1504,7 @@ SamusSpritemapTable:
     dw SamusSpritemaps_A028                                              ;9289CB;
     dw $0000                                                             ;9289CD;
     dw SamusSpritemaps_977B                                              ;9289CF;
-; 04A2. Top half - EB: Facing left-   Samus drained - standing
+; 04A2. Top half - EB: Facing left -  Samus drained - standing
     dw SamusSpritemaps_9FA3                                              ;9289D1;
     dw SamusSpritemaps_9FC3                                              ;9289D3;
     dw SamusSpritemaps_9FE3                                              ;9289D5;
@@ -1526,9 +1526,9 @@ SamusSpritemapTable:
     dw SamusSpritemaps_AE98                                              ;9289ED;
     dw SamusSpritemaps_AEA9                                              ;9289EF;
     dw SamusSpritemaps_AE98                                              ;9289F1;
-; Bottom half - 02: Facing left-   normal
+; Bottom half - 02: Facing left -  normal
 ; Bottom half - 48: Unused
-; Bottom half - 8A: Facing left-   ran into a wall
+; Bottom half - 8A: Facing left -  ran into a wall
 ; 04B3. Bottom half - A9: Unused
     dw SamusSpritemaps_B340                                              ;9289F3;
     dw SamusSpritemaps_AEBA                                              ;9289F5;
@@ -1551,12 +1551,12 @@ SamusSpritemapTable:
 ; 04C0. Bottom half - D1: Facing right - ran into a wall - aiming down-right
     dw SamusSpritemaps_B295                                              ;928A0D;
     dw SamusSpritemaps_B295                                              ;928A0F;
-; Bottom half - 04: Facing left-   aiming up
-; Bottom half - 06: Facing left-   aiming up-left
-; Bottom half - 08: Facing left-   aiming down-left
+; Bottom half - 04: Facing left -  aiming up
+; Bottom half - 06: Facing left -  aiming up-left
+; Bottom half - 08: Facing left -  aiming down-left
 ; Bottom half - AB: Unused
-; Bottom half - D0: Facing left-   ran into a wall - aiming up-left
-; 04C2. Bottom half - D2: Facing left-   ran into a wall - aiming down-left
+; Bottom half - D0: Facing left -  ran into a wall - aiming up-left
+; 04C2. Bottom half - D2: Facing left -  ran into a wall - aiming down-left
     dw SamusSpritemaps_B2AB                                              ;928A11;
     dw SamusSpritemaps_B2AB                                              ;928A13;
     dw SamusSpritemaps_AD3C                                              ;928A15;
@@ -1567,18 +1567,18 @@ SamusSpritemapTable:
 ; 04C5. Bottom half - E6: Facing right - landing from normal jump - firing
     dw SamusSpritemaps_B021                                              ;928A17;
     dw SamusSpritemaps_ADBB                                              ;928A19;
-; Bottom half - A5: Facing left-   landing from normal jump
-; Bottom half - E1: Facing left-   landing from normal jump - aiming up
-; Bottom half - E3: Facing left-   landing from normal jump - aiming up-left
-; Bottom half - E5: Facing left-   landing from normal jump - aiming down-left
-; 04C7. Bottom half - E7: Facing left-   landing from normal jump - firing
+; Bottom half - A5: Facing left -  landing from normal jump
+; Bottom half - E1: Facing left -  landing from normal jump - aiming up
+; Bottom half - E3: Facing left -  landing from normal jump - aiming up-left
+; Bottom half - E5: Facing left -  landing from normal jump - aiming down-left
+; 04C7. Bottom half - E7: Facing left -  landing from normal jump - firing
     dw SamusSpritemaps_B037                                              ;928A1B;
     dw SamusSpritemaps_B340                                              ;928A1D;
 ; 04C9. Bottom half - A6: Facing right - landing from spin jump
     dw SamusSpritemaps_B1C8                                              ;928A1F;
     dw SamusSpritemaps_B021                                              ;928A21;
     dw SamusSpritemaps_ADBB                                              ;928A23;
-; 04CC. Bottom half - A7: Facing left-   landing from spin jump
+; 04CC. Bottom half - A7: Facing left -  landing from spin jump
     dw SamusSpritemaps_B1E3                                              ;928A25;
     dw SamusSpritemaps_B037                                              ;928A27;
     dw SamusSpritemaps_B340                                              ;928A29;
@@ -1588,7 +1588,7 @@ SamusSpritemapTable:
     dw SamusSpritemaps_ADBB                                              ;928A2F;
     dw SamusSpritemaps_ADBB                                              ;928A31;
     dw SamusSpritemaps_ADBB                                              ;928A33;
-; 04D4. Bottom half - D6: Facing left-   x-ray - standing
+; 04D4. Bottom half - D6: Facing left -  x-ray - standing
     dw SamusSpritemaps_B340                                              ;928A35;
     dw SamusSpritemaps_B340                                              ;928A37;
     dw SamusSpritemaps_B340                                              ;928A39;
@@ -1600,7 +1600,7 @@ SamusSpritemapTable:
     dw SamusSpritemaps_B351                                              ;928A43;
     dw SamusSpritemaps_B351                                              ;928A45;
     dw SamusSpritemaps_B351                                              ;928A47;
-; 04DE. Bottom half - DA: Facing left-   x-ray - crouching
+; 04DE. Bottom half - DA: Facing left -  x-ray - crouching
     dw SamusSpritemaps_ADCC                                              ;928A49;
     dw SamusSpritemaps_ADCC                                              ;928A4B;
     dw SamusSpritemaps_ADCC                                              ;928A4D;
@@ -1638,9 +1638,9 @@ SamusSpritemapTable:
     dw SamusSpritemaps_B30A                                              ;928A75;
     dw SamusSpritemaps_B3A9                                              ;928A77;
     dw SamusSpritemaps_B32A                                              ;928A79;
-; Bottom half - 49: Facing left-   moonwalk
-; Bottom half - 75: Facing left-   moonwalk - aiming up-left
-; 04F7. Bottom half - 77: Facing left-   moonwalk - aiming down-left
+; Bottom half - 49: Facing left -  moonwalk
+; Bottom half - 75: Facing left -  moonwalk - aiming up-left
+; 04F7. Bottom half - 77: Facing left -  moonwalk - aiming down-left
     dw SamusSpritemaps_B3ED                                              ;928A7B;
     dw SamusSpritemaps_B403                                              ;928A7D;
     dw SamusSpritemaps_B184                                              ;928A7F;
@@ -1660,7 +1660,7 @@ SamusSpritemapTable:
 ; 0503. Bottom half - AE: Unused
     dw SamusSpritemaps_B08D                                              ;928A93;
     dw SamusSpritemaps_B104                                              ;928A95;
-; Bottom half - 18: Facing left-   normal jump - aiming down
+; Bottom half - 18: Facing left -  normal jump - aiming down
 ; 0505. Bottom half - AF: Unused
     dw SamusSpritemaps_B09E                                              ;928A97;
     dw SamusSpritemaps_B124                                              ;928A99;
@@ -1668,33 +1668,33 @@ SamusSpritemapTable:
 ; 0507. Bottom half - AC: Unused
     dw SamusSpritemaps_B08D                                              ;928A9B;
     dw SamusSpritemaps_B1C8                                              ;928A9D;
-; Bottom half - 14: Facing left-   normal jump - not aiming - not moving - gun extended
+; Bottom half - 14: Facing left -  normal jump - not aiming - not moving - gun extended
 ; 0509. Bottom half - AD: Unused
     dw SamusSpritemaps_B09E                                              ;928A9F;
     dw SamusSpritemaps_B1E3                                              ;928AA1;
 ; 050B. Bottom half - 15: Facing right - normal jump - aiming up
     dw SamusSpritemaps_B08D                                              ;928AA3;
     dw SamusSpritemaps_AEF7                                              ;928AA5;
-; 050D. Bottom half - 16: Facing left-   normal jump - aiming up
+; 050D. Bottom half - 16: Facing left -  normal jump - aiming up
     dw SamusSpritemaps_B09E                                              ;928AA7;
     dw SamusSpritemaps_AF08                                              ;928AA9;
 ; 050F. Bottom half - 51: Facing right - normal jump - not aiming - moving forward
     dw SamusSpritemaps_B08D                                              ;928AAB;
     dw SamusSpritemaps_B1C8                                              ;928AAD;
-; 0511. Bottom half - 52: Facing left-   normal jump - not aiming - moving forward
+; 0511. Bottom half - 52: Facing left -  normal jump - not aiming - moving forward
     dw SamusSpritemaps_B09E                                              ;928AAF;
     dw SamusSpritemaps_B1E3                                              ;928AB1;
 ; 0513. Bottom half - 69: Facing right - normal jump - aiming up-right
     dw SamusSpritemaps_B08D                                              ;928AB3;
     dw SamusSpritemaps_AEF7                                              ;928AB5;
-; 0515. Bottom half - 6A: Facing left-   normal jump - aiming up-left
+; 0515. Bottom half - 6A: Facing left -  normal jump - aiming up-left
     dw SamusSpritemaps_B09E                                              ;928AB7;
     dw SamusSpritemaps_AF08                                              ;928AB9;
 ; Bottom half - 6B: Facing right - normal jump - aiming down-right
 ; 0517. Bottom half - B0: Unused
     dw SamusSpritemaps_B08D                                              ;928ABB;
     dw SamusSpritemaps_B1C8                                              ;928ABD;
-; Bottom half - 6C: Facing left-   normal jump - aiming down-left
+; Bottom half - 6C: Facing left -  normal jump - aiming down-left
 ; 0519. Bottom half - B1: Unused
     dw SamusSpritemaps_B09E                                              ;928ABF;
     dw SamusSpritemaps_B1E3                                              ;928AC1;
@@ -1703,10 +1703,10 @@ SamusSpritemapTable:
 ; Bottom half - 57: Facing right - normal jump transition - aiming up-right
 ; 051B. Bottom half - 59: Facing right - normal jump transition - aiming down-right
     dw SamusSpritemaps_B021                                              ;928AC3;
-; Bottom half - 4C: Facing left-   normal jump transition
-; Bottom half - 56: Facing left-   normal jump transition - aiming up
-; Bottom half - 58: Facing left-   normal jump transition - aiming up-left
-; 051C. Bottom half - 5A: Facing left-   normal jump transition - aiming down-left
+; Bottom half - 4C: Facing left -  normal jump transition
+; Bottom half - 56: Facing left -  normal jump transition - aiming up
+; Bottom half - 58: Facing left -  normal jump transition - aiming up-left
+; 051C. Bottom half - 5A: Facing left -  normal jump transition - aiming down-left
     dw SamusSpritemaps_B037                                              ;928AC5;
 ; Bottom half - 4D: Facing right - normal jump - not aiming - not moving - gun not extended
 ; 051D. Bottom half - C7: Facing right - vertical shinespark windup
@@ -1716,15 +1716,15 @@ SamusSpritemapTable:
     dw SamusSpritemaps_B04D                                              ;928ACD;
     dw SamusSpritemaps_B08D                                              ;928ACF;
     dw SamusSpritemaps_B0AF                                              ;928AD1;
-; Bottom half - 4E: Facing left-   normal jump - not aiming - not moving - gun not extended
-; 0523. Bottom half - C8: Facing left-   vertical shinespark windup
+; Bottom half - 4E: Facing left -  normal jump - not aiming - not moving - gun not extended
+; 0523. Bottom half - C8: Facing left -  vertical shinespark windup
     dw SamusSpritemaps_B2FE                                              ;928AD3;
     dw SamusSpritemaps_B0E2                                              ;928AD5;
     dw SamusSpritemaps_B06D                                              ;928AD7;
     dw SamusSpritemaps_B06D                                              ;928AD9;
     dw SamusSpritemaps_B09E                                              ;928ADB;
     dw SamusSpritemaps_B0BB                                              ;928ADD;
-; 0529. Bottom half - 4F: Facing left-   damage boost
+; 0529. Bottom half - 4F: Facing left -  damage boost
     dw SamusSpritemaps_AECB                                              ;928ADF;
     dw SamusSpritemaps_B09E                                              ;928AE1;
     dw $0000                                                             ;928AE3;
@@ -1820,7 +1820,7 @@ SamusSpritemapTable:
     dw SamusSpritemaps_C502                                              ;928B8B;
     dw SamusSpritemaps_C536                                              ;928B8D;
     dw SamusSpritemaps_C54C                                              ;928B8F;
-; 0582. Bottom half - 84: Facing left-   wall jump
+; 0582. Bottom half - 84: Facing left -  wall jump
     dw SamusSpritemaps_B169                                              ;928B91;
     dw SamusSpritemaps_B1E3                                              ;928B93;
     dw $0000                                                             ;928B95;
@@ -1871,11 +1871,11 @@ SamusSpritemapTable:
 ; 05B1. Bottom half - 53: Facing right - knockback
     dw SamusSpritemaps_B0AF                                              ;928BEF;
     dw SamusSpritemaps_B1FE                                              ;928BF1;
-; 05B3. Bottom half - 54: Facing left-   knockback
+; 05B3. Bottom half - 54: Facing left -  knockback
     dw SamusSpritemaps_B0BB                                              ;928BF3;
     dw SamusSpritemaps_B214                                              ;928BF5;
 ; Bottom half - 5B: Unused
-; 05B5. Bottom half - B8: Facing left-   grapple wall jump pose
+; 05B5. Bottom half - B8: Facing left -  grapple wall jump pose
     dw SamusSpritemaps_AF69                                              ;928BF7;
 ; Bottom half - 5C: Unused
 ; 05B6. Bottom half - B9: Facing right - grapple wall jump pose
@@ -2029,8 +2029,8 @@ SamusSpritemapTable:
     dw $0000                                                             ;928D0B;
     dw SamusSpritemaps_B08D                                              ;928D0D;
     dw SamusSpritemaps_B1C8                                              ;928D0F;
-; Bottom half - 2A: Facing left-   falling
-; 0642. Bottom half - 68: Facing left-   falling - gun extended
+; Bottom half - 2A: Facing left -  falling
+; 0642. Bottom half - 68: Facing left -  falling - gun extended
     dw SamusSpritemaps_B09E                                              ;928D11;
     dw SamusSpritemaps_B0BB                                              ;928D13;
     dw SamusSpritemaps_B0BB                                              ;928D15;
@@ -2041,14 +2041,14 @@ SamusSpritemapTable:
 ; 0649. Bottom half - 2D: Facing right - falling - aiming down
     dw SamusSpritemaps_B08D                                              ;928D1F;
     dw SamusSpritemaps_B104                                              ;928D21;
-; 064B. Bottom half - 2E: Facing left-   falling - aiming down
+; 064B. Bottom half - 2E: Facing left -  falling - aiming down
     dw SamusSpritemaps_B09E                                              ;928D23;
     dw SamusSpritemaps_B124                                              ;928D25;
 ; 064D. Bottom half - 2B: Facing right - falling - aiming up
     dw SamusSpritemaps_B08D                                              ;928D27;
     dw SamusSpritemaps_B0AF                                              ;928D29;
     dw SamusSpritemaps_B1C8                                              ;928D2B;
-; 0650. Bottom half - 2C: Facing left-   falling - aiming up
+; 0650. Bottom half - 2C: Facing left -  falling - aiming up
     dw SamusSpritemaps_B09E                                              ;928D2D;
     dw SamusSpritemaps_B0BB                                              ;928D2F;
     dw SamusSpritemaps_B1E3                                              ;928D31;
@@ -2056,7 +2056,7 @@ SamusSpritemapTable:
     dw SamusSpritemaps_B08D                                              ;928D33;
     dw SamusSpritemaps_B0AF                                              ;928D35;
     dw SamusSpritemaps_B1C8                                              ;928D37;
-; 0656. Bottom half - 6E: Facing left-   falling - aiming up-left
+; 0656. Bottom half - 6E: Facing left -  falling - aiming up-left
     dw SamusSpritemaps_B09E                                              ;928D39;
     dw SamusSpritemaps_B0BB                                              ;928D3B;
     dw SamusSpritemaps_B1E3                                              ;928D3D;
@@ -2064,7 +2064,7 @@ SamusSpritemapTable:
     dw SamusSpritemaps_B08D                                              ;928D3F;
     dw SamusSpritemaps_B0AF                                              ;928D41;
     dw SamusSpritemaps_B1C8                                              ;928D43;
-; 065C. Bottom half - 70: Facing left-   falling - aiming down-left
+; 065C. Bottom half - 70: Facing left -  falling - aiming down-left
     dw SamusSpritemaps_B09E                                              ;928D45;
     dw SamusSpritemaps_B0BB                                              ;928D47;
     dw SamusSpritemaps_B1E3                                              ;928D49;
@@ -2079,7 +2079,7 @@ SamusSpritemapTable:
     dw SamusSpritemaps_B351                                              ;928D57;
     dw SamusSpritemaps_B351                                              ;928D59;
     dw SamusSpritemaps_B351                                              ;928D5B;
-; Bottom half - 28: Facing left-   crouching
+; Bottom half - 28: Facing left -  crouching
 ; 0668. Bottom half - B5: Unused
     dw SamusSpritemaps_ADCC                                              ;928D5D;
     dw SamusSpritemaps_ADCC                                              ;928D5F;
@@ -2092,18 +2092,18 @@ SamusSpritemapTable:
     dw SamusSpritemaps_ADCC                                              ;928D6D;
 ; 0671. Bottom half - 71: Facing right - crouching - aiming up-right
     dw SamusSpritemaps_B351                                              ;928D6F;
-; 0672. Bottom half - 72: Facing left-   crouching - aiming up-left
+; 0672. Bottom half - 72: Facing left -  crouching - aiming up-left
     dw SamusSpritemaps_ADCC                                              ;928D71;
 ; Bottom half - 73: Facing right - crouching - aiming down-right
 ; 0673. Bottom half - B6: Unused
     dw SamusSpritemaps_B351                                              ;928D73;
-; Bottom half - 74: Facing left-   crouching - aiming down-left
+; Bottom half - 74: Facing left -  crouching - aiming down-left
 ; 0674. Bottom half - B7: Unused
     dw SamusSpritemaps_ADCC                                              ;928D75;
 ; 0675. Bottom half - 85: Facing right - crouching - aiming up
     dw SamusSpritemaps_B351                                              ;928D77;
     dw SamusSpritemaps_B351                                              ;928D79;
-; 0677. Bottom half - 86: Facing left-   crouching - aiming up
+; 0677. Bottom half - 86: Facing left -  crouching - aiming up
     dw SamusSpritemaps_ADCC                                              ;928D7B;
     dw SamusSpritemaps_ADCC                                              ;928D7D;
 ; Bottom half - 35: Facing right - crouching transition
@@ -2115,14 +2115,14 @@ SamusSpritemapTable:
 ; Bottom half - F9: Facing right - standing transition - aiming up-right
 ; 0679. Bottom half - FB: Facing right - standing transition - aiming down-right
     dw SamusSpritemaps_B021                                              ;928D7F;
-; Bottom half - 36: Facing left-   crouching transition
-; Bottom half - 3C: Facing left-   standing transition
-; Bottom half - F2: Facing left-   crouching transition - aiming up
-; Bottom half - F4: Facing left-   crouching transition - aiming up-left
-; Bottom half - F6: Facing left-   crouching transition - aiming down-left
-; Bottom half - F8: Facing left-   standing transition - aiming up
-; Bottom half - FA: Facing left-   standing transition - aiming up-left
-; 067A. Bottom half - FC: Facing left-   standing transition - aiming down-left
+; Bottom half - 36: Facing left -  crouching transition
+; Bottom half - 3C: Facing left -  standing transition
+; Bottom half - F2: Facing left -  crouching transition - aiming up
+; Bottom half - F4: Facing left -  crouching transition - aiming up-left
+; Bottom half - F6: Facing left -  crouching transition - aiming down-left
+; Bottom half - F8: Facing left -  standing transition - aiming up
+; Bottom half - FA: Facing left -  standing transition - aiming up-left
+; 067A. Bottom half - FC: Facing left -  standing transition - aiming down-left
     dw SamusSpritemaps_B037                                              ;928D81;
     dw $0000                                                             ;928D83;
     dw $0000                                                             ;928D85;
@@ -2150,13 +2150,13 @@ SamusSpritemapTable:
     dw SamusSpritemaps_AF2A                                              ;928D9B;
     dw SamusSpritemaps_AFE0                                              ;928D9D;
     dw SamusSpritemaps_AF19                                              ;928D9F;
-; Bottom half - 26: Facing left-   turning - standing
-; Bottom half - 8C: Facing left-   turning - standing - aiming up
-; Bottom half - 8E: Facing left-   turning - standing - aiming down-left
-; Bottom half - 9D: Facing left-   turning - standing - aiming up-left
-; Bottom half - C0: Facing left-   moonwalking - turn/jump right
-; Bottom half - C2: Facing left-   moonwalking - turn/jump right - aiming up-left
-; 068A. Bottom half - C4: Facing left-   moonwalking - turn/jump right - aiming down-left
+; Bottom half - 26: Facing left -  turning - standing
+; Bottom half - 8C: Facing left -  turning - standing - aiming up
+; Bottom half - 8E: Facing left -  turning - standing - aiming down-left
+; Bottom half - 9D: Facing left -  turning - standing - aiming up-left
+; Bottom half - C0: Facing left -  moonwalking - turn/jump right
+; Bottom half - C2: Facing left -  moonwalking - turn/jump right - aiming up-left
+; 068A. Bottom half - C4: Facing left -  moonwalking - turn/jump right - aiming down-left
     dw SamusSpritemaps_AF19                                              ;928DA1;
     dw SamusSpritemaps_AFE0                                              ;928DA3;
     dw SamusSpritemaps_AF2A                                              ;928DA5;
@@ -2175,24 +2175,24 @@ SamusSpritemapTable:
     dw SamusSpritemaps_AF4C                                              ;928DA7;
     dw SamusSpritemaps_AFEC                                              ;928DA9;
     dw SamusSpritemaps_AF3B                                              ;928DAB;
-; Bottom half - 30: Facing left-   turning - jumping
-; Bottom half - 44: Facing left-   turning - crouching
-; Bottom half - 90: Facing left-   turning - in air - aiming up
-; Bottom half - 92: Facing left-   turning - in air - aiming down/down-left
-; Bottom half - 98: Facing left-   turning - crouching - aiming up
-; Bottom half - 9A: Facing left-   turning - crouching - aiming down/down-left
-; Bottom half - 9F: Facing left-   turning - in air - aiming up-left
-; 0690. Bottom half - A3: Facing left-   turning - crouching - aiming up-left
+; Bottom half - 30: Facing left -  turning - jumping
+; Bottom half - 44: Facing left -  turning - crouching
+; Bottom half - 90: Facing left -  turning - in air - aiming up
+; Bottom half - 92: Facing left -  turning - in air - aiming down/down-left
+; Bottom half - 98: Facing left -  turning - crouching - aiming up
+; Bottom half - 9A: Facing left -  turning - crouching - aiming down/down-left
+; Bottom half - 9F: Facing left -  turning - in air - aiming up-left
+; 0690. Bottom half - A3: Facing left -  turning - crouching - aiming up-left
     dw SamusSpritemaps_AF3B                                              ;928DAD;
     dw SamusSpritemaps_AFEC                                              ;928DAF;
     dw SamusSpritemaps_AF4C                                              ;928DB1;
     dw SamusSpritemaps_AF4C                                              ;928DB3;
     dw SamusSpritemaps_AFEC                                              ;928DB5;
     dw SamusSpritemaps_AF3B                                              ;928DB7;
-; Bottom half - 88: Facing left-   turning - falling
-; Bottom half - 94: Facing left-   turning - falling - aiming up
-; Bottom half - 96: Facing left-   turning - falling - aiming down/down-left
-; 0696. Bottom half - A1: Facing left-   turning - falling - aiming up-left
+; Bottom half - 88: Facing left -  turning - falling
+; Bottom half - 94: Facing left -  turning - falling - aiming up
+; Bottom half - 96: Facing left -  turning - falling - aiming down/down-left
+; 0696. Bottom half - A1: Facing left -  turning - falling - aiming up-left
     dw SamusSpritemaps_AF3B                                              ;928DB9;
     dw SamusSpritemaps_AFEC                                              ;928DBB;
     dw SamusSpritemaps_AF4C                                              ;928DBD;
@@ -2201,10 +2201,10 @@ SamusSpritemapTable:
 ; Bottom half - EE: Facing right - grabbed by Draygon - firing
 ; 0699. Bottom half - EF: Facing right - grabbed by Draygon - not moving - aiming down-right
     dw SamusSpritemaps_B1FE                                              ;928DBF;
-; Bottom half - BA: Facing left-   grabbed by Draygon - not moving - not aiming
-; Bottom half - BB: Facing left-   grabbed by Draygon - not moving - aiming up-left
-; Bottom half - BC: Facing left-   grabbed by Draygon - firing
-; 069A. Bottom half - BD: Facing left-   grabbed by Draygon - not moving - aiming down-left
+; Bottom half - BA: Facing left -  grabbed by Draygon - not moving - not aiming
+; Bottom half - BB: Facing left -  grabbed by Draygon - not moving - aiming up-left
+; Bottom half - BC: Facing left -  grabbed by Draygon - firing
+; 069A. Bottom half - BD: Facing left -  grabbed by Draygon - not moving - aiming down-left
     dw SamusSpritemaps_B214                                              ;928DC1;
 ; 069B. Bottom half - F0: Facing right - grabbed by Draygon - moving
     dw SamusSpritemaps_B0AF                                              ;928DC3;
@@ -2213,7 +2213,7 @@ SamusSpritemapTable:
     dw SamusSpritemaps_B0AF                                              ;928DC9;
     dw SamusSpritemaps_B0C7                                              ;928DCB;
     dw SamusSpritemaps_B04D                                              ;928DCD;
-; 06A1. Bottom half - BE: Facing left-   grabbed by Draygon - moving
+; 06A1. Bottom half - BE: Facing left -  grabbed by Draygon - moving
     dw SamusSpritemaps_B0BB                                              ;928DCF;
     dw SamusSpritemaps_B214                                              ;928DD1;
     dw SamusSpritemaps_B1E3                                              ;928DD3;
@@ -2222,11 +2222,11 @@ SamusSpritemapTable:
     dw SamusSpritemaps_B06D                                              ;928DD9;
 ; 06A7. Bottom half - C9: Facing right - shinespark - horizontal
     dw SamusSpritemaps_AF75                                              ;928DDB;
-; 06A8. Bottom half - CA: Facing left-   shinespark - horizontal
+; 06A8. Bottom half - CA: Facing left -  shinespark - horizontal
     dw SamusSpritemaps_AF8B                                              ;928DDD;
 ; 06A9. Bottom half - CD: Facing right - shinespark - diagonal
     dw SamusSpritemaps_AF75                                              ;928DDF;
-; 06AA. Bottom half - CE: Facing left-   shinespark - diagonal
+; 06AA. Bottom half - CE: Facing left -  shinespark - diagonal
     dw SamusSpritemaps_AF8B                                              ;928DE1;
 ; 06AB. Bottom half - D3: Facing right - crystal flash
     dw SamusSpritemaps_C276                                              ;928DE3;
@@ -2244,7 +2244,7 @@ SamusSpritemapTable:
     dw SamusSpritemaps_C28C                                              ;928DFB;
     dw SamusSpritemaps_C276                                              ;928DFD;
     dw SamusSpritemaps_B021                                              ;928DFF;
-; 06BA. Bottom half - D4: Facing left-   crystal flash
+; 06BA. Bottom half - D4: Facing left -  crystal flash
     dw SamusSpritemaps_C276                                              ;928E01;
     dw SamusSpritemaps_C28C                                              ;928E03;
     dw SamusSpritemaps_C2DE                                              ;928E05;
@@ -2267,7 +2267,7 @@ SamusSpritemapTable:
     dw SamusSpritemaps_B021                                              ;928E25;
     dw SamusSpritemaps_B0AF                                              ;928E27;
     dw SamusSpritemaps_B1FE                                              ;928E29;
-; 06CF. Bottom half - D8: Facing left-   crystal flash ending
+; 06CF. Bottom half - D8: Facing left -  crystal flash ending
     dw $0000                                                             ;928E2B;
     dw $0000                                                             ;928E2D;
     dw $0000                                                             ;928E2F;
@@ -2290,7 +2290,7 @@ SamusSpritemapTable:
     dw $0000                                                             ;928E4F;
     dw $0000                                                             ;928E51;
     dw SamusSpritemaps_B021                                              ;928E53;
-; 06E4. Bottom half - E9: Facing left-   Samus drained - crouching
+; 06E4. Bottom half - E9: Facing left -  Samus drained - crouching
     dw $0000                                                             ;928E55;
     dw $0000                                                             ;928E57;
     dw SamusSpritemaps_B0BB                                              ;928E59;
@@ -2330,7 +2330,7 @@ SamusSpritemapTable:
     dw SamusSpritemaps_B242                                              ;928E9B;
     dw $0000                                                             ;928E9D;
     dw SamusSpritemaps_B021                                              ;928E9F;
-; 070A. Bottom half - EB: Facing left-   Samus drained - standing
+; 070A. Bottom half - EB: Facing left -  Samus drained - standing
     dw SamusSpritemaps_B236                                              ;928EA1;
     dw SamusSpritemaps_B236                                              ;928EA3;
     dw SamusSpritemaps_B236                                              ;928EA5;
@@ -2339,12 +2339,12 @@ SamusSpritemapTable:
     dw SamusSpritemaps_B037                                              ;928EAB;
 ; Bottom half - 1D: Facing right - morph ball - no springball - on ground
 ; Bottom half - 31: Facing right - morph ball - no springball - in air
-; Bottom half - 32: Facing left-   morph ball - no springball - in air
+; Bottom half - 32: Facing left -  morph ball - no springball - in air
 ; Bottom half - 3F: Unused
 ; Bottom half - 40: Unused
 ; Top half - 1D: Facing right - morph ball - no springball - on ground
 ; Top half - 31: Facing right - morph ball - no springball - in air
-; Top half - 32: Facing left-   morph ball - no springball - in air
+; Top half - 32: Facing left -  morph ball - no springball - in air
 ; Top half - 3F: Unused
 ; 0710. Top half - 40: Unused
     dw SamusSpritemaps_BAB3                                              ;928EAD;
@@ -2357,10 +2357,10 @@ SamusSpritemapTable:
     dw SamusSpritemaps_BB16                                              ;928EBB;
     dw $0000                                                             ;928EBD;
     dw SamusSpritemaps_BC88                                              ;928EBF;
-; Bottom half - 41: Facing left-   morph ball - no springball - on ground
+; Bottom half - 41: Facing left -  morph ball - no springball - on ground
 ; Bottom half - C5: Unused
 ; Bottom half - DF: Unused
-; Top half - 41: Facing left-   morph ball - no springball - on ground
+; Top half - 41: Facing left -  morph ball - no springball - on ground
 ; Top half - C5: Unused
 ; 071A. Top half - DF: Unused
     dw SamusSpritemaps_BB16                                              ;928EC1;
@@ -2415,14 +2415,14 @@ SamusSpritemapTable:
     dw SamusSpritemaps_BB16                                              ;928F0B;
     dw $0000                                                             ;928F0D;
     dw SamusSpritemaps_BC88                                              ;928F0F;
-; Bottom half - 7A: Facing left-   morph ball - spring ball - on ground
+; Bottom half - 7A: Facing left -  morph ball - spring ball - on ground
 ; Bottom half - 7C: Moving left-   morph ball - spring ball - on ground
-; Bottom half - 7E: Facing left-   morph ball - spring ball - falling
-; Bottom half - 80: Facing left-   morph ball - spring ball - in air
-; Top half - 7A: Facing left-   morph ball - spring ball - on ground
+; Bottom half - 7E: Facing left -  morph ball - spring ball - falling
+; Bottom half - 80: Facing left -  morph ball - spring ball - in air
+; Top half - 7A: Facing left -  morph ball - spring ball - on ground
 ; Top half - 7C: Moving left-   morph ball - spring ball - on ground
-; Top half - 7E: Facing left-   morph ball - spring ball - falling
-; 0742. Top half - 80: Facing left-   morph ball - spring ball - in air
+; Top half - 7E: Facing left -  morph ball - spring ball - falling
+; 0742. Top half - 80: Facing left -  morph ball - spring ball - in air
     dw SamusSpritemaps_BB16                                              ;928F11;
     dw SamusSpritemaps_BAD7                                              ;928F13;
     dw SamusSpritemaps_BB0A                                              ;928F15;
@@ -2479,7 +2479,7 @@ SamusSpritemapTable:
     dw $0000                                                             ;928F4F;
     dw $0000                                                             ;928F51;
     dw SamusSpritemaps_AFB2                                              ;928F53;
-; 0764. Top half - 1A: Facing left-   spin jump
+; 0764. Top half - 1A: Facing left -  spin jump
     dw SamusSpritemaps_9BBF                                              ;928F55;
     dw SamusSpritemaps_BB22                                              ;928F57;
     dw SamusSpritemaps_BB2E                                              ;928F59;
@@ -2492,7 +2492,7 @@ SamusSpritemapTable:
     dw $0000                                                             ;928F67;
     dw $0000                                                             ;928F69;
     dw SamusSpritemaps_9B59                                              ;928F6B;
-; 0770. Bottom half - 1A: Facing left-   spin jump
+; 0770. Bottom half - 1A: Facing left -  spin jump
     dw SamusSpritemaps_B1E3                                              ;928F6D;
     dw $0000                                                             ;928F6F;
     dw $0000                                                             ;928F71;
@@ -2531,7 +2531,7 @@ SamusSpritemapTable:
     dw $0000                                                             ;928FAF;
     dw $0000                                                             ;928FB1;
     dw SamusSpritemaps_AFB2                                              ;928FB3;
-; 0794. Top half - 1C: Facing left-   space jump
+; 0794. Top half - 1C: Facing left -  space jump
     dw SamusSpritemaps_9BBF                                              ;928FB5;
     dw SamusSpritemaps_BC7A                                              ;928FB7;
     dw SamusSpritemaps_BC7A                                              ;928FB9;
@@ -2544,7 +2544,7 @@ SamusSpritemapTable:
     dw $0000                                                             ;928FC7;
     dw $0000                                                             ;928FC9;
     dw SamusSpritemaps_9B59                                              ;928FCB;
-; 07A0. Bottom half - 1C: Facing left-   space jump
+; 07A0. Bottom half - 1C: Facing left -  space jump
     dw SamusSpritemaps_B1E3                                              ;928FCD;
     dw SamusSpritemaps_C330                                              ;928FCF;
     dw SamusSpritemaps_C346                                              ;928FD1;
@@ -2615,7 +2615,7 @@ SamusSpritemapTable:
     dw $0000                                                             ;92904F;
     dw $0000                                                             ;929051;
     dw SamusSpritemaps_AFB2                                              ;929053;
-; 07E4. Top half - 82: Facing left-   screw attack
+; 07E4. Top half - 82: Facing left -  screw attack
     dw SamusSpritemaps_9BBF                                              ;929055;
     dw SamusSpritemaps_BBAA                                              ;929057;
     dw SamusSpritemaps_BBAA                                              ;929059;
@@ -2644,7 +2644,7 @@ SamusSpritemapTable:
     dw $0000                                                             ;929087;
     dw $0000                                                             ;929089;
     dw SamusSpritemaps_9B59                                              ;92908B;
-; 0800. Bottom half - 82: Facing left-   screw attack
+; 0800. Bottom half - 82: Facing left -  screw attack
     dw SamusSpritemaps_B1E3                                              ;92908D;
     dw SamusSpritemaps_C330                                              ;92908F;
     dw SamusSpritemaps_C346                                              ;929091;
@@ -2696,8 +2696,8 @@ SamusSpritemapTable:
 ; Bottom half - CB: Facing right - shinespark - vertical
 ; 082E. Top half - CB: Facing right - shinespark - vertical
     dw SamusSpritemaps_C162                                              ;9290E9;
-; Bottom half - CC: Facing left-   shinespark - vertical
-; 082F. Top half - CC: Facing left-   shinespark - vertical
+; Bottom half - CC: Facing left -  shinespark - vertical
+; 082F. Top half - CC: Facing left -  shinespark - vertical
     dw SamusSpritemaps_C17D                                              ;9290EB;
 
 
@@ -6983,11 +6983,11 @@ SamusTopTiles_Set0_CBEE:
 ; Meaninglessly used by:
 ;     0: Facing forward - power suit - frame 1
 ;     1: Facing right - normal - frame 4
-;     2: Facing left-   normal - frame 4
+;     2: Facing left -  normal - frame 4
 ;     19h: Facing right - spin jump - frames 9..Ah
-;     1Ah: Facing left-   spin jump - frames 9..Ah
+;     1Ah: Facing left -  spin jump - frames 9..Ah
 ;     1Bh: Facing right - space jump - frames 9..Ah
-;     1Ch: Facing left-   space jump - frames 9..Ah
+;     1Ch: Facing left -  space jump - frames 9..Ah
 ;     1Dh: Facing right - morph ball - no springball - on ground - frame 8
 ;     1Eh: Moving right - morph ball - no springball - on ground - frame 8
 ;     1Fh: Moving left-   morph ball - no springball - on ground - frame 8
@@ -6997,60 +6997,60 @@ SamusTopTiles_Set0_CBEE:
 ;     23h: Unused - frames 9..Ah
 ;     24h: Unused - frames 9..Ah
 ;     27h: Facing right - crouching - frame 4
-;     28h: Facing left-   crouching - frame 4
+;     28h: Facing left -  crouching - frame 4
 ;     29h: Facing right - falling - frames 3..4
-;     2Ah: Facing left-   falling - frames 3..4
+;     2Ah: Facing left -  falling - frames 3..4
 ;     31h: Facing right - morph ball - no springball - in air - frame 8
-;     32h: Facing left-   morph ball - no springball - in air - frame 8
+;     32h: Facing left -  morph ball - no springball - in air - frame 8
 ;     33h: Unused - frames 9..Ah
 ;     34h: Unused - frames 9..Ah
 ;     39h: Unused - frames 9..Ah
 ;     3Ah: Unused - frames 9..Ah
 ;     3Fh: Unused - frame 8
 ;     40h: Unused - frame 8
-;     41h: Facing left-   morph ball - no springball - on ground - frame 8
+;     41h: Facing left -  morph ball - no springball - on ground - frame 8
 ;     42h: Unused - frames 9..Ah
 ;     47h: Unused - frame 4
 ;     48h: Unused - frame 4
 ;     67h: Facing right - falling - gun extended - frames 3..4
-;     68h: Facing left-   falling - gun extended - frames 3..4
+;     68h: Facing left -  falling - gun extended - frames 3..4
 ;     79h: Facing right - morph ball - spring ball - on ground - frame 8
-;     7Ah: Facing left-   morph ball - spring ball - on ground - frame 8
+;     7Ah: Facing left -  morph ball - spring ball - on ground - frame 8
 ;     7Bh: Moving right - morph ball - spring ball - on ground - frame 8
 ;     7Ch: Moving left-   morph ball - spring ball - on ground - frame 8
 ;     7Dh: Facing right - morph ball - spring ball - falling - frame 8
-;     7Eh: Facing left-   morph ball - spring ball - falling - frame 8
+;     7Eh: Facing left -  morph ball - spring ball - falling - frame 8
 ;     7Fh: Facing right - morph ball - spring ball - in air - frame 8
-;     80h: Facing left-   morph ball - spring ball - in air - frame 8
+;     80h: Facing left -  morph ball - spring ball - in air - frame 8
 ;     81h: Facing right - screw attack - frames 19h..1Ah
-;     82h: Facing left-   screw attack - frames 19h..1Ah
+;     82h: Facing left -  screw attack - frames 19h..1Ah
 ;     83h: Facing right - wall jump - frame 2
 ;     83h: Facing right - wall jump - frames Bh..Ch
 ;     83h: Facing right - wall jump - frames 15h..16h
-;     84h: Facing left-   wall jump - frame 2
-;     84h: Facing left-   wall jump - frames Bh..Ch
-;     84h: Facing left-   wall jump - frames 15h..16h
+;     84h: Facing left -  wall jump - frame 2
+;     84h: Facing left -  wall jump - frames Bh..Ch
+;     84h: Facing left -  wall jump - frames 15h..16h
 ;     89h: Facing right - ran into a wall - frame 4
-;     8Ah: Facing left-   ran into a wall - frame 4
+;     8Ah: Facing left -  ran into a wall - frame 4
 ;     9Bh: Facing forward - varia/gravity suit - frame 1
 ;     A8h: Facing right - grappling - frame 4
-;     A9h: Facing left-   grappling - frame 4
+;     A9h: Facing left -  grappling - frame 4
 ;     B4h: Facing right - grappling - crouching - frame 4
-;     B5h: Facing left-   grappling - crouching - frame 4
+;     B5h: Facing left -  grappling - crouching - frame 4
 ;     C5h: Unused - frame 8
 ;     D3h: Facing right - crystal flash - frames 4..5
 ;     D3h: Facing right - crystal flash - frames Ah..Bh
-;     D4h: Facing left-   crystal flash - frames 4..5
-;     D4h: Facing left-   crystal flash - frames Ah..Bh
+;     D4h: Facing left -  crystal flash - frames 4..5
+;     D4h: Facing left -  crystal flash - frames Ah..Bh
 ;     DFh: Unused. Related to Draygon - frame 8
 ;     E8h: Facing right - Samus drained - crouching/falling - frames Ch..Dh
-;     E9h: Facing left-   Samus drained - crouching/falling - frames Ch..Dh
-;     E9h: Facing left-   Samus drained - crouching/falling - frames 11h..12h
-;     E9h: Facing left-   Samus drained - crouching/falling - frames 18h..19h
-;     E9h: Facing left-   Samus drained - crouching/falling - frames 1Bh..1Ch
-;     E9h: Facing left-   Samus drained - crouching/falling - frames 1Eh..1Fh
+;     E9h: Facing left -  Samus drained - crouching/falling - frames Ch..Dh
+;     E9h: Facing left -  Samus drained - crouching/falling - frames 11h..12h
+;     E9h: Facing left -  Samus drained - crouching/falling - frames 18h..19h
+;     E9h: Facing left -  Samus drained - crouching/falling - frames 1Bh..1Ch
+;     E9h: Facing left -  Samus drained - crouching/falling - frames 1Eh..1Fh
 ;     EAh: Facing right - Samus drained - standing - frame 4
-;     EBh: Facing left-   Samus drained - standing - frame 4
+;     EBh: Facing left -  Samus drained - standing - frame 4
     dl SamusTiles_Top_Set0_Entry0 : dw $0080,$0080                       ;92CBEE;
 
 SamusTopTiles_Set0_CBF5:
@@ -7088,22 +7088,22 @@ SamusTopTiles_Set0_CC11:
 SamusTopTiles_Set0_CC18:
 ; Ah: Moving left-   not aiming - frame 0
 ; Ah: Moving left-   not aiming - frame 5
-; 4Eh: Facing left-   normal jump - not aiming - not moving - gun not extended - frame 3
-; BEh: Facing left-   grabbed by Draygon - moving - frame 2
-; BEh: Facing left-   grabbed by Draygon - moving - frame 5
-; C8h: Facing left-   vertical shinespark windup - frame 3
+; 4Eh: Facing left -  normal jump - not aiming - not moving - gun not extended - frame 3
+; BEh: Facing left -  grabbed by Draygon - moving - frame 2
+; BEh: Facing left -  grabbed by Draygon - moving - frame 5
+; C8h: Facing left -  vertical shinespark windup - frame 3
     dl SamusTiles_Top_Set0_Entry6 : dw $0080,$0080                       ;92CC18;
 
 SamusTopTiles_Set0_CC1F:
 ; Ah: Moving left-   not aiming - frame 4
-; 4Eh: Facing left-   normal jump - not aiming - not moving - gun not extended - frame 4
-; BEh: Facing left-   grabbed by Draygon - moving - frame 0
-; C8h: Facing left-   vertical shinespark windup - frame 4
+; 4Eh: Facing left -  normal jump - not aiming - not moving - gun not extended - frame 4
+; BEh: Facing left -  grabbed by Draygon - moving - frame 0
+; C8h: Facing left -  vertical shinespark windup - frame 4
     dl SamusTiles_Top_Set0_Entry7 : dw $0080,$0080                       ;92CC1F;
 
 SamusTopTiles_Set0_CC26:
 ; Ah: Moving left-   not aiming - frame 2
-; BEh: Facing left-   grabbed by Draygon - moving - frame 1
+; BEh: Facing left -  grabbed by Draygon - moving - frame 1
     dl SamusTiles_Top_Set0_Entry8 : dw $00C0,$00C0                       ;92CC26;
 
 SamusTopTiles_Set0_CC2D:
@@ -7112,18 +7112,18 @@ SamusTopTiles_Set0_CC2D:
 
 SamusTopTiles_Set0_CC34:
 ; Ah: Moving left-   not aiming - frame 9
-; 4Eh: Facing left-   normal jump - not aiming - not moving - gun not extended - frame 0
-; 4Eh: Facing left-   normal jump - not aiming - not moving - gun not extended - frame 2
-; BEh: Facing left-   grabbed by Draygon - moving - frame 3
-; C8h: Facing left-   vertical shinespark windup - frame 0
-; C8h: Facing left-   vertical shinespark windup - frame 2
+; 4Eh: Facing left -  normal jump - not aiming - not moving - gun not extended - frame 0
+; 4Eh: Facing left -  normal jump - not aiming - not moving - gun not extended - frame 2
+; BEh: Facing left -  grabbed by Draygon - moving - frame 3
+; C8h: Facing left -  vertical shinespark windup - frame 0
+; C8h: Facing left -  vertical shinespark windup - frame 2
     dl SamusTiles_Top_Set0_EntryA : dw $0080,$0080                       ;92CC34;
 
 SamusTopTiles_Set0_CC3B:
 ; Ah: Moving left-   not aiming - frame 7
-; 4Eh: Facing left-   normal jump - not aiming - not moving - gun not extended - frame 1
-; BEh: Facing left-   grabbed by Draygon - moving - frame 4
-; C8h: Facing left-   vertical shinespark windup - frame 1
+; 4Eh: Facing left -  normal jump - not aiming - not moving - gun not extended - frame 1
+; BEh: Facing left -  grabbed by Draygon - moving - frame 4
+; C8h: Facing left -  vertical shinespark windup - frame 1
     dl SamusTiles_Top_Set0_EntryB : dw $00A0,$0080                       ;92CC3B;
 
 SamusTopTiles_Set0_CC42:
@@ -7143,15 +7143,15 @@ SamusTopTiles_Set0_CC42:
 SamusTopTiles_Set0_CC49:
 ; 12h: Moving left-   aiming down-left - frames 0..1
 ; 12h: Moving left-   aiming down-left - frames 5..6
-; 18h: Facing left-   normal jump - aiming down - frame 0
-; 2Eh: Facing left-   falling - aiming down - frame 0
-; 6Ch: Facing left-   normal jump - aiming down-left - frames 0..1
-; 70h: Facing left-   falling - aiming down-left - frames 0..2
-; 77h: Facing left-   moonwalk - aiming down-left - frame 0
-; 77h: Facing left-   moonwalk - aiming down-left - frame 3
-; AFh: Unused. Facing left-   grappling - in air - aiming down - frame 0
-; B1h: Unused. Facing left-   grappling - in air - aiming down-left - frames 0..1
-; BDh: Facing left-   grabbed by Draygon - not moving - aiming down-left - frame 0
+; 18h: Facing left -  normal jump - aiming down - frame 0
+; 2Eh: Facing left -  falling - aiming down - frame 0
+; 6Ch: Facing left -  normal jump - aiming down-left - frames 0..1
+; 70h: Facing left -  falling - aiming down-left - frames 0..2
+; 77h: Facing left -  moonwalk - aiming down-left - frame 0
+; 77h: Facing left -  moonwalk - aiming down-left - frame 3
+; AFh: Unused. Facing left -  grappling - in air - aiming down - frame 0
+; B1h: Unused. Facing left -  grappling - in air - aiming down-left - frames 0..1
+; BDh: Facing left -  grabbed by Draygon - not moving - aiming down-left - frame 0
     dl SamusTiles_Top_Set0_EntryD : dw $00E0,$0040                       ;92CC49;
 
 SamusTopTiles_Set0_CC50:
@@ -7167,15 +7167,15 @@ SamusTopTiles_Set0_CC50:
     dl SamusTiles_Top_Set0_EntryE : dw $00E0,$0080                       ;92CC50;
 
 SamusTopTiles_Set0_CC57:
-; 8: Facing left-   aiming down-left - frame 0
-; 5Ah: Facing left-   normal jump transition - aiming down-left - frame 0
-; 74h: Facing left-   crouching - aiming down-left - frame 0
-; ABh: Facing left-   grappling - aiming down-left - frame 0
-; B7h: Facing left-   grappling - crouching - aiming down-left - frame 0
-; D2h: Facing left-   ran into a wall - aiming down-left - frame 0
-; E5h: Facing left-   landing from normal jump - aiming down-left - frames 0..1
-; F6h: Facing left-   crouching transition - aiming down-left - frame 0
-; FCh: Facing left-   standing transition - aiming down-left - frame 0
+; 8: Facing left -  aiming down-left - frame 0
+; 5Ah: Facing left -  normal jump transition - aiming down-left - frame 0
+; 74h: Facing left -  crouching - aiming down-left - frame 0
+; ABh: Facing left -  grappling - aiming down-left - frame 0
+; B7h: Facing left -  grappling - crouching - aiming down-left - frame 0
+; D2h: Facing left -  ran into a wall - aiming down-left - frame 0
+; E5h: Facing left -  landing from normal jump - aiming down-left - frames 0..1
+; F6h: Facing left -  crouching transition - aiming down-left - frame 0
+; FCh: Facing left -  standing transition - aiming down-left - frame 0
     dl SamusTiles_Top_Set0_EntryF : dw $00E0,$0080                       ;92CC57;
 
 SamusTopTiles_Set0_CC5E:
@@ -7201,24 +7201,24 @@ SamusTopTiles_Set0_CC5E:
     dl SamusTiles_Top_Set0_Entry10 : dw $00C0,$0040                      ;92CC5E;
 
 SamusTopTiles_Set0_CC65:
-; 14h: Facing left-   normal jump - not aiming - not moving - gun extended - frames 0..1
-; 36h: Facing left-   crouching transition - frame 0
-; 3Ch: Facing left-   standing transition - frame 0
-; 49h: Facing left-   moonwalk - frame 0
-; 49h: Facing left-   moonwalk - frame 3
-; 52h: Facing left-   normal jump - not aiming - moving forward - frames 0..1
-; 68h: Facing left-   falling - gun extended - frames 0..2
-; 68h: Facing left-   falling - gun extended - frames 5..6
-; ADh: Unused. Facing left-   grappling - in air - frames 0..1
-; BCh: Facing left-   grabbed by Draygon - firing - frame 0
-; D4h: Facing left-   crystal flash - frame Eh
-; D6h: Facing left-   x-ray - standing - frame 2
-; D8h: Facing left-   crystal flash ending - frame 3
-; DAh: Facing left-   x-ray - crouching - frame 2
+; 14h: Facing left -  normal jump - not aiming - not moving - gun extended - frames 0..1
+; 36h: Facing left -  crouching transition - frame 0
+; 3Ch: Facing left -  standing transition - frame 0
+; 49h: Facing left -  moonwalk - frame 0
+; 49h: Facing left -  moonwalk - frame 3
+; 52h: Facing left -  normal jump - not aiming - moving forward - frames 0..1
+; 68h: Facing left -  falling - gun extended - frames 0..2
+; 68h: Facing left -  falling - gun extended - frames 5..6
+; ADh: Unused. Facing left -  grappling - in air - frames 0..1
+; BCh: Facing left -  grabbed by Draygon - firing - frame 0
+; D4h: Facing left -  crystal flash - frame Eh
+; D6h: Facing left -  x-ray - standing - frame 2
+; D8h: Facing left -  crystal flash ending - frame 3
+; DAh: Facing left -  x-ray - crouching - frame 2
 ; DCh: Unused - frame 0
 ; DEh: Unused - frame 2
-; E7h: Facing left-   landing from normal jump - firing - frames 0..1
-; EBh: Facing left-   Samus drained - standing - frame 5
+; E7h: Facing left -  landing from normal jump - firing - frames 0..1
+; EBh: Facing left -  Samus drained - standing - frame 5
     dl SamusTiles_Top_Set0_Entry11 : dw $00C0,$0040                      ;92CC65;
 
 SamusTopTiles_Set0_CC6C:
@@ -7236,17 +7236,17 @@ SamusTopTiles_Set0_CC6C:
     dl SamusTiles_Top_Set0_Entry12 : dw $00C0,$0080                      ;92CC6C;
 
 SamusTopTiles_Set0_CC73:
-; 4: Facing left-   aiming up - frame 0
-; 6: Facing left-   aiming up-left - frame 0
-; 16h: Facing left-   normal jump - aiming up - frame 0
-; 2Ch: Facing left-   falling - aiming up - frame 0
-; 58h: Facing left-   normal jump transition - aiming up-left - frame 0
-; 72h: Facing left-   crouching - aiming up-left - frame 0
-; 86h: Facing left-   crouching - aiming up - frame 0
-; D0h: Facing left-   ran into a wall - aiming up-left - frame 0
-; E3h: Facing left-   landing from normal jump - aiming up-left - frames 0..1
-; F4h: Facing left-   crouching transition - aiming up-left - frame 0
-; FAh: Facing left-   standing transition - aiming up-left - frame 0
+; 4: Facing left -  aiming up - frame 0
+; 6: Facing left -  aiming up-left - frame 0
+; 16h: Facing left -  normal jump - aiming up - frame 0
+; 2Ch: Facing left -  falling - aiming up - frame 0
+; 58h: Facing left -  normal jump transition - aiming up-left - frame 0
+; 72h: Facing left -  crouching - aiming up-left - frame 0
+; 86h: Facing left -  crouching - aiming up - frame 0
+; D0h: Facing left -  ran into a wall - aiming up-left - frame 0
+; E3h: Facing left -  landing from normal jump - aiming up-left - frames 0..1
+; F4h: Facing left -  crouching transition - aiming up-left - frame 0
+; FAh: Facing left -  standing transition - aiming up-left - frame 0
     dl SamusTiles_Top_Set0_Entry13 : dw $00C0,$0080                      ;92CC73;
 
 SamusTopTiles_Set0_CC7A:
@@ -7255,8 +7255,8 @@ SamusTopTiles_Set0_CC7A:
     dl SamusTiles_Top_Set0_Entry14 : dw $00A0,$0080                      ;92CC7A;
 
 SamusTopTiles_Set0_CC81:
-; 4Eh: Facing left-   normal jump - not aiming - not moving - gun not extended - frame 5
-; C8h: Facing left-   vertical shinespark windup - frame 5
+; 4Eh: Facing left -  normal jump - not aiming - not moving - gun not extended - frame 5
+; C8h: Facing left -  vertical shinespark windup - frame 5
     dl SamusTiles_Top_Set0_Entry15 : dw $00C0,$00C0                      ;92CC81;
 
 SamusTopTiles_Set0_CC88:
@@ -7273,16 +7273,16 @@ SamusTopTiles_Set0_CC88:
     dl SamusTiles_Top_Set0_Entry16 : dw $00C0,$0040                      ;92CC88;
 
 SamusTopTiles_Set0_CC8F:
-; 4: Facing left-   aiming up - frame 1
+; 4: Facing left -  aiming up - frame 1
 ; Eh: Moving left-   aiming up (unused) - frames 0..1
 ; Eh: Moving left-   aiming up (unused) - frames 5..6
-; 16h: Facing left-   normal jump - aiming up - frame 1
-; 2Ch: Facing left-   falling - aiming up - frames 1..2
-; 56h: Facing left-   normal jump transition - aiming up - frame 0
-; 86h: Facing left-   crouching - aiming up - frame 1
-; E1h: Facing left-   landing from normal jump - aiming up - frames 0..1
-; F2h: Facing left-   crouching transition - aiming up - frame 0
-; F8h: Facing left-   standing transition - aiming up - frame 0
+; 16h: Facing left -  normal jump - aiming up - frame 1
+; 2Ch: Facing left -  falling - aiming up - frames 1..2
+; 56h: Facing left -  normal jump transition - aiming up - frame 0
+; 86h: Facing left -  crouching - aiming up - frame 1
+; E1h: Facing left -  landing from normal jump - aiming up - frames 0..1
+; F2h: Facing left -  crouching transition - aiming up - frame 0
+; F8h: Facing left -  standing transition - aiming up - frame 0
     dl SamusTiles_Top_Set0_Entry17 : dw $00C0,$0040                      ;92CC8F;
 
 SamusTopTiles_Set0_CC96:
@@ -7306,17 +7306,17 @@ SamusTopTiles_Set0_CCA4:
 SamusTopTiles_Set0_CCAB:
 ; 10h: Moving left-   aiming up-left - frames 0..1
 ; 10h: Moving left-   aiming up-left - frames 5..6
-; 6Ah: Facing left-   normal jump - aiming up-left - frames 0..1
-; 6Eh: Facing left-   falling - aiming up-left - frames 0..2
-; 75h: Facing left-   moonwalk - aiming up-left - frame 0
-; 75h: Facing left-   moonwalk - aiming up-left - frame 3
-; BBh: Facing left-   grabbed by Draygon - not moving - aiming up-left - frame 0
+; 6Ah: Facing left -  normal jump - aiming up-left - frames 0..1
+; 6Eh: Facing left -  falling - aiming up-left - frames 0..2
+; 75h: Facing left -  moonwalk - aiming up-left - frame 0
+; 75h: Facing left -  moonwalk - aiming up-left - frame 3
+; BBh: Facing left -  grabbed by Draygon - not moving - aiming up-left - frame 0
     dl SamusTiles_Top_Set0_Entry1B : dw $00E0,$0040                      ;92CCAB;
 
 SamusTopTiles_Set0_CCB2:
-; 54h: Facing left-   knockback - frames 0..1
-; D8h: Facing left-   crystal flash ending - frames 4..5
-; E9h: Facing left-   Samus drained - crouching/falling - frames 2..6
+; 54h: Facing left -  knockback - frames 0..1
+; D8h: Facing left -  crystal flash ending - frames 4..5
+; E9h: Facing left -  Samus drained - crouching/falling - frames 2..6
     dl SamusTiles_Top_Set0_Entry1C : dw $0100,$00C0                      ;92CCB2;
 
 SamusTopTiles_Set0_CCB9:
@@ -7343,36 +7343,36 @@ UNUSED_SamusTopTiles_Set1_92CCD5:
 
 SamusTopTiles_Set1_CCDC:
 ; 8Bh: Facing right - turning - standing - aiming up - frame 1
-; 8Ch: Facing left-   turning - standing - aiming up - frame 1
+; 8Ch: Facing left -  turning - standing - aiming up - frame 1
 ; 8Fh: Facing right - turning - in air - aiming up - frame 1
-; 90h: Facing left-   turning - in air - aiming up - frame 1
+; 90h: Facing left -  turning - in air - aiming up - frame 1
 ; 93h: Facing right - turning - falling - aiming up - frame 1
-; 94h: Facing left-   turning - falling - aiming up - frame 1
+; 94h: Facing left -  turning - falling - aiming up - frame 1
 ; 97h: Facing right - turning - crouching - aiming up - frame 1
-; 98h: Facing left-   turning - crouching - aiming up - frame 1
+; 98h: Facing left -  turning - crouching - aiming up - frame 1
 ; 9Ch: Facing right - turning - standing - aiming up-right - frame 1
-; 9Dh: Facing left-   turning - standing - aiming up-left - frame 1
+; 9Dh: Facing left -  turning - standing - aiming up-left - frame 1
 ; 9Eh: Facing right - turning - in air - aiming up-right - frame 1
-; 9Fh: Facing left-   turning - in air - aiming up-left - frame 1
+; 9Fh: Facing left -  turning - in air - aiming up-left - frame 1
 ; A0h: Facing right - turning - falling - aiming up-right - frame 1
-; A1h: Facing left-   turning - falling - aiming up-left - frame 1
+; A1h: Facing left -  turning - falling - aiming up-left - frame 1
 ; A2h: Facing right - turning - crouching - aiming up-right - frame 1
-; A3h: Facing left-   turning - crouching - aiming up-left - frame 1
+; A3h: Facing left -  turning - crouching - aiming up-left - frame 1
 ; C1h: Facing right - moonwalking - turn/jump left-   aiming up-right - frame 1
-; C2h: Facing left-   moonwalking - turn/jump right - aiming up-left - frame 1
+; C2h: Facing left -  moonwalking - turn/jump right - aiming up-left - frame 1
     dl SamusTiles_Top_Set1_Entry2 : dw $00E0,$00C0                       ;92CCDC;
 
 SamusTopTiles_Set1_CCE3:
 ; 8Dh: Facing right - turning - standing - aiming down-right - frame 1
-; 8Eh: Facing left-   turning - standing - aiming down-left - frame 1
+; 8Eh: Facing left -  turning - standing - aiming down-left - frame 1
 ; 91h: Facing right - turning - in air - aiming down/down-right - frame 1
-; 92h: Facing left-   turning - in air - aiming down/down-left - frame 1
+; 92h: Facing left -  turning - in air - aiming down/down-left - frame 1
 ; 95h: Facing right - turning - falling - aiming down/down-right - frame 1
-; 96h: Facing left-   turning - falling - aiming down/down-left - frame 1
+; 96h: Facing left -  turning - falling - aiming down/down-left - frame 1
 ; 99h: Facing right - turning - crouching - aiming down/down-right - frame 1
-; 9Ah: Facing left-   turning - crouching - aiming down/down-left - frame 1
+; 9Ah: Facing left -  turning - crouching - aiming down/down-left - frame 1
 ; C3h: Facing right - moonwalking - turn/jump left-   aiming down-right - frame 1
-; C4h: Facing left-   moonwalking - turn/jump right - aiming down-left - frame 1
+; C4h: Facing left -  moonwalking - turn/jump right - aiming down-left - frame 1
     dl SamusTiles_Top_Set1_Entry3 : dw $0100,$00C0                       ;92CCE3;
 
 SamusTopTiles_Set1_CCEA:
@@ -7384,85 +7384,85 @@ SamusTopTiles_Set1_CCF1:
 
 SamusTopTiles_Set1_CCF8:
 ; 25h: Facing right - turning - standing - frame 2
-; 26h: Facing left-   turning - standing - frame 0
+; 26h: Facing left -  turning - standing - frame 0
 ; 2Fh: Facing right - turning - jumping - frame 2
-; 30h: Facing left-   turning - jumping - frame 0
+; 30h: Facing left -  turning - jumping - frame 0
 ; 43h: Facing right - turning - crouching - frame 2
-; 44h: Facing left-   turning - crouching - frame 0
+; 44h: Facing left -  turning - crouching - frame 0
 ; 87h: Facing right - turning - falling - frame 2
-; 88h: Facing left-   turning - falling - frame 0
+; 88h: Facing left -  turning - falling - frame 0
 ; BFh: Facing right - moonwalking - turn/jump left - frame 2
-; C0h: Facing left-   moonwalking - turn/jump right - frame 0
+; C0h: Facing left -  moonwalking - turn/jump right - frame 0
 ; C6h: Unused - frame 2
     dl SamusTiles_Top_Set1_Entry6 : dw $00C0,$0080                       ;92CCF8;
 
 SamusTopTiles_Set1_CCFF:
 ; 25h: Facing right - turning - standing - frame 0
-; 26h: Facing left-   turning - standing - frame 2
+; 26h: Facing left -  turning - standing - frame 2
 ; 2Fh: Facing right - turning - jumping - frame 0
-; 30h: Facing left-   turning - jumping - frame 2
+; 30h: Facing left -  turning - jumping - frame 2
 ; 43h: Facing right - turning - crouching - frame 0
-; 44h: Facing left-   turning - crouching - frame 2
+; 44h: Facing left -  turning - crouching - frame 2
 ; 87h: Facing right - turning - falling - frame 0
-; 88h: Facing left-   turning - falling - frame 2
+; 88h: Facing left -  turning - falling - frame 2
 ; BFh: Facing right - moonwalking - turn/jump left - frame 0
-; C0h: Facing left-   moonwalking - turn/jump right - frame 2
+; C0h: Facing left -  moonwalking - turn/jump right - frame 2
 ; C6h: Unused - frame 0
     dl SamusTiles_Top_Set1_Entry7 : dw $00C0,$0080                       ;92CCFF;
 
 SamusTopTiles_Set1_CD06:
 ; 8Bh: Facing right - turning - standing - aiming up - frame 2
-; 8Ch: Facing left-   turning - standing - aiming up - frame 0
+; 8Ch: Facing left -  turning - standing - aiming up - frame 0
 ; 8Fh: Facing right - turning - in air - aiming up - frame 2
-; 90h: Facing left-   turning - in air - aiming up - frame 0
+; 90h: Facing left -  turning - in air - aiming up - frame 0
 ; 93h: Facing right - turning - falling - aiming up - frame 2
-; 94h: Facing left-   turning - falling - aiming up - frame 0
+; 94h: Facing left -  turning - falling - aiming up - frame 0
 ; 97h: Facing right - turning - crouching - aiming up - frame 2
-; 98h: Facing left-   turning - crouching - aiming up - frame 0
+; 98h: Facing left -  turning - crouching - aiming up - frame 0
 ; 9Ch: Facing right - turning - standing - aiming up-right - frame 2
-; 9Dh: Facing left-   turning - standing - aiming up-left - frame 0
+; 9Dh: Facing left -  turning - standing - aiming up-left - frame 0
 ; 9Eh: Facing right - turning - in air - aiming up-right - frame 2
-; 9Fh: Facing left-   turning - in air - aiming up-left - frame 0
+; 9Fh: Facing left -  turning - in air - aiming up-left - frame 0
 ; A0h: Facing right - turning - falling - aiming up-right - frame 2
-; A1h: Facing left-   turning - falling - aiming up-left - frame 0
+; A1h: Facing left -  turning - falling - aiming up-left - frame 0
 ; A2h: Facing right - turning - crouching - aiming up-right - frame 2
-; A3h: Facing left-   turning - crouching - aiming up-left - frame 0
+; A3h: Facing left -  turning - crouching - aiming up-left - frame 0
 ; C1h: Facing right - moonwalking - turn/jump left-   aiming up-right - frame 2
-; C2h: Facing left-   moonwalking - turn/jump right - aiming up-left - frame 0
+; C2h: Facing left -  moonwalking - turn/jump right - aiming up-left - frame 0
     dl SamusTiles_Top_Set1_Entry8 : dw $00E0,$0040                       ;92CD06;
 
 SamusTopTiles_Set1_CD0D:
 ; 8Bh: Facing right - turning - standing - aiming up - frame 0
-; 8Ch: Facing left-   turning - standing - aiming up - frame 2
+; 8Ch: Facing left -  turning - standing - aiming up - frame 2
 ; 8Fh: Facing right - turning - in air - aiming up - frame 0
-; 90h: Facing left-   turning - in air - aiming up - frame 2
+; 90h: Facing left -  turning - in air - aiming up - frame 2
 ; 93h: Facing right - turning - falling - aiming up - frame 0
-; 94h: Facing left-   turning - falling - aiming up - frame 2
+; 94h: Facing left -  turning - falling - aiming up - frame 2
 ; 97h: Facing right - turning - crouching - aiming up - frame 0
-; 98h: Facing left-   turning - crouching - aiming up - frame 2
+; 98h: Facing left -  turning - crouching - aiming up - frame 2
 ; 9Ch: Facing right - turning - standing - aiming up-right - frame 0
-; 9Dh: Facing left-   turning - standing - aiming up-left - frame 2
+; 9Dh: Facing left -  turning - standing - aiming up-left - frame 2
 ; 9Eh: Facing right - turning - in air - aiming up-right - frame 0
-; 9Fh: Facing left-   turning - in air - aiming up-left - frame 2
+; 9Fh: Facing left -  turning - in air - aiming up-left - frame 2
 ; A0h: Facing right - turning - falling - aiming up-right - frame 0
-; A1h: Facing left-   turning - falling - aiming up-left - frame 2
+; A1h: Facing left -  turning - falling - aiming up-left - frame 2
 ; A2h: Facing right - turning - crouching - aiming up-right - frame 0
-; A3h: Facing left-   turning - crouching - aiming up-left - frame 2
+; A3h: Facing left -  turning - crouching - aiming up-left - frame 2
 ; C1h: Facing right - moonwalking - turn/jump left-   aiming up-right - frame 0
-; C2h: Facing left-   moonwalking - turn/jump right - aiming up-left - frame 2
+; C2h: Facing left -  moonwalking - turn/jump right - aiming up-left - frame 2
     dl SamusTiles_Top_Set1_Entry9 : dw $00C0,$0040                       ;92CD0D;
 
 SamusTopTiles_Set1_CD14:
 ; 25h: Facing right - turning - standing - frame 1
-; 26h: Facing left-   turning - standing - frame 1
+; 26h: Facing left -  turning - standing - frame 1
 ; 2Fh: Facing right - turning - jumping - frame 1
-; 30h: Facing left-   turning - jumping - frame 1
+; 30h: Facing left -  turning - jumping - frame 1
 ; 43h: Facing right - turning - crouching - frame 1
-; 44h: Facing left-   turning - crouching - frame 1
+; 44h: Facing left -  turning - crouching - frame 1
 ; 87h: Facing right - turning - falling - frame 1
-; 88h: Facing left-   turning - falling - frame 1
+; 88h: Facing left -  turning - falling - frame 1
 ; BFh: Facing right - moonwalking - turn/jump left - frame 1
-; C0h: Facing left-   moonwalking - turn/jump right - frame 1
+; C0h: Facing left -  moonwalking - turn/jump right - frame 1
 ; C6h: Unused - frame 1
     dl SamusTiles_Top_Set1_EntryA : dw $00E0,$00C0                       ;92CD14;
 
@@ -7477,7 +7477,7 @@ SamusTopTiles_Set1_CD22:
 ; 46h: Unused - frame 0
 ; 5Bh: Unused - frame 0
 ; 63h: Unused. Related to movement type Dh - frame 1
-; B8h: Facing left-   grapple wall jump pose - frame 0
+; B8h: Facing left -  grapple wall jump pose - frame 0
     dl SamusTiles_Top_Set1_EntryC : dw $0100,$0080                       ;92CD22;
 
 SamusTopTiles_Set1_CD29:
@@ -7507,7 +7507,7 @@ SamusTopTiles_Set1_CD4C:
 
 SamusTopTiles_Set1_CD53:
 ; 66h: Unused. Related to movement type Dh - frame 0
-; 84h: Facing left-   wall jump - frame 0
+; 84h: Facing left -  wall jump - frame 0
     dl SamusTiles_Top_Set1_Entry13 : dw $0080,$0080                      ;92CD53;
 
 SamusTopTiles_Set1_CD5A:
@@ -7518,8 +7518,8 @@ SamusTopTiles_Set1_CD5A:
 
 SamusTopTiles_Set1_CD61:
 ; 64h: Unused. Related to movement type Dh - frame 0
-; CAh: Facing left-   shinespark - horizontal - frame 0
-; CEh: Facing left-   shinespark - diagonal - frame 0
+; CAh: Facing left -  shinespark - horizontal - frame 0
+; CEh: Facing left -  shinespark - diagonal - frame 0
     dl SamusTiles_Top_Set1_Entry15 : dw $0100,$00C0                      ;92CD61;
 
 UNUSED_SamusTopTiles_Set1_92CD68:
@@ -7530,28 +7530,28 @@ UNUSED_SamusTopTiles_Set1_92CD6F:
 
 SamusTopTiles_Set1_CD76:
 ; 8Dh: Facing right - turning - standing - aiming down-right - frame 2
-; 8Eh: Facing left-   turning - standing - aiming down-left - frame 0
+; 8Eh: Facing left -  turning - standing - aiming down-left - frame 0
 ; 91h: Facing right - turning - in air - aiming down/down-right - frame 2
-; 92h: Facing left-   turning - in air - aiming down/down-left - frame 0
+; 92h: Facing left -  turning - in air - aiming down/down-left - frame 0
 ; 95h: Facing right - turning - falling - aiming down/down-right - frame 2
-; 96h: Facing left-   turning - falling - aiming down/down-left - frame 0
+; 96h: Facing left -  turning - falling - aiming down/down-left - frame 0
 ; 99h: Facing right - turning - crouching - aiming down/down-right - frame 2
-; 9Ah: Facing left-   turning - crouching - aiming down/down-left - frame 0
+; 9Ah: Facing left -  turning - crouching - aiming down/down-left - frame 0
 ; C3h: Facing right - moonwalking - turn/jump left-   aiming down-right - frame 2
-; C4h: Facing left-   moonwalking - turn/jump right - aiming down-left - frame 0
+; C4h: Facing left -  moonwalking - turn/jump right - aiming down-left - frame 0
     dl SamusTiles_Top_Set1_Entry18 : dw $00E0,$0040                      ;92CD76;
 
 SamusTopTiles_Set1_CD7D:
 ; 8Dh: Facing right - turning - standing - aiming down-right - frame 0
-; 8Eh: Facing left-   turning - standing - aiming down-left - frame 2
+; 8Eh: Facing left -  turning - standing - aiming down-left - frame 2
 ; 91h: Facing right - turning - in air - aiming down/down-right - frame 0
-; 92h: Facing left-   turning - in air - aiming down/down-left - frame 2
+; 92h: Facing left -  turning - in air - aiming down/down-left - frame 2
 ; 95h: Facing right - turning - falling - aiming down/down-right - frame 0
-; 96h: Facing left-   turning - falling - aiming down/down-left - frame 2
+; 96h: Facing left -  turning - falling - aiming down/down-left - frame 2
 ; 99h: Facing right - turning - crouching - aiming down/down-right - frame 0
-; 9Ah: Facing left-   turning - crouching - aiming down/down-left - frame 2
+; 9Ah: Facing left -  turning - crouching - aiming down/down-left - frame 2
 ; C3h: Facing right - moonwalking - turn/jump left-   aiming down-right - frame 0
-; C4h: Facing left-   moonwalking - turn/jump right - aiming down-left - frame 2
+; C4h: Facing left -  moonwalking - turn/jump right - aiming down-left - frame 2
     dl SamusTiles_Top_Set1_Entry19 : dw $00E0,$0040                      ;92CD7D;
 
 SamusTopTiles_Set1_CD84:
@@ -7561,9 +7561,9 @@ SamusTopTiles_Set1_CD84:
     dl SamusTiles_Top_Set1_Entry1A : dw $00C0,$0080                      ;92CD84;
 
 SamusTopTiles_Set1_CD8B:
-; 18h: Facing left-   normal jump - aiming down - frame 1
-; 2Eh: Facing left-   falling - aiming down - frame 1
-; AFh: Unused. Facing left-   grappling - in air - aiming down - frame 1
+; 18h: Facing left -  normal jump - aiming down - frame 1
+; 2Eh: Facing left -  falling - aiming down - frame 1
+; AFh: Unused. Facing left -  grappling - in air - aiming down - frame 1
     dl SamusTiles_Top_Set1_Entry1B : dw $00C0,$0080                      ;92CD8B;
 
 SamusTopTiles_Set1_CD92:
@@ -7583,9 +7583,9 @@ SamusTopTiles_Set1_CD92:
     dl SamusTiles_Top_Set1_Entry1C : dw $00C0,$0080                      ;92CD92;
 
 SamusTopTiles_Set1_CD99:
-; 1Ah: Facing left-   spin jump - frame Bh
-; 1Ch: Facing left-   space jump - frame Bh
-; 82h: Facing left-   screw attack - frame 1Bh
+; 1Ah: Facing left -  spin jump - frame Bh
+; 1Ch: Facing left -  space jump - frame Bh
+; 82h: Facing left -  screw attack - frame 1Bh
     dl SamusTiles_Top_Set1_Entry1D : dw $00C0,$0080                      ;92CD99;
 
 
@@ -7597,9 +7597,9 @@ SamusTopTiles_Set2_CDA0:
     dl SamusTiles_Top_Set2_Entry0 : dw $0080,$0040                       ;92CDA0;
 
 SamusTopTiles_Set2_CDA7:
-; 4Ch: Facing left-   normal jump transition - frame 0
-; A5h: Facing left-   landing from normal jump - frame 0
-; A7h: Facing left-   landing from spin jump - frame 1
+; 4Ch: Facing left -  normal jump transition - frame 0
+; A5h: Facing left -  landing from normal jump - frame 0
+; A7h: Facing left -  landing from spin jump - frame 1
     dl SamusTiles_Top_Set2_Entry1 : dw $0080,$0080                       ;92CDA7;
 
 UNUSED_SamusTopTiles_Set2_92CDAE:
@@ -7607,8 +7607,8 @@ UNUSED_SamusTopTiles_Set2_92CDAE:
     dl SamusTiles_Top_Set2_Entry2 : dw $00C0,$0080                       ;92CDAE;
 
 SamusTopTiles_Set2_CDB5:
-; E9h: Facing left-   Samus drained - crouching/falling - frame 10h
-; E9h: Facing left-   Samus drained - crouching/falling - frame 15h
+; E9h: Facing left -  Samus drained - crouching/falling - frame 10h
+; E9h: Facing left -  Samus drained - crouching/falling - frame 15h
     dl SamusTiles_Top_Set2_Entry3 : dw $0080,$0080                       ;92CDB5;
 
 SamusTopTiles_Set2_CDBC:
@@ -7636,17 +7636,17 @@ SamusTopTiles_Set2_CDBC:
     dl SamusTiles_Top_Set2_Entry4 : dw $0080,$0040                       ;92CDBC;
 
 SamusTopTiles_Set2_CDC3:
-; 1Ah: Facing left-   spin jump - frame 0
-; 1Ch: Facing left-   space jump - frame 0
-; 2Ah: Facing left-   falling - frame 0
-; 2Ah: Facing left-   falling - frame 6
-; 4Fh: Facing left-   damage boost - frames 0..1
-; 82h: Facing left-   screw attack - frame 0
-; 84h: Facing left-   wall jump - frame 1
-; A5h: Facing left-   landing from normal jump - frame 1
-; A7h: Facing left-   landing from spin jump - frame 0
-; A7h: Facing left-   landing from spin jump - frame 2
-; BAh: Facing left-   grabbed by Draygon - not moving - not aiming - frame 0
+; 1Ah: Facing left -  spin jump - frame 0
+; 1Ch: Facing left -  space jump - frame 0
+; 2Ah: Facing left -  falling - frame 0
+; 2Ah: Facing left -  falling - frame 6
+; 4Fh: Facing left -  damage boost - frames 0..1
+; 82h: Facing left -  screw attack - frame 0
+; 84h: Facing left -  wall jump - frame 1
+; A5h: Facing left -  landing from normal jump - frame 1
+; A7h: Facing left -  landing from spin jump - frame 0
+; A7h: Facing left -  landing from spin jump - frame 2
+; BAh: Facing left -  grabbed by Draygon - not moving - not aiming - frame 0
     dl SamusTiles_Top_Set2_Entry5 : dw $0080,$0080                       ;92CDC3;
 
 SamusTopTiles_Set2_CDCA:
@@ -7663,8 +7663,8 @@ SamusTopTiles_Set2_CDD1:
 ; 12h: Moving left-   aiming down-left - frame 4
 ; 12h: Moving left-   aiming down-left - frame 7
 ; 12h: Moving left-   aiming down-left - frame 9
-; 77h: Facing left-   moonwalk - aiming down-left - frames 1..2
-; 77h: Facing left-   moonwalk - aiming down-left - frames 4..5
+; 77h: Facing left -  moonwalk - aiming down-left - frames 1..2
+; 77h: Facing left -  moonwalk - aiming down-left - frames 4..5
     dl SamusTiles_Top_Set2_Entry7 : dw $00E0,$0040                       ;92CDD1;
 
 SamusTopTiles_Set2_CDD8:
@@ -7688,13 +7688,13 @@ SamusTopTiles_Set2_CDED:
     dl SamusTiles_Top_Set2_EntryB : dw $00C0,$0040                       ;92CDED;
 
 SamusTopTiles_Set2_CDF4:
-; D6h: Facing left-   x-ray - standing - frame 1
-; DAh: Facing left-   x-ray - crouching - frame 1
+; D6h: Facing left -  x-ray - standing - frame 1
+; DAh: Facing left -  x-ray - crouching - frame 1
     dl SamusTiles_Top_Set2_EntryC : dw $00C0,$0040                       ;92CDF4;
 
 SamusTopTiles_Set2_CDFB:
-; D6h: Facing left-   x-ray - standing - frame 0
-; DAh: Facing left-   x-ray - crouching - frame 0
+; D6h: Facing left -  x-ray - standing - frame 0
+; DAh: Facing left -  x-ray - crouching - frame 0
     dl SamusTiles_Top_Set2_EntryD : dw $00C0,$0040                       ;92CDFB;
 
 SamusTopTiles_Set2_CE02:
@@ -7702,8 +7702,8 @@ SamusTopTiles_Set2_CE02:
 ; Dh: Moving right - aiming up (unused) - frame 4
 ; Dh: Moving right - aiming up (unused) - frame 7
 ; Dh: Moving right - aiming up (unused) - frame 9
-; D6h: Facing left-   x-ray - standing - frame 3
-; DAh: Facing left-   x-ray - crouching - frame 3
+; D6h: Facing left -  x-ray - standing - frame 3
+; DAh: Facing left -  x-ray - crouching - frame 3
     dl SamusTiles_Top_Set2_EntryE : dw $00C0,$0040                       ;92CE02;
 
 SamusTopTiles_Set2_CE09:
@@ -7711,8 +7711,8 @@ SamusTopTiles_Set2_CE09:
 ; Eh: Moving left-   aiming up (unused) - frame 4
 ; Eh: Moving left-   aiming up (unused) - frame 7
 ; Eh: Moving left-   aiming up (unused) - frame 9
-; D6h: Facing left-   x-ray - standing - frame 4
-; DAh: Facing left-   x-ray - crouching - frame 4
+; D6h: Facing left -  x-ray - standing - frame 4
+; DAh: Facing left -  x-ray - crouching - frame 4
     dl SamusTiles_Top_Set2_EntryF : dw $00C0,$0040                       ;92CE09;
 
 SamusTopTiles_Set2_CE10:
@@ -7729,8 +7729,8 @@ SamusTopTiles_Set2_CE17:
 ; 10h: Moving left-   aiming up-left - frame 4
 ; 10h: Moving left-   aiming up-left - frame 7
 ; 10h: Moving left-   aiming up-left - frame 9
-; 75h: Facing left-   moonwalk - aiming up-left - frames 1..2
-; 75h: Facing left-   moonwalk - aiming up-left - frames 4..5
+; 75h: Facing left -  moonwalk - aiming up-left - frames 1..2
+; 75h: Facing left -  moonwalk - aiming up-left - frames 4..5
     dl SamusTiles_Top_Set2_Entry11 : dw $00E0,$0040                      ;92CE17;
 
 UNUSED_SamusTopTiles_Set2_92CE1E:
@@ -7775,8 +7775,8 @@ SamusTopTiles_Set2_CE56:
     dl SamusTiles_Top_Set2_Entry1A : dw $00C0,$0040                      ;92CE56;
 
 SamusTopTiles_Set2_CE5D:
-; 49h: Facing left-   moonwalk - frames 1..2
-; 49h: Facing left-   moonwalk - frames 4..5
+; 49h: Facing left -  moonwalk - frames 1..2
+; 49h: Facing left -  moonwalk - frames 4..5
     dl SamusTiles_Top_Set2_Entry1B : dw $00C0,$0040                      ;92CE5D;
 
 SamusTopTiles_Set2_CE64:
@@ -7792,15 +7792,15 @@ SamusTopTiles_Set2_CE6B:
 SamusTopTiles_Set2_CE72:
 ; Dh: Moving right - aiming up (unused) - frame 3
 ; Dh: Moving right - aiming up (unused) - frame 8
-; 2Ah: Facing left-   falling - frame 1
-; 2Ah: Facing left-   falling - frame 5
+; 2Ah: Facing left -  falling - frame 1
+; 2Ah: Facing left -  falling - frame 5
     dl SamusTiles_Top_Set2_Entry1E : dw $00C0,$0040                      ;92CE72;
 
 SamusTopTiles_Set2_CE79:
 ; Eh: Moving left-   aiming up (unused) - frame 3
 ; Eh: Moving left-   aiming up (unused) - frame 8
-; 2Ah: Facing left-   falling - frame 2
-; 4Fh: Facing left-   damage boost - frame 9
+; 2Ah: Facing left -  falling - frame 2
+; 4Fh: Facing left -  damage boost - frame 9
     dl SamusTiles_Top_Set2_Entry1F : dw $00C0,$0040                      ;92CE79;
 
 
@@ -7816,8 +7816,8 @@ SamusTopTiles_Set3_CE80:
 ; 60h: Unused - frame 38h
 ; 61h: Unused - frame 18h
 ; 61h: Unused - frame 38h
-; B2h: Facing clockwise   -   grapple - in air - frame 18h
-; B2h: Facing clockwise   -   grapple - in air - frame 38h
+; B2h: Facing anticlockwise - grapple - in air - frame 18h
+; B2h: Facing anticlockwise - grapple - in air - frame 38h
     dl SamusTiles_Top_Set3_Entry0 : dw $00C0,$0080                       ;92CE80;
 
 SamusTopTiles_Set3_CE87:
@@ -7831,8 +7831,8 @@ SamusTopTiles_Set3_CE87:
 ; 60h: Unused - frame 37h
 ; 61h: Unused - frame 17h
 ; 61h: Unused - frame 37h
-; B2h: Facing clockwise   -   grapple - in air - frame 17h
-; B2h: Facing clockwise   -   grapple - in air - frame 37h
+; B2h: Facing anticlockwise - grapple - in air - frame 17h
+; B2h: Facing anticlockwise - grapple - in air - frame 37h
     dl SamusTiles_Top_Set3_Entry1 : dw $00C0,$0080                       ;92CE87;
 
 SamusTopTiles_Set3_CE8E:
@@ -7846,8 +7846,8 @@ SamusTopTiles_Set3_CE8E:
 ; 60h: Unused - frame 36h
 ; 61h: Unused - frame 16h
 ; 61h: Unused - frame 36h
-; B2h: Facing clockwise   -   grapple - in air - frame 16h
-; B2h: Facing clockwise   -   grapple - in air - frame 36h
+; B2h: Facing anticlockwise - grapple - in air - frame 16h
+; B2h: Facing anticlockwise - grapple - in air - frame 36h
     dl SamusTiles_Top_Set3_Entry2 : dw $00C0,$00C0                       ;92CE8E;
 
 SamusTopTiles_Set3_CE95:
@@ -7861,8 +7861,8 @@ SamusTopTiles_Set3_CE95:
 ; 60h: Unused - frame 35h
 ; 61h: Unused - frame 15h
 ; 61h: Unused - frame 35h
-; B2h: Facing clockwise   -   grapple - in air - frame 15h
-; B2h: Facing clockwise   -   grapple - in air - frame 35h
+; B2h: Facing anticlockwise - grapple - in air - frame 15h
+; B2h: Facing anticlockwise - grapple - in air - frame 35h
     dl SamusTiles_Top_Set3_Entry3 : dw $00C0,$00C0                       ;92CE95;
 
 SamusTopTiles_Set3_CE9C:
@@ -7876,8 +7876,8 @@ SamusTopTiles_Set3_CE9C:
 ; 60h: Unused - frame 34h
 ; 61h: Unused - frame 14h
 ; 61h: Unused - frame 34h
-; B2h: Facing clockwise   -   grapple - in air - frame 14h
-; B2h: Facing clockwise   -   grapple - in air - frame 34h
+; B2h: Facing anticlockwise - grapple - in air - frame 14h
+; B2h: Facing anticlockwise - grapple - in air - frame 34h
     dl SamusTiles_Top_Set3_Entry4 : dw $00C0,$00C0                       ;92CE9C;
 
 SamusTopTiles_Set3_CEA3:
@@ -7891,8 +7891,8 @@ SamusTopTiles_Set3_CEA3:
 ; 60h: Unused - frame 33h
 ; 61h: Unused - frame 13h
 ; 61h: Unused - frame 33h
-; B2h: Facing clockwise   -   grapple - in air - frame 13h
-; B2h: Facing clockwise   -   grapple - in air - frame 33h
+; B2h: Facing anticlockwise - grapple - in air - frame 13h
+; B2h: Facing anticlockwise - grapple - in air - frame 33h
     dl SamusTiles_Top_Set3_Entry5 : dw $00C0,$00C0                       ;92CEA3;
 
 SamusTopTiles_Set3_CEAA:
@@ -7906,8 +7906,8 @@ SamusTopTiles_Set3_CEAA:
 ; 60h: Unused - frame 32h
 ; 61h: Unused - frame 12h
 ; 61h: Unused - frame 32h
-; B2h: Facing clockwise   -   grapple - in air - frame 12h
-; B2h: Facing clockwise   -   grapple - in air - frame 32h
+; B2h: Facing anticlockwise - grapple - in air - frame 12h
+; B2h: Facing anticlockwise - grapple - in air - frame 32h
     dl SamusTiles_Top_Set3_Entry6 : dw $00C0,$00C0                       ;92CEAA;
 
 SamusTopTiles_Set3_CEB1:
@@ -7921,8 +7921,8 @@ SamusTopTiles_Set3_CEB1:
 ; 60h: Unused - frame 31h
 ; 61h: Unused - frame 11h
 ; 61h: Unused - frame 31h
-; B2h: Facing clockwise   -   grapple - in air - frame 11h
-; B2h: Facing clockwise   -   grapple - in air - frame 31h
+; B2h: Facing anticlockwise - grapple - in air - frame 11h
+; B2h: Facing anticlockwise - grapple - in air - frame 31h
     dl SamusTiles_Top_Set3_Entry7 : dw $00C0,$0080                       ;92CEB1;
 
 SamusTopTiles_Set3_CEB8:
@@ -7941,9 +7941,9 @@ SamusTopTiles_Set3_CEB8:
 ; 61h: Unused - frame 10h
 ; 61h: Unused - frame 30h
 ; 61h: Unused - frames 40h..41h
-; B2h: Facing clockwise   -   grapple - in air - frame 10h
-; B2h: Facing clockwise   -   grapple - in air - frame 30h
-; B2h: Facing clockwise   -   grapple - in air - frames 40h..41h
+; B2h: Facing anticlockwise - grapple - in air - frame 10h
+; B2h: Facing anticlockwise - grapple - in air - frame 30h
+; B2h: Facing anticlockwise - grapple - in air - frames 40h..41h
     dl SamusTiles_Top_Set3_Entry8 : dw $00C0,$0080                       ;92CEB8;
 
 SamusTopTiles_Set3_CEBF:
@@ -7957,8 +7957,8 @@ SamusTopTiles_Set3_CEBF:
 ; 60h: Unused - frame 2Fh
 ; 61h: Unused - frame Fh
 ; 61h: Unused - frame 2Fh
-; B2h: Facing clockwise   -   grapple - in air - frame Fh
-; B2h: Facing clockwise   -   grapple - in air - frame 2Fh
+; B2h: Facing anticlockwise - grapple - in air - frame Fh
+; B2h: Facing anticlockwise - grapple - in air - frame 2Fh
     dl SamusTiles_Top_Set3_Entry9 : dw $00C0,$0080                       ;92CEBF;
 
 SamusTopTiles_Set3_CEC6:
@@ -7972,8 +7972,8 @@ SamusTopTiles_Set3_CEC6:
 ; 60h: Unused - frame 2Eh
 ; 61h: Unused - frame Eh
 ; 61h: Unused - frame 2Eh
-; B2h: Facing clockwise   -   grapple - in air - frame Eh
-; B2h: Facing clockwise   -   grapple - in air - frame 2Eh
+; B2h: Facing anticlockwise - grapple - in air - frame Eh
+; B2h: Facing anticlockwise - grapple - in air - frame 2Eh
     dl SamusTiles_Top_Set3_EntryA : dw $00C0,$00C0                       ;92CEC6;
 
 SamusTopTiles_Set3_CECD:
@@ -7987,8 +7987,8 @@ SamusTopTiles_Set3_CECD:
 ; 60h: Unused - frame 2Dh
 ; 61h: Unused - frame Dh
 ; 61h: Unused - frame 2Dh
-; B2h: Facing clockwise   -   grapple - in air - frame Dh
-; B2h: Facing clockwise   -   grapple - in air - frame 2Dh
+; B2h: Facing anticlockwise - grapple - in air - frame Dh
+; B2h: Facing anticlockwise - grapple - in air - frame 2Dh
     dl SamusTiles_Top_Set3_EntryB : dw $00C0,$00C0                       ;92CECD;
 
 SamusTopTiles_Set3_CED4:
@@ -8002,8 +8002,8 @@ SamusTopTiles_Set3_CED4:
 ; 60h: Unused - frame 2Ch
 ; 61h: Unused - frame Ch
 ; 61h: Unused - frame 2Ch
-; B2h: Facing clockwise   -   grapple - in air - frame Ch
-; B2h: Facing clockwise   -   grapple - in air - frame 2Ch
+; B2h: Facing anticlockwise - grapple - in air - frame Ch
+; B2h: Facing anticlockwise - grapple - in air - frame 2Ch
     dl SamusTiles_Top_Set3_EntryC : dw $00C0,$00C0                       ;92CED4;
 
 SamusTopTiles_Set3_CEDB:
@@ -8017,8 +8017,8 @@ SamusTopTiles_Set3_CEDB:
 ; 60h: Unused - frame 2Bh
 ; 61h: Unused - frame Bh
 ; 61h: Unused - frame 2Bh
-; B2h: Facing clockwise   -   grapple - in air - frame Bh
-; B2h: Facing clockwise   -   grapple - in air - frame 2Bh
+; B2h: Facing anticlockwise - grapple - in air - frame Bh
+; B2h: Facing anticlockwise - grapple - in air - frame 2Bh
     dl SamusTiles_Top_Set3_EntryD : dw $00C0,$00C0                       ;92CEDB;
 
 SamusTopTiles_Set3_CEE2:
@@ -8032,8 +8032,8 @@ SamusTopTiles_Set3_CEE2:
 ; 60h: Unused - frame 2Ah
 ; 61h: Unused - frame Ah
 ; 61h: Unused - frame 2Ah
-; B2h: Facing clockwise   -   grapple - in air - frame Ah
-; B2h: Facing clockwise   -   grapple - in air - frame 2Ah
+; B2h: Facing anticlockwise - grapple - in air - frame Ah
+; B2h: Facing anticlockwise - grapple - in air - frame 2Ah
     dl SamusTiles_Top_Set3_EntryE : dw $00C0,$00C0                       ;92CEE2;
 
 SamusTopTiles_Set3_CEE9:
@@ -8047,8 +8047,8 @@ SamusTopTiles_Set3_CEE9:
 ; 60h: Unused - frame 29h
 ; 61h: Unused - frame 9
 ; 61h: Unused - frame 29h
-; B2h: Facing clockwise   -   grapple - in air - frame 9
-; B2h: Facing clockwise   -   grapple - in air - frame 29h
+; B2h: Facing anticlockwise - grapple - in air - frame 9
+; B2h: Facing anticlockwise - grapple - in air - frame 29h
     dl SamusTiles_Top_Set3_EntryF : dw $00C0,$0080                       ;92CEE9;
 
 UNUSED_SamusTopTiles_Set3_92CEF0:
@@ -8060,115 +8060,115 @@ UNUSED_SamusTopTiles_Set3_92CEF0:
 SamusTopTiles_Set4_CEF7:
 ; 62h: Unused - frame 8
 ; 62h: Unused - frame 28h
-; B3h: Facing anticlockwise - grapple - in air - frame 8
-; B3h: Facing anticlockwise - grapple - in air - frame 28h
+; B3h: Facing clockwise   -   grapple - in air - frame 8
+; B3h: Facing clockwise   -   grapple - in air - frame 28h
     dl SamusTiles_Top_Set4_Entry0 : dw $0100,$00C0                       ;92CEF7;
 
 SamusTopTiles_Set4_CEFE:
 ; 62h: Unused - frame 9
 ; 62h: Unused - frame 29h
-; B3h: Facing anticlockwise - grapple - in air - frame 9
-; B3h: Facing anticlockwise - grapple - in air - frame 29h
+; B3h: Facing clockwise   -   grapple - in air - frame 9
+; B3h: Facing clockwise   -   grapple - in air - frame 29h
     dl SamusTiles_Top_Set4_Entry1 : dw $0100,$00C0                       ;92CEFE;
 
 SamusTopTiles_Set4_CF05:
 ; 62h: Unused - frame Ah
 ; 62h: Unused - frame 2Ah
-; B3h: Facing anticlockwise - grapple - in air - frame Ah
-; B3h: Facing anticlockwise - grapple - in air - frame 2Ah
+; B3h: Facing clockwise   -   grapple - in air - frame Ah
+; B3h: Facing clockwise   -   grapple - in air - frame 2Ah
     dl SamusTiles_Top_Set4_Entry2 : dw $0100,$0100                       ;92CF05;
 
 SamusTopTiles_Set4_CF0C:
 ; 62h: Unused - frame Bh
 ; 62h: Unused - frame 2Bh
-; B3h: Facing anticlockwise - grapple - in air - frame Bh
-; B3h: Facing anticlockwise - grapple - in air - frame 2Bh
+; B3h: Facing clockwise   -   grapple - in air - frame Bh
+; B3h: Facing clockwise   -   grapple - in air - frame 2Bh
     dl SamusTiles_Top_Set4_Entry3 : dw $0100,$0100                       ;92CF0C;
 
 SamusTopTiles_Set4_CF13:
 ; 62h: Unused - frame Ch
 ; 62h: Unused - frame 2Ch
-; B3h: Facing anticlockwise - grapple - in air - frame Ch
-; B3h: Facing anticlockwise - grapple - in air - frame 2Ch
+; B3h: Facing clockwise   -   grapple - in air - frame Ch
+; B3h: Facing clockwise   -   grapple - in air - frame 2Ch
     dl SamusTiles_Top_Set4_Entry4 : dw $0100,$00E0                       ;92CF13;
 
 SamusTopTiles_Set4_CF1A:
 ; 62h: Unused - frame Dh
 ; 62h: Unused - frame 2Dh
-; B3h: Facing anticlockwise - grapple - in air - frame Dh
-; B3h: Facing anticlockwise - grapple - in air - frame 2Dh
+; B3h: Facing clockwise   -   grapple - in air - frame Dh
+; B3h: Facing clockwise   -   grapple - in air - frame 2Dh
     dl SamusTiles_Top_Set4_Entry5 : dw $0100,$00E0                       ;92CF1A;
 
 SamusTopTiles_Set4_CF21:
 ; 62h: Unused - frame Eh
 ; 62h: Unused - frame 2Eh
-; B3h: Facing anticlockwise - grapple - in air - frame Eh
-; B3h: Facing anticlockwise - grapple - in air - frame 2Eh
+; B3h: Facing clockwise   -   grapple - in air - frame Eh
+; B3h: Facing clockwise   -   grapple - in air - frame 2Eh
     dl SamusTiles_Top_Set4_Entry6 : dw $0100,$00E0                       ;92CF21;
 
 SamusTopTiles_Set4_CF28:
 ; 62h: Unused - frame Fh
 ; 62h: Unused - frame 2Fh
-; B3h: Facing anticlockwise - grapple - in air - frame Fh
-; B3h: Facing anticlockwise - grapple - in air - frame 2Fh
+; B3h: Facing clockwise   -   grapple - in air - frame Fh
+; B3h: Facing clockwise   -   grapple - in air - frame 2Fh
     dl SamusTiles_Top_Set4_Entry7 : dw $0100,$00C0                       ;92CF28;
 
 SamusTopTiles_Set4_CF2F:
 ; 62h: Unused - frame 10h
 ; 62h: Unused - frame 30h
 ; 62h: Unused - frames 40h..41h
-; B3h: Facing anticlockwise - grapple - in air - frame 10h
-; B3h: Facing anticlockwise - grapple - in air - frame 30h
-; B3h: Facing anticlockwise - grapple - in air - frames 40h..41h
+; B3h: Facing clockwise   -   grapple - in air - frame 10h
+; B3h: Facing clockwise   -   grapple - in air - frame 30h
+; B3h: Facing clockwise   -   grapple - in air - frames 40h..41h
     dl SamusTiles_Top_Set4_Entry8 : dw $0100,$00C0                       ;92CF2F;
 
 SamusTopTiles_Set4_CF36:
 ; 62h: Unused - frame 11h
 ; 62h: Unused - frame 31h
-; B3h: Facing anticlockwise - grapple - in air - frame 11h
-; B3h: Facing anticlockwise - grapple - in air - frame 31h
+; B3h: Facing clockwise   -   grapple - in air - frame 11h
+; B3h: Facing clockwise   -   grapple - in air - frame 31h
     dl SamusTiles_Top_Set4_Entry9 : dw $0100,$00C0                       ;92CF36;
 
 SamusTopTiles_Set4_CF3D:
 ; 62h: Unused - frame 12h
 ; 62h: Unused - frame 32h
-; B3h: Facing anticlockwise - grapple - in air - frame 12h
-; B3h: Facing anticlockwise - grapple - in air - frame 32h
+; B3h: Facing clockwise   -   grapple - in air - frame 12h
+; B3h: Facing clockwise   -   grapple - in air - frame 32h
     dl SamusTiles_Top_Set4_EntryA : dw $0100,$00E0                       ;92CF3D;
 
 SamusTopTiles_Set4_CF44:
 ; 62h: Unused - frame 13h
 ; 62h: Unused - frame 33h
-; B3h: Facing anticlockwise - grapple - in air - frame 13h
-; B3h: Facing anticlockwise - grapple - in air - frame 33h
+; B3h: Facing clockwise   -   grapple - in air - frame 13h
+; B3h: Facing clockwise   -   grapple - in air - frame 33h
     dl SamusTiles_Top_Set4_EntryB : dw $0100,$0100                       ;92CF44;
 
 SamusTopTiles_Set4_CF4B:
 ; 62h: Unused - frame 14h
 ; 62h: Unused - frame 34h
-; B3h: Facing anticlockwise - grapple - in air - frame 14h
-; B3h: Facing anticlockwise - grapple - in air - frame 34h
+; B3h: Facing clockwise   -   grapple - in air - frame 14h
+; B3h: Facing clockwise   -   grapple - in air - frame 34h
     dl SamusTiles_Top_Set4_EntryC : dw $0100,$0100                       ;92CF4B;
 
 SamusTopTiles_Set4_CF52:
 ; 62h: Unused - frame 15h
 ; 62h: Unused - frame 35h
-; B3h: Facing anticlockwise - grapple - in air - frame 15h
-; B3h: Facing anticlockwise - grapple - in air - frame 35h
+; B3h: Facing clockwise   -   grapple - in air - frame 15h
+; B3h: Facing clockwise   -   grapple - in air - frame 35h
     dl SamusTiles_Top_Set4_EntryD : dw $0100,$0100                       ;92CF52;
 
 SamusTopTiles_Set4_CF59:
 ; 62h: Unused - frame 16h
 ; 62h: Unused - frame 36h
-; B3h: Facing anticlockwise - grapple - in air - frame 16h
-; B3h: Facing anticlockwise - grapple - in air - frame 36h
+; B3h: Facing clockwise   -   grapple - in air - frame 16h
+; B3h: Facing clockwise   -   grapple - in air - frame 36h
     dl SamusTiles_Top_Set4_EntryE : dw $0100,$0100                       ;92CF59;
 
 SamusTopTiles_Set4_CF60:
 ; 62h: Unused - frame 17h
 ; 62h: Unused - frame 37h
-; B3h: Facing anticlockwise - grapple - in air - frame 17h
-; B3h: Facing anticlockwise - grapple - in air - frame 37h
+; B3h: Facing clockwise   -   grapple - in air - frame 17h
+; B3h: Facing clockwise   -   grapple - in air - frame 37h
     dl SamusTiles_Top_Set4_EntryF : dw $0100,$00E0                       ;92CF60;
 
 UNUSED_SamusTopTiles_Set4_92CF67:
@@ -8188,8 +8188,8 @@ SamusTopTiles_Set5_CF6E:
 ; 60h: Unused - frame 28h
 ; 61h: Unused - frame 8
 ; 61h: Unused - frame 28h
-; B2h: Facing clockwise   -   grapple - in air - frame 8
-; B2h: Facing clockwise   -   grapple - in air - frame 28h
+; B2h: Facing anticlockwise - grapple - in air - frame 8
+; B2h: Facing anticlockwise - grapple - in air - frame 28h
     dl SamusTiles_Top_Set5_Entry0 : dw $00C0,$0080                       ;92CF6E;
 
 SamusTopTiles_Set5_CF75:
@@ -8203,8 +8203,8 @@ SamusTopTiles_Set5_CF75:
 ; 60h: Unused - frame 27h
 ; 61h: Unused - frame 7
 ; 61h: Unused - frame 27h
-; B2h: Facing clockwise   -   grapple - in air - frame 7
-; B2h: Facing clockwise   -   grapple - in air - frame 27h
+; B2h: Facing anticlockwise - grapple - in air - frame 7
+; B2h: Facing anticlockwise - grapple - in air - frame 27h
     dl SamusTiles_Top_Set5_Entry1 : dw $00C0,$0080                       ;92CF75;
 
 SamusTopTiles_Set5_CF7C:
@@ -8218,8 +8218,8 @@ SamusTopTiles_Set5_CF7C:
 ; 60h: Unused - frame 26h
 ; 61h: Unused - frame 6
 ; 61h: Unused - frame 26h
-; B2h: Facing clockwise   -   grapple - in air - frame 6
-; B2h: Facing clockwise   -   grapple - in air - frame 26h
+; B2h: Facing anticlockwise - grapple - in air - frame 6
+; B2h: Facing anticlockwise - grapple - in air - frame 26h
     dl SamusTiles_Top_Set5_Entry2 : dw $00C0,$00C0                       ;92CF7C;
 
 SamusTopTiles_Set5_CF83:
@@ -8233,8 +8233,8 @@ SamusTopTiles_Set5_CF83:
 ; 60h: Unused - frame 25h
 ; 61h: Unused - frame 5
 ; 61h: Unused - frame 25h
-; B2h: Facing clockwise   -   grapple - in air - frame 5
-; B2h: Facing clockwise   -   grapple - in air - frame 25h
+; B2h: Facing anticlockwise - grapple - in air - frame 5
+; B2h: Facing anticlockwise - grapple - in air - frame 25h
     dl SamusTiles_Top_Set5_Entry3 : dw $00C0,$00C0                       ;92CF83;
 
 SamusTopTiles_Set5_CF8A:
@@ -8248,8 +8248,8 @@ SamusTopTiles_Set5_CF8A:
 ; 60h: Unused - frame 24h
 ; 61h: Unused - frame 4
 ; 61h: Unused - frame 24h
-; B2h: Facing clockwise   -   grapple - in air - frame 4
-; B2h: Facing clockwise   -   grapple - in air - frame 24h
+; B2h: Facing anticlockwise - grapple - in air - frame 4
+; B2h: Facing anticlockwise - grapple - in air - frame 24h
     dl SamusTiles_Top_Set5_Entry4 : dw $00C0,$00C0                       ;92CF8A;
 
 SamusTopTiles_Set5_CF91:
@@ -8263,8 +8263,8 @@ SamusTopTiles_Set5_CF91:
 ; 60h: Unused - frame 23h
 ; 61h: Unused - frame 3
 ; 61h: Unused - frame 23h
-; B2h: Facing clockwise   -   grapple - in air - frame 3
-; B2h: Facing clockwise   -   grapple - in air - frame 23h
+; B2h: Facing anticlockwise - grapple - in air - frame 3
+; B2h: Facing anticlockwise - grapple - in air - frame 23h
     dl SamusTiles_Top_Set5_Entry5 : dw $00C0,$00C0                       ;92CF91;
 
 SamusTopTiles_Set5_CF98:
@@ -8278,8 +8278,8 @@ SamusTopTiles_Set5_CF98:
 ; 60h: Unused - frame 22h
 ; 61h: Unused - frame 2
 ; 61h: Unused - frame 22h
-; B2h: Facing clockwise   -   grapple - in air - frame 2
-; B2h: Facing clockwise   -   grapple - in air - frame 22h
+; B2h: Facing anticlockwise - grapple - in air - frame 2
+; B2h: Facing anticlockwise - grapple - in air - frame 22h
     dl SamusTiles_Top_Set5_Entry6 : dw $00C0,$00C0                       ;92CF98;
 
 SamusTopTiles_Set5_CF9F:
@@ -8293,8 +8293,8 @@ SamusTopTiles_Set5_CF9F:
 ; 60h: Unused - frame 21h
 ; 61h: Unused - frame 1
 ; 61h: Unused - frame 21h
-; B2h: Facing clockwise   -   grapple - in air - frame 1
-; B2h: Facing clockwise   -   grapple - in air - frame 21h
+; B2h: Facing anticlockwise - grapple - in air - frame 1
+; B2h: Facing anticlockwise - grapple - in air - frame 21h
     dl SamusTiles_Top_Set5_Entry7 : dw $00C0,$0080                       ;92CF9F;
 
 SamusTopTiles_Set5_CFA6:
@@ -8308,8 +8308,8 @@ SamusTopTiles_Set5_CFA6:
 ; 60h: Unused - frame 20h
 ; 61h: Unused - frame 0
 ; 61h: Unused - frame 20h
-; B2h: Facing clockwise   -   grapple - in air - frame 0
-; B2h: Facing clockwise   -   grapple - in air - frame 20h
+; B2h: Facing anticlockwise - grapple - in air - frame 0
+; B2h: Facing anticlockwise - grapple - in air - frame 20h
     dl SamusTiles_Top_Set5_Entry8 : dw $00C0,$0080                       ;92CFA6;
 
 SamusTopTiles_Set5_CFAD:
@@ -8323,8 +8323,8 @@ SamusTopTiles_Set5_CFAD:
 ; 60h: Unused - frame 3Fh
 ; 61h: Unused - frame 1Fh
 ; 61h: Unused - frame 3Fh
-; B2h: Facing clockwise   -   grapple - in air - frame 1Fh
-; B2h: Facing clockwise   -   grapple - in air - frame 3Fh
+; B2h: Facing anticlockwise - grapple - in air - frame 1Fh
+; B2h: Facing anticlockwise - grapple - in air - frame 3Fh
     dl SamusTiles_Top_Set5_Entry9 : dw $00C0,$0080                       ;92CFAD;
 
 SamusTopTiles_Set5_CFB4:
@@ -8338,8 +8338,8 @@ SamusTopTiles_Set5_CFB4:
 ; 60h: Unused - frame 3Eh
 ; 61h: Unused - frame 1Eh
 ; 61h: Unused - frame 3Eh
-; B2h: Facing clockwise   -   grapple - in air - frame 1Eh
-; B2h: Facing clockwise   -   grapple - in air - frame 3Eh
+; B2h: Facing anticlockwise - grapple - in air - frame 1Eh
+; B2h: Facing anticlockwise - grapple - in air - frame 3Eh
     dl SamusTiles_Top_Set5_EntryA : dw $00C0,$00C0                       ;92CFB4;
 
 SamusTopTiles_Set5_CFBB:
@@ -8353,8 +8353,8 @@ SamusTopTiles_Set5_CFBB:
 ; 60h: Unused - frame 3Dh
 ; 61h: Unused - frame 1Dh
 ; 61h: Unused - frame 3Dh
-; B2h: Facing clockwise   -   grapple - in air - frame 1Dh
-; B2h: Facing clockwise   -   grapple - in air - frame 3Dh
+; B2h: Facing anticlockwise - grapple - in air - frame 1Dh
+; B2h: Facing anticlockwise - grapple - in air - frame 3Dh
     dl SamusTiles_Top_Set5_EntryB : dw $00C0,$00C0                       ;92CFBB;
 
 SamusTopTiles_Set5_CFC2:
@@ -8368,8 +8368,8 @@ SamusTopTiles_Set5_CFC2:
 ; 60h: Unused - frame 3Ch
 ; 61h: Unused - frame 1Ch
 ; 61h: Unused - frame 3Ch
-; B2h: Facing clockwise   -   grapple - in air - frame 1Ch
-; B2h: Facing clockwise   -   grapple - in air - frame 3Ch
+; B2h: Facing anticlockwise - grapple - in air - frame 1Ch
+; B2h: Facing anticlockwise - grapple - in air - frame 3Ch
     dl SamusTiles_Top_Set5_EntryC : dw $00C0,$00C0                       ;92CFC2;
 
 SamusTopTiles_Set5_CFC9:
@@ -8383,8 +8383,8 @@ SamusTopTiles_Set5_CFC9:
 ; 60h: Unused - frame 3Bh
 ; 61h: Unused - frame 1Bh
 ; 61h: Unused - frame 3Bh
-; B2h: Facing clockwise   -   grapple - in air - frame 1Bh
-; B2h: Facing clockwise   -   grapple - in air - frame 3Bh
+; B2h: Facing anticlockwise - grapple - in air - frame 1Bh
+; B2h: Facing anticlockwise - grapple - in air - frame 3Bh
     dl SamusTiles_Top_Set5_EntryD : dw $00C0,$00C0                       ;92CFC9;
 
 SamusTopTiles_Set5_CFD0:
@@ -8398,8 +8398,8 @@ SamusTopTiles_Set5_CFD0:
 ; 60h: Unused - frame 3Ah
 ; 61h: Unused - frame 1Ah
 ; 61h: Unused - frame 3Ah
-; B2h: Facing clockwise   -   grapple - in air - frame 1Ah
-; B2h: Facing clockwise   -   grapple - in air - frame 3Ah
+; B2h: Facing anticlockwise - grapple - in air - frame 1Ah
+; B2h: Facing anticlockwise - grapple - in air - frame 3Ah
     dl SamusTiles_Top_Set5_EntryE : dw $00C0,$00C0                       ;92CFD0;
 
 SamusTopTiles_Set5_CFD7:
@@ -8413,8 +8413,8 @@ SamusTopTiles_Set5_CFD7:
 ; 60h: Unused - frame 39h
 ; 61h: Unused - frame 19h
 ; 61h: Unused - frame 39h
-; B2h: Facing clockwise   -   grapple - in air - frame 19h
-; B2h: Facing clockwise   -   grapple - in air - frame 39h
+; B2h: Facing anticlockwise - grapple - in air - frame 19h
+; B2h: Facing anticlockwise - grapple - in air - frame 39h
     dl SamusTiles_Top_Set5_EntryF : dw $00C0,$0080                       ;92CFD7;
 
 UNUSED_SamusTopTiles_Set5_92CFDE:
@@ -8426,113 +8426,113 @@ UNUSED_SamusTopTiles_Set5_92CFDE:
 SamusTopTiles_Set6_CFE5:
 ; 62h: Unused - frame 18h
 ; 62h: Unused - frame 38h
-; B3h: Facing anticlockwise - grapple - in air - frame 18h
-; B3h: Facing anticlockwise - grapple - in air - frame 38h
+; B3h: Facing clockwise   -   grapple - in air - frame 18h
+; B3h: Facing clockwise   -   grapple - in air - frame 38h
     dl SamusTiles_Top_Set6_Entry0 : dw $0100,$00C0                       ;92CFE5;
 
 SamusTopTiles_Set6_CFEC:
 ; 62h: Unused - frame 19h
 ; 62h: Unused - frame 39h
-; B3h: Facing anticlockwise - grapple - in air - frame 19h
-; B3h: Facing anticlockwise - grapple - in air - frame 39h
+; B3h: Facing clockwise   -   grapple - in air - frame 19h
+; B3h: Facing clockwise   -   grapple - in air - frame 39h
     dl SamusTiles_Top_Set6_Entry1 : dw $0100,$00C0                       ;92CFEC;
 
 SamusTopTiles_Set6_CFF3:
 ; 62h: Unused - frame 1Ah
 ; 62h: Unused - frame 3Ah
-; B3h: Facing anticlockwise - grapple - in air - frame 1Ah
-; B3h: Facing anticlockwise - grapple - in air - frame 3Ah
+; B3h: Facing clockwise   -   grapple - in air - frame 1Ah
+; B3h: Facing clockwise   -   grapple - in air - frame 3Ah
     dl SamusTiles_Top_Set6_Entry2 : dw $0100,$0100                       ;92CFF3;
 
 SamusTopTiles_Set6_CFFA:
 ; 62h: Unused - frame 1Bh
 ; 62h: Unused - frame 3Bh
-; B3h: Facing anticlockwise - grapple - in air - frame 1Bh
-; B3h: Facing anticlockwise - grapple - in air - frame 3Bh
+; B3h: Facing clockwise   -   grapple - in air - frame 1Bh
+; B3h: Facing clockwise   -   grapple - in air - frame 3Bh
     dl SamusTiles_Top_Set6_Entry3 : dw $0100,$0100                       ;92CFFA;
 
 SamusTopTiles_Set6_D001:
 ; 62h: Unused - frame 1Ch
 ; 62h: Unused - frame 3Ch
-; B3h: Facing anticlockwise - grapple - in air - frame 1Ch
-; B3h: Facing anticlockwise - grapple - in air - frame 3Ch
+; B3h: Facing clockwise   -   grapple - in air - frame 1Ch
+; B3h: Facing clockwise   -   grapple - in air - frame 3Ch
     dl SamusTiles_Top_Set6_Entry4 : dw $0100,$00E0                       ;92D001;
 
 SamusTopTiles_Set6_D008:
 ; 62h: Unused - frame 1Dh
 ; 62h: Unused - frame 3Dh
-; B3h: Facing anticlockwise - grapple - in air - frame 1Dh
-; B3h: Facing anticlockwise - grapple - in air - frame 3Dh
+; B3h: Facing clockwise   -   grapple - in air - frame 1Dh
+; B3h: Facing clockwise   -   grapple - in air - frame 3Dh
     dl SamusTiles_Top_Set6_Entry5 : dw $0100,$00E0                       ;92D008;
 
 SamusTopTiles_Set6_D00F:
 ; 62h: Unused - frame 1Eh
 ; 62h: Unused - frame 3Eh
-; B3h: Facing anticlockwise - grapple - in air - frame 1Eh
-; B3h: Facing anticlockwise - grapple - in air - frame 3Eh
+; B3h: Facing clockwise   -   grapple - in air - frame 1Eh
+; B3h: Facing clockwise   -   grapple - in air - frame 3Eh
     dl SamusTiles_Top_Set6_Entry6 : dw $0100,$00E0                       ;92D00F;
 
 SamusTopTiles_Set6_D016:
 ; 62h: Unused - frame 1Fh
 ; 62h: Unused - frame 3Fh
-; B3h: Facing anticlockwise - grapple - in air - frame 1Fh
-; B3h: Facing anticlockwise - grapple - in air - frame 3Fh
+; B3h: Facing clockwise   -   grapple - in air - frame 1Fh
+; B3h: Facing clockwise   -   grapple - in air - frame 3Fh
     dl SamusTiles_Top_Set6_Entry7 : dw $0100,$00C0                       ;92D016;
 
 SamusTopTiles_Set6_D01D:
 ; 62h: Unused - frame 0
 ; 62h: Unused - frame 20h
-; B3h: Facing anticlockwise - grapple - in air - frame 0
-; B3h: Facing anticlockwise - grapple - in air - frame 20h
+; B3h: Facing clockwise   -   grapple - in air - frame 0
+; B3h: Facing clockwise   -   grapple - in air - frame 20h
     dl SamusTiles_Top_Set6_Entry8 : dw $0100,$00C0                       ;92D01D;
 
 SamusTopTiles_Set6_D024:
 ; 62h: Unused - frame 1
 ; 62h: Unused - frame 21h
-; B3h: Facing anticlockwise - grapple - in air - frame 1
-; B3h: Facing anticlockwise - grapple - in air - frame 21h
+; B3h: Facing clockwise   -   grapple - in air - frame 1
+; B3h: Facing clockwise   -   grapple - in air - frame 21h
     dl SamusTiles_Top_Set6_Entry9 : dw $0100,$00C0                       ;92D024;
 
 SamusTopTiles_Set6_D02B:
 ; 62h: Unused - frame 2
 ; 62h: Unused - frame 22h
-; B3h: Facing anticlockwise - grapple - in air - frame 2
-; B3h: Facing anticlockwise - grapple - in air - frame 22h
+; B3h: Facing clockwise   -   grapple - in air - frame 2
+; B3h: Facing clockwise   -   grapple - in air - frame 22h
     dl SamusTiles_Top_Set6_EntryA : dw $0100,$00E0                       ;92D02B;
 
 SamusTopTiles_Set6_D032:
 ; 62h: Unused - frame 3
 ; 62h: Unused - frame 23h
-; B3h: Facing anticlockwise - grapple - in air - frame 3
-; B3h: Facing anticlockwise - grapple - in air - frame 23h
+; B3h: Facing clockwise   -   grapple - in air - frame 3
+; B3h: Facing clockwise   -   grapple - in air - frame 23h
     dl SamusTiles_Top_Set6_EntryB : dw $0100,$0100                       ;92D032;
 
 SamusTopTiles_Set6_D039:
 ; 62h: Unused - frame 4
 ; 62h: Unused - frame 24h
-; B3h: Facing anticlockwise - grapple - in air - frame 4
-; B3h: Facing anticlockwise - grapple - in air - frame 24h
+; B3h: Facing clockwise   -   grapple - in air - frame 4
+; B3h: Facing clockwise   -   grapple - in air - frame 24h
     dl SamusTiles_Top_Set6_EntryC : dw $0100,$0100                       ;92D039;
 
 SamusTopTiles_Set6_D040:
 ; 62h: Unused - frame 5
 ; 62h: Unused - frame 25h
-; B3h: Facing anticlockwise - grapple - in air - frame 5
-; B3h: Facing anticlockwise - grapple - in air - frame 25h
+; B3h: Facing clockwise   -   grapple - in air - frame 5
+; B3h: Facing clockwise   -   grapple - in air - frame 25h
     dl SamusTiles_Top_Set6_EntryD : dw $0100,$0100                       ;92D040;
 
 SamusTopTiles_Set6_D047:
 ; 62h: Unused - frame 6
 ; 62h: Unused - frame 26h
-; B3h: Facing anticlockwise - grapple - in air - frame 6
-; B3h: Facing anticlockwise - grapple - in air - frame 26h
+; B3h: Facing clockwise   -   grapple - in air - frame 6
+; B3h: Facing clockwise   -   grapple - in air - frame 26h
     dl SamusTiles_Top_Set6_EntryE : dw $0100,$0100                       ;92D047;
 
 SamusTopTiles_Set6_D04E:
 ; 62h: Unused - frame 7
 ; 62h: Unused - frame 27h
-; B3h: Facing anticlockwise - grapple - in air - frame 7
-; B3h: Facing anticlockwise - grapple - in air - frame 27h
+; B3h: Facing clockwise   -   grapple - in air - frame 7
+; B3h: Facing clockwise   -   grapple - in air - frame 27h
     dl SamusTiles_Top_Set6_EntryF : dw $0100,$00E0                       ;92D04E;
 
 UNUSED_SamusTopTiles_Set6_92D055:
@@ -8542,22 +8542,22 @@ UNUSED_SamusTopTiles_Set6_92D055:
 
 ;;; $D05C: Samus top tiles - set 7 (standing, crouching, drained) ;;;
 SamusTopTiles_Set7_D05C:
-; E9h: Facing left-   Samus drained - crouching/falling - frame 8
-; E9h: Facing left-   Samus drained - crouching/falling - frame 1Ah
-; E9h: Facing left-   Samus drained - crouching/falling - frame 1Dh
+; E9h: Facing left -  Samus drained - crouching/falling - frame 8
+; E9h: Facing left -  Samus drained - crouching/falling - frame 1Ah
+; E9h: Facing left -  Samus drained - crouching/falling - frame 1Dh
     dl SamusTiles_Top_Set7_Entry0 : dw $00E0,$0040                       ;92D05C;
 
 SamusTopTiles_Set7_D063:
-; E9h: Facing left-   Samus drained - crouching/falling - frame 7
-; E9h: Facing left-   Samus drained - crouching/falling - frame 9
-; E9h: Facing left-   Samus drained - crouching/falling - frame Bh
-; E9h: Facing left-   Samus drained - crouching/falling - frame Eh
-; E9h: Facing left-   Samus drained - crouching/falling - frame 13h
-; E9h: Facing left-   Samus drained - crouching/falling - frame 17h
+; E9h: Facing left -  Samus drained - crouching/falling - frame 7
+; E9h: Facing left -  Samus drained - crouching/falling - frame 9
+; E9h: Facing left -  Samus drained - crouching/falling - frame Bh
+; E9h: Facing left -  Samus drained - crouching/falling - frame Eh
+; E9h: Facing left -  Samus drained - crouching/falling - frame 13h
+; E9h: Facing left -  Samus drained - crouching/falling - frame 17h
     dl SamusTiles_Top_Set7_Entry1 : dw $00E0,$0040                       ;92D063;
 
 SamusTopTiles_Set7_D06A:
-; E9h: Facing left-   Samus drained - crouching/falling - frame Ah
+; E9h: Facing left -  Samus drained - crouching/falling - frame Ah
     dl SamusTiles_Top_Set7_Entry2 : dw $00E0,$0040                       ;92D06A;
 
 SamusTopTiles_Set7_D071:
@@ -8574,19 +8574,19 @@ SamusTopTiles_Set7_D07F:
     dl SamusTiles_Top_Set7_Entry5 : dw $0100,$0040                       ;92D07F;
 
 SamusTopTiles_Set7_D086:
-; EBh: Facing left-   Samus drained - standing - frame 0
+; EBh: Facing left -  Samus drained - standing - frame 0
     dl SamusTiles_Top_Set7_Entry6 : dw $00E0,$0040                       ;92D086;
 
 SamusTopTiles_Set7_D08D:
-; E9h: Facing left-   Samus drained - crouching/falling - frame Fh
-; E9h: Facing left-   Samus drained - crouching/falling - frame 14h
-; E9h: Facing left-   Samus drained - crouching/falling - frame 16h
-; EBh: Facing left-   Samus drained - standing - frame 1
-; EBh: Facing left-   Samus drained - standing - frame 3
+; E9h: Facing left -  Samus drained - crouching/falling - frame Fh
+; E9h: Facing left -  Samus drained - crouching/falling - frame 14h
+; E9h: Facing left -  Samus drained - crouching/falling - frame 16h
+; EBh: Facing left -  Samus drained - standing - frame 1
+; EBh: Facing left -  Samus drained - standing - frame 3
     dl SamusTiles_Top_Set7_Entry7 : dw $00E0,$0040                       ;92D08D;
 
 SamusTopTiles_Set7_D094:
-; EBh: Facing left-   Samus drained - standing - frame 2
+; EBh: Facing left -  Samus drained - standing - frame 2
     dl SamusTiles_Top_Set7_Entry8 : dw $00E0,$0040                       ;92D094;
 
 SamusTopTiles_Set7_D09B:
@@ -8654,54 +8654,54 @@ SamusTopTiles_Set7_D0BE:
     dl SamusTiles_Top_Set7_EntryE : dw $00C0,$0080                       ;92D0BE;
 
 SamusTopTiles_Set7_D0C5:
-; 2: Facing left-   normal - frame 0
-; 2: Facing left-   normal - frame 5
-; 28h: Facing left-   crouching - frame 0
-; 28h: Facing left-   crouching - frame 5
+; 2: Facing left -  normal - frame 0
+; 2: Facing left -  normal - frame 5
+; 28h: Facing left -  crouching - frame 0
+; 28h: Facing left -  crouching - frame 5
 ; 48h: Unused - frame 0
 ; 48h: Unused - frame 5
-; 8Ah: Facing left-   ran into a wall - frame 0
-; 8Ah: Facing left-   ran into a wall - frame 5
-; A9h: Facing left-   grappling - frame 0
-; A9h: Facing left-   grappling - frame 5
-; B5h: Facing left-   grappling - crouching - frame 0
-; B5h: Facing left-   grappling - crouching - frame 5
+; 8Ah: Facing left -  ran into a wall - frame 0
+; 8Ah: Facing left -  ran into a wall - frame 5
+; A9h: Facing left -  grappling - frame 0
+; A9h: Facing left -  grappling - frame 5
+; B5h: Facing left -  grappling - crouching - frame 0
+; B5h: Facing left -  grappling - crouching - frame 5
     dl SamusTiles_Top_Set7_EntryF : dw $00C0,$0080                       ;92D0C5;
 
 SamusTopTiles_Set7_D0CC:
-; 2: Facing left-   normal - frame 1
-; 2: Facing left-   normal - frame 3
-; 2: Facing left-   normal - frame 6
-; 2: Facing left-   normal - frame 8
-; 28h: Facing left-   crouching - frame 1
-; 28h: Facing left-   crouching - frame 3
-; 28h: Facing left-   crouching - frame 6
-; 28h: Facing left-   crouching - frame 8
+; 2: Facing left -  normal - frame 1
+; 2: Facing left -  normal - frame 3
+; 2: Facing left -  normal - frame 6
+; 2: Facing left -  normal - frame 8
+; 28h: Facing left -  crouching - frame 1
+; 28h: Facing left -  crouching - frame 3
+; 28h: Facing left -  crouching - frame 6
+; 28h: Facing left -  crouching - frame 8
 ; 48h: Unused - frame 1
 ; 48h: Unused - frame 3
 ; 48h: Unused - frame 6
 ; 48h: Unused - frame 8
-; 8Ah: Facing left-   ran into a wall - frame 1
-; 8Ah: Facing left-   ran into a wall - frame 3
-; 8Ah: Facing left-   ran into a wall - frame 6
-; 8Ah: Facing left-   ran into a wall - frame 8
-; A9h: Facing left-   grappling - frame 1
-; A9h: Facing left-   grappling - frame 3
-; A9h: Facing left-   grappling - frame 6
-; A9h: Facing left-   grappling - frame 8
-; B5h: Facing left-   grappling - crouching - frame 1
-; B5h: Facing left-   grappling - crouching - frame 3
-; B5h: Facing left-   grappling - crouching - frame 6
-; B5h: Facing left-   grappling - crouching - frame 8
+; 8Ah: Facing left -  ran into a wall - frame 1
+; 8Ah: Facing left -  ran into a wall - frame 3
+; 8Ah: Facing left -  ran into a wall - frame 6
+; 8Ah: Facing left -  ran into a wall - frame 8
+; A9h: Facing left -  grappling - frame 1
+; A9h: Facing left -  grappling - frame 3
+; A9h: Facing left -  grappling - frame 6
+; A9h: Facing left -  grappling - frame 8
+; B5h: Facing left -  grappling - crouching - frame 1
+; B5h: Facing left -  grappling - crouching - frame 3
+; B5h: Facing left -  grappling - crouching - frame 6
+; B5h: Facing left -  grappling - crouching - frame 8
     dl SamusTiles_Top_Set7_Entry10 : dw $00C0,$0080                      ;92D0CC;
 
 SamusTopTiles_Set7_D0D3:
-; 2: Facing left-   normal - frame 2
-; 28h: Facing left-   crouching - frame 2
+; 2: Facing left -  normal - frame 2
+; 28h: Facing left -  crouching - frame 2
 ; 48h: Unused - frame 2
-; 8Ah: Facing left-   ran into a wall - frame 2
-; A9h: Facing left-   grappling - frame 2
-; B5h: Facing left-   grappling - crouching - frame 2
+; 8Ah: Facing left -  ran into a wall - frame 2
+; A9h: Facing left -  grappling - frame 2
+; B5h: Facing left -  grappling - crouching - frame 2
     dl SamusTiles_Top_Set7_Entry11 : dw $00C0,$0080                      ;92D0D3;
 
 SamusTopTiles_Set7_D0DA:
@@ -8714,12 +8714,12 @@ SamusTopTiles_Set7_D0DA:
     dl SamusTiles_Top_Set7_Entry12 : dw $00C0,$0040                      ;92D0DA;
 
 SamusTopTiles_Set7_D0E1:
-; 2: Facing left-   normal - frame 7
-; 28h: Facing left-   crouching - frame 7
+; 2: Facing left -  normal - frame 7
+; 28h: Facing left -  crouching - frame 7
 ; 48h: Unused - frame 7
-; 8Ah: Facing left-   ran into a wall - frame 7
-; A9h: Facing left-   grappling - frame 7
-; B5h: Facing left-   grappling - crouching - frame 7
+; 8Ah: Facing left -  ran into a wall - frame 7
+; A9h: Facing left -  grappling - frame 7
+; B5h: Facing left -  grappling - crouching - frame 7
     dl SamusTiles_Top_Set7_Entry13 : dw $00C0,$0040                      ;92D0E1;
 
 
@@ -9031,11 +9031,11 @@ SamusBottomTiles_Set0_D19E:
 ; Meaninglessly used by:
 ;     0: Facing forward - power suit - frame 1
 ;     1: Facing right - normal - frame 4
-;     2: Facing left-   normal - frame 4
+;     2: Facing left -  normal - frame 4
 ;     19h: Facing right - spin jump - frames 1..Ah
-;     1Ah: Facing left-   spin jump - frames 1..Ah
+;     1Ah: Facing left -  spin jump - frames 1..Ah
 ;     1Bh: Facing right - space jump - frames 9..Ah
-;     1Ch: Facing left-   space jump - frames 9..Ah
+;     1Ch: Facing left -  space jump - frames 9..Ah
 ;     1Dh: Facing right - morph ball - no springball - on ground - frames 0..9
 ;     1Eh: Moving right - morph ball - no springball - on ground - frames 0..9
 ;     1Fh: Moving left-   morph ball - no springball - on ground - frames 0..9
@@ -9045,72 +9045,72 @@ SamusBottomTiles_Set0_D19E:
 ;     23h: Unused - frames 1..Ah
 ;     24h: Unused - frames 1..Ah
 ;     27h: Facing right - crouching - frame 4
-;     28h: Facing left-   crouching - frame 4
+;     28h: Facing left -  crouching - frame 4
 ;     29h: Facing right - falling - frames 3..4
-;     2Ah: Facing left-   falling - frames 3..4
+;     2Ah: Facing left -  falling - frames 3..4
 ;     31h: Facing right - morph ball - no springball - in air - frames 0..9
-;     32h: Facing left-   morph ball - no springball - in air - frames 0..9
+;     32h: Facing left -  morph ball - no springball - in air - frames 0..9
 ;     33h: Unused - frames 1..Ah
 ;     34h: Unused - frames 1..Ah
 ;     37h: Facing right - morphing transition - frames 0..1
-;     38h: Facing left-   morphing transition - frames 0..1
+;     38h: Facing left -  morphing transition - frames 0..1
 ;     39h: Unused - frames 1..Ah
 ;     3Ah: Unused - frames 1..Ah
 ;     3Dh: Facing right - unmorphing transition - frames 0..1
-;     3Eh: Facing left-   unmorphing transition - frames 0..1
+;     3Eh: Facing left -  unmorphing transition - frames 0..1
 ;     3Fh: Unused - frames 0..9
 ;     40h: Unused - frames 0..9
-;     41h: Facing left-   morph ball - no springball - on ground - frames 0..9
+;     41h: Facing left -  morph ball - no springball - on ground - frames 0..9
 ;     42h: Unused - frames 1..Ah
 ;     47h: Unused - frame 4
 ;     48h: Unused - frame 4
-;     4Fh: Facing left-   damage boost - frames 2..8
+;     4Fh: Facing left -  damage boost - frames 2..8
 ;     50h: Facing right - damage boost - frames 2..8
 ;     65h: Unused. Related to movement type Dh - frames 1..8
 ;     66h: Unused. Related to movement type Dh - frames 1..8
 ;     67h: Facing right - falling - gun extended - frames 3..4
-;     68h: Facing left-   falling - gun extended - frames 3..4
+;     68h: Facing left -  falling - gun extended - frames 3..4
 ;     79h: Facing right - morph ball - spring ball - on ground - frames 0..9
-;     7Ah: Facing left-   morph ball - spring ball - on ground - frames 0..9
+;     7Ah: Facing left -  morph ball - spring ball - on ground - frames 0..9
 ;     7Bh: Moving right - morph ball - spring ball - on ground - frames 0..9
 ;     7Ch: Moving left-   morph ball - spring ball - on ground - frames 0..9
 ;     7Dh: Facing right - morph ball - spring ball - falling - frames 0..9
-;     7Eh: Facing left-   morph ball - spring ball - falling - frames 0..9
+;     7Eh: Facing left -  morph ball - spring ball - falling - frames 0..9
 ;     7Fh: Facing right - morph ball - spring ball - in air - frames 0..9
-;     80h: Facing left-   morph ball - spring ball - in air - frames 0..9
+;     80h: Facing left -  morph ball - spring ball - in air - frames 0..9
 ;     81h: Facing right - screw attack - frames 19h..1Ah
-;     82h: Facing left-   screw attack - frames 19h..1Ah
+;     82h: Facing left -  screw attack - frames 19h..1Ah
 ;     83h: Facing right - wall jump - frames 2..Ch
 ;     83h: Facing right - wall jump - frames 15h..16h
-;     84h: Facing left-   wall jump - frames 2..Ch
-;     84h: Facing left-   wall jump - frames 15h..16h
+;     84h: Facing left -  wall jump - frames 2..Ch
+;     84h: Facing left -  wall jump - frames 15h..16h
 ;     89h: Facing right - ran into a wall - frame 4
-;     8Ah: Facing left-   ran into a wall - frame 4
+;     8Ah: Facing left -  ran into a wall - frame 4
 ;     9Bh: Facing forward - varia/gravity suit - frame 1
 ;     A8h: Facing right - grappling - frame 4
-;     A9h: Facing left-   grappling - frame 4
+;     A9h: Facing left -  grappling - frame 4
 ;     B4h: Facing right - grappling - crouching - frame 4
-;     B5h: Facing left-   grappling - crouching - frame 4
+;     B5h: Facing left -  grappling - crouching - frame 4
 ;     C5h: Unused - frames 0..9
 ;     CBh: Facing right - shinespark - vertical - frame 0
-;     CCh: Facing left-   shinespark - vertical - frame 0
+;     CCh: Facing left -  shinespark - vertical - frame 0
 ;     D3h: Facing right - crystal flash - frames 4..5
 ;     D3h: Facing right - crystal flash - frames Ah..Bh
-;     D4h: Facing left-   crystal flash - frames 4..5
-;     D4h: Facing left-   crystal flash - frames Ah..Bh
+;     D4h: Facing left -  crystal flash - frames 4..5
+;     D4h: Facing left -  crystal flash - frames Ah..Bh
 ;     DBh: Unused - frames 1..2
 ;     DCh: Unused - frames 1..2
 ;     DDh: Unused - frames 0..1
 ;     DEh: Unused - frames 0..1
 ;     DFh: Unused. Related to Draygon - frames 0..9
 ;     E8h: Facing right - Samus drained - crouching/falling - frames Ch..Dh
-;     E9h: Facing left-   Samus drained - crouching/falling - frames Ch..Dh
-;     E9h: Facing left-   Samus drained - crouching/falling - frames 11h..12h
-;     E9h: Facing left-   Samus drained - crouching/falling - frames 18h..19h
-;     E9h: Facing left-   Samus drained - crouching/falling - frames 1Bh..1Ch
-;     E9h: Facing left-   Samus drained - crouching/falling - frames 1Eh..1Fh
+;     E9h: Facing left -  Samus drained - crouching/falling - frames Ch..Dh
+;     E9h: Facing left -  Samus drained - crouching/falling - frames 11h..12h
+;     E9h: Facing left -  Samus drained - crouching/falling - frames 18h..19h
+;     E9h: Facing left -  Samus drained - crouching/falling - frames 1Bh..1Ch
+;     E9h: Facing left -  Samus drained - crouching/falling - frames 1Eh..1Fh
 ;     EAh: Facing right - Samus drained - standing - frame 4
-;     EBh: Facing left-   Samus drained - standing - frame 4
+;     EBh: Facing left -  Samus drained - standing - frame 4
     dl SamusTiles_Bottom_Set0_Entry0 : dw $0080,$0080                    ;92D19E;
 
 SamusBottomTiles_Set0_D1A5:
@@ -9151,9 +9151,9 @@ SamusBottomTiles_Set0_D1B3:
 ; 11h: Moving right - aiming down-right - frame 5
 ; 12h: Moving left-   aiming down-left - frame 5
 ; 4Dh: Facing right - normal jump - not aiming - not moving - gun not extended - frame 0
-; 4Eh: Facing left-   normal jump - not aiming - not moving - gun not extended - frame 0
+; 4Eh: Facing left -  normal jump - not aiming - not moving - gun not extended - frame 0
 ; C7h: Facing right - vertical shinespark windup - frame 0
-; C8h: Facing left-   vertical shinespark windup - frame 0
+; C8h: Facing left -  vertical shinespark windup - frame 0
     dl SamusTiles_Bottom_Set0_Entry3 : dw $0080,$0080                    ;92D1B3;
 
 SamusBottomTiles_Set0_D1BA:
@@ -9185,55 +9185,55 @@ SamusBottomTiles_Set0_D1C1:
 SamusBottomTiles_Set0_D1C8:
 ; 1: Facing right - normal - frame 0
 ; 1: Facing right - normal - frame 5
-; 2: Facing left-   normal - frame 0
-; 2: Facing left-   normal - frame 5
+; 2: Facing left -  normal - frame 0
+; 2: Facing left -  normal - frame 5
 ; 47h: Unused - frame 0
 ; 47h: Unused - frame 5
 ; 48h: Unused - frame 0
 ; 48h: Unused - frame 5
 ; 89h: Facing right - ran into a wall - frame 0
 ; 89h: Facing right - ran into a wall - frame 5
-; 8Ah: Facing left-   ran into a wall - frame 0
-; 8Ah: Facing left-   ran into a wall - frame 5
+; 8Ah: Facing left -  ran into a wall - frame 0
+; 8Ah: Facing left -  ran into a wall - frame 5
 ; A4h: Facing right - landing from normal jump - frame 1
-; A5h: Facing left-   landing from normal jump - frame 1
+; A5h: Facing left -  landing from normal jump - frame 1
 ; A6h: Facing right - landing from spin jump - frame 2
-; A7h: Facing left-   landing from spin jump - frame 2
+; A7h: Facing left -  landing from spin jump - frame 2
 ; A8h: Facing right - grappling - frame 0
 ; A8h: Facing right - grappling - frame 5
-; A9h: Facing left-   grappling - frame 0
-; A9h: Facing left-   grappling - frame 5
+; A9h: Facing left -  grappling - frame 0
+; A9h: Facing left -  grappling - frame 5
 ; D5h: Facing right - x-ray - standing - frames 0..4
-; D6h: Facing left-   x-ray - standing - frames 0..4
+; D6h: Facing left -  x-ray - standing - frames 0..4
 ; E0h: Facing right - landing from normal jump - aiming up - frame 1
-; E1h: Facing left-   landing from normal jump - aiming up - frame 1
+; E1h: Facing left -  landing from normal jump - aiming up - frame 1
 ; E2h: Facing right - landing from normal jump - aiming up-right - frame 1
-; E3h: Facing left-   landing from normal jump - aiming up-left - frame 1
+; E3h: Facing left -  landing from normal jump - aiming up-left - frame 1
 ; E4h: Facing right - landing from normal jump - aiming down-right - frame 1
-; E5h: Facing left-   landing from normal jump - aiming down-left - frame 1
+; E5h: Facing left -  landing from normal jump - aiming down-left - frame 1
 ; E6h: Facing right - landing from normal jump - firing - frame 1
-; E7h: Facing left-   landing from normal jump - firing - frame 1
+; E7h: Facing left -  landing from normal jump - firing - frame 1
     dl SamusTiles_Bottom_Set0_Entry6 : dw $00C0,$00C0                    ;92D1C8;
 
 SamusBottomTiles_Set0_D1CF:
 ; 27h: Facing right - crouching - frames 0..3
 ; 27h: Facing right - crouching - frames 5..8
-; 28h: Facing left-   crouching - frames 0..3
-; 28h: Facing left-   crouching - frames 5..8
+; 28h: Facing left -  crouching - frames 0..3
+; 28h: Facing left -  crouching - frames 5..8
 ; 71h: Facing right - crouching - aiming up-right - frame 0
-; 72h: Facing left-   crouching - aiming up-left - frame 0
+; 72h: Facing left -  crouching - aiming up-left - frame 0
 ; 73h: Facing right - crouching - aiming down-right - frame 0
-; 74h: Facing left-   crouching - aiming down-left - frame 0
+; 74h: Facing left -  crouching - aiming down-left - frame 0
 ; 85h: Facing right - crouching - aiming up - frames 0..1
-; 86h: Facing left-   crouching - aiming up - frames 0..1
+; 86h: Facing left -  crouching - aiming up - frames 0..1
 ; B4h: Facing right - grappling - crouching - frames 0..3
 ; B4h: Facing right - grappling - crouching - frames 5..8
-; B5h: Facing left-   grappling - crouching - frames 0..3
-; B5h: Facing left-   grappling - crouching - frames 5..8
+; B5h: Facing left -  grappling - crouching - frames 0..3
+; B5h: Facing left -  grappling - crouching - frames 5..8
 ; B6h: Facing right - grappling - crouching - aiming down-right - frame 0
-; B7h: Facing left-   grappling - crouching - aiming down-left - frame 0
+; B7h: Facing left -  grappling - crouching - aiming down-left - frame 0
 ; D9h: Facing right - x-ray - crouching - frames 0..4
-; DAh: Facing left-   x-ray - crouching - frames 0..4
+; DAh: Facing left -  x-ray - crouching - frames 0..4
     dl SamusTiles_Bottom_Set0_Entry7 : dw $0080,$0080                    ;92D1CF;
 
 SamusBottomTiles_Set0_D1D6:
@@ -9327,26 +9327,26 @@ SamusBottomTiles_Set0_D207:
     dl SamusTiles_Bottom_Set0_EntryF : dw $00C0,$00C0                    ;92D207;
 
 SamusBottomTiles_Set0_D20E:
-; 2: Facing left-   normal - frame 1
-; 2: Facing left-   normal - frame 3
-; 2: Facing left-   normal - frame 6
-; 2: Facing left-   normal - frame 8
+; 2: Facing left -  normal - frame 1
+; 2: Facing left -  normal - frame 3
+; 2: Facing left -  normal - frame 6
+; 2: Facing left -  normal - frame 8
 ; 48h: Unused - frame 1
 ; 48h: Unused - frame 3
 ; 48h: Unused - frame 6
 ; 48h: Unused - frame 8
-; 8Ah: Facing left-   ran into a wall - frame 1
-; 8Ah: Facing left-   ran into a wall - frame 3
-; 8Ah: Facing left-   ran into a wall - frame 6
-; 8Ah: Facing left-   ran into a wall - frame 8
-; A9h: Facing left-   grappling - frame 1
-; A9h: Facing left-   grappling - frame 3
-; A9h: Facing left-   grappling - frame 6
-; A9h: Facing left-   grappling - frame 8
+; 8Ah: Facing left -  ran into a wall - frame 1
+; 8Ah: Facing left -  ran into a wall - frame 3
+; 8Ah: Facing left -  ran into a wall - frame 6
+; 8Ah: Facing left -  ran into a wall - frame 8
+; A9h: Facing left -  grappling - frame 1
+; A9h: Facing left -  grappling - frame 3
+; A9h: Facing left -  grappling - frame 6
+; A9h: Facing left -  grappling - frame 8
     dl SamusTiles_Bottom_Set0_Entry10 : dw $00C0,$00C0                   ;92D20E;
 
 SamusBottomTiles_Set0_D215:
-; 4Fh: Facing left-   damage boost - frame 0
+; 4Fh: Facing left -  damage boost - frame 0
     dl SamusTiles_Bottom_Set0_Entry11 : dw $00A0,$0040                   ;92D215;
 
 SamusBottomTiles_Set0_D21C:
@@ -9359,98 +9359,98 @@ SamusBottomTiles_Set0_D223:
     dl SamusTiles_Bottom_Set0_Entry13 : dw $00A0,$0080                   ;92D223;
 
 SamusBottomTiles_Set0_D22A:
-; 16h: Facing left-   normal jump - aiming up - frame 1
-; 6Ah: Facing left-   normal jump - aiming up-left - frame 1
+; 16h: Facing left -  normal jump - aiming up - frame 1
+; 6Ah: Facing left -  normal jump - aiming up-left - frame 1
     dl SamusTiles_Bottom_Set0_Entry14 : dw $00A0,$0080                   ;92D22A;
 
 SamusBottomTiles_Set0_D231:
 ; 25h: Facing right - turning - standing - frame 2
-; 26h: Facing left-   turning - standing - frame 0
+; 26h: Facing left -  turning - standing - frame 0
 ; 8Bh: Facing right - turning - standing - aiming up - frame 2
-; 8Ch: Facing left-   turning - standing - aiming up - frame 0
+; 8Ch: Facing left -  turning - standing - aiming up - frame 0
 ; 8Dh: Facing right - turning - standing - aiming down-right - frame 2
-; 8Eh: Facing left-   turning - standing - aiming down-left - frame 0
+; 8Eh: Facing left -  turning - standing - aiming down-left - frame 0
 ; 9Ch: Facing right - turning - standing - aiming up-right - frame 2
-; 9Dh: Facing left-   turning - standing - aiming up-left - frame 0
+; 9Dh: Facing left -  turning - standing - aiming up-left - frame 0
 ; BFh: Facing right - moonwalking - turn/jump left - frame 2
-; C0h: Facing left-   moonwalking - turn/jump right - frame 0
+; C0h: Facing left -  moonwalking - turn/jump right - frame 0
 ; C1h: Facing right - moonwalking - turn/jump left-   aiming up-right - frame 2
-; C2h: Facing left-   moonwalking - turn/jump right - aiming up-left - frame 0
+; C2h: Facing left -  moonwalking - turn/jump right - aiming up-left - frame 0
 ; C3h: Facing right - moonwalking - turn/jump left-   aiming down-right - frame 2
-; C4h: Facing left-   moonwalking - turn/jump right - aiming down-left - frame 0
+; C4h: Facing left -  moonwalking - turn/jump right - aiming down-left - frame 0
 ; C6h: Unused - frame 2
     dl SamusTiles_Bottom_Set0_Entry15 : dw $00A0,$0080                   ;92D231;
 
 SamusBottomTiles_Set0_D238:
 ; 25h: Facing right - turning - standing - frame 0
-; 26h: Facing left-   turning - standing - frame 2
+; 26h: Facing left -  turning - standing - frame 2
 ; 8Bh: Facing right - turning - standing - aiming up - frame 0
-; 8Ch: Facing left-   turning - standing - aiming up - frame 2
+; 8Ch: Facing left -  turning - standing - aiming up - frame 2
 ; 8Dh: Facing right - turning - standing - aiming down-right - frame 0
-; 8Eh: Facing left-   turning - standing - aiming down-left - frame 2
+; 8Eh: Facing left -  turning - standing - aiming down-left - frame 2
 ; 9Ch: Facing right - turning - standing - aiming up-right - frame 0
-; 9Dh: Facing left-   turning - standing - aiming up-left - frame 2
+; 9Dh: Facing left -  turning - standing - aiming up-left - frame 2
 ; BFh: Facing right - moonwalking - turn/jump left - frame 0
-; C0h: Facing left-   moonwalking - turn/jump right - frame 2
+; C0h: Facing left -  moonwalking - turn/jump right - frame 2
 ; C1h: Facing right - moonwalking - turn/jump left-   aiming up-right - frame 0
-; C2h: Facing left-   moonwalking - turn/jump right - aiming up-left - frame 2
+; C2h: Facing left -  moonwalking - turn/jump right - aiming up-left - frame 2
 ; C3h: Facing right - moonwalking - turn/jump left-   aiming down-right - frame 0
-; C4h: Facing left-   moonwalking - turn/jump right - aiming down-left - frame 2
+; C4h: Facing left -  moonwalking - turn/jump right - aiming down-left - frame 2
 ; C6h: Unused - frame 0
     dl SamusTiles_Bottom_Set0_Entry16 : dw $00A0,$0080                   ;92D238;
 
 SamusBottomTiles_Set0_D23F:
 ; 2Fh: Facing right - turning - jumping - frame 2
-; 30h: Facing left-   turning - jumping - frame 0
+; 30h: Facing left -  turning - jumping - frame 0
 ; 43h: Facing right - turning - crouching - frame 2
-; 44h: Facing left-   turning - crouching - frame 0
+; 44h: Facing left -  turning - crouching - frame 0
 ; 87h: Facing right - turning - falling - frame 2
-; 88h: Facing left-   turning - falling - frame 0
+; 88h: Facing left -  turning - falling - frame 0
 ; 8Fh: Facing right - turning - in air - aiming up - frame 2
-; 90h: Facing left-   turning - in air - aiming up - frame 0
+; 90h: Facing left -  turning - in air - aiming up - frame 0
 ; 91h: Facing right - turning - in air - aiming down/down-right - frame 2
-; 92h: Facing left-   turning - in air - aiming down/down-left - frame 0
+; 92h: Facing left -  turning - in air - aiming down/down-left - frame 0
 ; 93h: Facing right - turning - falling - aiming up - frame 2
-; 94h: Facing left-   turning - falling - aiming up - frame 0
+; 94h: Facing left -  turning - falling - aiming up - frame 0
 ; 95h: Facing right - turning - falling - aiming down/down-right - frame 2
-; 96h: Facing left-   turning - falling - aiming down/down-left - frame 0
+; 96h: Facing left -  turning - falling - aiming down/down-left - frame 0
 ; 97h: Facing right - turning - crouching - aiming up - frame 2
-; 98h: Facing left-   turning - crouching - aiming up - frame 0
+; 98h: Facing left -  turning - crouching - aiming up - frame 0
 ; 99h: Facing right - turning - crouching - aiming down/down-right - frame 2
-; 9Ah: Facing left-   turning - crouching - aiming down/down-left - frame 0
+; 9Ah: Facing left -  turning - crouching - aiming down/down-left - frame 0
 ; 9Eh: Facing right - turning - in air - aiming up-right - frame 2
-; 9Fh: Facing left-   turning - in air - aiming up-left - frame 0
+; 9Fh: Facing left -  turning - in air - aiming up-left - frame 0
 ; A0h: Facing right - turning - falling - aiming up-right - frame 2
-; A1h: Facing left-   turning - falling - aiming up-left - frame 0
+; A1h: Facing left -  turning - falling - aiming up-left - frame 0
 ; A2h: Facing right - turning - crouching - aiming up-right - frame 2
-; A3h: Facing left-   turning - crouching - aiming up-left - frame 0
+; A3h: Facing left -  turning - crouching - aiming up-left - frame 0
     dl SamusTiles_Bottom_Set0_Entry17 : dw $0080,$0040                   ;92D23F;
 
 SamusBottomTiles_Set0_D246:
 ; 2Fh: Facing right - turning - jumping - frame 0
-; 30h: Facing left-   turning - jumping - frame 2
+; 30h: Facing left -  turning - jumping - frame 2
 ; 43h: Facing right - turning - crouching - frame 0
-; 44h: Facing left-   turning - crouching - frame 2
+; 44h: Facing left -  turning - crouching - frame 2
 ; 87h: Facing right - turning - falling - frame 0
-; 88h: Facing left-   turning - falling - frame 2
+; 88h: Facing left -  turning - falling - frame 2
 ; 8Fh: Facing right - turning - in air - aiming up - frame 0
-; 90h: Facing left-   turning - in air - aiming up - frame 2
+; 90h: Facing left -  turning - in air - aiming up - frame 2
 ; 91h: Facing right - turning - in air - aiming down/down-right - frame 0
-; 92h: Facing left-   turning - in air - aiming down/down-left - frame 2
+; 92h: Facing left -  turning - in air - aiming down/down-left - frame 2
 ; 93h: Facing right - turning - falling - aiming up - frame 0
-; 94h: Facing left-   turning - falling - aiming up - frame 2
+; 94h: Facing left -  turning - falling - aiming up - frame 2
 ; 95h: Facing right - turning - falling - aiming down/down-right - frame 0
-; 96h: Facing left-   turning - falling - aiming down/down-left - frame 2
+; 96h: Facing left -  turning - falling - aiming down/down-left - frame 2
 ; 97h: Facing right - turning - crouching - aiming up - frame 0
-; 98h: Facing left-   turning - crouching - aiming up - frame 2
+; 98h: Facing left -  turning - crouching - aiming up - frame 2
 ; 99h: Facing right - turning - crouching - aiming down/down-right - frame 0
-; 9Ah: Facing left-   turning - crouching - aiming down/down-left - frame 2
+; 9Ah: Facing left -  turning - crouching - aiming down/down-left - frame 2
 ; 9Eh: Facing right - turning - in air - aiming up-right - frame 0
-; 9Fh: Facing left-   turning - in air - aiming up-left - frame 2
+; 9Fh: Facing left -  turning - in air - aiming up-left - frame 2
 ; A0h: Facing right - turning - falling - aiming up-right - frame 0
-; A1h: Facing left-   turning - falling - aiming up-left - frame 2
+; A1h: Facing left -  turning - falling - aiming up-left - frame 2
 ; A2h: Facing right - turning - crouching - aiming up-right - frame 0
-; A3h: Facing left-   turning - crouching - aiming up-left - frame 2
+; A3h: Facing left -  turning - crouching - aiming up-left - frame 2
     dl SamusTiles_Bottom_Set0_Entry18 : dw $0080,$0040                   ;92D246;
 
 SamusBottomTiles_Set0_D24D:
@@ -9464,7 +9464,7 @@ SamusBottomTiles_Set0_D254:
 ; 46h: Unused - frame 0
 ; 5Bh: Unused - frame 0
 ; 63h: Unused. Related to movement type Dh - frame 1
-; B8h: Facing left-   grapple wall jump pose - frame 0
+; B8h: Facing left -  grapple wall jump pose - frame 0
     dl SamusTiles_Bottom_Set0_Entry1A : dw $0080,$0080                   ;92D254;
 
 SamusBottomTiles_Set0_D25B:
@@ -9473,19 +9473,19 @@ SamusBottomTiles_Set0_D25B:
     dl SamusTiles_Bottom_Set0_Entry1B : dw $00C0,$0080                   ;92D25B;
 
 SamusBottomTiles_Set0_D262:
-; CAh: Facing left-   shinespark - horizontal - frame 0
-; CEh: Facing left-   shinespark - diagonal - frame 0
+; CAh: Facing left -  shinespark - horizontal - frame 0
+; CEh: Facing left -  shinespark - diagonal - frame 0
     dl SamusTiles_Bottom_Set0_Entry1C : dw $00C0,$0080                   ;92D262;
 
 SamusBottomTiles_Set0_D269:
-; 2: Facing left-   normal - frame 2
-; 2: Facing left-   normal - frame 7
+; 2: Facing left -  normal - frame 2
+; 2: Facing left -  normal - frame 7
 ; 48h: Unused - frame 2
 ; 48h: Unused - frame 7
-; 8Ah: Facing left-   ran into a wall - frame 2
-; 8Ah: Facing left-   ran into a wall - frame 7
-; A9h: Facing left-   grappling - frame 2
-; A9h: Facing left-   grappling - frame 7
+; 8Ah: Facing left -  ran into a wall - frame 2
+; 8Ah: Facing left -  ran into a wall - frame 7
+; A9h: Facing left -  grappling - frame 2
+; A9h: Facing left -  grappling - frame 7
     dl SamusTiles_Bottom_Set0_Entry1D : dw $00C0,$00C0                   ;92D269;
 
 SamusBottomTiles_Set0_D270:
@@ -9505,91 +9505,91 @@ SamusBottomTiles_Set0_D270:
     dl SamusTiles_Bottom_Set0_Entry1E : dw $0080,$0080                   ;92D270;
 
 SamusBottomTiles_Set0_D277:
-; 1Ah: Facing left-   spin jump - frame Bh
-; 1Ch: Facing left-   space jump - frame Bh
-; 82h: Facing left-   screw attack - frame 1Bh
+; 1Ah: Facing left -  spin jump - frame Bh
+; 1Ch: Facing left -  space jump - frame Bh
+; 82h: Facing left -  screw attack - frame 1Bh
     dl SamusTiles_Bottom_Set0_Entry1F : dw $0080,$0080                   ;92D277;
 
 
 ;;; $D27E: Samus bottom tiles - set 1 (general) ;;;
 SamusBottomTiles_Set1_D27E:
-; 49h: Facing left-   moonwalk - frame 3
+; 49h: Facing left -  moonwalk - frame 3
 ; 4Ah: Facing right - moonwalk - frame 3
-; 75h: Facing left-   moonwalk - aiming up-left - frame 3
+; 75h: Facing left -  moonwalk - aiming up-left - frame 3
 ; 76h: Facing right - moonwalk - aiming up-right - frame 3
-; 77h: Facing left-   moonwalk - aiming down-left - frame 3
+; 77h: Facing left -  moonwalk - aiming down-left - frame 3
 ; 78h: Facing right - moonwalk - aiming down-right - frame 3
     dl SamusTiles_Bottom_Set1_Entry0 : dw $00C0,$0080                    ;92D27E;
 
 SamusBottomTiles_Set1_D285:
 ; 25h: Facing right - turning - standing - frame 1
-; 26h: Facing left-   turning - standing - frame 1
+; 26h: Facing left -  turning - standing - frame 1
 ; 8Bh: Facing right - turning - standing - aiming up - frame 1
-; 8Ch: Facing left-   turning - standing - aiming up - frame 1
+; 8Ch: Facing left -  turning - standing - aiming up - frame 1
 ; 8Dh: Facing right - turning - standing - aiming down-right - frame 1
-; 8Eh: Facing left-   turning - standing - aiming down-left - frame 1
+; 8Eh: Facing left -  turning - standing - aiming down-left - frame 1
 ; 9Ch: Facing right - turning - standing - aiming up-right - frame 1
-; 9Dh: Facing left-   turning - standing - aiming up-left - frame 1
+; 9Dh: Facing left -  turning - standing - aiming up-left - frame 1
 ; BFh: Facing right - moonwalking - turn/jump left - frame 1
-; C0h: Facing left-   moonwalking - turn/jump right - frame 1
+; C0h: Facing left -  moonwalking - turn/jump right - frame 1
 ; C1h: Facing right - moonwalking - turn/jump left-   aiming up-right - frame 1
-; C2h: Facing left-   moonwalking - turn/jump right - aiming up-left - frame 1
+; C2h: Facing left -  moonwalking - turn/jump right - aiming up-left - frame 1
 ; C3h: Facing right - moonwalking - turn/jump left-   aiming down-right - frame 1
-; C4h: Facing left-   moonwalking - turn/jump right - aiming down-left - frame 1
+; C4h: Facing left -  moonwalking - turn/jump right - aiming down-left - frame 1
 ; C6h: Unused - frame 1
     dl SamusTiles_Bottom_Set1_Entry1 : dw $0080,$0080                    ;92D285;
 
 SamusBottomTiles_Set1_D28C:
 ; 2Fh: Facing right - turning - jumping - frame 1
-; 30h: Facing left-   turning - jumping - frame 1
+; 30h: Facing left -  turning - jumping - frame 1
 ; 43h: Facing right - turning - crouching - frame 1
-; 44h: Facing left-   turning - crouching - frame 1
+; 44h: Facing left -  turning - crouching - frame 1
 ; 87h: Facing right - turning - falling - frame 1
-; 88h: Facing left-   turning - falling - frame 1
+; 88h: Facing left -  turning - falling - frame 1
 ; 8Fh: Facing right - turning - in air - aiming up - frame 1
-; 90h: Facing left-   turning - in air - aiming up - frame 1
+; 90h: Facing left -  turning - in air - aiming up - frame 1
 ; 91h: Facing right - turning - in air - aiming down/down-right - frame 1
-; 92h: Facing left-   turning - in air - aiming down/down-left - frame 1
+; 92h: Facing left -  turning - in air - aiming down/down-left - frame 1
 ; 93h: Facing right - turning - falling - aiming up - frame 1
-; 94h: Facing left-   turning - falling - aiming up - frame 1
+; 94h: Facing left -  turning - falling - aiming up - frame 1
 ; 95h: Facing right - turning - falling - aiming down/down-right - frame 1
-; 96h: Facing left-   turning - falling - aiming down/down-left - frame 1
+; 96h: Facing left -  turning - falling - aiming down/down-left - frame 1
 ; 97h: Facing right - turning - crouching - aiming up - frame 1
-; 98h: Facing left-   turning - crouching - aiming up - frame 1
+; 98h: Facing left -  turning - crouching - aiming up - frame 1
 ; 99h: Facing right - turning - crouching - aiming down/down-right - frame 1
-; 9Ah: Facing left-   turning - crouching - aiming down/down-left - frame 1
+; 9Ah: Facing left -  turning - crouching - aiming down/down-left - frame 1
 ; 9Eh: Facing right - turning - in air - aiming up-right - frame 1
-; 9Fh: Facing left-   turning - in air - aiming up-left - frame 1
+; 9Fh: Facing left -  turning - in air - aiming up-left - frame 1
 ; A0h: Facing right - turning - falling - aiming up-right - frame 1
-; A1h: Facing left-   turning - falling - aiming up-left - frame 1
+; A1h: Facing left -  turning - falling - aiming up-left - frame 1
 ; A2h: Facing right - turning - crouching - aiming up-right - frame 1
-; A3h: Facing left-   turning - crouching - aiming up-left - frame 1
+; A3h: Facing left -  turning - crouching - aiming up-left - frame 1
     dl SamusTiles_Bottom_Set1_Entry2 : dw $0040,$0040                    ;92D28C;
 
 SamusBottomTiles_Set1_D293:
-; 49h: Facing left-   moonwalk - frame 0
+; 49h: Facing left -  moonwalk - frame 0
 ; 4Ah: Facing right - moonwalk - frame 0
-; 75h: Facing left-   moonwalk - aiming up-left - frame 0
+; 75h: Facing left -  moonwalk - aiming up-left - frame 0
 ; 76h: Facing right - moonwalk - aiming up-right - frame 0
-; 77h: Facing left-   moonwalk - aiming down-left - frame 0
+; 77h: Facing left -  moonwalk - aiming down-left - frame 0
 ; 78h: Facing right - moonwalk - aiming down-right - frame 0
     dl SamusTiles_Bottom_Set1_Entry3 : dw $00C0,$0080                    ;92D293;
 
 SamusBottomTiles_Set1_D29A:
-; 49h: Facing left-   moonwalk - frame 1
+; 49h: Facing left -  moonwalk - frame 1
 ; 4Ah: Facing right - moonwalk - frame 1
-; 75h: Facing left-   moonwalk - aiming up-left - frame 1
+; 75h: Facing left -  moonwalk - aiming up-left - frame 1
 ; 76h: Facing right - moonwalk - aiming up-right - frame 1
-; 77h: Facing left-   moonwalk - aiming down-left - frame 1
+; 77h: Facing left -  moonwalk - aiming down-left - frame 1
 ; 78h: Facing right - moonwalk - aiming down-right - frame 1
     dl SamusTiles_Bottom_Set1_Entry4 : dw $0080,$0080                    ;92D29A;
 
 SamusBottomTiles_Set1_D2A1:
-; 49h: Facing left-   moonwalk - frame 4
+; 49h: Facing left -  moonwalk - frame 4
 ; 4Ah: Facing right - moonwalk - frame 4
-; 75h: Facing left-   moonwalk - aiming up-left - frame 4
+; 75h: Facing left -  moonwalk - aiming up-left - frame 4
 ; 76h: Facing right - moonwalk - aiming up-right - frame 4
-; 77h: Facing left-   moonwalk - aiming down-left - frame 4
+; 77h: Facing left -  moonwalk - aiming down-left - frame 4
 ; 78h: Facing right - moonwalk - aiming down-right - frame 4
     dl SamusTiles_Bottom_Set1_Entry5 : dw $0080,$0080                    ;92D2A1;
 
@@ -9604,7 +9604,7 @@ SamusBottomTiles_Set1_D2A8:
 ; A6h: Facing right - landing from spin jump - frame 1
 ; D3h: Facing right - crystal flash - frame Eh
 ; D7h: Facing right - crystal flash ending - frames 0..3
-; D8h: Facing left-   crystal flash ending - frames 0..2
+; D8h: Facing left -  crystal flash ending - frames 0..2
 ; DBh: Unused - frame 0
 ; DCh: Unused - frame 0
 ; DDh: Unused - frame 2
@@ -9615,7 +9615,7 @@ SamusBottomTiles_Set1_D2A8:
 ; E6h: Facing right - landing from normal jump - firing - frame 0
 ; E8h: Facing right - Samus drained - crouching/falling - frames 0..2
 ; E8h: Facing right - Samus drained - crouching/falling - frame Eh
-; E9h: Facing left-   Samus drained - crouching/falling - frames 0..1
+; E9h: Facing left -  Samus drained - crouching/falling - frames 0..1
 ; EAh: Facing right - Samus drained - standing - frame 5
 ; F1h: Facing right - crouching transition - aiming up - frame 0
 ; F3h: Facing right - crouching transition - aiming up-right - frame 0
@@ -9626,31 +9626,31 @@ SamusBottomTiles_Set1_D2A8:
     dl SamusTiles_Bottom_Set1_Entry6 : dw $00C0,$0080                    ;92D2A8;
 
 SamusBottomTiles_Set1_D2AF:
-; 36h: Facing left-   crouching transition - frame 0
-; 3Ch: Facing left-   standing transition - frame 0
-; 4Ch: Facing left-   normal jump transition - frame 0
-; 56h: Facing left-   normal jump transition - aiming up - frame 0
-; 58h: Facing left-   normal jump transition - aiming up-left - frame 0
-; 5Ah: Facing left-   normal jump transition - aiming down-left - frame 0
-; A5h: Facing left-   landing from normal jump - frame 0
-; A7h: Facing left-   landing from spin jump - frame 1
-; D4h: Facing left-   crystal flash - frame Eh
-; D8h: Facing left-   crystal flash ending - frame 3
-; E1h: Facing left-   landing from normal jump - aiming up - frame 0
-; E3h: Facing left-   landing from normal jump - aiming up-left - frame 0
-; E5h: Facing left-   landing from normal jump - aiming down-left - frame 0
-; E7h: Facing left-   landing from normal jump - firing - frame 0
-; E9h: Facing left-   Samus drained - crouching/falling - frame 7
-; E9h: Facing left-   Samus drained - crouching/falling - frame Fh
-; E9h: Facing left-   Samus drained - crouching/falling - frame 14h
-; E9h: Facing left-   Samus drained - crouching/falling - frame 16h
-; EBh: Facing left-   Samus drained - standing - frame 5
-; F2h: Facing left-   crouching transition - aiming up - frame 0
-; F4h: Facing left-   crouching transition - aiming up-left - frame 0
-; F6h: Facing left-   crouching transition - aiming down-left - frame 0
-; F8h: Facing left-   standing transition - aiming up - frame 0
-; FAh: Facing left-   standing transition - aiming up-left - frame 0
-; FCh: Facing left-   standing transition - aiming down-left - frame 0
+; 36h: Facing left -  crouching transition - frame 0
+; 3Ch: Facing left -  standing transition - frame 0
+; 4Ch: Facing left -  normal jump transition - frame 0
+; 56h: Facing left -  normal jump transition - aiming up - frame 0
+; 58h: Facing left -  normal jump transition - aiming up-left - frame 0
+; 5Ah: Facing left -  normal jump transition - aiming down-left - frame 0
+; A5h: Facing left -  landing from normal jump - frame 0
+; A7h: Facing left -  landing from spin jump - frame 1
+; D4h: Facing left -  crystal flash - frame Eh
+; D8h: Facing left -  crystal flash ending - frame 3
+; E1h: Facing left -  landing from normal jump - aiming up - frame 0
+; E3h: Facing left -  landing from normal jump - aiming up-left - frame 0
+; E5h: Facing left -  landing from normal jump - aiming down-left - frame 0
+; E7h: Facing left -  landing from normal jump - firing - frame 0
+; E9h: Facing left -  Samus drained - crouching/falling - frame 7
+; E9h: Facing left -  Samus drained - crouching/falling - frame Fh
+; E9h: Facing left -  Samus drained - crouching/falling - frame 14h
+; E9h: Facing left -  Samus drained - crouching/falling - frame 16h
+; EBh: Facing left -  Samus drained - standing - frame 5
+; F2h: Facing left -  crouching transition - aiming up - frame 0
+; F4h: Facing left -  crouching transition - aiming up-left - frame 0
+; F6h: Facing left -  crouching transition - aiming down-left - frame 0
+; F8h: Facing left -  standing transition - aiming up - frame 0
+; FAh: Facing left -  standing transition - aiming up-left - frame 0
+; FCh: Facing left -  standing transition - aiming down-left - frame 0
     dl SamusTiles_Bottom_Set1_Entry7 : dw $00C0,$0080                    ;92D2AF;
 
 SamusBottomTiles_Set1_D2B6:
@@ -9660,9 +9660,9 @@ SamusBottomTiles_Set1_D2B6:
     dl SamusTiles_Bottom_Set1_Entry8 : dw $00E0,$0040                    ;92D2B6;
 
 SamusBottomTiles_Set1_D2BD:
-; 4Eh: Facing left-   normal jump - not aiming - not moving - gun not extended - frames 2..3
-; BEh: Facing left-   grabbed by Draygon - moving - frame 5
-; C8h: Facing left-   vertical shinespark windup - frames 2..3
+; 4Eh: Facing left -  normal jump - not aiming - not moving - gun not extended - frames 2..3
+; BEh: Facing left -  grabbed by Draygon - moving - frame 5
+; C8h: Facing left -  vertical shinespark windup - frames 2..3
     dl SamusTiles_Bottom_Set1_Entry9 : dw $00E0,$0040                    ;92D2BD;
 
 SamusBottomTiles_Set1_D2C4:
@@ -9689,26 +9689,26 @@ SamusBottomTiles_Set1_D2C4:
     dl SamusTiles_Bottom_Set1_EntryA : dw $00A0,$0080                    ;92D2C4;
 
 SamusBottomTiles_Set1_D2CB:
-; 14h: Facing left-   normal jump - not aiming - not moving - gun extended - frame 0
-; 16h: Facing left-   normal jump - aiming up - frame 0
-; 18h: Facing left-   normal jump - aiming down - frame 0
-; 2Ah: Facing left-   falling - frame 0
-; 2Ah: Facing left-   falling - frame 5
-; 2Ch: Facing left-   falling - aiming up - frame 0
-; 2Eh: Facing left-   falling - aiming down - frame 0
-; 4Eh: Facing left-   normal jump - not aiming - not moving - gun not extended - frame 4
-; 4Fh: Facing left-   damage boost - frame 1
-; 52h: Facing left-   normal jump - not aiming - moving forward - frame 0
-; 68h: Facing left-   falling - gun extended - frame 0
-; 68h: Facing left-   falling - gun extended - frame 5
-; 6Ah: Facing left-   normal jump - aiming up-left - frame 0
-; 6Ch: Facing left-   normal jump - aiming down-left - frame 0
-; 6Eh: Facing left-   falling - aiming up-left - frame 0
-; 70h: Facing left-   falling - aiming down-left - frame 0
-; ADh: Unused. Facing left-   grappling - in air - frame 0
-; AFh: Unused. Facing left-   grappling - in air - aiming down - frame 0
-; B1h: Unused. Facing left-   grappling - in air - aiming down-left - frame 0
-; C8h: Facing left-   vertical shinespark windup - frame 4
+; 14h: Facing left -  normal jump - not aiming - not moving - gun extended - frame 0
+; 16h: Facing left -  normal jump - aiming up - frame 0
+; 18h: Facing left -  normal jump - aiming down - frame 0
+; 2Ah: Facing left -  falling - frame 0
+; 2Ah: Facing left -  falling - frame 5
+; 2Ch: Facing left -  falling - aiming up - frame 0
+; 2Eh: Facing left -  falling - aiming down - frame 0
+; 4Eh: Facing left -  normal jump - not aiming - not moving - gun not extended - frame 4
+; 4Fh: Facing left -  damage boost - frame 1
+; 52h: Facing left -  normal jump - not aiming - moving forward - frame 0
+; 68h: Facing left -  falling - gun extended - frame 0
+; 68h: Facing left -  falling - gun extended - frame 5
+; 6Ah: Facing left -  normal jump - aiming up-left - frame 0
+; 6Ch: Facing left -  normal jump - aiming down-left - frame 0
+; 6Eh: Facing left -  falling - aiming up-left - frame 0
+; 70h: Facing left -  falling - aiming down-left - frame 0
+; ADh: Unused. Facing left -  grappling - in air - frame 0
+; AFh: Unused. Facing left -  grappling - in air - aiming down - frame 0
+; B1h: Unused. Facing left -  grappling - in air - aiming down-left - frame 0
+; C8h: Facing left -  vertical shinespark windup - frame 4
     dl SamusTiles_Bottom_Set1_EntryB : dw $00A0,$0080                    ;92D2CB;
 
 SamusBottomTiles_Set1_D2D2:
@@ -9727,18 +9727,18 @@ SamusBottomTiles_Set1_D2D2:
     dl SamusTiles_Bottom_Set1_EntryC : dw $0080,$0080                    ;92D2D2;
 
 SamusBottomTiles_Set1_D2D9:
-; 2Ah: Facing left-   falling - frames 1..2
-; 2Ch: Facing left-   falling - aiming up - frame 1
-; 4Eh: Facing left-   normal jump - not aiming - not moving - gun not extended - frame 5
-; 54h: Facing left-   knockback - frame 0
-; 68h: Facing left-   falling - gun extended - frames 1..2
-; 6Eh: Facing left-   falling - aiming up-left - frame 1
-; 70h: Facing left-   falling - aiming down-left - frame 1
-; BEh: Facing left-   grabbed by Draygon - moving - frame 0
-; BEh: Facing left-   grabbed by Draygon - moving - frame 3
-; C8h: Facing left-   vertical shinespark windup - frame 5
-; D8h: Facing left-   crystal flash ending - frame 4
-; E9h: Facing left-   Samus drained - crouching/falling - frames 2..6
+; 2Ah: Facing left -  falling - frames 1..2
+; 2Ch: Facing left -  falling - aiming up - frame 1
+; 4Eh: Facing left -  normal jump - not aiming - not moving - gun not extended - frame 5
+; 54h: Facing left -  knockback - frame 0
+; 68h: Facing left -  falling - gun extended - frames 1..2
+; 6Eh: Facing left -  falling - aiming up-left - frame 1
+; 70h: Facing left -  falling - aiming down-left - frame 1
+; BEh: Facing left -  grabbed by Draygon - moving - frame 0
+; BEh: Facing left -  grabbed by Draygon - moving - frame 3
+; C8h: Facing left -  vertical shinespark windup - frame 5
+; D8h: Facing left -  crystal flash ending - frame 4
+; E9h: Facing left -  Samus drained - crouching/falling - frames 2..6
     dl SamusTiles_Bottom_Set1_EntryD : dw $0080,$0080                    ;92D2D9;
 
 SamusBottomTiles_Set1_D2E0:
@@ -9748,9 +9748,9 @@ SamusBottomTiles_Set1_D2E0:
     dl SamusTiles_Bottom_Set1_EntryE : dw $00C0,$0040                    ;92D2E0;
 
 SamusBottomTiles_Set1_D2E7:
-; 4Eh: Facing left-   normal jump - not aiming - not moving - gun not extended - frame 1
-; BEh: Facing left-   grabbed by Draygon - moving - frame 4
-; C8h: Facing left-   vertical shinespark windup - frame 1
+; 4Eh: Facing left -  normal jump - not aiming - not moving - gun not extended - frame 1
+; BEh: Facing left -  grabbed by Draygon - moving - frame 4
+; C8h: Facing left -  vertical shinespark windup - frame 1
     dl SamusTiles_Bottom_Set1_EntryF : dw $00C0,$0040                    ;92D2E7;
 
 UNUSED_SamusBottomTiles_Set1_92D2EE:
@@ -9764,9 +9764,9 @@ SamusBottomTiles_Set1_D2F5:
     dl SamusTiles_Bottom_Set1_Entry11 : dw $00E0,$0040                   ;92D2F5;
 
 SamusBottomTiles_Set1_D2FC:
-; 18h: Facing left-   normal jump - aiming down - frame 1
-; 2Eh: Facing left-   falling - aiming down - frame 1
-; AFh: Unused. Facing left-   grappling - in air - aiming down - frame 1
+; 18h: Facing left -  normal jump - aiming down - frame 1
+; 2Eh: Facing left -  falling - aiming down - frame 1
+; AFh: Unused. Facing left -  grappling - in air - aiming down - frame 1
     dl SamusTiles_Bottom_Set1_Entry12 : dw $00E0,$0040                   ;92D2FC;
 
 SamusBottomTiles_Set1_D303:
@@ -9776,32 +9776,32 @@ SamusBottomTiles_Set1_D303:
 
 SamusBottomTiles_Set1_D30A:
 ; 66h: Unused. Related to movement type Dh - frame 0
-; 84h: Facing left-   wall jump - frame 0
+; 84h: Facing left -  wall jump - frame 0
     dl SamusTiles_Bottom_Set1_Entry14 : dw $00C0,$0040                   ;92D30A;
 
 SamusBottomTiles_Set1_D311:
-; 49h: Facing left-   moonwalk - frame 2
+; 49h: Facing left -  moonwalk - frame 2
 ; 63h: Unused. Related to movement type Dh - frame 0
     dl SamusTiles_Bottom_Set1_Entry15 : dw $00A0,$0080                   ;92D311;
 
 SamusBottomTiles_Set1_D318:
-; 49h: Facing left-   moonwalk - frame 5
+; 49h: Facing left -  moonwalk - frame 5
 ; 64h: Unused. Related to movement type Dh - frame 0
     dl SamusTiles_Bottom_Set1_Entry16 : dw $00A0,$0080                   ;92D318;
 
 SamusBottomTiles_Set1_D31F:
 ; 4Ah: Facing right - moonwalk - frame 2
-; 75h: Facing left-   moonwalk - aiming up-left - frame 2
+; 75h: Facing left -  moonwalk - aiming up-left - frame 2
 ; 76h: Facing right - moonwalk - aiming up-right - frame 2
-; 77h: Facing left-   moonwalk - aiming down-left - frame 2
+; 77h: Facing left -  moonwalk - aiming down-left - frame 2
 ; 78h: Facing right - moonwalk - aiming down-right - frame 2
     dl SamusTiles_Bottom_Set1_Entry17 : dw $00A0,$0080                   ;92D31F;
 
 SamusBottomTiles_Set1_D326:
 ; 4Ah: Facing right - moonwalk - frame 5
-; 75h: Facing left-   moonwalk - aiming up-left - frame 5
+; 75h: Facing left -  moonwalk - aiming up-left - frame 5
 ; 76h: Facing right - moonwalk - aiming up-right - frame 5
-; 77h: Facing left-   moonwalk - aiming down-left - frame 5
+; 77h: Facing left -  moonwalk - aiming down-left - frame 5
 ; 78h: Facing right - moonwalk - aiming down-right - frame 5
     dl SamusTiles_Bottom_Set1_Entry18 : dw $00A0,$0080                   ;92D326;
 
@@ -9836,26 +9836,26 @@ SamusBottomTiles_Set1_D32D:
     dl SamusTiles_Bottom_Set1_Entry19 : dw $00E0,$0080                   ;92D32D;
 
 SamusBottomTiles_Set1_D334:
-; 14h: Facing left-   normal jump - not aiming - not moving - gun extended - frame 1
-; 1Ah: Facing left-   spin jump - frame 0
-; 1Ch: Facing left-   space jump - frame 0
-; 2Ah: Facing left-   falling - frame 6
-; 2Ch: Facing left-   falling - aiming up - frame 2
-; 4Fh: Facing left-   damage boost - frame 9
-; 52h: Facing left-   normal jump - not aiming - moving forward - frame 1
-; 68h: Facing left-   falling - gun extended - frame 6
-; 6Ch: Facing left-   normal jump - aiming down-left - frame 1
-; 6Eh: Facing left-   falling - aiming up-left - frame 2
-; 70h: Facing left-   falling - aiming down-left - frame 2
-; 82h: Facing left-   screw attack - frame 0
-; 84h: Facing left-   wall jump - frame 1
-; A7h: Facing left-   landing from spin jump - frame 0
-; ADh: Unused. Facing left-   grappling - in air - frame 1
-; B1h: Unused. Facing left-   grappling - in air - aiming down-left - frame 1
-; BEh: Facing left-   grabbed by Draygon - moving - frame 2
-; E9h: Facing left-   Samus drained - crouching/falling - frame Eh
-; E9h: Facing left-   Samus drained - crouching/falling - frame 13h
-; E9h: Facing left-   Samus drained - crouching/falling - frame 17h
+; 14h: Facing left -  normal jump - not aiming - not moving - gun extended - frame 1
+; 1Ah: Facing left -  spin jump - frame 0
+; 1Ch: Facing left -  space jump - frame 0
+; 2Ah: Facing left -  falling - frame 6
+; 2Ch: Facing left -  falling - aiming up - frame 2
+; 4Fh: Facing left -  damage boost - frame 9
+; 52h: Facing left -  normal jump - not aiming - moving forward - frame 1
+; 68h: Facing left -  falling - gun extended - frame 6
+; 6Ch: Facing left -  normal jump - aiming down-left - frame 1
+; 6Eh: Facing left -  falling - aiming up-left - frame 2
+; 70h: Facing left -  falling - aiming down-left - frame 2
+; 82h: Facing left -  screw attack - frame 0
+; 84h: Facing left -  wall jump - frame 1
+; A7h: Facing left -  landing from spin jump - frame 0
+; ADh: Unused. Facing left -  grappling - in air - frame 1
+; B1h: Unused. Facing left -  grappling - in air - aiming down-left - frame 1
+; BEh: Facing left -  grabbed by Draygon - moving - frame 2
+; E9h: Facing left -  Samus drained - crouching/falling - frame Eh
+; E9h: Facing left -  Samus drained - crouching/falling - frame 13h
+; E9h: Facing left -  Samus drained - crouching/falling - frame 17h
     dl SamusTiles_Bottom_Set1_Entry1A : dw $00E0,$0080                   ;92D334;
 
 SamusBottomTiles_Set1_D33B:
@@ -9869,20 +9869,20 @@ SamusBottomTiles_Set1_D33B:
     dl SamusTiles_Bottom_Set1_Entry1B : dw $00C0,$0080                   ;92D33B;
 
 SamusBottomTiles_Set1_D342:
-; 54h: Facing left-   knockback - frame 1
-; BAh: Facing left-   grabbed by Draygon - not moving - not aiming - frame 0
-; BBh: Facing left-   grabbed by Draygon - not moving - aiming up-left - frame 0
-; BCh: Facing left-   grabbed by Draygon - firing - frame 0
-; BDh: Facing left-   grabbed by Draygon - not moving - aiming down-left - frame 0
-; BEh: Facing left-   grabbed by Draygon - moving - frame 1
-; D8h: Facing left-   crystal flash ending - frame 5
+; 54h: Facing left -  knockback - frame 1
+; BAh: Facing left -  grabbed by Draygon - not moving - not aiming - frame 0
+; BBh: Facing left -  grabbed by Draygon - not moving - aiming up-left - frame 0
+; BCh: Facing left -  grabbed by Draygon - firing - frame 0
+; BDh: Facing left -  grabbed by Draygon - not moving - aiming down-left - frame 0
+; BEh: Facing left -  grabbed by Draygon - moving - frame 1
+; D8h: Facing left -  crystal flash ending - frame 5
     dl SamusTiles_Bottom_Set1_Entry1C : dw $00C0,$0080                   ;92D342;
 
 SamusBottomTiles_Set1_D350:
-; E9h: Facing left-   Samus drained - crouching/falling - frames 8..Bh
-; E9h: Facing left-   Samus drained - crouching/falling - frame 1Ah
-; E9h: Facing left-   Samus drained - crouching/falling - frame 1Dh
-; EBh: Facing left-   Samus drained - standing - frames 0..3
+; E9h: Facing left -  Samus drained - crouching/falling - frames 8..Bh
+; E9h: Facing left -  Samus drained - crouching/falling - frame 1Ah
+; E9h: Facing left -  Samus drained - crouching/falling - frame 1Dh
+; EBh: Facing left -  Samus drained - standing - frames 0..3
     dl SamusTiles_Bottom_Set1_Entry1E : dw $0060,$0040                   ;92D350;
 
 SamusBottomTiles_Set1_D357:
@@ -9898,7 +9898,7 @@ SamusBottomTiles_Set2_D35E:
 ; 5Fh: Unused - frames 17h..19h
 ; 60h: Unused - frames 17h..19h
 ; 61h: Unused - frames 17h..19h
-; B2h: Facing clockwise   -   grapple - in air - frames 17h..19h
+; B2h: Facing anticlockwise - grapple - in air - frames 17h..19h
     dl SamusTiles_Bottom_Set2_Entry0 : dw $0080,$0040                    ;92D35E;
 
 SamusBottomTiles_Set2_D365:
@@ -9907,7 +9907,7 @@ SamusBottomTiles_Set2_D365:
 ; 5Fh: Unused - frames 15h..16h
 ; 60h: Unused - frames 15h..16h
 ; 61h: Unused - frames 15h..16h
-; B2h: Facing clockwise   -   grapple - in air - frames 15h..16h
+; B2h: Facing anticlockwise - grapple - in air - frames 15h..16h
     dl SamusTiles_Bottom_Set2_Entry1 : dw $00E0,$0040                    ;92D365;
 
 SamusBottomTiles_Set2_D36C:
@@ -9916,7 +9916,7 @@ SamusBottomTiles_Set2_D36C:
 ; 5Fh: Unused - frames 13h..14h
 ; 60h: Unused - frames 13h..14h
 ; 61h: Unused - frames 13h..14h
-; B2h: Facing clockwise   -   grapple - in air - frames 13h..14h
+; B2h: Facing anticlockwise - grapple - in air - frames 13h..14h
     dl SamusTiles_Bottom_Set2_Entry2 : dw $00A0,$0080                    ;92D36C;
 
 SamusBottomTiles_Set2_D373:
@@ -9925,7 +9925,7 @@ SamusBottomTiles_Set2_D373:
 ; 5Fh: Unused - frame 12h
 ; 60h: Unused - frame 12h
 ; 61h: Unused - frame 12h
-; B2h: Facing clockwise   -   grapple - in air - frame 12h
+; B2h: Facing anticlockwise - grapple - in air - frame 12h
     dl SamusTiles_Bottom_Set2_Entry3 : dw $00A0,$0040                    ;92D373;
 
 SamusBottomTiles_Set2_D37A:
@@ -9934,7 +9934,7 @@ SamusBottomTiles_Set2_D37A:
 ; 5Fh: Unused - frame 11h
 ; 60h: Unused - frame 11h
 ; 61h: Unused - frame 11h
-; B2h: Facing clockwise   -   grapple - in air - frame 11h
+; B2h: Facing anticlockwise - grapple - in air - frame 11h
     dl SamusTiles_Bottom_Set2_Entry4 : dw $00C0,$0040                    ;92D37A;
 
 SamusBottomTiles_Set2_D381:
@@ -9943,7 +9943,7 @@ SamusBottomTiles_Set2_D381:
 ; 5Fh: Unused - frame 10h
 ; 60h: Unused - frame 10h
 ; 61h: Unused - frame 10h
-; B2h: Facing clockwise   -   grapple - in air - frame 10h
+; B2h: Facing anticlockwise - grapple - in air - frame 10h
     dl SamusTiles_Bottom_Set2_Entry5 : dw $00C0,$0040                    ;92D381;
 
 SamusBottomTiles_Set2_D388:
@@ -9952,7 +9952,7 @@ SamusBottomTiles_Set2_D388:
 ; 5Fh: Unused - frame Fh
 ; 60h: Unused - frame Fh
 ; 61h: Unused - frame Fh
-; B2h: Facing clockwise   -   grapple - in air - frame Fh
+; B2h: Facing anticlockwise - grapple - in air - frame Fh
     dl SamusTiles_Bottom_Set2_Entry6 : dw $0080,$0040                    ;92D388;
 
 SamusBottomTiles_Set2_D38F:
@@ -9961,7 +9961,7 @@ SamusBottomTiles_Set2_D38F:
 ; 5Fh: Unused - frame Eh
 ; 60h: Unused - frame Eh
 ; 61h: Unused - frame Eh
-; B2h: Facing clockwise   -   grapple - in air - frame Eh
+; B2h: Facing anticlockwise - grapple - in air - frame Eh
     dl SamusTiles_Bottom_Set2_Entry7 : dw $00A0,$0040                    ;92D38F;
 
 SamusBottomTiles_Set2_D396:
@@ -9970,7 +9970,7 @@ SamusBottomTiles_Set2_D396:
 ; 5Fh: Unused - frames Ch..Dh
 ; 60h: Unused - frames Ch..Dh
 ; 61h: Unused - frames Ch..Dh
-; B2h: Facing clockwise   -   grapple - in air - frames Ch..Dh
+; B2h: Facing anticlockwise - grapple - in air - frames Ch..Dh
     dl SamusTiles_Bottom_Set2_Entry8 : dw $00A0,$0040                    ;92D396;
 
 SamusBottomTiles_Set2_D39D:
@@ -9979,7 +9979,7 @@ SamusBottomTiles_Set2_D39D:
 ; 5Fh: Unused - frames Ah..Bh
 ; 60h: Unused - frames Ah..Bh
 ; 61h: Unused - frames Ah..Bh
-; B2h: Facing clockwise   -   grapple - in air - frames Ah..Bh
+; B2h: Facing anticlockwise - grapple - in air - frames Ah..Bh
     dl SamusTiles_Bottom_Set2_Entry9 : dw $00C0,$0040                    ;92D39D;
 
 SamusBottomTiles_Set2_D3AB:
@@ -9988,7 +9988,7 @@ SamusBottomTiles_Set2_D3AB:
 ; 5Fh: Unused - frame 40h
 ; 60h: Unused - frame 40h
 ; 61h: Unused - frame 40h
-; B2h: Facing clockwise   -   grapple - in air - frame 40h
+; B2h: Facing anticlockwise - grapple - in air - frame 40h
     dl SamusTiles_Bottom_Set2_EntryB : dw $0080,$0080                    ;92D3AB;
 
 SamusBottomTiles_Set2_D3B2:
@@ -9997,7 +9997,7 @@ SamusBottomTiles_Set2_D3B2:
 ; 5Fh: Unused - frame 41h
 ; 60h: Unused - frame 41h
 ; 61h: Unused - frame 41h
-; B2h: Facing clockwise   -   grapple - in air - frame 41h
+; B2h: Facing anticlockwise - grapple - in air - frame 41h
     dl SamusTiles_Bottom_Set2_EntryC : dw $0080,$0080                    ;92D3B2;
 
 SamusBottomTiles_Set2_D3B9:
@@ -10006,7 +10006,7 @@ SamusBottomTiles_Set2_D3B9:
 ; 5Fh: Unused - frames 37h..39h
 ; 60h: Unused - frames 37h..39h
 ; 61h: Unused - frames 37h..39h
-; B2h: Facing clockwise   -   grapple - in air - frames 37h..39h
+; B2h: Facing anticlockwise - grapple - in air - frames 37h..39h
     dl SamusTiles_Bottom_Set2_EntryD : dw $0080,$0080                    ;92D3B9;
 
 SamusBottomTiles_Set2_D3C0:
@@ -10015,7 +10015,7 @@ SamusBottomTiles_Set2_D3C0:
 ; 5Fh: Unused - frames 35h..36h
 ; 60h: Unused - frames 35h..36h
 ; 61h: Unused - frames 35h..36h
-; B2h: Facing clockwise   -   grapple - in air - frames 35h..36h
+; B2h: Facing anticlockwise - grapple - in air - frames 35h..36h
     dl SamusTiles_Bottom_Set2_EntryE : dw $00A0,$0040                    ;92D3C0;
 
 SamusBottomTiles_Set2_D3C7:
@@ -10024,7 +10024,7 @@ SamusBottomTiles_Set2_D3C7:
 ; 5Fh: Unused - frames 33h..34h
 ; 60h: Unused - frames 33h..34h
 ; 61h: Unused - frames 33h..34h
-; B2h: Facing clockwise   -   grapple - in air - frames 33h..34h
+; B2h: Facing anticlockwise - grapple - in air - frames 33h..34h
     dl SamusTiles_Bottom_Set2_EntryF : dw $0080,$0080                    ;92D3C7;
 
 SamusBottomTiles_Set2_D3CE:
@@ -10033,7 +10033,7 @@ SamusBottomTiles_Set2_D3CE:
 ; 5Fh: Unused - frame 32h
 ; 60h: Unused - frame 32h
 ; 61h: Unused - frame 32h
-; B2h: Facing clockwise   -   grapple - in air - frame 32h
+; B2h: Facing anticlockwise - grapple - in air - frame 32h
     dl SamusTiles_Bottom_Set2_Entry10 : dw $0080,$0080                   ;92D3CE;
 
 SamusBottomTiles_Set2_D3D5:
@@ -10042,7 +10042,7 @@ SamusBottomTiles_Set2_D3D5:
 ; 5Fh: Unused - frame 31h
 ; 60h: Unused - frame 31h
 ; 61h: Unused - frame 31h
-; B2h: Facing clockwise   -   grapple - in air - frame 31h
+; B2h: Facing anticlockwise - grapple - in air - frame 31h
     dl SamusTiles_Bottom_Set2_Entry11 : dw $00A0,$0040                   ;92D3D5;
 
 SamusBottomTiles_Set2_D3DC:
@@ -10051,7 +10051,7 @@ SamusBottomTiles_Set2_D3DC:
 ; 5Fh: Unused - frame 30h
 ; 60h: Unused - frame 30h
 ; 61h: Unused - frame 30h
-; B2h: Facing clockwise   -   grapple - in air - frame 30h
+; B2h: Facing anticlockwise - grapple - in air - frame 30h
     dl SamusTiles_Bottom_Set2_Entry12 : dw $0080,$0080                   ;92D3DC;
 
 SamusBottomTiles_Set2_D3E3:
@@ -10060,7 +10060,7 @@ SamusBottomTiles_Set2_D3E3:
 ; 5Fh: Unused - frame 2Fh
 ; 60h: Unused - frame 2Fh
 ; 61h: Unused - frame 2Fh
-; B2h: Facing clockwise   -   grapple - in air - frame 2Fh
+; B2h: Facing anticlockwise - grapple - in air - frame 2Fh
     dl SamusTiles_Bottom_Set2_Entry13 : dw $0080,$0080                   ;92D3E3;
 
 SamusBottomTiles_Set2_D3EA:
@@ -10069,7 +10069,7 @@ SamusBottomTiles_Set2_D3EA:
 ; 5Fh: Unused - frame 2Eh
 ; 60h: Unused - frame 2Eh
 ; 61h: Unused - frame 2Eh
-; B2h: Facing clockwise   -   grapple - in air - frame 2Eh
+; B2h: Facing anticlockwise - grapple - in air - frame 2Eh
     dl SamusTiles_Bottom_Set2_Entry14 : dw $0080,$0080                   ;92D3EA;
 
 SamusBottomTiles_Set2_D3F1:
@@ -10078,7 +10078,7 @@ SamusBottomTiles_Set2_D3F1:
 ; 5Fh: Unused - frames 2Ch..2Dh
 ; 60h: Unused - frames 2Ch..2Dh
 ; 61h: Unused - frames 2Ch..2Dh
-; B2h: Facing clockwise   -   grapple - in air - frames 2Ch..2Dh
+; B2h: Facing anticlockwise - grapple - in air - frames 2Ch..2Dh
     dl SamusTiles_Bottom_Set2_Entry15 : dw $00C0,$0080                   ;92D3F1;
 
 SamusBottomTiles_Set2_D3F8:
@@ -10087,7 +10087,7 @@ SamusBottomTiles_Set2_D3F8:
 ; 5Fh: Unused - frames 2Ah..2Bh
 ; 60h: Unused - frames 2Ah..2Bh
 ; 61h: Unused - frames 2Ah..2Bh
-; B2h: Facing clockwise   -   grapple - in air - frames 2Ah..2Bh
+; B2h: Facing anticlockwise - grapple - in air - frames 2Ah..2Bh
     dl SamusTiles_Bottom_Set2_Entry16 : dw $0080,$0080                   ;92D3F8;
 
 
@@ -10098,7 +10098,7 @@ SamusBottomTiles_Set4_D406:
 ; 5Fh: Unused - frames 7..9
 ; 60h: Unused - frames 7..9
 ; 61h: Unused - frames 7..9
-; B2h: Facing clockwise   -   grapple - in air - frames 7..9
+; B2h: Facing anticlockwise - grapple - in air - frames 7..9
     dl SamusTiles_Bottom_Set4_Entry0 : dw $0080,$0040                    ;92D406;
 
 SamusBottomTiles_Set4_D40D:
@@ -10107,7 +10107,7 @@ SamusBottomTiles_Set4_D40D:
 ; 5Fh: Unused - frames 5..6
 ; 60h: Unused - frames 5..6
 ; 61h: Unused - frames 5..6
-; B2h: Facing clockwise   -   grapple - in air - frames 5..6
+; B2h: Facing anticlockwise - grapple - in air - frames 5..6
     dl SamusTiles_Bottom_Set4_Entry1 : dw $00E0,$0040                    ;92D40D;
 
 SamusBottomTiles_Set4_D414:
@@ -10116,7 +10116,7 @@ SamusBottomTiles_Set4_D414:
 ; 5Fh: Unused - frames 3..4
 ; 60h: Unused - frames 3..4
 ; 61h: Unused - frames 3..4
-; B2h: Facing clockwise   -   grapple - in air - frames 3..4
+; B2h: Facing anticlockwise - grapple - in air - frames 3..4
     dl SamusTiles_Bottom_Set4_Entry2 : dw $00A0,$0080                    ;92D414;
 
 SamusBottomTiles_Set4_D41B:
@@ -10125,7 +10125,7 @@ SamusBottomTiles_Set4_D41B:
 ; 5Fh: Unused - frame 2
 ; 60h: Unused - frame 2
 ; 61h: Unused - frame 2
-; B2h: Facing clockwise   -   grapple - in air - frame 2
+; B2h: Facing anticlockwise - grapple - in air - frame 2
     dl SamusTiles_Bottom_Set4_Entry3 : dw $00A0,$0040                    ;92D41B;
 
 SamusBottomTiles_Set4_D422:
@@ -10134,7 +10134,7 @@ SamusBottomTiles_Set4_D422:
 ; 5Fh: Unused - frame 1
 ; 60h: Unused - frame 1
 ; 61h: Unused - frame 1
-; B2h: Facing clockwise   -   grapple - in air - frame 1
+; B2h: Facing anticlockwise - grapple - in air - frame 1
     dl SamusTiles_Bottom_Set4_Entry4 : dw $00C0,$0040                    ;92D422;
 
 SamusBottomTiles_Set4_D429:
@@ -10143,7 +10143,7 @@ SamusBottomTiles_Set4_D429:
 ; 5Fh: Unused - frame 0
 ; 60h: Unused - frame 0
 ; 61h: Unused - frame 0
-; B2h: Facing clockwise   -   grapple - in air - frame 0
+; B2h: Facing anticlockwise - grapple - in air - frame 0
     dl SamusTiles_Bottom_Set4_Entry5 : dw $00C0,$0040                    ;92D429;
 
 SamusBottomTiles_Set4_D430:
@@ -10152,7 +10152,7 @@ SamusBottomTiles_Set4_D430:
 ; 5Fh: Unused - frame 1Fh
 ; 60h: Unused - frame 1Fh
 ; 61h: Unused - frame 1Fh
-; B2h: Facing clockwise   -   grapple - in air - frame 1Fh
+; B2h: Facing anticlockwise - grapple - in air - frame 1Fh
     dl SamusTiles_Bottom_Set4_Entry6 : dw $0080,$0040                    ;92D430;
 
 SamusBottomTiles_Set4_D437:
@@ -10161,7 +10161,7 @@ SamusBottomTiles_Set4_D437:
 ; 5Fh: Unused - frame 1Eh
 ; 60h: Unused - frame 1Eh
 ; 61h: Unused - frame 1Eh
-; B2h: Facing clockwise   -   grapple - in air - frame 1Eh
+; B2h: Facing anticlockwise - grapple - in air - frame 1Eh
     dl SamusTiles_Bottom_Set4_Entry7 : dw $00A0,$0040                    ;92D437;
 
 SamusBottomTiles_Set4_D43E:
@@ -10170,7 +10170,7 @@ SamusBottomTiles_Set4_D43E:
 ; 5Fh: Unused - frames 1Ch..1Dh
 ; 60h: Unused - frames 1Ch..1Dh
 ; 61h: Unused - frames 1Ch..1Dh
-; B2h: Facing clockwise   -   grapple - in air - frames 1Ch..1Dh
+; B2h: Facing anticlockwise - grapple - in air - frames 1Ch..1Dh
     dl SamusTiles_Bottom_Set4_Entry8 : dw $00A0,$0040                    ;92D43E;
 
 SamusBottomTiles_Set4_D445:
@@ -10179,7 +10179,7 @@ SamusBottomTiles_Set4_D445:
 ; 5Fh: Unused - frames 1Ah..1Bh
 ; 60h: Unused - frames 1Ah..1Bh
 ; 61h: Unused - frames 1Ah..1Bh
-; B2h: Facing clockwise   -   grapple - in air - frames 1Ah..1Bh
+; B2h: Facing anticlockwise - grapple - in air - frames 1Ah..1Bh
     dl SamusTiles_Bottom_Set4_Entry9 : dw $00C0,$0040                    ;92D445;
 
 SamusBottomTiles_Set4_D461:
@@ -10188,7 +10188,7 @@ SamusBottomTiles_Set4_D461:
 ; 5Fh: Unused - frames 27h..29h
 ; 60h: Unused - frames 27h..29h
 ; 61h: Unused - frames 27h..29h
-; B2h: Facing clockwise   -   grapple - in air - frames 27h..29h
+; B2h: Facing anticlockwise - grapple - in air - frames 27h..29h
     dl SamusTiles_Bottom_Set4_EntryD : dw $0080,$0080                    ;92D461;
 
 SamusBottomTiles_Set4_D468:
@@ -10197,7 +10197,7 @@ SamusBottomTiles_Set4_D468:
 ; 5Fh: Unused - frames 25h..26h
 ; 60h: Unused - frames 25h..26h
 ; 61h: Unused - frames 25h..26h
-; B2h: Facing clockwise   -   grapple - in air - frames 25h..26h
+; B2h: Facing anticlockwise - grapple - in air - frames 25h..26h
     dl SamusTiles_Bottom_Set4_EntryE : dw $00A0,$0040                    ;92D468;
 
 SamusBottomTiles_Set4_D46F:
@@ -10206,7 +10206,7 @@ SamusBottomTiles_Set4_D46F:
 ; 5Fh: Unused - frames 23h..24h
 ; 60h: Unused - frames 23h..24h
 ; 61h: Unused - frames 23h..24h
-; B2h: Facing clockwise   -   grapple - in air - frames 23h..24h
+; B2h: Facing anticlockwise - grapple - in air - frames 23h..24h
     dl SamusTiles_Bottom_Set4_EntryF : dw $0080,$0080                    ;92D46F;
 
 SamusBottomTiles_Set4_D476:
@@ -10215,7 +10215,7 @@ SamusBottomTiles_Set4_D476:
 ; 5Fh: Unused - frame 22h
 ; 60h: Unused - frame 22h
 ; 61h: Unused - frame 22h
-; B2h: Facing clockwise   -   grapple - in air - frame 22h
+; B2h: Facing anticlockwise - grapple - in air - frame 22h
     dl SamusTiles_Bottom_Set4_Entry10 : dw $0080,$0080                   ;92D476;
 
 SamusBottomTiles_Set4_D47D:
@@ -10224,7 +10224,7 @@ SamusBottomTiles_Set4_D47D:
 ; 5Fh: Unused - frame 21h
 ; 60h: Unused - frame 21h
 ; 61h: Unused - frame 21h
-; B2h: Facing clockwise   -   grapple - in air - frame 21h
+; B2h: Facing anticlockwise - grapple - in air - frame 21h
     dl SamusTiles_Bottom_Set4_Entry11 : dw $00A0,$0040                   ;92D47D;
 
 SamusBottomTiles_Set4_D484:
@@ -10238,8 +10238,8 @@ SamusBottomTiles_Set4_D484:
 ; 60h: Unused - frame 3Fh
 ; 61h: Unused - frame 20h
 ; 61h: Unused - frame 3Fh
-; B2h: Facing clockwise   -   grapple - in air - frame 20h
-; B2h: Facing clockwise   -   grapple - in air - frame 3Fh
+; B2h: Facing anticlockwise - grapple - in air - frame 20h
+; B2h: Facing anticlockwise - grapple - in air - frame 3Fh
     dl SamusTiles_Bottom_Set4_Entry12 : dw $0080,$0080                   ;92D484;
 
 SamusBottomTiles_Set4_D48B:
@@ -10248,7 +10248,7 @@ SamusBottomTiles_Set4_D48B:
 ; 5Fh: Unused - frame 3Eh
 ; 60h: Unused - frame 3Eh
 ; 61h: Unused - frame 3Eh
-; B2h: Facing clockwise   -   grapple - in air - frame 3Eh
+; B2h: Facing anticlockwise - grapple - in air - frame 3Eh
     dl SamusTiles_Bottom_Set4_Entry13 : dw $0080,$0080                   ;92D48B;
 
 SamusBottomTiles_Set4_D492:
@@ -10257,7 +10257,7 @@ SamusBottomTiles_Set4_D492:
 ; 5Fh: Unused - frames 3Ch..3Dh
 ; 60h: Unused - frames 3Ch..3Dh
 ; 61h: Unused - frames 3Ch..3Dh
-; B2h: Facing clockwise   -   grapple - in air - frames 3Ch..3Dh
+; B2h: Facing anticlockwise - grapple - in air - frames 3Ch..3Dh
     dl SamusTiles_Bottom_Set4_Entry14 : dw $0080,$0080                   ;92D492;
 
 SamusBottomTiles_Set4_D499:
@@ -10266,119 +10266,119 @@ SamusBottomTiles_Set4_D499:
 ; 5Fh: Unused - frames 3Ah..3Bh
 ; 60h: Unused - frames 3Ah..3Bh
 ; 61h: Unused - frames 3Ah..3Bh
-; B2h: Facing clockwise   -   grapple - in air - frames 3Ah..3Bh
+; B2h: Facing anticlockwise - grapple - in air - frames 3Ah..3Bh
     dl SamusTiles_Bottom_Set4_Entry15 : dw $0080,$0080                   ;92D499;
 
 
 ;;; $D4A7: Samus bottom tiles - set 5 (facing anticlockwise - grappling - in air - upside up) ;;;
 SamusBottomTiles_Set5_D4A7:
 ; 62h: Unused - frames 7..9
-; B3h: Facing anticlockwise - grapple - in air - frames 7..9
+; B3h: Facing clockwise   -   grapple - in air - frames 7..9
     dl SamusTiles_Bottom_Set5_Entry0 : dw $0080,$0040                    ;92D4A7;
 
 SamusBottomTiles_Set5_D4AE:
 ; 62h: Unused - frames Ah..Bh
-; B3h: Facing anticlockwise - grapple - in air - frames Ah..Bh
+; B3h: Facing clockwise   -   grapple - in air - frames Ah..Bh
     dl SamusTiles_Bottom_Set5_Entry1 : dw $00E0,$0040                    ;92D4AE;
 
 SamusBottomTiles_Set5_D4B5:
 ; 62h: Unused - frames Ch..Dh
-; B3h: Facing anticlockwise - grapple - in air - frames Ch..Dh
+; B3h: Facing clockwise   -   grapple - in air - frames Ch..Dh
     dl SamusTiles_Bottom_Set5_Entry2 : dw $00A0,$0080                    ;92D4B5;
 
 SamusBottomTiles_Set5_D4BC:
 ; 62h: Unused - frame Eh
-; B3h: Facing anticlockwise - grapple - in air - frame Eh
+; B3h: Facing clockwise   -   grapple - in air - frame Eh
     dl SamusTiles_Bottom_Set5_Entry3 : dw $00A0,$0040                    ;92D4BC;
 
 SamusBottomTiles_Set5_D4C3:
 ; 62h: Unused - frame Fh
-; B3h: Facing anticlockwise - grapple - in air - frame Fh
+; B3h: Facing clockwise   -   grapple - in air - frame Fh
     dl SamusTiles_Bottom_Set5_Entry4 : dw $00C0,$0040                    ;92D4C3;
 
 SamusBottomTiles_Set5_D4CA:
 ; 62h: Unused - frame 10h
-; B3h: Facing anticlockwise - grapple - in air - frame 10h
+; B3h: Facing clockwise   -   grapple - in air - frame 10h
     dl SamusTiles_Bottom_Set5_Entry5 : dw $00C0,$0040                    ;92D4CA;
 
 SamusBottomTiles_Set5_D4D1:
 ; 62h: Unused - frame 11h
-; B3h: Facing anticlockwise - grapple - in air - frame 11h
+; B3h: Facing clockwise   -   grapple - in air - frame 11h
     dl SamusTiles_Bottom_Set5_Entry6 : dw $0080,$0040                    ;92D4D1;
 
 SamusBottomTiles_Set5_D4D8:
 ; 62h: Unused - frame 12h
-; B3h: Facing anticlockwise - grapple - in air - frame 12h
+; B3h: Facing clockwise   -   grapple - in air - frame 12h
     dl SamusTiles_Bottom_Set5_Entry7 : dw $00A0,$0040                    ;92D4D8;
 
 SamusBottomTiles_Set5_D4DF:
 ; 62h: Unused - frames 13h..14h
-; B3h: Facing anticlockwise - grapple - in air - frames 13h..14h
+; B3h: Facing clockwise   -   grapple - in air - frames 13h..14h
     dl SamusTiles_Bottom_Set5_Entry8 : dw $00A0,$0040                    ;92D4DF;
 
 SamusBottomTiles_Set5_D4E6:
 ; 62h: Unused - frames 15h..16h
-; B3h: Facing anticlockwise - grapple - in air - frames 15h..16h
+; B3h: Facing clockwise   -   grapple - in air - frames 15h..16h
     dl SamusTiles_Bottom_Set5_Entry9 : dw $00C0,$0040                    ;92D4E6;
 
 SamusBottomTiles_Set5_D4F4:
 ; 62h: Unused - frame 40h
-; B3h: Facing anticlockwise - grapple - in air - frame 40h
+; B3h: Facing clockwise   -   grapple - in air - frame 40h
     dl SamusTiles_Bottom_Set5_EntryB : dw $0080,$0080                    ;92D4F4;
 
 SamusBottomTiles_Set5_D4FB:
 ; 62h: Unused - frame 41h
-; B3h: Facing anticlockwise - grapple - in air - frame 41h
+; B3h: Facing clockwise   -   grapple - in air - frame 41h
     dl SamusTiles_Bottom_Set5_EntryC : dw $0080,$0080                    ;92D4FB;
 
 UNUSED_SamusBottomTiles_Set5_92D502:
 ; 62h: Unused - frames 27h..29h
-; B3h: Facing anticlockwise - grapple - in air - frames 27h..29h
+; B3h: Facing clockwise   -   grapple - in air - frames 27h..29h
     dl SamusTiles_Bottom_Set5_EntryD : dw $0080,$0080                    ;92D502;
 
 SamusBottomTiles_Set5_D509:
 ; 62h: Unused - frames 2Ah..2Bh
-; B3h: Facing anticlockwise - grapple - in air - frames 2Ah..2Bh
+; B3h: Facing clockwise   -   grapple - in air - frames 2Ah..2Bh
     dl SamusTiles_Bottom_Set5_EntryE : dw $00A0,$0040                    ;92D509;
 
 SamusBottomTiles_Set5_D510:
 ; 62h: Unused - frames 2Ch..2Dh
-; B3h: Facing anticlockwise - grapple - in air - frames 2Ch..2Dh
+; B3h: Facing clockwise   -   grapple - in air - frames 2Ch..2Dh
     dl SamusTiles_Bottom_Set5_EntryF : dw $0080,$0080                    ;92D510;
 
 SamusBottomTiles_Set5_D517:
 ; 62h: Unused - frame 2Eh
-; B3h: Facing anticlockwise - grapple - in air - frame 2Eh
+; B3h: Facing clockwise   -   grapple - in air - frame 2Eh
     dl SamusTiles_Bottom_Set5_Entry10 : dw $0080,$0080                   ;92D517;
 
 SamusBottomTiles_Set5_D51E:
 ; 62h: Unused - frame 2Fh
-; B3h: Facing anticlockwise - grapple - in air - frame 2Fh
+; B3h: Facing clockwise   -   grapple - in air - frame 2Fh
     dl SamusTiles_Bottom_Set5_Entry11 : dw $00A0,$0040                   ;92D51E;
 
 SamusBottomTiles_Set5_D525:
 ; 62h: Unused - frame 30h
-; B3h: Facing anticlockwise - grapple - in air - frame 30h
+; B3h: Facing clockwise   -   grapple - in air - frame 30h
     dl SamusTiles_Bottom_Set5_Entry12 : dw $0080,$0080                   ;92D525;
 
 SamusBottomTiles_Set5_D52C:
 ; 62h: Unused - frame 31h
-; B3h: Facing anticlockwise - grapple - in air - frame 31h
+; B3h: Facing clockwise   -   grapple - in air - frame 31h
     dl SamusTiles_Bottom_Set5_Entry13 : dw $0080,$0080                   ;92D52C;
 
 SamusBottomTiles_Set5_D533:
 ; 62h: Unused - frame 32h
-; B3h: Facing anticlockwise - grapple - in air - frame 32h
+; B3h: Facing clockwise   -   grapple - in air - frame 32h
     dl SamusTiles_Bottom_Set5_Entry14 : dw $0080,$0080                   ;92D533;
 
 SamusBottomTiles_Set5_D53A:
 ; 62h: Unused - frames 33h..34h
-; B3h: Facing anticlockwise - grapple - in air - frames 33h..34h
+; B3h: Facing clockwise   -   grapple - in air - frames 33h..34h
     dl SamusTiles_Bottom_Set5_Entry15 : dw $00C0,$0080                   ;92D53A;
 
 SamusBottomTiles_Set5_D541:
 ; 62h: Unused - frames 35h..36h
-; B3h: Facing anticlockwise - grapple - in air - frames 35h..36h
+; B3h: Facing clockwise   -   grapple - in air - frames 35h..36h
     dl SamusTiles_Bottom_Set5_Entry16 : dw $0080,$0080                   ;92D541;
 
 UNUSED_SamusBottomTiles_Set5_92D548:
@@ -10388,52 +10388,52 @@ UNUSED_SamusBottomTiles_Set5_92D548:
 ;;; $D54F: Samus bottom tiles - set 6 (facing anticlockwise - grappling - in air - upside down) ;;;
 SamusBottomTiles_Set6_D54F:
 ; 62h: Unused - frames 17h..19h
-; B3h: Facing anticlockwise - grapple - in air - frames 17h..19h
+; B3h: Facing clockwise   -   grapple - in air - frames 17h..19h
     dl SamusTiles_Bottom_Set6_Entry0 : dw $0080,$0040                    ;92D54F;
 
 SamusBottomTiles_Set6_D556:
 ; 62h: Unused - frames 1Ah..1Bh
-; B3h: Facing anticlockwise - grapple - in air - frames 1Ah..1Bh
+; B3h: Facing clockwise   -   grapple - in air - frames 1Ah..1Bh
     dl SamusTiles_Bottom_Set6_Entry1 : dw $00E0,$0040                    ;92D556;
 
 SamusBottomTiles_Set6_D55D:
 ; 62h: Unused - frames 1Ch..1Dh
-; B3h: Facing anticlockwise - grapple - in air - frames 1Ch..1Dh
+; B3h: Facing clockwise   -   grapple - in air - frames 1Ch..1Dh
     dl SamusTiles_Bottom_Set6_Entry2 : dw $00A0,$0080                    ;92D55D;
 
 SamusBottomTiles_Set6_D564:
 ; 62h: Unused - frame 1Eh
-; B3h: Facing anticlockwise - grapple - in air - frame 1Eh
+; B3h: Facing clockwise   -   grapple - in air - frame 1Eh
     dl SamusTiles_Bottom_Set6_Entry3 : dw $00A0,$0040                    ;92D564;
 
 SamusBottomTiles_Set6_D56B:
 ; 62h: Unused - frame 1Fh
-; B3h: Facing anticlockwise - grapple - in air - frame 1Fh
+; B3h: Facing clockwise   -   grapple - in air - frame 1Fh
     dl SamusTiles_Bottom_Set6_Entry4 : dw $00C0,$0040                    ;92D56B;
 
 SamusBottomTiles_Set6_D572:
 ; 62h: Unused - frame 0
-; B3h: Facing anticlockwise - grapple - in air - frame 0
+; B3h: Facing clockwise   -   grapple - in air - frame 0
     dl SamusTiles_Bottom_Set6_Entry5 : dw $00C0,$0040                    ;92D572;
 
 SamusBottomTiles_Set6_D579:
 ; 62h: Unused - frame 1
-; B3h: Facing anticlockwise - grapple - in air - frame 1
+; B3h: Facing clockwise   -   grapple - in air - frame 1
     dl SamusTiles_Bottom_Set6_Entry6 : dw $0080,$0040                    ;92D579;
 
 SamusBottomTiles_Set6_D580:
 ; 62h: Unused - frame 2
-; B3h: Facing anticlockwise - grapple - in air - frame 2
+; B3h: Facing clockwise   -   grapple - in air - frame 2
     dl SamusTiles_Bottom_Set6_Entry7 : dw $00A0,$0040                    ;92D580;
 
 SamusBottomTiles_Set6_D587:
 ; 62h: Unused - frames 3..4
-; B3h: Facing anticlockwise - grapple - in air - frames 3..4
+; B3h: Facing clockwise   -   grapple - in air - frames 3..4
     dl SamusTiles_Bottom_Set6_Entry8 : dw $00A0,$0040                    ;92D587;
 
 SamusBottomTiles_Set6_D58E:
 ; 62h: Unused - frames 5..6
-; B3h: Facing anticlockwise - grapple - in air - frames 5..6
+; B3h: Facing clockwise   -   grapple - in air - frames 5..6
     dl SamusTiles_Bottom_Set6_Entry9 : dw $00C0,$0040                    ;92D58E;
 
 UNUSED_SamusBottomTiles_Set6_92D595:
@@ -10447,52 +10447,52 @@ UNUSED_SamusBottomTiles_Set6_92D5A3:
 
 SamusBottomTiles_Set6_D5AA:
 ; 62h: Unused - frames 37h..39h
-; B3h: Facing anticlockwise - grapple - in air - frames 37h..39h
+; B3h: Facing clockwise   -   grapple - in air - frames 37h..39h
     dl SamusTiles_Bottom_Set6_EntryD : dw $0080,$0080                    ;92D5AA;
 
 SamusBottomTiles_Set6_D5B1:
 ; 62h: Unused - frames 3Ah..3Bh
-; B3h: Facing anticlockwise - grapple - in air - frames 3Ah..3Bh
+; B3h: Facing clockwise   -   grapple - in air - frames 3Ah..3Bh
     dl SamusTiles_Bottom_Set6_EntryE : dw $00A0,$0040                    ;92D5B1;
 
 SamusBottomTiles_Set6_D5B8:
 ; 62h: Unused - frames 3Ch..3Dh
-; B3h: Facing anticlockwise - grapple - in air - frames 3Ch..3Dh
+; B3h: Facing clockwise   -   grapple - in air - frames 3Ch..3Dh
     dl SamusTiles_Bottom_Set6_EntryF : dw $0080,$0080                    ;92D5B8;
 
 SamusBottomTiles_Set6_D5BF:
 ; 62h: Unused - frame 3Eh
-; B3h: Facing anticlockwise - grapple - in air - frame 3Eh
+; B3h: Facing clockwise   -   grapple - in air - frame 3Eh
     dl SamusTiles_Bottom_Set6_Entry10 : dw $0080,$0080                   ;92D5BF;
 
 SamusBottomTiles_Set6_D5C6:
 ; 62h: Unused - frame 3Fh
-; B3h: Facing anticlockwise - grapple - in air - frame 3Fh
+; B3h: Facing clockwise   -   grapple - in air - frame 3Fh
     dl SamusTiles_Bottom_Set6_Entry11 : dw $00A0,$0040                   ;92D5C6;
 
 SamusBottomTiles_Set6_D5CD:
 ; 62h: Unused - frame 20h
-; B3h: Facing anticlockwise - grapple - in air - frame 20h
+; B3h: Facing clockwise   -   grapple - in air - frame 20h
     dl SamusTiles_Bottom_Set6_Entry12 : dw $0080,$0080                   ;92D5CD;
 
 SamusBottomTiles_Set6_D5D4:
 ; 62h: Unused - frame 21h
-; B3h: Facing anticlockwise - grapple - in air - frame 21h
+; B3h: Facing clockwise   -   grapple - in air - frame 21h
     dl SamusTiles_Bottom_Set6_Entry13 : dw $0080,$0080                   ;92D5D4;
 
 SamusBottomTiles_Set6_D5DB:
 ; 62h: Unused - frame 22h
-; B3h: Facing anticlockwise - grapple - in air - frame 22h
+; B3h: Facing clockwise   -   grapple - in air - frame 22h
     dl SamusTiles_Bottom_Set6_Entry14 : dw $0080,$0080                   ;92D5DB;
 
 SamusBottomTiles_Set6_D5E2:
 ; 62h: Unused - frames 23h..24h
-; B3h: Facing anticlockwise - grapple - in air - frames 23h..24h
+; B3h: Facing clockwise   -   grapple - in air - frames 23h..24h
     dl SamusTiles_Bottom_Set6_Entry15 : dw $0080,$0080                   ;92D5E2;
 
 SamusBottomTiles_Set6_D5E9:
 ; 62h: Unused - frames 25h..26h
-; B3h: Facing anticlockwise - grapple - in air - frames 25h..26h
+; B3h: Facing clockwise   -   grapple - in air - frames 25h..26h
     dl SamusTiles_Bottom_Set6_Entry16 : dw $0080,$0080                   ;92D5E9;
 
 
@@ -10520,14 +10520,14 @@ SamusBottomTiles_SetA_D605:
     dl SamusTiles_Bottom_SetA_Entry0 : dw $00C0,$0080                    ;92D605;
 
 SamusBottomTiles_SetA_D60C:
-; 4: Facing left-   aiming up - frames 0..1
-; 6: Facing left-   aiming up-left - frame 0
-; 8: Facing left-   aiming down-left - frame 0
-; ABh: Facing left-   grappling - aiming down-left - frame 0
-; D0h: Facing left-   ran into a wall - aiming up-left - frame 0
-; D2h: Facing left-   ran into a wall - aiming down-left - frame 0
-; E9h: Facing left-   Samus drained - crouching/falling - frame 10h
-; E9h: Facing left-   Samus drained - crouching/falling - frame 15h
+; 4: Facing left -  aiming up - frames 0..1
+; 6: Facing left -  aiming up-left - frame 0
+; 8: Facing left -  aiming down-left - frame 0
+; ABh: Facing left -  grappling - aiming down-left - frame 0
+; D0h: Facing left -  ran into a wall - aiming up-left - frame 0
+; D2h: Facing left -  ran into a wall - aiming down-left - frame 0
+; E9h: Facing left -  Samus drained - crouching/falling - frame 10h
+; E9h: Facing left -  Samus drained - crouching/falling - frame 15h
     dl SamusTiles_Bottom_SetA_Entry1 : dw $00C0,$0080                    ;92D60C;
 
 
@@ -10537,18 +10537,18 @@ SamusTopTiles_SetA_D613:
 ; 1Eh: Moving right - morph ball - no springball - on ground - frame 0
 ; 1Fh: Moving left-   morph ball - no springball - on ground - frame 7
 ; 31h: Facing right - morph ball - no springball - in air - frame 0
-; 32h: Facing left-   morph ball - no springball - in air - frame 0
+; 32h: Facing left -  morph ball - no springball - in air - frame 0
 ; 3Fh: Unused - frame 0
 ; 40h: Unused - frame 0
-; 41h: Facing left-   morph ball - no springball - on ground - frame 7
+; 41h: Facing left -  morph ball - no springball - on ground - frame 7
 ; 79h: Facing right - morph ball - spring ball - on ground - frame 0
-; 7Ah: Facing left-   morph ball - spring ball - on ground - frame 7
+; 7Ah: Facing left -  morph ball - spring ball - on ground - frame 7
 ; 7Bh: Moving right - morph ball - spring ball - on ground - frame 0
 ; 7Ch: Moving left-   morph ball - spring ball - on ground - frame 7
 ; 7Dh: Facing right - morph ball - spring ball - falling - frame 0
-; 7Eh: Facing left-   morph ball - spring ball - falling - frame 7
+; 7Eh: Facing left -  morph ball - spring ball - falling - frame 7
 ; 7Fh: Facing right - morph ball - spring ball - in air - frame 0
-; 80h: Facing left-   morph ball - spring ball - in air - frame 7
+; 80h: Facing left -  morph ball - spring ball - in air - frame 7
 ; C5h: Unused - frame 7
 ; D7h: Facing right - crystal flash ending - frame 0
 ; DFh: Unused. Related to Draygon - frame 7
@@ -10560,18 +10560,18 @@ SamusTopTiles_SetA_D61A:
 ; 1Eh: Moving right - morph ball - no springball - on ground - frame 2
 ; 1Fh: Moving left-   morph ball - no springball - on ground - frame 5
 ; 31h: Facing right - morph ball - no springball - in air - frame 2
-; 32h: Facing left-   morph ball - no springball - in air - frame 2
+; 32h: Facing left -  morph ball - no springball - in air - frame 2
 ; 3Fh: Unused - frame 2
 ; 40h: Unused - frame 2
-; 41h: Facing left-   morph ball - no springball - on ground - frame 5
+; 41h: Facing left -  morph ball - no springball - on ground - frame 5
 ; 79h: Facing right - morph ball - spring ball - on ground - frame 2
-; 7Ah: Facing left-   morph ball - spring ball - on ground - frame 5
+; 7Ah: Facing left -  morph ball - spring ball - on ground - frame 5
 ; 7Bh: Moving right - morph ball - spring ball - on ground - frame 2
 ; 7Ch: Moving left-   morph ball - spring ball - on ground - frame 5
 ; 7Dh: Facing right - morph ball - spring ball - falling - frame 2
-; 7Eh: Facing left-   morph ball - spring ball - falling - frame 5
+; 7Eh: Facing left -  morph ball - spring ball - falling - frame 5
 ; 7Fh: Facing right - morph ball - spring ball - in air - frame 2
-; 80h: Facing left-   morph ball - spring ball - in air - frame 5
+; 80h: Facing left -  morph ball - spring ball - in air - frame 5
 ; C5h: Unused - frame 5
 ; DFh: Unused. Related to Draygon - frame 5
     dl SamusTiles_Top_SetA_Entry1 : dw $0060,$0040                       ;92D61A;
@@ -10581,18 +10581,18 @@ SamusTopTiles_SetA_D621:
 ; 1Eh: Moving right - morph ball - no springball - on ground - frame 4
 ; 1Fh: Moving left-   morph ball - no springball - on ground - frame 3
 ; 31h: Facing right - morph ball - no springball - in air - frame 4
-; 32h: Facing left-   morph ball - no springball - in air - frame 4
+; 32h: Facing left -  morph ball - no springball - in air - frame 4
 ; 3Fh: Unused - frame 4
 ; 40h: Unused - frame 4
-; 41h: Facing left-   morph ball - no springball - on ground - frame 3
+; 41h: Facing left -  morph ball - no springball - on ground - frame 3
 ; 79h: Facing right - morph ball - spring ball - on ground - frame 4
-; 7Ah: Facing left-   morph ball - spring ball - on ground - frame 3
+; 7Ah: Facing left -  morph ball - spring ball - on ground - frame 3
 ; 7Bh: Moving right - morph ball - spring ball - on ground - frame 4
 ; 7Ch: Moving left-   morph ball - spring ball - on ground - frame 3
 ; 7Dh: Facing right - morph ball - spring ball - falling - frame 4
-; 7Eh: Facing left-   morph ball - spring ball - falling - frame 3
+; 7Eh: Facing left -  morph ball - spring ball - falling - frame 3
 ; 7Fh: Facing right - morph ball - spring ball - in air - frame 4
-; 80h: Facing left-   morph ball - spring ball - in air - frame 3
+; 80h: Facing left -  morph ball - spring ball - in air - frame 3
 ; C5h: Unused - frame 3
 ; DFh: Unused. Related to Draygon - frame 3
     dl SamusTiles_Top_SetA_Entry2 : dw $0060,$0040                       ;92D621;
@@ -10602,18 +10602,18 @@ SamusTopTiles_SetA_D628:
 ; 1Eh: Moving right - morph ball - no springball - on ground - frame 6
 ; 1Fh: Moving left-   morph ball - no springball - on ground - frame 1
 ; 31h: Facing right - morph ball - no springball - in air - frame 6
-; 32h: Facing left-   morph ball - no springball - in air - frame 6
+; 32h: Facing left -  morph ball - no springball - in air - frame 6
 ; 3Fh: Unused - frame 6
 ; 40h: Unused - frame 6
-; 41h: Facing left-   morph ball - no springball - on ground - frame 1
+; 41h: Facing left -  morph ball - no springball - on ground - frame 1
 ; 79h: Facing right - morph ball - spring ball - on ground - frame 6
-; 7Ah: Facing left-   morph ball - spring ball - on ground - frame 1
+; 7Ah: Facing left -  morph ball - spring ball - on ground - frame 1
 ; 7Bh: Moving right - morph ball - spring ball - on ground - frame 6
 ; 7Ch: Moving left-   morph ball - spring ball - on ground - frame 1
 ; 7Dh: Facing right - morph ball - spring ball - falling - frame 6
-; 7Eh: Facing left-   morph ball - spring ball - falling - frame 1
+; 7Eh: Facing left -  morph ball - spring ball - falling - frame 1
 ; 7Fh: Facing right - morph ball - spring ball - in air - frame 6
-; 80h: Facing left-   morph ball - spring ball - in air - frame 1
+; 80h: Facing left -  morph ball - spring ball - in air - frame 1
 ; C5h: Unused - frame 1
 ; DFh: Unused. Related to Draygon - frame 1
     dl SamusTiles_Top_SetA_Entry3 : dw $0060,$0040                       ;92D628;
@@ -10623,18 +10623,18 @@ SamusTopTiles_SetA_D62F:
 ; 1Eh: Moving right - morph ball - no springball - on ground - frame 1
 ; 1Fh: Moving left-   morph ball - no springball - on ground - frame 6
 ; 31h: Facing right - morph ball - no springball - in air - frame 1
-; 32h: Facing left-   morph ball - no springball - in air - frame 1
+; 32h: Facing left -  morph ball - no springball - in air - frame 1
 ; 3Fh: Unused - frame 1
 ; 40h: Unused - frame 1
-; 41h: Facing left-   morph ball - no springball - on ground - frame 6
+; 41h: Facing left -  morph ball - no springball - on ground - frame 6
 ; 79h: Facing right - morph ball - spring ball - on ground - frame 1
-; 7Ah: Facing left-   morph ball - spring ball - on ground - frame 6
+; 7Ah: Facing left -  morph ball - spring ball - on ground - frame 6
 ; 7Bh: Moving right - morph ball - spring ball - on ground - frame 1
 ; 7Ch: Moving left-   morph ball - spring ball - on ground - frame 6
 ; 7Dh: Facing right - morph ball - spring ball - falling - frame 1
-; 7Eh: Facing left-   morph ball - spring ball - falling - frame 6
+; 7Eh: Facing left -  morph ball - spring ball - falling - frame 6
 ; 7Fh: Facing right - morph ball - spring ball - in air - frame 1
-; 80h: Facing left-   morph ball - spring ball - in air - frame 6
+; 80h: Facing left -  morph ball - spring ball - in air - frame 6
 ; C5h: Unused - frame 6
 ; DFh: Unused. Related to Draygon - frame 6
     dl SamusTiles_Top_SetA_Entry4 : dw $00A0,$0000                       ;92D62F;
@@ -10644,18 +10644,18 @@ SamusTopTiles_SetA_D636:
 ; 1Eh: Moving right - morph ball - no springball - on ground - frame 3
 ; 1Fh: Moving left-   morph ball - no springball - on ground - frame 4
 ; 31h: Facing right - morph ball - no springball - in air - frame 3
-; 32h: Facing left-   morph ball - no springball - in air - frame 3
+; 32h: Facing left -  morph ball - no springball - in air - frame 3
 ; 3Fh: Unused - frame 3
 ; 40h: Unused - frame 3
-; 41h: Facing left-   morph ball - no springball - on ground - frame 4
+; 41h: Facing left -  morph ball - no springball - on ground - frame 4
 ; 79h: Facing right - morph ball - spring ball - on ground - frame 3
-; 7Ah: Facing left-   morph ball - spring ball - on ground - frame 4
+; 7Ah: Facing left -  morph ball - spring ball - on ground - frame 4
 ; 7Bh: Moving right - morph ball - spring ball - on ground - frame 3
 ; 7Ch: Moving left-   morph ball - spring ball - on ground - frame 4
 ; 7Dh: Facing right - morph ball - spring ball - falling - frame 3
-; 7Eh: Facing left-   morph ball - spring ball - falling - frame 4
+; 7Eh: Facing left -  morph ball - spring ball - falling - frame 4
 ; 7Fh: Facing right - morph ball - spring ball - in air - frame 3
-; 80h: Facing left-   morph ball - spring ball - in air - frame 4
+; 80h: Facing left -  morph ball - spring ball - in air - frame 4
 ; C5h: Unused - frame 4
 ; DFh: Unused. Related to Draygon - frame 4
     dl SamusTiles_Top_SetA_Entry5 : dw $0060,$0040                       ;92D636;
@@ -10665,18 +10665,18 @@ SamusTopTiles_SetA_D63D:
 ; 1Eh: Moving right - morph ball - no springball - on ground - frame 5
 ; 1Fh: Moving left-   morph ball - no springball - on ground - frame 2
 ; 31h: Facing right - morph ball - no springball - in air - frame 5
-; 32h: Facing left-   morph ball - no springball - in air - frame 5
+; 32h: Facing left -  morph ball - no springball - in air - frame 5
 ; 3Fh: Unused - frame 5
 ; 40h: Unused - frame 5
-; 41h: Facing left-   morph ball - no springball - on ground - frame 2
+; 41h: Facing left -  morph ball - no springball - on ground - frame 2
 ; 79h: Facing right - morph ball - spring ball - on ground - frame 5
-; 7Ah: Facing left-   morph ball - spring ball - on ground - frame 2
+; 7Ah: Facing left -  morph ball - spring ball - on ground - frame 2
 ; 7Bh: Moving right - morph ball - spring ball - on ground - frame 5
 ; 7Ch: Moving left-   morph ball - spring ball - on ground - frame 2
 ; 7Dh: Facing right - morph ball - spring ball - falling - frame 5
-; 7Eh: Facing left-   morph ball - spring ball - falling - frame 2
+; 7Eh: Facing left -  morph ball - spring ball - falling - frame 2
 ; 7Fh: Facing right - morph ball - spring ball - in air - frame 5
-; 80h: Facing left-   morph ball - spring ball - in air - frame 2
+; 80h: Facing left -  morph ball - spring ball - in air - frame 2
 ; C5h: Unused - frame 2
 ; DFh: Unused. Related to Draygon - frame 2
     dl SamusTiles_Top_SetA_Entry6 : dw $0060,$0040                       ;92D63D;
@@ -10686,25 +10686,25 @@ SamusTopTiles_SetA_D644:
 ; 1Eh: Moving right - morph ball - no springball - on ground - frame 7
 ; 1Fh: Moving left-   morph ball - no springball - on ground - frame 0
 ; 31h: Facing right - morph ball - no springball - in air - frame 7
-; 32h: Facing left-   morph ball - no springball - in air - frame 7
+; 32h: Facing left -  morph ball - no springball - in air - frame 7
 ; 3Fh: Unused - frame 7
 ; 40h: Unused - frame 7
-; 41h: Facing left-   morph ball - no springball - on ground - frame 0
+; 41h: Facing left -  morph ball - no springball - on ground - frame 0
 ; 79h: Facing right - morph ball - spring ball - on ground - frame 7
-; 7Ah: Facing left-   morph ball - spring ball - on ground - frame 0
+; 7Ah: Facing left -  morph ball - spring ball - on ground - frame 0
 ; 7Bh: Moving right - morph ball - spring ball - on ground - frame 7
 ; 7Ch: Moving left-   morph ball - spring ball - on ground - frame 0
 ; 7Dh: Facing right - morph ball - spring ball - falling - frame 7
-; 7Eh: Facing left-   morph ball - spring ball - falling - frame 0
+; 7Eh: Facing left -  morph ball - spring ball - falling - frame 0
 ; 7Fh: Facing right - morph ball - spring ball - in air - frame 7
-; 80h: Facing left-   morph ball - spring ball - in air - frame 0
+; 80h: Facing left -  morph ball - spring ball - in air - frame 0
 ; C5h: Unused - frame 0
 ; DFh: Unused. Related to Draygon - frame 0
     dl SamusTiles_Top_SetA_Entry7 : dw $0060,$0040                       ;92D644;
 
 SamusTopTiles_SetA_D64B:
 ; 19h: Facing right - spin jump - frame 1
-; 1Ah: Facing left-   spin jump - frame 1
+; 1Ah: Facing left -  spin jump - frame 1
 ; 20h: Unused - frame 1
 ; 21h: Unused - frame 1
 ; 22h: Unused - frame 1
@@ -10716,12 +10716,12 @@ SamusTopTiles_SetA_D64B:
 ; 3Ah: Unused - frame 1
 ; 42h: Unused - frame 1
 ; 83h: Facing right - wall jump - frame 3
-; 84h: Facing left-   wall jump - frame 3
+; 84h: Facing left -  wall jump - frame 3
     dl SamusTiles_Top_SetA_Entry8 : dw $0080,$0080                       ;92D64B;
 
 SamusTopTiles_SetA_D652:
 ; 19h: Facing right - spin jump - frame 2
-; 1Ah: Facing left-   spin jump - frame 2
+; 1Ah: Facing left -  spin jump - frame 2
 ; 20h: Unused - frame 2
 ; 21h: Unused - frame 2
 ; 22h: Unused - frame 2
@@ -10732,15 +10732,15 @@ SamusTopTiles_SetA_D652:
 ; 39h: Unused - frame 2
 ; 3Ah: Unused - frame 2
 ; 42h: Unused - frame 2
-; 4Fh: Facing left-   damage boost - frame 8
+; 4Fh: Facing left -  damage boost - frame 8
 ; 50h: Facing right - damage boost - frame 8
 ; 83h: Facing right - wall jump - frame 4
-; 84h: Facing left-   wall jump - frame 4
+; 84h: Facing left -  wall jump - frame 4
     dl SamusTiles_Top_SetA_Entry9 : dw $0100,$0100                       ;92D652;
 
 SamusTopTiles_SetA_D659:
 ; 19h: Facing right - spin jump - frame 3
-; 1Ah: Facing left-   spin jump - frame 3
+; 1Ah: Facing left -  spin jump - frame 3
 ; 20h: Unused - frame 3
 ; 21h: Unused - frame 3
 ; 22h: Unused - frame 3
@@ -10751,15 +10751,15 @@ SamusTopTiles_SetA_D659:
 ; 39h: Unused - frame 3
 ; 3Ah: Unused - frame 3
 ; 42h: Unused - frame 3
-; 4Fh: Facing left-   damage boost - frame 7
+; 4Fh: Facing left -  damage boost - frame 7
 ; 50h: Facing right - damage boost - frame 7
 ; 83h: Facing right - wall jump - frame 5
-; 84h: Facing left-   wall jump - frame 5
+; 84h: Facing left -  wall jump - frame 5
     dl SamusTiles_Top_SetA_EntryA : dw $0080,$0080                       ;92D659;
 
 SamusTopTiles_SetA_D660:
 ; 19h: Facing right - spin jump - frame 4
-; 1Ah: Facing left-   spin jump - frame 4
+; 1Ah: Facing left -  spin jump - frame 4
 ; 20h: Unused - frame 4
 ; 21h: Unused - frame 4
 ; 22h: Unused - frame 4
@@ -10770,15 +10770,15 @@ SamusTopTiles_SetA_D660:
 ; 39h: Unused - frame 4
 ; 3Ah: Unused - frame 4
 ; 42h: Unused - frame 4
-; 4Fh: Facing left-   damage boost - frame 6
+; 4Fh: Facing left -  damage boost - frame 6
 ; 50h: Facing right - damage boost - frame 6
 ; 83h: Facing right - wall jump - frame 6
-; 84h: Facing left-   wall jump - frame 6
+; 84h: Facing left -  wall jump - frame 6
     dl SamusTiles_Top_SetA_EntryB : dw $0100,$0100                       ;92D660;
 
 SamusTopTiles_SetA_D667:
 ; 19h: Facing right - spin jump - frame 5
-; 1Ah: Facing left-   spin jump - frame 5
+; 1Ah: Facing left -  spin jump - frame 5
 ; 20h: Unused - frame 5
 ; 21h: Unused - frame 5
 ; 22h: Unused - frame 5
@@ -10789,15 +10789,15 @@ SamusTopTiles_SetA_D667:
 ; 39h: Unused - frame 5
 ; 3Ah: Unused - frame 5
 ; 42h: Unused - frame 5
-; 4Fh: Facing left-   damage boost - frame 5
+; 4Fh: Facing left -  damage boost - frame 5
 ; 50h: Facing right - damage boost - frame 5
 ; 83h: Facing right - wall jump - frame 7
-; 84h: Facing left-   wall jump - frame 7
+; 84h: Facing left -  wall jump - frame 7
     dl SamusTiles_Top_SetA_EntryC : dw $0080,$0080                       ;92D667;
 
 SamusTopTiles_SetA_D66E:
 ; 19h: Facing right - spin jump - frame 6
-; 1Ah: Facing left-   spin jump - frame 6
+; 1Ah: Facing left -  spin jump - frame 6
 ; 20h: Unused - frame 6
 ; 21h: Unused - frame 6
 ; 22h: Unused - frame 6
@@ -10808,15 +10808,15 @@ SamusTopTiles_SetA_D66E:
 ; 39h: Unused - frame 6
 ; 3Ah: Unused - frame 6
 ; 42h: Unused - frame 6
-; 4Fh: Facing left-   damage boost - frame 4
+; 4Fh: Facing left -  damage boost - frame 4
 ; 50h: Facing right - damage boost - frame 4
 ; 83h: Facing right - wall jump - frame 8
-; 84h: Facing left-   wall jump - frame 8
+; 84h: Facing left -  wall jump - frame 8
     dl SamusTiles_Top_SetA_EntryD : dw $0100,$0100                       ;92D66E;
 
 SamusTopTiles_SetA_D675:
 ; 19h: Facing right - spin jump - frame 7
-; 1Ah: Facing left-   spin jump - frame 7
+; 1Ah: Facing left -  spin jump - frame 7
 ; 20h: Unused - frame 7
 ; 21h: Unused - frame 7
 ; 22h: Unused - frame 7
@@ -10827,15 +10827,15 @@ SamusTopTiles_SetA_D675:
 ; 39h: Unused - frame 7
 ; 3Ah: Unused - frame 7
 ; 42h: Unused - frame 7
-; 4Fh: Facing left-   damage boost - frame 3
+; 4Fh: Facing left -  damage boost - frame 3
 ; 50h: Facing right - damage boost - frame 3
 ; 83h: Facing right - wall jump - frame 9
-; 84h: Facing left-   wall jump - frame 9
+; 84h: Facing left -  wall jump - frame 9
     dl SamusTiles_Top_SetA_EntryE : dw $0080,$0080                       ;92D675;
 
 SamusTopTiles_SetA_D67C:
 ; 19h: Facing right - spin jump - frame 8
-; 1Ah: Facing left-   spin jump - frame 8
+; 1Ah: Facing left -  spin jump - frame 8
 ; 20h: Unused - frame 8
 ; 21h: Unused - frame 8
 ; 22h: Unused - frame 8
@@ -10846,71 +10846,71 @@ SamusTopTiles_SetA_D67C:
 ; 39h: Unused - frame 8
 ; 3Ah: Unused - frame 8
 ; 42h: Unused - frame 8
-; 4Fh: Facing left-   damage boost - frame 2
+; 4Fh: Facing left -  damage boost - frame 2
 ; 50h: Facing right - damage boost - frame 2
 ; 83h: Facing right - wall jump - frame Ah
-; 84h: Facing left-   wall jump - frame Ah
+; 84h: Facing left -  wall jump - frame Ah
     dl SamusTiles_Top_SetA_EntryF : dw $0100,$0100                       ;92D67C;
 
 SamusTopTiles_SetA_D683:
 ; 65h: Unused. Related to movement type Dh - frame 1
 ; 66h: Unused. Related to movement type Dh - frame 1
 ; 81h: Facing right - screw attack - frames 1..3
-; 82h: Facing left-   screw attack - frames 1..3
+; 82h: Facing left -  screw attack - frames 1..3
 ; 83h: Facing right - wall jump - frames 17h..19h
-; 84h: Facing left-   wall jump - frames 17h..19h
+; 84h: Facing left -  wall jump - frames 17h..19h
     dl SamusTiles_Top_SetA_Entry10 : dw $0100,$0040                      ;92D683;
 
 SamusTopTiles_SetA_D68A:
 ; 65h: Unused. Related to movement type Dh - frame 2
 ; 66h: Unused. Related to movement type Dh - frame 2
 ; 81h: Facing right - screw attack - frames 7..9
-; 82h: Facing left-   screw attack - frames 7..9
+; 82h: Facing left -  screw attack - frames 7..9
 ; 83h: Facing right - wall jump - frames 1Dh..1Fh
-; 84h: Facing left-   wall jump - frames 1Dh..1Fh
+; 84h: Facing left -  wall jump - frames 1Dh..1Fh
     dl SamusTiles_Top_SetA_Entry11 : dw $0100,$0060                      ;92D68A;
 
 SamusTopTiles_SetA_D691:
 ; 65h: Unused. Related to movement type Dh - frame 3
 ; 66h: Unused. Related to movement type Dh - frame 3
 ; 81h: Facing right - screw attack - frames Dh..Fh
-; 82h: Facing left-   screw attack - frames Dh..Fh
+; 82h: Facing left -  screw attack - frames Dh..Fh
 ; 83h: Facing right - wall jump - frames 23h..25h
-; 84h: Facing left-   wall jump - frames 23h..25h
+; 84h: Facing left -  wall jump - frames 23h..25h
     dl SamusTiles_Top_SetA_Entry12 : dw $0100,$0060                      ;92D691;
 
 SamusTopTiles_SetA_D698:
 ; 65h: Unused. Related to movement type Dh - frame 4
 ; 66h: Unused. Related to movement type Dh - frame 4
 ; 81h: Facing right - screw attack - frames 13h..15h
-; 82h: Facing left-   screw attack - frames 13h..15h
+; 82h: Facing left -  screw attack - frames 13h..15h
 ; 83h: Facing right - wall jump - frames 29h..2Bh
-; 84h: Facing left-   wall jump - frames 29h..2Bh
+; 84h: Facing left -  wall jump - frames 29h..2Bh
     dl SamusTiles_Top_SetA_Entry13 : dw $0100,$0000                      ;92D698;
 
 SamusTopTiles_SetA_D69F:
 ; 1Bh: Facing right - space jump - frames 1..8
-; 1Ch: Facing left-   space jump - frames 1..8
+; 1Ch: Facing left -  space jump - frames 1..8
 ; 65h: Unused. Related to movement type Dh - frame 5
 ; 66h: Unused. Related to movement type Dh - frame 5
 ; 81h: Facing right - screw attack - frames 4..6
 ; 81h: Facing right - screw attack - frames Ah..Ch
 ; 81h: Facing right - screw attack - frames 10h..12h
 ; 81h: Facing right - screw attack - frames 16h..18h
-; 82h: Facing left-   screw attack - frames 4..6
-; 82h: Facing left-   screw attack - frames Ah..Ch
-; 82h: Facing left-   screw attack - frames 10h..12h
-; 82h: Facing left-   screw attack - frames 16h..18h
+; 82h: Facing left -  screw attack - frames 4..6
+; 82h: Facing left -  screw attack - frames Ah..Ch
+; 82h: Facing left -  screw attack - frames 10h..12h
+; 82h: Facing left -  screw attack - frames 16h..18h
 ; 83h: Facing right - wall jump - frames Dh..14h
 ; 83h: Facing right - wall jump - frames 1Ah..1Ch
 ; 83h: Facing right - wall jump - frames 20h..22h
 ; 83h: Facing right - wall jump - frames 26h..28h
 ; 83h: Facing right - wall jump - frames 2Ch..2Eh
-; 84h: Facing left-   wall jump - frames Dh..14h
-; 84h: Facing left-   wall jump - frames 1Ah..1Ch
-; 84h: Facing left-   wall jump - frames 20h..22h
-; 84h: Facing left-   wall jump - frames 26h..28h
-; 84h: Facing left-   wall jump - frames 2Ch..2Eh
+; 84h: Facing left -  wall jump - frames Dh..14h
+; 84h: Facing left -  wall jump - frames 1Ah..1Ch
+; 84h: Facing left -  wall jump - frames 20h..22h
+; 84h: Facing left -  wall jump - frames 26h..28h
+; 84h: Facing left -  wall jump - frames 2Ch..2Eh
     dl SamusTiles_Top_SetA_Entry14 : dw $0020,$0000                      ;92D69F;
 
 
@@ -10923,18 +10923,18 @@ SamusTopTiles_SetB_D6AD:
 ; 1Eh: Moving right - morph ball - no springball - on ground - frame 9
 ; 1Fh: Moving left-   morph ball - no springball - on ground - frame 9
 ; 31h: Facing right - morph ball - no springball - in air - frame 9
-; 32h: Facing left-   morph ball - no springball - in air - frame 9
+; 32h: Facing left -  morph ball - no springball - in air - frame 9
 ; 3Fh: Unused - frame 9
 ; 40h: Unused - frame 9
-; 41h: Facing left-   morph ball - no springball - on ground - frame 9
+; 41h: Facing left -  morph ball - no springball - on ground - frame 9
 ; 79h: Facing right - morph ball - spring ball - on ground - frame 9
-; 7Ah: Facing left-   morph ball - spring ball - on ground - frame 9
+; 7Ah: Facing left -  morph ball - spring ball - on ground - frame 9
 ; 7Bh: Moving right - morph ball - spring ball - on ground - frame 9
 ; 7Ch: Moving left-   morph ball - spring ball - on ground - frame 9
 ; 7Dh: Facing right - morph ball - spring ball - falling - frame 9
-; 7Eh: Facing left-   morph ball - spring ball - falling - frame 9
+; 7Eh: Facing left -  morph ball - spring ball - falling - frame 9
 ; 7Fh: Facing right - morph ball - spring ball - in air - frame 9
-; 80h: Facing left-   morph ball - spring ball - in air - frame 9
+; 80h: Facing left -  morph ball - spring ball - in air - frame 9
 ; C5h: Unused - frame 9
 ; DFh: Unused. Related to Draygon - frame 9
     dl SamusTiles_Top_SetB_Entry1 : dw $0060,$0040                       ;92D6AD;
@@ -10943,25 +10943,25 @@ UNUSED_SamusTopTiles_SetB_92D6B4:
     dl SamusTiles_Top_SetB_Entry2 : dw $0060,$0040                       ;92D6B4;
 
 SamusTopTiles_SetB_D6BB:
-; 38h: Facing left-   morphing transition - frame 1
-; 3Eh: Facing left-   unmorphing transition - frame 0
-; D4h: Facing left-   crystal flash - frame 0
-; D8h: Facing left-   crystal flash ending - frame 1
+; 38h: Facing left -  morphing transition - frame 1
+; 3Eh: Facing left -  unmorphing transition - frame 0
+; D4h: Facing left -  crystal flash - frame 0
+; D8h: Facing left -  crystal flash ending - frame 1
 ; DCh: Unused - frame 2
 ; DEh: Unused - frame 0
-; E9h: Facing left-   Samus drained - crouching/falling - frame 0
+; E9h: Facing left -  Samus drained - crouching/falling - frame 0
     dl SamusTiles_Top_SetB_Entry3 : dw $0080,$0040                       ;92D6BB;
 
 SamusTopTiles_SetB_D6C2:
-; 38h: Facing left-   morphing transition - frame 0
-; 3Eh: Facing left-   unmorphing transition - frame 1
-; D4h: Facing left-   crystal flash - frame 1
-; D4h: Facing left-   crystal flash - frame 3
-; D4h: Facing left-   crystal flash - frames Ch..Dh
-; D8h: Facing left-   crystal flash ending - frame 2
+; 38h: Facing left -  morphing transition - frame 0
+; 3Eh: Facing left -  unmorphing transition - frame 1
+; D4h: Facing left -  crystal flash - frame 1
+; D4h: Facing left -  crystal flash - frame 3
+; D4h: Facing left -  crystal flash - frames Ch..Dh
+; D8h: Facing left -  crystal flash ending - frame 2
 ; DCh: Unused - frame 1
 ; DEh: Unused - frame 1
-; E9h: Facing left-   Samus drained - crouching/falling - frame 1
+; E9h: Facing left -  Samus drained - crouching/falling - frame 1
     dl SamusTiles_Top_SetB_Entry4 : dw $00C0,$0040                       ;92D6C2;
 
 SamusTopTiles_SetB_D6C9:
@@ -11046,21 +11046,21 @@ SamusTopTiles_SetC_D74E:
     dl SamusTiles_Top_SetC_Entry0 : dw $0100,$00C0                       ;92D74E;
 
 SamusTopTiles_SetC_D755:
-; CCh: Facing left-   shinespark - vertical - frame 0
+; CCh: Facing left -  shinespark - vertical - frame 0
     dl SamusTiles_Top_SetC_Entry1 : dw $0100,$00C0                       ;92D755;
 
 SamusTopTiles_SetC_D75C:
-; D4h: Facing left-   crystal flash - frame 2
-; D4h: Facing left-   crystal flash - frame 6
+; D4h: Facing left -  crystal flash - frame 2
+; D4h: Facing left -  crystal flash - frame 6
     dl SamusTiles_Top_SetC_Entry2 : dw $0100,$0040                       ;92D75C;
 
 SamusTopTiles_SetC_D763:
-; D4h: Facing left-   crystal flash - frame 7
-; D4h: Facing left-   crystal flash - frame 9
+; D4h: Facing left -  crystal flash - frame 7
+; D4h: Facing left -  crystal flash - frame 9
     dl SamusTiles_Top_SetC_Entry3 : dw $0100,$0040                       ;92D763;
 
 SamusTopTiles_SetC_D76A:
-; D4h: Facing left-   crystal flash - frame 8
+; D4h: Facing left -  crystal flash - frame 8
     dl SamusTiles_Top_SetC_Entry4 : dw $0100,$0040                       ;92D76A;
 
 SamusTopTiles_SetC_D771:
@@ -11082,176 +11082,176 @@ SamusTopTiles_SetC_D77F:
 SamusBottomTiles_Set7_D786:
 ; D3h: Facing right - crystal flash - frame 0
 ; D3h: Facing right - crystal flash - frame Dh
-; D4h: Facing left-   crystal flash - frame 0
-; D4h: Facing left-   crystal flash - frame Dh
+; D4h: Facing left -  crystal flash - frame 0
+; D4h: Facing left -  crystal flash - frame Dh
     dl SamusTiles_Bottom_Set7_Entry0 : dw $0040,$0040                    ;92D786;
 
 SamusBottomTiles_Set7_D78D:
 ; D3h: Facing right - crystal flash - frame 1
 ; D3h: Facing right - crystal flash - frame Ch
-; D4h: Facing left-   crystal flash - frame 1
-; D4h: Facing left-   crystal flash - frame Ch
+; D4h: Facing left -  crystal flash - frame 1
+; D4h: Facing left -  crystal flash - frame Ch
     dl SamusTiles_Bottom_Set7_Entry1 : dw $0100,$0100                    ;92D78D;
 
 SamusBottomTiles_Set7_D794:
 ; D3h: Facing right - crystal flash - frames 2..3
 ; D3h: Facing right - crystal flash - frames 6..9
-; D4h: Facing left-   crystal flash - frames 2..3
-; D4h: Facing left-   crystal flash - frames 6..9
+; D4h: Facing left -  crystal flash - frames 2..3
+; D4h: Facing left -  crystal flash - frames 6..9
     dl SamusTiles_Bottom_Set7_Entry2 : dw $0100,$0100                    ;92D794;
 
 
 ;;; $D79B: Samus bottom tiles - set 9 (space jump) ;;;
 SamusBottomTiles_Set9_D79B:
 ; 1Bh: Facing right - space jump - frame 1
-; 1Ch: Facing left-   space jump - frame 1
+; 1Ch: Facing left -  space jump - frame 1
 ; 81h: Facing right - screw attack - frame 1
 ; 81h: Facing right - screw attack - frame 9
 ; 81h: Facing right - screw attack - frame 11h
-; 82h: Facing left-   screw attack - frame 1
-; 82h: Facing left-   screw attack - frame 9
-; 82h: Facing left-   screw attack - frame 11h
+; 82h: Facing left -  screw attack - frame 1
+; 82h: Facing left -  screw attack - frame 9
+; 82h: Facing left -  screw attack - frame 11h
 ; 83h: Facing right - wall jump - frame Dh
 ; 83h: Facing right - wall jump - frame 17h
 ; 83h: Facing right - wall jump - frame 1Fh
 ; 83h: Facing right - wall jump - frame 27h
-; 84h: Facing left-   wall jump - frame Dh
-; 84h: Facing left-   wall jump - frame 17h
-; 84h: Facing left-   wall jump - frame 1Fh
-; 84h: Facing left-   wall jump - frame 27h
+; 84h: Facing left -  wall jump - frame Dh
+; 84h: Facing left -  wall jump - frame 17h
+; 84h: Facing left -  wall jump - frame 1Fh
+; 84h: Facing left -  wall jump - frame 27h
     dl SamusTiles_Bottom_Set9_Entry0 : dw $0100,$0100                    ;92D79B;
 
 SamusBottomTiles_Set9_D7A2:
 ; 1Bh: Facing right - space jump - frame 2
-; 1Ch: Facing left-   space jump - frame 2
+; 1Ch: Facing left -  space jump - frame 2
 ; 81h: Facing right - screw attack - frame 2
 ; 81h: Facing right - screw attack - frame Ah
 ; 81h: Facing right - screw attack - frame 12h
-; 82h: Facing left-   screw attack - frame 2
-; 82h: Facing left-   screw attack - frame Ah
-; 82h: Facing left-   screw attack - frame 12h
+; 82h: Facing left -  screw attack - frame 2
+; 82h: Facing left -  screw attack - frame Ah
+; 82h: Facing left -  screw attack - frame 12h
 ; 83h: Facing right - wall jump - frame Eh
 ; 83h: Facing right - wall jump - frame 18h
 ; 83h: Facing right - wall jump - frame 20h
 ; 83h: Facing right - wall jump - frame 28h
-; 84h: Facing left-   wall jump - frame Eh
-; 84h: Facing left-   wall jump - frame 18h
-; 84h: Facing left-   wall jump - frame 20h
-; 84h: Facing left-   wall jump - frame 28h
+; 84h: Facing left -  wall jump - frame Eh
+; 84h: Facing left -  wall jump - frame 18h
+; 84h: Facing left -  wall jump - frame 20h
+; 84h: Facing left -  wall jump - frame 28h
     dl SamusTiles_Bottom_Set9_Entry1 : dw $0100,$0100                    ;92D7A2;
 
 SamusBottomTiles_Set9_D7A9:
 ; 1Bh: Facing right - space jump - frame 3
-; 1Ch: Facing left-   space jump - frame 3
+; 1Ch: Facing left -  space jump - frame 3
 ; 81h: Facing right - screw attack - frame 3
 ; 81h: Facing right - screw attack - frame Bh
 ; 81h: Facing right - screw attack - frame 13h
-; 82h: Facing left-   screw attack - frame 3
-; 82h: Facing left-   screw attack - frame Bh
-; 82h: Facing left-   screw attack - frame 13h
+; 82h: Facing left -  screw attack - frame 3
+; 82h: Facing left -  screw attack - frame Bh
+; 82h: Facing left -  screw attack - frame 13h
 ; 83h: Facing right - wall jump - frame Fh
 ; 83h: Facing right - wall jump - frame 19h
 ; 83h: Facing right - wall jump - frame 21h
 ; 83h: Facing right - wall jump - frame 29h
-; 84h: Facing left-   wall jump - frame Fh
-; 84h: Facing left-   wall jump - frame 19h
-; 84h: Facing left-   wall jump - frame 21h
-; 84h: Facing left-   wall jump - frame 29h
+; 84h: Facing left -  wall jump - frame Fh
+; 84h: Facing left -  wall jump - frame 19h
+; 84h: Facing left -  wall jump - frame 21h
+; 84h: Facing left -  wall jump - frame 29h
     dl SamusTiles_Bottom_Set9_Entry2 : dw $0100,$0100                    ;92D7A9;
 
 SamusBottomTiles_Set9_D7B0:
 ; 1Bh: Facing right - space jump - frame 4
-; 1Ch: Facing left-   space jump - frame 4
+; 1Ch: Facing left -  space jump - frame 4
 ; 81h: Facing right - screw attack - frame 4
 ; 81h: Facing right - screw attack - frame Ch
 ; 81h: Facing right - screw attack - frame 14h
-; 82h: Facing left-   screw attack - frame 4
-; 82h: Facing left-   screw attack - frame Ch
-; 82h: Facing left-   screw attack - frame 14h
+; 82h: Facing left -  screw attack - frame 4
+; 82h: Facing left -  screw attack - frame Ch
+; 82h: Facing left -  screw attack - frame 14h
 ; 83h: Facing right - wall jump - frame 10h
 ; 83h: Facing right - wall jump - frame 1Ah
 ; 83h: Facing right - wall jump - frame 22h
 ; 83h: Facing right - wall jump - frame 2Ah
-; 84h: Facing left-   wall jump - frame 10h
-; 84h: Facing left-   wall jump - frame 1Ah
-; 84h: Facing left-   wall jump - frame 22h
-; 84h: Facing left-   wall jump - frame 2Ah
+; 84h: Facing left -  wall jump - frame 10h
+; 84h: Facing left -  wall jump - frame 1Ah
+; 84h: Facing left -  wall jump - frame 22h
+; 84h: Facing left -  wall jump - frame 2Ah
     dl SamusTiles_Bottom_Set9_Entry3 : dw $0100,$0100                    ;92D7B0;
 
 SamusBottomTiles_Set9_D7B7:
 ; 1Bh: Facing right - space jump - frame 5
-; 1Ch: Facing left-   space jump - frame 5
+; 1Ch: Facing left -  space jump - frame 5
 ; 81h: Facing right - screw attack - frame 5
 ; 81h: Facing right - screw attack - frame Dh
 ; 81h: Facing right - screw attack - frame 15h
-; 82h: Facing left-   screw attack - frame 5
-; 82h: Facing left-   screw attack - frame Dh
-; 82h: Facing left-   screw attack - frame 15h
+; 82h: Facing left -  screw attack - frame 5
+; 82h: Facing left -  screw attack - frame Dh
+; 82h: Facing left -  screw attack - frame 15h
 ; 83h: Facing right - wall jump - frame 11h
 ; 83h: Facing right - wall jump - frame 1Bh
 ; 83h: Facing right - wall jump - frame 23h
 ; 83h: Facing right - wall jump - frame 2Bh
-; 84h: Facing left-   wall jump - frame 11h
-; 84h: Facing left-   wall jump - frame 1Bh
-; 84h: Facing left-   wall jump - frame 23h
-; 84h: Facing left-   wall jump - frame 2Bh
+; 84h: Facing left -  wall jump - frame 11h
+; 84h: Facing left -  wall jump - frame 1Bh
+; 84h: Facing left -  wall jump - frame 23h
+; 84h: Facing left -  wall jump - frame 2Bh
     dl SamusTiles_Bottom_Set9_Entry4 : dw $0100,$0100                    ;92D7B7;
 
 SamusBottomTiles_Set9_D7BE:
 ; 1Bh: Facing right - space jump - frame 6
-; 1Ch: Facing left-   space jump - frame 6
+; 1Ch: Facing left -  space jump - frame 6
 ; 81h: Facing right - screw attack - frame 6
 ; 81h: Facing right - screw attack - frame Eh
 ; 81h: Facing right - screw attack - frame 16h
-; 82h: Facing left-   screw attack - frame 6
-; 82h: Facing left-   screw attack - frame Eh
-; 82h: Facing left-   screw attack - frame 16h
+; 82h: Facing left -  screw attack - frame 6
+; 82h: Facing left -  screw attack - frame Eh
+; 82h: Facing left -  screw attack - frame 16h
 ; 83h: Facing right - wall jump - frame 12h
 ; 83h: Facing right - wall jump - frame 1Ch
 ; 83h: Facing right - wall jump - frame 24h
 ; 83h: Facing right - wall jump - frame 2Ch
-; 84h: Facing left-   wall jump - frame 12h
-; 84h: Facing left-   wall jump - frame 1Ch
-; 84h: Facing left-   wall jump - frame 24h
-; 84h: Facing left-   wall jump - frame 2Ch
+; 84h: Facing left -  wall jump - frame 12h
+; 84h: Facing left -  wall jump - frame 1Ch
+; 84h: Facing left -  wall jump - frame 24h
+; 84h: Facing left -  wall jump - frame 2Ch
     dl SamusTiles_Bottom_Set9_Entry5 : dw $0100,$0100                    ;92D7BE;
 
 SamusBottomTiles_Set9_D7C5:
 ; 1Bh: Facing right - space jump - frame 7
-; 1Ch: Facing left-   space jump - frame 7
+; 1Ch: Facing left -  space jump - frame 7
 ; 81h: Facing right - screw attack - frame 7
 ; 81h: Facing right - screw attack - frame Fh
 ; 81h: Facing right - screw attack - frame 17h
-; 82h: Facing left-   screw attack - frame 7
-; 82h: Facing left-   screw attack - frame Fh
-; 82h: Facing left-   screw attack - frame 17h
+; 82h: Facing left -  screw attack - frame 7
+; 82h: Facing left -  screw attack - frame Fh
+; 82h: Facing left -  screw attack - frame 17h
 ; 83h: Facing right - wall jump - frame 13h
 ; 83h: Facing right - wall jump - frame 1Dh
 ; 83h: Facing right - wall jump - frame 25h
 ; 83h: Facing right - wall jump - frame 2Dh
-; 84h: Facing left-   wall jump - frame 13h
-; 84h: Facing left-   wall jump - frame 1Dh
-; 84h: Facing left-   wall jump - frame 25h
-; 84h: Facing left-   wall jump - frame 2Dh
+; 84h: Facing left -  wall jump - frame 13h
+; 84h: Facing left -  wall jump - frame 1Dh
+; 84h: Facing left -  wall jump - frame 25h
+; 84h: Facing left -  wall jump - frame 2Dh
     dl SamusTiles_Bottom_Set9_Entry6 : dw $0100,$0100                    ;92D7C5;
 
 SamusBottomTiles_Set9_D7CC:
 ; 1Bh: Facing right - space jump - frame 8
-; 1Ch: Facing left-   space jump - frame 8
+; 1Ch: Facing left -  space jump - frame 8
 ; 81h: Facing right - screw attack - frame 8
 ; 81h: Facing right - screw attack - frame 10h
 ; 81h: Facing right - screw attack - frame 18h
-; 82h: Facing left-   screw attack - frame 8
-; 82h: Facing left-   screw attack - frame 10h
-; 82h: Facing left-   screw attack - frame 18h
+; 82h: Facing left -  screw attack - frame 8
+; 82h: Facing left -  screw attack - frame 10h
+; 82h: Facing left -  screw attack - frame 18h
 ; 83h: Facing right - wall jump - frame 14h
 ; 83h: Facing right - wall jump - frame 1Eh
 ; 83h: Facing right - wall jump - frame 26h
 ; 83h: Facing right - wall jump - frame 2Eh
-; 84h: Facing left-   wall jump - frame 14h
-; 84h: Facing left-   wall jump - frame 1Eh
-; 84h: Facing left-   wall jump - frame 26h
-; 84h: Facing left-   wall jump - frame 2Eh
+; 84h: Facing left -  wall jump - frame 14h
+; 84h: Facing left -  wall jump - frame 1Eh
+; 84h: Facing left -  wall jump - frame 26h
+; 84h: Facing left -  wall jump - frame 2Eh
     dl SamusTiles_Bottom_Set9_Entry7 : dw $0100,$0100                    ;92D7CC;
 
 
@@ -11702,7 +11702,7 @@ SamusTilesAnimation_AnimationDefinitions_DBA0:
     db $02,$04,$01,$19, $02,$00,$01,$06, $02,$04,$00,$06                 ;92DBA0;
 
 SamusTilesAnimation_AnimationDefinitions_DBAC:
-; A7h: Facing left-   landing from spin jump
+; A7h: Facing left -  landing from spin jump
     db $02,$05,$01,$1A, $02,$01,$01,$07, $02,$05,$00,$06                 ;92DBAC;
 
 SamusTilesAnimation_AnimationDefinitions_DBB8:
@@ -11710,7 +11710,7 @@ SamusTilesAnimation_AnimationDefinitions_DBB8:
     db $00,$16,$01,$06, $00,$16,$00,$06                                  ;92DBB8;
 
 SamusTilesAnimation_AnimationDefinitions_DBC0:
-; E1h: Facing left-   landing from normal jump - aiming up
+; E1h: Facing left -  landing from normal jump - aiming up
     db $00,$17,$01,$07, $00,$17,$00,$06                                  ;92DBC0;
 
 SamusTilesAnimation_AnimationDefinitions_DBC8:
@@ -11718,7 +11718,7 @@ SamusTilesAnimation_AnimationDefinitions_DBC8:
     db $00,$12,$01,$06, $00,$12,$00,$06                                  ;92DBC8;
 
 SamusTilesAnimation_AnimationDefinitions_DBD0:
-; E3h: Facing left-   landing from normal jump - aiming up-left
+; E3h: Facing left -  landing from normal jump - aiming up-left
     db $00,$13,$01,$07, $00,$13,$00,$06                                  ;92DBD0;
 
 SamusTilesAnimation_AnimationDefinitions_DBD8:
@@ -11726,7 +11726,7 @@ SamusTilesAnimation_AnimationDefinitions_DBD8:
     db $00,$0E,$01,$06, $00,$0E,$00,$06                                  ;92DBD8;
 
 SamusTilesAnimation_AnimationDefinitions_DBE0:
-; E5h: Facing left-   landing from normal jump - aiming down-left
+; E5h: Facing left -  landing from normal jump - aiming down-left
     db $00,$0F,$01,$07, $00,$0F,$00,$06                                  ;92DBE0;
 
 SamusTilesAnimation_AnimationDefinitions_DBE8:
@@ -11734,7 +11734,7 @@ SamusTilesAnimation_AnimationDefinitions_DBE8:
     db $00,$10,$01,$06, $00,$10,$00,$06                                  ;92DBE8;
 
 SamusTilesAnimation_AnimationDefinitions_DBF0:
-; E7h: Facing left-   landing from normal jump - firing
+; E7h: Facing left -  landing from normal jump - firing
     db $00,$11,$01,$07, $00,$11,$00,$06                                  ;92DBF0;
 
 SamusTilesAnimation_AnimationDefinitions_DBF8:
@@ -11743,7 +11743,7 @@ SamusTilesAnimation_AnimationDefinitions_DBF8:
     db $02,$0B,$00,$06                                                   ;92DC08;
 
 SamusTilesAnimation_AnimationDefinitions_DC0C:
-; D6h: Facing left-   x-ray - standing
+; D6h: Facing left -  x-ray - standing
     db $02,$0D,$00,$06, $02,$0C,$00,$06, $00,$11,$00,$06, $02,$0E,$00,$06 ;92DC0C;
     db $02,$0F,$00,$06                                                   ;92DC1C;
 
@@ -11753,7 +11753,7 @@ SamusTilesAnimation_AnimationDefinitions_DC20:
     db $02,$0B,$00,$07                                                   ;92DC30;
 
 SamusTilesAnimation_AnimationDefinitions_DC34:
-; DAh: Facing left-   x-ray - crouching
+; DAh: Facing left -  x-ray - crouching
     db $02,$0D,$00,$07, $02,$0C,$00,$07, $00,$11,$00,$07, $02,$0E,$00,$07 ;92DC34;
     db $02,$0F,$00,$07                                                   ;92DC44;
 
@@ -11816,7 +11816,7 @@ SamusTilesAnimation_AnimationDefinitions_DD38:
     db $00,$12,$01,$0A, $00,$16,$00,$13                                  ;92DD38;
 
 SamusTilesAnimation_AnimationDefinitions_DD40:
-; 16h: Facing left-   normal jump - aiming up
+; 16h: Facing left -  normal jump - aiming up
     db $00,$13,$01,$0B, $00,$17,$00,$14                                  ;92DD40;
 
 SamusTilesAnimation_AnimationDefinitions_DD48:
@@ -11824,7 +11824,7 @@ SamusTilesAnimation_AnimationDefinitions_DD48:
     db $00,$10,$01,$0A, $00,$10,$01,$19                                  ;92DD48;
 
 SamusTilesAnimation_AnimationDefinitions_DD50:
-; 52h: Facing left-   normal jump - not aiming - moving forward
+; 52h: Facing left -  normal jump - not aiming - moving forward
     db $00,$11,$01,$0B, $00,$11,$01,$1A                                  ;92DD50;
 
 SamusTilesAnimation_AnimationDefinitions_DD58:
@@ -11832,7 +11832,7 @@ SamusTilesAnimation_AnimationDefinitions_DD58:
     db $00,$1A,$01,$0A, $00,$1A,$00,$13                                  ;92DD58;
 
 SamusTilesAnimation_AnimationDefinitions_DD60:
-; 6Ah: Facing left-   normal jump - aiming up-left
+; 6Ah: Facing left -  normal jump - aiming up-left
     db $00,$1B,$01,$0B, $00,$1B,$00,$14                                  ;92DD60;
 
 SamusTilesAnimation_AnimationDefinitions_DD68:
@@ -11850,7 +11850,7 @@ SamusTilesAnimation_AnimationDefinitions_DD78:
     db $02,$00,$01,$06                                                   ;92DD78;
 
 SamusTilesAnimation_AnimationDefinitions_DD7C:
-; 4Ch: Facing left-   normal jump transition
+; 4Ch: Facing left -  normal jump transition
     db $02,$01,$01,$07                                                   ;92DD7C;
 
 SamusTilesAnimation_AnimationDefinitions_DD80:
@@ -11860,9 +11860,9 @@ SamusTilesAnimation_AnimationDefinitions_DD80:
     db $00,$16,$01,$06                                                   ;92DD80;
 
 SamusTilesAnimation_AnimationDefinitions_DD84:
-; 56h: Facing left-   normal jump transition - aiming up
-; F2h: Facing left-   crouching transition - aiming up
-; F8h: Facing left-   standing transition - aiming up
+; 56h: Facing left -  normal jump transition - aiming up
+; F2h: Facing left -  crouching transition - aiming up
+; F8h: Facing left -  standing transition - aiming up
     db $00,$17,$01,$07                                                   ;92DD84;
 
 SamusTilesAnimation_AnimationDefinitions_DD88:
@@ -11872,9 +11872,9 @@ SamusTilesAnimation_AnimationDefinitions_DD88:
     db $00,$12,$01,$06                                                   ;92DD88;
 
 SamusTilesAnimation_AnimationDefinitions_DD8C:
-; 58h: Facing left-   normal jump transition - aiming up-left
-; F4h: Facing left-   crouching transition - aiming up-left
-; FAh: Facing left-   standing transition - aiming up-left
+; 58h: Facing left -  normal jump transition - aiming up-left
+; F4h: Facing left -  crouching transition - aiming up-left
+; FAh: Facing left -  standing transition - aiming up-left
     db $00,$13,$01,$07                                                   ;92DD8C;
 
 SamusTilesAnimation_AnimationDefinitions_DD90:
@@ -11884,9 +11884,9 @@ SamusTilesAnimation_AnimationDefinitions_DD90:
     db $00,$0E,$01,$06                                                   ;92DD90;
 
 SamusTilesAnimation_AnimationDefinitions_DD94:
-; 5Ah: Facing left-   normal jump transition - aiming down-left
-; F6h: Facing left-   crouching transition - aiming down-left
-; FCh: Facing left-   standing transition - aiming down-left
+; 5Ah: Facing left -  normal jump transition - aiming down-left
+; F6h: Facing left -  crouching transition - aiming down-left
+; FCh: Facing left -  standing transition - aiming down-left
     db $00,$0F,$01,$07                                                   ;92DD94;
 
 SamusTilesAnimation_AnimationDefinitions_DD98:
@@ -11896,13 +11896,13 @@ SamusTilesAnimation_AnimationDefinitions_DD98:
     db $00,$01,$01,$0A, $00,$14,$01,$0C                                  ;92DDA8;
 
 SamusTilesAnimation_AnimationDefinitions_DDB0:
-; 4Eh: Facing left-   normal jump - not aiming - not moving - gun not extended
-; C8h: Facing left-   vertical shinespark windup
+; 4Eh: Facing left -  normal jump - not aiming - not moving - gun not extended
+; C8h: Facing left -  vertical shinespark windup
     db $00,$0A,$00,$03, $00,$0B,$01,$0F, $00,$0A,$01,$09, $00,$06,$01,$09 ;92DDB0;
     db $00,$07,$01,$0B, $00,$15,$01,$0D                                  ;92DDC0;
 
 SamusTilesAnimation_AnimationDefinitions_DDC8:
-; 4Fh: Facing left-   damage boost
+; 4Fh: Facing left -  damage boost
     db $02,$05,$00,$11, $02,$05,$01,$0B, $0A,$0F,$00,$00, $0A,$0E,$00,$00 ;92DDC8;
     db $0A,$0D,$00,$00, $0A,$0C,$00,$00, $0A,$0B,$00,$00, $0A,$0A,$00,$00 ;92DDD8;
     db $0A,$09,$00,$00, $02,$1F,$01,$1A                                  ;92DDE8;
@@ -11933,7 +11933,7 @@ SamusTilesAnimation_AnimationDefinitions_DE60:
     db $00,$00,$00,$00, $02,$1C,$01,$0A, $02,$04,$01,$19                 ;92DE70;
 
 SamusTilesAnimation_AnimationDefinitions_DE7C:
-; 2Ah: Facing left-   falling
+; 2Ah: Facing left -  falling
     db $02,$05,$01,$0B, $02,$1E,$01,$0D, $02,$1F,$01,$0D, $00,$00,$00,$00 ;92DE7C;
     db $00,$00,$00,$00, $02,$1E,$01,$0B, $02,$05,$01,$1A                 ;92DE8C;
 
@@ -11942,7 +11942,7 @@ SamusTilesAnimation_AnimationDefinitions_DE98:
     db $00,$12,$01,$0A, $00,$16,$01,$0C, $00,$16,$01,$19                 ;92DE98;
 
 SamusTilesAnimation_AnimationDefinitions_DEA4:
-; 2Ch: Facing left-   falling - aiming up
+; 2Ch: Facing left -  falling - aiming up
     db $00,$13,$01,$0B, $00,$17,$01,$0D, $00,$17,$01,$1A                 ;92DEA4;
 
 SamusTilesAnimation_AnimationDefinitions_DEB0:
@@ -11950,7 +11950,7 @@ SamusTilesAnimation_AnimationDefinitions_DEB0:
     db $00,$0C,$01,$0A, $01,$1A,$01,$11                                  ;92DEB0;
 
 SamusTilesAnimation_AnimationDefinitions_DEB8:
-; 2Eh: Facing left-   falling - aiming down
+; 2Eh: Facing left -  falling - aiming down
     db $00,$0D,$01,$0B, $01,$1B,$01,$12                                  ;92DEB8;
 
 SamusTilesAnimation_AnimationDefinitions_DEC0:
@@ -11959,7 +11959,7 @@ SamusTilesAnimation_AnimationDefinitions_DEC0:
     db $00,$00,$00,$00, $00,$10,$01,$0A, $00,$10,$01,$19                 ;92DED0;
 
 SamusTilesAnimation_AnimationDefinitions_DEDC:
-; 68h: Facing left-   falling - gun extended
+; 68h: Facing left -  falling - gun extended
     db $00,$11,$01,$0B, $00,$11,$01,$0D, $00,$11,$01,$0D, $00,$00,$00,$00 ;92DEDC;
     db $00,$00,$00,$00, $00,$11,$01,$0B, $00,$11,$01,$1A                 ;92DEEC;
 
@@ -11968,7 +11968,7 @@ SamusTilesAnimation_AnimationDefinitions_DEF8:
     db $00,$1A,$01,$0A, $00,$1A,$01,$0C, $00,$1A,$01,$19                 ;92DEF8;
 
 SamusTilesAnimation_AnimationDefinitions_DF04:
-; 6Eh: Facing left-   falling - aiming up-left
+; 6Eh: Facing left -  falling - aiming up-left
     db $00,$1B,$01,$0B, $00,$1B,$01,$0D, $00,$1B,$01,$1A                 ;92DF04;
 
 SamusTilesAnimation_AnimationDefinitions_DF10:
@@ -11976,7 +11976,7 @@ SamusTilesAnimation_AnimationDefinitions_DF10:
     db $00,$0C,$01,$0A, $00,$0C,$01,$0C, $00,$0C,$01,$19                 ;92DF10;
 
 SamusTilesAnimation_AnimationDefinitions_DF1C:
-; 70h: Facing left-   falling - aiming down-left
+; 70h: Facing left -  falling - aiming down-left
     db $00,$0D,$01,$0B, $00,$0D,$01,$0D, $00,$0D,$01,$1A                 ;92DF1C;
 
 SamusTilesAnimation_AnimationDefinitions_DF28:
@@ -12020,7 +12020,7 @@ SamusTilesAnimation_AnimationDefinitions_E018:
     db $00,$12,$0A,$00, $00,$16,$0A,$00                                  ;92E018;
 
 SamusTilesAnimation_AnimationDefinitions_E020:
-; 4: Facing left-   aiming up
+; 4: Facing left -  aiming up
     db $00,$13,$0A,$01, $00,$17,$0A,$01                                  ;92E020;
 
 SamusTilesAnimation_AnimationDefinitions_E028:
@@ -12029,8 +12029,8 @@ SamusTilesAnimation_AnimationDefinitions_E028:
     db $00,$12,$0A,$00                                                   ;92E028;
 
 SamusTilesAnimation_AnimationDefinitions_E02C:
-; 6: Facing left-   aiming up-left
-; D0h: Facing left-   ran into a wall - aiming up-left
+; 6: Facing left -  aiming up-left
+; D0h: Facing left -  ran into a wall - aiming up-left
     db $00,$13,$0A,$01                                                   ;92E02C;
 
 SamusTilesAnimation_AnimationDefinitions_E030:
@@ -12040,9 +12040,9 @@ SamusTilesAnimation_AnimationDefinitions_E030:
     db $00,$0E,$0A,$00                                                   ;92E030;
 
 SamusTilesAnimation_AnimationDefinitions_E034:
-; 8: Facing left-   aiming down-left
+; 8: Facing left -  aiming down-left
 ; ABh: Unused
-; D2h: Facing left-   ran into a wall - aiming down-left
+; D2h: Facing left -  ran into a wall - aiming down-left
     db $00,$0F,$0A,$01                                                   ;92E034;
 
 SamusTilesAnimation_AnimationDefinitions_E038:
@@ -12050,7 +12050,7 @@ SamusTilesAnimation_AnimationDefinitions_E038:
     db $00,$1D,$01,$0C, $00,$1D,$01,$1B                                  ;92E038;
 
 SamusTilesAnimation_AnimationDefinitions_E040:
-; 54h: Facing left-   knockback
+; 54h: Facing left -  knockback
     db $00,$1C,$01,$0D, $00,$1C,$01,$1C                                  ;92E040;
 
 SamusTilesAnimation_AnimationDefinitions_E048:
@@ -12062,7 +12062,7 @@ SamusTilesAnimation_AnimationDefinitions_E04C:
     db $01,$0B,$00,$19                                                   ;92E04C;
 
 SamusTilesAnimation_AnimationDefinitions_E050:
-; B2h: Facing clockwise     - grapple swinging
+; B2h: Facing anticlockwise - grapple swinging
     db $05,$08,$04,$05, $05,$07,$04,$04, $05,$06,$04,$03, $05,$05,$04,$02 ;92E050;
     db $05,$04,$04,$02, $05,$03,$04,$01, $05,$02,$04,$01, $05,$01,$04,$00 ;92E060;
     db $05,$00,$04,$00, $03,$0F,$04,$00, $03,$0E,$02,$09, $03,$0D,$02,$09 ;92E070;
@@ -12082,7 +12082,7 @@ SamusTilesAnimation_AnimationDefinitions_E050:
     db $03,$08,$02,$0B, $03,$08,$02,$0C                                  ;92E150;
 
 SamusTilesAnimation_AnimationDefinitions_E158:
-; B3h: Facing anticlockwise - grapple swinging
+; B3h: Facing clockwise   -   grapple swinging
     db $06,$08,$06,$05, $06,$09,$06,$06, $06,$0A,$06,$07, $06,$0B,$06,$08 ;92E158;
     db $06,$0C,$06,$08, $06,$0D,$06,$09, $06,$0E,$06,$09, $06,$0F,$05,$00 ;92E168;
     db $04,$00,$05,$00, $04,$01,$05,$00, $04,$02,$05,$01, $04,$03,$05,$01 ;92E178;
@@ -12137,7 +12137,7 @@ SamusTilesAnimation_AnimationDefinitions_E2B8:
     db $0A,$14,$09,$05, $0A,$14,$09,$06, $0A,$14,$09,$07                 ;92E368;
 
 SamusTilesAnimation_AnimationDefinitions_E374:
-; 84h: Facing left-   wall jump
+; 84h: Facing left -  wall jump
     db $01,$13,$01,$14, $02,$05,$01,$1A, $00,$00,$00,$00, $0A,$08,$00,$00 ;92E374;
     db $0A,$09,$00,$00, $0A,$0A,$00,$00, $0A,$0B,$00,$00, $0A,$0C,$00,$00 ;92E384;
     db $0A,$0D,$00,$00, $0A,$0E,$00,$00, $0A,$0F,$00,$00, $00,$00,$00,$00 ;92E394;
@@ -12203,8 +12203,8 @@ SamusTilesAnimation_AnimationDefinitions_E4B0:
     db $00,$10,$01,$06                                                   ;92E4B0;
 
 SamusTilesAnimation_AnimationDefinitions_E4B4:
-; 36h: Facing left-   crouching transition
-; 3Ch: Facing left-   standing transition
+; 36h: Facing left -  crouching transition
+; 3Ch: Facing left -  standing transition
     db $00,$11,$01,$07                                                   ;92E4B4;
 
 SamusTilesAnimation_AnimationDefinitions_E4B8:
@@ -12212,7 +12212,7 @@ SamusTilesAnimation_AnimationDefinitions_E4B8:
     db $0B,$06,$00,$00, $0B,$05,$00,$00                                  ;92E4B8;
 
 SamusTilesAnimation_AnimationDefinitions_E4C0:
-; 38h: Facing left-   morphing transition
+; 38h: Facing left -  morphing transition
     db $0B,$04,$00,$00, $0B,$03,$00,$00                                  ;92E4C0;
 
 SamusTilesAnimation_AnimationDefinitions_E4C8:
@@ -12220,7 +12220,7 @@ SamusTilesAnimation_AnimationDefinitions_E4C8:
     db $0B,$05,$00,$00, $0B,$06,$00,$00                                  ;92E4C8;
 
 SamusTilesAnimation_AnimationDefinitions_E4D0:
-; 3E: Facing left-   unmorphing transition
+; 3E: Facing left -  unmorphing transition
     db $0B,$03,$00,$00, $0B,$04,$00,$00                                  ;92E4D0;
 
 UNUSED_SamusTilesAnimation_AnimationDefinitions_92E4D8:
@@ -12242,7 +12242,7 @@ UNUSED_SamusTilesAnimation_AnimationDefinitions_92E4FC:
 SamusTilesAnimation_AnimationDefinitions_E508:
 ; 1D: Facing right - morph ball - no springball - on ground
 ; 31: Facing right - morph ball - no springball - in air
-; 32: Facing left-   morph ball - no springball - in air
+; 32: Facing left -  morph ball - no springball - in air
 ; 3F: Unused
 ; 40: Unused
     db $0A,$00,$00,$00, $0A,$04,$00,$00, $0A,$01,$00,$00, $0A,$05,$00,$00 ;92E508;
@@ -12250,7 +12250,7 @@ SamusTilesAnimation_AnimationDefinitions_E508:
     db $00,$00,$00,$00, $0B,$01,$00,$00                                  ;92E528;
 
 SamusTilesAnimation_AnimationDefinitions_E530:
-; 41: Facing left-   morph ball - no springball - on ground
+; 41: Facing left -  morph ball - no springball - on ground
 ; C5: Unused
 ; DF: Unused
     db $0A,$07,$00,$00, $0A,$03,$00,$00, $0A,$06,$00,$00, $0A,$02,$00,$00 ;92E530;
@@ -12279,10 +12279,10 @@ SamusTilesAnimation_AnimationDefinitions_E5A8:
     db $00,$00,$00,$00, $0B,$01,$00,$00                                  ;92E5C8;
 
 SamusTilesAnimation_AnimationDefinitions_E5D0:
-; 7A: Facing left-   morph ball - spring ball - on ground
+; 7A: Facing left -  morph ball - spring ball - on ground
 ; 7C: Moving left-   morph ball - spring ball - on ground
-; 7E: Facing left-   morph ball - spring ball - falling
-; 80: Facing left-   morph ball - spring ball - in air
+; 7E: Facing left -  morph ball - spring ball - falling
+; 80: Facing left -  morph ball - spring ball - in air
     db $0A,$07,$00,$00, $0A,$03,$00,$00, $0A,$06,$00,$00, $0A,$02,$00,$00 ;92E5D0;
     db $0A,$05,$00,$00, $0A,$01,$00,$00, $0A,$04,$00,$00, $0A,$00,$00,$00 ;92E5E0;
     db $00,$00,$00,$00, $0B,$01,$00,$00                                  ;92E5F0;
@@ -12304,7 +12304,7 @@ SamusTilesAnimation_AnimationDefinitions_E5F8:
     db $0A,$0F,$00,$00, $00,$00,$00,$00, $00,$00,$00,$00, $01,$1C,$00,$1E ;92E618;
 
 SamusTilesAnimation_AnimationDefinitions_E628:
-; 1A: Facing left-   spin jump
+; 1A: Facing left -  spin jump
     db $02,$05,$01,$1A, $0A,$08,$00,$00, $0A,$09,$00,$00, $0A,$0A,$00,$00 ;92E628;
     db $0A,$0B,$00,$00, $0A,$0C,$00,$00, $0A,$0D,$00,$00, $0A,$0E,$00,$00 ;92E638;
     db $0A,$0F,$00,$00, $00,$00,$00,$00, $00,$00,$00,$00, $01,$1D,$00,$1F ;92E648;
@@ -12316,7 +12316,7 @@ SamusTilesAnimation_AnimationDefinitions_E658:
     db $0A,$14,$09,$07, $00,$00,$00,$00, $00,$00,$00,$00, $01,$1C,$00,$1E ;92E678;
 
 SamusTilesAnimation_AnimationDefinitions_E688:
-; 1C: Facing left-   space jump
+; 1C: Facing left -  space jump
     db $02,$05,$01,$1A, $0A,$14,$09,$00, $0A,$14,$09,$01, $0A,$14,$09,$02 ;92E688;
     db $0A,$14,$09,$03, $0A,$14,$09,$04, $0A,$14,$09,$05, $0A,$14,$09,$06 ;92E698;
     db $0A,$14,$09,$07, $00,$00,$00,$00, $00,$00,$00,$00, $01,$1D,$00,$1F ;92E6A8;
@@ -12332,7 +12332,7 @@ SamusTilesAnimation_AnimationDefinitions_E6B8:
     db $0A,$14,$09,$07, $00,$00,$00,$00, $00,$00,$00,$00, $01,$1C,$00,$1E ;92E718;
 
 SamusTilesAnimation_AnimationDefinitions_E728:
-; 82: Facing left-   screw attack
+; 82: Facing left -  screw attack
     db $02,$05,$01,$1A, $0A,$10,$09,$00, $0A,$10,$09,$01, $0A,$10,$09,$02 ;92E728;
     db $0A,$14,$09,$03, $0A,$14,$09,$04, $0A,$14,$09,$05, $0A,$11,$09,$06 ;92E738;
     db $0A,$11,$09,$07, $0A,$11,$09,$00, $0A,$14,$09,$01, $0A,$14,$09,$02 ;92E748;
@@ -12348,8 +12348,8 @@ SamusTilesAnimation_AnimationDefinitions_E798:
     db $01,$07,$00,$16, $01,$0A,$01,$01, $01,$06,$00,$15                 ;92E798;
 
 SamusTilesAnimation_AnimationDefinitions_E7A4:
-; 26: Facing left-   turning - standing
-; C0: Facing left-   moonwalking - turn/jump right
+; 26: Facing left -  turning - standing
+; C0: Facing left -  moonwalking - turn/jump right
     db $01,$06,$00,$15, $01,$0A,$01,$01, $01,$07,$00,$16                 ;92E7A4;
 
 SamusTilesAnimation_AnimationDefinitions_E7B0:
@@ -12359,9 +12359,9 @@ SamusTilesAnimation_AnimationDefinitions_E7B0:
     db $01,$09,$00,$16, $01,$02,$01,$01, $01,$08,$00,$15                 ;92E7B0;
 
 SamusTilesAnimation_AnimationDefinitions_E7BC:
-; 8C: Facing left-   turning - standing - aiming up
-; 9D: Facing left-   turning - standing - aiming up-left
-; C2: Facing left-   moonwalking - turn/jump right - aiming up-left
+; 8C: Facing left -  turning - standing - aiming up
+; 9D: Facing left -  turning - standing - aiming up-left
+; C2: Facing left -  moonwalking - turn/jump right - aiming up-left
     db $01,$08,$00,$15, $01,$02,$01,$01, $01,$09,$00,$16                 ;92E7BC;
 
 SamusTilesAnimation_AnimationDefinitions_E7C8:
@@ -12370,8 +12370,8 @@ SamusTilesAnimation_AnimationDefinitions_E7C8:
     db $01,$19,$00,$16, $01,$03,$01,$01, $01,$18,$00,$15                 ;92E7C8;
 
 SamusTilesAnimation_AnimationDefinitions_E7D4:
-; 8E: Facing left-   turning - standing - aiming down-left
-; C4: Facing left-   moonwalking - turn/jump right - aiming down-left
+; 8E: Facing left -  turning - standing - aiming down-left
+; C4: Facing left -  moonwalking - turn/jump right - aiming down-left
     db $01,$18,$00,$15, $01,$03,$01,$01, $01,$19,$00,$16                 ;92E7D4;
 
 SamusTilesAnimation_AnimationDefinitions_E7E0:
@@ -12381,9 +12381,9 @@ SamusTilesAnimation_AnimationDefinitions_E7E0:
     db $01,$07,$00,$18, $01,$0A,$01,$02, $01,$06,$00,$17                 ;92E7E0;
 
 SamusTilesAnimation_AnimationDefinitions_E7EC:
-; 30: Facing left-   turning - jumping
-; 44: Facing left-   turning - crouching
-; 88: Facing left-   turning - falling
+; 30: Facing left -  turning - jumping
+; 44: Facing left -  turning - crouching
+; 88: Facing left -  turning - falling
     db $01,$06,$00,$17, $01,$0A,$01,$02, $01,$07,$00,$18                 ;92E7EC;
 
 SamusTilesAnimation_AnimationDefinitions_E7F8:
@@ -12396,12 +12396,12 @@ SamusTilesAnimation_AnimationDefinitions_E7F8:
     db $01,$09,$00,$18, $01,$02,$01,$02, $01,$08,$00,$17                 ;92E7F8;
 
 SamusTilesAnimation_AnimationDefinitions_E804:
-; 90: Facing left-   turning - in air - aiming up
-; 94: Facing left-   turning - falling - aiming up
-; 98: Facing left-   turning - crouching - aiming up
-; 9F: Facing left-   turning - in air - aiming up-left
-; A1: Facing left-   turning - falling - aiming up-left
-; A3: Facing left-   turning - crouching - aiming up-left
+; 90: Facing left -  turning - in air - aiming up
+; 94: Facing left -  turning - falling - aiming up
+; 98: Facing left -  turning - crouching - aiming up
+; 9F: Facing left -  turning - in air - aiming up-left
+; A1: Facing left -  turning - falling - aiming up-left
+; A3: Facing left -  turning - crouching - aiming up-left
     db $01,$08,$00,$17, $01,$02,$01,$02, $01,$09,$00,$18                 ;92E804;
 
 SamusTilesAnimation_AnimationDefinitions_E810:
@@ -12411,9 +12411,9 @@ SamusTilesAnimation_AnimationDefinitions_E810:
     db $01,$19,$00,$18, $01,$03,$01,$02, $01,$18,$00,$17                 ;92E810;
 
 SamusTilesAnimation_AnimationDefinitions_E81C:
-; 92: Facing left-   turning - in air - aiming down/down-left
-; 96: Facing left-   turning - falling - aiming down/down-left
-; 9A: Facing left-   turning - crouching - aiming down/down-left
+; 92: Facing left -  turning - in air - aiming down/down-left
+; 96: Facing left -  turning - falling - aiming down/down-left
+; 9A: Facing left -  turning - crouching - aiming down/down-left
     db $01,$18,$00,$17, $01,$03,$01,$02, $01,$19,$00,$18                 ;92E81C;
 
 SamusTilesAnimation_AnimationDefinitions_E828:
@@ -12433,19 +12433,19 @@ SamusTilesAnimation_AnimationDefinitions_E834:
     db $00,$0C,$01,$1B                                                   ;92E834;
 
 SamusTilesAnimation_AnimationDefinitions_E838:
-; BA: Facing left-   grabbed by Draygon - not moving - not aiming
+; BA: Facing left -  grabbed by Draygon - not moving - not aiming
     db $02,$05,$01,$1C                                                   ;92E838;
 
 SamusTilesAnimation_AnimationDefinitions_E83C:
-; BB: Facing left-   grabbed by Draygon - not moving - aiming up-left
+; BB: Facing left -  grabbed by Draygon - not moving - aiming up-left
     db $00,$1B,$01,$1C                                                   ;92E83C;
 
 SamusTilesAnimation_AnimationDefinitions_E840:
-; BC: Facing left-   grabbed by Draygon - firing
+; BC: Facing left -  grabbed by Draygon - firing
     db $00,$11,$01,$1C                                                   ;92E840;
 
 SamusTilesAnimation_AnimationDefinitions_E844:
-; BD: Facing left-   grabbed by Draygon - not moving - aiming down-left
+; BD: Facing left -  grabbed by Draygon - not moving - aiming down-left
     db $00,$0D,$01,$1C                                                   ;92E844;
 
 SamusTilesAnimation_AnimationDefinitions_E848:
@@ -12454,7 +12454,7 @@ SamusTilesAnimation_AnimationDefinitions_E848:
     db $00,$05,$01,$0E, $00,$00,$01,$08                                  ;92E858;
 
 SamusTilesAnimation_AnimationDefinitions_E860:
-; BE: Facing left-   grabbed by Draygon - moving
+; BE: Facing left -  grabbed by Draygon - moving
     db $00,$07,$01,$0D, $00,$08,$01,$1C, $00,$06,$01,$1A, $00,$0A,$01,$0D ;92E860;
     db $00,$0B,$01,$0F, $00,$06,$01,$09                                  ;92E870;
 
@@ -12463,7 +12463,7 @@ SamusTilesAnimation_AnimationDefinitions_E878:
     db $0C,$00,$00,$00                                                   ;92E878;
 
 SamusTilesAnimation_AnimationDefinitions_E87C:
-; CC: Facing left-   shinespark - vertical
+; CC: Facing left -  shinespark - vertical
     db $0C,$01,$00,$00                                                   ;92E87C;
 
 SamusTilesAnimation_AnimationDefinitions_E880:
@@ -12471,7 +12471,7 @@ SamusTilesAnimation_AnimationDefinitions_E880:
     db $01,$14,$00,$1B                                                   ;92E880;
 
 SamusTilesAnimation_AnimationDefinitions_E884:
-; CA: Facing left-   shinespark - horizontal
+; CA: Facing left -  shinespark - horizontal
     db $01,$15,$00,$1C                                                   ;92E884;
 
 SamusTilesAnimation_AnimationDefinitions_E888:
@@ -12479,7 +12479,7 @@ SamusTilesAnimation_AnimationDefinitions_E888:
     db $01,$14,$00,$1B                                                   ;92E888;
 
 SamusTilesAnimation_AnimationDefinitions_E88C:
-; CE: Facing left-   shinespark - diagonal
+; CE: Facing left -  shinespark - diagonal
     db $01,$15,$00,$1C                                                   ;92E88C;
 
 SamusTilesAnimation_AnimationDefinitions_E890:
@@ -12490,7 +12490,7 @@ SamusTilesAnimation_AnimationDefinitions_E890:
     db $0B,$06,$07,$01, $0B,$06,$07,$00, $00,$10,$01,$06                 ;92E8C0;
 
 SamusTilesAnimation_AnimationDefinitions_E8CC:
-; D4: Facing left-   crystal flash
+; D4: Facing left -  crystal flash
     db $0B,$03,$07,$00, $0B,$04,$07,$01, $0C,$02,$07,$02, $0B,$04,$07,$02 ;92E8CC;
     db $00,$00,$00,$00, $00,$00,$00,$00, $0C,$02,$07,$02, $0C,$03,$07,$02 ;92E8DC;
     db $0C,$04,$07,$02, $0C,$03,$07,$02, $00,$00,$00,$00, $00,$00,$00,$00 ;92E8EC;
@@ -12502,7 +12502,7 @@ SamusTilesAnimation_AnimationDefinitions_E908:
     db $00,$1D,$01,$0C, $00,$1D,$01,$1B                                  ;92E918;
 
 SamusTilesAnimation_AnimationDefinitions_E920:
-; D8: Facing left-   crystal flash ending
+; D8: Facing left -  crystal flash ending
     db $0A,$1F,$01,$06, $0B,$03,$01,$06, $0B,$04,$01,$06, $00,$11,$01,$07 ;92E920;
     db $00,$1C,$01,$0D, $00,$1C,$01,$1C                                  ;92E930;
 
@@ -12514,7 +12514,7 @@ SamusTilesAnimation_AnimationDefinitions_E938:
     db $00,$00,$00,$00, $00,$00,$00,$00, $00,$10,$01,$06                 ;92E968;
 
 SamusTilesAnimation_AnimationDefinitions_E974:
-; E9: Facing left-   Samus drained - crouching
+; E9: Facing left -  Samus drained - crouching
     db $0B,$03,$01,$06, $0B,$04,$01,$06, $00,$1C,$01,$0D, $00,$1C,$01,$0D ;92E974;
     db $00,$1C,$01,$0D, $00,$1C,$01,$0D, $00,$1C,$01,$0D, $07,$01,$01,$07 ;92E984;
     db $07,$00,$01,$1E, $07,$01,$01,$1E, $07,$02,$01,$1E, $07,$01,$01,$1E ;92E994;
@@ -12530,7 +12530,7 @@ SamusTilesAnimation_AnimationDefinitions_E9F4:
     db $00,$00,$00,$00, $00,$10,$01,$06                                  ;92EA04;
 
 SamusTilesAnimation_AnimationDefinitions_EA0C:
-; EB: Facing left-   Samus drained - standing
+; EB: Facing left -  Samus drained - standing
     db $07,$06,$01,$1E, $07,$07,$01,$1E, $07,$08,$01,$1E, $07,$07,$01,$1E ;92EA0C;
     db $00,$00,$00,$00, $00,$11,$01,$07                                  ;92EA1C;
 

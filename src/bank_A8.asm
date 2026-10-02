@@ -3330,7 +3330,7 @@ InstList_YappingMaw_Cooldown_FacingDownLeft_1:
 
 ;;; $A097: Yapping maw attack instruction list pointers ;;;
 InstListPointers_YappingMaw:
-; Indexed by [enemy $7E:8028]
+; Indexed by YappingMaw.instListTableIndex
     dw InstList_YappingMaw_Attacking_FacingUp                            ;A8A097;
     dw InstList_YappingMaw_Attacking_FacingUpRight                       ;A8A099;
     dw InstList_YappingMaw_Attacking_FacingRight                         ;A8A09B;
@@ -3459,9 +3459,7 @@ InitAI_YappingMaw:
     LDA.W Enemy.init0,X                                                  ;A8A180;
     STA.W YappingMaw.proximity,X                                         ;A8A183;
     LDA.W #regional($0040, $0030)                                        ;A8A186;
-    STA.W Enemy.var4,X                                                   ;A8A189;
-
-
+    STA.W YappingMaw.functionTimer,X                                     ;A8A189;
     LDA.W Enemy.init1,X
     BNE .facingUp
     LDA.W #InstList_YappingMaw_Attacking_FacingDown                      ;A8A1A1;
@@ -3508,7 +3506,7 @@ InitAI_YappingMaw:
     STA.B DP_Temp16                                                      ;A8A1F8;
     LDA.W Enemy.palette,X                                                ;A8A1FA;
     ORA.W Enemy.GFXOffset,X                                              ;A8A1FD;
-    STA.L ExtraEnemy8800+$E,X                                            ;A8A200;
+    STA.L YappingMaw.basePaletteVRAMIndex,X                              ;A8A200;
     STA.B DP_Temp18                                                      ;A8A204;
     JSL.L Create_Sprite_Object                                           ;A8A206;
     LDA.B DP_Temp12                                                      ;A8A20A;
@@ -4067,8 +4065,7 @@ Function_YappingMaw_Cooldown:
     JSL.L MoveSamusWithYappingMawPincers
 
   .notGrabbingSamus:
-    LDX.B EnemyIndex
-    DEC.W Enemy.var4,X                                                   ;A8A696;
+    DEC.W YappingMaw.functionTimer,X                                     ;A8A696;
     BPL .return                                                          ;A8A699;
     LDA.W PoseInputHandler                                               ;A8A69B;
     CMP.W #SamusPoseInputHandler_Demo                                    ;A8A69E;
@@ -4080,7 +4077,7 @@ Function_YappingMaw_Cooldown:
     LDA.W #$0030                                                         ;A8A6B0;
     STA.L YappingMaw.intangibilityTimer,X                                ;A8A6B3;
     LDA.W #regional($0040, $0030)                                        ;A8A6B7;
-    STA.W Enemy.var4,X                                                   ;A8A6BA;
+    STA.W YappingMaw.functionTimer,X                                     ;A8A6BA;
     LDA.W #Function_YappingMaw_Neutral                                   ;A8A6BD;
     STA.W YappingMaw.function,X                                          ;A8A6C0;
 
@@ -4245,11 +4242,11 @@ EnemyShot_YappingMaw:
     STZ.W SpriteObjects_InstListPointers,X
     LDA.W PoseInputHandler                                               ;A8A803;
     CMP.W #SamusPoseInputHandler_Demo                                    ;A8A806;
-    BEQ .notDemo                                                         ;A8A809;
+    BEQ .demo                                                            ;A8A809;
     LDA.W #SamusPoseInputHandler_Normal                                  ;A8A80B;
     STA.W PoseInputHandler                                               ;A8A80E;
 
-  .notDemo:
+  .demo:
     TYX
     STZ.W YappingMaw.grabbingSamusFlag,X                                 ;A8A814;
     PLB
@@ -4260,11 +4257,11 @@ EnemyShot_YappingMaw:
     BEQ .return                                                          ;A8A81D;
     LDA.W PoseInputHandler                                               ;A8A81F;
     CMP.W #SamusPoseInputHandler_Demo                                    ;A8A822;
-    BEQ .alsoNotDemo                                                     ;A8A825;
+    BEQ .alsoDemo                                                        ;A8A825;
     LDA.W #SamusPoseInputHandler_Normal                                  ;A8A827;
     STA.W PoseInputHandler                                               ;A8A82A;
 
-  .alsoNotDemo:
+  .alsoDemo:
     LDA.W #$0000                                                         ;A8A82D;
     STA.L YappingMaw.grabbingSamusFlag,X                                 ;A8A830;
 
@@ -5154,7 +5151,7 @@ Function_Magdollite_Init_Slave2:
     LDA.W Enemy.YPosition,X                                              ;A8B023;
     STA.L Magdollite.YSpawnPosition,X                                    ;A8B026;
     LDA.W Enemy.XPosition,X                                              ;A8B02A;
-    STA.L ExtraEnemy7800+$22,X                                           ;A8B02D;
+    STA.L YappingMaw.tempY,X                                           ;A8B02D;
     LDA.W #$0000                                                         ;A8B031;
     STA.W Magdollite.instList,X                                          ;A8B034;
     STA.L Magdollite.cooldownTimer,X                                     ;A8B037;
@@ -12994,7 +12991,7 @@ Function_KihunterWings_Falling:
     LDX.B EnemyIndex                                                     ;A8F7CF;
     LDA.L KihunterWings.fallingFunction,X                                ;A8F7D2;
     STA.B DP_Temp12                                                      ;A8F7D6;
-    JMP.W (DP_Temp12)                                                        ;A8F7D8;
+    JMP.W (DP_Temp12)                                                    ;A8F7D8;
 
 
 ;;; $F7DB: Ki-hunter wings falling function - drifting left ;;;

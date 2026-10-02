@@ -837,7 +837,7 @@ BGShakeDisplacements:
 
 
 ;;; $884D: Draw Samus, projectiles, enemies and enemy projectiles ;;;
-Draw_Samus_Projectiles_Enemies_and_Enemy_Projectiles:
+Draw_Samus_Projectiles_Enemies_and_EnemyProjectiles:
     PHB                                                                  ;A0884D;
     PHK
     PLB                                                                  ;A08852;
@@ -1111,10 +1111,11 @@ Initialise_Enemies:
     STX.W Temp_PopulationDataPointer
     LDA.L EnemyPopulations_ID,X                                          ;A08BC3;
     CMP.W #$FFFF                                                         ;A08BC7;
-    BEQ +                                                                ;A08BCA;
+    BEQ .endOfList                                                       ;A08BCA;
     JMP.W .loop                                                          ;A08BCC;
 
-+   STY.W FirstFreeEnemyIndex                                            ;A08BCF;
+  .endOfList:
+    STY.W FirstFreeEnemyIndex                                            ;A08BCF;
     LDA.L EnemyPopulations_XPosition,X                                   ;A08BDC;
     AND.W #$00FF                                                         ;A08BE0;
     STA.W NumberOfEnemiesRequiredToKill                                  ;A08BE3;

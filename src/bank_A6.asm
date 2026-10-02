@@ -3145,7 +3145,7 @@ EnemyTouch_MiniKraid:
 ;;; $9C39: Power bomb reaction / enemy shot - enemy $E0FF (fake Kraid) ;;;
 EnemyShot_PowerBombReaction_MiniKraid:
 ; Bug: the power bomb reaction should be pointing to UNUSED_PowerBombReaction_MiniKraid_A69C0B
-; When this routine is called for power bomb reaction, $A0:A6A7 is called with garbage for the projectile index (CollisionIndex)
+; When this routine is called for power bomb reaction, NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External is called with garbage for the projectile index (CollisionIndex)
     LDA.W Enemy.XPosition,X                                              ;A69C3C;
     STA.L EnemyProjectileData_SpecialDeathItemDropXOriginPosition        ;A69C3F;
     LDA.W Enemy.YPosition,X                                              ;A69C43;
@@ -9930,7 +9930,7 @@ SetRidleyTailSegmentsVariableFromList:
 ;; Parameters:
 ;;     X: List of 7 values
 ;;     Y: Tail segment 0 address
-    LDA.W #$007E                                                         ;A6D3B4;
+    LDA.W #RidleyTail.distance>>16                                       ;A6D3B4;
     STA.B DP_Temp14                                                      ;A6D3B7;
     STY.B DP_Temp12                                                      ;A6D3B9;
     LDY.W #$0000                                                         ;A6D3BB;
