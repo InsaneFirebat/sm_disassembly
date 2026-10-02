@@ -678,7 +678,7 @@ InitAI_DraygonBody:
     STA.B DP_RoomLoadIRQCmd                                              ;A586EA;
     JSL.L Spawn_BG3_Scroll_HDMA_Object                                   ;A586EC;
     LDA.W #$0001                                                         ;A586F0;
-    STA.L ExtraEnemy8800+$A                                              ;A586F3;
+    STA.L DraygonBody.turret5DestroyedFlag                               ;A586F3;
     JSL.L DisableMinimap_MarkBossRoomTilesExplored                       ;A586F7;
     RTL                                                                  ;A586FB;
 
@@ -777,7 +777,7 @@ HandleFiringWallTurret:
     TAX                                                                  ;A587BE;
     ASL                                                                  ;A587BF;
     TAY                                                                  ;A587C0;
-    LDA.L ExtraEnemy8800,X                                               ;A587C1;
+    LDA.L DraygonBody.turret1DestroyedFlag,X                             ;A587C1;
     BNE .return                                                          ;A587C5;
     LDA.W .XPosition,Y                                                   ;A587C7;
     STA.B DP_Temp12                                                      ;A587CA;
@@ -2606,13 +2606,13 @@ DraygonReaction_Common:
     STA.B DP_Temp12                                                      ;A5968C;
     JSL.L Do_Some_Math_With_Sine_Cosine_Terrible_Label_Name              ;A5968E; ($16.$18, $1A.$1C) = ([$14] * |cos([$12] * pi / 80h)|, [$14] * |sin([$12] * pi / 80h)|)
     LDA.B DP_Temp16                                                      ;A59692;
-    STA.L ExtraEnemy8000+$10                                             ;A59694;
+    STA.L DraygonBody.neverRead8010                                      ;A59694;
     LDA.B DP_Temp18                                                      ;A59698;
-    STA.L ExtraEnemy8000+$12                                             ;A5969A;
+    STA.L DraygonBody.neverRead8012                                      ;A5969A;
     LDA.B DP_Temp1A                                                      ;A5969E;
-    STA.L ExtraEnemy8000+$14                                             ;A596A0;
+    STA.L DraygonBody.neverRead8014                                      ;A596A0;
     LDA.B DP_Temp1C                                                      ;A596A4;
-    STA.L ExtraEnemy8000+$16                                             ;A596A6;
+    STA.L DraygonBody.neverRead8016                                      ;A596A6;
     RTL                                                                  ;A596AA;
 
   .notDead:
@@ -8280,7 +8280,7 @@ SporeSpawnReaction_Common:
     BNE .return                                                          ;A5EDF9;
     LDX.W EnemyIndex                                                     ;A5EDFB;
     LDA.W #$0000                                                         ;A5EDFE;
-    STA.L ExtraEnemy7800+$1C                                             ;A5EE01;
+    STA.L SporeSpawn.subangle                                            ;A5EE01;
     STZ.W Enemy.invincibilityTimer,X                                     ;A5EE05;
     STZ.W Enemy.flashTimer,X                                             ;A5EE08;
     STZ.W Enemy.AI,X                                                     ;A5EE0B;

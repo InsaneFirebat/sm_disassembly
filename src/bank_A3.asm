@@ -6895,7 +6895,7 @@ MainAI_Bang:
 BangAI_Electricity:
 ; Pointed to by parameter 1 of debug enemy population data $B4:E309
     LDX.W EnemyIndex                                                     ;A3BB2B;
-    LDA.L ExtraEnemy8000+$40,X                                           ;A3BB2E;
+    LDA.L Bang.newInstListIndex+$40,X                                    ;A3BB2E;
     CLC                                                                  ;A3BB32;
     ADC.W #$000A                                                         ;A3BB33;
     STA.L Bang.newInstListIndex,X                                        ;A3BB36;
@@ -6911,7 +6911,7 @@ BangAI_Electricity:
 BangAI_Shell:
 ; Pointed to by parameter 1 of debug enemy population data $B4:E309
     LDX.W EnemyIndex                                                     ;A3BB4A;
-    LDA.L ExtraEnemy8000-$40,X                                           ;A3BB4D;
+    LDA.L Bang.newInstListIndex-$40,X                                    ;A3BB4D;
     CLC                                                                  ;A3BB51;
     ADC.W #$0014                                                         ;A3BB52;
     STA.L Bang.newInstListIndex,X                                        ;A3BB55;
@@ -9793,7 +9793,7 @@ Function_Yard_Movement_Airborne:
     INC                                                                  ;A3D21D;
     STA.L Yard.airborneXVelocity,X                                       ;A3D21E;
     LDA.W #$0001                                                         ;A3D222;
-    STA.L ExtraEnemy8000,X                                               ;A3D225;
+    STA.L Yard.neverRead8000,X                                           ;A3D225;
     LDA.W #$0070                                                         ;A3D229;
     JSL.L QueueSound_Lib2_Max3                                           ;A3D22C;
     JMP.W .XMovementEnd                                                  ;A3D230; >_<
@@ -9833,7 +9833,7 @@ Function_Yard_Movement_Airborne:
     INC                                                                  ;A3D280;
     STA.L Yard.airborneYVelocity,X                                       ;A3D281;
     LDA.W #$0000                                                         ;A3D285;
-    STA.L ExtraEnemy8000,X                                               ;A3D288;
+    STA.L Yard.neverRead8000,X                                           ;A3D288;
     RTL                                                                  ;A3D28C;
 
   .land:
