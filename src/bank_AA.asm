@@ -7532,7 +7532,7 @@ ShotReaction_GoldenTorizo_Normal:
     TAY                                                                  ;AAD688;
     LDA.W SamusProjectile_Types,Y                                        ;AAD689;
     AND.W #$0F00                                                         ;AAD68C;
-    STA.L ExtraEnemy7800+$A,X                                            ;AAD68F;
+    STA.L Torizo.neverRead780A,X                                         ;AAD68F;
     CMP.W #$0100                                                         ;AAD693;
     BEQ ShotReaction_GoldenTorizo_Normal_Missile                         ;AAD696;
     CMP.W #$0200                                                         ;AAD698;

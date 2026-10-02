@@ -2322,24 +2322,24 @@ Function_Fune_WaitForTimer:
 Function_Namihe_WaitForSamusToGetNear:
     LDX.B EnemyIndex                                                     ;A8975C;
     LDA.W FuneNamihe.instListPointersPointer,X                           ;A8975F;
-    STA.L ExtraEnemy7800,X                                               ;A89762;
+    STA.L FuneNamihe.tempInstListPointersPointer,X                       ;A89762;
     LDA.W Enemy.init1,X
     JSL.L IsSamusWithinAPixelColumnsOfEnemy
     BEQ .notInProximity                                                  ;A89769;
-    LDA.L ExtraEnemy7800,X                                               ;A8976B;
+    LDA.L FuneNamihe.tempInstListPointersPointer,X                       ;A8976B;
     STA.W FuneNamihe.instListPointersPointer,X                           ;A8976F;
     DEC                                                                  ;A89772;
     DEC                                                                  ;A89773;
     DEC                                                                  ;A89774;
     DEC                                                                  ;A89775;
-    STA.L ExtraEnemy7800,X                                               ;A89776;
+    STA.L FuneNamihe.tempInstListPointersPointer,X                       ;A89776;
     STA.W FuneNamihe.instListPointersPointer,X                           ;A8977A;
     JSR.W SetFuneNamiheInstList                                          ;A8977D;
     LDA.W #RTS_A8978F                                                    ;A89780;
     STA.W FuneNamihe.function,X                                          ;A89783;
 
   .notInProximity:
-    LDA.L ExtraEnemy7800,X                                               ;A89786;
+    LDA.L FuneNamihe.tempInstListPointersPointer,X                       ;A89786;
     STA.W FuneNamihe.instListPointersPointer,X                           ;A8978A;
     RTS                                                                  ;A8978D;
 
@@ -5285,10 +5285,10 @@ Function_Magdollite_WaitForSamusToGetNear:
 
   .facingDirectionChosen:
     JSR.W SetMagdolliteInstList                                          ;A8B13D;
-    LDA.L ExtraEnemy7800+$88,X                                           ;A8B140;
+    LDA.L Magdollite.cooldownTimer+$80,X                                 ;A8B140;
     BPL .return                                                          ;A8B144;
     LDA.W #$0000                                                         ;A8B146;
-    STA.L ExtraEnemy7800+$88,X                                           ;A8B149;
+    STA.L Magdollite.cooldownTimer+$80,X                                 ;A8B149;
     LDA.W Enemy.init1,X                                                  ;A8B14D;
     AND.W #$00FF                                                         ;A8B150;
     JSL.L IsSamusWithinAPixelColumnsOfEnemy                              ;A8B153;
@@ -5317,7 +5317,7 @@ Function_Magdollite_WaitUntilBasePillarFormed:
     LDA.W #$0001                                                         ;A8B17E;
     STA.L Magdollite.emergeNotReadyFlag,X                                ;A8B181;
     LDA.W #$0000                                                         ;A8B185;
-    STA.L ExtraEnemy7800+$5A,X                                           ;A8B188;
+    STA.L Magdollite.notEmergedFlag+$40,X                                ;A8B188;
     LDA.W #Function_Magdollite_WaitForOtherPartsToFinish                 ;A8B18C;
     STA.W Magdollite.function,X                                          ;A8B18F;
 
@@ -6935,11 +6935,11 @@ EnemyTouch_Beetom:
     LDA.B SamusXPosition                                                 ;A8BE5E;
     SEC                                                                  ;A8BE61;
     SBC.W Enemy.XPosition,X                                              ;A8BE62;
-    STA.L ExtraEnemy7800+$C,X                                            ;A8BE65;
+    STA.L Torizo.eyeBeamExplosionsFlag,X                                 ;A8BE65;
     LDA.B SamusYPosition                                                 ;A8BE69;
     SEC                                                                  ;A8BE6C;
     SBC.W Enemy.YPosition,X                                              ;A8BE6D;
-    STA.L ExtraEnemy7800+$E,X                                            ;A8BE70;
+    STA.L Torizo.spaceJumpCounter,X                                      ;A8BE70;
 
   .attached:
     LDA.W ContactDamageIndex                                             ;A8BE74;

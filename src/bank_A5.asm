@@ -619,7 +619,7 @@ InitAI_DraygonBody:
     STA.B DP_RoomLoadIRQCmd                                              ;A586EA;
     JSL.L Spawn_BG3_Scroll_HDMA_Object                                   ;A586EC;
     LDA.W #$0001                                                         ;A586F0;
-    STA.L ExtraEnemy8800+$A                                              ;A586F3;
+    STA.L DraygonBody.turret5DestroyedFlag                               ;A586F3;
     JSL.L DisableMinimap_MarkBossRoomTilesExplored                       ;A586F7;
     RTL                                                                  ;A586FB;
 
@@ -712,7 +712,7 @@ HandleFiringWallTurret:
     TAX                                                                  ;A587BE;
     ASL                                                                  ;A587BF;
     TAY                                                                  ;A587C0;
-    LDA.L ExtraEnemy8800,X                                               ;A587C1;
+    LDA.L DraygonBody.turret1DestroyedFlag,X                             ;A587C1;
     BNE .return                                                          ;A587C5;
     LDA.W .XPosition,Y                                                   ;A587C7;
     STA.B DP_Temp12                                                      ;A587CA;
@@ -7589,7 +7589,7 @@ SporeSpawnReaction_Common:
     BNE PowerBombReaction_SporeSpawn                                     ;A5EDF9;
     LDX.B EnemyIndex                                                     ;A5EDFB;
     LDA.W #$0000                                                         ;A5EDFE;
-    STA.L ExtraEnemy7800+$1C                                             ;A5EE01;
+    STA.L SporeSpawn.subangle                                            ;A5EE01;
     STZ.W Enemy.invincibilityTimer,X                                     ;A5EE05;
     STZ.W Enemy.flashTimer,X                                             ;A5EE08;
     STZ.W Enemy.AI,X                                                     ;A5EE0B;

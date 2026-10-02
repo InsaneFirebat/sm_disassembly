@@ -5460,7 +5460,7 @@ SpawnMotherBrainsRoomRinka:
     TAY                                                                  ;A2B6B0;
     STX.B DP_Temp16
     TAX                                                                  ;A2B6B2;
-    LDA.L ExtraEnemy8800-2,X                                             ;A2B6B3;
+    LDA.L Rinka.tempSpawnPointAvailabilityTableIndex,X                   ;A2B6B3;
     LSR                                                                  ;A2B6B7;
     LDX.B DP_Temp16
     BCS +                                                                ;A2B6B9;
@@ -5469,7 +5469,7 @@ SpawnMotherBrainsRoomRinka:
     STX.B DP_Temp16
     TAX                                                                  ;A2B6C0;
     LDA.W #$FFFF                                                         ;A2B6C1;
-    STA.L ExtraEnemy8800-2,X                                             ;A2B6C4;
+    STA.L Rinka.tempSpawnPointAvailabilityTableIndex,X                   ;A2B6C4;
     LDX.B DP_Temp16
     RTS                                                                  ;A2B6C9;
 
@@ -5484,7 +5484,7 @@ SpawnMotherBrainsRoomRinka:
     BCS .next                                                            ;A2B6DB;
     STX.B DP_Temp16
     LDX.W MotherBrainsRoomRinkaSpawnData_spawnPointAvailabilityIndex,Y   ;A2B6DE;
-    LDA.L ExtraEnemy8800-2,X                                             ;A2B6E1;
+    LDA.L Rinka.tempSpawnPointAvailabilityTableIndex,X                   ;A2B6E1;
     LSR                                                                  ;A2B6E5;
     LDX.B DP_Temp16
     BCC .found                                                           ;A2B6E7;
@@ -5496,7 +5496,7 @@ SpawnMotherBrainsRoomRinka:
     TAY
     CPY.W #$0042                                                         ;A2B6EF;
     BMI .loopOnScreen                                                    ;A2B6F2;
-    JMP.W .notFound                                                      ;A2B6F4;
+    BRA .notFound
 
   .found:
     LDA.B DP_Temp12                                                      ;A2B6F8;
@@ -5508,7 +5508,7 @@ SpawnMotherBrainsRoomRinka:
     STX.B DP_Temp16
     LDX.W MotherBrainsRoomRinkaSpawnData_spawnPointAvailabilityIndex,Y   ;A2B70B;
     LDA.W #$FFFF                                                         ;A2B70E;
-    STA.L ExtraEnemy8800-2,X                                             ;A2B711;
+    STA.L Rinka.tempSpawnPointAvailabilityTableIndex,X                   ;A2B711;
     TXA                                                                  ;A2B715;
     LDX.B DP_Temp16
     STA.W Rinka.spawnPointAvailabilityTableIndex,X                       ;A2B717;
@@ -5520,7 +5520,7 @@ SpawnMotherBrainsRoomRinka:
   .loopAny:
     STX.B DP_Temp16
     LDX.W MotherBrainsRoomRinkaSpawnData_spawnPointAvailabilityIndex,Y   ;A2B71F;
-    LDA.L ExtraEnemy8800-2,X                                             ;A2B722;
+    LDA.L Rinka.tempSpawnPointAvailabilityTableIndex,X                   ;A2B722;
     LDX.B DP_Temp16
     LSR                                                                  ;A2B727;
     BCC .spawn                                                           ;A2B728;
@@ -5544,8 +5544,8 @@ SpawnMotherBrainsRoomRinka:
     STX.B DP_Temp16
     TAX                                                                  ;A2B751;
     LDA.W #$FFFF                                                         ;A2B752;
-    STA.L ExtraEnemy8800-2,X                                             ;A2B755;
-    STX.B DP_Temp16
+    STA.L Rinka.tempSpawnPointAvailabilityTableIndex,X                   ;A2B755;
+    LDX.B DP_Temp16
     RTS                                                                  ;A2B75A;
 
 
@@ -5726,7 +5726,7 @@ MarkRinkaSpawnPointAvailable:
     BEQ .return                                                          ;A2B8C3;
     TAX                                                                  ;A2B8C6;
     LDA.W #$0000                                                         ;A2B8C7;
-    STA.L ExtraEnemy8800-2,X                                             ;A2B8CA;
+    STA.L Rinka.tempSpawnPointAvailabilityTableIndex,X                   ;A2B8CA;
     LDX.B EnemyIndex
     STA.W Rinka.spawnPointAvailabilityTableIndex,X                       ;A2B8CF;
 
@@ -8119,7 +8119,7 @@ InitAI_Oum:
     STA.L Oum.instListIndex,X                                            ;A2CCE4;
     STA.L Oum.animationFinishedFlag,X                                    ;A2CCE8;
     STA.L Oum.attackAllowingRotationFlag,X                               ;A2CCEC;
-    STA.L ExtraEnemy7800+$14,X                                           ;A2CCF0; >.<
+    STA.L Oum.neverRead7814,X                                            ;A2CCF0; >.<
     LDA.W #$0003                                                         ;A2CCF4;
     STA.W Oum.bounceCounter,X                                            ;A2CCF7;
     LDA.W #$0080                                                         ;A2CCFA;
@@ -11623,11 +11623,11 @@ InitializeHorizontalShutter:
     LDA.W #Function_HorizontalShutter_Initial                            ;A2F1C2;
     STA.W ShutterHorizShootable.function,X                               ;A2F1C5;
     LDA.B SamusXPosition                                                 ;A2F1C8;
-    STA.L ExtraEnemy7800+$2A,X                                           ;A2F1CB;
+    STA.L Shutters.neverRead782A,X                                       ;A2F1CB;
     LDA.W #$0000                                                         ;A2F1CF;
     STA.W Enemy.properties2,X                                            ;A2F1D2;
     STA.L Shutters.movingSamusFlag,X                                     ;A2F1D5;
-    STA.L ExtraEnemy7800+$16,X                                           ;A2F1D9;
+    STA.L Shutters.neverRead7816,X                                       ;A2F1D9;
     LDA.W #InstList_ShutterHorizontal
     STA.W Enemy.instList,X
     RTL
@@ -11638,28 +11638,25 @@ MainAI_ShutterHorizShootable:
     JSR.W (ShutterHorizShootable.function,X)                             ;A2F1E1;
     LDA.W ShutterHorizShootable.function,X                               ;A2F1E4;
     CMP.W #Function_HorizontalShutter_MovingLeft                         ;A2F1E7;
-    BEQ +
+    BEQ .return
 
   .notMovingLeft:
     LDA.W ShutterHorizShootable.function,X                               ;A2F1EE;
     CMP.W #Function_HorizontalShutter_MovingRight                        ;A2F1F1;
-    BEQ +                                                                ;A2F1F4;
+    BEQ .return                                                          ;A2F1F4;
     LDA.W EnemyIndexSamusCollidesLeft                                    ;A2F1F6;
     AND.W EnemyIndexSamusCollidesRight                                   ;A2F1F9;
     AND.W EnemyIndexSamusCollidesUp                                      ;A2F1FC;
     AND.W EnemyIndexSamusCollidesDown                                    ;A2F1FF;
     CMP.W #$FFFF                                                         ;A2F202;
-    BEQ +                                                                ;A2F205;
+    BEQ .return                                                          ;A2F205;
     CMP.B EnemyIndex                                                     ;A2F207;
-    BNE +                                                                ;A2F20A;
+    BNE .return                                                          ;A2F20A;
     LDA.W ContactDamageIndex                                             ;A2F20C;
-    BEQ +                                                                ;A2F20F;
+    BEQ .return                                                          ;A2F20F;
     JSL.L PowerBombReaction_CommonReaction_HorizontalShutter             ;A2F211;
 
-+   LDA.B SamusXPosition                                                 ;A2F215;
-    STA.L ExtraEnemy7800+$2A,X                                           ;A2F218;
-    LDA.W SamusXSubPosition                                              ;A2F21C;
-    STA.L ExtraEnemy7800+$2C,X                                           ;A2F21F;
+  .return:
     RTL                                                                  ;A2F223;
 
 

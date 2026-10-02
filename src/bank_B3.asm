@@ -2887,7 +2887,7 @@ SetupBotwoonMovingAround:
     LDA.W #Function_Botwoon_Head_MovingAround                            ;B39902;
     STA.W Botwoon.headFunction,X                                         ;B39905;
     LDA.W #$0000                                                         ;B39908;
-    STA.L ExtraEnemy8800+$16,X                                           ;B3990B;
+    STA.L Botwoon.neverRead8816,X                                        ;B3990B;
     JSR.W ChooseBotwoonMovementPath                                      ;B3990F;
     RTS                                                                  ;B39912;
 
@@ -3011,7 +3011,7 @@ Function_Botwoon_Spitting:
 
   .timerNotExpired:
     LDA.W #$0000                                                         ;B399F7;
-    STA.L ExtraEnemy8000+$1C,X                                           ;B399FA;
+    STA.L Botwoon.neverRead801C,X                                        ;B399FA;
     JSR.W (Botwoon.headFunction,X)                                       ;B399FE;
     RTS                                                                  ;B39A01;
 
@@ -3036,7 +3036,7 @@ Function_Botwoon_Spitting:
 
   .deathFlagSet:
     LDA.W #$0000                                                         ;B39A3B;
-    STA.L ExtraEnemy8800+$16,X                                           ;B39A3E;
+    STA.L Botwoon.neverRead8816,X                                        ;B39A3E;
 
   .merge:
     JSR.W ChooseBotwoonMovementPath                                      ;B39A42;
@@ -3223,7 +3223,7 @@ Function_Botwoon_Movement_DirectlyTowardTargetHole:
     LDX.B EnemyIndex                                                     ;B39BB7;
     JSR.W CalculateXYOffsetsToTargetHole                                 ;B39BBA;
     JSL.L CalculateAngleOf_12_14_Offset                                  ;B39BBD;
-    STA.L ExtraEnemy8000+$32,X                                           ;B39BC1;
+    STA.L Botwoon.neverRead8032,X                                        ;B39BC1;
     SEC                                                                  ;B39BC5;
     SBC.W #$0040                                                         ;B39BC6;
     EOR.W #$FFFF                                                         ;B39BC9;
@@ -3740,9 +3740,9 @@ Botwoon_vs_Hole_CollisionDetection:
     STA.L Botwoon.headHiddenFlag,X                                       ;B39FD4;
     LDA.W Botwoon.positionHistoryIndex,X                                 ;B39FD8;
     STA.L Botwoon.targetPositionHistoryIndex,X                           ;B39FDB;
-    LDA.L ExtraEnemy8000+$C,X                                            ;B39FDF;
+    LDA.L Botwoon.neverRead800C,X                                        ;B39FDF;
     DEC                                                                  ;B39FE3;
-    STA.L ExtraEnemy8000+$C,X                                            ;B39FE4;
+    STA.L Botwoon.neverRead800C,X                                        ;B39FE4;
     BRA .return                                                          ;B39FE8;
 
   .notInHole:
@@ -5081,7 +5081,7 @@ Function_Botwoon_Movement_MoveAccordingToMovementData:
 
   .end:
     LDA.W #$0000                                                         ;B3E30E;
-    STA.L ExtraEnemy8800+2,X                                             ;B3E311;
+    STA.L Botwoon.neverRead8802,X                                        ;B3E311;
     LDA.W #$0001                                                         ;B3E315;
     STA.L Botwoon.goingThroughHoleFlag,X                                 ;B3E318;
     RTS                                                                  ;B3E31C;

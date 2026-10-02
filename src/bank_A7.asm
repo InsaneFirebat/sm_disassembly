@@ -2713,7 +2713,7 @@ InitAI_Kraid:
     DEX                                                                  ;A7A99C;
     BPL .loopBG2Tilemap                                                  ;A7A99D;
     LDA.W #$0000                                                         ;A7A99F;
-    STA.L ExtraEnemy7800+4                                               ;A7A9A2;
+    STA.L Kraid.neverRead7804                                            ;A7A9A2;
     LDX.B VRAMWriteStack                                                 ;A7A9A6;
     LDA.W #$0200                                                         ;A7A9A9;
     STA.B VRAMWrite.size,X                                               ;A7A9AC;
@@ -2785,7 +2785,7 @@ InitAI_Kraid:
     ADC.L Kraid.maxHealth_1_4                                            ;A7AA3F;
     STA.L Kraid.maxHealth_4_4                                            ;A7AA43;
     LDA.W #$0000                                                         ;A7AA47;
-    STA.L ExtraEnemy7800+$3E                                             ;A7AA4A;
+    STA.L Kraid.neverRead783E                                            ;A7AA4A;
     LDA.W #$00B0                                                         ;A7AA4E;
     STA.W Enemy.XPosition                                                ;A7AA51;
     LDA.W #$0250                                                         ;A7AA54;
@@ -2987,7 +2987,7 @@ InitAI_KraidFoot:
     LDA.W #RTL_A7BA2D                                                    ;A7AC0F;
     STA.W Enemy[5].var0                                                  ;A7AC12;
     LDA.W #$0000                                                         ;A7AC15;
-    STA.L ExtraEnemy7800+$140                                            ;A7AC18;
+    STA.L Kraid.nextFunction+$140                                        ;A7AC18;
     RTL                                                                  ;A7AC1C;
 
   .dead:
@@ -3288,8 +3288,8 @@ Function_Kraid_KraidGetsBig_FadeInRoomBackground:
     LDA.W KraidLint_InitialFunctionTimers_bottom                         ;A7AE44;
     JSR.W EnableKraidLints                                               ;A7AE47;
     LDA.W #Function_KraidNail_Initialize                                 ;A7AE4A;
-    STA.L ExtraEnemy7800+$180                                            ;A7AE4D;
-    STA.L ExtraEnemy7800+$1C0                                            ;A7AE51;
+    STA.L Kraid.nextFunction+$180                                        ;A7AE4D;
+    STA.L Kraid.nextFunction+$1C0                                        ;A7AE51;
     LDA.W #Function_Kraid_HandleFunctionTimer                            ;A7AE55;
     STA.W Enemy[6].var0                                                  ;A7AE58;
     STA.W Enemy[7].var0                                                  ;A7AE5B;
@@ -3384,7 +3384,7 @@ Function_Kraid_KraidShot_KraidsMouthIsOpen:
     LDA.W #Function_Kraid_KraidShot_InitializeEyeGlowing                 ;A7AF1A;
     STA.L Kraid.nextFunction                                             ;A7AF1D;
     LDA.W #$0002                                                         ;A7AF21;
-    STA.L ExtraEnemy7800+2                                               ;A7AF24;
+    STA.L Kraid.neverRead7802                                            ;A7AF24;
 
   .return:
     RTL                                                                  ;A7AF28;
@@ -4653,9 +4653,9 @@ RTL_A7BA2D:
 
 ;;; $BA2E: Kraid foot function - second phase - thinking ;;;
 Function_KraidFoot_Phase2_Thinking:
-    LDA.L ExtraEnemy7800+$140                                            ;A7BA2E;
+    LDA.L Kraid.nextFunction+$140                                        ;A7BA2E;
     DEC                                                                  ;A7BA32;
-    STA.L ExtraEnemy7800+$140                                            ;A7BA33;
+    STA.L Kraid.nextFunction+$140                                        ;A7BA33;
     BNE .return                                                          ;A7BA37;
     LDX.W #$0000                                                         ;A7BA39;
 
@@ -4734,7 +4734,7 @@ Function_KraidFoot_Phase2_Thinking:
 SetKraidWalkingBackwards:
     STA.L Kraid.targetXPosition                                          ;A7BB0D;
     TYA                                                                  ;A7BB11;
-    STA.L ExtraEnemy7800+$140                                            ;A7BB12;
+    STA.L Kraid.nextFunction+$140                                        ;A7BB12;
     LDA.W #Function_KraidFoot_Phase2_WalkingBackward                     ;A7BB16;
     STA.W Enemy[5].var0                                                  ;A7BB19;
     LDA.W #$0001                                                         ;A7BB1C;
@@ -4748,7 +4748,7 @@ SetKraidWalkingBackwards:
 SetKraidWalkingForwards:
     STA.L Kraid.targetXPosition                                          ;A7BB29;
     TYA                                                                  ;A7BB2D;
-    STA.L ExtraEnemy7800+$140                                            ;A7BB2E;
+    STA.L Kraid.nextFunction+$140                                        ;A7BB2E;
     LDA.W #Function_KraidFoot_Phase2_WalkingForward                      ;A7BB32;
     STA.W Enemy[5].var0                                                  ;A7BB35;
     LDA.W #$0001                                                         ;A7BB38;
@@ -4798,7 +4798,7 @@ Function_KraidFoot_Phase2Setup_WalkToStartingPoint:
     LDA.W #$00B4                                                         ;A7BB8A;
     STA.W Enemy[5].var5                                                  ;A7BB8D;
     LDA.W #Function_KraidFoot_Phase2Setup_InitializePhase2               ;A7BB90;
-    STA.L ExtraEnemy7800+$140                                            ;A7BB93;
+    STA.L Kraid.nextFunction+$140                                        ;A7BB93;
     LDA.W #$0001                                                         ;A7BB97;
     STA.W Enemy[5].instTimer                                             ;A7BB9A;
     LDA.W #InstList_KraidFoot_KraidIsBig_Neutral                         ;A7BB9D;
@@ -4893,7 +4893,7 @@ Function_KraidMainLoop_AttackingWithMouthOpen:
     LDA.W #Function_Kraid_KraidShot_InitializeEyeGlowing                 ;A7BC4E;
     STA.L Kraid.nextFunction                                             ;A7BC51;
     LDA.W #$0002                                                         ;A7BC55;
-    STA.L ExtraEnemy7800+2                                               ;A7BC58;
+    STA.L Kraid.neverRead7802                                            ;A7BC58;
     RTL                                                                  ;A7BC5C;
 
   .done:
@@ -5051,10 +5051,10 @@ Function_KraidNail_Initialize:
     RTL                                                                  ;A7BDE9;
 
   .horizontal:
-    LDA.L ExtraEnemy7800+$18E                                            ;A7BDEA;
+    LDA.L KraidNail.orientation+$180                                     ;A7BDEA;
     CPX.W #$01C0                                                         ;A7BDEE;
     BEQ .notKraidNailBad                                                 ;A7BDF1;
-    LDA.L ExtraEnemy7800+$1CE                                            ;A7BDF3;
+    LDA.L KraidNail.orientation+$1C0                                     ;A7BDF3;
 
   .notKraidNailBad:
     CMP.W #$0001                                                         ;A7BDF7;
@@ -5246,7 +5246,7 @@ Function_KraidFoot_Phase1_LungeForward:
 
   .done:
     LDA.W #Function_KraidFoot_Phase1_RetreatFromLunge                    ;A7BF8B;
-    STA.L ExtraEnemy7800+$140                                            ;A7BF8E;
+    STA.L Kraid.nextFunction+$140                                        ;A7BF8E;
     LDA.W #Function_KraidFoot_StartRetreat                               ;A7BF92;
     STA.W Enemy[5].var0                                                  ;A7BF95;
     LDA.W #$0001                                                         ;A7BF98;
@@ -5293,7 +5293,7 @@ Function_KraidFoot_Phase1_RetreatFromLunge:
     LDA.W #$012C                                                         ;A7BFF7;
     STA.W Enemy[5].var5                                                  ;A7BFFA;
     LDA.W #Function_KraidFoot_Phase1_PrepareToLungeForward               ;A7BFFD;
-    STA.L ExtraEnemy7800+$140                                            ;A7C000;
+    STA.L Kraid.nextFunction+$140                                        ;A7C000;
 
   .return:
     RTL                                                                  ;A7C004;
@@ -6328,7 +6328,7 @@ Function_Kraid_RaiseThruFloor_RaiseKraid:
     LDA.W #$012C                                                         ;A7C972;
     STA.W Enemy[5].var5                                                  ;A7C975;
     LDA.W #Function_KraidFoot_Phase1_PrepareToLungeForward               ;A7C978;
-    STA.L ExtraEnemy7800+$140                                            ;A7C97B;
+    STA.L Kraid.nextFunction+$140                                        ;A7C97B;
     LDA.W #InstList_Kraid_Roar_1                                         ;A7C97F;
     STA.W Kraid.instListPointer                                          ;A7C982;
     JSR.W SetupKraidMainLoop_Thinking                                    ;A7C985;
