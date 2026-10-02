@@ -2037,15 +2037,6 @@ skip $7DE84C
   .bounceSpeedCalculatedFlag: skip 2 ; $7E780A
 endstruct
 
-struct Stoke $0FA8
-  .rightSubVelocity: skip 2 ; $0FA8
-  .rightVelocity: skip 2 ; $0FAA
-  .leftSubVelocity: skip 2 ; $0FAC
-  .leftVelocity: skip 2 ; $0FAE
-  .direction: skip 2 ; $0FB0
-  .function: skip 2 ; $0FB2
-endstruct
-
 struct MamaTurtle $0FA8
   .function: skip 2 ; $0FA8
 skip 6
@@ -2057,8 +2048,7 @@ skip $7DE84C
   .XAcceleration: skip 2 ; $7E7804
   .XSubVelocity: skip 2 ; $7E7806
   .YVelocity: skip 2 ; $7E7808
-skip 2
-  .neverRead780C: skip 2 ; $7E780C
+skip 4
   .YSubVelocity: skip 2 ; $7E780E
 endstruct
 
@@ -2224,8 +2214,7 @@ skip $7DE84C
   .previousXPosition: skip 2 ; $7E780C
 skip 2
   .previousYPosition: skip 2 ; $7E7810
-skip 2
-  .neverRead7814: skip 2 ; $7E7814
+skip 4
   .stopFlag: skip 2 ; $7E7816
 endstruct
 
@@ -2302,16 +2291,13 @@ skip $7DE84C
   .movedUpRestTime: skip 2 ; $7E7810
   .movedDownRestTime: skip 2 ; $7E7812
   .movingSamusFlag: skip 2 ; $7E7814
-  .neverRead7816: skip 2 ; $7E7816
+skip 2 ; $7E7816
   .shotActivatedFlag: skip 2 ; $7E7818
 skip 2
   .previousYPosition: skip 2 ; $7E781C
   .minimumYPosition: skip 2 ; $7E781E
   .maximumYPosition: skip 2 ; $7E7820
-skip 8
-  .neverRead782A: skip 2 ; $7E782A
-  .neverRead782C: skip 2 ; $7E782C
-skip $7D2
+skip $7DE
   .reactionDirection: skip 2 ; $7E8000
 endstruct
 
@@ -2496,30 +2482,6 @@ skip $7DE84A
   .XSpeedTableIndex: skip 2 ; $7E7800
 endstruct
 
-struct Bang $0FAA
-  .idlePaletteIndex: skip 2 ; $0FAA
-skip 4
-  .damage: skip 2 ; $0FB0
-  .movementFunction: skip 2 ; $0FB2
-skip $7DE84C
-  .movementDelayTimer: skip 2 ; $7E7800
-  .angle: skip 2 ; $7E7802
-  .angleToSamus: skip 2 ; $7E7804
-skip 8
-  .movingLeftFlag: skip 2 ; $7E780E
-  .movingUpFlag: skip 2 ; $7E7810
-  .acceleration: skip 2 ; $7E7812
-  .speed: skip 2 ; $7E7814
-  .maxSpeed: skip 2 ; $7E7816
-  .accelerationIntervalTimer: skip 2 ; $7E7818
-  .accelerationIntervalTimerResetValue: skip 2 ; $7E781A
-  .decelerationIntervalTimerResetValue: skip 2 ; $7E781C
-skip $7E2
-  .newInstListIndex: skip 2 ; $7E8000
-  .instListIndex: skip 2 ; $7E8002
-  .finishedGrowingFlag: skip 2 ; $7E8004
-endstruct
-
 struct Skree $0FA8
   .burrowTimer: skip 2 ; $0FA8
   .function: skip 2 ; $0FAA
@@ -2547,12 +2509,6 @@ skip $7DE84A
   .idleCrawlingSpeedTableIndex: skip 2 ; $7E780C
   .direction: skip 2 ; $7E780E
   .behavior: skip 2 ; $7E7810
-skip $7EE
-  .neverRead8000: skip 2 ; $7E8000
-endstruct
-
-struct Reflect $0FB6
-  .reflectionAxis: skip 2 ; $0FB6
 endstruct
 
 struct Metroid $0FA8
@@ -2586,10 +2542,7 @@ skip $3E
   .timer102E: skip 2 ; $102E
 skip $3E
   .rumblingYOffsetDelta: skip 2 ; $106E
-skip $7DE790
-  .neverRead7800: skip 2 ; $7E7800
-  .neverRead7802: skip 2 ; $7E7802
-skip $3A
+skip $7DE7CE
   .meltingHDMAObjectIndex: skip 2 ; $7E783E
 skip $7C0
   .acidDamageSFXTimer: skip 2 ; $7E8000
@@ -2626,12 +2579,7 @@ skip 2
   .swoopYAcceleration: skip 2 ; $7E781E
 skip $7E0
   .facingDirection: skip 2 ; $7E8000
-skip 14
-  .neverRead8010: skip 2 ; $7E8010
-  .neverRead8012: skip 2 ; $7E8012
-  .neverRead8014: skip 2 ; $7E8014
-  .neverRead8016: skip 2 ; $7E8016
-skip $7E8
+skip $7FE
   .turret1DestroyedFlag: skip 2 ; $7E8800
 skip 4
   .angle skip 2 ; $7E8806
@@ -2746,9 +2694,7 @@ skip 6
   .projectile2ExplosionReason: skip 2 ; $7E7814
   .projectile3ExplosionReason: skip 2 ; $7E7816
   .projectile4ExplosionReason: skip 2 ; $7E7818
-  .neverRead781A: skip 2 ; $7E781A
-  .neverRead781C: skip 2 ; $7E781C
-  .neverRead781E: skip 2 ; $7E781E
+skip 6 ; $7E781A..1F
   .spriteObjectIndex0: skip 2 ; $7E7820
   .spriteObjectIndex1: skip 2 ; $7E7822
   .spriteObjectIndex2: skip 2 ; $7E7824
@@ -2758,11 +2704,7 @@ skip 8
   .spriteObject1ExplosionReason: skip 2 ; $7E7832
   .spriteObject2ExplosionReason: skip 2 ; $7E7834
   .spriteObject3ExplosionReason: skip 2 ; $7E7836
-  .neverRead7838: skip 2 ; $7E7838
-  .neverRead783A: skip 2 ; $7E783A
-  .neverRead783C: skip 2 ; $7E783C
-  .neverRead783E: skip 2 ; $7E783E
-skip $7C0
+skip $7C8
   .subAngle: skip 2 ; $7E8000
   .angle: skip 2 ; $7E8002
 skip 2
@@ -2985,8 +2927,7 @@ skip 2
   .ceilingBreakIndex: skip 2 ; $0FB6
 skip $7DE848
   .nextFunction: skip 2 ; $7E7800
-  .neverRead7802: skip 2 ; $7E7802
-  .neverRead7804: skip 2 ; $7E7804
+skip 4 ; $7E7802..05
   .thinkingTimer: skip 2 ; $7E7806
   .minimumSamusEjectionYPosition: skip 2 ; $7E7808
   .mouthReopenFlags: skip 1 ; $7E780A
@@ -3008,8 +2949,6 @@ skip 2
 skip 2
   .hurtFrame: skip 2 ; $7E782A
   .hurtFrameTimer: skip 2 ; $7E782C
-skip $10
-  .neverRead783E: skip 2 ; $7E783E
 endstruct
 
 struct KraidPart $0FAA
@@ -3654,7 +3593,7 @@ skip $7DE848
 skip 2
   .turnAroundTimer: skip 2 ; $7E7806
   .animationLockFlag: skip 2 ; $7E7808
-  .neverRead780A: skip 2 ; $7E780A
+skip 2 ; $7E780A
   .eyeBeamExplosionsFlag: skip 2 ; $7E780C
   .spaceJumpCounter: skip 2 ; $7E780E
 skip 2
@@ -3716,8 +3655,7 @@ skip $7DE84C
   .rightVelocity: skip 2 ; $7E7802
   .leftSubVelocity: skip 2 ; $7E7804
   .leftVelocity: skip 2 ; $7E7806
-  .neverRead7808: skip 2 ; $7E7808
-skip 2
+skip 4
   .dipDisableFlag: skip 2 ; $7E780C
   .spawnXPosition: skip 2 ; $7E780E
   .spawnYPosition: skip 2 ; $7E7810
@@ -3743,11 +3681,9 @@ skip $7DE
   .deathCounter: skip 2 ; $7E8006
   .largeWallExplosionTimer: skip 2 ; $7E8008
   .wallSmokeTimer: skip 2 ; $7E800A
-  .neverRead800C: skip 2 ; $7E800C
-skip 2
+skip 4 ; $7E800C..0F
   .fallingYSpeedTableIndex: skip 2 ; $7E8010
-skip 10
-  .neverRead801C: skip 2 ; $7E801C
+skip 12
   .deathFlag: skip 2 ; $7E801E
   .bodyDeathFlag: skip 2 ; $7E8020
 skip 4
@@ -3757,7 +3693,7 @@ skip 4
   .targetPositionHistoryIndex: skip 2 ; $7E802C
   .targetHoleIndex: skip 2 ; $7E802E
   .speed: skip 2 ; $7E8030
-  .neverRead8032: skip 2 ; $7E8032
+skip 2 ; $7E8032
   .targetHoleAngle: skip 2 ; $7E8034
   .instList: skip 2 ; $7E8036
   .goingThroughHoleFlag: skip 2 ; $7E8038
@@ -3766,12 +3702,11 @@ skip 4
   .speedTableIndex: skip 2 ; $7E803E
 skip $7C0
   .movementTableIndex: skip 2 ; $7E8800
-  .neverRead8802: skip 2 ; $7E8802
+skip 2 ; $7E8802
   .movementDataPointer: skip 2 ; $7E8804
 skip 2
   .movementDirection: skip 2 ; $7E8808
-skip 12
-  .neverRead8816: skip 2 ; $7E8816
+skip 14
   .previousHealth: skip 2 ; $7E8818
 skip 2
   .paletteDataOffset: skip 2 ; $7E881C
@@ -3825,9 +3760,7 @@ skip 4
   .rightPostXPosition: skip 2 ; $0FB2
 skip $7DE84C
   .speed: skip 2 ; $7E7800
-skip 4
-  .neverRead7806: skip 2 ; $7E7806
-skip 8
+skip 14
   .spawnYPosition: skip 2 ; $7E7810
 endstruct
 

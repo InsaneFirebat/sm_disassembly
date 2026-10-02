@@ -1718,38 +1718,25 @@ HandleCrocomiresBridge:
 
   .collapseBridge:
     JSR.W CollapseCrocomiresBridge                                       ;A48E41;
+    LDX.B EnemyIndex
     LDA.W #$0001                                                         ;A48E44;
     STA.L Crocomire.acidDamageSFXTimer                                   ;A48E47;
-    LDA.W #$0001                                                         ;A48E4B;
     STA.L CrocomireDeath_AcidDamageSmokeTimer                            ;A48E4E;
-    LDX.B EnemyIndex                                                     ;A48E52;
-    INC.W Crocomire.deathSequenceIndex,X                                 ;A48E55;
-    INC.W Crocomire.deathSequenceIndex,X                                 ;A48E58;
-    LDA.W #$0002                                                         ;A48E5B;
-    STA.L Crocomire.neverRead7800                                        ;A48E5E;
-    STA.L Crocomire.neverRead7800+$40                                    ;A48E62;
-    STA.L Crocomire.neverRead7800+$80                                    ;A48E66;
-    STA.L Crocomire.neverRead7800+$C0                                    ;A48E6A;
-    STA.L Crocomire.neverRead7800+$100                                   ;A48E6E;
-    STA.L Crocomire.neverRead7800+$140                                   ;A48E72;
-    LDA.W #$0000                                                         ;A48E76;
-    STA.L Crocomire.neverRead7802                                        ;A48E79;
-    STA.L Crocomire.neverRead7802+$40                                    ;A48E7D;
-    STA.L Crocomire.neverRead7802+$80                                    ;A48E81;
-    STA.L Crocomire.neverRead7802+$C0                                    ;A48E85;
-    STA.L Crocomire.neverRead7802+$100                                   ;A48E89;
-    STA.L Crocomire.neverRead7802+$140                                   ;A48E8D;
+    STA.W Enemy.instTimer,X
+    DEC
+    STA.L CrocomireDeath_CrumblingBridgeIndex
+    LDA.W Crocomire.deathSequenceIndex,X
+    INC
+    INC
+    STA.W Crocomire.deathSequenceIndex,X
     LDA.W #$003B                                                         ;A48E91;
     JSL.L QueueSound_Lib2_Max6                                           ;A48E94;
-    LDA.W #$0000                                                         ;A48E98;
-    STA.L CrocomireDeath_CrumblingBridgeIndex                            ;A48E9B;
     JSL.L Spawn_Hardcoded_PLM                                            ;A48E9F;
     db $4E,$03                                                           ;A48EA3;
     dw PLMEntries_createCrocomireInvisibleWall                           ;A48EA5;
     LDA.W #InstList_CrocomireTongue_BridgeCollapsed                      ;A48EA7;
     STA.W Enemy.instList,X                                               ;A48EAA;
     LDA.W #$0001                                                         ;A48EAD;
-    STA.W Enemy.instTimer,X                                              ;A48EB0;
     LDA.W Enemy.properties,X                                             ;A48EB3;
     ORA.W #$0400                                                         ;A48EB6;
     STA.W Enemy.properties,X                                             ;A48EB9;

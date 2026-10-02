@@ -5650,7 +5650,7 @@ InstList_PirateNinja_DivekickLeft_Jump_0:
     dw Instruction_PirateWall_FunctionInY                                ;B2F27C;
     dw RTS_B2804B                                                        ;B2F27E;
     dw $0008*!FPS,ExtendedSpritemaps_PirateNinja_42                      ;B2F280;
-    dw Instruction_PirateNinja_SetLeftDivekickJumpInitialYSpeed          ;B2F284;
+    dw Instruction_PirateNinja_SetDivekickJumpInitialYSpeed              ;B2F284;
     dw Instruction_PirateWall_FunctionInY                                ;B2F286;
     dw Instruction_PirateNinja_DivekickLeft_Jump                         ;B2F288;
 
@@ -5842,7 +5842,7 @@ InstList_PirateNinja_DivekickRight_Jump_0:
     dw Instruction_PirateWall_FunctionInY                                ;B2F46E;
     dw RTS_B2804B                                                        ;B2F470;
     dw $0008*!FPS,ExtendedSpritemaps_PirateNinja_43                      ;B2F472;
-    dw Instruction_PirateNinja_SetRightDivekickJumpInitialYSpeed         ;B2F476;
+    dw Instruction_PirateNinja_SetDivekickJumpInitialYSpeed              ;B2F476;
     dw Instruction_PirateWall_FunctionInY                                ;B2F478;
     dw Instruction_PirateNinja_DivekickRight_Jump                        ;B2F47A;
 
@@ -6530,20 +6530,10 @@ PirateNinja_DivekickTrigger:
 
 
 ;;; $F969: Instruction - set left divekick jump initial Y speed ;;;
-Instruction_PirateNinja_SetLeftDivekickJumpInitialYSpeed:
-    PHX                                                                  ;B2F969;
-    PHY                                                                  ;B2F96A;
+;;; $FA3D: Instruction - set right divekick jump initial Y speed ;;;
+Instruction_PirateNinja_SetDivekickJumpInitialYSpeed:
     LDA.W #$0600                                                         ;B2F96B;
     STA.L PirateNinja.speed,X                                            ;B2F96E;
-    LDA.W PirateNinja.rightPostXPosition,X                               ;B2F972;
-    SEC                                                                  ;B2F975;
-    SBC.W PirateNinja.postsMidpointXPosition,X                           ;B2F976;
-    LSR                                                                  ;B2F979;
-    CLC                                                                  ;B2F97A;
-    ADC.W PirateNinja.postsMidpointXPosition,X                           ;B2F97B;
-    STA.L PirateNinja.neverRead7806,X                                    ;B2F97E;
-    PLY                                                                  ;B2F982;
-    PLX                                                                  ;B2F983;
     RTL                                                                  ;B2F984;
 
 
@@ -6632,24 +6622,6 @@ Instruction_PirateNinja_DivekickLeft_WalkToLeftPost:
 
   .return:
     RTS                                                                  ;B2FA3C;
-
-
-;;; $FA3D: Instruction - set right divekick jump initial Y speed ;;;
-Instruction_PirateNinja_SetRightDivekickJumpInitialYSpeed:
-    PHX                                                                  ;B2FA3D;
-    PHY                                                                  ;B2FA3E;
-    LDA.W #$0600                                                         ;B2FA3F;
-    STA.L PirateNinja.speed,X                                            ;B2FA42;
-    LDA.W PirateNinja.postsMidpointXPosition,X                           ;B2FA46;
-    SEC                                                                  ;B2FA49;
-    SBC.W PirateNinja.leftPostXPosition,X                                ;B2FA4A;
-    LSR                                                                  ;B2FA4D;
-    CLC                                                                  ;B2FA4E;
-    ADC.W PirateNinja.leftPostXPosition,X                                ;B2FA4F;
-    STA.L PirateNinja.neverRead7806,X                                    ;B2FA52;
-    PLY                                                                  ;B2FA56;
-    PLX                                                                  ;B2FA57;
-    RTL                                                                  ;B2FA58;
 
 
 ;;; $FA59: Ninja space pirate function - divekick right - jump ;;;

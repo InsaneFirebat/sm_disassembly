@@ -8119,7 +8119,6 @@ InitAI_Oum:
     STA.L Oum.instListIndex,X                                            ;A2CCE4;
     STA.L Oum.animationFinishedFlag,X                                    ;A2CCE8;
     STA.L Oum.attackAllowingRotationFlag,X                               ;A2CCEC;
-    STA.L Oum.neverRead7814,X                                            ;A2CCF0; >.<
     LDA.W #$0003                                                         ;A2CCF4;
     STA.W Oum.bounceCounter,X                                            ;A2CCF7;
     LDA.W #$0080                                                         ;A2CCFA;
@@ -11622,12 +11621,9 @@ InitializeHorizontalShutter:
   .notLeftwards:
     LDA.W #Function_HorizontalShutter_Initial                            ;A2F1C2;
     STA.W ShutterHorizShootable.function,X                               ;A2F1C5;
-    LDA.B SamusXPosition                                                 ;A2F1C8;
-    STA.L Shutters.neverRead782A,X                                       ;A2F1CB;
     LDA.W #$0000                                                         ;A2F1CF;
     STA.W Enemy.properties2,X                                            ;A2F1D2;
     STA.L Shutters.movingSamusFlag,X                                     ;A2F1D5;
-    STA.L Shutters.neverRead7816,X                                       ;A2F1D9;
     LDA.W #InstList_ShutterHorizontal
     STA.W Enemy.instList,X
     RTL

@@ -2712,8 +2712,6 @@ InitAI_Kraid:
     DEX                                                                  ;A7A99B;
     DEX                                                                  ;A7A99C;
     BPL .loopBG2Tilemap                                                  ;A7A99D;
-    LDA.W #$0000                                                         ;A7A99F;
-    STA.L Kraid.neverRead7804                                            ;A7A9A2;
     LDX.B VRAMWriteStack                                                 ;A7A9A6;
     LDA.W #$0200                                                         ;A7A9A9;
     STA.B VRAMWrite.size,X                                               ;A7A9AC;
@@ -2784,8 +2782,6 @@ InitAI_Kraid:
     CLC                                                                  ;A7AA3E;
     ADC.L Kraid.maxHealth_1_4                                            ;A7AA3F;
     STA.L Kraid.maxHealth_4_4                                            ;A7AA43;
-    LDA.W #$0000                                                         ;A7AA47;
-    STA.L Kraid.neverRead783E                                            ;A7AA4A;
     LDA.W #$00B0                                                         ;A7AA4E;
     STA.W Enemy.XPosition                                                ;A7AA51;
     LDA.W #$0250                                                         ;A7AA54;
@@ -3383,8 +3379,6 @@ Function_Kraid_KraidShot_KraidsMouthIsOpen:
     STA.W Kraid.functionTimer                                            ;A7AF17;
     LDA.W #Function_Kraid_KraidShot_InitializeEyeGlowing                 ;A7AF1A;
     STA.L Kraid.nextFunction                                             ;A7AF1D;
-    LDA.W #$0002                                                         ;A7AF21;
-    STA.L Kraid.neverRead7802                                            ;A7AF24;
 
   .return:
     RTL                                                                  ;A7AF28;
@@ -4892,8 +4886,6 @@ Function_KraidMainLoop_AttackingWithMouthOpen:
     STA.W Kraid.functionTimer                                            ;A7BC4B;
     LDA.W #Function_Kraid_KraidShot_InitializeEyeGlowing                 ;A7BC4E;
     STA.L Kraid.nextFunction                                             ;A7BC51;
-    LDA.W #$0002                                                         ;A7BC55;
-    STA.L Kraid.neverRead7802                                            ;A7BC58;
     RTL                                                                  ;A7BC5C;
 
   .done:
