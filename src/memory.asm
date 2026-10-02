@@ -1586,6 +1586,7 @@ PostCreditsSuperMetroidIcon_Tilemap: skip $800 ; $7E8000..87FF
 org $7E7000
 EnemyTileData: ; $7E7000..97FF
 CRETiles: ; $7E7000..9FFF
+EnemySpawnData:
 
 struct EnemySpawnData $7E7000
 skip 6 ; $7E7000..05

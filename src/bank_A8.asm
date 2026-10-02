@@ -3634,7 +3634,7 @@ InitAI_YappingMaw:
     LDA.W Enemy.init0,X                                                  ;A8A180;
     STA.W YappingMaw.proximity,X                                         ;A8A183;
     LDA.W #regional($0040, $0030)                                        ;A8A186;
-    STA.W Enemy.functionTimer,X                                          ;A8A189;
+    STA.W YappingMaw.functionTimer,X                                     ;A8A189;
     LDA.W #InstList_YappingMaw_Attacking_FacingUp                        ;A8A18C;
     STA.W Enemy.instList,X                                               ;A8A18F;
     LDA.W #$0039                                                         ;A8A192;
@@ -4170,7 +4170,7 @@ Function_YappingMaw_Cooldown:
     JSR.W MoveSamusWithYappingMawPincers                                 ;A8A693;
 
   .notGrabbingSamus:
-    DEC.W Enemy.functionTimer,X                                          ;A8A696;
+    DEC.W YappingMaw.functionTimer,X                                     ;A8A696;
     BPL .return                                                          ;A8A699;
     LDA.W PoseInputHandler                                               ;A8A69B;
     CMP.W #SamusPoseInputHandler_Demo                                    ;A8A69E;
@@ -4182,7 +4182,7 @@ Function_YappingMaw_Cooldown:
     LDA.W #$0030                                                         ;A8A6B0;
     STA.L YappingMaw.intangibilityTimer,X                                ;A8A6B3;
     LDA.W #regional($0040, $0030)                                        ;A8A6B7;
-    STA.W Enemy.functionTimer,X                                          ;A8A6BA;
+    STA.W YappingMaw.functionTimer,X                                     ;A8A6BA;
     LDA.W #Function_YappingMaw_Neutral                                   ;A8A6BD;
     STA.W YappingMaw.function,X                                          ;A8A6C0;
 
