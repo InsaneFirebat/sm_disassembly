@@ -7,3 +7,7 @@ Player observable bug fixes:
 
 Enemy assumptions:
 - Mama Turtle must be the first enemy in the room
+
+
+TODO and known issues:
+- DMA in Initialise_Enemies causes HUD to flash in some doors, move RAM clearing to InitAI_ to fix

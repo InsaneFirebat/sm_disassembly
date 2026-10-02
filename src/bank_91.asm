@@ -840,14 +840,6 @@ LoadDemoData:
     STZ.W SuperSpecialProspectivePoseChangeCommand                       ;918822;
     JSL.L LoadSamusSuitPalette                                           ;918825;
     JSL.L Update_Beam_Tiles_and_Palette                                  ;918829;
-    LDA.W #$0800                                                         ;91882D;
-    STA.W UpBinding                                                      ;918830;
-    LDA.W #$0400                                                         ;918833;
-    STA.W DownBinding                                                    ;918836;
-    LDA.W #$0200                                                         ;918839;
-    STA.W LeftBinding                                                    ;91883C;
-    LDA.W #$0100                                                         ;91883F;
-    STA.W RightBinding                                                   ;918842;
     LDA.W #$0040                                                         ;918845;
     STA.W ShotBinding                                                    ;918848;
     LDA.W #$0080                                                         ;91884B;
@@ -5829,11 +5821,9 @@ Calc_Xray_HDMADataTable_OffScreen:
 ;;     $00: HDMA data table pointer. $7E:9100 for morph ball eye beam, $7E:9800 for x-ray
 ;;     $12: Beam angle
 ;;     $14: Beam angular width
-    PHP                                                                  ;91BE11;
     PHB                                                                  ;91BE12;
     PHK                                                                  ;91BE13;
     PLB                                                                  ;91BE14;
-    REP #$30                                                             ;91BE15;
     TXA                                                                  ;91BE17;
     XBA                                                                  ;91BE18;
     AND.W #$FF00                                                         ;91BE19;
@@ -5932,7 +5922,6 @@ Calc_Xray_HDMADataTable_OffScreen:
     TYX                                                                  ;91BEB1;
     JSR.W (.pointers,X)                                                  ;91BEB2;
     PLB                                                                  ;91BEB5;
-    PLP                                                                  ;91BEB6;
     RTL                                                                  ;91BEB7;
 
   .pointers:
@@ -5955,8 +5944,6 @@ Calc_Xray_HDMADataTable_OffScreen_AimedRight:
 ; Current left line co-ordinates = ([$22], [Y] / 2)
 ; Current right line co-ordinates = ([$24], [Y] / 2)
 ; [$12]/2 and [$14]/2 become the top and bottom Y positions of the largest rectangular region of the beam
-    PHP                                                                  ;91BEC2;
-    REP #$30                                                             ;91BEC3;
     LDA.B DP_Temp18                                                      ;91BEC5;
     DEC                                                                  ;91BEC7;
     ASL                                                                  ;91BEC8;
@@ -6072,7 +6059,6 @@ Calc_Xray_HDMADataTable_OffScreen_AimedRight:
     CPY.B DP_Temp14                                                      ;91BF6A;
     BMI ..loop                                                           ;91BF6C;
     BEQ ..loop                                                           ;91BF6E;
-    PLP                                                                  ;91BF70;
     RTS                                                                  ;91BF71;
 
 
@@ -6088,8 +6074,6 @@ Calc_Xray_HDMADataTable_OffScreen_AimedLeft:
 ; Current left line co-ordinates = ([$22], [Y] / 2)
 ; Current right line co-ordinates = ([$24], [Y] / 2)
 ; [$12]/2 and [$14]/2 become the top and bottom Y positions of the largest rectangular region of the beam
-    PHP                                                                  ;91BF72;
-    REP #$30                                                             ;91BF73;
     LDA.B DP_Temp18                                                      ;91BF75;
     DEC                                                                  ;91BF77;
     ASL                                                                  ;91BF78;
@@ -6205,7 +6189,6 @@ Calc_Xray_HDMADataTable_OffScreen_AimedLeft:
     CPY.B DP_Temp14                                                      ;91C01A;
     BMI .leftHighByteFF                                                  ;91C01C;
     BEQ .leftHighByteFF                                                  ;91C01E;
-    PLP                                                                  ;91C020;
     RTS                                                                  ;91C021;
 
 
@@ -6219,8 +6202,6 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards:
 ;;     $1C: Beam right edge angle
 ;;     $1E: Beam left edge gradient * 100h (dx/dy)
 ;;     $20: Beam right edge gradient * 100h (dx/dy)
-    PHP                                                                  ;91C022;
-    REP #$30                                                             ;91C023;
     LDA.B DP_Temp18                                                      ;91C025;
     DEC                                                                  ;91C027;
     ASL                                                                  ;91C028;
@@ -6256,7 +6237,6 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards:
     INY                                                                  ;91C05B;
     CPY.W #$01CC                                                         ;91C05C;
     BMI .loop                                                            ;91C05F;
-    PLP                                                                  ;91C061;
     RTS                                                                  ;91C062;
 
   .pointers:
@@ -6281,8 +6261,6 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_UpRight:
 ; Current left line co-ordinates = ([$22], [Y] / 2)
 ; Current right line co-ordinates = ([$24], [Y] / 2)
 ; [$12]/2 and [$14]/2 become the top and bottom Y positions of the largest rectangular region of the beam
-    PHP                                                                  ;91C069;
-    REP #$30                                                             ;91C06A;
     PHY                                                                  ;91C06C;
 
   .loopLeftOffScreen:
@@ -6412,7 +6390,6 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_UpRight:
     LDA.B DP_Temp14                                                      ;91C11C;
     DEC                                                                  ;91C11E;
     STA.B DP_Temp12                                                      ;91C11F;
-    PLP                                                                  ;91C121;
     RTS                                                                  ;91C122;
 
 
@@ -6441,8 +6418,6 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_Up:
 ; it's given here as the index of the lowest Y position of the left line that's on-screen,
 ; rather than the minimum of left and right lines.
 ; This routine ought to be split into two cases depending on which side off-screen Samus is.
-    PHP                                                                  ;91C123;
-    REP #$30                                                             ;91C124;
     PHY                                                                  ;91C126;
 
   .loopLeftOffScreen:
@@ -6557,7 +6532,6 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_Up:
 
   .return:
     REP #$20                                                             ;91C1C6;
-    PLP                                                                  ;91C1C8;
     RTS                                                                  ;91C1C9;
 
 
@@ -6577,8 +6551,6 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_UpLeft:
 ; Current left line co-ordinates = ([$22], [Y] / 2)
 ; Current right line co-ordinates = ([$24], [Y] / 2)
 ; [$12]/2 and [$14]/2 become the top and bottom Y positions of the largest rectangular region of the beam
-    PHP                                                                  ;91C1CA;
-    REP #$30                                                             ;91C1CB;
     PHY                                                                  ;91C1CD;
 
   .loopLeftOffScreen:
@@ -6703,7 +6675,6 @@ Calc_Xray_HDMADataTable_OffScreen_AimedUpwards_UpLeft:
     CPY.B DP_Temp12                                                      ;91C277;
     BMI .endLoop                                                         ;91C279;
     REP #$20                                                             ;91C27B;
-    PLP                                                                  ;91C27D;
     RTS                                                                  ;91C27E;
 
 
@@ -6717,8 +6688,6 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards:
 ;;     $1C: Beam right edge angle
 ;;     $1E: Beam left edge gradient * 100h (dx/dy)
 ;;     $20: Beam right edge gradient * 100h (dx/dy)
-    PHP                                                                  ;91C27F;
-    REP #$30                                                             ;91C280;
     LDA.B DP_Temp18                                                      ;91C282;
     ASL                                                                  ;91C284;
     TAY                                                                  ;91C285;
@@ -6750,7 +6719,6 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards:
     DEY                                                                  ;91C2B1;
     DEY                                                                  ;91C2B2;
     BPL .loop                                                            ;91C2B3;
-    PLP                                                                  ;91C2B5;
     RTS                                                                  ;91C2B6;
 
   .pointers:
@@ -6775,8 +6743,6 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_DownRight:
 ; Current left line co-ordinates = ([$22], [Y] / 2)
 ; Current right line co-ordinates = ([$24], [Y] / 2)
 ; [$12]/2 and [$14]/2 become the bottom and top Y positions of the largest rectangular region of the beam
-    PHP                                                                  ;91C2BD;
-    REP #$30                                                             ;91C2BE;
     PHY                                                                  ;91C2C0;
 
   .loopRightOffScreen:
@@ -6904,7 +6870,6 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_DownRight:
     LDA.B DP_Temp14                                                      ;91C37A;
     DEC                                                                  ;91C37C;
     STA.B DP_Temp12                                                      ;91C37D;
-    PLP                                                                  ;91C37F;
     RTS                                                                  ;91C380;
 
 
@@ -6923,8 +6888,6 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_Down:
 
 ; Current left line co-ordinates = ([$22], [Y] / 2)
 ; Current right line co-ordinates = ([$24], [Y] / 2)
-    PHP                                                                  ;91C381;
-    REP #$30                                                             ;91C382;
     PHY                                                                  ;91C384;
     LDA.B DP_Temp20                                                      ;91C385;
     BNE .loopRightOffScreen                                              ;91C387;
@@ -7051,7 +7014,6 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_Down:
     REP #$20                                                             ;91C442;
 
   .return:
-    PLP                                                                  ;91C444;
     RTS                                                                  ;91C445;
 
 
@@ -7071,8 +7033,6 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_DownLeft:
 ; Current left line co-ordinates = ([$22], [Y] / 2)
 ; Current right line co-ordinates = ([$24], [Y] / 2)
 ; [$12]/2 and [$14]/2 become the bottom and top Y positions of the largest rectangular region of the beam
-    PHP                                                                  ;91C446;
-    REP #$30                                                             ;91C447;
     PHY                                                                  ;91C449;
 
   .loopRightOffScreen:
@@ -7197,7 +7157,6 @@ Calc_Xray_HDMADataTable_OffScreen_AimedDownwards_DownLeft:
     CPY.B DP_Temp12                                                      ;91C4FD;
     BPL .loopEnd                                                         ;91C4FF;
     REP #$20                                                             ;91C501;
-    PLP                                                                  ;91C503;
     RTS                                                                  ;91C504;
 
 
@@ -7207,8 +7166,6 @@ Calc_Xray_HDMADataTable_OffScreen_HorizontalLine:
 ;;     $00: HDMA data table pointer. $7E:9100 for morph ball eye beam, $7E:9800 for x-ray
 ;;     $12: Beam angle
 ;;     $18: Beam origin Y position
-    PHP                                                                  ;91C505;
-    REP #$30                                                             ;91C506;
     LDA.B DP_Temp18                                                      ;91C508;
     DEC                                                                  ;91C50A;
     ASL                                                                  ;91C50B;
@@ -7254,7 +7211,6 @@ Calc_Xray_HDMADataTable_OffScreen_HorizontalLine:
     BMI .loop                                                            ;91C547;
 
   .return:
-    PLP                                                                  ;91C549;
     RTS                                                                  ;91C54A;
 
 
@@ -7266,11 +7222,9 @@ Calc_Xray_HDMADataTable_OnScreen:
 ;;     $00: HDMA data table pointer. $7E:9100 for morph ball eye beam, $7E:9800 for x-ray
 ;;     $12: [beam angle]
 ;;     $14: [beam angular width]
-    PHP                                                                  ;91C54B;
     PHB                                                                  ;91C54C;
     PHK                                                                  ;91C54D;
     PLB                                                                  ;91C54E;
-    REP #$30                                                             ;91C54F;
     TXA                                                                  ;91C551;
     XBA                                                                  ;91C552;
     AND.W #$FF00                                                         ;91C553;
@@ -7370,7 +7324,6 @@ Calc_Xray_HDMADataTable_OnScreen:
     STZ.W OffScreenBeamHDMADataTableIndex                                ;91C5EC;
     JSR.W (.pointers,X)                                                  ;91C5EF;
     PLB                                                                  ;91C5F2;
-    PLP                                                                  ;91C5F3;
     RTL                                                                  ;91C5F4;
 
   .pointers:
@@ -7392,8 +7345,6 @@ Calc_Xray_HDMADataTable_OnScreen_AimedRight:
 
 ; Current left line co-ordinates = ([$22], [Y] / 2)
 ; Current right line co-ordinates = ([$24], [Y] / 2)
-    PHP                                                                  ;91C5FF;
-    REP #$30                                                             ;91C600;
     LDA.B DP_Temp18                                                      ;91C602;
     DEC                                                                  ;91C604;
     ASL                                                                  ;91C605;
@@ -7457,7 +7408,6 @@ Calc_Xray_HDMADataTable_OnScreen_AimedRight:
     BMI .loopRight                                                       ;91C65C;
 
   .return:
-    PLP                                                                  ;91C65E;
     RTS                                                                  ;91C65F;
 
 
@@ -7472,8 +7422,6 @@ Calc_Xray_HDMADataTable_OnScreen_AimedLeft:
 
 ; Current left line co-ordinates = ([$22], [Y] / 2)
 ; Current right line co-ordinates = ([$24], [Y] / 2)
-    PHP                                                                  ;91C660;
-    REP #$30                                                             ;91C661;
     LDA.B DP_Temp18                                                      ;91C663;
     DEC                                                                  ;91C665;
     ASL                                                                  ;91C666;
@@ -7537,7 +7485,6 @@ Calc_Xray_HDMADataTable_OnScreen_AimedLeft:
     BMI .loopLeft                                                        ;91C6BD;
 
   .return:
-    PLP                                                                  ;91C6BF;
     RTS                                                                  ;91C6C0;
 
 
@@ -7551,8 +7498,6 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards:
 ;;     $1C: Beam right edge angle
 ;;     $1E: Beam left edge gradient * 100h (dx/dy)
 ;;     $20: Beam right edge gradient * 100h (dx/dy)
-    PHP                                                                  ;91C6C1;
-    REP #$30                                                             ;91C6C2;
     LDA.B DP_Temp18                                                      ;91C6C4;
     DEC                                                                  ;91C6C6;
     ASL                                                                  ;91C6C7;
@@ -7601,7 +7546,6 @@ Calc_Xray_HDMADataTable_OnScreen_AimedUpwards:
     BMI .loop                                                            ;91C712;
 
   .return:
-    PLP                                                                  ;91C714;
     RTS                                                                  ;91C715;
 
   .pointers:
@@ -8681,37 +8625,6 @@ LoadRevealedBlockCommand:
     RTS                                                                  ;91CE2B;
 
 
-;;; $CE2C: Calculate block co-ordinates ;;;
-CalculateBlockCoordinates:
-;; Parameters:
-;;     $24: Block index
-;; Returns:
-;;     $2A: X block co-ordinate
-;;     $2C: Y block co-ordinate
-
-; $2C = [$24] / [room width in blocks]
-; $2A = [$24] % [room width in blocks]
-    SEP #$20                                                             ;91CE2C;
-    LDA.B DP_Temp24                                                      ;91CE2E;
-    STA.W $4204                                                          ;91CE30;
-    LDA.B DP_Temp25                                                      ;91CE33;
-    STA.W $4205                                                          ;91CE35;
-    LDA.B RoomWidthBlocks                                                ;91CE38;
-    STA.W $4206                                                          ;91CE3B;
-    REP #$20                                                             ;91CE3E;
-    NOP                                                                  ;91CE40;
-    NOP                                                                  ;91CE41;
-    NOP                                                                  ;91CE42;
-    NOP                                                                  ;91CE43;
-    NOP                                                                  ;91CE44;
-    NOP                                                                  ;91CE45;
-    LDA.W $4214                                                          ;91CE46;
-    STA.B DP_Temp2C                                                      ;91CE49;
-    LDA.W $4216                                                          ;91CE4B;
-    STA.B DP_Temp2A                                                      ;91CE4E;
-    RTS                                                                  ;91CE50;
-
-
 ;;; $CE51: Get block type and BTS ;;;
 GetBlockTypeAndBTS:
 ;; Parameters:
@@ -8750,12 +8663,30 @@ RevealedBlockCommand_VerticalExtension:
 ;;     $24: Block index
 ;;     $26: Block BTS
 ;;     $28: Block type
-    JSR.W CalculateBlockCoordinates                                      ;91CE79;
+;;; $CE2C: Calculate block co-ordinates ;;;
+    LDA.B DP_Temp24
+    STA.W $4204
+    SEP #$20
+    LDA.B RoomWidthBlocks
+    STA.W $4206
+    REP #$20
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    LDA.W $4214
+    STA.B DP_Temp2C
+    LDA.W $4216
+    STA.B DP_Temp2A
     LDA.B DP_Temp28                                                      ;91CE7C;
     STA.B DP_Temp30                                                      ;91CE7E;
     LDA.B DP_Temp26                                                      ;91CE80;
-    BEQ Copy1x1BlockToXrayBG2TilemapIfScrollPLMTrigger                   ;91CE82;
-    BIT.W #$0080                                                         ;91CE84;
+    BNE +
+    JMP.W Copy1x1BlockToXrayBG2TilemapIfScrollPLMTrigger
+
++   BIT.W #$0080                                                         ;91CE84;
     BEQ +                                                                ;91CE87;
     ORA.W #$FF00                                                         ;91CE89;
 
@@ -8800,7 +8731,23 @@ RevealedBlockCommand_HorizontalExtension:
 ;;     $24: Block index
 ;;     $26: Block BTS
 ;;     $28: Block type
-    JSR.W CalculateBlockCoordinates                                      ;91CEBB;
+;;; $CE2C: Calculate block co-ordinates ;;;
+    LDA.B DP_Temp24
+    STA.W $4204
+    SEP #$20
+    LDA.B RoomWidthBlocks
+    STA.W $4206
+    REP #$20
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    LDA.W $4214
+    STA.B DP_Temp2C
+    LDA.W $4216
+    STA.B DP_Temp2A
     LDA.B DP_Temp28                                                      ;91CEBE;
     STA.B DP_Temp30                                                      ;91CEC0;
     LDA.B DP_Temp26                                                      ;91CEC2;
@@ -11327,21 +11274,22 @@ Restore_A_PowerBombs_ToSamus:
 ;;; $E00D: Initialise Samus ;;;
 InitializeSamus:
 ; Executed when loading demo or starting at Ceres/Zebes
-    PHP                                                                  ;91E00D;
     PHB                                                                  ;91E00E;
     PHK                                                                  ;91E00F;
     PLB                                                                  ;91E010;
-    REP #$30                                                             ;91E011;
-    LDX.W #EndSamusRAM-1                                                 ;91E018;
-    SEP #$20                                                             ;91E01B;
-    LDA.B #$00                                                           ;91E01D;
-
-  .loopClearSamusRAM:
-    STA.W $0000,X                                                        ;91E01F;
-    DEX                                                                  ;91E022;
-    CPX.W #StartSamusRAM_Unused0A02                                      ;91E023;
-    BPL .loopClearSamusRAM                                               ;91E026;
-    REP #$20                                                             ;91E028;
+    LDA.W #StartSamusRAM_Unused0A02
+    STA.W $2181
+    STZ.W $2183
+    LDA.W #$80<<8|$08
+    STA.W $4310
+    LDA.W #JustZeroes
+    STA.W $4312
+    LDA.W #$0A00|JustZeroes>>16
+    STA.W $4314
+    LDA.W #$0004
+    STA.W $4316
+    LDA.W #$0002
+    STA.W $420B
     LDA.W GameState                                                      ;91E02A;
     CMP.W #$0028                                                         ;91E02D;
     BEQ .demo                                                            ;91E030;
@@ -11457,7 +11405,6 @@ InitializeSamus:
     LDA.W Energy                                                         ;91E164;
     STA.W PreviousEnergyHurtCheck                                        ;91E167;
     PLB                                                                  ;91E16A;
-    PLP                                                                  ;91E16B;
     RTL                                                                  ;91E16C;
 
 

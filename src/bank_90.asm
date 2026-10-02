@@ -6479,15 +6479,7 @@ Kill_Projectile:
 ;;     X: Projectile index
     LDA.W SamusProjectile_Types+1,X                                      ;90AE0C;
     AND.W #$000F                                                         ;90AE0F;
-    BEQ .beam                                                            ;90AE12;
-    CMP.W #$0003                                                         ;90AE14;
-    BMI .missile                                                         ;90AE17;
-    JSL.L Clear_Projectile                                               ;90AE19;
-    PLB                                                                  ;90AE1D;
-    PLP                                                                  ;90AE1E;
-    RTL                                                                  ;90AE1F;
-
-  .beam:
+    BNE .missile
     TXY                                                                  ;90AE20;
     LDA.W SamusProjectile_Directions,X                                   ;90AE21;
     AND.W #$000F                                                         ;90AE24;
@@ -6621,9 +6613,8 @@ KillBeam_UpLeft:
 
 ;;; $AECE: Handle projectiles ;;;
 Handle_Projectiles:
-    LDA.W #$0012                                                         ;90AED1;
-    STA.B ProjectileIndex                                                ;90AED4;
-    TAX                                                                  ;90AED7;
+    LDX.W #$0012                                                         ;90AED1;
+    STX.B ProjectileIndex                                                ;90AED4;
 
   .loop:
     LDA.W SamusProjectile_InstructionPointers,X                          ;90AED8;
@@ -14553,13 +14544,52 @@ SamusCurrentStateHandler_Normal:
     STZ.W ProspectivePoseChangeCommand                                   ;90E6A7;
     STZ.W SpecialProspectivePoseChangeCommand                            ;90E6AA;
     STZ.W SuperSpecialProspectivePoseChangeCommand                       ;90E6AD;
-    JSR.W SetSamusRadius                                                 ;90E6B0;
+;;; $EC22: Set Samus radius ;;;
+    LDA.W Pose
+    ASL
+    ASL
+    ASL
+    TAX
+    LDA.L PoseDefinitions_YRadius,X
+    AND.W #$00FF
+    STA.W SamusYRadius
+    LDA.W #$0005
+    STA.W SamusXRadius
     JSR.W SamusPoseInputHandler                                          ;90E6B3;
-    JSR.W Determine_SamusSuitPalette_Index                               ;90E6B6;
-    JSR.W Determine_Samus_YAcceleration                                  ;90E6B9;
+;;; $ECB6: Determine Samus suit palette index ;;;
+    LDA.W EquippedItems
+    BIT.W #$0020
+    BNE .gravity
+    BIT.W #$0001
+    BNE .varia
+    STZ.W SuitPaletteIndex
+    BRA +
+
+  .varia:
+    LDA.W #$0002
+    STA.W SuitPaletteIndex
+    BRA +
+
+  .gravity:
+    LDA.W #$0004
+    STA.W SuitPaletteIndex
+
++   JSR.W Determine_Samus_YAcceleration                                  ;90E6B9;
     JSL.L SamusBlockInsideHandling                                       ;90E6BC;
     JSR.W HandleHUDSpecificBehaviorAndProjectiles                        ;90E6C0;
-    JSR.W ResetMovementAndPoseChangeVariables                            ;90E6C3;
+;;; $EB02: Reset movement and pose change variables ;;;
+    STZ.W ProjSpeed_DistanceSamusMovedLeft                              
+    STZ.W ProjSpeed_SubDistanceSamusMovedLeft                           
+    STZ.W ProjSpeed_DistanceSamusMovedRight                             
+    STZ.W ProjSpeed_SubDistanceSamusMovedRight                          
+    STZ.W ProjSpeed_DistanceSamusMovedUp                                
+    STZ.W ProjSpeed_SubDistanceSamusMovedUp                             
+    STZ.W ProjSpeed_DistanceSamusMovedDown                              
+    STZ.W ProjSpeed_SubDistanceSamusMovedDown                           
+    STZ.W NewPoseSamusAnimationFrame                                    
+    STZ.W PoseTransitionShotDirection                                   
+    LDA.W PoseXDirection                                                
+    STA.W PreviousMovementTypeXray-1                                    
     PLB                                                                  ;90E6C6;
     RTL                                                                  ;90E6C8;
 
@@ -14584,13 +14614,52 @@ SamusCurrentStateHandler_Demo:
     STA.W DemoInput_BackupController1Input                               ;90E6F1;
     LDA.W PreviousController1NewDrawing                                  ;90E6F4;
     STA.W DemoInput_BackupController1New                                 ;90E6F7;
-    JSR.W SetSamusRadius                                                 ;90E6FA;
-    JSR.W Determine_SamusSuitPalette_Index                               ;90E6FD;
-    JSR.W SamusPoseInputHandler                                          ;90E700;
+;;; $EC22: Set Samus radius ;;;
+    LDA.W Pose
+    ASL
+    ASL
+    ASL
+    TAX
+    LDA.L PoseDefinitions_YRadius,X
+    AND.W #$00FF
+    STA.W SamusYRadius
+    LDA.W #$0005
+    STA.W SamusXRadius
+;;; $ECB6: Determine Samus suit palette index ;;;
+    LDA.W EquippedItems
+    BIT.W #$0020
+    BNE .gravity
+    BIT.W #$0001
+    BNE .varia
+    STZ.W SuitPaletteIndex
+    BRA +
+
+  .varia:
+    LDA.W #$0002
+    STA.W SuitPaletteIndex
+    BRA +
+
+  .gravity:
+    LDA.W #$0004
+    STA.W SuitPaletteIndex
+
++   JSR.W SamusPoseInputHandler                                          ;90E700;
     JSR.W Determine_Samus_YAcceleration                                  ;90E703;
     JSL.L SamusBlockInsideHandling                                       ;90E706;
     JSR.W HandleHUDSpecificBehaviorAndProjectiles                        ;90E70A;
-    JSR.W ResetMovementAndPoseChangeVariables                            ;90E70D;
+;;; $EB02: Reset movement and pose change variables ;;;
+    STZ.W ProjSpeed_DistanceSamusMovedLeft                              
+    STZ.W ProjSpeed_SubDistanceSamusMovedLeft                           
+    STZ.W ProjSpeed_DistanceSamusMovedRight                             
+    STZ.W ProjSpeed_SubDistanceSamusMovedRight                          
+    STZ.W ProjSpeed_DistanceSamusMovedUp                                
+    STZ.W ProjSpeed_SubDistanceSamusMovedUp                             
+    STZ.W ProjSpeed_DistanceSamusMovedDown                              
+    STZ.W ProjSpeed_SubDistanceSamusMovedDown                           
+    STZ.W NewPoseSamusAnimationFrame                                    
+    STZ.W PoseTransitionShotDirection                                   
+    LDA.W PoseXDirection                                                
+    STA.W PreviousMovementTypeXray-1                                    
     PLB                                                                  ;90E710;
     RTL                                                                  ;90E712;
 
@@ -14601,7 +14670,19 @@ SamusCurrentStateHandler_SamusIsLocked:
     PHK                                                                  ;90E715;
     PLB                                                                  ;90E716;
     JSR.W Handle_Projectiles                                             ;90E719;
-    JSR.W ResetMovementAndPoseChangeVariables                            ;90E71C;
+;;; $EB02: Reset movement and pose change variables ;;;
+    STZ.W ProjSpeed_DistanceSamusMovedLeft                              
+    STZ.W ProjSpeed_SubDistanceSamusMovedLeft                           
+    STZ.W ProjSpeed_DistanceSamusMovedRight                             
+    STZ.W ProjSpeed_SubDistanceSamusMovedRight                          
+    STZ.W ProjSpeed_DistanceSamusMovedUp                                
+    STZ.W ProjSpeed_SubDistanceSamusMovedUp                             
+    STZ.W ProjSpeed_DistanceSamusMovedDown                              
+    STZ.W ProjSpeed_SubDistanceSamusMovedDown                           
+    STZ.W NewPoseSamusAnimationFrame                                    
+    STZ.W PoseTransitionShotDirection                                   
+    LDA.W PoseXDirection                                                
+    STA.W PreviousMovementTypeXray-1                                    
     PLB                                                                  ;90E71F;
     RTL                                                                  ;90E721;
 
@@ -14689,7 +14770,17 @@ SamusNewStateHandler_SamusAppearance:
     PHB                                                                  ;90E86B;
     PHK                                                                  ;90E86C;
     PLB                                                                  ;90E86D;
-    JSR.W SetSamusRadius                                                 ;90E870;
+;;; $EC22: Set Samus radius ;;;
+    LDA.W Pose
+    ASL
+    ASL
+    ASL
+    TAX
+    LDA.L PoseDefinitions_YRadius,X
+    AND.W #$00FF
+    STA.W SamusYRadius
+    LDA.W #$0005
+    STA.W SamusXRadius
     JSL.L Update_Minimap                                                 ;90E873;
     JSR.W AnimateSamus                                                   ;90E877;
     STZ.W ElevatorStatus                                                 ;90E87A;
@@ -14697,11 +14788,6 @@ SamusNewStateHandler_SamusAppearance:
     STA.W SamusPreviousYPosition                                         ;90E880;
     JSL.L PlaySamusFanfare                                               ;90E883;
     BCC .return                                                          ;90E887;
-
-  .disableInvincibility:
-    STZ.W DebugInvincibility                                             ;90E898;
-
-  .keepInvincibility:
     LDA.W #SamusCurrentStateHandler_Normal                               ;90E89B;
     STA.W CurrentStateHandler                                            ;90E89E;
     LDA.W #SamusNewStateHandler_Normal                                   ;90E8A1;
@@ -15075,23 +15161,6 @@ HandleSamus_AutoJumpTimer_HurtFlashCounter_PrevInputEnergy:
     RTS                                                                  ;90EB01;
 
 
-;;; $EB02: Reset movement and pose change variables ;;;
-ResetMovementAndPoseChangeVariables:
-    STZ.W ProjSpeed_DistanceSamusMovedLeft                               ;90EB05;
-    STZ.W ProjSpeed_SubDistanceSamusMovedLeft                            ;90EB08;
-    STZ.W ProjSpeed_DistanceSamusMovedRight                              ;90EB0B;
-    STZ.W ProjSpeed_SubDistanceSamusMovedRight                           ;90EB0E;
-    STZ.W ProjSpeed_DistanceSamusMovedUp                                 ;90EB11;
-    STZ.W ProjSpeed_SubDistanceSamusMovedUp                              ;90EB14;
-    STZ.W ProjSpeed_DistanceSamusMovedDown                               ;90EB17;
-    STZ.W ProjSpeed_SubDistanceSamusMovedDown                            ;90EB1A;
-    STZ.W NewPoseSamusAnimationFrame                                     ;90EB1D;
-    STZ.W PoseTransitionShotDirection                                    ;90EB20;
-    LDA.W PoseXDirection                                                 ;90EB2D;
-    STA.W PreviousMovementTypeXray-1                                     ;90EB30;
-    RTS                                                                  ;90EB34;
-
-
 ;;; $EB35: Draw Samus and projectiles ;;;
 DrawSamusAndProjectiles:
     PHB                                                                  ;90EB36;
@@ -15231,21 +15300,6 @@ SamusDisplayHandler_InanimateSamus:
     RTS                                                                  ;90EC21;
 
 
-;;; $EC22: Set Samus radius ;;;
-SetSamusRadius:
-    LDA.W Pose                                                           ;90EC25;
-    ASL                                                                  ;90EC28;
-    ASL                                                                  ;90EC29;
-    ASL                                                                  ;90EC2A;
-    TAX                                                                  ;90EC2B;
-    LDA.L PoseDefinitions_YRadius,X                                      ;90EC2C;
-    AND.W #$00FF                                                         ;90EC30;
-    STA.W SamusYRadius                                                   ;90EC33;
-    LDA.W #$0005                                                         ;90EC36;
-    STA.W SamusXRadius                                                   ;90EC39;
-    RTS                                                                  ;90EC3D;
-
-
 ;;; $EC3E: $12 = Samus bottom boundary ;;;
 Get_Samus_Bottom_Boundary:
 ;; Returns:
@@ -15319,27 +15373,6 @@ AlignSamusBottomPositionWithPreviousPose:
     ADC.W SamusPreviousYPosition                                         ;90ECAE;
     STA.W SamusPreviousYPosition                                         ;90ECB1;
     RTL                                                                  ;90ECB5;
-
-
-;;; $ECB6: Determine Samus suit palette index ;;;
-Determine_SamusSuitPalette_Index:
-    LDA.W EquippedItems                                                  ;90ECB6;
-    BIT.W #$0020                                                         ;90ECB9;
-    BNE .gravity                                                         ;90ECBC;
-    BIT.W #$0001                                                         ;90ECBE;
-    BNE .varia                                                           ;90ECC1;
-    STZ.W SuitPaletteIndex                                               ;90ECC3;
-    RTS                                                                  ;90ECC6;
-
-  .varia:
-    LDA.W #$0002                                                         ;90ECC7;
-    STA.W SuitPaletteIndex                                               ;90ECCA;
-    RTS                                                                  ;90ECCD;
-
-  .gravity:
-    LDA.W #$0004                                                         ;90ECCE;
-    STA.W SuitPaletteIndex                                               ;90ECD1;
-    RTS                                                                  ;90ECD4;
 
 
 ;;; $ECD5: Demo recorder - move Samus with control pad ;;;

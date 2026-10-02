@@ -138,44 +138,124 @@ org $888000
 
 ;;; $8000: Layer blending handler ;;;
 LayerBlending_Handler:
-    PHP                                                                  ;888000;
     SEP #$30                                                             ;888001;
     LDY.B #$00                                                           ;888003;
     LDX.W LayerBlending_Config                                           ;888005;
     BEQ .powerBomb                                                       ;888008;
-    JSR.W Initialize_LayerBlending                                       ;88800A;
+    STZ.B DP_WindowMaskBG12
+    STZ.B DP_WindowMaskBG34
+    STZ.B DP_WindowMaskSprite
+    LDA.B #$13
+    STA.B DP_MainScreenLayers
+    LDA.B #$04
+    STA.B DP_SubScreenLayers
+    STZ.B DP_WindowAreaMainScreen
+    STZ.B DP_WindowAreaSubScreen
+    LDA.B #$02
+    STA.B DP_NextGameplayColorMathA
+    LDA.B #$33
+    STA.B DP_NextGameplayColorMathB
     JSR.W (.pointers,X)                                                  ;88800D;
 
   .powerBomb:
     BIT.W LayerBlending_Window2Config                                    ;888010;
     BPL .xrayShowBlocks                                                  ;888013;
     JSR.W Handle_LayerBlending_PowerBomb                                 ;888015;
-    PLP
+    REP #$30
     RTS
 
   .xrayShowBlocks:
     BIT.W LayerBlending_Window2Config                                    ;88801A;
     BVC .xrayHideBlocks                                                  ;88801D;
-    JSR.W Handle_LayerBlending_Xray_CanShowBlocks                        ;88801F;
-    PLP
+;;; $817B: Handle layer blending x-ray - can show blocks ;;;
+; Disable BG1 inside window
+; Disable BG2 outside window
+; Disable BG3
+; Enabled halved colour math outside window
+    LDA.B #$C8
+    STA.B DP_WindowMaskBG12
+    LDA.B #$80
+    STA.B DP_WindowMaskSprite
+    LDA.B #$13
+    STA.B DP_MainScreenLayers
+    LDA.B #$08
+    STA.B DP_WindowMaskBG34
+    LSR
+    STA.B DP_SubScreenLayers
+    STA.B DP_WindowAreaSubScreen
+    DEC
+    STA.B DP_WindowAreaMainScreen
+    LDA.B #$22
+    STA.B DP_NextGameplayColorMathA
+    LDA.B DP_NextGameplayColorMathB
+    AND.B #$80
+    ORA.B #$73
+    STA.B DP_NextGameplayColorMathB
+    REP #$30
     RTS
 
   .xrayHideBlocks:
     LDA.W LayerBlending_Window2Config                                    ;888024;
     BIT.B #$20                                                           ;888027;
     BEQ .xrayFirefleaRoom                                                ;888029;
-    JSR.W Handle_LayerBlending_Xray_CantShowBlocks                       ;88802B;
-    PLP
+;;; $81A4: Handle layer blending x-ray - can't show blocks ;;;
+; Disable BG3
+; Enabled halved colour math outside window
+; If n00b tube room, disable BG2
+    STZ.B DP_WindowMaskBG12                                              ;8881A4;
+    LDA.B #$80                                                           ;8881AA;
+    STA.B DP_WindowMaskSprite                                            ;8881AC;
+    LDA.B #$13                                                           ;8881AE;
+    STA.B DP_MainScreenLayers                                            ;8881B0;
+    LDA.B #$08
+    STA.B DP_WindowMaskBG34
+    LSR
+    STA.B DP_SubScreenLayers                                             ;8881B4;
+    STA.B DP_WindowAreaSubScreen
+    DEC
+    STA.B DP_WindowAreaMainScreen                                        ;8881B8;
+    LDA.B #$22                                                           ;8881BE;
+    STA.B DP_NextGameplayColorMathA                                      ;8881C0;
+    LDA.B DP_NextGameplayColorMathB                                      ;8881C2;
+    AND.B #$80                                                           ;8881C4;
+    ORA.B #$61                                                           ;8881C6;
+    STA.B DP_NextGameplayColorMathB                                      ;8881C8;
+    REP #$20                                                             ;8881CA;
+    LDA.W RoomPointer                                                    ;8881CC;
+    CMP.W #RoomHeader_GlassTunnel                                        ;8881CF;
+    BNE .return                                                          ;8881D4;
+    SEP #$20
+    LDA.B #$11                                                           ;8881D6;
+    STA.B DP_MainScreenLayers                                            ;8881D8;
+
+  .return:
+    REP #$30
     RTS
 
   .xrayFirefleaRoom:
     LDA.W LayerBlending_Window2Config                                    ;888030;
     BIT.B #$10                                                           ;888033;
     BEQ .return                                                          ;888035;
-    JSR.W Handle_LayerBlending_Xray_FirefleaRoom                         ;888037;
-
-  .return:
-    PLP                                                                  ;88803C;
+;;; $81DB: Handle layer blending x-ray - fireflea room ;;;
+; Disable BG3
+; Enabled subtractive colour math outside window
+    STZ.B DP_WindowMaskBG12
+    LDA.B #$08
+    STA.B DP_WindowMaskBG34
+    LDA.B #$80
+    STA.B DP_WindowMaskSprite
+    LDA.B #$13
+    STA.B DP_MainScreenLayers
+    LDA.B #$04
+    STA.B DP_WindowAreaSubScreen
+    STZ.B DP_SubScreenLayers
+    DEC
+    STA.B DP_WindowAreaMainScreen
+    LDA.B #$20
+    STA.B DP_NextGameplayColorMathA
+    LDA.B #$B3
+    STA.B DP_NextGameplayColorMathB
+    REP #$30
     RTS                                                                  ;88803D;
 
   .pointers:
@@ -211,24 +291,6 @@ LayerBlending_Handler:
 ;;; $8074: RTS. Layer blending configuration 0/2 ;;;
 RTS_888074:
     RTS                                                                  ;888074;
-
-
-;;; $8075: Initialise layer blending ;;;
-Initialize_LayerBlending:
-    STZ.B DP_WindowMaskBG12                                              ;888075;
-    STZ.B DP_WindowMaskBG34                                              ;888077;
-    STZ.B DP_WindowMaskSprite                                            ;888079;
-    LDA.B #$13                                                           ;88807B;
-    STA.B DP_MainScreenLayers                                            ;88807D;
-    LDA.B #$04                                                           ;88807F;
-    STA.B DP_SubScreenLayers                                             ;888081;
-    STZ.B DP_WindowAreaMainScreen                                        ;888083;
-    STZ.B DP_WindowAreaSubScreen                                         ;888085;
-    LDA.B #$02                                                           ;888087;
-    STA.B DP_NextGameplayColorMathA                                      ;888089;
-    LDA.B #$33                                                           ;88808B;
-    STA.B DP_NextGameplayColorMathB                                      ;88808D;
-    RTS                                                                  ;88808F;
 
 
 ;;; $8090: Layer blending configuration 4 - Phantoon - hidden (BG2 disabled) ;;;
@@ -295,10 +357,10 @@ LayerBlending_10_12_MorphBallEye_SuitPickup:
 ; The colour math window mask disables the blending of BG3 outside the window (note subscreen backdrop is not affected by windowing and must be hidden by BG3)
     LDA.B #$02                                                           ;8880B8;
     STA.B DP_WindowMaskBG34                                              ;8880BA;
+    ASL
+    STA.B DP_WindowAreaSubScreen
     LDA.B #$20                                                           ;8880BC;
     STA.B DP_WindowMaskSprite                                            ;8880BE;
-    LDA.B #$04                                                           ;8880C0;
-    STA.B DP_WindowAreaSubScreen                                         ;8880C2;
     RTS                                                                  ;8880C4;
 
 
@@ -413,7 +475,7 @@ LayerBlending_28:
     STA.B DP_ColorMathSubScreenBackdropColor0                            ;88811F;
     LDA.B #$40                                                           ;888121;
     STA.B DP_ColorMathSubScreenBackdropColor1                            ;888123;
-    LDA.B #$80                                                           ;888125;
+    ASL
     STA.B DP_ColorMathSubScreenBackdropColor2                            ;888127;
 
   .return:
@@ -488,105 +550,19 @@ LayerBlending_24_MotherBrain:
     STZ.B DP_WindowMaskBG12                                              ;888158;
     LDA.B #$02                                                           ;88815A;
     STA.B DP_WindowMaskBG34                                              ;88815C;
+    ASL
+    STA.B DP_SubScreenLayers
     LDA.B #$20                                                           ;88815E;
     STA.B DP_WindowMaskSprite                                            ;888160;
+    LSR
+    STA.B DP_NextGameplayColorMathA
     LDA.B #$13                                                           ;888162;
     STA.B DP_MainScreenLayers                                            ;888164;
     STA.B DP_WindowAreaMainScreen
-    LDA.B #$04                                                           ;888166;
-    STA.B DP_SubScreenLayers                                             ;888168;
     STA.B DP_WindowAreaSubScreen
-    LDA.B #$10                                                           ;888172;
-    STA.B DP_NextGameplayColorMathA                                      ;888174;
     LDA.B #$33                                                           ;888176;
     STA.B DP_NextGameplayColorMathB                                      ;888178;
     RTS                                                                  ;88817A;
-
-
-;;; $817B: Handle layer blending x-ray - can show blocks ;;;
-Handle_LayerBlending_Xray_CanShowBlocks:
-; Disable BG1 inside window
-; Disable BG2 outside window
-; Disable BG3
-; Enabled halved colour math outside window
-    LDA.B #$C8                                                           ;88817B;
-    STA.B DP_WindowMaskBG12                                              ;88817D;
-    LDA.B #$08                                                           ;88817F;
-    STA.B DP_WindowMaskBG34                                              ;888181;
-    LDA.B #$80                                                           ;888183;
-    STA.B DP_WindowMaskSprite                                            ;888185;
-    LDA.B #$13                                                           ;888187;
-    STA.B DP_MainScreenLayers                                            ;888189;
-    LDA.B #$04                                                           ;88818B;
-    STA.B DP_SubScreenLayers                                             ;88818D;
-    STA.B DP_WindowAreaSubScreen
-    LDA.B #$03                                                           ;88818F;
-    STA.B DP_WindowAreaMainScreen                                        ;888191;
-    LDA.B #$22                                                           ;888197;
-    STA.B DP_NextGameplayColorMathA                                      ;888199;
-    LDA.B DP_NextGameplayColorMathB                                      ;88819B;
-    AND.B #$80                                                           ;88819D;
-    ORA.B #$73                                                           ;88819F;
-    STA.B DP_NextGameplayColorMathB                                      ;8881A1;
-    RTS                                                                  ;8881A3;
-
-
-;;; $81A4: Handle layer blending x-ray - can't show blocks ;;;
-Handle_LayerBlending_Xray_CantShowBlocks:
-; Disable BG3
-; Enabled halved colour math outside window
-; If n00b tube room, disable BG2
-    STZ.B DP_WindowMaskBG12                                              ;8881A4;
-    LDA.B #$08                                                           ;8881A6;
-    STA.B DP_WindowMaskBG34                                              ;8881A8;
-    LDA.B #$80                                                           ;8881AA;
-    STA.B DP_WindowMaskSprite                                            ;8881AC;
-    LDA.B #$13                                                           ;8881AE;
-    STA.B DP_MainScreenLayers                                            ;8881B0;
-    LDA.B #$04                                                           ;8881B2;
-    STA.B DP_SubScreenLayers                                             ;8881B4;
-    STA.B DP_WindowAreaSubScreen
-    LDA.B #$03                                                           ;8881B6;
-    STA.B DP_WindowAreaMainScreen                                        ;8881B8;
-    LDA.B #$22                                                           ;8881BE;
-    STA.B DP_NextGameplayColorMathA                                      ;8881C0;
-    LDA.B DP_NextGameplayColorMathB                                      ;8881C2;
-    AND.B #$80                                                           ;8881C4;
-    ORA.B #$61                                                           ;8881C6;
-    STA.B DP_NextGameplayColorMathB                                      ;8881C8;
-    REP #$20                                                             ;8881CA;
-    LDA.W RoomPointer                                                    ;8881CC;
-    CMP.W #RoomHeader_GlassTunnel                                        ;8881CF;
-    SEP #$20                                                             ;8881D2;
-    BNE .return                                                          ;8881D4;
-    LDA.B #$11                                                           ;8881D6;
-    STA.B DP_MainScreenLayers                                            ;8881D8;
-
-  .return:
-    RTS                                                                  ;8881DA;
-
-
-;;; $81DB: Handle layer blending x-ray - fireflea room ;;;
-Handle_LayerBlending_Xray_FirefleaRoom:
-; Disable BG3
-; Enabled subtractive colour math outside window
-    STZ.B DP_WindowMaskBG12                                              ;8881DB;
-    LDA.B #$08                                                           ;8881DD;
-    STA.B DP_WindowMaskBG34                                              ;8881DF;
-    LDA.B #$80                                                           ;8881E1;
-    STA.B DP_WindowMaskSprite                                            ;8881E3;
-    LDA.B #$13                                                           ;8881E5;
-    STA.B DP_MainScreenLayers                                            ;8881E7;
-    LDA.B #$04                                                           ;8881E9;
-    STA.B DP_WindowAreaSubScreen
-    STZ.B DP_SubScreenLayers                                             ;8881EB;
-    LDA.B #$03                                                           ;8881ED;
-    STA.B DP_WindowAreaMainScreen                                        ;8881EF;
-    LDA.B #$20                                                           ;8881F5;
-    STA.B DP_NextGameplayColorMathA                                      ;8881F7;
-    LDA.B #$B3                                                           ;8881F9;
-    STA.B DP_NextGameplayColorMathB                                      ;8881FB;
-    RTS                                                                  ;8881FD;
 
 
 ;;; $81FE: Handle layer blending power bomb ;;;
@@ -617,16 +593,16 @@ Handle_LayerBlending_PowerBomb_0_2:
     STZ.B DP_WindowMaskBG12                                              ;88821B;
     LDA.B #$08                                                           ;88821D;
     STA.B DP_WindowMaskBG34                                              ;88821F;
-    LDA.B #$80                                                           ;888221;
-    STA.B DP_WindowMaskSprite                                            ;888223;
-    LDA.B #$02                                                           ;888225;
-    STA.B DP_NextGameplayColorMathA                                      ;888227;
+    LSR
+    STA.B DP_WindowAreaSubScreen
+    STA.B DP_SubScreenLayers
+    LSR
+    STA.B DP_NextGameplayColorMathA
     LDA.B #$37                                                           ;888229;
     STA.B DP_NextGameplayColorMathB                                      ;88822B;
     STZ.B DP_WindowAreaMainScreen                                        ;88822F;
-    LDA.B #$04                                                           ;888231;
-    STA.B DP_WindowAreaSubScreen                                         ;888233;
-    STA.B DP_SubScreenLayers
+    LDA.B #$80                                                           ;888221;
+    STA.B DP_WindowMaskSprite                                            ;888223;
     LDA.B #$13                                                           ;888235;
     STA.B DP_MainScreenLayers                                            ;888237;
     RTS                                                                  ;88823D;
@@ -664,16 +640,16 @@ Handle_LayerBlending_PowerBomb_6:
     STZ.B DP_WindowMaskBG12                                              ;888265;
     LDA.B #$08                                                           ;888267;
     STA.B DP_WindowMaskBG34                                              ;888269;
-    LDA.B #$80                                                           ;88826B;
-    STA.B DP_WindowMaskSprite                                            ;88826D;
-    LDA.B #$02                                                           ;88826F;
+    LSR
+    STA.B DP_WindowAreaSubScreen
+    STA.B DP_SubScreenLayers
+    LSR
     STA.B DP_NextGameplayColorMathA                                      ;888271;
     LDA.B #$31                                                           ;888273;
     STA.B DP_NextGameplayColorMathB                                      ;888275;
     STZ.B DP_WindowAreaMainScreen                                        ;888279;
-    LDA.B #$04                                                           ;88827B;
-    STA.B DP_WindowAreaSubScreen                                         ;88827D;
-    STA.B DP_SubScreenLayers
+    LDA.B #$80                                                           ;88826B;
+    STA.B DP_WindowMaskSprite                                            ;88826D;
     LDA.B #$13                                                           ;88827F;
     STA.B DP_MainScreenLayers                                            ;888281;
     RTS                                                                  ;888287;
@@ -682,9 +658,8 @@ Handle_LayerBlending_PowerBomb_6:
 ;;; $829E: Wait until the end of a v-blank and clear (H)DMA enable flags ;;;
 Wait_End_VBlank_Clear_HDMA:
     JSL.L WaitUntilTheEndOfAVBlank                                       ;8882A1;
-    SEP #$20
     STZ.W $420B                                                          ;8882A5;
-    STZ.W $420C                                                          ;8882A8;
+    SEP #$20
     STZ.B DP_HDMAEnable                                                  ;8882AF;
     REP #$30                                                             ;8882B1;
     LDX.W #$000A                                                         ;8882B4;
@@ -714,8 +689,7 @@ Initialise_Special_Effects_for_New_Room:
     CMP.W #RoomHeader_MotherBrain                                        ;8882E1;
     BEQ .noEarthquakeSFX                                                 ;8882E4;
     CMP.W #RoomHeader_TourianEscape4                                     ;8882E6;
-    BEQ .noEarthquakeSFX                                                 ;8882E9;
-    BRA .earthquakeSFX                                                   ;8882EB;
+    BNE .earthquakeSFX
 
   .noEarthquakeSFX:
     LDA.W #$FFFF                                                         ;8882ED;
@@ -749,7 +723,7 @@ Initialise_Special_Effects_for_New_Room:
     STA.W FX_YPosition                                                   ;888328;
     STZ.W FX_LavaAcidYSubPosition                                        ;88832B;
     STA.W FX_LavaAcidYPosition                                           ;88832E;
-    LDA.W #$0000                                                         ;888331;
+    INC
     STA.L HUDBG3XPosition                                                ;888334;
     STA.L HUDBG3YPosition                                                ;888338;
     STA.L BG3XPosition                                                   ;88833C;
@@ -789,24 +763,16 @@ Initialise_Special_Effects_for_New_Room:
     STA.W PauseHook_Pause                                                ;8883A1;
     STA.W PauseHook_Unpause                                              ;8883A4;
     SEP #$20                                                             ;8883A7;
-    LDA.B #$F0                                                           ;8883A9;
-    STA.W $2181                                                          ;8883AB;
-    LDA.B #$FF                                                           ;8883AE;
-    STA.W $2182                                                          ;8883B0;
-    LDA.B #$01                                                           ;8883B3;
-    STA.W $2183                                                          ;8883B5;
     STZ.B DP_HDMAEnable                                                  ;8883B8;
     LDA.B #$20                                                           ;8883BA;
     STA.B DP_ColorMathSubScreenBackdropColor0                            ;8883BC;
-    LDA.B #$40                                                           ;8883BE;
+    ASL
     STA.B DP_ColorMathSubScreenBackdropColor1                            ;8883C0;
-    LDA.B #$80                                                           ;8883C2;
+    ASL
     STA.B DP_ColorMathSubScreenBackdropColor2                            ;8883C4;
     STZ.B DP_Mosaic                                                      ;8883C6;
     LDA.B #$13                                                           ;8883C8;
     STA.B DP_MainScreenLayers                                            ;8883CA;
-    STZ.B DP_ColorMathA                                                  ;8883CC;
-    STZ.B DP_ColorMathB                                                  ;8883CE;
     STZ.B DP_BGTilesAddr                                                 ;8883D0;
     LDA.B #$04                                                           ;8883D2;
     STA.B DP_BGTilesAddr+1                                               ;8883D4;
@@ -816,8 +782,9 @@ Initialise_Special_Effects_for_New_Room:
     STA.B DP_BG3TilemapAddrSize                                          ;8883DC;
     STA.B DP_GameplayBG1TilemapAddrSize                                  ;8883DE;
     REP #$30
+    STZ.B DP_ColorMathA
 
-.return:
+  .return:
     RTL                                                                  ;8883E1;
 
 

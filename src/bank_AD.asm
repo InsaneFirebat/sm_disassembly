@@ -1838,26 +1838,33 @@ TransitionMotherBrainPaletteToGrey_RealDeath:
 FadeOutBackgroundForBabyMetroidDeathSequence:
 ; BG palette 3: Room background
 ; BG palette 5: Room level graphics
-    PHB                                                                  ;ADF209;
-    PEA.W FadeOutBackgroundForBabyMetroidDeathSequence>>8&$FF00          ;ADF20A;
-    PLB                                                                  ;ADF20D;
-    PLB                                                                  ;ADF20E;
     PHX                                                                  ;ADF20F;
     PHY                                                                  ;ADF210;
-    LDY.W #.justZeroes                                                   ;ADF211;
     LDX.W #$0062                                                         ;ADF214;
-    LDA.W #$000E                                                         ;ADF217;
-    JSL.L WriteAColorsFromYtoColorIndexX                                 ;ADF21A;
-    LDY.W #.justZeroes                                                   ;ADF21E;
+    LDY.W #$000E                                                         ;ADF217;
+    LDA.W #$0000
+
+  .loopBGPalette3:
+    STA.L Palettes,X
+    INX
+    INX
+    DEY
+    BNE .loopBGPalette3
     LDX.W #$00A2                                                         ;ADF221;
-    LDA.W #$000E                                                         ;ADF224;
-    JSL.L WriteAColorsFromYtoColorIndexX                                 ;ADF227;
+    LDY.W #$000E                                                         ;ADF224;
+
+  .loopBGPalette5:
+    STA.L Palettes,X
+    INX
+    INX
+    DEY
+    BNE .loopBGPalette5
     PLY                                                                  ;ADF22B;
     PLX                                                                  ;ADF22C;
-    PLB                                                                  ;ADF22D;
     RTL                                                                  ;ADF22E;
 
-  .justZeroes:
+
+JustZeroes:
 ; Colours 1..Eh of BG1/2 palette 3/5
     dw $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0000                   ;ADF22F;
     dw $0000,$0000,$0000,$0000,$0000,$0000                               ;ADF23F;

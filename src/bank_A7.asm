@@ -4911,7 +4911,6 @@ EnemyTouch_KraidNail:
     JSL.L NormalEnemyTouchAI                                             ;A7BCCF;
     LDX.B EnemyIndex                                                     ;A7BCD3;
     JSL.L EnemyDeath                                                     ;A7BCD6;
-    LDX.B EnemyIndex                                                     ;A7BCDA;
     RTL                                                                  ;A7BCDD;
 
 
@@ -4920,7 +4919,6 @@ EnemyTouch_KraidNailBad:
     JSL.L NormalEnemyTouchAI                                             ;A7BCDE;
     LDX.B EnemyIndex                                                     ;A7BCE2;
     JSL.L EnemyDeath                                                     ;A7BCE5;
-    LDX.B EnemyIndex                                                     ;A7BCE9;
     RTL                                                                  ;A7BCEC;
 
 
@@ -4936,11 +4934,13 @@ RTL_A7BCEE:
 
 ;;; $BCEF: Initialisation AI - enemy $E43F (Kraid good fingernail) ;;;
 InitAI_KraidNail:
-    LDX.B EnemyIndex                                                     ;A7BCEF; fallthrough to InitAI_KraidNail_WithoutLoadingEnemyIndex
+;;; $BD2D: Initialisation AI - enemy $E47F (Kraid bad fingernail) ;;;
+InitAI_KraidNailBad:
 
 
 ;;; $BCF2: Kraid's fingernails initialisation AI ;;;
 InitAI_KraidNail_Common:
+    TYX
     LDA.W Enemy.palette                                                  ;A7BCF2;
     STA.W Enemy.palette,X                                                ;A7BCF5;
     LDA.W #$0028                                                         ;A7BCF8;
@@ -4963,15 +4963,8 @@ InitAI_KraidNail_Common:
     RTL                                                                  ;A7BD2C;
 
 
-;;; $BD2D: Initialisation AI - enemy $E47F (Kraid bad fingernail) ;;;
-InitAI_KraidNailBad:
-    LDX.B EnemyIndex                                                     ;A7BD2D;
-    BRA InitAI_KraidNail_Common                                          ;A7BD30;
-
-
 ;;; $BD32: Main AI - enemy $E43F (Kraid good fingernail) ;;;
 MainAI_KraidNail:
-    REP #$30                                                             ;A7BD32;
     LDA.W Enemy.health                                                   ;A7BD34;
     CMP.W #$0001                                                         ;A7BD37;
     BMI .delete                                                          ;A7BD3A;
@@ -4986,7 +4979,6 @@ MainAI_KraidNail:
 
 ;;; $BD49: Main AI - enemy $E47F (Kraid bad fingernail) ;;;
 MainAI_KraidNailBad:
-    REP #$30                                                             ;A7BD49;
     LDA.W Enemy.health                                                   ;A7BD4B;
     CMP.W #$0001                                                         ;A7BD4E;
     BMI .delete                                                          ;A7BD51;
@@ -5067,20 +5059,16 @@ Function_KraidNail_Initialize:
   .notKraidNailBad:
     CMP.W #$0001                                                         ;A7BDF7;
     BEQ .diagonal                                                        ;A7BDFA;
-    LDA.W #$0001                                                         ;A7BDFC;
-    STA.L Kraid.maxHealth_2_8,X                                          ;A7BDFF;
     LDA.W #$0032                                                         ;A7BE03;
     STA.W Enemy.XPosition,X                                              ;A7BE06;
     LDA.W #$00F0                                                         ;A7BE09;
     STA.W Enemy.YPosition,X                                              ;A7BE0C;
-    LDA.W #$0000                                                         ;A7BE0F;
-    STA.W Kraid.instListPointer,X                                        ;A7BE12;
+    STZ.W Kraid.instListPointer,X                                        ;A7BE12;
+    STZ.W Enemy.var3,X
+    STZ.W Enemy.var4,X
     LDA.W #$0001                                                         ;A7BE15;
     STA.W Kraid.instructionTimer,X                                       ;A7BE18;
-    LDA.W #$0000                                                         ;A7BE1B;
-    STA.W Enemy.var3,X                                                   ;A7BE1E;
-    LDA.W #$0000                                                         ;A7BE21;
-    STA.W Enemy.var4,X                                                   ;A7BE24;
+    STA.L Kraid.maxHealth_2_8,X
     LDA.W #Function_KraidNail_WaitUntilTopLintXPosition100Plus           ;A7BE27;
     STA.W Kraid.function,X                                               ;A7BE2A;
     LDA.W #Function_KraidNail_Fire                                       ;A7BE2D;
@@ -5263,7 +5251,6 @@ Function_KraidFoot_Phase1_LungeForward:
     STA.W Enemy[5].var0                                                  ;A7BF95;
     LDA.W #$0001                                                         ;A7BF98;
     STA.W Enemy[5].var5                                                  ;A7BF9B;
-    LDA.W #$0001                                                         ;A7BF9E;
     STA.W Enemy[5].instTimer                                             ;A7BFA1;
     LDA.W #InstList_KraidFoot_KraidIsBig_Neutral                         ;A7BFA4;
     STA.W Enemy[5].instList                                              ;A7BFA7;
@@ -5298,7 +5285,6 @@ Function_KraidFoot_Phase1_RetreatFromLunge:
     STA.W Enemy[1].instList                                              ;A7BFDC;
     LDA.W #$0001                                                         ;A7BFDF;
     STA.W Enemy[1].instTimer                                             ;A7BFE2;
-    LDA.W #$0001                                                         ;A7BFE5;
     STA.W Enemy[5].instTimer                                             ;A7BFE8;
     LDA.W #InstList_KraidFoot_KraidIsBig_Neutral                         ;A7BFEB;
     STA.W Enemy[5].instList                                              ;A7BFEE;

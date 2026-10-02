@@ -4,31 +4,21 @@
 org $808000
 
 
-;;; $800A: Upload to APU (hardcoded parameter) ;;;
-UploadToAPU_Hardcoded:
-;; Parameter:
-;;     [[S] + 1] + 1: APU data pointer ($CF:8000)
-    LDA.B $02,S                                                          ;80800A;
-    STA.B DP_Temp04                                                      ;80800C;
-    LDA.B $01,S                                                          ;80800E;
-    STA.B DP_Temp03                                                      ;808010; DP_Temp03 = return address
-    CLC                                                                  ;808012;
-    ADC.W #$0003                                                         ;808013; adjust return address
-    STA.B $01,S                                                          ;808016;
-    LDY.W #$0001                                                         ;808018;
-    LDA.B [DP_Temp03],Y                                                  ;80801B;
-    STA.B DP_Temp00                                                      ;80801D;
-    INY                                                                  ;80801F;
-    LDA.B [DP_Temp03],Y                                                  ;808020;
-    STA.B DP_Temp01                                                      ;808022; DP_Temp00 = [(return address) + 1] (parameter address)
-
-
 ;;; $8024: Upload to APU (from [$00]) (external) ;;;
 UploadToAPU_long:
 ;; Parameter
 ;;     $00: APU data pointer
     JSR.W UploadToAPU                                                    ;808024;
     RTL                                                                  ;808027;
+
+
+UploadToAPU_Hardcoded:
+;; Parameter:
+;;     [[S] + 1] + 1: APU data pointer ($CF:8000)
+    LDA.W #SPC_Engine
+    STA.B DP_Temp00                                                      ;80801D;
+    LDA.W #SPC_Engine>>8
+    STA.B DP_Temp01                                                      ;808022; fallthrough to UploadToAPU
 
 
 ;;; $8028: Upload to APU (from [$00]) ;;;
@@ -645,22 +635,21 @@ Boot:
     TCD                                                                  ;808435; Clear direct page
     PHK                                                                  ;808436;
     PLB                                                                  ;808437; DB = $80
-    SEP #$30                                                             ;808438;
-
-  .wait:
-    LDA.W $4212                                                          ;80843C;
-    BPL .wait                                                            ;80843F; Wait the remainder of this frame
-    REP #$30                                                             ;808449;
-    LDX.W #$1FFE                                                         ;80844B;
-
-  .loop:
-    STZ.W $0000,X                                                        ;80844E;
-    DEX                                                                  ;808451; Clear $0000..1FFF
-    DEX                                                                  ;808452;
-    BPL .loop                                                            ;808453;
-    JSL.L Initialise_IO_Registers_and_Display_Nintendo_Logo              ;808455; Initialise IO registers and display Nintendo logo
+    LDA.W #LowRAM
+    STA.W $2181
+    STZ.W $2183
+    LDA.W #$80<<8|$08
+    STA.W $4310
+    LDA.W #JustZeroes
+    STA.W $4312
+    LDA.W #$0000|JustZeroes>>16
+    STA.W $4314
+    LDA.W #$0020
+    STA.W $4316
+    LDA.W #$0002
+    STA.W $420B
+    JSL.L Initialise_IO_Registers_and_Display_Nintendo_Logo              ;808455;
     JSL.L UploadToAPU_Hardcoded                                          ;808459;
-    dl SPC_Engine                                                        ;80845D; Upload SPC engine to APU
     BRA CommonBootSection                                                ;808460; Go to common boot section
 
 
@@ -686,57 +675,34 @@ SoftReset:
     SEP #$30                                                             ;808471;
     LDA.B #$01
     STA.W $420D
-    JML .wait
-
-  .wait:
-    LDA.W $4212                                                          ;808475;
-    BPL .wait                                                            ;808478;
+    JML CommonBootSection
 
 
 ;;; $8482: Common boot section ;;;
 CommonBootSection:
-; They wait another (see $841C) 3 frames here at $8523
-; It might be giving the SPC engine a chance to run its initialisation after sending zero bytes to the APU IO registers
     SEP #$20                                                             ;808482;
     LDA.B #$8F                                                           ;808484;
     STA.B DP_Brightness
     STA.W $2100                                                          ;808486; Enable forced blank
     REP #$30                                                             ;808489;
-    PEA.W LowRAM>>8                                                      ;80848B;
-    PLB                                                                  ;80848E;
-    PLB                                                                  ;80848F;
-    LDX.W #$1FFE                                                         ;808490;
-
-  .clearBank7E:
-    STZ.W $0000,X                                                        ;808493;
-    STZ.W $2000,X                                                        ;808496;
-    STZ.W $4000,X                                                        ;808499;
-    STZ.W $6000,X                                                        ;80849C;
-    STZ.W $8000,X                                                        ;80849F; Clear bank $7E
-    STZ.W $A000,X                                                        ;8084A2;
-    STZ.W $C000,X                                                        ;8084A5;
-    STZ.W $E000,X                                                        ;8084A8;
-    DEX                                                                  ;8084AB;
-    DEX                                                                  ;8084AC;
-    BPL .clearBank7E                                                     ;8084AD;
-    PHK                                                                  ;8084AF;
-    PLB                                                                  ;8084B0;
+    LDA.W #LowRAM
+    STA.W $2181
+    STZ.W $2183
+    LDA.W #$80<<8|$08
+    STA.W $4310
+    LDA.W #JustZeroes
+    STA.W $4312
+    LDA.W #$0000|JustZeroes>>16
+    STA.W $4314
+    STZ.W $4316
+    LDA.W #$0002
+    STA.W $420B
     SEP #$30                                                             ;8084B1;
     STZ.W $4200                                                          ;8084B3;
     STZ.B DP_IRQAutoJoy                                                  ;8084B6; Disable NMI and auto-joypad read
     LDA.B #$01
     STA.W $4200
     STA.B DP_IRQAutoJoy
-    STZ.W $4201
-    STZ.W $4202
-    STZ.W $4203
-    STZ.W $4204
-    STZ.W $4205
-    STZ.W $4206
-    STZ.W $4207
-    STZ.W $4208
-    STZ.W $4209
-    STZ.W $420A
     STZ.W $420B
     STZ.W $420C
     STZ.B DP_HDMAEnable
@@ -846,7 +812,6 @@ CommonBootSection:
     STA.B DP_ColorMathSubScreenBackdropColor2
     LDA.B #$00
     STA.W $2133
-    SEP #$20                                                             ;8084C5;
     STZ.W APU_SoundQueueStartIndexLib1                                   ;8084C7;
     STZ.W APU_SoundQueueStartIndexLib2                                   ;8084CA;
     STZ.W APU_SoundQueueStartIndexLib3                                   ;8084CD;
@@ -887,25 +852,19 @@ CommonBootSection:
     REP #$30                                                             ;808532;
     LDA.W #$0061                                                         ;808534;
     STA.B RandomNumberSeed                                               ;808537; Seed random number with 61h
-    LDA.W #$0000                                                         ;80853A;
-    STA.W APU_MusicTimer                                                 ;80853D;
-    STA.W APU_MusicQueueTimers                                           ;808540;
-    STA.W APU_MusicQueueTimers+2                                         ;808543;
-    STA.W APU_MusicQueueTimers+4                                         ;808546;
-    STA.W APU_MusicQueueTimers+6                                         ;808549; Clear music queue
-    STA.W APU_MusicQueueTimers+8                                         ;80854C;
-    STA.W APU_MusicQueueTimers+10                                        ;80854F;
-    STA.W APU_MusicQueueTimers+12                                        ;808552;
-    STA.W APU_MusicQueueTimers+14                                        ;808555;
-    REP #$30                                                             ;808562;
+    STZ.W APU_MusicTimer                                                 ;80853D;
+    STZ.W APU_MusicQueueTimers                                           ;808540;
+    STZ.W APU_MusicQueueTimers+2                                         ;808543;
+    STZ.W APU_MusicQueueTimers+4                                         ;808546;
+    STZ.W APU_MusicQueueTimers+6                                         ;808549; Clear music queue
+    STZ.W APU_MusicQueueTimers+8                                         ;80854C;
+    STZ.W APU_MusicQueueTimers+10                                        ;80854F;
+    STZ.W APU_MusicQueueTimers+12                                        ;808552;
+    STZ.W APU_MusicQueueTimers+14                                        ;808555;
     JSR.W DetermineNumberOfDemoSets                                      ;808564; Check for non-corrupt SRAM
     STZ.W DisableSounds                                                  ;808568; Enable sounds
     STZ.W APU_SoundHandlerDowntime                                       ;80856B; Sound handler downtime = 0
     JML MainGameLoop                                                     ;80856E; Go to main game loop
-
-
-;;; $8572: Unused. BRK ;;;
-    db $00                                                               ;808572; BRK with no operand
 
 
 ;;; $8573: Infinite loop; pointed to by misc. error handling ;;;
@@ -2866,7 +2825,7 @@ Interrupt_Cmd0:
 
   .return:
     LDX.W #$0000                                                         ;809679;
-    LDY.W #$0000                                                         ;80967C;
+    TXY
     RTS                                                                  ;80967F;
 
 

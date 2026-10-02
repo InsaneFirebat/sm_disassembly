@@ -727,9 +727,7 @@ ChargedShotGlowTimer: skip 2 ; $0B18
 skip 6 ; $0B1A..1D
 MorphBallBounceState: skip 2 ; $0B20
 SamusIsFallingFlag: skip 2 ; $0B22
-Temp0B24: skip 2 ; $0B24
-Temp0B26: skip 2 ; $0B26
-skip 4 ; $0B28..2B
+skip 8 ; $0B24..2B
 SamusYSubSpeed: skip 1 ; $0B2C
 SamusYSpeedCombined: skip 1 ; $0B2D
 SamusYSpeed: skip 2 ; $0B2E

@@ -916,11 +916,9 @@ Load_Enemies:
 ; Called when loading the game, and during door transition
 ; This routine loads enemy tile data, which during door transition has already loaded by $82:DFD1, making the call to $8C6C a fairly hefty waste of time
 ; Aside from loading tile data, this routine also loads palette data, and the enemy GFX data needed for respawn
-    PHP                                                                  ;A08A1E;
     PHB                                                                  ;A08A1F;
     PHK
     PLB                                                                  ;A08A24;
-    REP #$30                                                             ;A08A25;
     STZ.W BossID                                                         ;A08A2E;
     LDA.W #RTL_A0804C>>16                                                ;A08A31;
     STA.W EnemyGraphicsDrawnHook+2                                       ;A08A34;
@@ -932,91 +930,103 @@ Load_Enemies:
     JSL.L LoadEnemyTileData                                              ;A08A5C;
     STZ.W EnemyTileData_SrcAddr                                          ;A08A60;
     STZ.W DisableSamusVsProjectileInteraction                            ;A08A63;
-    JSL.L ClearSpriteObjects                                             ;A08A66;
+    LDA.W #SpriteObjects_InstListPointers
+    STA.W $2181
+    STZ.W $2183
+    LDA.W #$80<<8|$08
+    STA.W $4310
+    LDA.W #JustZeroes
+    STA.W $4312
+    LDA.W #$0000|JustZeroes>>16
+    STA.W $4314
+    LDA.W #$0004
+    STA.W $4316
+    LDA.W #$0002
+    STA.W $420B
     PLB                                                                  ;A08A6A;
-    PLP                                                                  ;A08A6B;
     RTL                                                                  ;A08A6C;
 
 
 ;;; $8A6D: Clear enemy data and process enemy set ;;;
 ClearEnemyData_ProcessEnemySet:
-    PHP                                                                  ;A08A6D;
-    PHB                                                                  ;A08A6E;
-    PHK
-    PLB                                                                  ;A08A73;
-    REP #$30                                                             ;A08A74;
-    LDA.W #$0000                                                         ;A08A76;
-    LDY.W #$0800                                                         ;A08A79;
-    LDX.W #$0000                                                         ;A08A7C;
-
-  .loop:
-    STA.L Enemy.ID,X                                                     ;A08A7F;
-    INX                                                                  ;A08A83;
-    DEY                                                                  ;A08A84;
-    INX                                                                  ;A08A85;
-    DEY                                                                  ;A08A86;
-    BNE .loop                                                            ;A08A87;
+    LDA.W #Enemy.ID
+    STA.W $2181
+    STZ.W $2183
+    LDA.W #$80<<8|$08
+    STA.W $4310
+    LDA.W #JustZeroes
+    STA.W $4312
+    LDA.W #$0000|JustZeroes>>16
+    STA.W $4314
+    LDA.W #$0008
+    STA.W $4316
+    LDA.W #$0002
+    STA.W $420B
     LDX.W EnemyPopulationPointer                                         ;A08A89;
     LDA.L EnemyPopulations_ID,X                                          ;A08A8C;
     CMP.W #$FFFF                                                         ;A08A90;
-    BNE .processEnemySet                                                 ;A08A93;
-    JMP.W .return                                                        ;A08A95;
-
-  .processEnemySet:
+    BEQ .return
     JSR.W ProcessEnemySet_LoadPalettesAndEnemyLoadingData                ;A08A98;
 
   .return:
-    PLB                                                                  ;A08A9B;
-    PLP                                                                  ;A08A9C;
     RTL                                                                  ;A08A9D;
 
 
 ;;; $8A9E: Initialise enemies ;;;
 Initialise_Enemies:
-    PHP                                                                  ;A08A9E;
     PHB                                                                  ;A08A9F;
-    LDY.W #$1400                                                         ;A08AA0;
-    LDX.W #$0000                                                         ;A08AA3;
-    LDA.W #$0000                                                         ;A08AA6;
-
-  .loopExtraEnemyRAM:
-    STA.L EnemyTileData,X                                                ;A08AA9;
-    INX                                                                  ;A08AAD;
-    INX                                                                  ;A08AAE;
-    DEY                                                                  ;A08AAF;
-    BNE .loopExtraEnemyRAM                                               ;A08AB0;
-    PHK
-    PLB                                                                  ;A08AB6;
-    REP #$30                                                             ;A08AB7;
-    STZ.W NumberOfEnemiesKilled                                          ;A08ABC;
-    STZ.W GlobalOffScreenEnemyProcessingFlag                             ;A08ABF;
+    LDX.B NMI_Request
+    STZ.B NMI_Request
+    LDA.W #EnemySpawnData
+    STA.W $2181
+    STZ.W $2183
+    LDA.W #$80<<8|$08
+    STA.W $4310
+    LDA.W #JustZeroes
+    STA.W $4312
+    LDA.W #$0000|JustZeroes>>16
+    STA.W $4314
+    LDA.W #$0028
+    STA.W $4316
+    LDA.W #$0002
+    STA.W $420B
+    PEA.W EnemyProjectileData_CollisionOptions>>8
+    PLB
+    PLB
+    STX.B NMI_Request
     LDX.W #$011E                                                         ;A08AC2;
-    LDA.W #$0000                                                         ;A08AC5;
+    LDA.W #$0000
 
   .loopExtraEnemyProjectileRAM:
-    STA.L EnemyProjectileData_CollisionOptions,X                         ;A08AC8;
+    STA.W EnemyProjectileData_CollisionOptions,X                         ;A08AC8;
     DEX                                                                  ;A08ACC;
     DEX                                                                  ;A08ACD;
     BPL .loopExtraEnemyProjectileRAM                                     ;A08ACE;
     LDX.W #$0022                                                         ;A08AD0;
-    LDA.W #$FFFF                                                         ;A08AD3;
+    DEC
 
   .loopEnemyProjectileKilledEnemyIndices:
-    STA.L EnemyProjectileData_KilledEnemyIndex,X                         ;A08AD6;
+    STA.W EnemyProjectileData_KilledEnemyIndex,X                         ;A08AD6;
     DEX                                                                  ;A08ADA;
     DEX                                                                  ;A08ADB;
     BPL .loopEnemyProjectileKilledEnemyIndices                           ;A08ADC;
     LDX.W EnemyPopulationPointer                                         ;A08ADE;
+    STX.W Temp_PopulationDataPointer
     LDA.L EnemyPopulations_ID,X                                          ;A08AE1;
     CMP.W #$FFFF                                                         ;A08AE5;
     BNE +                                                                ;A08AE8;
-    JMP.W .return                                                        ;A08AEA;
+    PLB
+    RTL
 
 +   LDY.W #$0000                                                         ;A08AF0;
+    STZ.B EnemyIndex
+    PHK
+    PLB
 
   .loop:
     JSR.W LoadEnemyGFXIndices                                            ;A08AF3;
-    PHX                                                                  ;A08AF6;
+    LDY.B EnemyIndex
+    LDX.W Temp_PopulationDataPointer
     LDA.L EnemyPopulations_ID,X                                          ;A08AF7;
     TAX                                                                  ;A08AFB;
     LDA.W $0008,X                                                        ;A08AFC;
@@ -1034,7 +1044,7 @@ Initialise_Enemies:
     BEQ +                                                                ;A08B20;
     STA.W BossID                                                         ;A08B22;
 
-+   PLX                                                                  ;A08B25;
++   LDX.W Temp_PopulationDataPointer
     LDA.L EnemyPopulations_ID,X                                          ;A08B26;
     STA.W Enemy.ID,Y                                                     ;A08B2A;
     LDA.L EnemyPopulations_XPosition,X                                   ;A08B2D;
@@ -1060,7 +1070,6 @@ Initialise_Enemies:
     STA.W Enemy.frameCounter,Y                                           ;A08B70;
     PHX                                                                  ;A08B77;
     PHY                                                                  ;A08B78;
-    STY.B EnemyIndex                                                     ;A08B79;
     LDX.W Enemy.ID,Y                                                     ;A08B7C;
     LDA.W $0012,X                                                        ;A08B7F;
     STA.W EnemyAIPointer                                                 ;A08B82;
@@ -1094,10 +1103,12 @@ Initialise_Enemies:
     CLC                                                                  ;A08BB8;
     ADC.W #$0040                                                         ;A08BB9;
     TAY                                                                  ;A08BBC;
+    STY.B EnemyIndex
     TXA                                                                  ;A08BBD;
     CLC                                                                  ;A08BBE;
     ADC.W #$0010                                                         ;A08BBF;
     TAX                                                                  ;A08BC2;
+    STX.W Temp_PopulationDataPointer
     LDA.L EnemyPopulations_ID,X                                          ;A08BC3;
     CMP.W #$FFFF                                                         ;A08BC7;
     BEQ +                                                                ;A08BCA;
@@ -1107,10 +1118,7 @@ Initialise_Enemies:
     LDA.L EnemyPopulations_XPosition,X                                   ;A08BDC;
     AND.W #$00FF                                                         ;A08BE0;
     STA.W NumberOfEnemiesRequiredToKill                                  ;A08BE3;
-
-  .return:
     PLB                                                                  ;A08BE6;
-    PLP                                                                  ;A08BE7;
     RTL                                                                  ;A08BE8;
 
   .executeInitAI:
@@ -1128,8 +1136,6 @@ LoadEnemyGFXIndices:
 ;; Parameters:
 ;;     X: Enemy population index
 ;;     Y: Enemy data index
-    PHX                                                                  ;A08BF3;
-    PHY                                                                  ;A08BF4;
     STX.B DP_Temp12                                                      ;A08BF5;
     STY.B DP_Temp14                                                      ;A08BF7;
     LDA.W EnemySetPointer                                                ;A08BF9;
@@ -1169,8 +1175,6 @@ LoadEnemyGFXIndices:
     LDA.W #$0A00                                                         ;A08C3F;
     STA.W Enemy.palette,X                                                ;A08C42;
     STA.L EnemySpawnData.paletteIndex,X                                  ;A08C45;
-    PLY                                                                  ;A08C49;
-    PLX                                                                  ;A08C4A;
     RTS                                                                  ;A08C4B;
 
   .found:
@@ -1185,8 +1189,6 @@ LoadEnemyGFXIndices:
     LDA.B DP_Temp1E                                                      ;A08C60;
     STA.W Enemy.GFXOffset,X                                              ;A08C62;
     STA.L EnemySpawnData.VRAMTilesIndex,X                                ;A08C65;
-    PLY                                                                  ;A08C69;
-    PLX                                                                  ;A08C6A;
     RTS                                                                  ;A08C6B;
 
 
@@ -1206,7 +1208,6 @@ LoadEnemyTileData:
     LDA.W EnemyTileData_StackPointer                                     ;A08C7D;
     BEQ .return                                                          ;A08C80;
     LDX.W #$0000                                                         ;A08C82;
-    PHB                                                                  ;A08C85;
 
   .loopEnemies:
     LDA.W EnemyTileData_Pointer,X                                        ;A08C86;
@@ -1248,7 +1249,6 @@ LoadEnemyTileData:
     CPX.W EnemyTileData_StackPointer                                     ;A08CCD;
     BNE .loopEnemies                                                     ;A08CD0;
     STZ.W EnemyTileData_StackPointer                                     ;A08CD2;
-    PLB                                                                  ;A08CD5;
 
   .return:
     RTL                                                                  ;A08CD6;
@@ -1310,8 +1310,6 @@ TransferEnemyTilesToVRAM_InitialiseEnemies:
 
 ;;; $8D64: Process enemy set (load palettes and enemy loading data) ;;;
 ProcessEnemySet_LoadPalettesAndEnemyLoadingData:
-    PHX                                                                  ;A08D64;
-    PHY                                                                  ;A08D65;
     STZ.W EnemyTileData_StackPointer                                     ;A08D66;
     LDA.W #$0800                                                         ;A08D69;
     STA.B DP_Temp1E                                                      ;A08D6C;
@@ -1462,24 +1460,19 @@ ProcessEnemySet_LoadPalettesAndEnemyLoadingData:
     JMP.W .loop                                                          ;A08EB0;
 
   .return:
-    PLY                                                                  ;A08EB3;
-    PLX                                                                  ;A08EB4;
     RTS                                                                  ;A08EB5;
 
 
 ;;; $8EB6: Determine which enemies to process ;;;
 Determine_Which_Enemies_to_Process:
-    LDA #$0000
-    STA.B EnemyIndex
-    TAX
+    STZ.B EnemyIndex
+    LDX.W #$0000
+    TXY
     STZ.W ActiveEnemyIndicesStackPointer                                 ;A08EC4;
     STZ.W InteractiveEnemyIndicesStackPointer                            ;A08EC7;
     LDA.W GlobalOffScreenEnemyProcessingFlag                             ;A08ECA;
-    BEQ .resetIndex                                                      ;A08ECD;
+    BEQ .loop
     JMP.W .loopProcessOffscreen                                          ;A08ECF;
-
-  .resetIndex:
-    LDY.W #$0000                                                         ;A08ED5;
 
   .loop:
     LDA.W Enemy.ID,X                                                     ;A08EDB;
@@ -1557,7 +1550,6 @@ Determine_Which_Enemies_to_Process:
     RTL                                                                  ;A08F76;
 
   .loopProcessOffscreen:
-    LDX.B EnemyIndex                                                     ;A08F77;
     LDA.W Enemy.ID,X                                                     ;A08F7A;
     BEQ .nextProcessOffscreen                                            ;A08F7D;
     CMP.W #EnemyHeaders_Respawn                                          ;A08F7F;
@@ -1590,6 +1582,7 @@ Determine_Which_Enemies_to_Process:
     LDA.B EnemyIndex                                                     ;A08FB4;
     CLC                                                                  ;A08FB7;
     ADC.W #$0040                                                         ;A08FB8;
+    TAX
     STA.B EnemyIndex                                                     ;A08FBB;
     CMP.W #$0800                                                         ;A08FBE;
     BMI .loopProcessOffscreen                                            ;A08FC1;
@@ -1681,8 +1674,7 @@ Main_Enemy_Routine:
     PHK
     PLB                                                                  ;A08FD9;
     LDA.W FirstFreeEnemyIndex                                            ;A08FDC;
-    BNE .processEnemies                                                  ;A08FDF;
-    JMP.W .return                                                        ;A08FE1;
+    BEQ .return
 
   .processEnemies:
     LDA.W EnemyIndexToShake                                              ;A08FE4;
@@ -1702,10 +1694,19 @@ Main_Enemy_Routine:
     LDY.W ActiveEnemyIndicesIndex                                        ;A08FFF;
     LDA.W ActiveEnemyIndices,Y                                           ;A09002;
     CMP.W #$FFFF                                                         ;A09005;
-    BNE ..notDone                                                        ;A09008;
-    JMP.W .return                                                        ;A0900A;
+    BNE .notDone                                                         ;A09008;
 
-  ..notDone:
+  .return:
+    INC.W NumberOfTimesMainEnemyRoutineExecuted
+    LDA.W #$FFFF
+    STA.W EnemyIndexSamusCollidesLeft
+    STA.W EnemyIndexSamusCollidesRight
+    STA.W EnemyIndexSamusCollidesUp
+    STA.W EnemyIndexSamusCollidesDown
+    PLB
+    JML HandleSpriteObjects
+
+  .notDone:
     STA.B EnemyIndex                                                     ;A0900D;
     TAX                                                                  ;A09010;
     CLC                                                                  ;A09011;
@@ -1725,17 +1726,17 @@ Main_Enemy_Routine:
     LDA.W TimeIsFrozenFlag                                               ;A09036;
     BNE .checkParalyzed                                                  ;A0903C;
 ;;; $9758: Enemy collision handling ;;;
-    LDA.W Enemy.properties2,X                                          
-    BIT.W #$0004                                                       
-    BEQ .notExtendedSpritemap                                          
-    JSR.W Enemy_vs_Projectile_CollisionHandling_ExtendedSpritemap      
-    JSR.W Enemy_vs_Bomb_CollisionHandling_ExtendedSpritemap            
+    LDA.W Enemy.properties2,X
+    BIT.W #$0004
+    BEQ .notExtendedSpritemap
+    JSR.W Enemy_vs_Projectile_CollisionHandling_ExtendedSpritemap
+    JSR.W Enemy_vs_Bomb_CollisionHandling_ExtendedSpritemap
     JSR.W Enemy_vs_Samus_CollisionHandling_ExtendedSpritemap
     BRA +
 
   .notExtendedSpritemap:
-    JSR.W Enemy_vs_Projectile_CollisionHandling                        
-    JSR.W Enemy_vs_Bomb_CollisionHandling                              
+    JSR.W Enemy_vs_Projectile_CollisionHandling
+    JSR.W Enemy_vs_Bomb_CollisionHandling
     JSR.W Enemy_vs_Samus_CollisionHandling
 
 +   LDA.W Enemy.ID,X                                                     ;A09044;
@@ -1783,6 +1784,7 @@ Main_Enemy_Routine:
     PHB                                                                  ;A0908E;
     JSL.L .executeAI                                                     ;A0908F;
     PLB                                                                  ;A09093;
+    LDX.B EnemyIndex
     BRA +                                                                ;A09094;
 
   .executeAI:
@@ -1797,7 +1799,6 @@ Main_Enemy_Routine:
 
 +   LDA.W TimeIsFrozenFlag                                               ;A090A6;
     BNE .processAIEnd                                                    ;A090AC;
-    LDX.B EnemyIndex                                                     ;A090AE;
     INC.W Enemy.frameCounter,X                                           ;A090B1;
     LDA.W Enemy.properties,X                                             ;A090B4;
     BIT.W #$2000                                                         ;A090B7;
@@ -1805,7 +1806,6 @@ Main_Enemy_Routine:
     JSR.W ProcessEnemyInstructions                                       ;A090C3;
 
   .processAIEnd:
-    LDX.B EnemyIndex                                                     ;A090C6;
     LDA.W Enemy.properties2,X                                            ;A090C9;
     BIT.W #$0001                                                         ;A090CC;
     BEQ .paralysedEnd                                                    ;A090CF;
@@ -1874,17 +1874,6 @@ Main_Enemy_Routine:
     INC
     STA.W ActiveEnemyIndicesIndex
     JMP.W .loop                                                          ;A09142;
-
-  .return:
-    JSL.L HandleSpriteObjects                                            ;A09145;
-    INC.W NumberOfTimesMainEnemyRoutineExecuted                          ;A09149;
-    LDA.W #$FFFF                                                         ;A0914C;
-    STA.W EnemyIndexSamusCollidesLeft                                    ;A0914F;
-    STA.W EnemyIndexSamusCollidesRight                                   ;A09152;
-    STA.W EnemyIndexSamusCollidesUp                                      ;A09155;
-    STA.W EnemyIndexSamusCollidesDown                                    ;A09158;
-    PLB                                                                  ;A09167;
-    RTL                                                                  ;A09168;
 
 
 ;;; $9169: Decrement Samus hurt timers and clear active enemy indices lists ;;;
@@ -3802,28 +3791,25 @@ Enemy_vs_Projectile_CollisionHandling:
 
 ;;; $A236: Enemy / bomb collision handling ;;;
 Enemy_vs_Bomb_CollisionHandling:
-    PHB                                                                  ;A0A236;
-    LDA.W Enemy.bank,X                                                   ;A0A23A;
-    STA.W EnemyAIPointer+2                                               ;A0A23D;
-    XBA                                                                  ;A0A240;
-    PHA                                                                  ;A0A241;
-    PLB                                                                  ;A0A242;
-    PLB                                                                  ;A0A243;
     LDA.W SamusProjectile_BombCounter                                    ;A0A24B;
     BNE .nonZeroCounter                                                  ;A0A24E;
-
-  .returnUpper:
-    PLB                                                                  ;A0A250;
     RTS                                                                  ;A0A251;
 
   .nonZeroCounter:
+    PHB
+    LDA.W Enemy.bank,X
+    STA.W EnemyAIPointer+2
+    XBA
+    PHA
+    PLB
+    PLB
     LDA.W Enemy.spritemap,X                                              ;A0A255;
-    BEQ .returnUpper                                                     ;A0A258;
+    BEQ .return                                                          ;A0A258;
     LDA.W Enemy.invincibilityTimer,X                                     ;A0A25D;
-    BNE .returnUpper                                                     ;A0A260;
+    BNE .return                                                          ;A0A260;
     LDA.W Enemy.ID,X                                                     ;A0A262;
     CMP.W #EnemyHeaders_Respawn                                          ;A0A265;
-    BEQ .returnUpper                                                     ;A0A268;
+    BEQ .return                                                          ;A0A268;
     LDA.W #$0005                                                         ;A0A26A;
     STA.B CollisionIndex                                                 ;A0A26D;
 
@@ -3832,8 +3818,7 @@ Enemy_vs_Bomb_CollisionHandling:
     ASL                                                                  ;A0A276;
     TAY                                                                  ;A0A277;
     LDA.W SamusProjectile_Types,Y                                        ;A0A278;
-    BNE .projectileType                                                  ;A0A27B;
-    JMP.W .next                                                          ;A0A27D;
+    BEQ .next
 
   .projectileType:
     LDA.W SamusProjectile_BombTimers-$A,Y                                ;A0A280;
@@ -3844,8 +3829,7 @@ Enemy_vs_Bomb_CollisionHandling:
     BEQ .bomb                                                            ;A0A28E;
     LDA.W SamusProjectile_Types,Y                                        ;A0A290;
     BIT.W #$8000                                                         ;A0A293;
-    BNE .bomb                                                            ;A0A296;
-    JMP.W .next                                                          ;A0A298;
+    BEQ .next
 
   .bomb:
     LDA.W SamusProjectile_XPositions,Y                                   ;A0A29B;
@@ -3874,8 +3858,7 @@ Enemy_vs_Bomb_CollisionHandling:
     BCC +                                                                ;A0A2C4;
     CMP.W Enemy.YHitboxRadius,X                                          ;A0A2C6;
     BCC +                                                                ;A0A2C9;
-    BRA .next                                                            ;A0A2CB;
-
+    BRA .next
 
 +   LDA.W SamusProjectile_BombTimers-$A,Y                                ;A0A2D2;
     BNE .next                                                            ;A0A2D5;
@@ -3883,17 +3866,17 @@ Enemy_vs_Bomb_CollisionHandling:
     ORA.W #$0010                                                         ;A0A2DA;
     STA.W SamusProjectile_Directions,Y                                   ;A0A2DD;
     JSL.L .executeEnemyShot                                              ;A0A2E0;
-    BRA .returnLower                                                     ;A0A2E4;
+
+  .return:
+    PLB
+    RTS
 
   .next:
     LDA.B CollisionIndex
     INC
     STA.B CollisionIndex
     CMP.W #$000A                                                         ;A0A2EC;
-    BEQ .returnLower                                                     ;A0A2EF;
-    JMP.W .loop                                                          ;A0A2F1;
-
-  .returnLower:
+    BNE .loop
     PLB                                                                  ;A0A2F4;
     RTS                                                                  ;A0A2F5;
 
@@ -4044,6 +4027,7 @@ EnemyDeath:
 
   .incEnemiesKilled:
     INC.W NumberOfEnemiesKilled                                          ;A0A40A;
+    LDX.B EnemyIndex
     RTL                                                                  ;A0A40F;
 
 

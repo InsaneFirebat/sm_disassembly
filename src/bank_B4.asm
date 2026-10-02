@@ -2717,19 +2717,6 @@ DrawSpriteObjects:
     RTL                                                                  ;B4BD96;
 
 
-;;; $BD97: Clear sprite objects ;;;
-ClearSpriteObjects:
-    LDX.W #$03FE                                                         ;B4BD97;
-    LDA.W #$0000                                                         ;B4BD9A;
-
-  .loop:
-    STA.L SpriteObjects_InstListPointers,X                               ;B4BD9D;
-    DEX                                                                  ;B4BDA1;
-    DEX                                                                  ;B4BDA2;
-    BPL .loop                                                            ;B4BDA3;
-    RTL                                                                  ;B4BDA5;
-
-
 ;;; $BDA6: Empty draw instruction ;;;
 SpriteObject_DrawInst_Empty:
     dw $0000                                                             ;B4BDA6;

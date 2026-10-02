@@ -3419,15 +3419,6 @@ SpawnDeathSequenceEvirSpriteObjects:
     RTS                                                                  ;A5A0C5;
 
 
-;;; $A0C6: Clear sprite objects ;;;
-Draygon_ClearSpriteObjects:
-    PHX                                                                  ;A5A0C6;
-    PHY                                                                  ;A5A0C7;
-    PLY                                                                  ;A5A0D6;
-    PLX                                                                  ;A5A0D7;
-    RTS                                                                  ;A5A0D8;
-
-
 ;;; $A0D9: Spawn fight intro evir sprite objects ;;;
 SpawnFightIntroEvirSpriteObjects:
     PHX                                                                  ;A5A0D9;

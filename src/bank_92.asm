@@ -36,12 +36,12 @@ Set_SamusTilesDefinitions_ForCurrentAnimation:
     INX                                                                  ;928027;
     LDA.W $0000,X                                                        ;928028;
     AND.W #$00FF                                                         ;92802B;
-    STA.W Temp0B24                                                       ;92802E;
+    STA.B DP_Temp44
     ASL                                                                  ;928031;
     ASL                                                                  ;928032;
     ASL                                                                  ;928033;
     SEC                                                                  ;928034;
-    SBC.W Temp0B24                                                       ;928035;
+    SBC.B DP_Temp44
     STA.B DP_Temp12                                                      ;928038;
     LDA.W SamusTopHalfTilesAnimation_TilesDefinitionPointers,Y           ;92803A;
     CLC                                                                  ;92803D;
@@ -67,12 +67,12 @@ Set_SamusTilesDefinitions_ForCurrentAnimation:
     INX                                                                  ;928065;
     LDA.W $0000,X                                                        ;928066;
     AND.W #$00FF                                                         ;928069;
-    STA.W Temp0B26                                                       ;92806C;
+    STA.B DP_Temp44
     ASL                                                                  ;92806F;
     ASL                                                                  ;928070;
     ASL                                                                  ;928071;
     SEC                                                                  ;928072;
-    SBC.W Temp0B26                                                       ;928073;
+    SBC.B DP_Temp44
     STA.B DP_Temp14                                                      ;928076;
     LDA.W SamusBottomHalfTilesAnimation_TilesDefinitionPointers,Y        ;928078;
     CLC                                                                  ;92807B;
@@ -12593,11 +12593,6 @@ SamusTilesAnimation_AnimationDefinitions_EBA4:
 PlaySamusFanfare:
 ;; Returns:
 ;;     Carry: set if finished fanfare, else clear
-    PHP                                                                  ;92ED24;
-    PHB                                                                  ;92ED25;
-    PHK                                                                  ;92ED26;
-    PLB                                                                  ;92ED27;
-    REP #$30                                                             ;92ED28;
     LDA.W SamusAppearsFanfareTimer                                       ;92ED2A;
     BNE .nonZero                                                         ;92ED2D;
     LDA.W #$0001                                                         ;92ED2F;
@@ -12630,14 +12625,10 @@ PlaySamusFanfare:
     LDA.W PoseXDirection                                                 ;92ED69;
     STA.W PreviousPoseXDirection                                         ;92ED6C;
     STZ.W SamusAppearsFanfareTimer                                       ;92ED6F;
-    PLB                                                                  ;92ED72;
-    PLP                                                                  ;92ED73;
     SEC                                                                  ;92ED74;
     RTL                                                                  ;92ED75;
 
   .return:
-    PLB                                                                  ;92ED76;
-    PLP                                                                  ;92ED77;
     CLC                                                                  ;92ED78;
     RTL                                                                  ;92ED79;
 

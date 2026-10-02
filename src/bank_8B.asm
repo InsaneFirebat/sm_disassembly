@@ -4605,7 +4605,6 @@ CinematicFunction_Intro_Initial:
     JSL.L InitializeSamus                                                ;8BA3A8;
     JSL.L Update_Beam_Tiles_and_Palette                                  ;8BA3AC;
     LDA.W #$0384                                                         ;8BA3B0;
-    STA.W MaxMissiles                                                    ;8BA3B3;
     STA.W Missiles                                                       ;8BA3B6;
     STZ.W IntroSamusDisplayFlag                                          ;8BA3B9;
     LDA.W #SamusDrawingHandler_Default                                   ;8BA3BC;
@@ -7325,14 +7324,6 @@ PreInstruction_ConfusedBabyMetroid_Dancing:
 
 ;;; $BC08: Reset button assignments to default ;;;
 Reset_Button_Assignments_to_Default:
-    LDA.W #$0800                                                         ;8BBC08;
-    STA.W UpBinding                                                      ;8BBC0B;
-    LDA.W #$0400                                                         ;8BBC0E;
-    STA.W DownBinding                                                    ;8BBC11;
-    LDA.W #$0200                                                         ;8BBC14;
-    STA.W LeftBinding                                                    ;8BBC17;
-    LDA.W #$0100                                                         ;8BBC1A;
-    STA.W RightBinding                                                   ;8BBC1D;
     LDA.W ShotBinding                                                    ;8BBC20;
     STA.W BackupControllerBindingsDemo                                   ;8BBC23;
     LDA.W JumpBinding                                                    ;8BBC26;
@@ -7394,15 +7385,19 @@ CinematicFunction_FlyToCeres_Initial:
     JSR.W Clear_CinematicSpriteObjects                                   ;8BBCA3;
     STZ.B DP_IRQCmd                                                      ;8BBCA6;
     STZ.B DP_NextIRQCmd                                                  ;8BBCA8;
-    LDX.W #$0000                                                         ;8BBCAA;
+    PHB
+    PEA.W Palettes>>8
+    PLB
+    PLB
+    LDX.W #$01FE
 
   .loopPalettes:
-    LDA.L Palettes_SpaceGunshipCeres,X                                   ;8BBCAD;
-    STA.L Palettes,X                                                     ;8BBCB1;
-    INX                                                                  ;8BBCB5;
-    INX                                                                  ;8BBCB6;
-    CPX.W #$0200                                                         ;8BBCB7;
-    BMI .loopPalettes                                                    ;8BBCBA;
+    LDA.W Palettes_SpaceGunshipCeres,X                                   ;8BBCAD;
+    STA.L Palettes,X
+    DEX
+    DEX
+    BPL .loopPalettes
+    PLB
     LDA.W #Tiles_Gunship_Ceres_Mode7>>8&$FF00                            ;8BBCBC;
     STA.B DP_DecompSrc+1                                                 ;8BBCBF;
     LDA.W #Tiles_Gunship_Ceres_Mode7                                     ;8BBCC1;
@@ -7497,7 +7492,7 @@ CinematicFunction_FlyToCeres_Initial:
     JSL.L Clear_PaletteFXObjects                                         ;8BBDAA;
     LDA.W #$8000
     TSB.W PaletteFXObject_Enable
-    LDA.W #$0000                                                         ;8BBDB2;
+    ASL
     JSL.L Clear_CinematicBGObjects_CinematicBGTilemap                    ;8BBDB5;
     LDA.W #$5C00                                                         ;8BBDB9;
     STA.W CinematicBGObject_VRAMAddr                                     ;8BBDBC;
