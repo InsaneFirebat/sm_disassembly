@@ -762,7 +762,7 @@ AddSpritemapToOAM_Offscreen:
 ;    $8B:9746: Draw cinematic sprite objects - intro/title sequence
 ;    $8B:9799: Draw cinematic sprite objects - ending/credits
 
-; See $879F for spritemap format
+; See AddSpritemapToOAM for spritemap format
     PHX                                                                  ;818853;
     LDA.W $0000,Y                                                        ;818854;
     BNE +                                                                ;818857;
@@ -965,7 +965,7 @@ AddSpritemapFrom_82C569_TableToOAM:
 ;;     Y: Spritemap Y origin
 ;;     $03: Palette bits of sprite (palette * 200h)
 
-; See $879F for spritemap format
+; See AddSpritemapToOAM for spritemap format
     PHB                                                                  ;81891F;
     PEA.W MenuSpritemap_Pointers>>8&$FF00                                ;818920;
     PLB                                                                  ;818923;
@@ -1276,7 +1276,7 @@ AddSpritemapToOAM_WithBaseTileNumber_NoOffScreen:
 ;    $A0:944A: Write enemy OAM (non extended spritemap format)
 ;    $B4:BD32: Draw sprite objects
 
-; See $879F for spritemap format
+; See AddSpritemapToOAM for spritemap format
     PHY                                                                  ;818AB8;
     LDA.W $0000,Y                                                        ;818AB9;
     BEQ .return                                                          ;818ABC;
@@ -1351,7 +1351,7 @@ AddSpritemapToOAM_WithBaseTileNumber_8B22:
 ; Called by:
 ;    $A0:944A: Write enemy OAM (extended spritemap format)
 
-; See $879F for spritemap format
+; See AddSpritemapToOAM for spritemap format
 ; Bug: missing CLC before ADC when calculating Y position, causes enemies straddling the left screen boundary to shift down a pixel
     PHY                                                                  ;818B22;
     LDA.W $0000,Y                                                        ;818B23;
@@ -1430,7 +1430,7 @@ AddSpritemapToOAM_WithBaseTileNumber_Offscreen_8B96:
 ; Called by:
 ;    $A0:944A: Write enemy OAM (extended spritemap format)
 
-; See $879F for spritemap format
+; See AddSpritemapToOAM for spritemap format
 ; Bug: missing CLC before ADC when calculating Y position, causes enemies straddling the left screen boundary to shift down a pixel
     PHY                                                                  ;818B96;
     LDA.W $0000,Y                                                        ;818B97;
@@ -1507,9 +1507,9 @@ AddSpritemapToOAM_WithBaseTileNumber_8C0A:
 ;;     $1C: Palette bits of sprite (palette * 200h)
 
 ; Called by:
-;    $86:83D6: Draw enemy projectile
+;    Draw_EnemyProjectile
 
-; See $879F for spritemap format
+; See AddSpritemapToOAM for spritemap format
     LDA.W $0000,Y                                                        ;818C0A;
     BNE +                                                                ;818C0D;
     RTL                                                                  ;818C0F;
@@ -1587,7 +1587,7 @@ AddSpritemapToOAM_WithBaseTileNumber_Offscreen_8C7F:
 ; Called by:
 ;    $86:83D6: Draw enemy projectile
 
-; See $879F for spritemap format
+; See AddSpritemapToOAM for spritemap format
     LDA.W $0000,Y                                                        ;818C7F;
     BNE +                                                                ;818C82;
     RTL                                                                  ;818C84;

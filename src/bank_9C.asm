@@ -526,8 +526,8 @@ SamusTiles_Top_Set3_Entry0:
 ; 60h: Unused - frame 38h
 ; 61h: Unused - frame 18h
 ; 61h: Unused - frame 38h
-; B2h: Facing clockwise     - grapple swinging - frame 18h
-; B2h: Facing clockwise     - grapple swinging - frame 38h
+; B2h: Facing anticlockwise - grapple swinging - frame 18h
+; B2h: Facing anticlockwise - grapple swinging - frame 38h
 incbin "../data/SamusTiles_Top_Set3_Entry0.bin" ; $140 bytes
 
 
@@ -543,8 +543,8 @@ SamusTiles_Top_Set3_Entry1:
 ; 60h: Unused - frame 37h
 ; 61h: Unused - frame 17h
 ; 61h: Unused - frame 37h
-; B2h: Facing clockwise     - grapple swinging - frame 17h
-; B2h: Facing clockwise     - grapple swinging - frame 37h
+; B2h: Facing anticlockwise - grapple swinging - frame 17h
+; B2h: Facing anticlockwise - grapple swinging - frame 37h
 incbin "../data/SamusTiles_Top_Set3_Entry1.bin" ; $140 bytes
 
 
@@ -560,8 +560,8 @@ SamusTiles_Top_Set3_Entry2:
 ; 60h: Unused - frame 36h
 ; 61h: Unused - frame 16h
 ; 61h: Unused - frame 36h
-; B2h: Facing clockwise     - grapple swinging - frame 16h
-; B2h: Facing clockwise     - grapple swinging - frame 36h
+; B2h: Facing anticlockwise - grapple swinging - frame 16h
+; B2h: Facing anticlockwise - grapple swinging - frame 36h
 incbin "../data/SamusTiles_Top_Set3_Entry2.bin" ; $180 bytes
 
 
@@ -577,8 +577,8 @@ SamusTiles_Top_Set3_Entry3:
 ; 60h: Unused - frame 35h
 ; 61h: Unused - frame 15h
 ; 61h: Unused - frame 35h
-; B2h: Facing clockwise     - grapple swinging - frame 15h
-; B2h: Facing clockwise     - grapple swinging - frame 35h
+; B2h: Facing anticlockwise - grapple swinging - frame 15h
+; B2h: Facing anticlockwise - grapple swinging - frame 35h
 incbin "../data/SamusTiles_Top_Set3_Entry3.bin" ; $180 bytes
 
 
@@ -594,8 +594,8 @@ SamusTiles_Top_Set3_Entry4:
 ; 60h: Unused - frame 34h
 ; 61h: Unused - frame 14h
 ; 61h: Unused - frame 34h
-; B2h: Facing clockwise     - grapple swinging - frame 14h
-; B2h: Facing clockwise     - grapple swinging - frame 34h
+; B2h: Facing anticlockwise - grapple swinging - frame 14h
+; B2h: Facing anticlockwise - grapple swinging - frame 34h
 incbin "../data/SamusTiles_Top_Set3_Entry4.bin" ; $180 bytes
 
 
@@ -611,8 +611,8 @@ SamusTiles_Top_Set3_Entry5:
 ; 60h: Unused - frame 33h
 ; 61h: Unused - frame 13h
 ; 61h: Unused - frame 33h
-; B2h: Facing clockwise     - grapple swinging - frame 13h
-; B2h: Facing clockwise     - grapple swinging - frame 33h
+; B2h: Facing anticlockwise - grapple swinging - frame 13h
+; B2h: Facing anticlockwise - grapple swinging - frame 33h
 incbin "../data/SamusTiles_Top_Set3_Entry5.bin" ; $180 bytes
 
 
@@ -628,8 +628,8 @@ SamusTiles_Top_Set3_Entry6:
 ; 60h: Unused - frame 32h
 ; 61h: Unused - frame 12h
 ; 61h: Unused - frame 32h
-; B2h: Facing clockwise     - grapple swinging - frame 12h
-; B2h: Facing clockwise     - grapple swinging - frame 32h
+; B2h: Facing anticlockwise - grapple swinging - frame 12h
+; B2h: Facing anticlockwise - grapple swinging - frame 32h
 incbin "../data/SamusTiles_Top_Set3_Entry6.bin" ; $180 bytes
 
 
@@ -645,8 +645,8 @@ SamusTiles_Top_Set3_Entry7:
 ; 60h: Unused - frame 31h
 ; 61h: Unused - frame 11h
 ; 61h: Unused - frame 31h
-; B2h: Facing clockwise     - grapple swinging - frame 11h
-; B2h: Facing clockwise     - grapple swinging - frame 31h
+; B2h: Facing anticlockwise - grapple swinging - frame 11h
+; B2h: Facing anticlockwise - grapple swinging - frame 31h
 incbin "../data/SamusTiles_Top_Set3_Entry7.bin" ; $140 bytes
 
 
@@ -667,9 +667,9 @@ SamusTiles_Top_Set3_Entry8:
 ; 61h: Unused - frame 10h
 ; 61h: Unused - frame 30h
 ; 61h: Unused - frames 40h..41h
-; B2h: Facing clockwise     - grapple swinging - frame 10h
-; B2h: Facing clockwise     - grapple swinging - frame 30h
-; B2h: Facing clockwise     - grapple swinging - frames 40h..41h
+; B2h: Facing anticlockwise - grapple swinging - frame 10h
+; B2h: Facing anticlockwise - grapple swinging - frame 30h
+; B2h: Facing anticlockwise - grapple swinging - frames 40h..41h
 incbin "../data/SamusTiles_Top_Set3_Entry8.bin" ; $140 bytes
 
 
@@ -685,8 +685,8 @@ SamusTiles_Top_Set3_Entry9:
 ; 60h: Unused - frame 2Fh
 ; 61h: Unused - frame Fh
 ; 61h: Unused - frame 2Fh
-; B2h: Facing clockwise     - grapple swinging - frame Fh
-; B2h: Facing clockwise     - grapple swinging - frame 2Fh
+; B2h: Facing anticlockwise - grapple swinging - frame Fh
+; B2h: Facing anticlockwise - grapple swinging - frame 2Fh
 incbin "../data/SamusTiles_Top_Set3_Entry9.bin" ; $140 bytes
 
 
@@ -702,8 +702,8 @@ SamusTiles_Top_Set3_EntryA:
 ; 60h: Unused - frame 2Eh
 ; 61h: Unused - frame Eh
 ; 61h: Unused - frame 2Eh
-; B2h: Facing clockwise     - grapple swinging - frame Eh
-; B2h: Facing clockwise     - grapple swinging - frame 2Eh
+; B2h: Facing anticlockwise - grapple swinging - frame Eh
+; B2h: Facing anticlockwise - grapple swinging - frame 2Eh
 incbin "../data/SamusTiles_Top_Set3_EntryA.bin" ; $180 bytes
 
 
@@ -719,8 +719,8 @@ SamusTiles_Top_Set3_EntryB:
 ; 60h: Unused - frame 2Dh
 ; 61h: Unused - frame Dh
 ; 61h: Unused - frame 2Dh
-; B2h: Facing clockwise     - grapple swinging - frame Dh
-; B2h: Facing clockwise     - grapple swinging - frame 2Dh
+; B2h: Facing anticlockwise - grapple swinging - frame Dh
+; B2h: Facing anticlockwise - grapple swinging - frame 2Dh
 incbin "../data/SamusTiles_Top_Set3_EntryB.bin" ; $180 bytes
 
 
@@ -736,8 +736,8 @@ SamusTiles_Top_Set3_EntryC:
 ; 60h: Unused - frame 2Ch
 ; 61h: Unused - frame Ch
 ; 61h: Unused - frame 2Ch
-; B2h: Facing clockwise     - grapple swinging - frame Ch
-; B2h: Facing clockwise     - grapple swinging - frame 2Ch
+; B2h: Facing anticlockwise - grapple swinging - frame Ch
+; B2h: Facing anticlockwise - grapple swinging - frame 2Ch
 incbin "../data/SamusTiles_Top_Set3_EntryC.bin" ; $180 bytes
 
 
@@ -753,8 +753,8 @@ SamusTiles_Top_Set3_EntryD:
 ; 60h: Unused - frame 2Bh
 ; 61h: Unused - frame Bh
 ; 61h: Unused - frame 2Bh
-; B2h: Facing clockwise     - grapple swinging - frame Bh
-; B2h: Facing clockwise     - grapple swinging - frame 2Bh
+; B2h: Facing anticlockwise - grapple swinging - frame Bh
+; B2h: Facing anticlockwise - grapple swinging - frame 2Bh
 incbin "../data/SamusTiles_Top_Set3_EntryD.bin" ; $180 bytes
 
 
@@ -770,8 +770,8 @@ SamusTiles_Top_Set3_EntryE:
 ; 60h: Unused - frame 2Ah
 ; 61h: Unused - frame Ah
 ; 61h: Unused - frame 2Ah
-; B2h: Facing clockwise     - grapple swinging - frame Ah
-; B2h: Facing clockwise     - grapple swinging - frame 2Ah
+; B2h: Facing anticlockwise - grapple swinging - frame Ah
+; B2h: Facing anticlockwise - grapple swinging - frame 2Ah
 incbin "../data/SamusTiles_Top_Set3_EntryE.bin" ; $180 bytes
 
 
@@ -787,8 +787,8 @@ SamusTiles_Top_Set3_EntryF:
 ; 60h: Unused - frame 29h
 ; 61h: Unused - frame 9
 ; 61h: Unused - frame 29h
-; B2h: Facing clockwise     - grapple swinging - frame 9
-; B2h: Facing clockwise     - grapple swinging - frame 29h
+; B2h: Facing anticlockwise - grapple swinging - frame 9
+; B2h: Facing anticlockwise - grapple swinging - frame 29h
 incbin "../data/SamusTiles_Top_Set3_EntryF.bin" ; $140 bytes
 
 
@@ -802,8 +802,8 @@ incbin "../data/SamusTiles_Top_Set3_Entry10.bin" ; $140 bytes
 SamusTiles_Top_Set4_Entry0:
 ; 62h: Unused - frame 8
 ; 62h: Unused - frame 28h
-; B3h: Facing anticlockwise - grapple swinging - frame 8
-; B3h: Facing anticlockwise - grapple swinging - frame 28h
+; B3h: Facing clockwise   -   grapple swinging - frame 8
+; B3h: Facing clockwise   -   grapple swinging - frame 28h
 incbin "../data/SamusTiles_Top_Set4_Entry0.bin" ; $1C0 bytes
 
 
@@ -811,8 +811,8 @@ incbin "../data/SamusTiles_Top_Set4_Entry0.bin" ; $1C0 bytes
 SamusTiles_Top_Set4_Entry1:
 ; 62h: Unused - frame 9
 ; 62h: Unused - frame 29h
-; B3h: Facing anticlockwise - grapple swinging - frame 9
-; B3h: Facing anticlockwise - grapple swinging - frame 29h
+; B3h: Facing clockwise   -   grapple swinging - frame 9
+; B3h: Facing clockwise   -   grapple swinging - frame 29h
 incbin "../data/SamusTiles_Top_Set4_Entry1.bin" ; $140 bytes
 
 
@@ -820,8 +820,8 @@ incbin "../data/SamusTiles_Top_Set4_Entry1.bin" ; $140 bytes
 SamusTiles_Top_Set4_Entry2:
 ; 62h: Unused - frame Ah
 ; 62h: Unused - frame 2Ah
-; B3h: Facing anticlockwise - grapple swinging - frame Ah
-; B3h: Facing anticlockwise - grapple swinging - frame 2Ah
+; B3h: Facing clockwise   -   grapple swinging - frame Ah
+; B3h: Facing clockwise   -   grapple swinging - frame 2Ah
 incbin "../data/SamusTiles_Top_Set4_Entry2.bin" ; $180 bytes
 
 
@@ -829,8 +829,8 @@ incbin "../data/SamusTiles_Top_Set4_Entry2.bin" ; $180 bytes
 SamusTiles_Top_Set4_Entry3:
 ; 62h: Unused - frame Bh
 ; 62h: Unused - frame 2Bh
-; B3h: Facing anticlockwise - grapple swinging - frame Bh
-; B3h: Facing anticlockwise - grapple swinging - frame 2Bh
+; B3h: Facing clockwise   -   grapple swinging - frame Bh
+; B3h: Facing clockwise   -   grapple swinging - frame 2Bh
 incbin "../data/SamusTiles_Top_Set4_Entry3.bin" ; $200 bytes
 
 
@@ -838,8 +838,8 @@ incbin "../data/SamusTiles_Top_Set4_Entry3.bin" ; $200 bytes
 SamusTiles_Top_Set4_Entry4:
 ; 62h: Unused - frame Ch
 ; 62h: Unused - frame 2Ch
-; B3h: Facing anticlockwise - grapple swinging - frame Ch
-; B3h: Facing anticlockwise - grapple swinging - frame 2Ch
+; B3h: Facing clockwise   -   grapple swinging - frame Ch
+; B3h: Facing clockwise   -   grapple swinging - frame 2Ch
 incbin "../data/SamusTiles_Top_Set4_Entry4.bin" ; $1E0 bytes
 
 
@@ -847,8 +847,8 @@ incbin "../data/SamusTiles_Top_Set4_Entry4.bin" ; $1E0 bytes
 SamusTiles_Top_Set4_Entry5:
 ; 62h: Unused - frame Dh
 ; 62h: Unused - frame 2Dh
-; B3h: Facing anticlockwise - grapple swinging - frame Dh
-; B3h: Facing anticlockwise - grapple swinging - frame 2Dh
+; B3h: Facing clockwise   -   grapple swinging - frame Dh
+; B3h: Facing clockwise   -   grapple swinging - frame 2Dh
 incbin "../data/SamusTiles_Top_Set4_Entry5.bin" ; $1E0 bytes
 
 
@@ -856,8 +856,8 @@ incbin "../data/SamusTiles_Top_Set4_Entry5.bin" ; $1E0 bytes
 SamusTiles_Top_Set4_Entry6:
 ; 62h: Unused - frame Eh
 ; 62h: Unused - frame 2Eh
-; B3h: Facing anticlockwise - grapple swinging - frame Eh
-; B3h: Facing anticlockwise - grapple swinging - frame 2Eh
+; B3h: Facing clockwise   -   grapple swinging - frame Eh
+; B3h: Facing clockwise   -   grapple swinging - frame 2Eh
 incbin "../data/SamusTiles_Top_Set4_Entry6.bin" ; $1E0 bytes
 
 
@@ -865,8 +865,8 @@ incbin "../data/SamusTiles_Top_Set4_Entry6.bin" ; $1E0 bytes
 SamusTiles_Top_Set4_Entry7:
 ; 62h: Unused - frame Fh
 ; 62h: Unused - frame 2Fh
-; B3h: Facing anticlockwise - grapple swinging - frame Fh
-; B3h: Facing anticlockwise - grapple swinging - frame 2Fh
+; B3h: Facing clockwise   -   grapple swinging - frame Fh
+; B3h: Facing clockwise   -   grapple swinging - frame 2Fh
 incbin "../data/SamusTiles_Top_Set4_Entry7.bin" ; $1C0 bytes
 
 
@@ -875,9 +875,9 @@ SamusTiles_Top_Set4_Entry8:
 ; 62h: Unused - frame 10h
 ; 62h: Unused - frame 30h
 ; 62h: Unused - frames 40h..41h
-; B3h: Facing anticlockwise - grapple swinging - frame 10h
-; B3h: Facing anticlockwise - grapple swinging - frame 30h
-; B3h: Facing anticlockwise - grapple swinging - frames 40h..41h
+; B3h: Facing clockwise   -   grapple swinging - frame 10h
+; B3h: Facing clockwise   -   grapple swinging - frame 30h
+; B3h: Facing clockwise   -   grapple swinging - frames 40h..41h
 incbin "../data/SamusTiles_Top_Set4_Entry8.bin" ; $1C0 bytes
 
 
@@ -885,8 +885,8 @@ incbin "../data/SamusTiles_Top_Set4_Entry8.bin" ; $1C0 bytes
 SamusTiles_Top_Set4_Entry9:
 ; 62h: Unused - frame 11h
 ; 62h: Unused - frame 31h
-; B3h: Facing anticlockwise - grapple swinging - frame 11h
-; B3h: Facing anticlockwise - grapple swinging - frame 31h
+; B3h: Facing clockwise   -   grapple swinging - frame 11h
+; B3h: Facing clockwise   -   grapple swinging - frame 31h
 incbin "../data/SamusTiles_Top_Set4_Entry9.bin" ; $1C0 bytes
 
 
@@ -894,8 +894,8 @@ incbin "../data/SamusTiles_Top_Set4_Entry9.bin" ; $1C0 bytes
 SamusTiles_Top_Set4_EntryA:
 ; 62h: Unused - frame 12h
 ; 62h: Unused - frame 32h
-; B3h: Facing anticlockwise - grapple swinging - frame 12h
-; B3h: Facing anticlockwise - grapple swinging - frame 32h
+; B3h: Facing clockwise   -   grapple swinging - frame 12h
+; B3h: Facing clockwise   -   grapple swinging - frame 32h
 incbin "../data/SamusTiles_Top_Set4_EntryA.bin" ; $1E0 bytes
 
 
@@ -903,8 +903,8 @@ incbin "../data/SamusTiles_Top_Set4_EntryA.bin" ; $1E0 bytes
 SamusTiles_Top_Set4_EntryB:
 ; 62h: Unused - frame 13h
 ; 62h: Unused - frame 33h
-; B3h: Facing anticlockwise - grapple swinging - frame 13h
-; B3h: Facing anticlockwise - grapple swinging - frame 33h
+; B3h: Facing clockwise   -   grapple swinging - frame 13h
+; B3h: Facing clockwise   -   grapple swinging - frame 33h
 incbin "../data/SamusTiles_Top_Set4_EntryB.bin" ; $200 bytes
 
 
@@ -912,8 +912,8 @@ incbin "../data/SamusTiles_Top_Set4_EntryB.bin" ; $200 bytes
 SamusTiles_Top_Set4_EntryC:
 ; 62h: Unused - frame 14h
 ; 62h: Unused - frame 34h
-; B3h: Facing anticlockwise - grapple swinging - frame 14h
-; B3h: Facing anticlockwise - grapple swinging - frame 34h
+; B3h: Facing clockwise   -   grapple swinging - frame 14h
+; B3h: Facing clockwise   -   grapple swinging - frame 34h
 incbin "../data/SamusTiles_Top_Set4_EntryC.bin" ; $200 bytes
 
 
@@ -921,8 +921,8 @@ incbin "../data/SamusTiles_Top_Set4_EntryC.bin" ; $200 bytes
 SamusTiles_Top_Set4_EntryD:
 ; 62h: Unused - frame 15h
 ; 62h: Unused - frame 35h
-; B3h: Facing anticlockwise - grapple swinging - frame 15h
-; B3h: Facing anticlockwise - grapple swinging - frame 35h
+; B3h: Facing clockwise   -   grapple swinging - frame 15h
+; B3h: Facing clockwise   -   grapple swinging - frame 35h
 incbin "../data/SamusTiles_Top_Set4_EntryD.bin" ; $200 bytes
 
 
@@ -930,8 +930,8 @@ incbin "../data/SamusTiles_Top_Set4_EntryD.bin" ; $200 bytes
 SamusTiles_Top_Set4_EntryE:
 ; 62h: Unused - frame 16h
 ; 62h: Unused - frame 36h
-; B3h: Facing anticlockwise - grapple swinging - frame 16h
-; B3h: Facing anticlockwise - grapple swinging - frame 36h
+; B3h: Facing clockwise   -   grapple swinging - frame 16h
+; B3h: Facing clockwise   -   grapple swinging - frame 36h
 incbin "../data/SamusTiles_Top_Set4_EntryE.bin" ; $200 bytes
 
 
@@ -939,8 +939,8 @@ incbin "../data/SamusTiles_Top_Set4_EntryE.bin" ; $200 bytes
 SamusTiles_Top_Set4_EntryF:
 ; 62h: Unused - frame 17h
 ; 62h: Unused - frame 37h
-; B3h: Facing anticlockwise - grapple swinging - frame 17h
-; B3h: Facing anticlockwise - grapple swinging - frame 37h
+; B3h: Facing clockwise   -   grapple swinging - frame 17h
+; B3h: Facing clockwise   -   grapple swinging - frame 37h
 incbin "../data/SamusTiles_Top_Set4_EntryF.bin" ; $200 bytes
 
 

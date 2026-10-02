@@ -1588,7 +1588,7 @@ EnemyTileData: ; $7E7000..97FF
 CRETiles: ; $7E7000..9FFF
 
 struct EnemySpawnData $7E7000
-skip 6 ; $7E7000..04
+skip 6 ; $7E7000..05
   .VRAMTilesIndex: skip 2 ; $7E7006
   .paletteIndex: skip 2 ; $7E7008
 skip 6 ; $7E7008..0F
@@ -3164,7 +3164,7 @@ struct YappingMaw $0FA8
   .angle: skip 2 ; $0FAA
   .subAngle: skip 2 ; $0FAC
   .angularSpeedTableIndex: skip 2 ; $0FAE
-skip 2
+  .functionTimer: skip 2 ; $0FB0
   .proximity: skip 2 ; $0FB2
 skip $7DE84C
   .bodySegment1XOffset: skip 2 ; $7E7800
@@ -3183,7 +3183,9 @@ skip $7DE84C
   .bodySegmentBaseYPosition: skip 2 ; $7E781A
   .originXPosition: skip 2 ; $7E781C
   .originYPosition: skip 2 ; $7E781E
-skip $7E2
+  .tempX: skip 2 ; $7E7820
+  .tempY: skip 2 ; $7E7822
+skip $7DE
   .bodySegment1Angle: skip 2 ; $7E8002
   .bodySegment2Angle: skip 2 ; $7E8004
   .bodySegment3Angle: skip 2 ; $7E8006
@@ -3213,6 +3215,7 @@ skip $7D2
   .bodySegmentIndex: skip 2 ; $7E8808
   .initialPaletteIndex: skip 2 ; $7E880A
   .baseSpriteObjectIndex: skip 2 ; $7E880C
+  .basePaletteVRAMIndex: skip 2 ; $7E880E
 endstruct
 
 struct Kago $0FA8
