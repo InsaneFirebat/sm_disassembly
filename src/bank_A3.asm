@@ -9949,11 +9949,11 @@ MakeYardFaceSamusHorizontally:
 
 
 ;;; $D356: Turn yard around ;;;
+TurnYardAround:
 ;; Returns:
 ;;     Carry: Set if yard was turned around
 
 ; Carry is only used by unused caller UNUSED_MakeYardFaceSamus_A3D315 (for UNUSED_Instruction_Yard_A3CC92)
-TurnYardAround:
     LDA.L Yard.behavior,X                                                ;A3D356;
     CMP.W #$0002                                                         ;A3D35A;
     BEQ .failed                                                          ;A3D35D;

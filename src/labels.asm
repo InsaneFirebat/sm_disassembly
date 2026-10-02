@@ -43,6 +43,10 @@ EnemyProjectiles:
   .shotInstList: skip 2 ; Eh: Shot instruction list
 
 
+org $870000
+AnimatedTiles:
+
+
 org $8C0000
 CinematicBGObjectInstLists:
 

@@ -1547,9 +1547,9 @@ MamaTurtleConstants:
     dw $0001                                                             ;A28D52; 1. Used as value to set asleep flag to
   .unknown:
     dw $0020                                                             ;A28D54; Unknown. Used as value for a bugged store operation
-  .HoveringXAcceleration_subAcceleration:
+  .hoveringXAcceleration_subAcceleration:
     dw $F000                                                             ;A28D56; Hovering X acceleration
-  .HoveringXAcceleration_acceleration:
+  .hoveringXAcceleration_acceleration:
     dw       $FFFF                                                       ;A28D58; Moving left
     dw $1000,$0000                                                       ;A28D5A; Moving right
   .maxHoveringXSpeed:
@@ -1847,9 +1847,9 @@ Function_MamaTurtle_RiseToHover:
     BPL +                                                                ;A28FC7;
     LDY.W #$0004                                                         ;A28FC9;
 
-+   LDA.W MamaTurtleConstants_HoveringXAcceleration_subAcceleration,Y    ;A28FCC;
++   LDA.W MamaTurtleConstants_hoveringXAcceleration_subAcceleration,Y    ;A28FCC;
     STA.L MamaTurtle.XSubAcceleration,X                                  ;A28FCF;
-    LDA.W MamaTurtleConstants_HoveringXAcceleration_acceleration,Y       ;A28FD3;
+    LDA.W MamaTurtleConstants_hoveringXAcceleration_acceleration,Y       ;A28FD3;
     STA.L MamaTurtle.XAcceleration,X                                     ;A28FD6;
     LDA.W #$0000                                                         ;A28FDA;
     STA.W MamaTurtle.XVelocity,X                                         ;A28FDD;
@@ -2377,7 +2377,7 @@ Instruction_BabyTurtle_Crawl:
     JSL.L MoveEnemyRightBy_14_12_IgnoreSlopes                            ;A293B5;
     LDA.W BabyTurtle.turtleIndex,X                                       ;A293B9;
     TAX                                                                  ;A293BC;
-    LDA.W BabyTurtle.function,X                                          ;A293BD;
+    LDA.W MamaTurtle.function,X                                          ;A293BD;
     CMP.W #Function_MamaTurtle_Asleep                                    ;A293C0;
     BNE .return                                                          ;A293C3;
     LDX.W EnemyIndex                                                     ;A293C5; >.<
@@ -11345,7 +11345,7 @@ InitAI_Dragon:
     RTL                                                                  ;A2E635;
 
   .notWings:
-    LDA.W #$0000                                                         ;A2E636;
+    LDA.W #$0000                                                         ;A2E636; >.<
     STA.L Dragon.newInstListIndex,X                                      ;A2E639;
     STA.L Dragon.instListIndex,X                                         ;A2E63D;
     LDA.W #InstList_Dragon_Idle_FacingLeft                               ;A2E641;

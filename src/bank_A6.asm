@@ -3258,7 +3258,7 @@ EnemyTouch_MiniKraid:
 ;;; $9C39: Power bomb reaction / enemy shot - enemy $E0FF (fake Kraid) ;;;
 EnemyShot_PowerBombReaction_MiniKraid:
 ; Bug: the power bomb reaction should be pointing to UNUSED_PowerBombReaction_MiniKraid_A69C0B
-; When this routine is called for power bomb reaction, $A0:A6A7 is called with garbage for the projectile index (CollisionIndex)
+; When this routine is called for power bomb reaction, NormalEnemyShotAI_NoDeathCheck_NoEnemyShotGraphic_External is called with garbage for the projectile index (CollisionIndex)
     LDX.W EnemyIndex                                                     ;A69C39;
     LDA.W Enemy.XPosition,X                                              ;A69C3C;
     STA.L EnemyProjectileData_SpecialDeathItemDropXOriginPosition        ;A69C3F;
@@ -3584,11 +3584,11 @@ InitAI_Ridley:
     LDA.W #$0000                                                         ;A6A114;
     LDX.W #$0FFE                                                         ;A6A117;
 
-  .loopClearExtraRAM:
+  .loopClearTailRAM:
     STA.W Ridley.tailFunctionIndex,X                                     ;A6A11A;
     DEX                                                                  ;A6A11D;
     DEX                                                                  ;A6A11E;
-    BPL .loopClearExtraRAM                                               ;A6A11F;
+    BPL .loopClearTailRAM                                                ;A6A11F;
     PLB                                                                  ;A6A121;
     JSL.L DisableMinimap_MarkBossRoomTilesExplored                       ;A6A122;
     STZ.W Enemy.init0                                                    ;A6A126;
@@ -3648,7 +3648,7 @@ InitAI_Ridley:
     LDX.W #$0140                                                         ;A6A1CA;
     LDA.W #$0020                                                         ;A6A1CD;
     JSL.L WriteAColorsFromYToTargetColorIndexX                           ;A6A1D0;
-    LDX.W #$00E2                                                         ;A6A1D4;
+    LDX.W #$00E2                                                         ;A6A1D4; >.<
     LDX.W #$0000                                                         ;A6A1D7;
     LDY.W #$000F                                                         ;A6A1DA;
     LDA.W #$0000                                                         ;A6A1DD;
@@ -10009,7 +10009,7 @@ SetRidleyTailSegmentsVariableFromList:
 ;; Parameters:
 ;;     X: List of 7 values
 ;;     Y: Tail segment 0 address
-    LDA.W #$007E                                                         ;A6D3B4;
+    LDA.W #RidleyTail.distance>>16                                       ;A6D3B4;
     STA.B DP_Temp14                                                      ;A6D3B7;
     STY.B DP_Temp12                                                      ;A6D3B9;
     LDY.W #$0000                                                         ;A6D3BB;
@@ -11286,7 +11286,7 @@ DrawRidleyTail:
     STA.B DP_Temp12                                                      ;A6DBB7;
     LDA.L RidleyTail.YPosition                                           ;A6DBB9;
     STA.B DP_Temp14                                                      ;A6DBBD;
-    LDY.W #Spritemap_RidleyTail_Large                                    ;A6DBBF; fallthrough to GeneralPurposeRidleyDrawing
+    LDY.W #Spritemap_RidleyTail_Large                                    ;A6DBBF; fallthrough to AddRidleySpritemapToOAM
 
 
 ;;; $DBC2: Add Ridley spritemap to OAM ;;;

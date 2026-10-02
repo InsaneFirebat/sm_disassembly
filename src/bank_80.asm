@@ -3293,7 +3293,7 @@ TransferSamusTilesToVRAM:
 ;;; $9416: Process animated tiles object VRAM transfers ;;;
 ProcessAnimatedTilesObjectVRAMTransfers:
     PHB                                                                  ;809416;
-    LDX.B #Process_AnimatedTilesObject>>16                               ;809417;
+    LDX.B #AnimatedTiles>>16                                             ;809417;
     PHX                                                                  ;809419;
     PLB                                                                  ;80941A;
     LDA.W AnimatedTilesObject_Enable                                     ;80941B;
@@ -3306,7 +3306,7 @@ ProcessAnimatedTilesObjectVRAMTransfers:
     LDA.W AnimatedTilesObject_SrcAddr,X                                  ;809427;
     BEQ .next                                                            ;80942A;
     STA.W $4302                                                          ;80942C;
-    LDY.B #$87                                                           ;80942F;
+    LDY.B #AnimatedTiles>>16                                             ;80942F;
     STY.W $4304                                                          ;809431;
     LDA.W #$1801                                                         ;809434;
     STA.W $4300                                                          ;809437;

@@ -864,7 +864,7 @@ Initialise_Special_Effects_for_New_Room:
     STA.B DP_GameplayBG1TilemapAddrSize                                  ;8883DE;
     PLP                                                                  ;8883E0;
 
-.return:
+  .return:
     RTL                                                                  ;8883E1;
 
 
