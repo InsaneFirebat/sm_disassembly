@@ -1204,9 +1204,8 @@ InstList_DemoInput_OldMotherBrainFight:                                  ;918694
     dw $0046,$0000,$0000 ;
 
 
-if !FEATURE_KEEP_UNREFERENCED
 ;;; $86B8: Instruction list - demo input - demo input object $878A ;;;
-UNUSED_InstList_DemoInput_OldMotherBrainFight_9186B8:                    ;9186B8;
+InstList_DemoInput_OldMotherBrainFight_WithoutFirstShot:                 ;9186B8;
     dw $0014,$0000,$0000 ;
     dw $0001,$0200,$0200 ;       <
     dw $0007,$0200,$0000 ;       <
@@ -1222,6 +1221,7 @@ UNUSED_InstList_DemoInput_OldMotherBrainFight_9186B8:                    ;9186B8
     dw Instruction_DemoInputObject_Delete
 
 
+if !FEATURE_KEEP_UNREFERENCED
 ;;; $86FE: Unused. End demo input with Samus facing left ;;;
 UNUSED_Instruction_EndDemoInputWithSamusFacingLeft_9186FE:
 ; Clone of Instruction_EndDemoInputWithSamusFacingLeft
@@ -1310,7 +1310,7 @@ if !FEATURE_KEEP_UNREFERENCED
 UNUSED_DemoInputObjects_Intro_OldMotherBrainFight_91878A:
     dw RTS_9183BF                                                        ;91878A; Initialisation (RTS)
     dw RTS_9183BF                                                        ;91878C; Pre-instruction
-    dw UNUSED_InstList_DemoInput_OldMotherBrainFight_9186B8              ;91878E; Pointer to input instruction list
+    dw InstList_DemoInput_OldMotherBrainFight_WithoutFirstShot           ;91878E; Pointer to input instruction list
 endif ; !FEATURE_KEEP_UNREFERENCED
 
 
@@ -4695,18 +4695,18 @@ endif ; !FEATURE_KEEP_UNREFERENCED
 
 AnimationDelays_03_04_85_86:                                             ;91B222;
 ; 3: Facing right - aiming up
-; 4: Facing left-   aiming up
+; 4: Facing left -  aiming up
 ; 85h: Facing right - crouching - aiming up
-; 86h: Facing left-   crouching - aiming up
+; 86h: Facing left -  crouching - aiming up
     db regional($02, $01)
     db $10, $FE,$01
 
 AnimationDelays_49_4A_75_76_77_78:
-; 49h: Facing left-   moonwalk
+; 49h: Facing left -  moonwalk
 ; 4Ah: Facing right - moonwalk
-; 75h: Facing left-   moonwalk - aiming up-left
+; 75h: Facing left -  moonwalk - aiming up-left
 ; 76h: Facing right - moonwalk - aiming up-right
-; 77h: Facing left-   moonwalk - aiming down-left
+; 77h: Facing left -  moonwalk - aiming down-left
 ; 78h: Facing right - moonwalk - aiming down-right
     db $10,$10,$10,$10,$10,$10,$FF                                       ;91B226;
 
@@ -4716,8 +4716,8 @@ AnimationDelays_A4_E6:
     db regional($05, $04),$02,$F8,$01                                    ;91B22D;
 
 AnimationDelays_A5_E7:
-; A5h: Facing left-   landing from normal jump
-; E7h: Facing left-   landing from normal jump - firing
+; A5h: Facing left -  landing from normal jump
+; E7h: Facing left -  landing from normal jump - firing
     db regional($05, $04),$02,$F8,$02                                    ;91B231;
 
 AnimationDelays_A6:
@@ -4725,7 +4725,7 @@ AnimationDelays_A6:
     db regional($03, $02),regional($05, $04),$02,$F8,$01                 ;91B235;
 
 AnimationDelays_A7:
-; A7h: Facing left-   landing from spin jump
+; A7h: Facing left -  landing from spin jump
     db regional($03, $02),regional($05, $04),$02,$F8,$02                 ;91B23A;
 
 AnimationDelays_E0:
@@ -4733,7 +4733,7 @@ AnimationDelays_E0:
     db regional($05, $04),$02,$F8,$03                                    ;91B23F;
 
 AnimationDelays_E1:
-; E1h: Facing left-   landing from normal jump - aiming up
+; E1h: Facing left -  landing from normal jump - aiming up
     db regional($05, $04),$02,$F8,$04                                    ;91B243;
 
 AnimationDelays_E2:
@@ -4741,7 +4741,7 @@ AnimationDelays_E2:
     db regional($05, $04),$02,$F8,$05                                    ;91B247;
 
 AnimationDelays_E3:
-; E3h: Facing left-   landing from normal jump - aiming up-left
+; E3h: Facing left -  landing from normal jump - aiming up-left
     db regional($05, $04),$02,$F8,$06                                    ;91B24B;
 
 AnimationDelays_E4:
@@ -4749,7 +4749,7 @@ AnimationDelays_E4:
     db regional($05, $04),$02,$F8,$07                                    ;91B24F;
 
 AnimationDelays_E5:
-; E5h: Facing left-   landing from normal jump - aiming down-left
+; E5h: Facing left -  landing from normal jump - aiming down-left
     db regional($05, $04),$02,$F8,$08                                    ;91B253;
 
 AnimationDelays_E8:                                                      ;91B257;
@@ -4760,7 +4760,7 @@ AnimationDelays_E8:                                                      ;91B257
     db $03,$FD,$01
 
 AnimationDelays_E9:                                                      ;91B268;
-; E9h: Facing left-   Samus drained - crouching/falling
+; E9h: Facing left -  Samus drained - crouching/falling
     ; Falling
     db $02,$02,$10,$F7
     db $01, $FE,$01
@@ -4783,28 +4783,28 @@ AnimationDelays_EA:                                                      ;91B288
     db $03, $FD,$01
 
 AnimationDelays_EB:                                                      ;91B290;
-; EBh: Facing left-   Samus drained - standing
+; EBh: Facing left -  Samus drained - standing
     db $10,$10,$10,$10,$FF
     ; Samus is let up
     db $03, $FD,$02
 
 AnimationDelays_01_02:                                                   ;91B298;
 ; 1: Facing right - normal
-; 2: Facing left-   normal
+; 2: Facing left -  normal
     db $0A,$0A,$0A,$0A,$F6
     db $08,$08,$08,$08, $FE,$04
 
 AnimationDelays_27_28:                                                   ;91B2A3;
 ; 27h: Facing right - crouching
-; 28h: Facing left-   crouching
+; 28h: Facing left -  crouching
     db $0A,$0A,$0A,$0A,$F6
     db $08,$08,$08,$08, $FE,$04
 
 AnimationDelays_D5_D6_D9_DA:                                             ;91B2AE;
 ; D5h: Facing right - x-ray - standing
-; D6h: Facing left-   x-ray - standing
+; D6h: Facing left -  x-ray - standing
 ; D9h: Facing right - x-ray - crouching
-; DAh: Facing left-   x-ray - crouching
+; DAh: Facing left -  x-ray - crouching
 ; These delays don't really take effect, Samus animation frame is set every frame during x-ray
     db $0F ; Looking up
     db $0F ; Looking up-forward
@@ -4815,31 +4815,31 @@ AnimationDelays_D5_D6_D9_DA:                                             ;91B2AE
 
 AnimationDelays_Various_91B2B4:
 ; 5: Facing right - aiming up-right
-; 6: Facing left-   aiming up-left
+; 6: Facing left -  aiming up-left
 ; 7: Facing right - aiming down-right
-; 8: Facing left-   aiming down-left
+; 8: Facing left -  aiming down-left
 ; 47h: Unused
 ; 48h: Unused
 ; 71h: Facing right - crouching - aiming up-right
-; 72h: Facing left-   crouching - aiming up-left
+; 72h: Facing left -  crouching - aiming up-left
 ; 73h: Facing right - crouching - aiming down-right
-; 74h: Facing left-   crouching - aiming down-left
+; 74h: Facing left -  crouching - aiming down-left
 ; 89h: Facing right - ran into a wall
-; 8Ah: Facing left-   ran into a wall
+; 8Ah: Facing left -  ran into a wall
 ; B4h: Facing right - grappling - crouching
-; B5h: Facing left-   grappling - crouching
+; B5h: Facing left -  grappling - crouching
 ; B6h: Facing right - grappling - crouching - aiming down-right
-; B7h: Facing left-   grappling - crouching - aiming down-left
-; B8h: Facing left-   grapple wall jump pose
+; B7h: Facing left -  grappling - crouching - aiming down-left
+; B8h: Facing left -  grapple wall jump pose
 ; B9h: Facing right - grapple wall jump pose
-; BAh: Facing left-   grabbed by Draygon - not moving - not aiming
-; BBh: Facing left-   grabbed by Draygon - not moving - aiming up-left
-; BCh: Facing left-   grabbed by Draygon - firing
-; BDh: Facing left-   grabbed by Draygon - not moving - aiming down-left
+; BAh: Facing left -  grabbed by Draygon - not moving - not aiming
+; BBh: Facing left -  grabbed by Draygon - not moving - aiming up-left
+; BCh: Facing left -  grabbed by Draygon - firing
+; BDh: Facing left -  grabbed by Draygon - not moving - aiming down-left
 ; CFh: Facing right - ran into a wall - aiming up-right
-; D0h: Facing left-   ran into a wall - aiming up-left
+; D0h: Facing left -  ran into a wall - aiming up-left
 ; D1h: Facing right - ran into a wall - aiming down-right
-; D2h: Facing left-   ran into a wall - aiming down-left
+; D2h: Facing left -  ran into a wall - aiming down-left
 ; ECh: Facing right - grabbed by Draygon - not moving - not aiming
 ; EDh: Facing right - grabbed by Draygon - not moving - aiming up-right
 ; EEh: Facing right - grabbed by Draygon - firing
@@ -4848,32 +4848,32 @@ AnimationDelays_Various_91B2B4:
 
 AnimationDelays_A8_A9_AA_AB:
 ; A8h: Facing right - grappling
-; A9h: Facing left-   grappling
+; A9h: Facing left -  grappling
 ; AAh: Facing right - grappling - aiming down-right
-; ABh: Facing left-   grappling - aiming down-left
+; ABh: Facing left -  grappling - aiming down-left
     db $10,$FF                                                           ;91B2B6;
 
 AnimationDelays_AC_AD:                                                   ;91B2B8;
 ; ACh: Unused. Facing right - grappling - in air
-; ADh: Unused. Facing left-   grappling - in air
+; ADh: Unused. Facing left -  grappling - in air
     db $02
     db $10, $FE,$01
 
 AnimationDelays_AE_AF:                                                   ;91B2BC;
 ; AEh: Unused. Facing right - grappling - in air - aiming down
-; AFh: Unused. Facing left-   grappling - in air - aiming down
+; AFh: Unused. Facing left -  grappling - in air - aiming down
     db $02
     db $10, $FE,$01
 
 AnimationDelays_B0_B1:                                                   ;91B2C0;
 ; B0h: Unused. Facing right - grappling - in air - aiming down-right
-; B1h: Unused. Facing left-   grappling - in air - aiming down-left
+; B1h: Unused. Facing left -  grappling - in air - aiming down-left
     db $02
     db $10, $FE,$01
 
 AnimationDelays_B2_B3:                                                   ;91B2C4;
-; B2h: Facing clockwise     - grapple swinging
-; B3h: Facing anticlockwise - grapple swinging
+; B2h: Facing anticlockwise - grapple swinging
+; B3h: Facing clockwise   -   grapple swinging
 ; These delays don't really take effect, Samus animation frame is set every frame during grapple swinging
     ; Swinging
     db $08,$08,$08,$08,$08,$08,$08,$08,$08,$08,$08,$08,$08,$08,$08,$08
@@ -4890,7 +4890,7 @@ AnimationDelays_4B:
     db $01, $FD,$4D                                                      ;91B308;
 
 AnimationDelays_4C:
-; 4Ch: Facing left-   normal jump transition
+; 4Ch: Facing left -  normal jump transition
     db $01, $FD,$4E                                                      ;91B30B;
 
 AnimationDelays_55:
@@ -4898,7 +4898,7 @@ AnimationDelays_55:
     db $01, $FD,$15, $00                                                 ;91B30E;
 
 AnimationDelays_56:
-; 56h: Facing left-   normal jump transition - aiming up
+; 56h: Facing left -  normal jump transition - aiming up
     db $01, $FD,$16, $00                                                 ;91B312;
 
 AnimationDelays_57:
@@ -4906,7 +4906,7 @@ AnimationDelays_57:
     db $01, $FD,$69, $00                                                 ;91B316;
 
 AnimationDelays_58:
-; 58h: Facing left-   normal jump transition - aiming up-left
+; 58h: Facing left -  normal jump transition - aiming up-left
     db $01, $FD,$6A, $00                                                 ;91B31A;
 
 AnimationDelays_59:
@@ -4914,14 +4914,14 @@ AnimationDelays_59:
     db $01, $FD,$6B, $00                                                 ;91B31E;
 
 AnimationDelays_5A:
-; 5Ah: Facing left-   normal jump transition - aiming down-left
+; 5Ah: Facing left -  normal jump transition - aiming down-left
     db $01, $FD,$6C, $00                                                 ;91B322;
 
 AnimationDelays_4D_4E_C7_C8:                                             ;91B326;
 ; 4Dh: Facing right - normal jump - not aiming - not moving - gun not extended
-; 4Eh: Facing left-   normal jump - not aiming - not moving - gun not extended
+; 4Eh: Facing left -  normal jump - not aiming - not moving - gun not extended
 ; C7h: Facing right - vertical shinespark windup
-; C8h: Facing left-   vertical shinespark windup
+; C8h: Facing left -  vertical shinespark windup
 if !PAL == 0
     db $03,$04,$04,$04,$04
 else
@@ -4930,42 +4930,42 @@ endif
     db $50, $FE,$01
 
 AnimationDelays_4F_50:                                                   ;91B32E;
-; 4Fh: Facing left-   damage boost
+; 4Fh: Facing left -  damage boost
 ; 50h: Facing right - damage boost
     db regional($08, $06),$02,$02,$02,$02,$02,$02,$02,$02
     db $02, $FE,$01
 
 AnimationDelays_15_16:                                                   ;91B33A;
 ; 15h: Facing right - normal jump - aiming up
-; 16h: Facing left-   normal jump - aiming up
+; 16h: Facing left -  normal jump - aiming up
     db regional($02, $01)
     db $10, $FE,$01
 
 AnimationDelays_17_18:                                                   ;91B33E;
 ; 17h: Facing right - normal jump - aiming down
-; 18h: Facing left-   normal jump - aiming down
+; 18h: Facing left -  normal jump - aiming down
     db regional($02, $01)
     db $10, $FE,$01
 
 AnimationDelays_51_52:                                                   ;91B342;
 ; 51h: Facing right - normal jump - not aiming - moving forward
-; 52h: Facing left-   normal jump - not aiming - moving forward
+; 52h: Facing left -  normal jump - not aiming - moving forward
     db regional($02, $01)
     db $03, $FE,$01
 
 AnimationDelays_13_14_69_6A_6B_6C:                                       ;91B346;
 ; 13h: Facing right - normal jump - not aiming - not moving - gun extended
-; 14h: Facing left-   normal jump - not aiming - not moving - gun extended
+; 14h: Facing left -  normal jump - not aiming - not moving - gun extended
 ; 69h: Facing right - normal jump - aiming up-right
-; 6Ah: Facing left-   normal jump - aiming up-left
+; 6Ah: Facing left -  normal jump - aiming up-left
 ; 6Bh: Facing right - normal jump - aiming down-right
-; 6Ch: Facing left-   normal jump - aiming down-left
+; 6Ch: Facing left -  normal jump - aiming down-left
     db regional($02, $01)
     db $10, $FE,$01
 
 AnimationDelays_29_2A:                                                   ;91B34A;
 ; 29h: Facing right - falling
-; 2Ah: Facing left-   falling
+; 2Ah: Facing left -  falling
     db regional($08, $05),regional($06, $04)
     db regional($06, $04), $FE,$01
     ; Terminal velocity
@@ -4974,7 +4974,7 @@ AnimationDelays_29_2A:                                                   ;91B34A
 
 AnimationDelays_67_68:                                                   ;91B353;
 ; 67h: Facing right - falling - gun extended
-; 68h: Facing left-   falling - gun extended
+; 68h: Facing left -  falling - gun extended
     db regional($08, $06),regional($06, $05)
     db regional($06, $05), $FE,$01
     ; Terminal velocity
@@ -4983,27 +4983,27 @@ AnimationDelays_67_68:                                                   ;91B353
 
 AnimationDelays_2B_2C:                                                   ;91B35C;
 ; 2Bh: Facing right - falling - aiming up
-; 2Ch: Facing left-   falling - aiming up
+; 2Ch: Facing left -  falling - aiming up
     db regional($02, $01),regional($10, $0D)
     db $10, $FE,$01
 
 AnimationDelays_6D_6E_6F_70:                                             ;91B361;
 ; 6Dh: Facing right - falling - aiming up-right
-; 6Eh: Facing left-   falling - aiming up-left
+; 6Eh: Facing left -  falling - aiming up-left
 ; 6Fh: Facing right - falling - aiming down-right
-; 70h: Facing left-   falling - aiming down-left
+; 70h: Facing left -  falling - aiming down-left
     db regional($02, $01),$F0
     db $10, $FE,$01
 
 AnimationDelays_2D_2E:                                                   ;91B366;
 ; 2Dh: Facing right - falling - aiming down
-; 2Eh: Facing left-   falling - aiming down
+; 2Eh: Facing left -  falling - aiming down
     db regional($02, $01)
     db $10, $FE,$01
 
 AnimationDelays_53_54:                                                   ;91B36A;
 ; 53h: Facing right - knockback
-; 54h: Facing left-   knockback
+; 54h: Facing left -  knockback
     db regional($02, $01)
     db $10, $FE,$01
 
@@ -5025,10 +5025,10 @@ AnimationDelays_Various_91B378:                                          ;91B378
 ; 23h: Unused
 ; 24h: Unused
 ; 31h: Facing right - morph ball - no springball - in air
-; 32h: Facing left-   morph ball - no springball - in air
+; 32h: Facing left -  morph ball - no springball - in air
 ; 33h: Unused
 ; 34h: Unused
-; 41h: Facing left-   morph ball - no springball - on ground
+; 41h: Facing left -  morph ball - no springball - on ground
 ; 42h: Unused
 ; 5Bh: Unused
 ; 5Ch: Unused
@@ -5039,13 +5039,13 @@ AnimationDelays_Various_91B378:                                          ;91B378
 ; 61h: Unused
 ; 62h: Unused
 ; 79h: Facing right - morph ball - spring ball - on ground
-; 7Ah: Facing left-   morph ball - spring ball - on ground
+; 7Ah: Facing left -  morph ball - spring ball - on ground
 ; 7Bh: Moving right - morph ball - spring ball - on ground
 ; 7Ch: Moving left-   morph ball - spring ball - on ground
 ; 7Dh: Facing right - morph ball - spring ball - falling
-; 7Eh: Facing left-   morph ball - spring ball - falling
+; 7Eh: Facing left -  morph ball - spring ball - falling
 ; 7Fh: Facing right - morph ball - spring ball - in air
-; 80h: Facing left-   morph ball - spring ball - in air
+; 80h: Facing left -  morph ball - spring ball - in air
 ; C5h: Unused
 ; DFh: Unused. Related to Draygon
 if !PAL == 0
@@ -5058,7 +5058,7 @@ endif
 
 AnimationDelays_19_1A:                                                   ;91B384;
 ; 19h: Facing right - spin jump
-; 1Ah: Facing left-   spin jump
+; 1Ah: Facing left -  spin jump
 if !PAL == 0
     db $04
     db $03,$02,$03,$02,$03,$02,$03,$02, $FE,$08
@@ -5071,7 +5071,7 @@ endif
 
 AnimationDelays_1B_1C:                                                   ;91B391;
 ; 1Bh: Facing right - space jump
-; 1Ch: Facing left-   space jump
+; 1Ch: Facing left -  space jump
     db regional($04, $03)
     db $01,$01,$01,$01,$01,$01,$01,$01, $FE,$08
     ; Wall jump eligible
@@ -5079,7 +5079,7 @@ AnimationDelays_1B_1C:                                                   ;91B391
 
 AnimationDelays_81_82:                                                   ;91B39E;
 ; 81h: Facing right - screw attack
-; 82h: Facing left-   screw attack
+; 82h: Facing left -  screw attack
     db regional($04, $03)
     db $01,$01,$01,$01,$01,$01,$01,$01,$01,$01,$01,$01,$01,$01,$01,$01,$01,$01,$01,$01,$01,$01,$01,$01, $FE,$18
     ; Wall jump eligible
@@ -5090,7 +5090,7 @@ AnimationDelays_25:
     db $02,regional($02, $01),$02, $F8,$02                               ;91B3BB;
 
 AnimationDelays_26:
-; 26h: Facing left-   turning - standing
+; 26h: Facing left -  turning - standing
     db $02,regional($02, $01),$02, $F8,$01                               ;91B3C0;
 
 AnimationDelays_2F:
@@ -5098,7 +5098,7 @@ AnimationDelays_2F:
     db $02,regional($02, $01),$02, $F8,$52                               ;91B3C5;
 
 AnimationDelays_30:
-; 30h: Facing left-   turning - jumping
+; 30h: Facing left -  turning - jumping
     db $02,regional($02, $01),$02, $F8,$51                               ;91B3CA;
 
 AnimationDelays_43:
@@ -5106,7 +5106,7 @@ AnimationDelays_43:
     db $02,regional($02, $01),$02, $F8,$28                               ;91B3CF;
 
 AnimationDelays_44:
-; 44h: Facing left-   turning - crouching
+; 44h: Facing left -  turning - crouching
     db $02,regional($02, $01),$02, $F8,$27                               ;91B3D4;
 
 AnimationDelays_87:
@@ -5114,7 +5114,7 @@ AnimationDelays_87:
     db $02,regional($02, $01),$02, $F8,$2A                               ;91B3D9;
 
 AnimationDelays_88:
-; 88h: Facing left-   turning - falling
+; 88h: Facing left -  turning - falling
     db $02,regional($02, $01),$02, $F8,$29                               ;91B3DE;
 
 AnimationDelays_8B:
@@ -5122,7 +5122,7 @@ AnimationDelays_8B:
     db $02,regional($02, $01),$02, $F8,$04                               ;91B3E3;
 
 AnimationDelays_8C:
-; 8Ch: Facing left-   turning - standing - aiming up
+; 8Ch: Facing left -  turning - standing - aiming up
     db $02,regional($02, $01),$02, $F8,$03                               ;91B3E8;
 
 AnimationDelays_8D:
@@ -5130,7 +5130,7 @@ AnimationDelays_8D:
     db $02,regional($02, $01),$02, $F8,$08                               ;91B3ED;
 
 AnimationDelays_8E:
-; 8Eh: Facing left-   turning - standing - aiming down-left
+; 8Eh: Facing left -  turning - standing - aiming down-left
     db $02,regional($02, $01),$02, $F8,$07                               ;91B3F2;
 
 AnimationDelays_8F:
@@ -5138,7 +5138,7 @@ AnimationDelays_8F:
     db $02,regional($02, $01),$02, $F8,$16                               ;91B3F7;
 
 AnimationDelays_90:
-; 90h: Facing left-   turning - in air - aiming up
+; 90h: Facing left -  turning - in air - aiming up
     db $02,regional($02, $01),$02, $F8,$15                               ;91B3FC;
 
 AnimationDelays_91:
@@ -5146,7 +5146,7 @@ AnimationDelays_91:
     db $02,regional($02, $01),$02, $F8,$18                               ;91B401;
 
 AnimationDelays_92:
-; 92h: Facing left-   turning - in air - aiming down/down-left
+; 92h: Facing left -  turning - in air - aiming down/down-left
     db $02,regional($02, $01),$02, $F8,$17                               ;91B406;
 
 AnimationDelays_93:
@@ -5154,7 +5154,7 @@ AnimationDelays_93:
     db $02,regional($02, $01),$02, $F8,$2C                               ;91B40B;
 
 AnimationDelays_94:
-; 94h: Facing left-   turning - falling - aiming up
+; 94h: Facing left -  turning - falling - aiming up
     db $02,regional($02, $01),$02, $F8,$2B                               ;91B410;
 
 AnimationDelays_95:
@@ -5162,7 +5162,7 @@ AnimationDelays_95:
     db $02,regional($02, $01),$02, $F8,$2E                               ;91B415;
 
 AnimationDelays_96:
-; 96h: Facing left-   turning - falling - aiming down/down-left
+; 96h: Facing left -  turning - falling - aiming down/down-left
     db $02,regional($02, $01),$02, $F8,$2D                               ;91B41A;
 
 AnimationDelays_97:
@@ -5170,7 +5170,7 @@ AnimationDelays_97:
     db $02,regional($02, $01),$02, $F8,$86                               ;91B41F;
 
 AnimationDelays_98:
-; 98h: Facing left-   turning - crouching - aiming up
+; 98h: Facing left -  turning - crouching - aiming up
     db $02,regional($02, $01),$02, $F8,$85                               ;91B424;
 
 AnimationDelays_99:
@@ -5178,7 +5178,7 @@ AnimationDelays_99:
     db $02,regional($02, $01),$02, $F8,$74                               ;91B429;
 
 AnimationDelays_9A:
-; 9Ah: Facing left-   turning - crouching - aiming down/down-left
+; 9Ah: Facing left -  turning - crouching - aiming down/down-left
     db $02,regional($02, $01),$02, $F8,$73                               ;91B42E;
 
 AnimationDelays_9C:
@@ -5186,7 +5186,7 @@ AnimationDelays_9C:
     db $02,regional($02, $01),$02, $F8,$06                               ;91B433;
 
 AnimationDelays_9D:
-; 9Dh: Facing left-   turning - standing - aiming up-left
+; 9Dh: Facing left -  turning - standing - aiming up-left
     db $02,regional($02, $01),$02, $F8,$05                               ;91B438;
 
 AnimationDelays_9E:
@@ -5194,7 +5194,7 @@ AnimationDelays_9E:
     db $02,regional($02, $01),$02, $F8,$6A                               ;91B43D;
 
 AnimationDelays_9F:
-; 9Fh: Facing left-   turning - in air - aiming up-left
+; 9Fh: Facing left -  turning - in air - aiming up-left
     db $02,regional($02, $01),$02, $F8,$69                               ;91B442;
 
 AnimationDelays_A0:
@@ -5202,7 +5202,7 @@ AnimationDelays_A0:
     db $02,regional($02, $01),$02, $F8,$6E                               ;91B447;
 
 AnimationDelays_A1:
-; A1h: Facing left-   turning - falling - aiming up-left
+; A1h: Facing left -  turning - falling - aiming up-left
     db $02,regional($02, $01),$02, $F8,$6D                               ;91B44C;
 
 AnimationDelays_A2:
@@ -5210,7 +5210,7 @@ AnimationDelays_A2:
     db $02,regional($02, $01),$02, $F8,$72                               ;91B451;
 
 AnimationDelays_A3:
-; A3h: Facing left-   turning - crouching - aiming up-left
+; A3h: Facing left -  turning - crouching - aiming up-left
     db $02,regional($02, $01),$02, $F8,$71                               ;91B456;
 
 AnimationDelays_BF:
@@ -5218,7 +5218,7 @@ AnimationDelays_BF:
     db $02,regional($02, $01),$02, $F8,$1A                               ;91B45B;
 
 AnimationDelays_C0:
-; C0h: Facing left-   moonwalking - turn/jump right
+; C0h: Facing left -  moonwalking - turn/jump right
     db $02,regional($02, $01),$02, $F8,$19                               ;91B460;
 
 AnimationDelays_C1:
@@ -5226,7 +5226,7 @@ AnimationDelays_C1:
     db $02,regional($02, $01),$02, $F8,$1A                               ;91B465;
 
 AnimationDelays_C2:
-; C2h: Facing left-   moonwalking - turn/jump right - aiming up-left
+; C2h: Facing left -  moonwalking - turn/jump right - aiming up-left
     db $02,regional($02, $01),$02, $F8,$19                               ;91B46A;
 
 AnimationDelays_C3:
@@ -5234,7 +5234,7 @@ AnimationDelays_C3:
     db $02,regional($02, $01),$02, $F8,$1A                               ;91B46F;
 
 AnimationDelays_C4:
-; C4h: Facing left-   moonwalking - turn/jump right - aiming down-left
+; C4h: Facing left -  moonwalking - turn/jump right - aiming down-left
     db $02,regional($02, $01),$02, $F8,$19                               ;91B474;
 
 UNUSED_AnimationDelays_C6_91B479:
@@ -5256,7 +5256,7 @@ UNUSED_AnimationDelays_65_66_91B486:                                     ;91B486
 
 AnimationDelays_83_84:                                                   ;91B491;
 ; 83h: Facing right - wall jump
-; 84h: Facing left-   wall jump
+; 84h: Facing left -  wall jump
 if !PAL == 0
     ; Wall jump start-up
     db $05,$05,$FB
@@ -5280,7 +5280,7 @@ AnimationDelays_35:
     db regional($03, $02), $FD,$27                                       ;91B4C2;
 
 AnimationDelays_36:
-; 36h: Facing left-   crouching transition
+; 36h: Facing left -  crouching transition
     db regional($03, $02), $FD,$28                                       ;91B4C5;
 
 AnimationDelays_37:                                                      ;91B4C8;
@@ -5288,7 +5288,7 @@ AnimationDelays_37:                                                      ;91B4C8
     db regional($03, $02),regional($03, $02), $F9 : dw $0002 : db $1D,$31,$79,$7D
 
 AnimationDelays_38:                                                      ;91B4D1;
-; 38h: Facing left-   morphing transition
+; 38h: Facing left -  morphing transition
     db regional($03, $02),regional($03, $02), $F9 : dw $0002 : db $41,$32,$7A,$7E
 
 UNUSED_AnimationDelays_39_91B4DA:
@@ -5302,7 +5302,7 @@ AnimationDelays_3B:
     db regional($03, $02), $FD,$01                                       ;91B4E0;
 
 AnimationDelays_3C:
-; 3Ch: Facing left-   standing transition
+; 3Ch: Facing left -  standing transition
     db regional($03, $02), $FD,$02                                       ;91B4E3;
 
 AnimationDelays_3D:
@@ -5310,7 +5310,7 @@ AnimationDelays_3D:
     db regional($03, $02),regional($03, $02), $FD,$27                    ;91B4E6;
 
 AnimationDelays_3E:
-; 3Eh: Facing left-   unmorphing transition
+; 3Eh: Facing left -  unmorphing transition
     db regional($03, $02),regional($03, $02), $FD,$28                    ;91B4EA;
 
 UNUSED_AnimationDelays_3F_91B4EE:                                        ;91B4EE;
@@ -5336,7 +5336,7 @@ AnimationDelays_F1:
     db regional($03, $02), $FD,$85                                       ;91B518;
 
 AnimationDelays_F2:
-; F2h: Facing left-   crouching transition - aiming up
+; F2h: Facing left -  crouching transition - aiming up
     db regional($03, $02), $FD,$86                                       ;91B51B;
 
 AnimationDelays_F3:
@@ -5344,7 +5344,7 @@ AnimationDelays_F3:
     db regional($03, $02), $FD,$71                                       ;91B51E;
 
 AnimationDelays_F4:
-; F4h: Facing left-   crouching transition - aiming up-left
+; F4h: Facing left -  crouching transition - aiming up-left
     db regional($03, $02), $FD,$72                                       ;91B521;
 
 AnimationDelays_F5:
@@ -5352,7 +5352,7 @@ AnimationDelays_F5:
     db regional($03, $02), $FD,$73                                       ;91B524;
 
 AnimationDelays_F6:
-; F6h: Facing left-   crouching transition - aiming down-left
+; F6h: Facing left -  crouching transition - aiming down-left
     db regional($03, $02), $FD,$74                                       ;91B527;
 
 AnimationDelays_F7:
@@ -5360,7 +5360,7 @@ AnimationDelays_F7:
     db regional($03, $02), $FD,$03                                       ;91B52A;
 
 AnimationDelays_F8:
-; F8h: Facing left-   standing transition - aiming up
+; F8h: Facing left -  standing transition - aiming up
     db regional($03, $02), $FD,$04                                       ;91B52D;
 
 AnimationDelays_F9:
@@ -5368,7 +5368,7 @@ AnimationDelays_F9:
     db regional($03, $02), $FD,$05                                       ;91B530;
 
 AnimationDelays_FA:
-; FAh: Facing left-   standing transition - aiming up-left
+; FAh: Facing left -  standing transition - aiming up-left
     db regional($03, $02), $FD,$06                                       ;91B533;
 
 AnimationDelays_FB:
@@ -5376,11 +5376,11 @@ AnimationDelays_FB:
     db regional($03, $02), $FD,$07                                       ;91B536;
 
 AnimationDelays_FC:
-; FCh: Facing left-   standing transition - aiming down-left
+; FCh: Facing left -  standing transition - aiming down-left
     db regional($03, $02), $FD,$08                                       ;91B539;
 
 AnimationDelays_BE_F0:
-; BEh: Facing left-   grabbed by Draygon - moving
+; BEh: Facing left -  grabbed by Draygon - moving
 ; F0h: Facing right - grabbed by Draygon - moving
 if !PAL == 0
     db $06,$06,$06,$06,$06,$06,$FF                                       ;91B53C;
@@ -5390,11 +5390,11 @@ endif
 
 AnimationDelays_C9_CA_CB_CC_CD_CE:
 ; C9h: Facing right - shinespark - horizontal
-; CAh: Facing left-   shinespark - horizontal
+; CAh: Facing left -  shinespark - horizontal
 ; CBh: Facing right - shinespark - vertical
-; CCh: Facing left-   shinespark - vertical
+; CCh: Facing left -  shinespark - vertical
 ; CDh: Facing right - shinespark - diagonal
-; CEh: Facing left-   shinespark - diagonal
+; CEh: Facing left -  shinespark - diagonal
     db $08,$FF                                                           ;91B543;
 
 AnimationDelays_D3:                                                      ;91B545;
@@ -5408,7 +5408,7 @@ AnimationDelays_D3:                                                      ;91B545
     db $03,$03,$03, $FD,$01
 
 AnimationDelays_D4:                                                      ;91B556;
-; D4h: Facing left-   crystal flash
+; D4h: Facing left -  crystal flash
     ; Raise Samus and generate bubble
     db $03,$03
     db $01,$01, $FE,$02
@@ -5419,7 +5419,7 @@ AnimationDelays_D4:                                                      ;91B556
 
 AnimationDelays_D7_D8:                                                   ;91B567;
 ; D7h: Facing right - crystal flash ending
-; D8h: Facing left-   crystal flash ending
+; D8h: Facing left -  crystal flash ending
     ; Transition from morphed
     db $02,$02,$02,$02,$02
     ; Unmorphed
@@ -5525,7 +5525,7 @@ PoseDefinitions_01:
     db $08,$00,$FF,$02,$06,$00,$15,$00                                   ;91B631;
 
 PoseDefinitions_02:
-; 2: Facing left-   normal
+; 2: Facing left -  normal
     db $04,$00,$FF,$07,$06,$00,$15,$00                                   ;91B639;
 
 PoseDefinitions_03:
@@ -5533,7 +5533,7 @@ PoseDefinitions_03:
     db $08,$00,$01,$00,$06,$00,$15,$00                                   ;91B641;
 
 PoseDefinitions_04:
-; 4: Facing left-   aiming up
+; 4: Facing left -  aiming up
     db $04,$00,$02,$09,$06,$00,$15,$00                                   ;91B649;
 
 PoseDefinitions_05:
@@ -5541,7 +5541,7 @@ PoseDefinitions_05:
     db $08,$00,$01,$01,$06,$00,$15,$00                                   ;91B651;
 
 PoseDefinitions_06:
-; 6: Facing left-   aiming up-left
+; 6: Facing left -  aiming up-left
     db $04,$00,$02,$08,$06,$00,$15,$00                                   ;91B659;
 
 PoseDefinitions_07:
@@ -5549,7 +5549,7 @@ PoseDefinitions_07:
     db $08,$00,$01,$03,$06,$00,$15,$00                                   ;91B661;
 
 PoseDefinitions_08:
-; 8: Facing left-   aiming down-left
+; 8: Facing left -  aiming down-left
     db $04,$00,$02,$06,$06,$00,$15,$00                                   ;91B669;
 
 PoseDefinitions_09:
@@ -5597,7 +5597,7 @@ PoseDefinitions_13:
     db $08,$02,$FF,$02,$08,$00,$13,$00                                   ;91B6C1;
 
 PoseDefinitions_14:
-; 14h: Facing left-   normal jump - not aiming - not moving - gun extended
+; 14h: Facing left -  normal jump - not aiming - not moving - gun extended
     db $04,$02,$FF,$07,$08,$00,$13,$00                                   ;91B6C9;
 
 PoseDefinitions_15:
@@ -5605,7 +5605,7 @@ PoseDefinitions_15:
     db $08,$02,$51,$00,$08,$00,$13,$00                                   ;91B6D1;
 
 PoseDefinitions_16:
-; 16h: Facing left-   normal jump - aiming up
+; 16h: Facing left -  normal jump - aiming up
     db $04,$02,$52,$09,$08,$00,$13,$00                                   ;91B6D9;
 
 PoseDefinitions_17:
@@ -5613,7 +5613,7 @@ PoseDefinitions_17:
     db $08,$02,$FF,$04,$06,$00,$0A,$00                                   ;91B6E1;
 
 PoseDefinitions_18:
-; 18h: Facing left-   normal jump - aiming down
+; 18h: Facing left -  normal jump - aiming down
     db $04,$02,$FF,$05,$06,$00,$0A,$00                                   ;91B6E9;
 
 PoseDefinitions_19:
@@ -5621,7 +5621,7 @@ PoseDefinitions_19:
     db $08,$03,$FF,$FF,$00,$00,$0C,$00                                   ;91B6F1;
 
 PoseDefinitions_1A:
-; 1Ah: Facing left-   spin jump
+; 1Ah: Facing left -  spin jump
     db $04,$03,$FF,$FF,$00,$00,$0C,$00                                   ;91B6F9;
 
 PoseDefinitions_1B:
@@ -5629,7 +5629,7 @@ PoseDefinitions_1B:
     db $08,$03,$FF,$FF,$00,$00,$0C,$00                                   ;91B701;
 
 PoseDefinitions_1C:
-; 1Ch: Facing left-   space jump
+; 1Ch: Facing left -  space jump
     db $04,$03,$FF,$FF,$00,$00,$0C,$00                                   ;91B709;
 
 PoseDefinitions_1D:
@@ -5664,7 +5664,7 @@ PoseDefinitions_25:
     db $04,$0E,$FF,$FB,$06,$00,$15,$00                                   ;91B751;
 
 PoseDefinitions_26:
-; 26h: Facing left-   turning - standing
+; 26h: Facing left -  turning - standing
     db $08,$0E,$FF,$FB,$06,$00,$15,$00                                   ;91B759;
 
 PoseDefinitions_27:
@@ -5672,7 +5672,7 @@ PoseDefinitions_27:
     db $08,$05,$27,$02,$00,$00,$10,$00                                   ;91B761;
 
 PoseDefinitions_28:
-; 28h: Facing left-   crouching
+; 28h: Facing left -  crouching
     db $04,$05,$28,$07,$00,$00,$10,$00                                   ;91B769;
 
 PoseDefinitions_29:
@@ -5680,7 +5680,7 @@ PoseDefinitions_29:
     db $08,$06,$FF,$02,$08,$00,$13,$00                                   ;91B771;
 
 PoseDefinitions_2A:
-; 2Ah: Facing left-   falling
+; 2Ah: Facing left -  falling
     db $04,$06,$FF,$07,$08,$00,$13,$00                                   ;91B779;
 
 PoseDefinitions_2B:
@@ -5688,7 +5688,7 @@ PoseDefinitions_2B:
     db $08,$06,$29,$00,$08,$00,$13,$00                                   ;91B781;
 
 PoseDefinitions_2C:
-; 2Ch: Facing left-   falling - aiming up
+; 2Ch: Facing left -  falling - aiming up
     db $04,$06,$2A,$09,$08,$00,$13,$00                                   ;91B789;
 
 PoseDefinitions_2D:
@@ -5696,7 +5696,7 @@ PoseDefinitions_2D:
     db $08,$06,$FF,$04,$06,$00,$0A,$00                                   ;91B791;
 
 PoseDefinitions_2E:
-; 2Eh: Facing left-   falling - aiming down
+; 2Eh: Facing left -  falling - aiming down
     db $04,$06,$FF,$05,$06,$00,$0A,$00                                   ;91B799;
 
 PoseDefinitions_2F:
@@ -5704,7 +5704,7 @@ PoseDefinitions_2F:
     db $04,$17,$FF,$FB,$08,$00,$13,$00                                   ;91B7A1;
 
 PoseDefinitions_30:
-; 30h: Facing left-   turning - jumping
+; 30h: Facing left -  turning - jumping
     db $08,$17,$FF,$FB,$08,$00,$13,$00                                   ;91B7A9;
 
 PoseDefinitions_31:
@@ -5712,7 +5712,7 @@ PoseDefinitions_31:
     db $08,$08,$FF,$FF,$00,$00,$07,$00                                   ;91B7B1;
 
 PoseDefinitions_32:
-; 32h: Facing left-   morph ball - no springball - in air
+; 32h: Facing left -  morph ball - no springball - in air
     db $04,$08,$FF,$FF,$00,$00,$07,$00                                   ;91B7B9;
 
 UNUSED_PoseDefinitions_33_91B7C1:
@@ -5726,7 +5726,7 @@ PoseDefinitions_35:
     db $08,$0F,$FF,$02,$00,$00,$10,$00                                   ;91B7D1;
 
 PoseDefinitions_36:
-; 36h: Facing left-   crouching transition
+; 36h: Facing left -  crouching transition
     db $04,$0F,$FF,$07,$00,$00,$10,$00                                   ;91B7D9;
 
 PoseDefinitions_37:
@@ -5734,7 +5734,7 @@ PoseDefinitions_37:
     db $08,$0F,$FF,$FF,$00,$00,$07,$00                                   ;91B7E1;
 
 PoseDefinitions_38:
-; 38h: Facing left-   morphing transition
+; 38h: Facing left -  morphing transition
     db $04,$0F,$FF,$FF,$00,$00,$07,$00                                   ;91B7E9;
 
 UNUSED_PoseDefinitions_39_91B7F1:
@@ -5748,7 +5748,7 @@ PoseDefinitions_3B:
     db $08,$0F,$FF,$02,$06,$00,$15,$00                                   ;91B801;
 
 PoseDefinitions_3C:
-; 3Ch: Facing left-   standing transition
+; 3Ch: Facing left -  standing transition
     db $04,$0F,$FF,$07,$06,$00,$15,$00                                   ;91B809;
 
 PoseDefinitions_3D:
@@ -5756,7 +5756,7 @@ PoseDefinitions_3D:
     db $08,$0F,$FF,$FF,$00,$00,$10,$00                                   ;91B811;
 
 PoseDefinitions_3E:
-; 3Eh: Facing left-   unmorphing transition
+; 3Eh: Facing left -  unmorphing transition
     db $04,$0F,$FF,$FF,$00,$00,$10,$00                                   ;91B819;
 
 UNUSED_PoseDefinitions_3F_91B821:
@@ -5766,7 +5766,7 @@ UNUSED_PoseDefinitions_40_91B829:
     db $04,$0F,$FF,$FF,$00,$00,$07,$00                                   ;91B829;
 
 PoseDefinitions_41:
-; 41h: Facing left-   morph ball - no springball - on ground
+; 41h: Facing left -  morph ball - no springball - on ground
     db $04,$04,$FF,$FF,$00,$00,$07,$00                                   ;91B831;
 
 UNUSED_PoseDefinitions_42_91B839:
@@ -5777,7 +5777,7 @@ PoseDefinitions_43:
     db $04,$0E,$FF,$FB,$00,$00,$10,$00                                   ;91B841;
 
 PoseDefinitions_44:
-; 44h: Facing left-   turning - crouching
+; 44h: Facing left -  turning - crouching
     db $08,$0E,$FF,$FB,$00,$00,$10,$00                                   ;91B849;
 
 UNUSED_PoseDefinitions_45_91B851:
@@ -5793,7 +5793,7 @@ UNUSED_PoseDefinitions_48_91B869:
     db $04,$00,$FF,$07,$06,$00,$15,$00                                   ;91B869;
 
 PoseDefinitions_49:
-; 49h: Facing left-   moonwalk
+; 49h: Facing left -  moonwalk
     db $08,$10,$02,$07,$06,$00,$15,$00                                   ;91B871;
 
 PoseDefinitions_4A:
@@ -5805,7 +5805,7 @@ PoseDefinitions_4B:
     db $08,$02,$FF,$02,$03,$00,$13,$00                                   ;91B881;
 
 PoseDefinitions_4C:
-; 4Ch: Facing left-   normal jump transition
+; 4Ch: Facing left -  normal jump transition
     db $04,$02,$FF,$07,$03,$00,$13,$00                                   ;91B889;
 
 PoseDefinitions_4D:
@@ -5813,11 +5813,11 @@ PoseDefinitions_4D:
     db $08,$02,$FF,$02,$08,$00,$13,$00                                   ;91B891;
 
 PoseDefinitions_4E:
-; 4Eh: Facing left-   normal jump - not aiming - not moving - gun not extended
+; 4Eh: Facing left -  normal jump - not aiming - not moving - gun not extended
     db $04,$02,$FF,$07,$08,$00,$13,$00                                   ;91B899;
 
 PoseDefinitions_4F:
-; 4Fh: Facing left-   damage boost
+; 4Fh: Facing left -  damage boost
     db $08,$19,$4E,$FF,$08,$00,$13,$00                                   ;91B8A1;
 
 PoseDefinitions_50:
@@ -5829,7 +5829,7 @@ PoseDefinitions_51:
     db $08,$02,$FF,$02,$08,$00,$13,$00                                   ;91B8B1;
 
 PoseDefinitions_52:
-; 52h: Facing left-   normal jump - not aiming - moving forward
+; 52h: Facing left -  normal jump - not aiming - moving forward
     db $04,$02,$FF,$07,$08,$00,$13,$00                                   ;91B8B9;
 
 PoseDefinitions_53:
@@ -5837,7 +5837,7 @@ PoseDefinitions_53:
     db $08,$0A,$FF,$FF,$06,$00,$15,$00                                   ;91B8C1;
 
 PoseDefinitions_54:
-; 54h: Facing left-   knockback
+; 54h: Facing left -  knockback
     db $04,$0A,$FF,$FF,$06,$00,$15,$00                                   ;91B8C9;
 
 PoseDefinitions_55:
@@ -5845,7 +5845,7 @@ PoseDefinitions_55:
     db $08,$02,$FF,$00,$03,$00,$13,$00                                   ;91B8D1;
 
 PoseDefinitions_56:
-; 56h: Facing left-   normal jump transition - aiming up
+; 56h: Facing left -  normal jump transition - aiming up
     db $04,$02,$FF,$09,$03,$00,$13,$00                                   ;91B8D9;
 
 PoseDefinitions_57:
@@ -5853,7 +5853,7 @@ PoseDefinitions_57:
     db $08,$02,$FF,$01,$03,$00,$13,$00                                   ;91B8E1;
 
 PoseDefinitions_58:
-; 58h: Facing left-   normal jump transition - aiming up-left
+; 58h: Facing left -  normal jump transition - aiming up-left
     db $04,$02,$FF,$08,$03,$00,$13,$00                                   ;91B8E9;
 
 PoseDefinitions_59:
@@ -5861,7 +5861,7 @@ PoseDefinitions_59:
     db $08,$02,$FF,$03,$03,$00,$13,$00                                   ;91B8F1;
 
 PoseDefinitions_5A:
-; 5Ah: Facing left-   normal jump transition - aiming down-left
+; 5Ah: Facing left -  normal jump transition - aiming down-left
     db $04,$02,$FF,$06,$03,$00,$13,$00                                   ;91B8F9;
 
 UNUSED_PoseDefinitions_5B_91B901:
@@ -5905,7 +5905,7 @@ PoseDefinitions_67:
     db $08,$06,$FF,$02,$08,$00,$13,$00                                   ;91B961;
 
 PoseDefinitions_68:
-; 68h: Facing left-   falling - gun extended
+; 68h: Facing left -  falling - gun extended
     db $04,$06,$FF,$07,$08,$00,$13,$00                                   ;91B969;
 
 PoseDefinitions_69:
@@ -5913,7 +5913,7 @@ PoseDefinitions_69:
     db $08,$02,$51,$01,$08,$00,$13,$00                                   ;91B971;
 
 PoseDefinitions_6A:
-; 6Ah: Facing left-   normal jump - aiming up-left
+; 6Ah: Facing left -  normal jump - aiming up-left
     db $04,$02,$52,$08,$08,$00,$13,$00                                   ;91B979;
 
 PoseDefinitions_6B:
@@ -5921,7 +5921,7 @@ PoseDefinitions_6B:
     db $08,$02,$51,$03,$08,$00,$13,$00                                   ;91B981;
 
 PoseDefinitions_6C:
-; 6Ch: Facing left-   normal jump - aiming down-left
+; 6Ch: Facing left -  normal jump - aiming down-left
     db $04,$02,$52,$06,$08,$00,$13,$00                                   ;91B989;
 
 PoseDefinitions_6D:
@@ -5929,7 +5929,7 @@ PoseDefinitions_6D:
     db $08,$06,$29,$01,$08,$00,$13,$00                                   ;91B991;
 
 PoseDefinitions_6E:
-; 6Eh: Facing left-   falling - aiming up-left
+; 6Eh: Facing left -  falling - aiming up-left
     db $04,$06,$2A,$08,$08,$00,$13,$00                                   ;91B999;
 
 PoseDefinitions_6F:
@@ -5937,7 +5937,7 @@ PoseDefinitions_6F:
     db $08,$06,$29,$03,$08,$00,$13,$00                                   ;91B9A1;
 
 PoseDefinitions_70:
-; 70h: Facing left-   falling - aiming down-left
+; 70h: Facing left -  falling - aiming down-left
     db $04,$06,$2A,$06,$08,$00,$13,$00                                   ;91B9A9;
 
 PoseDefinitions_71:
@@ -5945,7 +5945,7 @@ PoseDefinitions_71:
     db $08,$05,$27,$01,$00,$00,$10,$00                                   ;91B9B1;
 
 PoseDefinitions_72:
-; 72h: Facing left-   crouching - aiming up-left
+; 72h: Facing left -  crouching - aiming up-left
     db $04,$05,$28,$08,$00,$00,$10,$00                                   ;91B9B9;
 
 PoseDefinitions_73:
@@ -5953,11 +5953,11 @@ PoseDefinitions_73:
     db $08,$05,$27,$03,$00,$00,$10,$00                                   ;91B9C1;
 
 PoseDefinitions_74:
-; 74h: Facing left-   crouching - aiming down-left
+; 74h: Facing left -  crouching - aiming down-left
     db $04,$05,$28,$06,$00,$00,$10,$00                                   ;91B9C9;
 
 PoseDefinitions_75:
-; 75h: Facing left-   moonwalk - aiming up-left
+; 75h: Facing left -  moonwalk - aiming up-left
     db $08,$10,$06,$08,$06,$00,$15,$00                                   ;91B9D1;
 
 PoseDefinitions_76:
@@ -5965,7 +5965,7 @@ PoseDefinitions_76:
     db $04,$10,$05,$01,$06,$00,$15,$00                                   ;91B9D9;
 
 PoseDefinitions_77:
-; 77h: Facing left-   moonwalk - aiming down-left
+; 77h: Facing left -  moonwalk - aiming down-left
     db $08,$10,$08,$06,$06,$00,$15,$00                                   ;91B9E1;
 
 PoseDefinitions_78:
@@ -5977,7 +5977,7 @@ PoseDefinitions_79:
     db $08,$11,$FF,$FF,$00,$00,$07,$00                                   ;91B9F1;
 
 PoseDefinitions_7A:
-; 7Ah: Facing left-   morph ball - spring ball - on ground
+; 7Ah: Facing left -  morph ball - spring ball - on ground
     db $04,$11,$FF,$FF,$00,$00,$07,$00                                   ;91B9F9;
 
 PoseDefinitions_7B:
@@ -5993,7 +5993,7 @@ PoseDefinitions_7D:
     db $08,$13,$FF,$FF,$00,$00,$07,$00                                   ;91BA11;
 
 PoseDefinitions_7E:
-; 7Eh: Facing left-   morph ball - spring ball - falling
+; 7Eh: Facing left -  morph ball - spring ball - falling
     db $04,$13,$FF,$FF,$00,$00,$07,$00                                   ;91BA19;
 
 PoseDefinitions_7F:
@@ -6001,7 +6001,7 @@ PoseDefinitions_7F:
     db $08,$12,$FF,$FF,$00,$00,$07,$00                                   ;91BA21;
 
 PoseDefinitions_80:
-; 80h: Facing left-   morph ball - spring ball - in air
+; 80h: Facing left -  morph ball - spring ball - in air
     db $04,$12,$FF,$FF,$00,$00,$07,$00                                   ;91BA29;
 
 PoseDefinitions_81:
@@ -6009,7 +6009,7 @@ PoseDefinitions_81:
     db $08,$03,$FF,$FF,$00,$00,$0C,$00                                   ;91BA31;
 
 PoseDefinitions_82:
-; 82h: Facing left-   screw attack
+; 82h: Facing left -  screw attack
     db $04,$03,$FF,$FF,$00,$00,$0C,$00                                   ;91BA39;
 
 PoseDefinitions_83:
@@ -6017,7 +6017,7 @@ PoseDefinitions_83:
     db $08,$14,$19,$FF,$08,$00,$13,$00                                   ;91BA41;
 
 PoseDefinitions_84:
-; 84h: Facing left-   wall jump
+; 84h: Facing left -  wall jump
     db $04,$14,$1A,$FF,$08,$00,$13,$00                                   ;91BA49;
 
 PoseDefinitions_85:
@@ -6025,7 +6025,7 @@ PoseDefinitions_85:
     db $08,$05,$27,$00,$00,$00,$10,$00                                   ;91BA51;
 
 PoseDefinitions_86:
-; 86h: Facing left-   crouching - aiming up
+; 86h: Facing left -  crouching - aiming up
     db $04,$05,$28,$09,$00,$00,$10,$00                                   ;91BA59;
 
 PoseDefinitions_87:
@@ -6033,7 +6033,7 @@ PoseDefinitions_87:
     db $04,$18,$FF,$FB,$08,$00,$13,$00                                   ;91BA61;
 
 PoseDefinitions_88:
-; 88h: Facing left-   turning - falling
+; 88h: Facing left -  turning - falling
     db $08,$18,$FF,$FB,$08,$00,$13,$00                                   ;91BA69;
 
 PoseDefinitions_89:
@@ -6041,7 +6041,7 @@ PoseDefinitions_89:
     db $08,$15,$FF,$02,$06,$00,$15,$00                                   ;91BA71;
 
 PoseDefinitions_8A:
-; 8Ah: Facing left-   ran into a wall
+; 8Ah: Facing left -  ran into a wall
     db $04,$15,$FF,$07,$06,$00,$15,$00                                   ;91BA79;
 
 PoseDefinitions_8B:
@@ -6049,7 +6049,7 @@ PoseDefinitions_8B:
     db $04,$0E,$FF,$FA,$06,$00,$15,$00                                   ;91BA81;
 
 PoseDefinitions_8C:
-; 8Ch: Facing left-   turning - standing - aiming up
+; 8Ch: Facing left -  turning - standing - aiming up
     db $08,$0E,$FF,$FA,$06,$00,$15,$00                                   ;91BA89;
 
 PoseDefinitions_8D:
@@ -6057,7 +6057,7 @@ PoseDefinitions_8D:
     db $04,$0E,$FF,$FC,$06,$00,$15,$00                                   ;91BA91;
 
 PoseDefinitions_8E:
-; 8Eh: Facing left-   turning - standing - aiming down-left
+; 8Eh: Facing left -  turning - standing - aiming down-left
     db $08,$0E,$FF,$FC,$06,$00,$15,$00                                   ;91BA99;
 
 PoseDefinitions_8F:
@@ -6065,7 +6065,7 @@ PoseDefinitions_8F:
     db $04,$17,$FF,$FA,$08,$00,$13,$00                                   ;91BAA1;
 
 PoseDefinitions_90:
-; 90h: Facing left-   turning - in air - aiming up
+; 90h: Facing left -  turning - in air - aiming up
     db $08,$17,$FF,$FA,$08,$00,$13,$00                                   ;91BAA9;
 
 PoseDefinitions_91:
@@ -6073,7 +6073,7 @@ PoseDefinitions_91:
     db $04,$17,$FF,$FC,$08,$00,$13,$00                                   ;91BAB1;
 
 PoseDefinitions_92:
-; 92h: Facing left-   turning - in air - aiming down/down-left
+; 92h: Facing left -  turning - in air - aiming down/down-left
     db $08,$17,$FF,$FC,$08,$00,$13,$00                                   ;91BAB9;
 
 PoseDefinitions_93:
@@ -6081,7 +6081,7 @@ PoseDefinitions_93:
     db $04,$18,$FF,$FA,$08,$00,$13,$00                                   ;91BAC1;
 
 PoseDefinitions_94:
-; 94h: Facing left-   turning - falling - aiming up
+; 94h: Facing left -  turning - falling - aiming up
     db $08,$18,$FF,$FA,$08,$00,$13,$00                                   ;91BAC9;
 
 PoseDefinitions_95:
@@ -6089,7 +6089,7 @@ PoseDefinitions_95:
     db $04,$18,$FF,$FC,$08,$00,$13,$00                                   ;91BAD1;
 
 PoseDefinitions_96:
-; 96h: Facing left-   turning - falling - aiming down/down-left
+; 96h: Facing left -  turning - falling - aiming down/down-left
     db $08,$18,$FF,$FC,$08,$00,$13,$00                                   ;91BAD9;
 
 PoseDefinitions_97:
@@ -6097,7 +6097,7 @@ PoseDefinitions_97:
     db $04,$17,$28,$FA,$00,$00,$10,$00                                   ;91BAE1;
 
 PoseDefinitions_98:
-; 98h: Facing left-   turning - crouching - aiming up
+; 98h: Facing left -  turning - crouching - aiming up
     db $08,$17,$28,$FA,$00,$00,$10,$00                                   ;91BAE9;
 
 PoseDefinitions_99:
@@ -6105,7 +6105,7 @@ PoseDefinitions_99:
     db $04,$17,$28,$FC,$00,$00,$10,$00                                   ;91BAF1;
 
 PoseDefinitions_9A:
-; 9Ah: Facing left-   turning - crouching - aiming down/down-left
+; 9Ah: Facing left -  turning - crouching - aiming down/down-left
     db $08,$17,$28,$FC,$00,$00,$10,$00                                   ;91BAF9;
 
 PoseDefinitions_9B:
@@ -6117,7 +6117,7 @@ PoseDefinitions_9C:
     db $04,$0E,$FF,$FA,$06,$00,$15,$00                                   ;91BB09;
 
 PoseDefinitions_9D:
-; 9Dh: Facing left-   turning - standing - aiming up-left
+; 9Dh: Facing left -  turning - standing - aiming up-left
     db $08,$0E,$FF,$FA,$06,$00,$15,$00                                   ;91BB11;
 
 PoseDefinitions_9E:
@@ -6125,7 +6125,7 @@ PoseDefinitions_9E:
     db $04,$17,$FF,$FA,$08,$00,$13,$00                                   ;91BB19;
 
 PoseDefinitions_9F:
-; 9Fh: Facing left-   turning - in air - aiming up-left
+; 9Fh: Facing left -  turning - in air - aiming up-left
     db $08,$17,$FF,$FA,$08,$00,$13,$00                                   ;91BB21;
 
 PoseDefinitions_A0:
@@ -6133,7 +6133,7 @@ PoseDefinitions_A0:
     db $04,$18,$FF,$FA,$08,$00,$13,$00                                   ;91BB29;
 
 PoseDefinitions_A1:
-; A1h: Facing left-   turning - falling - aiming up-left
+; A1h: Facing left -  turning - falling - aiming up-left
     db $08,$18,$FF,$FA,$08,$00,$13,$00                                   ;91BB31;
 
 PoseDefinitions_A2:
@@ -6141,7 +6141,7 @@ PoseDefinitions_A2:
     db $04,$17,$28,$FA,$00,$00,$10,$00                                   ;91BB39;
 
 PoseDefinitions_A3:
-; A3h: Facing left-   turning - crouching - aiming up-left
+; A3h: Facing left -  turning - crouching - aiming up-left
     db $08,$17,$28,$FA,$00,$00,$10,$00                                   ;91BB41;
 
 PoseDefinitions_A4:
@@ -6149,7 +6149,7 @@ PoseDefinitions_A4:
     db $08,$00,$FF,$02,$03,$00,$15,$00                                   ;91BB49;
 
 PoseDefinitions_A5:
-; A5h: Facing left-   landing from normal jump
+; A5h: Facing left -  landing from normal jump
     db $04,$00,$FF,$07,$03,$00,$15,$00                                   ;91BB51;
 
 PoseDefinitions_A6:
@@ -6157,7 +6157,7 @@ PoseDefinitions_A6:
     db $08,$00,$FF,$02,$03,$00,$15,$00                                   ;91BB59;
 
 PoseDefinitions_A7:
-; A7h: Facing left-   landing from spin jump
+; A7h: Facing left -  landing from spin jump
     db $04,$00,$FF,$07,$03,$00,$15,$00                                   ;91BB61;
 
 UNUSED_PoseDefinitions_A8_91BB69:
@@ -6191,11 +6191,11 @@ UNUSED_PoseDefinitions_B1_91BBB1:
     db $04,$16,$70,$06,$08,$00,$13,$00                                   ;91BBB1;
 
 PoseDefinitions_B2:
-; B2h: Facing clockwise   -   grapple swinging
+; B2h: Facing anticlockwise - grapple swinging
     db $08,$16,$B2,$FF,$10,$00,$11,$00                                   ;91BBB9;
 
 PoseDefinitions_B3:
-; B3h: Facing anticlockwise - grapple swinging
+; B3h: Facing clockwise   -   grapple swinging
     db $04,$16,$B3,$FF,$10,$00,$11,$00                                   ;91BBC1;
 
 UNUSED_PoseDefinitions_B4_91BBC9:
@@ -6211,7 +6211,7 @@ UNUSED_PoseDefinitions_B7_91BBE1:
     db $04,$16,$28,$06,$00,$00,$10,$00                                   ;91BBE1;
 
 PoseDefinitions_B8:
-; B8h: Facing left-   grapple wall jump pose
+; B8h: Facing left -  grapple wall jump pose
     db $08,$16,$FF,$03,$00,$00,$10,$00                                   ;91BBE9;
 
 PoseDefinitions_B9:
@@ -6219,23 +6219,23 @@ PoseDefinitions_B9:
     db $04,$16,$FF,$06,$00,$00,$10,$00                                   ;91BBF1;
 
 PoseDefinitions_BA:
-; BAh: Facing left-   grabbed by Draygon - not moving - not aiming
+; BAh: Facing left -  grabbed by Draygon - not moving - not aiming
     db $04,$1A,$FF,$07,$06,$00,$15,$00                                   ;91BBF9;
 
 PoseDefinitions_BB:
-; BBh: Facing left-   grabbed by Draygon - not moving - aiming up-left
+; BBh: Facing left -  grabbed by Draygon - not moving - aiming up-left
     db $04,$1A,$BA,$08,$06,$00,$15,$00                                   ;91BC01;
 
 PoseDefinitions_BC:
-; BCh: Facing left-   grabbed by Draygon - firing
+; BCh: Facing left -  grabbed by Draygon - firing
     db $04,$1A,$BA,$07,$06,$00,$15,$00                                   ;91BC09;
 
 PoseDefinitions_BD:
-; BDh: Facing left-   grabbed by Draygon - not moving - aiming down-left
+; BDh: Facing left -  grabbed by Draygon - not moving - aiming down-left
     db $04,$1A,$BA,$06,$06,$00,$15,$00                                   ;91BC11;
 
 PoseDefinitions_BE:
-; BEh: Facing left-   grabbed by Draygon - moving
+; BEh: Facing left -  grabbed by Draygon - moving
     db $04,$1A,$BA,$FF,$06,$00,$15,$00                                   ;91BC19;
 
 PoseDefinitions_BF:
@@ -6243,7 +6243,7 @@ PoseDefinitions_BF:
     db $04,$0E,$FF,$FB,$06,$00,$15,$00                                   ;91BC21;
 
 PoseDefinitions_C0:
-; C0h: Facing left-   moonwalking - turn/jump right
+; C0h: Facing left -  moonwalking - turn/jump right
     db $08,$0E,$FF,$FB,$06,$00,$15,$00                                   ;91BC29;
 
 PoseDefinitions_C1:
@@ -6251,7 +6251,7 @@ PoseDefinitions_C1:
     db $04,$0E,$FF,$FA,$08,$00,$15,$00                                   ;91BC31;
 
 PoseDefinitions_C2:
-; C2h: Facing left-   moonwalking - turn/jump right - aiming up-left
+; C2h: Facing left -  moonwalking - turn/jump right - aiming up-left
     db $08,$0E,$FF,$FA,$08,$00,$15,$00                                   ;91BC39;
 
 PoseDefinitions_C3:
@@ -6259,7 +6259,7 @@ PoseDefinitions_C3:
     db $04,$0E,$FF,$FC,$08,$00,$15,$00                                   ;91BC41;
 
 PoseDefinitions_C4:
-; C4h: Facing left-   moonwalking - turn/jump right - aiming down-left
+; C4h: Facing left -  moonwalking - turn/jump right - aiming down-left
     db $08,$0E,$FF,$FC,$08,$00,$15,$00                                   ;91BC49;
 
 UNUSED_PoseDefinitions_C5_91BC51:
@@ -6273,7 +6273,7 @@ PoseDefinitions_C7:
     db $08,$1B,$FF,$FF,$08,$00,$13,$00                                   ;91BC61;
 
 PoseDefinitions_C8:
-; C8h: Facing left-   vertical shinespark windup
+; C8h: Facing left -  vertical shinespark windup
     db $04,$1B,$FF,$FF,$08,$00,$13,$00                                   ;91BC69;
 
 PoseDefinitions_C9:
@@ -6281,7 +6281,7 @@ PoseDefinitions_C9:
     db $08,$1B,$FF,$02,$08,$00,$13,$00                                   ;91BC71;
 
 PoseDefinitions_CA:
-; CAh: Facing left-   shinespark - horizontal
+; CAh: Facing left -  shinespark - horizontal
     db $04,$1B,$FF,$07,$08,$00,$13,$00                                   ;91BC79;
 
 PoseDefinitions_CB:
@@ -6289,7 +6289,7 @@ PoseDefinitions_CB:
     db $08,$1B,$FF,$00,$08,$00,$13,$00                                   ;91BC81;
 
 PoseDefinitions_CC:
-; CCh: Facing left-   shinespark - vertical
+; CCh: Facing left -  shinespark - vertical
     db $04,$1B,$FF,$09,$08,$00,$13,$00                                   ;91BC89;
 
 PoseDefinitions_CD:
@@ -6297,7 +6297,7 @@ PoseDefinitions_CD:
     db $08,$1B,$FF,$01,$08,$00,$13,$00                                   ;91BC91;
 
 PoseDefinitions_CE:
-; CEh: Facing left-   shinespark - diagonal
+; CEh: Facing left -  shinespark - diagonal
     db $04,$1B,$FF,$08,$08,$00,$13,$00                                   ;91BC99;
 
 PoseDefinitions_CF:
@@ -6305,7 +6305,7 @@ PoseDefinitions_CF:
     db $08,$15,$89,$01,$06,$00,$15,$00                                   ;91BCA1;
 
 PoseDefinitions_D0:
-; D0h: Facing left-   ran into a wall - aiming up-left
+; D0h: Facing left -  ran into a wall - aiming up-left
     db $04,$15,$8A,$08,$06,$00,$15,$00                                   ;91BCA9;
 
 PoseDefinitions_D1:
@@ -6313,7 +6313,7 @@ PoseDefinitions_D1:
     db $08,$15,$89,$03,$06,$00,$15,$00                                   ;91BCB1;
 
 PoseDefinitions_D2:
-; D2h: Facing left-   ran into a wall - aiming down-left
+; D2h: Facing left -  ran into a wall - aiming down-left
     db $04,$15,$8A,$06,$06,$00,$15,$00                                   ;91BCB9;
 
 PoseDefinitions_D3:
@@ -6321,7 +6321,7 @@ PoseDefinitions_D3:
     db $08,$1B,$FF,$FF,$06,$00,$15,$00                                   ;91BCC1;
 
 PoseDefinitions_D4:
-; D4h: Facing left-   crystal flash
+; D4h: Facing left -  crystal flash
     db $04,$1B,$FF,$FF,$06,$00,$15,$00                                   ;91BCC9;
 
 PoseDefinitions_D5:
@@ -6329,7 +6329,7 @@ PoseDefinitions_D5:
     db $08,$00,$FF,$02,$06,$00,$15,$00                                   ;91BCD1;
 
 PoseDefinitions_D6:
-; D6h: Facing left-   x-ray - standing
+; D6h: Facing left -  x-ray - standing
     db $04,$00,$FF,$07,$06,$00,$15,$00                                   ;91BCD9;
 
 PoseDefinitions_D7:
@@ -6337,7 +6337,7 @@ PoseDefinitions_D7:
     db $08,$0A,$FF,$02,$06,$00,$15,$00                                   ;91BCE1;
 
 PoseDefinitions_D8:
-; D8h: Facing left-   crystal flash ending
+; D8h: Facing left -  crystal flash ending
     db $04,$0A,$FF,$07,$06,$00,$15,$00                                   ;91BCE9;
 
 PoseDefinitions_D9:
@@ -6345,7 +6345,7 @@ PoseDefinitions_D9:
     db $08,$05,$FF,$02,$00,$00,$10,$00                                   ;91BCF1;
 
 PoseDefinitions_DA:
-; DAh: Facing left-   x-ray - crouching
+; DAh: Facing left -  x-ray - crouching
     db $04,$05,$FF,$07,$00,$00,$10,$00                                   ;91BCF9;
 
 UNUSED_PoseDefinitions_DB_91BD01:
@@ -6368,7 +6368,7 @@ PoseDefinitions_E0:
     db $08,$00,$FF,$00,$03,$00,$15,$00                                   ;91BD29;
 
 PoseDefinitions_E1:
-; E1h: Facing left-   landing from normal jump - aiming up
+; E1h: Facing left -  landing from normal jump - aiming up
     db $04,$00,$FF,$09,$03,$00,$15,$00                                   ;91BD31;
 
 PoseDefinitions_E2:
@@ -6376,7 +6376,7 @@ PoseDefinitions_E2:
     db $08,$00,$FF,$01,$03,$00,$15,$00                                   ;91BD39;
 
 PoseDefinitions_E3:
-; E3h: Facing left-   landing from normal jump - aiming up-left
+; E3h: Facing left -  landing from normal jump - aiming up-left
     db $04,$00,$FF,$08,$03,$00,$15,$00                                   ;91BD41;
 
 PoseDefinitions_E4:
@@ -6384,7 +6384,7 @@ PoseDefinitions_E4:
     db $08,$00,$FF,$03,$03,$00,$15,$00                                   ;91BD49;
 
 PoseDefinitions_E5:
-; E5h: Facing left-   landing from normal jump - aiming down-left
+; E5h: Facing left -  landing from normal jump - aiming down-left
     db $04,$00,$FF,$06,$03,$00,$15,$00                                   ;91BD51;
 
 PoseDefinitions_E6:
@@ -6392,7 +6392,7 @@ PoseDefinitions_E6:
     db $08,$00,$FF,$02,$03,$00,$15,$00                                   ;91BD59;
 
 PoseDefinitions_E7:
-; E7h: Facing left-   landing from normal jump - firing
+; E7h: Facing left -  landing from normal jump - firing
     db $04,$00,$FF,$07,$03,$00,$15,$00                                   ;91BD61;
 
 PoseDefinitions_E8:
@@ -6400,7 +6400,7 @@ PoseDefinitions_E8:
     db $08,$1B,$FF,$FF,$FC,$00,$15,$00                                   ;91BD69;
 
 PoseDefinitions_E9:
-; E9h: Facing left-   Samus drained - crouching
+; E9h: Facing left -  Samus drained - crouching
     db $04,$1B,$FF,$FF,$FC,$00,$15,$00                                   ;91BD71;
 
 PoseDefinitions_EA:
@@ -6408,7 +6408,7 @@ PoseDefinitions_EA:
     db $08,$1B,$FF,$FF,$FC,$00,$15,$00                                   ;91BD79;
 
 PoseDefinitions_EB:
-; EBh: Facing left-   Samus drained - standing
+; EBh: Facing left -  Samus drained - standing
     db $04,$1B,$FF,$FF,$FC,$00,$15,$00                                   ;91BD81;
 
 PoseDefinitions_EC:
@@ -6436,7 +6436,7 @@ PoseDefinitions_F1:
     db $08,$0F,$FF,$00,$08,$00,$10,$00                                   ;91BDB1;
 
 PoseDefinitions_F2:
-; F2h: Facing left-   crouching transition - aiming up
+; F2h: Facing left -  crouching transition - aiming up
     db $04,$0F,$FF,$09,$08,$00,$10,$00                                   ;91BDB9;
 
 PoseDefinitions_F3:
@@ -6444,7 +6444,7 @@ PoseDefinitions_F3:
     db $08,$0F,$FF,$01,$08,$00,$10,$00                                   ;91BDC1;
 
 PoseDefinitions_F4:
-; F4h: Facing left-   crouching transition - aiming up-left
+; F4h: Facing left -  crouching transition - aiming up-left
     db $04,$0F,$FF,$08,$08,$00,$10,$00                                   ;91BDC9;
 
 PoseDefinitions_F5:
@@ -6452,7 +6452,7 @@ PoseDefinitions_F5:
     db $08,$0F,$FF,$03,$08,$00,$10,$00                                   ;91BDD1;
 
 PoseDefinitions_F6:
-; F6h: Facing left-   crouching transition - aiming down-left
+; F6h: Facing left -  crouching transition - aiming down-left
     db $04,$0F,$FF,$06,$08,$00,$10,$00                                   ;91BDD9;
 
 PoseDefinitions_F7:
@@ -6460,7 +6460,7 @@ PoseDefinitions_F7:
     db $08,$0F,$FF,$00,$03,$00,$15,$00                                   ;91BDE1;
 
 PoseDefinitions_F8:
-; F8h: Facing left-   standing transition - aiming up
+; F8h: Facing left -  standing transition - aiming up
     db $04,$0F,$FF,$09,$03,$00,$15,$00                                   ;91BDE9;
 
 PoseDefinitions_F9:
@@ -6468,7 +6468,7 @@ PoseDefinitions_F9:
     db $08,$0F,$FF,$01,$03,$00,$15,$00                                   ;91BDF1;
 
 PoseDefinitions_FA:
-; FAh: Facing left-   standing transition - aiming up-left
+; FAh: Facing left -  standing transition - aiming up-left
     db $04,$0F,$FF,$08,$03,$00,$15,$00                                   ;91BDF9;
 
 PoseDefinitions_FB:
@@ -6476,7 +6476,7 @@ PoseDefinitions_FB:
     db $08,$0F,$FF,$03,$03,$00,$15,$00                                   ;91BE01;
 
 PoseDefinitions_FC:
-; FCh: Facing left-   standing transition - aiming down-left
+; FCh: Facing left -  standing transition - aiming down-left
     db $04,$0F,$FF,$06,$03,$00,$15,$00                                   ;91BE09;
 
 
@@ -13506,11 +13506,11 @@ PSP_Landed_Grounded:
     dw $00A4 ; 2: Right:              Facing right - landing from normal jump
     dw $00E4 ; 3: Down-right:         Facing right - landing from normal jump - aiming down-right
     dw $00A4 ; 4: Down, facing right: Facing right - landing from normal jump
-    dw $00A5 ; 5: Down, facing left:  Facing left-   landing from normal jump
-    dw $00E5 ; 6: Down-left:          Facing left-   landing from normal jump - aiming down-left
-    dw $00A5 ; 7: Left:               Facing left-   landing from normal jump
-    dw $00E3 ; 8: Up-left:            Facing left-   landing from normal jump - aiming up-left
-    dw $00E1 ; 9: Up, facing left:    Facing left-   landing from normal jump - aiming up
+    dw $00A5 ; 5: Down, facing left:  Facing left -  landing from normal jump
+    dw $00E5 ; 6: Down-left:          Facing left -  landing from normal jump - aiming down-left
+    dw $00A5 ; 7: Left:               Facing left -  landing from normal jump
+    dw $00E3 ; 8: Up-left:            Facing left -  landing from normal jump - aiming up-left
+    dw $00E1 ; 9: Up, facing left:    Facing left -  landing from normal jump - aiming up
 
 
 ;;; $EA07: Set prospective Samus pose according to solid vertical collision result - landed - morph ball grounded ;;;
@@ -13794,11 +13794,11 @@ CheckIfProspectivePoseRunsIntoAWall:
     dw $0089 ; 2: Right:              Facing right - ran into a wall
     dw $00D1 ; 3: Down-right:         Facing right - ran into a wall - aiming down-right
     dw $0089 ; 4: Down, facing right: Facing right - ran into a wall
-    dw $008A ; 5: Down, facing left:  Facing left-   ran into a wall
-    dw $00D2 ; 6: Down-left:          Facing left-   ran into a wall - aiming down-left
-    dw $008A ; 7: Left:               Facing left-   ran into a wall
-    dw $00D0 ; 8: Up-left:            Facing left-   ran into a wall - aiming up-left
-    dw $0004 ; 9: Up, facing left:    Facing left-   aiming up
+    dw $008A ; 5: Down, facing left:  Facing left -  ran into a wall
+    dw $00D2 ; 6: Down-left:          Facing left -  ran into a wall - aiming down-left
+    dw $008A ; 7: Left:               Facing left -  ran into a wall
+    dw $00D0 ; 8: Up-left:            Facing left -  ran into a wall - aiming up-left
+    dw $0004 ; 9: Up, facing left:    Facing left -  aiming up
 
 
 ;;; $EB88: Update Samus pose ;;;
@@ -14089,15 +14089,15 @@ ProspectivePoseCmd_7_StartTransitionAnimation:
 
   .YRadii:                                                               ;91ED36;
     dw $0005 ; *35h: Facing right - crouching transition
-    dw $0005 ; *36h: Facing left-   crouching transition
+    dw $0005 ; *36h: Facing left -  crouching transition
     dw $0009 ; *37h: Facing right - morphing transition
-    dw $0009 ; *38h: Facing left-   morphing transition
+    dw $0009 ; *38h: Facing left -  morphing transition
     dw $0000 ;  39h: Unused
     dw $0000 ;  3Ah: Unused
     dw $0000 ;  3Bh: Facing right - standing transition
-    dw $0000 ;  3Ch: Facing left-   standing transition
+    dw $0000 ;  3Ch: Facing left -  standing transition
     dw $0000 ;  3Dh: Facing right - unmorphing transition
-    dw $0000 ;  3Eh: Facing left-   unmorphing transition
+    dw $0000 ;  3Eh: Facing left -  unmorphing transition
     dw $0000 ;  3Fh: Unused
     dw $0000 ;  40h: Unused
 
@@ -15750,15 +15750,15 @@ InitializeSamusPose_TransitionPoses:
 
   .pointers:
     dw InitializeSamusPose_CrouchingTransition                           ;91F790; 35h: Facing right - crouching transition / crouching transition - aiming
-    dw InitializeSamusPose_CrouchingTransition                           ;91F792; 36h: Facing left-   crouching transition
+    dw InitializeSamusPose_CrouchingTransition                           ;91F792; 36h: Facing left -  crouching transition
     dw InitializeSamusPose_MorphingTransition                            ;91F794; 37h: Facing right - morphing transition
-    dw InitializeSamusPose_MorphingTransition                            ;91F796; 38h: Facing left-   morphing transition
+    dw InitializeSamusPose_MorphingTransition                            ;91F796; 38h: Facing left -  morphing transition
     dw UNUSED_InitializeSamusPose_UnusedPose39_91F7F4                    ;91F798; 39h: Unused
     dw UNUSED_InitializeSamusPose_UnusedPose3A_91F840                    ;91F79A; 3Ah: Unused
     dw CLCRTS_91F7CC                                                     ;91F79C; 3Bh: Facing right - standing transition
-    dw CLCRTS_91F7CC                                                     ;91F79E; 3Ch: Facing left-   standing transition
+    dw CLCRTS_91F7CC                                                     ;91F79E; 3Ch: Facing left -  standing transition
     dw CLCRTS_91F7CC                                                     ;91F7A0; 3Dh: Facing right - unmorphing transition
-    dw CLCRTS_91F7CC                                                     ;91F7A2; 3Eh: Facing left-   unmorphing transition
+    dw CLCRTS_91F7CC                                                     ;91F7A2; 3Eh: Facing left -  unmorphing transition
     dw CLCRTS_91F7CC                                                     ;91F7A4; 3Fh: Unused
     dw CLCRTS_91F7CC                                                     ;91F7A6; 40h: Unused
 
@@ -16285,11 +16285,11 @@ InitializeSamusPose_Shinespark_CF_Drained_DamagedMB:
 
   .pointers:
     dw SamusMovementHandler_HorizontalShinespark                         ;91FAFC; C9h: Facing right - shinespark - horizontal
-    dw SamusMovementHandler_HorizontalShinespark                         ;91FAFE; CAh: Facing left-   shinespark - horizontal
+    dw SamusMovementHandler_HorizontalShinespark                         ;91FAFE; CAh: Facing left -  shinespark - horizontal
     dw SamusMovementHandler_VerticalShinespark                           ;91FB00; CBh: Facing right - shinespark - vertical
-    dw SamusMovementHandler_VerticalShinespark                           ;91FB02; CCh: Facing left-   shinespark - vertical
+    dw SamusMovementHandler_VerticalShinespark                           ;91FB02; CCh: Facing left -  shinespark - vertical
     dw SamusMovementHandler_DiagonalShinespark                           ;91FB04; CDh: Facing right - shinespark - diagonal
-    dw SamusMovementHandler_DiagonalShinespark                           ;91FB06; CEh: Facing left-   shinespark - diagonal
+    dw SamusMovementHandler_DiagonalShinespark                           ;91FB06; CEh: Facing left -  shinespark - diagonal
 
 
 ;;; $FB08: Set Samus animation frame if pose changed ;;;

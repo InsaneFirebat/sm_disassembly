@@ -2322,9 +2322,9 @@ CalculateSamusSpritemapPosition_Standing:
 
   .data:                                                                 ;908D28;
     db $03,$06,$00,$00 ; Facing right - landing from normal jump
-    db $03,$06,$00,$00 ; Facing left-   landing from normal jump
+    db $03,$06,$00,$00 ; Facing left -  landing from normal jump
     db $03,$03,$06,$00 ; Facing right - landing from spin jump
-    db $03,$03,$06,$00 ; Facing left-   landing from spin jump
+    db $03,$03,$06,$00 ; Facing left -  landing from spin jump
 
 
 ;;; $8D38: Go to calculate usual Samus spritemap position ;;;
@@ -2386,15 +2386,15 @@ CalculateSamusSpritemapPosition_TransitionPoses:
 
   .data:                                                                 ;908D80;
     db $F8,$00 ; Facing right - crouching transition
-    db $F8,$00 ; Facing left-   crouching transition
+    db $F8,$00 ; Facing left -  crouching transition
     db $FC,$FE ; Facing right - morphing transition
-    db $FC,$FE ; Facing left-   morphing transition
+    db $FC,$FE ; Facing left -  morphing transition
     db $00,$00 ; Unused
     db $00,$00 ; Unused
     db $FC,$00 ; Facing right - standing transition
-    db $FC,$00 ; Facing left-   standing transition
+    db $FC,$00 ; Facing left -  standing transition
     db $05,$04 ; Facing right - unmorphing transition
-    db $05,$04 ; Facing left-   unmorphing transition
+    db $05,$04 ; Facing left -  unmorphing transition
     db $00,$00 ; Unused
     db $00,$00 ; Unused
 
@@ -5783,15 +5783,15 @@ SamusMovement_TransitionPoses:
 
   .pointers:
     dw RTS_90A671                                                        ;90A659; 35h: Facing right - crouching transition
-    dw RTS_90A671                                                        ;90A65B; 36h: Facing left-   crouching transition
+    dw RTS_90A671                                                        ;90A65B; 36h: Facing left -  crouching transition
     dw RTS_90A671                                                        ;90A65D; 37h: Facing right - morphing transition
-    dw RTS_90A671                                                        ;90A65F; 38h: Facing left-   morphing transition
+    dw RTS_90A671                                                        ;90A65F; 38h: Facing left -  morphing transition
     dw Enable_Horizontal_Slope_Detection                                 ;90A661; 39h: Unused
     dw Enable_Horizontal_Slope_Detection                                 ;90A663; 3Ah: Unused
     dw RTS_90A671                                                        ;90A665; 3Bh: Facing right - standing transition
-    dw RTS_90A671                                                        ;90A667; 3Ch: Facing left-   standing transition
+    dw RTS_90A671                                                        ;90A667; 3Ch: Facing left -  standing transition
     dw RTS_90A671                                                        ;90A669; 3Dh: Facing right - unmorphing transition
-    dw RTS_90A671                                                        ;90A66B; 3Eh: Facing left-   unmorphing transition
+    dw RTS_90A671                                                        ;90A66B; 3Eh: Facing left -  unmorphing transition
     dw Enable_Horizontal_Slope_Detection                                 ;90A66D; 3Fh: Unused
     dw Enable_Horizontal_Slope_Detection                                 ;90A66F; 40h: Unused
 
@@ -11259,12 +11259,12 @@ ArmCannonDrawingData_FacingRight:
     db $0B,$FD,$0B,$FD                                                   ;90C9ED;
 
 ArmCannonDrawingData_FacingLeft:
-; 2: Facing left-   normal
+; 2: Facing left -  normal
 ; 48h: Unused
-; 8Ah: Facing left-   ran into a wall
+; 8Ah: Facing left -  ran into a wall
 ; A9h: Unused
-; BCh: Facing left-   grabbed by Draygon - firing
-; E7h: Facing left-   landing from normal jump - firing
+; BCh: Facing left -  grabbed by Draygon - firing
+; E7h: Facing left -  landing from normal jump - firing
     db $07,$01,$ED,$FD,$ED,$FD,$ED,$FD,$ED,$FD,$ED,$FD,$ED,$FD,$ED,$FD   ;90C9F1;
     db $ED,$FD,$ED,$FD                                                   ;90CA01;
 
@@ -11273,7 +11273,7 @@ ArmCannonDrawingData_FacingRight_AimingUp:
     db $81,$01,$80,$01,$0E,$EA,$FE,$E1                                   ;90CA05;
 
 ArmCannonDrawingData_FacingLeft_AimingUp:
-; 4: Facing left-   aiming up
+; 4: Facing left -  aiming up
     db $88,$01,$89,$01,$EA,$E9,$FA,$E1                                   ;90CA0D;
 
 ArmCannonDrawingData_FacingRight_AimingUpRight:
@@ -11287,13 +11287,13 @@ ArmCannonDrawingData_FacingRight_AimingUpRight:
     db $01,$01,$0D,$EA                                                   ;90CA15;
 
 ArmCannonDrawingData_FacingLeft_AimingUpLeft:
-; 6: Facing left-   aiming up-left
-; 58h: Facing left-   normal jump transition - aiming up-left
-; BBh: Facing left-   grabbed by Draygon - not moving - aiming up-left
-; D0h: Facing left-   ran into a wall - aiming up-left
-; E3h: Facing left-   landing from normal jump - aiming up-left
-; F4h: Facing left-   crouching transition - aiming up-left
-; FAh: Facing left-   standing transition - aiming up-left
+; 6: Facing left -  aiming up-left
+; 58h: Facing left -  normal jump transition - aiming up-left
+; BBh: Facing left -  grabbed by Draygon - not moving - aiming up-left
+; D0h: Facing left -  ran into a wall - aiming up-left
+; E3h: Facing left -  landing from normal jump - aiming up-left
+; F4h: Facing left -  crouching transition - aiming up-left
+; FAh: Facing left -  standing transition - aiming up-left
     db $08,$01,$EB,$E9                                                   ;90CA19;
 
 ArmCannonDrawingData_FacingRight_AimingDownRight:
@@ -11308,14 +11308,14 @@ ArmCannonDrawingData_FacingRight_AimingDownRight:
     db $03,$01,$0D,$02                                                   ;90CA1D;
 
 ArmCannonDrawingData_FacingLeft_AimingDownLeft:
-; 8: Facing left-   aiming down-left
-; 5Ah: Facing left-   normal jump transition - aiming down-left
+; 8: Facing left -  aiming down-left
+; 5Ah: Facing left -  normal jump transition - aiming down-left
 ; ABh: Unused
-; BDh: Facing left-   grabbed by Draygon - not moving - aiming down-left
-; D2h: Facing left-   ran into a wall - aiming down-left
-; E5h: Facing left-   landing from normal jump - aiming down-left
-; F6h: Facing left-   crouching transition - aiming down-left
-; FCh: Facing left-   standing transition - aiming down-left
+; BDh: Facing left -  grabbed by Draygon - not moving - aiming down-left
+; D2h: Facing left -  ran into a wall - aiming down-left
+; E5h: Facing left -  landing from normal jump - aiming down-left
+; F6h: Facing left -  crouching transition - aiming down-left
+; FCh: Facing left -  standing transition - aiming down-left
     db $06,$01,$EB,$02                                                   ;90CA21;
 
 ArmCannonDrawingData_MovingRight_GunExtended:
@@ -11354,7 +11354,7 @@ ArmCannonDrawingData_FacingRight_NormalJump_NotMoving_GunExt:
     db $02,$01,$0B,$FD,$0B,$FD                                           ;90CAA9;
 
 ArmCannonDrawingData_FacingLeft_NormalJump_NotMoving_GunExt:
-; 14h: Facing left-   normal jump - not aiming - not moving - gun extended
+; 14h: Facing left -  normal jump - not aiming - not moving - gun extended
 ; ADh: Unused
     db $07,$01,$ED,$FD,$ED,$FD                                           ;90CAAF;
 
@@ -11363,7 +11363,7 @@ ArmCannonDrawingData_FacingRight_NormalJump_AimingUp:
     db $81,$01,$80,$01,$0E,$E9,$FE,$E0                                   ;90CAB5;
 
 ArmCannonDrawingData_FacingLeft_NormalJump_AimingUp:
-; 16h: Facing left-   normal jump - aiming up
+; 16h: Facing left -  normal jump - aiming up
     db $88,$01,$89,$01,$EA,$E8,$FA,$E0                                   ;90CABD;
 
 ArmCannonDrawingData_FacingRight_NormalJump_AimingDown:
@@ -11372,7 +11372,7 @@ ArmCannonDrawingData_FacingRight_NormalJump_AimingDown:
     db $04,$01,$00,$0D,$00,$0D                                           ;90CAC5;
 
 ArmCannonDrawingData_FacingLeft_NormalJump_AimingDown:
-; 18h: Facing left-   normal jump - aiming down
+; 18h: Facing left -  normal jump - aiming down
 ; AFh: Unused
     db $05,$01,$F7,$0D,$F7,$0D                                           ;90CACB;
 
@@ -11385,7 +11385,7 @@ ArmCannonDrawingData_FacingRight_NormalJump_MovingForward:
     db $02,$01,$0B,$FD,$0B,$FD                                           ;90CAD9;
 
 ArmCannonDrawingData_FacingLeft_NormalJump_MovingForward:
-; 52h: Facing left-   normal jump - not aiming - moving forward
+; 52h: Facing left -  normal jump - not aiming - moving forward
     db $07,$01,$ED,$FD,$ED,$FD                                           ;90CADF;
 
 ArmCannonDrawingData_FacingRight_NormalJump_AimingUpRight:
@@ -11393,7 +11393,7 @@ ArmCannonDrawingData_FacingRight_NormalJump_AimingUpRight:
     db $01,$01,$0C,$EA,$0C,$EA                                           ;90CAE5;
 
 ArmCannonDrawingData_FacingLeft_NormalJump_AimingUpLeft:
-; 6Ah: Facing left-   normal jump - aiming up-left
+; 6Ah: Facing left -  normal jump - aiming up-left
     db $08,$01,$EC,$EA,$EC,$EA                                           ;90CAEB;
 
 ArmCannonDrawingData_FacingRight_NormalJump_AimingDownRight:
@@ -11402,7 +11402,7 @@ ArmCannonDrawingData_FacingRight_NormalJump_AimingDownRight:
     db $03,$01,$0B,$01,$0B,$01                                           ;90CAF1;
 
 ArmCannonDrawingData_FacingLeft_NormalJump_AimingDownLeft:
-; 6Ch: Facing left-   normal jump - aiming down-left
+; 6Ch: Facing left -  normal jump - aiming down-left
 ; B1h: Unused
     db $06,$01,$ED,$01,$ED,$01                                           ;90CAF7;
 
@@ -11411,7 +11411,7 @@ ArmCannonDrawingData_FacingRight_Falling_GunExtended:
     db $02,$01,$0B,$FD,$0B,$FD,$0B,$FD,$0B,$FD,$0B,$FD,$0B,$FD,$0B,$FD   ;90CAFD;
 
 ArmCannonDrawingData_FacingLeft_Falling_GunExtended:
-; 68h: Facing left-   falling - gun extended
+; 68h: Facing left -  falling - gun extended
     db $07,$01,$ED,$FD,$ED,$FD,$ED,$FD,$ED,$FD,$ED,$FD,$ED,$FD,$ED,$FD   ;90CB0D;
 
 ArmCannonDrawingData_FacingRight_Falling_AimingUp:
@@ -11419,7 +11419,7 @@ ArmCannonDrawingData_FacingRight_Falling_AimingUp:
     db $81,$01,$80,$01,$0E,$E9,$FE,$E0,$FE,$E0                           ;90CB1D;
 
 ArmCannonDrawingData_FacingLeft_Falling_AimingUp:
-; 2Ch: Facing left-   falling - aiming up
+; 2Ch: Facing left -  falling - aiming up
     db $88,$01,$89,$01,$EA,$E8,$FA,$E4,$FA,$E4                           ;90CB27;
 
 ArmCannonDrawingData_FacingRight_Falling_AimingDown:
@@ -11427,7 +11427,7 @@ ArmCannonDrawingData_FacingRight_Falling_AimingDown:
     db $04,$01,$00,$09,$00,$09                                           ;90CB31;
 
 ArmCannonDrawingData_FacingLeft_Falling_AimingDown:
-; 2Eh: Facing left-   falling - aiming down
+; 2Eh: Facing left -  falling - aiming down
     db $05,$01,$F7,$09,$F7,$09                                           ;90CB37;
 
 ArmCannonDrawingData_FacingRight_Falling_AimingUpRight:
@@ -11435,7 +11435,7 @@ ArmCannonDrawingData_FacingRight_Falling_AimingUpRight:
     db $01,$01,$0C,$EA,$0C,$EA,$0C,$EA                                   ;90CB3D;
 
 ArmCannonDrawingData_FacingLeft_Falling_AimingUpLeft:
-; 6Eh: Facing left-   falling - aiming up-left
+; 6Eh: Facing left -  falling - aiming up-left
     db $08,$01,$EC,$EA,$EC,$EA,$EC,$EA                                   ;90CB45;
 
 ArmCannonDrawingData_FacingRight_Falling_AimingDownRight:
@@ -11443,7 +11443,7 @@ ArmCannonDrawingData_FacingRight_Falling_AimingDownRight:
     db $03,$01,$0B,$01,$0B,$01,$0B,$01                                   ;90CB4D;
 
 ArmCannonDrawingData_FacingLeft_Falling_AimingDownLeft:
-; 70h: Facing left-   falling - aiming down-left
+; 70h: Facing left -  falling - aiming down-left
     db $06,$01,$ED,$01,$ED,$01,$ED,$01                                   ;90CB55;
 
 ArmCannonDrawingData_FacingRight_Crouching:
@@ -11453,7 +11453,7 @@ ArmCannonDrawingData_FacingRight_Crouching:
     db $0B,$FD,$0B,$FD                                                   ;90CB6D;
 
 ArmCannonDrawingData_FacingLeft_Crouching:
-; 28h: Facing left-   crouching
+; 28h: Facing left -  crouching
 ; B5h: Unused
     db $07,$01,$ED,$FD,$ED,$FD,$ED,$FD,$ED,$FD,$ED,$FD,$ED,$FD,$ED,$FD   ;90CB71;
     db $ED,$FD,$ED,$FD                                                   ;90CB81;
@@ -11463,7 +11463,7 @@ ArmCannonDrawingData_FacingRight_Crouching_AimingUpRight:
     db $01,$01,$0E,$E9                                                   ;90CB85;
 
 ArmCannonDrawingData_FacingLeft_Crouching_AimingUpLeft:
-; 72h: Facing left-   crouching - aiming up-left
+; 72h: Facing left -  crouching - aiming up-left
     db $08,$01,$EA,$E8                                                   ;90CB89;
 
 ArmCannonDrawingData_FacingRight_Crouching_AimingDownRight:
@@ -11471,7 +11471,7 @@ ArmCannonDrawingData_FacingRight_Crouching_AimingDownRight:
     db $03,$01,$0D,$02                                                   ;90CB8D;
 
 ArmCannonDrawingData_FacingLeft_Crouching_AimingDownLeft:
-; 74h: Facing left-   crouching - aiming down-left
+; 74h: Facing left -  crouching - aiming down-left
 ; B7h: Unused
     db $06,$01,$EB,$02                                                   ;90CB91;
 
@@ -11480,11 +11480,11 @@ ArmCannonDrawingData_FacingRight_Crouching_AimingUp:
     db $81,$01,$80,$01,$0E,$E9,$FE,$E0                                   ;90CB95;
 
 ArmCannonDrawingData_FacingLeft_Crouching_AimingUp:
-; 86h: Facing left-   crouching - aiming up
+; 86h: Facing left -  crouching - aiming up
     db $88,$01,$89,$01,$EA,$E8,$FA,$E0                                   ;90CB9D;
 
 ArmCannonDrawingData_FacingLeft_Moonwalk:
-; 49h: Facing left-   moonwalk
+; 49h: Facing left -  moonwalk
     db $02,$01,$F1,$FD,$F1,$FC,$F1,$FC,$F1,$FD,$F1,$FC,$F1,$FC           ;90CBA5;
 
 ArmCannonDrawingData_FacingRight_Moonwalk:
@@ -11492,7 +11492,7 @@ ArmCannonDrawingData_FacingRight_Moonwalk:
     db $07,$01,$07,$FD,$07,$FC,$07,$FC,$07,$FD,$07,$FC,$07,$FC           ;90CBB3;
 
 ArmCannonDrawingData_FacingLeft_Moonwalk_AimingUpLeft:
-; 75h: Facing left-   moonwalk - aiming up-left
+; 75h: Facing left -  moonwalk - aiming up-left
     db $08,$01,$EC,$EA,$EC,$E9,$EC,$E9,$EC,$EA,$EC,$E9,$EC,$E9           ;90CBC1;
 
 ArmCannonDrawingData_FacingRight_Moonwalk_AimingUpRight:
@@ -11500,7 +11500,7 @@ ArmCannonDrawingData_FacingRight_Moonwalk_AimingUpRight:
     db $01,$01,$0C,$EA,$0C,$E9,$0C,$E9,$0C,$EA,$0C,$E9,$0C,$E9           ;90CBCF;
 
 ArmCannonDrawingData_FacingLeft_Moonwalk_AimingDownLeft:
-; 77h: Facing left-   moonwalk - aiming down-left
+; 77h: Facing left -  moonwalk - aiming down-left
     db $06,$01,$ED,$01,$ED,$00,$ED,$00,$ED,$01,$ED,$00,$ED,$00           ;90CBDD;
 
 ArmCannonDrawingData_FacingRight_Moonwalk_AimingDownRight:
@@ -11523,10 +11523,10 @@ ArmCannonDrawingData_FacingRight_Transition_AimingUp:
     db $00,$01,$FE,$E1,$FE,$E1                                           ;90CC15;
 
 ArmCannonDrawingData_FacingLeft_Transition_AimingUp:
-; 56h: Facing left-   normal jump transition - aiming up
-; E1h: Facing left-   landing from normal jump - aiming up
-; F2h: Facing left-   crouching transition - aiming up
-; F8h: Facing left-   standing transition - aiming up
+; 56h: Facing left -  normal jump transition - aiming up
+; E1h: Facing left -  landing from normal jump - aiming up
+; F2h: Facing left -  crouching transition - aiming up
+; F8h: Facing left -  standing transition - aiming up
     db $09,$01,$FA,$E1,$FA,$E1                                           ;90CC1B;
 
 
@@ -12677,11 +12677,11 @@ ShinesparkCrash_Finish:
     db $00
   .data1:                                                                ;90D4C7;
     db     $80 ; C9h: Facing right - shinespark - horizontal
-    db $00,$80 ; CAh: Facing left-   shinespark - horizontal
+    db $00,$80 ; CAh: Facing left -  shinespark - horizontal
     db $40,$C0 ; CBh: Facing right - shinespark - vertical
-    db $40,$C0 ; CCh: Facing left-   shinespark - vertical
+    db $40,$C0 ; CCh: Facing left -  shinespark - vertical
     db $E0,$60 ; CDh: Facing right - shinespark - diagonal
-    db $20,$A0 ; CEh: Facing left-   shinespark - diagonal
+    db $20,$A0 ; CEh: Facing left -  shinespark - diagonal
 
 
 ;;; $D4D2: Projectile pre-instruction - speed echo ;;;
@@ -13912,15 +13912,15 @@ HUDSelectionHandler_TransitionPoses:
 
   .flags:                                                                ;90DDAA;
     db $00 ; Facing right - crouching transition
-    db $00 ; Facing left-   crouching transition
+    db $00 ; Facing left -  crouching transition
     db $01 ; Facing right - morphing transition
-    db $01 ; Facing left-   morphing transition
+    db $01 ; Facing left -  morphing transition
     db $01 ; Unused
     db $01 ; Unused
     db $00 ; Facing right - standing transition
-    db $00 ; Facing left-   standing transition
+    db $00 ; Facing left -  standing transition
     db $01 ; Facing right - unmorphing transition
-    db $01 ; Facing left-   unmorphing transition
+    db $01 ; Facing left -  unmorphing transition
     db $01 ; Unused
     db $01 ; Unused
 

@@ -1286,7 +1286,7 @@ HandleSounds:
     dw SoundState_0_SendAPUSoundRequestFromQueue                         ;828A22;
     dw SoundState_1_WaitForAPUSoundRequestAcknowledgement                ;828A24;
     dw SoundState_2_ClearSoundRequest                                    ;828A26;
-    dw SoudnState_3_WaitForAPUClearRequestAcknowledgement                ;828A28;
+    dw SoundState_3_WaitForAPUClearRequestAcknowledgement                ;828A28;
     dw SoundState_4_ResetSoundState                                      ;828A2A;
 
 
@@ -1356,7 +1356,7 @@ SoundState_2_ClearSoundRequest:
 
 
 ;;; $8A7C: Sound state 3 - wait for APU clear request acknowledgement ;;;
-SoudnState_3_WaitForAPUClearRequestAcknowledgement:
+SoundState_3_WaitForAPUClearRequestAcknowledgement:
 ;; Parameter:
 ;;     Y: Sound library index to process queue of
     TYX                                                                  ;828A7C;
@@ -1554,7 +1554,7 @@ if !DEBUG
     JSL.L Debug_Layer1Position_Saving_Loading                            ;828B94;
 endif
 
-+   JSL.L Draw_Samus_Projectiles_Enemies_and_Enemy_Projectiles           ;828B98;
++   JSL.L Draw_Samus_Projectiles_Enemies_and_EnemyProjectiles            ;828B98;
     JSL.L Handle_Queuing_Enemy_BG2_Tilemap_VRAM_Transfer                 ;828B9C;
 
   .skipProcessing:
@@ -11561,7 +11561,7 @@ DoorTransitionFunction_Wait48FramesForDownElevator:
     BMI .return                                                          ;82E1A2;
     JSL.L Determine_Which_Enemies_to_Process                             ;82E1A4;
     JSL.L Main_Enemy_Routine                                             ;82E1A8;
-    JSL.L Draw_Samus_Projectiles_Enemies_and_Enemy_Projectiles           ;82E1AC;
+    JSL.L Draw_Samus_Projectiles_Enemies_and_EnemyProjectiles            ;82E1AC;
     JSR.W Draw_Inanimate_Samus_Bank82                                    ;82E1B0;
     CLC                                                                  ;82E1B3;
     RTS                                                                  ;82E1B4;
@@ -11583,7 +11583,7 @@ GameState_A_LoadingNextRoom:
     STZ.W SaveStationLockoutFlag                                         ;82E1C7;
     JSL.L Determine_Which_Enemies_to_Process                             ;82E1CA;
     JSL.L Main_Enemy_Routine                                             ;82E1CE;
-    JSL.L Draw_Samus_Projectiles_Enemies_and_Enemy_Projectiles           ;82E1D2;
+    JSL.L Draw_Samus_Projectiles_Enemies_and_EnemyProjectiles            ;82E1D2;
     JSR.W Draw_Inanimate_Samus_Bank82                                    ;82E1D6;
     JSR.W Load_Destination_RoomCRE_Bitset                                ;82E1D9;
     PEA.W TargetPalettes_BGP0>>8&$FF00                                   ;82E1DC;
@@ -11677,7 +11677,7 @@ DoorTransitionFunction_WaitForSoundsToFinish:
     PHP                                                                  ;82E29E;
     JSL.L Determine_Which_Enemies_to_Process                             ;82E29F;
     JSL.L Main_Enemy_Routine                                             ;82E2A3;
-    JSL.L Draw_Samus_Projectiles_Enemies_and_Enemy_Projectiles           ;82E2A7;
+    JSL.L Draw_Samus_Projectiles_Enemies_and_EnemyProjectiles            ;82E2A7;
     JSR.W Draw_Inanimate_Samus_Bank82                                    ;82E2AB;
     SEP #$20                                                             ;82E2AE;
     LDA.W APU_SoundQueueNextIndexLib1                                    ;82E2B0;
@@ -11710,7 +11710,7 @@ DoorTransitionFunction_FadeOutTheScreen:
     BCS +                                                                ;82E2DE;
     JSL.L Determine_Which_Enemies_to_Process                             ;82E2E0;
     JSL.L Main_Enemy_Routine                                             ;82E2E4;
-    JSL.L Draw_Samus_Projectiles_Enemies_and_Enemy_Projectiles           ;82E2E8;
+    JSL.L Draw_Samus_Projectiles_Enemies_and_EnemyProjectiles            ;82E2E8;
     JSR.W Draw_Inanimate_Samus_Bank82                                    ;82E2EC;
     RTS                                                                  ;82E2EF;
 
@@ -12265,7 +12265,7 @@ UNUSED_DoorTransitionFunction:
     STZ.W DoorTransitionFlagElevatorsZebetites                           ;82E67D;
     JSL.L Main_Enemy_Routine                                             ;82E680;
     INC.W DoorTransitionFlagElevatorsZebetites                           ;82E684;
-    JSL.L Draw_Samus_Projectiles_Enemies_and_Enemy_Projectiles           ;82E687;
+    JSL.L Draw_Samus_Projectiles_Enemies_and_EnemyProjectiles            ;82E687;
     JSL.L Main_Scrolling_Routine                                         ;82E68B;
     JSR.W Draw_Inanimate_Samus_Bank82                                    ;82E68F;
     JSL.L Calc_Layer2Position_BGScrolls_UpdateBGGraphics_WhenScrolling   ;82E692;
@@ -12367,7 +12367,7 @@ DoorTransitionFunction_FadeInTheScreen_and_RunEnemies_Finish:
     JSL.L Determine_Which_Enemies_to_Process                             ;82E73B;
     JSL.L Main_Enemy_Routine                                             ;82E73F;
     JSL.L Enemy_Projectile_Handler                                       ;82E743;
-    JSL.L Draw_Samus_Projectiles_Enemies_and_Enemy_Projectiles           ;82E747;
+    JSL.L Draw_Samus_Projectiles_Enemies_and_EnemyProjectiles            ;82E747;
     JSR.W Draw_Inanimate_Samus_Bank82                                    ;82E74B;
     JSL.L Handle_Queuing_Enemy_BG2_Tilemap_VRAM_Transfer                 ;82E74E;
     JSR.W Advance_GradualColorChange_ofAllPalettes_Denominator_C         ;82E752;
