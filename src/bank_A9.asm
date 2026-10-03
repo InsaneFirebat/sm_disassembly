@@ -5371,13 +5371,13 @@ if !PAL != 0
 UnpauseHook_ZebesEscapeTimer:
     LDY.B VRAMWriteStack
     LDA.W #Tiles_EscapeTimerText_end-Tiles_EscapeTimerText
-    STA.W VRAMWrite.size,Y
+    STA.B VRAMWrite.size,Y
     LDA.W #Tiles_EscapeTimerText>>$10<<8
-    STA.W VRAMWrite.src+1,Y
+    STA.B VRAMWrite.src+1,Y
     LDA.W #Tiles_EscapeTimerText
-    STA.W VRAMWrite.src,Y
+    STA.B VRAMWrite.src,Y
     LDA.W #$1820
-    STA.W VRAMWrite.dest,Y
+    STA.B VRAMWrite.dest,Y
     TYA
     CLC
     ADC.W #$0007

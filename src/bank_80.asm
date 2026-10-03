@@ -1219,32 +1219,32 @@ HandleVRAMWriteTable_ScrollingDMAs:
     STZ.B VRAMWrite.size,X                                               ;808C8B;
     LDA.W #$1801                                                         ;808C8D;
     STA.W $4310                                                          ;808C90;
-    LDY.W #$0000                                                         ;808C93;
+    LDX.W #$0000
 
   .loop:
-    LDA.W VRAMWrite.size,Y                                               ;808C96;
+    LDA.B VRAMWrite.size,X
     BEQ .done                                                            ;808C99;
     STA.W $4315                                                          ;808C9B;
-    LDA.W VRAMWrite.src,Y                                                ;808C9E;
+    LDA.B VRAMWrite.src,X
     STA.W $4312                                                          ;808CA1;
-    LDA.W VRAMWrite.src+1,Y                                              ;808CA4;
+    LDA.B VRAMWrite.src+1,X
     STA.W $4313                                                          ;808CA7;
     LDA.W #$0080                                                         ;808CAA;
-    LDX.B VRAMWrite.dest,Y                                               ;808CAD;
+    LDY.B VRAMWrite.dest,X
     BPL .skip                                                            ;808CAF;
     INC                                                                  ;808CB1;
 
   .skip:
     STA.W $2115                                                          ;808CB2;
-    STX.W $2116                                                          ;808CB5;
+    STY.W $2116                                                          ;808CB5;
     SEP #$20                                                             ;808CB8;
     LDA.B #$02                                                           ;808CBA;
     STA.W $420B                                                          ;808CBC;
     REP #$20                                                             ;808CBF;
-    TYA                                                                  ;808CC1;
+    TXA                                                                  ;808CC1;
     CLC                                                                  ;808CC2;
     ADC.W #$0007                                                         ;808CC3;
-    TAY                                                                  ;808CC6;
+    TAX                                                                  ;808CC6;
     BRA .loop                                                            ;808CC7;
 
   .done:
@@ -2475,32 +2475,32 @@ NMI:
     STZ.B VRAMWrite.size,X
     LDA.W #$1801
     STA.W $4310
-    LDY.W #$0000
+    LDX.W #$0000
 
   .loopVRAMWrite:
-    LDA.W VRAMWrite.size,Y
+    LDA.B VRAMWrite.size,X
     BEQ .doneVRAMWriteUpper
     STA.W $4315
-    LDA.W VRAMWrite.src,Y
+    LDA.B VRAMWrite.src,X
     STA.W $4312
-    LDA.W VRAMWrite.src+1,Y
+    LDA.B VRAMWrite.src+1,X
     STA.W $4313
     LDA.W #$0080
-    LDX.B VRAMWrite.dest,Y
+    LDY.B VRAMWrite.dest,X
     BPL .skipVRAMWrite
     INC
 
   .skipVRAMWrite:
     STA.W $2115
-    STX.W $2116
+    STY.W $2116
     SEP #$20
     LDA.B #$02
     STA.W $420B
     REP #$20
-    TYA
+    TXA
     CLC
     ADC.W #$0007
-    TAY
+    TAX
     BRA .loopVRAMWrite
 
   .doneVRAMWriteUpper:
