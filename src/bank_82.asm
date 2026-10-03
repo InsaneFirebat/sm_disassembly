@@ -780,8 +780,6 @@ GameState_2C_TransitionFromDemo:
 
 ;;; $8637: Check for next demo ;;;
 CheckForNextDemo:
-    PHP                                                                  ;828637;
-    REP #$30                                                             ;828638;
     LDA.W DemoScene                                                      ;82863A;
     ASL                                                                  ;82863D;
     ASL                                                                  ;82863E;
@@ -808,20 +806,16 @@ CheckForNextDemo:
 
 +   STA.W DemoSet                                                        ;828669;
     STZ.W DemoScene                                                      ;82866C;
-    PLP                                                                  ;82866F;
     RTS                                                                  ;828670;
 
   .nextDemoScene:
     LDA.W #$8000                                                         ;828671;
     STA.W DemoControlFlags                                               ;828674;
-    PLP                                                                  ;828677;
     RTS                                                                  ;828678;
 
 
 ;;; $8679: Load demo room data ;;;
 LoadDemoRoomData:
-    PHP                                                                  ;828679;
-    REP #$30                                                             ;82867A;
     STZ.W DoorPointer                                                    ;82867C;
     LDA.W DemoScene                                                      ;82867F;
     ASL                                                                  ;828682;
@@ -919,7 +913,6 @@ LoadDemoRoomData:
     STA.W ReserveTankMode                                                ;828760;
     STA.L SRAMMirror_LoadingGameState                                    ;828763;
     STA.W DisableMinimap                                                 ;828767;
-    PLP                                                                  ;82876A;
     RTS                                                                  ;82876B;
 
 
@@ -1518,8 +1511,6 @@ Spawn_GameOptionsMenu_Object:
 ;;     Y: Game options menu object ID
 ;; Returns:
 ;;     Carry: Set if game options menu object could not be spawned
-    PHP                                                                  ;828BCB;
-    REP #$30                                                             ;828BCC;
     PHX                                                                  ;828BCE;
     TYX                                                                  ;828BD2;
     LDY.W #$000E                                                         ;828BD3;
@@ -1531,7 +1522,6 @@ Spawn_GameOptionsMenu_Object:
     DEY                                                                  ;828BDC;
     BPL .loop                                                            ;828BDD;
     PLX                                                                  ;828BDF;
-    PLP                                                                  ;828BE0;
     SEC                                                                  ;828BE1;
     RTS                                                                  ;828BE2;
 
@@ -1549,7 +1539,6 @@ Spawn_GameOptionsMenu_Object:
     STA.W GameOptionsMenuObject_Timers,Y                                 ;828C00;
     JSR.W ($0000,X)                                                      ;828C09;
     PLX                                                                  ;828C0C;
-    PLP                                                                  ;828C0D;
     CLC                                                                  ;828C0E;
     RTS                                                                  ;828C0F;
 
@@ -1561,8 +1550,6 @@ RTS_828C10:
 
 ;;; $8C11: Game options menu object handler ;;;
 GameOptionsMenu_ObjectHandler:
-    PHP                                                                  ;828C11;
-    REP #$30                                                             ;828C12;
     LDX.W #$000E                                                         ;828C14;
 
   .loop:
@@ -1576,7 +1563,6 @@ GameOptionsMenu_ObjectHandler:
     DEX                                                                  ;828C25;
     DEX                                                                  ;828C26;
     BPL .loop                                                            ;828C27;
-    PLP                                                                  ;828C29;
     RTS                                                                  ;828C2A;
 
 
@@ -1619,7 +1605,6 @@ Process_GameOptionsMenu_Object:
 Instruction_GameOptionsMenu_Delete:
 ;; Parameters:
 ;;     X: Game options menu object index
-    REP #$30                                                             ;828C5A;
     STZ.W GameOptionsMenuObject_SpritemapPointers,X                      ;828C5C;
     STZ.W GameOptionsMenuObject_InstListPointers,X                       ;828C5F;
     PLA                                                                  ;828C62;
@@ -1631,7 +1616,6 @@ Instruction_GameOptionsMenu_Sleep:
 ;; Parameters:
 ;;     X: Game options menu object index
 ;;     Y: Pointer to instruction arguments
-    REP #$30                                                             ;828C64;
     DEY                                                                  ;828C66;
     DEY                                                                  ;828C67;
     TYA                                                                  ;828C68;
@@ -1647,7 +1631,6 @@ Instruction_GameOptionsMenu_PreInstruction_inY:
 ;;     Y: Pointer to instruction arguments
 ;; Returns:
 ;;     Y: Pointer to next instruction
-    REP #$30                                                             ;828C6E;
     LDA.W $0000,Y                                                        ;828C70;
     STA.W GameOptionsMenuObject_PreInstructions,X                        ;828C73;
     INY                                                                  ;828C76;
@@ -1659,7 +1642,6 @@ Instruction_GameOptionsMenu_PreInstruction_inY:
 Instruction_GameOptionsMenu_ClearPreInstruction:
 ;; Parameters:
 ;;     X: Game options menu object index
-    REP #$30                                                             ;828C79;
     LDA.W #.RTS                                                          ;828C7B;
     STA.W GameOptionsMenuObject_PreInstructions,X                        ;828C7E;
 
@@ -1673,7 +1655,6 @@ Instruction_GameOptionsMenu_GotoY:
 ;;     Y: Pointer to instruction arguments
 ;; Returns:
 ;;     Y: Pointer to next instruction
-    REP #$30                                                             ;828C82;
     LDA.W $0000,Y                                                        ;828C84;
     TAY                                                                  ;828C87;
     RTS                                                                  ;828C88;
@@ -1686,7 +1667,6 @@ Instruction_GameOptionsMenu_DecTimer_and_GotoY_if_NonZero:
 ;;     Y: Pointer to instruction arguments
 ;; Returns:
 ;;     Y: Pointer to next instruction
-    REP #$30                                                             ;828C89;
     DEC.W GameOptionsMenuObject_Timers,X                                 ;828C8B;
     BNE Instruction_GameOptionsMenu_GotoY                                ;828C8E;
     INY                                                                  ;828C90;
@@ -1701,7 +1681,6 @@ Instruction_GameOptionsMenu_TimerInY:
 ;;     Y: Pointer to instruction arguments
 ;; Returns:
 ;;     Y: Pointer to next instruction
-    REP #$30                                                             ;828C93;
     LDA.W $0000,Y                                                        ;828C95;
     STA.W GameOptionsMenuObject_Timers,X                                 ;828C98;
     INY                                                                  ;828C9B;
@@ -1774,12 +1753,35 @@ GameState_D_Pausing_LoadingPauseScreen:
     JSL.L LoadPauseScreen_BaseTilemaps                                   ;828D21;
     JSL.L Load_PauseMenuMapTilemap_and_AreaLabel                         ;828D25;
     JSR.W BackupGameplayPalettes_LoadPauseScreenPalettes                 ;828D29;
-    JSR.W ContinueInitializingPauseMenu                                  ;828D2C;
+    JSR.W SetupPPUForPauseMenu
+    JSR.W ResetPauseMenuAnimations
+    JSR.W Load_EquipmentScreen_EquipmentTilemaps
+    JSR.W Set_PauseScreen_ButtonLabelPalettes_MapScreen
+;;; $A84D: Update pause menu L/R/start VRAM tilemap ;;;
+    LDX.B VRAMWriteStack
+    LDA.W #$0080
+    STA.B VRAMWrite.size,X
+    LDA.W #PauseMenuMapTilemap+$640
+    STA.B VRAMWrite.src,X
+    LDA.B #PauseMenuMapTilemap>>8
+    STA.B VRAMWrite.src+1,X
+    LDA.B DP_BG2TilemapAddrSize
+    AND.W #$00FC
+    XBA
+    CLC
+    ADC.W #$0320
+    STA.B VRAMWrite.dest,X
+    TXA
+    CLC
+    ADC.W #$0007
+    STA.B VRAMWriteStack
+    JSR.W DetermineMapScrollLimits
+    LDA.W #$0080
+    JSR.W SetupMapScrollingForPauseMenu
     LDA.W #$0001                                                         ;828D2F;
     STA.W ScreenFadeDelay                                                ;828D32;
     STA.W ScreenFadeCounter                                              ;828D35;
     STZ.W PauseMenu_MapScrollLeftArrowAnimationFrame                     ;828D38;
-    LDA.W #$0001                                                         ;828D3B;
     STA.W PauseMenu_PaletteAnimationTimer                                ;828D3E;
     STZ.W MapScrolling_Direction                                         ;828D41;
     STZ.W MapScrolling_SpeedIndex                                        ;828D44;
@@ -1794,7 +1796,6 @@ Backup_BG2Tilemap_for_PauseMenu:
 ; The usual workaround is to issue a dummy read from $2139 before doing a read DMA
 ; This routine is instead setting the source address to be +1 what it should be, meaning the first read VRAM word is wrong, but the rest of VRAM is read correctly
 ; tl;dr: $7E:DF5C is just a copy of $7E:DF5E
-    PHP                                                                  ;828D51;
     SEP #$20                                                             ;828D52;
     LDA.B #$01                                                           ;828D54;
     STA.W $2116                                                          ;828D56;
@@ -1821,13 +1822,12 @@ Backup_BG2Tilemap_for_PauseMenu:
     STZ.W $431A                                                          ;828D8C;
     LDA.B #$02                                                           ;828D8F;
     STA.W $420B                                                          ;828D91;
-    PLP                                                                  ;828D94;
+    REP #$30
     RTS                                                                  ;828D95;
 
 
 ;;; $8D96: Restore BG2 tilemap from pause menu ;;;
 Restore_BG2Tilemap_from_PauseMenu:
-    PHP                                                                  ;828D96;
     SEP #$20                                                             ;828D97;
     LDA.B #$00                                                           ;828D99;
     STA.W $2116                                                          ;828D9B;
@@ -1842,13 +1842,12 @@ Restore_BG2Tilemap_from_PauseMenu:
     dw $1000                                                             ;828DB4;
     LDA.B #$02                                                           ;828DB6;
     STA.W $420B                                                          ;828DB8;
-    PLP                                                                  ;828DBB;
+    REP #$30
     RTS                                                                  ;828DBC;
 
 
 ;;; $8DBD: Back up some graphics state for pause menu ;;;
 Backup_SomeGraphicsState_for_PauseScreen:
-    PHP                                                                  ;828DBD;
     SEP #$20                                                             ;828DBE;
     LDA.B DP_BG1TilemapAddrSize                                          ;828DC0;
     STA.W PauseMenu_Backup0058                                           ;828DC2;
@@ -1884,13 +1883,12 @@ Backup_SomeGraphicsState_for_PauseScreen:
     STA.W PauseMenu_Backup0057                                           ;828E0F;
     LDA.B DP_NextGameplayColorMathB                                      ;828E12;
     STA.W PauseMenu_Backup0071                                           ;828E14;
-    PLP                                                                  ;828E17;
+    REP #$30
     RTS                                                                  ;828E18;
 
 
 ;;; $8E19: Restore some graphics state from pause menu ;;;
 Restore_SomeGraphicsState_from_PauseScreen:
-    PHP                                                                  ;828E19;
     SEP #$20                                                             ;828E1A;
     LDA.W PauseMenu_Backup091B                                           ;828E1C;
     STA.W Layer2ScrollX                                                  ;828E1F;
@@ -1926,7 +1924,7 @@ Restore_SomeGraphicsState_from_PauseScreen:
     STA.B DP_Mosaic                                                      ;828E6C;
     LDA.W PauseMenu_Backup0071                                           ;828E6E;
     STA.B DP_NextGameplayColorMathB                                      ;828E71;
-    PLP                                                                  ;828E73;
+    REP #$30
     RTS                                                                  ;828E74;
 
 
@@ -1935,7 +1933,6 @@ LoadPauseMenuTiles_ClearBG2Tilemap:
 ; VRAM $4800..4FFF isn't actually used for anything in the pause menu,
 ; so backing it up to $7E:DF5C, clearing it here, and restoring it later is a complete waste of time and memory.
 ; I think this backing up + restoring of BG2 miiight have been a workaround for "bug" whereby this VRAM is cleared in $8E75
-    PHP                                                                  ;828E75;
     SEP #$30                                                             ;828E76;
     LDA.B #$00                                                           ;828E78;
     STA.W $2116                                                          ;828E7A;
@@ -1973,7 +1970,7 @@ LoadPauseMenuTiles_ClearBG2Tilemap:
     dw $2000                                                             ;828ED1;
     LDA.B #$02                                                           ;828ED3;
     STA.W $420B                                                          ;828ED5;
-    PLP                                                                  ;828ED8;
+    REP #$30
     RTL                                                                  ;828ED9;
 
 
@@ -1981,7 +1978,6 @@ LoadPauseMenuTiles_ClearBG2Tilemap:
 LoadPauseScreen_BaseTilemaps:
 ; Note that $B20C loads the actual Samus wireframe tilemap to the $7E:3800 area,
 ; unsure why this routine loads the dummy tilemap to the $7E:3000 area, possibly a typo during development
-    PHP                                                                  ;828EDA;
     SEP #$30                                                             ;828EDB;
     LDA.B #$00                                                           ;828EDD;
     STA.W $2116                                                          ;828EDF;
@@ -2046,14 +2042,11 @@ LoadPauseScreen_BaseTilemaps:
     BNE .loopRows                                                        ;828F66;
     JSR.W EquipmentScreen_WriteSamusWireframeTilemap                     ;828F68;
     JSR.W Load_EquipmentScreen_ReserveHealth_Tilemap                     ;828F6B;
-    PLP                                                                  ;828F6E;
     RTL                                                                  ;828F6F;
 
 
 ;;; $8F70: Load equipment screen reserve health tilemap ;;;
 Load_EquipmentScreen_ReserveHealth_Tilemap:
-    PHP                                                                  ;828F70;
-    REP #$30                                                             ;828F71;
     LDA.W MaxReserveEnergy                                               ;828F73;
     BEQ .return                                                          ;828F76;
     LDA.W ReserveEnergy                                                  ;828F78;
@@ -2102,64 +2095,39 @@ Load_EquipmentScreen_ReserveHealth_Tilemap:
     STA.L EquipmentScreenBG1Tilemap+$310                                 ;828FCE;
 
   .return:
-    PLP                                                                  ;828FD2;
     RTS                                                                  ;828FD3;
 
 
 ;;; $8FD4: Backup gameplay palettes and load pause menu palettes ;;;
 BackupGameplayPalettes_LoadPauseScreenPalettes:
-    PHP                                                                  ;828FD4;
-    SEP #$30                                                             ;828FD5;
-    PHP                                                                  ;828FD7;
-    REP #$30                                                             ;828FD8;
+    PHB
+    PEA.W Palettes>>8
+    PLB
+    PLB
     LDY.W #$0200                                                         ;828FDA;
     LDX.W #$0000                                                         ;828FDD;
 
   .loopBackupGameplay:
-    LDA.L Palettes,X                                                     ;828FE0;
-    STA.L BackupOfPalettesDuringMenu,X                                   ;828FE4;
+    LDA.W Palettes,X                                                     ;828FE0;
+    STA.W BackupOfPalettesDuringMenu,X                                   ;828FE4;
     INX                                                                  ;828FE8;
     INX                                                                  ;828FE9;
     DEY                                                                  ;828FEA;
     DEY                                                                  ;828FEB;
     BNE .loopBackupGameplay                                              ;828FEC;
-    PLP                                                                  ;828FEE;
-    PHP                                                                  ;828FEF;
-    REP #$30                                                             ;828FF0;
     LDY.W #$0200                                                         ;828FF2;
     LDX.W #$0000                                                         ;828FF5;
 
   .loopLoadPause:
     LDA.L Palettes_PauseScreen,X                                         ;828FF8;
-    STA.L Palettes,X                                                     ;828FFC;
+    STA.W Palettes,X                                                     ;828FFC;
     INX                                                                  ;829000;
     INX                                                                  ;829001;
     DEY                                                                  ;829002;
     DEY                                                                  ;829003;
     BNE .loopLoadPause                                                   ;829004;
-    PLP                                                                  ;829006;
-    PLP                                                                  ;829007;
+    PLB
     RTS                                                                  ;829008;
-
-
-;;; $9009: Continue initialising pause menu ;;;
-ContinueInitializingPauseMenu:
-; I don't know why this is a subroutine and not a part of GameState_D_Pausing_LoadingPauseScreen, hence the awkward name
-    PHP                                                                  ;829009;
-    PHB                                                                  ;82900A;
-    PHK                                                                  ;82900B;
-    PLB                                                                  ;82900C;
-    JSR.W SetupPPUForPauseMenu                                           ;82900D;
-    JSR.W ResetPauseMenuAnimations                                       ;829010;
-    JSR.W Load_EquipmentScreen_EquipmentTilemaps                         ;829013;
-    JSR.W Set_PauseScreen_ButtonLabelPalettes_MapScreen                  ;829016;
-    JSR.W Update_PauseMenu_L_R_Start_VRAMTilemap                         ;829019;
-    JSR.W DetermineMapScrollLimits                                       ;82901C;
-    LDA.W #$0080                                                         ;82901F;
-    JSR.W SetupMapScrollingForPauseMenu                                  ;829022;
-    PLB                                                                  ;829025;
-    PLP                                                                  ;829026;
-    RTS                                                                  ;829027;
 
 
 ;;; $9028: Set up map scrolling for file select map ;;;
@@ -2263,14 +2231,13 @@ GameState_E_Paused_LoadingPauseScreen:
     SEP #$20                                                             ;8290D3;
     LDA.B DP_Brightness                                                  ;8290D5;
     CMP.B #$0F                                                           ;8290D7;
+    REP #$20
     BNE .return                                                          ;8290D9;
-    REP #$20                                                             ;8290DB;
     STZ.W ScreenFadeDelay                                                ;8290DD;
     STZ.W ScreenFadeCounter                                              ;8290E0;
     INC.W GameState                                                      ;8290E3;
 
   .return:
-    REP #$30
     RTS                                                                  ;8290E7;
 
 
@@ -2345,7 +2312,6 @@ MainPauseRoutine:
 
 ;;; $9120: Pause menu - index 0: map screen ;;;
 PauseMenu_0_MapScreen:
-    REP #$30                                                             ;829120;
     JSR.W Handle_PauseScreen_L_R                                         ;829122;
     JSR.W Handle_PauseScreen_StartButton                                 ;829125;
     JSL.L Handle_MapScrollArrows                                         ;829128;
@@ -2353,8 +2319,7 @@ PauseMenu_0_MapScreen:
     JSR.W MapScreen_DrawSamusPositionIndicator                           ;829130;
     JSL.L Draw_Map_Icons                                                 ;829133;
     JSL.L Display_Map_Elevator_Destinations                              ;829137;
-    LDA.W #$0000                                                         ;82913B;
-    STA.W PauseMenu_MenuMode                                             ;82913E;
+    STZ.W PauseMenu_MenuMode
     RTS                                                                  ;829141;
 
 
@@ -2376,8 +2341,7 @@ PauseMenu_2_MapScreenToEquipmentScreen_FadingOut:
     JSR.W MapScreen_DrawSamusPositionIndicator                           ;82915A;
     JSL.L Draw_Map_Icons                                                 ;82915D;
     JSR.W Handle_PauseMenu_L_R_PressedHighlight                          ;829161;
-    LDA.W #$0000                                                         ;829164;
-    STA.W PauseMenu_MenuMode                                             ;829167;
+    STZ.W PauseMenu_MenuMode
     JSL.L HandleFadingOut                                                ;82916A;
     SEP #$20                                                             ;82916E;
     LDA.B DP_Brightness                                                  ;829170;
@@ -2393,6 +2357,7 @@ PauseMenu_2_MapScreenToEquipmentScreen_FadingOut:
     INC.W PauseMenu_MenuIndex                                            ;829182;
 
   .return:
+    REP #$20
     RTS                                                                  ;829185;
 
 
@@ -2416,31 +2381,29 @@ PauseMenu_5_EquipmentScreenToMapScreen_FadingOut:
     INC.W PauseMenu_MenuIndex                                            ;8291A7;
 
   .return:
+    REP #$20
     RTS                                                                  ;8291AA;
 
 
 ;;; $91AB: Pause menu - index 3: map screen to equipment screen - load equipment screen ;;;
 PauseMenu_3_MapScreenToEquipmentScreen_LoadEquipmentScreen:
-    REP #$30                                                             ;8291AB;
     JSL.L Display_Map_Elevator_Destinations                              ;8291AD;
     JSR.W EquipmentScreen_SetupReserveMode_and_DetermineInitialSelect    ;8291B1;
     JSL.L EquipmentScreen_TransferBG1Tilemap                             ;8291B4;
     LDA.W #$0001                                                         ;8291B8;
     STA.W PauseMenu_MenuMode                                             ;8291BB;
+    STA.W ScreenFadeDelay
+    STA.W ScreenFadeCounter
     JSR.W Set_PauseScreen_ButtonLabelPalettes                            ;8291BE;
     STZ.W PauseMenu_HighlightAnimationFrame                              ;8291C1;
     LDA.W L_R_HighlightAnimationData_PauseScreenPaletteAnimationDelays   ;8291C4;
     STA.W PauseMenu_HighlightAnimationTimer                              ;8291C7;
-    LDA.W #$0001                                                         ;8291CA;
-    STA.W ScreenFadeDelay                                                ;8291CD;
-    STA.W ScreenFadeCounter                                              ;8291D0;
     INC.W PauseMenu_MenuIndex                                            ;8291D3;
     RTS                                                                  ;8291D6;
 
 
 ;;; $91D7: Pause menu - index 6: equipment screen to map screen - load map screen ;;;
 PauseMenu_6_EquipmentScreenToMapScreen_LoadMapScreen:
-    REP #$30                                                             ;8291D7;
     JSL.L Display_Map_Elevator_Destinations                              ;8291D9;
     JSL.L Load_PauseMenuMapTilemap_and_AreaLabel                         ;8291DD;
     JSR.W Set_PauseScreen_ButtonLabelPalettes                            ;8291E1;
@@ -2450,7 +2413,7 @@ PauseMenu_6_EquipmentScreenToMapScreen_LoadMapScreen:
     LDA.W #$0001                                                         ;8291ED;
     STA.W ScreenFadeDelay                                                ;8291F0;
     STA.W ScreenFadeCounter                                              ;8291F3;
-    LDA.W #$0000                                                         ;8291F6;
+    DEC
     STA.W PauseMenu_MenuMode                                             ;8291F9;
     INC.W PauseMenu_MenuIndex                                            ;8291FC;
     RTS                                                                  ;8291FF;
@@ -2461,14 +2424,13 @@ PauseMenu_7_EquipmentScreenToMapScreen_FadingIn:
     JSR.W MapScreen_DrawSamusPositionIndicator                           ;829200;
     JSL.L Draw_Map_Icons                                                 ;829203;
     JSL.L Display_Map_Elevator_Destinations                              ;829207;
-    LDA.W #$0000                                                         ;82920B;
-    STA.W PauseMenu_MenuMode                                             ;82920E;
+    STZ.W PauseMenu_MenuMode
     JSL.L HandleFadingIn                                                 ;829211;
     SEP #$20                                                             ;829215;
     LDA.B DP_Brightness                                                  ;829217;
     CMP.B #$0F                                                           ;829219;
+    REP #$20
     BNE .return                                                          ;82921B;
-    REP #$20                                                             ;82921D;
     STZ.W ScreenFadeDelay                                                ;82921F;
     STZ.W ScreenFadeCounter                                              ;829222;
     LDA.W PauseMenu_ButtonLabelMode                                      ;829225;
@@ -2491,8 +2453,8 @@ PauseMenu_4_MapScreenToEquipmentScreen_FadingIn:
     SEP #$20                                                             ;829241;
     LDA.B DP_Brightness                                                  ;829243;
     CMP.B #$0F                                                           ;829245;
+    REP #$20
     BNE .return                                                          ;829247;
-    REP #$20                                                             ;829249;
     STZ.W ScreenFadeDelay                                                ;82924B;
     STZ.W ScreenFadeCounter                                              ;82924E;
     LDA.W PauseMenu_ButtonLabelMode                                      ;829251;
@@ -2507,17 +2469,14 @@ PauseMenu_4_MapScreenToEquipmentScreen_FadingIn:
 
 ;;; $925D: Map scrolling ;;;
 MapScrolling:
-    PHP                                                                  ;82925D;
     PHB                                                                  ;82925E;
     PHK                                                                  ;82925F;
     PLB                                                                  ;829260;
-    REP #$30                                                             ;829261;
     LDA.W MapScrolling_Direction                                         ;829263;
     ASL                                                                  ;829266;
     TAX                                                                  ;829267;
     JSR.W (.pointers,X)                                                  ;829268;
     PLB                                                                  ;82926B;
-    PLP                                                                  ;82926C;
     RTL                                                                  ;82926D;
 
   .pointers:
@@ -2560,9 +2519,10 @@ MapScrolling_Left:
 
 ;;; $9299: Map scrolling - common ;;;
 MapScrolling_Common:
-    INC.W MapScrolling_SpeedIndex                                        ;829299;
-    INC.W MapScrolling_SpeedIndex                                        ;82929C;
-    LDA.W MapScrolling_SpeedIndex                                        ;82929F;
+    LDA.W MapScrolling_SpeedIndex
+    INC
+    INC
+    STA.W MapScrolling_SpeedIndex
     AND.W #$000F                                                         ;8292A2;
     BNE .return                                                          ;8292A5;
     LDA.W #$0036                                                         ;8292A7;
@@ -2656,7 +2616,20 @@ Draw_PauseMenu_During_FadeOut:
 
 ;;; $9367: Game state 11h (unpausing, loading normal gameplay) ;;;
 GameState_11_Unpausing_LoadingNormalGameplay:
-    JSR.W Clear_Samus_Beam_Tiles                                         ;82936A;
+    SEP #$30
+    LDA.B #$00
+    STA.W $2116
+    LDA.B #$60
+    STA.W $2117
+    LDA.B #$80
+    STA.W $2115
+    JSL.L SetupHDMATransfer
+    db $01,$01,$18
+    dl Tiles_Standard_Sprite_0
+    dw $1000
+    LDA.B #$02
+    STA.W $420B
+    REP #$30
     JSR.W ContinueInitialising_GameplayResume                            ;82936D;
     JSL.L ResumeGameplay                                                 ;829370;
     JSR.W Restore_SomeGraphicsState_from_PauseScreen                     ;829374;
@@ -2684,25 +2657,22 @@ GameState_12_Unpausing_NormalGameplayBrightening:
     SEP #$20                                                             ;8293AB;
     LDA.B DP_Brightness                                                  ;8293AD;
     CMP.B #$0F                                                           ;8293AF;
+    REP #$30
     BNE .return                                                          ;8293B1;
-    REP #$20                                                             ;8293B3;
     STZ.W ScreenFadeDelay                                                ;8293B5;
     STZ.W ScreenFadeCounter                                              ;8293B8;
     LDA.W #$0008                                                         ;8293BB;
     STA.W GameState                                                      ;8293BE;
 
   .return:
-    REP #$30
     RTS                                                                  ;8293C2;
 
 
 ;;; $93C3: Load pause menu map tilemap and area label ;;;
 Load_PauseMenuMapTilemap_and_AreaLabel:
-    PHP                                                                  ;8293C3;
     PHB                                                                  ;8293C4;
     PHK                                                                  ;8293C5;
     PLB                                                                  ;8293C6;
-    REP #$30                                                             ;8293C7;
     LDA.B DP_BG4XScroll                                                  ;8293C9;
     STA.B DP_BG1XScroll                                                  ;8293CB;
     LDA.B DP_BG4YScroll                                                  ;8293CD;
@@ -2714,11 +2684,13 @@ Load_PauseMenuMapTilemap_and_AreaLabel:
     STA.W $2117                                                          ;8293DA;
     LDA.B #$80                                                           ;8293DD;
     STA.W $2115                                                          ;8293DF;
+    REP #$30
     JSR.W LoadPauseMenuMapTilemap                                        ;8293E2;
     JSL.L SetupHDMATransfer                                              ;8293E5;
     db $01,$01,$18                                                       ;8293E9;
     dl BG2Tilemap                                                        ;8293EC;
     dw $1000                                                             ;8293EF;
+    SEP #$30
     LDA.B #$02                                                           ;8293F1;
     STA.W $420B                                                          ;8293F3;
     LDA.B #$AA                                                           ;8293F6;
@@ -2751,14 +2723,12 @@ Load_PauseMenuMapTilemap_and_AreaLabel:
     LDA.B #$02                                                           ;829435;
     STA.W $420B                                                          ;829437;
     PLB                                                                  ;82943A;
-    PLP                                                                  ;82943B;
+    REP #$30
     RTL                                                                  ;82943C;
 
 
 ;;; $943D: Load pause menu map tilemap ;;;
 LoadPauseMenuMapTilemap:
-    PHP                                                                  ;82943D;
-    REP #$30                                                             ;82943E;
     LDA.W AreaIndex                                                      ;829440;
     CMP.W #$0007                                                         ;829443;
     BMI +                                                                ;829446;
@@ -2813,7 +2783,6 @@ LoadPauseMenuMapTilemap:
     INX                                                                  ;8294A6;
     CPX.W #$0100                                                         ;8294A7;
     BMI .loopWithoutMapData                                              ;8294AA;
-    PLP                                                                  ;8294AC;
     RTS                                                                  ;8294AD;
 
   .exploredMapTile:
@@ -2876,7 +2845,6 @@ LoadPauseMenuMapTilemap:
     INY                                                                  ;82950F;
     CPY.W #$1000                                                         ;829510;
     BMI .loopWithMapData                                                 ;829513;
-    PLP                                                                  ;829515;
     RTS                                                                  ;829516;
 
 
@@ -2964,8 +2932,10 @@ DrawRoomSelectMap:
     LDA.B [DP_Temp06]                                                    ;8295AC;
     XBA                                                                  ;8295AE;
     STA.B DP_Temp26                                                      ;8295AF;
-    INC.B DP_Temp06                                                      ;8295B1;
-    INC.B DP_Temp06                                                      ;8295B3;
+    LDA.B DP_Temp06
+    INC
+    INC
+    STA.B DP_Temp06
     LDA.W #$0000                                                         ;8295B5;
     STA.B DP_Temp0B                                                      ;8295B8;
     LDA.W #MapTilesExplored                                              ;8295BA;
@@ -2973,8 +2943,10 @@ DrawRoomSelectMap:
     LDA.B [DP_Temp09]                                                    ;8295BF;
     XBA                                                                  ;8295C1;
     STA.B DP_Temp28                                                      ;8295C2;
-    INC.B DP_Temp09                                                      ;8295C4;
-    INC.B DP_Temp09                                                      ;8295C6;
+    LDA.B DP_Temp09
+    INC
+    INC
+    STA.B DP_Temp09
     LDY.W #$0000                                                         ;8295C8;
     LDX.W #$0010                                                         ;8295CB;
 
@@ -2998,13 +2970,17 @@ DrawRoomSelectMap:
     LDA.B [DP_Temp06]                                                    ;8295EA;
     XBA                                                                  ;8295EC;
     STA.B DP_Temp26                                                      ;8295ED;
-    INC.B DP_Temp06                                                      ;8295EF;
-    INC.B DP_Temp06                                                      ;8295F1;
+    LDA.B DP_Temp06
+    INC
+    INC
+    STA.B DP_Temp06
     LDA.B [DP_Temp09]                                                    ;8295F3;
     XBA                                                                  ;8295F5;
     STA.B DP_Temp28                                                      ;8295F6;
-    INC.B DP_Temp09                                                      ;8295F8;
-    INC.B DP_Temp09                                                      ;8295FA;
+    LDA.B DP_Temp09
+    INC
+    INC
+    STA.B DP_Temp09
 
   .next:
     INY                                                                  ;8295FC;
@@ -3013,7 +2989,6 @@ DrawRoomSelectMap:
     BMI .loopWithMapData                                                 ;829601;
 
   .return:
-    REP #$30                                                             ;829603;
     LDX.B VRAMWriteStack                                                 ;829605;
     LDA.W #$1000                                                         ;829608;
     STA.B VRAMWrite.size,X                                               ;82960B;
@@ -3627,7 +3602,6 @@ SetupMapScrollingForPauseMenu:
 ;     Room is too far up, display room with 38h pixel margin from top (8 of those pixels are for the fake top row of the map)
 ;     Y = P - 38h
 ;     Y = max(Y, -28h)
-    REP #$30                                                             ;829E27;
     STA.B DP_Temp14                                                      ;829E29;
     LDA.W MapScroll_MaxX                                                 ;829E2B;
     SEC                                                                  ;829E2E;
@@ -3720,7 +3694,6 @@ SetupMapScrollingForPauseMenu:
 
 ;;; $9EC4: Determine map scroll limits ;;;
 DetermineMapScrollLimits:
-    PHP                                                                  ;829EC4;
     PHB                                                                  ;829EC5;
     LDA.W CurrentAreaMapCollectedFlag                                    ;829EC6;
     BEQ .areaMapNotCollected                                             ;829EC9;
@@ -3750,7 +3723,11 @@ DetermineMapScrollLimits:
     LDA.B DP_Temp06                                                      ;829EF4;
     STA.B DP_Temp00                                                      ;829EF6;
     JSR.W DetermineLeftmostMapColumn                                     ;829EF8;
-    JSR.W A_equals_X_times_8                                             ;829EFB;
+;;; $9F45: A = [X] * 8 ;;;
+    TXA
+    ASL
+    ASL
+    ASL
     STA.W MapScroll_MinX                                                 ;829EFE;
     LDA.W AreaIndex                                                      ;829F01;
     CMP.W #$0004                                                         ;829F04;
@@ -3765,32 +3742,35 @@ DetermineMapScrollLimits:
     ADC.W #$0083                                                         ;829F16;
     STA.B DP_Temp00                                                      ;829F19;
     JSR.W DetermineRightmostMapColumn                                    ;829F1B;
-    JSR.W A_equals_X_times_8                                             ;829F1E;
+;;; $9F45: A = [X] * 8 ;;;
+    TXA
+    ASL
+    ASL
+    ASL
     STA.W MapScroll_MaxX                                                 ;829F21;
     LDA.B DP_Temp06                                                      ;829F24;
     STA.B DP_Temp00                                                      ;829F26;
     JSR.W DetermineTopmostMapRow                                         ;829F28;
-    JSR.W A_equals_X_times_8                                             ;829F2B;
+;;; $9F45: A = [X] * 8 ;;;
+    TXA
+    ASL
+    ASL
+    ASL
     STA.W MapScroll_MinY                                                 ;829F2E;
     LDA.B DP_Temp06                                                      ;829F31;
     CLC                                                                  ;829F33;
     ADC.W #$007C                                                         ;829F34;
     STA.B DP_Temp00                                                      ;829F37;
     JSR.W DetermineLeftmostMapRow                                        ;829F39;
-    JSR.W A_equals_X_times_8                                             ;829F3C;
+;;; $9F45: A = [X] * 8 ;;;
+    TXA
+    ASL
+    ASL
+    ASL
     STA.W MapScroll_MaxY                                                 ;829F3F;
     PLB                                                                  ;829F42;
-    PLP                                                                  ;829F43;
+    REP #$30
     RTS                                                                  ;829F44;
-
-
-;;; $9F45: A = [X] * 8 ;;;
-A_equals_X_times_8:
-    TXA                                                                  ;829F45;
-    ASL                                                                  ;829F46;
-    ASL                                                                  ;829F47;
-    ASL                                                                  ;829F48;
-    RTS                                                                  ;829F49;
 
 
 ;;; $9F4A: Determine leftmost map column ;;;
@@ -3799,7 +3779,6 @@ DetermineLeftmostMapColumn:
 ;;     $00: Long pointer to map data
 ;; Returns:
 ;;     X: Leftmost map column (or 1Ah if map is empty)
-    PHP                                                                  ;829F4A;
     SEP #$20                                                             ;829F4B;
     LDA.B #$00                                                           ;829F4D;
     XBA                                                                  ;829F4F;
@@ -3854,7 +3833,7 @@ DetermineLeftmostMapColumn:
     LDX.W #$001A                                                         ;829F9C;
 
   .return:
-    PLP                                                                  ;829F9F;
+    REP #$30
     RTS                                                                  ;829FA0;
 
   .bits:
@@ -3867,11 +3846,8 @@ DetermineRightmostMapColumn:
 ;;     $00: Long pointer to map data + 83h (byte index of rightmost map column of top row)
 ;; Returns:
 ;;     X: Rightmost map column (or 1Ch if map is empty)
-    PHP                                                                  ;829FA9;
+    LDA.W #$0000
     SEP #$20                                                             ;829FAA;
-    LDA.B #$00                                                           ;829FAC;
-    XBA                                                                  ;829FAE;
-    LDA.B #$00                                                           ;829FAF;
     LDX.W #$003F                                                         ;829FB1;
 
   .loopColumns:
@@ -3921,7 +3897,7 @@ DetermineRightmostMapColumn:
     LDX.W #$001C                                                         ;829FFC;
 
   .return:
-    PLP                                                                  ;829FFF;
+    REP #$30
     RTS                                                                  ;82A000;
 
   .bits:
@@ -3934,8 +3910,6 @@ DetermineTopmostMapRow:
 ;;     $00: Long pointer to map data
 ;; Returns:
 ;;     X: Topmost map row (or 1 if map is empty)
-    PHP                                                                  ;82A009;
-    REP #$20                                                             ;82A00A;
     LDA.B DP_Temp00                                                      ;82A00C;
     CLC                                                                  ;82A00E;
     ADC.W #$0080                                                         ;82A00F;
@@ -3972,7 +3946,7 @@ DetermineTopmostMapRow:
     LDX.W #$0001                                                         ;82A04E;
 
   .return:
-    PLP                                                                  ;82A051;
+    REP #$30
     RTS                                                                  ;82A052;
 
 
@@ -3982,8 +3956,6 @@ DetermineLeftmostMapRow:
 ;;     $00: Long pointer to map data + 7Ch (byte index of leftmost map column of bottom row)
 ;; Returns:
 ;;     X: Bottommost map row (or Bh if map is empty)
-    PHP                                                                  ;82A053;
-    REP #$20                                                             ;82A054;
     LDA.B DP_Temp00                                                      ;82A056;
     CLC                                                                  ;82A058;
     ADC.W #$0080                                                         ;82A059;
@@ -4019,7 +3991,6 @@ DetermineLeftmostMapRow:
     LDX.W #$000B                                                         ;82A095;
 
   .return:
-    PLP                                                                  ;82A098;
     RTS                                                                  ;82A099;
 
 
@@ -4046,15 +4017,13 @@ SetupPPUForPauseMenu:
     LDA.B #$58                                                           ;82A0C4;
     STA.B DP_BG3TilemapAddrSize                                          ;82A0C6;
     STA.W $2109                                                          ;82A0C8;
-    LDA.B #$00                                                           ;82A0CB;
-    STA.B DP_BG4TilemapAddrSize                                          ;82A0CD;
-    STA.W $210A                                                          ;82A0CF;
+    STZ.B DP_BG4TilemapAddrSize
+    STZ.W $210A
     LDA.B #$17                                                           ;82A0D2;
     STA.W $212C                                                          ;82A0D4;
     STA.B DP_MainScreenLayers                                            ;82A0D7;
-    LDA.B #$00                                                           ;82A0D9;
-    STA.W $2106                                                          ;82A0DB;
-    STA.B DP_Mosaic                                                      ;82A0DE;
+    STZ.W $2106
+    STZ.B DP_Mosaic
     LDA.B DP_ColorMathSubScreenBackdropColor0                            ;82A0E0;
     AND.B #$E0                                                           ;82A0E2;
     STA.B DP_ColorMathSubScreenBackdropColor0                            ;82A0E4;
@@ -4064,14 +4033,13 @@ SetupPPUForPauseMenu:
     LDA.B DP_ColorMathSubScreenBackdropColor2                            ;82A0EC;
     AND.B #$E0                                                           ;82A0EE;
     STA.B DP_ColorMathSubScreenBackdropColor2                            ;82A0F0;
-    LDA.B #$00                                                           ;82A0F2;
-    STA.B DP_NextGameplayColorMathB                                      ;82A0F4;
+    STZ.B DP_NextGameplayColorMathB
+    REP #$30
     RTS                                                                  ;82A0F6;
 
 
 ;;; $A0F7: Reset pause menu animations ;;;
 ResetPauseMenuAnimations:
-    REP #$30                                                             ;82A0F7;
     STZ.W PauseMenu_ReserveTankSoundDelayCounter                         ;82A0F9;
     STZ.B DP_BG1XScroll                                                  ;82A0FC;
     STZ.B DP_BG2XScroll                                                  ;82A0FE;
@@ -4095,7 +4063,6 @@ ResetPauseMenuAnimations:
 
 ;;; $A12B: Load equipment screen equipment tilemaps ;;;
 Load_EquipmentScreen_EquipmentTilemaps:
-    REP #$30                                                             ;82A12B;
     LDA.W MaxReserveEnergy                                               ;82A12D;
     BEQ +                                                                ;82A130;
     LDY.W #$0000                                                         ;82A132;
@@ -4264,7 +4231,6 @@ Copy_Bytes_from_X_to_7ERAM:
 ;;     DB:X: Source address
 ;;     $00: Destination address
 ;;     $16: Number of bytes
-    PHP                                                                  ;82A27E;
     PHY                                                                  ;82A27F;
     SEP #$20                                                             ;82A280;
     LDA.B #$7E                                                           ;82A282;
@@ -4279,11 +4245,12 @@ Copy_Bytes_from_X_to_7ERAM:
     INX                                                                  ;82A291;
     INY                                                                  ;82A292;
     INY                                                                  ;82A293;
-    DEC.B DP_Temp16                                                      ;82A294;
-    DEC.B DP_Temp16                                                      ;82A296;
+    LDA.B DP_Temp16
+    DEC
+    DEC
+    STA.B DP_Temp16
     BNE .loop                                                            ;82A298;
     PLY                                                                  ;82A29A;
-    PLP                                                                  ;82A29B;
     RTS                                                                  ;82A29C;
 
 
@@ -4293,7 +4260,6 @@ Copy_Bytes_of_Palette_from_7E_to_12:
 ;;     $00: Tilemap address
 ;;     $12: Palette index (multiple of 400h)
 ;;     $16: Size (multiple of 2)
-    PHP                                                                  ;82A29D;
     PHY                                                                  ;82A29E;
     SEP #$20                                                             ;82A29F;
     LDA.B #$7E                                                           ;82A2A1;
@@ -4308,41 +4274,18 @@ Copy_Bytes_of_Palette_from_7E_to_12:
     STA.B [DP_Temp00],Y                                                  ;82A2B1;
     INY                                                                  ;82A2B3;
     INY                                                                  ;82A2B4;
-    DEC.B DP_Temp16                                                      ;82A2B5;
-    DEC.B DP_Temp16                                                      ;82A2B7;
+    LDA.B DP_Temp16
+    DEC
+    DEC
+    STA.B DP_Temp16
     BNE .loop                                                            ;82A2B9;
     PLY                                                                  ;82A2BB;
-    PLP                                                                  ;82A2BC;
     RTS                                                                  ;82A2BD;
-
-
-;;; $A2BE: Clear Samus/beam tiles ;;;
-Clear_Samus_Beam_Tiles:
-; Reloads the first quarter of the standard sprite tiles
-    PHP                                                                  ;82A2BE;
-    SEP #$30                                                             ;82A2BF;
-    LDA.B #$00                                                           ;82A2C1;
-    STA.W $2116                                                          ;82A2C3;
-    LDA.B #$60                                                           ;82A2C6;
-    STA.W $2117                                                          ;82A2C8;
-    LDA.B #$80                                                           ;82A2CB;
-    STA.W $2115                                                          ;82A2CD;
-    JSL.L SetupHDMATransfer                                              ;82A2D0;
-    db $01,$01,$18                                                       ;82A2D4;
-    dl Tiles_Standard_Sprite_0                                           ;82A2D7;
-    dw $1000                                                             ;82A2DA;
-    LDA.B #$02                                                           ;82A2DC;
-    STA.W $420B                                                          ;82A2DE;
-    PLP                                                                  ;82A2E1;
-    RTS                                                                  ;82A2E2;
 
 
 ;;; $A2E3: Continue initialising gameplay resume ;;;
 ContinueInitialising_GameplayResume:
 ; Like $9009, I don't know why this is a subroutine and not a part of GameState_11_Unpausing_LoadingNormalGameplay
-    SEP #$30                                                             ;82A2E3;
-    PHP                                                                  ;82A2E5;
-    REP #$30                                                             ;82A2E6;
     LDY.W #$0200                                                         ;82A2E8;
     LDX.W #$0000                                                         ;82A2EB;
 
@@ -4354,12 +4297,10 @@ ContinueInitialising_GameplayResume:
     DEY                                                                  ;82A2F8;
     DEY                                                                  ;82A2F9;
     BNE .loop                                                            ;82A2FA;
-    PLP                                                                  ;82A2FC;
     JSR.W Setup_PPU_for_GameplayResume                                   ;82A2FD;
     JSR.W Calculate_BG_Scrolls_bank82                                    ;82A300;
-    JSR.W JSL_to_Update_BeamTiles_and_Palette                            ;82A303;
+    JSL.L Update_Beam_Tiles_and_Palette
     JSR.W Clear_PauseMenu_Data                                           ;82A306;
-    REP #$30                                                             ;82A309;
     JSL.L UpdateSamusPoseDueToChangeOfEquipment
     LDA.W NewStateHandler
     CMP.W #RTL_90E8D6
@@ -4382,7 +4323,6 @@ ContinueInitialising_GameplayResume:
 
 ;;; $A313: Set up PPU for gameplay resume ;;;
 Setup_PPU_for_GameplayResume:
-    PHP                                                                  ;82A313;
     SEP #$30                                                             ;82A314;
     LDA.B #$03                                                           ;82A316;
     STA.W $2101                                                          ;82A318;
@@ -4404,18 +4344,15 @@ Setup_PPU_for_GameplayResume:
     LDA.B #$5A                                                           ;82A33E;
     STA.B DP_BG3TilemapAddrSize                                          ;82A340;
     STA.W $2109                                                          ;82A342;
-    LDA.B #$00                                                           ;82A345;
-    STA.B DP_BG4TilemapAddrSize                                          ;82A347;
-    STA.W $210A                                                          ;82A349;
-    PLP                                                                  ;82A34C;
+    STZ.B DP_BG4TilemapAddrSize
+    STZ.W $210A                                                          ;82A349;
+    REP #$30
     RTS                                                                  ;82A34D;
 
 
 ;;; $A34E: Calculate BG scrolls ;;;
 Calculate_BG_Scrolls_bank82:
 ; Called during unpausing
-    PHP                                                                  ;82A34E;
-    REP #$30                                                             ;82A34F;
     LDA.B Layer1XPosition                                                ;82A351;
     CLC                                                                  ;82A354;
     ADC.W BG1XOffset                                                     ;82A355;
@@ -4432,23 +4369,11 @@ Calculate_BG_Scrolls_bank82:
     CLC                                                                  ;82A36F;
     ADC.W BG2YOffset                                                     ;82A370;
     STA.B DP_BG2YScroll                                                  ;82A373;
-    PLP                                                                  ;82A375;
     RTS                                                                  ;82A376;
-
-
-;;; $A377: Update beam tiles and palette ;;;
-JSL_to_Update_BeamTiles_and_Palette:
-    PHP                                                                  ;82A377;
-    REP #$30                                                             ;82A378;
-    JSL.L Update_Beam_Tiles_and_Palette                                  ;82A37A;
-    PLP                                                                  ;82A37E;
-    RTS                                                                  ;82A37F;
 
 
 ;;; $A380: Clear pause menu data ;;;
 Clear_PauseMenu_Data:
-    PHP                                                                  ;82A380;
-    REP #$30                                                             ;82A381;
     STZ.W PauseMenu_MenuIndex                                            ;82A383;
     STZ.W PauseMenu_ButtonPressedHighlightTimer                          ;82A386;
     STZ.W PauseMenu_HighlightAnimationTimer                              ;82A389;
@@ -4477,22 +4402,16 @@ Clear_PauseMenu_Data:
     STZ.W PauseMenu_MapScrollDownArrowAnimationMode                      ;82A3CE;
     STZ.W PauseMenu_MapScrollRightArrowAnimationMode                     ;82A3D1;
     STZ.W PauseMenu_MapScrollLeftArrowAnimationMode                      ;82A3D4;
-    PLP                                                                  ;82A3D7;
     RTS                                                                  ;82A3D8;
 
 
 ;;; $A425: RTS ;;;
 RTS_82A425:
-    PHP                                                                  ;82A425;
-    REP #$30                                                             ;82A426;
-    PLP                                                                  ;82A428;
     RTS                                                                  ;82A429;
 
 
 ;;; $A42A: Change pose due to equipment change - spin jumping ;;;
 ChangePose_DueTo_EquipmentChange_SpinJumping:
-    PHP                                                                  ;82A42A;
-    REP #$30                                                             ;82A42B;
     LDA.W Pose                                                           ;82A42D;
     CMP.W #$0081                                                         ;82A430;
     BEQ .screwAttack                                                     ;82A433;
@@ -4533,15 +4452,12 @@ ChangePose_DueTo_EquipmentChange_SpinJumping:
     JSL.L Set_Samus_AnimationFrame_if_PoseChanged                        ;82A475;
 
   .return:
-    PLP                                                                  ;82A479;
     RTS                                                                  ;82A47A;
 
 
 ;;; $A47B: Change pose due to equipment change - movement types 7/9 ;;;
 Change_Pose_due_to_Equipment_Change_MovementTypes_7_9:
 ; Unused movement types
-    PHP                                                                  ;82A47B;
-    REP #$30                                                             ;82A47C;
     LDA.W EquippedItems                                                  ;82A47E;
     BIT.W #$0004                                                         ;82A481;
     BNE .return                                                          ;82A484;
@@ -4562,14 +4478,11 @@ Change_Pose_due_to_Equipment_Change_MovementTypes_7_9:
     JSL.L Set_Samus_AnimationFrame_if_PoseChanged                        ;82A4A3;
 
   .return:
-    PLP                                                                  ;82A4A7;
     RTS                                                                  ;82A4A8;
 
 
 ;;; $A4A9: Change pose due to equipment change - morph ball ;;;
 ChangePose_DueTo_EquipmentChange_MorphBall:
-    PHP                                                                  ;82A4A9;
-    REP #$30                                                             ;82A4AA;
     LDA.W EquippedItems                                                  ;82A4AC;
     BIT.W #$0002                                                         ;82A4AF;
     BEQ .return                                                          ;82A4B2;
@@ -4590,14 +4503,11 @@ ChangePose_DueTo_EquipmentChange_MorphBall:
     JSL.L Set_Samus_AnimationFrame_if_PoseChanged                        ;82A4D1;
 
   .return:
-    PLP                                                                  ;82A4D5;
     RTS                                                                  ;82A4D6;
 
 
 ;;; $A4D7: Change pose due to equipment change - spring ball ;;;
 ChangePose_DueTo_EquipmentChange_SpringBall:
-    PHP                                                                  ;82A4D7;
-    REP #$30                                                             ;82A4D8;
     LDA.W EquippedItems                                                  ;82A4DA;
     BIT.W #$0002                                                         ;82A4DD;
     BNE .return                                                          ;82A4E0;
@@ -4618,27 +4528,23 @@ ChangePose_DueTo_EquipmentChange_SpringBall:
     JSL.L Set_Samus_AnimationFrame_if_PoseChanged                        ;82A4FF;
 
   .return:
-    PLP                                                                  ;82A503;
     RTS                                                                  ;82A504;
 
 
 ;;; $A505: Handle pause menu L/R ;;;
 Handle_PauseScreen_L_R:
     JSR.W Handle_PauseScreen_L_R_Input                                   ;82A505;
-    JSR.W EquipmentScreen_Draw_L_R_Highlight                             ;82A508;
-    RTS                                                                  ;82A50B;
+    JMP.W EquipmentScreen_Draw_L_R_Highlight
 
 
 ;;; $A50C: Handle pause menu L/R input ;;;
 Handle_PauseScreen_L_R_Input:
-    PHP                                                                  ;82A50C;
-    REP #$30                                                             ;82A50D;
     LDA.W Input_TimedHeldNew                                             ;82A50F;
     BIT.W #$0020                                                         ;82A512;
     BNE .L                                                               ;82A515;
     BIT.W #$0010                                                         ;82A517;
     BNE .R                                                               ;82A51A;
-    BRA .return                                                          ;82A51C;
+    RTS
 
     LDA.W PauseMenu_ButtonLabelMode                                      ;82A51E;
     BNE .highlightL                                                      ;82A521;
@@ -4679,14 +4585,11 @@ Handle_PauseScreen_L_R_Input:
     JSL.L QueueSound_Lib1_Max6                                           ;82A567;
 
   .return:
-    PLP                                                                  ;82A56B;
     RTS                                                                  ;82A56C;
 
 
 ;;; $A56D: Handle pause menu L/R pressed highlight ;;;
 Handle_PauseMenu_L_R_PressedHighlight:
-    PHP                                                                  ;82A56D;
-    REP #$30                                                             ;82A56E;
     LDA.W PauseMenu_ButtonPressedHighlightTimer                          ;82A570;
     BEQ .return                                                          ;82A573;
     DEC                                                                  ;82A575;
@@ -4696,43 +4599,34 @@ Handle_PauseMenu_L_R_PressedHighlight:
     DEC                                                                  ;82A57E;
     ASL                                                                  ;82A57F;
     TAX                                                                  ;82A580;
-    LDA.W #$0000                                                         ;82A581;
-    STA.B DP_Temp03                                                      ;82A584;
+    STZ.B DP_Temp03
     LDA.W L_R_ButtonPressed_HighlightTable_spritemapID,X                 ;82A586;
-    PHA                                                                  ;82A589;
+    STA.B DP_Temp44
     LDA.W L_R_ButtonPressed_HighlightTable_YposPlus1,X                   ;82A58A;
     TAY                                                                  ;82A58D;
     DEY                                                                  ;82A58E;
     LDA.W L_R_ButtonPressed_HighlightTable_Xpos,X                        ;82A58F;
     TAX                                                                  ;82A592;
-    PLA                                                                  ;82A593;
+    LDA.B DP_Temp44
     JSL.L AddSpritemapFrom_82C569_TableToOAM                             ;82A594;
 
   .return:
-    PLP                                                                  ;82A598;
     RTS                                                                  ;82A599;
 
 
 ;;; $A59A: Equipment screen - draw L/R highlight ;;;
 EquipmentScreen_Draw_L_R_Highlight:
-    PHP                                                                  ;82A59A;
-    REP #$30                                                             ;82A59B;
     LDY.W #$00D0                                                         ;82A59D;
     LDX.W #$0018                                                         ;82A5A0;
     LDA.W #$0002                                                         ;82A5A3;
     JSR.W Draw_PauseScreen_SpriteAnimation                               ;82A5A6;
-    LDY.W #$00D0                                                         ;82A5A9;
     LDX.W #$00E8                                                         ;82A5AC;
     LDA.W #$0002                                                         ;82A5AF;
-    JSR.W Draw_PauseScreen_SpriteAnimation                               ;82A5B2;
-    PLP                                                                  ;82A5B5;
-    RTS                                                                  ;82A5B6;
+    JMP.W Draw_PauseScreen_SpriteAnimation
 
 
 ;;; $A5B7: Handle pause menu start button ;;;
 Handle_PauseScreen_StartButton:
-    PHP                                                                  ;82A5B7;
-    REP #$30                                                             ;82A5B8;
     LDA.W Input_TimedHeldNew                                             ;82A5BA;
     BIT.W #$1000                                                         ;82A5BD;
     BEQ +                                                                ;82A5C0;
@@ -4742,54 +4636,59 @@ Handle_PauseScreen_StartButton:
     STA.W ScreenFadeDelay                                                ;82A5CC;
     STA.W ScreenFadeCounter                                              ;82A5CF;
     LDA.W PauseMenu_ButtonLabelMode                                      ;82A5D2;
-    PHA                                                                  ;82A5D5;
+    STA.B DP_Temp44
     LDA.W #$0001                                                         ;82A5D6;
     STA.W PauseMenu_ButtonLabelMode                                      ;82A5D9;
     JSR.W Set_PauseScreen_ButtonLabelPalettes                            ;82A5DC;
-    PLA                                                                  ;82A5DF;
+    LDA.B DP_Temp44
     STA.W PauseMenu_ButtonLabelMode                                      ;82A5E0;
     LDA.W #$000B                                                         ;82A5E3;
     STA.W PauseMenu_ButtonPressedHighlightTimer                          ;82A5E6;
     INC.W GameState                                                      ;82A5E9;
 
-+   JSR.W Update_PauseMenu_L_R_Start_VRAMTilemap                         ;82A5EC;
-    PLP                                                                  ;82A5EF;
-    RTS                                                                  ;82A5F0;
+;;; $A84D: Update pause menu L/R/start VRAM tilemap ;;;
++   LDX.B VRAMWriteStack
+    LDA.W #$0080
+    STA.B VRAMWrite.size,X
+    LDA.W #PauseMenuMapTilemap+$640
+    STA.B VRAMWrite.src,X
+    LDA.W #PauseMenuMapTilemap>>8
+    STA.B VRAMWrite.src+1,X
+    LDA.B DP_BG2TilemapAddrSize
+    AND.W #$00FC
+    XBA
+    CLC
+    ADC.W #$0320
+    STA.B VRAMWrite.dest,X
+    TXA
+    CLC
+    ADC.W #$0007
+    STA.B VRAMWriteStack
+    RTS
 
 
 ;;; $A5F1: Handle pause menu start pressed highlight ;;;
 Handle_PauseMenu_StartPressedHighlight:
-    PHP                                                                  ;82A5F1;
-    PHB                                                                  ;82A5F2;
-    PHK                                                                  ;82A5F3;
-    PLB                                                                  ;82A5F4;
-    REP #$30                                                             ;82A5F5;
     LDA.W PauseMenu_ButtonPressedHighlightTimer                          ;82A5F7;
     BEQ .return                                                          ;82A5FA;
     DEC                                                                  ;82A5FC;
     STA.W PauseMenu_ButtonPressedHighlightTimer                          ;82A5FD;
-    LDA.W #$0000                                                         ;82A600;
-    STA.B DP_Temp03                                                      ;82A603;
+    STZ.B DP_Temp03
     LDX.W #$0090                                                         ;82A605;
     LDY.W #$00D0                                                         ;82A608;
     LDA.W #$002B                                                         ;82A60B;
-    JSL.L AddSpritemapFrom_82C569_TableToOAM                             ;82A60E;
+    JML AddSpritemapFrom_82C569_TableToOAM
 
   .return:
-    PLB                                                                  ;82A612;
-    PLP                                                                  ;82A613;
     RTL                                                                  ;82A614;
 
 
 ;;; $A615: Set pause menu button label palettes ;;;
 Set_PauseScreen_ButtonLabelPalettes:
-    PHP                                                                  ;82A615;
-    REP #$30                                                             ;82A616;
     LDA.W PauseMenu_ButtonLabelMode                                      ;82A618;
     ASL                                                                  ;82A61B;
     TAX                                                                  ;82A61C;
     JSR.W (.pointers,X)                                                  ;82A61D;
-    PLP                                                                  ;82A620;
     RTS                                                                  ;82A621;
 
   .pointers:
@@ -4800,340 +4699,266 @@ Set_PauseScreen_ButtonLabelPalettes:
 
 ;;; $A628: Set pause menu button label palettes - equipment screen ;;;
 Set_PauseScreen_ButtonLabelPalettes_EquipmentScreen:
-; Someone liked pushing and pulling operations >_>
-    REP #$30                                                             ;82A628;
-    PHP                                                                  ;82A62A;
-    REP #$30                                                             ;82A62B;
+    PHB
+    PEA.W PauseMenuMapTilemap>>8
+    PLB
+    PLB
     LDY.W #$000A                                                         ;82A62D;
     LDX.W #$0000                                                         ;82A630;
 
   .loopTopMAP:
-    LDA.L PauseMenuMapTilemap+$64A,X                                     ;82A633;
+    LDA.W PauseMenuMapTilemap+$64A,X
     AND.W #$E3FF                                                         ;82A637;
     ORA.W #$0800                                                         ;82A63A;
-    STA.L PauseMenuMapTilemap+$64A,X                                     ;82A63D;
+    STA.W PauseMenuMapTilemap+$64A,X
     INX                                                                  ;82A641;
     INX                                                                  ;82A642;
     DEY                                                                  ;82A643;
     DEY                                                                  ;82A644;
     BNE .loopTopMAP                                                      ;82A645;
-    PLP                                                                  ;82A647;
-    PHP                                                                  ;82A648;
-    REP #$30                                                             ;82A649;
     LDY.W #$000A                                                         ;82A64B;
     LDX.W #$0000                                                         ;82A64E;
 
   .loopBottomMAP:
-    LDA.L PauseMenuMapTilemap+$68A,X                                     ;82A651;
+    LDA.W PauseMenuMapTilemap+$68A,X
     AND.W #$E3FF                                                         ;82A655;
     ORA.W #$0800                                                         ;82A658;
-    STA.L PauseMenuMapTilemap+$68A,X                                     ;82A65B;
+    STA.W PauseMenuMapTilemap+$68A,X
     INX                                                                  ;82A65F;
     INX                                                                  ;82A660;
     DEY                                                                  ;82A661;
     DEY                                                                  ;82A662;
     BNE .loopBottomMAP                                                   ;82A663;
-    PLP                                                                  ;82A665;
-    PHP                                                                  ;82A666;
-    REP #$30                                                             ;82A667;
     LDY.W #$0008                                                         ;82A669;
     LDX.W #$0000                                                         ;82A66C;
 
   .loopTopEXIT:
-    LDA.L PauseMenuMapTilemap+$658,X                                     ;82A66F;
+    LDA.W PauseMenuMapTilemap+$658,X
     AND.W #$E3FF                                                         ;82A673;
     ORA.W #$0800                                                         ;82A676;
-    STA.L PauseMenuMapTilemap+$658,X                                     ;82A679;
+    STA.W PauseMenuMapTilemap+$658,X
     INX                                                                  ;82A67D;
     INX                                                                  ;82A67E;
     DEY                                                                  ;82A67F;
     DEY                                                                  ;82A680;
     BNE .loopTopEXIT                                                     ;82A681;
-    PLP                                                                  ;82A683;
-    PHP                                                                  ;82A684;
-    REP #$30                                                             ;82A685;
     LDY.W #$0008                                                         ;82A687;
     LDX.W #$0000                                                         ;82A68A;
 
   .loopBottomEXIT:
-    LDA.L PauseMenuMapTilemap+$698,X                                     ;82A68D;
+    LDA.W PauseMenuMapTilemap+$698,X
     AND.W #$E3FF                                                         ;82A691;
     ORA.W #$0800                                                         ;82A694;
-    STA.L PauseMenuMapTilemap+$698,X                                     ;82A697;
+    STA.W PauseMenuMapTilemap+$698,X
     INX                                                                  ;82A69B;
     INX                                                                  ;82A69C;
     DEY                                                                  ;82A69D;
     DEY                                                                  ;82A69E;
     BNE .loopBottomEXIT                                                  ;82A69F;
-    PLP                                                                  ;82A6A1;
-    PHP                                                                  ;82A6A2;
-    REP #$30                                                             ;82A6A3;
     LDY.W #$000A                                                         ;82A6A5;
     LDX.W #$0000                                                         ;82A6A8;
 
   .loopTopSAMUS:
-    LDA.L PauseMenuMapTilemap+$66C,X                                     ;82A6AB;
+    LDA.W PauseMenuMapTilemap+$66C,X
     AND.W #$E3FF                                                         ;82A6AF;
     ORA.W #$1400                                                         ;82A6B2;
-    STA.L PauseMenuMapTilemap+$66C,X                                     ;82A6B5;
+    STA.W PauseMenuMapTilemap+$66C,X
     INX                                                                  ;82A6B9;
     INX                                                                  ;82A6BA;
     DEY                                                                  ;82A6BB;
     DEY                                                                  ;82A6BC;
     BNE .loopTopSAMUS                                                    ;82A6BD;
-    PLP                                                                  ;82A6BF;
-    PHP                                                                  ;82A6C0;
-    REP #$30                                                             ;82A6C1;
     LDY.W #$000A                                                         ;82A6C3;
     LDX.W #$0000                                                         ;82A6C6;
 
   .loopBottomSAMUS:
-    LDA.L PauseMenuMapTilemap+$6AC,X                                     ;82A6C9;
+    LDA.W PauseMenuMapTilemap+$6AC,X
     AND.W #$E3FF                                                         ;82A6CD;
     ORA.W #$1400                                                         ;82A6D0;
-    STA.L PauseMenuMapTilemap+$6AC,X                                     ;82A6D3;
+    STA.W PauseMenuMapTilemap+$6AC,X
     INX                                                                  ;82A6D7;
     INX                                                                  ;82A6D8;
     DEY                                                                  ;82A6D9;
     DEY                                                                  ;82A6DA;
     BNE .loopBottomSAMUS                                                 ;82A6DB;
-    PLP                                                                  ;82A6DD;
+    PLB
     RTS                                                                  ;82A6DE;
 
 
 ;;; $A6DF: Set pause menu button label palettes - unpausing ;;;
 Set_PauseScreen_ButtonLabelPalettes_Unpausing:
-    REP #$30                                                             ;82A6DF;
-    PHP                                                                  ;82A6E1;
-    REP #$30                                                             ;82A6E2;
+    PHB
+    PEA.W PauseMenuMapTilemap>>8
+    PLB
+    PLB
     LDY.W #$0008                                                         ;82A6E4;
     LDX.W #$0000                                                         ;82A6E7;
 
   .loopTopEXIT:
-    LDA.L PauseMenuMapTilemap+$658,X                                     ;82A6EA;
+    LDA.W PauseMenuMapTilemap+$658,X
     AND.W #$E3FF                                                         ;82A6EE;
     ORA.W #$0800                                                         ;82A6F1;
-    STA.L PauseMenuMapTilemap+$658,X                                     ;82A6F4;
+    STA.W PauseMenuMapTilemap+$658,X
     INX                                                                  ;82A6F8;
     INX                                                                  ;82A6F9;
     DEY                                                                  ;82A6FA;
     DEY                                                                  ;82A6FB;
     BNE .loopTopEXIT                                                     ;82A6FC;
-    PLP                                                                  ;82A6FE;
-    PHP                                                                  ;82A6FF;
-    REP #$30                                                             ;82A700;
     LDY.W #$0008                                                         ;82A702;
     LDX.W #$0000                                                         ;82A705;
 
   .loopBottomEXIT:
-    LDA.L PauseMenuMapTilemap+$698,X                                     ;82A708;
+    LDA.W PauseMenuMapTilemap+$698,X
     AND.W #$E3FF                                                         ;82A70C;
     ORA.W #$0800                                                         ;82A70F;
-    STA.L PauseMenuMapTilemap+$698,X                                     ;82A712;
+    STA.W PauseMenuMapTilemap+$698,X
     INX                                                                  ;82A716;
     INX                                                                  ;82A717;
     DEY                                                                  ;82A718;
     DEY                                                                  ;82A719;
     BNE .loopBottomEXIT                                                  ;82A71A;
-    PLP                                                                  ;82A71C;
-    PHP                                                                  ;82A71D;
-    REP #$30                                                             ;82A71E;
     LDY.W #$000A                                                         ;82A720;
     LDX.W #$0000                                                         ;82A723;
 
   .loopTopMAP:
-    LDA.L PauseMenuMapTilemap+$64A,X                                     ;82A726;
+    LDA.W PauseMenuMapTilemap+$64A,X
     AND.W #$E3FF                                                         ;82A72A;
     ORA.W #$1400                                                         ;82A72D;
-    STA.L PauseMenuMapTilemap+$64A,X                                     ;82A730;
+    STA.W PauseMenuMapTilemap+$64A,X
     INX                                                                  ;82A734;
     INX                                                                  ;82A735;
     DEY                                                                  ;82A736;
     DEY                                                                  ;82A737;
     BNE .loopTopMAP                                                      ;82A738;
-    PLP                                                                  ;82A73A;
-    PHP                                                                  ;82A73B;
-    REP #$30                                                             ;82A73C;
     LDY.W #$000A                                                         ;82A73E;
     LDX.W #$0000                                                         ;82A741;
 
   .loopBottomMAP:
-    LDA.L PauseMenuMapTilemap+$68A,X                                     ;82A744;
+    LDA.W PauseMenuMapTilemap+$68A,X
     AND.W #$E3FF                                                         ;82A748;
     ORA.W #$1400                                                         ;82A74B;
-    STA.L PauseMenuMapTilemap+$68A,X                                     ;82A74E;
+    STA.W PauseMenuMapTilemap+$68A,X
     INX                                                                  ;82A752;
     INX                                                                  ;82A753;
     DEY                                                                  ;82A754;
     DEY                                                                  ;82A755;
     BNE .loopBottomMAP                                                   ;82A756;
-    PLP                                                                  ;82A758;
-    PHP                                                                  ;82A759;
-    REP #$30                                                             ;82A75A;
     LDY.W #$000A                                                         ;82A75C;
     LDX.W #$0000                                                         ;82A75F;
 
   .loopTopSAMUS:
-    LDA.L PauseMenuMapTilemap+$66C,X                                     ;82A762;
+    LDA.W PauseMenuMapTilemap+$66C,X
     AND.W #$E3FF                                                         ;82A766;
     ORA.W #$1400                                                         ;82A769;
-    STA.L PauseMenuMapTilemap+$66C,X                                     ;82A76C;
+    STA.W PauseMenuMapTilemap+$66C,X
     INX                                                                  ;82A770;
     INX                                                                  ;82A771;
     DEY                                                                  ;82A772;
     DEY                                                                  ;82A773;
     BNE .loopTopSAMUS                                                    ;82A774;
-    PLP                                                                  ;82A776;
-    PHP                                                                  ;82A777;
-    REP #$30                                                             ;82A778;
     LDY.W #$000A                                                         ;82A77A;
     LDX.W #$0000                                                         ;82A77D;
 
   .loopBottomSAMUS:
-    LDA.L PauseMenuMapTilemap+$6AC,X                                     ;82A780;
+    LDA.W PauseMenuMapTilemap+$6AC,X
     AND.W #$E3FF                                                         ;82A784;
     ORA.W #$1400                                                         ;82A787;
-    STA.L PauseMenuMapTilemap+$6AC,X                                     ;82A78A;
+    STA.W PauseMenuMapTilemap+$6AC,X
     INX                                                                  ;82A78E;
     INX                                                                  ;82A78F;
     DEY                                                                  ;82A790;
     DEY                                                                  ;82A791;
     BNE .loopBottomSAMUS                                                 ;82A792;
-    PLP                                                                  ;82A794;
+    PLB
     RTS                                                                  ;82A795;
 
 
 ;;; $A796: Set pause menu button label palettes - map screen ;;;
 Set_PauseScreen_ButtonLabelPalettes_MapScreen:
-    REP #$30                                                             ;82A796;
-    PHP                                                                  ;82A798;
-    REP #$30                                                             ;82A799;
+    PHB
+    PEA.W PauseMenuMapTilemap>>8
+    PLB
+    PLB
     LDY.W #$000A                                                         ;82A79B;
     LDX.W #$0000                                                         ;82A79E;
 
   .loopTopSAMUS:
-    LDA.L PauseMenuMapTilemap+$66C,X                                     ;82A7A1;
+    LDA.W PauseMenuMapTilemap+$66C,X
     AND.W #$E3FF                                                         ;82A7A5;
     ORA.W #$0800                                                         ;82A7A8;
-    STA.L PauseMenuMapTilemap+$66C,X                                     ;82A7AB;
+    STA.W PauseMenuMapTilemap+$66C,X
     INX                                                                  ;82A7AF;
     INX                                                                  ;82A7B0;
     DEY                                                                  ;82A7B1;
     DEY                                                                  ;82A7B2;
     BNE .loopTopSAMUS                                                    ;82A7B3;
-    PLP                                                                  ;82A7B5;
-    PHP                                                                  ;82A7B6;
-    REP #$30                                                             ;82A7B7;
     LDY.W #$000A                                                         ;82A7B9;
     LDX.W #$0000                                                         ;82A7BC;
 
   .loopBottomSAMUS:
-    LDA.L PauseMenuMapTilemap+$6AC,X                                     ;82A7BF;
+    LDA.W PauseMenuMapTilemap+$6AC,X
     AND.W #$E3FF                                                         ;82A7C3;
     ORA.W #$0800                                                         ;82A7C6;
-    STA.L PauseMenuMapTilemap+$6AC,X                                     ;82A7C9;
+    STA.W PauseMenuMapTilemap+$6AC,X
     INX                                                                  ;82A7CD;
     INX                                                                  ;82A7CE;
     DEY                                                                  ;82A7CF;
     DEY                                                                  ;82A7D0;
     BNE .loopBottomSAMUS                                                 ;82A7D1;
-    PLP                                                                  ;82A7D3;
-    PHP                                                                  ;82A7D4;
-    REP #$30                                                             ;82A7D5;
     LDY.W #$0008                                                         ;82A7D7;
     LDX.W #$0000                                                         ;82A7DA;
 
   .loopTopEXIT:
-    LDA.L PauseMenuMapTilemap+$658,X                                     ;82A7DD;
+    LDA.W PauseMenuMapTilemap+$658,X
     AND.W #$E3FF                                                         ;82A7E1;
     ORA.W #$0800                                                         ;82A7E4;
-    STA.L PauseMenuMapTilemap+$658,X                                     ;82A7E7;
+    STA.W PauseMenuMapTilemap+$658,X
     INX                                                                  ;82A7EB;
     INX                                                                  ;82A7EC;
     DEY                                                                  ;82A7ED;
     DEY                                                                  ;82A7EE;
     BNE .loopTopEXIT                                                     ;82A7EF;
-    PLP                                                                  ;82A7F1;
-    PHP                                                                  ;82A7F2;
-    REP #$30                                                             ;82A7F3;
     LDY.W #$0008                                                         ;82A7F5;
     LDX.W #$0000                                                         ;82A7F8;
 
   .loopBottomEXIT:
-    LDA.L PauseMenuMapTilemap+$698,X                                     ;82A7FB;
+    LDA.W PauseMenuMapTilemap+$698,X
     AND.W #$E3FF                                                         ;82A7FF;
     ORA.W #$0800                                                         ;82A802;
-    STA.L PauseMenuMapTilemap+$698,X                                     ;82A805;
+    STA.W PauseMenuMapTilemap+$698,X
     INX                                                                  ;82A809;
     INX                                                                  ;82A80A;
     DEY                                                                  ;82A80B;
     DEY                                                                  ;82A80C;
     BNE .loopBottomEXIT                                                  ;82A80D;
-    PLP                                                                  ;82A80F;
-    PHP                                                                  ;82A810;
-    REP #$30                                                             ;82A811;
     LDY.W #$000A                                                         ;82A813;
     LDX.W #$0000                                                         ;82A816;
 
   .loopTopMAP:
-    LDA.L PauseMenuMapTilemap+$64A,X                                     ;82A819;
+    LDA.W PauseMenuMapTilemap+$64A,X
     AND.W #$E3FF                                                         ;82A81D;
     ORA.W #$1400                                                         ;82A820;
-    STA.L PauseMenuMapTilemap+$64A,X                                     ;82A823;
+    STA.W PauseMenuMapTilemap+$64A,X
     INX                                                                  ;82A827;
     INX                                                                  ;82A828;
     DEY                                                                  ;82A829;
     DEY                                                                  ;82A82A;
     BNE .loopTopMAP                                                      ;82A82B;
-    PLP                                                                  ;82A82D;
-    PHP                                                                  ;82A82E;
-    REP #$30                                                             ;82A82F;
     LDY.W #$000A                                                         ;82A831;
     LDX.W #$0000                                                         ;82A834;
 
   .loopBottomMAP:
-    LDA.L PauseMenuMapTilemap+$68A,X                                     ;82A837;
+    LDA.W PauseMenuMapTilemap+$68A,X
     AND.W #$E3FF                                                         ;82A83B;
     ORA.W #$1400                                                         ;82A83E;
-    STA.L PauseMenuMapTilemap+$68A,X                                     ;82A841;
+    STA.W PauseMenuMapTilemap+$68A,X
     INX                                                                  ;82A845;
     INX                                                                  ;82A846;
     DEY                                                                  ;82A847;
     DEY                                                                  ;82A848;
     BNE .loopBottomMAP                                                   ;82A849;
-    PLP                                                                  ;82A84B;
+    PLB
     RTS                                                                  ;82A84C;
-
-
-;;; $A84D: Update pause menu L/R/start VRAM tilemap ;;;
-Update_PauseMenu_L_R_Start_VRAMTilemap:
-    PHP                                                                  ;82A84D;
-    REP #$30                                                             ;82A84E;
-    LDX.B VRAMWriteStack                                                 ;82A850;
-    LDA.W #$0080                                                         ;82A853;
-    STA.B VRAMWrite.size,X                                               ;82A856;
-    INX                                                                  ;82A858;
-    INX                                                                  ;82A859;
-    LDA.W #PauseMenuMapTilemap+$640                                      ;82A85A;
-    STA.B VRAMWrite.size,X                                               ;82A85D;
-    INX                                                                  ;82A85F;
-    INX                                                                  ;82A860;
-    SEP #$20                                                             ;82A861;
-    LDA.B #PauseMenuMapTilemap>>16                                       ;82A863;
-    STA.B VRAMWrite.size,X                                               ;82A865;
-    REP #$20                                                             ;82A867;
-    INX                                                                  ;82A869;
-    LDA.B DP_BG2TilemapAddrSize                                          ;82A86A;
-    AND.W #$00FC                                                         ;82A86C;
-    XBA                                                                  ;82A86F;
-    CLC                                                                  ;82A870;
-    ADC.W #$0320                                                         ;82A871;
-    STA.B VRAMWrite.size,X                                               ;82A874;
-    INX                                                                  ;82A876;
-    INX                                                                  ;82A877;
-    STX.B VRAMWriteStack                                                 ;82A878;
-    PLP                                                                  ;82A87B;
-    RTS                                                                  ;82A87C;
 
 
 ;;; $A881: Draw pause menu sprite animation ;;;
@@ -5150,9 +4975,6 @@ Draw_PauseScreen_SpriteAnimation:
 ; [$C0D6 + (animation ID) * 2]: Animation mode pointer (in RAM, $0751..62)
 ; [$C0E8 + (animation ID) * 2]: Animation data pointer (in bank $82). Timers and spritemap IDs indices (always zero?)
 ; [$C1E4 + (animation ID) * 2]: Animation spritemap base IDs pointer (in bank $82)
-    PHP                                                                  ;82A881;
-    PHX                                                                  ;82A882;
-    REP #$30                                                             ;82A883;
     STX.B DP_Temp12                                                      ;82A885;
     STY.B DP_Temp14                                                      ;82A887;
     DEC                                                                  ;82A889;
@@ -5237,8 +5059,6 @@ Draw_PauseScreen_SpriteAnimation:
     LDY.B DP_Temp14                                                      ;82A921;
     DEY                                                                  ;82A923;
     JSL.L AddSpritemapFrom_82C569_TableToOAM                             ;82A924;
-    PLX                                                                  ;82A928;
-    PLP                                                                  ;82A929;
     RTS                                                                  ;82A92A;
 
 
