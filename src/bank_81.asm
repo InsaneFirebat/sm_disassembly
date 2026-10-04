@@ -2218,9 +2218,14 @@ LoadFileSelectPalettes:
 
 ;;; $94A3: File select menu - index 20h: main to options menu - fade out ;;;
 FileSelectMenu_Index20_MainToOptionsMenu_FadeOut:
-    REP #$30                                                             ;8194A3;
     JSL.L Draw_Menu_Selection_Missile                                    ;8194A5;
-    JSL.L Draw_Border_Around_SAMUS_DATA                                  ;8194A9;
+;;; $BA35: Draw border around SAMUS DATA ;;;
+    LDA.W #$0E00
+    STA.B DP_Temp03
+    LDX.W #$0080
+    LDY.W #$0010
+    LDA.W #$0048
+    JSL.L AddSpritemapFrom_82C569_TableToOAM
     JSR.W Draw_FileSelect_SamusHelmets                                   ;8194AD;
     JSL.L HandleFadingOut                                                ;8194B0;
     LDA.B DP_Brightness                                                  ;8194B4;
@@ -2245,8 +2250,13 @@ FileSelectMenu_Index20_MainToOptionsMenu_FadeOut:
 
 ;;; $94D5: File select menu - index 21h: main to title sequence ;;;
 FileSelectMenu_Index21_MainToTitleSequence:
-    REP #$30                                                             ;8194D5;
-    JSL.L Draw_Border_Around_SAMUS_DATA                                  ;8194D7;
+;;; $BA35: Draw border around SAMUS DATA ;;;
+    LDA.W #$0E00
+    STA.B DP_Temp03
+    LDX.W #$0080
+    LDY.W #$0010
+    LDA.W #$0048
+    JSL.L AddSpritemapFrom_82C569_TableToOAM
     JSR.W Draw_FileSelect_SamusHelmets                                   ;8194DB;
     JSL.L HandleFadingOut                                                ;8194DE;
     LDA.B DP_Brightness                                                  ;8194E2;
@@ -2508,8 +2518,13 @@ QueueTransfer_MenuTilemap_ToVRAMBG1:
 
 ;;; $96C2: File select menu - index 8: file copy - select source ;;;
 FileSelectMenu_Index8_FileCopy_SelectSource:
-    REP #$30                                                             ;8196C2;
-    JSL.L Draw_Border_Around_DATA_COPY_MODE                              ;8196C4;
+;;; $BA48: Draw border around DATA COPY MODE ;;;
+    LDA.W #$0E00
+    STA.B DP_Temp03
+    LDX.W #$0080
+    LDY.W #$0010
+    LDA.W #$0049
+    JSL.L AddSpritemapFrom_82C569_TableToOAM
     JSL.L Draw_Menu_Selection_Missile                                    ;8196C8;
     LDA.B DP_Controller1New                                              ;8196CC;
     BIT.W #$1080                                                         ;8196CE;
@@ -2603,8 +2618,13 @@ Set_FileCopyMenu_SelectionMissile_Position:
 
 ;;; $977A: File select menu - index 9: file copy - initialise select destination ;;;
 FileSelectMenu_Index9_FileCopy_InitialiseSelectDestination:
-    REP #$30                                                             ;81977A;
-    JSL.L Draw_Border_Around_DATA_COPY_MODE                              ;81977C;
+;;; $BA48: Draw border around DATA COPY MODE ;;;
+    LDA.W #$0E00
+    STA.B DP_Temp03
+    LDX.W #$0080
+    LDY.W #$0010
+    LDA.W #$0049
+    JSL.L AddSpritemapFrom_82C569_TableToOAM
     JSR.W Draw_FileCopy_SelectDestination_SaveFileInfo                   ;819780;
     INC.W PauseMenu_MenuIndex                                            ;819783;
     LDA.W #$0000                                                         ;819786;
@@ -2673,8 +2693,13 @@ Draw_FileCopy_SelectDestination_SaveFileInfo:
 
 ;;; $9813: File select menu - index Ah: file copy - select destination ;;;
 FileSelectMenu_IndexA_FileCopy_SelectDestination:
-    REP #$30                                                             ;819813;
-    JSL.L Draw_Border_Around_DATA_COPY_MODE                              ;819815;
+;;; $BA48: Draw border around DATA COPY MODE ;;;
+    LDA.W #$0E00
+    STA.B DP_Temp03
+    LDX.W #$0080
+    LDY.W #$0010
+    LDA.W #$0049
+    JSL.L AddSpritemapFrom_82C569_TableToOAM
     JSL.L Draw_Menu_Selection_Missile                                    ;819819;
     LDA.B DP_Controller1New                                              ;81981D;
     BIT.W #$1080                                                         ;81981F;
@@ -2755,7 +2780,13 @@ FileSelectMenu_IndexA_FileCopy_SelectDestination:
 
 ;;; $98B7: File select menu - index Bh: file copy - initialise confirmation ;;;
 FileSelectMenu_IndexB_FileCopy_InitialiseConfirmation:
-    JSL.L Draw_Border_Around_DATA_COPY_MODE                              ;8198B7;
+;;; $BA48: Draw border around DATA COPY MODE ;;;
+    LDA.W #$0E00
+    STA.B DP_Temp03
+    LDX.W #$0080
+    LDY.W #$0010
+    LDA.W #$0049
+    JSL.L AddSpritemapFrom_82C569_TableToOAM
     LDY.W #Tilemap_FileSelect_copySamusToSamus                           ;8198BB;
     LDX.W #($2<<1)|($5<<6)                                               ;8198BE; $0144
     STZ.W Enemy.palette                                                  ;8198C1;
@@ -2848,7 +2879,13 @@ Draw_FileCopyClear_Confirmation_SaveFileInfo:
 
 ;;; $9984: File select menu - index Ch: file copy - confirmation ;;;
 FileSelectMenu_IndexC_FileCopy_Confirmation:
-    JSL.L Draw_Border_Around_DATA_COPY_MODE                              ;819984;
+;;; $BA48: Draw border around DATA COPY MODE ;;;
+    LDA.W #$0E00
+    STA.B DP_Temp03
+    LDX.W #$0080
+    LDY.W #$0010
+    LDA.W #$0049
+    JSL.L AddSpritemapFrom_82C569_TableToOAM
     JSL.L Draw_Menu_Selection_Missile                                    ;819988;
     JSR.W HandleFileCopyArrowPalette                                     ;81998C;
     JSL.L Draw_FileCopy_Arrow                                            ;81998F;
@@ -2932,7 +2969,13 @@ HandleFileCopyArrowPalette:
 
 ;;; $9A2C: File select menu - index Dh: file copy - do file copy ;;;
 FileSelectMenu_Index0_FileCopy_DoFileCopy:
-    JSL.L Draw_Border_Around_DATA_COPY_MODE                              ;819A2C;
+;;; $BA48: Draw border around DATA COPY MODE ;;;
+    LDA.W #$0E00
+    STA.B DP_Temp03
+    LDX.W #$0080
+    LDY.W #$0010
+    LDA.W #$0049
+    JSL.L AddSpritemapFrom_82C569_TableToOAM
     JSL.L Draw_Menu_Selection_Missile                                    ;819A30;
     JSR.W HandleFileCopyArrowPalette                                     ;819A34;
     JSL.L Draw_FileCopy_Arrow                                            ;819A37;
@@ -3034,7 +3077,13 @@ FileSelectMenu_Index0_FileCopy_DoFileCopy:
 
 ;;; $9AFA: File select menu - index Eh: file copy - copy completed ;;;
 FileSelectMenu_IndexE_FileCopy_CopyCompleted:
-    JSL.L Draw_Border_Around_DATA_COPY_MODE                              ;819AFA;
+;;; $BA48: Draw border around DATA COPY MODE ;;;
+    LDA.W #$0E00
+    STA.B DP_Temp03
+    LDX.W #$0080
+    LDY.W #$0010
+    LDA.W #$0049
+    JSL.L AddSpritemapFrom_82C569_TableToOAM
     LDA.B DP_Controller1New                                              ;819AFE;
     BEQ .return                                                          ;819B00;
     LDA.W #$0037                                                         ;819B02;
@@ -3069,8 +3118,13 @@ FileSelectMenu_Index12_FileCopyToMain_MenuIndex_Main:
 
 ;;; $9B33: File select menu - index 14h: main to file clear - initialise ;;;
 FileSelectMenu_Index14_MainToFileClear_Initialise:
-    REP #$30                                                             ;819B33;
-    JSL.L Draw_Border_Around_DATA_CLEAR_MODE                             ;819B35;
+;;; $BA5B: Draw border around DATA CLEAR MODE ;;;
+    LDA.W #$0E00
+    STA.B DP_Temp03
+    LDX.W #$007C
+    LDY.W #$0010
+    LDA.W #$004A
+    JSL.L AddSpritemapFrom_82C569_TableToOAM
     INC.W PauseMenu_MenuIndex                                            ;819B39;
 
 
@@ -3094,8 +3148,13 @@ Initialise_FileSelectMenu_FileClear:
 
 ;;; $9B64: File select menu - index 16h: file clear - select slot ;;;
 FileSelectMenu_Index16_FileClear_SelectSlot:
-    REP #$30                                                             ;819B64;
-    JSL.L Draw_Border_Around_DATA_CLEAR_MODE                             ;819B66;
+;;; $BA5B: Draw border around DATA CLEAR MODE ;;;
+    LDA.W #$0E00
+    STA.B DP_Temp03
+    LDX.W #$007C
+    LDY.W #$0010
+    LDA.W #$004A
+    JSL.L AddSpritemapFrom_82C569_TableToOAM
     JSL.L Draw_Menu_Selection_Missile                                    ;819B6A;
     LDA.B DP_Controller1New                                              ;819B6E;
     BIT.W #$1080                                                         ;819B70;
@@ -3182,7 +3241,13 @@ Set_FileClearMenuSelection_MissilePosition:
 
 ;;; $9C0B: File select menu - index 17h: file clear - initialise confirmation ;;;
 FileSelectMenu_Index17_FileClear_InitialiseConfirmation:
-    JSL.L Draw_Border_Around_DATA_CLEAR_MODE                             ;819C0B;
+;;; $BA5B: Draw border around DATA CLEAR MODE ;;;
+    LDA.W #$0E00
+    STA.B DP_Temp03
+    LDX.W #$007C
+    LDY.W #$0010
+    LDA.W #$004A
+    JSL.L AddSpritemapFrom_82C569_TableToOAM
     LDY.W #Tilemap_FileSelect_clearSamusA                                ;819C0F;
     LDX.W #($0<<1)|($5<<6)                                               ;819C12; $0140
     STZ.W Enemy.palette                                                  ;819C15;
@@ -3201,7 +3266,13 @@ FileSelectMenu_Index17_FileClear_InitialiseConfirmation:
 
 ;;; $9C36: File select menu - index 18h: file clear - confirmation ;;;
 FileSelectMenu_Index18_FileClear_Confirmation:
-    JSL.L Draw_Border_Around_DATA_CLEAR_MODE                             ;819C36;
+;;; $BA5B: Draw border around DATA CLEAR MODE ;;;
+    LDA.W #$0E00
+    STA.B DP_Temp03
+    LDX.W #$007C
+    LDY.W #$0010
+    LDA.W #$004A
+    JSL.L AddSpritemapFrom_82C569_TableToOAM
     JSL.L Draw_Menu_Selection_Missile                                    ;819C3A;
     LDA.B DP_Controller1New                                              ;819C3E;
     BIT.W #$0C00                                                         ;819C40;
@@ -3251,8 +3322,13 @@ FileSelectMenu_Index18_FileClear_Confirmation:
 
 ;;; $9C9E: File select menu - index 19h: file clear - do file clear ;;;
 FileSelectMenu_Index19_FileClear_DoFileClear:
-    REP #$30                                                             ;819C9E;
-    JSL.L Draw_Border_Around_DATA_CLEAR_MODE                             ;819CA0;
+;;; $BA5B: Draw border around DATA CLEAR MODE ;;;
+    LDA.W #$0E00
+    STA.B DP_Temp03
+    LDX.W #$007C
+    LDY.W #$0010
+    LDA.W #$004A
+    JSL.L AddSpritemapFrom_82C569_TableToOAM
     LDA.W #$0070                                                         ;819CA4;
     STA.B DP_Temp02                                                      ;819CA7;
     LDA.W TitleMenu_FileCopySrcFileClearSlot                             ;819CA9;
@@ -3311,7 +3387,13 @@ FileSelectMenu_Index19_FileClear_DoFileClear:
 
 ;;; $9D26: File select menu - index 1Ah: file clear - clear completed ;;;
 FileSelectMenu_Index1A_FileClear_ClearCompleted:
-    JSL.L Draw_Border_Around_DATA_CLEAR_MODE                             ;819D26;
+;;; $BA5B: Draw border around DATA CLEAR MODE ;;;
+    LDA.W #$0E00
+    STA.B DP_Temp03
+    LDX.W #$007C
+    LDY.W #$0010
+    LDA.W #$004A
+    JSL.L AddSpritemapFrom_82C569_TableToOAM
     LDA.B DP_Controller1New                                              ;819D2A;
     BEQ .return                                                          ;819D2C;
     LDA.W #$0037                                                         ;819D2E;
@@ -3346,7 +3428,13 @@ FileSelectMenu_Index1A_FileClear_ClearCompleted:
 
 ;;; $9D68: File select menu - index 1Eh: file clear to main - menu index = main ;;;
 FileSelectMenu_Index1E_FileClearToMain_MenuIndex_Main:
-    JSL.L Draw_Border_Around_SAMUS_DATA                                  ;819D68;
+;;; $BA35: Draw border around SAMUS DATA ;;;
+    LDA.W #$0E00
+    STA.B DP_Temp03
+    LDX.W #$0080
+    LDY.W #$0010
+    LDA.W #$0048
+    JSL.L AddSpritemapFrom_82C569_TableToOAM
     LDA.W PauseMenu_MenuIndex                                            ;819D6C;
     SEC                                                                  ;819D6F;
     SBC.W #$001A                                                         ;819D70;
@@ -3357,7 +3445,13 @@ FileSelectMenu_Index1E_FileClearToMain_MenuIndex_Main:
 ;;; $9D77: File select menu - index 1Fh: main to options menu - turn Samus helmet ;;;
 FileSelectMenu_Index1F_MainToOptionsMenu_TurnSamusHelmet:
     JSL.L Draw_Menu_Selection_Missile                                    ;819D77;
-    JSL.L Draw_Border_Around_SAMUS_DATA                                  ;819D7B;
+;;; $BA35: Draw border around SAMUS DATA ;;;
+    LDA.W #$0E00
+    STA.B DP_Temp03
+    LDX.W #$0080
+    LDY.W #$0010
+    LDA.W #$0048
+    JSL.L AddSpritemapFrom_82C569_TableToOAM
     LDX.W #$0004                                                         ;819D7F;
     JSR.W Draw_FileSelect_Slot_SamusHelmet                               ;819D82;
     LDX.W #$0006                                                         ;819D85;
@@ -3710,7 +3804,13 @@ FileSelectMenu_Index3_TitleSequenceToMain_FadeIn:
     LDA.W FileSelectMenu_SelectionMissile_Coordinates_Xposition,X        ;81A067;
     STA.W Mode7Object_InstListPointers                                   ;81A06A;
     JSL.L Draw_Menu_Selection_Missile                                    ;81A06D;
-    JSL.L Draw_Border_Around_SAMUS_DATA                                  ;81A071;
+;;; $BA35: Draw border around SAMUS DATA ;;;
+    LDA.W #$0E00
+    STA.B DP_Temp03
+    LDX.W #$0080
+    LDY.W #$0010
+    LDA.W #$0048
+    JSL.L AddSpritemapFrom_82C569_TableToOAM
     JSL.L HandleFadingIn                                                 ;81A075;
     LDA.B DP_Brightness                                                  ;81A079;
     AND.W #$000F                                                         ;81A07B;
@@ -3895,8 +3995,13 @@ Draw_FileSelection_Time:
 ;;; $A1C2: File select menu - index 4: main ;;;
 FileSelectMenu_Index4_Main:
 ; FileSelectMenuSelection and SaveSlotSelected are shared RAM
-    REP #$30                                                             ;81A1C2;
-    JSL.L Draw_Border_Around_SAMUS_DATA                                  ;81A1C4;
+;;; $BA35: Draw border around SAMUS DATA ;;;
+    LDA.W #$0E00
+    STA.B DP_Temp03
+    LDX.W #$0080
+    LDY.W #$0010
+    LDA.W #$0048
+    JSL.L AddSpritemapFrom_82C569_TableToOAM
     JSL.L Draw_Menu_Selection_Missile                                    ;81A1C8;
     LDX.W #$0004                                                         ;81A1CC;
     JSR.W Draw_FileSelect_Slot_SamusHelmet                               ;81A1CF;
@@ -4680,7 +4785,7 @@ DrawAreaSelectMapLabels:
     STZ.B DP_Temp03                                                      ;81A97E;
     LDX.W #$0080                                                         ;81A980;
     LDY.W #$0010                                                         ;81A983;
-    LDA.L AreaSelect_SpritemapBaseIndex                                  ;81A986;
+    LDA.W #$0038
     JSL.L AddSpritemapFrom_82C569_TableToOAM                             ;81A98A;
     STZ.B DP_Temp1C                                                      ;81A98E;
 
@@ -4743,8 +4848,7 @@ DrawAreaSelectMapLabels:
     TAX                                                                  ;81A9FD;
     LDA.W FileSelectMapArea_IndexTable,X                                 ;81A9FE;
     CLC                                                                  ;81AA01;
-    ADC.L AreaSelect_SpritemapBaseIndex                                  ;81AA02;
-    INC                                                                  ;81AA06;
+    ADC.W #$0039
     PLX                                                                  ;81AA07;
     JSL.L AddSpritemapFrom_82C569_TableToOAM                             ;81AA08;
 

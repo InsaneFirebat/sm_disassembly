@@ -1334,12 +1334,6 @@ SetSamusDeathSequencePose:
     db $05 ; 1Bh: Shinespark / crystal flash / drained by metroid / damaged by MB's attacks
 
 
-;;; $B43C: Draw Samus starting death animation ;;;
-Draw_Samus_Starting_Death_Animation_JSL:
-    JSL.L Draw_Samus_Starting_Death_Animation                            ;9BB43C;
-    RTL                                                                  ;9BB440;
-
-
 ;;; $B441: Handle death animation flashing ;;;
 Handle_Death_Animation_Flashing:
 ;; Returns:

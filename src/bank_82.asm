@@ -1763,7 +1763,7 @@ GameState_D_Pausing_LoadingPauseScreen:
     STA.B VRAMWrite.size,X
     LDA.W #PauseMenuMapTilemap+$640
     STA.B VRAMWrite.src,X
-    LDA.B #PauseMenuMapTilemap>>8
+    LDA.W #PauseMenuMapTilemap+$640>>8
     STA.B VRAMWrite.src+1,X
     LDA.B DP_BG2TilemapAddrSize
     AND.W #$00FC
@@ -2364,7 +2364,7 @@ PauseMenu_2_MapScreenToEquipmentScreen_FadingOut:
 ;;; $9186: Pause menu - index 5: equipment screen to map screen - fading out ;;;
 PauseMenu_5_EquipmentScreenToMapScreen_FadingOut:
     JSR.W EquipmentScreen_DrawItemSelector                               ;829186;
-    JSR.W EquipmentScreen_DisplayReserveTankAmount_shell                 ;829189;
+    JSR.W EquipmentScreen_DisplayReserveTankAmount
     JSR.W Handle_PauseMenu_L_R_PressedHighlight                          ;82918C;
     JSL.L HandleFadingOut                                                ;82918F;
     SEP #$20                                                             ;829193;
@@ -2446,7 +2446,7 @@ PauseMenu_7_EquipmentScreenToMapScreen_FadingIn:
 ;;; $9231: Pause menu - index 4: map screen to equipment screen - fading in ;;;
 PauseMenu_4_MapScreenToEquipmentScreen_FadingIn:
     JSR.W EquipmentScreen_DrawItemSelector                               ;829231;
-    JSR.W EquipmentScreen_DisplayReserveTankAmount_shell                 ;829234;
+    JSR.W EquipmentScreen_DisplayReserveTankAmount
     LDA.W #$0001                                                         ;829237;
     STA.W PauseMenu_MenuMode                                             ;82923A;
     JSL.L HandleFadingIn                                                 ;82923D;
@@ -2610,7 +2610,7 @@ Draw_PauseMenu_During_FadeOut:
 
   .equipScreen:
     JSR.W EquipmentScreen_DrawItemSelector                               ;82935E;
-    JSR.W EquipmentScreen_DisplayReserveTankAmount_shell                 ;829361;
+    JSR.W EquipmentScreen_DisplayReserveTankAmount
     JMP.W Handle_PauseMenu_L_R_PressedHighlight                          ;829364;
 
 
@@ -4072,7 +4072,7 @@ Load_EquipmentScreen_EquipmentTilemaps:
     STA.B DP_Temp05                                                      ;82A13D;
     LDA.B [DP_Temp03],Y                                                  ;82A13F;
     STA.B DP_Temp00                                                      ;82A141;
-    LDX.W EquipmentScreenData_PointersEquipmentTIlemaps_tanks            ;82A143;
+    LDX.W #EquipmentScreenTilemaps_modeManual
     LDA.W #$000E                                                         ;82A146;
     STA.B DP_Temp16                                                      ;82A149;
     JSR.W Copy_Bytes_from_X_to_7ERAM                                     ;82A14B;
@@ -4083,7 +4083,7 @@ Load_EquipmentScreen_EquipmentTilemaps:
     STA.B DP_Temp05                                                      ;82A159;
     LDA.B [DP_Temp03],Y                                                  ;82A15B;
     STA.B DP_Temp00                                                      ;82A15D;
-    LDX.W EquipmentScreenData_PointersEquipmentTIlemaps_tanksReserve     ;82A15F;
+    LDX.W #EquipmentScreenTilemaps_reserveTank
     LDA.W #$000E                                                         ;82A162;
     STA.B DP_Temp16                                                      ;82A165;
     JSR.W Copy_Bytes_from_X_to_7ERAM                                     ;82A167;
@@ -4554,7 +4554,7 @@ Handle_PauseScreen_L_R_Input:
     LDA.W PauseMenu_ButtonLabelMode                                      ;82A525;
     CMP.W #$0002                                                         ;82A528;
     BEQ .return                                                          ;82A52B;
-    LDA.W Duration_Of_L_R_Button_Pressed_Highlight                       ;82A52D;
+    LDA.W #$0005
     STA.W PauseMenu_ButtonPressedHighlightTimer                          ;82A530;
     LDA.W #$0002                                                         ;82A533;
     STA.W PauseMenu_MenuIndex                                            ;82A536;
@@ -4569,9 +4569,8 @@ Handle_PauseScreen_L_R_Input:
   .L:
     LDA.W PauseMenu_ButtonLabelMode                                      ;82A547;
     BEQ .return                                                          ;82A54A;
-    LDA.W Duration_Of_L_R_Button_Pressed_Highlight                       ;82A54C;
+    LDA.W #$0005
     STA.W PauseMenu_ButtonPressedHighlightTimer                          ;82A54F;
-    LDA.W #$0005                                                         ;82A552;
     STA.W PauseMenu_MenuIndex                                            ;82A555;
 
   .highlightL:
@@ -4620,6 +4619,7 @@ EquipmentScreen_Draw_L_R_Highlight:
     LDX.W #$0018                                                         ;82A5A0;
     LDA.W #$0002                                                         ;82A5A3;
     JSR.W Draw_PauseScreen_SpriteAnimation                               ;82A5A6;
+    LDY.W #$00D0                                                         ;82A5A9;
     LDX.W #$00E8                                                         ;82A5AC;
     LDA.W #$0002                                                         ;82A5AF;
     JMP.W Draw_PauseScreen_SpriteAnimation
@@ -4652,7 +4652,7 @@ Handle_PauseScreen_StartButton:
     STA.B VRAMWrite.size,X
     LDA.W #PauseMenuMapTilemap+$640
     STA.B VRAMWrite.src,X
-    LDA.W #PauseMenuMapTilemap>>8
+    LDA.W #PauseMenuMapTilemap+$640>>8
     STA.B VRAMWrite.src+1,X
     LDA.B DP_BG2TilemapAddrSize
     AND.W #$00FC
@@ -5135,8 +5135,6 @@ Handle_PauseScreen_PaletteAnimation:
 
 ;;; $AB47: Equipment screen - set up reserve mode and determine initial selection ;;;
 EquipmentScreen_SetupReserveMode_and_DetermineInitialSelect:
-    PHP                                                                  ;82AB47;
-    REP #$30                                                             ;82AB48;
     LDA.B DP_BG1XScroll                                                  ;82AB4A;
     STA.B DP_BG4XScroll                                                  ;82AB4C;
     LDA.B DP_BG1YScroll                                                  ;82AB4E;
@@ -5159,7 +5157,7 @@ EquipmentScreen_SetupReserveMode_and_DetermineInitialSelect:
     LDA.W #$0004                                                         ;82AB75;
     STA.B DP_Temp12                                                      ;82AB78;
     LDX.W #$0000                                                         ;82AB7A;
-    LDY.W #$0000                                                         ;82AB7D;
+    TXY
 
   .loopTilemap:
     LDA.L PauseMenuMapTilemap+$A8E,X                                     ;82AB80;
@@ -5243,21 +5241,15 @@ EquipmentScreen_SetupReserveMode_and_DetermineInitialSelect:
     LDA.W ReserveEnergy                                                  ;82AC15;
     BEQ +                                                                ;82AC18;
     JSR.W EquipmentScreen_GlowingArrow_Solid_On                          ;82AC1A;
-    JSR.W EquipmentScreen_WriteSamusWireframeTilemap_and_BG1ToVRAM       ;82AC1D;
+    JMP.W EquipmentScreen_WriteSamusWireframeTilemap_and_BG1ToVRAM
 
-+   PLP                                                                  ;82AC20;
-    RTS                                                                  ;82AC21;
++   RTS                                                                  ;82AC21;
 
 
 ;;; $AC22: Equipment screen - transfer BG1 tilemap ;;;
 EquipmentScreen_TransferBG1Tilemap:
-    PHP                                                                  ;82AC22;
-    PHB                                                                  ;82AC23;
-    PHK                                                                  ;82AC24;
-    PLB                                                                  ;82AC25;
     SEP #$30                                                             ;82AC26;
-    LDA.B #$00                                                           ;82AC28;
-    STA.W $2116                                                          ;82AC2A;
+    STZ.W $2116                                                          ;82AC2A;
     LDA.B #$30                                                           ;82AC2D;
     STA.W $2117                                                          ;82AC2F;
     LDA.B #$80                                                           ;82AC32;
@@ -5270,25 +5262,20 @@ EquipmentScreen_TransferBG1Tilemap:
     STA.W $420B                                                          ;82AC45;
     STZ.B DP_BG1YScroll                                                  ;82AC48;
     STZ.B DP_BG1YScroll+1                                                ;82AC4A;
-    PLB                                                                  ;82AC4C;
-    PLP                                                                  ;82AC4D;
+    REP #$30
     RTL                                                                  ;82AC4E;
 
 
 ;;; $AC4F: Equipment screen - main ;;;
 EquipmentScreen_Main:
-    PHP                                                                  ;82AC4F;
-    REP #$30                                                             ;82AC50;
     LDA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82AC52;
     AND.W #$00FF                                                         ;82AC55;
     ASL                                                                  ;82AC58;
     TAX                                                                  ;82AC59;
     JSR.W (.pointers,X)                                                  ;82AC5A;
     JSR.W EquipmentScreen_DrawItemSelector                               ;82AC5D;
-    JSR.W EquipmentScreen_DisplayReserveTankAmount_shell                 ;82AC60;
-    JSR.W EquipmentScreen_WriteSamusWireframeTilemap_and_BG1ToVRAM       ;82AC63;
-    PLP                                                                  ;82AC66;
-    RTS                                                                  ;82AC67;
+    JSR.W EquipmentScreen_DisplayReserveTankAmount
+    JMP.W EquipmentScreen_WriteSamusWireframeTilemap_and_BG1ToVRAM
 
   .pointers:
     dw EquipmentScreen_Main_Tanks                                        ;82AC68;
@@ -5299,8 +5286,6 @@ EquipmentScreen_Main:
 
 ;;; $AC70: Equipment screen - main - tanks ;;;
 EquipmentScreen_Main_Tanks:
-    PHP                                                                  ;82AC70;
-    REP #$30                                                             ;82AC71;
     LDA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82AC73;
     XBA                                                                  ;82AC76;
     AND.W #$00FF                                                         ;82AC77;
@@ -5308,9 +5293,7 @@ EquipmentScreen_Main_Tanks:
     TAX                                                                  ;82AC7B;
     JSR.W (.pointers,X)                                                  ;82AC7C;
     JSR.W EquipmentScreen_Main_Tanks_DPadResponse                        ;82AC7F;
-    JSR.W EquipmentScreen_Main_Tanks_GlowingArrow                        ;82AC82;
-    PLP                                                                  ;82AC85;
-    RTS                                                                  ;82AC86;
+    JMP.W EquipmentScreen_Main_Tanks_GlowingArrow
 
   .pointers:
     dw EquipmentScreen_Main_Tanks_Mode                                   ;82AC87;
@@ -5323,8 +5306,6 @@ EquipmentScreen_Main_Tanks_DPadResponse:
 ; it should really clear PauseMenu_ReserveTankSoundDelayCounter to stop the manual reserve tank refill if one happens to be active
 ; The consequence of not doing this is that: starting a manual refill, moving the cursor away,
 ; and moving the cursor back to reserve tank again; causes the refill to automatically continue without needing to press A
-    PHP                                                                  ;82AC8B;
-    REP #$30                                                             ;82AC8C;
     LDA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82AC8E;
     STA.B DP_Temp12                                                      ;82AC91;
     LDA.B DP_Controller1New                                              ;82AC93;
@@ -5339,10 +5320,9 @@ EquipmentScreen_Main_Tanks_DPadResponse:
 
   .moveToBoots:
     LDX.W #$0000                                                         ;82ACAA;
-    JSR.W EquipmentScreen_MoveLowerOnBoots                               ;82ACAD;
+    JMP.W EquipmentScreen_MoveLowerOnBoots
 
   .exit:
-    PLP                                                                  ;82ACB0;
     RTS                                                                  ;82ACB1;
 
   .notRight:
@@ -5365,12 +5345,11 @@ EquipmentScreen_Main_Tanks_DPadResponse:
     BEQ .moveToBeams                                                     ;82ACDC;
     LDA.W #$0037                                                         ;82ACDE;
     JSL.L QueueSound_Lib1_Max6                                           ;82ACE1;
-    BRA .return                                                          ;82ACE5;
+    RTS
 
   .moveToBeams:
     LDX.W #$0000                                                         ;82ACE7;
-    JSR.W EquipmentScreen_MoveLowerOnBeams                               ;82ACEA;
-    BRA .return                                                          ;82ACED;
+    JMP.W EquipmentScreen_MoveLowerOnBeams
 
   .up:
     LDA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82ACEF;
@@ -5384,14 +5363,11 @@ EquipmentScreen_Main_Tanks_DPadResponse:
     STA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82AD05;
 
   .return:
-    PLP                                                                  ;82AD08;
     RTS                                                                  ;82AD09;
 
 
 ;;; $AD0A: Equipment screen - main - tanks - glowing arrow ;;;
 EquipmentScreen_Main_Tanks_GlowingArrow:
-    PHP                                                                  ;82AD0A;
-    REP #$30                                                             ;82AD0B;
     LDA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82AD0D;
     BIT.W #$00FF                                                         ;82AD10;
     BNE .solidOff                                                        ;82AD13;
@@ -5399,14 +5375,10 @@ EquipmentScreen_Main_Tanks_GlowingArrow:
     AND.W #$00FF                                                         ;82AD16;
     ASL                                                                  ;82AD19;
     TAX                                                                  ;82AD1A;
-    JSR.W (.pointers,X)                                                  ;82AD1B;
-    PLP                                                                  ;82AD1E;
-    RTS                                                                  ;82AD1F;
+    JMP.W (.pointers,X)
 
   .solidOff:
-    JSR.W EquipmentScreen_GlowingArrow_Solid_Off                         ;82AD20;
-    PLP                                                                  ;82AD23;
-    RTS                                                                  ;82AD24;
+    JMP.W EquipmentScreen_GlowingArrow_Solid_Off                         ;82AD20;
 
   .pointers:
     dw EquipmentScreen_GlowingArrow_Animated                             ;82AD25;
@@ -5426,16 +5398,14 @@ EquipmentScreen_GlowingArrow_Animated:
     STA.L Palettes_BG12P6+$C                                             ;82AD3C;
     LDA.W .paletteB,X                                                    ;82AD40;
     STA.L Palettes_BG12P6+$16                                            ;82AD43;
-    JSR.W EquipmentScreen_Enable_EnergyArrowGlow                         ;82AD47;
-    RTS                                                                  ;82AD4A;
+    JMP.W EquipmentScreen_Enable_EnergyArrowGlow
 
   .disableGlow:
     LDA.W #$039E                                                         ;82AD4B;
     STA.L Palettes_BG12P6+$16                                            ;82AD4E;
     LDA.W #$0156                                                         ;82AD52;
     STA.L Palettes_BG12P6+$C                                             ;82AD55;
-    JSR.W EquipmentScreen_Disable_EnergyArrowGlow                        ;82AD59;
-    RTS                                                                  ;82AD5C;
+    JMP.W EquipmentScreen_Disable_EnergyArrowGlow
 
   .palette6:
     dw $039E,$077D,$0B5C,$0F5B,$133A,$171A,$1F19,$22F8,$26D7,$2AD6,$2EB6,$3695,$3A94,$3E73,$4253,$4A52
@@ -5452,8 +5422,7 @@ EquipmentScreen_GlowingArrow_Solid_On:
     STA.L Palettes_BG12P6+$16                                            ;82ADE0;
     LDA.W #$0156                                                         ;82ADE4;
     STA.L Palettes_BG12P6+$C                                             ;82ADE7;
-    JSR.W EquipmentScreen_Enable_EnergyArrowGlow                         ;82ADEB;
-    RTS                                                                  ;82ADEE;
+    JMP.W EquipmentScreen_Enable_EnergyArrowGlow
 
 
 ;;; $ADEF: Equipment screen - glowing arrow - solid - off ;;;
@@ -5462,16 +5431,11 @@ EquipmentScreen_GlowingArrow_Solid_Off:
     STA.L Palettes_BG12P6+$16                                            ;82ADF2;
     LDA.W #$0156                                                         ;82ADF6;
     STA.L Palettes_BG12P6+$C                                             ;82ADF9;
-    JSR.W EquipmentScreen_Disable_EnergyArrowGlow                        ;82ADFD;
-    RTS                                                                  ;82AE00;
+    JMP.W EquipmentScreen_Disable_EnergyArrowGlow
 
 
 ;;; $AE01: Equipment screen - enable energy arrow glow ;;;
 EquipmentScreen_Enable_EnergyArrowGlow:
-    PHP                                                                  ;82AE01;
-    REP #$30                                                             ;82AE02;
-    PHP                                                                  ;82AE04;
-    REP #$30                                                             ;82AE05;
     LDY.W #$0010                                                         ;82AE07;
     LDX.W #$0000                                                         ;82AE0A;
 
@@ -5487,9 +5451,6 @@ EquipmentScreen_Enable_EnergyArrowGlow:
     DEY                                                                  ;82AE21;
     DEY                                                                  ;82AE22;
     BNE .loopVertical                                                    ;82AE23;
-    PLP                                                                  ;82AE25;
-    PHP                                                                  ;82AE26;
-    REP #$30                                                             ;82AE27;
     LDY.W #$0004                                                         ;82AE29;
     LDX.W #$0000                                                         ;82AE2C;
 
@@ -5503,17 +5464,11 @@ EquipmentScreen_Enable_EnergyArrowGlow:
     DEY                                                                  ;82AE3F;
     DEY                                                                  ;82AE40;
     BNE .loopHorizontal                                                  ;82AE41;
-    PLP                                                                  ;82AE43;
-    PLP                                                                  ;82AE44;
     RTS                                                                  ;82AE45;
 
 
 ;;; $AE46: Equipment screen - disable energy arrow glow ;;;
 EquipmentScreen_Disable_EnergyArrowGlow:
-    PHP                                                                  ;82AE46;
-    REP #$30                                                             ;82AE47;
-    PHP                                                                  ;82AE49;
-    REP #$30                                                             ;82AE4A;
     LDY.W #$0010                                                         ;82AE4C;
     LDX.W #$0000                                                         ;82AE4F;
 
@@ -5529,9 +5484,6 @@ EquipmentScreen_Disable_EnergyArrowGlow:
     DEY                                                                  ;82AE66;
     DEY                                                                  ;82AE67;
     BNE .loopVertical                                                    ;82AE68;
-    PLP                                                                  ;82AE6A;
-    PHP                                                                  ;82AE6B;
-    REP #$30                                                             ;82AE6C;
     LDY.W #$0004                                                         ;82AE6E;
     LDX.W #$0000                                                         ;82AE71;
 
@@ -5545,15 +5497,11 @@ EquipmentScreen_Disable_EnergyArrowGlow:
     DEY                                                                  ;82AE84;
     DEY                                                                  ;82AE85;
     BNE .loopHorizontal                                                  ;82AE86;
-    PLP                                                                  ;82AE88;
-    PLP                                                                  ;82AE89;
     RTS                                                                  ;82AE8A;
 
 
 ;;; $AE8B: Equipment screen - main - tanks - mode ;;;
 EquipmentScreen_Main_Tanks_Mode:
-    PHP                                                                  ;82AE8B;
-    REP #$30                                                             ;82AE8C;
     LDA.B DP_Controller1New                                              ;82AE8E;
     BIT.W #$0080                                                         ;82AE90;
     BEQ .return                                                          ;82AE93;
@@ -5566,9 +5514,14 @@ EquipmentScreen_Main_Tanks_Mode:
     BNE .manual                                                          ;82AEA7;
     LDA.W #$0002                                                         ;82AEA9;
     STA.W ReserveTankMode                                                ;82AEAC;
-    JSR.W EquipmentScreen_ClearHUDReserveAUTOTilemap                     ;82AEAF;
-    PHP                                                                  ;82AEB2;
-    REP #$30                                                             ;82AEB3;
+;;; $AF33: Equipment screen - clear HUD reserve AUTO tilemap ;;;
+    LDA.W #$2C0F
+    STA.L HUDTilemap_Row1AutoReserve
+    STA.L HUDTilemap_Row1AutoReserve+2
+    STA.L HUDTilemap_Row2AutoReserve
+    STA.L HUDTilemap_Row2AutoReserve+2
+    STA.L HUDTilemap_Row3AutoReserve
+    STA.L HUDTilemap_Row3AutoReserve+2
     LDY.W #$0008                                                         ;82AEB5;
     LDX.W #$0000                                                         ;82AEB8;
 
@@ -5582,15 +5535,11 @@ EquipmentScreen_Main_Tanks_Mode:
     DEY                                                                  ;82AECC;
     DEY                                                                  ;82AECD;
     BNE .loopAuto                                                        ;82AECE;
-    PLP                                                                  ;82AED0;
-    BRA .return                                                          ;82AED1;
+    RTS
 
   .manual:
     LDA.W #$0001                                                         ;82AED3;
     STA.W ReserveTankMode                                                ;82AED6;
-    JSR.W EquipmentScreen_SetHUDReserveAUTOTilemap                       ;82AED9;
-    PHP                                                                  ;82AEDC;
-    REP #$30                                                             ;82AEDD;
     LDY.W #$0008                                                         ;82AEDF;
     LDX.W #$0000                                                         ;82AEE2;
 
@@ -5604,48 +5553,9 @@ EquipmentScreen_Main_Tanks_Mode:
     DEY                                                                  ;82AEF6;
     DEY                                                                  ;82AEF7;
     BNE .loopManual                                                      ;82AEF8;
-    PLP                                                                  ;82AEFA;
 
   .return:
-    PLP                                                                  ;82AEFB;
     RTS                                                                  ;82AEFC;
-
-
-;;; $AEFD: Equipment screen - set HUD reserve AUTO tilemap ;;;
-EquipmentScreen_SetHUDReserveAUTOTilemap:
-; BUG: DB isn't set to $80 (where $998B/$9997 are HUD tilemaps),
-; so this loads garbage that is immediately overwritten by the HUD update routine ($80:9B44).
-; In short, this routine is useless
-    LDY.W #Tilemap_HUD_autoReserve                                       ;82AEFD;
-    LDA.W ReserveEnergy                                                  ;82AF00;
-    BNE +                                                                ;82AF03;
-    LDY.W #Tilemap_HUD_emptyAutoReserve                                  ;82AF05;
-
-+   LDA.W $0000,Y                                                        ;82AF08;
-    STA.L HUDTilemap_Row1AutoReserve                                     ;82AF0B;
-    LDA.W $0002,Y                                                        ;82AF0F;
-    STA.L HUDTilemap_Row1AutoReserve+2                                   ;82AF12;
-    LDA.W $0004,Y                                                        ;82AF16;
-    STA.L HUDTilemap_Row2AutoReserve                                     ;82AF19;
-    LDA.W $0006,Y                                                        ;82AF1D;
-    STA.L HUDTilemap_Row2AutoReserve+2                                   ;82AF20;
-    LDA.W $0008,Y                                                        ;82AF24;
-    STA.L HUDTilemap_Row3AutoReserve                                     ;82AF27;
-    LDA.W $000A,Y                                                        ;82AF2B;
-    STA.L HUDTilemap_Row3AutoReserve+2                                   ;82AF2E;
-    RTS                                                                  ;82AF32;
-
-
-;;; $AF33: Equipment screen - clear HUD reserve AUTO tilemap ;;;
-EquipmentScreen_ClearHUDReserveAUTOTilemap:
-    LDA.W #$2C0F                                                         ;82AF33;
-    STA.L HUDTilemap_Row1AutoReserve                                     ;82AF36;
-    STA.L HUDTilemap_Row1AutoReserve+2                                   ;82AF3A;
-    STA.L HUDTilemap_Row2AutoReserve                                     ;82AF3E;
-    STA.L HUDTilemap_Row2AutoReserve+2                                   ;82AF42;
-    STA.L HUDTilemap_Row3AutoReserve                                     ;82AF46;
-    STA.L HUDTilemap_Row3AutoReserve+2                                   ;82AF4A;
-    RTS                                                                  ;82AF4E;
 
 
 ;;; $AF4F: Equipment screen - main - tanks - reserve tank ;;;
@@ -5656,8 +5566,6 @@ EquipmentScreen_Main_Tanks_ReserveTank:
 ; (which is a reasonable thing to do if you don't assume that [$BF04] is 1)
 ; The thing is, when Samus' health is fully replenished, the branch at $AF96 is taken to this same code,
 ; which IMO is a mistake, I think that branch should go $AFB3 instead, merely stopping the refill
-    PHP                                                                  ;82AF4F;
-    REP #$30                                                             ;82AF50;
     LDA.W PauseMenu_ReserveTankSoundDelayCounter                         ;82AF52;
     BNE .soundTimer                                                      ;82AF55;
     LDA.B DP_Controller1New                                              ;82AF57;
@@ -5681,8 +5589,7 @@ EquipmentScreen_Main_Tanks_ReserveTank:
 
   .incrementEnergy:
     LDA.W Energy                                                         ;82AF81;
-    CLC                                                                  ;82AF84;
-    ADC.W ReserveTank_TransferEnergyPerFrame                             ;82AF85;
+    INC
     STA.W Energy                                                         ;82AF88;
     CMP.W MaxEnergy                                                      ;82AF8B;
     BMI .decrementReserve                                                ;82AF8E;
@@ -5692,8 +5599,7 @@ EquipmentScreen_Main_Tanks_ReserveTank:
 
   .decrementReserve:
     LDA.W ReserveEnergy                                                  ;82AF98;
-    SEC                                                                  ;82AF9B;
-    SBC.W ReserveTank_TransferEnergyPerFrame                             ;82AF9C;
+    DEC
     STA.W ReserveEnergy                                                  ;82AF9F;
     BEQ .emptyReserve                                                    ;82AFA2;
     BPL .return                                                          ;82AFA4;
@@ -5709,14 +5615,11 @@ EquipmentScreen_Main_Tanks_ReserveTank:
     STZ.W PauseMenu_EquipmentScreenCategoryIndex                         ;82AFB9;
 
   .return:
-    PLP                                                                  ;82AFBC;
     RTS                                                                  ;82AFBD;
 
 
 ;;; $AFBE: Equipment screen - main - weapons ;;;
 EquipmentScreen_Main_Weapons:
-    PHP                                                                  ;82AFBE;
-    REP #$30                                                             ;82AFBF;
     JSR.W EquipmentScreen_Main_Weapons_MoveResponse                      ;82AFC1;
     LDA.W EquippedBeams                                                  ;82AFC4;
     STA.B DP_Temp24                                                      ;82AFC7;
@@ -5725,17 +5628,14 @@ EquipmentScreen_Main_Weapons:
     LDA.W #$000A                                                         ;82AFCE;
     STA.B DP_Temp18                                                      ;82AFD1;
     JSR.W EquipmentScreen_Main_ButtonResponse                            ;82AFD3;
-    JSR.W EquipmentScreen_Main_Weapons_PlasmaSpazerCheck                 ;82AFD6;
+    JMP.W EquipmentScreen_Main_Weapons_PlasmaSpazerCheck
 
   .return:
-    PLP                                                                  ;82AFD9;
     RTS                                                                  ;82AFDA;
 
 
 ;;; $AFDB: Equipment screen - main - weapons - move response ;;;
 EquipmentScreen_Main_Weapons_MoveResponse:
-    PHP                                                                  ;82AFDB;
-    REP #$30                                                             ;82AFDC;
     LDA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82AFDE;
     STA.B DP_Temp12                                                      ;82AFE1;
     LDA.B DP_Controller1New                                              ;82AFE3;
@@ -5747,13 +5647,11 @@ EquipmentScreen_Main_Weapons_MoveResponse:
     JSR.W EquipmentScreen_MoveLowerOnSuitsMisc                           ;82AFF2;
     BEQ .return                                                          ;82AFF8;
     LDX.W #$0000                                                         ;82AFFA;
-    JSR.W EquipmentScreen_MoveLowerOnBoots                               ;82AFFD;
-    BRA .return                                                          ;82B000;
+    JMP.W EquipmentScreen_MoveLowerOnBoots
 
   .top:
     LDX.W #$0000                                                         ;82B002;
-    JSR.W EquipmentScreen_MoveLowerOnSuitsMisc                           ;82B005;
-    BRA .return                                                          ;82B008;
+    JMP.W EquipmentScreen_MoveLowerOnSuitsMisc
 
   .rightEnd:
     BIT.W #$0400                                                         ;82B00A;
@@ -5781,7 +5679,7 @@ EquipmentScreen_Main_Weapons_MoveResponse:
     BNE .return                                                          ;82B03D;
     LDA.B DP_Temp12                                                      ;82B03F;
     STA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82B041;
-    BRA .return                                                          ;82B044;
+    RTS
 
   .down:
     LDA.W HyperBeam                                                      ;82B046;
@@ -5797,10 +5695,9 @@ EquipmentScreen_Main_Weapons_MoveResponse:
     AND.W #$00FF                                                         ;82B05E;
     ASL                                                                  ;82B061;
     TAX                                                                  ;82B062;
-    JSR.W EquipmentScreen_MoveLowerOnBeams                               ;82B063;
+    JMP.W EquipmentScreen_MoveLowerOnBeams
 
   .return:
-    PLP                                                                  ;82B066;
     RTS                                                                  ;82B067;
 
 
@@ -5808,8 +5705,6 @@ EquipmentScreen_Main_Weapons_MoveResponse:
 EquipmentScreen_Main_Weapons_PlasmaSpazerCheck:
 ;; Parameters:
 ;;     $24: Previously equipped beams
-    PHP                                                                  ;82B068;
-    REP #$30                                                             ;82B069;
     LDA.B DP_Temp24                                                      ;82B06B;
     EOR.W #$FFFF                                                         ;82B06D;
     AND.W EquippedBeams                                                  ;82B070;
@@ -5825,7 +5720,7 @@ EquipmentScreen_Main_Weapons_PlasmaSpazerCheck:
     BEQ .return                                                          ;82B08A;
     AND.W #$FFFB                                                         ;82B08C;
     STA.W EquippedBeams                                                  ;82B08F;
-    LDA.W EquipmentScreenData_RAMTilemapOffsets_weapons_spazer           ;82B092;
+    LDA.W #$3CC8
     STA.B DP_Temp00                                                      ;82B095;
     BRA .merge                                                           ;82B097;
 
@@ -5838,7 +5733,7 @@ EquipmentScreen_Main_Weapons_PlasmaSpazerCheck:
     BEQ .return                                                          ;82B0A6;
     AND.W #$FFF7                                                         ;82B0A8;
     STA.W EquippedBeams                                                  ;82B0AB;
-    LDA.W EquipmentScreenData_RAMTilemapOffsets_weapons_plasma           ;82B0AE;
+    LDA.W #$3D08
     STA.B DP_Temp00                                                      ;82B0B1;
 
   .merge:
@@ -5846,29 +5741,22 @@ EquipmentScreen_Main_Weapons_PlasmaSpazerCheck:
     STA.B DP_Temp12                                                      ;82B0B6;
     LDA.W #$000A                                                         ;82B0B8;
     STA.B DP_Temp16                                                      ;82B0BB;
-    JSR.W Copy_Bytes_of_Palette_from_7E_to_12                            ;82B0BD;
+    JMP.W Copy_Bytes_of_Palette_from_7E_to_12
 
   .return:
-    PLP                                                                  ;82B0C0;
     RTS                                                                  ;82B0C1;
 
 
 ;;; $B0C2: Equipment screen - main - suit/misc. ;;;
 EquipmentScreen_Main_SuitsMisc:
-    PHP                                                                  ;82B0C2;
-    REP #$30                                                             ;82B0C3;
     JSR.W EquipmentScreen_SuitsMisc_MoveResponse                         ;82B0C5;
     LDA.W #$0012                                                         ;82B0C8;
     STA.B DP_Temp18                                                      ;82B0CB;
-    JSR.W EquipmentScreen_Main_ButtonResponse                            ;82B0CD;
-    PLP                                                                  ;82B0D0;
-    RTS                                                                  ;82B0D1;
+    JMP.W EquipmentScreen_Main_ButtonResponse
 
 
 ;;; $B0D2: Equipment screen - suit/misc. - move response ;;;
 EquipmentScreen_SuitsMisc_MoveResponse:
-    PHP                                                                  ;82B0D2;
-    REP #$30                                                             ;82B0D3;
     LDA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B0D5;
     STA.B DP_Temp12                                                      ;82B0D8;
     LDA.B DP_Controller1New                                              ;82B0DA;
@@ -5884,8 +5772,7 @@ EquipmentScreen_SuitsMisc_MoveResponse:
 
   .topOfBeams:
     LDX.W #$0000                                                         ;82B0F6;
-    JSR.W EquipmentScreen_MoveLowerOnBeams                               ;82B0F9;
-    BRA .return                                                          ;82B0FC;
+    JMP.W EquipmentScreen_MoveLowerOnBeams
 
   .leftEnd:
     BIT.W #$0800                                                         ;82B0FE;
@@ -5910,8 +5797,7 @@ EquipmentScreen_SuitsMisc_MoveResponse:
 
   .moveToBoots:
     LDX.W #$0000                                                         ;82B12B;
-    JSR.W EquipmentScreen_MoveLowerOnBoots                               ;82B12E;
-    BRA .return                                                          ;82B131;
+    JMP.W EquipmentScreen_MoveLowerOnBoots
 
   .up:
     LDA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82B133;
@@ -5925,29 +5811,22 @@ EquipmentScreen_SuitsMisc_MoveResponse:
     AND.W #$00FF                                                         ;82B146;
     ASL                                                                  ;82B149;
     TAX                                                                  ;82B14A;
-    JSR.W EquipmentScreen_MoveHigherOnSuitsMisc                          ;82B14B;
+    JMP.W EquipmentScreen_MoveHigherOnSuitsMisc
 
   .return:
-    PLP                                                                  ;82B14E;
     RTS                                                                  ;82B14F;
 
 
 ;;; $B150: Equipment screen - main - boots ;;;
 EquipmentScreen_Main_Boots:
-    PHP                                                                  ;82B150;
-    REP #$30                                                             ;82B151;
     JSR.W EquipmentScreen_Main_Boots_MoveResponse                        ;82B153;
     LDA.W #$0012                                                         ;82B156;
     STA.B DP_Temp18                                                      ;82B159;
-    JSR.W EquipmentScreen_Main_ButtonResponse                            ;82B15B;
-    PLP                                                                  ;82B15E;
-    RTS                                                                  ;82B15F;
+    JMP.W EquipmentScreen_Main_ButtonResponse
 
 
 ;;; $B160: Equipment screen - main - boots - move response ;;;
 EquipmentScreen_Main_Boots_MoveResponse:
-    PHP                                                                  ;82B160;
-    REP #$30                                                             ;82B161;
     LDA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B163;
     STA.B DP_Temp12                                                      ;82B166;
     LDA.B DP_Controller1New                                              ;82B168;
@@ -5966,7 +5845,7 @@ EquipmentScreen_Main_Boots_MoveResponse:
     BNE .return                                                          ;82B188;
     LDA.B DP_Temp12                                                      ;82B18A;
     STA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B18C;
-    BRA .return                                                          ;82B18F;
+    RTS
 
   .leftEnd:
     BIT.W #$0400                                                         ;82B191;
@@ -5990,8 +5869,7 @@ EquipmentScreen_Main_Boots_MoveResponse:
 
   .moveToSuitsMisc:
     LDX.W #$000A                                                         ;82B1BB;
-    JSR.W EquipmentScreen_MoveHigherOnSuitsMisc                          ;82B1BE;
-    BRA .return                                                          ;82B1C1;
+    JMP.W EquipmentScreen_MoveHigherOnSuitsMisc
 
   .down:
     LDA.W PauseMenu_EquipmentScreenItemIndex-1                           ;82B1C3;
@@ -6005,45 +5883,33 @@ EquipmentScreen_Main_Boots_MoveResponse:
     AND.W #$00FF                                                         ;82B1D6;
     ASL                                                                  ;82B1D9;
     TAX                                                                  ;82B1DA;
-    JSR.W EquipmentScreen_MoveLowerOnBoots                               ;82B1DB;
+    JMP.W EquipmentScreen_MoveLowerOnBoots
 
   .return:
-    PLP                                                                  ;82B1DE;
     RTS                                                                  ;82B1DF;
 
 
 ;;; $B1E0: Equipment screen - write Samus wireframe tilemap and queue transfer of BG1 to VRAM ;;;
 EquipmentScreen_WriteSamusWireframeTilemap_and_BG1ToVRAM:
-    PHP                                                                  ;82B1E0;
-    REP #$30                                                             ;82B1E1;
     JSR.W EquipmentScreen_WriteSamusWireframeTilemap                     ;82B1E3;
     LDX.B VRAMWriteStack                                                 ;82B1E6;
     LDA.W #$0500                                                         ;82B1E9;
     STA.B VRAMWrite.size,X                                               ;82B1EC;
-    INX                                                                  ;82B1EE;
-    INX                                                                  ;82B1EF;
     LDA.W #EquipmentScreenBG1Tilemap+$100                                ;82B1F0;
-    STA.B VRAMWrite.size,X                                               ;82B1F3;
-    INX                                                                  ;82B1F5;
-    INX                                                                  ;82B1F6;
-    SEP #$20                                                             ;82B1F7;
-    LDA.B #EquipmentScreenBG1Tilemap>>16                                 ;82B1F9;
-    STA.B VRAMWrite.size,X                                               ;82B1FB;
-    REP #$20                                                             ;82B1FD;
-    INX                                                                  ;82B1FF;
+    STA.B VRAMWrite.src,X
+    LDA.W #EquipmentScreenBG1Tilemap+$100>>8
+    STA.B VRAMWrite.src+1,X
     LDA.W #$3080                                                         ;82B200;
-    STA.B VRAMWrite.size,X                                               ;82B203;
-    INX                                                                  ;82B205;
-    INX                                                                  ;82B206;
-    STX.B VRAMWriteStack                                                 ;82B207;
-    PLP                                                                  ;82B20A;
+    STA.B VRAMWrite.dest,X
+    TXA
+    CLC
+    ADC #$0007
+    STA.B VRAMWriteStack
     RTS                                                                  ;82B20B;
 
 
 ;;; $B20C: Equipment screen - write Samus wireframe tilemap ;;;
 EquipmentScreen_WriteSamusWireframeTilemap:
-    PHP                                                                  ;82B20C;
-    REP #$30                                                             ;82B20D;
     LDA.W EquippedItems                                                  ;82B20F;
     AND.W #$0101                                                         ;82B212;
     LDX.W #$0000                                                         ;82B215;
@@ -6085,7 +5951,6 @@ EquipmentScreen_WriteSamusWireframeTilemap:
     TAX                                                                  ;82B250;
     DEC.B DP_Temp14                                                      ;82B251;
     BNE .loopRow                                                         ;82B253;
-    PLP                                                                  ;82B255;
     RTS                                                                  ;82B256;
 
   .bitmaps:
@@ -6105,8 +5970,6 @@ EquipmentScreen_WriteSamusWireframeTilemap:
 
 ;;; $B267: Equipment screen - draw item selector ;;;
 EquipmentScreen_DrawItemSelector:
-    PHP                                                                  ;82B267;
-    REP #$30                                                             ;82B268;
     LDA.W CollectedBeams                                                 ;82B26A;
     ORA.W CollectedItems                                                 ;82B26D;
     ORA.W MaxReserveEnergy                                               ;82B270;
@@ -6128,37 +5991,22 @@ EquipmentScreen_DrawItemSelector:
     LDA.W $0000,Y                                                        ;82B28F;
     TAX                                                                  ;82B292;
     DEX                                                                  ;82B293;
-    INY                                                                  ;82B294;
-    INY                                                                  ;82B295;
-    LDA.W $0000,Y                                                        ;82B296;
+    LDA.W $0002,Y
     TAY                                                                  ;82B299;
     LDA.W #$0003                                                         ;82B29A;
-    JSR.W Draw_PauseScreen_SpriteAnimation                               ;82B29D;
+    JMP.W Draw_PauseScreen_SpriteAnimation
 
   .return:
-    PLP                                                                  ;82B2A0;
     RTS                                                                  ;82B2A1;
-
-
-;;; $B2A2: Equipment screen - display reserve tank amount ;;;
-EquipmentScreen_DisplayReserveTankAmount_shell:
-    PHP                                                                  ;82B2A2;
-    REP #$30                                                             ;82B2A3;
-    JSR.W EquipmentScreen_DisplayReserveTankAmount                       ;82B2A5;
-    PLP                                                                  ;82B2A8;
-    RTS                                                                  ;82B2A9;
 
 
 ;;; $B2AA: Equipment screen - display reserve tank amount ;;;
 EquipmentScreen_DisplayReserveTankAmount:
-    PHP                                                                  ;82B2AA;
-    REP #$30                                                             ;82B2AB;
     STZ.B DP_Temp03                                                      ;82B2AD;
     JSR.W EquipmentScreen_Main_DisplayReserves_PaletteSetup              ;82B2AF;
     STZ.B DP_Temp34                                                      ;82B2B2;
     LDA.W MaxReserveEnergy                                               ;82B2B4;
     BNE +                                                                ;82B2B7;
-    PLP                                                                  ;82B2B9;
     RTS                                                                  ;82B2BA;
 
 +   STA.W $4204                                                          ;82B2BB;
@@ -6201,8 +6049,7 @@ EquipmentScreen_DisplayReserveTankAmount:
     PHY                                                                  ;82B2FC;
     LDA.W EquipmentScreen_ReserveTank_Xpositions,Y                       ;82B2FD;
     TAX                                                                  ;82B300;
-    LDY.W EquipmentScreen_ReserveTank_Yposition                          ;82B301;
-    DEY                                                                  ;82B304;
+    LDY.W #$005F
     LDA.W #$001B                                                         ;82B305;
     JSL.L AddSpritemapFrom_82C569_TableToOAM                             ;82B308;
     PLY                                                                  ;82B30C;
@@ -6253,13 +6100,14 @@ EquipmentScreen_DisplayReserveTankAmount:
     LDX.B DP_Temp34                                                      ;82B358;
     LDA.W EquipmentScreen_ReserveTank_Xpositions,X                       ;82B35A;
     TAX                                                                  ;82B35D;
-    LDY.W EquipmentScreen_ReserveTank_Yposition                          ;82B35E;
-    DEY                                                                  ;82B361;
+    LDY.W #$005F
     PLA                                                                  ;82B362;
     JSL.L AddSpritemapFrom_82C569_TableToOAM                             ;82B363;
     INC.B DP_Temp30                                                      ;82B367;
-    INC.B DP_Temp34                                                      ;82B369;
-    INC.B DP_Temp34                                                      ;82B36B;
+    LDA.B DP_Temp34
+    INC
+    INC
+    STA.B DP_Temp34
 
   .loopEmptyTanks:
     LDX.B DP_Temp34                                                      ;82B36D;
@@ -6268,20 +6116,20 @@ EquipmentScreen_DisplayReserveTankAmount:
     BPL +                                                                ;82B373;
     LDA.W EquipmentScreen_ReserveTank_Xpositions,X                       ;82B375;
     TAX                                                                  ;82B378;
-    LDY.W EquipmentScreen_ReserveTank_Yposition                          ;82B379;
-    DEY                                                                  ;82B37C;
+    LDY.W #$005F
     LDA.W #$0020                                                         ;82B37D;
     JSL.L AddSpritemapFrom_82C569_TableToOAM                             ;82B380;
-    INC.B DP_Temp34                                                      ;82B384;
-    INC.B DP_Temp34                                                      ;82B386;
+    LDA.B DP_Temp34
+    INC
+    INC
+    STA.B DP_Temp34
     INC.B DP_Temp30                                                      ;82B388;
     BRA .loopEmptyTanks                                                  ;82B38A;
 
 +   LDX.B DP_Temp34                                                      ;82B38C;
     LDA.W EquipmentScreen_ReserveTank_Xpositions,X                       ;82B38E;
     TAX                                                                  ;82B391;
-    LDY.W EquipmentScreen_ReserveTank_Yposition                          ;82B392;
-    DEY                                                                  ;82B395;
+    LDY.W #$005F
     LDA.W #$001F                                                         ;82B396;
     JSL.L AddSpritemapFrom_82C569_TableToOAM                             ;82B399;
     SEP #$20                                                             ;82B39D;
@@ -6311,7 +6159,6 @@ EquipmentScreen_DisplayReserveTankAmount:
     CLC                                                                  ;82B3CF;
     ADC.W #$0804                                                         ;82B3D0;
     STA.L EquipmentScreenBG1Tilemap+$310                                 ;82B3D3;
-    PLP                                                                  ;82B3D7;
     RTS                                                                  ;82B3D8;
 
   .spritemapIDs:
@@ -6323,8 +6170,6 @@ EquipmentScreen_DisplayReserveTankAmount:
 ;;; $B3F9: Equipment screen - main - display reserves - palette setup ;;;
 EquipmentScreen_Main_DisplayReserves_PaletteSetup:
 ; Sets $03 in preparation for a later call to $81:891F. Looks like the animation was unfinished/removed, so this always sets palette 3
-    PHP                                                                  ;82B3F9;
-    REP #$30                                                             ;82B3FA;
     LDA.W #$0600                                                         ;82B3FC;
     STA.B DP_Temp03                                                      ;82B3FF;
     LDA.W ReserveEnergy                                                  ;82B401;
@@ -6362,7 +6207,6 @@ EquipmentScreen_Main_DisplayReserves_PaletteSetup:
     STA.B DP_Temp03                                                      ;82B43B;
 
   .return:
-    PLP                                                                  ;82B43D;
     RTS                                                                  ;82B43E;
 
 
@@ -6386,8 +6230,6 @@ EquipmentScreen_MoveLowerOnBeams:
 ;; Parameters:
 ;;     X: Equipment screen item index to start search from
 ;;     $12: Equipment screen indices
-    PHP                                                                  ;82B456;
-    REP #$30                                                             ;82B457;
     LDA.W HyperBeam                                                      ;82B459;
     BNE .cancel                                                          ;82B45C;
 
@@ -6403,7 +6245,7 @@ EquipmentScreen_MoveLowerOnBeams:
   .cancel:
     LDA.B DP_Temp12                                                      ;82B46D;
     STA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B46F;
-    BRA .return                                                          ;82B472;
+    RTS
 
   .found:
     TXA                                                                  ;82B474;
@@ -6416,7 +6258,6 @@ EquipmentScreen_MoveLowerOnBeams:
     JSL.L QueueSound_Lib1_Max6                                           ;82B483;
 
   .return:
-    PLP                                                                  ;82B487;
     RTS                                                                  ;82B488;
 
 
@@ -6426,8 +6267,6 @@ EquipmentScreen_MoveHigherOnBeams:
 ;;     X: Equipment screen item index to start search from
 ;; Returns:
 ;;     A: FFFFh if not moved cursor
-    PHP                                                                  ;82B489;
-    REP #$30                                                             ;82B48A;
     LDA.W HyperBeam                                                      ;82B48C;
     BNE .cancel                                                          ;82B48F;
 
@@ -6441,7 +6280,7 @@ EquipmentScreen_MoveHigherOnBeams:
 
   .cancel:
     LDA.W #$FFFF                                                         ;82B49D;
-    BRA .return                                                          ;82B4A0;
+    RTS
 
   .found:
     LDA.W #$0037                                                         ;82B4A2;
@@ -6454,7 +6293,6 @@ EquipmentScreen_MoveHigherOnBeams:
     STA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B4B2;
 
   .return:
-    PLP                                                                  ;82B4B5;
     RTS                                                                  ;82B4B6;
 
 
@@ -6495,19 +6333,15 @@ EquipmentScreen_MoveHigherOnSuitsMisc:
 ;; Parameters:
 ;;     X: Equipment screen item index to start search from
 ;;     $12: Equipment screen indices
-    PHP                                                                  ;82B4E6;
-    REP #$30                                                             ;82B4E7;
-
-  .loop:
     LDA.W CollectedItems                                                 ;82B4E9;
     BIT.W EquipmentScreenData_EquipmentBitmasks_suitsMisc,X              ;82B4EC;
     BNE +                                                                ;82B4EF;
     DEX                                                                  ;82B4F1;
     DEX                                                                  ;82B4F2;
-    BPL .loop                                                            ;82B4F3;
+    BPL EquipmentScreen_MoveHigherOnSuitsMisc                            ;82B4F3;
     LDA.B DP_Temp12                                                      ;82B4F5;
     STA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B4F7;
-    BRA .return                                                          ;82B4FA;
+    RTS
 
 +   LDA.W #$0037                                                         ;82B4FC;
     JSL.L QueueSound_Lib1_Max6                                           ;82B4FF;
@@ -6517,9 +6351,6 @@ EquipmentScreen_MoveHigherOnSuitsMisc:
     AND.W #$FF00                                                         ;82B506;
     ORA.W #$0002                                                         ;82B509;
     STA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B50C;
-
-  .return:
-    PLP                                                                  ;82B50F;
     RTS                                                                  ;82B510;
 
 
@@ -6528,20 +6359,16 @@ EquipmentScreen_MoveLowerOnBoots:
 ;; Parameters:
 ;;     X: Equipment screen item index to start search from
 ;;     $12: Equipment screen indices
-    PHP                                                                  ;82B511;
-    REP #$30                                                             ;82B512;
-
-  .loop:
     LDA.W CollectedItems                                                 ;82B514;
     BIT.W EquipmentScreenData_EquipmentBitmasks_boots,X                  ;82B517;
     BNE +                                                                ;82B51A;
     INX                                                                  ;82B51C;
     INX                                                                  ;82B51D;
     CPX.W #$0006                                                         ;82B51E;
-    BMI .loop                                                            ;82B521;
+    BMI EquipmentScreen_MoveLowerOnBoots                                 ;82B521;
     LDA.B DP_Temp12                                                      ;82B523;
     STA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B525;
-    BRA .return                                                          ;82B528;
+    RTS
 
 +   LDA.W #$0037                                                         ;82B52A;
     JSL.L QueueSound_Lib1_Max6                                           ;82B52D;
@@ -6551,9 +6378,6 @@ EquipmentScreen_MoveLowerOnBoots:
     AND.W #$FF00                                                         ;82B534;
     ORA.W #$0003                                                         ;82B537;
     STA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B53A;
-
-  .return:
-    PLP                                                                  ;82B53D;
     RTS                                                                  ;82B53E;
 
 
@@ -6563,18 +6387,14 @@ EquipmentScreen_MoveHigherOnBoots:
 ;;     X: Equipment screen item index to start search from
 ;; Returns:
 ;;     A: FFFFh if not moved cursor
-    PHP                                                                  ;82B53F;
-    REP #$30                                                             ;82B540;
-
-  .loop:
     LDA.W CollectedItems                                                 ;82B542;
     BIT.W EquipmentScreenData_EquipmentBitmasks_boots,X                  ;82B545;
     BNE +                                                                ;82B548;
     DEX                                                                  ;82B54A;
     DEX                                                                  ;82B54B;
-    BPL .loop                                                            ;82B54C;
+    BPL EquipmentScreen_MoveHigherOnBoots                                ;82B54C;
     LDA.W #$FFFF                                                         ;82B54E;
-    BRA .return                                                          ;82B551;
+    RTS
 
 +   LDA.W #$0037                                                         ;82B553;
     JSL.L QueueSound_Lib1_Max6                                           ;82B556;
@@ -6584,9 +6404,6 @@ EquipmentScreen_MoveHigherOnBoots:
     AND.W #$FF00                                                         ;82B55D;
     ORA.W #$0003                                                         ;82B560;
     STA.W PauseMenu_EquipmentScreenCategoryIndex                         ;82B563;
-
-  .return:
-    PLP                                                                  ;82B566;
     RTS                                                                  ;82B567;
 
 
@@ -6594,12 +6411,9 @@ EquipmentScreen_MoveHigherOnBoots:
 EquipmentScreen_Main_ButtonResponse:
 ;; Parameters:
 ;;     $18: Tilemap size in bytes
-    PHP                                                                  ;82B568;
-    REP #$30                                                             ;82B569;
     LDA.B DP_Controller1New                                              ;82B56B;
     BIT.W #$0080                                                         ;82B56D;
     BNE +                                                                ;82B570;
-    PLP                                                                  ;82B572;
     RTS                                                                  ;82B573;
 
 +   LDA.W #$0038                                                         ;82B574;
@@ -6640,8 +6454,7 @@ EquipmentScreen_Main_ButtonResponse:
     TAY                                                                  ;82B5C0;
     LDA.W $0000,Y                                                        ;82B5C1;
     TAX                                                                  ;82B5C4;
-    JSR.W Copy_Bytes_from_X_to_7ERAM                                     ;82B5C5;
-    BRA .return                                                          ;82B5C8;
+    JMP.W Copy_Bytes_from_X_to_7ERAM
 
 +   LDA.W $0000,X                                                        ;82B5CA;
     EOR.W #$FFFF                                                         ;82B5CD;
@@ -6653,27 +6466,20 @@ EquipmentScreen_Main_ButtonResponse:
     STA.B DP_Temp12                                                      ;82B5DD;
     LDA.B DP_Temp18                                                      ;82B5DF;
     STA.B DP_Temp16                                                      ;82B5E1;
-    JSR.W Copy_Bytes_of_Palette_from_7E_to_12                            ;82B5E3;
-
-  .return:
-    PLP                                                                  ;82B5E6;
-    RTS                                                                  ;82B5E7;
+    JMP.W Copy_Bytes_of_Palette_from_7E_to_12
 
 
 ;;; $B62B: Draw pause menu during fade in ;;;
 Draw_PauseMenu_during_FadeIn:
-    PHP                                                                  ;82B62B;
     PHB                                                                  ;82B62C;
     PHK                                                                  ;82B62D;
     PLB                                                                  ;82B62E;
-    REP #$30                                                             ;82B62F;
     LDA.W PauseMenu_ButtonLabelMode                                      ;82B631;
     LDA.W PauseMenu_MenuIndex                                            ;82B634;
     BEQ .mapScreen                                                       ;82B637;
     JSR.W EquipmentScreen_DrawItemSelector                               ;82B639;
-    JSR.W EquipmentScreen_DisplayReserveTankAmount_shell                 ;82B63C;
+    JSR.W EquipmentScreen_DisplayReserveTankAmount
     PLB                                                                  ;82B63F;
-    PLP                                                                  ;82B640;
     RTL                                                                  ;82B641;
 
   .mapScreen:
@@ -6681,16 +6487,11 @@ Draw_PauseMenu_during_FadeIn:
     JSL.L Draw_Map_Icons                                                 ;82B645;
     JSL.L Display_Map_Elevator_Destinations                              ;82B649;
     PLB                                                                  ;82B64D;
-    PLP                                                                  ;82B64E;
     RTL                                                                  ;82B64F;
 
 
 ;;; $B672: Draw map icons ;;;
 Draw_Map_Icons:
-    PHB                                                                  ;82B672;
-    REP #$30                                                             ;82B673;
-    PHK                                                                  ;82B675;
-    PLB                                                                  ;82B676;
     LDX.W #MapIcon_PositionTablePointers_bossIcons                       ;82B677;
     LDA.W #$0009                                                         ;82B67A;
     JSR.W Display_Map_Boss_Icons                                         ;82B67D;
@@ -6724,17 +6525,15 @@ Draw_Map_Icons:
     SBC.B DP_BG1XScroll                                                  ;82B6D1;
     TAX                                                                  ;82B6D3;
     LDA.W #$0063                                                         ;82B6D4;
-    JSL.L AddSpritemapFrom_82C569_TableToOAM                             ;82B6D7;
+    JML AddSpritemapFrom_82C569_TableToOAM
 
   .return:
-    PLB                                                                  ;82B6DB;
     RTL                                                                  ;82B6DC;
 
 
 ;;; $B6DD: Draw file select map icons ;;;
 Draw_FileSelectMap_Icons:
     PHB                                                                  ;82B6DD;
-    REP #$30                                                             ;82B6DE;
     PHK                                                                  ;82B6E0;
     PLB                                                                  ;82B6E1;
     JSR.W Handle_PauseScreen_PaletteAnimation                            ;82B6E2;
@@ -7019,7 +6818,11 @@ Display_Map_Boss_Icons:
 
   .skip:
     LSR.B DP_Temp24                                                      ;82B8E8;
-    BRA .next                                                            ;82B8EA;
+    INX
+    INX
+    INX
+    INX
+    BRA .bossIcons
 
   .bossDead:
     PHX                                                                  ;82B8EC;
@@ -7050,11 +6853,7 @@ Draw_MapScrollArrow_and_Check_Scroll_in_that_Direction:
     TAY                                                                  ;82B912;
     LDA.W $0004,X                                                        ;82B913;
     PLX                                                                  ;82B916;
-    PHB                                                                  ;82B917;
-    PHK                                                                  ;82B918;
-    PLB                                                                  ;82B919;
     JSR.W Draw_PauseScreen_SpriteAnimation                               ;82B91A;
-    PLB                                                                  ;82B91D;
     PLX                                                                  ;82B91E;
     LDA.W $0006,X                                                        ;82B91F;
     BIT.B DP_Controller1Input                                            ;82B922;
@@ -7070,13 +6869,6 @@ Draw_MapScrollArrow_and_Check_Scroll_in_that_Direction:
 
 ;;; $B934: Handle map scroll arrows ;;;
 Handle_MapScrollArrows:
-    PHP                                                                  ;82B934;
-    PHB                                                                  ;82B935;
-    SEP #$20                                                             ;82B936;
-    LDA.B #MapScrollArrows>>16                                           ;82B938;
-    PHA                                                                  ;82B93A;
-    PLB                                                                  ;82B93B;
-    REP #$20                                                             ;82B93C;
     LDA.W MapScroll_MinX                                                 ;82B93E;
     SEC                                                                  ;82B941;
     SBC.W #$0018                                                         ;82B942;
@@ -7109,12 +6901,7 @@ Handle_MapScrollArrows:
     CMP.B DP_BG1YScroll                                                  ;82B97F;
     BMI .cancelScrollDown                                                ;82B981;
     LDX.W #MapScrollArrows_down                                          ;82B983;
-    JSL.L Draw_MapScrollArrow_and_Check_Scroll_in_that_Direction         ;82B986;
-
-  .return:
-    PLB                                                                  ;82B98A;
-    PLP                                                                  ;82B98B;
-    RTL                                                                  ;82B98C;
+    JML Draw_MapScrollArrow_and_Check_Scroll_in_that_Direction
 
   .cancelScrollDown:
 ; I have no idea what this check is for
@@ -7125,7 +6912,9 @@ Handle_MapScrollArrows:
     STZ.W MapScrolling_GearSwitchTimer                                   ;82B995;
     STZ.W MapScrolling_Direction                                         ;82B998;
     STZ.W MapScrolling_SpeedIndex                                        ;82B99B;
-    BRA .return                                                          ;82B99E;
+
+  .return:
+    RTL
 
 
 MapScrollArrows:
@@ -7213,39 +7002,6 @@ Update_Samus_Position_Indicator_Animation:
     dw $005F, $0060, $0061, $0060                                        ;82BA2D; (into MenuSpritemap_Pointers table)
 
 
-;;; $BA35: Draw border around SAMUS DATA ;;;
-Draw_Border_Around_SAMUS_DATA:
-    LDA.W #$0E00                                                         ;82BA35;
-    STA.B DP_Temp03                                                      ;82BA38;
-    LDX.W #$0080                                                         ;82BA3A;
-    LDY.W #$0010                                                         ;82BA3D;
-    LDA.W #$0048                                                         ;82BA40;
-    JSL.L AddSpritemapFrom_82C569_TableToOAM                             ;82BA43;
-    RTL                                                                  ;82BA47;
-
-
-;;; $BA48: Draw border around DATA COPY MODE ;;;
-Draw_Border_Around_DATA_COPY_MODE:
-    LDA.W #$0E00                                                         ;82BA48;
-    STA.B DP_Temp03                                                      ;82BA4B;
-    LDX.W #$0080                                                         ;82BA4D;
-    LDY.W #$0010                                                         ;82BA50;
-    LDA.W #$0049                                                         ;82BA53;
-    JSL.L AddSpritemapFrom_82C569_TableToOAM                             ;82BA56;
-    RTL                                                                  ;82BA5A;
-
-
-;;; $BA5B: Draw border around DATA CLEAR MODE ;;;
-Draw_Border_Around_DATA_CLEAR_MODE:
-    LDA.W #$0E00                                                         ;82BA5B;
-    STA.B DP_Temp03                                                      ;82BA5E;
-    LDX.W #$007C                                                         ;82BA60;
-    LDY.W #$0010                                                         ;82BA63;
-    LDA.W #$004A                                                         ;82BA66;
-    JSL.L AddSpritemapFrom_82C569_TableToOAM                             ;82BA69;
-    RTL                                                                  ;82BA6D;
-
-
 ;;; $BA6E: Draw menu selection missile ;;;
 Draw_Menu_Selection_Missile:
     PHB                                                                  ;82BA6E;
@@ -7289,9 +7045,6 @@ Draw_Menu_Selection_Missile:
 
 ;;; $BABA: Draw file copy arrow ;;;
 Draw_FileCopy_Arrow:
-    PHB                                                                  ;82BABA;
-    PHK                                                                  ;82BABB;
-    PLB                                                                  ;82BABC;
     LDA.W TitleMenu_FileCopySrcFileClearSlot                             ;82BABD;
     SEC                                                                  ;82BAC0;
     SBC.W TitleMenu_FileCopyDestSlot                                     ;82BAC1;
@@ -7321,14 +7074,13 @@ Draw_FileCopy_Arrow:
   .spawnSprite:
     LDA.W #$0200                                                         ;82BAF5;
     STA.B DP_Temp03                                                      ;82BAF8;
-    LDA.W .tableIndex,X                                                  ;82BAFA;
-    PHA                                                                  ;82BAFD;
-    LDA.W .tableYpos,X                                                   ;82BAFE;
+    LDA.L .tableIndex,X
+    STA.B DP_Temp44
+    LDA.L .tableYpos,X
     TAY                                                                  ;82BB01;
-    LDA.W .tableXpos,X                                                   ;82BB02;
+    LDA.L .tableXpos,X
     TAX                                                                  ;82BB05;
-    PLA                                                                  ;82BB06;
-    PLB                                                                  ;82BB07;
+    LDA.B DP_Temp44
     JML AddSpritemapFrom_82C569_TableToOAM                               ;82BB08;
 
 ;        _______________ Spritemap index
@@ -7350,17 +7102,15 @@ Draw_FileCopy_Arrow:
 
 ;;; $BB30: Display map elevator destinations ;;;
 Display_Map_Elevator_Destinations:
-    REP #$30                                                             ;82BB30;
     PHB                                                                  ;82BB32;
     PHK                                                                  ;82BB33;
     PLB                                                                  ;82BB34;
-    LDA.W #$0000                                                         ;82BB35;
-    STA.B DP_Temp03                                                      ;82BB38;
+    STZ.B DP_Temp03
     LDX.W AreaIndex                                                      ;82BB3A;
     LDA.L SRAMMirror_MapStations,X                                       ;82BB3D;
     AND.W #$00FF                                                         ;82BB41;
     BEQ .return                                                          ;82BB44;
-    LDA.W AreaIndex                                                      ;82BB46;
+    TXA
     ASL                                                                  ;82BB49;
     TAX                                                                  ;82BB4A;
     LDA.W Map_Elevator_Destinations,X                                    ;82BB4B;
@@ -7395,7 +7145,6 @@ Display_Map_Elevator_Destinations:
 ;;; $BB75: Handle game over baby metroid ;;;
 Handle_GameOver_BabyMetroid:
     PHB                                                                  ;82BB75;
-    REP #$30                                                             ;82BB76;
     PHK                                                                  ;82BB78;
     PLB                                                                  ;82BB79;
     LDA.W Enemy.instTimer                                                ;82BB7A;
@@ -7599,14 +7348,12 @@ GameOver_BabyMetroid_Palettes:
 
 ;;; $BE17: Cancel sound effects ;;;
 Cancel_Sound_Effects:
-    REP #$30                                                             ;82BE17;
     LDA.W #$0002                                                         ;82BE19;
     JSL.L QueueSound_Lib1_Max6                                           ;82BE1C;
     LDA.W #$0071                                                         ;82BE20;
     JSL.L QueueSound_Lib2_Max6                                           ;82BE23;
     LDA.W #$0001                                                         ;82BE27;
-    JSL.L QueueSound_Lib3_Max6                                           ;82BE2A;
-    RTL                                                                  ;82BE2E;
+    JML QueueSound_Lib3_Max6
 
 
 ;;; $BE2F: Queue Samus movement sound effects ;;;
@@ -7627,13 +7374,7 @@ Queue_Samus_Movement_SoundEffects:
     JSL.L QueueSound_Lib1_Max6                                           ;82BE4E;
 
 +   LDA.W #$0014                                                         ;82BE52;
-    JSL.L Run_Samus_Command                                              ;82BE55;
-    RTL                                                                  ;82BE59;
-
-
-;;; $BF04: Reserve tank transfer energy per frame ;;;
-ReserveTank_TransferEnergyPerFrame:
-    dw $0001                                                             ;82BF04;
+    JML Run_Samus_Command
 
 
 ;;; $BF06: Equipment screen tilemaps ;;;
@@ -7916,7 +7657,6 @@ ItemSelector_and_MapScrollArrows:                                        ;82C137
 
 
 UNUSED_Animation_4_82C162:
-    db $02,$07,$FF                                                       ;82C162;
 
 
 ReserveTank_AnimationData:                                               ;82C165;
@@ -8000,7 +7740,6 @@ AnimationSpritemapBaseIDPointers:
 
 
 UNUSED_Animation_0_82C1F6:
-    dw $0000,$0028,$0029                                                 ;82C1F6;
 
 
 L_R_Highlight_PauseScreenButtonLabelMode:                                ;82C1FC;
@@ -8564,11 +8303,6 @@ Dummy_Samus_Wireframe_Tilemap:
     dw $0000,$2619,$261A,$0000,$0000,$661A,$6619,$0000                   ;82C719;
     dw $2628,$2629,$262A,$062B,$462B,$662A,$262C,$262D                   ;82C729;
     dw $2638,$2639,$263A,$0000,$0000,$663A,$263C,$6638                   ;82C739;
-
-
-;;; $C749: Area select spritemap base index ;;;
-AreaSelect_SpritemapBaseIndex:
-    dw $0038                                                             ;82C749;
 
 
 ;;; $C74D: Map elevator destinations ;;;
@@ -9554,8 +9288,7 @@ Advance_GradualColorChange_ofAllPalettes_Denominator_C:
 ;;     Carry: Set if reached target colour, clear otherwise
     LDA.W #$000C                                                         ;82D961;
     STA.L PaletteChangeDenominator                                       ;82D964;
-    JSR.W Advance_GradualColorChange_ofAllPalettes                       ;82D968;
-    RTS                                                                  ;82D96B;
+    JMP.W Advance_GradualColorChange_ofAllPalettes
 
 
 ;;; $D96C: Advance gradual colour change of BG palette 6 ;;;
@@ -9564,7 +9297,6 @@ Advance_GradualColorChange_ofBGPalette6:
 ;;     Carry: Set if reached target colour, clear otherwise
 
 ; Called by Kraid when fading in the background
-    REP #$30                                                             ;82D96C;
     LDA.W #$000C                                                         ;82D96E;
     STA.L PaletteChangeDenominator                                       ;82D971;
     INC                                                                  ;82D975;
@@ -9606,7 +9338,6 @@ Advance_GradualColorChange_ofBGPalette6:
 Advance_GradualColorChange_ofPaletteRAM:
 ;; Returns:
 ;;     Carry: Set if reached target colour, clear otherwise
-    REP #$30                                                             ;82D9B8;
     LDA.W #$000F                                                         ;82D9BA;
     STA.L PaletteChangeDenominator                                       ;82D9BD;
     CMP.L PaletteChangeNumerator                                         ;82D9C1;
@@ -9648,7 +9379,6 @@ Advance_GradualColorChange_ofPaletteRAM:
 Advance_GradualColorChange_ofAllPalettes:
 ;; Returns:
 ;;     Carry: Set if reached target colour, clear otherwise
-    REP #$30                                                             ;82DA02;
     LDA.L PaletteChangeDenominator                                       ;82DA04;
     INC                                                                  ;82DA08;
     CMP.L PaletteChangeNumerator                                         ;82DA09;
@@ -9660,7 +9390,7 @@ Advance_GradualColorChange_ofAllPalettes:
 
   .advance:
     PHB                                                                  ;82DA18;
-    PEA.W Palettes>>16<<8|Palettes>>16                                   ;82DA19;
+    PEA.W Palettes>>8
     PLB                                                                  ;82DA1C;
     PLB                                                                  ;82DA1D;
     LDX.W #$0000                                                         ;82DA1E;
@@ -9973,7 +9703,6 @@ HandleSamusRunningOutOfEnergy_and_IncrementGameTime:
   .normalGameplay:
     LDA.W #$8000                                                         ;82DB9F;
     STA.W TimeIsFrozenFlag                                               ;82DBA2;
-    LDA.W #$8000
     TRB.W PaletteFXObject_Enable
     LDA.W #SamusCurrentStateHandler_SamusIsLocked
     STA.W CurrentStateHandler
@@ -9993,29 +9722,25 @@ HandleSamusRunningOutOfEnergy_and_IncrementGameTime:
 
   .tickGameTime:
     LDA.W IGTFrames                                                      ;82DBB2;
-    CLC                                                                  ;82DBB5;
-    ADC.W #$0001                                                         ;82DBB6;
+    INC
     STA.W IGTFrames                                                      ;82DBB9;
     CMP.W #$003C*!FPS                                                    ;82DBBC;
     BMI .checkGameTime                                                   ;82DBBF;
     STZ.W IGTFrames                                                      ;82DBC1;
     LDA.W IGTSeconds                                                     ;82DBC4;
-    CLC                                                                  ;82DBC7;
-    ADC.W #$0001                                                         ;82DBC8;
+    INC
     STA.W IGTSeconds                                                     ;82DBCB;
     CMP.W #$003C                                                         ;82DBCE;
     BMI .checkGameTime                                                   ;82DBD1;
     STZ.W IGTSeconds                                                     ;82DBD3;
     LDA.W IGTMinutes                                                     ;82DBD6;
-    CLC                                                                  ;82DBD9;
-    ADC.W #$0001                                                         ;82DBDA;
+    INC
     STA.W IGTMinutes                                                     ;82DBDD;
     CMP.W #$003C                                                         ;82DBE0;
     BMI .checkGameTime                                                   ;82DBE3;
     STZ.W IGTMinutes                                                     ;82DBE5;
     LDA.W IGTHours                                                       ;82DBE8;
-    CLC                                                                  ;82DBEB;
-    ADC.W #$0001                                                         ;82DBEC;
+    INC
     STA.W IGTHours                                                       ;82DBEF;
 
   .checkGameTime:
@@ -10085,8 +9810,7 @@ Reserve_Tank_Auto_Refill:
     JSL.L QueueSound_Lib3_Max3                                           ;82DC41;
 
 +   LDA.W Energy                                                         ;82DC45;
-    CLC                                                                  ;82DC48;
-    ADC.W #$0001                                                         ;82DC49;
+    INC
     STA.W Energy                                                         ;82DC4C;
     CMP.W MaxEnergy                                                      ;82DC4F;
     BMI +                                                                ;82DC52;
@@ -10095,8 +9819,7 @@ Reserve_Tank_Auto_Refill:
     BRA .zeroReserve                                                     ;82DC5A;
 
 +   LDA.W ReserveEnergy                                                  ;82DC5C;
-    SEC                                                                  ;82DC5F;
-    SBC.W #$0001                                                         ;82DC60;
+    DEC
     STA.W ReserveEnergy                                                  ;82DC63;
     BEQ .zeroReserve                                                     ;82DC66;
     BPL .return                                                          ;82DC68;
@@ -10122,34 +9845,39 @@ Reserve_Tank_Auto_Refill:
 ;;; $DC80: Game state 13h (death sequence, start) ;;;
 GameState_13_DeathSequence_Start:
     JSR.W GameState_8_MainGameplay                                       ;82DC83;
+    PHB
+    PEA.W Palettes>>8
+    PLB
+    PLB
     LDX.W #$01FE                                                         ;82DC86;
 
--   LDA.L Palettes,X                                                     ;82DC89;
-    STA.L BackupOfPalettesDuringMenu,X                                   ;82DC8D;
+-   LDA.W Palettes,X
+    STA.W BackupOfPalettesDuringMenu,X
     DEX                                                                  ;82DC91;
     DEX                                                                  ;82DC92;
     BPL -                                                                ;82DC93;
     LDX.W #$017E                                                         ;82DC95;
     LDA.W #$0000                                                         ;82DC98;
 
--   STA.L TargetPalettes_BGP0,X                                          ;82DC9B;
+-   STA.W TargetPalettes_BGP0,X
     DEX                                                                  ;82DC9F;
     DEX                                                                  ;82DCA0;
     BPL -                                                                ;82DCA1;
     LDX.W #$005E                                                         ;82DCA3;
     LDA.W #$0000                                                         ;82DCA6;
 
--   STA.L TargetPalettes_SpriteP5,X                                      ;82DCA9;
+-   STA.W TargetPalettes_SpriteP5,X
     DEX                                                                  ;82DCAD;
     DEX                                                                  ;82DCAE;
     BPL -                                                                ;82DCAF;
     LDX.W #$001E                                                         ;82DCB1;
 
--   LDA.L Palettes_SpriteP4C0,X                                          ;82DCB4;
-    STA.L TargetPalettes_SpriteP4,X                                      ;82DCB8;
+-   LDA.W Palettes_SpriteP4C0,X
+    STA.W TargetPalettes_SpriteP4,X
     DEX                                                                  ;82DCBC;
     DEX                                                                  ;82DCBD;
     BPL -                                                                ;82DCBE;
+    PLB
     LDA.W #$0003                                                         ;82DCC0;
     STA.W DeathAnimation_Timer                                           ;82DCC3;
     STZ.W DeathAnimation_Index                                           ;82DCC6;
@@ -10231,7 +9959,7 @@ GameState_15_DeathSequence_WaitForMusic:
 ;;; $DD87: Game state 16h (death sequence, pre-flashing) ;;;
 GameState_16_DeathSequence_PreFlashing:
 ; Death animation pre-flashing timer is initialised to 10h by GameState_14_DeathSequence_BlackOutSurroundings
-    JSL.L Draw_Samus_Starting_Death_Animation_JSL                        ;82DD8A;
+    JSL.L Draw_Samus_Starting_Death_Animation
     DEC.W DeathAnimation_PreFlashingTimer                                ;82DD8E;
     BEQ +                                                                ;82DD91;
     BPL .return                                                          ;82DD93;
@@ -10248,7 +9976,7 @@ GameState_17_DeathSequence_Flashing:
     TAX                                                                  ;82DDA1;
     BEQ .flashingEnded                                                   ;82DDA2;
     INC.W GameState                                                      ;82DDA4;
-    BRA .return                                                          ;82DDA7;
+    RTS
 
   .flashingEnded:
     JSL.L Draw_Samus_During_Death_Animation                              ;82DDA9;
@@ -10464,7 +10192,6 @@ Load_State_Header:
 
 ;;; $DF69: Wait until the end of a v-blank and enable h/v-counter interrupts ;;;
 WaitUntilTheEndOfAVBlank_and_Enable_H_V_CounterInterrupts:
-    SEP #$20                                                             ;82DF6A;
     JSL.L WaitUntilTheEndOfAVBlank                                       ;82DF6C;
     LDA.B DP_IRQAutoJoy                                                  ;82DF70;
     AND.B #$30                                                           ;82DF72;
@@ -10608,9 +10335,6 @@ Perform_Door_Transition_VRAM_Update:
     LDA.B $01,S                                                          ;82E039;
     INC                                                                  ;82E03B;
     STA.B DP_ReturnAddrRelativeParam                                     ;82E03C;
-    PHB                                                                  ;82E03E;
-    PHK                                                                  ;82E03F;
-    PLB                                                                  ;82E040;
     LDA.B (DP_ReturnAddrRelativeParam)                                   ;82E041;
     STA.W DoorTransitionVRAM_Src                                         ;82E043;
     INC.B DP_ReturnAddrRelativeParam                                     ;82E046;
@@ -10624,7 +10348,6 @@ Perform_Door_Transition_VRAM_Update:
     INC.B DP_ReturnAddrRelativeParam                                     ;82E058;
     LDA.B (DP_ReturnAddrRelativeParam)                                   ;82E05A;
     STA.W DoorTransitionVRAM_Size                                        ;82E05C;
-    PLB                                                                  ;82E05F;
     LDA.B DP_ReturnAddrRelativeParam                                     ;82E060;
     INC                                                                  ;82E062;
     STA.B $01,S                                                          ;82E063;
@@ -10639,9 +10362,6 @@ Perform_Door_Transition_VRAM_Update:
 
 ;;; $E071: Queue room music data ;;;
 Queue_Room_Music_Data:
-    PHP                                                                  ;82E071;
-    PHB                                                                  ;82E072;
-    REP #$30                                                             ;82E073;
     LDA.W GameState                                                      ;82E075;
     CMP.W #$0028                                                         ;82E078;
     BCS .return                                                          ;82E07B;
@@ -10653,20 +10373,15 @@ Queue_Room_Music_Data:
     JSL.L QueueMusicDataOrTrack_8FrameDelay                              ;82E08A;
     LDA.W RoomMusicDataIndex                                             ;82E08E;
     ORA.W #$FF00                                                         ;82E091;
-    JSL.L QueueMusicDataOrTrack_8FrameDelay                              ;82E094;
+    JML QueueMusicDataOrTrack_8FrameDelay
 
   .return:
-    PLB                                                                  ;82E098;
-    PLP                                                                  ;82E099;
     RTL                                                                  ;82E09A;
 
 
 ;;; $E09B: Update music track index ;;;
 Update_Music_Track_Index:
 ; Called only by $80:A07B (start gameplay) to set the music track to play when Samus fanfare finishes
-    PHP                                                                  ;82E09B;
-    PHB                                                                  ;82E09C;
-    REP #$30                                                             ;82E09D;
     LDA.W GameState                                                      ;82E09F;
     CMP.W #$0028                                                         ;82E0A2;
     BCS .return                                                          ;82E0A5;
@@ -10676,16 +10391,11 @@ Update_Music_Track_Index:
     STA.W MusicTrackIndex                                                ;82E0CF;
 
   .return:
-    PLB                                                                  ;82E0D2;
-    PLP                                                                  ;82E0D3;
     RTL                                                                  ;82E0D4;
 
 
 ;;; $E0D5: Load new music track if changed ;;;
 Load_New_Music_Track_If_Changed:
-    PHP                                                                  ;82E0D5;
-    PHB                                                                  ;82E0D6;
-    REP #$30                                                             ;82E0D7;
     LDA.W GameState                                                      ;82E0D9;
     CMP.W #$0028                                                         ;82E0DC;
     BCS .return                                                          ;82E0DF;
@@ -10706,11 +10416,9 @@ Load_New_Music_Track_If_Changed:
     BEQ .return                                                          ;82E104;
     LDY.W #$0006                                                         ;82E106;
     LDA.W RoomMusicTrackIndex                                            ;82E109;
-    JSL.L QueueMusicDataOrTrack_YFrameDelay                              ;82E10C;
+    JML QueueMusicDataOrTrack_YFrameDelay
 
   .return:
-    PLB                                                                  ;82E110;
-    PLP                                                                  ;82E111;
     RTL                                                                  ;82E112;
 
 
@@ -10718,9 +10426,6 @@ Load_New_Music_Track_If_Changed:
 Play_Room_Music_Track_After_A_Frames:
 ;; Parameters:
 ;;     A: Delay. Called with 6 seconds for Samus/item fanfare
-    PHP                                                                  ;82E118;
-    PHB                                                                  ;82E119;
-    REP #$30                                                             ;82E11A;
     PHY                                                                  ;82E11C;
     TAY                                                                  ;82E11D;
     LDA.W GameState                                                      ;82E11E;
@@ -10733,19 +10438,11 @@ Play_Room_Music_Track_After_A_Frames:
 
   .return:
     PLY                                                                  ;82E134;
-    PLB                                                                  ;82E135;
-    PLP                                                                  ;82E136;
     RTL                                                                  ;82E137;
-
-
-;;; $E138: RTL ;;;
-RTL_82E138:
-    RTL                                                                  ;82E138;
 
 
 ;;; $E139: Load target colours for common sprites, beams and flashing enemies ;;;
 Load_Target_Colors_for_Common_SpritesBeamsFlashingEnemies:
-    REP #$30                                                             ;82E139;
     LDX.W #$001E                                                         ;82E13B;
 
 -   LDA.L Initial_Palette_spritePalette5,X                               ;82E13E;
@@ -10929,7 +10626,6 @@ GameState_B_LoadingNextRoom:
 
 ;;; $E29E: Door transition function - wait for sounds to finish ;;;
 DoorTransitionFunction_WaitForSoundsToFinish:
-    PHP                                                                  ;82E29E;
     JSL.L Determine_Which_Enemies_to_Process                             ;82E29F;
     JSL.L Main_Enemy_Routine                                             ;82E2A3;
     JSL.L Draw_Samus_Projectiles_Enemies_and_EnemyProjectiles            ;82E2A7;
@@ -10955,7 +10651,7 @@ DoorTransitionFunction_WaitForSoundsToFinish:
     STA.W DoorTransitionFunction                                         ;82E2D6;
 
   .return:
-    PLP                                                                  ;82E2D9;
+    REP #$30
     RTS                                                                  ;82E2DA;
 
 
