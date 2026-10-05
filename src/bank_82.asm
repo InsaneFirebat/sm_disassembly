@@ -2989,6 +2989,7 @@ DrawRoomSelectMap:
     BMI .loopWithMapData                                                 ;829601;
 
   .return:
+    REP #$30
     LDX.B VRAMWriteStack                                                 ;829605;
     LDA.W #$1000                                                         ;829608;
     STA.B VRAMWrite.size,X                                               ;82960B;
@@ -10335,24 +10336,32 @@ Perform_Door_Transition_VRAM_Update:
     LDA.B $01,S                                                          ;82E039;
     INC                                                                  ;82E03B;
     STA.B DP_ReturnAddrRelativeParam                                     ;82E03C;
+    TAX
+    PHB                                                                  ;82E03E;
+    PHK                                                                  ;82E03F;
+    PLB                                                                  ;82E040;
     LDA.B (DP_ReturnAddrRelativeParam)                                   ;82E041;
     STA.W DoorTransitionVRAM_Src                                         ;82E043;
-    INC.B DP_ReturnAddrRelativeParam                                     ;82E046;
+    INX
+    STX.W DP_ReturnAddrRelativeParam
     LDA.B (DP_ReturnAddrRelativeParam)                                   ;82E048;
     STA.W DoorTransitionVRAM_Src+1                                       ;82E04A;
-    INC.B DP_ReturnAddrRelativeParam                                     ;82E04D;
-    INC.B DP_ReturnAddrRelativeParam                                     ;82E04F;
+    INX
+    INX
+    STX.W DP_ReturnAddrRelativeParam
     LDA.B (DP_ReturnAddrRelativeParam)                                   ;82E051;
     STA.W DoorTransitionVRAM_Dest                                        ;82E053;
-    INC.B DP_ReturnAddrRelativeParam                                     ;82E056;
-    INC.B DP_ReturnAddrRelativeParam                                     ;82E058;
+    INX
+    INX
+    STX.W DP_ReturnAddrRelativeParam
     LDA.B (DP_ReturnAddrRelativeParam)                                   ;82E05A;
     STA.W DoorTransitionVRAM_Size                                        ;82E05C;
-    LDA.B DP_ReturnAddrRelativeParam                                     ;82E060;
+    PLB                                                                  ;82E05F;
+    TXA
     INC                                                                  ;82E062;
     STA.B $01,S                                                          ;82E063;
     LDA.W #$8000                                                         ;82E065;
-    TSB.W DoorTransitionVRAM_Flag                                        ;82E068;
+    STA.W DoorTransitionVRAM_Flag
 
   .wait:
     LDA.W DoorTransitionVRAM_Flag                                        ;82E06B;
@@ -10992,15 +11001,20 @@ DoorTransitionFunction_LoadSpritesBGPLMsAudio_RunDoorRoomASM:
 
 ;;; $E566: Clear FX tilemap ;;;
 Clear_FX_Tilemap:
+    PHB
+    PEA.W ClearingFXTilemap>>8
+    PLB
+    PLB
     LDX.W #$077E                                                         ;82E566;
     LDA.W #$184E                                                         ;82E569;
 
   .loop:
-    STA.L ClearingFXTilemap,X                                            ;82E56C;
-    STA.L ClearingFXTilemap+$780,X                                       ;82E570;
+    STA.W ClearingFXTilemap,X
+    STA.W ClearingFXTilemap+$780,X
     DEX                                                                  ;82E574;
     DEX                                                                  ;82E575;
     BPL .loop                                                            ;82E576;
+    PLB
     JSR.W Perform_Door_Transition_VRAM_Update                            ;82E578;
     dl ClearingFXTilemap                                                 ;82E57B;
     dw $5880,$0F00                                                       ;82E57E;
@@ -11009,15 +11023,20 @@ Clear_FX_Tilemap:
 
 ;;; $E583: Clear BG2 tilemap ;;;
 Clear_BG2_Tilemap:
+    PHB
+    PEA.W BG2Tilemap>>8
+    PLB
+    PLB
     LDX.W #$07FE                                                         ;82E583;
     LDA.W #$0338                                                         ;82E586;
 
   .loop:
-    STA.L BG2Tilemap,X                                                   ;82E589;
-    STA.L BG2Tilemap+$800,X                                              ;82E58D;
+    STA.W BG2Tilemap,X
+    STA.W BG2Tilemap+$800,X
     DEX                                                                  ;82E591;
     DEX                                                                  ;82E592;
     BPL .loop                                                            ;82E593;
+    PLB
     JSR.W Perform_Door_Transition_VRAM_Update                            ;82E595;
     dl BG2Tilemap                                                        ;82E598;
     dw $4800,$1000                                                       ;82E59B;
@@ -11026,15 +11045,20 @@ Clear_BG2_Tilemap:
 
 ;;; $E5A0: Clear Kraid's BG2 tilemap ;;;
 Clear_Kraids_BG2_Tilemap:
+    PHB
+    PEA.W BG2Tilemap>>8
+    PLB
+    PLB
     LDX.W #$07FE                                                         ;82E5A0;
     LDA.W #$0338                                                         ;82E5A3;
 
   .loop:
-    STA.L BG2Tilemap,X                                                   ;82E5A6;
-    STA.L BG2Tilemap+$800,X                                              ;82E5AA;
+    STA.W BG2Tilemap,X
+    STA.W BG2Tilemap+$800,X
     DEX                                                                  ;82E5AE;
     DEX                                                                  ;82E5AF;
     BPL .loop                                                            ;82E5B0;
+    PLB
     JSR.W Perform_Door_Transition_VRAM_Update                            ;82E5B2;
     dl BG2Tilemap                                                        ;82E5B5;
     dw $4000,$1000                                                       ;82E5B8;

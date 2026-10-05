@@ -10,4 +10,4 @@ Enemy assumptions:
 
 
 TODO and known issues:
-- move enemy RAM clearing to InitAI_
+- lag frame during door scrolling, move enemy RAM clearing to InitAI_ to fix
